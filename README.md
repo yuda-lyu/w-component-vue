@@ -67,7 +67,7 @@ Vue.component('w-text',WText)
 ```
 [Optional] Add link for icon.
 ```alias
-<link href='https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900|Material+Icons' rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900|Material+Icons" rel="stylesheet">
 <link href="https://cdn.jsdelivr.net/npm/@mdi/font@3.x/css/materialdesignicons.min.css" rel="stylesheet">
 <link href="https://use.fontawesome.com/releases/v5.10.0/css/all.css" rel="stylesheet">
 ```
