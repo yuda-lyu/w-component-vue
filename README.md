@@ -67,11 +67,14 @@ Vue.component('w-text',WText)
 ```
 [Optional] Add link for icon.
 ```alias
-<link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900|Material+Icons" rel="stylesheet">
 <link href="https://cdn.jsdelivr.net/npm/@mdi/font@3.x/css/materialdesignicons.min.css" rel="stylesheet">
 <link href="https://use.fontawesome.com/releases/v5.10.0/css/all.css" rel="stylesheet">
 ```
-[Necessary] Add script for vuetify.
+[Necessary] Add link for google fonts for vuetify.
+```alias
+<link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900|Material+Icons" rel="stylesheet">
+```
+[Necessary] Add script and link for vuetify.
 ```alias
 <link href="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.js"></script>
