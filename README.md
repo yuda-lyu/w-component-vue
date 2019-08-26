@@ -22,8 +22,6 @@ To view some examples for more understanding, visit examples:
 ### Using npm(ES6 module):
 > **Note:** w-component-vue depends on `vue`, `vuetify`, `element-ui`, `lodash` and `wsemi`.
 
-> **Note:** `vuetify` 2.0 and above is supported.
-
 ```alias
 npm i w-component-vue
 ```
@@ -81,7 +79,7 @@ Vue.component('w-text',WText)
 ```
 [Necessary] Add script for w-component-vue.
 ```alias
-<script src="https://cdn.jsdelivr.net/npm/w-component-vue@1.1.2/dist/w-component-vue.umd.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/w-component-vue@1.1.5/dist/w-component-vue.umd.js"></script>
 ```
 Directly use:
 ```alias
