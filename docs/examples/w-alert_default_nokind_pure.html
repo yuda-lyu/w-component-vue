@@ -3,7 +3,7 @@
 
   <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <title>example for wf-alert: type warning</title>
+    <title>example for w-alert: default</title>
 
     <!-- fontawesome -->
     <link href="https://use.fontawesome.com/releases/v5.10.0/css/all.css" rel="stylesheet">
@@ -64,12 +64,12 @@
 
     <v-app id="app" style="font-family:inherit;">
 
-      <div class="head1">wf-alert</div>
+      <div class="head1">w-alert</div>
       <div class="bk">
-        <div class="item">type warning</div>
+        <div class="item">default</div>
 
 
-        <v-btn small @click="alert('警告'+WfAlert.text,{type:'warning'})">Warning</v-btn>
+        <v-btn small @click="$alert('成功'+WAlert.text)">Success</v-btn>
 
       </div>
 
@@ -84,10 +84,12 @@
         el: '#app',
         vuetify: new Vuetify(),
         data: {
-          'WfAlert': {
+          'WAlert': {
             'text': '訊息文字',
           },
-        }
+        },
+        computed: {},
+        methods: {},
       })
     </script>
 

@@ -1,4 +1,5 @@
 <script>
+import WAlert from './WAlert.mjs'
 import WBadge from './WBadge.vue'
 import WButtonChip from './WButtonChip.vue'
 import WButtonCircle from './WButtonCircle.vue'
@@ -30,6 +31,7 @@ import WTimeminuteRangeCore from './WTimeminuteRangeCore.vue'
 
 let WComponentVue = {
     install: function(Vue) {
+        Vue.prototype.$alert = WAlert
         Vue.component('w-badge', WBadge)
         Vue.component('w-button-chip', WButtonChip)
         Vue.component('w-button-circle', WButtonCircle)

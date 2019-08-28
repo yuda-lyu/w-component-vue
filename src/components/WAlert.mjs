@@ -12,7 +12,7 @@ import isfun from 'wsemi/src/isfun.mjs'
  * @param {String} [opt.type='success'] 輸入訊息種類字串，預設'success'
  * @param {String} [opt.position='top-right'] 輸入位置字串，預設'top-right'
  */
-function WfAlert(msg, opt = {}) {
+function WAlert(msg, opt = {}) {
 
     //check
     if (!isestr(msg)) {
@@ -64,4 +64,4 @@ function WfAlert(msg, opt = {}) {
 }
 
 
-export default WfAlert
+export default WAlert

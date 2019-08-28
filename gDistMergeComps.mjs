@@ -1,5 +1,6 @@
 import _ from 'lodash'
 import fs from 'fs'
+import w from 'wsemi'
 
 
 let fd_src = './src/components/'
@@ -31,15 +32,33 @@ async function main() {
     let c2 = []
     _.each(ltfs, function(v) {
 
+        //name_all
+        let name_all = v
+
+        //s
+        let s = _.split(v, '.')
+
         //name_ori
-        let name_ori = v.replace('.vue', '')
+        let name_ori = s[0]
+
+        //name_ext
+        let name_ext = s[1]
+
+        //name_ori, name_kb
         let name_kb = _.kebabCase(name_ori)
 
         //c1
-        c1.push(`import ${name_ori} from './${name_ori}.vue'`)
+        c1.push(`import ${name_ori} from './${name_all}'`)
 
         //c2
-        c2.push(`        Vue.component('${name_kb}', ${name_ori})`)
+        if (name_ext === 'vue') {
+            c2.push(`        Vue.component('${name_kb}', ${name_ori})`)
+        }
+        else if (name_ext === 'mjs') {
+            let funName = _.toLower(name_ori)
+            funName = '$' + w.strdelleft(funName, 1)
+            c2.push(`        Vue.prototype.${funName} = ${name_ori}`)
+        }
 
     })
 

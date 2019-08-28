@@ -48,7 +48,7 @@ let optPlugins = [
 
 let fd_src = 'src/js/'
 let fd_tar = 'dist/'
-let cps = ["vuetifyColor","WfAlert"]
+let cps = ["vuetifyColor"]
 let fn_type = 'mjs'
 
 

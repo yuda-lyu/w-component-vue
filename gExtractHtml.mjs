@@ -4,6 +4,7 @@ import pretty from 'pretty'
 import fs from 'fs'
 //import JSON5 from 'json5'
 import replace from 'wsemi/src/replace.mjs'
+import strdelright from 'wsemi/src/strdelright.mjs'
 import cvCasename from './tools/cvCasename.mjs'
 
 
@@ -93,7 +94,9 @@ let cc = `
         new Vue({
             el: '#app',
             vuetify: new Vuetify(),
-            data: {{data}}
+            data: {{data}},
+            computed: {{computed}},
+            methods: {{methods}},
         })
 
     </script>
@@ -151,14 +154,20 @@ function writeHtml(v) {
     //replace tmp
     c = c.replace('{{tmp}}', t_tmp)
 
-    //t_data
+    //replace data
     // let data = {}
     // data[v.name] = v.data
     // let t_data = JSON.stringify(data)
     let t_data = `{ ${v.data} }`
-
-    //replace data
     c = c.replace('{{data}}', t_data)
+
+    //replace computed
+    let t_computed = v.computed
+    c = c.replace('{{computed}}', t_computed)
+
+    //replace methods
+    let t_methods = v.methods
+    c = c.replace('{{methods}}', t_methods)
 
     //replace mdi-icon
     let r = `"mdi[A-Za-z]+"`
@@ -213,6 +222,30 @@ function extractAppZone(fn) {
     let action = h.match(reg)[0]
     action = action.replace(`'actions':`, ``)
 
+    //computed
+    r = `(    computed:)[\\s\\S]+(    },)`
+    reg = new RegExp(r, 'g')
+    let computed = _.get(h.match(reg), 0)
+    if (computed) {
+        computed = computed.replace(`computed:`, ``)
+        computed = strdelright(computed, 1)
+    }
+    else {
+        computed = '{}'
+    }
+
+    //methods
+    r = `(    methods:)[\\s\\S]+(    },)`
+    reg = new RegExp(r, 'g')
+    let methods = _.get(h.match(reg), 0)
+    if (methods) {
+        methods = methods.replace(`methods:`, ``)
+        methods = strdelright(methods, 1)
+    }
+    else {
+        methods = '{}'
+    }
+
     function getAttr(me, name) {
         let c = me('demolink').attr(':' + name)
         c = replace(c, `\'`, '')
@@ -240,7 +273,7 @@ function extractAppZone(fn) {
 
         //writeHtml
         writeHtml({
-            name, kbname, casename, temp, data, action, fn
+            name, kbname, casename, temp, data, action, computed, methods, fn
         })
 
     })

@@ -158,11 +158,11 @@
             ></AppZoneWSwitch>
 
 
-            <AppZoneWfAlert
+            <AppZoneWAlert
                 :modeBorder="modeBorder"
                 :modeShell="modeShell"
-                v-if="compname==='WfAlert'"
-            ></AppZoneWfAlert>
+                v-if="compname==='WAlert'"
+            ></AppZoneWAlert>
 
 
             <AppZoneWChips
@@ -259,7 +259,7 @@ import AppZoneWButtonChip from './AppZoneWButtonChip.vue'
 import AppZoneWButtonCircle from './AppZoneWButtonCircle.vue'
 import AppZoneWProgressCircle from './AppZoneWProgressCircle.vue'
 import AppZoneWSwitch from './AppZoneWSwitch.vue'
-import AppZoneWfAlert from './AppZoneWfAlert.vue'
+import AppZoneWAlert from './AppZoneWAlert.vue'
 import AppZoneWChips from './AppZoneWChips.vue'
 import AppZoneWCheckChips from './AppZoneWCheckChips.vue'
 import AppZoneWRadioChips from './AppZoneWRadioChips.vue'
@@ -280,7 +280,7 @@ export default {
         AppZoneWButtonCircle,
         AppZoneWProgressCircle,
         AppZoneWSwitch,
-        AppZoneWfAlert,
+        AppZoneWAlert,
         AppZoneWChips,
         AppZoneWCheckChips,
         AppZoneWRadioChips,
@@ -307,7 +307,7 @@ export default {
                         'WButtonCircle',
                         'WProgressCircle',
                         'WSwitch',
-                        'WfAlert',
+                        'WAlert',
                     ]
                 },
                 {

@@ -24,7 +24,8 @@ async function main() {
 
     //getFiles
     let ltfs = await getFiles(fd_src)
-    _.pull(ltfs, 'demolink.vue')
+    _.pull(ltfs, 'WAlert.mjs') //rollup設定檔目前是給vue組件打包用, 暫時不獨立打包成js組件, 將WAlert嵌入WComponentVue元件中呼叫使用
+    _.pull(ltfs, 'demolink.vue') //不打包github網頁輔助顯示組件
 
     //get name
     ltfs = _.map(ltfs, function(v) {
