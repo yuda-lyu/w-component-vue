@@ -2,11 +2,11 @@ import _ from 'lodash'
 import fs from 'fs'
 
 
-let fd_src = 'src/components/'
+let fd_src = 'src/js/'
 let fd_tar = 'dist/'
 let fn_rollup_src = '.rollup.mjs'
-let fn_rollup_tar = '.rollupComps'
-let fn_type = 'vue'
+let fn_rollup_tar = '.rollupFuncs'
+let fn_type = 'mjs'
 
 
 async function getFiles(fd) {
@@ -24,11 +24,10 @@ async function main() {
 
     //getFiles
     let ltfs = await getFiles(fd_src)
-    _.pull(ltfs, 'demolink.vue')
 
     //get name
     ltfs = _.map(ltfs, function(v) {
-        return v.replace('.vue', '')
+        return v.replace('.mjs', '')
     })
 
     //cps

@@ -39,7 +39,6 @@ let optPlugins = [
         browser: true,
     }),
     babel(optBabel),
-    //buble(),
     postcss({
         extensions: ['.css']
     }),
@@ -50,11 +49,12 @@ let optPlugins = [
 let fd_src = '{fd_src}'
 let fd_tar = '{fd_tar}'
 let cps = {cps}
+let fn_type = '{fn_type}'
 
 
 let rs = _.map(cps, function(v) {
     let name = _.kebabCase(v)
-    let input = `${fd_src}${v}.vue`
+    let input = `${fd_src}${v}.${fn_type}`
     let file = `${fd_tar}${name}.umd.js`
     let banner = `/*!\n * ${name} v${pkg.version}\n * (c) 2018-2019 ${pkg.author}\n * Released under the MIT License.\n */`
     return {

@@ -7,6 +7,7 @@ let fd_src = 'src/'
 let fd_tar = 'docs/examples/'
 let fn_rollup_src = '.rollup.mjs'
 let fn_rollup_tar = '.rollupApp'
+let fn_type = 'vue'
 
 
 let cc = `
@@ -80,6 +81,7 @@ async function main() {
     c = c.replace('{fd_src}', fd_src)
     c = c.replace('{fd_tar}', fd_tar)
     c = c.replace('{cps}', cps)
+    c = c.replace('{fn_type}', fn_type)
 
     //write
     //console.log(c)
