@@ -74,12 +74,16 @@
                                 color="deep-purple lighten-2"
                                 label="emboss"
                                 value="emboss"
+                                :on-icon="mdiCheckCircle"
+                                :off-icon="mdiCheckboxBlankCircleOutline"
                             ></v-radio>
 
                             <v-radio
                                 color="deep-purple lighten-2"
                                 label="border"
                                 value="border"
+                                :on-icon="mdiCheckCircle"
+                                :off-icon="mdiCheckboxBlankCircleOutline"
                             ></v-radio>
 
                         </v-radio-group>
@@ -101,12 +105,16 @@
                                 color="pink darken-1"
                                 label="pure"
                                 value="pure"
+                                :on-icon="mdiCheckCircle"
+                                :off-icon="mdiCheckboxBlankCircleOutline"
                             ></v-radio>
 
                             <v-radio
                                 color="pink darken-1"
                                 label="shell"
                                 value="shell"
+                                :on-icon="mdiCheckCircle"
+                                :off-icon="mdiCheckboxBlankCircleOutline"
                             ></v-radio>
 
                         </v-radio-group>
@@ -254,6 +262,7 @@
 
 <script>
 import kebabCase from 'lodash/kebabCase'
+import { mdiCheckCircle, mdiCheckboxBlankCircleOutline } from '@mdi/js'
 import AppZoneWBadge from './AppZoneWBadge.vue'
 import AppZoneWButtonChip from './AppZoneWButtonChip.vue'
 import AppZoneWButtonCircle from './AppZoneWButtonCircle.vue'
@@ -296,6 +305,8 @@ export default {
     },
     data: function() {
         return {
+            mdiCheckCircle,
+            mdiCheckboxBlankCircleOutline,
             indKind: 0,
             indName: 0,
             sComps: [

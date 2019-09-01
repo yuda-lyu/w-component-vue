@@ -9,6 +9,7 @@
                 :text-color="textColor"
                 :color="backgroundColor"
                 :close="editable"
+                :close-icon="mdiCloseCircle"
                 @click="ck_chip(item)"
                 @click:close="ck_remove(item)"
                 :key="kitem"
@@ -54,7 +55,7 @@
 </template>
 
 <script>
-import { mdiPlusCircle } from '@mdi/js'
+import { mdiCloseCircle, mdiPlusCircle } from '@mdi/js'
 import trim from 'lodash/trim'
 import WText from './WText.vue'
 
@@ -107,6 +108,7 @@ export default {
     },
     data: function() {
         return {
+            mdiCloseCircle,
             mdiPlusCircle,
             value_trans: [],
             userinput: '',
@@ -197,7 +199,7 @@ export default {
 </script>
 
 <style scoped>
-.v-chip.v-size--small {
+.v-size--small {
     font-size: 14px;
 }
 .v-chpi-modify {

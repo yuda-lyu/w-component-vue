@@ -45,5 +45,6 @@ module.exports = {
         'dot-notation': 'off',
         'standard/no-callback-literal': 'off',
         'quotes': ['error', "single", { "allowTemplateLiterals": true }],
+        'prefer-promise-reject-errors': 'off',
     }
 };

@@ -46,7 +46,7 @@
 
 <script>
 import { mdiLaunch, mdiUnfoldMoreVertical } from '@mdi/js'
-import cvCasename from '../../tools/cvCasename.mjs'
+import cvCasename from '../../toolg/cvCasename.mjs'
 
 export default {
     props: {

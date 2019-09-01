@@ -114,4 +114,7 @@ export default {
 </script>
 
 <style scoped>
+.v-size--small {
+    font-size: 14px;
+}
 </style>

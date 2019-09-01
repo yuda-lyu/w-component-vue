@@ -16,6 +16,7 @@
                 item-text="text"
                 item-value="value"
                 return-object
+                :append-icon="mdiMenuDown"
                 :readonly="!editable"
                 :items="items"
                 :value="value_trans"
@@ -28,6 +29,7 @@
 </template>
 
 <script>
+import { mdiMenuDown } from '@mdi/js'
 
 /**
  * @vue-prop {Array} [items=[]] 輸入可選項目陣列，預設[]
@@ -51,6 +53,7 @@ export default {
     },
     data: function() {
         return {
+            mdiMenuDown,
             value_trans: {},
         }
     },
