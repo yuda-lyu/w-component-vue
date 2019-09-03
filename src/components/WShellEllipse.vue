@@ -73,6 +73,8 @@ import WIcon from './WIcon.vue'
  * @vue-prop {String} [title=''] 輸入標題字串，預設''
  * @vue-prop {String} [titleColor='deep-orange darken-1'] 輸入標題顏色字串，預設'deep-orange darken-1'
  * @vue-prop {Number} [borderRadius=30] 輸入圓角寬度，單位為px，預設30
+ * @vue-prop {String} [borderColor='white'] 輸入邊框顏色字串，預設'white'
+ * @vue-prop {String} [borderColorHover='white'] 輸入邊框Hover顏色字串，預設'white'
  * @vue-prop {Boolean} [borderShadow=true] 輸入是否為陰影模式，預設true
  * @vue-prop {String} [leftIcon=''] 輸入左側圖標字串，可為mdi,md,fa代號或mdi/js路徑，預設''
  * @vue-prop {String} [leftIconColor='deep-orange lighten-2'] 輸入左側圖標顏色字串，預設'deep-orange lighten-2'
@@ -82,8 +84,6 @@ import WIcon from './WIcon.vue'
  * @vue-prop {String} [rightIconColor='deep-orange lighten-2'] 輸入右側圖標顏色字串，預設'deep-orange lighten-2'
  * @vue-prop {String} [rightIconColorHover='deep-orange lighten-1'] 輸入右側圖標Hover時顏色字串，預設'deep-orange lighten-1'
  * @vue-prop {String} [rightIconTooltip=''] 輸入右側圖標提示文字字串，預設''
- * @vue-prop {String} [borderColor='white'] 輸入邊框顏色字串，預設'white'
- * @vue-prop {String} [borderColorHover='white'] 輸入邊框Hover顏色字串，預設'white'
  * @vue-prop {Boolean} [small=true] 輸入是否為小型模式，預設true
  * @vue-prop {Boolean} [editable=true] 輸入是否為編輯模式，預設true
  */
@@ -103,6 +103,14 @@ export default {
         borderRadius: {
             type: Number,
             default: 30,
+        },
+        borderColor: {
+            type: String,
+            default: 'white', //transparent grey lighten-1
+        },
+        borderColorHover: {
+            type: String,
+            default: 'white', //transparent grey lighten-1
         },
         borderShadow: {
             type: Boolean,
@@ -139,14 +147,6 @@ export default {
         rightIconTooltip: {
             type: String,
             default: '',
-        },
-        borderColor: {
-            type: String,
-            default: 'white', //transparent grey lighten-1
-        },
-        borderColorHover: {
-            type: String,
-            default: 'white', //transparent grey lighten-1
         },
         small: {
             type: Boolean,

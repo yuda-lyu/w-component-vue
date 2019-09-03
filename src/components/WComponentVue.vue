@@ -3,6 +3,7 @@ import WAlert from './WAlert.mjs'
 import WBadge from './WBadge.vue'
 import WButtonChip from './WButtonChip.vue'
 import WButtonCircle from './WButtonCircle.vue'
+import WButtonGroupChip from './WButtonGroupChip.vue'
 import WCheckChips from './WCheckChips.vue'
 import WChips from './WChips.vue'
 import WIcon from './WIcon.vue'
@@ -35,6 +36,7 @@ let WComponentVue = {
         Vue.component('w-badge', WBadge)
         Vue.component('w-button-chip', WButtonChip)
         Vue.component('w-button-circle', WButtonCircle)
+        Vue.component('w-button-group-chip', WButtonGroupChip)
         Vue.component('w-check-chips', WCheckChips)
         Vue.component('w-chips', WChips)
         Vue.component('w-icon', WIcon)

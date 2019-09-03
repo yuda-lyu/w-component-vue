@@ -145,6 +145,13 @@
             ></AppZoneWButtonChip>
 
 
+            <AppZoneWButtonGroupChip
+                :modeBorder="modeBorder"
+                :modeShell="modeShell"
+                v-if="compname==='WButtonGroupChip'"
+            ></AppZoneWButtonGroupChip>
+
+
             <AppZoneWButtonCircle
                 :modeBorder="modeBorder"
                 :modeShell="modeShell"
@@ -266,6 +273,7 @@ import { mdiCheckCircle, mdiCheckboxBlankCircleOutline } from '@mdi/js'
 import AppZoneWBadge from './AppZoneWBadge.vue'
 import AppZoneWButtonChip from './AppZoneWButtonChip.vue'
 import AppZoneWButtonCircle from './AppZoneWButtonCircle.vue'
+import AppZoneWButtonGroupChip from './AppZoneWButtonGroupChip.vue'
 import AppZoneWProgressCircle from './AppZoneWProgressCircle.vue'
 import AppZoneWSwitch from './AppZoneWSwitch.vue'
 import AppZoneWAlert from './AppZoneWAlert.vue'
@@ -287,6 +295,7 @@ export default {
         AppZoneWBadge,
         AppZoneWButtonChip,
         AppZoneWButtonCircle,
+        AppZoneWButtonGroupChip,
         AppZoneWProgressCircle,
         AppZoneWSwitch,
         AppZoneWAlert,
@@ -315,6 +324,7 @@ export default {
                     cmps: [
                         'WBadge',
                         'WButtonChip',
+                        'WButtonGroupChip',
                         'WButtonCircle',
                         'WProgressCircle',
                         'WSwitch',

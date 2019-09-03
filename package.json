@@ -1,6 +1,6 @@
 {
   "name": "w-component-vue",
-  "version": "1.1.12",
+  "version": "1.1.13",
   "author": "yuda-lyu(semisphere)",
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -63,7 +63,7 @@
     "rollup-plugin-vue": "^5.0.1",
     "rollup-plugin-vue-template-compiler": "^1.0.3",
     "sass": "^1.22.10",
-    "sass-loader": "^8.0.0",
+    "sass-loader": "^7.3.1",
     "style-loader": "^1.0.0",
     "stylus": "^0.54.7",
     "stylus-loader": "^3.0.2",

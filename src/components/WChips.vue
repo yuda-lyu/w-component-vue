@@ -1,5 +1,5 @@
 <template>
-    <div style="display:inline-block;" v-bind:ch_param="ch_param">
+    <div style="display:inline-block;" :ch_param="ch_param">
 
         <template v-for="(item,kitem) in value_trans">
 
