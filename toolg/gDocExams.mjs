@@ -1,5 +1,5 @@
-import _ from 'lodash'
 import fs from 'fs'
+import _ from 'lodash'
 import getFiles from '../tool/getFiles.mjs'
 
 
@@ -11,7 +11,7 @@ async function main() {
     //把example裡面cdn更換, 再複製到docs的example內, 作為日後發佈為靜態網站
 
     //cdn
-    let cdn = `<script src="https://cdn.jsdelivr.net/npm/w-component-vue/dist/w-component-vue.umd.js"></script>`
+    let cdn = `<script src="https://cdn.jsdelivr.net/npm/w-component-vue@latest/dist/w-component-vue.umd.js"></script>`
 
     //mkdirSync
     if (!fs.existsSync(fdTar)) {
