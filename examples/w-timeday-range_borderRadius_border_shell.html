@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-tw">
+
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <title>example for w-timeday-range: borderRadius</title>
+
+    <!-- fontawesome -->
+    <link href="https://use.fontawesome.com/releases/v5.10.0/css/all.css" rel="stylesheet">
+
+    <!-- mdi font -->
+    <link _href="https://cdn.jsdelivr.net/npm/@mdi/font@3.x/css/materialdesignicons.min.css" rel="stylesheet">
+
+    <!-- google font -->
+    <link _href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+    <link _href="https://fonts.googleapis.com/css?family=Material+Icons" rel="stylesheet">
+
+    <!-- @babel/polyfill -->
+    <script nomodule src="https://cdn.jsdelivr.net/npm/@babel/polyfill/dist/polyfill.min.js"></script>
+
+    <!-- vue -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
+
+    <!-- vuetify -->
+    <link href="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.js"></script>
+
+    <!-- w-component-vue -->
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue/dist/w-component-vue.umd.js"></script>
+
+    <style>
+      .v-application--wrap {
+        display: block;
+        /* fix for IE11 */
+        font-family: inherit;
+        background-color: #fff;
+      }
+
+      .item {
+        border-left: 3px solid #ffba75;
+        margin: 5px 5px 8px 0px;
+        padding: 3px 3px 5px 10px;
+        font-size: 0.9rem;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+      }
+
+      .head1 {
+        margin: 0px;
+        padding: 0px;
+        font-size: 30pt;
+      }
+
+      .bk {
+        display: inline-block;
+        margin: 10px 90px 60px 0px;
+        vertical-align: top;
+      }
+    </style>
+
+  </head>
+
+  <body style="font-family:'Microsoft JhengHei','Avenir','Helvetica'; padding:20px;">
+
+    <v-app id="app" style="font-family:inherit;">
+
+      <div class="head1">w-timeday-range</div>
+      <div class="bk">
+        <div class="item">borderRadius</div>
+
+
+        <w-shell-material style="margin-top:30px;" :title="'請選擇旅遊起訖日期'" :left-icon="'mdi-paw'">
+          <w-timeday-range :border-shadow="false" :border-color="'orange lighten-2'" :border-color-hover="'orange darken-2'" :border-radius="5" :day-start.sync="WTimedayRange.dayStart" :day-end.sync="WTimedayRange.dayEnd" />
+        </w-shell-material>
+      </div>
+
+    </v-app>
+
+    <script>
+      //install WComponentVue
+      Vue.use(window['w-component-vue'])
+
+      //initialize
+      new Vue({
+        el: '#app',
+        vuetify: new Vuetify(),
+        data: {
+          'WTimedayRange': {
+            dayStart: '2019-01-01',
+            dayEnd: '2019-02-01',
+          },
+        },
+        computed: {},
+        methods: {},
+      })
+    </script>
+
+  </body>
+
+</html>
