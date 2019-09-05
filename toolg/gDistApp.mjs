@@ -1,5 +1,4 @@
-import rollupFiles from '../tool/rollupFiles.mjs'
-//import getFiles from '../tool/getFiles.mjs'
+import rollupFiles from 'w-package-tools/src/rollupFiles.mjs'
 
 
 let fdSrc = './src'

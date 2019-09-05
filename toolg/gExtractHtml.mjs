@@ -3,8 +3,8 @@ import _ from 'lodash'
 import cheerio from 'cheerio'
 import pretty from 'pretty'
 import w from 'wsemi'
-import getFiles from '../tool/getFiles.mjs'
-import cleanFolder from '../tool/cleanFolder.mjs'
+import getFiles from 'w-package-tools/src/getFiles.mjs'
+import cleanFolder from 'w-package-tools/src/cleanFolder.mjs'
 import cvCasename from './cvCasename.mjs'
 
 

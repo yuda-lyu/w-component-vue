@@ -1,7 +1,7 @@
 import _ from 'lodash'
 import fs from 'fs'
 import w from 'wsemi'
-import getFiles from '../tool/getFiles.mjs'
+import getFiles from 'w-package-tools/src/getFiles.mjs'
 
 
 let fdSrc = './src/components/'
