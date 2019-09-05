@@ -4,7 +4,7 @@ import cheerio from 'cheerio'
 import pretty from 'pretty'
 import w from 'wsemi'
 import getFiles from '../tool/getFiles.mjs'
-import deleteFolder from '../tool/deleteFolder.mjs'
+import cleanFolder from '../tool/cleanFolder.mjs'
 import cvCasename from './cvCasename.mjs'
 
 
@@ -278,12 +278,14 @@ async function main() {
     //由jsdoc產製之wsemi.html, 自動添加將example轉換成codepen線上編輯功能
 
     //fdTestHtml
-    deleteFolder(fdTestHtml)
-    fs.mkdirSync(fdTestHtml)
+    cleanFolder(fdTestHtml)
+    //fs.mkdirSync(fdTestHtml)
+    //await fs.promises.mkdir(fdTestHtml)
 
     //fdTestSrc
-    deleteFolder(fdTestSrc)
-    fs.mkdirSync(fdTestSrc)
+    cleanFolder(fdTestSrc)
+    //fs.mkdirSync(fdTestSrc)
+    //await fs.promises.mkdir(fdTestSrc)
 
     //getFiles
     let ltfs = getFiles(fdSrc)
