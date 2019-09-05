@@ -2,6 +2,11 @@
     <v-app style="font-family:inherit;">
 
 
+<div astyle="padding:30px;">
+
+</div>
+
+
         <a href="https://github.com/yuda-lyu/w-component-vue" target="_blank">
             <img width="149" height="149"
                 style="position:fixed; top:0; right:0; border:0; z-index:10000;"
@@ -138,6 +143,13 @@
             ></AppZoneWBadge>
 
 
+            <AppZoneWPanel
+                :modeBorder="modeBorder"
+                :modeShell="modeShell"
+                v-if="compname==='WPanel'"
+            ></AppZoneWPanel>
+
+
             <AppZoneWButtonChip
                 :modeBorder="modeBorder"
                 :modeShell="modeShell"
@@ -271,6 +283,7 @@
 import kebabCase from 'lodash/kebabCase'
 import { mdiCheckCircle, mdiCheckboxBlankCircleOutline } from '@mdi/js'
 import AppZoneWBadge from './AppZoneWBadge.vue'
+import AppZoneWPanel from './AppZoneWPanel.vue'
 import AppZoneWButtonChip from './AppZoneWButtonChip.vue'
 import AppZoneWButtonCircle from './AppZoneWButtonCircle.vue'
 import AppZoneWButtonGroupChip from './AppZoneWButtonGroupChip.vue'
@@ -293,6 +306,7 @@ import AppZoneWTimeminuteRange from './AppZoneWTimeminuteRange.vue'
 export default {
     components: {
         AppZoneWBadge,
+        AppZoneWPanel,
         AppZoneWButtonChip,
         AppZoneWButtonCircle,
         AppZoneWButtonGroupChip,
@@ -323,12 +337,18 @@ export default {
                     name: 'basic',
                     cmps: [
                         'WBadge',
+                        'WPanel',
+                        'WProgressCircle',
+                        'WAlert',
+                    ]
+                },
+                {
+                    name: 'button',
+                    cmps: [
                         'WButtonChip',
                         'WButtonGroupChip',
                         'WButtonCircle',
-                        'WProgressCircle',
                         'WSwitch',
-                        'WAlert',
                     ]
                 },
                 {

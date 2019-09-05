@@ -7,6 +7,7 @@ import WButtonGroupChip from './WButtonGroupChip.vue'
 import WCheckChips from './WCheckChips.vue'
 import WChips from './WChips.vue'
 import WIcon from './WIcon.vue'
+import WPanel from './WPanel.vue'
 import WProgressCircle from './WProgressCircle.vue'
 import WRadioChips from './WRadioChips.vue'
 import WShellEllipse from './WShellEllipse.vue'
@@ -40,6 +41,7 @@ let WComponentVue = {
         Vue.component('w-check-chips', WCheckChips)
         Vue.component('w-chips', WChips)
         Vue.component('w-icon', WIcon)
+        Vue.component('w-panel', WPanel)
         Vue.component('w-progress-circle', WProgressCircle)
         Vue.component('w-radio-chips', WRadioChips)
         Vue.component('w-shell-ellipse', WShellEllipse)
