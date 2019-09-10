@@ -1,5 +1,5 @@
 <template>
-    <div :ch_param="ch_param">
+    <div :changeParam="changeParam">
 
         <input
             ref="inp"
@@ -59,8 +59,8 @@ export default {
     },
     computed: {
 
-        ch_param: function () {
-            //console.log('computed ch_param')
+        changeParam: function () {
+            //console.log('computed changeParam')
 
             let vo = this
 

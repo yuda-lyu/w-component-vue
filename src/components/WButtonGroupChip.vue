@@ -1,5 +1,5 @@
 <template>
-    <div style="display:inline-block;" :ch_param="ch_param">
+    <div style="display:inline-block;" :changeParam="changeParam">
 
         <div
             :class="{'group':true,'shadow':borderShadow}"
@@ -147,8 +147,8 @@ export default {
     },
     computed: {
 
-        ch_param: function () {
-            //console.log('computed ch_param')
+        changeParam: function () {
+            //console.log('computed changeParam')
 
             let vo = this
 

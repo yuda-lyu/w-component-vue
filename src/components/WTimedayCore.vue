@@ -1,5 +1,5 @@
 <template>
-    <div style="display:inline-block; height:28px; min-height:28px; line-height:27px;" forceFix="line-height:27px;" :ch_param="ch_param">
+    <div style="display:inline-block; height:28px; min-height:28px; line-height:27px;" forceFix="line-height:27px;" :changeParam="changeParam">
 
         <v-menu
             offset-y
@@ -69,8 +69,8 @@ export default {
     },
     computed: {
 
-        ch_param: function () {
-            //console.log('computed ch_param')
+        changeParam: function () {
+            //console.log('computed changeParam')
 
             let vo = this
 

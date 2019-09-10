@@ -395,6 +395,86 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-panel'"
+                    :casename="'no header'"
+                    :kind="'nokind'"
+                    :shell="'pure'"
+                ></demolink>
+
+                <w-panel
+                    style="width:600px;"
+                    :hasHeader="false"
+                >
+
+                    <template v-slot:icon>
+                        <v-icon style="margin-right:15px;" size="60">fab fa-angular</v-icon>
+                    </template>
+
+                    <template v-slot:title>
+                        <div style="font-size:2rem;">{{WPanel.title}}</div>
+                    </template>
+
+                    <template v-slot:description>
+                        <div style="opacity:0.7;">{{WPanel.description}}</div>
+                    </template>
+
+                    <template v-slot:content>
+                        <div style="padding:20px;">
+                            {{WPanel.content}}
+                        </div>
+                    </template>
+
+                    <template v-slot:footer>
+                        {{WPanel.footer}}
+                    </template>
+
+                </w-panel>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-panel'"
+                    :casename="'no footer'"
+                    :kind="'nokind'"
+                    :shell="'pure'"
+                ></demolink>
+
+                <w-panel
+                    style="width:600px;"
+                    :hasFooter="false"
+                >
+
+                    <template v-slot:icon>
+                        <v-icon style="margin-right:15px;" size="60">fab fa-angular</v-icon>
+                    </template>
+
+                    <template v-slot:title>
+                        <div style="font-size:2rem;">{{WPanel.title}}</div>
+                    </template>
+
+                    <template v-slot:description>
+                        <div style="opacity:0.7;">{{WPanel.description}}</div>
+                    </template>
+
+                    <template v-slot:content>
+                        <div style="padding:20px;">
+                            {{WPanel.content}}
+                        </div>
+                    </template>
+
+                    <template v-slot:footer>
+                        {{WPanel.footer}}
+                    </template>
+
+                </w-panel>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-panel'"
                     :casename="'separate for content'"
                     :kind="'nokind'"
                     :shell="'pure'"

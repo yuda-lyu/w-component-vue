@@ -1,7 +1,7 @@
 <template>
     <div :class="{'shadow':borderShadow}" :style="[usePanelStyle]">
 
-        <div :style="[useHeaderStyle]">
+        <div :style="[useHeaderStyle]" v-if="hasHeader">
             <slot name="icon"></slot>
             <div>
                 <slot name="title"></slot>
@@ -9,11 +9,11 @@
             </div>
         </div>
 
-        <div>
+        <div :style="[useContentStyle]">
             <slot name="content"></slot>
         </div>
 
-        <div :style="[useFooterStyle]">
+        <div :style="[useFooterStyle]" v-if="hasFooter">
             <slot name="footer"></slot>
         </div>
 
@@ -24,6 +24,8 @@
 import { color2hex } from '../js/vuetifyColor.mjs'
 
 /**
+ * @vue-prop {Boolean} [hasHeader=true] 輸入是否有上部標題區，預設true
+ * @vue-prop {Boolean} [hasFooter=true] 輸入是否有下部基底區，預設true
  * @vue-prop {Number} [borderRadius=5] 輸入圓角寬度，單位為px，預設5
  * @vue-prop {String} [headerBackgroundColor='grey lighten-5'] 輸入上方區塊背景顏色字串，預設'grey lighten-5'
  * @vue-prop {String} [contentBackgroundColor='white'] 輸入內容區塊背景顏色字串，預設'white'
@@ -32,6 +34,14 @@ import { color2hex } from '../js/vuetifyColor.mjs'
  */
 export default {
     props: {
+        hasHeader: {
+            type: Boolean,
+            default: true,
+        },
+        hasFooter: {
+            type: Boolean,
+            default: true,
+        },
         padding: {
             type: Number,
             default: 20,
@@ -90,6 +100,25 @@ export default {
             s['display'] = 'flex'
             s['justify-content'] = 'flex-start'
             s['align-items'] = 'center'
+
+            return s
+        },
+
+        useContentStyle: function() {
+            //console.log('computed useContentStyle')
+
+            let vo = this
+
+            let s = {}
+            let ch = '0 0'
+            let cf = '0 0'
+            if (!vo.hasHeader) {
+                ch = `${vo.borderRadius}px ${vo.borderRadius}px`
+            }
+            if (!vo.hasFooter) {
+                cf = `${vo.borderRadius}px ${vo.borderRadius}px`
+            }
+            s['border-radius'] = `${ch} ${cf}`
 
             return s
         },

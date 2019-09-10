@@ -1,5 +1,5 @@
 <template>
-    <div :ch_param="ch_param">
+    <div :changeParam="changeParam">
 
         <el-autocomplete
             style="margin:0px; padding:0px; width:100%; height:28px;"
@@ -50,8 +50,8 @@ export default {
     },
     computed: {
 
-        ch_param: function () {
-            //console.log('computed ch_param')
+        changeParam: function () {
+            //console.log('computed changeParam')
 
             let vo = this
 

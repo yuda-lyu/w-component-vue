@@ -1,5 +1,5 @@
 <template>
-    <div style="display:flex; align-items:center;" :ch_param="ch_param">
+    <div style="display:flex; align-items:center;" :changeParam="changeParam">
 
         <w-timeday-core
             style="margin-right:5px;"
@@ -90,8 +90,8 @@ export default {
     },
     computed: {
 
-        ch_param: function () {
-            //console.log('computed ch_param')
+        changeParam: function () {
+            //console.log('computed changeParam')
 
             let vo = this
 

@@ -1,5 +1,5 @@
 <template>
-    <div style="display:inline-block;" :ch_param="ch_param">
+    <div style="display:inline-block;" :changeParam="changeParam">
 
         <v-switch
             style="margin:0px;"
@@ -51,8 +51,8 @@ export default {
     },
     computed: {
 
-        ch_param: function () {
-            //console.log('computed ch_param')
+        changeParam: function () {
+            //console.log('computed changeParam')
 
             let vo = this
 

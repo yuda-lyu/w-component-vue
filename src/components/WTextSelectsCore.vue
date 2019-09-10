@@ -1,5 +1,5 @@
 <template>
-    <div class="CSSTextSelectsCore" :ch_param="ch_param">
+    <div class="CSSTextSelectsCore" :changeParam="changeParam">
 
         <div style="margin:-10px -18px -10px -12px;">
 
@@ -61,8 +61,8 @@ export default {
     },
     computed: {
 
-        ch_param: function () {
-            //console.log('computed ch_param')
+        changeParam: function () {
+            //console.log('computed changeParam')
 
             let vo = this
 

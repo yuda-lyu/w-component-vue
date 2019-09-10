@@ -1,5 +1,5 @@
 <template>
-    <div :ch_param="ch_param">
+    <div :changeParam="changeParam">
 
         <v-textarea
             style="margin:0px;padding:0px;"
@@ -52,8 +52,8 @@ export default {
     },
     computed: {
 
-        ch_param: function () {
-            //console.log('computed ch_param')
+        changeParam: function () {
+            //console.log('computed changeParam')
 
             let vo = this
 
