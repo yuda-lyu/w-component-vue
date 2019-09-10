@@ -3,7 +3,7 @@
 
   <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <title>example for w-timeday-range: not editable</title>
+    <title>example for w-panel: no footer</title>
 
     <!-- fontawesome -->
     <link href="https://use.fontawesome.com/releases/v5.10.0/css/all.css" rel="stylesheet">
@@ -65,12 +65,37 @@
 
     <v-app id="app" style="font-family:inherit;">
 
-      <div class="head1">w-timeday-range</div>
+      <div class="head1">w-panel</div>
       <div class="bk">
-        <div class="item">not editable</div>
+        <div class="item">no footer</div>
 
 
-        <w-timeday-range :border-shadow="false" :border-color="'orange lighten-2'" :border-color-hover="'orange darken-2'" :editable="false" :day-start.sync="WTimedayRange.dayStart" :day-end.sync="WTimedayRange.dayEnd" />
+        <w-panel style="width:600px;" :has-footer="false">
+
+          <template v-slot:icon>
+            <v-icon style="margin-right:15px;" size="60">fab fa-angular</v-icon>
+          </template>
+
+          <template v-slot:title>
+            <div style="font-size:2rem;">{{WPanel.title}}</div>
+          </template>
+
+          <template v-slot:description>
+            <div style="opacity:0.7;">{{WPanel.description}}</div>
+          </template>
+
+          <template v-slot:content>
+            <div style="padding:20px;">
+              {{WPanel.content}}
+            </div>
+          </template>
+
+          <template v-slot:footer>
+            {{WPanel.footer}}
+          </template>
+
+        </w-panel>
+
       </div>
 
     </v-app>
@@ -84,9 +109,11 @@
         el: '#app',
         vuetify: new Vuetify(),
         data: {
-          'WTimedayRange': {
-            dayStart: '2019-01-01',
-            dayEnd: '2019-02-01',
+          'WPanel': {
+            'title': 'A panel title',
+            'description': 'Quisque ut nisi. Maecenas malesuada.',
+            'content': 'Here is a panel content, Morbi mattis ullamcorper velit. Donec orci lectus, aliquam ut, faucibus non, euismod id, nulla. In ut quam vitae odio lacinia tincidunt.',
+            'footer': 'Here is a panel footer',
           },
         },
         computed: {},
