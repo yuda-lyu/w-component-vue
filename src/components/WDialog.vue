@@ -1,8 +1,8 @@
 <template>
     <v-dialog
         :changeParam="changeParam"
-        :persistent="hasCloseBtn"
         scrollable
+        :persistent="hasCloseBtn"
         :max-width="widthMax"
         :fullscreen="fullscreen"
         v-resize="changeSize"
@@ -209,7 +209,7 @@ export default {
             setTimeout(function() {
 
                 //emit
-                vo.$emit('clickBtns', evName)
+                vo.$emit('click-btns', evName)
 
             }, 1)
 
@@ -224,7 +224,7 @@ export default {
             setTimeout(function() {
 
                 //emit
-                vo.$emit('clickSave')
+                vo.$emit('click-save')
 
             }, 1)
 
@@ -247,7 +247,7 @@ export default {
                 vo.$emit('update:show', vo.show_trans)
 
                 //emit
-                vo.$emit('clickClose')
+                vo.$emit('click-close')
 
             }, 1)
 

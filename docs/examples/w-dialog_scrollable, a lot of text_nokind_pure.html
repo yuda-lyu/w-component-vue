@@ -72,7 +72,7 @@
 
         <v-btn small rounded @click="WDialog.bShow12=!WDialog.bShow12">Show({{WDialog.bShow12}})</v-btn>
 
-        <w-dialog :show.sync="WDialog.bShow12" :title="WDialog.title" @clickSave="clickEvent('clickSave')" @clickClose="clickEvent('clickClose')">
+        <w-dialog :show.sync="WDialog.bShow12" :title="WDialog.title" @click-save="clickEvent('click-save')" @click-close="clickEvent('click-close')">
 
           <template v-slot:content>
             <div style="padding:20px; height:2000px;">
