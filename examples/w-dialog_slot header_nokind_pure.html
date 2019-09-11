@@ -72,7 +72,7 @@
 
         <v-btn small rounded @click="WDialog.bShow6=!WDialog.bShow6">Show({{WDialog.bShow6}})</v-btn>
 
-        <w-dialog :show.sync="WDialog.bShow6" :title="WDialog.title" @clickSave="clickEvent('clickSave')" @clickClose="clickEvent('clickClose')">
+        <w-dialog :show.sync="WDialog.bShow6" :title="WDialog.title" @click-save="clickEvent('click-save')" @click-close="clickEvent('click-close')">
 
           <template v-slot:header>
             <select style="padding:0px 15px; background-color:rgba(255,255,255,0.2); color:#fff; border:1px solid rgba(255,255,255,0.5); border-radius:30px; outline:none;">
