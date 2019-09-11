@@ -11,8 +11,8 @@
             :rightIconColorHover="buttonColorHover"
             :rightIconTooltip="rightIconTooltip"
             :editable="editable"
-            @clickleft="ch_content(value_trans,'minus')"
-            @clickright="ch_content(value_trans,'add')"
+            @clickleft="changeContent(value_trans,'minus')"
+            @clickright="changeContent(value_trans,'add')"
         >
 
             <w-text-core
@@ -21,7 +21,7 @@
                 :textAlign="'center'"
                 :editable="editable"
                 :value="value_trans"
-                @input="function(v){ch_content(v,'')}"
+                @input="function(v){changeContent(v,'')}"
             ></w-text-core>
 
         </w-shell-material>
@@ -110,8 +110,8 @@ export default {
     },
     methods: {
 
-        ch_content: function(v, mode) {
-            //console.log('methods ch_content', v, mode)
+        changeContent: function(v, mode) {
+            //console.log('methods changeContent', v, mode)
 
             let vo = this
 

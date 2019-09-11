@@ -11,7 +11,7 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-panel'"
-                    :casename="'default'"
+                    :casename="'slot icon, slot title, slot description, slot content and slot footer'"
                     :kind="'nokind'"
                     :shell="'pure'"
                 ></demolink>
@@ -48,7 +48,7 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-panel'"
-                    :casename="'icon'"
+                    :casename="'slot icon (fontawesome)'"
                     :kind="'nokind'"
                     :shell="'pure'"
                 ></demolink>
@@ -253,7 +253,7 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-panel'"
-                    :casename="'only icon and title in header'"
+                    :casename="'only slot icon and slot title in header'"
                     :kind="'nokind'"
                     :shell="'pure'"
                 ></demolink>
@@ -286,7 +286,7 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-panel'"
-                    :casename="'only title in header'"
+                    :casename="'only slot title in header'"
                     :kind="'nokind'"
                     :shell="'pure'"
                 ></demolink>
@@ -315,7 +315,7 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-panel'"
-                    :casename="'padding, for dense design'"
+                    :casename="'padding'"
                     :kind="'nokind'"
                     :shell="'pure'"
                 ></demolink>
@@ -355,7 +355,7 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-panel'"
-                    :casename="'with buttons in footer'"
+                    :casename="'buttons in slot footer'"
                     :kind="'nokind'"
                     :shell="'pure'"
                 ></demolink>
@@ -475,7 +475,7 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-panel'"
-                    :casename="'separate for content'"
+                    :casename="'separate for slot content'"
                     :kind="'nokind'"
                     :shell="'pure'"
                 ></demolink>
@@ -520,7 +520,7 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-panel'"
-                    :casename="'table in content'"
+                    :casename="'table in slot content'"
                     :kind="'nokind'"
                     :shell="'pure'"
                 ></demolink>

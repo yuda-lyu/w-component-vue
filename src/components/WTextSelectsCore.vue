@@ -20,7 +20,7 @@
                 :readonly="!editable"
                 :items="items"
                 :value="value_trans"
-                @input="ch_content"
+                @input="changeContent"
             ></v-autocomplete>
 
         </div>
@@ -75,8 +75,8 @@ export default {
     },
     methods: {
 
-        ch_content: function (value) {
-            //console.log('methods ch_content', value)
+        changeContent: function (value) {
+            //console.log('methods changeContent', value)
 
             let vo = this
 

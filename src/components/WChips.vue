@@ -10,8 +10,8 @@
                 :color="backgroundColor"
                 :close="editable"
                 :close-icon="mdiCloseCircle"
-                @click="ck_chip(item)"
-                @click:close="ck_remove(item)"
+                @click="clickChip(item)"
+                @click:close="clickRemoveBtn(item)"
                 :key="kitem"
             >
 
@@ -45,8 +45,8 @@
                 :rightIconTooltip="iconTooltip"
                 :borderColor="inputTextBorderAndButtonColor"
                 :borderColorHover="inputTextBorderAndButtonColorHover"
-                @clickright="ck_add"
-                @enter="ck_add"
+                @clickright="clickAddBtn"
+                @enter="clickAddBtn"
                 v-model="userinput"
             ></w-text>
         </div>
@@ -132,8 +132,8 @@ export default {
     },
     methods: {
 
-        ck_chip: function(item) {
-            //console.log('methods ck_chip', item)
+        clickChip: function(item) {
+            //console.log('methods clickChip', item)
 
             let vo = this
 
@@ -147,8 +147,8 @@ export default {
 
         },
 
-        ck_add: function () {
-            //console.log('methods ck_add')
+        clickAddBtn: function () {
+            //console.log('methods clickAddBtn')
 
             let vo = this
 
@@ -179,8 +179,8 @@ export default {
             return ar
         },
 
-        ck_remove: function (item) {
-            //console.log('methods ck_remove', cp)
+        clickRemoveBtn: function (item) {
+            //console.log('methods clickRemoveBtn', cp)
 
             let vo = this
 

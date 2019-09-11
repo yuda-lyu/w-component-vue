@@ -11,7 +11,7 @@
                     :color="buttonColor"
                     :loading="loading"
                     :disabled="!editable"
-                    @click="ck_btn"
+                    @click="clickBtn"
                 >
 
                     <w-icon
@@ -94,8 +94,8 @@ export default {
     },
     methods: {
 
-        ck_btn: function () {
-            //console.log('methods ck_btn')
+        clickBtn: function () {
+            //console.log('methods clickBtn')
 
             let vo = this
 

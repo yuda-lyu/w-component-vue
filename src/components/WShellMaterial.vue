@@ -6,7 +6,7 @@
         @mouseleave="focused=false"
     >
 
-        <div style="cursor:pointer;" @click="ck_icon('left')" v-if="leftIcon">
+        <div style="cursor:pointer;" @click="clickIcon('left')" v-if="leftIcon">
 
             <v-tooltip bottom transition="slide-y-transition" :disabled="leftIconTooltip===''">
 
@@ -39,7 +39,7 @@
 
         </div>
 
-        <div style="cursor:pointer;" @click="ck_icon('right')" v-if="rightIcon">
+        <div style="cursor:pointer;" @click="clickIcon('right')" v-if="rightIcon">
 
             <v-tooltip bottom transition="slide-y-transition" :disabled="rightIconTooltip===''">
 
@@ -189,8 +189,8 @@ export default {
     },
     methods: {
 
-        ck_icon: function (mode) {
-            //console.log('methods ck_icon', mode)
+        clickIcon: function (mode) {
+            //console.log('methods clickIcon', mode)
 
             let vo = this
 

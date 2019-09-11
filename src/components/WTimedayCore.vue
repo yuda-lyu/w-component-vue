@@ -3,7 +3,6 @@
 
         <v-menu
             offset-y
-            full-width
             :disabled="!editable"
             v-model="show"
         >

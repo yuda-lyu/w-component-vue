@@ -169,8 +169,8 @@ export default {
             //save
             vo.value_day = v
 
-            //ch_content
-            vo.ch_content()
+            //changeContent
+            vo.changeContent()
 
         },
 
@@ -182,13 +182,13 @@ export default {
             //save
             vo.value_time = v
 
-            //ch_content
-            vo.ch_content()
+            //changeContent
+            vo.changeContent()
 
         },
 
-        ch_content: function () {
-            //console.log('methods ch_content')
+        changeContent: function () {
+            //console.log('methods changeContent')
 
             let vo = this
 

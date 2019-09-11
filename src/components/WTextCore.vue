@@ -10,8 +10,8 @@
             :placeholder="placeholder"
             v-model="value_trans"
             @focus="focused=true"
-            @blur="ch_content('blur')"
-            @keyup.enter="ch_content('enter')"
+            @blur="changeContent('blur')"
+            @keyup.enter="changeContent('enter')"
         >
 
     </div>
@@ -72,8 +72,8 @@ export default {
     },
     methods: {
 
-        ch_content: function (evname) {
-            //console.log('methods ch_content', evname)
+        changeContent: function (evname) {
+            //console.log('methods changeContent', evname)
 
             let vo = this
 

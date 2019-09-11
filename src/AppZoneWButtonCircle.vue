@@ -2,7 +2,7 @@
     <div>
 
 
-        <div class="head1">w-badge</div>
+        <div class="head1">w-button-circle</div>
 
 
         <div style="padding-left:30px;">
@@ -65,6 +65,22 @@
                 <w-button-circle
                     :icon="mdiFace"
                     :tooltip="'測試中文tooltip'"
+                ></w-button-circle>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-button-circle'"
+                    :casename="'not small (large)'"
+                    :kind="'nokind'"
+                    :shell="'pure'"
+                ></demolink>
+
+                <w-button-circle
+                    :icon="mdiFace"
+                    :small="false"
                 ></w-button-circle>
 
             </div>

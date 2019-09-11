@@ -20,7 +20,7 @@ To view some examples for more understanding, visit examples:
 
 ## Installation
 ### Using npm(ES6 module):
-> **Note:** w-component-vue depends on `vue`, `vuetify`, `element-ui`, `lodash` and `wsemi`.
+> **Note:** w-component-vue depends on `vuetify`.
 
 ```alias
 npm i w-component-vue
@@ -68,10 +68,6 @@ Vue.component('w-text',WText)
 <link href="https://cdn.jsdelivr.net/npm/@mdi/font@3.x/css/materialdesignicons.min.css" rel="stylesheet">
 <link href="https://use.fontawesome.com/releases/v5.10.0/css/all.css" rel="stylesheet">
 ```
-[Necessary] Add link for google fonts for vuetify.
-```alias
-<link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
-```
 [Necessary] Add script and link for vuetify.
 ```alias
 <link href="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.css" rel="stylesheet">
@@ -79,7 +75,7 @@ Vue.component('w-text',WText)
 ```
 [Necessary] Add script for w-component-vue.
 ```alias
-<script src="https://cdn.jsdelivr.net/npm/w-component-vue@1.1.16/dist/w-component-vue.umd.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/w-component-vue@1.1.17/dist/w-component-vue.umd.js"></script>
 ```
 Directly use:
 ```alias

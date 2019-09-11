@@ -6,6 +6,7 @@ import WButtonCircle from './WButtonCircle.vue'
 import WButtonGroupChip from './WButtonGroupChip.vue'
 import WCheckChips from './WCheckChips.vue'
 import WChips from './WChips.vue'
+import WDialog from './WDialog.vue'
 import WIcon from './WIcon.vue'
 import WPanel from './WPanel.vue'
 import WProgressCircle from './WProgressCircle.vue'
@@ -40,6 +41,7 @@ let WComponentVue = {
         Vue.component('w-button-group-chip', WButtonGroupChip)
         Vue.component('w-check-chips', WCheckChips)
         Vue.component('w-chips', WChips)
+        Vue.component('w-dialog', WDialog)
         Vue.component('w-icon', WIcon)
         Vue.component('w-panel', WPanel)
         Vue.component('w-progress-circle', WProgressCircle)

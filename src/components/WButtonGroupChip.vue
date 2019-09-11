@@ -20,7 +20,7 @@
                             v-ripple="itemsClickable[kitem] ? { class:  `grey--text`  } : null"
                             @mouseenter="mouseEnterLeave(kitem)"
                             @mouseleave="mouseEnterLeave(null)"
-                            @click="ck_item(item,kitem)"
+                            @click="clickItem(item,kitem)"
                         >
 
                             {{item.text}}
@@ -356,8 +356,8 @@ export default {
             return s
         },
 
-        ck_item: function(item, kitem) {
-            //console.log('methods ck_item', item, kitem)
+        clickItem: function(item, kitem) {
+            //console.log('methods clickItem', item, kitem)
 
             let vo = this
 

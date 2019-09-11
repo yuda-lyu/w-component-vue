@@ -4,6 +4,8 @@ import vuetify from './plugins/vuetify.mjs'
 
 Vue.config.productionTip = false
 
+Vue.prototype.alert = console.log
+
 new Vue({
     vuetify,
     render: h => h(App)

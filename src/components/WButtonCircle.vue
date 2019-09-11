@@ -6,13 +6,13 @@
             <template v-slot:activator="{ on }">
                 <v-btn
                     v-on="on"
-                    :fab="shadow"
-                    :icon="!shadow"
-                    :small="shadow"
+                    icon
+                    :large="!small"
+                    :elevation="shadow?4:0"
                     :color="buttonColor"
                     :loading="loading"
                     :disabled="!editable"
-                    @click="ck_btn"
+                    @click="clickBtn"
                 >
 
                     <w-icon
@@ -39,6 +39,7 @@ import WIcon from './WIcon.vue'
  * @vue-prop {String} [iconColor=''] 輸入圖標背景顏色字串，預設''，即透明
  * @vue-prop {String} [buttonColor='grey lighten-3'] 輸入按鈕背景顏色字串，預設'grey lighten-3'
  * @vue-prop {Boolean} [shadow=true] 輸入是否為陰影模式，預設true
+ * @vue-prop {Boolean} [small=true] 輸入是否為小型模式，預設true
  * @vue-prop {Boolean} [loading=false] 輸入是否為載入模式，預設false
  * @vue-prop {Boolean} [editable=true] 輸入是否為編輯模式，預設true
  */
@@ -57,13 +58,17 @@ export default {
         },
         iconColor: {
             type: String,
-            default: '',
+            default: 'grey darken-1',
         },
         buttonColor: {
             type: String,
-            default: 'grey lighten-3',
+            default: 'grey darken-1',
         },
         shadow: {
+            type: Boolean,
+            default: true,
+        },
+        small: {
             type: Boolean,
             default: true,
         },
@@ -86,8 +91,8 @@ export default {
     },
     methods: {
 
-        ck_btn: function () {
-            //console.log('methods ck_btn')
+        clickBtn: function () {
+            //console.log('methods clickBtn')
 
             let vo = this
 
