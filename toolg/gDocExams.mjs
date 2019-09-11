@@ -1,6 +1,7 @@
 import fs from 'fs'
 import _ from 'lodash'
 import getFiles from 'w-package-tools/src/getFiles.mjs'
+import getPks from 'w-package-tools/src/getPks.mjs'
 
 
 let fdSrc = './test-html/'
@@ -10,8 +11,11 @@ let fdTar = './docs/examples/'
 async function main() {
     //把example裡面cdn更換, 再複製到docs的example內, 作為日後發佈為靜態網站
 
+    //pks
+    let pks = getPks()
+
     //cdn
-    let cdn = `<script src="https://cdn.jsdelivr.net/npm/w-component-vue@latest/dist/w-component-vue.umd.js"></script>`
+    let cdn = `<script src="https://cdn.jsdelivr.net/npm/w-component-vue@${pks.version}/dist/w-component-vue.umd.js"></script>`
 
     //mkdirSync
     if (!fs.existsSync(fdTar)) {
