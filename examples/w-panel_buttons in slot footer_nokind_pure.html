@@ -3,15 +3,15 @@
 
   <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <title>example for w-panel: table in content</title>
+    <title>example for w-panel: buttons in slot footer</title>
 
     <!-- fontawesome -->
     <link href="https://use.fontawesome.com/releases/v5.10.0/css/all.css" rel="stylesheet">
 
-    <!-- mdi, 各組件使用mdi/svg會於轉單頁時改為mdi icon, 故需引用mdi css -->
+    <!-- mdi, 各組件使用mdi/js會於轉單頁時改為mdi icon, 故需引用mdi css -->
     <link href="https://cdn.jsdelivr.net/npm/@mdi/font@3.x/css/materialdesignicons.min.css" rel="stylesheet">
 
-    <!-- google -->
+    <!-- google, 各組件使用mdi/js故不需引用 -->
     <link _href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
     <link _href="https://fonts.googleapis.com/css?family=Material+Icons" rel="stylesheet">
 
@@ -67,7 +67,7 @@
 
       <div class="head1">w-panel</div>
       <div class="bk">
-        <div class="item">table in content</div>
+        <div class="item">buttons in slot footer</div>
 
 
         <w-panel style="width:600px;">
@@ -85,46 +85,16 @@
           </template>
 
           <template v-slot:content>
-
-            <div style="padding:10px;">
-              <span>A data table</span>
+            <div style="padding:20px;">
+              {{WPanel.content}}
             </div>
-
-            <table style="width:100%; font-size:0.7rem;">
-              <thead>
-                <tr>
-                  <th style="padding:2px 8px; text-align:left;">Dessert</th>
-                  <th style="padding:2px 8px; text-align:left;">Calories</th>
-                  <th style="padding:2px 8px; text-align:left;">Fat</th>
-                  <th style="padding:2px 8px; text-align:left;">Carbs</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td style="padding:2px 8px; border-top:1px solid #ddd;">Frozen Yogurt</td>
-                  <td style="padding:2px 8px; border-top:1px solid #ddd;">159</td>
-                  <td style="padding:2px 8px; border-top:1px solid #ddd;">6</td>
-                  <td style="padding:2px 8px; border-top:1px solid #ddd;">24</td>
-                </tr>
-                <tr>
-                  <td style="padding:2px 8px; border-top:1px solid #ddd;">Ice cream sandwich</td>
-                  <td style="padding:2px 8px; border-top:1px solid #ddd;">237</td>
-                  <td style="padding:2px 8px; border-top:1px solid #ddd;">9</td>
-                  <td style="padding:2px 8px; border-top:1px solid #ddd;">37</td>
-                </tr>
-                <tr>
-                  <td style="padding:2px 8px; border-top:1px solid #ddd;">Eclair</td>
-                  <td style="padding:2px 8px; border-top:1px solid #ddd;">262</td>
-                  <td style="padding:2px 8px; border-top:1px solid #ddd;">16</td>
-                  <td style="padding:2px 8px; border-top:1px solid #ddd;">23</td>
-                </tr>
-              </tbody>
-            </table>
-
           </template>
 
           <template v-slot:footer>
-            {{WPanel.footer}}
+            <div style="display:flex; justify-content:flex-end;">
+              <button style="margin-left:15px; padding:5px 10px; background-color:#ddd; border-radius:10px; box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);">離開</button>
+              <button style="margin-left:15px; padding:5px 10px; background-color:#ddd; border-radius:10px; box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);">儲存</button>
+            </div>
           </template>
 
         </w-panel>

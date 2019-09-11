@@ -3,15 +3,15 @@
 
   <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <title>example for w-panel: default</title>
+    <title>example for w-panel: padding</title>
 
     <!-- fontawesome -->
     <link href="https://use.fontawesome.com/releases/v5.10.0/css/all.css" rel="stylesheet">
 
-    <!-- mdi, 各組件使用mdi/svg會於轉單頁時改為mdi icon, 故需引用mdi css -->
+    <!-- mdi, 各組件使用mdi/js會於轉單頁時改為mdi icon, 故需引用mdi css -->
     <link href="https://cdn.jsdelivr.net/npm/@mdi/font@3.x/css/materialdesignicons.min.css" rel="stylesheet">
 
-    <!-- google -->
+    <!-- google, 各組件使用mdi/js故不需引用 -->
     <link _href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
     <link _href="https://fonts.googleapis.com/css?family=Material+Icons" rel="stylesheet">
 
@@ -67,25 +67,25 @@
 
       <div class="head1">w-panel</div>
       <div class="bk">
-        <div class="item">default</div>
+        <div class="item">padding</div>
 
 
-        <w-panel style="width:600px;">
+        <w-panel style="width:600px;" :padding="12">
 
           <template v-slot:icon>
-            <v-icon style="margin-right:15px;" size="60">fab fa-angular</v-icon>
+            <v-icon style="margin-right:10px;" size="44">fab fa-angular</v-icon>
           </template>
 
           <template v-slot:title>
-            <div style="font-size:2rem;">{{WPanel.title}}</div>
+            <div style="font-size:1.3rem;">{{WPanel.title}}</div>
           </template>
 
           <template v-slot:description>
-            <div style="opacity:0.7;">{{WPanel.description}}</div>
+            <div style="opacity:0.6; font-size:0.8rem;">{{WPanel.description}}</div>
           </template>
 
           <template v-slot:content>
-            <div style="padding:20px;">
+            <div style="padding:12px;">
               {{WPanel.content}}
             </div>
           </template>
