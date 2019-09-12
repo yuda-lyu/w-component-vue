@@ -15,7 +15,7 @@
                 :key="kitem"
             >
 
-                {{item}}
+                <span style="font-size:0.875rem;">{{item}}</span>
 
             </v-chip>
 
@@ -29,7 +29,9 @@
                 :text-color="textColor"
                 :color="backgroundColor"
             >
-                {{nodata}}
+
+                <span style="font-size:0.875rem;">{{nodata}}</span>
+
             </v-chip>
 
         </template>
@@ -199,9 +201,6 @@ export default {
 </script>
 
 <style scoped>
-.v-size--small {
-    font-size: 14px;
-}
 .v-chpi-modify {
     vertical-align: middle;
     margin: 10px 10px 10px 0px;

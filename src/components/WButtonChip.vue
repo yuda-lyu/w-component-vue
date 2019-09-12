@@ -21,7 +21,7 @@
                         :size="22"
                     ></w-icon>
 
-                    <span style="text-transform:none;">{{text}}</span>
+                    <span style="font-size:0.875rem; text-transform:none;">{{text}}</span>
 
                 </v-btn>
             </template>
@@ -114,7 +114,4 @@ export default {
 </script>
 
 <style scoped>
-.v-size--small {
-    font-size: 14px;
-}
 </style>

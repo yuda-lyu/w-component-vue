@@ -20,7 +20,7 @@
                     ></w-icon>
                 </div>
 
-                <div style="height:24px; line-height:24px;">{{item}}</div>
+                <div style="height:24px; line-height:24px; font-size:0.875rem;">{{item}}</div>
 
             </v-chip>
 
@@ -147,9 +147,6 @@ export default {
 </script>
 
 <style scoped>
-.v-chip.v-size--small {
-    font-size: 14px;
-}
 .v-chpi-modify {
     vertical-align: middle;
     margin:10px 10px 10px 0px;
