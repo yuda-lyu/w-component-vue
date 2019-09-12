@@ -241,7 +241,7 @@ export default {
             setTimeout(function() {
 
                 //emit
-                vo.$emit('click' + mode)
+                vo.$emit('click-' + mode)
 
             }, 1)
 

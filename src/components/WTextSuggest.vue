@@ -14,7 +14,7 @@
             :borderColorHover="borderColorHover"
             :small="small"
             :editable="editable"
-            @clickleft="function(v){$emit('clickleft', v)}"
+            @click-left="function(v){$emit('click-left', v)}"
         >
 
             <w-text-suggest-core

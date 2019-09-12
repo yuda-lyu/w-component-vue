@@ -47,7 +47,7 @@
                 :rightIconTooltip="iconTooltip"
                 :borderColor="inputTextBorderAndButtonColor"
                 :borderColorHover="inputTextBorderAndButtonColorHover"
-                @clickright="clickAddBtn"
+                @click-right="clickAddBtn"
                 @enter="clickAddBtn"
                 v-model="userinput"
             ></w-text>

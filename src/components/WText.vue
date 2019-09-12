@@ -18,8 +18,8 @@
             :borderColorHover="borderColorHover"
             :small="small"
             :editable="editable"
-            @clickleft="function(v){$emit('clickleft', v)}"
-            @clickright="function(v){$emit('clickright', v)}"
+            @click-left="function(v){$emit('click-left', v)}"
+            @click-right="function(v){$emit('click-right', v)}"
         >
 
             <w-text-core

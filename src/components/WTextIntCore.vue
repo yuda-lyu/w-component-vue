@@ -11,8 +11,8 @@
             :rightIconColorHover="buttonColorHover"
             :rightIconTooltip="rightIconTooltip"
             :editable="editable"
-            @clickleft="changeContent(value_trans,'minus')"
-            @clickright="changeContent(value_trans,'add')"
+            @click-left="changeContent(value_trans,'minus')"
+            @click-right="changeContent(value_trans,'add')"
         >
 
             <w-text-core
