@@ -87,8 +87,8 @@ import WButtonCircle from './WButtonCircle.vue'
 /**
  * @vue-prop {Boolean} [show=false] 輸入是否顯示，預設false
  * @vue-prop {String} [icon=''] 輸入圖標字串，可為mdi,md,fa代號或mdi/js路徑，預設''
- * @vue-prop {String} [title=''] 輸入彈窗標題，預設''
- * @vue-prop {String} [headerColor=''] 輸入彈窗標題列背景顏色字串，預設'light-blue darken-3'
+ * @vue-prop {String} [title=''] 輸入彈窗標題字串，預設''
+ * @vue-prop {String} [headerColor='light-blue darken-3'] 輸入彈窗標題列背景顏色字串，預設'light-blue darken-3'
  * @vue-prop {Array} [headerBtns=[]] 輸入彈窗標題列自訂按鈕陣列，預設[]，各元素為物件，需有'icon'欄位值為字串、'tooltip'欄位值為字串、'evName'欄位值為字串，其中按鈕被click時會觸發彈窗的clickBtns事件(監聽@clickBtns)，裡面會提供evName供辨識觸發按鈕之用
  * @vue-prop {Boolean} [hasSaveBtn=true] 輸入是否顯示儲存按鈕，預設true
  * @vue-prop {String} [saveBtnTooltip='儲存'] 輸入儲存按鈕的提示文字字串，預設'儲存'

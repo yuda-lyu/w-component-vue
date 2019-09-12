@@ -194,6 +194,13 @@
             ></AppZoneWDialog>
 
 
+            <AppZoneWConfirm
+                :modeBorder="modeBorder"
+                :modeShell="modeShell"
+                v-if="compname==='WConfirm'"
+            ></AppZoneWConfirm>
+
+
             <AppZoneWChips
                 :modeBorder="modeBorder"
                 :modeShell="modeShell"
@@ -287,6 +294,7 @@ import { mdiCheckCircle, mdiCheckboxBlankCircleOutline } from '@mdi/js'
 import AppZoneWBadge from './AppZoneWBadge.vue'
 import AppZoneWPanel from './AppZoneWPanel.vue'
 import AppZoneWDialog from './AppZoneWDialog.vue'
+import AppZoneWConfirm from './AppZoneWConfirm.vue'
 import AppZoneWButtonChip from './AppZoneWButtonChip.vue'
 import AppZoneWButtonCircle from './AppZoneWButtonCircle.vue'
 import AppZoneWButtonGroupChip from './AppZoneWButtonGroupChip.vue'
@@ -311,6 +319,7 @@ export default {
         AppZoneWBadge,
         AppZoneWPanel,
         AppZoneWDialog,
+        AppZoneWConfirm,
         AppZoneWButtonChip,
         AppZoneWButtonCircle,
         AppZoneWButtonGroupChip,
@@ -332,6 +341,8 @@ export default {
     },
     data: function() {
         return {
+            bShow: false,
+
             mdiCheckCircle,
             mdiCheckboxBlankCircleOutline,
             indKind: 0,
@@ -345,6 +356,7 @@ export default {
                         'WProgressCircle',
                         'WAlert',
                         'WDialog',
+                        'WConfirm',
                     ]
                 },
                 {
