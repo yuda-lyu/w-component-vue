@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="zh-tw">
 <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <title>example for w-text-selects: icon & iconColor & iconColorFoucs & borderColor & borderColorHover</title>
+    <title>example for w-text-selects: icon & iconColor & iconColorFoucs & borderColor & borderColorHover & backgroundColorHover</title>
 
     <!-- fontawesome -->
     <link
@@ -43,7 +43,7 @@
     <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.js"></script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@1.1.22/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@1.1.23/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -80,12 +80,13 @@
         <div class="bk">
             <div
                 class="item"
-            >icon & iconColor & iconColorFoucs & borderColor & borderColorHover</div>
+            >icon & iconColor & iconColorFoucs & borderColor & borderColorHover & backgroundColorHover</div>
 
             <w-text-selects
                 :border-shadow="false"
                 :border-color="'cyan lighten-2'"
                 :border-color-hover="'cyan darken-1'"
+                :background-color-hover="'cyan lighten-5'"
                 :icon="'mdi-check-underline-circle'"
                 :icon-color="'cyan lighten-2'"
                 :icon-color-hover="'cyan darken-1'"
