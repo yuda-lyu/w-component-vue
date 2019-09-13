@@ -25,7 +25,7 @@
                 <div class="bk" style="display:block;">
                     <demolink
                         :kbname="'w-chips'"
-                        :casename="'textColor & backgroundColor & inputTextBorderAndButtonColor & inputTextBorderAndButtonColorHover'"
+                        :casename="'textColor & backgroundColor & inputTextBorderAndButtonColor & inputTextBorderAndButtonColorHover & inputTextBackgroundColorHover'"
                         :kind="'nokind'"
                         :shell="'pure'"
                     ></demolink>
@@ -35,6 +35,7 @@
                         :backgroundColor="'pink lighten-1'"
                         :inputTextBorderAndButtonColor="'pink accent-1'"
                         :inputTextBorderAndButtonColorHover="'pink lighten-2'"
+                        :inputTextBackgroundColorHover="'red lighten-5'"
                         v-model="WChips.items"
                     ></w-chips>
                 </div>
@@ -105,7 +106,7 @@
                 <div class="bk" style="display:block;">
                     <demolink
                         :kbname="'w-chips'"
-                        :casename="'textColor & backgroundColor & inputTextBorderAndButtonColor & inputTextBorderAndButtonColorHover'"
+                        :casename="'textColor & backgroundColor & inputTextBorderAndButtonColor & inputTextBorderAndButtonColorHover & inputTextBackgroundColorHover'"
                         :kind="'nokind'"
                         :shell="'shell'"
                     ></demolink>
@@ -120,6 +121,7 @@
                             :backgroundColor="'pink lighten-1'"
                             :inputTextBorderAndButtonColor="'pink accent-1'"
                             :inputTextBorderAndButtonColorHover="'pink lighten-2'"
+                            :inputTextBackgroundColorHover="'red lighten-5'"
                             v-model="WChips.items"
                         ></w-chips>
                     </w-shell-material>

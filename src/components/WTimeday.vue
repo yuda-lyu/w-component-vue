@@ -102,7 +102,7 @@ export default {
         },
         backgroundColorHover: {
             type: String,
-            default: 'white', //orange lighten-5
+            default: 'white',
         },
         borderColor: {
             type: String,

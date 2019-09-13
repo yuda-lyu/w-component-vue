@@ -45,6 +45,8 @@
                 :rightIconColor="inputTextBorderAndButtonColor"
                 :rightIconColorHover="inputTextBorderAndButtonColorHover"
                 :rightIconTooltip="iconTooltip"
+                :backgroundColor="inputTextBackgroundColor"
+                :backgroundColorHover="inputTextBackgroundColorHover"
                 :borderColor="inputTextBorderAndButtonColor"
                 :borderColorHover="inputTextBorderAndButtonColorHover"
                 @click-right="clickAddBtn"
@@ -65,6 +67,8 @@ import WText from './WText.vue'
  * @vue-prop {Array} value 輸入字串陣列
  * @vue-prop {String} [textColor='grey darken-2'] 輸入文字顏色字串，預設'grey darken-2'
  * @vue-prop {String} [backgroundColor='grey lighten-3'] 輸入背景顏色字串，預設'grey lighten-3'
+ * @vue-prop {String} [inputTextBackgroundColor='white'] 輸入輸入框背景顏色字串，預設'white'
+ * @vue-prop {String} [inputTextBackgroundColorHover='grey lighten-5'] 輸入輸入框背景Hover顏色字串，預設'grey lighten-5'
  * @vue-prop {String} [inputTextBorderAndButtonColor='grey lighten-1'] 輸入輸入框未選時文字顏色字串，預設'grey lighten-1'
  * @vue-prop {String} [inputTextBorderAndButtonColorHover='grey darken-1'] 輸入輸入框有駐點時文字顏色字串，預設'grey darken-1'
  * @vue-prop {String} [iconTooltip='新增'] 輸入輸入框右側按鈕提示文字字串，預設'新增'
@@ -87,13 +91,21 @@ export default {
             type: String,
             default: 'grey lighten-3',
         },
+        inputTextBackgroundColor: {
+            type: String,
+            default: 'white',
+        },
+        inputTextBackgroundColorHover: {
+            type: String,
+            default: 'grey lighten-5',
+        },
         inputTextBorderAndButtonColor: {
             type: String,
             default: 'grey lighten-1',
         },
         inputTextBorderAndButtonColorHover: {
             type: String,
-            default: 'grey darken-1',
+            default: 'grey',
         },
         iconTooltip: {
             type: String,
