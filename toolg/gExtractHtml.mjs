@@ -1,7 +1,8 @@
 import fs from 'fs'
 import _ from 'lodash'
 import cheerio from 'cheerio'
-import pretty from 'pretty'
+//import pretty from 'pretty'
+import prettyhtml from '@starptech/prettyhtml'
 import w from 'wsemi'
 import getFiles from 'w-package-tools/src/getFiles.mjs'
 import cleanFolder from 'w-package-tools/src/cleanFolder.mjs'
@@ -176,8 +177,10 @@ function writeHtml(v) {
         })
     }
 
-    //pretty
-    c = pretty(c)
+    //prettyhtml
+    c = prettyhtml(c, {
+        tabWidth: 4,
+    })
 
     //write
     //console.log(c)

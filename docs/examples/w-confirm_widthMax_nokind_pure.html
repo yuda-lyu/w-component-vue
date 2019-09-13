@@ -1,122 +1,137 @@
-<!DOCTYPE html>
+<!doctype html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="zh-tw">
-
-  <head>
+<head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <title>example for w-confirm: widthMax</title>
 
     <!-- fontawesome -->
-    <link href="https://use.fontawesome.com/releases/v5.10.0/css/all.css" rel="stylesheet">
+    <link
+        href="https://use.fontawesome.com/releases/v5.10.0/css/all.css"
+        rel="stylesheet"
+    />
 
     <!-- mdi, 各組件使用mdi/js會於轉單頁時改為mdi icon, 故需引用mdi css -->
-    <link href="https://cdn.jsdelivr.net/npm/@mdi/font@3.x/css/materialdesignicons.min.css" rel="stylesheet">
+    <link
+        href="https://cdn.jsdelivr.net/npm/@mdi/font@3.x/css/materialdesignicons.min.css"
+        rel="stylesheet"
+    />
 
     <!-- google, 各組件使用mdi/js故不需引用 -->
-    <link _href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
-    <link _href="https://fonts.googleapis.com/css?family=Material+Icons" rel="stylesheet">
+    <link
+        _href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900"
+        rel="stylesheet"
+    />
+    <link
+        _href="https://fonts.googleapis.com/css?family=Material+Icons"
+        rel="stylesheet"
+    />
 
     <!-- @babel/polyfill -->
-    <script nomodule src="https://cdn.jsdelivr.net/npm/@babel/polyfill/dist/polyfill.min.js"></script>
+    <script
+        nomodule
+        src="https://cdn.jsdelivr.net/npm/@babel/polyfill/dist/polyfill.min.js"
+    ></script>
 
     <!-- vue -->
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
 
     <!-- vuetify -->
-    <link href="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.css" rel="stylesheet">
+    <link
+        href="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.css"
+        rel="stylesheet"
+    />
     <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.js"></script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@1.1.21/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@1.1.22/dist/w-component-vue.umd.js"></script>
 
     <style>
-      .v-application--wrap {
-        display: block;
-        /* fix for IE11 */
-        font-family: inherit;
-        background-color: #fff;
-      }
-
-      .item {
-        border-left: 3px solid #ffba75;
-        margin: 5px 5px 8px 0px;
-        padding: 3px 3px 5px 10px;
-        font-size: 0.9rem;
-        display: flex;
-        justify-content: flex-start;
-        align-items: center;
-      }
-
-      .head1 {
-        margin: 0px;
-        padding: 0px;
-        font-size: 30pt;
-      }
-
-      .bk {
-        display: inline-block;
-        margin: 10px 90px 60px 0px;
-        vertical-align: top;
-      }
+  .v-application--wrap {
+    display: block; /* fix for IE11 */
+    font-family: inherit;
+    background-color: #fff;
+  }
+  .item {
+    border-left: 3px solid #ffba75;
+    margin: 5px 5px 8px 0px;
+    padding: 3px 3px 5px 10px;
+    font-size: 0.9rem;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
+  .head1 {
+    margin: 0px;
+    padding: 0px;
+    font-size: 30pt;
+  }
+  .bk {
+    display: inline-block;
+    margin: 10px 90px 60px 0px;
+    vertical-align: top;
+  }
     </style>
-
-  </head>
-
-  <body style="font-family:'Microsoft JhengHei','Avenir','Helvetica'; padding:20px;">
-
+</head>
+<body
+    style="font-family:'Microsoft JhengHei','Avenir','Helvetica'; padding:20px;"
+>
     <v-app id="app" style="font-family:inherit;">
+        <div class="head1">w-confirm</div>
+        <div class="bk">
+            <div class="item">widthMax</div>
 
-      <div class="head1">w-confirm</div>
-      <div class="bk">
-        <div class="item">widthMax</div>
+            <v-btn
+                small
+                rounded
+                @click="WConfirm.bShow9=!WConfirm.bShow9"
+            >Show({{WConfirm.bShow9}})</v-btn>
 
-
-        <v-btn small rounded @click="WConfirm.bShow9=!WConfirm.bShow9">Show({{WConfirm.bShow9}})</v-btn>
-
-        <w-confirm :show.sync="WConfirm.bShow9" :title="WConfirm.title" :content="WConfirm.content" :width-max="350" @click-no="clickEvent('click-no')" @click-yes="clickEvent('click-yes')" />
-
-      </div>
-
+            <w-confirm
+                :show.sync="WConfirm.bShow9"
+                :title="WConfirm.title"
+                :content="WConfirm.content"
+                :width-max="350"
+                @click-no="clickEvent('click-no')"
+                @click-yes="clickEvent('click-yes')"
+            />
+        </div>
     </v-app>
 
     <script>
-      //install WComponentVue
-      Vue.use(window['w-component-vue'])
+  //install WComponentVue
+  Vue.use(window["w-component-vue"]);
 
-      //initialize
-      new Vue({
-        el: '#app',
-        vuetify: new Vuetify(),
-        data: {
-          'WConfirm': {
-            'bShow1': false,
-            'bShow2': false,
-            'bShow3': false,
-            'bShow4': false,
-            'bShow5': false,
-            'bShow6': false,
-            'bShow7': false,
-            'bShow8': false,
-            'bShow9': false,
-            'bShow10': false,
-            'bShow11': false,
-            'bShow12': false,
-            'bShow13': false,
-            'bShow14': false,
-            'title': '系統確認訊息',
-            'content': '您是否願意開始下載檔案?',
-          },
-        },
-        computed: {},
-        methods: {
-
-          clickEvent: function(data) {
-            console.log(data)
-          },
-
-        },
-      })
+  //initialize
+  new Vue({
+    el: "#app",
+    vuetify: new Vuetify(),
+    data: {
+      WConfirm: {
+        bShow1: false,
+        bShow2: false,
+        bShow3: false,
+        bShow4: false,
+        bShow5: false,
+        bShow6: false,
+        bShow7: false,
+        bShow8: false,
+        bShow9: false,
+        bShow10: false,
+        bShow11: false,
+        bShow12: false,
+        bShow13: false,
+        bShow14: false,
+        title: "系統確認訊息",
+        content: "您是否願意開始下載檔案?"
+      }
+    },
+    computed: {},
+    methods: {
+      clickEvent: function(data) {
+        console.log(data);
+      }
+    }
+  });
     </script>
-
-  </body>
-
+</body>
 </html>

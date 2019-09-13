@@ -155,7 +155,7 @@
                     :title="WConfirm.title"
                     :content="WConfirm.content"
                     :titleColor="'white'"
-                    :headerBackgroundColor="'pink darken-3'"
+                    :headerBackgroundColor="'grey darken-1'"
                     :footerBackgroundColor="'grey lighten-4'"
                     @click-no="clickEvent('click-no')"
                     @click-yes="clickEvent('click-yes')"
