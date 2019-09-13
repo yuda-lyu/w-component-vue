@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="zh-tw">
 <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <title>example for w-chips: textColor & backgroundColor & inputTextBorderAndButtonColor & inputTextBorderAndButtonColorHover & inputTextBackgroundColorHover</title>
+    <title>example for w-chips: textColor & backgroundColor & inputTextBorderColor & inputTextBorderColorHover & inputTextBackgroundColorHover & inputTextButtonColor & inputTextButtonColorHover</title>
 
     <!-- fontawesome -->
     <link
@@ -43,7 +43,7 @@
     <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.js"></script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@1.1.24/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@1.1.25/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -80,7 +80,7 @@
         <div class="bk" style="display:block;">
             <div
                 class="item"
-            >textColor & backgroundColor & inputTextBorderAndButtonColor & inputTextBorderAndButtonColorHover & inputTextBackgroundColorHover</div>
+            >textColor & backgroundColor & inputTextBorderColor & inputTextBorderColorHover & inputTextBackgroundColorHover & inputTextButtonColor & inputTextButtonColorHover</div>
 
             <w-shell-material
                 style="margin-top:30px;"
@@ -90,9 +90,11 @@
                 <w-chips
                     :text-color="'white'"
                     :background-color="'pink lighten-1'"
-                    :input-text-border-and-button-color="'pink accent-1'"
-                    :input-text-border-and-button-color-hover="'pink lighten-2'"
+                    :input-text-border-color="'pink accent-1'"
+                    :input-text-border-color-hover="'pink lighten-2'"
                     :input-text-background-color-hover="'red lighten-5'"
+                    :input-text-button-color="'pink accent-1'"
+                    :input-text-button-color-hover="'pink lighten-2'"
                     v-model="WChips.items"
                 />
             </w-shell-material>
