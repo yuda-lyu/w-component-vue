@@ -179,7 +179,6 @@ export default {
 
             let s = {}
             s['color'] = color2hex(vo.titleColor)
-
             return s
         },
 
@@ -192,7 +191,6 @@ export default {
             s['padding'] = '15px'
             s['background-color'] = color2hex(vo.headerBackgroundColor)
             s['border-bottom'] = '1px solid #ddd'
-
             return s
         },
 
@@ -207,7 +205,6 @@ export default {
             s['display'] = 'flex'
             s['align-items'] = 'center'
             s['color'] = color2hex(vo.contentColor)
-
             return s
         },
 
@@ -221,7 +218,6 @@ export default {
             s['background-color'] = color2hex(vo.footerBackgroundColor)
             s['border-top'] = '1px solid #ddd'
             s['text-align'] = 'right'
-
             return s
         },
 

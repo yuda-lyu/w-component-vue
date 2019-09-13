@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="zh-tw">
 <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <title>example for w-timeday-range: iconColor & iconColorFoucs & borderColor & borderColorHover</title>
+    <title>example for w-timeminute-range: iconColor & iconColorFoucs & borderColor & borderColorHover & backgroundColorHover</title>
 
     <!-- fontawesome -->
     <link
@@ -43,7 +43,7 @@
     <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.js"></script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@1.1.22/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@1.1.23/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -76,20 +76,21 @@
     style="font-family:'Microsoft JhengHei','Avenir','Helvetica'; padding:20px;"
 >
     <v-app id="app" style="font-family:inherit;">
-        <div class="head1">w-timeday-range</div>
+        <div class="head1">w-timeminute-range</div>
         <div class="bk">
             <div
                 class="item"
-            >iconColor & iconColorFoucs & borderColor & borderColorHover</div>
+            >iconColor & iconColorFoucs & borderColor & borderColorHover & backgroundColorHover</div>
 
-            <w-timeday-range
+            <w-timeminute-range
                 :border-shadow="false"
                 :border-color="'cyan lighten-2'"
                 :border-color-hover="'cyan darken-1'"
+                :background-color-hover="'cyan lighten-5'"
                 :icon-color="'cyan lighten-2'"
                 :icon-color-hover="'cyan darken-1'"
-                :day-start.sync="WTimedayRange.dayStart"
-                :day-end.sync="WTimedayRange.dayEnd"
+                :minute-start.sync="WTimeminuteRange.minuteStart"
+                :minute-end.sync="WTimeminuteRange.minuteEnd"
             />
         </div>
     </v-app>
@@ -103,9 +104,9 @@
     el: "#app",
     vuetify: new Vuetify(),
     data: {
-      WTimedayRange: {
-        dayStart: "2019-01-01",
-        dayEnd: "2019-02-01"
+      WTimeminuteRange: {
+        minuteStart: "2019-01-01T10:00:00",
+        minuteEnd: "2019-02-01T12:00:00"
       }
     },
     computed: {},

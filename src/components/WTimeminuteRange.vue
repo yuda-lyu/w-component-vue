@@ -10,6 +10,8 @@
             :leftIconColor="iconColor"
             :leftIconColorHover="iconColorHover"
             :leftIconTooltip="iconTooltip"
+            :backgroundColor="backgroundColor"
+            :backgroundColorHover="backgroundColorHover"
             :borderColor="borderColor"
             :borderColorHover="borderColorHover"
             :small="small"
@@ -57,6 +59,8 @@ import WTimeminuteRangeCore from './WTimeminuteRangeCore.vue'
  * @vue-prop {String} [iconColor='deep-orange lighten-2'] 輸入圖標顏色字串，預設'deep-orange lighten-2'
  * @vue-prop {String} [iconColorHover='deep-orange lighten-1'] 輸入圖標Hover時顏色字串，預設'deep-orange lighten-1'
  * @vue-prop {String} [iconTooltip=''] 輸入圖標提示文字字串，預設''
+ * @vue-prop {String} [backgroundColor='white'] 輸入背景顏色字串，預設'white'
+ * @vue-prop {String} [backgroundColorHover='white'] 輸入背景Hover顏色字串，預設'white'
  * @vue-prop {String} [borderColor='white'] 輸入邊框顏色字串，預設'white'
  * @vue-prop {String} [borderColorHover='white'] 輸入邊框Hover顏色字串，預設'white'
  * @vue-prop {String} [pickColor='deep-orange darken-1'] 輸入日期彈窗中選擇指定日期之顏色字串，預設'deep-orange darken-1'
@@ -129,13 +133,21 @@ export default {
             type: String,
             default: '',
         },
+        backgroundColor: {
+            type: String,
+            default: 'white',
+        },
+        backgroundColorHover: {
+            type: String,
+            default: 'white', //orange lighten-5
+        },
         borderColor: {
             type: String,
-            default: 'white', //transparent grey lighten-1
+            default: 'white',
         },
         borderColorHover: {
             type: String,
-            default: 'white', //transparent grey lighten-1
+            default: 'white',
         },
         pickColor: {
             type: String,

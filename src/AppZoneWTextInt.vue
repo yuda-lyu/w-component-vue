@@ -304,6 +304,7 @@
                             :borderShadow="false"
                             :borderColor="'orange lighten-2'"
                             :borderColorHover="'orange darken-2'"
+                            :backgroundColorHover="'orange lighten-5'"
                             v-model="WTextInt.int"
                         ></w-text-int>
                     </div>
@@ -320,6 +321,7 @@
                             :borderShadow="false"
                             :borderColor="'orange lighten-2'"
                             :borderColorHover="'orange darken-2'"
+                            :backgroundColorHover="'orange lighten-5'"
                             :buttonColorHover="'pink accent-2'"
                             v-model="WTextInt.int"
                         ></w-text-int>
@@ -328,7 +330,7 @@
                     <div class="bk">
                         <demolink
                             :kbname="'w-text-int'"
-                            :casename="'buttonColor & buttonColorHover & borderColor & borderColorHover'"
+                            :casename="'buttonColor & buttonColorHover & borderColor & borderColorHover & backgroundColorHover'"
                             :kind="'border'"
                             :shell="'pure'"
                         ></demolink>
@@ -337,6 +339,7 @@
                             :borderShadow="false"
                             :borderColor="'cyan lighten-1'"
                             :borderColorHover="'cyan darken-1'"
+                            :backgroundColorHover="'cyan lighten-5'"
                             :buttonColor="'cyan lighten-1'"
                             :buttonColorHover="'cyan darken-1'"
                             v-model="WTextInt.int"
@@ -355,6 +358,7 @@
                             :borderShadow="false"
                             :borderColor="'orange lighten-2'"
                             :borderColorHover="'orange darken-2'"
+                            :backgroundColorHover="'orange lighten-5'"
                             :borderRadius="5"
                             v-model="WTextInt.int"
                         ></w-text-int>
@@ -372,6 +376,7 @@
                             :borderShadow="false"
                             :borderColor="'orange lighten-2'"
                             :borderColorHover="'orange darken-2'"
+                            :backgroundColorHover="'orange lighten-5'"
                             style="margin-top:30px;"
                             :title="'請輸入訂購數量'"
                             v-model="WTextInt.int"
@@ -390,6 +395,7 @@
                             :borderShadow="false"
                             :borderColor="'orange lighten-2'"
                             :borderColorHover="'orange darken-2'"
+                            :backgroundColorHover="'orange lighten-5'"
                             style="margin-top:30px;"
                             :title="'請輸入訂購數量'"
                             :titleColor="'brown'"
@@ -409,6 +415,7 @@
                             :borderShadow="false"
                             :borderColor="'orange lighten-2'"
                             :borderColorHover="'orange darken-2'"
+                            :backgroundColorHover="'orange lighten-5'"
                             :width="100"
                             v-model="WTextInt.int"
                         ></w-text-int>
@@ -426,6 +433,7 @@
                             :borderShadow="false"
                             :borderColor="'orange lighten-2'"
                             :borderColorHover="'orange darken-2'"
+                            :backgroundColorHover="'orange lighten-5'"
                             :small="false"
                             v-model="WTextInt.int"
                         ></w-text-int>
@@ -443,6 +451,7 @@
                             :borderShadow="false"
                             :borderColor="'orange lighten-2'"
                             :borderColorHover="'orange darken-2'"
+                            :backgroundColorHover="'orange lighten-5'"
                             :editable="false"
                             v-model="WTextInt.int"
                         ></w-text-int>
@@ -472,6 +481,7 @@
                                 :borderShadow="false"
                                 :borderColor="'orange lighten-2'"
                                 :borderColorHover="'orange darken-2'"
+                                :backgroundColorHover="'orange lighten-5'"
                                 v-model="WTextInt.int"
                             ></w-text-int>
                         </w-shell-material>
@@ -494,6 +504,7 @@
                                 :borderShadow="false"
                                 :borderColor="'orange lighten-2'"
                                 :borderColorHover="'orange darken-2'"
+                                :backgroundColorHover="'orange lighten-5'"
                                 v-model="WTextInt.int"
                             ></w-text-int>
                         </w-shell-material>
@@ -516,6 +527,7 @@
                                 :borderShadow="false"
                                 :borderColor="'orange lighten-2'"
                                 :borderColorHover="'orange darken-2'"
+                                :backgroundColorHover="'orange lighten-5'"
                                 :buttonColorHover="'pink accent-2'"
                                 v-model="WTextInt.int"
                             ></w-text-int>
@@ -542,6 +554,7 @@
                                 :borderShadow="false"
                                 :borderColor="'cyan lighten-3'"
                                 :borderColorHover="'cyan lighten-1'"
+                                :backgroundColorHover="'cyan lighten-5'"
                                 :buttonColor="'cyan lighten-3'"
                                 :buttonColorHover="'cyan lighten-1'"
                                 v-model="WTextInt.int"
@@ -566,6 +579,7 @@
                                 :borderShadow="false"
                                 :borderColor="'orange lighten-2'"
                                 :borderColorHover="'orange darken-2'"
+                                :backgroundColorHover="'orange lighten-5'"
                                 :borderRadius="5"
                                 v-model="WTextInt.int"
                             ></w-text-int>
@@ -589,6 +603,7 @@
                                 :borderShadow="false"
                                 :borderColor="'orange lighten-2'"
                                 :borderColorHover="'orange darken-2'"
+                                :backgroundColorHover="'orange lighten-5'"
                                 :width="100"
                                 v-model="WTextInt.int"
                             ></w-text-int>
@@ -612,6 +627,7 @@
                                 :borderShadow="false"
                                 :borderColor="'orange lighten-2'"
                                 :borderColorHover="'orange darken-2'"
+                                :backgroundColorHover="'orange lighten-5'"
                                 :small="false"
                                 v-model="WTextInt.int"
                             ></w-text-int>
@@ -635,6 +651,7 @@
                                 :borderShadow="false"
                                 :borderColor="'orange lighten-2'"
                                 :borderColorHover="'orange darken-2'"
+                                :backgroundColorHover="'orange lighten-5'"
                                 :editable="false"
                                 v-model="WTextInt.int"
                             ></w-text-int>

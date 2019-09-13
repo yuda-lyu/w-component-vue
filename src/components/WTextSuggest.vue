@@ -10,6 +10,8 @@
             :leftIconColor="iconColor"
             :leftIconColorHover="iconColorHover"
             :leftIconTooltip="iconTooltip"
+            :backgroundColor="backgroundColor"
+            :backgroundColorHover="backgroundColorHover"
             :borderColor="borderColor"
             :borderColorHover="borderColorHover"
             :small="small"
@@ -44,6 +46,8 @@ import WTextSuggestCore from './WTextSuggestCore.vue'
  * @vue-prop {String} [iconColor='deep-orange lighten-2'] 輸入框外左側圖標顏色字串，預設'deep-orange lighten-2'
  * @vue-prop {String} [iconColorHover='deep-orange lighten-1'] 輸入框外左側圖標Hover時顏色字串，預設'deep-orange lighten-1'
  * @vue-prop {String} [iconTooltip=''] 輸入框外左側圖標提示文字字串，預設''
+ * @vue-prop {String} [backgroundColor='white'] 輸入背景顏色字串，預設'white'
+ * @vue-prop {String} [backgroundColorHover='white'] 輸入背景Hover顏色字串，預設'white'
  * @vue-prop {String} [borderColor='white'] 輸入邊框顏色字串，預設'white'
  * @vue-prop {String} [borderColorHover='white'] 輸入邊框Hover顏色字串，預設'white'
  * @vue-prop {Boolean} [small=true] 輸入是否為小型模式，預設true
@@ -93,13 +97,21 @@ export default {
             type: String,
             default: '',
         },
+        backgroundColor: {
+            type: String,
+            default: 'white',
+        },
+        backgroundColorHover: {
+            type: String,
+            default: 'white', //orange lighten-5
+        },
         borderColor: {
             type: String,
-            default: 'white', //transparent grey lighten-1
+            default: 'white',
         },
         borderColorHover: {
             type: String,
-            default: 'white', //transparent grey lighten-1
+            default: 'white',
         },
         small: {
             type: Boolean,

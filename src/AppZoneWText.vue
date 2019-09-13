@@ -347,6 +347,7 @@
                             :borderShadow="false"
                             :borderColor="'orange lighten-2'"
                             :borderColorHover="'orange darken-2'"
+                            :backgroundColorHover="'orange lighten-5'"
                             v-model="WText.text"
                         ></w-text>
                     </div>
@@ -363,6 +364,7 @@
                             :borderShadow="false"
                             :borderColor="'orange lighten-2'"
                             :borderColorHover="'orange darken-2'"
+                            :backgroundColorHover="'orange lighten-5'"
                             :borderRadius="5"
                             v-model="WText.text"
                         ></w-text>
@@ -380,6 +382,7 @@
                             :borderShadow="false"
                             :borderColor="'orange lighten-2'"
                             :borderColorHover="'orange darken-2'"
+                            :backgroundColorHover="'orange lighten-5'"
                             :leftIcon="mdiCheckUnderlineCircle"
                             v-model="WText.text"
                         ></w-text>
@@ -397,6 +400,7 @@
                             :borderShadow="false"
                             :borderColor="'orange lighten-2'"
                             :borderColorHover="'orange darken-2'"
+                            :backgroundColorHover="'orange lighten-5'"
                             :leftIcon="'fas fa-clipboard-check'"
                             v-model="WText.text"
                         ></w-text>
@@ -414,6 +418,7 @@
                             :borderShadow="false"
                             :borderColor="'orange lighten-2'"
                             :borderColorHover="'orange darken-2'"
+                            :backgroundColorHover="'orange lighten-5'"
                             :leftIcon="mdiCheckUnderlineCircle"
                             :placeholder="'請輸入數據'"
                             v-model="WText.emptytext"
@@ -432,6 +437,7 @@
                             :borderShadow="false"
                             :borderColor="'orange lighten-2'"
                             :borderColorHover="'orange darken-2'"
+                            :backgroundColorHover="'orange lighten-5'"
                             :leftIcon="mdiCheckUnderlineCircle"
                             :leftIconColorHover="'pink accent-2'"
                             v-model="WText.text"
@@ -441,7 +447,7 @@
                     <div class="bk">
                         <demolink
                             :kbname="'w-text'"
-                            :casename="'leftIcon & leftIconColor & leftIconColorHover & borderColor & borderColorHover'"
+                            :casename="'leftIcon & leftIconColor & leftIconColorHover & borderColor & borderColorHover & backgroundColorHover'"
                             :kind="'border'"
                             :shell="'pure'"
                         ></demolink>
@@ -450,6 +456,7 @@
                             :borderShadow="false"
                             :borderColor="'cyan lighten-1'"
                             :borderColorHover="'cyan darken-1'"
+                            :backgroundColorHover="'cyan lighten-5'"
                             :leftIcon="mdiCheckUnderlineCircle"
                             :leftIconColor="'cyan lighten-1'"
                             :leftIconColorHover="'cyan darken-1'"
@@ -469,6 +476,7 @@
                             :borderShadow="false"
                             :borderColor="'orange lighten-2'"
                             :borderColorHover="'orange darken-2'"
+                            :backgroundColorHover="'orange lighten-5'"
                             :rightIcon="mdiAvTimer"
                             v-model="WText.text"
                         ></w-text>
@@ -486,6 +494,7 @@
                             :borderShadow="false"
                             :borderColor="'orange lighten-2'"
                             :borderColorHover="'orange darken-2'"
+                            :backgroundColorHover="'orange lighten-5'"
                             :rightIcon="mdiSend"
                             :rightIconTooltip="'Send'"
                             v-model="WText.text"
@@ -504,6 +513,7 @@
                             :borderShadow="false"
                             :borderColor="'orange lighten-2'"
                             :borderColorHover="'orange darken-2'"
+                            :backgroundColorHover="'orange lighten-5'"
                             style="margin-top:30px;"
                             :title="'請輸入地址'"
                             v-model="WText.text"
@@ -522,6 +532,7 @@
                             :borderShadow="false"
                             :borderColor="'orange lighten-2'"
                             :borderColorHover="'orange darken-2'"
+                            :backgroundColorHover="'orange lighten-5'"
                             style="margin-top:30px;"
                             :title="'請輸入地址'"
                             :titleColor="'brown lighten-1'"
@@ -541,6 +552,7 @@
                             :borderShadow="false"
                             :borderColor="'orange lighten-2'"
                             :borderColorHover="'orange darken-2'"
+                            :backgroundColorHover="'orange lighten-5'"
                             :leftIcon="mdiAccountOutline"
                             :small="false"
                             v-model="WText.text"
@@ -559,6 +571,7 @@
                             :borderShadow="false"
                             :borderColor="'orange lighten-2'"
                             :borderColorHover="'orange darken-2'"
+                            :backgroundColorHover="'orange lighten-5'"
                             :leftIcon="mdiCheckUnderlineCircle"
                             :editable="false"
                             v-model="WText.text"
@@ -577,6 +590,7 @@
                             :borderShadow="false"
                             :borderColor="'orange lighten-2'"
                             :borderColorHover="'orange darken-2'"
+                            :backgroundColorHover="'orange lighten-5'"
                             :leftIcon="mdiArrowRightDropCircleOutline"
                             v-model="WText.text"
                         ></w-text>
@@ -606,6 +620,7 @@
                                 :borderShadow="false"
                                 :borderColor="'orange lighten-2'"
                                 :borderColorHover="'orange darken-2'"
+                                :backgroundColorHover="'orange lighten-5'"
                                 v-model="WText.text"
                             ></w-text>
                         </w-shell-material>
@@ -628,6 +643,7 @@
                                 :borderShadow="false"
                                 :borderColor="'orange lighten-2'"
                                 :borderColorHover="'orange darken-2'"
+                                :backgroundColorHover="'orange lighten-5'"
                                 v-model="WText.text"
                             ></w-text>
                         </w-shell-material>
@@ -650,6 +666,7 @@
                                 :borderShadow="false"
                                 :borderColor="'orange lighten-2'"
                                 :borderColorHover="'orange darken-2'"
+                                :backgroundColorHover="'orange lighten-5'"
                                 :borderRadius="5"
                                 v-model="WText.text"
                             ></w-text>
@@ -673,6 +690,7 @@
                                 :borderShadow="false"
                                 :borderColor="'orange lighten-2'"
                                 :borderColorHover="'orange darken-2'"
+                                :backgroundColorHover="'orange lighten-5'"
                                 :placeholder="'請輸入中英文8碼'"
                                 v-model="WText.emptytext"
                             ></w-text>
@@ -682,7 +700,7 @@
                     <div class="bk">
                         <demolink
                             :kbname="'w-text'"
-                            :casename="'titleColor & leftIconColor & leftIconColorHover & borderColor & borderColorHover'"
+                            :casename="'titleColor & leftIconColor & leftIconColorHover & borderColor & borderColorHover & backgroundColorHover'"
                             :kind="'border'"
                             :shell="'shell'"
                         ></demolink>
@@ -699,6 +717,7 @@
                                 :borderShadow="false"
                                 :borderColor="'cyan lighten-1'"
                                 :borderColorHover="'cyan darken-1'"
+                                :backgroundColorHover="'cyan lighten-5'"
                                 v-model="WText.text"
                             ></w-text>
                         </w-shell-material>
@@ -721,6 +740,7 @@
                                 :borderShadow="false"
                                 :borderColor="'orange lighten-2'"
                                 :borderColorHover="'orange darken-2'"
+                                :backgroundColorHover="'orange lighten-5'"
                                 :small="false"
                                 v-model="WText.text"
                             ></w-text>
@@ -744,6 +764,7 @@
                                 :borderShadow="false"
                                 :borderColor="'orange lighten-2'"
                                 :borderColorHover="'orange darken-2'"
+                                :backgroundColorHover="'orange lighten-5'"
                                 :editable="false"
                                 v-model="WText.text"
                             ></w-text>
@@ -767,6 +788,7 @@
                                 :borderShadow="false"
                                 :borderColor="'orange lighten-2'"
                                 :borderColorHover="'orange darken-2'"
+                                :backgroundColorHover="'orange lighten-5'"
                                 v-model="WText.text"
                             ></w-text>
                         </w-shell-material>

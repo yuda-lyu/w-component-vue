@@ -10,6 +10,8 @@
             :leftIconColor="iconColor"
             :leftIconColorHover="iconColorHover"
             :leftIconTooltip="iconTooltip"
+            :backgroundColor="backgroundColor"
+            :backgroundColorHover="backgroundColorHover"
             :borderColor="borderColor"
             :borderColorHover="borderColorHover"
             :small="small"
@@ -56,6 +58,8 @@ import WTextIntCore from './WTextIntCore.vue'
  * @vue-prop {String} [iconTooltip=''] 輸入框外左側圖標提示文字字串，預設''
  * @vue-prop {String} [leftIconTooltip='減少'] 輸入框內左側圖標提示文字字串，預設'減少'
  * @vue-prop {String} [rightIconTooltip='增加'] 輸入框內右側圖標提示文字字串，預設'增加'
+ * @vue-prop {String} [backgroundColor='white'] 輸入背景顏色字串，預設'white'
+ * @vue-prop {String} [backgroundColorHover='white'] 輸入背景Hover顏色字串，預設'white'
  * @vue-prop {String} [borderColor='white'] 輸入邊框顏色字串，預設'white'
  * @vue-prop {String} [borderColorHover='white'] 輸入邊框Hover顏色字串，預設'white'
  * @vue-prop {String} [buttonColor='deep-orange lighten-2'] 輸入框內圖標按鈕顏色字串，預設'deep-orange lighten-2'
@@ -121,13 +125,21 @@ export default {
             type: String,
             default: '增加',
         },
+        backgroundColor: {
+            type: String,
+            default: 'white',
+        },
+        backgroundColorHover: {
+            type: String,
+            default: 'white', //orange lighten-5
+        },
         borderColor: {
             type: String,
-            default: 'white', //transparent grey lighten-1
+            default: 'white',
         },
         borderColorHover: {
             type: String,
-            default: 'white', //transparent grey lighten-1
+            default: 'white',
         },
         buttonColor: {
             type: String,

@@ -74,11 +74,11 @@ export default {
         },
         buttonColor: {
             type: String,
-            default: 'white', //transparent grey lighten-1
+            default: 'white',
         },
         buttonColorHover: {
             type: String,
-            default: 'white', //transparent grey lighten-1
+            default: 'white',
         },
         editable: {
             type: Boolean,
