@@ -4,8 +4,8 @@
         <div
             :class="{'group':true,'shadow':borderShadow}"
             :style="[{'opacity':editable?1:0.6},useBackgroundColor,useBorder,useRadius]"
-            @mouseenter="focused=true"
-            @mouseleave="focused=false"
+            @mouseenter="hovered=true"
+            @mouseleave="hovered=false"
         >
 
             <template v-for="(item,kitem) in value">
@@ -17,7 +17,7 @@
                             ButtonGroupChip="item"
                             v-on="on"
                             :style="useItemStyle(kitem)"
-                            v-ripple="itemsClickable[kitem] ? { class:  `grey--text`  } : null"
+                            v-ripple="itemsClickable[kitem] ? { class:  `white--text`  } : null"
                             @mouseenter="mouseEnterLeave(kitem)"
                             @mouseleave="mouseEnterLeave(null)"
                             @click="clickItem(item,kitem)"
@@ -68,10 +68,10 @@ import isbol from 'wsemi/src/isbol.mjs'
  * @vue-prop {String} [textColor='grey darken-2'] 輸入文字顏色字串，預設'grey darken-2'
  * @vue-prop {Number} [borderRadius=30] 輸入圓角寬度，單位為px，預設30
  * @vue-prop {String} [borderColor='orange lighten-3'] 輸入邊框顏色字串，預設'orange lighten-3'
- * @vue-prop {String} [borderColorHover='orange lighten-1'] 輸入邊框Hover顏色字串，預設'orange lighten-1'
+ * @vue-prop {String} [borderColorHover='orange lighten-1'] 輸入邊框hover顏色字串，預設'orange lighten-1'
  * @vue-prop {Boolean} [borderShadow=false] 輸入是否為陰影模式，預設false
  * @vue-prop {String} [backgroundColor='white'] 輸入背景顏色字串，預設'white'
- * @vue-prop {String} [backgroundColorHover='orange lighten-4'] 輸入背景顏色字串，預設'orange lighten-4'
+ * @vue-prop {String} [backgroundColorHover='orange lighten-4'] 輸入背景hover顏色字串，預設'orange lighten-4'
  * @vue-prop {String} [backgroundColorActive='orange lighten-3'] 輸入已點擊項目背景顏色字串，預設'orange lighten-3'
  * @vue-prop {Boolean} [small=true] 輸入是否為小型模式，預設true
  * @vue-prop {Boolean} [editable=true] 輸入是否為編輯模式，預設true
@@ -136,7 +136,7 @@ export default {
     data: function() {
         return {
             clicked: null,
-            focused: false,
+            hovered: false,
             itemsClickable: [],
             itemsBackgroundColor: [],
             itemsCursor: [],
@@ -205,7 +205,7 @@ export default {
             let vo = this
 
             let s = {}
-            if (vo.focused) {
+            if (vo.hovered) {
                 s['border'] = '1px solid ' + color2hex(vo.borderColorHover)
             }
             else {
@@ -315,14 +315,14 @@ export default {
             let vo = this
 
             //sv, sh, shc, shb
-            let sv = 2
+            let sv = 1
             let sh = 6
             let shc = 12
             let shb = 18
 
             //small
             if (!vo.small) {
-                let d = 4
+                let d = 3
                 sv += d
                 sh += d * 2
                 shc += d * 2
@@ -340,9 +340,9 @@ export default {
 
             let s = {}
             s['padding-top'] = selfPaddingV
-            s['padding-bottom'] = s['padding-top']
+            s['padding-bottom'] = selfPaddingV
             s['padding-left'] = selfPaddingH
-            s['padding-right'] = s['padding-left']
+            s['padding-right'] = selfPaddingH
             if (kitem === 0) {
                 s['padding-left'] = shb + 'px'
             }

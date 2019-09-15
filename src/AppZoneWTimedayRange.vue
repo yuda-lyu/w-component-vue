@@ -98,7 +98,7 @@
 
                         <w-timeday-range
                             :iconColor="'cyan lighten-2'"
-                            :iconColorHover="'cyan darken-1'"
+                            :iconColorFocus="'cyan darken-1'"
                             :dayStart.sync="WTimedayRange.dayStart"
                             :dayEnd.sync="WTimedayRange.dayEnd"
                         ></w-timeday-range>
@@ -311,7 +311,7 @@
                     <div class="bk">
                         <demolink
                             :kbname="'w-timeday-range'"
-                            :casename="'titleColor & leftIconColor & leftIconColorHover & iconColor & iconColorFoucs'"
+                            :casename="'titleColor & leftIconColor & iconColor & iconColorFoucs'"
                             :kind="'emboss'"
                             :shell="'shell'"
                         ></demolink>
@@ -321,12 +321,11 @@
                             :title="'請選擇旅遊起訖日期'"
                             :titleColor="'cyan darken-1'"
                             :leftIcon="mdiPaw"
-                            :leftIconColor="'cyan lighten-2'"
-                            :leftIconColorHover="'cyan lighten-2'"
+                            :leftIconColor="'cyan lighten-1'"
                         >
                             <w-timeday-range
                                 :iconColor="'cyan lighten-2'"
-                                :iconColorHover="'cyan darken-1'"
+                                :iconColorFocus="'cyan darken-1'"
                                 :dayStart.sync="WTimedayRange.dayStart"
                                 :dayEnd.sync="WTimedayRange.dayEnd"
                             ></w-timeday-range>
@@ -441,8 +440,8 @@
                         <w-timeday-range
                             :borderShadow="false"
                             :borderColor="'orange lighten-2'"
-                            :borderColorHover="'orange darken-2'"
-                            :backgroundColorHover="'orange lighten-5'"
+                            :borderColorFocus="'orange darken-2'"
+                            :backgroundColorFocus="'orange lighten-5'"
                             :dayStart.sync="WTimedayRange.dayStart"
                             :dayEnd.sync="WTimedayRange.dayEnd"
                         ></w-timeday-range>
@@ -459,8 +458,8 @@
                         <w-timeday-range
                             :borderShadow="false"
                             :borderColor="'orange lighten-2'"
-                            :borderColorHover="'orange darken-2'"
-                            :backgroundColorHover="'orange lighten-5'"
+                            :borderColorFocus="'orange darken-2'"
+                            :backgroundColorFocus="'orange lighten-5'"
                             :borderRadius="5"
                             :dayStart.sync="WTimedayRange.dayStart"
                             :dayEnd.sync="WTimedayRange.dayEnd"
@@ -478,8 +477,8 @@
                         <w-timeday-range
                             :borderShadow="false"
                             :borderColor="'orange lighten-2'"
-                            :borderColorHover="'orange darken-2'"
-                            :backgroundColorHover="'orange lighten-5'"
+                            :borderColorFocus="'orange darken-2'"
+                            :backgroundColorFocus="'orange lighten-5'"
                             :dayBetween="'to'"
                             :dayStart.sync="WTimedayRange.dayStart"
                             :dayEnd.sync="WTimedayRange.dayEnd"
@@ -497,8 +496,8 @@
                         <w-timeday-range
                             :borderShadow="false"
                             :borderColor="'orange lighten-2'"
-                            :borderColorHover="'orange darken-2'"
-                            :backgroundColorHover="'orange lighten-5'"
+                            :borderColorFocus="'orange darken-2'"
+                            :backgroundColorFocus="'orange lighten-5'"
                             :icon="mdiCheckUnderlineCircle"
                             :dayStart.sync="WTimedayRange.dayStart"
                             :dayEnd.sync="WTimedayRange.dayEnd"
@@ -516,8 +515,8 @@
                         <w-timeday-range
                             :borderShadow="false"
                             :borderColor="'orange lighten-2'"
-                            :borderColorHover="'orange darken-2'"
-                            :backgroundColorHover="'orange lighten-5'"
+                            :borderColorFocus="'orange darken-2'"
+                            :backgroundColorFocus="'orange lighten-5'"
                             :icon="'fas fa-clipboard-check'"
                             :dayStart.sync="WTimedayRange.dayStart"
                             :dayEnd.sync="WTimedayRange.dayEnd"
@@ -527,7 +526,7 @@
                     <div class="bk">
                         <demolink
                             :kbname="'w-timeday-range'"
-                            :casename="'iconColor & iconColorFoucs & borderColor & borderColorHover & backgroundColorHover'"
+                            :casename="'iconColor & iconColorFoucs & borderColor & borderColorFocus & backgroundColorFocus'"
                             :kind="'border'"
                             :shell="'pure'"
                         ></demolink>
@@ -535,10 +534,10 @@
                         <w-timeday-range
                             :borderShadow="false"
                             :borderColor="'cyan lighten-2'"
-                            :borderColorHover="'cyan darken-1'"
-                            :backgroundColorHover="'cyan lighten-5'"
+                            :borderColorFocus="'cyan darken-1'"
+                            :backgroundColorFocus="'cyan lighten-5'"
                             :iconColor="'cyan lighten-2'"
-                            :iconColorHover="'cyan darken-1'"
+                            :iconColorFocus="'cyan darken-1'"
                             :dayStart.sync="WTimedayRange.dayStart"
                             :dayEnd.sync="WTimedayRange.dayEnd"
                         ></w-timeday-range>
@@ -555,8 +554,8 @@
                         <w-timeday-range
                             :borderShadow="false"
                             :borderColor="'orange lighten-2'"
-                            :borderColorHover="'orange darken-2'"
-                            :backgroundColorHover="'orange lighten-5'"
+                            :borderColorFocus="'orange darken-2'"
+                            :backgroundColorFocus="'orange lighten-5'"
                             :pickColor="'brown'"
                             :dayStart.sync="WTimedayRange.dayStart"
                             :dayEnd.sync="WTimedayRange.dayEnd"
@@ -574,8 +573,8 @@
                         <w-timeday-range
                             :borderShadow="false"
                             :borderColor="'orange lighten-2'"
-                            :borderColorHover="'orange darken-2'"
-                            :backgroundColorHover="'orange lighten-5'"
+                            :borderColorFocus="'orange darken-2'"
+                            :backgroundColorFocus="'orange lighten-5'"
                             :iconTooltip="'show tooltip'"
                             :dayStart.sync="WTimedayRange.dayStart"
                             :dayEnd.sync="WTimedayRange.dayEnd"
@@ -593,8 +592,8 @@
                         <w-timeday-range
                             :borderShadow="false"
                             :borderColor="'orange lighten-2'"
-                            :borderColorHover="'orange darken-2'"
-                            :backgroundColorHover="'orange lighten-5'"
+                            :borderColorFocus="'orange darken-2'"
+                            :backgroundColorFocus="'orange lighten-5'"
                             style="margin-top:30px;"
                             :title="'請選擇旅遊起訖日期'"
                             :dayStart.sync="WTimedayRange.dayStart"
@@ -613,8 +612,8 @@
                         <w-timeday-range
                             :borderShadow="false"
                             :borderColor="'orange lighten-2'"
-                            :borderColorHover="'orange darken-2'"
-                            :backgroundColorHover="'orange lighten-5'"
+                            :borderColorFocus="'orange darken-2'"
+                            :backgroundColorFocus="'orange lighten-5'"
                             style="margin-top:30px;"
                             :title="'請選擇旅遊起訖日期'"
                             :titleColor="'brown'"
@@ -634,8 +633,8 @@
                         <w-timeday-range
                             :borderShadow="false"
                             :borderColor="'orange lighten-2'"
-                            :borderColorHover="'orange darken-2'"
-                            :backgroundColorHover="'orange lighten-5'"
+                            :borderColorFocus="'orange darken-2'"
+                            :backgroundColorFocus="'orange lighten-5'"
                             :small="false"
                             :dayStart.sync="WTimedayRange.dayStart"
                             :dayEnd.sync="WTimedayRange.dayEnd"
@@ -653,8 +652,8 @@
                         <w-timeday-range
                             :borderShadow="false"
                             :borderColor="'orange lighten-2'"
-                            :borderColorHover="'orange darken-2'"
-                            :backgroundColorHover="'orange lighten-5'"
+                            :borderColorFocus="'orange darken-2'"
+                            :backgroundColorFocus="'orange lighten-5'"
                             :editable="false"
                             :dayStart.sync="WTimedayRange.dayStart"
                             :dayEnd.sync="WTimedayRange.dayEnd"
@@ -684,8 +683,8 @@
                             <w-timeday-range
                                 :borderShadow="false"
                                 :borderColor="'orange lighten-2'"
-                                :borderColorHover="'orange darken-2'"
-                                :backgroundColorHover="'orange lighten-5'"
+                                :borderColorFocus="'orange darken-2'"
+                                :backgroundColorFocus="'orange lighten-5'"
                                 :dayStart.sync="WTimedayRange.dayStart"
                                 :dayEnd.sync="WTimedayRange.dayEnd"
                             ></w-timeday-range>
@@ -708,8 +707,8 @@
                             <w-timeday-range
                                 :borderShadow="false"
                                 :borderColor="'orange lighten-2'"
-                                :borderColorHover="'orange darken-2'"
-                                :backgroundColorHover="'orange lighten-5'"
+                                :borderColorFocus="'orange darken-2'"
+                                :backgroundColorFocus="'orange lighten-5'"
                                 :borderRadius="5"
                                 :dayStart.sync="WTimedayRange.dayStart"
                                 :dayEnd.sync="WTimedayRange.dayEnd"
@@ -733,8 +732,8 @@
                             <w-timeday-range
                                 :borderShadow="false"
                                 :borderColor="'orange lighten-2'"
-                                :borderColorHover="'orange darken-2'"
-                                :backgroundColorHover="'orange lighten-5'"
+                                :borderColorFocus="'orange darken-2'"
+                                :backgroundColorFocus="'orange lighten-5'"
                                 :dayBetween="'to'"
                                 :dayStart.sync="WTimedayRange.dayStart"
                                 :dayEnd.sync="WTimedayRange.dayEnd"
@@ -758,8 +757,8 @@
                             <w-timeday-range
                                 :borderShadow="false"
                                 :borderColor="'orange lighten-2'"
-                                :borderColorHover="'orange darken-2'"
-                                :backgroundColorHover="'orange lighten-5'"
+                                :borderColorFocus="'orange darken-2'"
+                                :backgroundColorFocus="'orange lighten-5'"
                                 :icon="mdiCheckUnderlineCircle"
                                 :dayStart.sync="WTimedayRange.dayStart"
                                 :dayEnd.sync="WTimedayRange.dayEnd"
@@ -783,8 +782,8 @@
                             <w-timeday-range
                                 :borderShadow="false"
                                 :borderColor="'orange lighten-2'"
-                                :borderColorHover="'orange darken-2'"
-                                :backgroundColorHover="'orange lighten-5'"
+                                :borderColorFocus="'orange darken-2'"
+                                :backgroundColorFocus="'orange lighten-5'"
                                 :icon="'fas fa-clipboard-check'"
                                 :dayStart.sync="WTimedayRange.dayStart"
                                 :dayEnd.sync="WTimedayRange.dayEnd"
@@ -795,7 +794,7 @@
                     <div class="bk">
                         <demolink
                             :kbname="'w-timeday-range'"
-                            :casename="'titleColor & leftIconColor & leftIconColorHover & iconColor & iconColorFoucs & borderColor & borderColorHover & backgroundColorHover'"
+                            :casename="'titleColor & leftIconColor & iconColor & iconColorFoucs & borderColor & borderColorFocus & backgroundColorFocus'"
                             :kind="'border'"
                             :shell="'shell'"
                         ></demolink>
@@ -805,16 +804,15 @@
                             :title="'請選擇旅遊起訖日期'"
                             :titleColor="'cyan darken-1'"
                             :leftIcon="mdiPaw"
-                            :leftIconColor="'cyan lighten-2'"
-                            :leftIconColorHover="'cyan lighten-2'"
+                            :leftIconColor="'cyan lighten-1'"
                         >
                             <w-timeday-range
                                 :borderShadow="false"
                                 :borderColor="'cyan lighten-2'"
-                                :borderColorHover="'cyan darken-1'"
-                                :backgroundColorHover="'cyan lighten-5'"
+                                :borderColorFocus="'cyan darken-1'"
+                                :backgroundColorFocus="'cyan lighten-5'"
                                 :iconColor="'cyan lighten-2'"
-                                :iconColorHover="'cyan darken-1'"
+                                :iconColorFocus="'cyan darken-1'"
                                 :dayStart.sync="WTimedayRange.dayStart"
                                 :dayEnd.sync="WTimedayRange.dayEnd"
                             ></w-timeday-range>
@@ -837,8 +835,8 @@
                             <w-timeday-range
                                 :borderShadow="false"
                                 :borderColor="'orange lighten-2'"
-                                :borderColorHover="'orange darken-2'"
-                                :backgroundColorHover="'orange lighten-5'"
+                                :borderColorFocus="'orange darken-2'"
+                                :backgroundColorFocus="'orange lighten-5'"
                                 :pickColor="'brown'"
                                 :dayStart.sync="WTimedayRange.dayStart"
                                 :dayEnd.sync="WTimedayRange.dayEnd"
@@ -862,8 +860,8 @@
                             <w-timeday-range
                                 :borderShadow="false"
                                 :borderColor="'orange lighten-2'"
-                                :borderColorHover="'orange darken-2'"
-                                :backgroundColorHover="'orange lighten-5'"
+                                :borderColorFocus="'orange darken-2'"
+                                :backgroundColorFocus="'orange lighten-5'"
                                 :iconTooltip="'show tooltip'"
                                 :dayStart.sync="WTimedayRange.dayStart"
                                 :dayEnd.sync="WTimedayRange.dayEnd"
@@ -887,8 +885,8 @@
                             <w-timeday-range
                                 :borderShadow="false"
                                 :borderColor="'orange lighten-2'"
-                                :borderColorHover="'orange darken-2'"
-                                :backgroundColorHover="'orange lighten-5'"
+                                :borderColorFocus="'orange darken-2'"
+                                :backgroundColorFocus="'orange lighten-5'"
                                 :small="false"
                                 :dayStart.sync="WTimedayRange.dayStart"
                                 :dayEnd.sync="WTimedayRange.dayEnd"
@@ -912,8 +910,8 @@
                             <w-timeday-range
                                 :borderShadow="false"
                                 :borderColor="'orange lighten-2'"
-                                :borderColorHover="'orange darken-2'"
-                                :backgroundColorHover="'orange lighten-5'"
+                                :borderColorFocus="'orange darken-2'"
+                                :backgroundColorFocus="'orange lighten-5'"
                                 :editable="false"
                                 :dayStart.sync="WTimedayRange.dayStart"
                                 :dayEnd.sync="WTimedayRange.dayEnd"

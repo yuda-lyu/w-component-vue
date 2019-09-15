@@ -1,5 +1,5 @@
 <template>
-    <div style="display:inline-block; cursor:pointer;">
+    <div style="display:inline-block; cursor:pointer;" :changeParam="changeParam">
 
         <w-shell-ellipse
             :title="title"
@@ -8,14 +8,15 @@
             :borderShadow="borderShadow"
             :leftIcon="icon"
             :leftIconColor="iconColor"
-            :leftIconColorHover="iconColorHover"
+            :leftIconColorFocus="iconColorFocus"
             :leftIconTooltip="iconTooltip"
             :backgroundColor="backgroundColor"
-            :backgroundColorHover="backgroundColorHover"
+            :backgroundColorFocus="backgroundColorFocus"
             :borderColor="borderColor"
-            :borderColorHover="borderColorHover"
+            :borderColorFocus="borderColorFocus"
             :small="small"
             :editable="editable"
+            :focused="focused_trans"
             @click-left="function(v){$emit('click-left', v)}"
         >
 
@@ -27,6 +28,7 @@
                 :pickColor="pickColor"
                 :editable="editable"
                 :value="value"
+                @update:focused="changeFocused"
                 @input="function(v){$emit('input', v)}"
             ></w-timeminute-core>
 
@@ -52,15 +54,16 @@ import WTimeminuteCore from './WTimeminuteCore.vue'
  * @vue-prop {Array} [minutesCustom=null] 輸入自訂可選的時分點字串陣列，單位為時分(00:00)，若給予，則上述hourMin,hourMax,minuteInter自動失效，預設null
  * @vue-prop {String} [icon=mdiClockOutline] 輸入圖標字串，可為mdi,md,fa代號或mdi/js路徑，預設mdiClockOutline
  * @vue-prop {String} [iconColor='deep-orange lighten-2'] 輸入圖標顏色字串，預設'deep-orange lighten-2'
- * @vue-prop {String} [iconColorHover='deep-orange lighten-1'] 輸入圖標Hover時顏色字串，預設'deep-orange lighten-1'
+ * @vue-prop {String} [iconColorFocus='deep-orange lighten-1'] 輸入圖標Focus顏色字串，預設'deep-orange lighten-1'
  * @vue-prop {String} [iconTooltip=''] 輸入圖標提示文字字串，預設''
  * @vue-prop {String} [backgroundColor='white'] 輸入背景顏色字串，預設'white'
- * @vue-prop {String} [backgroundColorHover='white'] 輸入背景Hover顏色字串，預設'white'
+ * @vue-prop {String} [backgroundColorFocus='white'] 輸入背景Focus顏色字串，預設'white'
  * @vue-prop {String} [borderColor='white'] 輸入邊框顏色字串，預設'white'
- * @vue-prop {String} [borderColorHover='white'] 輸入邊框Hover顏色字串，預設'white'
+ * @vue-prop {String} [borderColorFocus='white'] 輸入邊框Focus顏色字串，預設'white'
  * @vue-prop {String} [pickColor='deep-orange darken-1'] 輸入日期彈窗中選擇指定日期之顏色字串，預設'deep-orange darken-1'
  * @vue-prop {Boolean} [small=true] 輸入是否為小型模式，預設true
  * @vue-prop {Boolean} [editable=true] 輸入是否為編輯模式，預設true
+ * @vue-prop {Boolean} [focused=false] 輸入是否為駐點狀態，預設false
  */
 export default {
     components: {
@@ -112,7 +115,7 @@ export default {
             type: String,
             default: 'deep-orange lighten-2',
         },
-        iconColorHover: {
+        iconColorFocus: {
             type: String,
             default: 'deep-orange lighten-1',
         },
@@ -124,7 +127,7 @@ export default {
             type: String,
             default: 'white',
         },
-        backgroundColorHover: {
+        backgroundColorFocus: {
             type: String,
             default: 'white',
         },
@@ -132,7 +135,7 @@ export default {
             type: String,
             default: 'white',
         },
-        borderColorHover: {
+        borderColorFocus: {
             type: String,
             default: 'white',
         },
@@ -148,17 +151,53 @@ export default {
             type: Boolean,
             default: true,
         },
+        focused: {
+            type: Boolean,
+            default: false,
+        },
     },
     data: function() {
         return {
             mdiClockOutline,
+            focused_trans: false,
         }
     },
     mounted: function() {
     },
     computed: {
+
+        changeParam: function () {
+            //console.log('computed changeParam')
+
+            let vo = this
+
+            //focused_trans
+            vo.focused_trans = vo.focused
+
+            return ''
+        },
+
     },
     methods: {
+
+        changeFocused: function(focused) {
+            //console.log('methods changeFocused', focused)
+
+            let vo = this
+
+            //save
+            vo.focused_trans = focused
+
+            //setTimeout
+            setTimeout(function() {
+
+                //emit
+                vo.$emit('update:focused', focused)
+
+            }, 1)
+
+        },
+
     },
 }
 </script>

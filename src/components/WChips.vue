@@ -43,12 +43,12 @@
                 :borderShadow="false"
                 :rightIcon="mdiPlusCircle"
                 :rightIconColor="inputTextButtonColor"
-                :rightIconColorHover="inputTextButtonColorHover"
+                :rightIconColorFocus="inputTextButtonColorFocus"
                 :rightIconTooltip="iconTooltip"
                 :backgroundColor="inputTextBackgroundColor"
-                :backgroundColorHover="inputTextBackgroundColorHover"
+                :backgroundColorFocus="inputTextBackgroundColorFocus"
                 :borderColor="inputTextBorderColor"
-                :borderColorHover="inputTextBorderColorHover"
+                :borderColorFocus="inputTextBorderColorFocus"
                 @click-right="clickAddBtn"
                 @enter="clickAddBtn"
                 v-model="userinput"
@@ -68,9 +68,9 @@ import WText from './WText.vue'
  * @vue-prop {String} [textColor='grey darken-2'] 輸入文字顏色字串，預設'grey darken-2'
  * @vue-prop {String} [backgroundColor='grey lighten-3'] 輸入背景顏色字串，預設'grey lighten-3'
  * @vue-prop {String} [inputTextBackgroundColor='white'] 輸入輸入框背景顏色字串，預設'white'
- * @vue-prop {String} [inputTextBackgroundColorHover='grey lighten-5'] 輸入輸入框背景Hover顏色字串，預設'grey lighten-5'
- * @vue-prop {String} [inputTextBorderColor='grey lighten-1'] 輸入輸入框未選時文字顏色字串，預設'grey lighten-1'
- * @vue-prop {String} [inputTextBorderColorHover='grey darken-1'] 輸入輸入框有駐點時文字顏色字串，預設'grey darken-1'
+ * @vue-prop {String} [inputTextBackgroundColorFocus='grey lighten-5'] 輸入輸入框背景Focus顏色字串，預設'grey lighten-5'
+ * @vue-prop {String} [inputTextBorderColor='grey lighten-1'] 輸入輸入框未Focus時文字顏色字串，預設'grey lighten-1'
+ * @vue-prop {String} [inputTextBorderColorFocus='grey darken-1'] 輸入輸入框Focus時文字顏色字串，預設'grey darken-1'
  * @vue-prop {String} [iconTooltip='新增'] 輸入輸入框右側按鈕提示文字字串，預設'新增'
  * @vue-prop {Boolean} [editable=true] 輸入是否為編輯模式，預設true
  * @vue-prop {String} [nodata='無'] 輸入無任何字串陣列時的預設文字字串，預設'無'
@@ -95,7 +95,7 @@ export default {
             type: String,
             default: 'white',
         },
-        inputTextBackgroundColorHover: {
+        inputTextBackgroundColorFocus: {
             type: String,
             default: 'grey lighten-5',
         },
@@ -103,7 +103,7 @@ export default {
             type: String,
             default: 'grey lighten-1',
         },
-        inputTextBorderColorHover: {
+        inputTextBorderColorFocus: {
             type: String,
             default: 'grey',
         },
@@ -111,7 +111,7 @@ export default {
             type: String,
             default: 'grey lighten-1',
         },
-        inputTextButtonColorHover: {
+        inputTextButtonColorFocus: {
             type: String,
             default: 'grey',
         },

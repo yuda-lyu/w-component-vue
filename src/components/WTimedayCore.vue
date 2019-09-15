@@ -66,6 +66,19 @@ export default {
     },
     mounted: function() {
     },
+    watch: {
+
+        show: function(value) {
+            //console.log('watch show')
+
+            let vo = this
+
+            //emit
+            vo.$emit('update:focused', value)
+
+        },
+
+    },
     computed: {
 
         changeParam: function () {

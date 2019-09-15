@@ -8,6 +8,8 @@
             :value="value_trans"
             :fetch-suggestions="ch_search"
             @input="function(v){$emit('input', v)}"
+            @focus="$emit('update:focused', true)"
+            @blur="$emit('update:focused', false)"
         ></el-autocomplete>
 
     </div>

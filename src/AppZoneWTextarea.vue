@@ -25,13 +25,13 @@
                 <div class="bk" style="width:500px;">
                     <demolink
                         :kbname="'w-textarea'"
-                        :casename="'borderColorHover'"
+                        :casename="'borderColorFocus'"
                         :kind="'nokind'"
                         :shell="'pure'"
                     ></demolink>
 
                     <w-textarea
-                        :borderColorHover="'light-blue darken-2'"
+                        :borderColorFocus="'light-blue darken-2'"
                         v-model="WTextarea.text"
                     ></w-textarea>
                 </div>
@@ -99,7 +99,7 @@
                 <div class="bk" style="width:500px;">
                     <demolink
                         :kbname="'w-textarea'"
-                        :casename="'borderColorHover'"
+                        :casename="'borderColorFocus'"
                         :kind="'nokind'"
                         :shell="'shell'"
                     ></demolink>
@@ -110,7 +110,7 @@
                         :leftIcon="mdiAccountCircle"
                     >
                         <w-textarea
-                            :borderColorHover="'light-blue darken-2'"
+                            :borderColorFocus="'light-blue darken-2'"
                             v-model="WTextarea.text"
                         ></w-textarea>
                     </w-shell-material>

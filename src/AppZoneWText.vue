@@ -82,14 +82,14 @@
                     <div class="bk">
                         <demolink
                             :kbname="'w-text'"
-                            :casename="'leftIcon & leftIconColorHover'"
+                            :casename="'leftIcon & leftIconColorFocus'"
                             :kind="'emboss'"
                             :shell="'pure'"
                         ></demolink>
 
                         <w-text
                             :leftIcon="mdiCheckUnderlineCircle"
-                            :leftIconColorHover="'pink accent-2'"
+                            :leftIconColorFocus="'pink accent-2'"
                             v-model="WText.text"
                         ></w-text>
                     </div>
@@ -335,6 +335,8 @@
 
 
                 <template v-if="modeShell==='pure'">
+
+
                     <div class="bk">
                         <demolink
                             :kbname="'w-text'"
@@ -346,8 +348,8 @@
                         <w-text
                             :borderShadow="false"
                             :borderColor="'orange lighten-2'"
-                            :borderColorHover="'orange darken-2'"
-                            :backgroundColorHover="'orange lighten-5'"
+                            :borderColorFocus="'orange darken-2'"
+                            :backgroundColorFocus="'orange lighten-5'"
                             v-model="WText.text"
                         ></w-text>
                     </div>
@@ -363,8 +365,8 @@
                         <w-text
                             :borderShadow="false"
                             :borderColor="'orange lighten-2'"
-                            :borderColorHover="'orange darken-2'"
-                            :backgroundColorHover="'orange lighten-5'"
+                            :borderColorFocus="'orange darken-2'"
+                            :backgroundColorFocus="'orange lighten-5'"
                             :borderRadius="5"
                             v-model="WText.text"
                         ></w-text>
@@ -381,8 +383,8 @@
                         <w-text
                             :borderShadow="false"
                             :borderColor="'orange lighten-2'"
-                            :borderColorHover="'orange darken-2'"
-                            :backgroundColorHover="'orange lighten-5'"
+                            :borderColorFocus="'orange darken-2'"
+                            :backgroundColorFocus="'orange lighten-5'"
                             :leftIcon="mdiCheckUnderlineCircle"
                             v-model="WText.text"
                         ></w-text>
@@ -399,8 +401,8 @@
                         <w-text
                             :borderShadow="false"
                             :borderColor="'orange lighten-2'"
-                            :borderColorHover="'orange darken-2'"
-                            :backgroundColorHover="'orange lighten-5'"
+                            :borderColorFocus="'orange darken-2'"
+                            :backgroundColorFocus="'orange lighten-5'"
                             :leftIcon="'fas fa-clipboard-check'"
                             v-model="WText.text"
                         ></w-text>
@@ -417,8 +419,8 @@
                         <w-text
                             :borderShadow="false"
                             :borderColor="'orange lighten-2'"
-                            :borderColorHover="'orange darken-2'"
-                            :backgroundColorHover="'orange lighten-5'"
+                            :borderColorFocus="'orange darken-2'"
+                            :backgroundColorFocus="'orange lighten-5'"
                             :leftIcon="mdiCheckUnderlineCircle"
                             :placeholder="'請輸入數據'"
                             v-model="WText.emptytext"
@@ -428,7 +430,7 @@
                     <div class="bk">
                         <demolink
                             :kbname="'w-text'"
-                            :casename="'leftIcon & leftIconColorHover'"
+                            :casename="'leftIcon & leftIconColorFocus'"
                             :kind="'border'"
                             :shell="'pure'"
                         ></demolink>
@@ -436,10 +438,10 @@
                         <w-text
                             :borderShadow="false"
                             :borderColor="'orange lighten-2'"
-                            :borderColorHover="'orange darken-2'"
-                            :backgroundColorHover="'orange lighten-5'"
+                            :borderColorFocus="'orange darken-2'"
+                            :backgroundColorFocus="'orange lighten-5'"
                             :leftIcon="mdiCheckUnderlineCircle"
-                            :leftIconColorHover="'pink accent-2'"
+                            :leftIconColorFocus="'pink accent-2'"
                             v-model="WText.text"
                         ></w-text>
                     </div>
@@ -447,7 +449,7 @@
                     <div class="bk">
                         <demolink
                             :kbname="'w-text'"
-                            :casename="'leftIcon & leftIconColor & leftIconColorHover & borderColor & borderColorHover & backgroundColorHover'"
+                            :casename="'leftIcon & leftIconColor & leftIconColorFocus & borderColor & borderColorFocus & backgroundColorFocus'"
                             :kind="'border'"
                             :shell="'pure'"
                         ></demolink>
@@ -455,11 +457,11 @@
                         <w-text
                             :borderShadow="false"
                             :borderColor="'cyan lighten-1'"
-                            :borderColorHover="'cyan darken-1'"
-                            :backgroundColorHover="'cyan lighten-5'"
+                            :borderColorFocus="'cyan darken-1'"
+                            :backgroundColorFocus="'cyan lighten-5'"
                             :leftIcon="mdiCheckUnderlineCircle"
                             :leftIconColor="'cyan lighten-1'"
-                            :leftIconColorHover="'cyan darken-1'"
+                            :leftIconColorFocus="'cyan darken-1'"
                             v-model="WText.text"
                         ></w-text>
                     </div>
@@ -475,8 +477,8 @@
                         <w-text
                             :borderShadow="false"
                             :borderColor="'orange lighten-2'"
-                            :borderColorHover="'orange darken-2'"
-                            :backgroundColorHover="'orange lighten-5'"
+                            :borderColorFocus="'orange darken-2'"
+                            :backgroundColorFocus="'orange lighten-5'"
                             :rightIcon="mdiAvTimer"
                             v-model="WText.text"
                         ></w-text>
@@ -493,8 +495,8 @@
                         <w-text
                             :borderShadow="false"
                             :borderColor="'orange lighten-2'"
-                            :borderColorHover="'orange darken-2'"
-                            :backgroundColorHover="'orange lighten-5'"
+                            :borderColorFocus="'orange darken-2'"
+                            :backgroundColorFocus="'orange lighten-5'"
                             :rightIcon="mdiSend"
                             :rightIconTooltip="'Send'"
                             v-model="WText.text"
@@ -512,8 +514,8 @@
                         <w-text
                             :borderShadow="false"
                             :borderColor="'orange lighten-2'"
-                            :borderColorHover="'orange darken-2'"
-                            :backgroundColorHover="'orange lighten-5'"
+                            :borderColorFocus="'orange darken-2'"
+                            :backgroundColorFocus="'orange lighten-5'"
                             style="margin-top:30px;"
                             :title="'請輸入地址'"
                             v-model="WText.text"
@@ -531,8 +533,8 @@
                         <w-text
                             :borderShadow="false"
                             :borderColor="'orange lighten-2'"
-                            :borderColorHover="'orange darken-2'"
-                            :backgroundColorHover="'orange lighten-5'"
+                            :borderColorFocus="'orange darken-2'"
+                            :backgroundColorFocus="'orange lighten-5'"
                             style="margin-top:30px;"
                             :title="'請輸入地址'"
                             :titleColor="'brown lighten-1'"
@@ -551,8 +553,8 @@
                         <w-text
                             :borderShadow="false"
                             :borderColor="'orange lighten-2'"
-                            :borderColorHover="'orange darken-2'"
-                            :backgroundColorHover="'orange lighten-5'"
+                            :borderColorFocus="'orange darken-2'"
+                            :backgroundColorFocus="'orange lighten-5'"
                             :leftIcon="mdiAccountOutline"
                             :small="false"
                             v-model="WText.text"
@@ -570,8 +572,8 @@
                         <w-text
                             :borderShadow="false"
                             :borderColor="'orange lighten-2'"
-                            :borderColorHover="'orange darken-2'"
-                            :backgroundColorHover="'orange lighten-5'"
+                            :borderColorFocus="'orange darken-2'"
+                            :backgroundColorFocus="'orange lighten-5'"
                             :leftIcon="mdiCheckUnderlineCircle"
                             :editable="false"
                             v-model="WText.text"
@@ -589,8 +591,8 @@
                         <w-text
                             :borderShadow="false"
                             :borderColor="'orange lighten-2'"
-                            :borderColorHover="'orange darken-2'"
-                            :backgroundColorHover="'orange lighten-5'"
+                            :borderColorFocus="'orange darken-2'"
+                            :backgroundColorFocus="'orange lighten-5'"
                             :leftIcon="mdiArrowRightDropCircleOutline"
                             v-model="WText.text"
                         ></w-text>
@@ -619,8 +621,8 @@
                             <w-text
                                 :borderShadow="false"
                                 :borderColor="'orange lighten-2'"
-                                :borderColorHover="'orange darken-2'"
-                                :backgroundColorHover="'orange lighten-5'"
+                                :borderColorFocus="'orange darken-2'"
+                                :backgroundColorFocus="'orange lighten-5'"
                                 v-model="WText.text"
                             ></w-text>
                         </w-shell-material>
@@ -642,8 +644,8 @@
                             <w-text
                                 :borderShadow="false"
                                 :borderColor="'orange lighten-2'"
-                                :borderColorHover="'orange darken-2'"
-                                :backgroundColorHover="'orange lighten-5'"
+                                :borderColorFocus="'orange darken-2'"
+                                :backgroundColorFocus="'orange lighten-5'"
                                 v-model="WText.text"
                             ></w-text>
                         </w-shell-material>
@@ -665,8 +667,8 @@
                             <w-text
                                 :borderShadow="false"
                                 :borderColor="'orange lighten-2'"
-                                :borderColorHover="'orange darken-2'"
-                                :backgroundColorHover="'orange lighten-5'"
+                                :borderColorFocus="'orange darken-2'"
+                                :backgroundColorFocus="'orange lighten-5'"
                                 :borderRadius="5"
                                 v-model="WText.text"
                             ></w-text>
@@ -689,8 +691,8 @@
                             <w-text
                                 :borderShadow="false"
                                 :borderColor="'orange lighten-2'"
-                                :borderColorHover="'orange darken-2'"
-                                :backgroundColorHover="'orange lighten-5'"
+                                :borderColorFocus="'orange darken-2'"
+                                :backgroundColorFocus="'orange lighten-5'"
                                 :placeholder="'請輸入中英文8碼'"
                                 v-model="WText.emptytext"
                             ></w-text>
@@ -700,7 +702,7 @@
                     <div class="bk">
                         <demolink
                             :kbname="'w-text'"
-                            :casename="'titleColor & leftIconColor & leftIconColorHover & borderColor & borderColorHover & backgroundColorHover'"
+                            :casename="'titleColor & leftIconColor & borderColor & borderColorFocus & backgroundColorFocus'"
                             :kind="'border'"
                             :shell="'shell'"
                         ></demolink>
@@ -711,13 +713,12 @@
                             :titleColor="'cyan darken-2'"
                             :leftIcon="mdiPaw"
                             :leftIconColor="'cyan lighten-1'"
-                            :leftIconColorHover="'cyan darken-1'"
                         >
                             <w-text
                                 :borderShadow="false"
                                 :borderColor="'cyan lighten-1'"
-                                :borderColorHover="'cyan darken-1'"
-                                :backgroundColorHover="'cyan lighten-5'"
+                                :borderColorFocus="'cyan darken-1'"
+                                :backgroundColorFocus="'cyan lighten-5'"
                                 v-model="WText.text"
                             ></w-text>
                         </w-shell-material>
@@ -739,8 +740,8 @@
                             <w-text
                                 :borderShadow="false"
                                 :borderColor="'orange lighten-2'"
-                                :borderColorHover="'orange darken-2'"
-                                :backgroundColorHover="'orange lighten-5'"
+                                :borderColorFocus="'orange darken-2'"
+                                :backgroundColorFocus="'orange lighten-5'"
                                 :small="false"
                                 v-model="WText.text"
                             ></w-text>
@@ -763,8 +764,8 @@
                             <w-text
                                 :borderShadow="false"
                                 :borderColor="'orange lighten-2'"
-                                :borderColorHover="'orange darken-2'"
-                                :backgroundColorHover="'orange lighten-5'"
+                                :borderColorFocus="'orange darken-2'"
+                                :backgroundColorFocus="'orange lighten-5'"
                                 :editable="false"
                                 v-model="WText.text"
                             ></w-text>
@@ -787,8 +788,8 @@
                             <w-text
                                 :borderShadow="false"
                                 :borderColor="'orange lighten-2'"
-                                :borderColorHover="'orange darken-2'"
-                                :backgroundColorHover="'orange lighten-5'"
+                                :borderColorFocus="'orange darken-2'"
+                                :backgroundColorFocus="'orange lighten-5'"
                                 v-model="WText.text"
                             ></w-text>
                         </w-shell-material>

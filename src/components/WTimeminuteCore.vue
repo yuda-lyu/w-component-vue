@@ -6,6 +6,7 @@
             :pickColor="pickColor"
             :editable="editable"
             :value="value_day"
+            @update:focused="(v)=>{focused_day=v;changeFocused()}"
             @input="ch_day"
         ></w-timeday-core>
 
@@ -15,6 +16,7 @@
                 :editable="editable"
                 :items="getUseMinutes"
                 :value="value_time"
+                @update:focused="(v)=>{focused_time=v;changeFocused()}"
                 @input="ch_time"
             ></w-text-selects-core>
         </div>
@@ -84,6 +86,8 @@ export default {
         return {
             value_day: '',
             value_time: '',
+            focused_day: false,
+            focused_time: false,
         }
     },
     mounted: function() {
@@ -205,6 +209,24 @@ export default {
 
                 //emit
                 vo.$emit('input', value)
+
+            }, 1)
+
+        },
+
+        changeFocused: function() {
+            //console.log('methods changeFocused')
+
+            let vo = this
+
+            //focused
+            let focused = vo.focused_day || vo.focused_time
+
+            //setTimeout
+            setTimeout(function() {
+
+                //emit
+                vo.$emit('update:focused', focused)
 
             }, 1)
 

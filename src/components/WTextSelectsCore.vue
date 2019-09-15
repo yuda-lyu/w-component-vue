@@ -21,6 +21,8 @@
                 :items="items"
                 :value="value_trans"
                 @input="changeContent"
+                @focus="$emit('update:focused', true)"
+                @blur="$emit('update:focused', false)"
             ></v-autocomplete>
 
         </div>

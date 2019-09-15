@@ -77,7 +77,7 @@
 
                         <w-timeminute
                             :iconColor="'cyan lighten-2'"
-                            :iconColorHover="'cyan darken-1'"
+                            :iconColorFocus="'cyan darken-1'"
                             v-model="WTimeminute.value"
                         ></w-timeminute>
                     </div>
@@ -280,7 +280,7 @@
                     <div class="bk">
                         <demolink
                             :kbname="'w-timeminute'"
-                            :casename="'titleColor & leftIconColor & leftIconColorHover & iconColor & iconColorHover'"
+                            :casename="'titleColor & leftIconColor & iconColor & iconColorFocus'"
                             :kind="'emboss'"
                             :shell="'shell'"
                         ></demolink>
@@ -290,12 +290,11 @@
                             :title="'請選擇出發日期'"
                             :titleColor="'cyan darken-1'"
                             :leftIcon="mdiPaw"
-                            :leftIconColor="'cyan lighten-2'"
-                            :leftIconColorHover="'cyan lighten-2'"
+                            :leftIconColor="'cyan lighten-1'"
                         >
                             <w-timeminute
                                 :iconColor="'cyan lighten-2'"
-                                :iconColorHover="'cyan darken-1'"
+                                :iconColorFocus="'cyan darken-1'"
                                 v-model="WTimeminute.value"
                             ></w-timeminute>
                         </w-shell-material>
@@ -468,8 +467,8 @@
                         <w-timeminute
                             :borderShadow="false"
                             :borderColor="'orange lighten-2'"
-                            :borderColorHover="'orange darken-2'"
-                            :backgroundColorHover="'orange lighten-5'"
+                            :borderColorFocus="'orange darken-2'"
+                            :backgroundColorFocus="'orange lighten-5'"
                             v-model="WTimeminute.value"
                         ></w-timeminute>
                     </div>
@@ -485,8 +484,8 @@
                         <w-timeminute
                             :borderShadow="false"
                             :borderColor="'orange lighten-2'"
-                            :borderColorHover="'orange darken-2'"
-                            :backgroundColorHover="'orange lighten-5'"
+                            :borderColorFocus="'orange darken-2'"
+                            :backgroundColorFocus="'orange lighten-5'"
                             :borderRadius="5"
                             v-model="WTimeminute.value"
                         ></w-timeminute>
@@ -503,8 +502,8 @@
                         <w-timeminute
                             :borderShadow="false"
                             :borderColor="'orange lighten-2'"
-                            :borderColorHover="'orange darken-2'"
-                            :backgroundColorHover="'orange lighten-5'"
+                            :borderColorFocus="'orange darken-2'"
+                            :backgroundColorFocus="'orange lighten-5'"
                             :icon="mdiCheckUnderlineCircle"
                             v-model="WTimeminute.value"
                         ></w-timeminute>
@@ -521,8 +520,8 @@
                         <w-timeminute
                             :borderShadow="false"
                             :borderColor="'orange lighten-2'"
-                            :borderColorHover="'orange darken-2'"
-                            :backgroundColorHover="'orange lighten-5'"
+                            :borderColorFocus="'orange darken-2'"
+                            :backgroundColorFocus="'orange lighten-5'"
                             :icon="'fas fa-clipboard-check'"
                             v-model="WTimeminute.value"
                         ></w-timeminute>
@@ -531,7 +530,7 @@
                     <div class="bk">
                         <demolink
                             :kbname="'w-timeminute'"
-                            :casename="'iconColor & iconColorFoucs & borderColor & borderColorHover & backgroundColorHover'"
+                            :casename="'iconColor & iconColorFoucs & borderColor & borderColorFocus & backgroundColorFocus'"
                             :kind="'border'"
                             :shell="'pure'"
                         ></demolink>
@@ -539,10 +538,10 @@
                         <w-timeminute
                             :borderShadow="false"
                             :borderColor="'cyan lighten-2'"
-                            :borderColorHover="'cyan darken-1'"
-                            :backgroundColorHover="'cyan lighten-5'"
+                            :borderColorFocus="'cyan darken-1'"
+                            :backgroundColorFocus="'cyan lighten-5'"
                             :iconColor="'cyan lighten-2'"
-                            :iconColorHover="'cyan darken-1'"
+                            :iconColorFocus="'cyan darken-1'"
                             v-model="WTimeminute.value"
                         ></w-timeminute>
                     </div>
@@ -558,8 +557,8 @@
                         <w-timeminute
                             :borderShadow="false"
                             :borderColor="'orange lighten-2'"
-                            :borderColorHover="'orange darken-2'"
-                            :backgroundColorHover="'orange lighten-5'"
+                            :borderColorFocus="'orange darken-2'"
+                            :backgroundColorFocus="'orange lighten-5'"
                             :pickColor="'brown'"
                             v-model="WTimeminute.value"
                         ></w-timeminute>
@@ -576,8 +575,8 @@
                         <w-timeminute
                             :borderShadow="false"
                             :borderColor="'orange lighten-2'"
-                            :borderColorHover="'orange darken-2'"
-                            :backgroundColorHover="'orange lighten-5'"
+                            :borderColorFocus="'orange darken-2'"
+                            :backgroundColorFocus="'orange lighten-5'"
                             :icon="mdiCheckUnderlineCircle"
                             :iconTooltip="'show tooltip'"
                             v-model="WTimeminute.value"
@@ -595,8 +594,8 @@
                         <w-timeminute
                             :borderShadow="false"
                             :borderColor="'orange lighten-2'"
-                            :borderColorHover="'orange darken-2'"
-                            :backgroundColorHover="'orange lighten-5'"
+                            :borderColorFocus="'orange darken-2'"
+                            :backgroundColorFocus="'orange lighten-5'"
                             style="margin-top:30px;"
                             :title="'請選擇出發日期'"
                             v-model="WTimeminute.value"
@@ -614,8 +613,8 @@
                         <w-timeminute
                             :borderShadow="false"
                             :borderColor="'orange lighten-2'"
-                            :borderColorHover="'orange darken-2'"
-                            :backgroundColorHover="'orange lighten-5'"
+                            :borderColorFocus="'orange darken-2'"
+                            :backgroundColorFocus="'orange lighten-5'"
                             style="margin-top:30px;"
                             :title="'請選擇出發日期'"
                             :titleColor="'brown'"
@@ -634,8 +633,8 @@
                         <w-timeminute
                             :borderShadow="false"
                             :borderColor="'orange lighten-2'"
-                            :borderColorHover="'orange darken-2'"
-                            :backgroundColorHover="'orange lighten-5'"
+                            :borderColorFocus="'orange darken-2'"
+                            :backgroundColorFocus="'orange lighten-5'"
                             :small="false"
                             v-model="WTimeminute.value"
                         ></w-timeminute>
@@ -652,8 +651,8 @@
                         <w-timeminute
                             :borderShadow="false"
                             :borderColor="'orange lighten-2'"
-                            :borderColorHover="'orange darken-2'"
-                            :backgroundColorHover="'orange lighten-5'"
+                            :borderColorFocus="'orange darken-2'"
+                            :backgroundColorFocus="'orange lighten-5'"
                             :editable="false"
                             v-model="WTimeminute.value"
                         ></w-timeminute>
@@ -670,8 +669,8 @@
                         <w-timeminute
                             :borderShadow="false"
                             :borderColor="'orange lighten-2'"
-                            :borderColorHover="'orange darken-2'"
-                            :backgroundColorHover="'orange lighten-5'"
+                            :borderColorFocus="'orange darken-2'"
+                            :backgroundColorFocus="'orange lighten-5'"
                             :hourMin="9"
                             :hourMax="12"
                             v-model="WTimeminute.value"
@@ -689,8 +688,8 @@
                         <w-timeminute
                             :borderShadow="false"
                             :borderColor="'orange lighten-2'"
-                            :borderColorHover="'orange darken-2'"
-                            :backgroundColorHover="'orange lighten-5'"
+                            :borderColorFocus="'orange darken-2'"
+                            :backgroundColorFocus="'orange lighten-5'"
                             :minuteInter="10"
                             v-model="WTimeminute.value"
                         ></w-timeminute>
@@ -707,8 +706,8 @@
                         <w-timeminute
                             :borderShadow="false"
                             :borderColor="'orange lighten-2'"
-                            :borderColorHover="'orange darken-2'"
-                            :backgroundColorHover="'orange lighten-5'"
+                            :borderColorFocus="'orange darken-2'"
+                            :backgroundColorFocus="'orange lighten-5'"
                             :minutesCustom="['10:00','10:30','11:15','12:00']"
                             v-model="WTimeminute.value"
                         ></w-timeminute>
@@ -737,8 +736,8 @@
                             <w-timeminute
                                 :borderShadow="false"
                                 :borderColor="'orange lighten-2'"
-                                :borderColorHover="'orange darken-2'"
-                                :backgroundColorHover="'orange lighten-5'"
+                                :borderColorFocus="'orange darken-2'"
+                                :backgroundColorFocus="'orange lighten-5'"
                                 :icon="mdiCheckUnderlineCircle"
                                 v-model="WTimeminute.value"
                             ></w-timeminute>
@@ -761,8 +760,8 @@
                             <w-timeminute
                                 :borderShadow="false"
                                 :borderColor="'orange lighten-2'"
-                                :borderColorHover="'orange darken-2'"
-                                :backgroundColorHover="'orange lighten-5'"
+                                :borderColorFocus="'orange darken-2'"
+                                :backgroundColorFocus="'orange lighten-5'"
                                 :icon="'fas fa-clipboard-check'"
                                 v-model="WTimeminute.value"
                             ></w-timeminute>
@@ -785,8 +784,8 @@
                             <w-timeminute
                                 :borderShadow="false"
                                 :borderColor="'orange lighten-2'"
-                                :borderColorHover="'orange darken-2'"
-                                :backgroundColorHover="'orange lighten-5'"
+                                :borderColorFocus="'orange darken-2'"
+                                :backgroundColorFocus="'orange lighten-5'"
                                 :borderRadius="5"
                                 v-model="WTimeminute.value"
                             ></w-timeminute>
@@ -796,7 +795,7 @@
                     <div class="bk">
                         <demolink
                             :kbname="'w-timeminute'"
-                            :casename="'titleColor & leftIconColor & leftIconColorHover & borderColor & borderColorHover & backgroundColorHover & iconColor & iconColorHover'"
+                            :casename="'titleColor & leftIconColor & borderColor & borderColorFocus & backgroundColorFocus & iconColor & iconColorFocus'"
                             :kind="'border'"
                             :shell="'shell'"
                         ></demolink>
@@ -806,16 +805,15 @@
                             :title="'請選擇出發日期'"
                             :titleColor="'cyan darken-1'"
                             :leftIcon="mdiPaw"
-                            :leftIconColor="'cyan lighten-2'"
-                            :leftIconColorHover="'cyan lighten-2'"
+                            :leftIconColor="'cyan lighten-1'"
                         >
                             <w-timeminute
                                 :borderShadow="false"
                                 :borderColor="'cyan lighten-2'"
-                                :borderColorHover="'cyan darken-1'"
-                                :backgroundColorHover="'cyan lighten-5'"
+                                :borderColorFocus="'cyan darken-1'"
+                                :backgroundColorFocus="'cyan lighten-5'"
                                 :iconColor="'cyan lighten-2'"
-                                :iconColorHover="'cyan darken-1'"
+                                :iconColorFocus="'cyan darken-1'"
                                 v-model="WTimeminute.value"
                             ></w-timeminute>
                         </w-shell-material>
@@ -837,8 +835,8 @@
                             <w-timeminute
                                 :borderShadow="false"
                                 :borderColor="'orange lighten-2'"
-                                :borderColorHover="'orange darken-2'"
-                                :backgroundColorHover="'orange lighten-5'"
+                                :borderColorFocus="'orange darken-2'"
+                                :backgroundColorFocus="'orange lighten-5'"
                                 :pickColor="'brown'"
                                 v-model="WTimeminute.value"
                             ></w-timeminute>
@@ -862,8 +860,8 @@
                             <w-timeminute
                                 :borderShadow="false"
                                 :borderColor="'orange lighten-2'"
-                                :borderColorHover="'orange darken-2'"
-                                :backgroundColorHover="'orange lighten-5'"
+                                :borderColorFocus="'orange darken-2'"
+                                :backgroundColorFocus="'orange lighten-5'"
                                 :icon="mdiCheckUnderlineCircle"
                                 :iconTooltip="'請點選日期以進行選擇'"
                                 v-model="WTimeminute.value"
@@ -887,8 +885,8 @@
                             <w-timeminute
                                 :borderShadow="false"
                                 :borderColor="'orange lighten-2'"
-                                :borderColorHover="'orange darken-2'"
-                                :backgroundColorHover="'orange lighten-5'"
+                                :borderColorFocus="'orange darken-2'"
+                                :backgroundColorFocus="'orange lighten-5'"
                                 :small="false"
                                 v-model="WTimeminute.value"
                             ></w-timeminute>
@@ -911,8 +909,8 @@
                             <w-timeminute
                                 :borderShadow="false"
                                 :borderColor="'orange lighten-2'"
-                                :borderColorHover="'orange darken-2'"
-                                :backgroundColorHover="'orange lighten-5'"
+                                :borderColorFocus="'orange darken-2'"
+                                :backgroundColorFocus="'orange lighten-5'"
                                 :editable="false"
                                 v-model="WTimeminute.value"
                             ></w-timeminute>
@@ -935,8 +933,8 @@
                             <w-timeminute
                                 :borderShadow="false"
                                 :borderColor="'orange lighten-2'"
-                                :borderColorHover="'orange darken-2'"
-                                :backgroundColorHover="'orange lighten-5'"
+                                :borderColorFocus="'orange darken-2'"
+                                :backgroundColorFocus="'orange lighten-5'"
                                 :hourMin="9"
                                 :hourMax="12"
                                 v-model="WTimeminute.value"
@@ -960,8 +958,8 @@
                             <w-timeminute
                                 :borderShadow="false"
                                 :borderColor="'orange lighten-2'"
-                                :borderColorHover="'orange darken-2'"
-                                :backgroundColorHover="'orange lighten-5'"
+                                :borderColorFocus="'orange darken-2'"
+                                :backgroundColorFocus="'orange lighten-5'"
                                 :minuteInter="10"
                                 v-model="WTimeminute.value"
                             ></w-timeminute>
@@ -984,8 +982,8 @@
                             <w-timeminute
                                 :borderShadow="false"
                                 :borderColor="'orange lighten-2'"
-                                :borderColorHover="'orange darken-2'"
-                                :backgroundColorHover="'orange lighten-5'"
+                                :borderColorFocus="'orange darken-2'"
+                                :backgroundColorFocus="'orange lighten-5'"
                                 :minutesCustom="['10:00','10:30','11:15','12:00']"
                                 v-model="WTimeminute.value"
                             ></w-timeminute>

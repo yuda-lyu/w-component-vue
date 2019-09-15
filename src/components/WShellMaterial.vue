@@ -1,9 +1,8 @@
 <template>
     <div
+        :changeParam="changeParam"
         class="group"
         :style="[usePadding,{'opacity':editable?1:0.6}]"
-        @mouseenter="focused=true"
-        @mouseleave="focused=false"
     >
 
         <div style="cursor:pointer;" @click="clickIcon('left')" v-if="leftIcon">
@@ -14,7 +13,7 @@
                     <div ShellMaterial="leftIcon" v-on="{...ttShellMaterialLeft}">
                         <w-icon
                             :icon="leftIcon"
-                            :color="focused?leftIconColorHover:leftIconColor"
+                            :color="focused_trans?leftIconColorFocus:leftIconColor"
                         ></w-icon>
                     </div>
                 </template>
@@ -47,7 +46,7 @@
                     <div ShellMaterial="rightIcon" v-on="{...ttShellMaterialRight}">
                         <w-icon
                             :icon="rightIcon"
-                            :color="focused?rightIconColorHover:rightIconColor"
+                            :color="focused_trans?rightIconColorFocus:rightIconColor"
                         ></w-icon>
                     </div>
                 </template>
@@ -70,14 +69,15 @@ import WIcon from './WIcon.vue'
  * @vue-prop {String} [titleColor='deep-orange darken-1'] 輸入標題顏色字串，預設'deep-orange darken-1'
  * @vue-prop {String} [leftIcon=''] 輸入左側圖標字串，可為mdi,md,fa代號或mdi/js路徑，預設''
  * @vue-prop {String} [leftIconColor='deep-orange lighten-2'] 輸入左側圖標顏色字串，預設'deep-orange lighten-2'
- * @vue-prop {String} [leftIconColorHover='deep-orange lighten-1'] 輸入左側圖標Hover時顏色字串，預設'deep-orange lighten-1'
+ * @vue-prop {String} [leftIconColorFocus='deep-orange lighten-1'] 輸入左側圖標Focus顏色字串，預設'deep-orange lighten-1'
  * @vue-prop {String} [leftIconTooltip=''] 輸入左側圖標提示文字字串，預設''
  * @vue-prop {String} [rightIcon=''] 輸入右側圖標字串，可為mdi,md,fa代號或mdi/js路徑，預設''
  * @vue-prop {String} [rightIconColor='deep-orange lighten-2'] 輸入右側圖標顏色字串，預設'deep-orange lighten-2'
- * @vue-prop {String} [rightIconColorHover='deep-orange lighten-1'] 輸入右側圖標Hover時顏色字串，預設'deep-orange lighten-1'
+ * @vue-prop {String} [rightIconColorFocus='deep-orange lighten-1'] 輸入右側圖標Focus顏色字串，預設'deep-orange lighten-1'
  * @vue-prop {String} [rightIconTooltip=''] 輸入右側圖標提示文字字串，預設''
  * @vue-prop {Boolean} [small=true] 輸入是否為小型模式，預設true
  * @vue-prop {Boolean} [editable=true] 輸入是否為編輯模式，預設true
+ * @vue-prop {Boolean} [focused=false] 輸入是否為駐點狀態，預設false
  */
 export default {
     components: {
@@ -100,7 +100,7 @@ export default {
             type: String,
             default: 'deep-orange lighten-2',
         },
-        leftIconColorHover: {
+        leftIconColorFocus: {
             type: String,
             default: 'deep-orange lighten-1',
         },
@@ -116,7 +116,7 @@ export default {
             type: String,
             default: 'deep-orange lighten-2',
         },
-        rightIconColorHover: {
+        rightIconColorFocus: {
             type: String,
             default: 'deep-orange lighten-1',
         },
@@ -132,15 +132,30 @@ export default {
             type: Boolean,
             default: true,
         },
+        focused: {
+            type: Boolean,
+            default: false,
+        },
     },
     data: function() {
         return {
-            focused: false,
+            focused_trans: false,
         }
     },
     mounted: function() {
     },
     computed: {
+
+        changeParam: function () {
+            //console.log('computed changeParam')
+
+            let vo = this
+
+            //focused_trans
+            vo.focused_trans = vo.focused
+
+            return ''
+        },
 
         useTitleColor: function() {
             //console.log('computed useTitleColor')

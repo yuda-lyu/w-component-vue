@@ -5,6 +5,7 @@
             :pickColor="pickColor"
             :editable="editable"
             :value="dayStart"
+            @update:focused="(v)=>{focused_start=v;changeFocused()}"
             @input="function(v){$emit('update:dayStart', v)}"
         ></w-timeday-core>
 
@@ -16,6 +17,7 @@
             :pickColor="pickColor"
             :editable="editable"
             :value="dayEnd"
+            @update:focused="(v)=>{focused_end=v;changeFocused()}"
             @input="function(v){$emit('update:dayEnd', v)}"
         ></w-timeday-core>
 
@@ -60,6 +62,8 @@ export default {
     },
     data: function() {
         return {
+            focused_start: false,
+            focused_end: false,
         }
     },
     mounted: function() {
@@ -67,6 +71,25 @@ export default {
     computed: {
     },
     methods: {
+
+        changeFocused: function() {
+            //console.log('methods changeFocused')
+
+            let vo = this
+
+            //focused
+            let focused = vo.focused_start || vo.focused_end
+
+            //setTimeout
+            setTimeout(function() {
+
+                //emit
+                vo.$emit('update:focused', focused)
+
+            }, 1)
+
+        },
+
     },
 }
 </script>

@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div :changeParam="changeParam">
 
         <w-shell-ellipse
             :title="title"
@@ -8,14 +8,15 @@
             :borderShadow="borderShadow"
             :leftIcon="icon"
             :leftIconColor="iconColor"
-            :leftIconColorHover="iconColorHover"
+            :leftIconColorFocus="iconColorFocus"
             :leftIconTooltip="iconTooltip"
             :backgroundColor="backgroundColor"
-            :backgroundColorHover="backgroundColorHover"
+            :backgroundColorFocus="backgroundColorFocus"
             :borderColor="borderColor"
-            :borderColorHover="borderColorHover"
+            :borderColorFocus="borderColorFocus"
             :small="small"
             :editable="editable"
+            :focused="focused_trans"
             @click-left="function(v){$emit('click-left', v)}"
         >
 
@@ -23,6 +24,7 @@
                 :items="items"
                 :value="value"
                 :editable="editable"
+                @update:focused="changeFocused"
                 @input="function(v){$emit('input', v)}"
             ></w-text-suggest-core>
 
@@ -44,14 +46,15 @@ import WTextSuggestCore from './WTextSuggestCore.vue'
  * @vue-prop {Object|String|Number} [value=null] 輸入目前選擇項目，可為物件、字串、數字，預設null
  * @vue-prop {String} [icon=''] 輸入框外左側圖標字串，可為mdi,md,fa代號或mdi/js路徑，預設''
  * @vue-prop {String} [iconColor='deep-orange lighten-2'] 輸入框外左側圖標顏色字串，預設'deep-orange lighten-2'
- * @vue-prop {String} [iconColorHover='deep-orange lighten-1'] 輸入框外左側圖標Hover時顏色字串，預設'deep-orange lighten-1'
+ * @vue-prop {String} [iconColorFocus='deep-orange lighten-1'] 輸入框外左側圖標Focus顏色字串，預設'deep-orange lighten-1'
  * @vue-prop {String} [iconTooltip=''] 輸入框外左側圖標提示文字字串，預設''
  * @vue-prop {String} [backgroundColor='white'] 輸入背景顏色字串，預設'white'
- * @vue-prop {String} [backgroundColorHover='white'] 輸入背景Hover顏色字串，預設'white'
+ * @vue-prop {String} [backgroundColorFocus='white'] 輸入背景Focus顏色字串，預設'white'
  * @vue-prop {String} [borderColor='white'] 輸入邊框顏色字串，預設'white'
- * @vue-prop {String} [borderColorHover='white'] 輸入邊框Hover顏色字串，預設'white'
+ * @vue-prop {String} [borderColorFocus='white'] 輸入邊框Focus顏色字串，預設'white'
  * @vue-prop {Boolean} [small=true] 輸入是否為小型模式，預設true
  * @vue-prop {Boolean} [editable=true] 輸入是否為編輯模式，預設true
+ * @vue-prop {Boolean} [focused=false] 輸入是否為駐點狀態，預設false
  */
 export default {
     components: {
@@ -89,7 +92,7 @@ export default {
             type: String,
             default: 'deep-orange lighten-2',
         },
-        iconColorHover: {
+        iconColorFocus: {
             type: String,
             default: 'deep-orange lighten-1',
         },
@@ -101,7 +104,7 @@ export default {
             type: String,
             default: 'white',
         },
-        backgroundColorHover: {
+        backgroundColorFocus: {
             type: String,
             default: 'white',
         },
@@ -109,7 +112,7 @@ export default {
             type: String,
             default: 'white',
         },
-        borderColorHover: {
+        borderColorFocus: {
             type: String,
             default: 'white',
         },
@@ -121,16 +124,52 @@ export default {
             type: Boolean,
             default: true,
         },
+        focused: {
+            type: Boolean,
+            default: false,
+        },
     },
     data: function() {
         return {
+            focused_trans: false,
         }
     },
     mounted: function() {
     },
     computed: {
+
+        changeParam: function () {
+            //console.log('computed changeParam')
+
+            let vo = this
+
+            //focused_trans
+            vo.focused_trans = vo.focused
+
+            return ''
+        },
+
     },
     methods: {
+
+        changeFocused: function(focused) {
+            //console.log('methods changeFocused', focused)
+
+            let vo = this
+
+            //save
+            vo.focused_trans = focused
+
+            //setTimeout
+            setTimeout(function() {
+
+                //emit
+                vo.$emit('update:focused', focused)
+
+            }, 1)
+
+        },
+
     },
 }
 </script>

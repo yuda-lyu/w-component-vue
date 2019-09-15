@@ -6,7 +6,7 @@
             auto-grow
             hide-details
             rows="1"
-            :color="borderColorHover"
+            :color="borderColorFocus"
             :placeholder="placeholder"
             :disabled="!editable"
             v-model="value_trans"
@@ -21,7 +21,7 @@
 /**
  * @vue-prop {String} [value=''] 輸入文字框值，預設''
  * @vue-prop {String} [placeholder=''] 輸入無文字時的替代字符字串，預設''
- * @vue-prop {String} [borderColorHover='purple lighten-3'] 輸入邊框Hover顏色字串，預設'purple lighten-3'
+ * @vue-prop {String} [borderColorFocus='purple lighten-3'] 輸入邊框Focus顏色字串，預設'purple lighten-3'
  * @vue-prop {Boolean} [editable=true] 輸入是否為編輯模式，預設true
  */
 export default {
@@ -34,7 +34,7 @@ export default {
             type: String,
             default: '',
         },
-        borderColorHover: {
+        borderColorFocus: {
             type: String,
             default: 'purple lighten-3',
         },

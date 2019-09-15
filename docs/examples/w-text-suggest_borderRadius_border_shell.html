@@ -43,7 +43,7 @@
     <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.js"></script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@1.1.25/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@1.1.26/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -88,8 +88,8 @@
                 <w-text-suggest
                     :border-shadow="false"
                     :border-color="'orange lighten-2'"
-                    :border-color-hover="'orange darken-2'"
-                    :background-color-hover="'orange lighten-5'"
+                    :border-color-focus="'orange darken-2'"
+                    :background-color-focus="'orange lighten-5'"
                     :border-radius="5"
                     :items="WTextSuggest.objItems"
                     v-model="WTextSuggest.objValue"

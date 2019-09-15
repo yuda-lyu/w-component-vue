@@ -25,7 +25,7 @@
                 <div class="bk" style="display:block;">
                     <demolink
                         :kbname="'w-chips'"
-                        :casename="'textColor & backgroundColor & inputTextBorderColor & inputTextBorderColorHover & inputTextBackgroundColorHover & inputTextButtonColor & inputTextButtonColorHover'"
+                        :casename="'textColor & backgroundColor & inputTextBorderColor & inputTextBorderColorFocus & inputTextBackgroundColorFocus & inputTextButtonColor & inputTextButtonColorFocus'"
                         :kind="'nokind'"
                         :shell="'pure'"
                     ></demolink>
@@ -34,10 +34,10 @@
                         :textColor="'white'"
                         :backgroundColor="'pink lighten-1'"
                         :inputTextBorderColor="'pink accent-1'"
-                        :inputTextBorderColorHover="'pink lighten-2'"
-                        :inputTextBackgroundColorHover="'red lighten-5'"
+                        :inputTextBorderColorFocus="'pink lighten-2'"
+                        :inputTextBackgroundColorFocus="'red lighten-5'"
                         :inputTextButtonColor="'pink accent-1'"
-                        :inputTextButtonColorHover="'pink lighten-2'"
+                        :inputTextButtonColorFocus="'pink lighten-2'"
                         v-model="WChips.items"
                     ></w-chips>
                 </div>
@@ -108,7 +108,7 @@
                 <div class="bk" style="display:block;">
                     <demolink
                         :kbname="'w-chips'"
-                        :casename="'textColor & backgroundColor & inputTextBorderColor & inputTextBorderColorHover & inputTextBackgroundColorHover & inputTextButtonColor & inputTextButtonColorHover'"
+                        :casename="'textColor & backgroundColor & inputTextBorderColor & inputTextBorderColorFocus & inputTextBackgroundColorFocus & inputTextButtonColor & inputTextButtonColorFocus'"
                         :kind="'nokind'"
                         :shell="'shell'"
                     ></demolink>
@@ -122,10 +122,10 @@
                             :textColor="'white'"
                             :backgroundColor="'pink lighten-1'"
                             :inputTextBorderColor="'pink accent-1'"
-                            :inputTextBorderColorHover="'pink lighten-2'"
-                            :inputTextBackgroundColorHover="'red lighten-5'"
+                            :inputTextBorderColorFocus="'pink lighten-2'"
+                            :inputTextBackgroundColorFocus="'red lighten-5'"
                             :inputTextButtonColor="'pink accent-1'"
-                            :inputTextButtonColorHover="'pink lighten-2'"
+                            :inputTextButtonColorFocus="'pink lighten-2'"
                             v-model="WChips.items"
                         ></w-chips>
                     </w-shell-material>

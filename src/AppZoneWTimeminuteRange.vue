@@ -98,7 +98,7 @@
 
                         <w-timeminute-range
                             :iconColor="'cyan lighten-2'"
-                            :iconColorHover="'cyan darken-1'"
+                            :iconColorFocus="'cyan darken-1'"
                             :minuteStart.sync="WTimeminuteRange.minuteStart"
                             :minuteEnd.sync="WTimeminuteRange.minuteEnd"
                         ></w-timeminute-range>
@@ -357,7 +357,7 @@
                     <div class="bk">
                         <demolink
                             :kbname="'w-timeminute-range'"
-                            :casename="'titleColor & leftIconColor & leftIconColorHover & iconColor & iconColorFoucs'"
+                            :casename="'titleColor & leftIconColor & iconColor & iconColorFoucs'"
                             :kind="'emboss'"
                             :shell="'shell'"
                         ></demolink>
@@ -367,12 +367,11 @@
                             :title="'請選擇開會起訖時間'"
                             :titleColor="'cyan darken-1'"
                             :leftIcon="mdiPaw"
-                            :leftIconColor="'cyan lighten-2'"
-                            :leftIconColorHover="'cyan lighten-2'"
+                            :leftIconColor="'cyan lighten-1'"
                         >
                             <w-timeminute-range
                                 :iconColor="'cyan lighten-2'"
-                                :iconColorHover="'cyan darken-1'"
+                                :iconColorFocus="'cyan darken-1'"
                                 :minuteStart.sync="WTimeminuteRange.minuteStart"
                                 :minuteEnd.sync="WTimeminuteRange.minuteEnd"
                             ></w-timeminute-range>
@@ -551,8 +550,8 @@
                         <w-timeminute-range
                             :borderShadow="false"
                             :borderColor="'orange lighten-2'"
-                            :borderColorHover="'orange darken-2'"
-                            :backgroundColorHover="'orange lighten-5'"
+                            :borderColorFocus="'orange darken-2'"
+                            :backgroundColorFocus="'orange lighten-5'"
                             :minuteStart.sync="WTimeminuteRange.minuteStart"
                             :minuteEnd.sync="WTimeminuteRange.minuteEnd"
                         ></w-timeminute-range>
@@ -569,8 +568,8 @@
                         <w-timeminute-range
                             :borderShadow="false"
                             :borderColor="'orange lighten-2'"
-                            :borderColorHover="'orange darken-2'"
-                            :backgroundColorHover="'orange lighten-5'"
+                            :borderColorFocus="'orange darken-2'"
+                            :backgroundColorFocus="'orange lighten-5'"
                             :borderRadius="5"
                             :minuteStart.sync="WTimeminuteRange.minuteStart"
                             :minuteEnd.sync="WTimeminuteRange.minuteEnd"
@@ -588,8 +587,8 @@
                         <w-timeminute-range
                             :borderShadow="false"
                             :borderColor="'orange lighten-2'"
-                            :borderColorHover="'orange darken-2'"
-                            :backgroundColorHover="'orange lighten-5'"
+                            :borderColorFocus="'orange darken-2'"
+                            :backgroundColorFocus="'orange lighten-5'"
                             :minuteBetween="'to'"
                             :minuteStart.sync="WTimeminuteRange.minuteStart"
                             :minuteEnd.sync="WTimeminuteRange.minuteEnd"
@@ -607,8 +606,8 @@
                         <w-timeminute-range
                             :borderShadow="false"
                             :borderColor="'orange lighten-2'"
-                            :borderColorHover="'orange darken-2'"
-                            :backgroundColorHover="'orange lighten-5'"
+                            :borderColorFocus="'orange darken-2'"
+                            :backgroundColorFocus="'orange lighten-5'"
                             :icon="mdiCheckUnderlineCircle"
                             :minuteStart.sync="WTimeminuteRange.minuteStart"
                             :minuteEnd.sync="WTimeminuteRange.minuteEnd"
@@ -626,8 +625,8 @@
                         <w-timeminute-range
                             :borderShadow="false"
                             :borderColor="'orange lighten-2'"
-                            :borderColorHover="'orange darken-2'"
-                            :backgroundColorHover="'orange lighten-5'"
+                            :borderColorFocus="'orange darken-2'"
+                            :backgroundColorFocus="'orange lighten-5'"
                             :icon="'fas fa-clipboard-check'"
                             :minuteStart.sync="WTimeminuteRange.minuteStart"
                             :minuteEnd.sync="WTimeminuteRange.minuteEnd"
@@ -637,7 +636,7 @@
                     <div class="bk">
                         <demolink
                             :kbname="'w-timeminute-range'"
-                            :casename="'iconColor & iconColorFoucs & borderColor & borderColorHover & backgroundColorHover'"
+                            :casename="'iconColor & iconColorFoucs & borderColor & borderColorFocus & backgroundColorFocus'"
                             :kind="'border'"
                             :shell="'pure'"
                         ></demolink>
@@ -645,10 +644,10 @@
                         <w-timeminute-range
                             :borderShadow="false"
                             :borderColor="'cyan lighten-2'"
-                            :borderColorHover="'cyan darken-1'"
-                            :backgroundColorHover="'cyan lighten-5'"
+                            :borderColorFocus="'cyan darken-1'"
+                            :backgroundColorFocus="'cyan lighten-5'"
                             :iconColor="'cyan lighten-2'"
-                            :iconColorHover="'cyan darken-1'"
+                            :iconColorFocus="'cyan darken-1'"
                             :minuteStart.sync="WTimeminuteRange.minuteStart"
                             :minuteEnd.sync="WTimeminuteRange.minuteEnd"
                         ></w-timeminute-range>
@@ -665,8 +664,8 @@
                         <w-timeminute-range
                             :borderShadow="false"
                             :borderColor="'orange lighten-2'"
-                            :borderColorHover="'orange darken-2'"
-                            :backgroundColorHover="'orange lighten-5'"
+                            :borderColorFocus="'orange darken-2'"
+                            :backgroundColorFocus="'orange lighten-5'"
                             :pickColor="'brown'"
                             :minuteStart.sync="WTimeminuteRange.minuteStart"
                             :minuteEnd.sync="WTimeminuteRange.minuteEnd"
@@ -684,8 +683,8 @@
                         <w-timeminute-range
                             :borderShadow="false"
                             :borderColor="'orange lighten-2'"
-                            :borderColorHover="'orange darken-2'"
-                            :backgroundColorHover="'orange lighten-5'"
+                            :borderColorFocus="'orange darken-2'"
+                            :backgroundColorFocus="'orange lighten-5'"
                             :iconTooltip="'show tooltip'"
                             :minuteStart.sync="WTimeminuteRange.minuteStart"
                             :minuteEnd.sync="WTimeminuteRange.minuteEnd"
@@ -703,8 +702,8 @@
                         <w-timeminute-range
                             :borderShadow="false"
                             :borderColor="'orange lighten-2'"
-                            :borderColorHover="'orange darken-2'"
-                            :backgroundColorHover="'orange lighten-5'"
+                            :borderColorFocus="'orange darken-2'"
+                            :backgroundColorFocus="'orange lighten-5'"
                             style="margin-top:30px;"
                             :title="'請選擇開會起訖時間'"
                             :minuteStart.sync="WTimeminuteRange.minuteStart"
@@ -723,8 +722,8 @@
                         <w-timeminute-range
                             :borderShadow="false"
                             :borderColor="'orange lighten-2'"
-                            :borderColorHover="'orange darken-2'"
-                            :backgroundColorHover="'orange lighten-5'"
+                            :borderColorFocus="'orange darken-2'"
+                            :backgroundColorFocus="'orange lighten-5'"
                             style="margin-top:30px;"
                             :title="'請選擇開會起訖時間'"
                             :titleColor="'brown'"
@@ -744,8 +743,8 @@
                         <w-timeminute-range
                             :borderShadow="false"
                             :borderColor="'orange lighten-2'"
-                            :borderColorHover="'orange darken-2'"
-                            :backgroundColorHover="'orange lighten-5'"
+                            :borderColorFocus="'orange darken-2'"
+                            :backgroundColorFocus="'orange lighten-5'"
                             :small="false"
                             :minuteStart.sync="WTimeminuteRange.minuteStart"
                             :minuteEnd.sync="WTimeminuteRange.minuteEnd"
@@ -763,8 +762,8 @@
                         <w-timeminute-range
                             :borderShadow="false"
                             :borderColor="'orange lighten-2'"
-                            :borderColorHover="'orange darken-2'"
-                            :backgroundColorHover="'orange lighten-5'"
+                            :borderColorFocus="'orange darken-2'"
+                            :backgroundColorFocus="'orange lighten-5'"
                             :editable="false"
                             :minuteStart.sync="WTimeminuteRange.minuteStart"
                             :minuteEnd.sync="WTimeminuteRange.minuteEnd"
@@ -782,8 +781,8 @@
                         <w-timeminute-range
                             :borderShadow="false"
                             :borderColor="'orange lighten-2'"
-                            :borderColorHover="'orange darken-2'"
-                            :backgroundColorHover="'orange lighten-5'"
+                            :borderColorFocus="'orange darken-2'"
+                            :backgroundColorFocus="'orange lighten-5'"
                             :hourMin="9"
                             :hourMax="12"
                             :minuteStart.sync="WTimeminuteRange.minuteStart"
@@ -802,8 +801,8 @@
                         <w-timeminute-range
                             :borderShadow="false"
                             :borderColor="'orange lighten-2'"
-                            :borderColorHover="'orange darken-2'"
-                            :backgroundColorHover="'orange lighten-5'"
+                            :borderColorFocus="'orange darken-2'"
+                            :backgroundColorFocus="'orange lighten-5'"
                             :minuteInter="10"
                             :minuteStart.sync="WTimeminuteRange.minuteStart"
                             :minuteEnd.sync="WTimeminuteRange.minuteEnd"
@@ -821,8 +820,8 @@
                         <w-timeminute-range
                             :borderShadow="false"
                             :borderColor="'orange lighten-2'"
-                            :borderColorHover="'orange darken-2'"
-                            :backgroundColorHover="'orange lighten-5'"
+                            :borderColorFocus="'orange darken-2'"
+                            :backgroundColorFocus="'orange lighten-5'"
                             :minutesCustom="['10:00','10:30','11:15','12:00']"
                             :minuteStart.sync="WTimeminuteRange.minuteStart"
                             :minuteEnd.sync="WTimeminuteRange.minuteEnd"
@@ -852,8 +851,8 @@
                             <w-timeminute-range
                                 :borderShadow="false"
                                 :borderColor="'orange lighten-2'"
-                                :borderColorHover="'orange darken-2'"
-                                :backgroundColorHover="'orange lighten-5'"
+                                :borderColorFocus="'orange darken-2'"
+                                :backgroundColorFocus="'orange lighten-5'"
                                 :minuteStart.sync="WTimeminuteRange.minuteStart"
                                 :minuteEnd.sync="WTimeminuteRange.minuteEnd"
                             ></w-timeminute-range>
@@ -876,8 +875,8 @@
                             <w-timeminute-range
                                 :borderShadow="false"
                                 :borderColor="'orange lighten-2'"
-                                :borderColorHover="'orange darken-2'"
-                                :backgroundColorHover="'orange lighten-5'"
+                                :borderColorFocus="'orange darken-2'"
+                                :backgroundColorFocus="'orange lighten-5'"
                                 :borderRadius="5"
                                 :minuteStart.sync="WTimeminuteRange.minuteStart"
                                 :minuteEnd.sync="WTimeminuteRange.minuteEnd"
@@ -901,8 +900,8 @@
                             <w-timeminute-range
                                 :borderShadow="false"
                                 :borderColor="'orange lighten-2'"
-                                :borderColorHover="'orange darken-2'"
-                                :backgroundColorHover="'orange lighten-5'"
+                                :borderColorFocus="'orange darken-2'"
+                                :backgroundColorFocus="'orange lighten-5'"
                                 :minuteBetween="'to'"
                                 :minuteStart.sync="WTimeminuteRange.minuteStart"
                                 :minuteEnd.sync="WTimeminuteRange.minuteEnd"
@@ -926,8 +925,8 @@
                             <w-timeminute-range
                                 :borderShadow="false"
                                 :borderColor="'orange lighten-2'"
-                                :borderColorHover="'orange darken-2'"
-                                :backgroundColorHover="'orange lighten-5'"
+                                :borderColorFocus="'orange darken-2'"
+                                :backgroundColorFocus="'orange lighten-5'"
                                 :icon="mdiCheckUnderlineCircle"
                                 :minuteStart.sync="WTimeminuteRange.minuteStart"
                                 :minuteEnd.sync="WTimeminuteRange.minuteEnd"
@@ -951,8 +950,8 @@
                             <w-timeminute-range
                                 :borderShadow="false"
                                 :borderColor="'orange lighten-2'"
-                                :borderColorHover="'orange darken-2'"
-                                :backgroundColorHover="'orange lighten-5'"
+                                :borderColorFocus="'orange darken-2'"
+                                :backgroundColorFocus="'orange lighten-5'"
                                 :icon="'fas fa-clipboard-check'"
                                 :minuteStart.sync="WTimeminuteRange.minuteStart"
                                 :minuteEnd.sync="WTimeminuteRange.minuteEnd"
@@ -963,7 +962,7 @@
                     <div class="bk">
                         <demolink
                             :kbname="'w-timeminute-range'"
-                            :casename="'titleColor & leftIconColor & leftIconColorHover & iconColor & iconColorFoucs & borderColor & borderColorHover & backgroundColorHover'"
+                            :casename="'titleColor & leftIconColor & iconColor & iconColorFoucs & borderColor & borderColorFocus & backgroundColorFocus'"
                             :kind="'border'"
                             :shell="'shell'"
                         ></demolink>
@@ -973,16 +972,15 @@
                             :title="'請選擇開會起訖時間'"
                             :titleColor="'cyan darken-1'"
                             :leftIcon="mdiPaw"
-                            :leftIconColor="'cyan lighten-2'"
-                            :leftIconColorHover="'cyan lighten-2'"
+                            :leftIconColor="'cyan lighten-1'"
                         >
                             <w-timeminute-range
                                 :borderShadow="false"
                                 :borderColor="'cyan lighten-2'"
-                                :borderColorHover="'cyan darken-1'"
-                                :backgroundColorHover="'cyan lighten-5'"
+                                :borderColorFocus="'cyan darken-1'"
+                                :backgroundColorFocus="'cyan lighten-5'"
                                 :iconColor="'cyan lighten-2'"
-                                :iconColorHover="'cyan darken-1'"
+                                :iconColorFocus="'cyan darken-1'"
                                 :minuteStart.sync="WTimeminuteRange.minuteStart"
                                 :minuteEnd.sync="WTimeminuteRange.minuteEnd"
                             ></w-timeminute-range>
@@ -1005,8 +1003,8 @@
                             <w-timeminute-range
                                 :borderShadow="false"
                                 :borderColor="'orange lighten-2'"
-                                :borderColorHover="'orange darken-2'"
-                                :backgroundColorHover="'orange lighten-5'"
+                                :borderColorFocus="'orange darken-2'"
+                                :backgroundColorFocus="'orange lighten-5'"
                                 :pickColor="'brown'"
                                 :minuteStart.sync="WTimeminuteRange.minuteStart"
                                 :minuteEnd.sync="WTimeminuteRange.minuteEnd"
@@ -1030,8 +1028,8 @@
                             <w-timeminute-range
                                 :borderShadow="false"
                                 :borderColor="'orange lighten-2'"
-                                :borderColorHover="'orange darken-2'"
-                                :backgroundColorHover="'orange lighten-5'"
+                                :borderColorFocus="'orange darken-2'"
+                                :backgroundColorFocus="'orange lighten-5'"
                                 :iconTooltip="'show tooltip'"
                                 :minuteStart.sync="WTimeminuteRange.minuteStart"
                                 :minuteEnd.sync="WTimeminuteRange.minuteEnd"
@@ -1055,8 +1053,8 @@
                             <w-timeminute-range
                                 :borderShadow="false"
                                 :borderColor="'orange lighten-2'"
-                                :borderColorHover="'orange darken-2'"
-                                :backgroundColorHover="'orange lighten-5'"
+                                :borderColorFocus="'orange darken-2'"
+                                :backgroundColorFocus="'orange lighten-5'"
                                 :small="false"
                                 :minuteStart.sync="WTimeminuteRange.minuteStart"
                                 :minuteEnd.sync="WTimeminuteRange.minuteEnd"
@@ -1080,8 +1078,8 @@
                             <w-timeminute-range
                                 :borderShadow="false"
                                 :borderColor="'orange lighten-2'"
-                                :borderColorHover="'orange darken-2'"
-                                :backgroundColorHover="'orange lighten-5'"
+                                :borderColorFocus="'orange darken-2'"
+                                :backgroundColorFocus="'orange lighten-5'"
                                 :editable="false"
                                 :minuteStart.sync="WTimeminuteRange.minuteStart"
                                 :minuteEnd.sync="WTimeminuteRange.minuteEnd"
@@ -1105,8 +1103,8 @@
                             <w-timeminute-range
                                 :borderShadow="false"
                                 :borderColor="'orange lighten-2'"
-                                :borderColorHover="'orange darken-2'"
-                                :backgroundColorHover="'orange lighten-5'"
+                                :borderColorFocus="'orange darken-2'"
+                                :backgroundColorFocus="'orange lighten-5'"
                                 :hourMin="9"
                                 :hourMax="12"
                                 :minuteStart.sync="WTimeminuteRange.minuteStart"
@@ -1131,8 +1129,8 @@
                             <w-timeminute-range
                                 :borderShadow="false"
                                 :borderColor="'orange lighten-2'"
-                                :borderColorHover="'orange darken-2'"
-                                :backgroundColorHover="'orange lighten-5'"
+                                :borderColorFocus="'orange darken-2'"
+                                :backgroundColorFocus="'orange lighten-5'"
                                 :minuteInter="10"
                                 :minuteStart.sync="WTimeminuteRange.minuteStart"
                                 :minuteEnd.sync="WTimeminuteRange.minuteEnd"
@@ -1156,8 +1154,8 @@
                             <w-timeminute-range
                                 :borderShadow="false"
                                 :borderColor="'orange lighten-2'"
-                                :borderColorHover="'orange darken-2'"
-                                :backgroundColorHover="'orange lighten-5'"
+                                :borderColorFocus="'orange darken-2'"
+                                :backgroundColorFocus="'orange lighten-5'"
                                 :minutesCustom="['10:00','10:30','11:15','12:00']"
                                 :minuteStart.sync="WTimeminuteRange.minuteStart"
                                 :minuteEnd.sync="WTimeminuteRange.minuteEnd"

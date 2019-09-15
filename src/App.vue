@@ -397,6 +397,7 @@ export default {
                 },
             ],
             haveModeBorder: {
+                'WButtonGroupChip': true,
                 'WText': true,
                 'WTextInt': true,
                 'WTextSelects': true,
@@ -407,6 +408,7 @@ export default {
                 'WTimeminuteRange': true,
             },
             haveModeShell: {
+                'WButtonGroupChip': true,
                 'WSwitch': true,
                 'WChips': true,
                 'WCheckChips': true,

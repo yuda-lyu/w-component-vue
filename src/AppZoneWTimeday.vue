@@ -74,7 +74,7 @@
 
                         <w-timeday
                             :iconColor="'cyan lighten-2'"
-                            :iconColorHover="'cyan darken-1'"
+                            :iconColorFocus="'cyan darken-1'"
                             v-model="WTimeday.day"
                         ></w-timeday>
                     </div>
@@ -225,7 +225,7 @@
                     <div class="bk">
                         <demolink
                             :kbname="'w-timeday'"
-                            :casename="'titleColor & leftIconColor & leftIconColorHover & iconColor & iconColorHover'"
+                            :casename="'titleColor & leftIconColor & iconColor & iconColorFocus'"
                             :kind="'emboss'"
                             :shell="'shell'"
                         ></demolink>
@@ -235,12 +235,11 @@
                             :title="'請選擇出發日期'"
                             :titleColor="'cyan darken-1'"
                             :leftIcon="mdiPaw"
-                            :leftIconColor="'cyan lighten-2'"
-                            :leftIconColorHover="'cyan lighten-2'"
+                            :leftIconColor="'cyan lighten-1'"
                         >
                             <w-timeday
                                 :iconColor="'cyan lighten-2'"
-                                :iconColorHover="'cyan darken-1'"
+                                :iconColorFocus="'cyan darken-1'"
                                 v-model="WTimeday.day"
                             ></w-timeday>
                         </w-shell-material>
@@ -343,8 +342,8 @@
                         <w-timeday
                             :borderShadow="false"
                             :borderColor="'orange lighten-2'"
-                            :borderColorHover="'orange darken-2'"
-                            :backgroundColorHover="'orange lighten-5'"
+                            :borderColorFocus="'orange darken-2'"
+                            :backgroundColorFocus="'orange lighten-5'"
                             v-model="WTimeday.day"
                         ></w-timeday>
                     </div>
@@ -360,8 +359,8 @@
                         <w-timeday
                             :borderShadow="false"
                             :borderColor="'orange lighten-2'"
-                            :borderColorHover="'orange darken-2'"
-                            :backgroundColorHover="'orange lighten-5'"
+                            :borderColorFocus="'orange darken-2'"
+                            :backgroundColorFocus="'orange lighten-5'"
                             :borderRadius="5"
                             v-model="WTimeday.day"
                         ></w-timeday>
@@ -378,8 +377,8 @@
                         <w-timeday
                             :borderShadow="false"
                             :borderColor="'orange lighten-2'"
-                            :borderColorHover="'orange darken-2'"
-                            :backgroundColorHover="'orange lighten-5'"
+                            :borderColorFocus="'orange darken-2'"
+                            :backgroundColorFocus="'orange lighten-5'"
                             :icon="mdiCheckUnderlineCircle"
                             v-model="WTimeday.day"
                         ></w-timeday>
@@ -396,8 +395,8 @@
                         <w-timeday
                             :borderShadow="false"
                             :borderColor="'orange lighten-2'"
-                            :borderColorHover="'orange darken-2'"
-                            :backgroundColorHover="'orange lighten-5'"
+                            :borderColorFocus="'orange darken-2'"
+                            :backgroundColorFocus="'orange lighten-5'"
                             :icon="'fas fa-clipboard-check'"
                             v-model="WTimeday.day"
                         ></w-timeday>
@@ -406,7 +405,7 @@
                     <div class="bk">
                         <demolink
                             :kbname="'w-timeday'"
-                            :casename="'iconColor & iconColorFoucs & borderColor & borderColorHover & backgroundColorHover'"
+                            :casename="'iconColor & iconColorFoucs & borderColor & borderColorFocus & backgroundColorFocus'"
                             :kind="'border'"
                             :shell="'pure'"
                         ></demolink>
@@ -414,10 +413,10 @@
                         <w-timeday
                             :borderShadow="false"
                             :borderColor="'cyan lighten-2'"
-                            :borderColorHover="'cyan darken-1'"
-                            :backgroundColorHover="'cyan lighten-5'"
+                            :borderColorFocus="'cyan darken-1'"
+                            :backgroundColorFocus="'cyan lighten-5'"
                             :iconColor="'cyan lighten-2'"
-                            :iconColorHover="'cyan darken-1'"
+                            :iconColorFocus="'cyan darken-1'"
                             v-model="WTimeday.day"
                         ></w-timeday>
                     </div>
@@ -433,8 +432,8 @@
                         <w-timeday
                             :borderShadow="false"
                             :borderColor="'orange lighten-2'"
-                            :borderColorHover="'orange darken-2'"
-                            :backgroundColorHover="'orange lighten-5'"
+                            :borderColorFocus="'orange darken-2'"
+                            :backgroundColorFocus="'orange lighten-5'"
                             :pickColor="'brown'"
                             v-model="WTimeday.day"
                         ></w-timeday>
@@ -451,8 +450,8 @@
                         <w-timeday
                             :borderShadow="false"
                             :borderColor="'orange lighten-2'"
-                            :borderColorHover="'orange darken-2'"
-                            :backgroundColorHover="'orange lighten-5'"
+                            :borderColorFocus="'orange darken-2'"
+                            :backgroundColorFocus="'orange lighten-5'"
                             :icon="mdiCheckUnderlineCircle"
                             :iconTooltip="'show tooltip'"
                             v-model="WTimeday.day"
@@ -470,8 +469,8 @@
                         <w-timeday
                             :borderShadow="false"
                             :borderColor="'orange lighten-2'"
-                            :borderColorHover="'orange darken-2'"
-                            :backgroundColorHover="'orange lighten-5'"
+                            :borderColorFocus="'orange darken-2'"
+                            :backgroundColorFocus="'orange lighten-5'"
                             style="margin-top:30px;"
                             :title="'請選擇出發日期'"
                             v-model="WTimeday.day"
@@ -489,8 +488,8 @@
                         <w-timeday
                             :borderShadow="false"
                             :borderColor="'orange lighten-2'"
-                            :borderColorHover="'orange darken-2'"
-                            :backgroundColorHover="'orange lighten-5'"
+                            :borderColorFocus="'orange darken-2'"
+                            :backgroundColorFocus="'orange lighten-5'"
                             style="margin-top:30px;"
                             :title="'請選擇出發日期'"
                             :titleColor="'brown'"
@@ -509,8 +508,8 @@
                         <w-timeday
                             :borderShadow="false"
                             :borderColor="'orange lighten-2'"
-                            :borderColorHover="'orange darken-2'"
-                            :backgroundColorHover="'orange lighten-5'"
+                            :borderColorFocus="'orange darken-2'"
+                            :backgroundColorFocus="'orange lighten-5'"
                             :small="false"
                             v-model="WTimeday.day"
                         ></w-timeday>
@@ -527,8 +526,8 @@
                         <w-timeday
                             :borderShadow="false"
                             :borderColor="'orange lighten-2'"
-                            :borderColorHover="'orange darken-2'"
-                            :backgroundColorHover="'orange lighten-5'"
+                            :borderColorFocus="'orange darken-2'"
+                            :backgroundColorFocus="'orange lighten-5'"
                             :editable="false"
                             v-model="WTimeday.day"
                         ></w-timeday>
@@ -557,8 +556,8 @@
                             <w-timeday
                                 :borderShadow="false"
                                 :borderColor="'orange lighten-2'"
-                                :borderColorHover="'orange darken-2'"
-                                :backgroundColorHover="'orange lighten-5'"
+                                :borderColorFocus="'orange darken-2'"
+                                :backgroundColorFocus="'orange lighten-5'"
                                 :icon="mdiCheckUnderlineCircle"
                                 v-model="WTimeday.day"
                             ></w-timeday>
@@ -581,8 +580,8 @@
                             <w-timeday
                                 :borderShadow="false"
                                 :borderColor="'orange lighten-2'"
-                                :borderColorHover="'orange darken-2'"
-                                :backgroundColorHover="'orange lighten-5'"
+                                :borderColorFocus="'orange darken-2'"
+                                :backgroundColorFocus="'orange lighten-5'"
                                 :icon="'fas fa-clipboard-check'"
                                 v-model="WTimeday.day"
                             ></w-timeday>
@@ -605,8 +604,8 @@
                             <w-timeday
                                 :borderShadow="false"
                                 :borderColor="'orange lighten-2'"
-                                :borderColorHover="'orange darken-2'"
-                                :backgroundColorHover="'orange lighten-5'"
+                                :borderColorFocus="'orange darken-2'"
+                                :backgroundColorFocus="'orange lighten-5'"
                                 :borderRadius="5"
                                 v-model="WTimeday.day"
                             ></w-timeday>
@@ -616,7 +615,7 @@
                     <div class="bk">
                         <demolink
                             :kbname="'w-timeday'"
-                            :casename="'titleColor & leftIconColor & leftIconColorHover & borderColor & borderColorHover & backgroundColorHover & iconColor & iconColorHover'"
+                            :casename="'titleColor & leftIconColor & borderColor & borderColorFocus & backgroundColorFocus & iconColor & iconColorFocus'"
                             :kind="'border'"
                             :shell="'shell'"
                         ></demolink>
@@ -626,16 +625,15 @@
                             :title="'請選擇出發日期'"
                             :titleColor="'cyan darken-1'"
                             :leftIcon="mdiPaw"
-                            :leftIconColor="'cyan lighten-2'"
-                            :leftIconColorHover="'cyan lighten-2'"
+                            :leftIconColor="'cyan lighten-1'"
                         >
                             <w-timeday
                                 :borderShadow="false"
                                 :borderColor="'cyan lighten-2'"
-                                :borderColorHover="'cyan darken-1'"
-                                :backgroundColorHover="'cyan lighten-5'"
+                                :borderColorFocus="'cyan darken-1'"
+                                :backgroundColorFocus="'cyan lighten-5'"
                                 :iconColor="'cyan lighten-2'"
-                                :iconColorHover="'cyan darken-1'"
+                                :iconColorFocus="'cyan darken-1'"
                                 v-model="WTimeday.day"
                             ></w-timeday>
                         </w-shell-material>
@@ -657,8 +655,8 @@
                             <w-timeday
                                 :borderShadow="false"
                                 :borderColor="'orange lighten-2'"
-                                :borderColorHover="'orange darken-2'"
-                                :backgroundColorHover="'orange lighten-5'"
+                                :borderColorFocus="'orange darken-2'"
+                                :backgroundColorFocus="'orange lighten-5'"
                                 :pickColor="'brown'"
                                 v-model="WTimeday.day"
                             ></w-timeday>
@@ -682,8 +680,8 @@
                             <w-timeday
                                 :borderShadow="false"
                                 :borderColor="'orange lighten-2'"
-                                :borderColorHover="'orange darken-2'"
-                                :backgroundColorHover="'orange lighten-5'"
+                                :borderColorFocus="'orange darken-2'"
+                                :backgroundColorFocus="'orange lighten-5'"
                                 :icon="mdiCheckUnderlineCircle"
                                 :iconTooltip="'請點選日期以進行選擇'"
                                 v-model="WTimeday.day"
@@ -707,8 +705,8 @@
                             <w-timeday
                                 :borderShadow="false"
                                 :borderColor="'orange lighten-2'"
-                                :borderColorHover="'orange darken-2'"
-                                :backgroundColorHover="'orange lighten-5'"
+                                :borderColorFocus="'orange darken-2'"
+                                :backgroundColorFocus="'orange lighten-5'"
                                 :small="false"
                                 v-model="WTimeday.day"
                             ></w-timeday>
@@ -731,8 +729,8 @@
                             <w-timeday
                                 :borderShadow="false"
                                 :borderColor="'orange lighten-2'"
-                                :borderColorHover="'orange darken-2'"
-                                :backgroundColorHover="'orange lighten-5'"
+                                :borderColorFocus="'orange darken-2'"
+                                :backgroundColorFocus="'orange lighten-5'"
                                 :editable="false"
                                 v-model="WTimeday.day"
                             ></w-timeday>

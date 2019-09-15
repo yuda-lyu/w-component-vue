@@ -69,7 +69,7 @@
                         <w-text-suggest
                             :icon="mdiCheckUnderlineCircle"
                             :iconColor="'cyan lighten-2'"
-                            :iconColorHover="'cyan darken-1'"
+                            :iconColorFocus="'cyan darken-1'"
                             :items="WTextSuggest.objItems"
                             v-model="WTextSuggest.objValue"
                         ></w-text-suggest>
@@ -284,7 +284,7 @@
                     <div class="bk">
                         <demolink
                             :kbname="'w-text-suggest'"
-                            :casename="'leftIcon & leftIconColor & leftIconColorHover'"
+                            :casename="'leftIcon & leftIconColor'"
                             :kind="'emboss'"
                             :shell="'shell'"
                         ></demolink>
@@ -294,8 +294,7 @@
                             :title="'請輸入水果種類'"
                             :titleColor="'cyan darken-1'"
                             :leftIcon="mdiPaw"
-                            :leftIconColor="'cyan lighten-2'"
-                            :leftIconColorHover="'cyan darken-1'"
+                            :leftIconColor="'cyan lighten-1'"
                         >
                             <w-text-suggest
                                 :items="WTextSuggest.objItems"
@@ -471,8 +470,8 @@
                         <w-text-suggest
                             :borderShadow="false"
                             :borderColor="'orange lighten-2'"
-                            :borderColorHover="'orange darken-2'"
-                            :backgroundColorHover="'orange lighten-5'"
+                            :borderColorFocus="'orange darken-2'"
+                            :backgroundColorFocus="'orange lighten-5'"
                             :items="WTextSuggest.objItems"
                             v-model="WTextSuggest.objValue"
                         ></w-text-suggest>
@@ -489,8 +488,8 @@
                         <w-text-suggest
                             :borderShadow="false"
                             :borderColor="'orange lighten-2'"
-                            :borderColorHover="'orange darken-2'"
-                            :backgroundColorHover="'orange lighten-5'"
+                            :borderColorFocus="'orange darken-2'"
+                            :backgroundColorFocus="'orange lighten-5'"
                             :icon="mdiCheckUnderlineCircle"
                             :items="WTextSuggest.objItems"
                             v-model="WTextSuggest.objValue"
@@ -508,8 +507,8 @@
                         <w-text-suggest
                             :borderShadow="false"
                             :borderColor="'orange lighten-2'"
-                            :borderColorHover="'orange darken-2'"
-                            :backgroundColorHover="'orange lighten-5'"
+                            :borderColorFocus="'orange darken-2'"
+                            :backgroundColorFocus="'orange lighten-5'"
                             :icon="'fas fa-clipboard-check'"
                             :items="WTextSuggest.objItems"
                             v-model="WTextSuggest.objValue"
@@ -519,7 +518,7 @@
                     <div class="bk">
                         <demolink
                             :kbname="'w-text-suggest'"
-                            :casename="'icon & iconColor & iconColorFoucs & borderColor & borderColorHover & backgroundColorHover'"
+                            :casename="'icon & iconColor & iconColorFoucs & borderColor & borderColorFocus & backgroundColorFocus'"
                             :kind="'border'"
                             :shell="'pure'"
                         ></demolink>
@@ -527,11 +526,11 @@
                         <w-text-suggest
                             :borderShadow="false"
                             :borderColor="'cyan lighten-2'"
-                            :borderColorHover="'cyan darken-1'"
-                            :backgroundColorHover="'cyan lighten-5'"
+                            :borderColorFocus="'cyan darken-1'"
+                            :backgroundColorFocus="'cyan lighten-5'"
                             :icon="mdiCheckUnderlineCircle"
                             :iconColor="'cyan lighten-2'"
-                            :iconColorHover="'cyan darken-1'"
+                            :iconColorFocus="'cyan darken-1'"
                             :items="WTextSuggest.objItems"
                             v-model="WTextSuggest.objValue"
                         ></w-text-suggest>
@@ -548,8 +547,8 @@
                         <w-text-suggest
                             :borderShadow="false"
                             :borderColor="'orange lighten-2'"
-                            :borderColorHover="'orange darken-2'"
-                            :backgroundColorHover="'orange lighten-5'"
+                            :borderColorFocus="'orange darken-2'"
+                            :backgroundColorFocus="'orange lighten-5'"
                             :icon="mdiCheckUnderlineCircle"
                             :iconTooltip="'show tooltip'"
                             :items="WTextSuggest.objItems"
@@ -568,8 +567,8 @@
                         <w-text-suggest
                             :borderShadow="false"
                             :borderColor="'orange lighten-2'"
-                            :borderColorHover="'orange darken-2'"
-                            :backgroundColorHover="'orange lighten-5'"
+                            :borderColorFocus="'orange darken-2'"
+                            :backgroundColorFocus="'orange lighten-5'"
                             :icon="mdiCheckUnderlineCircle"
                             :borderRadius="5"
                             :items="WTextSuggest.objItems"
@@ -588,8 +587,8 @@
                         <w-text-suggest
                             :borderShadow="false"
                             :borderColor="'orange lighten-2'"
-                            :borderColorHover="'orange darken-2'"
-                            :backgroundColorHover="'orange lighten-5'"
+                            :borderColorFocus="'orange darken-2'"
+                            :backgroundColorFocus="'orange lighten-5'"
                             style="margin-top:30px;"
                             :title="'請輸入水果種類'"
                             :icon="mdiCheckUnderlineCircle"
@@ -609,8 +608,8 @@
                         <w-text-suggest
                             :borderShadow="false"
                             :borderColor="'orange lighten-2'"
-                            :borderColorHover="'orange darken-2'"
-                            :backgroundColorHover="'orange lighten-5'"
+                            :borderColorFocus="'orange darken-2'"
+                            :backgroundColorFocus="'orange lighten-5'"
                             style="margin-top:30px;"
                             :title="'請輸入水果種類'"
                             :titleColor="'brown'"
@@ -631,8 +630,8 @@
                         <w-text-suggest
                             :borderShadow="false"
                             :borderColor="'orange lighten-2'"
-                            :borderColorHover="'orange darken-2'"
-                            :backgroundColorHover="'orange lighten-5'"
+                            :borderColorFocus="'orange darken-2'"
+                            :backgroundColorFocus="'orange lighten-5'"
                             :icon="mdiCheckUnderlineCircle"
                             :small="false"
                             :items="WTextSuggest.objItems"
@@ -651,8 +650,8 @@
                         <w-text-suggest
                             :borderShadow="false"
                             :borderColor="'orange lighten-2'"
-                            :borderColorHover="'orange darken-2'"
-                            :backgroundColorHover="'orange lighten-5'"
+                            :borderColorFocus="'orange darken-2'"
+                            :backgroundColorFocus="'orange lighten-5'"
                             :icon="mdiCheckUnderlineCircle"
                             :editable="false"
                             :items="WTextSuggest.objItems"
@@ -671,8 +670,8 @@
                         <w-text-suggest
                             :borderShadow="false"
                             :borderColor="'orange lighten-2'"
-                            :borderColorHover="'orange darken-2'"
-                            :backgroundColorHover="'orange lighten-5'"
+                            :borderColorFocus="'orange darken-2'"
+                            :backgroundColorFocus="'orange lighten-5'"
                             :icon="mdiCheckUnderlineCircle"
                             :items="WTextSuggest.objItemsLarge"
                             v-model="WTextSuggest.objValueLarge"
@@ -690,8 +689,8 @@
                         <w-text-suggest
                             :borderShadow="false"
                             :borderColor="'orange lighten-2'"
-                            :borderColorHover="'orange darken-2'"
-                            :backgroundColorHover="'orange lighten-5'"
+                            :borderColorFocus="'orange darken-2'"
+                            :backgroundColorFocus="'orange lighten-5'"
                             :icon="mdiCheckUnderlineCircle"
                             :items="WTextSuggest.objItems"
                             v-model="WTextSuggest.objValueErr"
@@ -709,8 +708,8 @@
                         <w-text-suggest
                             :borderShadow="false"
                             :borderColor="'orange lighten-2'"
-                            :borderColorHover="'orange darken-2'"
-                            :backgroundColorHover="'orange lighten-5'"
+                            :borderColorFocus="'orange darken-2'"
+                            :backgroundColorFocus="'orange lighten-5'"
                             :icon="mdiCheckUnderlineCircle"
                             :items="WTextSuggest.strItems"
                             v-model="WTextSuggest.strValue"
@@ -728,8 +727,8 @@
                         <w-text-suggest
                             :borderShadow="false"
                             :borderColor="'orange lighten-2'"
-                            :borderColorHover="'orange darken-2'"
-                            :backgroundColorHover="'orange lighten-5'"
+                            :borderColorFocus="'orange darken-2'"
+                            :backgroundColorFocus="'orange lighten-5'"
                             :icon="mdiCheckUnderlineCircle"
                             :items="WTextSuggest.objItems"
                             v-model="WTextSuggest.objValue"
@@ -759,8 +758,8 @@
                             <w-text-suggest
                                 :borderShadow="false"
                                 :borderColor="'orange lighten-2'"
-                                :borderColorHover="'orange darken-2'"
-                                :backgroundColorHover="'orange lighten-5'"
+                                :borderColorFocus="'orange darken-2'"
+                                :backgroundColorFocus="'orange lighten-5'"
                                 :items="WTextSuggest.objItems"
                                 v-model="WTextSuggest.objValue"
                             ></w-text-suggest>
@@ -783,8 +782,8 @@
                             <w-text-suggest
                                 :borderShadow="false"
                                 :borderColor="'orange lighten-2'"
-                                :borderColorHover="'orange darken-2'"
-                                :backgroundColorHover="'orange lighten-5'"
+                                :borderColorFocus="'orange darken-2'"
+                                :backgroundColorFocus="'orange lighten-5'"
                                 :items="WTextSuggest.objItems"
                                 v-model="WTextSuggest.objValue"
                             ></w-text-suggest>
@@ -794,7 +793,7 @@
                     <div class="bk">
                         <demolink
                             :kbname="'w-text-suggest'"
-                            :casename="'leftIcon & leftIconColor & leftIconColorHover & borderColor & borderColorHover & backgroundColorHover'"
+                            :casename="'leftIcon & leftIconColor & borderColor & borderColorFocus & backgroundColorFocus'"
                             :kind="'border'"
                             :shell="'shell'"
                         ></demolink>
@@ -805,13 +804,12 @@
                             :titleColor="'cyan darken-1'"
                             :leftIcon="mdiPaw"
                             :leftIconColor="'cyan lighten-1'"
-                            :leftIconColorHover="'cyan lighten-1'"
                         >
                             <w-text-suggest
                                 :borderShadow="false"
                                 :borderColor="'cyan lighten-3'"
-                                :borderColorHover="'cyan lighten-1'"
-                                :backgroundColorHover="'cyan lighten-5'"
+                                :borderColorFocus="'cyan lighten-1'"
+                                :backgroundColorFocus="'cyan lighten-5'"
                                 :items="WTextSuggest.objItems"
                                 v-model="WTextSuggest.objValue"
                             ></w-text-suggest>
@@ -834,8 +832,8 @@
                             <w-text-suggest
                                 :borderShadow="false"
                                 :borderColor="'orange lighten-2'"
-                                :borderColorHover="'orange darken-2'"
-                                :backgroundColorHover="'orange lighten-5'"
+                                :borderColorFocus="'orange darken-2'"
+                                :backgroundColorFocus="'orange lighten-5'"
                                 :borderRadius="5"
                                 :items="WTextSuggest.objItems"
                                 v-model="WTextSuggest.objValue"
@@ -859,8 +857,8 @@
                             <w-text-suggest
                                 :borderShadow="false"
                                 :borderColor="'orange lighten-2'"
-                                :borderColorHover="'orange darken-2'"
-                                :backgroundColorHover="'orange lighten-5'"
+                                :borderColorFocus="'orange darken-2'"
+                                :backgroundColorFocus="'orange lighten-5'"
                                 :small="false"
                                 :items="WTextSuggest.objItems"
                                 v-model="WTextSuggest.objValue"
@@ -884,8 +882,8 @@
                             <w-text-suggest
                                 :borderShadow="false"
                                 :borderColor="'orange lighten-2'"
-                                :borderColorHover="'orange darken-2'"
-                                :backgroundColorHover="'orange lighten-5'"
+                                :borderColorFocus="'orange darken-2'"
+                                :backgroundColorFocus="'orange lighten-5'"
                                 :editable="false"
                                 :items="WTextSuggest.objItems"
                                 v-model="WTextSuggest.objValue"
@@ -909,8 +907,8 @@
                             <w-text-suggest
                                 :borderShadow="false"
                                 :borderColor="'orange lighten-2'"
-                                :borderColorHover="'orange darken-2'"
-                                :backgroundColorHover="'orange lighten-5'"
+                                :borderColorFocus="'orange darken-2'"
+                                :backgroundColorFocus="'orange lighten-5'"
                                 :items="WTextSuggest.objItemsLarge"
                                 v-model="WTextSuggest.objValueLarge"
                             ></w-text-suggest>
@@ -933,8 +931,8 @@
                             <w-text-suggest
                                 :borderShadow="false"
                                 :borderColor="'orange lighten-2'"
-                                :borderColorHover="'orange darken-2'"
-                                :backgroundColorHover="'orange lighten-5'"
+                                :borderColorFocus="'orange darken-2'"
+                                :backgroundColorFocus="'orange lighten-5'"
                                 :items="WTextSuggest.objItems"
                                 v-model="WTextSuggest.objValueErr"
                             ></w-text-suggest>
@@ -957,8 +955,8 @@
                             <w-text-suggest
                                 :borderShadow="false"
                                 :borderColor="'orange lighten-2'"
-                                :borderColorHover="'orange darken-2'"
-                                :backgroundColorHover="'orange lighten-5'"
+                                :borderColorFocus="'orange darken-2'"
+                                :backgroundColorFocus="'orange lighten-5'"
                                 :items="WTextSuggest.strItems"
                                 v-model="WTextSuggest.strValue"
                             ></w-text-suggest>
@@ -981,8 +979,8 @@
                             <w-text-suggest
                                 :borderShadow="false"
                                 :borderColor="'orange lighten-2'"
-                                :borderColorHover="'orange darken-2'"
-                                :backgroundColorHover="'orange lighten-5'"
+                                :borderColorFocus="'orange darken-2'"
+                                :backgroundColorFocus="'orange lighten-5'"
                                 :items="WTextSuggest.objItems"
                                 v-model="WTextSuggest.objValue"
                             ></w-text-suggest>

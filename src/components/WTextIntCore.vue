@@ -4,13 +4,14 @@
         <w-shell-material
             :leftIcon="mdiMinusCircle"
             :leftIconColor="buttonColor"
-            :leftIconColorHover="buttonColorHover"
+            :leftIconColorFocus="buttonColorFocus"
             :leftIconTooltip="leftIconTooltip"
             :rightIcon="mdiPlusCircle"
             :rightIconColor="buttonColor"
-            :rightIconColorHover="buttonColorHover"
+            :rightIconColorFocus="buttonColorFocus"
             :rightIconTooltip="rightIconTooltip"
             :editable="editable"
+            :focused="focused_trans"
             @click-left="changeContent(value_trans,'minus')"
             @click-right="changeContent(value_trans,'add')"
         >
@@ -21,6 +22,8 @@
                 :textAlign="'center'"
                 :editable="editable"
                 :value="value_trans"
+                :focused="focused_trans"
+                @update:focused="changeFocused"
                 @input="function(v){changeContent(v,'')}"
             ></w-text-core>
 
@@ -43,8 +46,9 @@ import WTextCore from './WTextCore.vue'
  * @vue-prop {String} [leftIconTooltip='減少'] 輸入框內左側圖標提示文字字串，預設'減少'
  * @vue-prop {String} [rightIconTooltip='增加'] 輸入框內右側圖標提示文字字串，預設'增加'
  * @vue-prop {String} [buttonColor='deep-orange lighten-2'] 輸入框內圖標按鈕顏色字串，預設'deep-orange lighten-2'
- * @vue-prop {String} [buttonColorHover='deep-orange lighten-1'] 輸入框內圖標按鈕Hover顏色字串，預設'deep-orange lighten-1'
+ * @vue-prop {String} [buttonColorFocus='deep-orange lighten-1'] 輸入框內圖標按鈕Focus顏色字串，預設'deep-orange lighten-1'
  * @vue-prop {Boolean} [editable=true] 輸入是否為編輯模式，預設true
+ * @vue-prop {Boolean} [focused=false] 輸入是否為駐點狀態，預設false
  */
 export default {
     components: {
@@ -76,7 +80,7 @@ export default {
             type: String,
             default: 'white',
         },
-        buttonColorHover: {
+        buttonColorFocus: {
             type: String,
             default: 'white',
         },
@@ -84,12 +88,17 @@ export default {
             type: Boolean,
             default: true,
         },
+        focused: {
+            type: Boolean,
+            default: false,
+        },
     },
     data: function() {
         return {
             mdiPlusCircle,
             mdiMinusCircle,
             value_trans: '',
+            focused_trans: false,
         }
     },
     mounted: function() {
@@ -104,11 +113,32 @@ export default {
             //value_trans
             vo.value_trans = vo.value
 
+            //focused_trans
+            vo.focused_trans = vo.focused
+
             return ''
         },
 
     },
     methods: {
+
+        changeFocused: function(focused) {
+            //console.log('methods changeFocused', focused)
+
+            let vo = this
+
+            //save
+            vo.focused_trans = focused
+
+            //setTimeout
+            setTimeout(function() {
+
+                //emit
+                vo.$emit('update:focused', focused)
+
+            }, 1)
+
+        },
 
         changeContent: function(v, mode) {
             //console.log('methods changeContent', v, mode)

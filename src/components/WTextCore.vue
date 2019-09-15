@@ -9,8 +9,8 @@
             :readonly="!editable"
             :placeholder="placeholder"
             v-model="value_trans"
-            @focus="focused=true"
-            @blur="changeContent('blur')"
+            @focus="changeFocused(true)"
+            @blur="changeFocused(false);changeContent('blur');"
             @keyup.enter="changeContent('enter')"
         >
 
@@ -26,6 +26,7 @@ import verifyValue from 'wsemi/src/verifyValue.mjs'
  * @vue-prop {String} [textAlign='left'] 輸入文字左右對齊字串，預設'left'
  * @vue-prop {String} [placeholder=''] 輸入無文字時的替代字符字串，預設''
  * @vue-prop {Boolean} [editable=true] 輸入是否為編輯模式，預設true
+ * @vue-prop {Boolean} [focused=false] 輸入是否為駐點狀態，預設false
  */
 export default {
     props: {
@@ -48,10 +49,13 @@ export default {
             type: Boolean,
             default: true,
         },
+        focused: {
+            type: Boolean,
+            default: false,
+        },
     },
     data: function() {
         return {
-            focused: false,
             value_trans: '',
         }
     },
@@ -69,8 +73,27 @@ export default {
 
             return ''
         },
+
     },
     methods: {
+
+        changeFocused: function(focused) {
+            //console.log('methods changeFocused', focused)
+
+            let vo = this
+
+            //save
+            //vo.focused_trans = focused
+
+            //setTimeout
+            setTimeout(function() {
+
+                //emit
+                vo.$emit('update:focused', focused)
+
+            }, 1)
+
+        },
 
         changeContent: function (evname) {
             //console.log('methods changeContent', evname)
