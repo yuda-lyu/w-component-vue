@@ -119,9 +119,6 @@ export default {
                 //emit
                 vo.$emit(evname, value, errmsg)
 
-                //focused
-                vo.focused = false
-
             }, 1)
 
         },
