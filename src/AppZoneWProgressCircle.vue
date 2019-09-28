@@ -91,7 +91,7 @@
                 <w-progress-circle
                     :value="100"
                     :size="26"
-                    :width="3"
+                    :width="2"
                     :color="'light-green accent-4'"
                 ></w-progress-circle>
             </div>

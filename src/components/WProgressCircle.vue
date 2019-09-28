@@ -95,12 +95,12 @@ export default {
             let vo = this
 
             //size
-            let fs = vo.size / 12 * 1.2
-            //let ts = (vo.size - 26) / (94) * (0.25) + 0.75
+            let fs = vo.size / 12
+            let ts = 1.2
             let s = {
                 'color': '#666',
                 'font-size': fs + 'pt',
-                //'transform': `scale(${ts})`
+                'transform': `scale(${ts})`
             }
 
             return s
