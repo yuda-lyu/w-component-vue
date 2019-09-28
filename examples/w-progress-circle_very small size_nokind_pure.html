@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="zh-tw">
 <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <title>example for w-text-int: leftIcon (material)</title>
+    <title>example for w-progress-circle: very small size</title>
 
     <!-- fontawesome -->
     <link
@@ -76,23 +76,16 @@
     style="font-family:'Microsoft JhengHei','Avenir','Helvetica'; padding:20px;"
 >
     <v-app id="app" style="font-family:inherit;">
-        <div class="head1">w-text-int</div>
+        <div class="head1">w-progress-circle</div>
         <div class="bk">
-            <div class="item">leftIcon (material)</div>
+            <div class="item">very small size</div>
 
-            <w-shell-material
-                style="margin-top:30px;"
-                :title="'請輸入訂購數量'"
-                :left-icon="'mdi-cart'"
-            >
-                <w-text-int
-                    :border-shadow="false"
-                    :border-color="'orange lighten-2'"
-                    :border-color-focus="'orange darken-2'"
-                    :background-color-focus="'orange lighten-5'"
-                    v-model="WTextInt.int"
-                />
-            </w-shell-material>
+            <w-progress-circle
+                :value="100"
+                :size="26"
+                :width="3"
+                :color="'light-green accent-4'"
+            />
         </div>
     </v-app>
 
@@ -105,8 +98,9 @@
     el: "#app",
     vuetify: new Vuetify(),
     data: {
-      WTextInt: {
-        int: 123
+      WProgressCircle: {
+        text: "Capacity",
+        value: 30
       }
     },
     computed: {},
