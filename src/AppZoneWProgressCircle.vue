@@ -83,6 +83,22 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-progress-circle'"
+                    :casename="'very small size'"
+                    :kind="'nokind'"
+                    :shell="'pure'"
+                ></demolink>
+
+                <w-progress-circle
+                    :value="100"
+                    :size="26"
+                    :width="3"
+                    :color="'light-green accent-4'"
+                ></w-progress-circle>
+            </div>
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-progress-circle'"
                     :casename="'tooltip'"
                     :kind="'nokind'"
                     :shell="'pure'"

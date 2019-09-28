@@ -14,8 +14,8 @@
                 >
 
                     <div style="text-align:center; transform:translateY(-2%);">
-                        <div :style="{'font-size':size/5.4+'pt'}">{{value}}%</div>
-                        <div :style="{'color':'#666','transform':'scale(1.15)','font-size':size/12+'pt'}">{{text}}</div>
+                        <div :style="[styleProg]">{{value}}%</div>
+                        <div :style="[styleText]">{{text}}</div>
                     </div>
 
                 </v-progress-circular>
@@ -72,6 +72,40 @@ export default {
     mounted: function() {
     },
     computed: {
+
+        styleProg: function() {
+            //console.log('computed styleProg')
+
+            let vo = this
+
+            //size
+            let fs = vo.size / 5.4
+            let ts = (vo.size - 26) / (94) * (0.25) + 0.75
+            let s = {
+                'font-size': fs + 'pt',
+                'transform': `scale(${ts})`
+            }
+
+            return s
+        },
+
+        styleText: function() {
+            //console.log('computed styleText')
+
+            let vo = this
+
+            //size
+            let fs = vo.size / 12 * 1.2
+            //let ts = (vo.size - 26) / (94) * (0.25) + 0.75
+            let s = {
+                'color': '#666',
+                'font-size': fs + 'pt',
+                //'transform': `scale(${ts})`
+            }
+
+            return s
+        },
+
     },
     methods: {
 
