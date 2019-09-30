@@ -10,7 +10,7 @@
 
             <div class="bk" style="display:block;">
                 <demolink
-                    :kbname="'w-json-view'"
+                    :kbname="'w-dynamic-scroll'"
                     :casename="'listHeight'"
                     :kind="'nokind'"
                     :shell="'pure'"
