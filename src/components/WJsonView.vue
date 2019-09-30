@@ -87,6 +87,7 @@ import cint from 'wsemi/src/cint.mjs'
  * @vue-prop {*} data 輸入資料陣列或物件
  * @vue-prop {Number} [listHeight=400] 輸入顯示區高度，單位為px，預設400
  * @vue-prop {Number} [itemMinHeight=24] 輸入各元素顯示高度，單位為px，預設24，會於真實顯示後自動更新高度
+ * @vue-prop {Number} [itemsPreload=40] 輸入預先載入上下方向的元素數量，預設40
  */
 export default {
     props: {
@@ -98,6 +99,10 @@ export default {
         itemMinHeight: {
             type: Number,
             default: 24,
+        },
+        itemsPreload: {
+            type: Number,
+            default: 40,
         },
     },
     data: function() {
@@ -187,18 +192,17 @@ export default {
 
             //indStart, indEnd
             let n = size(items)
-            let idf = 10
             let o
             o = findLast(items, (v, k) => {
                 return (v.y + v.useHeight) < y1
             })
             let indStart = get(o, 'index', 0)
-            indStart = Math.max(indStart - idf, 0)
+            indStart = Math.max(indStart - vo.itemsPreload, 0)
             o = find(items, (v, k) => {
                 return v.y > y2
             })
             let indEnd = get(o, 'index', n)
-            indEnd = Math.min(indEnd + idf, n - 1)
+            indEnd = Math.min(indEnd + vo.itemsPreload, n - 1)
 
             //useItems
             let useItems = []
