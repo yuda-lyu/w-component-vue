@@ -43,7 +43,7 @@
     <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.js"></script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@1.2.0/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@1.2.1/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -85,7 +85,7 @@
                 :list-height="500"
                 :rows="WDynamicScroll.data"
             >
-                <template v-slot:item-block="props">
+                <template v-slot:block="props">
                     <div style="display:table; padding:0px 10px;">
                         <div
                             style="display:table-cell; color:#f26;"

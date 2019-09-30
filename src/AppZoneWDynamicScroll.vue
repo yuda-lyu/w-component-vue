@@ -21,7 +21,7 @@
                     :listHeight="500"
                     :rows="WDynamicScroll.data"
                 >
-                    <template v-slot:itemBlock="props">
+                    <template v-slot:block="props">
 
                         <div style="display:table; padding:0px 10px;">
 

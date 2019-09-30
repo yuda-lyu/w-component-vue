@@ -8,9 +8,9 @@
             <div :style="[{'height':preItemsHeight+'px'}]"></div>
 
             <template v-for="(item,kitem) in useItems">
-                <div ref="block" :index="item.index" :key="kitem">
+                <div ref="itemDiv" :index="item.index" :key="kitem">
 
-                    <slot name="itemBlock" :row="item.row" :irow="item.index"></slot>
+                    <slot name="block" :row="item.row" :irow="item.index"></slot>
 
                 </div>
             </template>
@@ -170,7 +170,7 @@ export default {
             let items = (vo.items)
 
             //update height
-            each(vo.$refs.block, (v) => {
+            each(vo.$refs.itemDiv, (v) => {
                 let index = cint(v.getAttribute('index'))
                 if (index >= 0 && index <= size(items) - 1) {
                     let h = v.clientHeight //元素不要用margin避免計算高度有誤差
