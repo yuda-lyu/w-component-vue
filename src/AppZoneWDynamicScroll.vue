@@ -23,7 +23,7 @@
                 >
                     <template v-slot:itemBlock="props">
 
-                        <div style="display:table; margin:3px 10px;">
+                        <div style="display:table; padding:0px 10px;">
 
                             <div style="display:table-cell; color:#f26;">{{props.irow}}</div>
 

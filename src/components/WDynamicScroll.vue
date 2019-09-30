@@ -33,7 +33,7 @@ import debounce from 'lodash/debounce'
 import cint from 'wsemi/src/cint.mjs'
 
 /**
- * @vue-prop {Array} [rows=[]] 輸入資料陣列，預設[]，各元素配合slot顯示即可，slot內提供row與irow，對應原始rows內各元素與指標
+ * @vue-prop {Array} [rows=[]] 輸入資料陣列，預設[]，各元素配合slot顯示即可，slot內提供row與irow，對應原始rows內各元素與指標，另外各元素slot時不要用margin避免計算高度有誤差
  * @vue-prop {Number} [listHeight=400] 輸入顯示區高度，單位為px，預設400
  * @vue-prop {Number} [itemMinHeight=24] 輸入各元素顯示高度，單位為px，預設24，會於真實顯示後自動更新高度
  */
@@ -169,7 +169,8 @@ export default {
             each(vo.$refs.block, (v) => {
                 let index = cint(v.getAttribute('index'))
                 if (index >= 0 && index <= size(items) - 1) {
-                    let h = v.clientHeight
+                    let h = v.clientHeight //元素不要用margin避免計算高度有誤差
+                    //console.log(`v.clientHeight=${v.clientHeight}, v.offsetHeight=${v.offsetHeight}, v.scrollHeight=${v.scrollHeight}, v.getBoundingClientRect()=`, v.getBoundingClientRect())
                     if (items[index].height !== h) {
                         items[index].height = h
                     }
