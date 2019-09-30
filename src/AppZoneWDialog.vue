@@ -459,7 +459,7 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-dialog'"
-                    :casename="'scrollable, a lot of text'"
+                    :casename="'fullscreen'"
                     :kind="'nokind'"
                     :shell="'pure'"
                 ></demolink>
@@ -468,6 +468,49 @@
 
                 <w-dialog
                     :show.sync="WDialog.bShow12"
+                    :title="WDialog.title"
+                    :widthMax="0"
+                    @click-save="clickEvent('click-save')"
+                    @click-close="clickEvent('click-close')"
+                >
+
+                    <template v-slot:content>
+                        <div style="padding:20px;">
+                            <div style="font-size:2rem; margin:20px 0px 30px 0px;">
+                                {{WDialog.text1}}
+                            </div>
+                            <div style="margin:15px 0px;">
+                                {{WDialog.text2}}
+                            </div>
+                            <div style="margin:15px 0px;">
+                                {{WDialog.text3}}
+                            </div>
+                            <div style="margin:15px 0px;">
+                                {{WDialog.text4}}
+                            </div>
+
+                            <v-btn small rounded @click="WDialog.bShow12=!WDialog.bShow12">Hide Window</v-btn>
+
+                        </div>
+                    </template>
+
+                </w-dialog>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-dialog'"
+                    :casename="'scrollable, a lot of text'"
+                    :kind="'nokind'"
+                    :shell="'pure'"
+                ></demolink>
+
+                <v-btn small rounded @click="WDialog.bShow13=!WDialog.bShow13">Show({{WDialog.bShow13}})</v-btn>
+
+                <w-dialog
+                    :show.sync="WDialog.bShow13"
                     :title="WDialog.title"
                     @click-save="clickEvent('click-save')"
                     @click-close="clickEvent('click-close')"
@@ -506,10 +549,10 @@
                     :shell="'pure'"
                 ></demolink>
 
-                <v-btn small rounded @click="WDialog.bShow13=!WDialog.bShow13">Show({{WDialog.bShow13}})</v-btn>
+                <v-btn small rounded @click="WDialog.bShow14=!WDialog.bShow14">Show({{WDialog.bShow14}})</v-btn>
 
                 <w-dialog
-                    :show.sync="WDialog.bShow13"
+                    :show.sync="WDialog.bShow14"
                     :title="WDialog.title"
                     @click-save="clickEvent('click-save')"
                     @click-close="clickEvent('click-close')"
@@ -552,10 +595,10 @@
                     :shell="'pure'"
                 ></demolink>
 
-                <v-btn small rounded @click="WDialog.bShow14=!WDialog.bShow14">Show({{WDialog.bShow14}})</v-btn>
+                <v-btn small rounded @click="WDialog.bShow15=!WDialog.bShow15">Show({{WDialog.bShow15}})</v-btn>
 
                 <w-dialog
-                    :show.sync="WDialog.bShow14"
+                    :show.sync="WDialog.bShow15"
                     :title="WDialog.title"
                     :widthMax="500"
                     @click-save="clickEvent('click-save')"
@@ -614,6 +657,87 @@
             </div>
 
 
+            <div class="bk">
+                <demolink
+                    :kbname="'w-dialog'"
+                    :casename="'multi windows'"
+                    :kind="'nokind'"
+                    :shell="'pure'"
+                ></demolink>
+
+                <v-btn small rounded @click="WDialog.bShow16=!WDialog.bShow16">Show({{WDialog.bShow16}})</v-btn>
+
+                <w-dialog
+                    :show.sync="WDialog.bShow16"
+                    :title="WDialog.title"
+                    :widthMax="1200"
+                    @click-save="clickEvent('click-save')"
+                    @click-close="clickEvent('click-close')"
+                >
+
+                    <template v-slot:content>
+                        <div style="padding:20px;">
+
+                            <div style="margin:15px 0px;">
+                                Here is 1st window.
+                            </div>
+
+                            <v-btn small rounded @click="WDialog.bShow16A=!WDialog.bShow16A">Show({{WDialog.bShow16A}})</v-btn>
+
+                            <div style="height:160px;"></div>
+
+                        </div>
+                    </template>
+
+                </w-dialog>
+
+                <w-dialog
+                    :show.sync="WDialog.bShow16A"
+                    :title="WDialog.title"
+                    :widthMax="900"
+                    @click-save="clickEvent('click-save')"
+                    @click-close="clickEvent('click-close')"
+                >
+
+                    <template v-slot:content>
+                        <div style="padding:20px;">
+
+                            <div style="margin:15px 0px;">
+                                Here is 2nd window.
+                            </div>
+
+                            <v-btn small rounded @click="WDialog.bShow16B=!WDialog.bShow16B">Show({{WDialog.bShow16B}})</v-btn>
+
+                            <div style="height:80px;"></div>
+
+                        </div>
+                    </template>
+
+                </w-dialog>
+
+                <w-dialog
+                    :show.sync="WDialog.bShow16B"
+                    :title="WDialog.title"
+                    :widthMax="600"
+                    @click-save="clickEvent('click-save')"
+                    @click-close="clickEvent('click-close')"
+                >
+
+                    <template v-slot:content>
+                        <div style="padding:20px;">
+
+                            <div style="margin:15px 0px;">
+                                Here is 3rd window.
+                            </div>
+
+                        </div>
+                    </template>
+
+                </w-dialog>
+
+            </div>
+
+
         </div>
 
 
@@ -654,6 +778,10 @@ export default {
                 'bShow12': false,
                 'bShow13': false,
                 'bShow14': false,
+                'bShow15': false,
+                'bShow16': false,
+                'bShow16A': false,
+                'bShow16B': false,
                 'headerBtns': [
                     {
                         icon: 'fas fa-book-reader',

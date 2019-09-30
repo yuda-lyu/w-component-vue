@@ -94,7 +94,7 @@ import WButtonCircle from './WButtonCircle.vue'
  * @vue-prop {String} [saveBtnTooltip='儲存'] 輸入儲存按鈕的提示文字字串，預設'儲存'
  * @vue-prop {Boolean} [hasCloseBtn=true] 輸入是否顯示關閉按鈕，預設true
  * @vue-prop {String} [closeBtnTooltip='關閉'] 輸入關閉按鈕的提示文字字串，預設'關閉'
- * @vue-prop {Number} [widthMax=1000] 輸入彈窗最大寬度，單位為px，預設1000，當裝置寬度小於彈窗最大寬度，則彈窗改為全螢幕顯示
+ * @vue-prop {Number} [widthMax=1000] 輸入彈窗最大寬度，單位為px，預設1000，當裝置寬度小於彈窗最大寬度，則彈窗改為全螢幕顯示，若給予widthMax<=0則代表全螢幕
  */
 export default {
     components: {
@@ -191,11 +191,16 @@ export default {
 
             let vo = this
 
-            if (vo.widthMax > window.innerWidth) {
+            if (vo.widthMax <= 0) {
                 vo.fullscreen = true
             }
             else {
-                vo.fullscreen = false
+                if (vo.widthMax > window.innerWidth) {
+                    vo.fullscreen = true
+                }
+                else {
+                    vo.fullscreen = false
+                }
             }
 
         },

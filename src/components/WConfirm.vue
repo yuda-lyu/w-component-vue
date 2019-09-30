@@ -40,7 +40,7 @@
                     @click="clickBtns(false)"
                     v-if="hasCancelBtn"
                 >
-                    <v-icon style="margin-left:-8px;">{{mdiCloseCircleOutline}}</v-icon>
+                    <v-icon style="margin-left:-8px;">{{mdiCloseCircle}}</v-icon>
                     <span style="margin-left:5px; font-size:0.875rem; text-transform:none;">{{noText}}</span>
                 </v-btn>
 
@@ -52,7 +52,7 @@
                     color="blue"
                     @click="clickBtns(true)"
                 >
-                    <v-icon style="margin-left:-8px;">{{mdiCheckboxMarkedCircleOutline}}</v-icon>
+                    <v-icon style="margin-left:-8px;">{{mdiCheckboxMarkedCircle}}</v-icon>
                     <span style="margin-left:5px; font-size:0.875rem; text-transform:none;">{{yesText}}</span>
                 </v-btn>
 
@@ -64,7 +64,7 @@
 </template>
 
 <script>
-import { mdiAlert, mdiCheckboxMarkedCircleOutline, mdiCloseCircleOutline } from '@mdi/js'
+import { mdiAlert, mdiCheckboxMarkedCircle, mdiCloseCircle } from '@mdi/js'
 import { color2hex } from '../js/vuetifyColor.mjs'
 
 /**
@@ -152,8 +152,8 @@ export default {
     data: function() {
         return {
             mdiAlert,
-            mdiCheckboxMarkedCircleOutline,
-            mdiCloseCircleOutline,
+            mdiCheckboxMarkedCircle,
+            mdiCloseCircle,
             show_trans: null,
         }
     },

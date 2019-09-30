@@ -43,7 +43,7 @@
                     :show.sync="WConfirm.bShow2"
                     :title="WConfirm.title"
                     :content="WConfirm.content"
-                    :contentIcon="'fas fa-download'"
+                    :contentIcon="'fab fa-buffer'"
                     @click-no="clickEvent('click-no')"
                     @click-yes="clickEvent('click-yes')"
                 ></w-confirm>
@@ -251,7 +251,7 @@ export default {
                 'bShow13': false,
                 'bShow14': false,
                 'title': '系統確認訊息',
-                'content': '是否同意下載檔案?',
+                'content': '是否同意上傳表單資料?',
             },
             'actions': [
             ],
