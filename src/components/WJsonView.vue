@@ -1,14 +1,19 @@
 <template>
-    <div :style="[{'position':'relative','overflow-y':'auto','height':listHeight+'px'}]" @scroll="scrollItems">
+    <div
+        :style="[{'position':'relative','overflow-y':'auto','overflow-x':'hidden','height':listHeight+'px'}]"
+        @scroll="scrollItems"
+    >
 
-        <div :style="[{'height':itemsHeight+'px'}]"></div>
+        <div :style="[{'height':`${contentHeight}px`}]"></div>
 
-        <div :style="[{'position':'absolute','top':'0px'}]">
-
-            <div :style="[{'height':preItemsHeight+'px'}]"></div>
-
-            <template v-for="(item,kitem) in useItems">
-                <div ref="itemDiv" :index="item.index" :key="kitem" v-if="item.show">
+        <template v-for="(item,kitem) in useItems">
+            <template v-if="item.screenY<=contentHeight && item.show">
+                <div
+                    ref="itemDiv"
+                    :style="[{'position':'absolute','top':`${item.screenY}px`}]"
+                    :index="item.index"
+                    :key="kitem"
+                >
 
                     <div :style="[styleLineNumber,{'width':lineNumberWidth+'px'}]">{{item.lineNumber}}</div>
 
@@ -58,10 +63,7 @@
 
                 </div>
             </template>
-
-            <div :style="[{'height':aftItemsHeight+'px'}]"></div>
-
-        </div>
+        </template>
 
     </div>
 </template>
@@ -71,23 +73,38 @@ import each from 'lodash/each'
 import size from 'lodash/size'
 import keys from 'lodash/keys'
 import get from 'lodash/get'
-import find from 'lodash/find'
-import findLast from 'lodash/findLast'
 import debounce from 'lodash/debounce'
 import isNumber from 'lodash/isNumber'
 import isString from 'lodash/isString'
 import isBoolean from 'lodash/isBoolean'
-import isArray from 'lodash/isArray'
-import isObject from 'lodash/isObject'
+// import isArray from 'lodash/isArray' //會誤判function
+// import isObject from 'lodash/isObject' //會誤判function
 import isFunction from 'lodash/isFunction'
 import toString from 'lodash/toString'
 import toInteger from 'lodash/toInteger'
+import binarySearch from '../js/binarySearch.mjs'
+import isarr from 'wsemi/src/isarr.mjs'
+import isobj from 'wsemi/src/isobj.mjs'
+
+// function g(items) {
+//     return items.map((v) => {
+//         return {
+//             i: v.index,
+//             //v: `${v.key}: ${v.value}`,
+//             s: v.show,
+//             //d: v.displayChildren,
+//             y: v.y,
+//             useY: v.useY,
+//             screenY: v.screenY,
+//         }
+//     })
+// }
 
 /**
  * @vue-prop {*} data 輸入資料陣列或物件
  * @vue-prop {Number} [listHeight=400] 輸入顯示區高度，單位為px，預設400
  * @vue-prop {Number} [itemMinHeight=24] 輸入各元素顯示高度，單位為px，預設24，會於真實顯示後自動更新高度
- * @vue-prop {Number} [itemsPreload=40] 輸入預先載入上下方向的元素數量，預設40
+ * @vue-prop {Number} [itemsPreload=40] 輸入下方預先載入元素數量，預設40
  * @vue-prop {String} [iconColor='#999999'] 輸入顯隱icon按鈕顏色字串，預設'#999999'
  * @vue-prop {String} [keyColor='#666666'] 輸入鍵值顏色字串，預設'#666666'
  * @vue-prop {String} [keyNumbersColor='#aaaaaa'] 輸入鍵值內含子節點數量顏色字串，預設'#aaaaaa'
@@ -135,7 +152,7 @@ export default {
         },
         bolColor: {
             type: String,
-            default: '#ab0d90',
+            default: '#80d85f',
         },
         funColor: {
             type: String,
@@ -152,10 +169,14 @@ export default {
     },
     data: function() {
         return {
+            changeDisplayChildren: true, //變更displayChildren
+            changeDisplayChildrenIndex: null, //變更displayChildren的item指標
+            changeHeight: true, //變更高度
             lineNumberWidth: 0, //列號區寬度
-            preItemsHeight: 0, //上方空白區高度
-            aftItemsHeight: 0, //下方空白區高度
             scrollTop: 0, //目前捲軸位置
+            scrollRatio: 1, //目前全部節點高度與捲軸內容高度的比值
+            contentHeight: 0, //實際撐開用內容高度, 大部分情況等於scrollHeight, 可能會差異一個水平捲軸的高度16px, 此處以contentHeight為計算基準
+            contentHeightMax: 1e7, //最大撐開用內容高度, chrome當元素高度超過1.4e7px, 排版沒問題但顯示會被截斷, 故需要通過設定最大高度做映射
             itemsHeight: 0, //儲存全部項目高度
             styleLineNumber: {
                 'display': 'table-cell',
@@ -170,6 +191,13 @@ export default {
         }
     },
     mounted: function() {
+        //console.log('mounted')
+
+        let vo = this
+
+        //change, watch時觸發的change因為元素沒實際高度故無法自動調整, 得於mounted再觸發一次
+        vo.change()
+
     },
     watch: {
 
@@ -203,12 +231,26 @@ export default {
 
         change: function() {
             //console.log('methods change')
+            //console.time('change')
 
             let vo = this
 
+            //getUseItems
             vo.getUseItems()
-            vo.updateItems()
-            vo.getUseItems()
+
+            //setTimeout
+            setTimeout(function() {
+
+                //updateItems
+                let changed = vo.updateItems()
+
+                //若任何元素高度有變更則再重新計算需顯示的節點, 此時的確有可能會載入新節點, 所以原本給予節點之預設高度不能太高, 偵測時元素就多是變高, 所以需顯示的節點就會變少, 避免造成重新載入新節點狀況
+                if (changed) {
+                    vo.getUseItems()
+                }
+
+                //console.timeEnd('change')
+            }, 10)
 
         },
 
@@ -221,53 +263,121 @@ export default {
             let items = (vo.items)
 
             //y1, y2
-            let y1 = vo.scrollTop
-            let y2 = y1 + vo.listHeight
+            let y1
+            let y2
+            let he = vo.contentHeight - vo.listHeight
+            let heAll = vo.itemsHeight
+            let r1
+            let r2
+            let scrollTop
+            if (he >= 0) {
+                scrollTop = Math.min(vo.scrollTop, he)
+                let r = scrollTop / he //0~1
+                let rd12 = vo.listHeight / vo.scrollRatio / he //顯示區上下處的正規化縮放比率差, 需針對最大撐開高度對應實際全部節點高度的比率做修正
+                r1 = r / (1 + rd12) //顯示區上方的正規化縮放比率
+                r1 = Math.max(r1, 0)
+                r2 = r1 + rd12 //顯示區下方的正規化縮放比率
+                r2 = Math.min(r2, 1)
+                y1 = r1 * heAll
+                y2 = r2 * heAll
+            }
+            else {
+                scrollTop = 0
+                r1 = 0
+                r2 = 1
+                y1 = 0
+                y2 = vo.itemsHeight
+            }
 
-            //indStart, indEnd
+            //indStart
             let n = size(items)
             let o
-            o = findLast(items, (v, k) => {
-                return (v.y + v.useHeight) < y1
-            })
+            o = binarySearch(items, (ind) => {
+                let v = items[ind]
+                let dy = y1 - (v.y + v.height)
+                return dy
+            }).result
             let indStart = get(o, 'index', 0)
-            indStart = Math.max(indStart - vo.itemsPreload, 0)
-            o = find(items, (v, k) => {
-                return v.y > y2
-            })
+            indStart = Math.max(indStart - vo.itemsPreload, 0) //不預載前面節點, 避免拉動捲軸時因上方節點預載後高度變高, 自動把當前顯示節點往下推移
+
+            //indEnd
+            o = binarySearch(items, (ind) => {
+                let v = items[ind]
+                let dy = v.y - y2
+                return dy
+            }).result
             let indEnd = get(o, 'index', n)
             indEnd = Math.min(indEnd + vo.itemsPreload, n - 1)
 
             //useItems
             let useItems = []
-            let preItemsHeight = 0
-            let aftItemsHeight = 0
-            each(items, (v, k) => {
-                if (k < indStart) {
-                    preItemsHeight += v.useHeight
-                }
-                else if (k > indEnd) {
-                    aftItemsHeight += v.useHeight
-                }
-                else if (v.show) {
-                    useItems.push(v)
-                }
-            })
+            for (let k = indStart; k <= indEnd; k++) {
+                let v = items[k]
+                v.screenY = ((v.y / heAll) - r1) * vo.contentHeight * vo.scrollRatio + scrollTop //換算成實際顯示y向的px位置
+                useItems.push(v)
+            }
 
             //save
             vo.useItems = useItems
-            vo.preItemsHeight = preItemsHeight
-            vo.aftItemsHeight = aftItemsHeight
 
         },
 
         updateItems: function() {
             //console.log('methods updateItems')
+            //console.time('updateItems')
 
             let vo = this
 
             //items, 直接存取vo.item, 不能用cloneDeep對大數據太耗時
             let items = (vo.items)
+
+            //check
+            if (vo.changeDisplayChildren) {
+
+                //check
+                let index = 0
+                if (vo.changeDisplayChildrenIndex !== null) {
+                    index = vo.changeDisplayChildrenIndex
+                }
+
+                //update show
+                let hide = false
+                let level = null
+                let ind = null
+                for (let k = index; k < items.length; k++) {
+                    let v = items[k]
+
+                    //detect start
+                    if (!hide && !v.displayChildren) {
+                        hide = true
+                        level = v.level
+                        ind = k
+                    }
+
+                    //detect level
+                    if (ind !== k && hide) {
+                        if (v.level > level) {
+                            if (v.show !== false) {
+                                v.show = false
+                            }
+                        }
+                        else if (v.level === level) {
+                            if (v.show !== false) {
+                                v.show = false
+                            }
+                            hide = false
+                            level = null
+                        }
+                    }
+                    else {
+                        if (v.show !== true) {
+                            v.show = true
+                        }
+                    }
+
+                }
+
+            }
 
             //update height
             each(vo.$refs.itemDiv, (v) => {
@@ -276,70 +386,62 @@ export default {
                     let h = v.clientHeight
                     if (items[index].height !== h) {
                         items[index].height = h
+                        vo.changeHeight = true
                     }
                 }
             })
 
-            //update show
-            let hide = false
-            let level = null
-            let ind = null
-            each(items, (v, k) => {
+            //check
+            let changed = vo.changeHeight || vo.changeDisplayChildren
+            if (changed) {
 
-                //detect start
-                if (!hide && !v.displayChildren) {
-                    hide = true
-                    level = v.level
-                    ind = k
-                }
+                //update y, useY, useHeight
+                let y = 0
+                let useY = 0
+                each(items, (v) => {
 
-                //detect level
-                if (ind !== k && hide) {
-                    if (v.level > level) {
-                        if (v.show !== false) {
-                            v.show = false
+                    //y
+                    if (v.y !== y) {
+                        v.y = y
+                    }
+
+                    //useHeight
+                    if (v.show) {
+                        y += v.height
+                        if (v.useHeight !== v.height) {
+                            v.useHeight = v.height
                         }
                     }
-                    else if (v.level === level) {
-                        if (v.show !== false) {
-                            v.show = false
+                    else {
+                        if (v.useHeight !== 0) {
+                            v.useHeight = 0
                         }
-                        hide = false
-                        level = null
                     }
-                }
-                else {
-                    if (v.show !== true) {
-                        v.show = true
+
+                    //useY
+                    if (v.useY !== useY) {
+                        v.useY = useY
                     }
+                    useY += v.useHeight
+
+                })
+
+                //update itemsHeight
+                if (vo.itemsHeight !== y) {
+                    vo.itemsHeight = y
+                    vo.contentHeight = Math.min(vo.itemsHeight, vo.contentHeightMax)
+                    vo.scrollRatio = vo.itemsHeight / vo.contentHeight
                 }
 
-            })
+                //reset
+                vo.changeDisplayChildren = false
+                vo.changeDisplayChildrenIndex = null
+                vo.changeHeight = false
 
-            //update y, useHeight
-            let y = 0
-            each(items, (v) => {
-                if (v.y !== y) {
-                    v.y = y
-                }
-                if (v.show) {
-                    y += v.height
-                    if (v.useHeight !== v.height) {
-                        v.useHeight = v.height
-                    }
-                }
-                else {
-                    if (v.useHeight !== 0) {
-                        v.useHeight = 0
-                    }
-                }
-            })
-
-            //update itemsHeight
-            if (vo.itemsHeight !== y) {
-                vo.itemsHeight = y
             }
 
+            //console.timeEnd('updateItems')
+            return changed
         },
 
         parseData: function(d) {
@@ -404,7 +506,9 @@ export default {
                     show: true, //bol, 是否顯示此節點
                     height: vo.itemMinHeight, //num, 節點高度, 日後動態更新
                     useHeight: 0, //num, 真實使用高度, 受show影響, 加速用
-                    y: index * vo.itemMinHeight, //num, 真實y向位置, 預設先由最小列高計算
+                    y: index * vo.itemMinHeight, //num, 節點y向位置, 預設先由最小列高計算
+                    useY: index * vo.itemMinHeight, //num, 真實y向位置, 預設先由最小列高計算
+                    screenY: 0, //num, 節點換算比率後的顯示y向位置
                 })
             }
 
@@ -509,10 +613,10 @@ export default {
             }
 
             function pSelf({ level, key, value, last }) {
-                if (isArray(value)) {
+                if (isarr(value)) {
                     pArray({ level, key, value, last })
                 }
-                else if (isObject(value)) {
+                else if (isobj(value)) {
                     pObject({ level, key, value, last })
                 }
                 else {
@@ -530,7 +634,7 @@ export default {
                 }
             }
 
-            if (isArray(d)) {
+            if (isarr(d)) {
                 pArray({
                     level: 0,
                     key: null,
@@ -538,7 +642,7 @@ export default {
                     last: true,
                 })
             }
-            else if (isObject(d)) {
+            else if (isobj(d)) {
                 pObject({
                     level: 0,
                     key: null,
@@ -574,6 +678,10 @@ export default {
             //setTimeout
             setTimeout(() => {
 
+                //changeDisplayChildren
+                vo.changeDisplayChildren = true
+                vo.changeDisplayChildrenIndex = item.index
+
                 //change
                 vo.change()
 
@@ -589,9 +697,8 @@ export default {
             //setTimeout
             setTimeout(() => {
 
-                //save scrollTop
-                let scrollTop = e.target.scrollTop
-                vo.scrollTop = scrollTop
+                //save
+                vo.scrollTop = e.target.scrollTop
 
                 //change
                 vo.change()
