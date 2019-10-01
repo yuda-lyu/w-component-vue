@@ -43,7 +43,7 @@
     <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.js"></script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@1.2.3/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@1.2.4/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -77,16 +77,16 @@
 >
     <v-app id="app" style="font-family:inherit;">
         <div class="head1">w-dynamic-scroll</div>
-        <div class="bk" style="display:block;">
+        <div class="bk">
             <div class="item">listHeight</div>
 
             <w-dynamic-scroll
-                style="border:1px solid #ddd;"
-                :list-height="500"
-                :rows="WDynamicScroll.data"
+                style="border:1px solid #ddd; width:400px;"
+                :list-height="250"
+                :rows="WDynamicScroll.data1"
             >
                 <template v-slot:block="props">
-                    <div style="display:table; padding:0px 10px;">
+                    <div style="display:table; padding:3px 10px;">
                         <div
                             style="display:table-cell; color:#f26;"
                         >{{props.irow}}</div>
@@ -112,7 +112,19 @@
     vuetify: new Vuetify(),
     data: {
       WDynamicScroll: {
-        data: (function(a) {
+        data1: [
+          "Examine trends in the movement of guns across different states.",
+          "Code of Federal Regulations - Alcohol, Tobacco Products and Firearms",
+          "1980-2014 November General Election Turnout and Registration",
+          "Reported Voting and Registration, by Sex and Single Years of Age: November 2016",
+          "felon-disenfranchisement",
+          "623e708e-574e-45a2-9dc9-b53178903325",
+          "https://assembly-public-spotlight.s3.amazonaws.com/assets/images/public-welcome/card_disenfranchisement.jpg",
+          "Map felon disenfranchisement patterns by state.",
+          "Estimate how felon enfranchisement could affect close elections. Track how disenfranchisement has varied over time. an American non-profit journalism outlet dedicated to expanding media coverage on the state of guns in the U.S., spent 11 months amassing data on stolen and recovered guns. They filed hundreds of public record requests to over 1,000 law enforcement agencies in 36 states to investigate what happens to guns when they are reported stolen. The data reveals that guns were recovered by a variety of means, from being turned in as evidence or by abandonment.",
+          "Vivien Ngo, Data Journalism Fellow."
+        ],
+        data2: (function(a) {
           a /= 5;
           let b = [
             "Nam ac nibh imperdiet, gravida metus eget, sodales eros.",
