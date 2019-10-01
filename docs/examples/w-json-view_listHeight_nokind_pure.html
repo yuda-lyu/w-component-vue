@@ -43,7 +43,7 @@
     <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.js"></script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@1.2.3/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@1.2.4/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -77,13 +77,13 @@
 >
     <v-app id="app" style="font-family:inherit;">
         <div class="head1">w-json-view</div>
-        <div class="bk" style="display:block;">
+        <div class="bk">
             <div class="item">listHeight</div>
 
             <w-json-view
-                style="border:1px solid #ddd;"
-                :list-height="500"
-                :data="WJsonView.data"
+                style="border:1px solid #ddd; width:400px;"
+                :list-height="250"
+                :data="WJsonView.data1"
             />
         </div>
     </v-app>
@@ -98,7 +98,49 @@
     vuetify: new Vuetify(),
     data: {
       WJsonView: {
-        data: (function(a) {
+        data1: {
+          squadName: "Super hero squad",
+          fun: function() {},
+          homeTown: "Metro City",
+          formed: 2016,
+          secretBase: "Super tower",
+          active: true,
+          members: [
+            {
+              name: "Molecule Man",
+              age: 29,
+              secretIdentity: "Dan Jukes",
+              powers: [
+                "Radiation resistance",
+                "Turning tiny",
+                "Radiation blast"
+              ]
+            },
+            {
+              name: "Madame Uppercut",
+              age: 39,
+              secretIdentity: "Jane Wilson",
+              powers: [
+                "Million tonne punch",
+                "Damage resistance",
+                "Superhuman reflexes"
+              ]
+            },
+            {
+              name: "Eternal Flame",
+              age: 1000000,
+              secretIdentity: "Unknown",
+              powers: [
+                "Immortality",
+                "Heat Immunity",
+                "Inferno",
+                "Teleportation",
+                "Interdimensional travel"
+              ]
+            }
+          ]
+        },
+        data2: (function(a) {
           a /= 200;
           a = Math.max(a, 1);
           let b = {
