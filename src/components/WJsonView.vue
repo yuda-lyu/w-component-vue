@@ -10,12 +10,13 @@
             <template v-if="item.screenY<=contentHeight && item.show">
                 <div
                     ref="itemDiv"
-                    :style="[{'position':'absolute','top':`${item.screenY}px`}]"
+                    :nowShow="item.nowShow"
+                    :style="[{'position':'absolute','top':`${item.screenY}px`,'opacity':item.nowShow?1:0.01}]"
                     :index="item.index"
                     :key="kitem"
                 >
 
-                    <div :style="[styleLineNumber,{'width':lineNumberWidth+'px'}]">{{item.lineNumber}}</div>
+                    <div :style="[styleLineNumber,{'width':lineNumberWidth+'px'}]">{{item.index+1}}</div>
 
                     <div :style="[{'display':'table-cell','padding-left':item.paddingLeft+'px'}]">
 
@@ -72,8 +73,8 @@
 import each from 'lodash/each'
 import size from 'lodash/size'
 import keys from 'lodash/keys'
-import get from 'lodash/get'
 import debounce from 'lodash/debounce'
+import cloneDeep from 'lodash/cloneDeep'
 import isNumber from 'lodash/isNumber'
 import isString from 'lodash/isString'
 import isBoolean from 'lodash/isBoolean'
@@ -82,9 +83,12 @@ import isBoolean from 'lodash/isBoolean'
 import isFunction from 'lodash/isFunction'
 import toString from 'lodash/toString'
 import toInteger from 'lodash/toInteger'
-import binarySearch from '../js/binarySearch.mjs'
 import isarr from 'wsemi/src/isarr.mjs'
 import isobj from 'wsemi/src/isobj.mjs'
+import genID from 'wsemi/src/genID.mjs'
+import genPm from 'wsemi/src/genPm.mjs'
+import binarySearch from '../js/binarySearch.mjs'
+import globalMemory from '../js/globalMemory.mjs'
 
 // function g(items) {
 //     return items.map((v) => {
@@ -100,11 +104,14 @@ import isobj from 'wsemi/src/isobj.mjs'
 //     })
 // }
 
+//gm
+let gm = globalMemory()
+
 /**
  * @vue-prop {*} data 輸入資料陣列或物件
  * @vue-prop {Number} [listHeight=400] 輸入顯示區高度，單位為px，預設400
  * @vue-prop {Number} [itemMinHeight=24] 輸入各元素顯示高度，單位為px，預設24，會於真實顯示後自動更新高度
- * @vue-prop {Number} [itemsPreload=40] 輸入下方預先載入元素數量，預設40
+ * @vue-prop {Number} [itemsPreload=40] 輸入上下方預先載入元素數量，預設40
  * @vue-prop {String} [iconColor='#999999'] 輸入顯隱icon按鈕顏色字串，預設'#999999'
  * @vue-prop {String} [keyColor='#666666'] 輸入鍵值顏色字串，預設'#666666'
  * @vue-prop {String} [keyNumbersColor='#aaaaaa'] 輸入鍵值內含子節點數量顏色字串，預設'#aaaaaa'
@@ -169,6 +176,7 @@ export default {
     },
     data: function() {
         return {
+            mmkey: null,
             changeDisplayChildren: true, //變更displayChildren
             changeDisplayChildrenIndex: null, //變更displayChildren的item指標
             changeHeight: true, //變更高度
@@ -186,9 +194,18 @@ export default {
                 'color': '#f26',
                 'user-select': 'none',
             },
-            items: [],
+            //items: [],
             useItems: [],
         }
+    },
+    beforeDestroy: function() {
+        //console.log('beforeMount')
+
+        let vo = this
+
+        //remove
+        gm.remove(vo.mmkey)
+
     },
     mounted: function() {
         //console.log('mounted')
@@ -208,14 +225,31 @@ export default {
 
                 let vo = this
 
+                //check
+                if (vo.mmkey === null) {
+
+                    //mmkey
+                    vo.mmkey = genID()
+
+                }
+                else {
+
+                    //remove
+                    gm.remove(vo.mmkey)
+
+                }
+
                 //items
                 let items = vo.parseData(vo.data)
 
                 //lineNumberWidth, 每個字元使用13px寬度
                 let lineNumberWidth = (Math.ceil(Math.pow(size(items), 0.1)) + 1) * 13
 
-                //save
-                vo.items = items
+                //save items
+                //vo.items = items
+                gm.set(vo.mmkey, items)
+
+                //save lineNumberWidth
                 vo.lineNumberWidth = lineNumberWidth
 
                 //change
@@ -229,38 +263,43 @@ export default {
     },
     methods: {
 
-        change: function() {
+        change: async function() {
             //console.log('methods change')
-            //console.time('change')
 
             let vo = this
 
-            //getUseItems
-            vo.getUseItems()
+            //core
+            function core() {
+                let pm = genPm()
 
-            //setTimeout
-            setTimeout(function() {
+                //genUseItems
+                vo.genUseItems()
 
                 //updateItems
-                let changed = vo.updateItems()
+                setTimeout(function() {
+                    let b = vo.updateItems()
+                    pm.resolve(b)
+                }, 50)
 
-                //若任何元素高度有變更則再重新計算需顯示的節點, 此時的確有可能會載入新節點, 所以原本給予節點之預設高度不能太高, 偵測時元素就多是變高, 所以需顯示的節點就會變少, 避免造成重新載入新節點狀況
-                if (changed) {
-                    vo.getUseItems()
-                }
+                return pm
+            }
 
-                //console.timeEnd('change')
-            }, 10)
+            //若任何元素高度有變更則再重新計算需顯示的節點, 此時的確有可能會載入新節點, 所以原本給予節點之預設高度不能太高, 偵測時元素就多是變高, 所以需顯示的節點就會變少, 避免造成重新載入新節點狀況
+            let r = await core()
+            while (r) {
+                r = await core()
+            }
 
         },
 
-        getUseItems: function() {
-            //console.log('methods getUseItems')
+        genUseItems: function() {
+            //console.log('methods genUseItems')
 
             let vo = this
 
-            //items, 直接存取vo.item, 不能用cloneDeep對大數據太耗時
-            let items = (vo.items)
+            //items
+            //let items = vo.items
+            let items = gm.get(vo.mmkey)
 
             //y1, y2
             let y1
@@ -289,31 +328,37 @@ export default {
                 y2 = vo.itemsHeight
             }
 
-            //indStart
+            //n
             let n = size(items)
-            let o
-            o = binarySearch(items, (ind) => {
+
+            //indStart, 該元素區有侵入顯示區
+            let indStartActual = binarySearch(items, (ind) => {
                 let v = items[ind]
                 let dy = y1 - (v.y + v.height)
                 return dy
-            }).result
-            let indStart = get(o, 'index', 0)
-            indStart = Math.max(indStart - vo.itemsPreload, 0) //不預載前面節點, 避免拉動捲軸時因上方節點預載後高度變高, 自動把當前顯示節點往下推移
+            })
+            if (indStartActual === null) {
+                indStartActual = 0
+            }
+            let indStart = Math.max(indStartActual - vo.itemsPreload, 0)
 
-            //indEnd
-            o = binarySearch(items, (ind) => {
+            //indEnd, 該元素區有侵入顯示區
+            let indEndActual = binarySearch(items, (ind) => {
                 let v = items[ind]
-                let dy = v.y - y2
+                let dy = y2 - v.y
                 return dy
-            }).result
-            let indEnd = get(o, 'index', n)
-            indEnd = Math.min(indEnd + vo.itemsPreload, n - 1)
+            })
+            if (indEndActual === null) {
+                indEndActual = n - 1
+            }
+            let indEnd = Math.min(indEndActual + vo.itemsPreload, n - 1)
 
             //useItems
             let useItems = []
             for (let k = indStart; k <= indEnd; k++) {
-                let v = items[k]
+                let v = cloneDeep(items[k])
                 v.screenY = ((v.y / heAll) - r1) * vo.contentHeight * vo.scrollRatio + scrollTop //換算成實際顯示y向的px位置
+                v.nowShow = k >= indStartActual //顯示區下方之預載節點都直接顯示供重算高度
                 useItems.push(v)
             }
 
@@ -324,12 +369,15 @@ export default {
 
         updateItems: function() {
             //console.log('methods updateItems')
-            //console.time('updateItems')
 
             let vo = this
 
-            //items, 直接存取vo.item, 不能用cloneDeep對大數據太耗時
-            let items = (vo.items)
+            //items
+            //let items = vo.items
+            let items = gm.get(vo.mmkey)
+
+            //n
+            let n = size(items)
 
             //check
             if (vo.changeDisplayChildren) {
@@ -344,7 +392,7 @@ export default {
                 let hide = false
                 let level = null
                 let ind = null
-                for (let k = index; k < items.length; k++) {
+                for (let k = index; k < n; k++) {
                     let v = items[k]
 
                     //detect start
@@ -365,8 +413,7 @@ export default {
                             if (v.show !== false) {
                                 v.show = false
                             }
-                            hide = false
-                            level = null
+                            break
                         }
                     }
                     else {
@@ -381,12 +428,15 @@ export default {
 
             //update height
             each(vo.$refs.itemDiv, (v) => {
-                let index = toInteger(v.getAttribute('index'))
-                if (index >= 0 && index <= size(items) - 1) {
-                    let h = v.clientHeight
-                    if (items[index].height !== h) {
-                        items[index].height = h
-                        vo.changeHeight = true
+                let nowShow = v.getAttribute('nowShow')
+                if (nowShow) {
+                    let index = toInteger(v.getAttribute('index'))
+                    if (index >= 0 && index < n) {
+                        let h = v.clientHeight
+                        if (items[index].height !== h) {
+                            items[index].height = h
+                            vo.changeHeight = true
+                        }
                     }
                 }
             })
@@ -398,7 +448,8 @@ export default {
                 //update y, useY, useHeight
                 let y = 0
                 let useY = 0
-                each(items, (v) => {
+                for (let k = 0; k < n; k++) {
+                    let v = items[k]
 
                     //y
                     if (v.y !== y) {
@@ -424,7 +475,7 @@ export default {
                     }
                     useY += v.useHeight
 
-                })
+                }
 
                 //update itemsHeight
                 if (vo.itemsHeight !== y) {
@@ -440,7 +491,6 @@ export default {
 
             }
 
-            //console.timeEnd('updateItems')
             return changed
         },
 
@@ -449,7 +499,7 @@ export default {
 
             let vo = this
 
-            let lineNumber = 0
+            let index = -1
             let items = []
 
             function cValue(v) {
@@ -488,11 +538,9 @@ export default {
             }
 
             function addItem({ level, key, keyNumbers, value, valueColor, valueComma, valueTail, hasChildren }) {
-                lineNumber += 1
-                let index = lineNumber - 1
-                items.push({
+                index += 1
+                let item = {
                     index, //節點指標
-                    lineNumber, //int, 列編號
                     level, //int, 節點層數(縮排)
                     paddingLeft: level * 24 + 16, //num, 給予16px放置顯隱icon
                     key, //str, 鍵
@@ -509,7 +557,9 @@ export default {
                     y: index * vo.itemMinHeight, //num, 節點y向位置, 預設先由最小列高計算
                     useY: index * vo.itemMinHeight, //num, 真實y向位置, 預設先由最小列高計算
                     screenY: 0, //num, 節點換算比率後的顯示y向位置
-                })
+                    nowShow: false, //bol, 預先載入時是否隸屬於顯示區域內, 不顯示者
+                }
+                items.push(item)
             }
 
             function pArray({ level, key, value, last }) {
@@ -535,16 +585,22 @@ export default {
                     hasChildren: true,
                 })
 
-                let i = 0
-                each(value, (v, k) => {
-                    i += 1
+                // each(value, (v, k) => {
+                //     pSelf({
+                //         level: level + 1,
+                //         key: k,
+                //         value: v,
+                //         last: (k + 1) === n,
+                //     })
+                // })
+                for (let k = 0; k < n; k++) {
                     pSelf({
                         level: level + 1,
                         key: k,
-                        value: v,
-                        last: i === n,
+                        value: value[k],
+                        last: (k + 1) === n,
                     })
-                })
+                }
 
                 let cend = `],`
                 if (last) {
@@ -585,16 +641,24 @@ export default {
                     hasChildren: true,
                 })
 
-                let i = 0
-                each(value, (v, k) => {
-                    i += 1
+                // each(value, (v, k) => {
+                //     pSelf({
+                //         level: level + 1,
+                //         key: k,
+                //         value: v,
+                //         last: (k + 1) === n,
+                //     })
+                // })
+                let kks = Object.keys(value)
+                for (let i = 0; i < kks.length; i++) {
+                    let k = kks[i]
                     pSelf({
                         level: level + 1,
                         key: k,
-                        value: v,
-                        last: i === n,
+                        value: value[k],
+                        last: (k + 1) === n,
                     })
-                })
+                }
 
                 let cend = `},`
                 if (last) {
@@ -672,13 +736,17 @@ export default {
 
             let vo = this
 
-            //toggle
-            vo.items[item.index].displayChildren = !vo.items[item.index].displayChildren
+            //items
+            //let items = vo.items
+            let items = gm.get(vo.mmkey)
+
+            //toggle, 先變更displayChildren使頁面icon動畫先更新
+            items[item.index].displayChildren = !items[item.index].displayChildren
 
             //setTimeout
             setTimeout(() => {
 
-                //changeDisplayChildren
+                //changeDisplayChildren, changeDisplayChildrenIndex
                 vo.changeDisplayChildren = true
                 vo.changeDisplayChildrenIndex = item.index
 

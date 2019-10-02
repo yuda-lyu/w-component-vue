@@ -1,6 +1,17 @@
+import size from 'lodash/size'
+import filter from 'lodash/filter'
+import maxBy from 'lodash/maxBy'
 
 
-function core(n, fGetValue) {
+/**
+ * 二元搜索法(Binary Search)，通過fGetValue(index)取值，求最靠近0但小於0的值，並回傳值與所在的index與所查得的數據items[index]
+ *
+ * @param {Array} items 輸入欲搜尋陣列
+ * @param {Function} fGetValue 輸入取值函數，傳入index
+ * @returns {Object} index 回傳物件，最靠近0但小於0的值、所在的index與所查得的數據items[index]
+ */
+function binarySearch(items, fGetValue) {
+    let n = size(items)
     let iStart = 0
     let vStart = fGetValue(iStart)
     let iEnd = n - 1
@@ -24,16 +35,6 @@ function core(n, fGetValue) {
             run = false
             break
         }
-        else if (iMiddle === iStart) {
-            index = iStart
-            run = false
-            break
-        }
-        else if (iMiddle === iEnd) {
-            index = iEnd
-            run = false
-            break
-        }
         else if (vStart === 0) {
             index = iStart
             run = false
@@ -46,6 +47,27 @@ function core(n, fGetValue) {
         }
         else if (vEnd === 0) {
             index = iEnd
+            run = false
+            break
+        }
+        else if (iMiddle === iStart || iMiddle === iEnd) {
+            let rs = [{
+                i: iStart,
+                v: vStart,
+            },
+            {
+                i: iMiddle,
+                v: vMiddle,
+            },
+            {
+                i: iEnd,
+                v: vEnd,
+            }]
+            rs = filter(rs, (v) => {
+                return v.v <= 0
+            })
+            let r = maxBy(rs, 'v')
+            index = r.i
             run = false
             break
         }
@@ -63,35 +85,6 @@ function core(n, fGetValue) {
     }
 
     return index
-}
-
-
-/**
- * 二元搜索法(Binary Search)，通過fGetValue(index)取值，求最靠近0但小於0的值，並回傳值與所在的index與所查得的數據items[index]
- *
- * @param {Array} items 輸入欲搜尋陣列
- * @param {Function} fGetValue 輸入取值函數，傳入index
- * @returns {Object} index 回傳物件，最靠近0但小於0的值、所在的index與所查得的數據items[index]
- */
-function binarySearch(items, fGetValue) {
-
-    //core
-    let index = core(items.length, fGetValue)
-    let value = null
-    let result = null
-    if (index) {
-        value = fGetValue(index)
-        result = items[index]
-    }
-    else {
-        result = items[index]
-    }
-
-    return {
-        index,
-        value,
-        result,
-    }
 }
 
 

@@ -72,7 +72,7 @@
             <div class="bk" style="display:block;">
                 <demolink
                     :kbname="'w-dynamic-scroll'"
-                    :casename="'large data (100000 lines)'"
+                    :casename="'large data (100,000 lines)'"
                     :kind="'nokind'"
                     :shell="'pure'"
                 ></demolink>
@@ -152,7 +152,7 @@ export default {
                 ],
                 'data2': (function(a) {
                     a /= 5; let b = ['Nam ac nibh imperdiet, gravida metus eget, sodales eros.', 'Duis accumsan urna eu risus congue efficitur.', 'Etiam eget dolor sit amet ipsum porttitor lacinia vel at diam.', 'Sed pulvinar leo ac elit ultricies scelerisque.', 'Integer porttitor urna ultricies justo iaculis vulputate ac non neque. Etiam iaculis est quis urna consequat ornare. Suspendisse a augue sit amet urna tincidunt rhoncus sed non tellus. Mauris ultricies lectus sit amet tellus egestas, in interdum elit rhoncus. Nullam viverra lectus mattis felis semper, in vulputate lorem tincidunt. Suspendisse dapibus arcu id nunc blandit, ut egestas nisi pulvinar.']; let c = []; for (let d = 0; d < a; d++) for (let a = 0; a < b.length; a++)c.push(b[a]); return c
-                })(100001), //1000001 100001 1000
+                })(100001), //20000001 100001 1000
             },
             'actions': [
             ],
