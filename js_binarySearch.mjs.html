@@ -27,7 +27,7 @@
 
 <nav >
     
-    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-WBadge.html">WBadge</a></li><li><a href="module-WButtonChip.html">WButtonChip</a></li><li><a href="module-WButtonCircle.html">WButtonCircle</a></li><li><a href="module-WButtonGroupChip.html">WButtonGroupChip</a></li><li><a href="module-WCheckChips.html">WCheckChips</a></li><li><a href="module-WChips.html">WChips</a></li><li><a href="module-WConfirm.html">WConfirm</a></li><li><a href="module-WDialog.html">WDialog</a></li><li><a href="module-WDynamicScroll.html">WDynamicScroll</a></li><li><a href="module-WIcon.html">WIcon</a></li><li><a href="module-WJsonView.html">WJsonView</a></li><li><a href="module-WPanel.html">WPanel</a></li><li><a href="module-WProgressCircle.html">WProgressCircle</a></li><li><a href="module-WRadioChips.html">WRadioChips</a></li><li><a href="module-WShellEllipse.html">WShellEllipse</a></li><li><a href="module-WShellMaterial.html">WShellMaterial</a></li><li><a href="module-WSwitch.html">WSwitch</a></li><li><a href="module-WText.html">WText</a></li><li><a href="module-WTextarea.html">WTextarea</a></li><li><a href="module-WTextCore.html">WTextCore</a></li><li><a href="module-WTextInt.html">WTextInt</a></li><li><a href="module-WTextIntCore.html">WTextIntCore</a></li><li><a href="module-WTextSelects.html">WTextSelects</a></li><li><a href="module-WTextSelectsCore.html">WTextSelectsCore</a></li><li><a href="module-WTextSuggest.html">WTextSuggest</a></li><li><a href="module-WTextSuggestCore.html">WTextSuggestCore</a></li><li><a href="module-WTimeday.html">WTimeday</a></li><li><a href="module-WTimedayCore.html">WTimedayCore</a></li><li><a href="module-WTimedayRange.html">WTimedayRange</a></li><li><a href="module-WTimedayRangeCore.html">WTimedayRangeCore</a></li><li><a href="module-WTimeminute.html">WTimeminute</a></li><li><a href="module-WTimeminuteCore.html">WTimeminuteCore</a></li><li><a href="module-WTimeminuteRange.html">WTimeminuteRange</a></li><li><a href="module-WTimeminuteRangeCore.html">WTimeminuteRangeCore</a></li></ul><h3>Global</h3><ul><li><a href="global.html#binarySearch">binarySearch</a></li><li><a href="global.html#binarySearchIM">binarySearchIM</a></li><li><a href="global.html#color2hex">color2hex</a></li><li><a href="global.html#WAlert">WAlert</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-WBadge.html">WBadge</a></li><li><a href="module-WButtonChip.html">WButtonChip</a></li><li><a href="module-WButtonCircle.html">WButtonCircle</a></li><li><a href="module-WButtonGroupChip.html">WButtonGroupChip</a></li><li><a href="module-WCheckChips.html">WCheckChips</a></li><li><a href="module-WChips.html">WChips</a></li><li><a href="module-WConfirm.html">WConfirm</a></li><li><a href="module-WDialog.html">WDialog</a></li><li><a href="module-WDynamicScroll.html">WDynamicScroll</a></li><li><a href="module-WIcon.html">WIcon</a></li><li><a href="module-WJsonView.html">WJsonView</a></li><li><a href="module-WPanel.html">WPanel</a></li><li><a href="module-WProgressCircle.html">WProgressCircle</a></li><li><a href="module-WRadioChips.html">WRadioChips</a></li><li><a href="module-WShellEllipse.html">WShellEllipse</a></li><li><a href="module-WShellMaterial.html">WShellMaterial</a></li><li><a href="module-WSwitch.html">WSwitch</a></li><li><a href="module-WText.html">WText</a></li><li><a href="module-WTextarea.html">WTextarea</a></li><li><a href="module-WTextCore.html">WTextCore</a></li><li><a href="module-WTextInt.html">WTextInt</a></li><li><a href="module-WTextIntCore.html">WTextIntCore</a></li><li><a href="module-WTextSelects.html">WTextSelects</a></li><li><a href="module-WTextSelectsCore.html">WTextSelectsCore</a></li><li><a href="module-WTextSuggest.html">WTextSuggest</a></li><li><a href="module-WTextSuggestCore.html">WTextSuggestCore</a></li><li><a href="module-WTimeday.html">WTimeday</a></li><li><a href="module-WTimedayCore.html">WTimedayCore</a></li><li><a href="module-WTimedayRange.html">WTimedayRange</a></li><li><a href="module-WTimedayRangeCore.html">WTimedayRangeCore</a></li><li><a href="module-WTimeminute.html">WTimeminute</a></li><li><a href="module-WTimeminuteCore.html">WTimeminuteCore</a></li><li><a href="module-WTimeminuteRange.html">WTimeminuteRange</a></li><li><a href="module-WTimeminuteRangeCore.html">WTimeminuteRangeCore</a></li></ul><h3>Global</h3><ul><li><a href="global.html#binarySearch">binarySearch</a></li><li><a href="global.html#color2hex">color2hex</a></li><li><a href="global.html#WAlert">WAlert</a></li></ul>
 </nav>
 
 <div id="main">
@@ -42,9 +42,20 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>
+            <pre class="prettyprint source linenums"><code>import size from 'lodash/size'
+import filter from 'lodash/filter'
+import maxBy from 'lodash/maxBy'
 
-function core(n, fGetValue) {
+
+/**
+ * 二元搜索法(Binary Search)，通過fGetValue(index)取值，求最靠近0但小於0的值，並回傳值與所在的index與所查得的數據items[index]
+ *
+ * @param {Array} items 輸入欲搜尋陣列
+ * @param {Function} fGetValue 輸入取值函數，傳入index
+ * @returns {Object} index 回傳物件，最靠近0但小於0的值、所在的index與所查得的數據items[index]
+ */
+function binarySearch(items, fGetValue) {
+    let n = size(items)
     let iStart = 0
     let vStart = fGetValue(iStart)
     let iEnd = n - 1
@@ -68,16 +79,6 @@ function core(n, fGetValue) {
             run = false
             break
         }
-        else if (iMiddle === iStart) {
-            index = iStart
-            run = false
-            break
-        }
-        else if (iMiddle === iEnd) {
-            index = iEnd
-            run = false
-            break
-        }
         else if (vStart === 0) {
             index = iStart
             run = false
@@ -90,6 +91,27 @@ function core(n, fGetValue) {
         }
         else if (vEnd === 0) {
             index = iEnd
+            run = false
+            break
+        }
+        else if (iMiddle === iStart || iMiddle === iEnd) {
+            let rs = [{
+                i: iStart,
+                v: vStart,
+            },
+            {
+                i: iMiddle,
+                v: vMiddle,
+            },
+            {
+                i: iEnd,
+                v: vEnd,
+            }]
+            rs = filter(rs, (v) => {
+                return v.v &lt;= 0
+            })
+            let r = maxBy(rs, 'v')
+            index = r.i
             run = false
             break
         }
@@ -110,35 +132,6 @@ function core(n, fGetValue) {
 }
 
 
-/**
- * 二元搜索法(Binary Search)，通過fGetValue(index)取值，求最靠近0但小於0的值，並回傳值與所在的index與所查得的數據items[index]
- *
- * @param {Array} items 輸入欲搜尋陣列
- * @param {Function} fGetValue 輸入取值函數，傳入index
- * @returns {Object} index 回傳物件，最靠近0但小於0的值、所在的index與所查得的數據items[index]
- */
-function binarySearch(items, fGetValue) {
-
-    //core
-    let index = core(items.length, fGetValue)
-    let value = null
-    let result = null
-    if (index) {
-        value = fGetValue(index)
-        result = items[index]
-    }
-    else {
-        result = items[index]
-    }
-
-    return {
-        index,
-        value,
-        result,
-    }
-}
-
-
 export default binarySearch
 </code></pre>
         </article>
@@ -154,7 +147,7 @@ export default binarySearch
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on Tue Oct 01 2019 23:07:17 GMT+0800 (GMT+08:00) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on Wed Oct 02 2019 23:33:55 GMT+0800 (GMT+08:00) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>
