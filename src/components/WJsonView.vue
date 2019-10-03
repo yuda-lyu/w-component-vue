@@ -11,7 +11,7 @@
                 <div
                     ref="itemDiv"
                     :nowShow="item.nowShow"
-                    :style="[{'position':'absolute','top':`${item.screenY}px`,'opacity':item.nowShow?1:0.01}]"
+                    :style="[{'position':'absolute','top':`${item.screenY}px`,'width':'100%','opacity':item.nowShow?1:0.01}]"
                     :index="item.index"
                     :key="kitem"
                 >
@@ -176,6 +176,7 @@ export default {
     },
     data: function() {
         return {
+            //itemDiv的style記得給width:100%，因ie11的flex內文字會自動撐開版面導致不會換行
             mmkey: null,
             changeDisplayChildren: true, //變更displayChildren
             changeDisplayChildrenIndex: null, //變更displayChildren的item指標
