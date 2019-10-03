@@ -159,8 +159,8 @@ import WJsonView from './components/WJsonView.vue'
 //         r.push(obj)
 //     }
 //     return r
-// })(1000001)
-// console.log(JSON.stringify(data)) //使用1000001時約51.5mb
+// })(100)
+// console.log(JSON.stringify(data))
 
 export default {
     components: {

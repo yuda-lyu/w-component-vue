@@ -269,8 +269,12 @@ export default {
             let vo = this
 
             //core
+            let i = 0
             function core() {
                 let pm = genPm()
+
+                //count
+                i += 1
 
                 //genUseItems
                 vo.genUseItems()
@@ -280,6 +284,11 @@ export default {
                     let b = vo.updateItems()
                     pm.resolve(b)
                 }, 50)
+
+                //break, 重複更新5次視為上限, 避免因數據量大導致事件驅動較慢, 導致持續拉取未顯示區節點, 並導致持續更新高度而無法跳出無限迴圈
+                if (i >= 5) {
+                    pm.resolve(false)
+                }
 
                 return pm
             }

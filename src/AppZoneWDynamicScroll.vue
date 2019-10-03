@@ -24,7 +24,7 @@
 
                         <div style="display:table; padding:3px 10px;">
 
-                            <div style="display:table-cell; color:#f26;">{{props.irow}}</div>
+                            <div style="display:table-cell; color:#f26;">{{props.irow+1}}</div>
 
                             <div style="display:table-cell; padding-right:10px;">:</div>
 
@@ -55,7 +55,7 @@
 
                         <div style="display:table; padding:3px 10px;">
 
-                            <div style="display:table-cell; color:#f26;">{{props.irow}}</div>
+                            <div style="display:table-cell; color:#f26;">{{props.irow+1}}</div>
 
                             <div style="display:table-cell; padding-right:10px;">:</div>
 
@@ -69,27 +69,75 @@
             </div>
 
 
+            <div class="bk">
+                <demolink
+                    :kbname="'w-dynamic-scroll'"
+                    :casename="'slot item with image'"
+                    :kind="'nokind'"
+                    :shell="'pure'"
+                ></demolink>
+
+                <w-dynamic-scroll
+                    style="border:1px solid #ddd; width:400px;"
+                    :rows="WDynamicScroll.data2"
+                >
+                    <template v-slot:block="props">
+
+                        <div style="display:flex; align-items:flex-start; padding:15px;">
+
+                            <div style="width:48px; margin:5px 20px 0px 0px;">
+                                <img style="border-radius:50%; width:48px; height:48px;" :src="props.row.avatar" alt="avatar">
+                            </div>
+
+                            <div>
+
+                                <div style="display:flex; align-items:center; margin-bottom:5px;">
+                                    <div style="padding:1px 9px; color:#fff; background-color:#f26; border-radius:10px; font-size:0.6rem;">{{props.irow+1}}</div>
+                                    <div style="font-size:1.1rem; margin-left:7px;">{{props.row.name}}</div>
+                                </div>
+
+                                <div style="font-size:0.8rem; color:#999;">{{props.row.msg}}</div>
+
+                            </div>
+
+                        </div>
+
+                    </template>
+                </w-dynamic-scroll>
+
+            </div>
+
+
             <div class="bk" style="display:block;">
                 <demolink
                     :kbname="'w-dynamic-scroll'"
-                    :casename="'large data (100,000 lines)'"
+                    :casename="'large data (1,000,000 lines)'"
                     :kind="'nokind'"
                     :shell="'pure'"
                 ></demolink>
 
                 <w-dynamic-scroll
                     style="border:1px solid #ddd;"
-                    :rows="WDynamicScroll.data2"
+                    :rows="WDynamicScroll.data3"
                 >
                     <template v-slot:block="props">
 
-                        <div style="display:table; padding:3px 10px;">
+                        <div style="display:flex; align-items:flex-start; padding:15px;">
 
-                            <div style="display:table-cell; color:#f26;">{{props.irow}}</div>
+                            <div style="width:48px; margin:5px 20px 0px 0px;">
+                                <img style="border-radius:50%; width:48px; height:48px;" :src="props.row.avatar" alt="avatar">
+                            </div>
 
-                            <div style="display:table-cell; padding-right:10px;">:</div>
+                            <div>
 
-                            <div style="display:table-cell; color:#999;">{{props.row}}</div>
+                                <div style="display:flex; align-items:center; margin-bottom:5px;">
+                                    <div style="padding:1px 9px; color:#fff; background-color:#f26; border-radius:10px; font-size:0.6rem;">{{props.irow+1}}</div>
+                                    <div style="font-size:1.1rem; margin-left:7px;">{{props.row.name}}</div>
+                                </div>
+
+                                <div style="font-size:0.8rem; color:#999;">{{props.row.msg}}</div>
+
+                            </div>
 
                         </div>
 
@@ -112,11 +160,31 @@ import WDynamicScroll from './components/WDynamicScroll.vue'
 // let data = (function(n) {
 //     n /= 5
 //     let tt = [
-//         'Nam ac nibh imperdiet, gravida metus eget, sodales eros.',
-//         'Duis accumsan urna eu risus congue efficitur.',
-//         'Etiam eget dolor sit amet ipsum porttitor lacinia vel at diam.',
-//         'Sed pulvinar leo ac elit ultricies scelerisque.',
-//         'Integer porttitor urna ultricies justo iaculis vulputate ac non neque. Etiam iaculis est quis urna consequat ornare. Suspendisse a augue sit amet urna tincidunt rhoncus sed non tellus. Mauris ultricies lectus sit amet tellus egestas, in interdum elit rhoncus. Nullam viverra lectus mattis felis semper, in vulputate lorem tincidunt. Suspendisse dapibus arcu id nunc blandit, ut egestas nisi pulvinar.',
+//         {
+//             name: 'Jason Oner',
+//             msg: 'Boost campaign performance by targeting specific user groups.',
+//             avatar: 'https://cdn.vuetifyjs.com/images/lists/1.jpg'
+//         },
+//         {
+//             name: 'Travis Howard',
+//             msg: 'Determine the exact users you\'d like to target with a message or an experiment, based on behavioral data, like watching a video, or abandoning a cart, and demographic data, like age or location.',
+//             avatar: 'https://cdn.vuetifyjs.com/images/lists/2.jpg'
+//         },
+//         {
+//             name: 'Ali Connors',
+//             msg: 'Integer porttitor urna ultricies justo iaculis vulputate ac non neque. Etiam iaculis est quis urna consequat ornare. Suspendisse a augue sit amet urna tincidunt rhoncus sed non tellus. Mauris ultricies lectus sit amet tellus egestas, in interdum elit rhoncus. Nullam viverra lectus mattis felis semper, in vulputate lorem tincidunt. Suspendisse dapibus arcu id nunc blandit, ut egestas nisi pulvinar.',
+//             avatar: 'https://cdn.vuetifyjs.com/images/lists/3.jpg'
+//         },
+//         {
+//             name: 'Cindy Baker',
+//             msg: 'Easily build highly personalized messages, and test multiple versions to see what works—all in Mixpanel, no code required.',
+//             avatar: 'https://cdn.vuetifyjs.com/images/lists/4.jpg'
+//         },
+//         {
+//             name: 'Deborah Lee',
+//             msg: 'Set detailed behavioral triggers, sequences, and rate limits for messages, to ensure that each campaign is relevant, timely, and delivered at the right pace.',
+//             avatar: 'https://cdn.vuetifyjs.com/images/lists/5.jpg'
+//         },
 //     ]
 //     let r = []
 //     for (let i = 0; i < n; i++) {
@@ -125,8 +193,8 @@ import WDynamicScroll from './components/WDynamicScroll.vue'
 //         }
 //     }
 //     return r
-// })(1000001)
-// console.log(JSON.stringify(data)) //使用1000001時約238mb
+// })(100)
+// console.log(JSON.stringify(data))
 
 export default {
     components: {
@@ -151,8 +219,11 @@ export default {
                     'Vivien Ngo, Data Journalism Fellow.',
                 ],
                 'data2': (function(a) {
-                    a /= 5; let b = ['Nam ac nibh imperdiet, gravida metus eget, sodales eros.', 'Duis accumsan urna eu risus congue efficitur.', 'Etiam eget dolor sit amet ipsum porttitor lacinia vel at diam.', 'Sed pulvinar leo ac elit ultricies scelerisque.', 'Integer porttitor urna ultricies justo iaculis vulputate ac non neque. Etiam iaculis est quis urna consequat ornare. Suspendisse a augue sit amet urna tincidunt rhoncus sed non tellus. Mauris ultricies lectus sit amet tellus egestas, in interdum elit rhoncus. Nullam viverra lectus mattis felis semper, in vulputate lorem tincidunt. Suspendisse dapibus arcu id nunc blandit, ut egestas nisi pulvinar.']; let c = []; for (let d = 0; d < a; d++) for (let a = 0; a < b.length; a++)c.push(b[a]); return c
-                })(100001), //20000001 100001 1000
+                    a /= 5; let b = [{ name: 'Jason Oner', msg: 'Boost campaign performance by targeting specific user groups.', avatar: 'https://cdn.vuetifyjs.com/images/lists/1.jpg' }, { name: 'Travis Howard', msg: 'Determine the exact users you\'d like to target with a message or an experiment, based on behavioral data, like watching a video, or abandoning a cart, and demographic data, like age or location.', avatar: 'https://cdn.vuetifyjs.com/images/lists/2.jpg' }, { name: 'Ali Connors', msg: 'Integer porttitor urna ultricies justo iaculis vulputate ac non neque. Etiam iaculis est quis urna consequat ornare. Suspendisse a augue sit amet urna tincidunt rhoncus sed non tellus. Mauris ultricies lectus sit amet tellus egestas, in interdum elit rhoncus. Nullam viverra lectus mattis felis semper, in vulputate lorem tincidunt. Suspendisse dapibus arcu id nunc blandit, ut egestas nisi pulvinar. Examine trends in the movement of guns across different states. Code of Federal Regulations - Alcohol, Tobacco Products and Firearms 1980-2014 November General Election Turnout and Registration. Reported Voting and Registration, by Sex and Single Years of Age: November 2016. Map felon disenfranchisement patterns by state.', avatar: 'https://cdn.vuetifyjs.com/images/lists/3.jpg' }, { name: 'Cindy Baker', msg: 'Easily build highly personalized messages, and test multiple versions to see what works\u2014all in Mixpanel, no code required.', avatar: 'https://cdn.vuetifyjs.com/images/lists/4.jpg' }, { name: 'Deborah Lee', msg: 'Set detailed behavioral triggers, sequences, and rate limits for messages, to ensure that each campaign is relevant, timely, and delivered at the right pace.', avatar: 'https://cdn.vuetifyjs.com/images/lists/5.jpg' }]; let c = []; for (let d = 0; d < a; d++) for (let a = 0; a < b.length; a++)c.push(b[a]); return c
+                })(100),
+                'data3': (function(a) {
+                    a /= 5; let b = [{ name: 'Jason Oner', msg: 'Boost campaign performance by targeting specific user groups.', avatar: 'https://cdn.vuetifyjs.com/images/lists/1.jpg' }, { name: 'Travis Howard', msg: 'Determine the exact users you\'d like to target with a message or an experiment, based on behavioral data, like watching a video, or abandoning a cart, and demographic data, like age or location.', avatar: 'https://cdn.vuetifyjs.com/images/lists/2.jpg' }, { name: 'Ali Connors', msg: 'Integer porttitor urna ultricies justo iaculis vulputate ac non neque. Etiam iaculis est quis urna consequat ornare. Suspendisse a augue sit amet urna tincidunt rhoncus sed non tellus. Mauris ultricies lectus sit amet tellus egestas, in interdum elit rhoncus. Nullam viverra lectus mattis felis semper, in vulputate lorem tincidunt. Suspendisse dapibus arcu id nunc blandit, ut egestas nisi pulvinar. Examine trends in the movement of guns across different states. Code of Federal Regulations - Alcohol, Tobacco Products and Firearms 1980-2014 November General Election Turnout and Registration. Reported Voting and Registration, by Sex and Single Years of Age: November 2016. Map felon disenfranchisement patterns by state.', avatar: 'https://cdn.vuetifyjs.com/images/lists/3.jpg' }, { name: 'Cindy Baker', msg: 'Easily build highly personalized messages, and test multiple versions to see what works\u2014all in Mixpanel, no code required.', avatar: 'https://cdn.vuetifyjs.com/images/lists/4.jpg' }, { name: 'Deborah Lee', msg: 'Set detailed behavioral triggers, sequences, and rate limits for messages, to ensure that each campaign is relevant, timely, and delivered at the right pace.', avatar: 'https://cdn.vuetifyjs.com/images/lists/5.jpg' }]; let c = []; for (let d = 0; d < a; d++) for (let a = 0; a < b.length; a++)c.push(b[a]); return c
+                })(1000000), //20000000 1000000 100000 1000
             },
             'actions': [
             ],
