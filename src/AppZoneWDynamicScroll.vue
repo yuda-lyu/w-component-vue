@@ -111,7 +111,7 @@
             <div class="bk" style="display:block;">
                 <demolink
                     :kbname="'w-dynamic-scroll'"
-                    :casename="'large data (1,000,000 lines)'"
+                    :casename="'large data (1,000,000 items)'"
                     :kind="'nokind'"
                     :shell="'pure'"
                 ></demolink>

@@ -21,6 +21,7 @@
         >
 
             <w-text-selects-core
+                style="transform:translateY(1px)"
                 :items="items"
                 :value="value"
                 :editable="editable"

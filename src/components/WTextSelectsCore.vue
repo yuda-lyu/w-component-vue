@@ -1,7 +1,7 @@
 <template>
     <div class="CSSTextSelectsCore" :changeParam="changeParam">
 
-        <div style="margin:-10px -18px -10px -12px;">
+        <div style="margin:-6px -18px -6px -12px;">
 
             <v-autocomplete
                 style="margin:0px; padding:0px;"
