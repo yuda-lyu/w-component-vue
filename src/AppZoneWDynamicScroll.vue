@@ -89,7 +89,7 @@
                                 <img style="border-radius:50%; width:48px; height:48px;" :src="props.row.avatar" alt="avatar">
                             </div>
 
-                            <div>
+                            <div style="width:100%;">
 
                                 <div style="display:flex; align-items:center; margin-bottom:5px;">
                                     <div style="padding:1px 9px; color:#fff; background-color:#f26; border-radius:10px; font-size:0.6rem;">{{props.irow+1}}</div>
@@ -128,7 +128,7 @@
                                 <img style="border-radius:50%; width:48px; height:48px;" :src="props.row.avatar" alt="avatar">
                             </div>
 
-                            <div>
+                            <div style="width:100%;">
 
                                 <div style="display:flex; align-items:center; margin-bottom:5px;">
                                     <div style="padding:1px 9px; color:#fff; background-color:#f26; border-radius:10px; font-size:0.6rem;">{{props.irow+1}}</div>
