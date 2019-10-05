@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>WTextSuggestCore - Documentation</title>
+    <title>WJsonViewCore - Documentation</title>
     
     
     <script src="scripts/prettify/prettify.js"></script>
@@ -32,7 +32,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">WTextSuggestCore</h1>
+    <h1 class="page-title">WJsonViewCore</h1>
     
 
     
@@ -70,23 +70,35 @@
     </tr>
     </thead>
     <tbody><tr>
-        <td><code>items</code></td>
-        <td>Array</td>
-        <td><code>[]</code></td>
-        <td>No</td>
-        <td>輸入可選(建議)項目陣列，預設[]</td>
+        <td><code>item</code></td>
+        <td>Object</td>
+        <td>-</td>
+        <td><b>Yes</b></td>
+        <td>輸入物件</td>
     </tr><tr>
-        <td><code>value</code></td>
-        <td>Object|String|Number</td>
-        <td><code>null</code></td>
+        <td><code>lineNumberWidth</code></td>
+        <td>Number</td>
+        <td><code>0</code></td>
         <td>No</td>
-        <td>輸入目前選擇項目，可為物件、字串、數字，預設null</td>
+        <td>輸入列號區寬度，單位為px，預設0</td>
     </tr><tr>
-        <td><code>editable</code></td>
-        <td>Boolean</td>
-        <td><code>true</code></td>
+        <td><code>iconColor</code></td>
+        <td>String</td>
+        <td><code>'#999'</code></td>
         <td>No</td>
-        <td>輸入是否為編輯模式，預設true</td>
+        <td>輸入顯隱icon按鈕顏色字串，預設'#999'</td>
+    </tr><tr>
+        <td><code>keyColor</code></td>
+        <td>String</td>
+        <td><code>'#666'</code></td>
+        <td>No</td>
+        <td>輸入鍵值顏色字串，預設'#666'</td>
+    </tr><tr>
+        <td><code>keyNumbersColor</code></td>
+        <td>String</td>
+        <td><code>'#aaa'</code></td>
+        <td>No</td>
+        <td>輸入鍵值內含子節點數量顏色字串，預設'#aaa'</td>
     </tr></tbody>
 </table>
 

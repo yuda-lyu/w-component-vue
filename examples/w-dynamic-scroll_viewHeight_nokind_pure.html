@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="zh-tw">
 <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <title>example for w-dynamic-scroll: listHeight</title>
+    <title>example for w-dynamic-scroll: viewHeight</title>
 
     <!-- fontawesome -->
     <link
@@ -43,7 +43,7 @@
     <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.js"></script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@1.2.10/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@1.2.11/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -78,23 +78,23 @@
     <v-app id="app" style="font-family:inherit;">
         <div class="head1">w-dynamic-scroll</div>
         <div class="bk">
-            <div class="item">listHeight</div>
+            <div class="item">viewHeight</div>
 
             <w-dynamic-scroll
                 style="border:1px solid #ddd; width:400px;"
-                :list-height="250"
+                :view-height="250"
                 :rows="WDynamicScroll.data1"
             >
                 <template v-slot:block="props">
-                    <div style="display:table; padding:3px 10px;">
-                        <div
-                            style="display:table-cell; color:#f26;"
-                        >{{props.irow+1}}</div>
+                    <div
+                        style="display:flex; align-items:flex-start; padding:5px 15px; width:400px;"
+                    >
+                        <div style="color:#f26;">{{props.irow+1}}</div>
 
-                        <div style="display:table-cell; padding-right:10px;">:</div>
+                        <div style="padding-right:10px;">:</div>
 
                         <div
-                            style="display:table-cell; color:#999;"
+                            style="color:#999; word-break: normal;"
                         >{{props.row}}</div>
                     </div>
                 </template>
@@ -201,7 +201,7 @@
           for (let d = 0; d < a; d++)
             for (let a = 0; a < b.length; a++) c.push(b[a]);
           return c;
-        })(1000000) //20000000 1000000 100000 1000
+        })(1000000) //20000000 1000000 1000
       }
     },
     computed: {},

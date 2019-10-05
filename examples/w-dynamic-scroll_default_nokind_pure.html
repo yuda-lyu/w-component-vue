@@ -43,7 +43,7 @@
     <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.js"></script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@1.2.10/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@1.2.11/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -85,16 +85,14 @@
                 :rows="WDynamicScroll.data1"
             >
                 <template v-slot:block="props">
-                    <div style="display:table; padding:3px 10px;">
-                        <div
-                            style="display:table-cell; color:#f26;"
-                        >{{props.irow+1}}</div>
+                    <div
+                        style="display:flex; align-items:flex-start; padding:5px 15px; width:400px;"
+                    >
+                        <div style="color:#f26;">{{props.irow+1}}</div>
 
-                        <div style="display:table-cell; padding-right:10px;">:</div>
+                        <div style="padding-right:10px;">:</div>
 
-                        <div
-                            style="display:table-cell; color:#999;"
-                        >{{props.row}}</div>
+                        <div style="color:#999;">{{props.row}}</div>
                     </div>
                 </template>
             </w-dynamic-scroll>
@@ -200,7 +198,7 @@
           for (let d = 0; d < a; d++)
             for (let a = 0; a < b.length; a++) c.push(b[a]);
           return c;
-        })(1000000) //20000000 1000000 100000 1000
+        })(1000000) //20000000 1000000 1000
       }
     },
     computed: {},

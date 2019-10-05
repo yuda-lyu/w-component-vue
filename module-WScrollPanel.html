@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>WTextSuggestCore - Documentation</title>
+    <title>WScrollPanel - Documentation</title>
     
     
     <script src="scripts/prettify/prettify.js"></script>
@@ -32,7 +32,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">WTextSuggestCore</h1>
+    <h1 class="page-title">WScrollPanel</h1>
     
 
     
@@ -70,23 +70,47 @@
     </tr>
     </thead>
     <tbody><tr>
-        <td><code>items</code></td>
-        <td>Array</td>
-        <td><code>[]</code></td>
+        <td><code>viewHeight</code></td>
+        <td>Number</td>
+        <td><code>400</code></td>
         <td>No</td>
-        <td>輸入可選(建議)項目陣列，預設[]</td>
+        <td>輸入顯示區長度，單位為px，預設400</td>
     </tr><tr>
-        <td><code>value</code></td>
-        <td>Object|String|Number</td>
-        <td><code>null</code></td>
+        <td><code>contentHeight</code></td>
+        <td>Number</td>
+        <td><code>10000</code></td>
         <td>No</td>
-        <td>輸入目前選擇項目，可為物件、字串、數字，預設null</td>
+        <td>輸入內容最大長度，單位為px，預設10000</td>
     </tr><tr>
-        <td><code>editable</code></td>
-        <td>Boolean</td>
-        <td><code>true</code></td>
+        <td><code>scrollDelta</code></td>
+        <td>Number</td>
+        <td><code>100</code></td>
         <td>No</td>
-        <td>輸入是否為編輯模式，預設true</td>
+        <td>輸入一次捲動長度，單位為px，預設100</td>
+    </tr><tr>
+        <td><code>barSizeMin</code></td>
+        <td>Number</td>
+        <td><code>50</code></td>
+        <td>No</td>
+        <td>輸入捲軸內區塊最小長度，單位為px，預設50</td>
+    </tr><tr>
+        <td><code>barColor</code></td>
+        <td>String</td>
+        <td><code>'#bbb'</code></td>
+        <td>No</td>
+        <td>輸入捲軸內區塊顏色字串，預設'#bbb'</td>
+    </tr><tr>
+        <td><code>barBackgroundColor</code></td>
+        <td>String</td>
+        <td><code>'rgba(0,0,0,0)'</code></td>
+        <td>No</td>
+        <td>輸入捲軸背景顏色字串，預設'rgba(0,0,0,0)'</td>
+    </tr><tr>
+        <td><code>ratio</code></td>
+        <td>Number</td>
+        <td><code>0</code></td>
+        <td>No</td>
+        <td>輸入目前捲動比例，預設0</td>
     </tr></tbody>
 </table>
 
