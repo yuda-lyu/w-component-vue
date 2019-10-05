@@ -10,7 +10,7 @@
         <template v-for="(item,kitem) in useItems">
             <div
                 ref="wdsDiv"
-                :style="`position:absolute; top:${item.screenY}px; width:100%; opacity:${(item.nowShow)?1:0.01}; transition:opacity 0.5s;`"
+                :style="`position:absolute; top:${item.screenY}px; width:100%; box-sizing:border-box; opacity:${(item.nowShow)?1:0.01}; transition:opacity 0.5s;`"
                 :index="item.index"
                 :nowShow="item.nowShow"
                 :y="item.y"
@@ -80,6 +80,7 @@ export default {
             changeHeight: true, //是否有變更高度, 初始化給true使第一次顯示能自動重算節點高度
             scrollRatio: 0, //捲動比例
             scrollInfor: null, //目前捲軸資訊
+            scrollToEnd: false, //捲動至底部, 額外refresh
             itemsHeight: 0, //全部節點高度
             useItems: [], //實際需顯示節點陣列
         }
@@ -127,6 +128,15 @@ export default {
     computed: {
     },
     methods: {
+
+        delay: function(ms = 100) {
+            //console.log('methods delay', ms)
+            let pm = genPm()
+            setTimeout(function() {
+                pm.resolve()
+            }, ms)
+            return pm
+        },
 
         changeRows: function(rows) {
             //console.log('methods changeRows', rows)
@@ -193,7 +203,7 @@ export default {
             //core
             let n = 0
             let limit = 3
-            function core() {
+            async function core() {
                 let pm = genPm()
 
                 //n
@@ -216,33 +226,26 @@ export default {
                 //genUseItems
                 vo.genUseItems()
 
-                //setTimeout
-                setTimeout(function() {
-                    let b = vo.updateItems()
-                    pm.resolve(b)
-                }, 1)
+                //delay
+                await vo.delay(1)
+
+                let b = vo.updateItems()
+                pm.resolve(b)
 
                 return pm
             }
 
-            function call() {
-                let pm = genPm()
+            async function call() {
 
-                //setTimeout
-                setTimeout(async function() {
+                //若任何元素高度有變更則再重新計算需顯示的節點, 此時的確有可能會載入新節點, 所以原本給予節點之預設高度不能太高, 偵測時元素就多是變高, 所以需顯示的節點就會變少, 避免造成重新載入新節點狀況
+                let r = await core()
+                while (r) {
+                    r = await core()
+                }
 
-                    //若任何元素高度有變更則再重新計算需顯示的節點, 此時的確有可能會載入新節點, 所以原本給予節點之預設高度不能太高, 偵測時元素就多是變高, 所以需顯示的節點就會變少, 避免造成重新載入新節點狀況
-                    let r = await core()
-                    while (r) {
-                        r = await core()
-                    }
-
-                    pm.resolve()
-                }, 1)
-
-                return pm
             }
 
+            //call
             await call()
 
             //genUseItems
@@ -374,7 +377,7 @@ export default {
             return b
         },
 
-        scrollItems: function(e) {
+        scrollItems: async function(e) {
             //console.log('methods scrollItems', e)
 
             let vo = this
@@ -389,6 +392,26 @@ export default {
 
             //refresh
             vo.refresh('scrollItems')
+
+            //check, 當一直捲動至底更新會不夠多, 需重新更新使最底節點顯示
+            if (!vo.scrollToEnd && e.r === 1) {
+
+                //lock
+                vo.scrollToEnd = true
+
+                //delay
+                await vo.delay(100)
+
+                //triggerEvent
+                vo.$refs.wsp.triggerEvent()
+
+                //delay
+                await vo.delay(100)
+
+                //uplock, 延遲解鎖避免無限自我呼叫
+                vo.scrollToEnd = false
+
+            }
 
         },
 

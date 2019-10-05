@@ -83,17 +83,17 @@
                 >
                     <template v-slot:block="props">
 
-                        <div style="display:flex; align-items:flex-start; padding:15px; width:400px;">
+                        <div style="padding:15px; width:400px;">
 
-                            <div style="width:48px; margin:5px 20px 0px 0px;">
+                            <div style="display:table-cell; vertical-align:top; padding:5px 20px 0px 0px;">
                                 <img style="border-radius:50%; width:48px; height:48px;" :src="props.row.avatar" alt="avatar">
                             </div>
 
-                            <div style="width:100%;">
+                            <div style="display:table-cell; vertical-align:top;">
 
-                                <div style="display:flex; align-items:center; margin-bottom:5px;">
-                                    <div style="padding:1px 9px; color:#fff; background-color:#f26; border-radius:10px; font-size:0.6rem;">{{props.irow+1}}</div>
-                                    <div style="font-size:1.1rem; margin-left:7px;">{{props.row.name}}</div>
+                                <div style="margin-bottom:5px;">
+                                    <div style="display:inline-block; vertical-align:middle; padding:1px 9px; color:#fff; background-color:#f26; border-radius:10px; font-size:0.6rem;">{{props.irow+1}}</div>
+                                    <div style="display:inline-block; vertical-align:middle; font-size:1.1rem; margin-left:7px;">{{props.row.name}}</div>
                                 </div>
 
                                 <div style="font-size:0.8rem; color:#999;">{{props.row.msg}}</div>
@@ -122,17 +122,17 @@
                 >
                     <template v-slot:block="props">
 
-                        <div style="display:flex; align-items:flex-start; padding:15px;">
+                        <div style="padding:15px;">
 
-                            <div style="width:48px; margin:5px 20px 0px 0px;">
+                            <div style="display:table-cell; vertical-align:top; padding:5px 20px 0px 0px;">
                                 <img style="border-radius:50%; width:48px; height:48px;" :src="props.row.avatar" alt="avatar">
                             </div>
 
-                            <div style="width:100%;">
+                            <div style="display:table-cell; vertical-align:top;">
 
-                                <div style="display:flex; align-items:center; margin-bottom:5px;">
-                                    <div style="padding:1px 9px; color:#fff; background-color:#f26; border-radius:10px; font-size:0.6rem;">{{props.irow+1}}</div>
-                                    <div style="font-size:1.1rem; margin-left:7px;">{{props.row.name}}</div>
+                                <div style="margin-bottom:5px;">
+                                    <div style="display:inline-block; vertical-align:middle; padding:1px 9px; color:#fff; background-color:#f26; border-radius:10px; font-size:0.6rem;">{{props.irow+1}}</div>
+                                    <div style="display:inline-block; vertical-align:middle; font-size:1.1rem; margin-left:7px;">{{props.row.name}}</div>
                                 </div>
 
                                 <div style="font-size:0.8rem; color:#999;">{{props.row.msg}}</div>

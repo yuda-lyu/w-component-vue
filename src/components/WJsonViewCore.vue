@@ -10,7 +10,7 @@
 
         <div :style="`display:table-cell; padding-left:${item.paddingLeft}px;`">
 
-            <div style="position:relative;">
+            <div style="position:relative; box-sizing:border-box;">
 
                 <div style="position:absolute; top:0px; left:0px; transform:translateX(-100%);">
                     <span v-if="item.hasChildren" @click="toggleItems(item)">

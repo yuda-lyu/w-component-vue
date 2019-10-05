@@ -22,7 +22,7 @@
 
         <div
             ref="divPanel"
-            :style="`position:absolute; top:0px; width:calc(100% + 17px); overflow-y:auto; overflow-x:hidden; height:${viewHeight}px;`"
+            :style="`position:absolute; top:0px; width:calc(100% + 17px); overflow-y:auto; overflow-x:hidden; height:${viewHeight}px; box-sizing:border-box;`"
         >
 
             <slot></slot>
@@ -34,7 +34,6 @@
 
 <script>
 import genID from 'wsemi/src/genID.mjs'
-import '../js/mousewheel.mjs'
 
 /**
  * @vue-prop {Number} [viewHeight=400] 輸入顯示區長度，單位為px，預設400
@@ -96,17 +95,18 @@ export default {
         //ele
         let ele = vo.$refs.divPanel
 
-        //wheel
-        window.addWheelListener(ele, (e) => {
+        //listen wheel, mousedown, mousemove, mouseup
+        ele.addEventListener('wheel', (e) => {
             let delta = e.deltaY / Math.abs(e.deltaY)
             vo.scrollPanel(vo.mmkey, delta)
-            e.stopPropagation()
+            if (window.event) {
+                e.cancelBubble = true //IE11
+            }
+            else {
+                e.stopPropagation()
+            }
             e.preventDefault()
-            return false
         })
-
-        //listen wheel, mousedown, mousemove, mouseup
-        //window.addEventListener('wheel', vo.mouseWheel)
         window.addEventListener('mousedown', (e) => {
             vo.pressBar(vo.mmkey, e)
         })
@@ -123,8 +123,11 @@ export default {
 
         let vo = this
 
+        //ele
+        let ele = vo.$refs.divPanel
+
         //remove listen wheel, mousedown, mousemove, mouseup
-        //window.removeEventListener('wheel', vo.mouseWheel)
+        ele.removeEventListener('wheel', vo.mouseWheel)
         window.removeEventListener('mousedown', vo.pressBar)
         window.removeEventListener('mousemove', vo.dragBar)
         window.removeEventListener('mouseup', vo.freedBar)
@@ -228,23 +231,6 @@ export default {
 
     },
     methods: {
-
-        // mouseWheel: function(e) {
-        //     //console.log('methods mouseWheel', e)
-
-        //     let vo = this
-
-        //     //delta
-        //     let delta = e.deltaY / Math.abs(e.deltaY)
-
-        //     //scrollPanel
-        //     vo.scrollPanel(delta)
-
-        //     e.stopPropagation()
-        //     e.preventDefault()
-
-        //     return false
-        // },
 
         pressBar: function(mmkey, e) {
             //console.log('methods pressBar', mmkey, e)
