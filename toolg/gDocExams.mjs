@@ -8,7 +8,7 @@ let fdSrc = './test-html/'
 let fdTar = './docs/examples/'
 
 
-async function main() {
+function main() {
     //把example裡面cdn更換, 再複製到docs的example內, 作為日後發佈為靜態網站
 
     //pks

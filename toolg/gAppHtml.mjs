@@ -60,7 +60,7 @@ let h = `
 `
 
 
-async function main() {
+function main() {
     //產生app.html
 
     //mkdirSync

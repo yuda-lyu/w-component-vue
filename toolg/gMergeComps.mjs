@@ -8,7 +8,7 @@ let fdSrc = './src/components/'
 let fn_tar = 'WComponentVue.vue'
 
 
-async function main() {
+function main() {
     //讀取components裡面組件, 自動生成WComponentVue, 供rollup打包整體組件
 
     //getFiles

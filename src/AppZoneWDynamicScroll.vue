@@ -86,7 +86,7 @@
                         <div style="padding:15px; width:400px;">
 
                             <div style="display:table-cell; vertical-align:top; padding:5px 20px 0px 0px;">
-                                <img style="border-radius:50%; width:48px; height:48px;" :src="props.row.avatar" alt="avatar">
+                                <img style="border-radius:50%; width:48px; height:48px;" :src="props.row.avatar" alt="avatar" />
                             </div>
 
                             <div style="display:table-cell; vertical-align:top;">
@@ -125,7 +125,7 @@
                         <div style="padding:15px;">
 
                             <div style="display:table-cell; vertical-align:top; padding:5px 20px 0px 0px;">
-                                <img style="border-radius:50%; width:48px; height:48px;" :src="props.row.avatar" alt="avatar">
+                                <img style="border-radius:50%; width:48px; height:48px;" :src="props.row.avatar" alt="avatar" />
                             </div>
 
                             <div style="display:table-cell; vertical-align:top;">
