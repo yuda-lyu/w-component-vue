@@ -22,13 +22,13 @@
                 >
                     <template v-slot:block="props">
 
-                        <div style="display:table; padding:3px 10px;">
+                        <div style="display:flex; align-items:flex-start; padding:5px 15px; width:400px;">
 
-                            <div style="display:table-cell; color:#f26;">{{props.irow+1}}</div>
+                            <div style="color:#f26;">{{props.irow+1}}</div>
 
-                            <div style="display:table-cell; padding-right:10px;">:</div>
+                            <div style="padding-right:10px;">:</div>
 
-                            <div style="display:table-cell; color:#999;">{{props.row}}</div>
+                            <div style="color:#999;">{{props.row}}</div>
 
                         </div>
 
@@ -41,25 +41,25 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-dynamic-scroll'"
-                    :casename="'listHeight'"
+                    :casename="'viewHeight'"
                     :kind="'nokind'"
                     :shell="'pure'"
                 ></demolink>
 
                 <w-dynamic-scroll
                     style="border:1px solid #ddd; width:400px;"
-                    :listHeight="250"
+                    :viewHeight="250"
                     :rows="WDynamicScroll.data1"
                 >
                     <template v-slot:block="props">
 
-                        <div style="display:table; padding:3px 10px;">
+                        <div style="display:flex; align-items:flex-start; padding:5px 15px; width:400px;">
 
-                            <div style="display:table-cell; color:#f26;">{{props.irow+1}}</div>
+                            <div style="color:#f26;">{{props.irow+1}}</div>
 
-                            <div style="display:table-cell; padding-right:10px;">:</div>
+                            <div style="padding-right:10px;">:</div>
 
-                            <div style="display:table-cell; color:#999;">{{props.row}}</div>
+                            <div style="color:#999; word-break: normal;">{{props.row}}</div>
 
                         </div>
 
@@ -83,7 +83,7 @@
                 >
                     <template v-slot:block="props">
 
-                        <div style="display:flex; align-items:flex-start; padding:15px;">
+                        <div style="display:flex; align-items:flex-start; padding:15px; width:400px;">
 
                             <div style="width:48px; margin:5px 20px 0px 0px;">
                                 <img style="border-radius:50%; width:48px; height:48px;" :src="props.row.avatar" alt="avatar">
@@ -223,7 +223,7 @@ export default {
                 })(100),
                 'data3': (function(a) {
                     a /= 5; let b = [{ name: 'Jason Oner', msg: 'Boost campaign performance by targeting specific user groups.', avatar: 'https://cdn.vuetifyjs.com/images/lists/1.jpg' }, { name: 'Travis Howard', msg: 'Determine the exact users you\'d like to target with a message or an experiment, based on behavioral data, like watching a video, or abandoning a cart, and demographic data, like age or location.', avatar: 'https://cdn.vuetifyjs.com/images/lists/2.jpg' }, { name: 'Ali Connors', msg: 'Integer porttitor urna ultricies justo iaculis vulputate ac non neque. Etiam iaculis est quis urna consequat ornare. Suspendisse a augue sit amet urna tincidunt rhoncus sed non tellus. Mauris ultricies lectus sit amet tellus egestas, in interdum elit rhoncus. Nullam viverra lectus mattis felis semper, in vulputate lorem tincidunt. Suspendisse dapibus arcu id nunc blandit, ut egestas nisi pulvinar. Examine trends in the movement of guns across different states. Code of Federal Regulations - Alcohol, Tobacco Products and Firearms 1980-2014 November General Election Turnout and Registration. Reported Voting and Registration, by Sex and Single Years of Age: November 2016. Map felon disenfranchisement patterns by state.', avatar: 'https://cdn.vuetifyjs.com/images/lists/3.jpg' }, { name: 'Cindy Baker', msg: 'Easily build highly personalized messages, and test multiple versions to see what works\u2014all in Mixpanel, no code required.', avatar: 'https://cdn.vuetifyjs.com/images/lists/4.jpg' }, { name: 'Deborah Lee', msg: 'Set detailed behavioral triggers, sequences, and rate limits for messages, to ensure that each campaign is relevant, timely, and delivered at the right pace.', avatar: 'https://cdn.vuetifyjs.com/images/lists/5.jpg' }]; let c = []; for (let d = 0; d < a; d++) for (let a = 0; a < b.length; a++)c.push(b[a]); return c
-                })(1000000), //20000000 1000000 100000 1000
+                })(1000000), //20000000 1000000 1000
             },
             'actions': [
             ],

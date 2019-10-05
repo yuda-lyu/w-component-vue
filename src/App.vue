@@ -416,8 +416,8 @@ export default {
                 {
                     name: 'scroll',
                     cmps: [
-                        'WJsonView',
                         'WDynamicScroll',
+                        'WJsonView',
                     ]
                 },
             ],
