@@ -12,7 +12,7 @@
             <div :style="`position:relative; width:10px; height:100%; background-color:${barBackgroundColor}; padding:2px;`">
                 <div
                     :style="`width:100%; height:${barSize}px; background-color:${barColor}; border-radius:15px; user-select:none; transform:translateY(${barLoc}px); cursor:pointer; opacity:${barOpacity}; transition:opacity 0.5s;`"
-                    @mousedown="barPressing=true"
+                    @mousedown="pressBar"
                     @dragstart="function(event){event.stopPropagation();event.preventDefault();return false;}"
                     @dragover="function(event){event.stopPropagation();event.preventDefault();return false;}"
                     @drop="function(event){event.stopPropagation();event.preventDefault();return false;}"
@@ -22,7 +22,7 @@
 
         <div
             ref="divPanel"
-            :style="`position:absolute; top:0px; width:calc(100% + 17px); overflow-y:auto; overflow-x:hidden; height:${viewHeight}px; box-sizing:border-box;`"
+            :style="`position:absolute; top:0px; width:calc(100% + 17px); overflow-y:auto; overflow-x:hidden; height:${viewHeight}px;`"
         >
 
             <slot></slot>
@@ -95,7 +95,7 @@ export default {
         //ele
         let ele = vo.$refs.divPanel
 
-        //listen wheel, mousedown, mousemove, mouseup
+        //listen wheel, touchstart, touchmove, touchend
         ele.addEventListener('wheel', (e) => {
             let delta = e.deltaY / Math.abs(e.deltaY)
             vo.scrollPanel(vo.mmkey, delta)
@@ -107,14 +107,31 @@ export default {
             }
             e.preventDefault()
         })
+        ele.addEventListener('touchstart', (e) => {
+            vo.pressBar(-e.touches[0].clientY / 5)
+            e.stopPropagation()
+            e.preventDefault()
+        }, false)
+        ele.addEventListener('touchmove', (e) => {
+            vo.dragBar(vo.mmkey, -e.touches[0].clientY / 5)
+            e.stopPropagation()
+            e.preventDefault()
+        }, false)
+        ele.addEventListener('touchend', (e) => {
+            vo.freedBar(vo.mmkey)
+            e.stopPropagation()
+            e.preventDefault()
+        }, false)
+
+        //listen mousedown, mousemove, mouseup
         window.addEventListener('mousedown', (e) => {
-            vo.pressBar(vo.mmkey, e)
+            vo.pressWin(vo.mmkey, e.clientY)
         })
         window.addEventListener('mousemove', (e) => {
-            vo.dragBar(vo.mmkey, e)
+            vo.dragBar(vo.mmkey, e.clientY)
         })
         window.addEventListener('mouseup', (e) => {
-            vo.freedBar(vo.mmkey, e)
+            vo.freedBar(vo.mmkey)
         })
 
     },
@@ -126,9 +143,14 @@ export default {
         //ele
         let ele = vo.$refs.divPanel
 
-        //remove listen wheel, mousedown, mousemove, mouseup
+        //remove wheel, touchstart, touchmove, touchend
         ele.removeEventListener('wheel', vo.mouseWheel)
-        window.removeEventListener('mousedown', vo.pressBar)
+        ele.removeEventListener('touchstart', vo.pressBar)
+        ele.removeEventListener('touchmove', vo.dragBar)
+        ele.removeEventListener('touchend', vo.freedBar)
+
+        //remove mousedown, mousemove, mouseup
+        window.removeEventListener('mousedown', vo.pressWin)
         window.removeEventListener('mousemove', vo.dragBar)
         window.removeEventListener('mouseup', vo.freedBar)
 
@@ -232,8 +254,8 @@ export default {
     },
     methods: {
 
-        pressBar: function(mmkey, e) {
-            //console.log('methods pressBar', mmkey, e)
+        pressWin: function(mmkey, v) {
+            //console.log('methods pressWin', mmkey, v)
 
             let vo = this
 
@@ -243,12 +265,30 @@ export default {
             }
 
             //barPressY
-            vo.barPressY = e.clientY
+            vo.barPressY = v //e.clientY
 
         },
 
-        dragBar: function(mmkey, e) {
-            //console.log('methods dragBar', mmkey, e)
+        pressBar: function(v) {
+            //console.log('methods pressBar', v)
+
+            let vo = this
+
+            //barPressing
+            vo.barPressing = true
+
+            //save clientY
+            if (v) {
+                console.log('save clientY', v)
+                //barPressY
+                vo.barPressY = v //e.clientY
+
+            }
+
+        },
+
+        dragBar: function(mmkey, v) {
+            //console.log('methods dragBar', mmkey, v)
 
             let vo = this
 
@@ -259,18 +299,20 @@ export default {
 
             //check
             if (vo.barPressing) {
+                console.log('methods dragBar', mmkey, v, vo.barPressY)
 
                 //d
-                let d = e.clientY - vo.barPressY
+                let d = v - vo.barPressY //e.clientY
 
                 //deltaRatio
                 let deltaRatio = d / vo.viewHeightEff
+                console.log(`d=${d}, deltaRatio=${deltaRatio}`)
 
                 //scrollByDeltaRatio
                 vo.scrollByDeltaRatio(deltaRatio)
 
                 //update
-                vo.barPressY = e.clientY
+                vo.barPressY = v //e.clientY
 
             }
 

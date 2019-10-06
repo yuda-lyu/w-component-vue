@@ -10,11 +10,9 @@
         <template v-for="(item,kitem) in useItems">
             <div
                 ref="wdsDiv"
-                :style="`position:absolute; top:${item.screenY}px; width:100%; box-sizing:border-box; opacity:${(item.nowShow)?1:0.01}; transition:opacity 0.5s;`"
+                :style="`position:absolute; top:${item.screenY}px; width:100%; opacity:${(item.nowShow)?1:0.01}; transition:opacity 0.5s;`"
                 :index="item.index"
                 :nowShow="item.nowShow"
-                :y="item.y"
-                :h="item.height"
                 :key="kitem"
             >
                 <slot
