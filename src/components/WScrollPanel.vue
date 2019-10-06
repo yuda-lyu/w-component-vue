@@ -22,7 +22,7 @@
 
         <div
             ref="divPanel"
-            :style="`position:absolute; top:0px; width:calc(100% + 17px); overflow-y:auto; overflow-x:hidden; height:${viewHeight}px;`"
+            :style="`position:absolute; top:0px; width:calc(100% + 18px); overflow-y:auto; overflow-x:hidden; height:${viewHeight}px;`"
         >
 
             <slot></slot>
@@ -279,7 +279,7 @@ export default {
 
             //save clientY
             if (v) {
-                console.log('save clientY', v)
+
                 //barPressY
                 vo.barPressY = v //e.clientY
 
@@ -299,14 +299,12 @@ export default {
 
             //check
             if (vo.barPressing) {
-                console.log('methods dragBar', mmkey, v, vo.barPressY)
 
                 //d
                 let d = v - vo.barPressY //e.clientY
 
                 //deltaRatio
                 let deltaRatio = d / vo.viewHeightEff
-                console.log(`d=${d}, deltaRatio=${deltaRatio}`)
 
                 //scrollByDeltaRatio
                 vo.scrollByDeltaRatio(deltaRatio)

@@ -48,9 +48,9 @@ function WAlert(msg, opt = {}) {
 
 
     //noti, 若是封裝於es6模組內, 因webpack打包故需要取default
-    let noti = Notification //適用webpack於非es6模組內, 以及瀏覽器端
+    let noti = Notification //用於非import es6模組內, 以及瀏覽器端
     if (!isfun(Notification)) {
-        noti = Notification.default //適用於webpack於es6模組內
+        noti = Notification.default //用於import es6模組內
     }
 
 
