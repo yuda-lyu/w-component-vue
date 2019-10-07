@@ -57,6 +57,11 @@ let h = `
             font-family: inherit;
             background-color: #fff;
         }
+        .head1 {
+            margin-bottom: 20px;
+            padding: 0px;
+            font-size: 30pt;
+        }
         .item {
             border-left: 3px solid #ffba75;
             margin: 5px 5px 8px 0px;
@@ -66,15 +71,21 @@ let h = `
             justify-content: flex-start;
             align-items: center;
         }
-        .head1 {
-            margin: 0px;
-            padding: 0px;
-            font-size: 30pt;
-        }
         .bk {
-            display: inline-block;
-            margin: 10px 90px 60px 0px;
             vertical-align: top;
+            margin-top: 20px;
+        }
+        .list {
+            width: 100%;
+        }
+        @media screen and (min-width:1000px){
+            .bk {
+                display: inline-block;
+                margin: 10px 90px 60px 0px;
+            }
+            .list {
+                width: 400px;
+            }
         }
     </style>
 

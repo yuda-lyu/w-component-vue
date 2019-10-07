@@ -278,7 +278,7 @@ export default {
             //n
             let n = size(items)
 
-            //indStart, 該元素區有侵入顯示區
+            //indStart, 該元素區(底部)有侵入顯示區
             let indStartActual = binarySearch(items, (ind) => {
                 let v = items[ind]
                 let dy = vo.scrollInfor.t - (v.y + v.height)
@@ -289,7 +289,7 @@ export default {
             }
             let indStart = Math.max(indStartActual - vo.itemsPreload, 0)
 
-            //indEnd, 該元素區有侵入顯示區
+            //indEnd, 該元素區(頂部)有侵入顯示區
             let indEndActual = binarySearch(items, (ind) => {
                 let v = items[ind]
                 let dy = vo.scrollInfor.b - v.y
