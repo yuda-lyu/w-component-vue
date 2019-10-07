@@ -10,7 +10,7 @@
         <template v-for="(item,kitem) in useItems">
             <div
                 ref="wdsDiv"
-                :style="`position:absolute; top:${item.screenY}px; width:100%; opacity:${(item.nowShow)?1:0.01}; transition:opacity 0.5s;`"
+                :style="`position:absolute; top:${item.screenY}px; width:100%; opacity:${(item.nowShow && item.delayShow)?1:0.01};`"
                 :index="item.index"
                 :nowShow="item.nowShow"
                 :key="kitem"
@@ -30,12 +30,12 @@
 import each from 'lodash/each'
 import map from 'lodash/map'
 import size from 'lodash/size'
-//import delay from 'lodash/delay'
 // import debounce from 'lodash/debounce'
 // import throttle from 'lodash/throttle'
 import cint from 'wsemi/src/cint.mjs'
 import genID from 'wsemi/src/genID.mjs'
 import genPm from 'wsemi/src/genPm.mjs'
+import delay from 'wsemi/src/delay.mjs'
 import isarr from 'wsemi/src/isarr.mjs'
 import binarySearch from '../js/binarySearch.mjs'
 import globalMemory from '../js/globalMemory.mjs'
@@ -128,15 +128,6 @@ export default {
     },
     methods: {
 
-        delay: function(ms = 100) {
-            //console.log('methods delay', ms)
-            let pm = genPm()
-            setTimeout(function() {
-                pm.resolve()
-            }, ms)
-            return pm
-        },
-
         changeRows: function(rows) {
             //console.log('methods changeRows', rows)
 
@@ -174,8 +165,8 @@ export default {
                     index: k,
                     height: vo.itemMinHeight,
                     y: k * vo.itemMinHeight,
-                    screenY: 0, //節點換算比率後的顯示y向位置
-                    nowShow: false, //預先載入時是否隸屬於顯示區域內
+                    // screenY: 0, //節點換算比率後的顯示y向位置
+                    // nowShow: false, //預先載入時是否隸屬於顯示區域內
                     row: v,
                 }
             })
@@ -226,7 +217,7 @@ export default {
                 vo.genUseItems()
 
                 //delay
-                await vo.delay(1)
+                await delay(1)
 
                 let b = vo.updateItems()
                 pm.resolve(b)
@@ -249,6 +240,14 @@ export default {
 
             //genUseItems
             vo.genUseItems()
+
+            //delayShow
+            for (let k = 0; k < size(vo.useItems); k++) {
+                let v = vo.useItems[k]
+                if (!v.delayShow) {
+                    v.delayShow = true
+                }
+            }
 
         },
 
@@ -301,12 +300,24 @@ export default {
             }
             let indEnd = Math.min(indEndActual + vo.itemsPreload, n - 1)
 
+            //delayShow
+            let delayShow = false
+            let m = size(vo.useItems)
+            if (m > 0) {
+                let bIndexStart = vo.useItems[0].index === indStart
+                let bIndexEnd = vo.useItems[m - 1].index === indEndActual
+                delayShow = bIndexStart && bIndexEnd
+            }
+
             //useItems
             let useItems = []
             for (let k = indStart; k <= indEnd; k++) {
-                let v = items[k]
+                let v = {
+                    ...items[k]
+                }
                 v.screenY = v.y - vo.scrollInfor.t //換算成實際顯示y向的px位置
-                v.nowShow = k >= indStartActual && k <= indEndActual //顯示區下方之預載節點都直接顯示供重算高度
+                v.nowShow = k >= indStartActual //顯示區下方之預載節點都直接顯示供重算高度
+                v.delayShow = delayShow //起訖指標相同才直接顯示, 否則就採用延遲顯示
                 useItems.push(v)
             }
 
@@ -399,13 +410,13 @@ export default {
                 vo.scrollToEnd = true
 
                 //delay
-                await vo.delay(100)
+                await delay(100)
 
                 //triggerEvent
                 vo.$refs.wsp.triggerEvent()
 
                 //delay
-                await vo.delay(100)
+                await delay(100)
 
                 //uplock, 延遲解鎖避免無限自我呼叫
                 vo.scrollToEnd = false

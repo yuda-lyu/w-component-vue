@@ -5,7 +5,7 @@
         <div class="head1">w-chips</div>
 
 
-        <div style="padding-left:30px;">
+        <div style="padding:0px;">
 
 
             <template v-if="modeShell==='pure'">

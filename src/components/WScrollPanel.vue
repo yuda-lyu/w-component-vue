@@ -96,6 +96,7 @@ export default {
         let ele = vo.$refs.divPanel
 
         //listen wheel, touchstart, touchmove, touchend
+        let rTouchMove = 5
         ele.addEventListener('wheel', (e) => {
             let delta = e.deltaY / Math.abs(e.deltaY)
             vo.scrollPanel(vo.mmkey, delta)
@@ -108,20 +109,20 @@ export default {
             e.preventDefault()
         })
         ele.addEventListener('touchstart', (e) => {
-            vo.pressBar(-e.touches[0].clientY / 5)
-            e.stopPropagation()
-            e.preventDefault()
-        }, false)
+            vo.pressBar(-e.touches[0].clientY / rTouchMove)
+            // e.stopPropagation()
+            // e.preventDefault()
+        })
         ele.addEventListener('touchmove', (e) => {
-            vo.dragBar(vo.mmkey, -e.touches[0].clientY / 5)
+            vo.dragBar(vo.mmkey, -e.touches[0].clientY / rTouchMove)
             e.stopPropagation()
             e.preventDefault()
-        }, false)
+        })
         ele.addEventListener('touchend', (e) => {
             vo.freedBar(vo.mmkey)
-            e.stopPropagation()
-            e.preventDefault()
-        }, false)
+            // e.stopPropagation()
+            // e.preventDefault()
+        })
 
         //listen mousedown, mousemove, mouseup
         window.addEventListener('mousedown', (e) => {

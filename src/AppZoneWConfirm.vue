@@ -5,7 +5,7 @@
         <div class="head1">w-confirm</div>
 
 
-        <div style="padding-left:30px;">
+        <div style="padding:0px;">
 
 
             <div class="bk">

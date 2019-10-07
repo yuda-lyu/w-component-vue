@@ -5,7 +5,7 @@
         <div class="head1">w-json-view</div>
 
 
-        <div style="padding-left:30px;">
+        <div style="padding:0px;">
 
 
             <div class="bk">
@@ -17,7 +17,8 @@
                 ></demolink>
 
                 <w-json-view
-                    style="border:1px solid #ddd; width:400px;"
+                    class="list"
+                    style="border:1px solid #ddd;"
                     :data="WJsonView.data1"
                 ></w-json-view>
 
@@ -33,8 +34,35 @@
                 ></demolink>
 
                 <w-json-view
-                    style="border:1px solid #ddd; width:400px;"
+                    class="list"
+                    style="border:1px solid #ddd;"
                     :viewHeight="250"
+                    :data="WJsonView.data2"
+                ></w-json-view>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-json-view'"
+                    :casename="'filterKeywords'"
+                    :kind="'nokind'"
+                    :shell="'pure'"
+                ></demolink>
+
+                <div style="margin-bottom:10px;">
+                    <span style="padding-right:10px;">Search :</span>
+                    <input
+                        style="padding:2px 15px; color:#666; border:1px solid #fca; border-radius:30px; outline:none;"
+                        v-model="WJsonView.keywords"
+                    />
+                </div>
+
+                <w-json-view
+                    class="list"
+                    style="border:1px solid #ddd;"
+                    :filterKeywords="WJsonView.keywords"
                     :data="WJsonView.data2"
                 ></w-json-view>
 
@@ -50,7 +78,8 @@
                 ></demolink>
 
                 <w-json-view
-                    style="border:1px solid #ddd; width:400px;"
+                    class="list"
+                    style="border:1px solid #ddd;"
                     :iconColor="'#aaa'"
                     :keyColor="'#f6a'"
                     :keyNumbersColor="'#f26'"
@@ -170,6 +199,7 @@ export default {
     data: function() {
         return {
             'WJsonView': {
+                'keywords': 'pow ci uadn',
                 'data1': { 'squadName': 'Super hero squad', 'fun': function() {}, 'homeTown': 'Metro City', 'formed': 2016, 'secretBase': 'Super tower', 'active': true, 'members': [{ 'name': 'Molecule Man', 'age': 29, 'secretIdentity': 'Dan Jukes', 'powers': ['Radiation resistance', 'Turning tiny', 'Radiation blast'] }, { 'name': 'Madame Uppercut', 'age': 39, 'secretIdentity': 'Jane Wilson', 'powers': ['Million tonne punch', 'Damage resistance', 'Superhuman reflexes'] }, { 'name': 'Eternal Flame', 'age': 1000000, 'secretIdentity': 'Unknown', 'powers': ['Immortality', 'Heat Immunity', 'Inferno', 'Teleportation', 'Interdimensional travel'] }] },
                 'data2': ['squadName', 123, 45.678, 'Super hero squad', function() { }, { 'homeTown': 'Metro City', 'formed': 2016, 'powers': ['Immortality', 'Heat Immunity', 'Inferno', 'Teleportation', 'Interdimensional travel'], 'members': { 'name': 'Molecule Man', 'age': 29, 'secretIdentity': 'Dan Jukes' } }],
                 'data3': (function(a) {
@@ -178,7 +208,6 @@ export default {
             },
             'actions': [
             ],
-            'ratio': 0,
         }
     },
     methods: {

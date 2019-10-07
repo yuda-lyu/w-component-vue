@@ -3,7 +3,7 @@
         :style="`position:absolute; top:${item.screenY}px; width:100%; opacity:${item.nowShow?1:0.01};`"
         :index="item.index"
         :nowShow="item.nowShow"
-        v-if="item.show"
+        v-if="item.show && item.filterShow"
     >
 
         <div :style="[styleLineNumber,{'width':lineNumberWidth+'px'}]">{{item.index+1}}</div>
@@ -13,7 +13,7 @@
             <div style="position:relative;">
 
                 <div style="position:absolute; top:0px; left:0px; transform:translateX(-100%);">
-                    <span v-if="item.hasChildren" @click="toggleItems(item)">
+                    <span v-if="item.hasChildren" @click.capture="toggleItems(item)">
                         <span :class="[{'caretRight':true,'showChildren':item.displayChildren}]">
                             <span class="center">
                                 <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" :fill="iconColor" width="11px" height="11px" x="0px" y="0px" viewBox="0 0 415.346 415.346" xml:space="preserve"><g><path d="M41.712,415.346c-11.763,0-21.3-9.537-21.3-21.3V21.299C20.412,9.536,29.949,0,41.712,0l346.122,191.697 c0,0,15.975,15.975,0,31.951C371.859,239.622,41.712,415.346,41.712,415.346z"/></g></svg>
@@ -108,6 +108,7 @@ export default {
 
         toggleItems: function(item) {
             //console.log('methods toggleItems', item)
+            //記得click需使用capture, 先處理完自己節點點擊才釋出事件, 適用於窄板裝置
 
             let vo = this
 

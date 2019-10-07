@@ -5,7 +5,7 @@
         <div class="head1">w-text</div>
 
 
-        <div style="padding-left:30px;">
+        <div style="padding:0px;">
 
 
             <template v-if="modeBorder==='emboss'">

@@ -4,6 +4,7 @@
         :ratio.sync="scrollRatio"
         :viewHeight="viewHeight"
         :contentHeight="itemsHeight"
+        :changeFilterKeyWords="changeFilterKeyWords"
         @change="scrollItems"
         @toggleItemsEnd="toggleItemsEnd"
     >
@@ -28,6 +29,7 @@
 import each from 'lodash/each'
 import size from 'lodash/size'
 import keys from 'lodash/keys'
+import throttle from 'lodash/throttle'
 import isNumber from 'lodash/isNumber'
 import isString from 'lodash/isString'
 import isBoolean from 'lodash/isBoolean'
@@ -38,6 +40,7 @@ import toString from 'lodash/toString'
 import toInteger from 'lodash/toInteger'
 import isarr from 'wsemi/src/isarr.mjs'
 import isobj from 'wsemi/src/isobj.mjs'
+import sep from 'wsemi/src/sep.mjs'
 import genID from 'wsemi/src/genID.mjs'
 import genPm from 'wsemi/src/genPm.mjs'
 import binarySearch from '../js/binarySearch.mjs'
@@ -70,6 +73,10 @@ export default {
     },
     props: {
         data: {},
+        filterKeywords: {
+            type: String,
+            default: '',
+        },
         viewHeight: {
             type: Number,
             default: 400,
@@ -126,6 +133,7 @@ export default {
             changeDisplayChildren: true, //是否有變更displayChildren
             changeDisplayChildrenIndex: null, //變更displayChildren的item指標
             changeHeight: true, //是否有變更高度, 預設true使一開始能強制計算各節點高度
+            changeFilter: false, //是否有變更過濾關鍵字
             toggling: false, //是否顯隱節點中
             scrollRatio: 0, //捲動比例
             lineNumberWidth: 0, //列號區寬度
@@ -134,8 +142,7 @@ export default {
             itemsHeight: 0, //儲存全部項目高度
             viewInfor: {},
             //items: [],
-            //useItems: [],
-            useItems: {},
+            useItems: [],
         }
     },
     beforeDestroy: function() {
@@ -200,6 +207,21 @@ export default {
 
     },
     computed: {
+
+        changeFilterKeyWords: function() {
+            //console.log('computed changeFilterKeyWords')
+
+            let vo = this
+
+            //ft to trigger
+            let ft = vo.filterKeywords
+
+            //filterItems
+            vo.filterItems()
+
+            return ft
+        },
+
     },
     methods: {
 
@@ -255,6 +277,17 @@ export default {
 
             await call()
 
+            //genUseItems
+            vo.genUseItems()
+
+            // //delayShow
+            // for (let k = 0; k < size(vo.useItems); k++) {
+            //     let v = vo.useItems[k]
+            //     if (!v.delayShow) {
+            //         v.delayShow = true
+            //     }
+            // }
+
         },
 
         genUseItems: function() {
@@ -301,13 +334,25 @@ export default {
             }
             let indEnd = Math.min(indEndActual + vo.itemsPreload, n - 1)
 
+            // //delayShow
+            // let delayShow = false
+            // let m = size(vo.useItems)
+            // if (m > 0) {
+            //     let bIndexStart = vo.useItems[0].index === indStart
+            //     let bIndexEnd = vo.useItems[m - 1].index === indEndActual
+            //     delayShow = bIndexStart && bIndexEnd
+            // }
+
             //useItems
             let useItems = []
             for (let k = indStart; k <= indEnd; k++) {
-                let v = items[k]
-                if (v.show) {
+                let v = {
+                    ...items[k]
+                }
+                if (v.show && v.filterShow) {
                     v.screenY = v.y - vo.scrollInfor.t //換算成實際顯示y向的px位置
                     v.nowShow = k >= indStartActual //顯示區下方之預載節點都直接顯示供重算高度
+                    //v.delayShow = delayShow //起訖指標相同才直接顯示, 否則就採用延遲顯示
                     useItems.push(v)
                 }
             }
@@ -395,7 +440,7 @@ export default {
             })
 
             //check
-            let b = vo.changeHeight || vo.changeDisplayChildren
+            let b = vo.changeHeight || vo.changeDisplayChildren || vo.changeFilter
             if (b) {
 
                 //update y
@@ -405,7 +450,7 @@ export default {
                     if (v.y !== y) {
                         v.y = y
                     }
-                    if (v.show) {
+                    if (v.show && v.filterShow) {
                         y += v.height
                     }
                 }
@@ -419,6 +464,7 @@ export default {
                 vo.changeDisplayChildren = false
                 vo.changeDisplayChildrenIndex = null
                 vo.changeHeight = false
+                vo.changeFilter = false
 
             }
 
@@ -468,7 +514,7 @@ export default {
                 }
             }
 
-            function addItem({ level, key, keyNumbers, value, valueColor, valueComma, valueTail, hasChildren }) {
+            function addItem({ parentIndex, level, key, keyNumbers, value, valueColor, valueComma, valueTail, hasChildren }) {
                 index += 1
                 let item = {
                     index, //節點指標
@@ -483,16 +529,20 @@ export default {
                     hasChildren, //bol, 是否有子節點, 僅陣列或物件才為true
                     displayChildren: vo.defDisplayChildren, //bol, 是否顯示子節點
                     show: true, //bol, 是否顯示此節點
+                    filterShow: true, //bol, 是否過濾後顯示此節點
                     height: vo.itemMinHeight, //num, 節點高度, 日後動態更新
                     y: index * vo.itemMinHeight, //num, 節點y向位置, 預設先由最小列高計算
-                    screenY: 0, //num, 節點換算比率後的顯示y向位置
-                    nowShow: false, //bol, 預先載入時是否隸屬於顯示區域內, 不顯示者
+                    parentIndex, //num, 父節點編號
+                    // screenY: 0, //num, 節點換算比率後的顯示y向位置
+                    // nowShow: false, //bol, 預先載入用, 判斷節點是否隸屬於顯示區域內, 可被重算元素高度
+                    // delayShow: false, //bol, 延遲載入用, 是否顯示節點
                 }
                 items.push(item)
             }
 
-            function pArray({ level, key, value, last }) {
+            function pArray({ parentIndex, level, key, value, last }) {
 
+                let selfIndex = index + 1
                 let n = size(value)
                 let keyNumbers = {
                     type: 'arr',
@@ -504,6 +554,7 @@ export default {
                     _key = `${key} :  [`
                 }
                 addItem({
+                    parentIndex,
                     level,
                     key: _key,
                     value: null,
@@ -524,6 +575,7 @@ export default {
                 // })
                 for (let k = 0; k < n; k++) {
                     pSelf({
+                        parentIndex: selfIndex,
                         level: level + 1,
                         key: k,
                         value: value[k],
@@ -536,6 +588,7 @@ export default {
                     cend = `]`
                 }
                 addItem({
+                    parentIndex: selfIndex,
                     level,
                     key: cend,
                     value: null,
@@ -547,8 +600,9 @@ export default {
 
             }
 
-            function pObject({ level, key, value, last }) {
+            function pObject({ parentIndex, level, key, value, last }) {
 
+                let selfIndex = index + 1
                 let n = size(keys(value))
                 let keyNumbers = {
                     type: 'obj',
@@ -560,6 +614,7 @@ export default {
                     _key = `${key} :  {`
                 }
                 addItem({
+                    parentIndex,
                     level,
                     key: _key,
                     value: null,
@@ -582,6 +637,7 @@ export default {
                 for (let i = 0; i < kks.length; i++) {
                     let k = kks[i]
                     pSelf({
+                        parentIndex: selfIndex,
                         level: level + 1,
                         key: k,
                         value: value[k],
@@ -594,6 +650,7 @@ export default {
                     cend = `}`
                 }
                 addItem({
+                    parentIndex: selfIndex,
                     level,
                     key: cend,
                     value: null,
@@ -605,17 +662,18 @@ export default {
 
             }
 
-            function pSelf({ level, key, value, last }) {
+            function pSelf({ parentIndex, level, key, value, last }) {
                 if (isarr(value)) {
-                    pArray({ level, key, value, last })
+                    pArray({ parentIndex, level, key, value, last })
                 }
                 else if (isobj(value)) {
-                    pObject({ level, key, value, last })
+                    pObject({ parentIndex, level, key, value, last })
                 }
                 else {
                     let r = cValue(value)
                     let c = vo[`${r.type}Color`]
                     addItem({
+                        parentIndex,
                         level,
                         key: `${key} :  `,
                         value: r.value,
@@ -629,6 +687,7 @@ export default {
 
             if (isarr(d)) {
                 pArray({
+                    parentIndex: null,
                     level: 0,
                     key: null,
                     value: d,
@@ -637,6 +696,7 @@ export default {
             }
             else if (isobj(d)) {
                 pObject({
+                    parentIndex: null,
                     level: 0,
                     key: null,
                     value: d,
@@ -647,6 +707,7 @@ export default {
                 let r = cValue(d)
                 let c = vo[`${r.type}Color`]
                 addItem({
+                    parentIndex: null,
                     level: 0,
                     key: null,
                     value: r.value,
@@ -658,6 +719,152 @@ export default {
             }
 
             return items
+        },
+
+        filterItems: function() {
+            //console.log('methods filterItems')
+
+            let vo = this
+
+            //items
+            //let items = vo.items
+            let items = gm.get(vo.mmkey)
+
+            //n
+            let n = size(items)
+
+            //updateParent
+            function updateParent(k) {
+
+                //self
+                items[k].filterShow = true //可見
+
+                //往上找parentIndex的父節點, 更改為顯示
+                let pi = items[k].parentIndex
+                while (pi !== null) {
+
+                    //父節點
+                    items[pi].filterShow = true //可見
+
+                    //往後找level一樣者, 也改為顯示
+                    let selfLevel = items[pi].level
+                    for (let j = pi + 1; j < n; j++) { //往後找同level就是結束區塊符號
+                        if (items[j].level === selfLevel) {
+                            items[j].filterShow = true //可見
+                            break
+                        }
+                    }
+
+                    //reset pi
+                    pi = items[pi].parentIndex
+
+                }
+
+            }
+
+            //check
+            if (size(vo.filterKeywords) === 0) {
+
+                //預設可見
+                for (let k = 0; k < n; k++) {
+                    items[k].filterShow = true
+                }
+
+            }
+            else {
+
+                //預設不可見
+                for (let k = 0; k < n; k++) {
+                    items[k].filterShow = false
+                }
+
+                //kws
+                let kws = sep(vo.filterKeywords.toLowerCase(), ' ')
+
+                //filter
+
+                let k = -1
+                while (k < n) {
+                    k += 1
+                    if (k >= n - 1) {
+                        break //可於內圈修改k, 故需檢核
+                    }
+                    let v = items[k]
+
+                    //cKey, cValue
+                    let cKey = toString(v.key).toLowerCase()
+                    let cValue = toString(v.value).toLowerCase()
+                    let b
+
+                    //若鍵值(key)含有關建字
+                    b = false
+                    for (let i = 0; i < size(kws); i++) {
+                        let kw = kws[i]
+                        if (cKey.indexOf(kw) >= 0) {
+                            b = true
+                            break
+                        }
+                    }
+
+                    //check
+                    if (b) {
+
+                        //updateParent
+                        updateParent(k)
+
+                        //self
+                        items[k].filterShow = true //可見
+
+                        //往後修改為顯示, 直至level一樣改為顯示才停止
+                        let keyLevel = v.level
+                        while (k < n) {
+                            k += 1
+                            if (k >= n - 1) {
+                                break //可於內圈修改k, 故需檢核
+                            }
+
+                            //end-block
+                            items[k].filterShow = true //可見
+
+                            if (items[k].level === keyLevel) {
+                                break
+                            }
+
+                        }
+
+                        //continue
+                        continue
+
+                    }
+
+                    //若值(value)含有關建字
+                    b = false
+                    for (let i = 0; i < size(kws); i++) {
+                        let kw = kws[i]
+                        if (cValue.indexOf(kw) >= 0) {
+                            b = true
+                            break
+                        }
+                    }
+
+                    //check
+                    if (b) {
+
+                        //updateParent
+                        updateParent(k)
+
+                    }
+
+                }
+
+            }
+
+            //changeFilter
+            vo.changeFilter = true
+
+            //refresh
+            vo.refresh('filter')
+
         },
 
         toggleItems: async function(item) {

@@ -5,7 +5,7 @@
         <div class="head1">w-button-group-chip</div>
 
 
-        <div style="padding-left:30px;">
+        <div style="padding:0px;">
 
 
             <template v-if="modeBorder==='emboss'">

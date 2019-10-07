@@ -5,7 +5,7 @@
         <div class="head1">w-dynamic-scroll</div>
 
 
-        <div style="padding-left:30px;">
+        <div style="padding:0px;">
 
 
             <div class="bk">
@@ -17,12 +17,13 @@
                 ></demolink>
 
                 <w-dynamic-scroll
-                    style="border:1px solid #ddd; width:400px;"
+                    class="list"
+                    style="border:1px solid #ddd;"
                     :rows="WDynamicScroll.data1"
                 >
                     <template v-slot:block="props">
 
-                        <div style="display:flex; align-items:flex-start; padding:5px 15px; width:400px;">
+                        <div style="display:flex; align-items:flex-start; padding:5px 15px;">
 
                             <div style="color:#f26;">{{props.irow+1}}</div>
 
@@ -47,13 +48,14 @@
                 ></demolink>
 
                 <w-dynamic-scroll
-                    style="border:1px solid #ddd; width:400px;"
+                    class="list"
+                    style="border:1px solid #ddd;"
                     :viewHeight="250"
                     :rows="WDynamicScroll.data1"
                 >
                     <template v-slot:block="props">
 
-                        <div style="display:flex; align-items:flex-start; padding:5px 15px; width:400px;">
+                        <div style="display:flex; align-items:flex-start; padding:5px 15px;">
 
                             <div style="color:#f26;">{{props.irow+1}}</div>
 
@@ -78,12 +80,13 @@
                 ></demolink>
 
                 <w-dynamic-scroll
-                    style="border:1px solid #ddd; width:400px;"
+                    class="list"
+                    style="border:1px solid #ddd;"
                     :rows="WDynamicScroll.data2"
                 >
                     <template v-slot:block="props">
 
-                        <div style="padding:15px; width:400px;">
+                        <div style="padding:15px;">
 
                             <div style="display:table-cell; vertical-align:top; padding:5px 20px 0px 0px;">
                                 <img style="border-radius:50%; width:48px; height:48px;" :src="props.row.avatar" alt="avatar" />

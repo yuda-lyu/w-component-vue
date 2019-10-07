@@ -2,7 +2,7 @@
     <v-app style="font-family:inherit;">
 
 
-        <a href="https://github.com/yuda-lyu/w-component-vue" target="_blank">
+        <a href="https://github.com/yuda-lyu/w-component-vue" target="_blank" v-if="showGithub">
             <img width="149" height="149"
                 style="position:fixed; top:0; right:0; border:0; z-index:10000;"
                 src="https://github.blog/wp-content/uploads/2008/12/forkme_right_darkblue_121621.png?resize=149%2C149" class="attachment-full size-full" alt="Fork me on GitHub" data-recalc-dims="1">
@@ -129,6 +129,9 @@
 
 
         </div>
+
+
+        <div style="padding:20px;">
 
 
             <AppZoneWBadge
@@ -297,6 +300,9 @@
                 :modeShell="modeShell"
                 v-if="compname==='WDynamicScroll'"
             ></AppZoneWDynamicScroll>
+
+
+        </div>
 
 
     </v-app>
@@ -469,6 +475,10 @@ export default {
             return vo.sComps[vo.indKind].cmps[vo.indName]
         },
 
+        showGithub: function() {
+            return window.width >= 1000
+        },
+
     },
     methods: {
 
@@ -487,7 +497,7 @@ export default {
     background-color: #fff;
 }
 .head1 {
-    margin: 20px;
+    margin-bottom: 20px;
     padding: 0px;
     font-size: 30pt;
 }
@@ -501,8 +511,19 @@ export default {
     align-items: center;
 }
 .bk {
-    display: inline-block;
-    margin: 10px 90px 60px 0px;
     vertical-align: top;
+    margin-top: 20px;
+}
+.list {
+    width: 100%;
+}
+@media screen and (min-width:1000px){
+    .bk {
+        display: inline-block;
+        margin: 10px 90px 60px 0px;
+    }
+    .list {
+        width: 400px;
+    }
 }
 </style>
