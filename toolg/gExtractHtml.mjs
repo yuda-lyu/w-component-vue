@@ -26,6 +26,7 @@ let h = `
 <html xmlns="http://www.w3.org/1999/xhtml" lang="zh-tw">
 <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
     <title>example for {{kbname}}: {{casename}}</title>
 
     <!-- fontawesome -->
