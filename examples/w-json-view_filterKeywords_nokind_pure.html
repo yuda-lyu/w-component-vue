@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="zh-tw">
 <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <title>example for w-json-view: default</title>
+    <title>example for w-json-view: filterKeywords</title>
 
     <!-- fontawesome -->
     <link
@@ -78,12 +78,21 @@
     <v-app id="app" style="font-family:inherit;">
         <div class="head1">w-json-view</div>
         <div class="bk">
-            <div class="item">default</div>
+            <div class="item">filterKeywords</div>
+
+            <div style="margin-bottom:10px;">
+                <span style="padding-right:10px;">Search :</span>
+                <input
+                    style="padding:2px 15px; color:#666; border:1px solid #fca; border-radius:30px; outline:none;"
+                    v-model="WJsonView.keywords"
+                />
+            </div>
 
             <w-json-view
                 class="list"
                 style="border:1px solid #ddd;"
-                :data="WJsonView.data1"
+                :filter-keywords="WJsonView.keywords"
+                :data="WJsonView.data2"
             />
         </div>
     </v-app>

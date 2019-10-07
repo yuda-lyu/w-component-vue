@@ -43,7 +43,7 @@
     <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.js"></script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@1.2.14/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@1.2.15/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -83,7 +83,8 @@
             >iconColor & keyColor & keyNumbersColor & numColor & strColor & bolColor & funColor</div>
 
             <w-json-view
-                style="border:1px solid #ddd; width:400px;"
+                class="list"
+                style="border:1px solid #ddd;"
                 :icon-color="'#aaa'"
                 :key-color="'#f6a'"
                 :key-numbers-color="'#f26'"
@@ -106,6 +107,7 @@
     vuetify: new Vuetify(),
     data: {
       WJsonView: {
+        keywords: "pow ci uadn",
         data1: {
           squadName: "Super hero squad",
           fun: function() {},
