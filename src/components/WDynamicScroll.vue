@@ -10,7 +10,7 @@
         <template v-for="(item,kitem) in useItems">
             <div
                 ref="wdsDiv"
-                :style="`position:absolute; top:${item.screenY}px; width:100%; opacity:${(item.nowShow && item.delayShow)?1:0.01};`"
+                :style="`position:absolute; top:${item.screenY}px; width:100%; opacity:${(item.nowShow && item.delayShow)?1:0.001}; ${item.delayShow?'transition:opacity 0.1s':''}`"
                 :index="item.index"
                 :nowShow="item.nowShow"
                 :key="kitem"

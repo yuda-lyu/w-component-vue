@@ -1,6 +1,6 @@
 <template>
     <div
-        :style="`position:absolute; top:${item.screenY}px; width:100%; opacity:${item.nowShow?1:0.01};`"
+        :style="`position:absolute; top:${item.screenY}px; width:100%; opacity:${item.nowShow?1:0.001};`"
         :index="item.index"
         :nowShow="item.nowShow"
         v-if="item.show && item.filterShow"

@@ -29,7 +29,6 @@
 import each from 'lodash/each'
 import size from 'lodash/size'
 import keys from 'lodash/keys'
-import throttle from 'lodash/throttle'
 import isNumber from 'lodash/isNumber'
 import isString from 'lodash/isString'
 import isBoolean from 'lodash/isBoolean'
