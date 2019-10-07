@@ -8,14 +8,11 @@
 
         <div :style="`height:${viewHeight+1}px;`"></div>
 
-        <div style="position:absolute; top:0; right:0px; height:100%; z-index:1;" v-if="contentHeightEff>0">
+        <div style="position:absolute; top:0; right:0px; height:100%; z-index:1;" v-show="contentHeightEff>0">
             <div :style="`position:relative; width:10px; height:100%; background-color:${barBackgroundColor}; padding:2px;`">
                 <div
+                    ref="divBar"
                     :style="`width:100%; height:${barSize}px; background-color:${barColor}; border-radius:15px; user-select:none; transform:translateY(${barLoc}px); cursor:pointer; opacity:${barOpacity}; transition:opacity 0.5s;`"
-                    @mousedown="pressBar"
-                    @dragstart="function(event){event.stopPropagation();event.preventDefault();return false;}"
-                    @dragover="function(event){event.stopPropagation();event.preventDefault();return false;}"
-                    @drop="function(event){event.stopPropagation();event.preventDefault();return false;}"
                 ></div>
             </div>
         </div>
@@ -95,11 +92,10 @@ export default {
         //ele
         let ele = vo.$refs.divPanel
 
-        //listen wheel, touchstart, touchmove, touchend
-        let rTouchMove = 5
+        //ele listen wheel, touchstart, touchmove, touchend
         ele.addEventListener('wheel', (e) => {
             let delta = e.deltaY / Math.abs(e.deltaY)
-            vo.scrollPanel(vo.mmkey, delta)
+            vo.scrollPanel(vo.mmkey, delta) //寬版頁面, 用滾輪上下捲動, 實際是傳移動距離給bar
             if (window.event) {
                 e.cancelBubble = true //IE11
             }
@@ -109,30 +105,54 @@ export default {
             e.preventDefault()
         })
         ele.addEventListener('touchstart', (e) => {
-            vo.pressBar(-e.touches[0].clientY / rTouchMove)
+            vo.pressBar(vo.mmkey, -e.touches[0].clientY * vo.heighRatio) //窄版頁面, 上鎖與紀錄頁面點擊y座標
             // e.stopPropagation()
             // e.preventDefault()
         })
         ele.addEventListener('touchmove', (e) => {
-            vo.dragBar(vo.mmkey, -e.touches[0].clientY / rTouchMove)
+            vo.dragBar(vo.mmkey, -e.touches[0].clientY * vo.heighRatio) //窄版頁面, 用滑動距離拖曳頁面, 實際是傳移動距離給bar
             e.stopPropagation()
             e.preventDefault()
         })
         ele.addEventListener('touchend', (e) => {
-            vo.freedBar(vo.mmkey)
+            vo.freedBar(vo.mmkey) //窄版頁面, 解鎖
             // e.stopPropagation()
             // e.preventDefault()
         })
 
-        //listen mousedown, mousemove, mouseup
-        window.addEventListener('mousedown', (e) => {
-            vo.pressWin(vo.mmkey, e.clientY)
+        //bar
+        let bar = vo.$refs.divBar
+
+        //bar listen mousedown, touchstart, touchmove, touchend
+        bar.addEventListener('mousedown', (e) => {
+            vo.pressBar(vo.mmkey, e.clientY) //寬版bar, 上鎖與紀錄點擊y座標
         })
+        bar.addEventListener('touchstart', (e) => {
+            vo.pressBar(vo.mmkey, e.touches[0].clientY) //窄版bar, 上鎖與紀錄bar點擊y座標
+            // e.stopPropagation()
+            // e.preventDefault()
+        })
+        bar.addEventListener('touchmove', (e) => {
+            vo.dragBar(vo.mmkey, e.touches[0].clientY) //窄版bar, 用滑動距離拖曳bar, 實際是傳移動距離給bar
+            e.stopPropagation()
+            e.preventDefault()
+        })
+        bar.addEventListener('touchend', (e) => {
+            vo.freedBar(vo.mmkey) //窄版bar, 解鎖
+            // e.stopPropagation()
+            // e.preventDefault()
+        })
+
+        //window listen mousedown, mousemove, mouseup
+        // window.addEventListener('mousedown', (e) => {
+        //     console.log('寬版bar window mousedown', e.clientY)
+        //     vo.pressWin(vo.mmkey, e.clientY) //寬版bar, 紀錄點擊y座標
+        // })
         window.addEventListener('mousemove', (e) => {
-            vo.dragBar(vo.mmkey, e.clientY)
+            vo.dragBar(vo.mmkey, e.clientY) //寬版bar, 用鎖與滑動距離拖曳bar
         })
         window.addEventListener('mouseup', (e) => {
-            vo.freedBar(vo.mmkey)
+            vo.freedBar(vo.mmkey) //寬版bar, 解鎖
         })
 
     },
@@ -144,14 +164,23 @@ export default {
         //ele
         let ele = vo.$refs.divPanel
 
-        //remove wheel, touchstart, touchmove, touchend
+        //ele remove wheel, touchstart, touchmove, touchend
         ele.removeEventListener('wheel', vo.mouseWheel)
         ele.removeEventListener('touchstart', vo.pressBar)
         ele.removeEventListener('touchmove', vo.dragBar)
         ele.removeEventListener('touchend', vo.freedBar)
 
-        //remove mousedown, mousemove, mouseup
-        window.removeEventListener('mousedown', vo.pressWin)
+        //bar
+        let bar = vo.$refs.divBar
+
+        //bar remove mousedown, mousemove, mouseup
+        bar.removeEventListener('mousedown', vo.pressBar)
+        bar.removeEventListener('touchstart', vo.pressBar)
+        bar.removeEventListener('touchmove', vo.dragBar)
+        bar.removeEventListener('touchend', vo.freedBar)
+
+        //window remove mousedown, mousemove, mouseup
+        //window.removeEventListener('mousedown', vo.pressWin)
         window.removeEventListener('mousemove', vo.dragBar)
         window.removeEventListener('mouseup', vo.freedBar)
 
@@ -189,6 +218,14 @@ export default {
 
         //     return t
         // },
+
+        heighRatio: function() {
+            //console.log('computed heighRatio')
+
+            let vo = this
+
+            return vo.viewHeight / Math.max(vo.contentHeight, 1)
+        },
 
         barSize: function() {
             //console.log('computed barSize')
@@ -255,8 +292,23 @@ export default {
     },
     methods: {
 
-        pressWin: function(mmkey, v) {
-            //console.log('methods pressWin', mmkey, v)
+        // pressWin: function(mmkey, v) {
+        //     //console.log('methods pressWin', mmkey, v)
+
+        //     let vo = this
+
+        //     //check
+        //     if (vo.mmkey !== mmkey) {
+        //         return
+        //     }
+
+        //     //barPressY
+        //     vo.barPressY = v //e.clientY
+
+        // },
+
+        pressBar: function(mmkey, v) {
+            //console.log('methods pressBar', mmkey, v)
 
             let vo = this
 
@@ -264,16 +316,6 @@ export default {
             if (vo.mmkey !== mmkey) {
                 return
             }
-
-            //barPressY
-            vo.barPressY = v //e.clientY
-
-        },
-
-        pressBar: function(v) {
-            //console.log('methods pressBar', v)
-
-            let vo = this
 
             //barPressing
             vo.barPressing = true

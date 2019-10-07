@@ -13,6 +13,7 @@
                 :style="`position:absolute; top:${item.screenY}px; width:100%; opacity:${(item.nowShow && item.delayShow)?1:0.001}; ${item.delayShow?'transition:opacity 0.1s':''}`"
                 :index="item.index"
                 :nowShow="item.nowShow"
+                :delayShow="item.delayShow"
                 :key="kitem"
             >
                 <slot
@@ -192,7 +193,7 @@ export default {
 
             //core
             let n = 0
-            let limit = 3
+            let limit = 2
             async function core() {
                 let pm = genPm()
 
@@ -219,6 +220,7 @@ export default {
                 //delay
                 await delay(1)
 
+                //updateItems
                 let b = vo.updateItems()
                 pm.resolve(b)
 
@@ -300,14 +302,19 @@ export default {
             }
             let indEnd = Math.min(indEndActual + vo.itemsPreload, n - 1)
 
-            //delayShow
-            let delayShow = false
-            let m = size(vo.useItems)
-            if (m > 0) {
-                let bIndexStart = vo.useItems[0].index === indStart
-                let bIndexEnd = vo.useItems[m - 1].index === indEndActual
-                delayShow = bIndexStart && bIndexEnd
-            }
+            // //delayShow
+            // let delayShow = false
+            // let m = size(vo.useItems)
+            // if (m > 0) {
+            //     let bIndexStart = vo.useItems[0].index === indStart
+            //     let bIndexEnd = vo.useItems[m - 1].index === indEndActual
+            //     delayShow = bIndexStart && bIndexEnd
+            // }
+            //kpDelayShow
+            let kpDelayShow = {}
+            each(vo.useItems, (v) => {
+                kpDelayShow[v.index] = true
+            })
 
             //useItems
             let useItems = []
@@ -317,7 +324,7 @@ export default {
                 }
                 v.screenY = v.y - vo.scrollInfor.t //換算成實際顯示y向的px位置
                 v.nowShow = k >= indStartActual //顯示區下方之預載節點都直接顯示供重算高度
-                v.delayShow = delayShow //起訖指標相同才直接顯示, 否則就採用延遲顯示
+                v.delayShow = kpDelayShow[k] === true //已經顯示的節點就直接顯示, 否則就延遲顯示
                 useItems.push(v)
             }
 
