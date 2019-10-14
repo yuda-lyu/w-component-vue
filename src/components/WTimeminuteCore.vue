@@ -11,14 +11,14 @@
         ></w-timeday-core>
 
         <div style="display:inline-block; margin-right:-3px;">
-            <w-text-selects-core
+            <w-text-select-core
                 style="width:63px;"
                 :editable="editable"
                 :items="getUseMinutes"
                 :value="value_time"
                 @update:focused="(v)=>{focused_time=v;changeFocused()}"
                 @input="ch_time"
-            ></w-text-selects-core>
+            ></w-text-select-core>
         </div>
 
     </div>
@@ -36,7 +36,7 @@ import isarr from 'wsemi/src/isarr.mjs'
 import istime from 'wsemi/src/istime.mjs'
 import ispint from 'wsemi/src/ispint.mjs'
 import WTimedayCore from './WTimedayCore.vue'
-import WTextSelectsCore from './WTextSelectsCore.vue'
+import WTextSelectCore from './WTextSelectCore.vue'
 
 /**
  * @vue-prop {String} [value=''] 輸入日期字串，預設''
@@ -50,7 +50,7 @@ import WTextSelectsCore from './WTextSelectsCore.vue'
 export default {
     components: {
         WTimedayCore,
-        WTextSelectsCore
+        WTextSelectCore
     },
     props: {
         value: {

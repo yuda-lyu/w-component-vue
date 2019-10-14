@@ -55,7 +55,7 @@
 </template>
 
 <script>
-import { color2hex } from '../js/vuetifyColor.mjs'
+import color2hex from '../js/vuetifyColor.mjs'
 import map from 'lodash/map'
 import size from 'lodash/size'
 import get from 'lodash/get'

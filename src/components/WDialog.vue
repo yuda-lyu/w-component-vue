@@ -6,7 +6,7 @@
         :max-width="widthMax"
         :fullscreen="fullscreen"
         v-resize="changeSize"
-        v-model="show_trans"
+        v-model="showTrans"
         @click:outside="clickClose"
     >
 
@@ -147,7 +147,7 @@ export default {
             mdiCheckCircle,
             mdiClose,
             mdiCheckerboard,
-            show_trans: null,
+            showTrans: null,
             fullscreen: false,
         }
     },
@@ -161,7 +161,7 @@ export default {
             let vo = this
 
             //當show改為true時自動捲至頂部
-            if (!vo.show_trans && value) {
+            if (!vo.showTrans && value) {
                 setTimeout(function() {
                     vo.$refs.scrollZone.scrollTop = 0
                 }, 1)
@@ -177,8 +177,8 @@ export default {
 
             let vo = this
 
-            //show_trans
-            vo.show_trans = vo.show
+            //showTrans
+            vo.showTrans = vo.show
 
             return ''
         },
@@ -242,14 +242,14 @@ export default {
 
             //check
             if (isbol(show)) {
-                vo.show_trans = show
+                vo.showTrans = show
             }
 
             //setTimeout
             setTimeout(function() {
 
                 //emit
-                vo.$emit('update:show', vo.show_trans)
+                vo.$emit('update:show', vo.showTrans)
 
                 //emit
                 vo.$emit('click-close')

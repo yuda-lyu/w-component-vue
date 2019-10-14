@@ -1,9 +1,12 @@
 <template>
     <WScrollPanel
         ref="wsp"
-        :ratio.sync="scrollRatio"
-        :viewHeight="viewHeight"
+        :ratio.sync="ratioTrans"
+        :viewHeight="viewHeightTrans"
         :contentHeight="itemsHeight"
+        :changeViewHeight="changeViewHeight"
+        :changeRatio="changeRatio"
+        :changeFilterKeyWords="changeFilterKeyWords"
         @change="scrollItems"
     >
 
@@ -29,15 +32,20 @@
 
 <script>
 import each from 'lodash/each'
+import get from 'lodash/get'
 import map from 'lodash/map'
 import size from 'lodash/size'
-// import debounce from 'lodash/debounce'
-// import throttle from 'lodash/throttle'
+import toString from 'lodash/toString'
+import throttle from 'lodash/throttle'
 import cint from 'wsemi/src/cint.mjs'
 import genID from 'wsemi/src/genID.mjs'
 import genPm from 'wsemi/src/genPm.mjs'
 import delay from 'wsemi/src/delay.mjs'
+import sep from 'wsemi/src/sep.mjs'
 import isarr from 'wsemi/src/isarr.mjs'
+import isstr from 'wsemi/src/isstr.mjs'
+import isnum from 'wsemi/src/isnum.mjs'
+import o2j from 'wsemi/src/o2j.mjs'
 import binarySearch from '../js/binarySearch.mjs'
 import globalMemory from '../js/globalMemory.mjs'
 import WScrollPanel from './WScrollPanel.vue'
@@ -50,6 +58,7 @@ let gm = globalMemory()
  * @vue-prop {Number} [viewHeight=400] 輸入顯示區高度，單位為px，預設400
  * @vue-prop {Number} [itemMinHeight=24] 輸入各元素顯示高度，單位為px，預設24，會於真實顯示後自動更新高度
  * @vue-prop {Number} [itemsPreload=40] 輸入上下方預先載入元素數量，預設40
+ * @vue-prop {Number} [ratio=0] 輸入目前捲動比例，預設0
  */
 export default {
     components: {
@@ -59,6 +68,10 @@ export default {
         rows: {
             type: Array,
             default: () => [],
+        },
+        filterKeywords: {
+            type: String,
+            default: '',
         },
         viewHeight: {
             type: Number,
@@ -72,15 +85,22 @@ export default {
             type: Number,
             default: 40,
         },
+        ratio: {
+            type: Number,
+            default: 0,
+        },
     },
     data: function() {
         return {
             //itemDiv的style記得給width:100%，因ie11的flex內文字會自動撐開版面導致不會換行
             mmkey: null,
             changeHeight: true, //是否有變更高度, 初始化給true使第一次顯示能自動重算節點高度
-            scrollRatio: 0, //捲動比例
+            changeFilter: false, //是否有變更過濾關鍵字
+            ratioTrans: 0, //捲動比例
+            viewHeightTrans: null, //顯示區高度
             scrollInfor: null, //目前捲軸資訊
             scrollToEnd: false, //捲動至底部, 額外refresh
+            filterKeywordsTrans: '', //搜尋關鍵字
             itemsHeight: 0, //全部節點高度
             useItems: [], //實際需顯示節點陣列
         }
@@ -126,6 +146,50 @@ export default {
 
     },
     computed: {
+
+        changeRatio: function() {
+            //console.log('computed changeRatio')
+
+            let vo = this
+
+            //ratioTrans
+            vo.ratioTrans = vo.ratio
+
+            return ''
+        },
+
+        changeViewHeight: function() {
+            //console.log('computed changeViewHeight')
+
+            let vo = this
+
+            //viewHeightTrans
+            vo.viewHeightTrans = vo.viewHeight
+
+            return ''
+        },
+
+        changeFilterKeyWords: function() {
+            //console.log('computed changeFilterKeyWords')
+
+            let vo = this
+
+            //ft for trigger
+            let ft = vo.filterKeyword
+
+            if (vo.filterKeywordsTrans !== vo.filterKeywords) {
+
+                //filterKeywordsTrans
+                vo.filterKeywordsTrans = vo.filterKeywords
+
+                //filterItems
+                vo.filterItems()
+
+            }
+
+            return ft
+        },
+
     },
     methods: {
 
@@ -165,9 +229,11 @@ export default {
                 return {
                     index: k,
                     height: vo.itemMinHeight,
+                    filterShow: true, //bol, 是否過濾後顯示此節點
                     y: k * vo.itemMinHeight,
-                    // screenY: 0, //節點換算比率後的顯示y向位置
-                    // nowShow: false, //預先載入時是否隸屬於顯示區域內
+                    // screenY: 0, //num, 節點換算比率後的顯示y向位置
+                    // nowShow: false, //bol, 預先載入時是否隸屬於顯示區域內
+                    // delayShow: false, //bol, 延遲載入用, 是否顯示節點
                     row: v,
                 }
             })
@@ -200,13 +266,6 @@ export default {
                 //n
                 n += 1
 
-                // //check, 內容區高度內外不一致
-                // if (n >= limit && vo.scrollInfor !== null) {
-                //     if (vo.scrollInfor.ch !== vo.itemsHeight) {
-                //         console.log('內容區高度內外不一致', JSON.stringify(vo.scrollInfor), vo.scrollInfor.ch, vo.itemsHeight)
-                //     }
-                // }
-
                 //check, 取得元素高度因文字換行會有來回變動問題, 需有強制跳出機制
                 if (n > limit) {
                     //console.log(`已重複refresh ${limit} 次, 強制跳出`)
@@ -222,8 +281,8 @@ export default {
 
                 //updateItems
                 let b = vo.updateItems()
-                pm.resolve(b)
 
+                pm.resolve(b)
                 return pm
             }
 
@@ -280,6 +339,11 @@ export default {
             //n
             let n = size(items)
 
+            //check
+            if (n === 0) {
+                return
+            }
+
             //indStart, 該元素區(底部)有侵入顯示區
             let indStartActual = binarySearch(items, (ind) => {
                 let v = items[ind]
@@ -302,14 +366,6 @@ export default {
             }
             let indEnd = Math.min(indEndActual + vo.itemsPreload, n - 1)
 
-            // //delayShow
-            // let delayShow = false
-            // let m = size(vo.useItems)
-            // if (m > 0) {
-            //     let bIndexStart = vo.useItems[0].index === indStart
-            //     let bIndexEnd = vo.useItems[m - 1].index === indEndActual
-            //     delayShow = bIndexStart && bIndexEnd
-            // }
             //kpDelayShow
             let kpDelayShow = {}
             each(vo.useItems, (v) => {
@@ -322,10 +378,12 @@ export default {
                 let v = {
                     ...items[k]
                 }
-                v.screenY = v.y - vo.scrollInfor.t //換算成實際顯示y向的px位置
-                v.nowShow = k >= indStartActual //顯示區下方之預載節點都直接顯示供重算高度
-                v.delayShow = kpDelayShow[k] === true //已經顯示的節點就直接顯示, 否則就延遲顯示
-                useItems.push(v)
+                if (v.filterShow) {
+                    v.screenY = v.y - vo.scrollInfor.t //換算成實際顯示y向的px位置
+                    v.nowShow = k >= indStartActual //顯示區下方之預載節點都直接顯示供重算高度
+                    v.delayShow = kpDelayShow[k] === true //已經顯示的節點就直接顯示, 否則就延遲顯示
+                    useItems.push(v)
+                }
             }
 
             //save
@@ -368,7 +426,7 @@ export default {
             })
 
             //check
-            let b = vo.changeHeight
+            let b = vo.changeHeight || vo.changeFilter
             if (b) {
 
                 //update y
@@ -378,7 +436,9 @@ export default {
                     if (v.y !== y) {
                         v.y = y
                     }
-                    y += v.height
+                    if (v.filterShow) {
+                        y += v.height
+                    }
                 }
 
                 //update itemsHeight
@@ -388,6 +448,7 @@ export default {
 
                 //reset
                 vo.changeHeight = false
+                vo.changeFilter = false
 
             }
 
@@ -408,7 +469,10 @@ export default {
             vo.scrollInfor = e
 
             //refresh
-            vo.refresh('scrollItems')
+            await vo.refresh('scrollItems')
+
+            //emit
+            vo.$emit('update:ratio', e.r)
 
             //check, 當一直捲動至底更新會不夠多, 需重新更新使最底節點顯示
             if (!vo.scrollToEnd && e.r === 1) {
@@ -416,11 +480,8 @@ export default {
                 //lock
                 vo.scrollToEnd = true
 
-                //delay
-                await delay(100)
-
                 //triggerEvent
-                vo.$refs.wsp.triggerEvent()
+                vo.triggerEvent()
 
                 //delay
                 await delay(100)
@@ -428,6 +489,88 @@ export default {
                 //uplock, 延遲解鎖避免無限自我呼叫
                 vo.scrollToEnd = false
 
+            }
+
+        },
+
+        filterItems: throttle(async function() {
+            //console.log('methods filterItems')
+
+            let vo = this
+
+            //items
+            //let items = vo.items
+            let items = gm.get(vo.mmkey)
+
+            //n
+            let n = size(items)
+
+            //check
+            if (size(vo.filterKeywords) === 0) {
+
+                //預設可見
+                for (let k = 0; k < n; k++) {
+                    items[k].filterShow = true
+                }
+
+            }
+            else {
+
+                //kws
+                let kws = sep(vo.filterKeywords.toLowerCase(), ' ')
+
+                //預設不可見
+                for (let k = 0; k < n; k++) {
+                    let r = items[k].row
+
+                    //c
+                    let c = ''
+                    if (isstr(r)) {
+                        c = r
+                    }
+                    else if (isnum(r)) {
+                        c = toString(r)
+                    }
+                    else {
+                        c = o2j(r)
+                    }
+                    c = c.toLowerCase()
+
+                    //若值含有關建字
+                    let b = false
+                    for (let i = 0; i < size(kws); i++) {
+                        let kw = kws[i]
+                        if (c.indexOf(kw) >= 0) {
+                            b = true
+                            break
+                        }
+                    }
+                    items[k].filterShow = b
+
+                }
+
+            }
+
+            //changeFilter
+            vo.changeFilter = true
+
+            //refresh, 因節點顯隱需更新高度
+            await vo.refresh('filter')
+
+            //triggerEvent, 因項目會變少故得呼叫事件供外部重新計算節點top
+            vo.triggerEvent()
+
+        }, 50),
+
+        triggerEvent: function(from) {
+            //console.log('methods triggerEvent', from)
+
+            let vo = this
+
+            //t
+            let t = get(vo, '$refs.wsp.triggerEvent', null)
+            if (t) {
+                t(from)
             }
 
         },

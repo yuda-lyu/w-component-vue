@@ -16,7 +16,7 @@
             :borderColorFocus="borderColorFocus"
             :small="small"
             :editable="editable"
-            :focused="focused_trans"
+            :focused="focusedTrans"
             @click-left="function(v){$emit('click-left', v)}"
         >
 
@@ -31,7 +31,7 @@
                     :valueMax="valueMax"
                     :value="value"
                     :editable="editable"
-                    :focused="focused_trans"
+                    :focused="focusedTrans"
                     @update:focused="changeFocused"
                     @input="function(v){$emit('input', v)}"
                 ></w-text-int-core>
@@ -168,7 +168,7 @@ export default {
     },
     data: function() {
         return {
-            focused_trans: false,
+            focusedTrans: false,
         }
     },
     mounted: function() {
@@ -180,8 +180,8 @@ export default {
 
             let vo = this
 
-            //focused_trans
-            vo.focused_trans = vo.focused
+            //focusedTrans
+            vo.focusedTrans = vo.focused
 
             return ''
         },
@@ -195,7 +195,7 @@ export default {
             let vo = this
 
             //save
-            vo.focused_trans = focused
+            vo.focusedTrans = focused
 
             //setTimeout
             setTimeout(function() {

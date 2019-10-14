@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import { color2hex } from '../js/vuetifyColor.mjs'
+import color2hex from '../js/vuetifyColor.mjs'
 
 /**
  * @vue-prop {String} [text=''] 輸入文字字串，預設''

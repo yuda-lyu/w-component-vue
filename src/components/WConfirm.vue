@@ -3,7 +3,7 @@
         :changeParam="changeParam"
         persistent
         :max-width="widthMax"
-        v-model="show_trans"
+        v-model="showTrans"
     >
 
         <v-card>
@@ -65,7 +65,7 @@
 
 <script>
 import { mdiAlert, mdiCheckboxMarkedCircle, mdiCloseCircle } from '@mdi/js'
-import { color2hex } from '../js/vuetifyColor.mjs'
+import color2hex from '../js/vuetifyColor.mjs'
 
 /**
  * @vue-prop {Boolean} [show=false] 輸入是否顯示，預設false
@@ -154,7 +154,7 @@ export default {
             mdiAlert,
             mdiCheckboxMarkedCircle,
             mdiCloseCircle,
-            show_trans: null,
+            showTrans: null,
         }
     },
     mounted: function() {
@@ -166,8 +166,8 @@ export default {
 
             let vo = this
 
-            //show_trans
-            vo.show_trans = vo.show
+            //showTrans
+            vo.showTrans = vo.show
 
             return ''
         },
@@ -230,13 +230,13 @@ export default {
             let vo = this
 
             //hide
-            vo.show_trans = false
+            vo.showTrans = false
 
             //setTimeout
             setTimeout(function() {
 
                 //emit
-                vo.$emit('update:show', vo.show_trans)
+                vo.$emit('update:show', vo.showTrans)
 
                 //emit
                 let c = 'no'

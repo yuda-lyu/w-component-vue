@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import { color2hex } from '../js/vuetifyColor.mjs'
+import color2hex from '../js/vuetifyColor.mjs'
 
 /**
  * @vue-prop {Boolean} [hasHeader=true] 輸入是否有上部標題區，預設true

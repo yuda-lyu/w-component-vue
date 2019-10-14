@@ -13,6 +13,7 @@ import WIcon from './WIcon.vue'
 import WJsonView from './WJsonView.vue'
 import WJsonViewCore from './WJsonViewCore.vue'
 import WPanel from './WPanel.vue'
+import WPopupPanel from './WPopupPanel.vue'
 import WProgressCircle from './WProgressCircle.vue'
 import WRadioChips from './WRadioChips.vue'
 import WScrollPanel from './WScrollPanel.vue'
@@ -24,8 +25,8 @@ import WTextarea from './WTextarea.vue'
 import WTextCore from './WTextCore.vue'
 import WTextInt from './WTextInt.vue'
 import WTextIntCore from './WTextIntCore.vue'
-import WTextSelects from './WTextSelects.vue'
-import WTextSelectsCore from './WTextSelectsCore.vue'
+import WTextSelect from './WTextSelect.vue'
+import WTextSelectCore from './WTextSelectCore.vue'
 import WTextSuggest from './WTextSuggest.vue'
 import WTextSuggestCore from './WTextSuggestCore.vue'
 import WTimeday from './WTimeday.vue'
@@ -53,6 +54,7 @@ let WComponentVue = {
         Vue.component('w-json-view', WJsonView)
         Vue.component('w-json-view-core', WJsonViewCore)
         Vue.component('w-panel', WPanel)
+        Vue.component('w-popup-panel', WPopupPanel)
         Vue.component('w-progress-circle', WProgressCircle)
         Vue.component('w-radio-chips', WRadioChips)
         Vue.component('w-scroll-panel', WScrollPanel)
@@ -64,8 +66,8 @@ let WComponentVue = {
         Vue.component('w-text-core', WTextCore)
         Vue.component('w-text-int', WTextInt)
         Vue.component('w-text-int-core', WTextIntCore)
-        Vue.component('w-text-selects', WTextSelects)
-        Vue.component('w-text-selects-core', WTextSelectsCore)
+        Vue.component('w-text-select', WTextSelect)
+        Vue.component('w-text-select-core', WTextSelectCore)
         Vue.component('w-text-suggest', WTextSuggest)
         Vue.component('w-text-suggest-core', WTextSuggestCore)
         Vue.component('w-timeday', WTimeday)

@@ -20,7 +20,7 @@
             :borderColorFocus="borderColorFocus"
             :small="small"
             :editable="editable"
-            :focused="focused_trans"
+            :focused="focusedTrans"
             @click-left="function(v){$emit('click-left', v)}"
             @click-right="function(v){$emit('click-right', v)}"
         >
@@ -32,11 +32,11 @@
                 :placeholder="placeholder"
                 :editable="editable"
                 :value="value"
-                :focused="focused_trans"
+                :focused="focusedTrans"
                 @update:focused="changeFocused"
-                @blur="function(v,err){$emit('blur', v, err)}"
-                @enter="function(v,err){$emit('enter', v, err)}"
-                @input="function(v,err){$emit('input', v, err)}"
+                @blur="(v,err)=>{$emit('blur', v, err)}"
+                @enter="(v,err)=>{$emit('enter', v, err)}"
+                @input="(v,err)=>{$emit('input', v, err)}"
             ></w-text-core>
 
         </w-shell-ellipse>
@@ -173,7 +173,7 @@ export default {
     },
     data: function() {
         return {
-            focused_trans: false,
+            focusedTrans: false,
         }
     },
     mounted: function() {
@@ -185,8 +185,8 @@ export default {
 
             let vo = this
 
-            //focused_trans
-            vo.focused_trans = vo.focused
+            //focusedTrans
+            vo.focusedTrans = vo.focused
 
             return ''
         },
@@ -194,23 +194,13 @@ export default {
     },
     methods: {
 
-        setValueTrans: function(value) {
-            //console.log('methods setValueTrans', value)
-
-            let vo = this
-
-            //setValueTrans
-            vo.$refs.inp.setValueTrans(value)
-
-        },
-
         changeFocused: function(focused) {
             //console.log('methods changeFocused', focused)
 
             let vo = this
 
             //save
-            vo.focused_trans = focused
+            vo.focusedTrans = focused
 
             //setTimeout
             setTimeout(function() {

@@ -1,14 +1,15 @@
 <template>
-    <div :changeParam="changeParam">
+    <div :changeValue="changeValue">
 
         <input
             ref="inp"
             class="basic"
             type="text"
-            :style="[{'width':'100%'},{'height':'28px'},{'text-align':textAlign},{'opacity':(!value_trans && !focused)?0.6:1}]"
+            :style="[{'width':'100%'},{'height':'28px'},{'text-align':textAlign},{'opacity':(!valueTrans && !focused)?0.6:1}]"
             :readonly="!editable"
             :placeholder="placeholder"
-            v-model="value_trans"
+            v-model="valueTrans"
+            @input="changeContent('input')"
             @focus="changeFocused(true)"
             @blur="changeFocused(false);changeContent('blur');"
             @keyup.enter="changeContent('enter')"
@@ -56,20 +57,20 @@ export default {
     },
     data: function() {
         return {
-            value_trans: '',
+            valueTrans: '',
         }
     },
     mounted: function() {
     },
     computed: {
 
-        changeParam: function () {
-            //console.log('computed changeParam')
+        changeValue: function () {
+            //console.log('computed changeValue')
 
             let vo = this
 
-            //value_trans
-            vo.value_trans = vo.value
+            //valueTrans
+            vo.valueTrans = vo.value
 
             return ''
         },
@@ -83,7 +84,7 @@ export default {
             let vo = this
 
             //save
-            //vo.focused_trans = focused
+            //vo.focusedTrans = focused
 
             //setTimeout
             setTimeout(function() {
@@ -101,7 +102,7 @@ export default {
             let vo = this
 
             //verifyValue
-            let r = verifyValue(vo.value_trans, vo.type)
+            let r = verifyValue(vo.valueTrans, vo.type)
 
             //value, errmsg
             let value = r.value
@@ -111,7 +112,7 @@ export default {
             setTimeout(function() {
 
                 //reset for error condition
-                vo.value_trans = value
+                vo.valueTrans = value
 
                 //emit
                 vo.$emit('input', value, errmsg)
@@ -120,16 +121,6 @@ export default {
                 vo.$emit(evname, value, errmsg)
 
             }, 1)
-
-        },
-
-        setValueTrans: function(value) {
-            //console.log('methods setValueTrans', value)
-
-            let vo = this
-
-            //set value_trans
-            vo.value_trans = value
 
         },
 

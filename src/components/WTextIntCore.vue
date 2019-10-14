@@ -11,9 +11,9 @@
             :rightIconColorFocus="buttonColorFocus"
             :rightIconTooltip="rightIconTooltip"
             :editable="editable"
-            :focused="focused_trans"
-            @click-left="changeContent(value_trans,'minus')"
-            @click-right="changeContent(value_trans,'add')"
+            :focused="focusedTrans"
+            @click-left="changeContent(valueTrans,'minus')"
+            @click-right="changeContent(valueTrans,'add')"
         >
 
             <w-text-core
@@ -21,8 +21,8 @@
                 :style="{'width':width+'px'}"
                 :textAlign="'center'"
                 :editable="editable"
-                :value="value_trans"
-                :focused="focused_trans"
+                :value="valueTrans"
+                :focused="focusedTrans"
                 @update:focused="changeFocused"
                 @input="function(v){changeContent(v,'')}"
             ></w-text-core>
@@ -97,8 +97,8 @@ export default {
         return {
             mdiPlusCircle,
             mdiMinusCircle,
-            value_trans: '',
-            focused_trans: false,
+            valueTrans: '',
+            focusedTrans: false,
         }
     },
     mounted: function() {
@@ -110,11 +110,11 @@ export default {
 
             let vo = this
 
-            //value_trans
-            vo.value_trans = vo.value
+            //valueTrans
+            vo.valueTrans = vo.value
 
-            //focused_trans
-            vo.focused_trans = vo.focused
+            //focusedTrans
+            vo.focusedTrans = vo.focused
 
             return ''
         },
@@ -128,7 +128,7 @@ export default {
             let vo = this
 
             //save
-            vo.focused_trans = focused
+            vo.focusedTrans = focused
 
             //setTimeout
             setTimeout(function() {
@@ -176,21 +176,13 @@ export default {
             setTimeout(function() {
 
                 //reset for error
-                vo.value_trans = value
+                vo.valueTrans = value
 
                 //emit
                 vo.$emit('input', value)
 
                 //emit
                 vo.$emit('errmsg', errmsg)
-
-            }, 1)
-
-            //setTimeout
-            setTimeout(function() {
-
-                //setValueTrans
-                vo.$refs.inp.setValueTrans(value)
 
             }, 1)
 

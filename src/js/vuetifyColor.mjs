@@ -1,6 +1,7 @@
 import camelCase from 'lodash/camelCase'
 import split from 'lodash/split'
-//import colors from 'vuetify/es5/util/colors'
+import size from 'lodash/size'
+import get from 'lodash/get'
 
 
 //fs.writeFileSync('colors.json', JSON.stringify(colors), 'utf8')
@@ -29,6 +30,11 @@ function color2hex(color) {
     //split, 'blue-grey lighten-5' => ['blue-grey', 'lighten-5']
     let cc = split(color, ' ')
 
+    //check
+    if (size(cc) !== 2) {
+        return color
+    }
+
     //key0, 'blue-grey' => blueGrey
     let key0 = cc[0].trim()
     key0 = camelCase(key0)
@@ -41,16 +47,13 @@ function color2hex(color) {
     key1 = key1.replace('-', '').trim()
 
     //hex
-    let hex = '#666'
-    try {
-        hex = colors.default[key0][key1]
-    }
-    catch (e) {
-        console.log('can not convert color: ' + color, colors.default)
+    let hex = get(colors, `default.${key0}.${key1}`, null)
+    if (hex === null) {
+        hex = color
     }
 
     return hex
 }
 
 
-export { color2hex }
+export default color2hex

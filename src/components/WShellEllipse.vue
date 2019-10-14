@@ -22,7 +22,7 @@
                         <div ShellEllipse="leftIcon" v-on="{...ttShellEllipseLeft}">
                             <w-icon
                                 :icon="leftIcon"
-                                :color="focused_trans?leftIconColorFocus:leftIconColor"
+                                :color="focusedTrans?leftIconColorFocus:leftIconColor"
                             ></w-icon>
                         </div>
                     </template>
@@ -47,7 +47,7 @@
                         <div ShellEllipse="rightIcon" v-on="{...ttShellEllipseRight}">
                             <w-icon
                                 :icon="rightIcon"
-                                :color="focused_trans?rightIconColorFocus:rightIconColor"
+                                :color="focusedTrans?rightIconColorFocus:rightIconColor"
                             ></w-icon>
                         </div>
                     </template>
@@ -64,7 +64,7 @@
 </template>
 
 <script>
-import { color2hex } from '../js/vuetifyColor.mjs'
+import color2hex from '../js/vuetifyColor.mjs'
 import WIcon from './WIcon.vue'
 
 /**
@@ -172,7 +172,7 @@ export default {
     },
     data: function() {
         return {
-            focused_trans: false,
+            focusedTrans: false,
         }
     },
     mounted: function() {
@@ -184,8 +184,8 @@ export default {
 
             let vo = this
 
-            //focused_trans
-            vo.focused_trans = vo.focused
+            //focusedTrans
+            vo.focusedTrans = vo.focused
 
             return ''
         },
@@ -196,7 +196,7 @@ export default {
             let vo = this
 
             let s = {}
-            if (vo.focused_trans) {
+            if (vo.focusedTrans) {
                 s['background-color'] = color2hex(vo.backgroundColorFocus)
             }
             else {
@@ -211,7 +211,7 @@ export default {
             let vo = this
 
             let s = {}
-            if (vo.focused_trans) {
+            if (vo.focusedTrans) {
                 s['border'] = '1px solid ' + color2hex(vo.borderColorFocus)
             }
             else {

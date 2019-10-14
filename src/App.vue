@@ -246,11 +246,11 @@
             ></AppZoneWTextarea>
 
 
-            <AppZoneWTextSelects
+            <AppZoneWTextSelect
                 :modeBorder="modeBorder"
                 :modeShell="modeShell"
-                v-if="compname==='WTextSelects'"
-            ></AppZoneWTextSelects>
+                v-if="compname==='WTextSelect'"
+            ></AppZoneWTextSelect>
 
 
             <AppZoneWTextSuggest
@@ -327,7 +327,7 @@ import AppZoneWRadioChips from './AppZoneWRadioChips.vue'
 import AppZoneWText from './AppZoneWText.vue'
 import AppZoneWTextInt from './AppZoneWTextInt.vue'
 import AppZoneWTextarea from './AppZoneWTextarea.vue'
-import AppZoneWTextSelects from './AppZoneWTextSelects.vue'
+import AppZoneWTextSelect from './AppZoneWTextSelect.vue'
 import AppZoneWTextSuggest from './AppZoneWTextSuggest.vue'
 import AppZoneWTimeday from './AppZoneWTimeday.vue'
 import AppZoneWTimeminute from './AppZoneWTimeminute.vue'
@@ -354,7 +354,7 @@ export default {
         AppZoneWText,
         AppZoneWTextInt,
         AppZoneWTextarea,
-        AppZoneWTextSelects,
+        AppZoneWTextSelect,
         AppZoneWTextSuggest,
         AppZoneWTimeday,
         AppZoneWTimeminute,
@@ -406,7 +406,7 @@ export default {
                         'WText',
                         'WTextInt',
                         'WTextarea',
-                        'WTextSelects',
+                        'WTextSelect',
                         'WTextSuggest',
                     ]
                 },
@@ -431,7 +431,7 @@ export default {
                 'WButtonGroupChip': true,
                 'WText': true,
                 'WTextInt': true,
-                'WTextSelects': true,
+                'WTextSelect': true,
                 'WTextSuggest': true,
                 'WTimeday': true,
                 'WTimeminute': true,
@@ -447,7 +447,7 @@ export default {
                 'WText': true,
                 'WTextInt': true,
                 'WTextarea': true,
-                'WTextSelects': true,
+                'WTextSelect': true,
                 'WTextSuggest': true,
                 'WTimeday': true,
                 'WTimeminute': true,

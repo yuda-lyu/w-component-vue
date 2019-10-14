@@ -13,7 +13,7 @@
                     <div ShellMaterial="leftIcon" v-on="{...ttShellMaterialLeft}">
                         <w-icon
                             :icon="leftIcon"
-                            :color="focused_trans?leftIconColorFocus:leftIconColor"
+                            :color="focusedTrans?leftIconColorFocus:leftIconColor"
                         ></w-icon>
                     </div>
                 </template>
@@ -46,7 +46,7 @@
                     <div ShellMaterial="rightIcon" v-on="{...ttShellMaterialRight}">
                         <w-icon
                             :icon="rightIcon"
-                            :color="focused_trans?rightIconColorFocus:rightIconColor"
+                            :color="focusedTrans?rightIconColorFocus:rightIconColor"
                         ></w-icon>
                     </div>
                 </template>
@@ -61,7 +61,7 @@
 </template>
 
 <script>
-import { color2hex } from '../js/vuetifyColor.mjs'
+import color2hex from '../js/vuetifyColor.mjs'
 import WIcon from './WIcon.vue'
 
 /**
@@ -139,7 +139,7 @@ export default {
     },
     data: function() {
         return {
-            focused_trans: false,
+            focusedTrans: false,
         }
     },
     mounted: function() {
@@ -151,8 +151,8 @@ export default {
 
             let vo = this
 
-            //focused_trans
-            vo.focused_trans = vo.focused
+            //focusedTrans
+            vo.focusedTrans = vo.focused
 
             return ''
         },

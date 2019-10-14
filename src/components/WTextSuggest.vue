@@ -16,17 +16,17 @@
             :borderColorFocus="borderColorFocus"
             :small="small"
             :editable="editable"
-            :focused="focused_trans"
+            :focused="focusedTrans"
             @click-left="function(v){$emit('click-left', v)}"
         >
 
-            <w-text-suggest-core
+            <WTextSuggestCore
                 :items="items"
                 :value="value"
                 :editable="editable"
                 @update:focused="changeFocused"
                 @input="function(v){$emit('input', v)}"
-            ></w-text-suggest-core>
+            ></WTextSuggestCore>
 
         </w-shell-ellipse>
 
@@ -35,6 +35,7 @@
 
 <script>
 import WShellEllipse from './WShellEllipse.vue'
+//import WTextSuggestCore from './WTextSuggestCore.vue'
 import WTextSuggestCore from './WTextSuggestCore.vue'
 
 /**
@@ -59,6 +60,7 @@ import WTextSuggestCore from './WTextSuggestCore.vue'
 export default {
     components: {
         WShellEllipse,
+        //WTextSuggestCore,
         WTextSuggestCore,
     },
     props: {
@@ -131,7 +133,7 @@ export default {
     },
     data: function() {
         return {
-            focused_trans: false,
+            focusedTrans: false,
         }
     },
     mounted: function() {
@@ -143,8 +145,8 @@ export default {
 
             let vo = this
 
-            //focused_trans
-            vo.focused_trans = vo.focused
+            //focusedTrans
+            vo.focusedTrans = vo.focused
 
             return ''
         },
@@ -158,7 +160,7 @@ export default {
             let vo = this
 
             //save
-            vo.focused_trans = focused
+            vo.focusedTrans = focused
 
             //setTimeout
             setTimeout(function() {

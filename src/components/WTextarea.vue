@@ -9,7 +9,7 @@
             :color="borderColorFocus"
             :placeholder="placeholder"
             :disabled="!editable"
-            v-model="value_trans"
+            v-model="valueTrans"
             @change="changeContent"
         ></v-textarea>
 
@@ -45,7 +45,7 @@ export default {
     },
     data: function() {
         return {
-            value_trans: '',
+            valueTrans: '',
         }
     },
     mounted: function() {
@@ -57,8 +57,8 @@ export default {
 
             let vo = this
 
-            //value_trans
-            vo.value_trans = vo.value
+            //valueTrans
+            vo.valueTrans = vo.value
 
             return ''
         },

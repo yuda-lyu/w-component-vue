@@ -16,7 +16,7 @@
                     <span v-if="item.hasChildren" @click.capture="toggleItems(item)">
                         <span :class="[{'caretRight':true,'showChildren':item.displayChildren}]">
                             <span class="center">
-                                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" :fill="iconColor" width="11px" height="11px" x="0px" y="0px" viewBox="0 0 415.346 415.346" xml:space="preserve"><g><path d="M41.712,415.346c-11.763,0-21.3-9.537-21.3-21.3V21.299C20.412,9.536,29.949,0,41.712,0l346.122,191.697 c0,0,15.975,15.975,0,31.951C371.859,239.622,41.712,415.346,41.712,415.346z"/></g></svg>
+                                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" :fill="useIconColor" width="11px" height="11px" x="0px" y="0px" viewBox="0 0 415.346 415.346" xml:space="preserve"><g><path d="M41.712,415.346c-11.763,0-21.3-9.537-21.3-21.3V21.299C20.412,9.536,29.949,0,41.712,0l346.122,191.697 c0,0,15.975,15.975,0,31.951C371.859,239.622,41.712,415.346,41.712,415.346z"/></g></svg>
                             </span>
                         </span>
                     </span>
@@ -25,11 +25,11 @@
 
                 <div style="text-indent:-2rem; margin-left:2em;">
 
-                    <span :style="`color:${keyColor};`" v-if="item.key">
+                    <span :style="`color:${useKeyColor};`" v-if="item.key">
 
                         <span>{{item.key}}</span>
 
-                        <span :style="`margin:0px 10px; color:${keyNumbersColor};`" v-if="item.keyNumbers">
+                        <span :style="`margin:0px 10px; color:${usekeyNumbersColor};`" v-if="item.keyNumbers">
                             <span v-if="item.keyNumbers.type==='arr'">[{{item.keyNumbers.n}}]</span>
                             <span v-if="item.keyNumbers.type==='obj'"><span>{</span><span>{{item.keyNumbers.n}}</span><span>}</span></span>
                         </span>
@@ -56,13 +56,14 @@
 </template>
 
 <script>
+import color2hex from '../js/vuetifyColor.mjs'
 
 /**
  * @vue-prop {Object} item 輸入物件
  * @vue-prop {Number} [lineNumberWidth=0] 輸入列號區寬度，單位為px，預設0
- * @vue-prop {String} [iconColor='#999'] 輸入顯隱icon按鈕顏色字串，預設'#999'
- * @vue-prop {String} [keyColor='#666'] 輸入鍵值顏色字串，預設'#666'
- * @vue-prop {String} [keyNumbersColor='#aaa'] 輸入鍵值內含子節點數量顏色字串，預設'#aaa'
+ * @vue-prop {String} [iconColor='grey'] 輸入顯隱icon按鈕顏色字串，預設'grey'
+ * @vue-prop {String} [keyColor='grey darken-2'] 輸入鍵值顏色字串，預設'grey darken-2'
+ * @vue-prop {String} [keyNumbersColor='grey lighten-1'] 輸入鍵值內含子節點數量顏色字串，預設'grey lighten-1'
  */
 export default {
     props: {
@@ -76,15 +77,15 @@ export default {
         },
         iconColor: {
             type: String,
-            default: '#999',
+            default: 'grey',
         },
         keyColor: {
             type: String,
-            default: '#666',
+            default: 'grey darken-2',
         },
         keyNumbersColor: {
             type: String,
-            default: '#aaa',
+            default: 'grey lighten-1',
         },
     },
     data: function() {
@@ -103,6 +104,31 @@ export default {
     mounted: function() {
     },
     computed: {
+
+        useIconColor: function() {
+            //console.log('computed useIconColor')
+
+            let vo = this
+
+            return color2hex(vo.iconColor)
+        },
+
+        useKeyColor: function() {
+            //console.log('computed useKeyColor')
+
+            let vo = this
+
+            return color2hex(vo.keyColor)
+        },
+
+        usekeyNumbersColor: function() {
+            //console.log('computed usekeyNumbersColor')
+
+            let vo = this
+
+            return color2hex(vo.keyNumbersColor)
+        },
+
     },
     methods: {
 

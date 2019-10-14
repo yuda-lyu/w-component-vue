@@ -1,7 +1,7 @@
 <template>
     <div style="display:inline-block;" :changeParam="changeParam">
 
-        <template v-for="(item,kitem) in value_trans">
+        <template v-for="(item,kitem) in valueTrans">
 
             <v-chip
                 class="v-chpi-modify"
@@ -21,7 +21,7 @@
 
         </template>
 
-        <template v-if="value_trans.length===0">
+        <template v-if="valueTrans.length===0">
 
             <v-chip
                 class="v-chpi-modify"
@@ -132,7 +132,7 @@ export default {
         return {
             mdiCloseCircle,
             mdiPlusCircle,
-            value_trans: [],
+            valueTrans: [],
             userinput: '',
         }
     },
@@ -145,8 +145,8 @@ export default {
 
             let vo = this
 
-            //value_trans
-            vo.value_trans = vo.value
+            //valueTrans
+            vo.valueTrans = vo.value
 
             return ''
         },
@@ -183,10 +183,10 @@ export default {
             setTimeout(function() {
 
                 //push
-                vo.value_trans.push(trim(vo.userinput))
+                vo.valueTrans.push(trim(vo.userinput))
 
                 //emit
-                vo.$emit('input', vo.value_trans)
+                vo.$emit('input', vo.valueTrans)
 
                 //clear
                 vo.userinput = ''
@@ -210,7 +210,7 @@ export default {
             setTimeout(function() {
 
                 //emit
-                vo.$emit('input', vo.pull(vo.value_trans, item))
+                vo.$emit('input', vo.pull(vo.valueTrans, item))
 
             }, 1)
 

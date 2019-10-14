@@ -74,6 +74,46 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-dynamic-scroll'"
+                    :casename="'filterKeywords'"
+                    :kind="'nokind'"
+                    :shell="'pure'"
+                ></demolink>
+
+                <div style="margin-bottom:10px;">
+                    <span style="padding-right:10px;">Search :</span>
+                    <input
+                        style="padding:2px 15px; color:#666; border:1px solid #fca; border-radius:30px; outline:none;"
+                        v-model="WDynamicScroll.keywords"
+                    />
+                </div>
+
+                <w-dynamic-scroll
+                    class="list"
+                    style="border:1px solid #ddd;"
+                    :filterKeywords="WDynamicScroll.keywords"
+                    :rows="WDynamicScroll.data1"
+                >
+                    <template v-slot:block="props">
+
+                        <div style="display:flex; align-items:flex-start; padding:5px 15px;">
+
+                            <div style="color:#f26;">{{props.irow+1}}</div>
+
+                            <div style="padding-right:10px;">:</div>
+
+                            <div style="color:#999; word-break: normal;">{{props.row}}</div>
+
+                        </div>
+
+                    </template>
+                </w-dynamic-scroll>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-dynamic-scroll'"
                     :casename="'slot item with image'"
                     :kind="'nokind'"
                     :shell="'pure'"
@@ -209,6 +249,7 @@ export default {
     data: function() {
         return {
             'WDynamicScroll': {
+                'keywords': 'fede 80',
                 'data1': [
                     'Examine trends in the movement of guns across different states.',
                     'Code of Federal Regulations - Alcohol, Tobacco Products and Firearms',

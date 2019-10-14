@@ -4,6 +4,7 @@
         :ratio.sync="scrollRatio"
         :viewHeight="viewHeight"
         :contentHeight="itemsHeight"
+        :changeColors="changeColors"
         :changeFilterKeyWords="changeFilterKeyWords"
         @change="scrollItems"
         @toggleItemsEnd="toggleItemsEnd"
@@ -26,7 +27,9 @@
 </template>
 
 <script>
+import color2hex from '../js/vuetifyColor.mjs'
 import each from 'lodash/each'
+import get from 'lodash/get'
 import size from 'lodash/size'
 import keys from 'lodash/keys'
 import isNumber from 'lodash/isNumber'
@@ -37,11 +40,13 @@ import isBoolean from 'lodash/isBoolean'
 import isFunction from 'lodash/isFunction'
 import toString from 'lodash/toString'
 import toInteger from 'lodash/toInteger'
+import throttle from 'lodash/throttle'
 import isarr from 'wsemi/src/isarr.mjs'
 import isobj from 'wsemi/src/isobj.mjs'
 import sep from 'wsemi/src/sep.mjs'
 import genID from 'wsemi/src/genID.mjs'
 import genPm from 'wsemi/src/genPm.mjs'
+import delay from 'wsemi/src/delay.mjs'
 import binarySearch from '../js/binarySearch.mjs'
 import globalMemory from '../js/globalMemory.mjs'
 import WScrollPanel from './WScrollPanel.vue'
@@ -55,14 +60,14 @@ let gm = globalMemory()
  * @vue-prop {Number} [viewHeight=400] 輸入顯示區高度，單位為px，預設400
  * @vue-prop {Number} [itemMinHeight=24] 輸入各元素顯示高度，單位為px，預設24，會於真實顯示後自動更新高度
  * @vue-prop {Number} [itemsPreload=40] 輸入上下方預先載入元素數量，預設40
- * @vue-prop {String} [iconColor='#999'] 輸入顯隱icon按鈕顏色字串，預設'#999'
- * @vue-prop {String} [keyColor='#666'] 輸入鍵值顏色字串，預設'#666'
- * @vue-prop {String} [keyNumbersColor='#aaa'] 輸入鍵值內含子節點數量顏色字串，預設'#aaa'
- * @vue-prop {String} [numColor='#1c00d4'] 輸入值為數值時的顏色字串，預設'#1c00d4'
- * @vue-prop {String} [strColor='#ebaf61'] 輸入值為字串時的顏色字串，預設'#ebaf61'
+ * @vue-prop {String} [iconColor='grey'] 輸入顯隱icon按鈕顏色字串，預設'grey'
+ * @vue-prop {String} [keyColor='grey darken-2'] 輸入鍵值顏色字串，預設'grey darken-2'
+ * @vue-prop {String} [keyNumbersColor='grey lighten-1'] 輸入鍵值內含子節點數量顏色字串，預設'grey lighten-1'
+ * @vue-prop {String} [numColor='indigo accent-2'] 輸入值為數值時的顏色字串，預設'indigo accent-2'
+ * @vue-prop {String} [strColor='orange accent-2'] 輸入值為字串時的顏色字串，預設'orange accent-2'
  * @vue-prop {String} [bolColor='#ab0d90'] 輸入值為布林值時的顏色字串，預設'#ab0d90'
- * @vue-prop {String} [funColor='#ca56da'] 輸入值為函數時的顏色字串，預設'#ca56da'
- * @vue-prop {String} [defaultColor='#222'] 輸入值為其他類型時的顏色字串，預設'#222'
+ * @vue-prop {String} [funColor='purple accent-2'] 輸入值為函數時的顏色字串，預設'purple accent-2'
+ * @vue-prop {String} [defaultColor='grey darken-4'] 輸入值為其他類型時的顏色字串，預設'grey darken-4'
  * @vue-prop {Boolean} [defDisplayChildren=true] 輸入是否預先展開全部節點，預設true
  */
 export default {
@@ -90,35 +95,35 @@ export default {
         },
         iconColor: {
             type: String,
-            default: '#999',
+            default: 'grey',
         },
         keyColor: {
             type: String,
-            default: '#666',
+            default: 'grey darken-2',
         },
         keyNumbersColor: {
             type: String,
-            default: '#aaa',
+            default: 'grey lighten-1',
         },
         numColor: {
             type: String,
-            default: '#1c00d4',
+            default: 'indigo accent-2',
         },
         strColor: {
             type: String,
-            default: '#ebaf61',
+            default: 'orange accent-2',
         },
         bolColor: {
             type: String,
-            default: '#80d85f',
+            default: 'light-green lighten-1',
         },
         funColor: {
             type: String,
-            default: '#ca56da',
+            default: 'purple accent-2',
         },
         defaultColor: {
             type: String,
-            default: '#222',
+            default: 'grey darken-4',
         },
         defDisplayChildren: {
             type: Boolean,
@@ -129,6 +134,7 @@ export default {
         return {
             //itemDiv的style記得給width:100%，因ie11的flex內文字會自動撐開版面導致不會換行
             mmkey: null,
+            useColors: {},
             changeDisplayChildren: true, //是否有變更displayChildren
             changeDisplayChildrenIndex: null, //變更displayChildren的item指標
             changeHeight: true, //是否有變更高度, 預設true使一開始能強制計算各節點高度
@@ -207,6 +213,17 @@ export default {
     },
     computed: {
 
+        changeColors: function() {
+            //console.log('computed changeColors')
+
+            let vo = this
+
+            //convertColors
+            vo.convertColors()
+
+            return ''
+        },
+
         changeFilterKeyWords: function() {
             //console.log('computed changeFilterKeyWords')
 
@@ -224,6 +241,19 @@ export default {
     },
     methods: {
 
+        convertColors: function() {
+            //console.log('methods convertColors')
+
+            let vo = this
+
+            vo.useColors.numColor = color2hex(vo.numColor)
+            vo.useColors.strColor = color2hex(vo.strColor)
+            vo.useColors.bolColor = color2hex(vo.bolColor)
+            vo.useColors.funColor = color2hex(vo.funColor)
+            vo.useColors.defaultColor = color2hex(vo.defaultColor)
+
+        },
+
         refresh: async function(from) {
             //console.log('methods refresh', from)
 
@@ -231,7 +261,7 @@ export default {
 
             let n = 0
             let limit = 3
-            function core() {
+            async function core() {
                 let pm = genPm()
 
                 //n
@@ -247,33 +277,27 @@ export default {
                 //genUseItems
                 vo.genUseItems()
 
+                //delay
+                await delay(1)
+
                 //updateItems
-                setTimeout(function() {
-                    let b = vo.updateItems()
-                    pm.resolve(b)
-                }, 1)
+                let b = vo.updateItems()
+                pm.resolve(b)
 
                 return pm
             }
 
-            function call() {
-                let pm = genPm()
+            async function call() {
 
-                //setTimeout
-                setTimeout(async function() {
+                //若任何元素高度有變更則再重新計算需顯示的節點, 此時的確有可能會載入新節點, 所以原本給予節點之預設高度不能太高, 偵測時元素就多是變高, 所以需顯示的節點就會變少, 避免造成重新載入新節點狀況
+                let r = await core()
+                while (r) {
+                    r = await core()
+                }
 
-                    //若任何元素高度有變更則再重新計算需顯示的節點, 此時的確有可能會載入新節點, 所以原本給予節點之預設高度不能太高, 偵測時元素就多是變高, 所以需顯示的節點就會變少, 避免造成重新載入新節點狀況
-                    let r = await core()
-                    while (r) {
-                        r = await core()
-                    }
-
-                    pm.resolve()
-                }, 1)
-
-                return pm
             }
 
+            //call
             await call()
 
             //genUseItems
@@ -310,6 +334,11 @@ export default {
 
             //n
             let n = size(items)
+
+            //check
+            if (n === 0) {
+                return
+            }
 
             //indStart, 該元素區有侵入顯示區
             let indStartActual = binarySearch(items, (ind) => {
@@ -474,6 +503,9 @@ export default {
             //console.log('methods parseData', d)
 
             let vo = this
+
+            //convertColors, 解析資料比computed還快, 故需先執行轉換顏色
+            vo.convertColors()
 
             let index = -1
             let items = []
@@ -670,7 +702,7 @@ export default {
                 }
                 else {
                     let r = cValue(value)
-                    let c = vo[`${r.type}Color`]
+                    let c = vo.useColors[`${r.type}Color`]
                     addItem({
                         parentIndex,
                         level,
@@ -704,7 +736,7 @@ export default {
             }
             else {
                 let r = cValue(d)
-                let c = vo[`${r.type}Color`]
+                let c = vo.useColors[`${r.type}Color`]
                 addItem({
                     parentIndex: null,
                     level: 0,
@@ -720,7 +752,116 @@ export default {
             return items
         },
 
-        filterItems: function() {
+        toggleItems: async function(item) {
+            //console.log('methods toggleItems', item)
+
+            let vo = this
+
+            //luck
+            vo.toggling = true
+
+            //items
+            //let items = vo.items
+            let items = gm.get(vo.mmkey)
+
+            //toggle, 先變更displayChildren使頁面icon動畫先更新
+            items[item.index].displayChildren = !items[item.index].displayChildren
+
+            //changeDisplayChildren, changeDisplayChildrenIndex
+            vo.changeDisplayChildren = true
+            vo.changeDisplayChildrenIndex = item.index
+
+            //save toggleInfor
+            vo.toggleInfor = {
+                ...vo.scrollInfor,
+                itemClickY: items[item.index].y, //點擊時, 點擊節點的頂端y座標
+            }
+
+            //refresh
+            await vo.refresh('toggleItems')
+
+            //triggerEvent, 上鎖階段呼叫自行創建的toggleItemsEnd事件
+            vo.triggerEvent('toggleItemsEnd')
+
+        },
+
+        toggleItemsEnd: async function(e) {
+            //console.log('methods toggleItemsEnd', e)
+
+            let vo = this
+
+            //check, 無上鎖時不能執行
+            if (!vo.toggling) {
+                return
+            }
+
+            //check
+            let r = 0
+            if (size(vo.useItems) > 0 && vo.itemsHeight > 0 && vo.toggleInfor.ch > 0) { //已有內容資料
+
+                //內容高度變少, 點擊節點為隱藏動作
+                if (vo.itemsHeight < vo.toggleInfor.ch) {
+
+                    //內容高度小於等於當前視窗高度
+                    if (vo.itemsHeight <= vo.viewHeight) {
+                        r = 0
+                        //console.log('隱藏, 內容高度小於當前視窗高度, r=', r)
+                    }
+                    //內容高度大於當前視窗高度
+                    else {
+                        r = vo.toggleInfor.t / (vo.itemsHeight - vo.viewHeight)
+                        //console.log('隱藏, 內容高度大於當前視窗高度, r=', r, vo.toggleInfor.t, vo.itemsHeight, vo.viewHeight)
+                    }
+
+                }
+                //內容高度變高, 點擊節點為顯示動作
+                else {
+
+                    //內容高度小於等於當前視窗高度
+                    if (vo.itemsHeight <= vo.viewHeight) {
+                        r = 0
+                        //console.log('顯示, 內容高度小於當前視窗高度, r=', r)
+                    }
+                    //內容高度大於當前視窗高度
+                    else {
+                        r = vo.toggleInfor.t / (vo.itemsHeight - vo.viewHeight)
+                        //console.log('顯示, 內容高度大於當前視窗高度, r=', r, vo.toggleInfor.t, vo.itemsHeight, vo.viewHeight)
+                    }
+
+                }
+
+            }
+
+            //scrollRatio, 外部變更scrollRatio不會觸發捲動事件, 得自己呼叫
+            vo.scrollRatio = r
+
+            //triggerEvent
+            vo.triggerEvent()
+
+            //unluck
+            vo.toggling = false
+
+        },
+
+        scrollItems: async function(e) {
+            //console.log('methods scrollItems', e)
+
+            let vo = this
+
+            //check, 有上鎖時不能執行
+            if (vo.toggling) {
+                return
+            }
+
+            //save
+            vo.scrollInfor = e
+
+            //refresh
+            await vo.refresh('scrollItems')
+
+        },
+
+        filterItems: throttle(async function() {
             //console.log('methods filterItems')
 
             let vo = this
@@ -781,7 +922,6 @@ export default {
                 let kws = sep(vo.filterKeywords.toLowerCase(), ' ')
 
                 //filter
-
                 let k = -1
                 while (k < n) {
                     k += 1
@@ -861,117 +1001,24 @@ export default {
             //changeFilter
             vo.changeFilter = true
 
-            //refresh
-            vo.refresh('filter')
+            //refresh, 因節點顯隱需更新高度
+            await vo.refresh('filter')
 
-        },
+            //triggerEvent, 因項目會變少故得呼叫事件供外部重新計算節點top
+            vo.triggerEvent()
 
-        toggleItems: async function(item) {
-            //console.log('methods toggleItems', item)
+        }, 50),
 
-            let vo = this
-
-            //luck
-            vo.toggling = true
-
-            //items
-            //let items = vo.items
-            let items = gm.get(vo.mmkey)
-
-            //toggle, 先變更displayChildren使頁面icon動畫先更新
-            items[item.index].displayChildren = !items[item.index].displayChildren
-
-            //changeDisplayChildren, changeDisplayChildrenIndex
-            vo.changeDisplayChildren = true
-            vo.changeDisplayChildrenIndex = item.index
-
-            //save toggleInfor
-            vo.toggleInfor = {
-                ...vo.scrollInfor,
-                itemClickY: items[item.index].y, //點擊時, 點擊節點的頂端y座標
-            }
-
-            //refresh
-            await vo.refresh('toggleItems')
-
-            //triggerEvent, 上鎖階段呼叫自行創建的toggleItemsEnd事件
-            vo.$refs.wsp.triggerEvent('toggleItemsEnd')
-
-        },
-
-        toggleItemsEnd: async function(e) {
-            //console.log('methods toggleItemsEnd', e)
+        triggerEvent: function(from) {
+            //console.log('methods triggerEvent', from)
 
             let vo = this
 
-            //check, 無上鎖時不能執行
-            if (!vo.toggling) {
-                return
+            //t
+            let t = get(vo, '$refs.wsp.triggerEvent', null)
+            if (t) {
+                t(from)
             }
-
-            //check
-            let r = 0
-            if (size(vo.useItems) > 0 && vo.itemsHeight > 0 && vo.toggleInfor.ch > 0) { //已有內容資料
-
-                //內容高度變少, 點擊節點為隱藏動作
-                if (vo.itemsHeight < vo.toggleInfor.ch) {
-
-                    //內容高度小於等於當前視窗高度
-                    if (vo.itemsHeight <= vo.viewHeight) {
-                        r = 0
-                        //console.log('隱藏, 內容高度小於當前視窗高度, r=', r)
-                    }
-                    //內容高度大於當前視窗高度
-                    else {
-                        r = vo.toggleInfor.t / (vo.itemsHeight - vo.viewHeight)
-                        //console.log('隱藏, 內容高度大於當前視窗高度, r=', r, vo.toggleInfor.t, vo.itemsHeight, vo.viewHeight)
-                    }
-
-                }
-                //內容高度變高, 點擊節點為顯示動作
-                else {
-
-                    //內容高度小於等於當前視窗高度
-                    if (vo.itemsHeight <= vo.viewHeight) {
-                        r = 0
-                        //console.log('顯示, 內容高度小於當前視窗高度, r=', r)
-                    }
-                    //內容高度大於當前視窗高度
-                    else {
-                        r = vo.toggleInfor.t / (vo.itemsHeight - vo.viewHeight)
-                        //console.log('顯示, 內容高度大於當前視窗高度, r=', r, vo.toggleInfor.t, vo.itemsHeight, vo.viewHeight)
-                    }
-
-                }
-
-            }
-
-            //scrollRatio, 外部變更scrollRatio不會觸發捲動事件, 得自己呼叫
-            vo.scrollRatio = r
-
-            //triggerEvent
-            vo.$refs.wsp.triggerEvent()
-
-            //unluck
-            vo.toggling = false
-
-        },
-
-        scrollItems: function(e) {
-            //console.log('methods scrollItems', e)
-
-            let vo = this
-
-            //check, 有上鎖時不能執行
-            if (vo.toggling) {
-                return
-            }
-
-            //save
-            vo.scrollInfor = e
-
-            //refresh
-            vo.refresh('scrollItems')
 
         },
 
