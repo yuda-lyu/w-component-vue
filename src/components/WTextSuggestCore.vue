@@ -44,7 +44,7 @@
                     ref="wds"
                     :rows="items"
                     :filterKeywords="valueTrans"
-                    :viewHeight="height"
+                    :viewHeightMax="maxHeight"
                     :ratio.sync="ratio"
                     :itemMinHeight="30"
                 >
@@ -87,7 +87,7 @@ import WDynamicScroll from './WDynamicScroll.vue'
  * @vue-prop {String} [itemBackgroundColor='white'] 輸入項目背景顏色字串，預設'white'
  * @vue-prop {String} [itemBackgroundColorHover='light-blue lighten-5'] 輸入項目背景Hover顏色字串，預設'light-blue lighten-5'
  * @vue-prop {String} [iconColor='#999'] 輸入圖標顏色字串，預設'#999'
- * @vue-prop {Number} [height=200] 輸入顯示區高度，單位為px，預設200
+ * @vue-prop {Number} [maxHeight=200] 輸入顯示區最大高度，單位為px，預設200
  * @vue-prop {Number} [minWidth=undefined] 輸入最小寬度，單位為px，預設undefined
  * @vue-prop {Number} [maxWidth=undefined] 輸入最大寬度，單位為px，預設undefined
  * @vue-prop {Number} [distY=5] 輸入彈窗距離觸發元素底部的距離，單位為px，預設5
@@ -139,7 +139,7 @@ export default {
             type: String,
             default: 'grey',
         },
-        height: {
+        maxHeight: {
             type: Number,
             default: 200,
         },

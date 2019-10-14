@@ -42,7 +42,7 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-dynamic-scroll'"
-                    :casename="'viewHeight'"
+                    :casename="'viewHeightMax'"
                     :kind="'nokind'"
                     :shell="'pure'"
                 ></demolink>
@@ -50,7 +50,7 @@
                 <w-dynamic-scroll
                     class="list"
                     style="border:1px solid #ddd;"
-                    :viewHeight="250"
+                    :viewHeightMax="250"
                     :rows="WDynamicScroll.data1"
                 >
                     <template v-slot:block="props">

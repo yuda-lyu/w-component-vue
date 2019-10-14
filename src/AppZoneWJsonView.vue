@@ -28,7 +28,7 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-json-view'"
-                    :casename="'viewHeight'"
+                    :casename="'viewHeightMax'"
                     :kind="'nokind'"
                     :shell="'pure'"
                 ></demolink>
@@ -36,7 +36,7 @@
                 <w-json-view
                     class="list"
                     style="border:1px solid #ddd;"
-                    :viewHeight="250"
+                    :viewHeightMax="250"
                     :data="WJsonView.data2"
                 ></w-json-view>
 

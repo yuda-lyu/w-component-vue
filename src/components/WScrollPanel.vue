@@ -1,7 +1,7 @@
 <template>
-    <div :style="`overflow:hidden; height:${Math.min(contentHeight,viewHeight)}px; box-sizing:content-box;`">
+    <div :style="`overflow:hidden; height:${Math.min(contentHeight,viewHeightMax)}px; box-sizing:content-box;`">
         <div
-            :style="`position:relative; overflow:hidden; height:${viewHeight}; box-sizing:border-box;`"
+            :style="`position:relative; overflow:hidden; height:${viewHeightMax}; box-sizing:border-box;`"
             :changeRatio="changeRatio"
             v-resize="()=>{refresh('resize',true)}"
             v-intersect="(entries)=>{refresh('intersect',entries[0].isIntersecting)}"
@@ -9,7 +9,7 @@
             @mouseleave="barOpacity=0.5"
         >
 
-            <div :style="`height:${viewHeight+1}px;`"></div>
+            <div :style="`height:${viewHeightMax+1}px;`"></div>
 
             <div style="position:absolute; top:0; right:0px; height:100%; z-index:1;" v-show="contentHeightEff>0">
                 <div :style="`position:relative; width:10px; height:100%; background-color:${useBarBackgroundColor}; padding:2px;`">
@@ -22,7 +22,7 @@
 
             <div
                 ref="divPanel"
-                :style="`position:absolute; top:0px; width:calc(100% + 18px); overflow-y:auto; overflow-x:hidden; height:${viewHeight}px;`"
+                :style="`position:absolute; top:0px; width:calc(100% + 18px); overflow-y:auto; overflow-x:hidden; height:${viewHeightMax}px;`"
             >
 
                 <slot></slot>
@@ -40,7 +40,7 @@ import genID from 'wsemi/src/genID.mjs'
 import cancelEvent from '../js/cancelEvent.mjs'
 
 /**
- * @vue-prop {Number} [viewHeight=400] 輸入顯示區高度，單位為px，預設400
+ * @vue-prop {Number} [viewHeightMax=400] 輸入顯示區最大高度，單位為px，預設400
  * @vue-prop {Number} [contentHeight=10000] 輸入內容最大高度，單位為px，預設10000
  * @vue-prop {Number} [scrollDelta=100] 輸入一次捲動高度，單位為px，預設100
  * @vue-prop {Number} [barSizeMin=50] 輸入捲軸內區塊最小高度，單位為px，預設50
@@ -50,7 +50,7 @@ import cancelEvent from '../js/cancelEvent.mjs'
  */
 export default {
     props: {
-        viewHeight: {
+        viewHeightMax: {
             type: Number,
             default: 400,
         },
@@ -253,7 +253,7 @@ export default {
 
             let vo = this
 
-            return vo.viewHeight / Math.max(vo.contentHeight, 1)
+            return vo.viewHeightMax / Math.max(vo.contentHeight, 1)
         },
 
         barSize: function() {
@@ -262,10 +262,10 @@ export default {
             let vo = this
 
             //r size ratio
-            let r = vo.viewHeight / vo.contentHeight
+            let r = vo.viewHeightMax / vo.contentHeight
 
             //barSize
-            let barSize = Math.max(r * vo.viewHeight, vo.barSizeMin)
+            let barSize = Math.max(r * vo.viewHeightMax, vo.barSizeMin)
 
             return barSize
         },
@@ -284,7 +284,7 @@ export default {
             let vo = this
 
             //v
-            let v = vo.contentHeight - vo.viewHeight
+            let v = vo.contentHeight - vo.viewHeightMax
             v = Math.max(v, 0)
 
             return v
@@ -296,7 +296,7 @@ export default {
             let vo = this
 
             //v
-            let v = vo.viewHeight - vo.barSize - 4 //4px為padding 2px*2
+            let v = vo.viewHeightMax - vo.barSize - 4 //4px為padding 2px*2
             v = Math.max(v, 0)
 
             return v
@@ -315,7 +315,7 @@ export default {
 
             let vo = this
 
-            return vo.viewTop + vo.viewHeight
+            return vo.viewTop + vo.viewHeightMax
         },
 
     },

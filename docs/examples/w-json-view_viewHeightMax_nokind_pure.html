@@ -6,7 +6,7 @@
         name="viewport"
         content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui"
     />
-    <title>example for w-json-view: viewHeight</title>
+    <title>example for w-json-view: viewHeightMax</title>
 
     <!-- fontawesome -->
     <link
@@ -47,7 +47,7 @@
     <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.js"></script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@1.2.20/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@1.2.21/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -93,12 +93,12 @@
     <v-app id="app" style="font-family:inherit;">
         <div class="head1">w-json-view</div>
         <div class="bk">
-            <div class="item">viewHeight</div>
+            <div class="item">viewHeightMax</div>
 
             <w-json-view
                 class="list"
                 style="border:1px solid #ddd;"
-                :view-height="250"
+                :view-height-max="250"
                 :data="WJsonView.data2"
             />
         </div>

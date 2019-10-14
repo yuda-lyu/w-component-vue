@@ -2,7 +2,7 @@
     <WScrollPanel
         ref="wsp"
         :ratio.sync="scrollRatio"
-        :viewHeight="viewHeight"
+        :viewHeightMax="viewHeightMax"
         :contentHeight="itemsHeight"
         :changeColors="changeColors"
         :changeFilterKeyWords="changeFilterKeyWords"
@@ -57,7 +57,7 @@ let gm = globalMemory()
 
 /**
  * @vue-prop {*} data 輸入資料陣列或物件
- * @vue-prop {Number} [viewHeight=400] 輸入顯示區高度，單位為px，預設400
+ * @vue-prop {Number} [viewHeightMax=400] 輸入顯示區最大高度，單位為px，預設400
  * @vue-prop {Number} [itemMinHeight=24] 輸入各元素顯示高度，單位為px，預設24，會於真實顯示後自動更新高度
  * @vue-prop {Number} [itemsPreload=40] 輸入上下方預先載入元素數量，預設40
  * @vue-prop {String} [iconColor='grey'] 輸入顯隱icon按鈕顏色字串，預設'grey'
@@ -81,7 +81,7 @@ export default {
             type: String,
             default: '',
         },
-        viewHeight: {
+        viewHeightMax: {
             type: Number,
             default: 400,
         },
@@ -323,7 +323,7 @@ export default {
                 vo.scrollInfor = {
                     r: 0,
                     t: 0,
-                    b: vo.viewHeight,
+                    b: vo.viewHeightMax,
                     ch: vo.itemsHeight,
                 }
             }
@@ -803,14 +803,14 @@ export default {
                 if (vo.itemsHeight < vo.toggleInfor.ch) {
 
                     //內容高度小於等於當前視窗高度
-                    if (vo.itemsHeight <= vo.viewHeight) {
+                    if (vo.itemsHeight <= vo.viewHeightMax) {
                         r = 0
                         //console.log('隱藏, 內容高度小於當前視窗高度, r=', r)
                     }
                     //內容高度大於當前視窗高度
                     else {
-                        r = vo.toggleInfor.t / (vo.itemsHeight - vo.viewHeight)
-                        //console.log('隱藏, 內容高度大於當前視窗高度, r=', r, vo.toggleInfor.t, vo.itemsHeight, vo.viewHeight)
+                        r = vo.toggleInfor.t / (vo.itemsHeight - vo.viewHeightMax)
+                        //console.log('隱藏, 內容高度大於當前視窗高度, r=', r, vo.toggleInfor.t, vo.itemsHeight, vo.viewHeightMax)
                     }
 
                 }
@@ -818,14 +818,14 @@ export default {
                 else {
 
                     //內容高度小於等於當前視窗高度
-                    if (vo.itemsHeight <= vo.viewHeight) {
+                    if (vo.itemsHeight <= vo.viewHeightMax) {
                         r = 0
                         //console.log('顯示, 內容高度小於當前視窗高度, r=', r)
                     }
                     //內容高度大於當前視窗高度
                     else {
-                        r = vo.toggleInfor.t / (vo.itemsHeight - vo.viewHeight)
-                        //console.log('顯示, 內容高度大於當前視窗高度, r=', r, vo.toggleInfor.t, vo.itemsHeight, vo.viewHeight)
+                        r = vo.toggleInfor.t / (vo.itemsHeight - vo.viewHeightMax)
+                        //console.log('顯示, 內容高度大於當前視窗高度, r=', r, vo.toggleInfor.t, vo.itemsHeight, vo.viewHeightMax)
                     }
 
                 }

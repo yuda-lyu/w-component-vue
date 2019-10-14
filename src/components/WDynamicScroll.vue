@@ -2,7 +2,7 @@
     <WScrollPanel
         ref="wsp"
         :ratio.sync="ratioTrans"
-        :viewHeight="viewHeightTrans"
+        :viewHeightMax="viewHeightMaxTrans"
         :contentHeight="itemsHeight"
         :changeViewHeight="changeViewHeight"
         :changeRatio="changeRatio"
@@ -55,7 +55,8 @@ let gm = globalMemory()
 
 /**
  * @vue-prop {Array} [rows=[]] 輸入資料陣列，預設[]，各元素配合slot顯示即可，slot內提供row與irow，對應原始rows內各元素與指標，另外各元素slot時不要用margin避免計算高度有誤差
- * @vue-prop {Number} [viewHeight=400] 輸入顯示區高度，單位為px，預設400
+ * @vue-prop {String} [filterKeywords=''] 輸入過濾關鍵字字串，多關鍵字用空白分隔，預設''
+ * @vue-prop {Number} [viewHeightMax=400] 輸入顯示區最大高度，單位為px，預設400
  * @vue-prop {Number} [itemMinHeight=24] 輸入各元素顯示高度，單位為px，預設24，會於真實顯示後自動更新高度
  * @vue-prop {Number} [itemsPreload=40] 輸入上下方預先載入元素數量，預設40
  * @vue-prop {Number} [ratio=0] 輸入目前捲動比例，預設0
@@ -73,7 +74,7 @@ export default {
             type: String,
             default: '',
         },
-        viewHeight: {
+        viewHeightMax: {
             type: Number,
             default: 400,
         },
@@ -97,7 +98,7 @@ export default {
             changeHeight: true, //是否有變更高度, 初始化給true使第一次顯示能自動重算節點高度
             changeFilter: false, //是否有變更過濾關鍵字
             ratioTrans: 0, //捲動比例
-            viewHeightTrans: null, //顯示區高度
+            viewHeightMaxTrans: null, //顯示區高度
             scrollInfor: null, //目前捲軸資訊
             scrollToEnd: false, //捲動至底部, 額外refresh
             filterKeywordsTrans: '', //搜尋關鍵字
@@ -163,8 +164,8 @@ export default {
 
             let vo = this
 
-            //viewHeightTrans
-            vo.viewHeightTrans = vo.viewHeight
+            //viewHeightMaxTrans
+            vo.viewHeightMaxTrans = vo.viewHeightMax
 
             return ''
         },
@@ -327,7 +328,7 @@ export default {
                 vo.scrollInfor = {
                     r: 0,
                     t: 0,
-                    b: vo.viewHeight,
+                    b: vo.viewHeightMax,
                     ch: vo.itemsHeight,
                 }
             }
