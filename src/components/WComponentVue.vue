@@ -8,7 +8,7 @@ import WCheckChips from './WCheckChips.vue'
 import WChips from './WChips.vue'
 import WConfirm from './WConfirm.vue'
 import WDialog from './WDialog.vue'
-import WDynamicScroll from './WDynamicScroll.vue'
+import WDynamicList from './WDynamicList.vue'
 import WIcon from './WIcon.vue'
 import WJsonView from './WJsonView.vue'
 import WJsonViewCore from './WJsonViewCore.vue'
@@ -16,7 +16,7 @@ import WPanel from './WPanel.vue'
 import WPopupPanel from './WPopupPanel.vue'
 import WProgressCircle from './WProgressCircle.vue'
 import WRadioChips from './WRadioChips.vue'
-import WScrollPanel from './WScrollPanel.vue'
+import WScrollyPanel from './WScrollyPanel.vue'
 import WShellEllipse from './WShellEllipse.vue'
 import WShellMaterial from './WShellMaterial.vue'
 import WSwitch from './WSwitch.vue'
@@ -49,7 +49,7 @@ let WComponentVue = {
         Vue.component('w-chips', WChips)
         Vue.component('w-confirm', WConfirm)
         Vue.component('w-dialog', WDialog)
-        Vue.component('w-dynamic-scroll', WDynamicScroll)
+        Vue.component('w-dynamic-list', WDynamicList)
         Vue.component('w-icon', WIcon)
         Vue.component('w-json-view', WJsonView)
         Vue.component('w-json-view-core', WJsonViewCore)
@@ -57,7 +57,7 @@ let WComponentVue = {
         Vue.component('w-popup-panel', WPopupPanel)
         Vue.component('w-progress-circle', WProgressCircle)
         Vue.component('w-radio-chips', WRadioChips)
-        Vue.component('w-scroll-panel', WScrollPanel)
+        Vue.component('w-scrolly-panel', WScrollyPanel)
         Vue.component('w-shell-ellipse', WShellEllipse)
         Vue.component('w-shell-material', WShellMaterial)
         Vue.component('w-switch', WSwitch)

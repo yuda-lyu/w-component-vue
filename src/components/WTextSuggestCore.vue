@@ -40,7 +40,7 @@
         <template v-slot:content>
 
             <div style="background-color:#fff;">
-                <WDynamicScroll
+                <WDynamicList
                     ref="wds"
                     :rows="items"
                     :filterKeywords="valueTrans"
@@ -62,7 +62,7 @@
                         </div>
 
                     </template>
-                </WDynamicScroll>
+                </WDynamicList>
             </div>
 
         </template>
@@ -75,7 +75,7 @@ import color2hex from '../js/vuetifyColor.mjs'
 import isobj from 'wsemi/src/isobj.mjs'
 import WPopupPanel from './WPopupPanel.vue'
 import WTextCore from './WTextCore.vue'
-import WDynamicScroll from './WDynamicScroll.vue'
+import WDynamicList from './WDynamicList.vue'
 
 /**
  * @vue-prop {Object|String|Number} value 輸入初始項目物件
@@ -100,7 +100,7 @@ export default {
     components: {
         WPopupPanel,
         WTextCore,
-        WDynamicScroll,
+        WDynamicList,
     },
     props: {
         value: {

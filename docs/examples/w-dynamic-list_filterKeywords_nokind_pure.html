@@ -6,7 +6,7 @@
         name="viewport"
         content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui"
     />
-    <title>example for w-dynamic-scroll: large data (1,000,000 items)</title>
+    <title>example for w-dynamic-list: filterKeywords</title>
 
     <!-- fontawesome -->
     <link
@@ -47,7 +47,7 @@
     <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.js"></script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@1.2.22/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@1.2.23/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -91,43 +91,38 @@
     style="font-family:'Microsoft JhengHei','Avenir','Helvetica'; padding:20px;"
 >
     <v-app id="app" style="font-family:inherit;">
-        <div class="head1">w-dynamic-scroll</div>
-        <div class="bk" style="display:block;">
-            <div class="item">large data (1,000,000 items)</div>
+        <div class="head1">w-dynamic-list</div>
+        <div class="bk">
+            <div class="item">filterKeywords</div>
 
-            <w-dynamic-scroll
+            <div style="margin-bottom:10px;">
+                <span style="padding-right:10px;">Search :</span>
+                <input
+                    style="padding:2px 15px; color:#666; border:1px solid #fca; border-radius:30px; outline:none;"
+                    v-model="WDynamicList.keywords"
+                />
+            </div>
+
+            <w-dynamic-list
+                class="list"
                 style="border:1px solid #ddd;"
-                :rows="WDynamicScroll.data3"
+                :filter-keywords="WDynamicList.keywords"
+                :rows="WDynamicList.data1"
             >
                 <template v-slot:block="props">
-                    <div style="padding:15px;">
+                    <div
+                        style="display:flex; align-items:flex-start; padding:5px 15px;"
+                    >
+                        <div style="color:#f26;">{{props.irow+1}}</div>
+
+                        <div style="padding-right:10px;">:</div>
+
                         <div
-                            style="display:table-cell; vertical-align:top; padding:5px 20px 0px 0px;"
-                        >
-                            <img
-                                style="border-radius:50%; width:48px; height:48px;"
-                                :src="props.row.avatar"
-                                alt="avatar"
-                            />
-                        </div>
-
-                        <div style="display:table-cell; vertical-align:top;">
-                            <div style="margin-bottom:5px;">
-                                <div
-                                    style="display:inline-block; vertical-align:middle; padding:1px 9px; color:#fff; background-color:#f26; border-radius:10px; font-size:0.6rem;"
-                                >{{props.irow+1}}</div>
-                                <div
-                                    style="display:inline-block; vertical-align:middle; font-size:1.1rem; margin-left:7px;"
-                                >{{props.row.name}}</div>
-                            </div>
-
-                            <div
-                                style="font-size:0.8rem; color:#999;"
-                            >{{props.row.msg}}</div>
-                        </div>
+                            style="color:#999; word-break:normal;"
+                        >{{props.row}}</div>
                     </div>
                 </template>
-            </w-dynamic-scroll>
+            </w-dynamic-list>
         </div>
     </v-app>
 
@@ -140,7 +135,7 @@
     el: "#app",
     vuetify: new Vuetify(),
     data: {
-      WDynamicScroll: {
+      WDynamicList: {
         keywords: "fede 80",
         data1: [
           "Examine trends in the movement of guns across different states.",

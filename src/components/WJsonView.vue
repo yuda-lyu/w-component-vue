@@ -1,5 +1,5 @@
 <template>
-    <WScrollPanel
+    <WScrollyPanel
         ref="wsp"
         :ratio.sync="scrollRatio"
         :viewHeightMax="viewHeightMax"
@@ -23,7 +23,7 @@
             ></WJsonViewCore>
         </template>
 
-    </WScrollPanel>
+    </WScrollyPanel>
 </template>
 
 <script>
@@ -49,7 +49,7 @@ import genPm from 'wsemi/src/genPm.mjs'
 import delay from 'wsemi/src/delay.mjs'
 import binarySearch from '../js/binarySearch.mjs'
 import globalMemory from '../js/globalMemory.mjs'
-import WScrollPanel from './WScrollPanel.vue'
+import WScrollyPanel from './WScrollyPanel.vue'
 import WJsonViewCore from './WJsonViewCore.vue'
 
 //gm
@@ -72,7 +72,7 @@ let gm = globalMemory()
  */
 export default {
     components: {
-        WScrollPanel,
+        WScrollyPanel,
         WJsonViewCore,
     },
     props: {

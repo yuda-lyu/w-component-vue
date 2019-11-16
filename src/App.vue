@@ -295,11 +295,11 @@
             ></AppZoneWJsonView>
 
 
-            <AppZoneWDynamicScroll
+            <AppZoneWDynamicList
                 :modeBorder="modeBorder"
                 :modeShell="modeShell"
-                v-if="compname==='WDynamicScroll'"
-            ></AppZoneWDynamicScroll>
+                v-if="compname==='WDynamicList'"
+            ></AppZoneWDynamicList>
 
 
         </div>
@@ -334,7 +334,7 @@ import AppZoneWTimeminute from './AppZoneWTimeminute.vue'
 import AppZoneWTimedayRange from './AppZoneWTimedayRange.vue'
 import AppZoneWTimeminuteRange from './AppZoneWTimeminuteRange.vue'
 import AppZoneWJsonView from './AppZoneWJsonView.vue'
-import AppZoneWDynamicScroll from './AppZoneWDynamicScroll.vue'
+import AppZoneWDynamicList from './AppZoneWDynamicList.vue'
 
 export default {
     components: {
@@ -361,7 +361,7 @@ export default {
         AppZoneWTimedayRange,
         AppZoneWTimeminuteRange,
         AppZoneWJsonView,
-        AppZoneWDynamicScroll,
+        AppZoneWDynamicList,
     },
     data: function() {
         return {
@@ -423,7 +423,7 @@ export default {
                     name: 'scroll',
                     cmps: [
                         'WJsonView',
-                        'WDynamicScroll',
+                        'WDynamicList',
                     ]
                 },
             ],

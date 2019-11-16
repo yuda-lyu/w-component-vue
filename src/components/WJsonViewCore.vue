@@ -23,9 +23,9 @@
                     <span style="display:inline-block; width:16px;" v-else></span>
                 </div>
 
-                <div style="text-indent:-2rem; margin-left:2em;">
+                <div style="display:flex;">
 
-                    <span :style="`color:${useKeyColor};`" v-if="item.key">
+                    <span :style="`white-space:pre; color:${useKeyColor};`" v-if="item.key">
 
                         <span>{{item.key}}</span>
 

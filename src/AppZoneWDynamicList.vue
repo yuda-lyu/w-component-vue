@@ -2,7 +2,7 @@
     <div>
 
 
-        <div class="head1">w-dynamic-scroll</div>
+        <div class="head1">w-dynamic-list</div>
 
 
         <div style="padding:0px;">
@@ -10,16 +10,16 @@
 
             <div class="bk">
                 <demolink
-                    :kbname="'w-dynamic-scroll'"
+                    :kbname="'w-dynamic-list'"
                     :casename="'default'"
                     :kind="'nokind'"
                     :shell="'pure'"
                 ></demolink>
 
-                <w-dynamic-scroll
+                <w-dynamic-list
                     class="list"
                     style="border:1px solid #ddd;"
-                    :rows="WDynamicScroll.data1"
+                    :rows="WDynamicList.data1"
                 >
                     <template v-slot:block="props">
 
@@ -34,24 +34,24 @@
                         </div>
 
                     </template>
-                </w-dynamic-scroll>
+                </w-dynamic-list>
 
             </div>
 
 
             <div class="bk">
                 <demolink
-                    :kbname="'w-dynamic-scroll'"
+                    :kbname="'w-dynamic-list'"
                     :casename="'viewHeightMax'"
                     :kind="'nokind'"
                     :shell="'pure'"
                 ></demolink>
 
-                <w-dynamic-scroll
+                <w-dynamic-list
                     class="list"
                     style="border:1px solid #ddd;"
                     :viewHeightMax="250"
-                    :rows="WDynamicScroll.data1"
+                    :rows="WDynamicList.data1"
                 >
                     <template v-slot:block="props">
 
@@ -61,19 +61,19 @@
 
                             <div style="padding-right:10px;">:</div>
 
-                            <div style="color:#999; word-break: normal;">{{props.row}}</div>
+                            <div style="color:#999; word-break:normal;">{{props.row}}</div>
 
                         </div>
 
                     </template>
-                </w-dynamic-scroll>
+                </w-dynamic-list>
 
             </div>
 
 
             <div class="bk">
                 <demolink
-                    :kbname="'w-dynamic-scroll'"
+                    :kbname="'w-dynamic-list'"
                     :casename="'filterKeywords'"
                     :kind="'nokind'"
                     :shell="'pure'"
@@ -83,15 +83,15 @@
                     <span style="padding-right:10px;">Search :</span>
                     <input
                         style="padding:2px 15px; color:#666; border:1px solid #fca; border-radius:30px; outline:none;"
-                        v-model="WDynamicScroll.keywords"
+                        v-model="WDynamicList.keywords"
                     />
                 </div>
 
-                <w-dynamic-scroll
+                <w-dynamic-list
                     class="list"
                     style="border:1px solid #ddd;"
-                    :filterKeywords="WDynamicScroll.keywords"
-                    :rows="WDynamicScroll.data1"
+                    :filterKeywords="WDynamicList.keywords"
+                    :rows="WDynamicList.data1"
                 >
                     <template v-slot:block="props">
 
@@ -101,28 +101,28 @@
 
                             <div style="padding-right:10px;">:</div>
 
-                            <div style="color:#999; word-break: normal;">{{props.row}}</div>
+                            <div style="color:#999; word-break:normal;">{{props.row}}</div>
 
                         </div>
 
                     </template>
-                </w-dynamic-scroll>
+                </w-dynamic-list>
 
             </div>
 
 
             <div class="bk">
                 <demolink
-                    :kbname="'w-dynamic-scroll'"
+                    :kbname="'w-dynamic-list'"
                     :casename="'slot item with image'"
                     :kind="'nokind'"
                     :shell="'pure'"
                 ></demolink>
 
-                <w-dynamic-scroll
+                <w-dynamic-list
                     class="list"
                     style="border:1px solid #ddd;"
-                    :rows="WDynamicScroll.data2"
+                    :rows="WDynamicList.data2"
                 >
                     <template v-slot:block="props">
 
@@ -146,22 +146,22 @@
                         </div>
 
                     </template>
-                </w-dynamic-scroll>
+                </w-dynamic-list>
 
             </div>
 
 
             <div class="bk" style="display:block;">
                 <demolink
-                    :kbname="'w-dynamic-scroll'"
+                    :kbname="'w-dynamic-list'"
                     :casename="'large data (1,000,000 items)'"
                     :kind="'nokind'"
                     :shell="'pure'"
                 ></demolink>
 
-                <w-dynamic-scroll
+                <w-dynamic-list
                     style="border:1px solid #ddd;"
-                    :rows="WDynamicScroll.data3"
+                    :rows="WDynamicList.data3"
                 >
                     <template v-slot:block="props">
 
@@ -185,7 +185,7 @@
                         </div>
 
                     </template>
-                </w-dynamic-scroll>
+                </w-dynamic-list>
 
             </div>
 
@@ -198,7 +198,7 @@
 
 <script>
 import demolink from './components/demolink.vue'
-import WDynamicScroll from './components/WDynamicScroll.vue'
+import WDynamicList from './components/WDynamicList.vue'
 
 // let data = (function(n) {
 //     n /= 5
@@ -242,13 +242,13 @@ import WDynamicScroll from './components/WDynamicScroll.vue'
 export default {
     components: {
         demolink,
-        WDynamicScroll,
+        WDynamicList,
     },
     props: {
     },
     data: function() {
         return {
-            'WDynamicScroll': {
+            'WDynamicList': {
                 'keywords': 'fede 80',
                 'data1': [
                     'Examine trends in the movement of guns across different states.',

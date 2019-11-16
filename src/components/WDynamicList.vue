@@ -1,5 +1,5 @@
 <template>
-    <WScrollPanel
+    <WScrollyPanel
         ref="wsp"
         :ratio.sync="ratioTrans"
         :viewHeightMax="viewHeightMaxTrans"
@@ -27,7 +27,7 @@
             </div>
         </template>
 
-    </WScrollPanel>
+    </WScrollyPanel>
 </template>
 
 <script>
@@ -48,7 +48,7 @@ import isnum from 'wsemi/src/isnum.mjs'
 import o2j from 'wsemi/src/o2j.mjs'
 import binarySearch from '../js/binarySearch.mjs'
 import globalMemory from '../js/globalMemory.mjs'
-import WScrollPanel from './WScrollPanel.vue'
+import WScrollyPanel from './WScrollyPanel.vue'
 
 //gm
 let gm = globalMemory()
@@ -63,7 +63,7 @@ let gm = globalMemory()
  */
 export default {
     components: {
-        WScrollPanel,
+        WScrollyPanel,
     },
     props: {
         rows: {
