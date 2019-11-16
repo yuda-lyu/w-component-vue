@@ -6,7 +6,7 @@
         name="viewport"
         content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui"
     />
-    <title>example for w-dynamic-scroll: default</title>
+    <title>example for w-dynamic-list: viewHeightMax</title>
 
     <!-- fontawesome -->
     <link
@@ -47,7 +47,7 @@
     <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.js"></script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@1.2.22/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@1.2.23/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -91,14 +91,15 @@
     style="font-family:'Microsoft JhengHei','Avenir','Helvetica'; padding:20px;"
 >
     <v-app id="app" style="font-family:inherit;">
-        <div class="head1">w-dynamic-scroll</div>
+        <div class="head1">w-dynamic-list</div>
         <div class="bk">
-            <div class="item">default</div>
+            <div class="item">viewHeightMax</div>
 
-            <w-dynamic-scroll
+            <w-dynamic-list
                 class="list"
                 style="border:1px solid #ddd;"
-                :rows="WDynamicScroll.data1"
+                :view-height-max="250"
+                :rows="WDynamicList.data1"
             >
                 <template v-slot:block="props">
                     <div
@@ -108,10 +109,12 @@
 
                         <div style="padding-right:10px;">:</div>
 
-                        <div style="color:#999;">{{props.row}}</div>
+                        <div
+                            style="color:#999; word-break:normal;"
+                        >{{props.row}}</div>
                     </div>
                 </template>
-            </w-dynamic-scroll>
+            </w-dynamic-list>
         </div>
     </v-app>
 
@@ -124,7 +127,7 @@
     el: "#app",
     vuetify: new Vuetify(),
     data: {
-      WDynamicScroll: {
+      WDynamicList: {
         keywords: "fede 80",
         data1: [
           "Examine trends in the movement of guns across different states.",
