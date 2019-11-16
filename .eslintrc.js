@@ -17,11 +17,8 @@ module.exports = {
         "sourceType": "module",
     },
     rules: {
-        // allow async-await
         'generator-star-spacing': 'off',
-        // allow debugger during development
         'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
-        //'eslint-disable-next-line': 'off',
         'indent': ['error', 4],
         'no-console': 'off',
         'comma-dangle': ['error', {
@@ -44,7 +41,8 @@ module.exports = {
         'quote-props': ['error', 'consistent'],
         'dot-notation': 'off',
         'standard/no-callback-literal': 'off',
-        'quotes': ['error', "single", { "allowTemplateLiterals": true }],
+        'quotes': ['error', 'single', { 'allowTemplateLiterals': true }],
         'prefer-promise-reject-errors': 'off',
+        'no-unused-vars': ['error', { 'args': 'none', 'ignoreRestSiblings': true, 'argsIgnorePattern': '^_' }],
     }
 };

@@ -18,14 +18,16 @@
 
             <div :style="useContentStyle">
 
-                <v-icon
-                    :size="contentIconSize"
-                    :color="contentIconColor"
-                >
-                    {{contentIcon}}
-                </v-icon>
+                <div>
+                    <v-icon
+                        :size="contentIconSize"
+                        :color="contentIconColor"
+                    >
+                        {{contentIcon}}
+                    </v-icon>
+                </div>
 
-                <div style="margin-left:15px; font-size:1.2rem;">{{content}}</div>
+                <div style="margin-left:15px; font-size:1.2rem; white-space:pre;">{{content}}</div>
 
             </div>
 
