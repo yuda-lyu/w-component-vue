@@ -1,7 +1,7 @@
 <template>
     <div style="display:inline-block;">
         <svg
-            :style="`${iconStyleTransition}; ${iconStyle}; fill:${getIconColor};`"
+            :style="`fill:${getIconColor}; transition:${styleTransition};`"
             :width="size"
             :height="size"
             :viewBox="`0 0 ${sizeOriginal} ${sizeOriginal}`"
@@ -27,8 +27,7 @@ import isarr from 'wsemi/src/isarr.mjs'
  * @vue-prop {Number} [sizeOriginal=24] 輸入svg原始尺寸浮點數，預設24
  * @vue-prop {Number} [size=24] 輸入圖標欲顯示的尺寸浮點數，預設24
  * @vue-prop {String|Array} [path=''] 輸入svg path字串，預設''
- * @vue-prop {String} [iconStyleTransition='transition:all 0.5s linear'] 輸入圖標style設定transition字串，預設'transition:all 0.5s linear'
- * @vue-prop {String} [iconStyle=''] 輸入圖標style設定字串，預設''
+ * @vue-prop {String} [styleTransition='all 0.5s linear'] 輸入圖標style設定transition字串，預設'all 0.5s linear'
  */
 export default {
     components: {
@@ -54,13 +53,9 @@ export default {
             type: [String, Array],
             default: '',
         },
-        iconStyleTransition: {
+        styleTransition: {
             type: String,
-            default: 'transition:all 0.5s linear',
-        },
-        iconStyle: {
-            type: String,
-            default: '',
+            default: 'all 0.5s linear',
         },
     },
     data: function() {
