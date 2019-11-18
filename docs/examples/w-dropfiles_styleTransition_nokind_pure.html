@@ -47,7 +47,7 @@
     <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.js"></script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@1.2.27/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@1.2.28/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -98,13 +98,13 @@
             <w-dropfiles
                 style="width:200px; height:200px; display:flex; justify-content:center; align-items:center;"
                 :style-transition="'all 0.1s ease'"
-                @getfiles="function(files){WDropfiles.msg5='get number of files = ' + files.length}"
+                @get-files="function(files){WDropfiles.msg6='get number of files = ' + files.length}"
             >
                 <div style="text-align:center;">
                     Drop files here
                     <div
                         style="font-size:0.8rem; margin-top:5px;"
-                    >{{WDropfiles.msg5}}</div>
+                    >{{WDropfiles.msg6}}</div>
                 </div>
             </w-dropfiles>
         </div>

@@ -18,7 +18,7 @@
 
                 <w-dropfiles
                     style="width:200px; height:200px; display:flex; justify-content:center; align-items:center;"
-                    @getfiles="function(files){WDropfiles.msg1='get number of files = ' + files.length}"
+                    @get-files="function(files){WDropfiles.msg1='get number of files = ' + files.length}"
                 >
                     <div style="text-align:center;">
                         Drop files here
@@ -42,7 +42,7 @@
                     :backgroundColor="'rgba(240,230,255,0.3)'"
                     :backgroundColorDropIn="'rgba(240,230,255,0.9)'"
                     :backgroundColorHover="'rgba(240,230,255,0.6)'"
-                    @getfiles="function(files){WDropfiles.msg2='get number of files = ' + files.length}"
+                    @get-files="function(files){WDropfiles.msg2='get number of files = ' + files.length}"
                 >
                     <div style="text-align:center;">
                         Drop files here
@@ -64,7 +64,7 @@
                 <w-dropfiles
                     style="width:200px; height:200px; display:flex; justify-content:center; align-items:center;"
                     :borderRadius="30"
-                    @getfiles="function(files){WDropfiles.msg3='get number of files = ' + files.length}"
+                    @get-files="function(files){WDropfiles.msg3='get number of files = ' + files.length}"
                 >
                     <div style="text-align:center;">
                         Drop files here
@@ -86,7 +86,7 @@
                 <w-dropfiles
                     style="width:200px; height:200px; display:flex; justify-content:center; align-items:center;"
                     :borderWidth="5"
-                    @getfiles="function(files){WDropfiles.msg4='get number of files = ' + files.length}"
+                    @get-files="function(files){WDropfiles.msg4='get number of files = ' + files.length}"
                 >
                     <div style="text-align:center;">
                         Drop files here
@@ -112,7 +112,7 @@
                     :borderColorHover="'orange lighten-4'"
                     :backgroundColorDropIn="'orange lighten-4'"
                     :backgroundColorHover="'orange lighten-5'"
-                    @getfiles="function(files){WDropfiles.msg5='get number of files = ' + files.length}"
+                    @get-files="function(files){WDropfiles.msg5='get number of files = ' + files.length}"
                 >
                     <div style="text-align:center;">
                         Drop files here
@@ -134,11 +134,11 @@
                 <w-dropfiles
                     style="width:200px; height:200px; display:flex; justify-content:center; align-items:center;"
                     :styleTransition="'all 0.1s ease'"
-                    @getfiles="function(files){WDropfiles.msg5='get number of files = ' + files.length}"
+                    @get-files="function(files){WDropfiles.msg6='get number of files = ' + files.length}"
                 >
                     <div style="text-align:center;">
                         Drop files here
-                        <div style="font-size:0.8rem; margin-top:5px;">{{WDropfiles.msg5}}</div>
+                        <div style="font-size:0.8rem; margin-top:5px;">{{WDropfiles.msg6}}</div>
                     </div>
                 </w-dropfiles>
 
