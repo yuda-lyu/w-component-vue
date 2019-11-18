@@ -24,7 +24,7 @@ function color2hex(color) {
         return '#000'
     }
     else if (color === 'transparent') {
-        return '#rgba(0,0,0,0)'
+        return 'rgba(0,0,0,0)'
     }
 
     //split, 'blue-grey lighten-5' => ['blue-grey', 'lighten-5']

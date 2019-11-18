@@ -8,6 +8,7 @@ import WCheckChips from './WCheckChips.vue'
 import WChips from './WChips.vue'
 import WConfirm from './WConfirm.vue'
 import WDialog from './WDialog.vue'
+import WDropfiles from './WDropfiles.vue'
 import WDynamicList from './WDynamicList.vue'
 import WIcon from './WIcon.vue'
 import WIconSvg from './WIconSvg.vue'
@@ -50,6 +51,7 @@ let WComponentVue = {
         Vue.component('w-chips', WChips)
         Vue.component('w-confirm', WConfirm)
         Vue.component('w-dialog', WDialog)
+        Vue.component('w-dropfiles', WDropfiles)
         Vue.component('w-dynamic-list', WDynamicList)
         Vue.component('w-icon', WIcon)
         Vue.component('w-icon-svg', WIconSvg)

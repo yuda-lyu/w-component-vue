@@ -22,13 +22,13 @@ import color2hex from '../js/vuetifyColor.mjs'
 import isarr from 'wsemi/src/isarr.mjs'
 
 /**
- * @vue-prop {String} [color='#000'] 輸入圖標顏色字串，預設'#000'
- * @vue-prop {String} colorHover 輸入滑鼠移入圖標顏色字串，預設'#999'
- * @vue-prop {Number} sizeOriginal 輸入svg原始尺寸浮點數，預設24
- * @vue-prop {Number} size 輸入圖標欲顯示的尺寸浮點數，預設24
- * @vue-prop {String} path 輸入svg path字串，預設''
- * @vue-prop {String} iconStyleTransition 輸入圖標style設定transition字串，預設'transition:all 0.5s linear'
- * @vue-prop {String} iconStyle 輸入圖標style設定字串，預設''
+ * @vue-prop {String} [color='grey darken-1'] 輸入圖標顏色字串，預設'grey darken-1'
+ * @vue-prop {String} [colorHover='grey darken-3'] 輸入滑鼠移入圖標顏色字串，預設'grey darken-3'
+ * @vue-prop {Number} [sizeOriginal=24] 輸入svg原始尺寸浮點數，預設24
+ * @vue-prop {Number} [size=24] 輸入圖標欲顯示的尺寸浮點數，預設24
+ * @vue-prop {String|Array} [path=''] 輸入svg path字串，預設''
+ * @vue-prop {String} [iconStyleTransition='transition:all 0.5s linear'] 輸入圖標style設定transition字串，預設'transition:all 0.5s linear'
+ * @vue-prop {String} [iconStyle=''] 輸入圖標style設定字串，預設''
  */
 export default {
     components: {

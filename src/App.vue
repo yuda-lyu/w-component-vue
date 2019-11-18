@@ -155,6 +155,13 @@
             ></AppZoneWIconSvg>
 
 
+            <AppZoneWDropfiles
+                :modeBorder="modeBorder"
+                :modeShell="modeShell"
+                v-if="compname==='WDropfiles'"
+            ></AppZoneWDropfiles>
+
+
             <AppZoneWButtonChip
                 :modeBorder="modeBorder"
                 :modeShell="modeShell"
@@ -321,6 +328,7 @@ import { mdiCheckCircle, mdiCheckboxBlankCircleOutline } from '@mdi/js'
 import AppZoneWBadge from './AppZoneWBadge.vue'
 import AppZoneWPanel from './AppZoneWPanel.vue'
 import AppZoneWIconSvg from './AppZoneWIconSvg.vue'
+import AppZoneWDropfiles from './AppZoneWDropfiles.vue'
 import AppZoneWDialog from './AppZoneWDialog.vue'
 import AppZoneWConfirm from './AppZoneWConfirm.vue'
 import AppZoneWButtonChip from './AppZoneWButtonChip.vue'
@@ -349,6 +357,7 @@ export default {
         AppZoneWBadge,
         AppZoneWPanel,
         AppZoneWIconSvg,
+        AppZoneWDropfiles,
         AppZoneWDialog,
         AppZoneWConfirm,
         AppZoneWButtonChip,
@@ -387,6 +396,7 @@ export default {
                         'WBadge',
                         'WPanel',
                         'WIconSvg',
+                        'WDropfiles',
                         'WProgressCircle',
                         'WAlert',
                         'WDialog',
