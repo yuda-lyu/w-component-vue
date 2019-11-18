@@ -148,6 +148,13 @@
             ></AppZoneWPanel>
 
 
+            <AppZoneWIconSvg
+                :modeBorder="modeBorder"
+                :modeShell="modeShell"
+                v-if="compname==='WIconSvg'"
+            ></AppZoneWIconSvg>
+
+
             <AppZoneWButtonChip
                 :modeBorder="modeBorder"
                 :modeShell="modeShell"
@@ -313,6 +320,7 @@ import kebabCase from 'lodash/kebabCase'
 import { mdiCheckCircle, mdiCheckboxBlankCircleOutline } from '@mdi/js'
 import AppZoneWBadge from './AppZoneWBadge.vue'
 import AppZoneWPanel from './AppZoneWPanel.vue'
+import AppZoneWIconSvg from './AppZoneWIconSvg.vue'
 import AppZoneWDialog from './AppZoneWDialog.vue'
 import AppZoneWConfirm from './AppZoneWConfirm.vue'
 import AppZoneWButtonChip from './AppZoneWButtonChip.vue'
@@ -340,6 +348,7 @@ export default {
     components: {
         AppZoneWBadge,
         AppZoneWPanel,
+        AppZoneWIconSvg,
         AppZoneWDialog,
         AppZoneWConfirm,
         AppZoneWButtonChip,
@@ -377,6 +386,7 @@ export default {
                     cmps: [
                         'WBadge',
                         'WPanel',
+                        'WIconSvg',
                         'WProgressCircle',
                         'WAlert',
                         'WDialog',

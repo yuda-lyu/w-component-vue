@@ -75,14 +75,16 @@ Vue.component('w-text',WText)
 ```
 [Necessary] Add script for w-component-vue.
 ```alias
-<script src="https://cdn.jsdelivr.net/npm/w-component-vue@1.2.25/dist/w-component-vue.umd.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/w-component-vue@1.2.26/dist/w-component-vue.umd.js"></script>
 ```
 Directly use:
 ```alias
-//choose component
-<w-text
-    ...
-></w-text>
+//app and component
+<div id="app">
+    <w-text
+        ...
+    ></w-text>
+</div>
 
 //use
 Vue.use(window['w-component-vue'])

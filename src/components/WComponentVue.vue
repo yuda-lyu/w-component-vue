@@ -10,6 +10,7 @@ import WConfirm from './WConfirm.vue'
 import WDialog from './WDialog.vue'
 import WDynamicList from './WDynamicList.vue'
 import WIcon from './WIcon.vue'
+import WIconSvg from './WIconSvg.vue'
 import WJsonView from './WJsonView.vue'
 import WJsonViewCore from './WJsonViewCore.vue'
 import WPanel from './WPanel.vue'
@@ -51,6 +52,7 @@ let WComponentVue = {
         Vue.component('w-dialog', WDialog)
         Vue.component('w-dynamic-list', WDynamicList)
         Vue.component('w-icon', WIcon)
+        Vue.component('w-icon-svg', WIconSvg)
         Vue.component('w-json-view', WJsonView)
         Vue.component('w-json-view-core', WJsonViewCore)
         Vue.component('w-panel', WPanel)
