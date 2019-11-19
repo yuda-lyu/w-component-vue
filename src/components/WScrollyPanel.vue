@@ -44,7 +44,7 @@ import cancelEvent from '../js/cancelEvent.mjs'
  * @vue-prop {Number} [contentHeight=10000] 輸入內容最大高度，單位為px，預設10000
  * @vue-prop {Number} [scrollDelta=100] 輸入一次捲動高度，單位為px，預設100
  * @vue-prop {Number} [barSizeMin=50] 輸入捲軸內區塊最小高度，單位為px，預設50
- * @vue-prop {String} [barColor='rgba(180,180,180,0.6)'] 輸入捲軸內區塊顏色字串，預設'#'rgba(180,180,180,0.6)'
+ * @vue-prop {String} [barColor='rgba(180,180,180,0.6)'] 輸入捲軸內區塊顏色字串，預設'rgba(180,180,180,0.6)'
  * @vue-prop {String} [barBackgroundColor='transparent'] 輸入捲軸背景顏色字串，預設'transparent'
  * @vue-prop {Number} [ratio=0] 輸入目前捲動比例，預設0
  */

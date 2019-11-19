@@ -74,7 +74,7 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-dynamic-list'"
-                    :casename="'filterKeywords'"
+                    :casename="'filterKeywords & searchEmpty'"
                     :kind="'nokind'"
                     :shell="'pure'"
                 ></demolink>
@@ -91,6 +91,7 @@
                     class="list"
                     style="border:1px solid #ddd;"
                     :filterKeywords="WDynamicList.keywords"
+                    :searchEmpty="'There are no items to show...'"
                     :rows="WDynamicList.data1"
                 >
                     <template v-slot:block="props">

@@ -1,7 +1,7 @@
 <template>
     <div
         ref="dropPanel"
-        :style="`border:${borderWidth}px solid ${getBorderColor}; border-radius:${borderRadius}px; background-color:${getBackgroundColor}; transition:${styleTransition};`"
+        :style="`border:${borderWidth}px solid ${useBorderColor}; border-radius:${borderRadius}px; background-color:${useBackgroundColor}; transition:${styleTransition};`"
         @mouseenter="bMouseIn=true"
         @mouseleave="bMouseIn=false"
     >
@@ -104,8 +104,8 @@ export default {
     },
     computed: {
 
-        getBorderColor: function() {
-            //console.log('computed getBorderColor')
+        useBorderColor: function() {
+            //console.log('computed useBorderColor')
 
             let vo = this
 
@@ -118,8 +118,8 @@ export default {
             return color2hex(vo.borderColor)
         },
 
-        getBackgroundColor: function() {
-            //console.log('computed getBackgroundColor')
+        useBackgroundColor: function() {
+            //console.log('computed useBackgroundColor')
 
             let vo = this
 

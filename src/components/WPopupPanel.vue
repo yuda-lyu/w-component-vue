@@ -12,7 +12,7 @@
     >
 
         <template v-slot:activator="{ on }">
-            <div ref="divTrigger" v-on="on" @click="clickTrigger">
+            <div v-on="on" @click="clickTrigger">
                 <slot name="trigger"></slot>
             </div>
         </template>
@@ -71,16 +71,6 @@ export default {
         //console.log('mounted')
 
         let vo = this
-
-        // //elt
-        // let elt = vo.$refs.divTrigger
-
-        // //eltMousedown
-        // vo.eltMousedown = (e) => {
-        //     console.log('eltMousedown', e)
-        //     cancelEvent(e)
-        // }
-        // elt.addEventListener('click', vo.eltMousedown)
 
         //eleMousedown
         vo.eleMousedown = (e) => {

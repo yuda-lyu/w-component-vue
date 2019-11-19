@@ -23,6 +23,8 @@
             <WTextSuggestCore
                 :items="items"
                 :value="value"
+                :placeholder="placeholder"
+                :searchEmpty="searchEmpty"
                 :editable="editable"
                 @update:focused="changeFocused"
                 @input="function(v){$emit('input', v)}"
@@ -54,6 +56,8 @@ import WTextSuggestCore from './WTextSuggestCore.vue'
  * @vue-prop {String} [borderColor='white'] 輸入邊框顏色字串，預設'white'
  * @vue-prop {String} [borderColorFocus='white'] 輸入邊框Focus顏色字串，預設'white'
  * @vue-prop {Boolean} [small=true] 輸入是否為小型模式，預設true
+ * @vue-prop {String} [placeholder=''] 輸入無文字時的替代字符字串，預設''
+ * @vue-prop {String} [searchEmpty='Empty'] 輸入無過濾結果字串，預設'Empty'
  * @vue-prop {Boolean} [editable=true] 輸入是否為編輯模式，預設true
  * @vue-prop {Boolean} [focused=false] 輸入是否為駐點狀態，預設false
  */
@@ -121,6 +125,14 @@ export default {
         small: {
             type: Boolean,
             default: true,
+        },
+        placeholder: {
+            type: String,
+            default: '',
+        },
+        searchEmpty: {
+            type: String,
+            default: 'Empty',
         },
         editable: {
             type: Boolean,

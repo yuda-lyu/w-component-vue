@@ -9,7 +9,7 @@
             :readonly="!editable"
             :placeholder="placeholder"
             v-model="valueTrans"
-            @input="changeContent('input')"
+            @input="changeFocused(true);changeContent('input')"
             @focus="changeFocused(true)"
             @blur="changeFocused(false);changeContent('blur');"
             @keyup.enter="changeContent('enter')"
@@ -83,9 +83,6 @@ export default {
 
             let vo = this
 
-            //save
-            //vo.focusedTrans = focused
-
             //setTimeout
             setTimeout(function() {
 
@@ -111,7 +108,7 @@ export default {
             //setTimeout
             setTimeout(function() {
 
-                //reset for error condition
+                //save
                 vo.valueTrans = value
 
                 //emit

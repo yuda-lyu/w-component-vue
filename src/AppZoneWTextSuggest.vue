@@ -31,6 +31,21 @@
                     <div class="bk">
                         <demolink
                             :kbname="'w-text-suggest'"
+                            :casename="'searchEmpty'"
+                            :kind="'emboss'"
+                            :shell="'pure'"
+                        ></demolink>
+
+                        <w-text-suggest
+                            :items="WTextSuggest.objItems"
+                            :searchEmpty="'無有效項目'"
+                            v-model="WTextSuggest.objValue"
+                        ></w-text-suggest>
+                    </div>
+
+                    <div class="bk">
+                        <demolink
+                            :kbname="'w-text-suggest'"
                             :casename="'icon (material)'"
                             :kind="'emboss'"
                             :shell="'pure'"
@@ -185,6 +200,7 @@
                         <w-text-suggest
                             :icon="mdiCheckUnderlineCircle"
                             :items="WTextSuggest.objItemsLarge"
+                            :searchEmpty="'無有效項目'"
                             v-model="WTextSuggest.objValueLarge"
                         ></w-text-suggest>
                     </div>
@@ -240,6 +256,27 @@
 
                 <template v-if="modeShell==='shell'">
 
+
+                    <div class="bk">
+                        <demolink
+                            :kbname="'w-text-suggest'"
+                            :casename="'searchEmpty'"
+                            :kind="'emboss'"
+                            :shell="'shell'"
+                        ></demolink>
+
+                        <w-shell-material
+                            style="margin-top:30px;"
+                            :title="'請輸入水果種類'"
+                            :leftIcon="mdiPaw"
+                        >
+                            <w-text-suggest
+                                :items="WTextSuggest.objItems"
+                                :searchEmpty="'無有效項目'"
+                                v-model="WTextSuggest.objValue"
+                            ></w-text-suggest>
+                        </w-shell-material>
+                    </div>
 
                     <div class="bk">
                         <demolink
@@ -381,6 +418,7 @@
                         >
                             <w-text-suggest
                                 :items="WTextSuggest.objItemsLarge"
+                                :searchEmpty="'無有效項目'"
                                 v-model="WTextSuggest.objValueLarge"
                             ></w-text-suggest>
                         </w-shell-material>
@@ -473,6 +511,25 @@
                             :borderColorFocus="'orange darken-2'"
                             :backgroundColorFocus="'orange lighten-5'"
                             :items="WTextSuggest.objItems"
+                            v-model="WTextSuggest.objValue"
+                        ></w-text-suggest>
+                    </div>
+
+                    <div class="bk">
+                        <demolink
+                            :kbname="'w-text-suggest'"
+                            :casename="'searchEmpty'"
+                            :kind="'border'"
+                            :shell="'pure'"
+                        ></demolink>
+
+                        <w-text-suggest
+                            :borderShadow="false"
+                            :borderColor="'orange lighten-2'"
+                            :borderColorFocus="'orange darken-2'"
+                            :backgroundColorFocus="'orange lighten-5'"
+                            :items="WTextSuggest.objItems"
+                            :searchEmpty="'無有效項目'"
                             v-model="WTextSuggest.objValue"
                         ></w-text-suggest>
                     </div>
@@ -674,6 +731,7 @@
                             :backgroundColorFocus="'orange lighten-5'"
                             :icon="mdiCheckUnderlineCircle"
                             :items="WTextSuggest.objItemsLarge"
+                            :searchEmpty="'無有效項目'"
                             v-model="WTextSuggest.objValueLarge"
                         ></w-text-suggest>
                     </div>
@@ -741,6 +799,31 @@
 
                 <template v-if="modeShell==='shell'">
 
+
+                    <div class="bk">
+                        <demolink
+                            :kbname="'w-text-suggest'"
+                            :casename="'searchEmpty'"
+                            :kind="'border'"
+                            :shell="'shell'"
+                        ></demolink>
+
+                        <w-shell-material
+                            style="margin-top:30px;"
+                            :title="'請輸入水果種類'"
+                            :leftIcon="mdiPaw"
+                        >
+                            <w-text-suggest
+                                :borderShadow="false"
+                                :borderColor="'orange lighten-2'"
+                                :borderColorFocus="'orange darken-2'"
+                                :backgroundColorFocus="'orange lighten-5'"
+                                :items="WTextSuggest.objItems"
+                                :searchEmpty="'無有效項目'"
+                                v-model="WTextSuggest.objValue"
+                            ></w-text-suggest>
+                        </w-shell-material>
+                    </div>
 
                     <div class="bk">
                         <demolink
@@ -910,6 +993,7 @@
                                 :borderColorFocus="'orange darken-2'"
                                 :backgroundColorFocus="'orange lighten-5'"
                                 :items="WTextSuggest.objItemsLarge"
+                                :searchEmpty="'無有效項目'"
                                 v-model="WTextSuggest.objValueLarge"
                             ></w-text-suggest>
                         </w-shell-material>

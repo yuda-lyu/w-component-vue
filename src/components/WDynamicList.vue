@@ -2,9 +2,8 @@
     <WScrollyPanel
         ref="wsp"
         :ratio.sync="ratioTrans"
-        :viewHeightMax="viewHeightMaxTrans"
+        :viewHeightMax="viewHeightMax"
         :contentHeight="itemsHeight"
-        :changeViewHeight="changeViewHeight"
         :changeRatio="changeRatio"
         :changeFilterKeyWords="changeFilterKeyWords"
         @change="scrollItems"
@@ -26,6 +25,10 @@
                 ></slot>
             </div>
         </template>
+
+        <div style="padding:11px; font-size:0.8rem;" v-if="useItems.length===0">
+            {{searchEmpty}}
+        </div>
 
     </WScrollyPanel>
 </template>
@@ -60,6 +63,7 @@ let gm = globalMemory()
  * @vue-prop {Number} [itemMinHeight=24] 輸入各元素顯示高度，單位為px，預設24，會於真實顯示後自動更新高度
  * @vue-prop {Number} [itemsPreload=40] 輸入上下方預先載入元素數量，預設40
  * @vue-prop {Number} [ratio=0] 輸入目前捲動比例，預設0
+ * @vue-prop {String} [searchEmpty='Empty'] 輸入無過濾結果字串，預設'Empty'
  */
 export default {
     components: {
@@ -90,6 +94,10 @@ export default {
             type: Number,
             default: 0,
         },
+        searchEmpty: {
+            type: String,
+            default: 'Empty',
+        },
     },
     data: function() {
         return {
@@ -98,10 +106,10 @@ export default {
             changeHeight: true, //是否有變更高度, 初始化給true使第一次顯示能自動重算節點高度
             changeFilter: false, //是否有變更過濾關鍵字
             ratioTrans: 0, //捲動比例
-            viewHeightMaxTrans: null, //顯示區高度
             scrollInfor: null, //目前捲軸資訊
             scrollToEnd: false, //捲動至底部, 額外refresh
-            filterKeywordsTrans: '', //搜尋關鍵字
+            filterItemsFirst: false, //已進行第1次過濾關鍵字
+            filterKeywordsTemp: '', //上次過濾關鍵字
             itemsHeight: 0, //全部節點高度
             useItems: [], //實際需顯示節點陣列
         }
@@ -159,34 +167,16 @@ export default {
             return ''
         },
 
-        changeViewHeight: function() {
-            //console.log('computed changeViewHeight')
-
-            let vo = this
-
-            //viewHeightMaxTrans
-            vo.viewHeightMaxTrans = vo.viewHeightMax
-
-            return ''
-        },
-
         changeFilterKeyWords: function() {
             //console.log('computed changeFilterKeyWords')
 
             let vo = this
 
             //ft for trigger
-            let ft = vo.filterKeyword
+            let ft = vo.filterKeywords
 
-            if (vo.filterKeywordsTrans !== vo.filterKeywords) {
-
-                //filterKeywordsTrans
-                vo.filterKeywordsTrans = vo.filterKeywords
-
-                //filterItems
-                vo.filterItems()
-
-            }
+            //filterItems
+            vo.filterItems()
 
             return ft
         },
@@ -447,6 +437,11 @@ export default {
                     vo.itemsHeight = y
                 }
 
+                //check empty
+                if (vo.itemsHeight === 0) {
+                    vo.itemsHeight = 40
+                }
+
                 //reset
                 vo.changeHeight = false
                 vo.changeFilter = false
@@ -494,10 +489,51 @@ export default {
 
         },
 
-        filterItems: throttle(async function() {
+        filterItems: async function() {
             //console.log('methods filterItems')
 
             let vo = this
+
+            if (!vo.filterItemsFirst) {
+                //console.log('filterItems first')
+
+                //filterItemsCore, 有變更要馬上觸發, 要不然就會變成與updateItems競爭, 比updateItems還慢就會來不及過濾
+                await vo.filterItemsCore()
+
+                //filterItemsFirst
+                vo.filterItemsFirst = true
+
+            }
+            else {
+                //console.log('filterItems other')
+
+                //filterItemsThrottle
+                vo.filterItemsThrottle()
+
+            }
+
+        },
+
+        filterItemsThrottle: throttle(function() {
+            //console.log('methods filterItemsThrottle')
+
+            let vo = this
+
+            //filterItemsCore
+            vo.filterItemsCore()
+
+        }, 50),
+
+        filterItemsCore: async function() {
+            //console.log('methods filterItemsCore')
+
+            let vo = this
+
+            //check filterKeywordsTemp
+            if (vo.filterKeywordsTemp === vo.filterKeywords) {
+                return
+            }
+            vo.filterKeywordsTemp = vo.filterKeywords
 
             //items
             //let items = vo.items
@@ -561,7 +597,7 @@ export default {
             //triggerEvent, 因項目會變少故得呼叫事件供外部重新計算節點top
             vo.triggerEvent()
 
-        }, 50),
+        },
 
         triggerEvent: function(from) {
             //console.log('methods triggerEvent', from)

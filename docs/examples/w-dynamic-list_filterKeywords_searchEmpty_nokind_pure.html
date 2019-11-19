@@ -6,7 +6,7 @@
         name="viewport"
         content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui"
     />
-    <title>example for w-dynamic-list: filterKeywords</title>
+    <title>example for w-dynamic-list: filterKeywords & searchEmpty</title>
 
     <!-- fontawesome -->
     <link
@@ -47,7 +47,7 @@
     <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.js"></script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@1.2.29/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@1.2.30/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -93,7 +93,7 @@
     <v-app id="app" style="font-family:inherit;">
         <div class="head1">w-dynamic-list</div>
         <div class="bk">
-            <div class="item">filterKeywords</div>
+            <div class="item">filterKeywords & searchEmpty</div>
 
             <div style="margin-bottom:10px;">
                 <span style="padding-right:10px;">Search :</span>
@@ -107,6 +107,7 @@
                 class="list"
                 style="border:1px solid #ddd;"
                 :filter-keywords="WDynamicList.keywords"
+                :search-empty="'There are no items to show...'"
                 :rows="WDynamicList.data1"
             >
                 <template v-slot:block="props">

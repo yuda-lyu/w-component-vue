@@ -40,7 +40,7 @@ import isBoolean from 'lodash/isBoolean'
 import isFunction from 'lodash/isFunction'
 import toString from 'lodash/toString'
 import toInteger from 'lodash/toInteger'
-import throttle from 'lodash/throttle'
+//import throttle from 'lodash/throttle'
 import isarr from 'wsemi/src/isarr.mjs'
 import isobj from 'wsemi/src/isobj.mjs'
 import sep from 'wsemi/src/sep.mjs'
@@ -232,7 +232,7 @@ export default {
             //ft to trigger
             let ft = vo.filterKeywords
 
-            //filterItems
+            //filterItems, 有變更要馬上觸發, 要不然就會變成與updateItems競爭, 比updateItems還慢就會來不及過濾
             vo.filterItems()
 
             return ft
@@ -861,7 +861,7 @@ export default {
 
         },
 
-        filterItems: throttle(async function() {
+        filterItems: async function() {
             //console.log('methods filterItems')
 
             let vo = this
@@ -1007,7 +1007,7 @@ export default {
             //triggerEvent, 因項目會變少故得呼叫事件供外部重新計算節點top
             vo.triggerEvent()
 
-        }, 50),
+        },
 
         triggerEvent: function(from) {
             //console.log('methods triggerEvent', from)

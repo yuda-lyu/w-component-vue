@@ -24,7 +24,7 @@
                     @update:focused="changeFocused"
                     @blur="triggerEvent('blur',value,null)"
                     @enter="triggerEvent('enter',value,null)"
-                    @input="(v)=>{triggerEvent('input',v,null)}"
+                    @input="changeValueTrans"
                 ></w-text-core>
 
                 <div :style="`padding:0px 5px; transform:rotate(${getRotateDeg}deg); transition:all 0.2s;`">
@@ -47,6 +47,7 @@
                     :viewHeightMax="maxHeight"
                     :ratio.sync="ratio"
                     :itemMinHeight="30"
+                    :searchEmpty="searchEmpty"
                 >
                     <template v-slot:block="props">
 
@@ -93,6 +94,7 @@ import WDynamicList from './WDynamicList.vue'
  * @vue-prop {Number} [distY=5] 輸入彈窗距離觸發元素底部的距離，單位為px，預設5
  * @vue-prop {String} [textAlign='left'] 輸入文字左右對齊字串，預設'left'
  * @vue-prop {String} [placeholder=''] 輸入無文字時的替代字符字串，預設''
+ * @vue-prop {String} [searchEmpty='Empty'] 輸入無過濾結果字串，預設'Empty'
  * @vue-prop {Boolean} [editable=true] 輸入是否為編輯模式，預設true
  * @vue-prop {Boolean} [focused=false] 輸入是否為駐點狀態，預設false
  */
@@ -162,6 +164,10 @@ export default {
         placeholder: {
             type: String,
             default: '',
+        },
+        searchEmpty: {
+            type: String,
+            default: 'Empty',
         },
         editable: {
             type: Boolean,
@@ -260,11 +266,6 @@ export default {
     },
     methods: {
 
-        mm: function(e) {
-            console.log('methods mm', e)
-
-        },
-
         getText: function(value) {
             //console.log('methods getText', value)
 
@@ -277,6 +278,26 @@ export default {
             else {
                 return value
             }
+
+        },
+
+        changeValueTrans: function(value) {
+            //console.log('methods changeValueTrans')
+
+            let vo = this
+
+            //show
+            vo.show = true
+
+            setTimeout(function() {
+
+                //save
+                vo.valueTrans = value
+
+                //triggerEvent
+                vo.triggerEvent('input', value, null)
+
+            }, 1)
 
         },
 

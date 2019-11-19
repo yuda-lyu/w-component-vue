@@ -1,7 +1,7 @@
 <template>
     <div style="display:inline-block;">
         <svg
-            :style="`fill:${getIconColor}; transition:${styleTransition};`"
+            :style="`fill:${useIconColor}; transition:${styleTransition};`"
             :width="size"
             :height="size"
             :viewBox="`0 0 ${sizeOriginal} ${sizeOriginal}`"
@@ -11,7 +11,7 @@
             <path
                 :d="path"
                 :key="kpath"
-                v-for="(path,kpath) in getPaths"
+                v-for="(path,kpath) in usePaths"
             ></path>
         </svg>
     </div>
@@ -66,8 +66,8 @@ export default {
     },
     computed: {
 
-        getPaths: function() {
-            //console.log('computed getPaths')
+        usePaths: function() {
+            //console.log('computed usePaths')
 
             let vo = this
 
@@ -79,8 +79,8 @@ export default {
             return paths
         },
 
-        getIconColor: function() {
-            //console.log('computed getIconColor')
+        useIconColor: function() {
+            //console.log('computed useIconColor')
 
             let vo = this
 
