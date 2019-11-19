@@ -98,6 +98,7 @@ export default {
                 'font-size': '0.8rem',
                 'color': '#f26',
                 'user-select': 'none',
+                'vertical-align': 'middle',
             },
         }
     },

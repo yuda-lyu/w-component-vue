@@ -23,6 +23,10 @@
             ></WJsonViewCore>
         </template>
 
+        <div style="padding:11px; font-size:0.8rem;" v-if="useItems.length===0">
+            {{searchEmpty}}
+        </div>
+
     </WScrollyPanel>
 </template>
 
@@ -40,7 +44,7 @@ import isBoolean from 'lodash/isBoolean'
 import isFunction from 'lodash/isFunction'
 import toString from 'lodash/toString'
 import toInteger from 'lodash/toInteger'
-//import throttle from 'lodash/throttle'
+import throttle from 'lodash/throttle'
 import isarr from 'wsemi/src/isarr.mjs'
 import isobj from 'wsemi/src/isobj.mjs'
 import sep from 'wsemi/src/sep.mjs'
@@ -69,6 +73,7 @@ let gm = globalMemory()
  * @vue-prop {String} [funColor='purple accent-2'] 輸入值為函數時的顏色字串，預設'purple accent-2'
  * @vue-prop {String} [defaultColor='grey darken-4'] 輸入值為其他類型時的顏色字串，預設'grey darken-4'
  * @vue-prop {Boolean} [defDisplayChildren=true] 輸入是否預先展開全部節點，預設true
+ * @vue-prop {String} [searchEmpty='Empty'] 輸入無過濾結果字串，預設'Empty'
  */
 export default {
     components: {
@@ -129,6 +134,10 @@ export default {
             type: Boolean,
             default: true,
         },
+        searchEmpty: {
+            type: String,
+            default: 'Empty',
+        },
     },
     data: function() {
         return {
@@ -145,6 +154,8 @@ export default {
             scrollInfor: null, //目前捲軸資訊
             toggleInfor: {}, //之前捲軸位置資訊物件
             itemsHeight: 0, //儲存全部項目高度
+            filterItemsFirst: true, //是否為第1次過濾關鍵字
+            filterKeywordsTemp: '', //上次過濾關鍵字
             viewInfor: {},
             //items: [],
             useItems: [],
@@ -486,6 +497,11 @@ export default {
                 //update itemsHeight
                 if (vo.itemsHeight !== y) {
                     vo.itemsHeight = y
+                }
+
+                //check empty
+                if (vo.itemsHeight === 0) {
+                    vo.itemsHeight = 40
                 }
 
                 //reset
@@ -863,6 +879,39 @@ export default {
 
         filterItems: async function() {
             //console.log('methods filterItems')
+
+            let vo = this
+
+            if (vo.filterItemsFirst) {
+
+                //filterItemsCore, 第1次變更filterKeywords要馬上觸發, 要不然就會變成與updateItems競爭, 比updateItems還慢就會來不及過濾
+                await vo.filterItemsCore()
+
+                //filterItemsFirst
+                vo.filterItemsFirst = false
+
+            }
+            else {
+
+                //filterItemsThrottle
+                vo.filterItemsThrottle()
+
+            }
+
+        },
+
+        filterItemsThrottle: throttle(function() {
+            //console.log('methods filterItemsThrottle')
+
+            let vo = this
+
+            //filterItemsCore
+            vo.filterItemsCore()
+
+        }, 50),
+
+        filterItemsCore: async function() {
+            //console.log('methods filterItemsCore')
 
             let vo = this
 

@@ -108,7 +108,7 @@ export default {
             ratioTrans: 0, //捲動比例
             scrollInfor: null, //目前捲軸資訊
             scrollToEnd: false, //捲動至底部, 額外refresh
-            filterItemsFirst: false, //已進行第1次過濾關鍵字
+            filterItemsFirst: true, //是否為第1次過濾關鍵字
             filterKeywordsTemp: '', //上次過濾關鍵字
             itemsHeight: 0, //全部節點高度
             useItems: [], //實際需顯示節點陣列
@@ -494,18 +494,16 @@ export default {
 
             let vo = this
 
-            if (!vo.filterItemsFirst) {
-                //console.log('filterItems first')
+            if (vo.filterItemsFirst) {
 
-                //filterItemsCore, 有變更要馬上觸發, 要不然就會變成與updateItems競爭, 比updateItems還慢就會來不及過濾
+                //filterItemsCore, 第1次變更filterKeywords要馬上觸發, 要不然就會變成與updateItems競爭, 比updateItems還慢就會來不及過濾
                 await vo.filterItemsCore()
 
                 //filterItemsFirst
-                vo.filterItemsFirst = true
+                vo.filterItemsFirst = false
 
             }
             else {
-                //console.log('filterItems other')
 
                 //filterItemsThrottle
                 vo.filterItemsThrottle()

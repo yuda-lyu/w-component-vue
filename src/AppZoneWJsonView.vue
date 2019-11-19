@@ -46,7 +46,7 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-json-view'"
-                    :casename="'filterKeywords'"
+                    :casename="'filterKeywords & searchEmpty'"
                     :kind="'nokind'"
                     :shell="'pure'"
                 ></demolink>
@@ -63,6 +63,7 @@
                     class="list"
                     style="border:1px solid #ddd;"
                     :filterKeywords="WJsonView.keywords"
+                    :searchEmpty="'There are no items to show...'"
                     :data="WJsonView.data2"
                 ></w-json-view>
 
