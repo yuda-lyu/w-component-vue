@@ -137,7 +137,7 @@ export default {
             vo.show = false
 
             //setTimeout
-            setTimeout(function() {
+            setTimeout(() => {
 
                 //emit
                 vo.$emit('input', value)

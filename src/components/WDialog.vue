@@ -162,7 +162,7 @@ export default {
 
             //當show改為true時自動捲至頂部
             if (!vo.showTrans && value) {
-                setTimeout(function() {
+                setTimeout(() => {
                     vo.$refs.scrollZone.scrollTop = 0
                 }, 1)
             }
@@ -211,7 +211,7 @@ export default {
             let vo = this
 
             //setTimeout
-            setTimeout(function() {
+            setTimeout(() => {
 
                 //emit
                 vo.$emit('click-btns', evName)
@@ -226,7 +226,7 @@ export default {
             let vo = this
 
             //setTimeout
-            setTimeout(function() {
+            setTimeout(() => {
 
                 //emit
                 vo.$emit('click-save')
@@ -246,7 +246,7 @@ export default {
             }
 
             //setTimeout
-            setTimeout(function() {
+            setTimeout(() => {
 
                 //emit
                 vo.$emit('update:show', vo.showTrans)

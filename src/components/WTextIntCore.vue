@@ -131,7 +131,7 @@ export default {
             vo.focusedTrans = focused
 
             //setTimeout
-            setTimeout(function() {
+            setTimeout(() => {
 
                 //emit
                 vo.$emit('update:focused', focused)
@@ -173,7 +173,7 @@ export default {
             let errmsg = r.errmsg
 
             //setTimeout
-            setTimeout(function() {
+            setTimeout(() => {
 
                 //reset for error
                 vo.valueTrans = value

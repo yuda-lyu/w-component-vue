@@ -133,7 +133,7 @@ export default {
             }
 
             //setTimeout
-            setTimeout(function() {
+            setTimeout(() => {
 
                 //emit
                 vo.$emit('input', vo.value)

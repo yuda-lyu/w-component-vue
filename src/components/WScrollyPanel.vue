@@ -115,6 +115,25 @@ export default {
             //save
             vo.top = -e.t
 
+            //emitEvent
+            vo.emitEvent('scroll', e)
+            vo.emitEvent('update:ratio', e.r)
+
+        },
+
+        emitEvent: function(name, value) {
+            //console.log('methods emitEvent', name, value)
+
+            let vo = this
+
+            //setTimeout
+            setTimeout(() => {
+
+                //emit
+                vo.$emit(name, value)
+
+            }, 1)
+
         },
 
         triggerEvent: function(from) {

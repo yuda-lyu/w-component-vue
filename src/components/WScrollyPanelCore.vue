@@ -12,7 +12,7 @@
             <div :style="`height:${viewHeightMax+1}px;`"></div>
 
             <div style="position:absolute; top:0; right:0px; height:100%; z-index:1;" v-show="contentHeightEff>0">
-                <div :style="`position:relative; width:${barWidth}px; height:100%; background-color:${useBarBackgroundColor}; padding:2px;`">
+                <div :style="`position:relative; width:${barWidth}px; height:100%; background-color:${useBarBackgroundColor}; padding:2px; box-sizing:border-box;`">
                     <div
                         ref="divBar"
                         :style="`width:100%; height:${barSize}px; background-color:${useBarColor}; border-radius:15px; user-select:none; transform:translateY(${barLoc}px); cursor:pointer; opacity:${barOpacity}; transition:opacity 0.5s;`"

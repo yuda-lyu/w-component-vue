@@ -235,7 +235,7 @@ export default {
             vo.showTrans = false
 
             //setTimeout
-            setTimeout(function() {
+            setTimeout(() => {
 
                 //emit
                 vo.$emit('update:show', vo.showTrans)

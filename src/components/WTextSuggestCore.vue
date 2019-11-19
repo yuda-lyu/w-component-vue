@@ -289,7 +289,7 @@ export default {
             //show
             vo.show = true
 
-            setTimeout(function() {
+            setTimeout(() => {
 
                 //save
                 vo.valueTrans = value
@@ -333,7 +333,7 @@ export default {
             let vo = this
 
             //setTimeout
-            setTimeout(function() {
+            setTimeout(() => {
 
                 //emit
                 vo.$emit(from, item, kitem)

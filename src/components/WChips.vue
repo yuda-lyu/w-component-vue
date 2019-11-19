@@ -160,7 +160,7 @@ export default {
             let vo = this
 
             //setTimeout
-            setTimeout(function() {
+            setTimeout(() => {
 
                 //emit
                 vo.$emit('click', item)
@@ -180,7 +180,7 @@ export default {
             }
 
             //setTimeout
-            setTimeout(function() {
+            setTimeout(() => {
 
                 //push
                 vo.valueTrans.push(trim(vo.userinput))
@@ -207,7 +207,7 @@ export default {
             let vo = this
 
             //setTimeout
-            setTimeout(function() {
+            setTimeout(() => {
 
                 //emit
                 vo.$emit('input', vo.pull(vo.valueTrans, item))

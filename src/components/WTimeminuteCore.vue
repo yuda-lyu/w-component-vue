@@ -205,7 +205,7 @@ export default {
             }
 
             //setTimeout
-            setTimeout(function() {
+            setTimeout(() => {
 
                 //emit
                 vo.$emit('input', value)
@@ -223,7 +223,7 @@ export default {
             let focused = vo.focused_day || vo.focused_time
 
             //setTimeout
-            setTimeout(function() {
+            setTimeout(() => {
 
                 //emit
                 vo.$emit('update:focused', focused)

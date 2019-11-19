@@ -137,7 +137,7 @@ export default {
             let vo = this
 
             //setTimeout, 延遲更改, 要避免比window click快觸發
-            setTimeout(function() {
+            setTimeout(() => {
 
                 //emit
                 vo.$emit('input', value)
@@ -154,7 +154,7 @@ export default {
             if (vo.value) {
 
                 //setTimeout, 因無法簡單阻止重複點擊trigger隱藏v-menu, 只好延遲恢復顯示
-                setTimeout(function() {
+                setTimeout(() => {
 
                     //emit
                     vo.$emit('input', true)

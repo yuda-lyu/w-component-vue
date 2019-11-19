@@ -203,7 +203,7 @@ export default {
             vo.focusedTrans = focused
 
             //setTimeout
-            setTimeout(function() {
+            setTimeout(() => {
 
                 //emit
                 vo.$emit('update:focused', focused)

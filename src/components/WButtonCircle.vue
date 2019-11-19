@@ -97,7 +97,7 @@ export default {
             let vo = this
 
             //setTimeout
-            setTimeout(function() {
+            setTimeout(() => {
 
                 //emit
                 vo.$emit('click')

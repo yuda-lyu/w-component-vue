@@ -370,7 +370,7 @@ export default {
             }
 
             //setTimeout
-            setTimeout(function() {
+            setTimeout(() => {
 
                 //clicked
                 vo.clicked = kitem
