@@ -1,5 +1,5 @@
 <template>
-    <WScrollyPanel
+    <WScrollyPanelCore
         ref="wsp"
         :ratio.sync="scrollRatio"
         :viewHeightMax="viewHeightMax"
@@ -27,7 +27,7 @@
             {{searchEmpty}}
         </div>
 
-    </WScrollyPanel>
+    </WScrollyPanelCore>
 </template>
 
 <script>
@@ -44,7 +44,7 @@ import isBoolean from 'lodash/isBoolean'
 import isFunction from 'lodash/isFunction'
 import toString from 'lodash/toString'
 import toInteger from 'lodash/toInteger'
-import throttle from 'lodash/throttle'
+import debounce from 'lodash/debounce'
 import isarr from 'wsemi/src/isarr.mjs'
 import isobj from 'wsemi/src/isobj.mjs'
 import sep from 'wsemi/src/sep.mjs'
@@ -53,7 +53,7 @@ import genPm from 'wsemi/src/genPm.mjs'
 import delay from 'wsemi/src/delay.mjs'
 import binarySearch from '../js/binarySearch.mjs'
 import globalMemory from '../js/globalMemory.mjs'
-import WScrollyPanel from './WScrollyPanel.vue'
+import WScrollyPanelCore from './WScrollyPanelCore.vue'
 import WJsonViewCore from './WJsonViewCore.vue'
 
 //gm
@@ -77,7 +77,7 @@ let gm = globalMemory()
  */
 export default {
     components: {
-        WScrollyPanel,
+        WScrollyPanelCore,
         WJsonViewCore,
     },
     props: {
@@ -848,7 +848,7 @@ export default {
 
             }
 
-            //scrollRatio, 外部變更scrollRatio不會觸發捲動事件, 得自己呼叫
+            //scrollRatio, 變更scrollRatio不會觸發panel捲動事件, 得自己呼叫
             vo.scrollRatio = r
 
             //triggerEvent
@@ -893,22 +893,22 @@ export default {
             }
             else {
 
-                //filterItemsThrottle
-                vo.filterItemsThrottle()
+                //filterItemsDebounce
+                vo.filterItemsDebounce()
 
             }
 
         },
 
-        filterItemsThrottle: throttle(function() {
-            //console.log('methods filterItemsThrottle')
+        filterItemsDebounce: debounce(function() {
+            //console.log('methods filterItemsDebounce')
 
             let vo = this
 
             //filterItemsCore
             vo.filterItemsCore()
 
-        }, 50),
+        }, 300),
 
         filterItemsCore: async function() {
             //console.log('methods filterItemsCore')

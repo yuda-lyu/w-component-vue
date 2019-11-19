@@ -1,10 +1,8 @@
 <template>
-    <WScrollyPanel
+    <WScrollyPanelCore
         ref="wsp"
-        :ratio.sync="ratioTrans"
         :viewHeightMax="viewHeightMax"
         :contentHeight="itemsHeight"
-        :changeRatio="changeRatio"
         :changeFilterKeyWords="changeFilterKeyWords"
         @change="scrollItems"
     >
@@ -30,7 +28,7 @@
             {{searchEmpty}}
         </div>
 
-    </WScrollyPanel>
+    </WScrollyPanelCore>
 </template>
 
 <script>
@@ -39,7 +37,7 @@ import get from 'lodash/get'
 import map from 'lodash/map'
 import size from 'lodash/size'
 import toString from 'lodash/toString'
-import throttle from 'lodash/throttle'
+import debounce from 'lodash/debounce'
 import cint from 'wsemi/src/cint.mjs'
 import genID from 'wsemi/src/genID.mjs'
 import genPm from 'wsemi/src/genPm.mjs'
@@ -51,7 +49,7 @@ import isnum from 'wsemi/src/isnum.mjs'
 import o2j from 'wsemi/src/o2j.mjs'
 import binarySearch from '../js/binarySearch.mjs'
 import globalMemory from '../js/globalMemory.mjs'
-import WScrollyPanel from './WScrollyPanel.vue'
+import WScrollyPanelCore from './WScrollyPanelCore.vue'
 
 //gm
 let gm = globalMemory()
@@ -67,7 +65,7 @@ let gm = globalMemory()
  */
 export default {
     components: {
-        WScrollyPanel,
+        WScrollyPanelCore,
     },
     props: {
         rows: {
@@ -105,7 +103,6 @@ export default {
             mmkey: null,
             changeHeight: true, //是否有變更高度, 初始化給true使第一次顯示能自動重算節點高度
             changeFilter: false, //是否有變更過濾關鍵字
-            ratioTrans: 0, //捲動比例
             scrollInfor: null, //目前捲軸資訊
             scrollToEnd: false, //捲動至底部, 額外refresh
             filterItemsFirst: true, //是否為第1次過濾關鍵字
@@ -155,17 +152,6 @@ export default {
 
     },
     computed: {
-
-        changeRatio: function() {
-            //console.log('computed changeRatio')
-
-            let vo = this
-
-            //ratioTrans
-            vo.ratioTrans = vo.ratio
-
-            return ''
-        },
 
         changeFilterKeyWords: function() {
             //console.log('computed changeFilterKeyWords')
@@ -505,22 +491,22 @@ export default {
             }
             else {
 
-                //filterItemsThrottle
-                vo.filterItemsThrottle()
+                //filterItemsDebounce
+                vo.filterItemsDebounce()
 
             }
 
         },
 
-        filterItemsThrottle: throttle(function() {
-            //console.log('methods filterItemsThrottle')
+        filterItemsDebounce: debounce(function() {
+            //console.log('methods filterItemsDebounce')
 
             let vo = this
 
             //filterItemsCore
             vo.filterItemsCore()
 
-        }, 50),
+        }, 300),
 
         filterItemsCore: async function() {
             //console.log('methods filterItemsCore')

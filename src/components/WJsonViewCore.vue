@@ -12,7 +12,7 @@
 
             <div style="position:relative;">
 
-                <div style="position:absolute; top:0px; left:0px; transform:translateX(-100%);">
+                <div style="position:absolute; top:0px; left:0px; transform:translateX(-100%); user-select:none;">
                     <span v-if="item.hasChildren" @click.capture="toggleItems(item)">
                         <span :class="[{'caretRight':true,'showChildren':item.displayChildren}]">
                             <span class="center">

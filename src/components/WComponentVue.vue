@@ -19,6 +19,7 @@ import WPopupPanel from './WPopupPanel.vue'
 import WProgressCircle from './WProgressCircle.vue'
 import WRadioChips from './WRadioChips.vue'
 import WScrollyPanel from './WScrollyPanel.vue'
+import WScrollyPanelCore from './WScrollyPanelCore.vue'
 import WShellEllipse from './WShellEllipse.vue'
 import WShellMaterial from './WShellMaterial.vue'
 import WSwitch from './WSwitch.vue'
@@ -62,6 +63,7 @@ let WComponentVue = {
         Vue.component('w-progress-circle', WProgressCircle)
         Vue.component('w-radio-chips', WRadioChips)
         Vue.component('w-scrolly-panel', WScrollyPanel)
+        Vue.component('w-scrolly-panel-core', WScrollyPanelCore)
         Vue.component('w-shell-ellipse', WShellEllipse)
         Vue.component('w-shell-material', WShellMaterial)
         Vue.component('w-switch', WSwitch)

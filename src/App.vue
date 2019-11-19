@@ -148,6 +148,13 @@
             ></AppZoneWPanel>
 
 
+            <AppZoneWScrollyPanel
+                :modeBorder="modeBorder"
+                :modeShell="modeShell"
+                v-if="compname==='WScrollyPanel'"
+            ></AppZoneWScrollyPanel>
+
+
             <AppZoneWIconSvg
                 :modeBorder="modeBorder"
                 :modeShell="modeShell"
@@ -327,6 +334,7 @@ import kebabCase from 'lodash/kebabCase'
 import { mdiCheckCircle, mdiCheckboxBlankCircleOutline } from '@mdi/js'
 import AppZoneWBadge from './AppZoneWBadge.vue'
 import AppZoneWPanel from './AppZoneWPanel.vue'
+import AppZoneWScrollyPanel from './AppZoneWScrollyPanel.vue'
 import AppZoneWIconSvg from './AppZoneWIconSvg.vue'
 import AppZoneWDropfiles from './AppZoneWDropfiles.vue'
 import AppZoneWDialog from './AppZoneWDialog.vue'
@@ -356,6 +364,7 @@ export default {
     components: {
         AppZoneWBadge,
         AppZoneWPanel,
+        AppZoneWScrollyPanel,
         AppZoneWIconSvg,
         AppZoneWDropfiles,
         AppZoneWDialog,
@@ -395,6 +404,7 @@ export default {
                     cmps: [
                         'WBadge',
                         'WPanel',
+                        'WScrollyPanel',
                         'WIconSvg',
                         'WDropfiles',
                         'WProgressCircle',
