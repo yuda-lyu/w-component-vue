@@ -6,7 +6,7 @@
         name="viewport"
         content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui"
     />
-    <title>example for w-button-group-chip: textColor & borderColor & borderColorHover & backgroundColor & backgroundColorHover & backgroundColorActive</title>
+    <title>example for w-button-group-chip: textColor & backgroundColor & backgroundColorHover & backgroundColorActive</title>
 
     <!-- fontawesome -->
     <link
@@ -47,7 +47,7 @@
     <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.js"></script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@1.2.34/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@1.2.35/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -95,15 +95,15 @@
         <div class="bk">
             <div
                 class="item"
-            >textColor & borderColor & borderColorHover & backgroundColor & backgroundColorHover & backgroundColorActive</div>
+            >textColor & backgroundColor & backgroundColorHover & backgroundColorActive</div>
 
             <w-button-group-chip
                 :text-color="'white'"
                 :border-color="'cyan lighten-1'"
                 :border-color-hover="'cyan lighten-1'"
-                :background-color="'cyan'"
-                :background-color-hover="'cyan darken-1'"
-                :background-color-active="'cyan darken-2'"
+                :background-color="'cyan darken-1'"
+                :background-color-hover="'cyan lighten-1'"
+                :background-color-active="'cyan lighten-2'"
                 :active-index.sync="WButtonGroupChip.activeIndex"
                 :value="WButtonGroupChip.basic"
             />

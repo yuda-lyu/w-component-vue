@@ -6,7 +6,7 @@
         name="viewport"
         content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui"
     />
-    <title>example for w-button-group-chip: titleColor & leftIconColor & textColor & borderColor & borderColorHover & backgroundColor & backgroundColorHover & backgroundColorActive</title>
+    <title>example for w-button-group-chip: textColor & backgroundColor & backgroundColorHover & backgroundColorActive</title>
 
     <!-- fontawesome -->
     <link
@@ -47,7 +47,7 @@
     <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.js"></script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@1.2.34/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@1.2.35/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -95,26 +95,18 @@
         <div class="bk">
             <div
                 class="item"
-            >titleColor & leftIconColor & textColor & borderColor & borderColorHover & backgroundColor & backgroundColorHover & backgroundColorActive</div>
+            >textColor & backgroundColor & backgroundColorHover & backgroundColorActive</div>
 
-            <w-shell-material
-                style="margin-top:30px;"
-                :title="'請選擇水果種類'"
-                :title-color="'cyan darken-2'"
-                :left-icon="'mdi-fruit-cherries'"
-                :left-icon-color="'cyan lighten-1'"
-            >
-                <w-button-group-chip
-                    :text-color="'white'"
-                    :border-color="'cyan lighten-1'"
-                    :border-color-hover="'cyan lighten-1'"
-                    :background-color="'cyan'"
-                    :background-color-hover="'cyan darken-1'"
-                    :background-color-active="'cyan darken-2'"
-                    :active-index.sync="WButtonGroupChip.activeIndex"
-                    :value="WButtonGroupChip.basic"
-                />
-            </w-shell-material>
+            <w-button-group-chip
+                :border-shadow="true"
+                :text-color="'white'"
+                :border-width="0"
+                :background-color="'cyan darken-1'"
+                :background-color-hover="'cyan lighten-1'"
+                :background-color-active="'cyan lighten-2'"
+                :active-index.sync="WButtonGroupChip.activeIndex"
+                :value="WButtonGroupChip.basic"
+            />
         </div>
     </v-app>
 
