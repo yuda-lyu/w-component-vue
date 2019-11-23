@@ -37,7 +37,6 @@
                         :icon="btn.icon"
                         :shadow="false"
                         :iconColor="'white'"
-                        :buttonColor="'white'"
                         :tooltip="btn.tooltip"
                         @click="clickBtns(btn.evName)"
                     ></WButtonCircle>
@@ -50,7 +49,6 @@
                         :icon="mdiCheckCircle"
                         :shadow="false"
                         :iconColor="'white'"
-                        :buttonColor="'white'"
                         :tooltip="saveBtnTooltip"
                         @click="clickSave()"
                     ></WButtonCircle>
@@ -62,7 +60,6 @@
                         :icon="mdiClose"
                         :shadow="false"
                         :iconColor="'white'"
-                        :buttonColor="'white'"
                         :tooltip="closeBtnTooltip"
                         @click="clickClose(false)"
                     ></WButtonCircle>

@@ -24,8 +24,7 @@
 
                         <w-button-group-chip
                             :borderShadow="true"
-                            :borderColor="'grey lighten-4'"
-                            :borderColorHover="'grey lighten-4'"
+                            :borderWidth="0"
                             :backgroundColorHover="'grey lighten-3'"
                             :backgroundColorActive="'grey lighten-2'"
                             :activeIndex.sync="WButtonGroupChip.activeIndex"
@@ -45,8 +44,7 @@
 
                         <w-button-group-chip
                             :borderShadow="true"
-                            :borderColor="'grey lighten-4'"
-                            :borderColorHover="'grey lighten-4'"
+                            :borderWidth="0"
                             :backgroundColorHover="'grey lighten-3'"
                             :backgroundColorActive="'grey lighten-2'"
                             :activeIndex="-1"
@@ -66,8 +64,7 @@
 
                         <w-button-group-chip
                             :borderShadow="true"
-                            :borderColor="'grey lighten-4'"
-                            :borderColorHover="'grey lighten-4'"
+                            :borderWidth="0"
                             :backgroundColorHover="'grey lighten-3'"
                             :backgroundColorActive="'grey lighten-2'"
                             :activeIndex.sync="WButtonGroupChip.activeIndex"
@@ -87,8 +84,7 @@
 
                         <w-button-group-chip
                             :borderShadow="true"
-                            :borderColor="'grey lighten-4'"
-                            :borderColorHover="'grey lighten-4'"
+                            :borderWidth="0"
                             :backgroundColorHover="'grey lighten-3'"
                             :backgroundColorActive="'grey lighten-2'"
                             :borderRadius="5"
@@ -109,8 +105,7 @@
 
                         <w-button-group-chip
                             :borderShadow="true"
-                            :borderColor="'grey lighten-4'"
-                            :borderColorHover="'grey lighten-4'"
+                            :borderWidth="0"
                             :backgroundColorHover="'grey lighten-3'"
                             :backgroundColorActive="'grey lighten-2'"
                             :small="false"
@@ -131,11 +126,10 @@
 
                         <w-button-group-chip
                             :borderShadow="true"
-                            :borderColor="'grey lighten-4'"
-                            :borderColorHover="'grey lighten-4'"
+                            :borderWidth="0"
                             :backgroundColorHover="'grey lighten-3'"
                             :backgroundColorActive="'grey lighten-2'"
-                            :textColor="'pink lighten-1'"
+                            :textColor="'orange darken-1'"
                             :activeIndex.sync="WButtonGroupChip.activeIndex"
                             :value="WButtonGroupChip.basic"
                         ></w-button-group-chip>
@@ -153,8 +147,7 @@
 
                         <w-button-group-chip
                             :borderShadow="true"
-                            :borderColor="'grey lighten-4'"
-                            :borderColorHover="'grey lighten-4'"
+                            :borderWidth="0"
                             :backgroundColorHover="'grey lighten-2'"
                             :backgroundColorActive="'grey lighten-1'"
                             :backgroundColor="'grey lighten-3'"
@@ -168,7 +161,7 @@
                     <div class="bk">
                         <demolink
                             :kbname="'w-button-group-chip'"
-                            :casename="'textColor & borderColor & borderColorHover & backgroundColor & backgroundColorHover & backgroundColorActive'"
+                            :casename="'textColor & backgroundColor & backgroundColorHover & backgroundColorActive'"
                             :kind="'emboss'"
                             :shell="'pure'"
                         ></demolink>
@@ -176,11 +169,10 @@
                         <w-button-group-chip
                             :borderShadow="true"
                             :textColor="'white'"
-                            :borderColor="'cyan lighten-1'"
-                            :borderColorHover="'cyan lighten-1'"
-                            :backgroundColor="'cyan'"
-                            :backgroundColorHover="'cyan darken-1'"
-                            :backgroundColorActive="'cyan darken-2'"
+                            :borderWidth="0"
+                            :backgroundColor="'cyan darken-1'"
+                            :backgroundColorHover="'cyan lighten-1'"
+                            :backgroundColorActive="'cyan lighten-2'"
                             :activeIndex.sync="WButtonGroupChip.activeIndex"
                             :value="WButtonGroupChip.basic"
                         ></w-button-group-chip>
@@ -198,8 +190,7 @@
 
                         <w-button-group-chip
                             :borderShadow="true"
-                            :borderColor="'grey lighten-4'"
-                            :borderColorHover="'grey lighten-4'"
+                            :borderWidth="0"
                             :backgroundColorHover="'grey lighten-3'"
                             :backgroundColorActive="'grey lighten-2'"
                             :editable="false"
@@ -220,8 +211,7 @@
 
                         <w-button-group-chip
                             :borderShadow="true"
-                            :borderColor="'grey lighten-4'"
-                            :borderColorHover="'grey lighten-4'"
+                            :borderWidth="0"
                             :backgroundColorHover="'grey lighten-3'"
                             :backgroundColorActive="'grey lighten-2'"
                             :nodata="'無數據'"
@@ -452,7 +442,7 @@
                     <div class="bk">
                         <demolink
                             :kbname="'w-button-group-chip'"
-                            :casename="'titleColor & leftIconColor & textColor & borderColor & borderColorHover & backgroundColor & backgroundColorHover & backgroundColorActive'"
+                            :casename="'titleColor & leftIconColor & textColor & backgroundColor & backgroundColorHover & backgroundColorActive'"
                             :kind="'emboss'"
                             :shell="'shell'"
                         ></demolink>
@@ -469,9 +459,9 @@
                                 :textColor="'white'"
                                 :borderColor="'cyan lighten-1'"
                                 :borderColorHover="'cyan lighten-1'"
-                                :backgroundColor="'cyan'"
-                                :backgroundColorHover="'cyan darken-1'"
-                                :backgroundColorActive="'cyan darken-2'"
+                                :backgroundColor="'cyan darken-1'"
+                                :backgroundColorHover="'cyan lighten-1'"
+                                :backgroundColorActive="'cyan lighten-2'"
                                 :activeIndex.sync="WButtonGroupChip.activeIndex"
                                 :value="WButtonGroupChip.basic"
                             ></w-button-group-chip>
@@ -663,7 +653,7 @@
                     <div class="bk">
                         <demolink
                             :kbname="'w-button-group-chip'"
-                            :casename="'textColor & borderColor & borderColorHover & backgroundColor & backgroundColorHover & backgroundColorActive'"
+                            :casename="'textColor & backgroundColor & backgroundColorHover & backgroundColorActive'"
                             :kind="'border'"
                             :shell="'pure'"
                         ></demolink>
@@ -672,9 +662,9 @@
                             :textColor="'white'"
                             :borderColor="'cyan lighten-1'"
                             :borderColorHover="'cyan lighten-1'"
-                            :backgroundColor="'cyan'"
-                            :backgroundColorHover="'cyan darken-1'"
-                            :backgroundColorActive="'cyan darken-2'"
+                            :backgroundColor="'cyan darken-1'"
+                            :backgroundColorHover="'cyan lighten-1'"
+                            :backgroundColorActive="'cyan lighten-2'"
                             :activeIndex.sync="WButtonGroupChip.activeIndex"
                             :value="WButtonGroupChip.basic"
                         ></w-button-group-chip>
@@ -896,7 +886,7 @@
                     <div class="bk">
                         <demolink
                             :kbname="'w-button-group-chip'"
-                            :casename="'titleColor & leftIconColor & textColor & borderColor & borderColorHover & backgroundColor & backgroundColorHover & backgroundColorActive'"
+                            :casename="'titleColor & leftIconColor & textColor & backgroundColor & backgroundColorHover & backgroundColorActive'"
                             :kind="'border'"
                             :shell="'shell'"
                         ></demolink>
@@ -912,9 +902,9 @@
                                 :textColor="'white'"
                                 :borderColor="'cyan lighten-1'"
                                 :borderColorHover="'cyan lighten-1'"
-                                :backgroundColor="'cyan'"
-                                :backgroundColorHover="'cyan darken-1'"
-                                :backgroundColorActive="'cyan darken-2'"
+                                :backgroundColor="'cyan darken-1'"
+                                :backgroundColorHover="'cyan lighten-1'"
+                                :backgroundColorActive="'cyan lighten-2'"
                                 :activeIndex.sync="WButtonGroupChip.activeIndex"
                                 :value="WButtonGroupChip.basic"
                             ></w-button-group-chip>

@@ -12,7 +12,7 @@
             <div :style="`height:${viewHeightMax+1}px;`"></div>
 
             <div style="position:absolute; top:0; right:0px; height:100%; z-index:1;" v-show="contentHeightEff>0">
-                <div :style="`position:relative; width:${barWidth}px; height:100%; background-color:${useBarBackgroundColor}; padding:2px; box-sizing:border-box;`">
+                <div :style="`position:relative; width:${barWidth}px; height:100%; background-color:${useBarBackgroundColor}; padding:2px 1px; box-sizing:border-box;`">
                     <div
                         ref="divBar"
                         :style="`width:100%; height:${barSize}px; background-color:${useBarColor}; border-radius:15px; user-select:none; transform:translateY(${barLoc}px); cursor:pointer; opacity:${barOpacity}; transition:opacity 0.5s;`"
@@ -35,7 +35,6 @@
 
 <script>
 import color2hex from '../js/vuetifyColor.mjs'
-import throttle from 'lodash/throttle'
 import genID from 'wsemi/src/genID.mjs'
 import cancelEvent from '../js/cancelEvent.mjs'
 
@@ -45,7 +44,7 @@ import cancelEvent from '../js/cancelEvent.mjs'
  * @vue-prop {Number} [scrollDelta=100] 輸入一次捲動高度，單位為px，預設100
  * @vue-prop {String} [barColor='rgba(0,0,0,0.2)'] 輸入捲軸內區塊顏色字串，預設'rgba(0,0,0,0.2)'
  * @vue-prop {String} [barBackgroundColor='transparent'] 輸入捲軸背景顏色字串，預設'transparent'
- * @vue-prop {Number} [barWidth=10] 輸入捲軸區寬度，單位為px，預設10
+ * @vue-prop {Number} [barWidth=8] 輸入捲軸區寬度，單位為px，預設8
  * @vue-prop {Number} [barHeightMin=50] 輸入捲軸內區塊最小高度，單位為px，預設50
  * @vue-prop {Number} [ratio=0] 輸入目前捲動比例數字，預設0
  */
@@ -73,7 +72,7 @@ export default {
         },
         barWidth: {
             type: Number,
-            default: 10,
+            default: 8,
         },
         barHeightMin: {
             type: Number,
@@ -442,16 +441,13 @@ export default {
 
         },
 
-        triggerEvent: throttle(function(from) {
+        triggerEvent: function(from) {
             //console.log('methods triggerEvent', from)
 
             let vo = this
 
-            //delay呼叫, 因為外部可以因變更而呼叫triggerEvent, throttle第1次觸發會過早導致還沒收到外部變動就由當前資訊emit出去
-            setTimeout(() => {
-
-                //updateRatioTrans
-                vo.updateRatioTrans(vo.ratioTrans)
+            //nextTick, 因為外部可以因變更而呼叫triggerEvent, throttle第1次觸發是直接呼叫執行, 導致還沒收到外部傳入數據就由當前資訊emit出去
+            vo.$nextTick(() => {
 
                 //o
                 let o = {
@@ -476,7 +472,7 @@ export default {
 
             }, 1)
 
-        }, 50),
+        },
 
         scrollByDeltaRatio: function(deltaRatio) {
             //console.log('methods scrollByDeltaRatio', deltaRatio)

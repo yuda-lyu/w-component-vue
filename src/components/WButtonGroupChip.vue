@@ -67,6 +67,7 @@ import isbol from 'wsemi/src/isbol.mjs'
  * @vue-prop {Number} [activeIndex=null] 輸入已點擊項目指標整數，預設null
  * @vue-prop {String} [textColor='grey darken-2'] 輸入文字顏色字串，預設'grey darken-2'
  * @vue-prop {Number} [borderRadius=30] 輸入圓角寬度，單位為px，預設30
+ * @vue-prop {Number} [borderWidth=1] 輸入邊線寬度，單位為px，預設1
  * @vue-prop {String} [borderColor='orange lighten-3'] 輸入邊框顏色字串，預設'orange lighten-3'
  * @vue-prop {String} [borderColorHover='orange lighten-1'] 輸入邊框hover顏色字串，預設'orange lighten-1'
  * @vue-prop {Boolean} [borderShadow=false] 輸入是否為陰影模式，預設false
@@ -95,6 +96,10 @@ export default {
         borderRadius: {
             type: Number,
             default: 30,
+        },
+        borderWidth: {
+            type: Number,
+            default: 1,
         },
         borderColor: {
             type: String,
@@ -206,10 +211,10 @@ export default {
 
             let s = {}
             if (vo.hovered) {
-                s['border'] = '1px solid ' + color2hex(vo.borderColorHover)
+                s['border'] = `${vo.borderWidth}px solid ${color2hex(vo.borderColorHover)}`
             }
             else {
-                s['border'] = '1px solid ' + color2hex(vo.borderColor)
+                s['border'] = `${vo.borderWidth}px solid ${color2hex(vo.borderColor)}`
             }
             return s
         },
