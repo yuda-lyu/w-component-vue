@@ -89,14 +89,14 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-button-circle'"
-                    :casename="'buttonColor'"
+                    :casename="'backgroundColor'"
                     :kind="'nokind'"
                     :shell="'pure'"
                 ></demolink>
 
                 <w-button-circle
                     :icon="mdiCheckUnderlineCircle"
-                    :buttonColor="'purple lighten-4'"
+                    :backgroundColor="'purple lighten-4'"
                 ></w-button-circle>
 
             </div>
@@ -105,14 +105,14 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-button-circle'"
-                    :casename="'buttonColor & iconColor'"
+                    :casename="'backgroundColor & iconColor'"
                     :kind="'nokind'"
                     :shell="'pure'"
                 ></demolink>
 
                 <w-button-circle
                     :icon="mdiCheckUnderlineCircle"
-                    :buttonColor="'orange lighten-4'"
+                    :backgroundColor="'orange lighten-4'"
                     :iconColor="'deep-orange darken-1'"
                 ></w-button-circle>
 

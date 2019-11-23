@@ -92,7 +92,7 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-button-chip'"
-                    :casename="'buttonColor'"
+                    :casename="'backgroundColor'"
                     :kind="'nokind'"
                     :shell="'pure'"
                 ></demolink>
@@ -100,7 +100,7 @@
                 <w-button-chip
                     :text="WButtonChip.text"
                     :icon="mdiCheckUnderlineCircle"
-                    :buttonColor="'purple lighten-4'"
+                    :backgroundColor="'purple lighten-4'"
                 ></w-button-chip>
 
             </div>
@@ -109,7 +109,7 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-button-chip'"
-                    :casename="'buttonColor & iconColor'"
+                    :casename="'backgroundColor & iconColor'"
                     :kind="'nokind'"
                     :shell="'pure'"
                 ></demolink>
@@ -117,7 +117,7 @@
                 <w-button-chip
                     :text="WButtonChip.text"
                     :icon="mdiCheckUnderlineCircle"
-                    :buttonColor="'orange lighten-5'"
+                    :backgroundColor="'orange lighten-5'"
                     :iconColor="'orange'"
                 ></w-button-chip>
 

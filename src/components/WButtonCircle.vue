@@ -14,7 +14,7 @@
                     :loading="loading"
                     :disabled="!editable"
                     @click="clickBtn"
-                    v-if="buttonColor==='transparent'"
+                    v-if="backgroundColor==='transparent'"
                 >
                     <w-icon
                         :icon="icon"
@@ -26,7 +26,7 @@
                     fab
                     :small="small"
                     :elevation="shadow?4:0"
-                    :color="buttonColor"
+                    :color="backgroundColor"
                     :loading="loading"
                     :disabled="!editable"
                     @click="clickBtn"
@@ -54,7 +54,7 @@ import WIcon from './WIcon.vue'
  * @vue-prop {String} [tooltip=text] 輸入提示文字字串，預設''
  * @vue-prop {String} [icon=''] 輸入圖標字串，可為mdi,md,fa代號或mdi/js路徑，預設''
  * @vue-prop {String} [iconColor='grey darken-1'] 輸入按鈕圖標顏色字串，預設'grey darken-1'
- * @vue-prop {String} [buttonColor='transparent'] 輸入按鈕背景顏色字串，預設'transparent'
+ * @vue-prop {String} [backgroundColor='transparent'] 輸入按鈕背景顏色字串，預設'transparent'
  * @vue-prop {Boolean} [shadow=true] 輸入是否為陰影模式，預設true
  * @vue-prop {Boolean} [small=true] 輸入是否為小型模式，預設true
  * @vue-prop {Boolean} [loading=false] 輸入是否為載入模式，預設false
@@ -77,7 +77,7 @@ export default {
             type: String,
             default: 'grey darken-1',
         },
-        buttonColor: {
+        backgroundColor: {
             type: String,
             default: 'transparent',
         },

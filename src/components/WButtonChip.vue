@@ -8,7 +8,7 @@
                     v-on="on"
                     rounded
                     :small="small"
-                    :color="buttonColor"
+                    :color="backgroundColor"
                     :loading="loading"
                     :disabled="!editable"
                     @click="clickBtn"
@@ -41,7 +41,7 @@ import WIcon from './WIcon.vue'
  * @vue-prop {String} [tooltip=text] 輸入提示文字字串，預設''
  * @vue-prop {String} [icon=''] 輸入圖標字串，可為mdi,md,fa代號或mdi/js路徑，預設''
  * @vue-prop {String} [iconColor=''] 輸入圖標背景顏色字串，預設''，即透明
- * @vue-prop {String} [buttonColor='grey lighten-4'] 輸入按鈕背景顏色字串，預設'grey lighten-4'
+ * @vue-prop {String} [backgroundColor='grey lighten-4'] 輸入按鈕背景顏色字串，預設'grey lighten-4'
  * @vue-prop {Boolean} [small=true] 輸入是否為小型模式，預設true
  * @vue-prop {Boolean} [loading=false] 輸入是否為載入模式，預設false
  * @vue-prop {Boolean} [editable=true] 輸入是否為編輯模式，預設true
@@ -67,7 +67,7 @@ export default {
             type: String,
             default: '',
         },
-        buttonColor: {
+        backgroundColor: {
             type: String,
             default: 'grey lighten-4',
         },

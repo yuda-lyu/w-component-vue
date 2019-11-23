@@ -6,7 +6,7 @@
         name="viewport"
         content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui"
     />
-    <title>example for w-button-chip: buttonColor & iconColor</title>
+    <title>example for w-button-circle: backgroundColor & iconColor</title>
 
     <!-- fontawesome -->
     <link
@@ -47,7 +47,7 @@
     <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.js"></script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@1.2.35/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@1.2.36/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -91,15 +91,14 @@
     style="font-family:'Microsoft JhengHei','Avenir','Helvetica'; padding:20px;"
 >
     <v-app id="app" style="font-family:inherit;">
-        <div class="head1">w-button-chip</div>
+        <div class="head1">w-button-circle</div>
         <div class="bk">
-            <div class="item">buttonColor & iconColor</div>
+            <div class="item">backgroundColor & iconColor</div>
 
-            <w-button-chip
-                :text="WButtonChip.text"
+            <w-button-circle
                 :icon="'mdi-check-underline-circle'"
-                :button-color="'orange lighten-5'"
-                :icon-color="'orange'"
+                :background-color="'orange lighten-4'"
+                :icon-color="'deep-orange darken-1'"
             />
         </div>
     </v-app>
@@ -112,11 +111,7 @@
   new Vue({
     el: "#app",
     vuetify: new Vuetify(),
-    data: {
-      WButtonChip: {
-        text: "aBc數字123"
-      }
-    },
+    data: { WButtonCircle: {} },
     computed: {},
     methods: {}
   });
