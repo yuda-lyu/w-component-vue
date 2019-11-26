@@ -6,7 +6,7 @@
         name="viewport"
         content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui"
     />
-    <title>example for w-dialog: slot header</title>
+    <title>example for w-dialog: slot headerLeft & headerRight</title>
 
     <!-- fontawesome -->
     <link
@@ -47,7 +47,7 @@
     <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.js"></script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@1.2.37/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@1.2.38/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -93,7 +93,7 @@
     <v-app id="app" style="font-family:inherit;">
         <div class="head1">w-dialog</div>
         <div class="bk">
-            <div class="item">slot header</div>
+            <div class="item">slot headerLeft & headerRight</div>
 
             <v-btn
                 small
@@ -107,14 +107,25 @@
                 @click-save="clickEvent('click-save')"
                 @click-close="clickEvent('click-close')"
             >
-                <template v-slot:header>
+                <template v-slot:header-left>
                     <select
-                        style="padding:0px 15px; background-color:rgba(255,255,255,0.2); color:#fff; border:1px solid rgba(255,255,255,0.5); border-radius:30px; outline:none;"
+                        style="margin-left:15px; padding:0px 20px; background-color:rgba(255,255,255,0.1); color:#fff; border:1px solid rgba(255,255,255,0.7); border-radius:30px; outline:none;"
                     >
                         <option style="color:#000;" value="0">Select Fruit</option>
-                        <option style="color:#000;" value="1">Apple</option>
-                        <option style="color:#000;" value="2">Orange</option>
-                        <option style="color:#000;" value="3">Banana</option>
+                        <option style="color:#000;" value="1">L-Apple</option>
+                        <option style="color:#000;" value="2">L-Orange</option>
+                        <option style="color:#000;" value="3">L-Banana</option>
+                    </select>
+                </template>
+
+                <template v-slot:header-right>
+                    <select
+                        style="margin-right:15px; padding:0px 20px; background-color:rgba(255,255,255,0.1); color:#fff; border:1px solid rgba(255,255,255,0.7); border-radius:30px; outline:none;"
+                    >
+                        <option style="color:#000;" value="0">Select Fruit</option>
+                        <option style="color:#000;" value="1">R-Apple</option>
+                        <option style="color:#000;" value="2">R-Orange</option>
+                        <option style="color:#000;" value="3">R-Banana</option>
                     </select>
                 </template>
 
