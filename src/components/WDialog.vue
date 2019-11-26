@@ -25,9 +25,11 @@
 
                 <v-toolbar-title>{{title}}</v-toolbar-title>
 
+                <slot name="headerLeft"></slot>
+
                 <v-spacer></v-spacer>
 
-                <slot name="header"></slot>
+                <slot name="headerRight"></slot>
 
                 <template v-for="(btn,kbtn) in headerBtns">
 
