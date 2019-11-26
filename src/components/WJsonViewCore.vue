@@ -6,26 +6,26 @@
         v-if="item.show && item.filterShow"
     >
 
-        <div :style="[styleLineNumber,{'width':lineNumberWidth+'px'}]">{{item.index+1}}</div>
+        <div :style="`${styleCell}; ${styleLineNumber}; width:${lineNumberWidth}px;`">{{item.index+1}}</div>
 
-        <div :style="`display:table-cell; padding-left:${item.paddingLeft}px;`">
+        <div :style="`${styleCell}; padding-left:${item.paddingLeft}px;`">
 
             <div style="position:relative;">
 
                 <div style="position:absolute; top:0px; left:0px; transform:translateX(-100%); user-select:none;">
-                    <span v-if="item.hasChildren" @click.capture="toggleItems(item)">
+                    <div v-if="item.hasChildren" @click.capture="toggleItems(item)">
                         <span :class="[{'caretRight':true,'showChildren':item.displayChildren}]">
                             <span class="center">
                                 <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" :fill="useIconColor" width="11px" height="11px" x="0px" y="0px" viewBox="0 0 415.346 415.346" xml:space="preserve"><g><path d="M41.712,415.346c-11.763,0-21.3-9.537-21.3-21.3V21.299C20.412,9.536,29.949,0,41.712,0l346.122,191.697 c0,0,15.975,15.975,0,31.951C371.859,239.622,41.712,415.346,41.712,415.346z"/></g></svg>
                             </span>
                         </span>
-                    </span>
-                    <span style="display:inline-block; width:16px;" v-else></span>
+                    </div>
+                    <div style="display:inline-block; width:16px;" v-else></div>
                 </div>
 
-                <div style="display:flex;">
+                <div style="">
 
-                    <span :style="`white-space:pre; color:${useKeyColor};`" v-if="item.key">
+                    <div :style="`${styleCell}; white-space:pre; color:${useKeyColor};`" v-if="item.key">
 
                         <span>{{item.key}}</span>
 
@@ -36,13 +36,13 @@
 
                         <span v-if="!item.displayChildren"><span style="margin-right:10px;">...</span>{{item.valueTail}}</span>
 
-                    </span>
+                    </div>
 
                     <template v-if="item.value">
 
-                        <span :style="`color:${item.valueColor}`">{{item.value}}</span>
+                        <div :style="`${styleCell}; color:${item.valueColor}`">{{item.value}}</div>
 
-                        <span :style="`color:${item.keyColor}`" v-if="item.valueComma">,</span>
+                        <div :style="`${styleCell}; color:${item.keyColor}`" v-if="item.valueComma">,</div>
 
                     </template>
 
@@ -90,16 +90,9 @@ export default {
     },
     data: function() {
         return {
-            //記得div給width:100%，因ie11的flex內文字會自動撐開版面導致不會換行
-            styleLineNumber: {
-                'display': 'table-cell',
-                'padding-right': '10px',
-                'text-align': 'right',
-                'font-size': '0.8rem',
-                'color': '#f26',
-                'user-select': 'none',
-                'vertical-align': 'middle',
-            },
+            //line-height = ( 1 / 0.8(font-size) )^2
+            styleLineNumber: `padding-right:10px; text-align:right; font-size:0.8rem; line-height:1.5625rem; color:#f26; user-select:none;`,
+            styleCell: `display:table-cell; vertical-align:top;`,
         }
     },
     mounted: function() {
