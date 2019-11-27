@@ -2,7 +2,7 @@
     <v-dialog
         :changeParam="changeParam"
         scrollable
-        :persistent="hasCloseBtn"
+        :persistent="!fullscreen && hasCloseBtn"
         :max-width="widthMax"
         :fullscreen="fullscreen"
         v-resize="changeSize"
