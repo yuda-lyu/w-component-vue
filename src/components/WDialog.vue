@@ -7,10 +7,10 @@
         :fullscreen="fullscreen"
         v-resize="changeSize"
         v-model="showTrans"
-        @click:outside="clickClose"
+        @click:outside="clickClose(true)"
     >
 
-        <v-card>
+        <v-card v-if="show">
 
             <v-toolbar
                 dark
@@ -80,7 +80,6 @@
 
 <script>
 import { mdiCheckCircle, mdiClose, mdiCheckerboard } from '@mdi/js'
-import isbol from 'wsemi/src/isbol.mjs'
 import WButtonCircle from './WButtonCircle.vue'
 
 /**
@@ -234,15 +233,18 @@ export default {
 
         },
 
-        clickClose: function(show) {
-            //console.log('methods clickClose', show)
+        clickClose: function(outside) {
+            //console.log('methods clickClose', outside)
 
             let vo = this
 
             //check
-            if (isbol(show)) {
-                vo.showTrans = show
+            if (vo.hasCloseBtn && outside) {
+                return
             }
+
+            //hide
+            vo.showTrans = false
 
             //setTimeout
             setTimeout(() => {
