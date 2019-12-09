@@ -36,6 +36,7 @@ import each from 'lodash/each'
 import get from 'lodash/get'
 import size from 'lodash/size'
 import keys from 'lodash/keys'
+import last from 'lodash/last'
 import isNumber from 'lodash/isNumber'
 import isString from 'lodash/isString'
 import isBoolean from 'lodash/isBoolean'
@@ -414,46 +415,88 @@ export default {
             let n = size(items)
 
             //check
+            let showPath = []
+            function nodeShow(parent) {
+                let n = showPath.length
+                if (parent) {
+                    n -= 1
+                }
+                for (let i = 0; i < n; i++) {
+                    if (!get(showPath[i], 'displayChildren', false)) {
+                        return false
+                    }
+                }
+                return true
+            }
             if (vo.changeDisplayChildren) {
 
                 //check
-                let index = 0
+                let indexClick = 0
                 if (vo.changeDisplayChildrenIndex !== null) {
-                    index = vo.changeDisplayChildrenIndex
+                    indexClick = vo.changeDisplayChildrenIndex
                 }
 
                 //update show
-                let hide = false
-                let level = null
-                let ind = null
-                for (let k = index; k < n; k++) {
+                let levelClick = null
+                for (let k = indexClick; k < n; k++) {
                     let v = items[k]
 
-                    //detect start
-                    if (!hide && !v.displayChildren) {
-                        hide = true
-                        level = v.level
-                        ind = k
+                    //有子節點
+                    if (v.stateChildren === 1) {
+
+                        //push
+                        showPath.push({
+                            displayChildren: v.displayChildren,
+                            level: v.level,
+                            key: v.key,
+                        })
+
                     }
 
-                    //detect level
-                    if (ind !== k && hide) {
-                        if (v.level > level) {
-                            if (v.show !== false) {
-                                v.show = false
-                            }
-                        }
-                        else if (v.level === level) {
-                            if (v.show !== false) {
-                                v.show = false
-                            }
-                            break
-                        }
+                    if (k === indexClick) {
+                        //點擊此節點, 一定是當前可見(v.show=true)才能被點擊
+
+                        //save level
+                        levelClick = v.level
+
                     }
-                    else {
-                        if (v.show !== true) {
-                            v.show = true
+                    else if (k > indexClick) {
+                        //之後節點
+
+                        //show
+                        if (v.stateChildren === 1) {
+
+                            //若有子節點, 則showPath內已添加自己, 需由上一層資訊判斷是否顯示
+                            v.show = nodeShow(true)
+
                         }
+                        else if (v.stateChildren === -1) {
+
+                            //有子節點的尾節點, 由上一層資訊判斷是否顯示, 若顯示, 且起始節點亦需顯示子節點時, 才顯示尾節點
+                            let o = last(showPath)
+                            v.show = nodeShow(true) && o.displayChildren
+
+                        }
+                        else {
+
+                            //show
+                            v.show = nodeShow(false)
+
+                        }
+
+                    }
+
+                    //子節點的尾節點
+                    if (v.stateChildren === -1) {
+
+                        //pop
+                        showPath.pop()
+
+                    }
+
+                    //break
+                    if (k > indexClick && v.level === levelClick) {
+                        break
                     }
 
                 }
@@ -561,7 +604,7 @@ export default {
                 }
             }
 
-            function addItem({ parentIndex, level, key, keyNumbers, value, valueColor, valueComma, valueTail, hasChildren }) {
+            function addItem({ parentIndex, level, key, keyNumbers, value, valueColor, valueComma, valueTail, stateChildren }) {
                 index += 1
                 let item = {
                     index, //節點指標
@@ -573,7 +616,7 @@ export default {
                     valueColor, //str, 數值顏色, 需依照值型別給予
                     valueComma, //bol, 數值後方是否顯示","
                     valueTail, //str, 數值後方結尾符號, 僅用於陣列或物件, 供displayChildren=false時額外顯示出結尾符號
-                    hasChildren, //bol, 是否有子節點, 僅陣列或物件才為true
+                    stateChildren, //num, 子節點狀態, 僅陣列或物件才為1, 陣列或物件的尾節點為-1, 其他為0
                     displayChildren: vo.defDisplayChildren, //bol, 是否顯示子節點
                     show: true, //bol, 是否顯示此節點
                     filterShow: true, //bol, 是否過濾後顯示此節點
@@ -609,7 +652,7 @@ export default {
                     valueTail: ']',
                     keyNumbers,
                     valueComma: false,
-                    hasChildren: true,
+                    stateChildren: 1,
                 })
 
                 // each(value, (v, k) => {
@@ -642,7 +685,7 @@ export default {
                     valueColor: null,
                     keyNumbers: null,
                     valueComma: false,
-                    hasChildren: false,
+                    stateChildren: -1,
                 })
 
             }
@@ -669,7 +712,7 @@ export default {
                     valueTail: '}',
                     keyNumbers,
                     valueComma: false,
-                    hasChildren: true,
+                    stateChildren: 1,
                 })
 
                 // each(value, (v, k) => {
@@ -704,7 +747,7 @@ export default {
                     valueColor: null,
                     keyNumbers: null,
                     valueComma: false,
-                    hasChildren: false,
+                    stateChildren: -1,
                 })
 
             }
@@ -727,7 +770,7 @@ export default {
                         valueColor: c,
                         keyNumbers: null,
                         valueComma: !last,
-                        hasChildren: false,
+                        stateChildren: 0,
                     })
                 }
             }
@@ -761,7 +804,7 @@ export default {
                     valueColor: c,
                     keyNumbers: null,
                     valueComma: null,
-                    hasChildren: false,
+                    stateChildren: 0,
                 })
             }
 
