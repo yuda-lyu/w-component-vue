@@ -47,7 +47,7 @@
     <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.js"></script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@1.2.41/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@1.2.42/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -98,11 +98,11 @@
             <v-btn
                 small
                 rounded
-                @click="WDialog.bShow11=!WDialog.bShow11"
-            >Show({{WDialog.bShow11}})</v-btn>
+                @click="WDialog.bShow12=!WDialog.bShow12"
+            >Show({{WDialog.bShow12}})</v-btn>
 
             <w-dialog
-                :show.sync="WDialog.bShow11"
+                :show.sync="WDialog.bShow12"
                 :title="WDialog.title"
                 :width-max="500"
                 @click-save="clickEvent('click-save')"
@@ -148,8 +148,9 @@
         bShow14: false,
         bShow15: false,
         bShow16: false,
-        bShow16A: false,
-        bShow16B: false,
+        bShow17: false,
+        bShow17A: false,
+        bShow17B: false,
         headerBtns: [
           {
             icon: "fas fa-book-reader",

@@ -6,7 +6,7 @@
         name="viewport"
         content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui"
     />
-    <title>example for w-confirm: noText & yesText</title>
+    <title>example for w-confirm: hasNoBtn & yesBtnText</title>
 
     <!-- fontawesome -->
     <link
@@ -47,7 +47,7 @@
     <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.js"></script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@1.2.41/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@1.2.42/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -93,21 +93,20 @@
     <v-app id="app" style="font-family:inherit;">
         <div class="head1">w-confirm</div>
         <div class="bk">
-            <div class="item">noText & yesText</div>
+            <div class="item">hasNoBtn & yesBtnText</div>
 
             <v-btn
                 small
                 rounded
-                @click="WConfirm.bShow5=!WConfirm.bShow5"
-            >Show({{WConfirm.bShow5}})</v-btn>
+                @click="WConfirm.bShow6=!WConfirm.bShow6"
+            >Show({{WConfirm.bShow6}})</v-btn>
 
             <w-confirm
-                :show.sync="WConfirm.bShow5"
+                :show.sync="WConfirm.bShow6"
                 :title="WConfirm.title"
-                :content="WConfirm.content"
-                :no-text="'Cancel'"
-                :yes-text="'Save'"
-                @click-no="clickEvent('click-no')"
+                :content="'您已經下載完檔案'"
+                :has-no-btn="false"
+                :yes-btn-text="'確認'"
                 @click-yes="clickEvent('click-yes')"
             />
         </div>
@@ -133,10 +132,6 @@
         bShow8: false,
         bShow9: false,
         bShow10: false,
-        bShow11: false,
-        bShow12: false,
-        bShow13: false,
-        bShow14: false,
         title: "系統確認訊息",
         content: "是否同意上傳表單資料?"
       }

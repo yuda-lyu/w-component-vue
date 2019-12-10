@@ -6,7 +6,7 @@
         name="viewport"
         content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui"
     />
-    <title>example for w-dialog: headerColor</title>
+    <title>example for w-confirm: noBtnTextColor & noBtnBackgroundColor & yesBtnTextColor & yesBtnBackgroundColor</title>
 
     <!-- fontawesome -->
     <link
@@ -47,7 +47,7 @@
     <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.js"></script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@1.2.41/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@1.2.42/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -91,34 +91,29 @@
     style="font-family:'Microsoft JhengHei','Avenir','Helvetica'; padding:20px;"
 >
     <v-app id="app" style="font-family:inherit;">
-        <div class="head1">w-dialog</div>
+        <div class="head1">w-confirm</div>
         <div class="bk">
-            <div class="item">headerColor</div>
+            <div
+                class="item"
+            >noBtnTextColor & noBtnBackgroundColor & yesBtnTextColor & yesBtnBackgroundColor</div>
 
             <v-btn
                 small
                 rounded
-                @click="WDialog.bShow4=!WDialog.bShow4"
-            >Show({{WDialog.bShow4}})</v-btn>
+                @click="WConfirm.bShow9=!WConfirm.bShow9"
+            >Show({{WConfirm.bShow9}})</v-btn>
 
-            <w-dialog
-                :show.sync="WDialog.bShow4"
-                :title="WDialog.title"
-                :header-color="'pink darken-1'"
-                @click-save="clickEvent('click-save')"
-                @click-close="clickEvent('click-close')"
-            >
-                <template v-slot:content>
-                    <div style="padding:20px;">
-                        <div
-                            style="font-size:2rem; margin:20px 0px 30px 0px;"
-                        >{{WDialog.text1}}</div>
-                        <div style="margin:15px 0px;">{{WDialog.text2}}</div>
-                        <div style="margin:15px 0px;">{{WDialog.text3}}</div>
-                        <div style="margin:15px 0px;">{{WDialog.text4}}</div>
-                    </div>
-                </template>
-            </w-dialog>
+            <w-confirm
+                :show.sync="WConfirm.bShow9"
+                :title="WConfirm.title"
+                :content="WConfirm.content"
+                :no-btn-text-color="'pink lighten-1'"
+                :no-btn-background-color="'white'"
+                :yes-btn-text-color="'light-blue darken-1'"
+                :yes-btn-background-color="'white'"
+                @click-no="clickEvent('click-no')"
+                @click-yes="clickEvent('click-yes')"
+            />
         </div>
     </v-app>
 
@@ -131,7 +126,7 @@
     el: "#app",
     vuetify: new Vuetify(),
     data: {
-      WDialog: {
+      WConfirm: {
         bShow1: false,
         bShow2: false,
         bShow3: false,
@@ -142,39 +137,8 @@
         bShow8: false,
         bShow9: false,
         bShow10: false,
-        bShow11: false,
-        bShow12: false,
-        bShow13: false,
-        bShow14: false,
-        bShow15: false,
-        bShow16: false,
-        bShow16A: false,
-        bShow16B: false,
-        headerBtns: [
-          {
-            icon: "fas fa-book-reader",
-            tooltip: "測試book-reader",
-            evName: "bookReader"
-          },
-          {
-            icon: "fab fa-codepen",
-            tooltip: "測試codepen",
-            evName: "codepen"
-          },
-          {
-            icon: "fab fa-docker",
-            tooltip: "測試docker",
-            evName: "docker"
-          }
-        ],
-        title: "Popup Dialog",
-        text1: "Article Title",
-        text2: "Here is a article content, texts are from Vuetify.",
-        text3:
-          "Vuetify is a progressive framework that attempts to push web development to the next level. In order to best accomplish this task, some sacrifices had to be made in terms of support for older versions of Internet Explorer. This is not an exhaustive list of compatible browsers, but the main targeted ones.",
-        text4:
-          "There are three ways in which you can install Vuetify. The first (and recommended) way is to utilize the vuetify-loader or what we call automatic A-la-carte. This will ensure that your application only uses the features and styles from Vuetify that are needed, significantly reducing your application's compiled size. Keep in mind, when importing from vuetify/lib, the necessary styles are automatically imported for you.",
-        text5: "End."
+        title: "系統確認訊息",
+        content: "是否同意上傳表單資料?"
       }
     },
     computed: {},

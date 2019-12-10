@@ -10,7 +10,7 @@
 
             <div :style="useHeaderStyle">
                 <span
-                    :style="[{'font-size':'1.2rem', 'font-weight':'bold'},useTitleColor]"
+                    :style="[{'font-size':'1.2rem'},useTitleColor]"
                 >
                     {{title}}
                 </span>
@@ -37,25 +37,23 @@
                     style="margin-left:20px;"
                     small
                     rounded
-                    dark
-                    color="pink lighten-1"
+                    :color="noBtnBackgroundColor"
                     @click="clickBtns(false)"
-                    v-if="hasCancelBtn"
+                    v-if="hasNoBtn"
                 >
-                    <v-icon style="margin-left:-8px;">{{mdiCloseCircle}}</v-icon>
-                    <span style="margin-left:5px; font-size:0.875rem; text-transform:none;">{{noText}}</span>
+                    <v-icon style="margin-left:-8px;" :color="noBtnTextColor">{{mdiCloseCircle}}</v-icon>
+                    <span :style="`margin-left:5px; font-size:0.875rem; text-transform:none; color:${useNoBtnTextColor}`">{{noBtnText}}</span>
                 </v-btn>
 
                 <v-btn
                     style="margin-left:20px;"
                     small
                     rounded
-                    dark
-                    color="blue"
+                    :color="yesBtnBackgroundColor"
                     @click="clickBtns(true)"
                 >
-                    <v-icon style="margin-left:-8px;">{{mdiCheckboxMarkedCircle}}</v-icon>
-                    <span style="margin-left:5px; font-size:0.875rem; text-transform:none;">{{yesText}}</span>
+                    <v-icon style="margin-left:-8px;" :color="yesBtnTextColor">{{mdiCheckboxMarkedCircle}}</v-icon>
+                    <span :style="`margin-left:5px; font-size:0.875rem; text-transform:none; color:${useYesBtnTextColor}`">{{yesBtnText}}</span>
                 </v-btn>
 
             </div>
@@ -78,9 +76,13 @@ import color2hex from '../js/vuetifyColor.mjs'
  * @vue-prop {String} [contentIcon=mdiAlert] 輸入內容左側圖標字串，可為mdi,md,fa代號或mdi/js路徑，預設mdiAlert
  * @vue-prop {String} [contentIconColor='orange'] 輸入內容左側圖標顏色字串，預設'orange'
  * @vue-prop {Number} [contentIconSize=40] 輸入內容左側圖標大小數字，預設40
- * @vue-prop {String} [noText='取消'] 輸入否決按鈕文字字串，預設'取消'
- * @vue-prop {String} [yesText='同意'] 輸入同意按鈕文字字串，預設'同意'
- * @vue-prop {Boolean} [hasCancelBtn=true] 輸入是否顯示取消按鈕，預設true
+ * @vue-prop {Boolean} [hasNoBtn=true] 輸入是否顯示取消按鈕，預設true
+ * @vue-prop {String} [noBtnText='取消'] 輸入否決按鈕文字字串，預設'取消'
+ * @vue-prop {String} [noBtnTextColor='white'] 輸入否決按鈕文字顏色字串，預設'white'
+ * @vue-prop {String} [noBtnBackgroundColor='pink lighten-1'] 輸入否決按鈕顏色字串，預設'pink lighten-1'
+ * @vue-prop {String} [yesBtnText='同意'] 輸入同意按鈕文字字串，預設'同意'
+ * @vue-prop {String} [yesBtnTextColor='white'] 輸入同意按鈕文字顏色字串，預設'white'
+ * @vue-prop {String} [yesBtnBackgroundColor='blue'] 輸入同意按鈕顏色字串，預設'blue'
  * @vue-prop {String} [headerBackgroundColor='grey lighten-5'] 輸入上方區塊背景顏色字串，預設'grey lighten-5'
  * @vue-prop {String} [contentBackgroundColor='white'] 輸入內容區塊背景顏色字串，預設'white'
  * @vue-prop {String} [footerBackgroundColor='grey lighten-5'] 輸入下方區塊背景顏色字串，預設'grey lighten-5'
@@ -122,17 +124,33 @@ export default {
             type: Number,
             default: 40,
         },
-        noText: {
+        hasNoBtn: {
+            type: Boolean,
+            default: true,
+        },
+        noBtnText: {
             type: String,
             default: '取消',
         },
-        yesText: {
+        noBtnTextColor: {
+            type: String,
+            default: 'white',
+        },
+        noBtnBackgroundColor: {
+            type: String,
+            default: 'pink lighten-1',
+        },
+        yesBtnText: {
             type: String,
             default: '同意',
         },
-        hasCancelBtn: {
-            type: Boolean,
-            default: true,
+        yesBtnTextColor: {
+            type: String,
+            default: 'white',
+        },
+        yesBtnBackgroundColor: {
+            type: String,
+            default: 'blue',
         },
         headerBackgroundColor: {
             type: String,
@@ -221,6 +239,22 @@ export default {
             s['border-top'] = '1px solid #ddd'
             s['text-align'] = 'right'
             return s
+        },
+
+        useNoBtnTextColor: function() {
+            //console.log('computed useNoBtnTextColor')
+
+            let vo = this
+
+            return color2hex(vo.noBtnTextColor)
+        },
+
+        useYesBtnTextColor: function() {
+            //console.log('computed useYesBtnTextColor')
+
+            let vo = this
+
+            return color2hex(vo.yesBtnTextColor)
         },
 
     },

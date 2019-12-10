@@ -47,7 +47,7 @@
     <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.js"></script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@1.2.41/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@1.2.42/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -98,11 +98,11 @@
             <v-btn
                 small
                 rounded
-                @click="WDialog.bShow16=!WDialog.bShow16"
-            >Show({{WDialog.bShow16}})</v-btn>
+                @click="WDialog.bShow17=!WDialog.bShow17"
+            >Show({{WDialog.bShow17}})</v-btn>
 
             <w-dialog
-                :show.sync="WDialog.bShow16"
+                :show.sync="WDialog.bShow17"
                 :title="WDialog.title"
                 :width-max="1200"
                 @click-save="clickEvent('click-save')"
@@ -115,8 +115,8 @@
                         <v-btn
                             small
                             rounded
-                            @click="WDialog.bShow16A=!WDialog.bShow16A"
-                        >Show({{WDialog.bShow16A}})</v-btn>
+                            @click="WDialog.bShow17A=!WDialog.bShow17A"
+                        >Show({{WDialog.bShow17A}})</v-btn>
 
                         <div style="height:160px;" />
                     </div>
@@ -124,7 +124,7 @@
             </w-dialog>
 
             <w-dialog
-                :show.sync="WDialog.bShow16A"
+                :show.sync="WDialog.bShow17A"
                 :title="WDialog.title"
                 :width-max="900"
                 @click-save="clickEvent('click-save')"
@@ -137,8 +137,8 @@
                         <v-btn
                             small
                             rounded
-                            @click="WDialog.bShow16B=!WDialog.bShow16B"
-                        >Show({{WDialog.bShow16B}})</v-btn>
+                            @click="WDialog.bShow17B=!WDialog.bShow17B"
+                        >Show({{WDialog.bShow17B}})</v-btn>
 
                         <div style="height:80px;" />
                     </div>
@@ -146,7 +146,7 @@
             </w-dialog>
 
             <w-dialog
-                :show.sync="WDialog.bShow16B"
+                :show.sync="WDialog.bShow17B"
                 :title="WDialog.title"
                 :width-max="600"
                 @click-save="clickEvent('click-save')"
@@ -187,8 +187,9 @@
         bShow14: false,
         bShow15: false,
         bShow16: false,
-        bShow16A: false,
-        bShow16B: false,
+        bShow17: false,
+        bShow17A: false,
+        bShow17B: false,
         headerBtns: [
           {
             icon: "fas fa-book-reader",

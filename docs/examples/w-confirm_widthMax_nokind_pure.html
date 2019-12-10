@@ -47,7 +47,7 @@
     <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.js"></script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@1.2.41/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@1.2.42/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -98,11 +98,11 @@
             <v-btn
                 small
                 rounded
-                @click="WConfirm.bShow9=!WConfirm.bShow9"
-            >Show({{WConfirm.bShow9}})</v-btn>
+                @click="WConfirm.bShow10=!WConfirm.bShow10"
+            >Show({{WConfirm.bShow10}})</v-btn>
 
             <w-confirm
-                :show.sync="WConfirm.bShow9"
+                :show.sync="WConfirm.bShow10"
                 :title="WConfirm.title"
                 :content="WConfirm.content"
                 :width-max="350"
@@ -132,10 +132,6 @@
         bShow8: false,
         bShow9: false,
         bShow10: false,
-        bShow11: false,
-        bShow12: false,
-        bShow13: false,
-        bShow14: false,
         title: "系統確認訊息",
         content: "是否同意上傳表單資料?"
       }

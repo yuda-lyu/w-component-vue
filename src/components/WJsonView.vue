@@ -448,7 +448,6 @@ export default {
                         showPath.push({
                             displayChildren: v.displayChildren,
                             level: v.level,
-                            key: v.key,
                         })
 
                     }

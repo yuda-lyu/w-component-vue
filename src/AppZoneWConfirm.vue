@@ -98,7 +98,7 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-confirm'"
-                    :casename="'noText & yesText'"
+                    :casename="'noBtnText & yesBtnText'"
                     :kind="'nokind'"
                     :shell="'pure'"
                 ></demolink>
@@ -109,8 +109,8 @@
                     :show.sync="WConfirm.bShow5"
                     :title="WConfirm.title"
                     :content="WConfirm.content"
-                    :noText="'Cancel'"
-                    :yesText="'Save'"
+                    :noBtnText="'Cancel'"
+                    :yesBtnText="'Save'"
                     @click-no="clickEvent('click-no')"
                     @click-yes="clickEvent('click-yes')"
                 ></w-confirm>
@@ -121,7 +121,7 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-confirm'"
-                    :casename="'hasCancelBtn & yesText'"
+                    :casename="'hasNoBtn & yesBtnText'"
                     :kind="'nokind'"
                     :shell="'pure'"
                 ></demolink>
@@ -132,8 +132,8 @@
                     :show.sync="WConfirm.bShow6"
                     :title="WConfirm.title"
                     :content="'您已經下載完檔案'"
-                    :hasCancelBtn="false"
-                    :yesText="'確認'"
+                    :hasNoBtn="false"
+                    :yesBtnText="'確認'"
                     @click-yes="clickEvent('click-yes')"
                 ></w-confirm>
 
@@ -191,7 +191,7 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-confirm'"
-                    :casename="'widthMax'"
+                    :casename="'noBtnTextColor & noBtnBackgroundColor & yesBtnTextColor & yesBtnBackgroundColor'"
                     :kind="'nokind'"
                     :shell="'pure'"
                 ></demolink>
@@ -200,6 +200,31 @@
 
                 <w-confirm
                     :show.sync="WConfirm.bShow9"
+                    :title="WConfirm.title"
+                    :content="WConfirm.content"
+                    :noBtnTextColor="'pink lighten-1'"
+                    :noBtnBackgroundColor="'white'"
+                    :yesBtnTextColor="'light-blue darken-1'"
+                    :yesBtnBackgroundColor="'white'"
+                    @click-no="clickEvent('click-no')"
+                    @click-yes="clickEvent('click-yes')"
+                ></w-confirm>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-confirm'"
+                    :casename="'widthMax'"
+                    :kind="'nokind'"
+                    :shell="'pure'"
+                ></demolink>
+
+                <v-btn small rounded @click="WConfirm.bShow10=!WConfirm.bShow10">Show({{WConfirm.bShow10}})</v-btn>
+
+                <w-confirm
+                    :show.sync="WConfirm.bShow10"
                     :title="WConfirm.title"
                     :content="WConfirm.content"
                     :widthMax="350"
@@ -246,10 +271,6 @@ export default {
                 'bShow8': false,
                 'bShow9': false,
                 'bShow10': false,
-                'bShow11': false,
-                'bShow12': false,
-                'bShow13': false,
-                'bShow14': false,
                 'title': '系統確認訊息',
                 'content': '是否同意上傳表單資料?',
             },
