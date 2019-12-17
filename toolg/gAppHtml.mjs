@@ -23,6 +23,17 @@ let h = `
     <link _href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
     <link _href="https://fonts.googleapis.com/css?family=Material+Icons" rel="stylesheet">
 
+    <!-- data -->
+    <script src="https://cdn.jsdelivr.net/npm/w-demores/res/data/dataAAPL.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-demores/res/data/dataUSD2EUR.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-demores/res/data/dataTemperature.js"></script>
+    <script>
+        //save in window
+        window.dataAAPL=dataAAPL
+        window.dataUSD2EUR=dataUSD2EUR
+        window.dataTemperature=dataTemperature
+    </script>
+
     <!-- @babel/polyfill -->
     <script nomodule src="https://cdn.jsdelivr.net/npm/@babel/polyfill/dist/polyfill.min.js"></script>
 

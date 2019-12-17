@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import Vue from 'vue'
+// import Vue from 'vue'
 import importResources from 'wsemi/src/importResources.mjs'
 import WIconLoading from './WIconLoading.vue'
 
@@ -19,9 +19,9 @@ export default {
         pathItems: {
             type: Array,
             default: () => [
-                '//cdn.jsdelivr.net/npm/ag-grid-community/dist/ag-grid-community.min.noStyle.js',
-                '//cdn.jsdelivr.net/npm/ag-grid-vue/dist/ag-grid-vue.umd.min.js',
-                '//cdn.jsdelivr.net/npm/w-aggrid-vue/dist/w-aggrid-vue.umd.js',
+                'https://cdn.jsdelivr.net/npm/ag-grid-community@22.0.0/dist/ag-grid-community.min.noStyle.js',
+                'https://cdn.jsdelivr.net/npm/ag-grid-vue@22.0.0/dist/ag-grid-vue.umd.min.js', //於es5內載入時, AgGridVue會出現在window['ag-grid-vue'].AgGridVue
+                'https://cdn.jsdelivr.net/npm/w-aggrid-vue/dist/w-aggrid-vue.umd.js',
             ],
         },
         opt: {
@@ -38,14 +38,18 @@ export default {
 
         let vo = this
 
-        //save vue, es6 import環境window內沒有Vue, 得自己掛入
-        window['Vue'] = Vue
+        //通過window內Vue取得當前所用Vue實體, 並依此加載組件
+        let Vue = window['Vue']
 
         //importResources
         importResources(vo.pathItems)
             .then((res) => {
                 if (res !== 'loaded') {
-                    Vue.component('w-aggrid-vue', window['w-aggrid-vue'])
+                    let cmp = window['w-aggrid-vue']
+                    if (cmp.default) {
+                        cmp = cmp.default
+                    }
+                    Vue.component('w-aggrid-vue', cmp)
                 }
                 vo.cmpName = 'w-aggrid-vue'
             })

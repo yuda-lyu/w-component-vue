@@ -420,8 +420,6 @@ export default {
     },
     data: function() {
         return {
-            bShow: false,
-
             mdiCheckCircle,
             mdiCheckboxBlankCircleOutline,
             indKind: 0,

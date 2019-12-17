@@ -3,7 +3,6 @@
 </template>
 
 <script>
-import Vue from 'vue'
 import importResources from 'wsemi/src/importResources.mjs'
 import WIconLoading from './WIconLoading.vue'
 
@@ -11,6 +10,7 @@ import WIconLoading from './WIconLoading.vue'
  * @vue-prop {Array} [pathItems=[]] 輸入vue-highcharts組件js檔案位置字串陣列，預設詳見props->pathItems->default
  * @vue-prop {Object} [options={}] 輸入highcharts設定物件，預設{}
  */
+//export default {
 export default {
     components: {
         WIconLoading,
@@ -19,12 +19,12 @@ export default {
         pathItems: {
             type: Array,
             default: () => [
-                '//cdn.jsdelivr.net/npm/highcharts/highcharts.js',
-                '//cdn.jsdelivr.net/npm/highcharts/modules/stock.js',
-                '//cdn.jsdelivr.net/npm/highcharts/modules/heatmap.js',
-                '//cdn.jsdelivr.net/npm/highcharts/modules/boost.js',
-                '//cdn.jsdelivr.net/npm/highcharts/modules/boost-canvas.js',
-                '//cdn.jsdelivr.net/npm/vue-highcharts/dist/vue-highcharts.min.js',
+                'https://cdn.jsdelivr.net/npm/highcharts@8.0.0/highcharts.js',
+                'https://cdn.jsdelivr.net/npm/highcharts@8.0.0/modules/stock.js', //因vue-highcharts初始化若無stock會無法註冊全域組件, 故若還會使用highstock vue組件, 得先於highcharts vue組件事先載入
+                'https://cdn.jsdelivr.net/npm/highcharts@8.0.0/modules/heatmap.js',
+                'https://cdn.jsdelivr.net/npm/highcharts@8.0.0/modules/boost.js',
+                'https://cdn.jsdelivr.net/npm/highcharts@8.0.0/modules/boost-canvas.js',
+                'https://cdn.jsdelivr.net/npm/vue-highcharts@0.1.0/dist/vue-highcharts.min.js',
             ],
         },
         options: {
@@ -41,14 +41,18 @@ export default {
 
         let vo = this
 
-        //save vue, es6 import環境window內沒有Vue, 得自己掛入
-        window['Vue'] = Vue
+        //通過window內Vue取得當前所用Vue實體, 並依此加載組件
+        let Vue = window['Vue']
 
         //importResources
         importResources(vo.pathItems)
             .then((res) => {
                 if (res !== 'loaded') {
-                    Vue.use(window['VueHighcharts'].default)
+                    let cmp = window['VueHighcharts']
+                    if (cmp.default) {
+                        cmp = cmp.default
+                    }
+                    Vue.use(cmp)
                 }
                 vo.cmpName = 'Highcharts'
             })
