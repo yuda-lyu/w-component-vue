@@ -323,6 +323,27 @@
             ></AppZoneWDynamicList>
 
 
+            <AppZoneWAggridVueDyn
+                :modeBorder="modeBorder"
+                :modeShell="modeShell"
+                v-if="compname==='WAggridVueDyn'"
+            ></AppZoneWAggridVueDyn>
+
+
+            <AppZoneWHighchartsVueDyn
+                :modeBorder="modeBorder"
+                :modeShell="modeShell"
+                v-if="compname==='WHighchartsVueDyn'"
+            ></AppZoneWHighchartsVueDyn>
+
+
+            <AppZoneWHighstockVueDyn
+                :modeBorder="modeBorder"
+                :modeShell="modeShell"
+                v-if="compname==='WHighstockVueDyn'"
+            ></AppZoneWHighstockVueDyn>
+
+
         </div>
 
 
@@ -359,6 +380,10 @@ import AppZoneWTimedayRange from './AppZoneWTimedayRange.vue'
 import AppZoneWTimeminuteRange from './AppZoneWTimeminuteRange.vue'
 import AppZoneWJsonView from './AppZoneWJsonView.vue'
 import AppZoneWDynamicList from './AppZoneWDynamicList.vue'
+import AppZoneWAggridVueDyn from './AppZoneWAggridVueDyn.vue'
+import AppZoneWHighchartsVueDyn from './AppZoneWHighchartsVueDyn.vue'
+import AppZoneWHighstockVueDyn from './AppZoneWHighstockVueDyn.vue'
+
 
 export default {
     components: {
@@ -389,6 +414,9 @@ export default {
         AppZoneWTimeminuteRange,
         AppZoneWJsonView,
         AppZoneWDynamicList,
+        AppZoneWAggridVueDyn,
+        AppZoneWHighchartsVueDyn,
+        AppZoneWHighstockVueDyn,
     },
     data: function() {
         return {
@@ -454,6 +482,14 @@ export default {
                     cmps: [
                         'WJsonView',
                         'WDynamicList',
+                    ]
+                },
+                {
+                    name: 'dynamic',
+                    cmps: [
+                        'WHighchartsVueDyn',
+                        'WHighstockVueDyn',
+                        'WAggridVueDyn',
                     ]
                 },
             ],

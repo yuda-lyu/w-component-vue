@@ -1,4 +1,5 @@
 <script>
+import WAggridVueDyn from './WAggridVueDyn.vue'
 import WAlert from './WAlert.mjs'
 import WBadge from './WBadge.vue'
 import WButtonChip from './WButtonChip.vue'
@@ -10,7 +11,10 @@ import WConfirm from './WConfirm.vue'
 import WDialog from './WDialog.vue'
 import WDropfiles from './WDropfiles.vue'
 import WDynamicList from './WDynamicList.vue'
+import WHighchartsVueDyn from './WHighchartsVueDyn.vue'
+import WHighstockVueDyn from './WHighstockVueDyn.vue'
 import WIcon from './WIcon.vue'
+import WIconLoading from './WIconLoading.vue'
 import WIconSvg from './WIconSvg.vue'
 import WJsonView from './WJsonView.vue'
 import WJsonViewCore from './WJsonViewCore.vue'
@@ -43,6 +47,7 @@ import WTimeminuteRangeCore from './WTimeminuteRangeCore.vue'
 
 let WComponentVue = {
     install: function(Vue) {
+        Vue.component('w-aggrid-vue-dyn', WAggridVueDyn)
         Vue.prototype.$alert = WAlert
         Vue.component('w-badge', WBadge)
         Vue.component('w-button-chip', WButtonChip)
@@ -54,7 +59,10 @@ let WComponentVue = {
         Vue.component('w-dialog', WDialog)
         Vue.component('w-dropfiles', WDropfiles)
         Vue.component('w-dynamic-list', WDynamicList)
+        Vue.component('w-highcharts-vue-dyn', WHighchartsVueDyn)
+        Vue.component('w-highstock-vue-dyn', WHighstockVueDyn)
         Vue.component('w-icon', WIcon)
+        Vue.component('w-icon-loading', WIconLoading)
         Vue.component('w-icon-svg', WIconSvg)
         Vue.component('w-json-view', WJsonView)
         Vue.component('w-json-view-core', WJsonViewCore)
