@@ -78,9 +78,195 @@
     </tr><tr>
         <td><code>opt</code></td>
         <td>Object</td>
+        <td>-</td>
+        <td><b>Yes</b></td>
+        <td>輸入資料設定物件</td>
+    </tr><tr>
+        <td><code>opt.keys</code></td>
+        <td>Array</td>
+        <td>-</td>
+        <td><b>Yes</b></td>
+        <td>輸入資料各欄位keys</td>
+    </tr><tr>
+        <td><code>opt.rows</code></td>
+        <td>Array</td>
+        <td>-</td>
+        <td><b>Yes</b></td>
+        <td>輸入資料列，各列為物件，內含各欄位keys之值，例[{},{},...,{}]</td>
+    </tr><tr>
+        <td><code>opt.kpHead</code></td>
+        <td>Object</td>
         <td><code>{}</code></td>
         <td>No</td>
-        <td>輸入aggrid設定物件，預設{}</td>
+        <td>輸入key對應head物件，預設為keys</td>
+    </tr><tr>
+        <td><code>opt.kpHeadTooltip</code></td>
+        <td>Object</td>
+        <td><code>{}</code></td>
+        <td>No</td>
+        <td>輸入key對應需tooltip的html字串物件，於各head處滑鼠移入時觸發，預設為{}</td>
+    </tr><tr>
+        <td><code>opt.defHeadAlighH</code></td>
+        <td>Object</td>
+        <td><code>'center'</code></td>
+        <td>No</td>
+        <td>輸入head預設之左右對齊字串，預設為'center'</td>
+    </tr><tr>
+        <td><code>opt.kpHeadAlighH</code></td>
+        <td>Object</td>
+        <td><code>{}</code></td>
+        <td>No</td>
+        <td>輸入key對應head之左右對齊字串物件，預設為各key值為defHeadAlighH</td>
+    </tr><tr>
+        <td><code>opt.defHeadSort</code></td>
+        <td>Object</td>
+        <td><code>true</code></td>
+        <td>No</td>
+        <td>輸入head預設之是否允許排序布林值，預設為true</td>
+    </tr><tr>
+        <td><code>opt.kpHeadSort</code></td>
+        <td>Object</td>
+        <td><code>{}</code></td>
+        <td>No</td>
+        <td>輸入key對應head之是否允許排序物件，預設為各key值為defHeadSort</td>
+    </tr><tr>
+        <td><code>opt.kpHeadFixLeft</code></td>
+        <td>Object</td>
+        <td><code>{}</code></td>
+        <td>No</td>
+        <td>輸入key對應head之是否固定於左側物件，預設為各key值為false</td>
+    </tr><tr>
+        <td><code>opt.defHeadFilter</code></td>
+        <td>Object</td>
+        <td><code>true</code></td>
+        <td>No</td>
+        <td>輸入head預設之是否允許過濾布林值，預設為true</td>
+    </tr><tr>
+        <td><code>opt.kpHeadFilter</code></td>
+        <td>Object</td>
+        <td><code>{}</code></td>
+        <td>No</td>
+        <td>輸入key對應head之是否允許過濾物件，預設為各key值為defHeadFilter</td>
+    </tr><tr>
+        <td><code>opt.defHeadDrag</code></td>
+        <td>Object</td>
+        <td><code>true</code></td>
+        <td>No</td>
+        <td>輸入head預設之是否允許拖曳布林值，預設為true</td>
+    </tr><tr>
+        <td><code>opt.kpHeadDrag</code></td>
+        <td>Object</td>
+        <td><code>{}</code></td>
+        <td>No</td>
+        <td>輸入key對應head之是否允許拖曳物件，預設為各key值為defHeadDrag</td>
+    </tr><tr>
+        <td><code>opt.kpRowStyle</code></td>
+        <td>Object</td>
+        <td><code>{}</code></td>
+        <td>No</td>
+        <td>輸入key對應row style之物件，可設定key欄之cell值所需對應之row style，預設為{}</td>
+    </tr><tr>
+        <td><code>opt.kpRowDrag</code></td>
+        <td>Object</td>
+        <td><code>{}</code></td>
+        <td>No</td>
+        <td>[專有:ag-grid] 輸入key對應row之是否能拖曳排序物件，預設為各key值為false</td>
+    </tr><tr>
+        <td><code>opt.defCellMinWidth</code></td>
+        <td>Number</td>
+        <td><code>null</code></td>
+        <td>No</td>
+        <td>輸入cell預設最小寬度數字，預設為null</td>
+    </tr><tr>
+        <td><code>opt.kpCellWidth</code></td>
+        <td>Object</td>
+        <td><code>null</code></td>
+        <td>No</td>
+        <td>輸入key對應cell之寬度物件，預設為各key值為null</td>
+    </tr><tr>
+        <td><code>opt.kpCellRender</code></td>
+        <td>Object</td>
+        <td><code>{}</code></td>
+        <td>No</td>
+        <td>輸入key對應cell之渲染函數物件，預設為{}</td>
+    </tr><tr>
+        <td><code>opt.kpCellTooltip</code></td>
+        <td>Object</td>
+        <td><code>{}</code></td>
+        <td>No</td>
+        <td>輸入key對應cell之tooltip的html字串物件，於各cell處滑鼠移入時觸發，預設為{}</td>
+    </tr><tr>
+        <td><code>opt.defCellAlighH</code></td>
+        <td>Object</td>
+        <td><code>'center'</code></td>
+        <td>No</td>
+        <td>輸入cell預設之左右對齊字串，預設為'center'</td>
+    </tr><tr>
+        <td><code>opt.kpCellAlighH</code></td>
+        <td>Object</td>
+        <td><code>{}</code></td>
+        <td>No</td>
+        <td>輸入key對應cell之左右對齊字串物件，預設為各key值為defCellAlighH</td>
+    </tr><tr>
+        <td><code>opt.defCellEditable</code></td>
+        <td>Object</td>
+        <td><code>false</code></td>
+        <td>No</td>
+        <td>輸入cell預設之是否可編輯布林值，預設為false</td>
+    </tr><tr>
+        <td><code>opt.kpCellEditable</code></td>
+        <td>Object</td>
+        <td><code>{}</code></td>
+        <td>No</td>
+        <td>輸入key對應cell之是否可編輯物件，預設為各key值為defCellEditable</td>
+    </tr><tr>
+        <td><code>opt.rowClick</code></td>
+        <td>function</td>
+        <td><code>{}</code></td>
+        <td>No</td>
+        <td>輸入row click之觸發事件，預設為function(){}</td>
+    </tr><tr>
+        <td><code>opt.rowDbClick</code></td>
+        <td>function</td>
+        <td><code>{}</code></td>
+        <td>No</td>
+        <td>輸入row double click之觸發事件，預設為function(){}</td>
+    </tr><tr>
+        <td><code>opt.rowChange</code></td>
+        <td>function</td>
+        <td><code>{}</code></td>
+        <td>No</td>
+        <td>輸入row change之觸發事件，預設為function(){}</td>
+    </tr><tr>
+        <td><code>opt.cellClick</code></td>
+        <td>function</td>
+        <td><code>{}</code></td>
+        <td>No</td>
+        <td>輸入cell click之觸發事件，預設為function(){}</td>
+    </tr><tr>
+        <td><code>opt.cellDbClick</code></td>
+        <td>function</td>
+        <td><code>{}</code></td>
+        <td>No</td>
+        <td>輸入cell double click之觸發事件，預設為function(){}</td>
+    </tr><tr>
+        <td><code>opt.cellChange</code></td>
+        <td>function</td>
+        <td><code>{}</code></td>
+        <td>No</td>
+        <td>輸入cell change之觸發事件，預設為function(){}</td>
+    </tr><tr>
+        <td><code>height</code></td>
+        <td>Number</td>
+        <td><code>300</code></td>
+        <td>No</td>
+        <td>表格高度，預設300(px)</td>
+    </tr><tr>
+        <td><code>filterall</code></td>
+        <td>String</td>
+        <td><code>''</code></td>
+        <td>No</td>
+        <td>輸入對全表數據進行過濾之字串，預設為''</td>
     </tr></tbody>
 </table>
 
@@ -90,6 +276,42 @@
 
 
 
+
+<h3 class="subsection-title" style="margin-top: 1em" data-jsdoc-vuejs="section-event">Events</h3>
+<table data-jsdoc-vuejs="table-event">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Payload Type</th>
+        <th>Description</th>
+    </tr>
+    </thead>
+    <tbody><tr>
+        <td><code>refresh</code></td>
+        <td>Null</td>
+        <td>刷新表格，無輸入與回傳</td>
+    </tr><tr>
+        <td><code>showKeys</code></td>
+        <td>Array</td>
+        <td>指定欲顯示欄位的keys，數量最多為原本初始化的keys，可更改順序，無回傳</td>
+    </tr><tr>
+        <td><code>setHeadFilter</code></td>
+        <td>Array</td>
+        <td>指定欄位的key與要過濾的值value，會於界面上指定欄進行過濾</td>
+    </tr><tr>
+        <td><code>clearHeadFilter</code></td>
+        <td>Array</td>
+        <td>指定欄位的key並清除當前所使用的過濾值</td>
+    </tr><tr>
+        <td><code>clearHeadFilterAll</code></td>
+        <td>Array</td>
+        <td>清除當前所有欄位所使用的過濾值</td>
+    </tr><tr>
+        <td><code>getDisplayData</code></td>
+        <td>Null</td>
+        <td>無輸入，會回傳目前表格所顯示之數據</td>
+    </tr></tbody>
+</table>
 
 
 <div class="container-overview"><div><p> 
@@ -206,7 +428,7 @@
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on Wed Dec 18 2019 11:45:50 GMT+0800 (GMT+08:00) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on Wed Dec 18 2019 12:06:18 GMT+0800 (GMT+08:00) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>

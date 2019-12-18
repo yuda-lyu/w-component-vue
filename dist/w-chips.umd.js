@@ -1,5 +1,5 @@
 /*!
- * w-chips v1.2.46
+ * w-chips v1.2.47
  * (c) 2018-2019 yuda-lyu(semisphere)
  * Released under the MIT License.
  */
