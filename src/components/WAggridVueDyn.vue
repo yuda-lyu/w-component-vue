@@ -3,7 +3,6 @@
 </template>
 
 <script>
-// import Vue from 'vue'
 import importResources from 'wsemi/src/importResources.mjs'
 import WIconLoading from './WIconLoading.vue'
 

@@ -62,7 +62,7 @@
     <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.js"></script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@1.2.44/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@1.2.45/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -128,11 +128,21 @@
     data: {
       WHighchartsVueDyn: {
         options1: {
-          rangeSelector: {
-            selected: 1
-          },
           title: {
             text: "AAPL Stock Price"
+          },
+          xAxis: {
+            type: "datetime"
+          },
+          yAxis: {
+            title: {
+              text: "Price"
+            }
+          },
+          tooltip: {
+            headerFormat:
+              '<div style="font-size:8pt;">{point.x:%Y/%m/%d %H:%M}</div><br/>',
+            pointFormat: " Price: <b>{point.y}</b>"
           },
           series: [
             {
@@ -161,9 +171,6 @@
             title: {
               text: "Exchange rate"
             }
-          },
-          legend: {
-            enabled: false
           },
           plotOptions: {
             area: {
@@ -208,8 +215,7 @@
             text: "Population pyramid for Germany, 2018"
           },
           subtitle: {
-            text:
-              'Source: <a href="http://populationpyramid.net/germany/2018/">Population Pyramids of the World from 1950 to 2100</a>'
+            text: "Population Pyramids of the World from 1950 to 2100"
           },
           accessibility: {
             point: {

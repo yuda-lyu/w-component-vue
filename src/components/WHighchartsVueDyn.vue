@@ -5,6 +5,7 @@
 <script>
 import importResources from 'wsemi/src/importResources.mjs'
 import WIconLoading from './WIconLoading.vue'
+import { getGlobal } from '../js/highchartsSetting.mjs'
 
 /**
  * @vue-prop {Array} [pathItems=[]] 輸入vue-highcharts組件js檔案位置字串陣列，預設詳見props->pathItems->default
@@ -48,11 +49,22 @@ export default {
         importResources(vo.pathItems)
             .then((res) => {
                 if (res !== 'loaded') {
+
+                    //Highcharts
+                    let Highcharts = window['Highcharts']
+
+                    //setOptions
+                    Highcharts.setOptions(getGlobal())
+
+                    //cmp
                     let cmp = window['VueHighcharts']
                     if (cmp.default) {
                         cmp = cmp.default
                     }
+
+                    //use
                     Vue.use(cmp)
+
                 }
                 vo.cmpName = 'Highcharts'
             })

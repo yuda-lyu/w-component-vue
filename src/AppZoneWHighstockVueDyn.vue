@@ -77,11 +77,20 @@ export default {
         return {
             'WHighstockVueDyn': {
                 'options1': {
-                    rangeSelector: {
-                        selected: 1
-                    },
+                    // rangeSelector: {
+                    //     enabled: true,
+                    //     selected: 1
+                    // },
                     title: {
                         text: 'AAPL Stock Price'
+                    },
+                    xAxis: {
+                        type: 'datetime'
+                    },
+                    yAxis: {
+                        title: {
+                            text: 'Price'
+                        }
                     },
                     series: [{
                         name: 'AAPL',
@@ -95,9 +104,10 @@ export default {
                     chart: {
                         zoomType: 'x'
                     },
-                    rangeSelector: {
-                        selected: 4
-                    },
+                    // rangeSelector: {
+                    //     enabled: true,
+                    //     selected: 3 //3季=1年
+                    // },
                     title: {
                         text: 'USD to EUR exchange rate over time'
                     },
@@ -117,7 +127,7 @@ export default {
                     },
                     plotOptions: {
                         area: {
-                            color: 'rgba(255,175,150,1)',
+                            color: 'rgba(200,200,255,1)',
                             fillColor: {
                                 linearGradient: {
                                     x1: 0,
@@ -126,8 +136,8 @@ export default {
                                     y2: 1
                                 },
                                 stops: [
-                                    [0, 'rgba(255,175,150,1)'],
-                                    [1, 'rgba(255,175,150,0.1)']
+                                    [0, 'rgba(200,200,255,1)'],
+                                    [1, 'rgba(200,200,255,0.1)']
                                 ]
                             },
                             marker: {

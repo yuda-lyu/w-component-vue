@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="utf-8">
+    <title>js/highchartsSetting.mjs - Documentation</title>
+    
+    
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+    <script src="scripts/nav.js" defer></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav >
+    
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-WAggridVueDyn.html">WAggridVueDyn</a></li><li><a href="module-WBadge.html">WBadge</a></li><li><a href="module-WButtonChip.html">WButtonChip</a></li><li><a href="module-WButtonCircle.html">WButtonCircle</a></li><li><a href="module-WButtonGroupChip.html">WButtonGroupChip</a></li><li><a href="module-WCheckChips.html">WCheckChips</a></li><li><a href="module-WChips.html">WChips</a></li><li><a href="module-WConfirm.html">WConfirm</a></li><li><a href="module-WDialog.html">WDialog</a></li><li><a href="module-WDropfiles.html">WDropfiles</a></li><li><a href="module-WDynamicList.html">WDynamicList</a></li><li><a href="module-WIcon.html">WIcon</a></li><li><a href="module-WIconLoading.html">WIconLoading</a></li><li><a href="module-WIconSvg.html">WIconSvg</a></li><li><a href="module-WJsonView.html">WJsonView</a></li><li><a href="module-WJsonViewCore.html">WJsonViewCore</a></li><li><a href="module-WPanel.html">WPanel</a></li><li><a href="module-WPopupPanel.html">WPopupPanel</a></li><li><a href="module-WProgressCircle.html">WProgressCircle</a></li><li><a href="module-WRadioChips.html">WRadioChips</a></li><li><a href="module-WScrollyPanel.html">WScrollyPanel</a></li><li><a href="module-WScrollyPanelCore.html">WScrollyPanelCore</a></li><li><a href="module-WShellEllipse.html">WShellEllipse</a></li><li><a href="module-WShellMaterial.html">WShellMaterial</a></li><li><a href="module-WSwitch.html">WSwitch</a></li><li><a href="module-WText.html">WText</a></li><li><a href="module-WTextarea.html">WTextarea</a></li><li><a href="module-WTextCore.html">WTextCore</a></li><li><a href="module-WTextInt.html">WTextInt</a></li><li><a href="module-WTextIntCore.html">WTextIntCore</a></li><li><a href="module-WTextSelect.html">WTextSelect</a></li><li><a href="module-WTextSuggest.html">WTextSuggest</a></li><li><a href="module-WTextSuggestCore.html">WTextSuggestCore</a></li><li><a href="module-WTimeday.html">WTimeday</a></li><li><a href="module-WTimedayCore.html">WTimedayCore</a></li><li><a href="module-WTimedayRange.html">WTimedayRange</a></li><li><a href="module-WTimedayRangeCore.html">WTimedayRangeCore</a></li><li><a href="module-WTimeminute.html">WTimeminute</a></li><li><a href="module-WTimeminuteCore.html">WTimeminuteCore</a></li><li><a href="module-WTimeminuteRange.html">WTimeminuteRange</a></li><li><a href="module-WTimeminuteRangeCore.html">WTimeminuteRangeCore</a></li></ul><h3>Global</h3><ul><li><a href="global.html#binarySearch">binarySearch</a></li><li><a href="global.html#color2hex">color2hex</a></li><li><a href="global.html#getDataGrouping">getDataGrouping</a></li><li><a href="global.html#getDateFmt">getDateFmt</a></li><li><a href="global.html#getGlobal">getGlobal</a></li><li><a href="global.html#getMarker">getMarker</a></li><li><a href="global.html#getUnits">getUnits</a></li><li><a href="global.html#WAlert">WAlert</a></li></ul>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">js/highchartsSetting.mjs</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * 產生Highcharts標記物件
+ *
+ * @returns {Object} 回傳標記物件
+ */
+function getMarker() {
+    return {
+        enabled: true,
+        symbol: 'circle',
+        fillColor: 'rgba(255,255,255,0.5)', //'#fff',
+        lineWidth: 2,
+        lineColor: null,
+        radius: 5,
+    }
+}
+
+
+/**
+ * 取得Highcharts時間單位陣列
+ *
+ * @returns {Array} 回傳時間單位陣列
+ */
+function getUnits() {
+    return [
+        [
+            'day',
+            [1], //允許1天為群組單位
+        ],
+        [
+            'week',
+            [1], //允許1週為群組單位
+        ],
+        [
+            'month',
+            [1, 3, 6], //允許1月,1季,半年為群組單位
+        ]
+    ]
+}
+
+
+/**
+ * 取得Highcharts時間單位格式物件
+ *
+ * @returns {Object} 回傳時間單位格式物件
+ */
+function getDateFmt() {
+    return {
+        //millisecond: ['%A, %m/%d, %H:%M:%S.%L', '%A, %m/%d, %H:%M:%S.%L', '-%H:%M:%S.%L'],
+        //second: ['%A, %m/%d, %H:%M:%S', '%A, %m/%d, %H:%M:%S', '-%H:%M:%S'],
+        //minute: ['%A, %m/%d, %H:%M', '%A, %m/%d, %H:%M', '-%H:%M'],
+        //hour: ['%A, %m/%d, %H:%M', '%A, %m/%d, %H:%M', '-%H:%M'],
+        //day: ['%A, %Y/%m/%d', '%A, %m/%d', '-%A, %Y/%m/%d'],
+        //week: ['%Y/%m/%d', '%A, %m/%d', '-%A, %Y/%m/%d'],
+        //month: ['%Y/%m', '%m', '-%m %Y'],
+        //year: ['%Y', '%Y', '-%Y']
+        millisecond: ['%Y/%m/%d %H:%M:%S.%L', '%Y/%m/%d %H:%M:%S.%L', ' ~ %H:%M:%S.%L'],
+        second: ['%Y/%m/%d %H:%M:%S', '%Y/%m/%d %H:%M:%S', ' ~ %H:%M:%S'],
+        minute: ['%Y/%m/%d %H:%M', '%Y/%m/%d %H:%M', ' ~ %H:%M'],
+        hour: ['%Y/%m/%d %H:%M', '%Y/%m/%d %H:%M', ' ~ %H:%M'],
+        day: ['%Y/%m/%d', '%Y/%m/%d', ' ~ %Y/%m/%d'],
+        week: ['%Y/%m/%d', '%Y/%m/%d', ' ~ %Y/%m/%d'],
+        month: ['%Y/%m', '%Y/%m', ' ~ %Y/%m'],
+        year: ['%Y', '%Y', ' ~ %Y']
+    }
+}
+
+
+/**
+ * 取得Highcharts時間群組設定物件
+ *
+ * @returns {Object} 回傳時間群組設定物件
+ */
+function getDataGrouping() {
+    return {
+        enabled: true,
+        units: getUnits(),
+        dateTimeLabelFormats: getDateFmt(),
+    }
+}
+
+
+let rangeSelector = {
+    inputDateFormat: '%Y/%m/%d',
+    // buttonTheme: {
+    //     width: 'auto',
+    //     style: {
+    //         fontSize: '12px',
+    //         padding: '4px'
+    //     }
+    // },
+    buttons: [{
+        type: 'month',
+        count: 1,
+        text: '月'
+    },
+    {
+        type: 'month',
+        count: 3,
+        text: '季度'
+    },
+    {
+        type: 'month',
+        count: 6,
+        text: '半年'
+    },
+    // {
+    //     type: 'ytd',
+    //     text: 'YTD'
+    // },
+    {
+        type: 'year',
+        count: 1,
+        text: '年'
+    },
+    {
+        type: 'all',
+        text: '所有'
+    }]
+}
+
+
+/**
+ * 取得Highcharts繪圖設定物件
+ *
+ * @returns {Object} 回傳繪圖設定物件
+ */
+function getGlobal() {
+    return {
+
+        credits: {
+            enabled: false
+        },
+
+        // global: {
+        //     useUTC: false,
+        // },
+
+        lang: {
+            decimalPoint: '.',
+            thousandsSep: ',',
+            contextButtonTitle: '圖表匯出功能表',
+            downloadJPEG: '下載 JPEG 圖片',
+            downloadPDF: '下載 PDF 文件',
+            downloadPNG: '下載 PNG 文件',
+            downloadSVG: '下載 SVG 文件',
+            downloadXLS: '下載 XLS 文件',
+            openInCloud: '在 Highcharts Cloud 中打開',
+            drillUpText: '返回 {series.name}',
+            invalidDate: '無效的時間',
+            loading: '載入中...',
+            months: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'],
+            noData: '沒有資料',
+            printChart: '列印圖表',
+            resetZoom: '重置縮放比例',
+            resetZoomTitle: '重置為原始大小',
+            shortMonths: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'],
+            weekdays: ['星期天', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'],
+            viewData: '查看資料',
+            rangeSelectorFrom: '開始時間',
+            rangeSelectorTo: '結束時間',
+            rangeSelectorZoom: '範圍',
+            zoomIn: '縮小',
+            zoomOut: '放大',
+        },
+
+        tooltip: {
+            dateTimeLabelFormats: {
+                millisecond: '%H:%M:%S.%L',
+                second: '%H:%M:%S',
+                minute: '%H:%M',
+                hour: '%H:%M',
+                day: '%Y/%m/%d',
+                week: '%Y/%m/%d',
+                month: '%Y/%m',
+                year: '%Y'
+            },
+        },
+
+        xAxis: {
+            dateTimeLabelFormats: {
+                second: '%Y&lt;br/>%m/%d',
+                minute: '%Y&lt;br/>%m/%d',
+                hour: '%Y&lt;br/>%m/%d',
+                day: '%Y&lt;br/>%m/%d',
+                week: '%Y&lt;br/>%m/%d',
+                month: '%Y&lt;br/>%m/%d',
+                year: '%Y&lt;br/>%m/%d',
+            },
+        },
+
+        rangeSelector: { //選擇起訖時間輸入框與按鈕區
+            enabled: false
+        },
+        // rangeSelector,
+
+        // navigator: { //選擇時間起訖拖曳區
+        //     enabled: false
+        // },
+        // scrollbar: { //選擇時間起訖捲軸區
+        //     enabled: false
+        // },
+
+        plotOptions: {
+            series: {
+                dataGrouping: {
+                    dateTimeLabelFormats: getDateFmt()
+                }
+            },
+        }
+
+    }
+
+}
+
+
+export { getMarker, getUnits, getDateFmt, getDataGrouping, getGlobal }
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+    
+    
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on Wed Dec 18 2019 10:46:03 GMT+0800 (GMT+08:00) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/polyfill.js"></script>
+<script src="scripts/linenumber.js"></script>
+
+
+
+</body>
+</html>

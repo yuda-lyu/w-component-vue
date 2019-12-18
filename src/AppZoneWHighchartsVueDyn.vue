@@ -141,11 +141,20 @@ export default {
         return {
             'WHighchartsVueDyn': {
                 'options1': {
-                    rangeSelector: {
-                        selected: 1
-                    },
                     title: {
                         text: 'AAPL Stock Price'
+                    },
+                    xAxis: {
+                        type: 'datetime'
+                    },
+                    yAxis: {
+                        title: {
+                            text: 'Price'
+                        }
+                    },
+                    tooltip: {
+                        headerFormat: '<div style="font-size:8pt;">{point.x:%Y/%m/%d %H:%M}</div><br/>',
+                        pointFormat: ' Price: <b>{point.y}</b>'
                     },
                     series: [{
                         name: 'AAPL',
@@ -172,9 +181,6 @@ export default {
                         title: {
                             text: 'Exchange rate'
                         }
-                    },
-                    legend: {
-                        enabled: false
                     },
                     plotOptions: {
                         area: {
@@ -217,7 +223,7 @@ export default {
                         text: 'Population pyramid for Germany, 2018'
                     },
                     subtitle: {
-                        text: 'Source: <a href="http://populationpyramid.net/germany/2018/">Population Pyramids of the World from 1950 to 2100</a>'
+                        text: 'Population Pyramids of the World from 1950 to 2100'
                     },
                     accessibility: {
                         point: {
@@ -230,39 +236,42 @@ export default {
                             }
                         }
                     },
-                    xAxis: [{
-                        categories: [
-                            '0-4', '5-9', '10-14', '15-19',
-                            '20-24', '25-29', '30-34', '35-39', '40-44',
-                            '45-49', '50-54', '55-59', '60-64', '65-69',
-                            '70-74', '75-79', '80-84', '85-89', '90-94',
-                            '95-99', '100 + '
-                        ],
-                        reversed: false,
-                        labels: {
-                            step: 1
+                    xAxis: [
+                        {
+                            categories: [
+                                '0-4', '5-9', '10-14', '15-19',
+                                '20-24', '25-29', '30-34', '35-39', '40-44',
+                                '45-49', '50-54', '55-59', '60-64', '65-69',
+                                '70-74', '75-79', '80-84', '85-89', '90-94',
+                                '95-99', '100 + '
+                            ],
+                            reversed: false,
+                            labels: {
+                                step: 1
+                            },
+                            accessibility: {
+                                description: 'Age (male)'
+                            }
                         },
-                        accessibility: {
-                            description: 'Age (male)'
+                        { // mirror axis on right side
+                            opposite: true,
+                            reversed: false,
+                            categories: [
+                                '0-4', '5-9', '10-14', '15-19',
+                                '20-24', '25-29', '30-34', '35-39', '40-44',
+                                '45-49', '50-54', '55-59', '60-64', '65-69',
+                                '70-74', '75-79', '80-84', '85-89', '90-94',
+                                '95-99', '100 + '
+                            ],
+                            linkedTo: 0,
+                            labels: {
+                                step: 1
+                            },
+                            accessibility: {
+                                description: 'Age (female)'
+                            }
                         }
-                    }, { // mirror axis on right side
-                        opposite: true,
-                        reversed: false,
-                        categories: [
-                            '0-4', '5-9', '10-14', '15-19',
-                            '20-24', '25-29', '30-34', '35-39', '40-44',
-                            '45-49', '50-54', '55-59', '60-64', '65-69',
-                            '70-74', '75-79', '80-84', '85-89', '90-94',
-                            '95-99', '100 + '
-                        ],
-                        linkedTo: 0,
-                        labels: {
-                            step: 1
-                        },
-                        accessibility: {
-                            description: 'Age (female)'
-                        }
-                    }],
+                    ],
                     yAxis: {
                         title: {
                             text: null
@@ -298,7 +307,8 @@ export default {
                             -1.6, -0.6, -0.3, -0.0,
                             -0.0
                         ]
-                    }, {
+                    },
+                    {
                         name: 'Female',
                         color: 'rgba(155,50,200,0.85)',
                         data: [
