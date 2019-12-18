@@ -1,5 +1,5 @@
 <template>
-    <component :is="cmpName" :options="options"></component>
+    <component ref="$self" :is="cmpName" :options="options"></component>
 </template>
 
 <script>
