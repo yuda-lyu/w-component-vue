@@ -93,7 +93,7 @@
                     style="width:240px; height:200px;"
                     :barHeightMin="20"
                 >
-                    <div :style="`height:10000px; background-image:linear-gradient(141deg, #4cc5f8 0%, #3fd8eb 75%);`"></div>
+                    <div :style="`height:10000px; background-image:linear-gradient(141deg, #4cc5f8 0%, #fae 75%);`"></div>
                 </w-scrolly-panel>
 
             </div>

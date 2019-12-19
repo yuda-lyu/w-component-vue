@@ -57,14 +57,14 @@ export default {
             default: () => [
                 'https://cdn.jsdelivr.net/npm/ag-grid-community@22.0.0/dist/ag-grid-community.min.noStyle.js',
                 'https://cdn.jsdelivr.net/npm/ag-grid-vue@22.0.0/dist/ag-grid-vue.umd.min.js', //於es5內載入時, AgGridVue會出現在window['ag-grid-vue'].AgGridVue
-                'https://cdn.jsdelivr.net/npm/w-aggrid-vue/dist/w-aggrid-vue.umd.js',
+                'https://cdn.jsdelivr.net/npm/w-aggrid-vue@1.0.29/dist/w-aggrid-vue.umd.js',
             ],
         },
         opt: {
             type: Object,
             default: () => {},
         },
-        height: { 
+        height: {
             type: Number,
             default: 300
         },

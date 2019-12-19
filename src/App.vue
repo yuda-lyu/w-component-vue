@@ -429,14 +429,11 @@ export default {
                     name: 'basic',
                     cmps: [
                         'WBadge',
-                        'WPanel',
-                        'WScrollyPanel',
                         'WIconSvg',
                         'WDropfiles',
                         'WProgressCircle',
-                        'WAlert',
-                        'WDialog',
-                        'WConfirm',
+                        'WPanel',
+                        'WScrollyPanel',
                     ]
                 },
                 {
@@ -473,6 +470,14 @@ export default {
                         'WTimeminute',
                         'WTimedayRange',
                         'WTimeminuteRange',
+                    ]
+                },
+                {
+                    name: 'window',
+                    cmps: [
+                        'WAlert',
+                        'WDialog',
+                        'WConfirm',
                     ]
                 },
                 {

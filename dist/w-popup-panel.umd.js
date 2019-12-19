@@ -1,5 +1,5 @@
 /*!
- * w-popup-panel v1.2.47
+ * w-popup-panel v1.2.48
  * (c) 2018-2019 yuda-lyu(semisphere)
  * Released under the MIT License.
  */
