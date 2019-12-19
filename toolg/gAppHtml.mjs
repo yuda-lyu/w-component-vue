@@ -17,7 +17,7 @@ let h = `
     <link href="https://use.fontawesome.com/releases/v5.10.2/css/all.css" rel="stylesheet">
 
     <!-- mdi, 各組件使用mdi/js故不需引用 -->
-    <link _href="https://cdn.jsdelivr.net/npm/@mdi/font@3.x/css/materialdesignicons.min.css" rel="stylesheet">
+    <link _href="https://cdn.jsdelivr.net/npm/@mdi/font@4.x/css/materialdesignicons.min.css" rel="stylesheet">
 
     <!-- google, 各組件使用mdi/js故不需引用 -->
     <link _href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
