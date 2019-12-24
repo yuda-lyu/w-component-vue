@@ -1,5 +1,5 @@
 /*!
- * w-button-group-chip v1.2.49
+ * w-button-group-chip v1.2.50
  * (c) 2018-2019 yuda-lyu(semisphere)
  * Released under the MIT License.
  */

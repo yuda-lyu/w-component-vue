@@ -64,7 +64,6 @@ import WTextSuggestCore from './WTextSuggestCore.vue'
 export default {
     components: {
         WShellEllipse,
-        //WTextSuggestCore,
         WTextSuggestCore,
     },
     props: {

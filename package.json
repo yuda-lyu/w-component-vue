@@ -1,6 +1,6 @@
 {
   "name": "w-component-vue",
-  "version": "1.2.49",
+  "version": "1.2.50",
   "author": "yuda-lyu(semisphere)",
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -12,9 +12,6 @@
   "main": "dist/w-component-vue.umd.js",
   "dependencies": {},
   "devDependencies": {
-    "element-ui": "^2.13.0",
-    "vue": "^2.6.11",
-    "vuetify": "^2.1.15",
     "@babel/cli": "^7.7.7",
     "@babel/core": "^7.7.7",
     "@babel/node": "^7.7.7",
@@ -34,7 +31,8 @@
     "core-js": "^3.6.0",
     "css-loader": "^3.4.0",
     "docdash": "^1.1.1",
-    "eslint": "^6.7.2",
+    "element-ui": "^2.13.0",
+    "eslint": "^6.8.0",
     "eslint-config-standard": "^14.1.0",
     "eslint-friendly-formatter": "^4.0.1",
     "eslint-loader": "^3.0.3",
@@ -48,7 +46,7 @@
     "jsdoc-vuejs": "^3.0.6",
     "lodash": "^4.17.15",
     "mocha": "^6.2.2",
-    "rollup": "^1.27.13",
+    "rollup": "^1.27.14",
     "rollup-plugin-babel": "^4.3.3",
     "rollup-plugin-commonjs": "^10.1.0",
     "rollup-plugin-node-resolve": "^5.2.0",
@@ -57,15 +55,17 @@
     "rollup-plugin-terser": "^5.1.3",
     "rollup-plugin-vue": "^4.7.2",
     "rollup-plugin-vue-template-compiler": "^1.0.3",
-    "sass": "^1.23.7",
+    "sass": "^1.24.0",
     "sass-loader": "^8.0.0",
     "stylus": "^0.54.7",
     "stylus-loader": "^3.0.2",
+    "vue": "^2.6.11",
     "vue-cli-plugin-vuetify": "^2.0.2",
     "vue-template-compiler": "^2.6.11",
+    "vuetify": "^2.1.15",
     "vuetify-loader": "^1.4.3",
     "w-package-tools": "^1.0.13",
-    "wsemi": "^1.3.0"
+    "wsemi": "^1.3.1"
   },
   "eslintConfig": {
     "root": true,

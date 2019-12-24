@@ -23,7 +23,7 @@
             ></WJsonViewCore>
         </template>
 
-        <div style="padding:11px; font-size:0.8rem;" v-if="useItems.length===0">
+        <div style="padding:12px; font-size:0.8rem;" v-if="useItems.length===0">
             {{searchEmpty}}
         </div>
 
@@ -45,13 +45,14 @@ import isBoolean from 'lodash/isBoolean'
 import isFunction from 'lodash/isFunction'
 import toString from 'lodash/toString'
 import toInteger from 'lodash/toInteger'
-import debounce from 'lodash/debounce'
+import isEqual from 'lodash/isEqual'
 import isarr from 'wsemi/src/isarr.mjs'
 import isobj from 'wsemi/src/isobj.mjs'
 import sep from 'wsemi/src/sep.mjs'
 import genID from 'wsemi/src/genID.mjs'
 import genPm from 'wsemi/src/genPm.mjs'
 import delay from 'wsemi/src/delay.mjs'
+import debounce from 'wsemi/src/debounce.mjs'
 import binarySearch from '../js/binarySearch.mjs'
 import globalMemory from '../js/globalMemory.mjs'
 import WScrollyPanelCore from './WScrollyPanelCore.vue'
@@ -155,7 +156,6 @@ export default {
             scrollInfor: null, //目前捲軸資訊
             toggleInfor: {}, //之前捲軸位置資訊物件
             itemsHeight: 0, //儲存全部項目高度
-            filterItemsFirst: true, //是否為第1次過濾關鍵字
             filterKeywordsTemp: '', //上次過濾關鍵字
             viewInfor: {},
             //items: [],
@@ -244,8 +244,8 @@ export default {
             //ft to trigger
             let ft = vo.filterKeywords
 
-            //filterItems, 有變更要馬上觸發, 要不然就會變成與updateItems競爭, 比updateItems還慢就會來不及過濾
-            vo.filterItems()
+            //refreshDebounce
+            vo.refreshDebounce('changeFilterKeyWords')
 
             return ft
         },
@@ -292,8 +292,16 @@ export default {
                 //delay
                 await delay(1)
 
+                //filterItems
+                vo.filterItems()
+
+                //delay
+                await delay(1)
+
                 //updateItems
                 let b = vo.updateItems()
+
+                //resolve
                 pm.resolve(b)
 
                 return pm
@@ -322,6 +330,21 @@ export default {
             //         v.delayShow = true
             //     }
             // }
+
+        },
+
+        refreshDebounce: function(from) {
+            //console.log('methods refreshDebounce', from)
+
+            let vo = this
+
+            //debounce
+            debounce(`${vo.mmkey}|refresh`, () => {
+
+                //refresh
+                vo.refresh(from)
+
+            })
 
         },
 
@@ -543,7 +566,7 @@ export default {
 
                 //check empty
                 if (vo.itemsHeight === 0) {
-                    vo.itemsHeight = 40
+                    vo.itemsHeight = 43 //先預算出empty時高度
                 }
 
                 //reset
@@ -906,6 +929,16 @@ export default {
 
             let vo = this
 
+            //check
+            if (vo.mmkey === null) {
+                return
+            }
+
+            //check
+            if (isEqual(vo.scrollInfor, e)) {
+                return
+            }
+
             //check, 有上鎖時不能執行
             if (vo.toggling) {
                 return
@@ -919,43 +952,21 @@ export default {
 
         },
 
-        filterItems: async function() {
+        filterItems: function() {
             //console.log('methods filterItems')
 
             let vo = this
 
-            if (vo.filterItemsFirst) {
-
-                //filterItemsCore, 第1次變更filterKeywords要馬上觸發, 要不然就會變成與updateItems競爭, 比updateItems還慢就會來不及過濾
-                await vo.filterItemsCore()
-
-                //filterItemsFirst
-                vo.filterItemsFirst = false
-
-            }
-            else {
-
-                //filterItemsDebounce
-                vo.filterItemsDebounce()
-
+            //check
+            if (vo.mmkey === null) {
+                return
             }
 
-        },
-
-        filterItemsDebounce: debounce(function() {
-            //console.log('methods filterItemsDebounce')
-
-            let vo = this
-
-            //filterItemsCore
-            vo.filterItemsCore()
-
-        }, 300),
-
-        filterItemsCore: async function() {
-            //console.log('methods filterItemsCore')
-
-            let vo = this
+            //check filterKeywordsTemp
+            if (vo.filterKeywordsTemp === vo.filterKeywords) {
+                return
+            }
+            vo.filterKeywordsTemp = vo.filterKeywords
 
             //items
             //let items = vo.items
@@ -1091,12 +1102,6 @@ export default {
 
             //changeFilter
             vo.changeFilter = true
-
-            //refresh, 因節點顯隱需更新高度
-            await vo.refresh('filter')
-
-            //triggerEvent, 因項目會變少故得呼叫事件供外部重新計算節點top
-            vo.triggerEvent()
 
         },
 

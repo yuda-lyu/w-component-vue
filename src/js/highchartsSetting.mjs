@@ -131,9 +131,9 @@ function getGlobal() {
             enabled: false
         },
 
-        // global: {
-        //     useUTC: false,
-        // },
+        global: {
+            useUTC: false, //輸入資料自訂UTC時間, 此處關閉避免被強制轉換
+        },
 
         lang: {
             decimalPoint: '.',

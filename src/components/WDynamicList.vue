@@ -24,7 +24,7 @@
             </div>
         </template>
 
-        <div style="padding:11px; font-size:0.8rem;" v-if="useItems.length===0">
+        <div style="padding:12px; font-size:0.8rem;" v-if="useItems.length===0">
             {{searchEmpty}}
         </div>
 
@@ -37,7 +37,7 @@ import get from 'lodash/get'
 import map from 'lodash/map'
 import size from 'lodash/size'
 import toString from 'lodash/toString'
-import debounce from 'lodash/debounce'
+import isEqual from 'lodash/isEqual'
 import cint from 'wsemi/src/cint.mjs'
 import genID from 'wsemi/src/genID.mjs'
 import genPm from 'wsemi/src/genPm.mjs'
@@ -47,6 +47,7 @@ import isarr from 'wsemi/src/isarr.mjs'
 import isstr from 'wsemi/src/isstr.mjs'
 import isnum from 'wsemi/src/isnum.mjs'
 import o2j from 'wsemi/src/o2j.mjs'
+import debounce from 'wsemi/src/debounce.mjs'
 import binarySearch from '../js/binarySearch.mjs'
 import globalMemory from '../js/globalMemory.mjs'
 import WScrollyPanelCore from './WScrollyPanelCore.vue'
@@ -60,7 +61,6 @@ let gm = globalMemory()
  * @vue-prop {Number} [viewHeightMax=400] 輸入顯示區最大高度，單位為px，預設400
  * @vue-prop {Number} [itemMinHeight=24] 輸入各元素顯示高度，單位為px，預設24，會於真實顯示後自動更新高度
  * @vue-prop {Number} [itemsPreload=40] 輸入上下方預先載入元素數量，預設40
- * @vue-prop {Number} [ratio=0] 輸入目前捲動比例，預設0
  * @vue-prop {String} [searchEmpty='Empty'] 輸入無過濾結果字串，預設'Empty'
  */
 export default {
@@ -88,10 +88,6 @@ export default {
             type: Number,
             default: 40,
         },
-        ratio: {
-            type: Number,
-            default: 0,
-        },
         searchEmpty: {
             type: String,
             default: 'Empty',
@@ -105,7 +101,6 @@ export default {
             changeFilter: false, //是否有變更過濾關鍵字
             scrollInfor: null, //目前捲軸資訊
             scrollToEnd: false, //捲動至底部, 額外refresh
-            filterItemsFirst: true, //是否為第1次過濾關鍵字
             filterKeywordsTemp: '', //上次過濾關鍵字
             itemsHeight: 0, //全部節點高度
             useItems: [], //實際需顯示節點陣列
@@ -161,8 +156,8 @@ export default {
             //ft for trigger
             let ft = vo.filterKeywords
 
-            //filterItems
-            vo.filterItems()
+            //refreshDebounce
+            vo.refreshDebounce('changeFilterKeyWords')
 
             return ft
         },
@@ -256,10 +251,18 @@ export default {
                 //delay
                 await delay(1)
 
+                //filterItems
+                vo.filterItems()
+
+                //delay
+                await delay(1)
+
                 //updateItems
                 let b = vo.updateItems()
 
+                //resolve
                 pm.resolve(b)
+
                 return pm
             }
 
@@ -286,6 +289,21 @@ export default {
                     v.delayShow = true
                 }
             }
+
+        },
+
+        refreshDebounce: function(from) {
+            //console.log('methods refreshDebounce', from)
+
+            let vo = this
+
+            //debounce
+            debounce(`${vo.mmkey}|refresh`, () => {
+
+                //refresh
+                vo.refresh(from)
+
+            })
 
         },
 
@@ -403,7 +421,7 @@ export default {
             })
 
             //check
-            let b = vo.changeHeight || vo.changeFilter
+            let b = vo.changeHeight || vo.changeFilter //changeHeight預設為true, 故第1次一定會重算itemsHeight
             if (b) {
 
                 //update y
@@ -425,7 +443,7 @@ export default {
 
                 //check empty
                 if (vo.itemsHeight === 0) {
-                    vo.itemsHeight = 40
+                    vo.itemsHeight = 43 //先預算出empty時高度
                 }
 
                 //reset
@@ -447,71 +465,28 @@ export default {
                 return
             }
 
+            //check
+            if (isEqual(vo.scrollInfor, e)) {
+                return
+            }
+
             //save
             vo.scrollInfor = e
 
             //refresh
             await vo.refresh('scrollItems')
 
-            //emit
-            vo.$emit('update:ratio', e.r)
-
-            //check, 當一直捲動至底更新會不夠多, 需重新更新使最底節點顯示
-            if (!vo.scrollToEnd && e.r === 1) {
-
-                //lock
-                vo.scrollToEnd = true
-
-                //triggerEvent
-                vo.triggerEvent()
-
-                //delay
-                await delay(100)
-
-                //uplock, 延遲解鎖避免無限自我呼叫
-                vo.scrollToEnd = false
-
-            }
-
         },
 
-        filterItems: async function() {
+        filterItems: function() {
             //console.log('methods filterItems')
 
             let vo = this
 
-            if (vo.filterItemsFirst) {
-
-                //filterItemsCore, 第1次變更filterKeywords要馬上觸發, 要不然就會變成與updateItems競爭, 比updateItems還慢就會來不及過濾
-                await vo.filterItemsCore()
-
-                //filterItemsFirst
-                vo.filterItemsFirst = false
-
+            //check
+            if (vo.mmkey === null) {
+                return
             }
-            else {
-
-                //filterItemsDebounce
-                vo.filterItemsDebounce()
-
-            }
-
-        },
-
-        filterItemsDebounce: debounce(function() {
-            //console.log('methods filterItemsDebounce')
-
-            let vo = this
-
-            //filterItemsCore
-            vo.filterItemsCore()
-
-        }, 300),
-
-        filterItemsCore: async function() {
-            //console.log('methods filterItemsCore')
-
-            let vo = this
 
             //check filterKeywordsTemp
             if (vo.filterKeywordsTemp === vo.filterKeywords) {
@@ -575,12 +550,6 @@ export default {
             //changeFilter
             vo.changeFilter = true
 
-            //refresh, 因節點顯隱需更新高度
-            await vo.refresh('filter')
-
-            //triggerEvent, 因項目會變少故得呼叫事件供外部重新計算節點top
-            vo.triggerEvent()
-
         },
 
         triggerEvent: function(from) {
@@ -588,11 +557,24 @@ export default {
 
             let vo = this
 
-            //t
+            //triggerEvent
             let t = get(vo, '$refs.wsp.triggerEvent', null)
             if (t) {
                 t(from)
             }
+
+        },
+
+        refreshAndTriggerEvent: async function(from) {
+            //console.log('methods refreshAndTriggerEvent', from)
+
+            let vo = this
+
+            //refresh
+            await vo.refresh(from)
+
+            //triggerEvent
+            vo.triggerEvent(from)
 
         },
 

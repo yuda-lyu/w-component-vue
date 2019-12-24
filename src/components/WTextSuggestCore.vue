@@ -5,7 +5,6 @@
         :distY="distY"
         :editable="editable"
         :changeValue="changeValue"
-        :changeFocus="changeFocus"
         v-model="show"
     >
 
@@ -46,7 +45,7 @@
                     :filterKeywords="valueTrans"
                     :viewHeightMax="maxHeight"
                     :ratio.sync="ratio"
-                    :itemMinHeight="30"
+                    :itemMinHeight="43"
                     :searchEmpty="searchEmpty"
                 >
                     <template v-slot:block="props">
@@ -73,6 +72,7 @@
 
 <script>
 import color2hex from '../js/vuetifyColor.mjs'
+import get from 'lodash/get'
 import isobj from 'wsemi/src/isobj.mjs'
 import WPopupPanel from './WPopupPanel.vue'
 import WTextCore from './WTextCore.vue'
@@ -96,7 +96,6 @@ import WDynamicList from './WDynamicList.vue'
  * @vue-prop {String} [placeholder=''] 輸入無文字時的替代字符字串，預設''
  * @vue-prop {String} [searchEmpty='Empty'] 輸入無過濾結果字串，預設'Empty'
  * @vue-prop {Boolean} [editable=true] 輸入是否為編輯模式，預設true
- * @vue-prop {Boolean} [focused=false] 輸入是否為駐點狀態，預設false
  */
 export default {
     components: {
@@ -173,10 +172,6 @@ export default {
             type: Boolean,
             default: true,
         },
-        focused: {
-            type: Boolean,
-            default: false,
-        },
     },
     data: function() {
         return {
@@ -244,17 +239,6 @@ export default {
             return ''
         },
 
-        changeFocus: function () {
-            //console.log('computed changeFocus')
-
-            let vo = this
-
-            //focusedTrans
-            vo.focusedTrans = vo.focused
-
-            return ''
-        },
-
         getRotateDeg: function() {
             //console.log('computed getRotateDeg')
 
@@ -308,6 +292,19 @@ export default {
 
             //focusedTrans
             vo.focusedTrans = focused
+
+            //因WPopupPanel內v-menu顯示後有延遲顯示dom, 導致組件WDynamicList於focused=true時尚未出現或mounted, 此處靠算準延遲調用triggerEvent
+            if (focused) {
+                setTimeout(async () => {
+
+                    //t
+                    let t = get(vo, '$refs.wds.refreshAndTriggerEvent', null)
+                    if (this) {
+                        t('show')
+                    }
+
+                }, 300)
+            }
 
             //triggerEvent
             vo.triggerEvent('update:focused', focused, null)
