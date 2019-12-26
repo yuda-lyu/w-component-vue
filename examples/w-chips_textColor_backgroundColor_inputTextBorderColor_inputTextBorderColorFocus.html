@@ -54,6 +54,13 @@
     <!-- vue -->
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
 
+    <!-- element-ui -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/element-ui@2.13.0/lib/theme-chalk/index.css"
+        rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/element-ui@2.13.0/lib/index.js"></script>
+
     <!-- vuetify -->
     <link
         href="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.css"
@@ -139,11 +146,35 @@
   new Vue({
     el: "#app",
     vuetify: new Vuetify(),
-    data: {
-      WChips: {
-        items: ["foo", "bar", "fizz", "buzz", "Apple", "橘子"],
-        empty: []
-      }
+    data: function() {
+      return {
+        mdiEmailVariant,
+        WChips: {
+          items: ["foo", "bar", "fizz", "buzz", "Apple", "橘子"],
+          empty: []
+        },
+        actions: [
+          {
+            mode: "eletype",
+            selector: "input.basic",
+            str: "新增1"
+          },
+          {
+            mode: "eletype",
+            selector: "input.basic",
+            str: "項目1",
+            noEnter: true
+          },
+          {
+            mode: "eleclick",
+            selector: 'div[shellellipse="rightIcon"]'
+          },
+          {
+            mode: "eleclick",
+            selector: 'i[role="button"]'
+          }
+        ]
+      };
     },
     computed: {},
     methods: {}

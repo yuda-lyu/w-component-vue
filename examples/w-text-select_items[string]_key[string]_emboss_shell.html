@@ -54,6 +54,13 @@
     <!-- vue -->
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
 
+    <!-- element-ui -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/element-ui@2.13.0/lib/theme-chalk/index.css"
+        rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/element-ui@2.13.0/lib/index.js"></script>
+
     <!-- vuetify -->
     <link
         href="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.css"
@@ -131,51 +138,70 @@
   new Vue({
     el: "#app",
     vuetify: new Vuetify(),
-    data: {
-      WTextSelect: {
-        objItems: [
-          {
-            key: "orange",
-            text: "橘子(orange)"
-          },
-          {
+    data: function() {
+      return {
+        mdiCheckUnderlineCircle,
+        mdiPaw,
+        WTextSelect: {
+          objItems: [
+            {
+              key: "orange",
+              text: "橘子(orange)"
+            },
+            {
+              key: "banana",
+              text: "香蕉(banana)"
+            },
+            {
+              key: "strawberry",
+              text: "草莓(strawberry)"
+            }
+          ],
+          objValue: {
             key: "banana",
             text: "香蕉(banana)"
           },
-          {
-            key: "strawberry",
-            text: "草莓(strawberry)"
-          }
-        ],
-        objValue: {
-          key: "banana",
-          text: "香蕉(banana)"
-        },
-        objValueErr: {
-          key: "banana err",
-          text: "香蕉(banana err)"
-        },
-        objItemsLarge: (function() {
-          let vs = [];
-          vs.push({
+          objValueErr: {
+            key: "banana err",
+            text: "香蕉(banana err)"
+          },
+          objItemsLarge: (function() {
+            let vs = [];
+            vs.push({
+              key: "banana:1",
+              text: "香蕉(banana:1)"
+            });
+            for (let i = 2; i <= 10000; i++) {
+              vs.push({
+                key: "banana:" + i,
+                text: "香蕉(banana:" + i + ")"
+              });
+            }
+            return vs;
+          })(),
+          objValueLarge: {
             key: "banana:1",
             text: "香蕉(banana:1)"
-          });
-          for (let i = 2; i <= 10000; i++) {
-            vs.push({
-              key: "banana:" + i,
-              text: "香蕉(banana:" + i + ")"
-            });
-          }
-          return vs;
-        })(),
-        objValueLarge: {
-          key: "banana:1",
-          text: "香蕉(banana:1)"
+          },
+          strItems: ["orange(橘子)", "banana(香蕉)", "strawberry(草莓)"],
+          strValue: "strawberry(草莓)"
         },
-        strItems: ["orange(橘子)", "banana(香蕉)", "strawberry(草莓)"],
-        strValue: "strawberry(草莓)"
-      }
+        actions: [
+          {
+            mode: "eleclick",
+            selector: 'input[type="text"]'
+          },
+          {
+            mode: "eleclick",
+            selector: 'div[tabindex="0"]',
+            nth: 2
+          },
+          {
+            mode: "keypress",
+            key: "Tab"
+          }
+        ]
+      };
     },
     computed: {},
     methods: {}

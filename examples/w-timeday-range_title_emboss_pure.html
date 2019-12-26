@@ -54,6 +54,13 @@
     <!-- vue -->
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
 
+    <!-- element-ui -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/element-ui@2.13.0/lib/theme-chalk/index.css"
+        rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/element-ui@2.13.0/lib/index.js"></script>
+
     <!-- vuetify -->
     <link
         href="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.css"
@@ -127,11 +134,48 @@
   new Vue({
     el: "#app",
     vuetify: new Vuetify(),
-    data: {
-      WTimedayRange: {
-        dayStart: "2019-01-01",
-        dayEnd: "2019-02-01"
-      }
+    data: function() {
+      return {
+        mdiCheckUnderlineCircle,
+        mdiPaw,
+        WTimedayRange: {
+          dayStart: "2019-01-01",
+          dayEnd: "2019-02-01"
+        },
+        actions: [
+          //pickColor測試不到
+
+          //起始時間
+          {
+            mode: "eleclick",
+            selector: 'div[TimedayCore="day"]',
+            nth: 0
+          },
+          {
+            mode: "eleclick",
+            selector: 'button[type="button"]',
+            nth: 11
+          },
+
+          //結束時間
+          {
+            mode: "eleclick",
+            selector: 'div[TimedayCore="day"]',
+            nth: 1
+          },
+          {
+            mode: "eleclick",
+            selector: 'button[type="button"]',
+            nth: 14
+          },
+
+          {
+            mode: "elemove",
+            selector: 'div[ShellEllipse="leftIcon"]',
+            nth: -1
+          }
+        ]
+      };
     },
     computed: {},
     methods: {}

@@ -54,6 +54,13 @@
     <!-- vue -->
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
 
+    <!-- element-ui -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/element-ui@2.13.0/lib/theme-chalk/index.css"
+        rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/element-ui@2.13.0/lib/index.js"></script>
+
     <!-- vuetify -->
     <link
         href="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.css"
@@ -126,7 +133,20 @@
   new Vue({
     el: "#app",
     vuetify: new Vuetify(),
-    data: { WButtonCircle: {} },
+    data: function() {
+      return {
+        mdiWalletGiftcard,
+        mdiFace,
+        mdiCheckUnderlineCircle,
+        WButtonCircle: {},
+        actions: [
+          {
+            mode: "elemove",
+            selector: 'button[type="button"]'
+          }
+        ]
+      };
+    },
     computed: {},
     methods: {}
   });
