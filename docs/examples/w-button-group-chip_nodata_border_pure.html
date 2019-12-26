@@ -54,6 +54,13 @@
     <!-- vue -->
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
 
+    <!-- element-ui -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/element-ui@2.13.0/lib/theme-chalk/index.css"
+        rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/element-ui@2.13.0/lib/index.js"></script>
+
     <!-- vuetify -->
     <link
         href="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.css"
@@ -122,58 +129,69 @@
   new Vue({
     el: "#app",
     vuetify: new Vuetify(),
-    data: {
-      WButtonGroupChip: {
-        activeIndex: 0,
-        basic: [
+    data: function() {
+      return {
+        mdiFruitCherries,
+        mdiGraphOutline,
+        WButtonGroupChip: {
+          activeIndex: 0,
+          basic: [
+            {
+              text: "Apple"
+            },
+            {
+              text: "Orange"
+            },
+            {
+              text: "Banana"
+            }
+          ],
+          basicTooltip: [
+            {
+              text: "Apple",
+              tooltip: "tooltip apple"
+            },
+            {
+              text: "Orange",
+              tooltip: "tooltip apple"
+            },
+            {
+              text: "Banana",
+              tooltip: "tooltip banana"
+            }
+          ],
+          breadcrumbs: [
+            {
+              text: "現在位置：",
+              clickable: false
+            },
+            {
+              text: "Domain"
+            },
+            {
+              text: ">",
+              clickable: false
+            },
+            {
+              text: "Kingdom"
+            },
+            {
+              text: ">",
+              clickable: false
+            },
+            {
+              text: "Class"
+            }
+          ]
+        },
+        actions: [
           {
-            text: "Apple"
-          },
-          {
-            text: "Orange"
-          },
-          {
-            text: "Banana"
-          }
-        ],
-        basicTooltip: [
-          {
-            text: "Apple",
-            tooltip: "tooltip apple"
-          },
-          {
-            text: "Orange",
-            tooltip: "tooltip apple"
-          },
-          {
-            text: "Banana",
-            tooltip: "tooltip banana"
-          }
-        ],
-        breadcrumbs: [
-          {
-            text: "現在位置：",
-            clickable: false
-          },
-          {
-            text: "Domain"
-          },
-          {
-            text: ">",
-            clickable: false
-          },
-          {
-            text: "Kingdom"
-          },
-          {
-            text: ">",
-            clickable: false
-          },
-          {
-            text: "Class"
+            mode: "eleclick",
+            nth: 1,
+            selector: 'div[ButtonGroupChip="item"]'
           }
         ]
-      }
+      };
     },
     computed: {},
     methods: {}

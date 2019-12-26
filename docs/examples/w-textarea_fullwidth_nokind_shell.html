@@ -54,6 +54,13 @@
     <!-- vue -->
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
 
+    <!-- element-ui -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/element-ui@2.13.0/lib/theme-chalk/index.css"
+        rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/element-ui@2.13.0/lib/index.js"></script>
+
     <!-- vuetify -->
     <link
         href="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.css"
@@ -128,11 +135,34 @@
   new Vue({
     el: "#app",
     vuetify: new Vuetify(),
-    data: {
-      WTextarea: {
-        text:
-          "The Woodman(樵夫) set to work at once, and so sharp was his axe that the tree was soon chopped nearly through."
-      }
+    data: function() {
+      return {
+        mdiAccountCircle,
+        WTextarea: {
+          text:
+            "The Woodman(樵夫) set to work at once, and so sharp was his axe that the tree was soon chopped nearly through."
+        },
+        actions: [
+          {
+            mode: "eleclick",
+            selector: 'textarea[rows="1"]'
+          },
+          {
+            mode: "keypress",
+            key: "ArrowRight"
+          },
+          {
+            mode: "keypress",
+            key: "ArrowDown"
+          },
+          {
+            mode: "type",
+            selector: 'textarea[rows="1"]',
+            str: "新增文字",
+            noEnter: true
+          }
+        ]
+      };
     },
     computed: {},
     methods: {}

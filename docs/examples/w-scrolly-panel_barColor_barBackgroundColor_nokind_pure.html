@@ -54,6 +54,13 @@
     <!-- vue -->
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
 
+    <!-- element-ui -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/element-ui@2.13.0/lib/theme-chalk/index.css"
+        rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/element-ui@2.13.0/lib/index.js"></script>
+
     <!-- vuetify -->
     <link
         href="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.css"
@@ -161,14 +168,17 @@
   new Vue({
     el: "#app",
     vuetify: new Vuetify(),
-    data: {
-      WScrollyPanel: {
-        tableStyle:
-          "border-collapse:collapse; background-image:linear-gradient(141deg, #4cc5f8 0%, #3fd8eb 75%);",
-        tdStyle:
-          "padding:50px 22px; color:white; border:1px solid rgba(255,255,255,0.5); font-size:0.8rem;",
-        ratio: 0.5
-      }
+    data: function() {
+      return {
+        WScrollyPanel: {
+          tableStyle:
+            "border-collapse:collapse; background-image:linear-gradient(141deg, #4cc5f8 0%, #3fd8eb 75%);",
+          tdStyle:
+            "padding:50px 22px; color:white; border:1px solid rgba(255,255,255,0.5); font-size:0.8rem;",
+          ratio: 0.5
+        },
+        actions: []
+      };
     },
     computed: {},
     methods: {

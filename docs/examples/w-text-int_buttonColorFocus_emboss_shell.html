@@ -54,6 +54,13 @@
     <!-- vue -->
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
 
+    <!-- element-ui -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/element-ui@2.13.0/lib/theme-chalk/index.css"
+        rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/element-ui@2.13.0/lib/index.js"></script>
+
     <!-- vuetify -->
     <link
         href="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.css"
@@ -131,10 +138,35 @@
   new Vue({
     el: "#app",
     vuetify: new Vuetify(),
-    data: {
-      WTextInt: {
-        int: 123
-      }
+    data: function() {
+      return {
+        mdiCart,
+        WTextInt: {
+          int: 123
+        },
+        actions: [
+          {
+            mode: "eletype",
+            selector: "input.basic",
+            str: "a"
+          },
+          {
+            mode: "eleclick",
+            selector: 'div[ShellMaterial="rightIcon"]',
+            nth: -1
+          },
+          {
+            mode: "eleclick",
+            selector: 'div[ShellMaterial="rightIcon"]',
+            nth: -1
+          },
+          {
+            mode: "eleclick",
+            selector: 'div[ShellMaterial="leftIcon"]',
+            nth: -1
+          }
+        ]
+      };
     },
     computed: {},
     methods: {}

@@ -54,6 +54,13 @@
     <!-- vue -->
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
 
+    <!-- element-ui -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/element-ui@2.13.0/lib/theme-chalk/index.css"
+        rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/element-ui@2.13.0/lib/index.js"></script>
+
     <!-- vuetify -->
     <link
         href="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.css"
@@ -184,53 +191,56 @@
   new Vue({
     el: "#app",
     vuetify: new Vuetify(),
-    data: {
-      WDialog: {
-        bShow1: false,
-        bShow2: false,
-        bShow3: false,
-        bShow4: false,
-        bShow5: false,
-        bShow6: false,
-        bShow7: false,
-        bShow8: false,
-        bShow9: false,
-        bShow10: false,
-        bShow11: false,
-        bShow12: false,
-        bShow13: false,
-        bShow14: false,
-        bShow15: false,
-        bShow16: false,
-        bShow17: false,
-        bShow17A: false,
-        bShow17B: false,
-        headerBtns: [
-          {
-            icon: "fas fa-book-reader",
-            tooltip: "測試book-reader",
-            evName: "bookReader"
-          },
-          {
-            icon: "fab fa-codepen",
-            tooltip: "測試codepen",
-            evName: "codepen"
-          },
-          {
-            icon: "fab fa-docker",
-            tooltip: "測試docker",
-            evName: "docker"
-          }
-        ],
-        title: "Popup Dialog",
-        text1: "Article Title",
-        text2: "Here is a article content, texts are from Vuetify.",
-        text3:
-          "Vuetify is a progressive framework that attempts to push web development to the next level. In order to best accomplish this task, some sacrifices had to be made in terms of support for older versions of Internet Explorer. This is not an exhaustive list of compatible browsers, but the main targeted ones.",
-        text4:
-          "There are three ways in which you can install Vuetify. The first (and recommended) way is to utilize the vuetify-loader or what we call automatic A-la-carte. This will ensure that your application only uses the features and styles from Vuetify that are needed, significantly reducing your application's compiled size. Keep in mind, when importing from vuetify/lib, the necessary styles are automatically imported for you.",
-        text5: "End."
-      }
+    data: function() {
+      return {
+        WDialog: {
+          bShow1: false,
+          bShow2: false,
+          bShow3: false,
+          bShow4: false,
+          bShow5: false,
+          bShow6: false,
+          bShow7: false,
+          bShow8: false,
+          bShow9: false,
+          bShow10: false,
+          bShow11: false,
+          bShow12: false,
+          bShow13: false,
+          bShow14: false,
+          bShow15: false,
+          bShow16: false,
+          bShow17: false,
+          bShow17A: false,
+          bShow17B: false,
+          headerBtns: [
+            {
+              icon: "fas fa-book-reader",
+              tooltip: "測試book-reader",
+              evName: "bookReader"
+            },
+            {
+              icon: "fab fa-codepen",
+              tooltip: "測試codepen",
+              evName: "codepen"
+            },
+            {
+              icon: "fab fa-docker",
+              tooltip: "測試docker",
+              evName: "docker"
+            }
+          ],
+          title: "Popup Dialog",
+          text1: "Article Title",
+          text2: "Here is a article content, texts are from Vuetify.",
+          text3:
+            "Vuetify is a progressive framework that attempts to push web development to the next level. In order to best accomplish this task, some sacrifices had to be made in terms of support for older versions of Internet Explorer. This is not an exhaustive list of compatible browsers, but the main targeted ones.",
+          text4:
+            "There are three ways in which you can install Vuetify. The first (and recommended) way is to utilize the vuetify-loader or what we call automatic A-la-carte. This will ensure that your application only uses the features and styles from Vuetify that are needed, significantly reducing your application's compiled size. Keep in mind, when importing from vuetify/lib, the necessary styles are automatically imported for you.",
+          text5: "End."
+        },
+        actions: []
+      };
     },
     computed: {},
     methods: {

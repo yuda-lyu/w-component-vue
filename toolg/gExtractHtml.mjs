@@ -56,6 +56,10 @@ let h = `
     <!-- vue -->
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
 
+    <!-- element-ui -->
+    <link href="https://cdn.jsdelivr.net/npm/element-ui@2.13.0/lib/theme-chalk/index.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/element-ui@2.13.0/lib/index.js"></script>
+
     <!-- vuetify -->
     <link href="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.js"></script>
@@ -131,6 +135,26 @@ let h = `
 `
 
 
+function getBlock(ss, m1, m2) {
+    let rs = []
+    for (let i = 0; i < ss.length; i++) {
+        let s = ss[i]
+        if (s.indexOf(m1) >= 0) { //indexOf for m1
+            let t = s.substring(s.indexOf(m1) + m1.length, s.length)
+            rs.push(t)
+            continue
+        }
+        if (rs.length > 0) {
+            rs.push(s)
+            if (s === m2) { //equal for m2
+                break
+            }
+        }
+    }
+    return rs.join('\n')
+}
+
+
 function writeHtml(v) {
     //name, kbname, casename, temp, data, action, fn
 
@@ -172,10 +196,7 @@ function writeHtml(v) {
     c = c.replace('{{tmp}}', t_tmp)
 
     //replace data
-    // let data = {}
-    // data[v.name] = v.data
-    // let t_data = JSON.stringify(data)
-    let t_data = `{ ${v.data} }`
+    let t_data = v.data
     c = c.replace('{{data}}', t_data)
 
     //replace computed
@@ -216,9 +237,14 @@ function writeHtml(v) {
 
 
 function extractAppZone(fn) {
+    let m1
+    let m2
 
     //read
     let h = fs.readFileSync(fn, 'utf8')
+
+    //ss
+    let ss = h.split('\r\n')
 
     //$
     let $ = cheerio.load(h, $setting)
@@ -230,40 +256,90 @@ function extractAppZone(fn) {
     name = name.replace('.vue', '')
 
     //data
-    let r = `'${name}':[\\s\\S]+'actions'`
-    let reg = new RegExp(r, 'g')
-    let data = h.match(reg)[0]
-    data = data.replace(`'actions'`, ``)
+    // r = `'${name}':[\\s\\S]+'actions'`
+    // let reg = new RegExp(r, 'g')
+    // let data = h.match(reg)[0]
+    // data = data.replace(`'actions'`, ``)
+    // r = `(    data:)[\\s\\S]+(    },)`
+    // reg = new RegExp(r, 'g')
+    // let data = _.get(h.match(reg), 0)
+    // if (data) {
+    //     data = data.replace(`data:`, ``)
+    //     data = w.strdelright(data, 1)
+    // }
+    // else {
+    //     data = '{}'
+    // }
+    m1 = 'data:'
+    m2 = '    },'
+    let data = getBlock(ss, m1, m2)
+    if (!data) {
+        data = 'function() { return {} }'
+    }
+    else {
+        data = w.strdelright(data, 1)
+    }
+    //console.log('data', data)
 
     //action
-    r = `'action[\\s\\S]+ {12}\\]`
-    reg = new RegExp(r, 'g')
-    let action = h.match(reg)[0]
-    action = action.replace(`'actions':`, ``)
+    // r = `'action[\\s\\S]+ {12}\\]`
+    // reg = new RegExp(r, 'g')
+    // let action = h.match(reg)[0]
+    // action = action.replace(`'actions':`, ``)
+    m1 = `'actions':`
+    m2 = '            ],'
+    let action = getBlock(ss, m1, m2)
+    if (!action) {
+        action = '[]'
+    }
+    else {
+        action = w.strdelright(action, 1)
+    }
+    //console.log('action', action)
 
     //computed
-    r = `(    computed:)[\\s\\S]+(    },)`
-    reg = new RegExp(r, 'g')
-    let computed = _.get(h.match(reg), 0)
-    if (computed) {
-        computed = computed.replace(`computed:`, ``)
-        computed = w.strdelright(computed, 1)
-    }
-    else {
+    // r = `(    computed:)[\\s\\S]+(    },)`
+    // reg = new RegExp(r, 'g')
+    // let computed = _.get(h.match(reg), 0)
+    // if (computed) {
+    //     computed = computed.replace(`computed:`, ``)
+    //     computed = w.strdelright(computed, 1)
+    // }
+    // else {
+    //     computed = '{}'
+    // }
+    m1 = 'computed:'
+    m2 = '    },'
+    let computed = getBlock(ss, m1, m2)
+    if (!computed) {
         computed = '{}'
     }
+    else {
+        computed = w.strdelright(computed, 1)
+    }
+    //console.log('computed', computed)
 
     //methods
-    r = `(    methods:)[\\s\\S]+(    },)`
-    reg = new RegExp(r, 'g')
-    let methods = _.get(h.match(reg), 0)
-    if (methods) {
-        methods = methods.replace(`methods:`, ``)
-        methods = w.strdelright(methods, 1)
-    }
-    else {
+    // r = `(    methods:)[\\s\\S]+(    },)`
+    // reg = new RegExp(r, 'g')
+    // let methods = _.get(h.match(reg), 0)
+    // if (methods) {
+    //     methods = methods.replace(`methods:`, ``)
+    //     methods = w.strdelright(methods, 1)
+    // }
+    // else {
+    //     methods = '{}'
+    // }
+    m1 = 'methods:'
+    m2 = '    },'
+    let methods = getBlock(ss, m1, m2)
+    if (!methods) {
         methods = '{}'
     }
+    else {
+        methods = w.strdelright(methods, 1)
+    }
+    //console.log('methods', methods)
 
     function getAttr(me, name) {
         let c = me('demolink').attr(':' + name)

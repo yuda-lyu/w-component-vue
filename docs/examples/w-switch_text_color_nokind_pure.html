@@ -54,6 +54,13 @@
     <!-- vue -->
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
 
+    <!-- element-ui -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/element-ui@2.13.0/lib/theme-chalk/index.css"
+        rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/element-ui@2.13.0/lib/index.js"></script>
+
     <!-- vuetify -->
     <link
         href="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.css"
@@ -126,14 +133,30 @@
   new Vue({
     el: "#app",
     vuetify: new Vuetify(),
-    data: {
-      WSwitch: {
-        text: "開啟",
-        valueYes: "yes",
-        valueNo1: "no",
-        valueNo2: "no",
-        valueBol: false
-      }
+    data: function() {
+      return {
+        mdiAlert,
+        mdiCached,
+        mdiVoice,
+        WSwitch: {
+          text: "開啟",
+          valueYes: "yes",
+          valueNo1: "no",
+          valueNo2: "no",
+          valueBol: false
+        },
+        actions: [
+          {
+            mode: "eleclick",
+            selector: 'input[type="checkbox"]'
+          },
+          {
+            mode: "move",
+            x1: 0,
+            y1: 0
+          }
+        ]
+      };
     },
     computed: {},
     methods: {}

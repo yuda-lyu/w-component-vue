@@ -54,6 +54,13 @@
     <!-- vue -->
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
 
+    <!-- element-ui -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/element-ui@2.13.0/lib/theme-chalk/index.css"
+        rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/element-ui@2.13.0/lib/index.js"></script>
+
     <!-- vuetify -->
     <link
         href="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.css"
@@ -131,11 +138,26 @@
   new Vue({
     el: "#app",
     vuetify: new Vuetify(),
-    data: {
-      WCheckChips: {
-        items: ["foo", "bar", "fizz", "buzz", "Apple", "橘子"],
-        selects: ["foo", "Apple"]
-      }
+    data: function() {
+      return {
+        mdiTagHeart,
+        WCheckChips: {
+          items: ["foo", "bar", "fizz", "buzz", "Apple", "橘子"],
+          selects: ["foo", "Apple"]
+        },
+        actions: [
+          {
+            mode: "eleclick",
+            nth: 5,
+            selector: "span.v-chpi-modify"
+          },
+          {
+            mode: "eleclick",
+            nth: 4,
+            selector: "span.v-chpi-modify"
+          }
+        ]
+      };
     },
     computed: {},
     methods: {}

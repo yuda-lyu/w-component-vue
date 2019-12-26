@@ -54,6 +54,13 @@
     <!-- vue -->
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
 
+    <!-- element-ui -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/element-ui@2.13.0/lib/theme-chalk/index.css"
+        rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/element-ui@2.13.0/lib/index.js"></script>
+
     <!-- vuetify -->
     <link
         href="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.css"
@@ -127,10 +134,44 @@
   new Vue({
     el: "#app",
     vuetify: new Vuetify(),
-    data: {
-      WTimeminute: {
-        value: "2019-01-01T10:00:00"
-      }
+    data: function() {
+      return {
+        mdiCheckUnderlineCircle,
+        mdiPaw,
+        WTimeminute: {
+          value: "2019-01-01T10:00:00"
+        },
+        actions: [
+          //pickColor測試不到
+          {
+            mode: "eleclick",
+            selector: 'div[TimedayCore="day"]'
+          },
+          {
+            mode: "eleclick",
+            selector: 'button[type="button"]',
+            nth: 11
+          },
+          {
+            mode: "eleclick",
+            selector: 'input[type="text"]'
+          },
+          {
+            mode: "eleclick",
+            selector: "div.v-list-item__title",
+            nth: 1
+          },
+          {
+            mode: "keypress",
+            key: "Tab"
+          },
+          {
+            mode: "elemove",
+            selector: 'div[ShellEllipse="leftIcon"]',
+            nth: -1
+          }
+        ]
+      };
     },
     computed: {},
     methods: {}

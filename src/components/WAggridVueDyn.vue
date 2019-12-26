@@ -88,6 +88,7 @@ export default {
         //importResources
         importResources(vo.pathItems)
             .then((res) => {
+                console.log('res', res)
                 if (res !== 'loaded') {
                     let cmp = window['w-aggrid-vue']
                     if (cmp.default) {

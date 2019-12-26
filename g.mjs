@@ -1,144 +1,4 @@
-<template>
-    <div>
-
-
-        <div class="head1">w-aggrid-vue-dyn</div>
-
-
-        <div style="font-size:0.9rem; margin-bottom:10px;">
-            <span style="margin-right:10px;">Links:</span>
-            <a href="//www.ag-grid.com/" target="_blank">ag-grid</a>
-            <span style="margin:0px 10px">|</span>
-            <a href="//www.ag-grid.com/example.php" target="_blank">ag-grid examples</a>
-            <span style="margin:0px 10px">|</span>
-            <a href="//www.ag-grid.com/vuejs-grid/" target="_blank">ag-grid-vue</a>
-            <span style="margin:0px 10px">|</span>
-            <a href="//github.com/yuda-lyu/w-aggrid-vue" target="_blank">w-aggrid-vue</a>
-            <span style="margin:0px 10px">|</span>
-            <a href="//yuda-lyu.github.io/w-aggrid-vue/examples/app.html" target="_blank">w-aggrid-vue examples</a>
-        </div>
-
-
-        <div style="padding:0px;">
-
-
-            <div class="bk">
-                <demolink
-                    :kbname="'w-aggrid-vue-dyn'"
-                    :casename="'simple data'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
-                ></demolink>
-
-                <w-aggrid-vue-dyn
-                    style="width:620px;"
-                    ref="rftable"
-                    :opt="WAggridVueDyn.opt1"
-                ></w-aggrid-vue-dyn>
-
-            </div>
-
-
-            <div class="bk">
-                <demolink
-                    :kbname="'w-aggrid-vue-dyn'"
-                    :casename="'defCellEditable'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
-                ></demolink>
-
-                <w-aggrid-vue-dyn
-                    style="width:620px;"
-                    ref="rftable"
-                    :opt="WAggridVueDyn.opt2"
-                ></w-aggrid-vue-dyn>
-
-            </div>
-
-
-            <div class="bk">
-                <demolink
-                    :kbname="'w-aggrid-vue-dyn'"
-                    :casename="'kpHeadTooltip & kpCellTooltip'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
-                ></demolink>
-
-                <w-aggrid-vue-dyn
-                    style="width:620px;"
-                    ref="rftable"
-                    :opt="WAggridVueDyn.opt3"
-                ></w-aggrid-vue-dyn>
-
-            </div>
-
-
-            <div class="bk">
-                <demolink
-                    :kbname="'w-aggrid-vue-dyn'"
-                    :casename="'kpCellEditable & kpRowStyle'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
-                ></demolink>
-
-                <w-aggrid-vue-dyn
-                    style="width:620px;"
-                    ref="rftable"
-                    :opt="WAggridVueDyn.opt4"
-                ></w-aggrid-vue-dyn>
-
-            </div>
-
-
-            <div style="width:100%;" class="bk">
-                <demolink
-                    :kbname="'w-aggrid-vue-dyn'"
-                    :casename="'large data (1,000,000 items)'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
-                ></demolink>
-
-                <w-aggrid-vue-dyn
-                    ref="rftable"
-                    :opt="WAggridVueDyn.opt5"
-                ></w-aggrid-vue-dyn>
-
-            </div>
-
-
-        </div>
-
-
-    </div>
-</template>
-
-<script>
-import demolink from './components/demolink.vue'
-import WAggridVueDyn from './components/WAggridVueDyn.vue'
-
-// let data = (function(m, n) {
-//     let keys = []
-//     for (let j = 1; j <= m; j++) {
-//         keys.push('Col-' + j)
-//     }
-//     let row = {}
-//     for (let j = 1; j <= m; j++) {
-//         row[keys[j - 1]] = 'Cell-' + j
-//     }
-//     let rows = []
-//     for (let i = 1; i <= n; i++) {
-//         let r = JSON.parse(JSON.stringify(row))
-//         for (let j = 1; j <= m; j++) {
-//             r[keys[j - 1]] += '-' + i
-//         }
-//         rows.push(r)
-//     }
-//     return {
-//         keys: keys,
-//         rows: rows,
-//     }
-// })(100, 1000)
-// console.log(JSON.stringify(data))
+let c = `
 
 export default {
     components: {
@@ -242,11 +102,55 @@ export default {
                 })(100, 10000),
             },
             'actions': [
+                {q1:123},
+                34,
+                56.78
             ],
         }
     },
+    computed: {
+        aaa: function () {
+            console.log('bbb')
+            return 'b'
+        },
+    },
+    method: {
+        ccc: function () {
+            console.log('ddd')
+            return 'd'
+        },
+    },
 }
-</script>
+`
 
-<style scoped>
-</style>
+let m1 = 'data:'
+let m2 = '    },'
+let ss = c.split('\n')
+function getBlock(ss, m1, m2) {
+    let rs = []
+    for (let i = 0; i < ss.length; i++) {
+        let s = ss[i]
+        if (s.indexOf(m1) >= 0) { //indexOf for m1
+            let t = s.substring(s.indexOf(m1) + m1.length, s.length)
+            rs.push(t)
+            continue
+        }
+        if (rs.length > 0) {
+            rs.push(s)
+            if (s === m2) { //equal for m2
+                break
+            }
+        }
+    }
+    if (rs.length === 0) {
+        return null
+    }
+    return rs.join('\n')
+}
+console.log(getBlock(ss, m1, m2))
+
+m1 = `'actions':`
+m2 = '            ],'
+//console.log(getBlock(ss, m1, m2))
+
+//node --experimental-modules --es-module-specifier-resolution=node g.mjs

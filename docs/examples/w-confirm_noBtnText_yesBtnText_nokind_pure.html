@@ -54,6 +54,13 @@
     <!-- vue -->
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
 
+    <!-- element-ui -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/element-ui@2.13.0/lib/theme-chalk/index.css"
+        rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/element-ui@2.13.0/lib/index.js"></script>
+
     <!-- vuetify -->
     <link
         href="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.css"
@@ -136,21 +143,24 @@
   new Vue({
     el: "#app",
     vuetify: new Vuetify(),
-    data: {
-      WConfirm: {
-        bShow1: false,
-        bShow2: false,
-        bShow3: false,
-        bShow4: false,
-        bShow5: false,
-        bShow6: false,
-        bShow7: false,
-        bShow8: false,
-        bShow9: false,
-        bShow10: false,
-        title: "系統確認訊息",
-        content: "是否同意上傳表單資料?"
-      }
+    data: function() {
+      return {
+        WConfirm: {
+          bShow1: false,
+          bShow2: false,
+          bShow3: false,
+          bShow4: false,
+          bShow5: false,
+          bShow6: false,
+          bShow7: false,
+          bShow8: false,
+          bShow9: false,
+          bShow10: false,
+          title: "系統確認訊息",
+          content: "是否同意上傳表單資料?"
+        },
+        actions: []
+      };
     },
     computed: {},
     methods: {
