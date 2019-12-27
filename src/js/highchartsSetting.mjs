@@ -3,7 +3,7 @@
  *
  * @returns {Object} 回傳標記物件
  */
-function getMarker() {
+function getHCMarker() {
     return {
         enabled: true,
         symbol: 'circle',
@@ -20,7 +20,7 @@ function getMarker() {
  *
  * @returns {Array} 回傳時間單位陣列
  */
-function getUnits() {
+function getHCUnits() {
     return [
         [
             'day',
@@ -43,7 +43,7 @@ function getUnits() {
  *
  * @returns {Object} 回傳時間單位格式物件
  */
-function getDateFmt() {
+function getHCDateFmt() {
     return {
         //millisecond: ['%A, %m/%d, %H:%M:%S.%L', '%A, %m/%d, %H:%M:%S.%L', '-%H:%M:%S.%L'],
         //second: ['%A, %m/%d, %H:%M:%S', '%A, %m/%d, %H:%M:%S', '-%H:%M:%S'],
@@ -70,11 +70,11 @@ function getDateFmt() {
  *
  * @returns {Object} 回傳時間群組設定物件
  */
-function getDataGrouping() {
+function getHCDataGrouping() {
     return {
         enabled: true,
-        units: getUnits(),
-        dateTimeLabelFormats: getDateFmt(),
+        units: getHCUnits(),
+        dateTimeLabelFormats: getHCDateFmt(),
     }
 }
 
@@ -124,7 +124,7 @@ let rangeSelector = {
  *
  * @returns {Object} 回傳繪圖設定物件
  */
-function getGlobal() {
+function getHCGlobal() {
     return {
 
         credits: {
@@ -203,7 +203,7 @@ function getGlobal() {
         plotOptions: {
             series: {
                 dataGrouping: {
-                    dateTimeLabelFormats: getDateFmt()
+                    dateTimeLabelFormats: getHCDateFmt()
                 }
             },
         }
@@ -213,4 +213,4 @@ function getGlobal() {
 }
 
 
-export { getMarker, getUnits, getDateFmt, getDataGrouping, getGlobal }
+export { getHCMarker, getHCUnits, getHCDateFmt, getHCDataGrouping, getHCGlobal }

@@ -5,7 +5,8 @@
 <script>
 import importResources from 'wsemi/src/importResources.mjs'
 import WIconLoading from './WIconLoading.vue'
-import { getGlobal } from '../js/highchartsSetting.mjs'
+import getVue from '../js/getVue.mjs'
+import { getHCGlobal } from '../js/highchartsSetting.mjs'
 
 /**
  * @vue-prop {Array} [pathItems=[]] 輸入vue-highcharts組件js檔案位置字串陣列，預設詳見props->pathItems->default
@@ -38,19 +39,17 @@ export default {
 
         let vo = this
 
-        //通過window內Vue取得當前所用Vue實體, 並依此加載組件
-        let Vue = window['Vue']
-
         //importResources
         importResources(vo.pathItems)
             .then((res) => {
+                //console.log('res', res)
                 if (res !== 'loaded') {
 
                     //Highcharts
                     let Highcharts = window['Highcharts']
 
                     //setOptions
-                    Highcharts.setOptions(getGlobal())
+                    Highcharts.setOptions(getHCGlobal())
 
                     //cmp
                     let cmp = window['VueHighcharts']
@@ -59,7 +58,7 @@ export default {
                     }
 
                     //use
-                    Vue.use(cmp)
+                    getVue().use(cmp)
 
                 }
                 vo.cmpName = 'Highstock'

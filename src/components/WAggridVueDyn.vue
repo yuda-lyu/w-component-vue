@@ -5,6 +5,7 @@
 <script>
 import importResources from 'wsemi/src/importResources.mjs'
 import WIconLoading from './WIconLoading.vue'
+import getVue from '../js/getVue.mjs'
 
 /**
  * @vue-prop {Array} [pathItems=[]] 輸入w-aggrid-vue組件js檔案位置字串陣列，預設詳見props->pathItems->default
@@ -82,19 +83,21 @@ export default {
 
         let vo = this
 
-        //通過window內Vue取得當前所用Vue實體, 並依此加載組件
-        let Vue = window['Vue']
-
         //importResources
         importResources(vo.pathItems)
             .then((res) => {
-                console.log('res', res)
+                //console.log('res', res)
                 if (res !== 'loaded') {
+
+                    //cmp
                     let cmp = window['w-aggrid-vue']
                     if (cmp.default) {
                         cmp = cmp.default
                     }
-                    Vue.component('w-aggrid-vue', cmp)
+
+                    //use
+                    getVue().component('w-aggrid-vue', cmp)
+
                 }
                 vo.cmpName = 'w-aggrid-vue'
             })
