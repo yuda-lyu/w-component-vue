@@ -13,12 +13,10 @@ function associateVue() {
 
     }
 }
+associateVue() //載入時直接執行, 因getVue會於組件腳本importResources之後才調用, 此時已經無法讓組件使用window內Vue
 
 
 function getVue() {
-
-    //associateVue
-    associateVue()
 
     //x
     let g = getGlobal()
