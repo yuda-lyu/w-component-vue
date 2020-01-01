@@ -8,7 +8,7 @@ import WIconLoading from './WIconLoading.vue'
 import getVue from '../js/getVue.mjs'
 
 /**
- * @vue-prop {Array} [pathItems=[]] 輸入w-aggrid-vue組件js檔案位置字串陣列，預設詳見props->pathItems->default
+ * @vue-prop {Array} [pathItems=['詳見原始碼']] 輸入w-aggrid-vue組件js檔案位置字串陣列，預設詳見原始碼處props->pathItems->default
  * @vue-prop {Object} opt 輸入資料設定物件
  * @vue-prop {Array} opt.keys 輸入資料各欄位keys
  * @vue-prop {Array} opt.rows 輸入資料列，各列為物件，內含各欄位keys之值，例[{},{},...,{}]
@@ -58,7 +58,7 @@ export default {
             default: () => [
                 'https://cdn.jsdelivr.net/npm/ag-grid-community@22.0.0/dist/ag-grid-community.min.noStyle.js',
                 'https://cdn.jsdelivr.net/npm/ag-grid-vue@22.0.0/dist/ag-grid-vue.umd.min.js', //於es5內載入時, AgGridVue會出現在window['ag-grid-vue'].AgGridVue
-                'https://cdn.jsdelivr.net/npm/w-aggrid-vue@1.0.30/dist/w-aggrid-vue.umd.js',
+                'https://cdn.jsdelivr.net/npm/w-aggrid-vue@1.0.31/dist/w-aggrid-vue.umd.js',
             ],
         },
         opt: {

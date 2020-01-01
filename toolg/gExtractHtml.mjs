@@ -1,11 +1,11 @@
 import fs from 'fs'
-import _ from 'lodash'
 import cheerio from 'cheerio'
-//import pretty from 'pretty'
 import prettyhtml from '@starptech/prettyhtml'
+import _ from 'lodash'
 import w from 'wsemi'
 import getFiles from 'w-package-tools/src/getFiles.mjs'
 import cleanFolder from 'w-package-tools/src/cleanFolder.mjs'
+import parseVueCode from 'w-package-tools/src/parseVueCode.mjs'
 import cvCasename from './cvCasename.mjs'
 
 
@@ -135,28 +135,8 @@ let h = `
 `
 
 
-function getBlock(ss, m1, m2) {
-    let rs = []
-    for (let i = 0; i < ss.length; i++) {
-        let s = ss[i]
-        if (s.indexOf(m1) >= 0) { //indexOf for m1
-            let t = s.substring(s.indexOf(m1) + m1.length, s.length)
-            rs.push(t)
-            continue
-        }
-        if (rs.length > 0) {
-            rs.push(s)
-            if (s === m2) { //equal for m2
-                break
-            }
-        }
-    }
-    return rs.join('\n')
-}
-
-
 function writeHtml(v) {
-    //name, kbname, casename, temp, data, action, fn
+    //name, kbname, casename, tmp, data, action, fn
 
     //kebabProps
     function kebabProps(t) {
@@ -184,11 +164,11 @@ function writeHtml(v) {
     c = c.replace('{{casename}}', v.casename)
 
     //t_tmp
-    let $ = cheerio.load(v.temp, $setting)
+    let $ = cheerio.load(v.tmp, $setting)
     $('demolink').remove() //移除demolink
     $('div.bk').prepend(`<div class="item">${v.casename}</div>`) //添加基本casename
-    v.temp = $.html() //覆蓋回temp
-    let t_tmp = `<div class="head1">${v.kbname}</div>\r\n` + v.temp //添加組件kbname
+    v.tmp = $.html() //覆蓋回temp
+    let t_tmp = `<div class="head1">${v.kbname}</div>\r\n` + v.tmp //添加組件kbname
     t_tmp = kebabProps(t_tmp)
     t_tmp = w.replace(t_tmp, `=""`, '')
 
@@ -225,6 +205,8 @@ function writeHtml(v) {
     c = prettyhtml(c, {
         tabWidth: 4,
     })
+    c = c.contents //取contents
+    //console.log('prettyhtml', c)
 
     //write
     //console.log(c)
@@ -237,17 +219,12 @@ function writeHtml(v) {
 
 
 function extractAppZone(fn) {
-    let m1
-    let m2
 
     //read
-    let h = fs.readFileSync(fn, 'utf8')
-
-    //ss
-    let ss = h.split('\r\n')
+    let hh = fs.readFileSync(fn, 'utf8')
 
     //$
-    let $ = cheerio.load(h, $setting)
+    let $ = cheerio.load(hh, $setting)
     //console.log($('.bk'))
 
     //name
@@ -255,92 +232,16 @@ function extractAppZone(fn) {
     name = name[1]
     name = name.replace('.vue', '')
 
-    //data
-    // r = `'${name}':[\\s\\S]+'actions'`
-    // let reg = new RegExp(r, 'g')
-    // let data = h.match(reg)[0]
-    // data = data.replace(`'actions'`, ``)
-    // r = `(    data:)[\\s\\S]+(    },)`
-    // reg = new RegExp(r, 'g')
-    // let data = _.get(h.match(reg), 0)
-    // if (data) {
-    //     data = data.replace(`data:`, ``)
-    //     data = w.strdelright(data, 1)
-    // }
-    // else {
-    //     data = '{}'
-    // }
-    m1 = 'data: function() {'
-    m2 = '    },'
-    let data = getBlock(ss, m1, m2)
-    if (!data) {
-        data = 'function() { return {} }'
-    }
-    else {
-        data = 'function() {' + data
-        data = w.strdelright(data, 1)
-    }
+    //parseVueCode
+    let { tmp, mounted, data, computed, methods, action } = parseVueCode(hh)
+
+    //clear data
+    let ss = data.split('\r\n')
+    ss = _.filter(ss, (s) => {
+        return s.indexOf('            mdi') < 0 //去除@mdi/js icon
+    })
+    data = ss.join('\r\n')
     //console.log('data', data)
-
-    //action
-    // r = `'action[\\s\\S]+ {12}\\]`
-    // reg = new RegExp(r, 'g')
-    // let action = h.match(reg)[0]
-    // action = action.replace(`'actions':`, ``)
-    m1 = `'actions':`
-    m2 = '            ],'
-    let action = getBlock(ss, m1, m2)
-    if (!action) {
-        action = '[]'
-    }
-    else {
-        action = w.strdelright(action, 1)
-    }
-    //console.log('action', action)
-
-    //computed
-    // r = `(    computed:)[\\s\\S]+(    },)`
-    // reg = new RegExp(r, 'g')
-    // let computed = _.get(h.match(reg), 0)
-    // if (computed) {
-    //     computed = computed.replace(`computed:`, ``)
-    //     computed = w.strdelright(computed, 1)
-    // }
-    // else {
-    //     computed = '{}'
-    // }
-    m1 = 'computed:'
-    m2 = '    },'
-    let computed = getBlock(ss, m1, m2)
-    if (!computed) {
-        computed = '{}'
-    }
-    else {
-        computed = w.strdelright(computed, 1)
-    }
-    //console.log('computed', computed)
-
-    //methods
-    // r = `(    methods:)[\\s\\S]+(    },)`
-    // reg = new RegExp(r, 'g')
-    // let methods = _.get(h.match(reg), 0)
-    // if (methods) {
-    //     methods = methods.replace(`methods:`, ``)
-    //     methods = w.strdelright(methods, 1)
-    // }
-    // else {
-    //     methods = '{}'
-    // }
-    m1 = 'methods:'
-    m2 = '    },'
-    let methods = getBlock(ss, m1, m2)
-    if (!methods) {
-        methods = '{}'
-    }
-    else {
-        methods = w.strdelright(methods, 1)
-    }
-    //console.log('methods', methods)
 
     function getAttr(me, name) {
         let c = me('demolink').attr(':' + name)
@@ -359,18 +260,16 @@ function extractAppZone(fn) {
         let shell = getAttr(me, 'shell')
         //console.log(i, kbname, casename, kind, shell)
 
-        //temp
-        let temp = me.html()
-        //console.log(i, temp)
+        //tmp
+        let tmp = me.html()
+        //console.log(i, tmp)
 
         //fn
         let fnc = `${casename}_${kind}_${shell}`
         let fn = `${kbname}_${cvCasename(fnc)}`
 
         //writeHtml
-        writeHtml({
-            name, kbname, casename, temp, data, action, computed, methods, fn
-        })
+        writeHtml({ name, kbname, casename, tmp, data, action, computed, methods, fn })
 
     })
 
