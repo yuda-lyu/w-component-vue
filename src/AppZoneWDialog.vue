@@ -470,7 +470,7 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-dialog'"
-                    :casename="'widthMax, for narrow width'"
+                    :casename="'contentBackgroundColor'"
                     :kind="'nokind'"
                     :shell="'pure'"
                 ></demolink>
@@ -479,6 +479,46 @@
 
                 <w-dialog
                     :show.sync="WDialog.bShow12"
+                    :title="WDialog.title"
+                    :contentBackgroundColor="'cyan darken-2'"
+                    @click-save="clickEvent('click-save')"
+                    @click-close="clickEvent('click-close')"
+                >
+
+                    <template v-slot:content>
+                        <div style="padding:20px; color:#ddd;">
+                            <div style="font-size:1.5rem; margin:10px 0px 20px 0px; color:#fff;">
+                                {{WDialog.text1}}
+                            </div>
+                            <div style="margin:15px 0px;">
+                                {{WDialog.text2}}
+                            </div>
+                            <div style="margin:15px 0px;">
+                                {{WDialog.text3}}
+                            </div>
+                            <div style="margin:15px 0px;">
+                                {{WDialog.text4}}
+                            </div>
+                        </div>
+                    </template>
+
+                </w-dialog>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-dialog'"
+                    :casename="'widthMax, for narrow width'"
+                    :kind="'nokind'"
+                    :shell="'pure'"
+                ></demolink>
+
+                <v-btn small rounded @click="WDialog.bShow13=!WDialog.bShow13">Show({{WDialog.bShow13}})</v-btn>
+
+                <w-dialog
+                    :show.sync="WDialog.bShow13"
                     :title="WDialog.title"
                     :widthMax="500"
                     @click-save="clickEvent('click-save')"
@@ -515,10 +555,10 @@
                     :shell="'pure'"
                 ></demolink>
 
-                <v-btn small rounded @click="WDialog.bShow13=!WDialog.bShow13">Show({{WDialog.bShow13}})</v-btn>
+                <v-btn small rounded @click="WDialog.bShow14=!WDialog.bShow14">Show({{WDialog.bShow14}})</v-btn>
 
                 <w-dialog
-                    :show.sync="WDialog.bShow13"
+                    :show.sync="WDialog.bShow14"
                     :title="WDialog.title"
                     :widthMax="0"
                     @click-save="clickEvent('click-save')"
@@ -540,7 +580,7 @@
                                 {{WDialog.text4}}
                             </div>
 
-                            <v-btn small rounded @click="WDialog.bShow13=!WDialog.bShow13">Hide Window</v-btn>
+                            <v-btn small rounded @click="WDialog.bShow14=!WDialog.bShow14">Hide Window</v-btn>
 
                         </div>
                     </template>
@@ -558,10 +598,10 @@
                     :shell="'pure'"
                 ></demolink>
 
-                <v-btn small rounded @click="WDialog.bShow14=!WDialog.bShow14">Show({{WDialog.bShow14}})</v-btn>
+                <v-btn small rounded @click="WDialog.bShow15=!WDialog.bShow15">Show({{WDialog.bShow15}})</v-btn>
 
                 <w-dialog
-                    :show.sync="WDialog.bShow14"
+                    :show.sync="WDialog.bShow15"
                     :title="WDialog.title"
                     @click-save="clickEvent('click-save')"
                     @click-close="clickEvent('click-close')"
@@ -600,10 +640,10 @@
                     :shell="'pure'"
                 ></demolink>
 
-                <v-btn small rounded @click="WDialog.bShow15=!WDialog.bShow15">Show({{WDialog.bShow15}})</v-btn>
+                <v-btn small rounded @click="WDialog.bShow16=!WDialog.bShow16">Show({{WDialog.bShow16}})</v-btn>
 
                 <w-dialog
-                    :show.sync="WDialog.bShow15"
+                    :show.sync="WDialog.bShow16"
                     :title="WDialog.title"
                     @click-save="clickEvent('click-save')"
                     @click-close="clickEvent('click-close')"
@@ -646,10 +686,10 @@
                     :shell="'pure'"
                 ></demolink>
 
-                <v-btn small rounded @click="WDialog.bShow16=!WDialog.bShow16">Show({{WDialog.bShow16}})</v-btn>
+                <v-btn small rounded @click="WDialog.bShow17=!WDialog.bShow17">Show({{WDialog.bShow17}})</v-btn>
 
                 <w-dialog
-                    :show.sync="WDialog.bShow16"
+                    :show.sync="WDialog.bShow17"
                     :title="WDialog.title"
                     :widthMax="500"
                     @click-save="clickEvent('click-save')"
@@ -716,10 +756,10 @@
                     :shell="'pure'"
                 ></demolink>
 
-                <v-btn small rounded @click="WDialog.bShow17=!WDialog.bShow17">Show({{WDialog.bShow17}})</v-btn>
+                <v-btn small rounded @click="WDialog.bShow18=!WDialog.bShow18">Show({{WDialog.bShow18}})</v-btn>
 
                 <w-dialog
-                    :show.sync="WDialog.bShow17"
+                    :show.sync="WDialog.bShow18"
                     :title="WDialog.title"
                     :widthMax="1200"
                     @click-save="clickEvent('click-save')"
@@ -733,7 +773,7 @@
                                 Here is 1st window.
                             </div>
 
-                            <v-btn small rounded @click="WDialog.bShow17A=!WDialog.bShow17A">Show({{WDialog.bShow17A}})</v-btn>
+                            <v-btn small rounded @click="WDialog.bShow18A=!WDialog.bShow18A">Show({{WDialog.bShow18A}})</v-btn>
 
                             <div style="height:160px;"></div>
 
@@ -743,7 +783,7 @@
                 </w-dialog>
 
                 <w-dialog
-                    :show.sync="WDialog.bShow17A"
+                    :show.sync="WDialog.bShow18A"
                     :title="WDialog.title"
                     :widthMax="900"
                     @click-save="clickEvent('click-save')"
@@ -757,7 +797,7 @@
                                 Here is 2nd window.
                             </div>
 
-                            <v-btn small rounded @click="WDialog.bShow17B=!WDialog.bShow17B">Show({{WDialog.bShow17B}})</v-btn>
+                            <v-btn small rounded @click="WDialog.bShow18B=!WDialog.bShow18B">Show({{WDialog.bShow18B}})</v-btn>
 
                             <div style="height:80px;"></div>
 
@@ -767,7 +807,7 @@
                 </w-dialog>
 
                 <w-dialog
-                    :show.sync="WDialog.bShow17B"
+                    :show.sync="WDialog.bShow18B"
                     :title="WDialog.title"
                     :widthMax="600"
                     @click-save="clickEvent('click-save')"
@@ -832,8 +872,9 @@ export default {
                 'bShow15': false,
                 'bShow16': false,
                 'bShow17': false,
-                'bShow17A': false,
-                'bShow17B': false,
+                'bShow18': false,
+                'bShow18A': false,
+                'bShow18B': false,
                 'headerBtns': [
                     {
                         icon: 'fas fa-book-reader',

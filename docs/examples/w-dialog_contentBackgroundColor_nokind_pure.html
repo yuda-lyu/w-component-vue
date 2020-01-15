@@ -6,7 +6,7 @@
         name="viewport"
         content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui"
     />
-    <title>example for w-dialog: saveBtnTooltip</title>
+    <title>example for w-dialog: contentBackgroundColor</title>
 
     <!-- fontawesome -->
     <link
@@ -115,25 +115,25 @@
     <v-app id="app" style="font-family:inherit;">
         <div class="head1">w-dialog</div>
         <div class="bk">
-            <div class="item">saveBtnTooltip</div>
+            <div class="item">contentBackgroundColor</div>
 
             <v-btn
                 small
                 rounded
-                @click="WDialog.bShow8=!WDialog.bShow8"
-            >Show({{WDialog.bShow8}})</v-btn>
+                @click="WDialog.bShow12=!WDialog.bShow12"
+            >Show({{WDialog.bShow12}})</v-btn>
 
             <w-dialog
-                :show.sync="WDialog.bShow8"
+                :show.sync="WDialog.bShow12"
                 :title="WDialog.title"
-                :save-btn-tooltip="'Save data'"
+                :content-background-color="'cyan darken-2'"
                 @click-save="clickEvent('click-save')"
                 @click-close="clickEvent('click-close')"
             >
                 <template v-slot:content>
-                    <div style="padding:20px;">
+                    <div style="padding:20px; color:#ddd;">
                         <div
-                            style="font-size:2rem; margin:20px 0px 30px 0px;"
+                            style="font-size:1.5rem; margin:10px 0px 20px 0px; color:#fff;"
                         >{{WDialog.text1}}</div>
                         <div style="margin:15px 0px;">{{WDialog.text2}}</div>
                         <div style="margin:15px 0px;">{{WDialog.text3}}</div>

@@ -299,7 +299,7 @@ export default {
 
                     //t
                     let t = get(vo, '$refs.wds.refreshAndTriggerEvent', null)
-                    if (this) {
+                    if (t) {
                         t('show')
                     }
 

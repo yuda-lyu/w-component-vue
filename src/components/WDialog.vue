@@ -72,7 +72,7 @@
 
             </v-toolbar>
 
-            <v-card-text ref="scrollZone" style="padding:0px;">
+            <v-card-text ref="scrollZone" :style="`padding:0px; background-color:${useContentBackgroundColor};`">
                 <slot name="content"></slot>
             </v-card-text>
 
@@ -83,6 +83,7 @@
 
 <script>
 import { mdiCheckCircle, mdiClose, mdiCheckerboard } from '@mdi/js'
+import get from 'lodash/get'
 import color2hex from '../js/vuetifyColor.mjs'
 import WButtonCircle from './WButtonCircle.vue'
 
@@ -99,6 +100,7 @@ import WButtonCircle from './WButtonCircle.vue'
  * @vue-prop {Boolean} [hasCloseBtn=true] 輸入是否顯示關閉按鈕，預設true
  * @vue-prop {String} [closeBtnTooltip='關閉'] 輸入關閉按鈕的提示文字字串，預設'關閉'
  * @vue-prop {Number} [widthMax=1000] 輸入彈窗最大寬度，單位為px，預設1000，當裝置寬度小於彈窗最大寬度，則彈窗改為全螢幕顯示，若給予widthMax<=0則代表全螢幕
+ * @vue-prop {String} [contentBackgroundColor='transparent'] 輸入內容背景顏色字串，預設'transparent'
  */
 export default {
     components: {
@@ -153,6 +155,10 @@ export default {
             type: Number,
             default: 1000,
         },
+        contentBackgroundColor: {
+            type: String,
+            default: 'transparent',
+        },
     },
     data: function() {
         return {
@@ -203,8 +209,27 @@ export default {
             return color2hex(vo.headerTextColor)
         },
 
+        useContentBackgroundColor: function () {
+            //console.log('computed useContentBackgroundColor')
+
+            let vo = this
+
+            return color2hex(vo.contentBackgroundColor)
+        },
+
     },
     methods: {
+
+        getContentHeight: function() {
+            //console.log('methods getContentHeight')
+
+            let vo = this
+
+            //get
+            let h = get(vo, '$refs.scrollZone.clientHeight', 0)
+
+            return h
+        },
 
         changeSize: function() {
             //console.log('methods changeSize')
