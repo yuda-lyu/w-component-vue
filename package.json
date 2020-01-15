@@ -1,6 +1,6 @@
 {
   "name": "w-component-vue",
-  "version": "1.3.1",
+  "version": "1.3.2",
   "author": "yuda-lyu(semisphere)",
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -63,7 +63,7 @@
     "sass-loader": "^8.0.2",
     "vue": "^2.6.11",
     "vue-template-compiler": "^2.6.11",
-    "w-package-tools": "^1.0.19"
+    "w-package-tools": "^1.0.21"
   },
   "eslintConfig": {
     "root": true,
