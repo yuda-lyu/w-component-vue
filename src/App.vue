@@ -232,6 +232,13 @@
             ></AppZoneWGroupTags>
 
 
+            <AppZoneWGroupTabs
+                :modeBorder="modeBorder"
+                :modeShell="modeShell"
+                v-if="compname==='WGroupTabs'"
+            ></AppZoneWGroupTabs>
+
+
             <AppZoneWGroupCheck
                 :modeBorder="modeBorder"
                 :modeShell="modeShell"
@@ -367,6 +374,7 @@ import AppZoneWProgressCircle from './AppZoneWProgressCircle.vue'
 import AppZoneWSwitch from './AppZoneWSwitch.vue'
 import AppZoneWAlert from './AppZoneWAlert.vue'
 import AppZoneWGroupTags from './AppZoneWGroupTags.vue'
+import AppZoneWGroupTabs from './AppZoneWGroupTabs.vue'
 import AppZoneWGroupCheck from './AppZoneWGroupCheck.vue'
 import AppZoneWGroupRadio from './AppZoneWGroupRadio.vue'
 import AppZoneWText from './AppZoneWText.vue'
@@ -401,6 +409,7 @@ export default {
         AppZoneWSwitch,
         AppZoneWAlert,
         AppZoneWGroupTags,
+        AppZoneWGroupTabs,
         AppZoneWGroupCheck,
         AppZoneWGroupRadio,
         AppZoneWText,
@@ -451,6 +460,7 @@ export default {
                         'WGroupCheck',
                         'WGroupRadio',
                         'WGroupTags',
+                        'WGroupTabs',
                     ]
                 },
                 {
@@ -511,6 +521,7 @@ export default {
                 'WSwitch': true,
                 'WGroupButtons': true,
                 'WGroupTags': true,
+                'WGroupTabs': true,
                 'WGroupCheck': true,
                 'WGroupRadio': true,
                 'WText': true,
