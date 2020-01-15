@@ -1,5 +1,5 @@
 <template>
-    <WScrollyPanelCore
+    <WPanelScrollyCore
         ref="wsp"
         :ratio.sync="scrollRatio"
         :viewHeightMax="viewHeightMax"
@@ -27,7 +27,7 @@
             {{searchEmpty}}
         </div>
 
-    </WScrollyPanelCore>
+    </WPanelScrollyCore>
 </template>
 
 <script>
@@ -55,7 +55,7 @@ import delay from 'wsemi/src/delay.mjs'
 import debounce from 'wsemi/src/debounce.mjs'
 import binarySearch from '../js/binarySearch.mjs'
 import globalMemory from '../js/globalMemory.mjs'
-import WScrollyPanelCore from './WScrollyPanelCore.vue'
+import WPanelScrollyCore from './WPanelScrollyCore.vue'
 import WJsonViewCore from './WJsonViewCore.vue'
 
 //gm
@@ -79,7 +79,7 @@ let gm = globalMemory()
  */
 export default {
     components: {
-        WScrollyPanelCore,
+        WPanelScrollyCore,
         WJsonViewCore,
     },
     props: {

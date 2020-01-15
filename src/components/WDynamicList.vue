@@ -1,5 +1,5 @@
 <template>
-    <WScrollyPanelCore
+    <WPanelScrollyCore
         ref="wsp"
         :viewHeightMax="viewHeightMax"
         :contentHeight="itemsHeight"
@@ -28,7 +28,7 @@
             {{searchEmpty}}
         </div>
 
-    </WScrollyPanelCore>
+    </WPanelScrollyCore>
 </template>
 
 <script>
@@ -50,7 +50,7 @@ import o2j from 'wsemi/src/o2j.mjs'
 import debounce from 'wsemi/src/debounce.mjs'
 import binarySearch from '../js/binarySearch.mjs'
 import globalMemory from '../js/globalMemory.mjs'
-import WScrollyPanelCore from './WScrollyPanelCore.vue'
+import WPanelScrollyCore from './WPanelScrollyCore.vue'
 
 //gm
 let gm = globalMemory()
@@ -65,7 +65,7 @@ let gm = globalMemory()
  */
 export default {
     components: {
-        WScrollyPanelCore,
+        WPanelScrollyCore,
     },
     props: {
         rows: {

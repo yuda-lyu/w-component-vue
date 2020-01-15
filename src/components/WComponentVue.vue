@@ -4,13 +4,14 @@ import WAlert from './WAlert.mjs'
 import WBadge from './WBadge.vue'
 import WButtonChip from './WButtonChip.vue'
 import WButtonCircle from './WButtonCircle.vue'
-import WButtonGroupChip from './WButtonGroupChip.vue'
-import WCheckChips from './WCheckChips.vue'
-import WChips from './WChips.vue'
 import WConfirm from './WConfirm.vue'
 import WDialog from './WDialog.vue'
 import WDropfiles from './WDropfiles.vue'
 import WDynamicList from './WDynamicList.vue'
+import WGroupButtons from './WGroupButtons.vue'
+import WGroupCheck from './WGroupCheck.vue'
+import WGroupRadio from './WGroupRadio.vue'
+import WGroupTags from './WGroupTags.vue'
 import WHighchartsVueDyn from './WHighchartsVueDyn.vue'
 import WHighstockVueDyn from './WHighstockVueDyn.vue'
 import WIcon from './WIcon.vue'
@@ -19,11 +20,10 @@ import WIconSvg from './WIconSvg.vue'
 import WJsonView from './WJsonView.vue'
 import WJsonViewCore from './WJsonViewCore.vue'
 import WPanel from './WPanel.vue'
+import WPanelScrolly from './WPanelScrolly.vue'
+import WPanelScrollyCore from './WPanelScrollyCore.vue'
 import WPopupPanel from './WPopupPanel.vue'
 import WProgressCircle from './WProgressCircle.vue'
-import WRadioChips from './WRadioChips.vue'
-import WScrollyPanel from './WScrollyPanel.vue'
-import WScrollyPanelCore from './WScrollyPanelCore.vue'
 import WShellEllipse from './WShellEllipse.vue'
 import WShellMaterial from './WShellMaterial.vue'
 import WSwitch from './WSwitch.vue'
@@ -52,13 +52,14 @@ let WComponentVue = {
         Vue.component('w-badge', WBadge)
         Vue.component('w-button-chip', WButtonChip)
         Vue.component('w-button-circle', WButtonCircle)
-        Vue.component('w-button-group-chip', WButtonGroupChip)
-        Vue.component('w-check-chips', WCheckChips)
-        Vue.component('w-chips', WChips)
         Vue.component('w-confirm', WConfirm)
         Vue.component('w-dialog', WDialog)
         Vue.component('w-dropfiles', WDropfiles)
         Vue.component('w-dynamic-list', WDynamicList)
+        Vue.component('w-group-buttons', WGroupButtons)
+        Vue.component('w-group-check', WGroupCheck)
+        Vue.component('w-group-radio', WGroupRadio)
+        Vue.component('w-group-tags', WGroupTags)
         Vue.component('w-highcharts-vue-dyn', WHighchartsVueDyn)
         Vue.component('w-highstock-vue-dyn', WHighstockVueDyn)
         Vue.component('w-icon', WIcon)
@@ -67,11 +68,10 @@ let WComponentVue = {
         Vue.component('w-json-view', WJsonView)
         Vue.component('w-json-view-core', WJsonViewCore)
         Vue.component('w-panel', WPanel)
+        Vue.component('w-panel-scrolly', WPanelScrolly)
+        Vue.component('w-panel-scrolly-core', WPanelScrollyCore)
         Vue.component('w-popup-panel', WPopupPanel)
         Vue.component('w-progress-circle', WProgressCircle)
-        Vue.component('w-radio-chips', WRadioChips)
-        Vue.component('w-scrolly-panel', WScrollyPanel)
-        Vue.component('w-scrolly-panel-core', WScrollyPanelCore)
         Vue.component('w-shell-ellipse', WShellEllipse)
         Vue.component('w-shell-material', WShellMaterial)
         Vue.component('w-switch', WSwitch)

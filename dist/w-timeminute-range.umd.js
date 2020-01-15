@@ -1,5 +1,5 @@
 /*!
- * w-timeminute-range v1.3.2
+ * w-timeminute-range v1.3.3
  * (c) 2018-2019 yuda-lyu(semisphere)
  * Released under the MIT License.
  */

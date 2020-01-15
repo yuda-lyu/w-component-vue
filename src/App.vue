@@ -148,11 +148,11 @@
             ></AppZoneWPanel>
 
 
-            <AppZoneWScrollyPanel
+            <AppZoneWPanelScrolly
                 :modeBorder="modeBorder"
                 :modeShell="modeShell"
-                v-if="compname==='WScrollyPanel'"
-            ></AppZoneWScrollyPanel>
+                v-if="compname==='WPanelScrolly'"
+            ></AppZoneWPanelScrolly>
 
 
             <AppZoneWIconSvg
@@ -176,11 +176,11 @@
             ></AppZoneWButtonChip>
 
 
-            <AppZoneWButtonGroupChip
+            <AppZoneWGroupButtons
                 :modeBorder="modeBorder"
                 :modeShell="modeShell"
-                v-if="compname==='WButtonGroupChip'"
-            ></AppZoneWButtonGroupChip>
+                v-if="compname==='WGroupButtons'"
+            ></AppZoneWGroupButtons>
 
 
             <AppZoneWButtonCircle
@@ -225,25 +225,25 @@
             ></AppZoneWConfirm>
 
 
-            <AppZoneWChips
+            <AppZoneWGroupTags
                 :modeBorder="modeBorder"
                 :modeShell="modeShell"
-                v-if="compname==='WChips'"
-            ></AppZoneWChips>
+                v-if="compname==='WGroupTags'"
+            ></AppZoneWGroupTags>
 
 
-            <AppZoneWCheckChips
+            <AppZoneWGroupCheck
                 :modeBorder="modeBorder"
                 :modeShell="modeShell"
-                v-if="compname==='WCheckChips'"
-            ></AppZoneWCheckChips>
+                v-if="compname==='WGroupCheck'"
+            ></AppZoneWGroupCheck>
 
 
-            <AppZoneWRadioChips
+            <AppZoneWGroupRadio
                :modeBorder="modeBorder"
                 :modeShell="modeShell"
-                v-if="compname==='WRadioChips'"
-            ></AppZoneWRadioChips>
+                v-if="compname==='WGroupRadio'"
+            ></AppZoneWGroupRadio>
 
 
             <AppZoneWText
@@ -355,20 +355,20 @@ import kebabCase from 'lodash/kebabCase'
 import { mdiCheckCircle, mdiCheckboxBlankCircleOutline } from '@mdi/js'
 import AppZoneWBadge from './AppZoneWBadge.vue'
 import AppZoneWPanel from './AppZoneWPanel.vue'
-import AppZoneWScrollyPanel from './AppZoneWScrollyPanel.vue'
+import AppZoneWPanelScrolly from './AppZoneWPanelScrolly.vue'
 import AppZoneWIconSvg from './AppZoneWIconSvg.vue'
 import AppZoneWDropfiles from './AppZoneWDropfiles.vue'
 import AppZoneWDialog from './AppZoneWDialog.vue'
 import AppZoneWConfirm from './AppZoneWConfirm.vue'
 import AppZoneWButtonChip from './AppZoneWButtonChip.vue'
 import AppZoneWButtonCircle from './AppZoneWButtonCircle.vue'
-import AppZoneWButtonGroupChip from './AppZoneWButtonGroupChip.vue'
+import AppZoneWGroupButtons from './AppZoneWGroupButtons.vue'
 import AppZoneWProgressCircle from './AppZoneWProgressCircle.vue'
 import AppZoneWSwitch from './AppZoneWSwitch.vue'
 import AppZoneWAlert from './AppZoneWAlert.vue'
-import AppZoneWChips from './AppZoneWChips.vue'
-import AppZoneWCheckChips from './AppZoneWCheckChips.vue'
-import AppZoneWRadioChips from './AppZoneWRadioChips.vue'
+import AppZoneWGroupTags from './AppZoneWGroupTags.vue'
+import AppZoneWGroupCheck from './AppZoneWGroupCheck.vue'
+import AppZoneWGroupRadio from './AppZoneWGroupRadio.vue'
 import AppZoneWText from './AppZoneWText.vue'
 import AppZoneWTextInt from './AppZoneWTextInt.vue'
 import AppZoneWTextarea from './AppZoneWTextarea.vue'
@@ -389,20 +389,20 @@ export default {
     components: {
         AppZoneWBadge,
         AppZoneWPanel,
-        AppZoneWScrollyPanel,
+        AppZoneWPanelScrolly,
         AppZoneWIconSvg,
         AppZoneWDropfiles,
         AppZoneWDialog,
         AppZoneWConfirm,
         AppZoneWButtonChip,
         AppZoneWButtonCircle,
-        AppZoneWButtonGroupChip,
+        AppZoneWGroupButtons,
         AppZoneWProgressCircle,
         AppZoneWSwitch,
         AppZoneWAlert,
-        AppZoneWChips,
-        AppZoneWCheckChips,
-        AppZoneWRadioChips,
+        AppZoneWGroupTags,
+        AppZoneWGroupCheck,
+        AppZoneWGroupRadio,
         AppZoneWText,
         AppZoneWTextInt,
         AppZoneWTextarea,
@@ -429,28 +429,28 @@ export default {
                     name: 'basic',
                     cmps: [
                         'WBadge',
+                        'WSwitch',
                         'WIconSvg',
                         'WDropfiles',
                         'WProgressCircle',
                         'WPanel',
-                        'WScrollyPanel',
+                        'WPanelScrolly',
                     ]
                 },
                 {
                     name: 'button',
                     cmps: [
                         'WButtonChip',
-                        'WButtonGroupChip',
                         'WButtonCircle',
-                        'WSwitch',
                     ]
                 },
                 {
-                    name: 'chip',
+                    name: 'group',
                     cmps: [
-                        'WChips',
-                        'WCheckChips',
-                        'WRadioChips',
+                        'WGroupButtons',
+                        'WGroupCheck',
+                        'WGroupRadio',
+                        'WGroupTags',
                     ]
                 },
                 {
@@ -497,7 +497,7 @@ export default {
                 },
             ],
             haveModeBorder: {
-                'WButtonGroupChip': true,
+                'WGroupButtons': true,
                 'WText': true,
                 'WTextInt': true,
                 'WTextSelect': true,
@@ -508,11 +508,11 @@ export default {
                 'WTimeminuteRange': true,
             },
             haveModeShell: {
-                'WButtonGroupChip': true,
                 'WSwitch': true,
-                'WChips': true,
-                'WCheckChips': true,
-                'WRadioChips': true,
+                'WGroupButtons': true,
+                'WGroupTags': true,
+                'WGroupCheck': true,
+                'WGroupRadio': true,
                 'WText': true,
                 'WTextInt': true,
                 'WTextarea': true,
