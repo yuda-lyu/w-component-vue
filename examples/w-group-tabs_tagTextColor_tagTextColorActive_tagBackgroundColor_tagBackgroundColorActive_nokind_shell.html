@@ -69,7 +69,7 @@
     <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.js"></script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@1.3.4/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@1.3.5/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -121,16 +121,16 @@
 
             <w-shell-material
                 style="margin-top:30px;"
-                :title="'請輸入販賣種類'"
+                :title="'通路蔬果種類'"
                 :left-icon="'mdi-email-variant'"
             >
                 <w-group-tabs
-                    :tag-text-color="'purple lighten-1'"
-                    :tag-text-color-active="'purple darken-2'"
-                    :tag-background-color="'purple lighten-4'"
-                    :tag-background-color-active="'rgba(255,255,255,0.8)'"
-                    :value-active.sync="WGroupTabs.valueActive"
-                    v-model="WGroupTabs.items"
+                    :tag-text-color="'white'"
+                    :tag-text-color-active="'black'"
+                    :tag-background-color="'purple lighten-3'"
+                    :tag-background-color-active="'white'"
+                    :value-active.sync="WGroupTabs.useItem1"
+                    v-model="WGroupTabs.items1"
                 />
             </w-shell-material>
         </div>
@@ -147,11 +147,11 @@
     data: function() {
       return {
         WGroupTabs: {
-          valueActive: {
+          useItem1: {
             name: "Spinach",
             tag: "Vege"
           },
-          items: [
+          items1: [
             {
               name: "Spinach",
               tag: "Vege"
@@ -181,10 +181,20 @@
               tag: "Fruit"
             }
           ],
-          itemsPlus: [
+          useItem2: {
+            name: "2020-01-01",
+            tag: "Rank",
+            textColor: "purple lighten-1",
+            textColorActive: "white",
+            backgroundColor: "purple lighten-1",
+            backgroundColorActive: "purple lighten-1",
+            outlined: true,
+            outlinedActive: false
+          },
+          items2: [
             {
-              name: "2020年1月1日",
-              tag: "點擊排行",
+              name: "2020-01-01",
+              tag: "Rank",
               textColor: "purple lighten-1",
               textColorActive: "white",
               backgroundColor: "purple lighten-1",
@@ -193,8 +203,8 @@
               outlinedActive: false
             },
             {
-              name: "2020年1月2日",
-              tag: "點擊排行",
+              name: "2020-01-02",
+              tag: "Rank",
               textColor: "purple lighten-1",
               textColorActive: "white",
               backgroundColor: "purple lighten-1",
@@ -203,8 +213,8 @@
               outlinedActive: false
             },
             {
-              name: "2020年1月1日",
-              tag: "分數排行",
+              name: "2020-01-01",
+              tag: "View",
               textColor: "pink lighten-3",
               textColorActive: "white",
               backgroundColor: "pink lighten-2",
@@ -213,8 +223,8 @@
               outlinedActive: false
             },
             {
-              name: "2020年1月2日",
-              tag: "分數排行",
+              name: "2020-01-02",
+              tag: "View",
               textColor: "pink lighten-3",
               textColorActive: "white",
               backgroundColor: "pink lighten-2",
@@ -223,8 +233,8 @@
               outlinedActive: false
             },
             {
-              name: "2020年1月3日",
-              tag: "分數排行",
+              name: "2020-01-03",
+              tag: "View",
               textColor: "pink lighten-3",
               textColorActive: "white",
               backgroundColor: "pink lighten-2",
@@ -235,27 +245,7 @@
           ],
           empty: []
         },
-        actions: [
-          {
-            mode: "eletype",
-            selector: "input.basic",
-            str: "新增1"
-          },
-          {
-            mode: "eletype",
-            selector: "input.basic",
-            str: "項目1",
-            noEnter: true
-          },
-          {
-            mode: "eleclick",
-            selector: 'div[shellellipse="rightIcon"]'
-          },
-          {
-            mode: "eleclick",
-            selector: 'i[role="button"]'
-          }
-        ]
+        actions: []
       };
     },
     computed: {},
