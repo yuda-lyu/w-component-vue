@@ -20,8 +20,8 @@
                     ></demolink>
 
                     <w-group-tabs
-                        :valueActive.sync="WGroupTabs.valueActive"
-                        v-model="WGroupTabs.items"
+                        :valueActive.sync="WGroupTabs.useItem1"
+                        v-model="WGroupTabs.items1"
                     ></w-group-tabs>
                 </div>
 
@@ -36,11 +36,11 @@
 
                     <w-group-tabs
                         :textColor="'orange lighten-1'"
-                        :textColorActive="'orange darken-2'"
+                        :textColorActive="'white'"
                         :backgroundColor="'white'"
-                        :backgroundColorActive="'orange lighten-4'"
-                        :valueActive.sync="WGroupTabs.valueActive"
-                        v-model="WGroupTabs.items"
+                        :backgroundColorActive="'orange lighten-1'"
+                        :valueActive.sync="WGroupTabs.useItem1"
+                        v-model="WGroupTabs.items1"
                     ></w-group-tabs>
                 </div>
 
@@ -54,12 +54,12 @@
                     ></demolink>
 
                     <w-group-tabs
-                        :tagTextColor="'purple lighten-1'"
-                        :tagTextColorActive="'purple darken-2'"
-                        :tagBackgroundColor="'purple lighten-4'"
-                        :tagBackgroundColorActive="'rgba(255,255,255,0.8)'"
-                        :valueActive.sync="WGroupTabs.valueActive"
-                        v-model="WGroupTabs.items"
+                        :tagTextColor="'white'"
+                        :tagTextColorActive="'black'"
+                        :tagBackgroundColor="'purple lighten-3'"
+                        :tagBackgroundColorActive="'white'"
+                        :valueActive.sync="WGroupTabs.useItem1"
+                        v-model="WGroupTabs.items1"
                     ></w-group-tabs>
                 </div>
 
@@ -67,7 +67,55 @@
                 <div class="bk" style="display:block;">
                     <demolink
                         :kbname="'w-group-tabs'"
-                        :casename="'no shadow and use settings from value'"
+                        :casename="'no close'"
+                        :kind="'nokind'"
+                        :shell="'pure'"
+                    ></demolink>
+
+                    <w-group-tabs
+                        :close="false"
+                        :valueActive.sync="WGroupTabs.useItem1"
+                        v-model="WGroupTabs.items1"
+                    ></w-group-tabs>
+                </div>
+
+
+                <div class="bk" style="display:block;">
+                    <demolink
+                        :kbname="'w-group-tabs'"
+                        :casename="'no draggable'"
+                        :kind="'nokind'"
+                        :shell="'pure'"
+                    ></demolink>
+
+                    <w-group-tabs
+                        :draggable="false"
+                        :valueActive.sync="WGroupTabs.useItem1"
+                        v-model="WGroupTabs.items1"
+                    ></w-group-tabs>
+                </div>
+
+
+                <div class="bk" style="display:block;">
+                    <demolink
+                        :kbname="'w-group-tabs'"
+                        :casename="'nodata'"
+                        :kind="'nokind'"
+                        :shell="'pure'"
+                    ></demolink>
+
+                    <w-group-tabs
+                        :draggable="false"
+                        :valueActive.sync="WGroupTabs.useItem1"
+                        v-model="WGroupTabs.empty"
+                    ></w-group-tabs>
+                </div>
+
+
+                <div class="bk" style="display:block;">
+                    <demolink
+                        :kbname="'w-group-tabs'"
+                        :casename="'no shadow and individual setting'"
                         :kind="'nokind'"
                         :shell="'pure'"
                     ></demolink>
@@ -77,7 +125,8 @@
                         :tagBackgroundColor="'white'"
                         :tagBackgroundColorActive="'rgba(255,255,255,0.8)'"
                         :tagTextColorActive="'grey darken-2'"
-                        v-model="WGroupTabs.itemsPlus"
+                        :valueActive.sync="WGroupTabs.useItem2"
+                        v-model="WGroupTabs.items2"
                     ></w-group-tabs>
                 </div>
 
@@ -98,12 +147,12 @@
 
                     <w-shell-material
                         style="margin-top:30px;"
-                        :title="'請輸入販賣種類'"
+                        :title="'通路蔬果種類'"
                         :leftIcon="mdiEmailVariant"
                     >
                         <w-group-tabs
-                            :valueActive.sync="WGroupTabs.valueActive"
-                            v-model="WGroupTabs.items"
+                            :valueActive.sync="WGroupTabs.useItem1"
+                            v-model="WGroupTabs.items1"
                         ></w-group-tabs>
                     </w-shell-material>
                 </div>
@@ -119,16 +168,16 @@
 
                     <w-shell-material
                         style="margin-top:30px;"
-                        :title="'請輸入販賣種類'"
+                        :title="'通路蔬果種類'"
                         :leftIcon="mdiEmailVariant"
                     >
                         <w-group-tabs
                             :textColor="'orange lighten-1'"
-                            :textColorActive="'orange darken-2'"
+                            :textColorActive="'white'"
                             :backgroundColor="'white'"
-                            :backgroundColorActive="'orange lighten-4'"
-                            :valueActive.sync="WGroupTabs.valueActive"
-                            v-model="WGroupTabs.items"
+                            :backgroundColorActive="'orange lighten-1'"
+                            :valueActive.sync="WGroupTabs.useItem1"
+                            v-model="WGroupTabs.items1"
                         ></w-group-tabs>
                     </w-shell-material>
                 </div>
@@ -144,16 +193,16 @@
 
                     <w-shell-material
                         style="margin-top:30px;"
-                        :title="'請輸入販賣種類'"
+                        :title="'通路蔬果種類'"
                         :leftIcon="mdiEmailVariant"
                     >
                         <w-group-tabs
-                            :tagTextColor="'purple lighten-1'"
-                            :tagTextColorActive="'purple darken-2'"
-                            :tagBackgroundColor="'purple lighten-4'"
-                            :tagBackgroundColorActive="'rgba(255,255,255,0.8)'"
-                            :valueActive.sync="WGroupTabs.valueActive"
-                            v-model="WGroupTabs.items"
+                            :tagTextColor="'white'"
+                            :tagTextColorActive="'black'"
+                            :tagBackgroundColor="'purple lighten-3'"
+                            :tagBackgroundColorActive="'white'"
+                            :valueActive.sync="WGroupTabs.useItem1"
+                            v-model="WGroupTabs.items1"
                         ></w-group-tabs>
                     </w-shell-material>
                 </div>
@@ -162,14 +211,80 @@
                 <div class="bk" style="display:block;">
                     <demolink
                         :kbname="'w-group-tabs'"
-                        :casename="'no shadow and use settings from value'"
+                        :casename="'no close'"
                         :kind="'nokind'"
                         :shell="'shell'"
                     ></demolink>
 
                     <w-shell-material
                         style="margin-top:30px;"
-                        :title="'請輸入販賣種類'"
+                        :title="'通路蔬果種類'"
+                        :leftIcon="mdiEmailVariant"
+                    >
+                        <w-group-tabs
+                            :close="false"
+                            :valueActive.sync="WGroupTabs.useItem1"
+                            v-model="WGroupTabs.items1"
+                        ></w-group-tabs>
+                    </w-shell-material>
+                </div>
+
+
+                <div class="bk" style="display:block;">
+                    <demolink
+                        :kbname="'w-group-tabs'"
+                        :casename="'no draggable'"
+                        :kind="'nokind'"
+                        :shell="'shell'"
+                    ></demolink>
+
+                    <w-shell-material
+                        style="margin-top:30px;"
+                        :title="'通路蔬果種類'"
+                        :leftIcon="mdiEmailVariant"
+                    >
+                        <w-group-tabs
+                            :draggable="false"
+                            :valueActive.sync="WGroupTabs.useItem1"
+                            v-model="WGroupTabs.items1"
+                        ></w-group-tabs>
+                    </w-shell-material>
+                </div>
+
+
+                <div class="bk" style="display:block;">
+                    <demolink
+                        :kbname="'w-group-tabs'"
+                        :casename="'nodata'"
+                        :kind="'nokind'"
+                        :shell="'shell'"
+                    ></demolink>
+
+                    <w-shell-material
+                        style="margin-top:30px;"
+                        :title="'通路蔬果種類'"
+                        :leftIcon="mdiEmailVariant"
+                    >
+                        <w-group-tabs
+                            :draggable="false"
+                            :valueActive.sync="WGroupTabs.useItem1"
+                            v-model="WGroupTabs.empty"
+                        ></w-group-tabs>
+                    </w-shell-material>
+                </div>
+
+
+                <div class="bk" style="display:block;">
+                    <demolink
+                        :kbname="'w-group-tabs'"
+                        :casename="'no shadow and individual setting'"
+                        :kind="'nokind'"
+                        :shell="'shell'"
+                    ></demolink>
+
+                    <w-shell-material
+                        style="margin-top:30px;"
+                        :title="'通路蔬果種類'"
                         :leftIcon="mdiEmailVariant"
                     >
                         <w-group-tabs
@@ -177,7 +292,8 @@
                             :tagBackgroundColor="'white'"
                             :tagBackgroundColorActive="'rgba(255,255,255,0.8)'"
                             :tagTextColorActive="'grey darken-2'"
-                            v-model="WGroupTabs.itemsPlus"
+                            :valueActive.sync="WGroupTabs.useItem2"
+                            v-model="WGroupTabs.items2"
                         ></w-group-tabs>
                     </w-shell-material>
                 </div>
@@ -216,11 +332,11 @@ export default {
         return {
             mdiEmailVariant,
             'WGroupTabs': {
-                'valueActive': {
+                'useItem1': {
                     'name': 'Spinach',
                     'tag': 'Vege',
                 },
-                'items': [
+                'items1': [
                     {
                         'name': 'Spinach',
                         'tag': 'Vege',
@@ -250,10 +366,20 @@ export default {
                         'tag': 'Fruit',
                     },
                 ],
-                'itemsPlus': [
+                'useItem2': {
+                    'name': '2020-01-01',
+                    'tag': 'Rank',
+                    'textColor': 'purple lighten-1',
+                    'textColorActive': 'white',
+                    'backgroundColor': 'purple lighten-1',
+                    'backgroundColorActive': 'purple lighten-1',
+                    'outlined': true,
+                    'outlinedActive': false,
+                },
+                'items2': [
                     {
-                        'name': '2020年1月1日',
-                        'tag': '點擊排行',
+                        'name': '2020-01-01',
+                        'tag': 'Rank',
                         'textColor': 'purple lighten-1',
                         'textColorActive': 'white',
                         'backgroundColor': 'purple lighten-1',
@@ -262,8 +388,8 @@ export default {
                         'outlinedActive': false,
                     },
                     {
-                        'name': '2020年1月2日',
-                        'tag': '點擊排行',
+                        'name': '2020-01-02',
+                        'tag': 'Rank',
                         'textColor': 'purple lighten-1',
                         'textColorActive': 'white',
                         'backgroundColor': 'purple lighten-1',
@@ -272,8 +398,8 @@ export default {
                         'outlinedActive': false,
                     },
                     {
-                        'name': '2020年1月1日',
-                        'tag': '分數排行',
+                        'name': '2020-01-01',
+                        'tag': 'View',
                         'textColor': 'pink lighten-3',
                         'textColorActive': 'white',
                         'backgroundColor': 'pink lighten-2',
@@ -282,8 +408,8 @@ export default {
                         'outlinedActive': false,
                     },
                     {
-                        'name': '2020年1月2日',
-                        'tag': '分數排行',
+                        'name': '2020-01-02',
+                        'tag': 'View',
                         'textColor': 'pink lighten-3',
                         'textColorActive': 'white',
                         'backgroundColor': 'pink lighten-2',
@@ -292,8 +418,8 @@ export default {
                         'outlinedActive': false,
                     },
                     {
-                        'name': '2020年1月3日',
-                        'tag': '分數排行',
+                        'name': '2020-01-03',
+                        'tag': 'View',
                         'textColor': 'pink lighten-3',
                         'textColorActive': 'white',
                         'backgroundColor': 'pink lighten-2',
@@ -305,25 +431,6 @@ export default {
                 'empty': []
             },
             'actions': [
-                {
-                    'mode': 'eletype',
-                    'selector': 'input.basic',
-                    'str': '新增1',
-                },
-                {
-                    'mode': 'eletype',
-                    'selector': 'input.basic',
-                    'str': '項目1',
-                    'noEnter': true,
-                },
-                {
-                    'mode': 'eleclick',
-                    'selector': 'div[shellellipse="rightIcon"]',
-                },
-                {
-                    'mode': 'eleclick',
-                    'selector': 'i[role="button"]',
-                },
             ],
         }
     },

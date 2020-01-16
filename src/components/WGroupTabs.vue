@@ -69,10 +69,10 @@ import VueDraggable from 'vuedraggable'
 
 /**
  * @vue-prop {Array} value 輸入字串陣列
- * @vue-prop {String} [textColor='purple lighten-1'] 輸入文字顏色字串，預設'purple lighten-1'
+ * @vue-prop {String} [textColor='pink lighten-1'] 輸入文字顏色字串，預設'pink lighten-1'
  * @vue-prop {String} [textColorActive='white'] 輸入點擊狀態時文字顏色字串，預設'white'
  * @vue-prop {String} [backgroundColor='white'] 輸入背景顏色字串，預設'white'
- * @vue-prop {String} [backgroundColorActive='purple lighten-1'] 輸入點擊狀態時背景顏色字串，預設'purple lighten-1'
+ * @vue-prop {String} [backgroundColorActive='pink lighten-1'] 輸入點擊狀態時背景顏色字串，預設'pink lighten-1'
  * @vue-prop {String} [tagTextColor='grey'] 輸入標記文字顏色字串，預設'grey'
  * @vue-prop {String} [tagTextColorActive='grey darken-4'] 輸入點擊狀態時標記文字顏色字串，預設'grey darken-4'
  * @vue-prop {String} [tagBackgroundColor='rgba(100,100,100,0.1)'] 輸入標記背景顏色字串，預設'rgba(100,100,100,0.1)'
@@ -95,7 +95,7 @@ export default {
         },
         textColor: {
             type: String,
-            default: 'purple lighten-1',
+            default: 'pink lighten-1',
         },
         textColorActive: {
             type: String,
@@ -107,7 +107,7 @@ export default {
         },
         backgroundColorActive: {
             type: String,
-            default: 'purple lighten-1',
+            default: 'pink lighten-1',
         },
         tagTextColor: {
             type: String,

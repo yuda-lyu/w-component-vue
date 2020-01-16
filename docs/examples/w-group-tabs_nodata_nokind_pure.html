@@ -6,7 +6,7 @@
         name="viewport"
         content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui"
     />
-    <title>example for w-group-tabs: no shadow and use settings from value</title>
+    <title>example for w-group-tabs: nodata</title>
 
     <!-- fontawesome -->
     <link
@@ -69,7 +69,7 @@
     <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.js"></script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@1.3.4/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@1.3.5/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -115,21 +115,13 @@
     <v-app id="app" style="font-family:inherit;">
         <div class="head1">w-group-tabs</div>
         <div class="bk" style="display:block;">
-            <div class="item">no shadow and use settings from value</div>
+            <div class="item">nodata</div>
 
-            <w-shell-material
-                style="margin-top:30px;"
-                :title="'請輸入販賣種類'"
-                :left-icon="'mdi-email-variant'"
-            >
-                <w-group-tabs
-                    :shadow="false"
-                    :tag-background-color="'white'"
-                    :tag-background-color-active="'rgba(255,255,255,0.8)'"
-                    :tag-text-color-active="'grey darken-2'"
-                    v-model="WGroupTabs.itemsPlus"
-                />
-            </w-shell-material>
+            <w-group-tabs
+                :draggable="false"
+                :value-active.sync="WGroupTabs.useItem1"
+                v-model="WGroupTabs.empty"
+            />
         </div>
     </v-app>
 
@@ -144,11 +136,11 @@
     data: function() {
       return {
         WGroupTabs: {
-          valueActive: {
+          useItem1: {
             name: "Spinach",
             tag: "Vege"
           },
-          items: [
+          items1: [
             {
               name: "Spinach",
               tag: "Vege"
@@ -178,10 +170,20 @@
               tag: "Fruit"
             }
           ],
-          itemsPlus: [
+          useItem2: {
+            name: "2020-01-01",
+            tag: "Rank",
+            textColor: "purple lighten-1",
+            textColorActive: "white",
+            backgroundColor: "purple lighten-1",
+            backgroundColorActive: "purple lighten-1",
+            outlined: true,
+            outlinedActive: false
+          },
+          items2: [
             {
-              name: "2020年1月1日",
-              tag: "點擊排行",
+              name: "2020-01-01",
+              tag: "Rank",
               textColor: "purple lighten-1",
               textColorActive: "white",
               backgroundColor: "purple lighten-1",
@@ -190,8 +192,8 @@
               outlinedActive: false
             },
             {
-              name: "2020年1月2日",
-              tag: "點擊排行",
+              name: "2020-01-02",
+              tag: "Rank",
               textColor: "purple lighten-1",
               textColorActive: "white",
               backgroundColor: "purple lighten-1",
@@ -200,8 +202,8 @@
               outlinedActive: false
             },
             {
-              name: "2020年1月1日",
-              tag: "分數排行",
+              name: "2020-01-01",
+              tag: "View",
               textColor: "pink lighten-3",
               textColorActive: "white",
               backgroundColor: "pink lighten-2",
@@ -210,8 +212,8 @@
               outlinedActive: false
             },
             {
-              name: "2020年1月2日",
-              tag: "分數排行",
+              name: "2020-01-02",
+              tag: "View",
               textColor: "pink lighten-3",
               textColorActive: "white",
               backgroundColor: "pink lighten-2",
@@ -220,8 +222,8 @@
               outlinedActive: false
             },
             {
-              name: "2020年1月3日",
-              tag: "分數排行",
+              name: "2020-01-03",
+              tag: "View",
               textColor: "pink lighten-3",
               textColorActive: "white",
               backgroundColor: "pink lighten-2",
@@ -232,27 +234,7 @@
           ],
           empty: []
         },
-        actions: [
-          {
-            mode: "eletype",
-            selector: "input.basic",
-            str: "新增1"
-          },
-          {
-            mode: "eletype",
-            selector: "input.basic",
-            str: "項目1",
-            noEnter: true
-          },
-          {
-            mode: "eleclick",
-            selector: 'div[shellellipse="rightIcon"]'
-          },
-          {
-            mode: "eleclick",
-            selector: 'i[role="button"]'
-          }
-        ]
+        actions: []
       };
     },
     computed: {},
