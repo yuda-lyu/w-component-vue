@@ -6,7 +6,7 @@
         name="viewport"
         content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui"
     />
-    <title>example for w-panel: no borderShadow, with crimson outer</title>
+    <title>example for w-panel-stripe: no borderShadow, with crimson outer</title>
 
     <!-- fontawesome -->
     <link
@@ -69,7 +69,7 @@
     <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.js"></script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@1.3.5/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@1.3.6/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -113,12 +113,12 @@
     style="font-family:'Microsoft JhengHei','Avenir','Helvetica'; padding:20px;"
 >
     <v-app id="app" style="font-family:inherit;">
-        <div class="head1">w-panel</div>
+        <div class="head1">w-panel-stripe</div>
         <div class="bk">
             <div class="item">no borderShadow, with crimson outer</div>
 
             <div style="background-color:#a77; padding:40px;">
-                <w-panel style="width:520px;" :border-shadow="false">
+                <w-panel-stripe style="width:520px;" :border-shadow="false">
                     <template v-slot:icon>
                         <v-icon
                             style="margin-right:15px;"
@@ -127,19 +127,19 @@
                     </template>
 
                     <template v-slot:title>
-                        <div style="font-size:2rem;">{{WPanel.title}}</div>
+                        <div style="font-size:2rem;">{{WPanelStripe.title}}</div>
                     </template>
 
                     <template v-slot:description>
-                        <div style="opacity:0.7;">{{WPanel.description}}</div>
+                        <div style="opacity:0.7;">{{WPanelStripe.description}}</div>
                     </template>
 
                     <template v-slot:content>
-                        <div style="padding:20px;">{{WPanel.content}}</div>
+                        <div style="padding:20px;">{{WPanelStripe.content}}</div>
                     </template>
 
-                    <template v-slot:footer>{{WPanel.footer}}</template>
-                </w-panel>
+                    <template v-slot:footer>{{WPanelStripe.footer}}</template>
+                </w-panel-stripe>
             </div>
         </div>
     </v-app>
@@ -154,7 +154,7 @@
     vuetify: new Vuetify(),
     data: function() {
       return {
-        WPanel: {
+        WPanelStripe: {
           title: "A panel title",
           description: "Quisque ut nisi. Maecenas malesuada.",
           content:

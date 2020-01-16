@@ -6,7 +6,7 @@
         name="viewport"
         content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui"
     />
-    <title>example for w-panel: with grey outer</title>
+    <title>example for w-panel-bulge: borderRadius</title>
 
     <!-- fontawesome -->
     <link
@@ -69,7 +69,7 @@
     <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.js"></script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@1.3.5/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@1.3.6/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -113,34 +113,17 @@
     style="font-family:'Microsoft JhengHei','Avenir','Helvetica'; padding:20px;"
 >
     <v-app id="app" style="font-family:inherit;">
-        <div class="head1">w-panel</div>
+        <div class="head1">w-panel-bulge</div>
         <div class="bk">
-            <div class="item">with grey outer</div>
+            <div class="item">borderRadius</div>
 
-            <div style="background-color:#bbb; padding:40px;">
-                <w-panel style="width:520px;">
-                    <template v-slot:icon>
-                        <v-icon
-                            style="margin-right:15px;"
-                            size="60"
-                        >fab fa-angular</v-icon>
-                    </template>
-
-                    <template v-slot:title>
-                        <div style="font-size:2rem;">{{WPanel.title}}</div>
-                    </template>
-
-                    <template v-slot:description>
-                        <div style="opacity:0.7;">{{WPanel.description}}</div>
-                    </template>
-
-                    <template v-slot:content>
-                        <div style="padding:20px;">{{WPanel.content}}</div>
-                    </template>
-
-                    <template v-slot:footer>{{WPanel.footer}}</template>
-                </w-panel>
-            </div>
+            <w-panel-bulge
+                style="width:500px;"
+                :header-text="WPanelBulge.title"
+                :border-radius="10"
+            >
+                <div v-html="WPanelBulge.table" />
+            </w-panel-bulge>
         </div>
     </v-app>
 
@@ -154,12 +137,46 @@
     vuetify: new Vuetify(),
     data: function() {
       return {
-        WPanel: {
-          title: "A panel title",
-          description: "Quisque ut nisi. Maecenas malesuada.",
-          content:
-            "Here is a panel content, Morbi mattis ullamcorper velit. Donec orci lectus, aliquam ut, faucibus non, euismod id, nulla. In ut quam vitae odio lacinia tincidunt.",
-          footer: "Here is a panel footer"
+        WPanelBulge: {
+          table: `
+
+                    <div style="padding:10px;">
+                        <span>A data table</span>
+                    </div>
+
+                    <table style="width:100%; font-size:0.7rem;">
+                        <thead>
+                            <tr>
+                                <th style="padding:2px 8px; text-align:left;">Dessert</th>
+                                <th style="padding:2px 8px; text-align:left;">Calories</th>
+                                <th style="padding:2px 8px; text-align:left;">Fat</th>
+                                <th style="padding:2px 8px; text-align:left;">Carbs</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="padding:2px 8px; border-top:1px solid #ddd;">Frozen Yogurt</td>
+                                <td style="padding:2px 8px; border-top:1px solid #ddd;">159</td>
+                                <td style="padding:2px 8px; border-top:1px solid #ddd;">6</td>
+                                <td style="padding:2px 8px; border-top:1px solid #ddd;">24</td>
+                            </tr>
+                            <tr>
+                                <td style="padding:2px 8px; border-top:1px solid #ddd;">Ice cream sandwich</td>
+                                <td style="padding:2px 8px; border-top:1px solid #ddd;">237</td>
+                                <td style="padding:2px 8px; border-top:1px solid #ddd;">9</td>
+                                <td style="padding:2px 8px; border-top:1px solid #ddd;">37</td>
+                            </tr>
+                            <tr>
+                                <td style="padding:2px 8px; border-top:1px solid #ddd;">Eclair</td>
+                                <td style="padding:2px 8px; border-top:1px solid #ddd;">262</td>
+                                <td style="padding:2px 8px; border-top:1px solid #ddd;">16</td>
+                                <td style="padding:2px 8px; border-top:1px solid #ddd;">23</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                `,
+          title: "Bulge"
         },
         actions: []
       };
