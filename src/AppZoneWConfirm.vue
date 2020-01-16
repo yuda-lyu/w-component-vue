@@ -109,8 +109,8 @@
                     :show.sync="WConfirm.bShow5"
                     :title="WConfirm.title"
                     :content="WConfirm.content"
-                    :noBtnText="'Cancel'"
-                    :yesBtnText="'Save'"
+                    :noBtnText="'取消'"
+                    :yesBtnText="'同意'"
                     @click-no="clickEvent('click-no')"
                     @click-yes="clickEvent('click-yes')"
                 ></w-confirm>
@@ -271,8 +271,8 @@ export default {
                 'bShow8': false,
                 'bShow9': false,
                 'bShow10': false,
-                'title': '系統確認訊息',
-                'content': '是否同意上傳表單資料?',
+                'title': 'Confirm',
+                'content': 'Do you agree to upload the information?',
             },
             'actions': [
             ],

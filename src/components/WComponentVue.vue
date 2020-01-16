@@ -20,9 +20,10 @@ import WIconLoading from './WIconLoading.vue'
 import WIconSvg from './WIconSvg.vue'
 import WJsonView from './WJsonView.vue'
 import WJsonViewCore from './WJsonViewCore.vue'
-import WPanel from './WPanel.vue'
+import WPanelBulge from './WPanelBulge.vue'
 import WPanelScrolly from './WPanelScrolly.vue'
 import WPanelScrollyCore from './WPanelScrollyCore.vue'
+import WPanelStripe from './WPanelStripe.vue'
 import WPopupPanel from './WPopupPanel.vue'
 import WProgressCircle from './WProgressCircle.vue'
 import WShellEllipse from './WShellEllipse.vue'
@@ -69,9 +70,10 @@ let WComponentVue = {
         Vue.component('w-icon-svg', WIconSvg)
         Vue.component('w-json-view', WJsonView)
         Vue.component('w-json-view-core', WJsonViewCore)
-        Vue.component('w-panel', WPanel)
+        Vue.component('w-panel-bulge', WPanelBulge)
         Vue.component('w-panel-scrolly', WPanelScrolly)
         Vue.component('w-panel-scrolly-core', WPanelScrollyCore)
+        Vue.component('w-panel-stripe', WPanelStripe)
         Vue.component('w-popup-panel', WPopupPanel)
         Vue.component('w-progress-circle', WProgressCircle)
         Vue.component('w-shell-ellipse', WShellEllipse)

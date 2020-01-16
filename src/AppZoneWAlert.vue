@@ -16,7 +16,7 @@
                     :shell="'pure'"
                 ></demolink>
 
-                <v-btn small @click="$alert('成功'+WAlert.text)">Success</v-btn>
+                <v-btn small @click="$alert('Success'+WAlert.text)">Success</v-btn>
 
             </div>
 
@@ -29,7 +29,7 @@
                     :shell="'pure'"
                 ></demolink>
 
-                <v-btn small @click="$alert('失敗'+WAlert.text,{type:'error'})">Error</v-btn>
+                <v-btn small @click="$alert('Error'+WAlert.text,{type:'error'})">Error</v-btn>
 
             </div>
 
@@ -42,7 +42,7 @@
                     :shell="'pure'"
                 ></demolink>
 
-                <v-btn small @click="$alert('警告'+WAlert.text,{type:'warning'})">Warning</v-btn>
+                <v-btn small @click="$alert('Warning'+WAlert.text,{type:'warning'})">Warning</v-btn>
 
             </div>
 
@@ -55,7 +55,7 @@
                     :shell="'pure'"
                 ></demolink>
 
-                <v-btn small @click="$alert('左下'+WAlert.text,{position:'bottom-left'})">bottom-left</v-btn>
+                <v-btn small @click="$alert('Bottom-Left'+WAlert.text,{position:'bottom-left'})">bottom-left</v-btn>
 
             </div>
 
@@ -79,7 +79,7 @@ export default {
     data: function() {
         return {
             'WAlert': {
-                'text': '訊息文字',
+                'text': ' Message',
             },
             'actions': [
                 {

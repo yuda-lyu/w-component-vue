@@ -18,7 +18,7 @@
 
             <div :style="useContentStyle">
 
-                <div>
+                <div style="display:table-cell; vertical-align:middle; padding-right:15px;">
                     <v-icon
                         :size="contentIconSize"
                         :color="contentIconColor"
@@ -27,7 +27,7 @@
                     </v-icon>
                 </div>
 
-                <div style="margin-left:15px; font-size:1.2rem; white-space:pre;">{{content}}</div>
+                <div style="display:table-cell; vertical-align:middle; width:100%;">{{content}}</div>
 
             </div>
 
@@ -77,10 +77,10 @@ import color2hex from '../js/vuetifyColor.mjs'
  * @vue-prop {String} [contentIconColor='orange'] 輸入內容左側圖標顏色字串，預設'orange'
  * @vue-prop {Number} [contentIconSize=40] 輸入內容左側圖標大小數字，預設40
  * @vue-prop {Boolean} [hasNoBtn=true] 輸入是否顯示取消按鈕，預設true
- * @vue-prop {String} [noBtnText='取消'] 輸入否決按鈕文字字串，預設'取消'
+ * @vue-prop {String} [noBtnText='Cancel'] 輸入否決按鈕文字字串，預設'Cancel'
  * @vue-prop {String} [noBtnTextColor='white'] 輸入否決按鈕文字顏色字串，預設'white'
  * @vue-prop {String} [noBtnBackgroundColor='pink lighten-1'] 輸入否決按鈕顏色字串，預設'pink lighten-1'
- * @vue-prop {String} [yesBtnText='同意'] 輸入同意按鈕文字字串，預設'同意'
+ * @vue-prop {String} [yesBtnText='Yes'] 輸入同意按鈕文字字串，預設'Yes'
  * @vue-prop {String} [yesBtnTextColor='white'] 輸入同意按鈕文字顏色字串，預設'white'
  * @vue-prop {String} [yesBtnBackgroundColor='blue'] 輸入同意按鈕顏色字串，預設'blue'
  * @vue-prop {String} [headerBackgroundColor='grey lighten-5'] 輸入上方區塊背景顏色字串，預設'grey lighten-5'
@@ -130,7 +130,7 @@ export default {
         },
         noBtnText: {
             type: String,
-            default: '取消',
+            default: 'Cancel',
         },
         noBtnTextColor: {
             type: String,
@@ -142,7 +142,7 @@ export default {
         },
         yesBtnText: {
             type: String,
-            default: '同意',
+            default: 'Yes',
         },
         yesBtnTextColor: {
             type: String,
@@ -222,8 +222,9 @@ export default {
             let s = {}
             s['padding'] = '20px 15px'
             s['background-color'] = color2hex(vo.contentBackgroundColor)
-            s['display'] = 'flex'
-            s['align-items'] = 'center'
+            s['display'] = 'table'
+            s['width'] = '100%'
+            //s['align-items'] = 'center'
             s['color'] = color2hex(vo.contentColor)
             return s
         },

@@ -2,7 +2,7 @@
     <div>
 
 
-        <div class="head1">w-panel</div>
+        <div class="head1">w-panel-stripe</div>
 
 
         <div style="padding:0px;">
@@ -10,87 +10,87 @@
 
             <div class="bk">
                 <demolink
-                    :kbname="'w-panel'"
+                    :kbname="'w-panel-stripe'"
                     :casename="'slot icon, slot title, slot description, slot content and slot footer'"
                     :kind="'nokind'"
                     :shell="'pure'"
                 ></demolink>
 
-                <w-panel style="width:600px;">
+                <w-panel-stripe style="width:600px;">
 
                     <template v-slot:icon>
                         <v-icon style="margin-right:15px;" size="60">fab fa-angular</v-icon>
                     </template>
 
                     <template v-slot:title>
-                        <div style="font-size:2rem;">{{WPanel.title}}</div>
+                        <div style="font-size:2rem;">{{WPanelStripe.title}}</div>
                     </template>
 
                     <template v-slot:description>
-                        <div style="opacity:0.7;">{{WPanel.description}}</div>
+                        <div style="opacity:0.7;">{{WPanelStripe.description}}</div>
                     </template>
 
                     <template v-slot:content>
                         <div style="padding:20px;">
-                            {{WPanel.content}}
+                            {{WPanelStripe.content}}
                         </div>
                     </template>
 
                     <template v-slot:footer>
-                        {{WPanel.footer}}
+                        {{WPanelStripe.footer}}
                     </template>
 
-                </w-panel>
+                </w-panel-stripe>
 
             </div>
 
 
             <div class="bk">
                 <demolink
-                    :kbname="'w-panel'"
+                    :kbname="'w-panel-stripe'"
                     :casename="'slot icon (fontawesome)'"
                     :kind="'nokind'"
                     :shell="'pure'"
                 ></demolink>
 
-                <w-panel style="width:600px;">
+                <w-panel-stripe style="width:600px;">
 
                     <template v-slot:icon>
                         <v-icon style="margin-right:15px;" size="60">fas fa-allergies</v-icon>
                     </template>
 
                     <template v-slot:title>
-                        <div style="font-size:2rem;">{{WPanel.title}}</div>
+                        <div style="font-size:2rem;">{{WPanelStripe.title}}</div>
                     </template>
 
                     <template v-slot:description>
-                        <div style="opacity:0.7;">{{WPanel.description}}</div>
+                        <div style="opacity:0.7;">{{WPanelStripe.description}}</div>
                     </template>
 
                     <template v-slot:content>
                         <div style="padding:20px;">
-                            {{WPanel.content}}
+                            {{WPanelStripe.content}}
                         </div>
                     </template>
 
                     <template v-slot:footer>
-                        {{WPanel.footer}}
+                        {{WPanelStripe.footer}}
                     </template>
 
-                </w-panel>
+                </w-panel-stripe>
 
             </div>
 
 
             <div class="bk">
                 <demolink
-                    :kbname="'w-panel'"
+                    :kbname="'w-panel-stripe'"
                     :casename="'headerBackgroundColor & footerBackgroundColor'"
                     :kind="'nokind'"
                     :shell="'pure'"
                 ></demolink>
 
-                <w-panel
+                <w-panel-stripe
                     style="width:600px;"
                     :headerBackgroundColor="'orange lighten-4'"
                     :footerBackgroundColor="'orange lighten-5'"
@@ -101,37 +101,37 @@
                     </template>
 
                     <template v-slot:title>
-                        <div style="font-size:2rem;">{{WPanel.title}}</div>
+                        <div style="font-size:2rem;">{{WPanelStripe.title}}</div>
                     </template>
 
                     <template v-slot:description>
-                        <div style="opacity:0.7;">{{WPanel.description}}</div>
+                        <div style="opacity:0.7;">{{WPanelStripe.description}}</div>
                     </template>
 
                     <template v-slot:content>
                         <div style="padding:20px;">
-                            {{WPanel.content}}
+                            {{WPanelStripe.content}}
                         </div>
                     </template>
 
                     <template v-slot:footer>
-                        {{WPanel.footer}}
+                        {{WPanelStripe.footer}}
                     </template>
 
-                </w-panel>
+                </w-panel-stripe>
 
             </div>
 
 
             <div class="bk">
                 <demolink
-                    :kbname="'w-panel'"
+                    :kbname="'w-panel-stripe'"
                     :casename="'borderRadius'"
                     :kind="'nokind'"
                     :shell="'pure'"
                 ></demolink>
 
-                <w-panel
+                <w-panel-stripe
                     style="width:600px;"
                     :borderRadius="30"
                 >
@@ -141,31 +141,31 @@
                     </template>
 
                     <template v-slot:title>
-                        <div style="font-size:2rem;">{{WPanel.title}}</div>
+                        <div style="font-size:2rem;">{{WPanelStripe.title}}</div>
                     </template>
 
                     <template v-slot:description>
-                        <div style="opacity:0.7;">{{WPanel.description}}</div>
+                        <div style="opacity:0.7;">{{WPanelStripe.description}}</div>
                     </template>
 
                     <template v-slot:content>
                         <div style="padding:20px;">
-                            {{WPanel.content}}
+                            {{WPanelStripe.content}}
                         </div>
                     </template>
 
                     <template v-slot:footer>
-                        {{WPanel.footer}}
+                        {{WPanelStripe.footer}}
                     </template>
 
-                </w-panel>
+                </w-panel-stripe>
 
             </div>
 
 
             <div class="bk">
                 <demolink
-                    :kbname="'w-panel'"
+                    :kbname="'w-panel-stripe'"
                     :casename="'with grey outer'"
                     :kind="'nokind'"
                     :shell="'pure'"
@@ -173,7 +173,7 @@
 
                 <div style="background-color:#bbb; padding:40px;">
 
-                    <w-panel
+                    <w-panel-stripe
                         style="width:520px;"
                     >
 
@@ -182,24 +182,24 @@
                         </template>
 
                         <template v-slot:title>
-                            <div style="font-size:2rem;">{{WPanel.title}}</div>
+                            <div style="font-size:2rem;">{{WPanelStripe.title}}</div>
                         </template>
 
                         <template v-slot:description>
-                            <div style="opacity:0.7;">{{WPanel.description}}</div>
+                            <div style="opacity:0.7;">{{WPanelStripe.description}}</div>
                         </template>
 
                         <template v-slot:content>
                             <div style="padding:20px;">
-                                {{WPanel.content}}
+                                {{WPanelStripe.content}}
                             </div>
                         </template>
 
                         <template v-slot:footer>
-                            {{WPanel.footer}}
+                            {{WPanelStripe.footer}}
                         </template>
 
-                    </w-panel>
+                    </w-panel-stripe>
 
                 </div>
 
@@ -208,7 +208,7 @@
 
             <div class="bk">
                 <demolink
-                    :kbname="'w-panel'"
+                    :kbname="'w-panel-stripe'"
                     :casename="'no borderShadow, with crimson outer'"
                     :kind="'nokind'"
                     :shell="'pure'"
@@ -216,7 +216,7 @@
 
                 <div style="background-color:#a77; padding:40px;">
 
-                    <w-panel
+                    <w-panel-stripe
                         style="width:520px;"
                         :borderShadow="false"
                     >
@@ -226,24 +226,24 @@
                         </template>
 
                         <template v-slot:title>
-                            <div style="font-size:2rem;">{{WPanel.title}}</div>
+                            <div style="font-size:2rem;">{{WPanelStripe.title}}</div>
                         </template>
 
                         <template v-slot:description>
-                            <div style="opacity:0.7;">{{WPanel.description}}</div>
+                            <div style="opacity:0.7;">{{WPanelStripe.description}}</div>
                         </template>
 
                         <template v-slot:content>
                             <div style="padding:20px;">
-                                {{WPanel.content}}
+                                {{WPanelStripe.content}}
                             </div>
                         </template>
 
                         <template v-slot:footer>
-                            {{WPanel.footer}}
+                            {{WPanelStripe.footer}}
                         </template>
 
-                    </w-panel>
+                    </w-panel-stripe>
 
                 </div>
 
@@ -252,13 +252,13 @@
 
             <div class="bk">
                 <demolink
-                    :kbname="'w-panel'"
+                    :kbname="'w-panel-stripe'"
                     :casename="'only slot icon and slot title in header'"
                     :kind="'nokind'"
                     :shell="'pure'"
                 ></demolink>
 
-                <w-panel style="width:600px;">
+                <w-panel-stripe style="width:600px;">
 
                     <template v-slot:icon>
                         <v-icon style="margin-right:10px;" size="60">fab fa-angular</v-icon>
@@ -270,28 +270,28 @@
 
                     <template v-slot:content>
                         <div style="padding:20px;">
-                            {{WPanel.content}}
+                            {{WPanelStripe.content}}
                         </div>
                     </template>
 
                     <template v-slot:footer>
-                        {{WPanel.footer}}
+                        {{WPanelStripe.footer}}
                     </template>
 
-                </w-panel>
+                </w-panel-stripe>
 
             </div>
 
 
             <div class="bk">
                 <demolink
-                    :kbname="'w-panel'"
+                    :kbname="'w-panel-stripe'"
                     :casename="'only slot title in header'"
                     :kind="'nokind'"
                     :shell="'pure'"
                 ></demolink>
 
-                <w-panel style="width:600px;">
+                <w-panel-stripe style="width:600px;">
 
                     <template v-slot:title>
                         <div style="font-size:2rem;">Panel Title</div>
@@ -299,28 +299,28 @@
 
                     <template v-slot:content>
                         <div style="padding:20px;">
-                            {{WPanel.content}}
+                            {{WPanelStripe.content}}
                         </div>
                     </template>
 
                     <template v-slot:footer>
-                        {{WPanel.footer}}
+                        {{WPanelStripe.footer}}
                     </template>
 
-                </w-panel>
+                </w-panel-stripe>
 
             </div>
 
 
             <div class="bk">
                 <demolink
-                    :kbname="'w-panel'"
+                    :kbname="'w-panel-stripe'"
                     :casename="'padding'"
                     :kind="'nokind'"
                     :shell="'pure'"
                 ></demolink>
 
-                <w-panel
+                <w-panel-stripe
                     style="width:600px;"
                     :padding="12"
                 >
@@ -330,53 +330,53 @@
                     </template>
 
                     <template v-slot:title>
-                        <div style="font-size:1.3rem;">{{WPanel.title}}</div>
+                        <div style="font-size:1.3rem;">{{WPanelStripe.title}}</div>
                     </template>
 
                     <template v-slot:description>
-                        <div style="opacity:0.6; font-size:0.8rem;">{{WPanel.description}}</div>
+                        <div style="opacity:0.6; font-size:0.8rem;">{{WPanelStripe.description}}</div>
                     </template>
 
                     <template v-slot:content>
                         <div style="padding:12px;">
-                            {{WPanel.content}}
+                            {{WPanelStripe.content}}
                         </div>
                     </template>
 
                     <template v-slot:footer>
-                        {{WPanel.footer}}
+                        {{WPanelStripe.footer}}
                     </template>
 
-                </w-panel>
+                </w-panel-stripe>
 
             </div>
 
 
             <div class="bk">
                 <demolink
-                    :kbname="'w-panel'"
+                    :kbname="'w-panel-stripe'"
                     :casename="'buttons in slot footer'"
                     :kind="'nokind'"
                     :shell="'pure'"
                 ></demolink>
 
-                <w-panel style="width:600px;">
+                <w-panel-stripe style="width:600px;">
 
                     <template v-slot:icon>
                         <v-icon style="margin-right:15px;" size="60">fab fa-angular</v-icon>
                     </template>
 
                     <template v-slot:title>
-                        <div style="font-size:2rem;">{{WPanel.title}}</div>
+                        <div style="font-size:2rem;">{{WPanelStripe.title}}</div>
                     </template>
 
                     <template v-slot:description>
-                        <div style="opacity:0.7;">{{WPanel.description}}</div>
+                        <div style="opacity:0.7;">{{WPanelStripe.description}}</div>
                     </template>
 
                     <template v-slot:content>
                         <div style="padding:20px;">
-                            {{WPanel.content}}
+                            {{WPanelStripe.content}}
                         </div>
                     </template>
 
@@ -387,20 +387,20 @@
                         </div>
                     </template>
 
-                </w-panel>
+                </w-panel-stripe>
 
             </div>
 
 
             <div class="bk">
                 <demolink
-                    :kbname="'w-panel'"
+                    :kbname="'w-panel-stripe'"
                     :casename="'no header'"
                     :kind="'nokind'"
                     :shell="'pure'"
                 ></demolink>
 
-                <w-panel
+                <w-panel-stripe
                     style="width:600px;"
                     :hasHeader="false"
                 >
@@ -410,37 +410,37 @@
                     </template>
 
                     <template v-slot:title>
-                        <div style="font-size:2rem;">{{WPanel.title}}</div>
+                        <div style="font-size:2rem;">{{WPanelStripe.title}}</div>
                     </template>
 
                     <template v-slot:description>
-                        <div style="opacity:0.7;">{{WPanel.description}}</div>
+                        <div style="opacity:0.7;">{{WPanelStripe.description}}</div>
                     </template>
 
                     <template v-slot:content>
                         <div style="padding:20px;">
-                            {{WPanel.content}}
+                            {{WPanelStripe.content}}
                         </div>
                     </template>
 
                     <template v-slot:footer>
-                        {{WPanel.footer}}
+                        {{WPanelStripe.footer}}
                     </template>
 
-                </w-panel>
+                </w-panel-stripe>
 
             </div>
 
 
             <div class="bk">
                 <demolink
-                    :kbname="'w-panel'"
+                    :kbname="'w-panel-stripe'"
                     :casename="'no footer'"
                     :kind="'nokind'"
                     :shell="'pure'"
                 ></demolink>
 
-                <w-panel
+                <w-panel-stripe
                     style="width:600px;"
                     :hasFooter="false"
                 >
@@ -450,48 +450,48 @@
                     </template>
 
                     <template v-slot:title>
-                        <div style="font-size:2rem;">{{WPanel.title}}</div>
+                        <div style="font-size:2rem;">{{WPanelStripe.title}}</div>
                     </template>
 
                     <template v-slot:description>
-                        <div style="opacity:0.7;">{{WPanel.description}}</div>
+                        <div style="opacity:0.7;">{{WPanelStripe.description}}</div>
                     </template>
 
                     <template v-slot:content>
                         <div style="padding:20px;">
-                            {{WPanel.content}}
+                            {{WPanelStripe.content}}
                         </div>
                     </template>
 
                     <template v-slot:footer>
-                        {{WPanel.footer}}
+                        {{WPanelStripe.footer}}
                     </template>
 
-                </w-panel>
+                </w-panel-stripe>
 
             </div>
 
 
             <div class="bk">
                 <demolink
-                    :kbname="'w-panel'"
+                    :kbname="'w-panel-stripe'"
                     :casename="'separate for slot content'"
                     :kind="'nokind'"
                     :shell="'pure'"
                 ></demolink>
 
-                <w-panel style="width:600px;">
+                <w-panel-stripe style="width:600px;">
 
                     <template v-slot:icon>
                         <v-icon style="margin-right:15px;" size="60">fab fa-angular</v-icon>
                     </template>
 
                     <template v-slot:title>
-                        <div style="font-size:2rem;">{{WPanel.title}}</div>
+                        <div style="font-size:2rem;">{{WPanelStripe.title}}</div>
                     </template>
 
                     <template v-slot:description>
-                        <div style="opacity:0.7;">{{WPanel.description}}</div>
+                        <div style="opacity:0.7;">{{WPanelStripe.description}}</div>
                     </template>
 
                     <template v-slot:content>
@@ -503,40 +503,40 @@
                         <div style="border-top:1px solid #ddd;"></div>
 
                         <div style="padding:20px; font-size:0.85rem;">
-                            {{WPanel.content}}
+                            {{WPanelStripe.content}}
                         </div>
 
                     </template>
 
                     <template v-slot:footer>
-                        {{WPanel.footer}}
+                        {{WPanelStripe.footer}}
                     </template>
 
-                </w-panel>
+                </w-panel-stripe>
 
             </div>
 
 
             <div class="bk">
                 <demolink
-                    :kbname="'w-panel'"
+                    :kbname="'w-panel-stripe'"
                     :casename="'table in slot content'"
                     :kind="'nokind'"
                     :shell="'pure'"
                 ></demolink>
 
-                <w-panel style="width:600px;">
+                <w-panel-stripe style="width:600px;">
 
                     <template v-slot:icon>
                         <v-icon style="margin-right:15px;" size="60">fab fa-angular</v-icon>
                     </template>
 
                     <template v-slot:title>
-                        <div style="font-size:2rem;">{{WPanel.title}}</div>
+                        <div style="font-size:2rem;">{{WPanelStripe.title}}</div>
                     </template>
 
                     <template v-slot:description>
-                        <div style="opacity:0.7;">{{WPanel.description}}</div>
+                        <div style="opacity:0.7;">{{WPanelStripe.description}}</div>
                     </template>
 
                     <template v-slot:content>
@@ -579,10 +579,10 @@
                     </template>
 
                     <template v-slot:footer>
-                        {{WPanel.footer}}
+                        {{WPanelStripe.footer}}
                     </template>
 
-                </w-panel>
+                </w-panel-stripe>
 
             </div>
 
@@ -595,12 +595,12 @@
 
 <script>
 import demolink from './components/demolink.vue'
-import WPanel from './components/WPanel.vue'
+import WPanelStripe from './components/WPanelStripe.vue'
 
 export default {
     components: {
         demolink,
-        WPanel,
+        WPanelStripe,
     },
     props: {
         modeBorder: {
@@ -612,7 +612,7 @@ export default {
     },
     data: function() {
         return {
-            'WPanel': {
+            'WPanelStripe': {
                 'title': 'A panel title',
                 'description': 'Quisque ut nisi. Maecenas malesuada.',
                 'content': 'Here is a panel content, Morbi mattis ullamcorper velit. Donec orci lectus, aliquam ut, faucibus non, euismod id, nulla. In ut quam vitae odio lacinia tincidunt.',

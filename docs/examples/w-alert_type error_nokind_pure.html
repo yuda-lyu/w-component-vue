@@ -69,7 +69,7 @@
     <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.js"></script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@1.3.5/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@1.3.6/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -117,7 +117,10 @@
         <div class="bk">
             <div class="item">type error</div>
 
-            <v-btn small @click="$alert('失敗'+WAlert.text,{type:'error'})">Error</v-btn>
+            <v-btn
+                small
+                @click="$alert('Error'+WAlert.text,{type:'error'})"
+            >Error</v-btn>
         </div>
     </v-app>
 
@@ -132,7 +135,7 @@
     data: function() {
       return {
         WAlert: {
-          text: "訊息文字"
+          text: " Message"
         },
         actions: [
           {
