@@ -1,5 +1,5 @@
 /*!
- * w-timeminute-core v1.3.6
+ * w-timeminute-core v1.3.7
  * (c) 2018-2019 yuda-lyu(semisphere)
  * Released under the MIT License.
  */

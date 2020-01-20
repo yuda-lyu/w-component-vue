@@ -81,14 +81,26 @@ export default {
 
             vo.viewHeightTemp = get(vo, '$refs.sp.clientHeight', 0)
             if (vo.viewHeight !== vo.viewHeightTemp) {
+
+                //save
                 vo.viewHeight = vo.viewHeightTemp
+
+                //triggerEvent, 目前不需防抖
                 vo.triggerEvent('changeViewHeight')
+
             }
 
             vo.contentHeightTemp = get(vo, '$refs.cp.clientHeight', 0)
             if (vo.contentHeight !== vo.contentHeightTemp) {
+
+                //save
                 vo.contentHeight = vo.contentHeightTemp
-                vo.triggerEvent('changeContentHeight')
+
+                //防抖, 當差值大於1px才triggerEvent
+                if (Math.abs(vo.contentHeight - vo.contentHeightTemp) > 1) {
+                    vo.triggerEvent('changeContentHeight')
+                }
+
             }
 
         }, 100)
