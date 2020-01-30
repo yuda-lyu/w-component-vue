@@ -2,7 +2,7 @@
     <div style="display:inline-block;" :changeParam="changeParam">
 
         <v-switch
-            style="margin:0px;"
+            style="margin:0px; padding:0px;"
             hide-details
             :label="text"
             :color="color"
