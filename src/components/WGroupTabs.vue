@@ -3,7 +3,7 @@
 
         <VueDraggable
             :value="valueTrans"
-            :options="{disabled:!draggable}"
+            :disabled="!draggable"
             @input="dragItem"
         >
 
