@@ -1,5 +1,5 @@
 /*!
- * w-group-buttons v1.3.11
+ * w-group-buttons v1.3.12
  * (c) 2018-2019 yuda-lyu(semisphere)
  * Released under the MIT License.
  */

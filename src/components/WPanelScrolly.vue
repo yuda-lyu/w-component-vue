@@ -93,11 +93,14 @@ export default {
             vo.contentHeightTemp = get(vo, '$refs.cp.clientHeight', 0)
             if (vo.contentHeight !== vo.contentHeightTemp) {
 
+                //bTrigger, 需於contentHeight被變更前計算
+                let bTrigger = Math.abs(vo.contentHeight - vo.contentHeightTemp) > 1 //防抖, 當差值大於1px才triggerEvent
+
                 //save
                 vo.contentHeight = vo.contentHeightTemp
 
-                //防抖, 當差值大於1px才triggerEvent
-                if (Math.abs(vo.contentHeight - vo.contentHeightTemp) > 1) {
+                //triggerEvent, 得放在變更contentHeight之後, 因WPanelScrollyCore會需要由新的contentHeight來triggerEvent
+                if (bTrigger) {
                     vo.triggerEvent('changeContentHeight')
                 }
 

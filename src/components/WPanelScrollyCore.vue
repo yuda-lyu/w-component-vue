@@ -470,7 +470,7 @@ export default {
                     vo.$emit(from, o)
                 }
 
-            }, 1)
+            })
 
         },
 

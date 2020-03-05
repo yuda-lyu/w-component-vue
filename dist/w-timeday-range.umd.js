@@ -1,5 +1,5 @@
 /*!
- * w-timeday-range v1.3.11
+ * w-timeday-range v1.3.12
  * (c) 2018-2019 yuda-lyu(semisphere)
  * Released under the MIT License.
  */
