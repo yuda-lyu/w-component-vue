@@ -11,7 +11,6 @@
                 dense
                 solo
                 flat
-                cache-items
                 background-color="transparent"
                 item-text="text"
                 item-value="value"

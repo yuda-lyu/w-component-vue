@@ -1,5 +1,5 @@
 /*!
- * w-highcharts-vue-dyn v1.3.12
+ * w-highcharts-vue-dyn v1.3.13
  * (c) 2018-2019 yuda-lyu(semisphere)
  * Released under the MIT License.
  */
