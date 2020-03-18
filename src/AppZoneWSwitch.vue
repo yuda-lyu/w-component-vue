@@ -139,7 +139,7 @@
                     <w-shell-material
                         style="margin-top:30px;"
                         :title="'是否開啟分享'"
-                        :leftIcon="mdiVoice"
+                        :leftIcon="mdiAccountVoice"
                     >
                         <w-switch
                             :text="'是'"
@@ -177,7 +177,7 @@
 </template>
 
 <script>
-import { mdiAlert, mdiCached, mdiVoice } from '@mdi/js'
+import { mdiAlert, mdiCached, mdiAccountVoice } from '@mdi/js'
 import demolink from './components/demolink.vue'
 import WShellMaterial from './components/WShellMaterial.vue'
 import WSwitch from './components/WSwitch.vue'
@@ -200,7 +200,7 @@ export default {
         return {
             mdiAlert,
             mdiCached,
-            mdiVoice,
+            mdiAccountVoice,
             'WSwitch': {
                 'text': '開啟',
                 'valueYes': 'yes',
