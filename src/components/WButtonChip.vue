@@ -15,13 +15,13 @@
                 >
 
                     <w-icon
-                        style="margin:0px 5px 0px -9px;"
+                        :style="`margin:0px 5px 0px ${useIconShiftLeft}px;`"
                         :icon="icon"
                         :color="iconColor"
                         :size="22"
                     ></w-icon>
 
-                    <span style="font-size:0.875rem; text-transform:none;">{{text}}</span>
+                    <span :style="`font-size:0.875rem; text-transform:none; color:${useTextColor}`">{{text}}</span>
 
                 </v-btn>
             </template>
@@ -35,12 +35,15 @@
 
 <script>
 import WIcon from './WIcon.vue'
+import color2hex from '../js/vuetifyColor.mjs'
 
 /**
  * @vue-prop {String} [text=''] 輸入文字字串，預設''
  * @vue-prop {String} [tooltip=text] 輸入提示文字字串，預設''
  * @vue-prop {String} [icon=''] 輸入圖標字串，可為mdi,md,fa代號或mdi/js路徑，預設''
  * @vue-prop {String} [iconColor=''] 輸入圖標背景顏色字串，預設''，即透明
+ * @vue-prop {Number} [iconShiftLeft=0] 輸入圖標左側平移距離數字，單位px，預設0
+ * @vue-prop {String} [textColor='black'] 輸入文字顏色字串，預設'black'
  * @vue-prop {String} [backgroundColor='grey lighten-4'] 輸入按鈕背景顏色字串，預設'grey lighten-4'
  * @vue-prop {Boolean} [small=true] 輸入是否為小型模式，預設true
  * @vue-prop {Boolean} [loading=false] 輸入是否為載入模式，預設false
@@ -67,6 +70,14 @@ export default {
             type: String,
             default: '',
         },
+        iconShiftLeft: {
+            type: Number,
+            default: 0,
+        },
+        textColor: {
+            type: String,
+            default: 'black',
+        },
         backgroundColor: {
             type: String,
             default: 'grey lighten-4',
@@ -91,6 +102,17 @@ export default {
     mounted: function() {
     },
     computed: {
+
+        useIconShiftLeft: function() {
+            let vo = this
+            return vo.iconShiftLeft - 9 //初始值-9, 使圓圈類icon能貼合chip左側
+        },
+
+        useTextColor: function() {
+            let vo = this
+            return color2hex(vo.textColor)
+        },
+
     },
     methods: {
 

@@ -5,9 +5,11 @@
         :persistent="!fullscreen && hasCloseBtn"
         :max-width="widthMax"
         :fullscreen="fullscreen"
+        :hide-overlay="fullscreen"
         v-resize="changeSize"
         v-model="showTrans"
         @click:outside="clickClose(true)"
+        @keydown="keyDown"
     >
 
         <v-card v-if="show">
@@ -303,6 +305,21 @@ export default {
                 vo.$emit('click-close')
 
             }, 1)
+
+        },
+
+        keyDown: function(e) {
+            //console.log('methods keyDown', e)
+
+            let vo = this
+
+            //check, vuetify於dialog為fullscreen狀態時有問題, 第1次按esc不會關閉, 但第2次之後按esc會關閉, 待vuetify修復
+            // if (e.code === 'Escape') {
+
+            //     //hide
+            //     vo.showTrans = false
+
+            // }
 
         },
 

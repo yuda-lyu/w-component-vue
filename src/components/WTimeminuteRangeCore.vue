@@ -15,7 +15,9 @@
 
         <div
             :style="[{'display':'inline-block','padding-left':'9px','padding-right':'13px'}]"
-        >{{minuteBetween}}</div>
+        >
+            {{minuteBetween}}
+        </div>
 
         <w-timeminute-core
             :hourMin="hourMin"

@@ -92,6 +92,40 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-button-chip'"
+                    :casename="'iconShiftLeft'"
+                    :kind="'nokind'"
+                    :shell="'pure'"
+                ></demolink>
+
+                <w-button-chip
+                    :text="WButtonChip.text"
+                    :icon="mdiYoutubeTv"
+                    :iconShiftLeft="8"
+                ></w-button-chip>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-button-chip'"
+                    :casename="'iconColor'"
+                    :kind="'nokind'"
+                    :shell="'pure'"
+                ></demolink>
+
+                <w-button-chip
+                    :text="WButtonChip.text"
+                    :icon="mdiCheckUnderlineCircle"
+                    :iconColor="'orange'"
+                ></w-button-chip>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-button-chip'"
                     :casename="'backgroundColor'"
                     :kind="'nokind'"
                     :shell="'pure'"
@@ -109,7 +143,7 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-button-chip'"
-                    :casename="'backgroundColor & iconColor'"
+                    :casename="'iconColor & backgroundColor & textColor'"
                     :kind="'nokind'"
                     :shell="'pure'"
                 ></demolink>
@@ -117,8 +151,9 @@
                 <w-button-chip
                     :text="WButtonChip.text"
                     :icon="mdiCheckUnderlineCircle"
-                    :backgroundColor="'orange lighten-5'"
-                    :iconColor="'orange'"
+                    :iconColor="'blue lighten-5'"
+                    :backgroundColor="'blue darken-1'"
+                    :textColor="'white'"
                 ></w-button-chip>
 
             </div>
@@ -165,7 +200,7 @@
 </template>
 
 <script>
-import { mdiWalletGiftcard, mdiFace, mdiOrbit, mdiCheckUnderlineCircle } from '@mdi/js'
+import { mdiWalletGiftcard, mdiFace, mdiOrbit, mdiCheckUnderlineCircle, mdiYoutubeTv } from '@mdi/js'
 import demolink from './components/demolink.vue'
 import WButtonChip from './components/WButtonChip.vue'
 
@@ -188,6 +223,7 @@ export default {
             mdiFace,
             mdiOrbit,
             mdiCheckUnderlineCircle,
+            mdiYoutubeTv,
             'WButtonChip': {
                 'text': 'aBc數字123'
             },
