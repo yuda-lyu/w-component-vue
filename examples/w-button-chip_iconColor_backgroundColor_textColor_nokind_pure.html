@@ -6,7 +6,7 @@
         name="viewport"
         content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui"
     />
-    <title>example for w-button-chip: backgroundColor & iconColor</title>
+    <title>example for w-button-chip: iconColor & backgroundColor & textColor</title>
 
     <!-- fontawesome -->
     <link
@@ -69,7 +69,7 @@
     <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.js"></script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@1.3.14/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@1.3.15/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -115,13 +115,14 @@
     <v-app id="app" style="font-family:inherit;">
         <div class="head1">w-button-chip</div>
         <div class="bk">
-            <div class="item">backgroundColor & iconColor</div>
+            <div class="item">iconColor & backgroundColor & textColor</div>
 
             <w-button-chip
                 :text="WButtonChip.text"
                 :icon="'mdi-check-underline-circle'"
-                :background-color="'orange lighten-5'"
-                :icon-color="'orange'"
+                :icon-color="'blue lighten-5'"
+                :background-color="'blue darken-1'"
+                :text-color="'white'"
             />
         </div>
     </v-app>
