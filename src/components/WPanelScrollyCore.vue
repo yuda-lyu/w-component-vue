@@ -3,8 +3,6 @@
         <div
             :style="`position:relative; overflow:hidden; height:${viewHeightMax}px; box-sizing:border-box;`"
             :changeRatio="changeRatio"
-            _v-resize="()=>{refresh('resize',true)}"
-            _v-intersect="(entries)=>{refresh('intersect',entries[0].isIntersecting)}"
             @mouseenter="barOpacity=1"
             @mouseleave="barOpacity=0.8"
         >
