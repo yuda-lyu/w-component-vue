@@ -337,13 +337,6 @@
             ></AppZoneWDynamicList>
 
 
-            <AppZoneWAggridVueDyn
-                :modeBorder="modeBorder"
-                :modeShell="modeShell"
-                v-if="compname==='WAggridVueDyn'"
-            ></AppZoneWAggridVueDyn>
-
-
             <AppZoneWHighchartsVueDyn
                 :modeBorder="modeBorder"
                 :modeShell="modeShell"
@@ -356,6 +349,20 @@
                 :modeShell="modeShell"
                 v-if="compname==='WHighstockVueDyn'"
             ></AppZoneWHighstockVueDyn>
+
+
+            <AppZoneWAggridVueDyn
+                :modeBorder="modeBorder"
+                :modeShell="modeShell"
+                v-if="compname==='WAggridVueDyn'"
+            ></AppZoneWAggridVueDyn>
+
+
+            <AppZoneWImageViewerDyn
+                :modeBorder="modeBorder"
+                :modeShell="modeShell"
+                v-if="compname==='WImageViewerDyn'"
+            ></AppZoneWImageViewerDyn>
 
 
         </div>
@@ -396,9 +403,10 @@ import AppZoneWTimedayRange from './AppZoneWTimedayRange.vue'
 import AppZoneWTimeminuteRange from './AppZoneWTimeminuteRange.vue'
 import AppZoneWJsonView from './AppZoneWJsonView.vue'
 import AppZoneWDynamicList from './AppZoneWDynamicList.vue'
-import AppZoneWAggridVueDyn from './AppZoneWAggridVueDyn.vue'
 import AppZoneWHighchartsVueDyn from './AppZoneWHighchartsVueDyn.vue'
 import AppZoneWHighstockVueDyn from './AppZoneWHighstockVueDyn.vue'
+import AppZoneWAggridVueDyn from './AppZoneWAggridVueDyn.vue'
+import AppZoneWImageViewerDyn from './AppZoneWImageViewerDyn.vue'
 
 
 export default {
@@ -432,9 +440,10 @@ export default {
         AppZoneWTimeminuteRange,
         AppZoneWJsonView,
         AppZoneWDynamicList,
-        AppZoneWAggridVueDyn,
         AppZoneWHighchartsVueDyn,
         AppZoneWHighstockVueDyn,
+        AppZoneWAggridVueDyn,
+        AppZoneWImageViewerDyn,
     },
     data: function() {
         return {
@@ -518,6 +527,7 @@ export default {
                         'WHighchartsVueDyn',
                         'WHighstockVueDyn',
                         'WAggridVueDyn',
+                        'WImageViewerDyn',
                     ]
                 },
             ],

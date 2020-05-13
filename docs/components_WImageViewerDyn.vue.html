@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="utf-8">
+    <title>components/WImageViewerDyn.vue - Documentation</title>
+    
+    
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+    <script src="scripts/nav.js" defer></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav >
+    
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-WAggridVueDyn.html">WAggridVueDyn</a></li><li><a href="module-WBadge.html">WBadge</a></li><li><a href="module-WButtonChip.html">WButtonChip</a></li><li><a href="module-WButtonCircle.html">WButtonCircle</a></li><li><a href="module-WConfirm.html">WConfirm</a></li><li><a href="module-WDialog.html">WDialog</a></li><li><a href="module-WDropfiles.html">WDropfiles</a></li><li><a href="module-WDynamicList.html">WDynamicList</a></li><li><a href="module-WGroupButtons.html">WGroupButtons</a></li><li><a href="module-WGroupCheck.html">WGroupCheck</a></li><li><a href="module-WGroupRadio.html">WGroupRadio</a></li><li><a href="module-WGroupTabs.html">WGroupTabs</a></li><li><a href="module-WGroupTags.html">WGroupTags</a></li><li><a href="module-WHighchartsVueDyn.html">WHighchartsVueDyn</a></li><li><a href="module-WHighstockVueDyn.html">WHighstockVueDyn</a></li><li><a href="module-WIcon.html">WIcon</a></li><li><a href="module-WIconLoading.html">WIconLoading</a></li><li><a href="module-WIconSvg.html">WIconSvg</a></li><li><a href="module-WImageViewerDyn.html">WImageViewerDyn</a></li><li><a href="module-WJsonView.html">WJsonView</a></li><li><a href="module-WJsonViewCore.html">WJsonViewCore</a></li><li><a href="module-WPanelBulge.html">WPanelBulge</a></li><li><a href="module-WPanelScrolly.html">WPanelScrolly</a></li><li><a href="module-WPanelScrollyCore.html">WPanelScrollyCore</a></li><li><a href="module-WPanelStripe.html">WPanelStripe</a></li><li><a href="module-WPopupPanel.html">WPopupPanel</a></li><li><a href="module-WProgressCircle.html">WProgressCircle</a></li><li><a href="module-WShellEllipse.html">WShellEllipse</a></li><li><a href="module-WShellMaterial.html">WShellMaterial</a></li><li><a href="module-WSwitch.html">WSwitch</a></li><li><a href="module-WText.html">WText</a></li><li><a href="module-WTextarea.html">WTextarea</a></li><li><a href="module-WTextCore.html">WTextCore</a></li><li><a href="module-WTextInt.html">WTextInt</a></li><li><a href="module-WTextIntCore.html">WTextIntCore</a></li><li><a href="module-WTextSelect.html">WTextSelect</a></li><li><a href="module-WTextSelectCore.html">WTextSelectCore</a></li><li><a href="module-WTextSuggest.html">WTextSuggest</a></li><li><a href="module-WTextSuggestCore.html">WTextSuggestCore</a></li><li><a href="module-WTimeday.html">WTimeday</a></li><li><a href="module-WTimedayCore.html">WTimedayCore</a></li><li><a href="module-WTimedayRange.html">WTimedayRange</a></li><li><a href="module-WTimedayRangeCore.html">WTimedayRangeCore</a></li><li><a href="module-WTimeminute.html">WTimeminute</a></li><li><a href="module-WTimeminuteCore.html">WTimeminuteCore</a></li><li><a href="module-WTimeminuteRange.html">WTimeminuteRange</a></li><li><a href="module-WTimeminuteRangeCore.html">WTimeminuteRangeCore</a></li></ul><h3>Global</h3><ul><li><a href="global.html#binarySearch">binarySearch</a></li><li><a href="global.html#color2hex">color2hex</a></li><li><a href="global.html#getHCDataGrouping">getHCDataGrouping</a></li><li><a href="global.html#getHCDateFmt">getHCDateFmt</a></li><li><a href="global.html#getHCGlobal">getHCGlobal</a></li><li><a href="global.html#getHCMarker">getHCMarker</a></li><li><a href="global.html#getHCUnits">getHCUnits</a></li><li><a href="global.html#WAlert">WAlert</a></li></ul>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">components/WImageViewerDyn.vue</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>&lt;template>
+    &lt;div>
+
+        &lt;WIconLoading v-if="loading">&lt;/WIconLoading>
+
+        &lt;div ref="imgsGroup" v-else>
+            &lt;template v-for="(image,k) in images">
+                &lt;div
+                    style="display:inline-block; opacity:0;"
+                    :key="k"
+                >
+                    &lt;img
+                        :class="imageClass"
+                        :style="useImageStyle"
+                        :src="image"
+                        @click="showImg"
+                    >
+                &lt;/div>
+            &lt;/template>
+        &lt;/div>
+
+    &lt;/div>
+&lt;/template>
+
+&lt;script>
+import each from 'lodash/each'
+import merge from 'lodash/merge'
+import importResources from 'wsemi/src/importResources.mjs'
+import showImagesDyn from 'wsemi/src/showImagesDyn.mjs'
+import WIconLoading from './WIconLoading.vue'
+
+let defStyle = {
+    'margin': '5px',
+    'cursor': 'pointer',
+}
+
+function fadeIn(element, duration = 1000, delay = 0) {
+    let op = 0.01 //初始opacity
+    let ss = 10 //更新週期(ms)
+    let s = ss / duration //每次調整opacity
+    setTimeout(() => {
+        let t = setInterval(() => {
+            element.style.opacity = op
+            if (op >= 1) {
+                clearInterval(t)
+            }
+            op += s
+            if (op > 1) {
+                op = 1
+            }
+        }, ss)
+    }, delay)
+}
+
+function fadeOut(element, duration = 1000, delay = 0) {
+    let op = 1 //初始opacity
+    let ss = 10 //更新週期(ms)
+    let s = ss / duration //每次調整opacity
+    setTimeout(() => {
+        let t = setInterval(() => {
+            element.style.opacity = op
+            if (op &lt;= 0) {
+                clearInterval(t)
+            }
+            op -= s
+            if (op &lt; 0) {
+                op = 0
+            }
+        }, ss)
+    }, delay)
+}
+
+/**
+ */
+export default {
+    components: {
+        WIconLoading,
+    },
+    props: {
+        pathItems: {
+            type: Array,
+            default: () => [ //預設值詳見 wsemi/src/showImagesDyn.mjs, 因此處有預載, 故所使用viewerjs的版本得相同
+                'https://cdn.jsdelivr.net/npm/viewerjs@1.5.0/dist/viewer.min.css',
+                'https://cdn.jsdelivr.net/npm/viewerjs@1.5.0/dist/viewer.min.js',
+            ],
+        },
+        images: {
+            type: Array,
+            default: () => [],
+        },
+        imageClass: {
+            type: String,
+            default: '',
+        },
+        imageStyle: {
+            type: Object,
+            default: () => {},
+        },
+        opt: {
+            type: Object,
+            default: () => {},
+        },
+        multiple: {
+            type: Boolean,
+            default: false,
+        },
+    },
+    data: function() {
+        return {
+            loading: true,
+        }
+    },
+    mounted: function() {
+        //console.log('mounted')
+
+        let vo = this
+
+        //importResources
+        importResources(vo.pathItems)
+            .then((res) => {
+                //console.log('res', res)
+
+                //loading
+                vo.loading = false
+
+                //fadeIn
+                setTimeout(() => {
+                    each(vo.$refs.imgsGroup.children, (img, k) => {
+                        fadeIn(img, 500, k * 100)
+                        //fadeOut(img, 500, 1000 + k * 100)
+                    })
+                }, 1)
+
+            })
+
+    },
+    computed: {
+
+        useImageStyle: function() {
+            //console.log('computed useImageStyle')
+
+            let vo = this
+
+            //merge
+            let r = merge(defStyle, vo.imageStyle)
+
+            return r
+        },
+
+    },
+    methods: {
+
+        showImg: function(e) {
+            //console.log('methods showImg', e)
+
+            let vo = this
+
+            //eleGroup
+            let eleGroup = null
+            if (vo.multiple) {
+                eleGroup = vo.$refs.imgsGroup
+            }
+
+            //showImagesDyn
+            showImagesDyn(e.target, eleGroup, vo.opt, vo.pathItems)
+                .catch((err) => {
+                    console.log(err)
+                })
+
+        },
+
+    },
+}
+&lt;/script>
+
+&lt;style scoped>
+&lt;/style>
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+    
+    
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.4</a> on Wed May 13 2020 13:57:08 GMT+0800 (台北標準時間) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/polyfill.js"></script>
+<script src="scripts/linenumber.js"></script>
+
+
+
+</body>
+</html>

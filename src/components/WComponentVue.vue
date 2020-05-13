@@ -18,6 +18,7 @@ import WHighstockVueDyn from './WHighstockVueDyn.vue'
 import WIcon from './WIcon.vue'
 import WIconLoading from './WIconLoading.vue'
 import WIconSvg from './WIconSvg.vue'
+import WImageViewerDyn from './WImageViewerDyn.vue'
 import WJsonView from './WJsonView.vue'
 import WJsonViewCore from './WJsonViewCore.vue'
 import WPanelBulge from './WPanelBulge.vue'
@@ -68,6 +69,7 @@ let WComponentVue = {
         Vue.component('w-icon', WIcon)
         Vue.component('w-icon-loading', WIconLoading)
         Vue.component('w-icon-svg', WIconSvg)
+        Vue.component('w-image-viewer-dyn', WImageViewerDyn)
         Vue.component('w-json-view', WJsonView)
         Vue.component('w-json-view-core', WJsonViewCore)
         Vue.component('w-panel-bulge', WPanelBulge)

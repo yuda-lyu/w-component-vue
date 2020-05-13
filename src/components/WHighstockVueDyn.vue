@@ -36,6 +36,7 @@ export default {
         }
     },
     mounted: function() {
+        //console.log('mounted')
 
         let vo = this
 

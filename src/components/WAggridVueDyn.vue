@@ -8,7 +8,6 @@ import WIconLoading from './WIconLoading.vue'
 import getVue from '../js/getVue.mjs'
 
 /**
- * @vue-prop {Array} [pathItems=['詳見原始碼']] 輸入w-aggrid-vue組件js檔案位置字串陣列，預設詳見原始碼處props->pathItems->default
  * @vue-prop {Object} opt 輸入資料設定物件
  * @vue-prop {Array} opt.keys 輸入資料各欄位keys
  * @vue-prop {Array} opt.rows 輸入資料列，各列為物件，內含各欄位keys之值，例[{},{},...,{}]
@@ -36,9 +35,14 @@ import getVue from '../js/getVue.mjs'
  * @vue-prop {Function} [opt.rowClick={}] 輸入row click之觸發事件，預設為function(){}
  * @vue-prop {Function} [opt.rowDbClick={}] 輸入row double click之觸發事件，預設為function(){}
  * @vue-prop {Function} [opt.rowChange={}] 輸入row change之觸發事件，預設為function(){}
+ * @vue-prop {Function} [opt.rowMouseEnter={}] 輸入row mouseenter之觸發事件，預設為function(){}
+ * @vue-prop {Function} [opt.rowMouseLeave={}] 輸入row mouseleave之觸發事件，預設為function(){}
  * @vue-prop {Function} [opt.cellClick={}] 輸入cell click之觸發事件，預設為function(){}
  * @vue-prop {Function} [opt.cellDbClick={}] 輸入cell double click之觸發事件，預設為function(){}
  * @vue-prop {Function} [opt.cellChange={}] 輸入cell change之觸發事件，預設為function(){}
+ * @vue-prop {Function} [opt.cellMouseEnter={}] 輸入cell mouseenter之觸發事件，預設為function(){}
+ * @vue-prop {Function} [opt.cellMouseLeave={}] 輸入cell mouseleave之觸發事件，預設為function(){}
+ * @vue-prop {Boolean} [opt.autoFitColumn=false] 輸入當表格尺寸變更時自動調整欄寬，預設false
  * @vue-prop {Number} [height=300] 表格高度，預設300(px)
  * @vue-prop {String} [filterall=''] 輸入對全表數據進行過濾之字串，預設為''
  * @vue-event {Null} refresh 刷新表格，無輸入與回傳
@@ -47,6 +51,8 @@ import getVue from '../js/getVue.mjs'
  * @vue-event {Array} clearHeadFilter 指定欄位的key並清除當前所使用的過濾值
  * @vue-event {Array} clearHeadFilterAll 清除當前所有欄位所使用的過濾值
  * @vue-event {Null} getDisplayData 無輸入，會回傳目前表格所顯示之數據
+ * @vue-event {Null} getInstance 無輸入，會回傳ag-grid表格實例物件
+ * @vue-event {Null} fitColumns 無輸入，會進行擴充版的sizeColumnsToFit
  */
 export default {
     components: {
@@ -58,7 +64,7 @@ export default {
             default: () => [
                 'https://cdn.jsdelivr.net/npm/ag-grid-community@23.1.0/dist/ag-grid-community.min.noStyle.js',
                 'https://cdn.jsdelivr.net/npm/ag-grid-vue@23.1.0/dist/ag-grid-vue.umd.min.js', //於es5內載入時, AgGridVue會出現在window['ag-grid-vue'].AgGridVue
-                'https://cdn.jsdelivr.net/npm/w-aggrid-vue@1.0.37/dist/w-aggrid-vue.umd.js',
+                'https://cdn.jsdelivr.net/npm/w-aggrid-vue@1.0.38/dist/w-aggrid-vue.umd.js',
             ],
         },
         opt: {
@@ -80,6 +86,7 @@ export default {
         }
     },
     mounted: function() {
+        //console.log('mounted')
 
         let vo = this
 
