@@ -27,47 +27,12 @@ import each from 'lodash/each'
 import merge from 'lodash/merge'
 import importResources from 'wsemi/src/importResources.mjs'
 import showImagesDyn from 'wsemi/src/showImagesDyn.mjs'
+import domFadeIn from 'wsemi/src/domFadeIn.mjs'
 import WIconLoading from './WIconLoading.vue'
 
 let defStyle = {
     'margin': '5px',
     'cursor': 'pointer',
-}
-
-function fadeIn(element, duration = 1000, delay = 0) {
-    let op = 0.01 //初始opacity
-    let ss = 10 //更新週期(ms)
-    let s = ss / duration //每次調整opacity
-    setTimeout(() => {
-        let t = setInterval(() => {
-            element.style.opacity = op
-            if (op >= 1) {
-                clearInterval(t)
-            }
-            op += s
-            if (op > 1) {
-                op = 1
-            }
-        }, ss)
-    }, delay)
-}
-
-function fadeOut(element, duration = 1000, delay = 0) {
-    let op = 1 //初始opacity
-    let ss = 10 //更新週期(ms)
-    let s = ss / duration //每次調整opacity
-    setTimeout(() => {
-        let t = setInterval(() => {
-            element.style.opacity = op
-            if (op <= 0) {
-                clearInterval(t)
-            }
-            op -= s
-            if (op < 0) {
-                op = 0
-            }
-        }, ss)
-    }, delay)
 }
 
 /**
@@ -123,11 +88,10 @@ export default {
                 //loading
                 vo.loading = false
 
-                //fadeIn
+                //domFadeIn
                 setTimeout(() => {
                     each(vo.$refs.imgsGroup.children, (img, k) => {
-                        fadeIn(img, 500, k * 100)
-                        //fadeOut(img, 500, 1000 + k * 100)
+                        domFadeIn(img, { duration: 500, delay: k * 100 })
                     })
                 }, 1)
 

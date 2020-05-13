@@ -106,15 +106,6 @@ export default {
             useItems: [], //實際需顯示節點陣列
         }
     },
-    beforeDestroy: function() {
-        //console.log('beforeMount')
-
-        let vo = this
-
-        //remove
-        gm.remove(vo.mmkey)
-
-    },
     mounted: function() {
         //console.log('mounted')
 
@@ -122,6 +113,15 @@ export default {
 
         //refresh, watch時觸發的change因為元素沒實際高度故無法自動調整, 得於mounted再觸發一次
         vo.refresh('mounted')
+
+    },
+    beforeDestroy: function() {
+        //console.log('beforeMount')
+
+        let vo = this
+
+        //remove
+        gm.remove(vo.mmkey)
 
     },
     watch: {

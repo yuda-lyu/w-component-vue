@@ -162,15 +162,6 @@ export default {
             useItems: [],
         }
     },
-    beforeDestroy: function() {
-        //console.log('beforeMount')
-
-        let vo = this
-
-        //remove
-        gm.remove(vo.mmkey)
-
-    },
     mounted: function() {
         //console.log('mounted')
 
@@ -178,6 +169,15 @@ export default {
 
         //refresh
         vo.refresh('mounted')
+
+    },
+    beforeDestroy: function() {
+        //console.log('beforeMount')
+
+        let vo = this
+
+        //remove
+        gm.remove(vo.mmkey)
 
     },
     watch: {
