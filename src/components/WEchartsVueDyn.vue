@@ -55,9 +55,6 @@ export default {
                     //use
                     getVue().component('vueechart', cmp)
 
-                    //use
-                    getVue().use(cmp)
-
                 }
                 vo.cmpName = 'vueechart'
             })

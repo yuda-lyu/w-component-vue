@@ -6,7 +6,7 @@ let opt = {
     head: `
 
     <!-- fontawesome -->
-    <link href="https://use.fontawesome.com/releases/v5.10.2/css/all.css" rel="stylesheet">
+    <link href="https://use.fontawesome.com/releases/v5.13.0/css/all.css" rel="stylesheet">
 
     <!-- mdi, 各組件使用mdi/js故不需引用 -->
     <link _href="https://cdn.jsdelivr.net/npm/@mdi/font/css/materialdesignicons.min.css" rel="stylesheet">
@@ -16,14 +16,18 @@ let opt = {
     <link _href="https://fonts.googleapis.com/css?family=Material+Icons" rel="stylesheet">
 
     <!-- data -->
-    <script src="https://cdn.jsdelivr.net/npm/w-demores/res/data/dataAAPL.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/w-demores/res/data/dataUSD2EUR.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/w-demores/res/data/dataTemperature.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-demores@1.0.7/res/data/dataAAPL.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-demores@1.0.7/res/data/dataUSD2EUR.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-demores@1.0.7/res/data/dataTemperature.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-demores@1.0.7/res/data/dataHousePriceArea.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-demores@1.0.7/res/data/dataFlare.js"></script>
     <script>
         //save in window
         window.dataAAPL=dataAAPL
         window.dataUSD2EUR=dataUSD2EUR
         window.dataTemperature=dataTemperature
+        window.dataHousePriceArea=dataHousePriceArea
+        window.dataFlare=dataFlare
     </script>
 
     <!-- element-ui, 已按需打包故不需引用 -->
