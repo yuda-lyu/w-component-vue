@@ -351,6 +351,13 @@
             ></AppZoneWHighstockVueDyn>
 
 
+            <AppZoneWEchartsVueDyn
+                :modeBorder="modeBorder"
+                :modeShell="modeShell"
+                v-if="compname==='WEchartsVueDyn'"
+            ></AppZoneWEchartsVueDyn>
+
+
             <AppZoneWAggridVueDyn
                 :modeBorder="modeBorder"
                 :modeShell="modeShell"
@@ -405,6 +412,7 @@ import AppZoneWJsonView from './AppZoneWJsonView.vue'
 import AppZoneWDynamicList from './AppZoneWDynamicList.vue'
 import AppZoneWHighchartsVueDyn from './AppZoneWHighchartsVueDyn.vue'
 import AppZoneWHighstockVueDyn from './AppZoneWHighstockVueDyn.vue'
+import AppZoneWEchartsVueDyn from './AppZoneWEchartsVueDyn.vue'
 import AppZoneWAggridVueDyn from './AppZoneWAggridVueDyn.vue'
 import AppZoneWImageViewerDyn from './AppZoneWImageViewerDyn.vue'
 
@@ -442,6 +450,7 @@ export default {
         AppZoneWDynamicList,
         AppZoneWHighchartsVueDyn,
         AppZoneWHighstockVueDyn,
+        AppZoneWEchartsVueDyn,
         AppZoneWAggridVueDyn,
         AppZoneWImageViewerDyn,
     },
@@ -526,6 +535,7 @@ export default {
                     cmps: [
                         'WHighchartsVueDyn',
                         'WHighstockVueDyn',
+                        'WEchartsVueDyn',
                         'WAggridVueDyn',
                         'WImageViewerDyn',
                     ]

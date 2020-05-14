@@ -8,6 +8,7 @@ import WConfirm from './WConfirm.vue'
 import WDialog from './WDialog.vue'
 import WDropfiles from './WDropfiles.vue'
 import WDynamicList from './WDynamicList.vue'
+import WEchartsVueDyn from './WEchartsVueDyn.vue'
 import WGroupButtons from './WGroupButtons.vue'
 import WGroupCheck from './WGroupCheck.vue'
 import WGroupRadio from './WGroupRadio.vue'
@@ -59,6 +60,7 @@ let WComponentVue = {
         Vue.component('w-dialog', WDialog)
         Vue.component('w-dropfiles', WDropfiles)
         Vue.component('w-dynamic-list', WDynamicList)
+        Vue.component('w-echarts-vue-dyn', WEchartsVueDyn)
         Vue.component('w-group-buttons', WGroupButtons)
         Vue.component('w-group-check', WGroupCheck)
         Vue.component('w-group-radio', WGroupRadio)

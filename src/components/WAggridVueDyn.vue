@@ -8,6 +8,8 @@ import WIconLoading from './WIconLoading.vue'
 import getVue from '../js/getVue.mjs'
 
 /**
+ * @vue-prop {Array} [pathItems=['詳見原始碼']] 輸入ag-grid與w-aggrid-vue組件js檔案位置字串陣列，預設詳見原始碼處props->pathItems->default
+ * @vue-prop {Object} [options={}] 輸入w-aggrid-vue設定物件，預設{}
  * @vue-prop {Object} opt 輸入資料設定物件
  * @vue-prop {Array} opt.keys 輸入資料各欄位keys
  * @vue-prop {Array} opt.rows 輸入資料列，各列為物件，內含各欄位keys之值，例[{},{},...,{}]

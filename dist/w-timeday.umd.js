@@ -1,5 +1,5 @@
 /*!
- * w-timeday v1.3.20
+ * w-timeday v1.3.21
  * (c) 2018-2019 yuda-lyu(semisphere)
  * Released under the MIT License.
  */
