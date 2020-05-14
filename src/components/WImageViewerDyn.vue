@@ -91,7 +91,7 @@ export default {
                 //domFadeIn
                 setTimeout(() => {
                     each(vo.$refs.imgsGroup.children, (img, k) => {
-                        domFadeIn(img, { duration: 500, delay: k * 100 })
+                        domFadeIn(img, { duration: 200, delay: k * 100 })
                     })
                 }, 1)
 
