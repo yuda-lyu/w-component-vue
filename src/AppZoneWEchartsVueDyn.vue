@@ -7,7 +7,7 @@
 
         <div style="font-size:0.9rem; margin-bottom:10px;">
             <span style="margin-right:10px;">Links:</span>
-            <a href="//echarts.baidu.com" target="_blank">echarts</a>
+            <a href="//github.com/apache/incubator-echarts" target="_blank">echarts</a>
             <span style="margin:0px 10px">|</span>
             <a href="//echarts.apache.org/examples/zh/index.html" target="_blank">echarts examples</a>
             <span style="margin:0px 10px">|</span>

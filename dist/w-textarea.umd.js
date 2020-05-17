@@ -1,5 +1,5 @@
 /*!
- * w-textarea v1.3.22
+ * w-textarea v1.3.23
  * (c) 2018-2019 yuda-lyu(semisphere)
  * Released under the MIT License.
  */
