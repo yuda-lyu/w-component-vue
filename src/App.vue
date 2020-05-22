@@ -323,6 +323,13 @@
             ></AppZoneWTimeminuteRange>
 
 
+            <AppZoneWTreeDraggable
+                :modeBorder="modeBorder"
+                :modeShell="modeShell"
+                v-if="compname==='WTreeDraggable'"
+            ></AppZoneWTreeDraggable>
+
+
             <AppZoneWJsonView
                 :modeBorder="modeBorder"
                 :modeShell="modeShell"
@@ -408,6 +415,7 @@ import AppZoneWTimeday from './AppZoneWTimeday.vue'
 import AppZoneWTimeminute from './AppZoneWTimeminute.vue'
 import AppZoneWTimedayRange from './AppZoneWTimedayRange.vue'
 import AppZoneWTimeminuteRange from './AppZoneWTimeminuteRange.vue'
+import AppZoneWTreeDraggable from './AppZoneWTreeDraggable.vue'
 import AppZoneWJsonView from './AppZoneWJsonView.vue'
 import AppZoneWDynamicList from './AppZoneWDynamicList.vue'
 import AppZoneWHighchartsVueDyn from './AppZoneWHighchartsVueDyn.vue'
@@ -446,6 +454,7 @@ export default {
         AppZoneWTimeminute,
         AppZoneWTimedayRange,
         AppZoneWTimeminuteRange,
+        AppZoneWTreeDraggable,
         AppZoneWJsonView,
         AppZoneWDynamicList,
         AppZoneWHighchartsVueDyn,
@@ -513,6 +522,12 @@ export default {
                         'WTimeminute',
                         'WTimedayRange',
                         'WTimeminuteRange',
+                    ]
+                },
+                {
+                    name: 'tree',
+                    cmps: [
+                        'WTreeDraggable',
                     ]
                 },
                 {

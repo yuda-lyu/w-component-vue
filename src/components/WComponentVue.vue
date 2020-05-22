@@ -48,6 +48,7 @@ import WTimeminute from './WTimeminute.vue'
 import WTimeminuteCore from './WTimeminuteCore.vue'
 import WTimeminuteRange from './WTimeminuteRange.vue'
 import WTimeminuteRangeCore from './WTimeminuteRangeCore.vue'
+import WTreeDraggable from './WTreeDraggable.vue'
 
 let WComponentVue = {
     install: function(Vue) {
@@ -100,6 +101,7 @@ let WComponentVue = {
         Vue.component('w-timeminute-core', WTimeminuteCore)
         Vue.component('w-timeminute-range', WTimeminuteRange)
         Vue.component('w-timeminute-range-core', WTimeminuteRangeCore)
+        Vue.component('w-tree-draggable', WTreeDraggable)
     }
 }
 

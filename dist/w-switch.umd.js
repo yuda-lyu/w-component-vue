@@ -1,5 +1,5 @@
 /*!
- * w-switch v1.3.23
+ * w-switch v1.3.25
  * (c) 2018-2019 yuda-lyu(semisphere)
  * Released under the MIT License.
  */
