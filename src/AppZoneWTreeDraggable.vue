@@ -129,7 +129,7 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-tree-draggable'"
-                    :casename="'textDisabled & textDisabledColor textDisabledPaddingLeft & textDisabledFontSize & textDisabledBackgroundColor'"
+                    :casename="'textDisabled & textDisabledColor & textDisabledPaddingLeft & textDisabledFontSize & textDisabledBackgroundColor'"
                     :kind="'nokind'"
                     :shell="'pure'"
                 ></demolink>
@@ -182,7 +182,7 @@
                     :hoverBlockColor="'rgba(50,255,100,0.25)'"
                 >
                     <template v-slot:item="props">
-                        <div style="padding:7px; font-size:0.85rem;">
+                        <div style="padding:7px;">
                             <v-chip
                                 style="margin-right:5px;"
                                 small
@@ -200,7 +200,7 @@
                             >
                                 Lv{{(props.node.nk.length+1)/2}}
                             </v-chip>
-                            {{props.node.name}}
+                            <span style="font-size:0.85rem;">{{props.node.name}}</span>
                         </div>
                     </template>
                 </w-tree-draggable>

@@ -7,7 +7,7 @@
         content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui"
     />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>example for w-tree-draggable: hoverLineColor & hoverBlockColor</title>
+    <title>example for w-tree-draggable: textDisabled & textDisabledColor & textDisabledPaddingLeft & textDisabledFontSize & textDisabledBackgroundColor</title>
 
     <!-- fontawesome -->
     <link
@@ -126,12 +126,17 @@
     <v-app id="app" style="font-family:inherit;">
         <div class="head1">w-tree-draggable</div>
         <div class="bk">
-            <div class="item">hoverLineColor & hoverBlockColor</div>
+            <div
+                class="item"
+            >textDisabled & textDisabledColor & textDisabledPaddingLeft & textDisabledFontSize & textDisabledBackgroundColor</div>
 
             <w-tree-draggable
-                :items="WTreeDraggable.option5.items"
-                :hover-line-color="'rgba(120,255,150,0.9)'"
-                :hover-block-color="'rgba(50,255,100,0.25)'"
+                :items="WTreeDraggable.option4.items"
+                :text-disabled="'禁止拖曳至自己子節點當中'"
+                :text-disabled-color="'pink accent-3'"
+                :text-disabled-padding-left="13"
+                :text-disabled-font-size="'0.8rem'"
+                :text-disabled-background-color="'rgba(255,255,255,0.8)'"
             >
                 <template v-slot:item="props">
                     <div style="padding:7px;">
@@ -143,12 +148,11 @@
                             color="purple darken-1"
                         >{{props.node.id}}</v-chip>
                         <v-chip
-                            style="margin-right:5px;"
                             small
                             label
                             color="blue lighten-4"
                         >Lv{{(props.node.nk.length+1)/2}}</v-chip>
-                        <span style="font-size:0.85rem;">{{props.node.name}}</span>
+                        {{props.node.name}}
                     </div>
                 </template>
             </w-tree-draggable>
