@@ -11,7 +11,6 @@
                 :style="`user-select:none; cursor:pointer; padding-left:${(node.nk.length-1)*indent}px;`"
                 :key="get(node,bindKey,knode)"
                 :dragindex="knode"
-                @mousemove="(ev)=>{mouseMove(ev,node,knode)}"
                 v-for="(node,knode) in nodes"
             >
 
@@ -141,7 +140,6 @@ export default {
             dgTipTop: 0,
             dgTipWidth: 0,
             dgTipHeight: 0,
-            cursorInfor: null,
 
             tempItems: [], //另存的節點
             nodes: [], //攤平後的節點
@@ -178,31 +176,22 @@ export default {
             vo.dgTipHeight = msg.enterEle.offsetHeight
 
             //update dgTipTop, dgTipMode
-            // console.log('a1 msg.cursorInfor', msg.cursorInfor.ry, msg.cursorInfor.h, msg.cursorInfor)
-            // console.log('a2 vo.cursorInfor', vo.cursorInfor.ry, vo.cursorInfor.h, cloneDeep(vo.cursorInfor), vo.cursorInforEv)
-            // console.log('a2 pageY', vo.cursorInforEv.pageY)
-            // console.log('a2 clientY', vo.cursorInforEv.clientY)
-            // console.log('a2 offsetY', vo.cursorInforEv.offsetY)
-            // console.log('a2 offsetHeight', vo.cursorInforEv.target.offsetHeight)
-            // console.log('a2 r2', vo.cursorInforEv.offsetY / vo.cursorInforEv.target.offsetHeight)
-            //let cursorInfor = vo.cursorInfor
-            let cursorInfor = msg.cursorInfor
             if (belong) {
                 vo.dgTipTop = msg.enterEle.offsetTop
                 vo.dgTipMode = '' //先隱藏
                 vo.dgTipMode = 'disabled'
             }
-            else if (cursorInfor.ry <= 0.3) {
+            else if (msg.cursorInfor.ry <= 0.3) {
                 vo.dgTipTop = msg.enterEle.offsetTop
                 vo.dgTipMode = '' //先隱藏
                 vo.dgTipMode = 'lineTop'
             }
-            else if (cursorInfor.ry >= 0.7) {
+            else if (msg.cursorInfor.ry >= 0.7) {
                 vo.dgTipTop = msg.enterEle.offsetTop + vo.dgTipHeight
                 vo.dgTipMode = '' //先隱藏
                 vo.dgTipMode = 'lineBottom'
             }
-            else if (cursorInfor.ry > 0.3 && cursorInfor.ry < 0.7) {
+            else if (msg.cursorInfor.ry > 0.3 && msg.cursorInfor.ry < 0.7) {
                 vo.dgTipTop = msg.enterEle.offsetTop
                 vo.dgTipMode = '' //先隱藏
                 vo.dgTipMode = 'block'
@@ -441,26 +430,6 @@ export default {
             }
 
             return items
-        },
-
-        mouseMove: function(ev, node, knode) {
-            //console.log('methods mouseMove', ev, node, knode)
-
-            let vo = this
-
-            //update
-            vo.cursorInfor = {
-                knode,
-                node,
-                x: ev.offsetX,
-                y: ev.offsetY,
-                w: ev.target.offsetWidth,
-                h: ev.target.offsetHeight,
-                rx: ev.offsetX / ev.target.offsetWidth,
-                ry: ev.offsetY / ev.target.offsetHeight,
-            }
-            vo.cursorInforEv = ev
-
         },
 
         moveItem: function(items, nkFrom, nkTo, modeDir, modeInsert) {
