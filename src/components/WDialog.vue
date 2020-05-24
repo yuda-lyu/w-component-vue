@@ -74,7 +74,7 @@
 
             </v-toolbar>
 
-            <v-card-text ref="scrollZone" :style="`line-height:inherit; padding:0px; background-color:${useContentBackgroundColor};`">
+            <v-card-text ref="scrollZone" :style="`line-height:inherit; font-size:inherit; font-weight:inherit; letter-spacing:inherit; padding:0px; background-color:${useContentBackgroundColor};`">
                 <slot name="content"></slot>
             </v-card-text>
 
