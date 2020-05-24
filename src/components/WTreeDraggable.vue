@@ -70,6 +70,7 @@ import color2hex from '../js/vuetifyColor.mjs'
 
 
 /**
+ * @vue-prop {Array} [pathItems=['詳見原始碼']] 輸入draggable.js檔案位置字串陣列，預設詳見原始碼處props->pathItems->default
  * @vue-prop {Array} [items=''] 輸入樹狀節點陣列，預設[]
  * @vue-prop {String} [bindKey='id'] 輸入節點物件識別用欄位字串，預設'id'
  * @vue-prop {String} [bindChildren='children'] 輸入節點物件內存放子節點欄位字串，預設'children'
@@ -84,6 +85,12 @@ import color2hex from '../js/vuetifyColor.mjs'
  */
 export default {
     props: {
+        pathItems: {
+            type: Array,
+            default: () => [ //預設值詳見 wsemi/src/domDragDyn.mjs
+                'https://cdnjs.cloudflare.com/ajax/libs/draggable/1.0.0-beta.9/draggable.min.js',
+            ],
+        },
         items: {
             type: Array,
             default: () => [],
@@ -152,7 +159,7 @@ export default {
         let vo = this
 
         //dd, domDragDyn
-        let dd = await domDragDyn(vo.$el, { attIndex: 'dragindex', selectors: '[dragtag]' })
+        let dd = await domDragDyn(vo.$el, { attIndex: 'dragindex', selectors: '[dragtag]' }, vo.pathItems)
 
         //change
         dd.on('change', (msg) => {
