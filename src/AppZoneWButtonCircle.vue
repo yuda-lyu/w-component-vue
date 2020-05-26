@@ -162,6 +162,7 @@ import { mdiWalletGiftcard, mdiFace, mdiCheckUnderlineCircle } from '@mdi/js'
 import demolink from './components/demolink.vue'
 import WButtonCircle from './components/WButtonCircle.vue'
 
+
 export default {
     components: {
         demolink,

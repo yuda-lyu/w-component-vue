@@ -128,6 +128,7 @@
 import demolink from './components/demolink.vue'
 import WPanelScrolly from './components/WPanelScrolly.vue'
 
+
 export default {
     components: {
         demolink,

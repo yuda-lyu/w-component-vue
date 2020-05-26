@@ -67,6 +67,7 @@
 import { mdiAlert, mdiCheckboxMarkedCircle, mdiCloseCircle } from '@mdi/js'
 import color2hex from '../js/vuetifyColor.mjs'
 
+
 /**
  * @vue-prop {Boolean} [show=false] 輸入是否顯示，預設false
  * @vue-prop {String} [title=''] 輸入標題字串，預設''

@@ -67,6 +67,7 @@ import cloneDeep from 'lodash/cloneDeep'
 import color2hex from '../js/vuetifyColor.mjs'
 import VueDraggable from 'vuedraggable'
 
+
 /**
  * @vue-prop {Array} value 輸入字串陣列
  * @vue-prop {String} [textColor='pink lighten-1'] 輸入文字顏色字串，預設'pink lighten-1'

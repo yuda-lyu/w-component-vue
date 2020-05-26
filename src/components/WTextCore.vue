@@ -21,6 +21,7 @@
 <script>
 import verifyValue from 'wsemi/src/verifyValue.mjs'
 
+
 /**
  * @vue-prop {String} [type='any'] 輸入文字框類型字串，預設'any'
  * @vue-prop {String|Number} value 輸入文字框值

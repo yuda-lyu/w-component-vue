@@ -7,6 +7,7 @@ import importResources from 'wsemi/src/importResources.mjs'
 import WIconLoading from './WIconLoading.vue'
 import getVue from '../js/getVue.mjs'
 
+
 /**
  * @vue-prop {Array} [pathItems=['詳見原始碼']] 輸入echarts與vue-echarts組件js檔案位置字串陣列，預設詳見原始碼處props->pathItems->default
  * @vue-prop {Object} [options={}] 輸入echarts設定物件，預設{}

@@ -275,7 +275,10 @@ export default {
         let vo = this
 
         //destroy
-        vo.dd.draggable.destroy()
+        let draggable = get(vo, 'dd.draggable') //可能因切換過快導致domDragDyn會來不及初始化就要解構, 故需偵測是否有draggable才destroy
+        if (draggable) {
+            draggable.destroy()
+        }
 
     },
     computed: {

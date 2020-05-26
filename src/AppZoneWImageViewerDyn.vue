@@ -58,6 +58,7 @@
 import demolink from './components/demolink.vue'
 import WImageViewerDyn from './components/WImageViewerDyn.vue'
 
+
 export default {
     components: {
         demolink,

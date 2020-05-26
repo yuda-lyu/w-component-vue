@@ -124,6 +124,7 @@
 import demolink from './components/demolink.vue'
 import WHighchartsVueDyn from './components/WHighchartsVueDyn.vue'
 
+
 export default {
     components: {
         demolink,

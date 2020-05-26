@@ -8,6 +8,7 @@ import WIconLoading from './WIconLoading.vue'
 import getVue from '../js/getVue.mjs'
 import { getHCGlobal } from '../js/highchartsSetting.mjs'
 
+
 /**
  * @vue-prop {Array} [pathItems=['詳見原始碼']] 輸入vue-highcharts組件js檔案位置字串陣列，預設詳見原始碼處props->pathItems->default
  * @vue-prop {Object} [options={}] 輸入highcharts設定物件，預設{}

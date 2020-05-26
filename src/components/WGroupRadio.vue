@@ -13,11 +13,11 @@
             >
 
                 <div style="margin-left:-9px; margin-right:9px;" v-if="getSelected(item)">
-                    <WIcon
+                    <w-icon
                         :icon="mdiCheckCircle"
                         :color="iconColor"
                         :size="20"
-                    ></WIcon>
+                    ></w-icon>
                 </div>
 
                 <div style="height:24px; line-height:24px; font-size:0.875rem;">{{item}}</div>
@@ -32,6 +32,7 @@
 <script>
 import { mdiCheckCircle } from '@mdi/js'
 import WIcon from './WIcon.vue'
+
 
 /**
  * @vue-prop {Array} items 輸入全部可選字串陣列

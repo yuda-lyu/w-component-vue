@@ -13,6 +13,7 @@
 <script>
 import color2hex from '../js/vuetifyColor.mjs'
 
+
 /**
  * @vue-prop {String} [text=''] 輸入文字字串，預設''
  * @vue-prop {String} [textColor='white'] 輸入文字顏色字串，預設'white'

@@ -23,6 +23,7 @@
 <script>
 import color2hex from '../js/vuetifyColor.mjs'
 
+
 /**
  * @vue-prop {Boolean} [hasHeader=true] 輸入是否有上部標題區，預設true
  * @vue-prop {Boolean} [hasFooter=true] 輸入是否有下部基底區，預設true

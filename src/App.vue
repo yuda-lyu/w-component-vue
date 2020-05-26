@@ -183,18 +183,25 @@
             ></AppZoneWButtonChip>
 
 
-            <AppZoneWGroupButtons
-                :modeBorder="modeBorder"
-                :modeShell="modeShell"
-                v-if="compname==='WGroupButtons'"
-            ></AppZoneWGroupButtons>
-
-
             <AppZoneWButtonCircle
                 :modeBorder="modeBorder"
                 :modeShell="modeShell"
                 v-if="compname==='WButtonCircle'"
             ></AppZoneWButtonCircle>
+
+
+            <AppZoneWButtonProg
+                :modeBorder="modeBorder"
+                :modeShell="modeShell"
+                v-if="compname==='WButtonProg'"
+            ></AppZoneWButtonProg>
+
+
+            <AppZoneWGroupButtons
+                :modeBorder="modeBorder"
+                :modeShell="modeShell"
+                v-if="compname==='WGroupButtons'"
+            ></AppZoneWGroupButtons>
 
 
             <AppZoneWProgressCircle
@@ -398,6 +405,7 @@ import AppZoneWDialog from './AppZoneWDialog.vue'
 import AppZoneWConfirm from './AppZoneWConfirm.vue'
 import AppZoneWButtonChip from './AppZoneWButtonChip.vue'
 import AppZoneWButtonCircle from './AppZoneWButtonCircle.vue'
+import AppZoneWButtonProg from './AppZoneWButtonProg.vue'
 import AppZoneWGroupButtons from './AppZoneWGroupButtons.vue'
 import AppZoneWProgressCircle from './AppZoneWProgressCircle.vue'
 import AppZoneWSwitch from './AppZoneWSwitch.vue'
@@ -437,6 +445,7 @@ export default {
         AppZoneWConfirm,
         AppZoneWButtonChip,
         AppZoneWButtonCircle,
+        AppZoneWButtonProg,
         AppZoneWGroupButtons,
         AppZoneWProgressCircle,
         AppZoneWSwitch,
@@ -493,6 +502,7 @@ export default {
                     cmps: [
                         'WButtonChip',
                         'WButtonCircle',
+                        'WButtonProg',
                     ]
                 },
                 {

@@ -32,6 +32,7 @@
 <script>
 import { mdiMenuDown } from '@mdi/js'
 
+
 /**
  * @vue-prop {Array} [items=[]] 輸入可選項目陣列，預設[]
  * @vue-prop {Object|String|Number} [value=null] 輸入目前選擇項目，可為物件、字串、數字，預設null

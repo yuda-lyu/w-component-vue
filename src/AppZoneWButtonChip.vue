@@ -58,6 +58,23 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-button-chip'"
+                    :casename="'iconShiftLeft'"
+                    :kind="'nokind'"
+                    :shell="'pure'"
+                ></demolink>
+
+                <w-button-chip
+                    :text="WButtonChip.text"
+                    :icon="mdiYoutubeTv"
+                    :iconShiftLeft="8"
+                ></w-button-chip>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-button-chip'"
                     :casename="'tooltip'"
                     :kind="'nokind'"
                     :shell="'pure'"
@@ -84,23 +101,6 @@
                     :text="WButtonChip.text"
                     :icon="mdiOrbit"
                     :small="false"
-                ></w-button-chip>
-
-            </div>
-
-
-            <div class="bk">
-                <demolink
-                    :kbname="'w-button-chip'"
-                    :casename="'iconShiftLeft'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
-                ></demolink>
-
-                <w-button-chip
-                    :text="WButtonChip.text"
-                    :icon="mdiYoutubeTv"
-                    :iconShiftLeft="8"
                 ></w-button-chip>
 
             </div>
@@ -203,6 +203,7 @@
 import { mdiWalletGiftcard, mdiFace, mdiOrbit, mdiCheckUnderlineCircle, mdiYoutubeTv } from '@mdi/js'
 import demolink from './components/demolink.vue'
 import WButtonChip from './components/WButtonChip.vue'
+
 
 export default {
     components: {

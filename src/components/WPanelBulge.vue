@@ -20,6 +20,7 @@
 import color2hex from '../js/vuetifyColor.mjs'
 import isnum from 'wsemi/src/isnum.mjs'
 
+
 /**
  * @vue-prop {Number} [borderRadius=0] 輸入圓角寬度，單位為px，預設0
  * @vue-prop {Number} [headerLeft=20] 輸入標題離左側邊界長度，單位為px，預設20

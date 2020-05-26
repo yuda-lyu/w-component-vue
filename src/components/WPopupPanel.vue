@@ -29,6 +29,7 @@ import get from 'lodash/get'
 import waitFun from 'wsemi/src/waitFun.mjs'
 import cancelEvent from '../js/cancelEvent.mjs'
 
+
 /**
  * @vue-prop {Number} [value=false] 輸入是否顯示，預設false
  * @vue-prop {Number} [minWidth=undefined] 輸入最小寬度，單位為px，預設undefined

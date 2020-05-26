@@ -58,6 +58,7 @@
 <script>
 import color2hex from '../js/vuetifyColor.mjs'
 
+
 /**
  * @vue-prop {Object} item 輸入物件
  * @vue-prop {Number} [lineNumberWidth=0] 輸入列號區寬度，單位為px，預設0

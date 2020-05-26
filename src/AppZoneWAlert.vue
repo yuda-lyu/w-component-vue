@@ -70,6 +70,7 @@
 import demolink from './components/demolink.vue'
 import WAlert from './components/WAlert.mjs'
 
+
 export default {
     components: {
         demolink,

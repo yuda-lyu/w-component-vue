@@ -72,6 +72,7 @@
 import demolink from './components/demolink.vue'
 import WBadge from './components/WBadge.vue'
 
+
 export default {
     components: {
         demolink,

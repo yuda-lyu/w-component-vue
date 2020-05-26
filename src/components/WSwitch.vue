@@ -17,6 +17,7 @@
 <script>
 import isbol from 'wsemi/src/isbol.mjs'
 
+
 /**
  * @vue-prop {String} [text=''] 輸入文字字串，預設''
  * @vue-prop {String|Boolean} [value='no'] 輸入是否狀態的字串或布林值，可接受'yes'或'no'，或是true或false，預設'no'

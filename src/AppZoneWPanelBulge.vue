@@ -149,6 +149,7 @@
 import demolink from './components/demolink.vue'
 import WPanelBulge from './components/WPanelBulge.vue'
 
+
 export default {
     components: {
         demolink,

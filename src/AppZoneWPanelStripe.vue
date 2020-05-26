@@ -597,6 +597,7 @@
 import demolink from './components/demolink.vue'
 import WPanelStripe from './components/WPanelStripe.vue'
 
+
 export default {
     components: {
         demolink,

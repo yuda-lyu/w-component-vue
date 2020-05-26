@@ -63,6 +63,7 @@ import { mdiCloseCircle, mdiPlusCircle } from '@mdi/js'
 import trim from 'lodash/trim'
 import WText from './WText.vue'
 
+
 /**
  * @vue-prop {Array} value 輸入字串陣列
  * @vue-prop {String} [textColor='grey darken-2'] 輸入文字顏色字串，預設'grey darken-2'

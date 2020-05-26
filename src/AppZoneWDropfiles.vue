@@ -155,6 +155,7 @@
 import demolink from './components/demolink.vue'
 import WDropfiles from './components/WDropfiles.vue'
 
+
 export default {
     components: {
         demolink,

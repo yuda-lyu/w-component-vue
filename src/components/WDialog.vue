@@ -9,7 +9,7 @@
         v-resize="changeSize"
         v-model="showTrans"
         @click:outside="clickClose(true)"
-        @keydown="keyDown"
+        @keydown.esc.capture.stop="keyEsc"
     >
 
         <v-card v-if="show">
@@ -77,7 +77,7 @@
             <v-card-text
                 ref="scrollZone"
                 :style="`line-height:inherit; font-size:inherit; font-weight:inherit; letter-spacing:inherit; padding:0px; background-color:${useContentBackgroundColor};`"
-                v-msg="'因v-card內文字大小與間距預設改小, 故強制還原成inherit'"
+                :msg="'因v-card內文字大小與間距預設改小, 故強制還原成inherit'"
             >
                 <slot name="content"></slot>
             </v-card-text>
@@ -92,6 +92,7 @@ import { mdiCheckCircle, mdiClose, mdiCheckerboard } from '@mdi/js'
 import get from 'lodash/get'
 import color2hex from '../js/vuetifyColor.mjs'
 import WButtonCircle from './WButtonCircle.vue'
+
 
 /**
  * @vue-prop {Boolean} [show=false] 輸入是否顯示，預設false
@@ -312,18 +313,23 @@ export default {
 
         },
 
-        keyDown: function(e) {
-            //console.log('methods keyDown', e)
+        keyEsc: function(e) {
+            //console.log('methods keyEsc', e)
 
             let vo = this
 
-            //check, vuetify於dialog為fullscreen狀態時有問題, 第1次按esc不會關閉, 但第2次之後按esc會關閉, 待vuetify修復
-            // if (e.code === 'Escape') {
+            //check
+            //vuetify於dialog為fullscreen狀態時有問題, 第1次按esc不會關閉, 但第2次之後按esc會關閉, 待vuetify修復
+            //使用.capture.stop無法停掉事件, 推測vuetify是於更外層偵測esc並對dialog關閉
+            if (vo.fullscreen && e.code === 'Escape') {
+                //console.log('detect Escape in fullscreen')
 
-            //     //hide
-            //     vo.showTrans = false
+                //setTimeout, 需脫勾再強制改為顯示
+                setTimeout(() => {
+                    vo.showTrans = true
+                }, 1)
 
-            // }
+            }
 
         },
 

@@ -245,6 +245,7 @@
 import demolink from './components/demolink.vue'
 import WConfirm from './components/WConfirm.vue'
 
+
 export default {
     components: {
         demolink,

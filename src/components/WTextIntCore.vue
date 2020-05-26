@@ -39,6 +39,7 @@ import cint from 'wsemi/src/cint.mjs'
 import verifyValue from 'wsemi/src/verifyValue.mjs'
 import WTextCore from './WTextCore.vue'
 
+
 /**
  * @vue-prop {Number} [width=70] 輸入框寬度，單位為px，預設70
  * @vue-prop {Number} [value=0] 輸入整數值數字，預設0

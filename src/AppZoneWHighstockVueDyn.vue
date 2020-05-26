@@ -60,6 +60,7 @@
 import demolink from './components/demolink.vue'
 import WHighstockVueDyn from './components/WHighstockVueDyn.vue'
 
+
 export default {
     components: {
         demolink,

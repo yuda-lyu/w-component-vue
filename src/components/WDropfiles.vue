@@ -13,6 +13,7 @@
 import color2hex from '../js/vuetifyColor.mjs'
 import domDropFiles from 'wsemi/src/domDropFiles.mjs'
 
+
 /**
  * @vue-prop {String} [backgroundColor='transparent'] 輸入背景顏色字串，預設'transparent'
  * @vue-prop {String} [backgroundColorDropIn='purple lighten-5'] 輸入滑鼠拖曳檔案移入時背景顏色字串，預設'purple lighten-5'

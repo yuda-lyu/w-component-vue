@@ -123,6 +123,7 @@
 import demolink from './components/demolink.vue'
 import WProgressCircle from './components/WProgressCircle.vue'
 
+
 export default {
     components: {
         demolink,

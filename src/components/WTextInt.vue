@@ -47,6 +47,7 @@
 import WShellEllipse from './WShellEllipse.vue'
 import WTextIntCore from './WTextIntCore.vue'
 
+
 /**
  * @vue-prop {Number} [width=70] 輸入框寬度，單位為px，預設70
  * @vue-prop {String} [title=''] 輸入標題字串，預設''

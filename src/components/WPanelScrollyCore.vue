@@ -36,6 +36,7 @@ import color2hex from '../js/vuetifyColor.mjs'
 import genID from 'wsemi/src/genID.mjs'
 import cancelEvent from '../js/cancelEvent.mjs'
 
+
 /**
  * @vue-prop {Number} [viewHeightMax=400] 輸入顯示區最大高度，單位為px，預設400
  * @vue-prop {Number} [contentHeight=10000] 輸入內容最大高度，單位為px，預設10000

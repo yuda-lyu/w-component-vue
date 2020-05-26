@@ -20,10 +20,10 @@
 
                     <template v-slot:activator="{ on: ttShellEllipseLeft }">
                         <div ShellEllipse="leftIcon" v-on="{...ttShellEllipseLeft}">
-                            <WIcon
+                            <w-icon
                                 :icon="leftIcon"
                                 :color="focusedTrans?leftIconColorFocus:leftIconColor"
-                            ></WIcon>
+                            ></w-icon>
                         </div>
                     </template>
 
@@ -45,10 +45,10 @@
 
                     <template v-slot:activator="{ on: ttShellEllipseRight }">
                         <div ShellEllipse="rightIcon" v-on="{...ttShellEllipseRight}">
-                            <WIcon
+                            <w-icon
                                 :icon="rightIcon"
                                 :color="focusedTrans?rightIconColorFocus:rightIconColor"
-                            ></WIcon>
+                            ></w-icon>
                         </div>
                     </template>
 
@@ -66,6 +66,7 @@
 <script>
 import color2hex from '../js/vuetifyColor.mjs'
 import WIcon from './WIcon.vue'
+
 
 /**
  * @vue-prop {String} [title=''] 輸入標題字串，預設''

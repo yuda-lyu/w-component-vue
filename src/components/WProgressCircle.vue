@@ -36,7 +36,7 @@
  * @vue-prop {String} [color='purple lighten-1'] 輸入環狀圓條顏色字串，預設'purple lighten-1'
  * @vue-prop {Number} [size=120] 輸入進度條外徑寬度，單位為px，預設120
  * @vue-prop {Number} [width=10] 輸入環狀圓條寬度，單位為px，預設10
- * @vue-prop {String} [tooltip=text] 輸入提示文字字串，預設''
+ * @vue-prop {String} [tooltip=''] 輸入提示文字字串，預設''
  */
 export default {
     props: {

@@ -11,10 +11,10 @@
 
                 <template v-slot:activator="{ on: ttShellMaterialLeft }">
                     <div ShellMaterial="leftIcon" v-on="{...ttShellMaterialLeft}">
-                        <WIcon
+                        <w-icon
                             :icon="leftIcon"
                             :color="focusedTrans?leftIconColorFocus:leftIconColor"
-                        ></WIcon>
+                        ></w-icon>
                     </div>
                 </template>
 
@@ -44,10 +44,10 @@
 
                 <template v-slot:activator="{ on: ttShellMaterialRight }">
                     <div ShellMaterial="rightIcon" v-on="{...ttShellMaterialRight}">
-                        <WIcon
+                        <w-icon
                             :icon="rightIcon"
                             :color="focusedTrans?rightIconColorFocus:rightIconColor"
-                        ></WIcon>
+                        ></w-icon>
                     </div>
                 </template>
 
@@ -63,6 +63,7 @@
 <script>
 import color2hex from '../js/vuetifyColor.mjs'
 import WIcon from './WIcon.vue'
+
 
 /**
  * @vue-prop {String} [title=''] 輸入標題字串，預設''

@@ -23,6 +23,7 @@
 import get from 'lodash/get'
 import WPanelScrollyCore from './WPanelScrollyCore.vue'
 
+
 /**
  * @vue-prop {Number} [scrollDelta=100] 輸入一次捲動高度，單位為px，預設100
  * @vue-prop {String} [barColor='rgba(0,0,0,0.2)'] 輸入捲軸內區塊顏色字串，預設'rgba(0,0,0,0.2)'

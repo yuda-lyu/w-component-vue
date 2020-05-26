@@ -14,12 +14,12 @@
                     @click="clickBtn"
                 >
 
-                    <WIcon
+                    <w-icon
                         :style="`margin:0px 5px 0px ${useIconShiftLeft}px;`"
                         :icon="icon"
                         :color="iconColor"
                         :size="22"
-                    ></WIcon>
+                    ></w-icon>
 
                     <span
                         :style="`font-size:0.875rem; text-transform:none; color:${useTextColor}`"
@@ -41,9 +41,10 @@
 import color2hex from '../js/vuetifyColor.mjs'
 import WIcon from './WIcon.vue'
 
+
 /**
  * @vue-prop {String} [text=''] 輸入文字字串，預設''
- * @vue-prop {String} [tooltip=text] 輸入提示文字字串，預設''
+ * @vue-prop {String} [tooltip=''] 輸入提示文字字串，預設''
  * @vue-prop {String} [icon=''] 輸入圖標字串，可為mdi,md,fa代號或mdi/js路徑，預設''
  * @vue-prop {String} [iconColor=''] 輸入圖標背景顏色字串，預設''，即透明
  * @vue-prop {Number} [iconShiftLeft=0] 輸入圖標左側平移距離數字，單位px，預設0

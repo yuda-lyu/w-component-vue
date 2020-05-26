@@ -62,6 +62,7 @@ import get from 'lodash/get'
 import merge from 'lodash/merge'
 import isbol from 'wsemi/src/isbol.mjs'
 
+
 /**
  * @vue-prop {Array} value 輸入項目陣列，每個項目為物件，需包含text欄位儲存顯示文字，若提供clickable欄位則代表是否可點擊，預設為true
  * @vue-prop {Number} [activeIndex=null] 輸入已點擊項目指標整數，預設null

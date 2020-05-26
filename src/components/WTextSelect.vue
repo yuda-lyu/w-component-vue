@@ -38,6 +38,7 @@
 import WShellEllipse from './WShellEllipse.vue'
 import WTextSelectCore from './WTextSelectCore.vue'
 
+
 /**
  * @vue-prop {String} [title=''] 輸入標題字串，預設''
  * @vue-prop {String} [titleColor='deep-orange darken-1'] 輸入標題顏色字串，預設'deep-orange darken-1'

@@ -78,6 +78,7 @@ import WPopupPanel from './WPopupPanel.vue'
 import WTextCore from './WTextCore.vue'
 import WDynamicList from './WDynamicList.vue'
 
+
 /**
  * @vue-prop {Object|String|Number} value 輸入初始項目物件
  * @vue-prop {Array} [items=400] 輸入項目陣列，預設[]
