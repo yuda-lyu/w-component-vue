@@ -11,10 +11,10 @@
 
                 <template v-slot:activator="{ on: ttShellMaterialLeft }">
                     <div ShellMaterial="leftIcon" v-on="{...ttShellMaterialLeft}">
-                        <w-icon
+                        <WIcon
                             :icon="leftIcon"
                             :color="focusedTrans?leftIconColorFocus:leftIconColor"
-                        ></w-icon>
+                        ></WIcon>
                     </div>
                 </template>
 
@@ -44,10 +44,10 @@
 
                 <template v-slot:activator="{ on: ttShellMaterialRight }">
                     <div ShellMaterial="rightIcon" v-on="{...ttShellMaterialRight}">
-                        <w-icon
+                        <WIcon
                             :icon="rightIcon"
                             :color="focusedTrans?rightIconColorFocus:rightIconColor"
-                        ></w-icon>
+                        ></WIcon>
                     </div>
                 </template>
 
@@ -81,7 +81,7 @@ import WIcon from './WIcon.vue'
  */
 export default {
     components: {
-        WIcon
+        WIcon,
     },
     props: {
         title: {

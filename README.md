@@ -20,7 +20,7 @@ To view some examples for more understanding, visit examples:
 
 ## Installation
 ### Using npm(ES6 module):
-> **Note:** w-component-vue is mainly composed of `vuetify`, `vuedraggable` and `@mdi/js`.
+> **Note:** w-component-vue is mainly composed of `vuetify`, `element-ui`, `vuedraggable` and `@mdi/js`.
 
 ```alias
 npm i w-component-vue

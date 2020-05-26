@@ -16,9 +16,9 @@
                     @click="clickBtn"
                     v-if="backgroundColor==='transparent'"
                 >
-                    <w-icon
+                    <WIcon
                         :icon="icon"
-                    ></w-icon>
+                    ></WIcon>
                 </v-btn>
 
                 <v-btn
@@ -32,10 +32,10 @@
                     @click="clickBtn"
                     v-else
                 >
-                    <w-icon
+                    <WIcon
                         :icon="icon"
                         :color="iconColor"
-                    ></w-icon>
+                    ></WIcon>
                 </v-btn>
 
             </template>
@@ -62,7 +62,7 @@ import WIcon from './WIcon.vue'
  */
 export default {
     components: {
-        WIcon
+        WIcon,
     },
     props: {
         tooltip: {

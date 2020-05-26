@@ -74,7 +74,11 @@
 
             </v-toolbar>
 
-            <v-card-text ref="scrollZone" :style="`line-height:inherit; font-size:inherit; font-weight:inherit; letter-spacing:inherit; padding:0px; background-color:${useContentBackgroundColor};`">
+            <v-card-text
+                ref="scrollZone"
+                :style="`line-height:inherit; font-size:inherit; font-weight:inherit; letter-spacing:inherit; padding:0px; background-color:${useContentBackgroundColor};`"
+                v-msg="'因v-card內文字大小與間距預設改小, 故強制還原成inherit'"
+            >
                 <slot name="content"></slot>
             </v-card-text>
 

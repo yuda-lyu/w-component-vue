@@ -20,10 +20,10 @@
 
                     <template v-slot:activator="{ on: ttShellEllipseLeft }">
                         <div ShellEllipse="leftIcon" v-on="{...ttShellEllipseLeft}">
-                            <w-icon
+                            <WIcon
                                 :icon="leftIcon"
                                 :color="focusedTrans?leftIconColorFocus:leftIconColor"
-                            ></w-icon>
+                            ></WIcon>
                         </div>
                     </template>
 
@@ -45,10 +45,10 @@
 
                     <template v-slot:activator="{ on: ttShellEllipseRight }">
                         <div ShellEllipse="rightIcon" v-on="{...ttShellEllipseRight}">
-                            <w-icon
+                            <WIcon
                                 :icon="rightIcon"
                                 :color="focusedTrans?rightIconColorFocus:rightIconColor"
-                            ></w-icon>
+                            ></WIcon>
                         </div>
                     </template>
 
@@ -90,7 +90,7 @@ import WIcon from './WIcon.vue'
  */
 export default {
     components: {
-        WIcon
+        WIcon,
     },
     props: {
         title: {

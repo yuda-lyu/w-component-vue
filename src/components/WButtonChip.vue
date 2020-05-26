@@ -14,14 +14,18 @@
                     @click="clickBtn"
                 >
 
-                    <w-icon
+                    <WIcon
                         :style="`margin:0px 5px 0px ${useIconShiftLeft}px;`"
                         :icon="icon"
                         :color="iconColor"
                         :size="22"
-                    ></w-icon>
+                    ></WIcon>
 
-                    <span :style="`font-size:0.875rem; text-transform:none; color:${useTextColor}`">{{text}}</span>
+                    <span
+                        :style="`font-size:0.875rem; text-transform:none; color:${useTextColor}`"
+                    >
+                        {{text}}
+                    </span>
 
                 </v-btn>
             </template>
@@ -34,8 +38,8 @@
 </template>
 
 <script>
-import WIcon from './WIcon.vue'
 import color2hex from '../js/vuetifyColor.mjs'
+import WIcon from './WIcon.vue'
 
 /**
  * @vue-prop {String} [text=''] 輸入文字字串，預設''

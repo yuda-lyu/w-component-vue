@@ -13,11 +13,11 @@
             >
 
                 <div style="margin-left:-9px; margin-right:9px;" v-if="getSelected(item)">
-                    <w-icon
+                    <WIcon
                         :icon="mdiCheckCircle"
                         :color="iconColor"
                         :size="20"
-                    ></w-icon>
+                    ></WIcon>
                 </div>
 
                 <div style="height:24px; line-height:24px; font-size:0.875rem;">{{item}}</div>
@@ -45,7 +45,7 @@ import WIcon from './WIcon.vue'
  */
 export default {
     components: {
-        WIcon
+        WIcon,
     },
     props: {
         items: {
