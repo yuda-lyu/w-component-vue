@@ -20,7 +20,7 @@ To view some examples for more understanding, visit examples:
 
 ## Installation
 ### Using npm(ES6 module):
-> **Note:** w-component-vue is mainly composed of `vuetify`, `element-ui`, `vuedraggable` and `@mdi/js`.
+> **Note:** w-component-vue is mainly composed of `vuetify`, `element-ui`, `@shopify/draggable` and `@mdi/js`.
 
 ```alias
 npm i w-component-vue
@@ -75,7 +75,7 @@ Vue.component('w-text',WText)
 ```
 [Necessary] Add script for w-component-vue.
 ```alias
-<script src="https://cdn.jsdelivr.net/npm/w-component-vue@1.3.29/dist/w-component-vue.umd.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/w-component-vue@1.3.30/dist/w-component-vue.umd.js"></script>
 ```
 Directly use:
 ```alias

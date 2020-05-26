@@ -115,7 +115,7 @@ export default {
         },
         progColor: {
             type: String,
-            default: 'brown', //'yellow darken-4',
+            default: 'blue-grey ', //'yellow darken-4',
         },
         small: {
             type: Boolean,
@@ -216,11 +216,11 @@ export default {
 
                 if (prog >= 100) {
 
-                    //update loadingTrans
-                    vo.loadingTrans = false
-
                     //setTimeout
                     setTimeout(() => {
+
+                        //update loadingTrans, 因可能外部為多組件同步loading, 於timer之前修改有可能又會被外部覆寫, 故得於timer內修改
+                        vo.loadingTrans = false
 
                         //emit
                         vo.$emit('update:loading', vo.loadingTrans)

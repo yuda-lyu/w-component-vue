@@ -185,6 +185,26 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-button-prog'"
+                    :casename="'progColor'"
+                    :kind="'nokind'"
+                    :shell="'pure'"
+                ></demolink>
+
+                <w-button-prog
+                    :item="WButtonProg.item1"
+                    :icon="mdiCheckUnderlineCircle"
+                    :progColor="'pink'"
+                    :loading.sync="WButtonProg.loading"
+                    :loadingProg.sync="WButtonProg.loadingProg"
+                    @click="clickItem"
+                ></w-button-prog>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-button-prog'"
                     :casename="'iconColor & backgroundColor & textColor'"
                     :kind="'nokind'"
                     :shell="'pure'"
@@ -279,19 +299,22 @@ export default {
     methods: {
 
         clickItem: function(item, cbProg) {
-            let n = 100
+            let sall = 1000 //total(s)
+            let n = 15 //slice point
             for (let i = 0; i <= n; i++) {
-                let s = i / n
-                let t = s ** 6 * 1000
-                let p = s * 99.9
+                let pp = i / n
+                let t = sall * pp
+                let p = pp * 99.9
                 setTimeout(function() {
                     //console.log('i=', i, 't=', t, 'p=', p)
                     cbProg(p)
                 }, t)
-                setTimeout(function() {
-                    cbProg(100)
-                }, 1300)
             }
+            setTimeout(function() {
+                let p = 100
+                //console.log('cbProg(100)', 'p', p)
+                cbProg(p)
+            }, sall + 300)
         },
 
     },

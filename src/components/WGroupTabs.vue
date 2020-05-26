@@ -1,43 +1,40 @@
 <template>
     <div style="" :changeParam="changeParam">
 
-        <VueDraggable
-            :value="valueTrans"
-            :disabled="!draggable"
-            @input="dragItem"
-        >
+        <transition-group>
+            <template v-for="(item,kitem) in valueTrans">
 
-            <transition-group>
-                <template v-for="(item,kitem) in valueTrans">
+                <v-chip
+                    :class="`v-chpi-modify trans ${shadow?'shadow':''}`"
+                    small
+                    :key="item.name+'|'+item.tag"
+                    :close-icon="mdiCloseCircle"
+                    :close="close"
+                    :text-color="getTextColor(item)"
+                    :color="getBackgroundColor(item)"
+                    :outlined="getOutlined(item)"
+                    @click="clcikItem(item)"
+                    @click:close="removeItem(item,kitem)"
+                    draggable
+                    @dragstart="dragStart($event,item,kitem)"
+                    @drop="drop($event,item,kitem)"
+                    @dragenter="cancelEvent"
+                    @dragover="cancelEvent"
+                >
 
-                    <v-chip
-                        :class="`v-chpi-modify trans ${shadow?'shadow':''}`"
-                        small
-                        :key="item.name+'|'+item.tag"
-                        :close-icon="mdiCloseCircle"
-                        :close="close"
-                        :text-color="getTextColor(item)"
-                        :color="getBackgroundColor(item)"
-                        :outlined="getOutlined(item)"
-                        @click="clcikItem(item)"
-                        @click:close="removeItem(item,kitem)"
+                    <div
+                        class="trans"
+                        :style="`margin-left:-9px; margin-right:5px; border-radius:10px; font-size:0.85rem; ${isActive(item)?`padding:0px 12px; color:${useTagTextColorActive}; background-color:${useTagBackgroundColorActive};`:`padding:0px 8px; color:${useTagTextColor}; background-color:${useTagBackgroundColor};`}`"
                     >
+                        {{item.tag}}
+                    </div>
 
-                        <div
-                            class="trans"
-                            :style="`margin-left:-9px; margin-right:5px; border-radius:10px; font-size:0.85rem; ${isActive(item)?`padding:0px 12px; color:${useTagTextColorActive}; background-color:${useTagBackgroundColorActive};`:`padding:0px 8px; color:${useTagTextColor}; background-color:${useTagBackgroundColor};`}`"
-                        >
-                            {{item.tag}}
-                        </div>
+                    <span style="font-size:0.85rem;">{{item.name}}</span>
 
-                        <span style="font-size:0.85rem;">{{item.name}}</span>
+                </v-chip>
 
-                    </v-chip>
-
-                </template>
-            </transition-group>
-
-        </VueDraggable>
+            </template>
+        </transition-group>
 
         <template v-if="valueTrans.length===0">
 
@@ -64,8 +61,8 @@ import each from 'lodash/each'
 import size from 'lodash/size'
 import get from 'lodash/get'
 import cloneDeep from 'lodash/cloneDeep'
+import pullAt from 'lodash/pullAt'
 import color2hex from '../js/vuetifyColor.mjs'
-import VueDraggable from 'vuedraggable'
 
 
 /**
@@ -85,7 +82,6 @@ import VueDraggable from 'vuedraggable'
  */
 export default {
     components: {
-        VueDraggable,
     },
     props: {
         valueActive: {
@@ -148,6 +144,8 @@ export default {
             mdiCloseCircle,
             valueTrans: [],
             itemActive: {},
+            dragIndStart: null,
+            dragIndEnd: null,
         }
     },
     mounted: function() {
@@ -188,6 +186,80 @@ export default {
 
     },
     methods: {
+
+        dragStart: function (e, item, kitem) {
+            //console.log('methods dragStart', e, item, kitem)
+
+            let vo = this
+
+            //dragIndStart
+            vo.dragIndStart = kitem
+
+        },
+
+        drop: function (e, item, kitem) {
+            //console.log('methods drop', e, item, kitem)
+
+            let vo = this
+
+            //cancelEvent
+            vo.cancelEvent(e)
+
+            //check
+            if (!vo.dragIndStart) {
+                return
+            }
+
+            //dragIndEnd
+            vo.dragIndEnd = kitem
+
+            //cloneDeep
+            let items = cloneDeep(vo.valueTrans)
+
+            //move
+            if (vo.dragIndStart > vo.dragIndEnd) { //往前拖曳, 先移除原始拖曳項目, 再於放下位置插入該拖曳項目
+
+                //pullAt
+                let src = pullAt(items, vo.dragIndStart)[0]
+
+                //array insert
+                items.splice(vo.dragIndEnd, 0, src) //拖曳項目是要放在目標項目之前, 故不能+1
+
+            }
+            else { //往後拖曳, 先複製原始拖曳項目, 並於放下位置插入, 再刪除原始拖曳項目
+
+                //cloneDeep
+                let src = cloneDeep(items[vo.dragIndStart])
+
+                //array insert
+                items.splice(vo.dragIndEnd + 1, 0, src) //拖曳項目是要放在目標項目之後, 故需要+1
+
+                //pullAt
+                pullAt(items, vo.dragIndStart)
+
+            }
+
+            //save
+            vo.valueTrans = items
+
+            //emitDrag
+            vo.emitDrag(items)
+
+            //clear
+            vo.dragIndStart = null
+            vo.dragIndEnd = null
+
+        },
+
+        cancelEvent: function (e) {
+            //console.log('methods cancelEvent', e)
+
+            // let vo = this
+
+            e.preventDefault()
+            e.stopPropagation()
+            return false
+        },
 
         getTextColor: function(item) {
             //console.log('methods getTextColor', item)
@@ -261,7 +333,7 @@ export default {
 
         },
 
-        pull: function(ar, item) {
+        pull: function(ar, item) { //刪除並具有cloenDeep功效
             let r = []
             each(ar, (v) => {
                 if (!isEqual(v, item)) {
@@ -295,18 +367,13 @@ export default {
 
             }
 
-            //setTimeout
-            setTimeout(() => {
-
-                //emit
-                vo.$emit('input', vo.pull(vo.valueTrans, item))
-
-            }, 1)
+            //emitDrag
+            vo.emitDrag(vo.pull(vo.valueTrans, item))
 
         },
 
-        dragItem: function(items) {
-            //console.log('methods dragItem', items)
+        emitDrag: function(items) {
+            //console.log('methods emitDrag', items)
 
             let vo = this
 
@@ -314,7 +381,7 @@ export default {
             setTimeout(() => {
 
                 //emit
-                vo.$emit('input', items)
+                vo.$emit('input', cloneDeep(items))
 
             }, 1)
 
