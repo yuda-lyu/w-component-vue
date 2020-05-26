@@ -23,7 +23,7 @@
                     <v-btn
                         v-on="on"
                         rounded
-                        :style="`opacity:${loadingTrans?0.5:1}`"
+                        :style="`opacity:${loadingTrans?(editable?0.5:0.3):1}`"
                         :small="small"
                         :color="backgroundColor"
                         :disabled="!editable"
@@ -69,9 +69,9 @@ import WIcon from './WIcon.vue'
  * @vue-prop {String} [icon=''] 輸入圖標字串，可為mdi,md,fa代號或mdi/js路徑，預設''
  * @vue-prop {String} [iconColor=''] 輸入圖標背景顏色字串，預設''，即透明
  * @vue-prop {Number} [iconShiftLeft=0] 輸入圖標左側平移距離數字，單位px，預設0
- * @vue-prop {String} [textColor='grey darken-2'] 輸入文字顏色字串，預設'grey darken-2'
- * @vue-prop {String} [backgroundColor='amber lighten-2'] 輸入按鈕背景顏色字串，預設'amber lighten-2'
- * @vue-prop {String} [progColor='yellow darken-4'] 輸入按鈕背景顏色字串，預設'yellow darken-4'
+ * @vue-prop {String} [textColor='black'] 輸入文字顏色字串，預設'black'
+ * @vue-prop {String} [backgroundColor='grey lighten-4'] 輸入按鈕背景顏色字串，預設'grey lighten-4'
+ * @vue-prop {String} [progColor='grey'] 輸入按鈕背景顏色字串，預設'grey'
  * @vue-prop {Boolean} [small=true] 輸入是否為小型模式，預設true
  * @vue-prop {Boolean} [loading=false] 輸入是否為載入模式，預設false
  * @vue-prop {Boolean} [editable=true] 輸入是否為編輯模式，預設true
@@ -115,7 +115,7 @@ export default {
         },
         progColor: {
             type: String,
-            default: 'blue-grey ', //'yellow darken-4',
+            default: 'grey', //'yellow darken-4',
         },
         small: {
             type: Boolean,

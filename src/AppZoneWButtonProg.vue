@@ -193,7 +193,7 @@
                 <w-button-prog
                     :item="WButtonProg.item1"
                     :icon="mdiCheckUnderlineCircle"
-                    :progColor="'pink'"
+                    :progColor="'yellow darken-4'"
                     :loading.sync="WButtonProg.loading"
                     :loadingProg.sync="WButtonProg.loadingProg"
                     @click="clickItem"
