@@ -26,7 +26,7 @@
                 </div>
 
 
-                <div class="bk" style="display:block;">
+                <div class="bk" v-if="false" style="display:block;">
                     <demolink
                         :kbname="'w-group-tabs'"
                         :casename="'textColor & textColorActive & backgroundColor & backgroundColorActive'"
@@ -45,7 +45,7 @@
                 </div>
 
 
-                <div class="bk" style="display:block;">
+                <div class="bk" v-if="false" style="display:block;">
                     <demolink
                         :kbname="'w-group-tabs'"
                         :casename="'tagTextColor & tagTextColorActive & tagBackgroundColor & tagBackgroundColorActive'"
@@ -64,7 +64,7 @@
                 </div>
 
 
-                <div class="bk" style="display:block;">
+                <div class="bk" v-if="false" style="display:block;">
                     <demolink
                         :kbname="'w-group-tabs'"
                         :casename="'no close'"
@@ -80,7 +80,7 @@
                 </div>
 
 
-                <div class="bk" style="display:block;">
+                <div class="bk" v-if="false" style="display:block;">
                     <demolink
                         :kbname="'w-group-tabs'"
                         :casename="'no draggable'"
@@ -96,7 +96,7 @@
                 </div>
 
 
-                <div class="bk" style="display:block;">
+                <div class="bk" v-if="false" style="display:block;">
                     <demolink
                         :kbname="'w-group-tabs'"
                         :casename="'nodata'"
@@ -112,7 +112,7 @@
                 </div>
 
 
-                <div class="bk" style="display:block;">
+                <div class="bk" v-if="false" style="display:block;">
                     <demolink
                         :kbname="'w-group-tabs'"
                         :casename="'no shadow and individual setting'"
@@ -137,7 +137,7 @@
             <template v-if="modeShell==='shell'">
 
 
-                <div class="bk" style="display:block;">
+                <div class="bk" v-if="false" style="display:block;">
                     <demolink
                         :kbname="'w-group-tags'"
                         :casename="'default'"
@@ -158,7 +158,7 @@
                 </div>
 
 
-                <div class="bk" style="display:block;">
+                <div class="bk" v-if="false" style="display:block;">
                     <demolink
                         :kbname="'w-group-tabs'"
                         :casename="'textColor & textColorActive & backgroundColor & backgroundColorActive'"
@@ -183,7 +183,7 @@
                 </div>
 
 
-                <div class="bk" style="display:block;">
+                <div class="bk" v-if="false" style="display:block;">
                     <demolink
                         :kbname="'w-group-tabs'"
                         :casename="'tagTextColor & tagTextColorActive & tagBackgroundColor & tagBackgroundColorActive'"
@@ -208,7 +208,7 @@
                 </div>
 
 
-                <div class="bk" style="display:block;">
+                <div class="bk" v-if="false" style="display:block;">
                     <demolink
                         :kbname="'w-group-tabs'"
                         :casename="'no close'"
@@ -230,7 +230,7 @@
                 </div>
 
 
-                <div class="bk" style="display:block;">
+                <div class="bk" v-if="false" style="display:block;">
                     <demolink
                         :kbname="'w-group-tabs'"
                         :casename="'no draggable'"
@@ -252,7 +252,7 @@
                 </div>
 
 
-                <div class="bk" style="display:block;">
+                <div class="bk" v-if="false" style="display:block;">
                     <demolink
                         :kbname="'w-group-tabs'"
                         :casename="'nodata'"
@@ -274,7 +274,7 @@
                 </div>
 
 
-                <div class="bk" style="display:block;">
+                <div class="bk" v-if="false" style="display:block;">
                     <demolink
                         :kbname="'w-group-tabs'"
                         :casename="'no shadow and individual setting'"

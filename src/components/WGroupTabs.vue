@@ -1,11 +1,11 @@
 <template>
-    <div style="" :changeParam="changeParam">
+    <div :changeParam="changeParam">
 
         <transition-group>
             <template v-for="(item,kitem) in valueTrans">
 
                 <v-chip
-                    :class="`v-chpi-modify trans ${shadow?'shadow':''}`"
+                    :class="`WGroupTabsChip v-chpi-modify trans ${shadow?'shadow':''}`"
                     small
                     :key="item.name+'|'+item.tag"
                     :close-icon="mdiCloseCircle"
@@ -15,11 +15,17 @@
                     :outlined="getOutlined(item)"
                     @click="clcikItem(item)"
                     @click:close="removeItem(item,kitem)"
-                    draggable
-                    @dragstart="dragStart($event,item,kitem)"
-                    @drop="drop($event,item,kitem)"
-                    @dragenter="cancelEvent"
-                    @dragover="cancelEvent"
+                    dragtag
+                    :dragindex="kitem"
+                    _draggable
+                    _dragstart="dragStart($event,item,kitem)"
+                    _drop="drop($event,item,kitem)"
+                    _dragenter="dragEnter($event,item,kitem)"
+                    _dragover="cancelEvent"
+                    _touchstart="touchStart($event,item,kitem)"
+                    _touchend="drop($event,item,kitem)"
+                    _touchmove="touchEnter($event,item,kitem)"
+                    _touchcancel="cancelEvent"
                 >
 
                     <div
@@ -63,6 +69,7 @@ import get from 'lodash/get'
 import cloneDeep from 'lodash/cloneDeep'
 import pullAt from 'lodash/pullAt'
 import color2hex from '../js/vuetifyColor.mjs'
+import domDrag from '../js/domDrag.mjs'
 
 
 /**
@@ -144,11 +151,71 @@ export default {
             mdiCloseCircle,
             valueTrans: [],
             itemActive: {},
-            dragIndStart: null,
-            dragIndEnd: null,
+            startInd: null,
+            endInd: null,
+
+            drag: null,
+
         }
     },
     mounted: function() {
+        //console.log('mounted')
+
+        let vo = this
+
+        //domDrag
+        let drag = domDrag(vo.$el)
+        drag.on('change', (msg) => {
+            //console.log('onchange', msg)
+        })
+        drag.on('drop', ({ startInd, endInd }) => {
+            //console.log('ondrop', startInd, endInd)
+
+            //cloneDeep
+            let items = cloneDeep(vo.valueTrans)
+
+            //move
+            if (startInd > endInd) { //往前拖曳, 先移除原始拖曳項目, 再於放下位置插入該拖曳項目
+
+                //pullAt
+                let src = pullAt(items, startInd)[0]
+
+                //array insert
+                items.splice(endInd, 0, src) //拖曳項目是要放在目標項目之前, 故不能+1
+
+            }
+            else { //往後拖曳, 先複製原始拖曳項目, 並於放下位置插入, 再刪除原始拖曳項目
+
+                //cloneDeep
+                let src = cloneDeep(items[startInd])
+
+                //array insert
+                items.splice(endInd + 1, 0, src) //拖曳項目是要放在目標項目之後, 故需要+1
+
+                //pullAt
+                pullAt(items, startInd)
+
+            }
+
+            //save
+            vo.valueTrans = items
+
+            //emitDrag
+            vo.emitDrag(items)
+
+        })
+
+        //save
+        vo.drag = drag
+
+    },
+    beforeDestroy: function() {
+        //console.log('beforeDestroy')
+
+        let vo = this
+
+        vo.drag.clear()
+
     },
     computed: {
 
@@ -187,79 +254,147 @@ export default {
     },
     methods: {
 
-        dragStart: function (e, item, kitem) {
-            //console.log('methods dragStart', e, item, kitem)
+        // dragStart: function (e, item, kitem) {
+        //     //console.log('methods dragStart', e, item, kitem)
 
-            let vo = this
+        //     let vo = this
 
-            //dragIndStart
-            vo.dragIndStart = kitem
+        //     //startInd
+        //     if (vo.startInd !== kitem) {
+        //         vo.startInd = kitem
+        //         //console.log('startInd', vo.startInd)
+        //     }
 
-        },
+        // },
 
-        drop: function (e, item, kitem) {
-            //console.log('methods drop', e, item, kitem)
+        // dragEnter: function (e, item, kitem) {
+        //     //console.log('methods dragEnter', e, item, kitem)
 
-            let vo = this
+        //     let vo = this
 
-            //cancelEvent
-            vo.cancelEvent(e)
+        //     //endInd
+        //     if (vo.startInd !== kitem && vo.endInd !== kitem) {
+        //         vo.endInd = kitem
+        //         //console.log('endInd', vo.endInd)
+        //     }
 
-            //check
-            if (!vo.dragIndStart) {
-                return
-            }
+        // },
 
-            //dragIndEnd
-            vo.dragIndEnd = kitem
+        // touchStart: function (e, item, kitem) {
+        //     //console.log('methods touchStart', e, item, kitem)
 
-            //cloneDeep
-            let items = cloneDeep(vo.valueTrans)
+        //     let vo = this
 
-            //move
-            if (vo.dragIndStart > vo.dragIndEnd) { //往前拖曳, 先移除原始拖曳項目, 再於放下位置插入該拖曳項目
+        //     //cancelEvent, touchstart需取消之後拖曳事件, 否則會變成捲動螢幕
+        //     vo.cancelEvent(e)
 
-                //pullAt
-                let src = pullAt(items, vo.dragIndStart)[0]
+        //     //dragStart
+        //     vo.dragStart(e, item, kitem)
 
-                //array insert
-                items.splice(vo.dragIndEnd, 0, src) //拖曳項目是要放在目標項目之前, 故不能+1
+        // },
 
-            }
-            else { //往後拖曳, 先複製原始拖曳項目, 並於放下位置插入, 再刪除原始拖曳項目
+        // touchEnter: function (e, item, _kitem) {
+        //     //console.log('methods touchEnter', e, item, _kitem)
 
-                //cloneDeep
-                let src = cloneDeep(items[vo.dragIndStart])
+        //     let vo = this
 
-                //array insert
-                items.splice(vo.dragIndEnd + 1, 0, src) //拖曳項目是要放在目標項目之後, 故需要+1
+        //     //check
+        //     let touches = get(e, 'touches', [])
+        //     if (size(touches) !== 1) {
+        //         return
+        //     }
 
-                //pullAt
-                pullAt(items, vo.dragIndStart)
+        //     //p
+        //     let p = touches[0]
 
-            }
+        //     //eles
+        //     let eles = vo.$el.querySelectorAll('.WGroupTabsChip')
 
-            //save
-            vo.valueTrans = items
+        //     //kitem, touch內為拖曳來源而非目標, 故得要遍歷尋找
+        //     let kitem = null
+        //     for (let i = 0; i < eles.length; i++) {
+        //         let ele = eles[i]
+        //         if (isInner(p, ele)) {
+        //             kitem = i
+        //         }
+        //     }
+        //     if (vo.startInd !== kitem && vo.endInd !== kitem) {
+        //         vo.endInd = kitem
+        //         //console.log('endInd', vo.endInd)
+        //     }
 
-            //emitDrag
-            vo.emitDrag(items)
+        // },
 
-            //clear
-            vo.dragIndStart = null
-            vo.dragIndEnd = null
+        // drop: function (e, item, kitem) {
+        //     //console.log('methods drop', e, item, kitem)
 
-        },
+        //     let vo = this
 
-        cancelEvent: function (e) {
-            //console.log('methods cancelEvent', e)
+        //     //cancelEvent
+        //     vo.cancelEvent(e)
 
-            // let vo = this
+        //     //check
+        //     if (vo.startInd === null) {
+        //         return
+        //     }
+        //     if (vo.endInd === null) {
+        //         return
+        //     }
+        //     // console.log('vo.startInd', vo.startInd)
+        //     // console.log('vo.endInd', vo.endInd)
 
-            e.preventDefault()
-            e.stopPropagation()
-            return false
-        },
+        //     //cloneDeep
+        //     let items = cloneDeep(vo.valueTrans)
+
+        //     //move
+        //     if (vo.startInd > vo.endInd) { //往前拖曳, 先移除原始拖曳項目, 再於放下位置插入該拖曳項目
+
+        //         //pullAt
+        //         let src = pullAt(items, vo.startInd)[0]
+
+        //         //array insert
+        //         items.splice(vo.endInd, 0, src) //拖曳項目是要放在目標項目之前, 故不能+1
+
+        //     }
+        //     else { //往後拖曳, 先複製原始拖曳項目, 並於放下位置插入, 再刪除原始拖曳項目
+
+        //         //cloneDeep
+        //         let src = cloneDeep(items[vo.startInd])
+
+        //         //array insert
+        //         items.splice(vo.endInd + 1, 0, src) //拖曳項目是要放在目標項目之後, 故需要+1
+
+        //         //pullAt
+        //         pullAt(items, vo.startInd)
+
+        //     }
+
+        //     //save
+        //     vo.valueTrans = items
+
+        //     //emitDrag
+        //     vo.emitDrag(items)
+
+        //     //clear
+        //     vo.startInd = null
+        //     vo.endInd = null
+
+        // },
+
+        // cancelEvent: function (e) {
+        //     //console.log('methods cancelEvent', e)
+
+        //     // let vo = this
+
+        //     //check, 拖曳事件因拖曳自己會捲動螢幕, 會觸發不可取消事件, 故需偵測直接跳出
+        //     if (!e.cancelable) {
+        //         return
+        //     }
+
+        //     e.preventDefault()
+        //     e.stopPropagation()
+        //     return false
+        // },
 
         getTextColor: function(item) {
             //console.log('methods getTextColor', item)
