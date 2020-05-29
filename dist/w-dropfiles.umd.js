@@ -1,5 +1,5 @@
 /*!
- * w-dropfiles v1.3.32
+ * w-dropfiles v1.3.33
  * (c) 2018-2019 yuda-lyu(semisphere)
  * Released under the MIT License.
  */
