@@ -1,5 +1,5 @@
 /*!
- * w-progress-circle v1.3.35
+ * w-progress-circle v1.3.36
  * (c) 2018-2019 yuda-lyu(semisphere)
  * Released under the MIT License.
  */
