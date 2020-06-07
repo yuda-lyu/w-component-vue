@@ -183,6 +183,13 @@
             ></AppZoneWButtonChip>
 
 
+            <AppZoneWButtonCapsule
+                :modeBorder="modeBorder"
+                :modeShell="modeShell"
+                v-if="compname==='WButtonCapsule'"
+            ></AppZoneWButtonCapsule>
+
+
             <AppZoneWButtonCircle
                 :modeBorder="modeBorder"
                 :modeShell="modeShell"
@@ -404,6 +411,7 @@ import AppZoneWDropfiles from './AppZoneWDropfiles.vue'
 import AppZoneWDialog from './AppZoneWDialog.vue'
 import AppZoneWConfirm from './AppZoneWConfirm.vue'
 import AppZoneWButtonChip from './AppZoneWButtonChip.vue'
+import AppZoneWButtonCapsule from './AppZoneWButtonCapsule.vue'
 import AppZoneWButtonCircle from './AppZoneWButtonCircle.vue'
 import AppZoneWButtonProg from './AppZoneWButtonProg.vue'
 import AppZoneWGroupButtons from './AppZoneWGroupButtons.vue'
@@ -444,6 +452,7 @@ export default {
         AppZoneWDialog,
         AppZoneWConfirm,
         AppZoneWButtonChip,
+        AppZoneWButtonCapsule,
         AppZoneWButtonCircle,
         AppZoneWButtonProg,
         AppZoneWGroupButtons,
@@ -501,6 +510,7 @@ export default {
                     name: 'button',
                     cmps: [
                         'WButtonChip',
+                        'WButtonCapsule',
                         'WButtonCircle',
                         'WButtonProg',
                     ]

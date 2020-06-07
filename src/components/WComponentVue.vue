@@ -2,6 +2,7 @@
 import WAggridVueDyn from './WAggridVueDyn.vue'
 import WAlert from './WAlert.mjs'
 import WBadge from './WBadge.vue'
+import WButtonCapsule from './WButtonCapsule.vue'
 import WButtonChip from './WButtonChip.vue'
 import WButtonCircle from './WButtonCircle.vue'
 import WButtonProg from './WButtonProg.vue'
@@ -56,6 +57,7 @@ let WComponentVue = {
         Vue.component('w-aggrid-vue-dyn', WAggridVueDyn)
         Vue.prototype.$alert = WAlert
         Vue.component('w-badge', WBadge)
+        Vue.component('w-button-capsule', WButtonCapsule)
         Vue.component('w-button-chip', WButtonChip)
         Vue.component('w-button-circle', WButtonCircle)
         Vue.component('w-button-prog', WButtonProg)

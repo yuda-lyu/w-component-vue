@@ -327,14 +327,6 @@ export default {
             })
             // console.log('nodes', nodes)
 
-            //t
-            let t = {}
-            each(nodes, (v) => {
-                each(v.nk, (vv, kk) => {
-                    set(t, '')
-                })
-            })
-
             //save
             vo.nodes = nodes
 

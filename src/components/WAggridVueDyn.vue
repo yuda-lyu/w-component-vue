@@ -98,13 +98,16 @@ export default {
             .then((res) => {
                 //console.log('res', res)
                 if (res !== 'loaded') {
+
                     //cmp
                     let cmp = window['w-aggrid-vue']
                     if (cmp.default) {
                         cmp = cmp.default
                     }
+
                     //use
                     getVue().component('w-aggrid-vue', cmp)
+
                 }
                 vo.cmpName = 'w-aggrid-vue'
             })

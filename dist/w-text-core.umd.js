@@ -1,5 +1,5 @@
 /*!
- * w-text-core v1.3.36
+ * w-text-core v1.3.37
  * (c) 2018-2019 yuda-lyu(semisphere)
  * Released under the MIT License.
  */

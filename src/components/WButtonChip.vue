@@ -46,7 +46,7 @@ import WIcon from './WIcon.vue'
  * @vue-prop {String} [text=''] 輸入文字字串，預設''
  * @vue-prop {String} [tooltip=''] 輸入提示文字字串，預設''
  * @vue-prop {String} [icon=''] 輸入圖標字串，可為mdi,md,fa代號或mdi/js路徑，預設''
- * @vue-prop {String} [iconColor=''] 輸入圖標背景顏色字串，預設''，即透明
+ * @vue-prop {String} [iconColor=''] 輸入圖標顏色字串，預設''，即透明
  * @vue-prop {Number} [iconShiftLeft=0] 輸入圖標左側平移距離數字，單位px，預設0
  * @vue-prop {String} [textColor='black'] 輸入文字顏色字串，預設'black'
  * @vue-prop {String} [backgroundColor='grey lighten-4'] 輸入按鈕背景顏色字串，預設'grey lighten-4'
