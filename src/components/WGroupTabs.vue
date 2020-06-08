@@ -30,7 +30,7 @@
 
                     <div
                         class="trans"
-                        :style="`margin-left:-9px; margin-right:5px; border-radius:10px; font-size:0.85rem; ${isActive(item)?`padding:0px 12px; color:${useTagTextColorActive}; background-color:${useTagBackgroundColorActive};`:`padding:0px 8px; color:${useTagTextColor}; background-color:${useTagBackgroundColor};`}`"
+                        :style="`margin-left:-9px; margin-right:5px; border-radius:10px; font-size:0.85rem; ${isActive(item)?`padding:0px 12px; color:${useTagTextColorActive}; background:${useTagBackgroundColorActive};`:`padding:0px 8px; color:${useTagTextColor}; background:${useTagBackgroundColor};`}`"
                     >
                         {{item.tag}}
                     </div>

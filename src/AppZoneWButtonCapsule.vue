@@ -109,6 +109,23 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-button-capsule'"
+                    :casename="'sizePadding'"
+                    :kind="'nokind'"
+                    :shell="'pure'"
+                ></demolink>
+
+                <w-button-capsule
+                    :text="WButtonCapsule.text"
+                    :icon="mdiFace"
+                    :sizePadding="'12px 27px'"
+                ></w-button-capsule>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-button-capsule'"
                     :casename="'textColor'"
                     :kind="'nokind'"
                     :shell="'pure'"
@@ -185,7 +202,7 @@
                 <w-button-capsule
                     :text="WButtonCapsule.text"
                     :icon="mdiCheckUnderlineCircle"
-                    :iconColorHover="'orange darken-2'"
+                    :iconColorActive="'black'"
                     :active="true"
                 ></w-button-capsule>
 
@@ -274,7 +291,7 @@
                     :text="WButtonCapsule.text"
                     :icon="mdiCheckUnderlineCircle"
                     :backgroundColor="'grey lighten-4'"
-                    :backgroundColorHover="'purple lighten-4'"
+                    :backgroundColorHover="'grey lighten-2'"
                 ></w-button-capsule>
 
             </div>
@@ -301,7 +318,7 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-button-capsule'"
-                    :casename="'shadow(true)'"
+                    :casename="'shadow'"
                     :kind="'nokind'"
                     :shell="'pure'"
                 ></demolink>
@@ -318,7 +335,7 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-button-capsule'"
-                    :casename="'shadow(24)'"
+                    :casename="'no shadowActive & active'"
                     :kind="'nokind'"
                     :shell="'pure'"
                 ></demolink>
@@ -326,42 +343,7 @@
                 <w-button-capsule
                     :text="WButtonCapsule.text"
                     :icon="mdiCheckUnderlineCircle"
-                    :shadow="24"
-                ></w-button-capsule>
-
-            </div>
-
-
-            <div class="bk">
-                <demolink
-                    :kbname="'w-button-capsule'"
-                    :casename="'shadowActive(true) & active'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
-                ></demolink>
-
-                <w-button-capsule
-                    :text="WButtonCapsule.text"
-                    :icon="mdiCheckUnderlineCircle"
-                    :shadowActive="true"
-                    :active="true"
-                ></w-button-capsule>
-
-            </div>
-
-
-            <div class="bk">
-                <demolink
-                    :kbname="'w-button-capsule'"
-                    :casename="'shadowActive(24) & active'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
-                ></demolink>
-
-                <w-button-capsule
-                    :text="WButtonCapsule.text"
-                    :icon="mdiCheckUnderlineCircle"
-                    :shadowActive="24"
+                    :shadowActive="false"
                     :active="true"
                 ></w-button-capsule>
 

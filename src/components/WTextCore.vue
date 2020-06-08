@@ -128,7 +128,7 @@ export default {
 
 <style scoped>
 .basic {
-    transition: all 0.7s;
+    transition: all 0.3s;
     outline: none;
 }
 </style>

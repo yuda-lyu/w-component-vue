@@ -13,16 +13,15 @@
 
                     <div
                         v-on="on"
-                        :class="useShadow"
-                        :style="`transition:all 0.5s; opacity:${loading?0:1}; border-radius:${borderRadius}px; background-color:${activeTrans?useBackgroundColorActive:hoverTrans?useBackgroundColorHover:useBackgroundColor}; cursor:pointer;`"
-                        v-ripple="editable"
+                        :style="`transition:all 0.3s; opacity:${loading?0:1}; border-radius:${borderRadius}px; background:${activeTrans?useBackgroundColorActive:hoverTrans?useBackgroundColorHover:useBackgroundColor}; cursor:pointer; box-shadow:${useShadow};`"
+                        v-ripple="{ class: editable?`white--text`:'' }"
                         @mouseenter="hoverTrans=true"
                         @mouseleave="hoverTrans=false"
                         @click="clickBtn"
                     >
 
                         <div
-                            :style="`transition:all 0.5s; padding:${usePadding}; border-radius:${borderRadius}px; border:1px solid ${activeTrans?useBorderColorActive:hoverTrans?useBorderColorHover:useBorderColor}; `"
+                            :style="`transition:all 0.3s; padding:${usePadding}; border-radius:${borderRadius}px; border:1px solid ${activeTrans?useBorderColorActive:hoverTrans?useBorderColorHover:useBorderColor}; `"
                         >
 
                             <slot>
@@ -37,7 +36,7 @@
                                     ></w-icon>
 
                                     <span
-                                        :style="`transition:all 0.5s; font-size:0.875rem; text-transform:none; color:${activeTrans?useTextColorActive:hoverTrans?useTextColorHover:useTextColor}; user-select:none;`"
+                                        :style="`transition:all 0.3s; font-size:0.875rem; text-transform:none; color:${activeTrans?useTextColorActive:hoverTrans?useTextColorHover:useTextColor}; user-select:none;`"
                                     >
                                         {{text}}
                                     </span>
@@ -73,8 +72,7 @@
 </template>
 
 <script>
-import isNumber from 'lodash/isNumber'
-import isBoolean from 'lodash/isBoolean'
+import tinycolor from 'wsemi/src/tinycolor.mjs'
 import color2hex from '../js/vuetifyColor.mjs'
 import WIcon from './WIcon.vue'
 
@@ -98,9 +96,10 @@ import WIcon from './WIcon.vue'
  * @vue-prop {String} [backgroundColorHover='rgba(200,200,200,0.25)'] 輸入滑鼠移入時背景顏色字串，預設'rgba(200,200,200,0.25)'
  * @vue-prop {String} [backgroundColorActive='orange'] 輸入主動模式時背景顏色字串，預設'orange'
  * @vue-prop {Boolean} [shadow=false] 輸入是否顯示陰影，預設false
- * @vue-prop {Boolean|Number} [shadowActive=false] 輸入主動模式時是否顯示陰影，或是陰影的程度數字，需介於0~24之間，預設true
+ * @vue-prop {Boolean} [shadowActive=false] 輸入主動模式時是否顯示陰影，預設true
  * @vue-prop {Boolean} [active=false] 輸入是否為主動模式，預設false
  * @vue-prop {Boolean} [small=true] 輸入是否為小型模式，預設true
+ * @vue-prop {String} [sizePadding=''] 輸入內寬設定字串，會覆寫small所算得的padding，預設''，也就是由small決定預設padding值
  * @vue-prop {Boolean} [loading=false] 輸入是否為載入模式，預設false
  * @vue-prop {Boolean} [editable=true] 輸入是否為編輯模式，預設true
  */
@@ -178,11 +177,11 @@ export default {
             default: 'orange',
         },
         shadow: {
-            type: [Boolean, Number],
+            type: Boolean,
             default: false,
         },
         shadowActive: {
-            type: [Boolean, Number],
+            type: Boolean,
             default: true,
         },
         active: {
@@ -192,6 +191,10 @@ export default {
         small: {
             type: Boolean,
             default: true,
+        },
+        sizePadding: {
+            type: String,
+            default: '',
         },
         loading: {
             type: Boolean,
@@ -225,7 +228,7 @@ export default {
 
         usePadding: function() {
             let vo = this
-            return vo.small ? '3px 12px' : '7px 12px'
+            return vo.sizePadding ? vo.sizePadding : vo.small ? '3px 15px' : '7px 15px'
         },
 
         useIconShiftLeft: function() {
@@ -281,31 +284,23 @@ export default {
         useShadow: function() {
             let vo = this
 
-            //bx
-            let bxDef = 10
-            let bx = ''
-            if (isBoolean(vo.shadow)) {
-                if (vo.shadow) {
-                    bx = bxDef
-                }
-            }
-            else if (isNumber(vo.shadow)) {
-                bx = vo.shadow
-            }
-            if (vo.active) {
-                if (isBoolean(vo.shadowActive)) {
-                    if (vo.shadowActive) {
-                        bx = bxDef
-                    }
-                }
-                else if (isNumber(vo.shadowActive)) {
-                    bx = vo.shadowActive
-                }
+            function genShadow(c, alpha) {
+                let r = color2hex(c)
+                let t = tinycolor(r)
+                let s = t.setAlpha(alpha).toRgbString()
+                return s
             }
 
-            if (bx !== '') {
-                return `elevation-${bx}`
+            //check
+            if (vo.shadow) {
+                return `0 12px 20px -10px ${genShadow(vo.backgroundColor, 0.28)}, 0 4px 20px 0 rgba(0,0,0,.12), 0 7px 8px -5px ${genShadow(vo.backgroundColor, 0.2)};`
             }
+
+            //check
+            if (vo.active && vo.shadowActive) {
+                return `0 12px 20px -10px ${genShadow(vo.backgroundColorActive, 0.28)}, 0 4px 20px 0 rgba(0,0,0,.12), 0 7px 8px -5px ${genShadow(vo.backgroundColorActive, 0.2)};`
+            }
+
             return ''
         },
 

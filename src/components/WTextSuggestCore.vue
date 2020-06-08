@@ -51,7 +51,7 @@
                     <template v-slot:block="props">
 
                         <div
-                            :style="`padding:12px 16px; cursor:pointer; transition:all 0.2s; background-color:${useItemBackgroundColor}; color:${useItemTextColor};`"
+                            :style="`padding:12px 16px; cursor:pointer; transition:all 0.2s; background:${useItemBackgroundColor}; color:${useItemTextColor};`"
                             @click="clickItem(props.row,props.irow)"
                             @mouseenter="(e)=>{let es=e.target.style; es.backgroundColor=useItemBackgroundColorHover; es.color=useItemTextColorHover;}"
                             @mouseleave="(e)=>{let es=e.target.style; es.backgroundColor=useItemBackgroundColor; es.color=useItemTextColor;}"

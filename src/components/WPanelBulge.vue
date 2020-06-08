@@ -1,50 +1,74 @@
 <template>
-    <div style="padding-top:20px;">
-        <div :class="{'trans':true,'shadow':borderShadow}" :style="`position:relative; background-color:${useContentBackgroundColor}; border-radius:${borderRadius}px;`">
+    <div>
+
+        <div
+            :style="`padding:${useHeaderPadding}; z-index:2;`"
+        >
+            <div
+                ref="hd"
+                :class="{'shadow-header':headerShadow}"
+                :style="`display:inline-block; background:${useHeaderBackgroundColor}; border-radius:${headerBorderRadius}px;`"
+            >
+
+                <slot name="header">
+                    <div :style="`padding:5px 10px; color:${useHeaderTextColor};`">
+                        {{headerText}}
+                    </div>
+                </slot>
+
+            </div>
+        </div>
+
+        <div :style="`margin-top:-${headerHeight/2}px; z-index:1;`">
 
             <div
-                class="shadow-header"
-                :style="`position:absolute; top:0px; left:${headerLeft}px; transform:translateY(-50%); padding:5px 10px; background-color:${useHeaderBackgroundColor}; color:${useHeaderTextColor}; opacity:${headerOpacity};`">
-                {{headerText}}
-            </div>
+                :class="{'shadow':contentShadow}"
+                :style="`background:${useContentBackgroundColor}; border-radius:${contentBorderRadius}px;`"
+            >
 
-            <div :style="`padding:${useContentPadding};`">
-                <slot></slot>
+                <div :style="`padding:${useContentPadding};`">
+
+                    <div :style="`height:${headerHeight/2}px;`"></div>
+
+                    <slot></slot>
+
+                </div>
+
             </div>
 
         </div>
+
     </div>
 </template>
 
 <script>
+import get from 'lodash/get'
 import color2hex from '../js/vuetifyColor.mjs'
 import isnum from 'wsemi/src/isnum.mjs'
+import domDetect from 'wsemi/src/domDetect.mjs'
 
 
 /**
- * @vue-prop {Number} [borderRadius=0] 輸入圓角寬度，單位為px，預設0
- * @vue-prop {Number} [headerLeft=20] 輸入標題離左側邊界長度，單位為px，預設20
- * @vue-prop {Number} [headerOpacity=0.8] 輸入標題區塊透明度，預設0.8
+ * @vue-prop {Number} [headerBorderRadius=0] 輸入標題區圓角寬度，單位為px，預設0
+ * @vue-prop {Number|String} [headerPadding='0px 20px'] 輸入標題區邊寬長度數字或字串，若輸入數字則單位為px，若輸入字串則需自己添加單位，預設'0px 20px'
  * @vue-prop {String} [headerText=''] 輸入標題文字字串，預設''
  * @vue-prop {String} [headerTextColor='white'] 輸入標題文字顏色字串，預設'white'
  * @vue-prop {String} [headerBackgroundColor='teal lighten-2'] 輸入標題背景顏色字串，預設'teal lighten-2'
- * @vue-prop {Number|String} [contentPadding=20] 輸入內容區塊邊寬長度數字或字串，若輸入數字則單位為px，預設20，若輸入字串則需自己添加單位
+ * @vue-prop {Boolean} [headerShadow=true] 輸入標題區是否使用陰影模式，預設true
+ * @vue-prop {Number} [contentBorderRadius=0] 輸入內容區圓角寬度，單位為px，預設0
+ * @vue-prop {Number|String} [contentPadding=20] 輸入內容區邊寬長度數字或字串，若輸入數字則單位為px，預設20，若輸入字串則需自己添加單位
  * @vue-prop {String} [contentBackgroundColor='white'] 輸入內容區塊背景顏色字串，預設'white'
- * @vue-prop {Boolean} [borderShadow=true] 輸入是否為陰影模式，預設true
+ * @vue-prop {Boolean} [contentShadow=true] 輸入內容區是否使用陰影模式，預設true
  */
 export default {
     props: {
-        borderRadius: {
+        headerBorderRadius: {
             type: Number,
             default: 0,
         },
-        headerLeft: {
-            type: Number,
-            default: 20,
-        },
-        headerOpacity: {
-            type: Number,
-            default: 0.8,
+        headerPadding: {
+            type: [Number, String],
+            default: '0px 20px',
         },
         headerText: {
             type: String,
@@ -56,26 +80,62 @@ export default {
         },
         headerBackgroundColor: {
             type: String,
-            default: 'teal lighten-2',
+            default: 'rgb(77, 182, 172, 0.8)', //teal lighten-2
+        },
+        headerShadow: {
+            type: Boolean,
+            default: true,
+        },
+        contentBorderRadius: {
+            type: Number,
+            default: 0,
         },
         contentPadding: {
             type: [Number, String],
-            default: 20,
+            default: 0,
         },
         contentBackgroundColor: {
             type: String,
             default: 'white',
         },
-        borderShadow: {
+        contentShadow: {
             type: Boolean,
             default: true,
         },
     },
     data: function() {
         return {
+            de: null,
+            headerHeight: 0,
         }
     },
     mounted: function() {
+        //console.log('mounted')
+
+        let vo = this
+
+        //de
+        let de = domDetect(() => {
+            return get(vo, '$refs.hd')
+        })
+        de.on('resize', (s) => {
+            // console.log('resize', s)
+            vo.headerHeight = s.snew.clientHeight
+        })
+        de.on('display', (s) => {
+            // console.log('display', s)
+        })
+        vo.de = de
+
+    },
+    beforeDestroy: function() {
+        //console.log('beforeDestroy')
+
+        let vo = this
+
+        //clear
+        vo.de.clear()
+
     },
     computed: {
 
@@ -93,6 +153,19 @@ export default {
             let vo = this
 
             return color2hex(vo.headerBackgroundColor)
+        },
+
+        useHeaderPadding: function() {
+            //console.log('computed useHeaderPadding')
+
+            let vo = this
+
+            if (isnum(vo.headerPadding)) {
+                return `${vo.headerPadding}px`
+            }
+            else {
+                return vo.headerPadding
+            }
         },
 
         useContentBackgroundColor: function() {
@@ -123,9 +196,6 @@ export default {
 </script>
 
 <style scoped>
-.trans {
-    transition: all 0.5s;
-}
 .shadow {
     box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
 }

@@ -267,11 +267,18 @@
             ></AppZoneWGroupCheck>
 
 
-            <AppZoneWGroupRadio
+            <AppZoneWGroupRadioChip
                :modeBorder="modeBorder"
                 :modeShell="modeShell"
-                v-if="compname==='WGroupRadio'"
-            ></AppZoneWGroupRadio>
+                v-if="compname==='WGroupRadioChip'"
+            ></AppZoneWGroupRadioChip>
+
+
+            <AppZoneWGroupRadioCapsule
+               :modeBorder="modeBorder"
+                :modeShell="modeShell"
+                v-if="compname==='WGroupRadioCapsule'"
+            ></AppZoneWGroupRadioCapsule>
 
 
             <AppZoneWText
@@ -421,7 +428,8 @@ import AppZoneWAlert from './AppZoneWAlert.vue'
 import AppZoneWGroupTags from './AppZoneWGroupTags.vue'
 import AppZoneWGroupTabs from './AppZoneWGroupTabs.vue'
 import AppZoneWGroupCheck from './AppZoneWGroupCheck.vue'
-import AppZoneWGroupRadio from './AppZoneWGroupRadio.vue'
+import AppZoneWGroupRadioChip from './AppZoneWGroupRadioChip.vue'
+import AppZoneWGroupRadioCapsule from './AppZoneWGroupRadioCapsule.vue'
 import AppZoneWText from './AppZoneWText.vue'
 import AppZoneWTextInt from './AppZoneWTextInt.vue'
 import AppZoneWTextarea from './AppZoneWTextarea.vue'
@@ -462,7 +470,8 @@ export default {
         AppZoneWGroupTags,
         AppZoneWGroupTabs,
         AppZoneWGroupCheck,
-        AppZoneWGroupRadio,
+        AppZoneWGroupRadioChip,
+        AppZoneWGroupRadioCapsule,
         AppZoneWText,
         AppZoneWTextInt,
         AppZoneWTextarea,
@@ -520,7 +529,8 @@ export default {
                     cmps: [
                         'WGroupButtons',
                         'WGroupCheck',
-                        'WGroupRadio',
+                        'WGroupRadioChip',
+                        'WGroupRadioCapsule',
                         'WGroupTags',
                         'WGroupTabs',
                     ]
@@ -593,7 +603,8 @@ export default {
                 'WGroupTags': true,
                 'WGroupTabs': true,
                 'WGroupCheck': true,
-                'WGroupRadio': true,
+                'WGroupRadioChip': true,
+                'WGroupRadioCapsule': true,
                 'WText': true,
                 'WTextInt': true,
                 'WTextarea': true,

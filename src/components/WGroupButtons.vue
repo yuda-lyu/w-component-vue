@@ -10,7 +10,12 @@
 
             <template v-for="(item,kitem) in value">
 
-                <v-tooltip bottom transition="slide-y-transition" :disabled="!item.tooltip" :key="kitem">
+                <v-tooltip
+                    bottom
+                    transition="slide-y-transition"
+                    :key="kitem"
+                    :disabled="!item.tooltip"
+                >
 
                     <template v-slot:activator="{ on }">
                         <div
@@ -265,7 +270,7 @@ export default {
 
             let vo = this
 
-            let ar = [{ 'transition': 'all 0.7s', 'user-select': 'none' }, vo.useTextColor, vo.useItemBackgroundColor(kitem), vo.useItemRadius(kitem), vo.useItemPadding(kitem), vo.useItemCursor(kitem)]
+            let ar = [{ 'transition': 'all 0.3s', 'user-select': 'none' }, vo.useTextColor, vo.useItemBackgroundColor(kitem), vo.useItemRadius(kitem), vo.useItemPadding(kitem), vo.useItemCursor(kitem)]
             let s = merge(ar)
             return s
         },
@@ -396,7 +401,7 @@ export default {
 
 <style scoped>
 .group {
-    transition: all 0.7s;
+    transition: all 0.3s;
     display: flex;
     justify-content: flex-start;
     align-items: center;

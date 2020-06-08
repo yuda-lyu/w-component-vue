@@ -1,5 +1,5 @@
 <template>
-    <div :class="{'trans':true,'shadow':borderShadow}" :style="[usePanelStyle]">
+    <div :class="{'shadow':borderShadow}" :style="[usePanelStyle]">
 
         <div :style="[useHeaderStyle]" v-if="hasHeader">
             <slot name="icon"></slot>
@@ -146,9 +146,6 @@ export default {
 </script>
 
 <style scoped>
-.trans {
-    transition: all 0.5s;
-}
 .shadow {
     box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
 }

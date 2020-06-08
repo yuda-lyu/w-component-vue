@@ -17,10 +17,10 @@
                 ></demolink>
 
                 <w-panel-bulge
-                    style="width:500px;"
+                    style="min-width:500px;"
                     :headerText="WPanelBulge.title"
                 >
-                    <div v-html="WPanelBulge.table"></div>
+                    <div style="padding:20px;" v-html="WPanelBulge.table"></div>
                 </w-panel-bulge>
             </div>
 
@@ -28,17 +28,17 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-panel-bulge'"
-                    :casename="'borderRadius'"
+                    :casename="'headerBorderRadius'"
                     :kind="'nokind'"
                     :shell="'pure'"
                 ></demolink>
 
                 <w-panel-bulge
-                    style="width:500px;"
+                    style="min-width:500px;"
                     :headerText="WPanelBulge.title"
-                    :borderRadius="10"
+                    :headerBorderRadius="5"
                 >
-                    <div v-html="WPanelBulge.table"></div>
+                    <div style="padding:20px;" v-html="WPanelBulge.table"></div>
                 </w-panel-bulge>
             </div>
 
@@ -46,18 +46,17 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-panel-bulge'"
-                    :casename="'headerLeft & contentPadding'"
+                    :casename="'headerPadding'"
                     :kind="'nokind'"
                     :shell="'pure'"
                 ></demolink>
 
                 <w-panel-bulge
-                    style="width:500px;"
+                    style="min-width:500px;"
                     :headerText="WPanelBulge.title"
-                    :headerLeft="10"
-                    :contentPadding="'20px 10px 10px 10px'"
+                    :headerPadding="'0px 10px'"
                 >
-                    <div v-html="WPanelBulge.table"></div>
+                    <div style="padding:20px 10px 10px 10px;" v-html="WPanelBulge.table"></div>
                 </w-panel-bulge>
             </div>
 
@@ -65,19 +64,18 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-panel-bulge'"
-                    :casename="'headerOpacity & headerTextColor & headerBackgroundColor'"
+                    :casename="'headerTextColor & headerBackgroundColor'"
                     :kind="'nokind'"
                     :shell="'pure'"
                 ></demolink>
 
                 <w-panel-bulge
-                    style="width:500px;"
+                    style="min-width:500px;"
                     :headerText="WPanelBulge.title"
-                    :headerOpacity="1"
                     :headerTextColor="'orange darken-1'"
                     :headerBackgroundColor="'rgba(250,70,0,0.15)'"
                 >
-                    <div v-html="WPanelBulge.table"></div>
+                    <div style="padding:20px;" v-html="WPanelBulge.table"></div>
                 </w-panel-bulge>
             </div>
 
@@ -92,10 +90,10 @@
 
                 <div style="background-color:#bbb; padding:40px;">
                     <w-panel-bulge
-                        style="width:500px;"
+                        style="min-width:500px;"
                         :headerText="WPanelBulge.title"
                     >
-                        <div v-html="WPanelBulge.table"></div>
+                        <div style="padding:20px;" v-html="WPanelBulge.table"></div>
                     </w-panel-bulge>
                 </div>
             </div>
@@ -104,20 +102,39 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-panel-bulge'"
-                    :casename="'no borderShadow, with pink outer'"
+                    :casename="'no headerShadow & no contentShadow, with green outer'"
                     :kind="'nokind'"
                     :shell="'pure'"
                 ></demolink>
 
-                <div style="background-color:#F48FB1; padding:40px;">
+                <div style="background-color:#8FF4B1; padding:40px;">
                     <w-panel-bulge
-                        style="width:500px;"
+                        style="min-width:500px;"
                         :headerText="WPanelBulge.title"
-                        :borderShadow="false"
+                        :headerShadow="false"
+                        :contentShadow="false"
                     >
-                        <div v-html="WPanelBulge.table"></div>
+                        <div style="padding:20px;" v-html="WPanelBulge.table"></div>
                     </w-panel-bulge>
                 </div>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-panel-bulge'"
+                    :casename="'contentBorderRadius'"
+                    :kind="'nokind'"
+                    :shell="'pure'"
+                ></demolink>
+
+                <w-panel-bulge
+                    style="min-width:500px;"
+                    :headerText="WPanelBulge.title"
+                    :contentBorderRadius="10"
+                >
+                    <div style="padding:20px;" v-html="WPanelBulge.table"></div>
+                </w-panel-bulge>
             </div>
 
 
@@ -130,11 +147,52 @@
                 ></demolink>
 
                 <w-panel-bulge
-                    style="width:500px;"
+                    style="min-width:500px;"
                     :headerText="WPanelBulge.title"
                     :contentBackgroundColor="'green lighten-5'"
                 >
-                    <div v-html="WPanelBulge.table"></div>
+                    <div style="padding:20px;" v-html="WPanelBulge.table"></div>
+                </w-panel-bulge>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-panel-bulge'"
+                    :casename="'slot for header & headerBorderRadius & headerBackgroundColor(linear-gradient)'"
+                    :kind="'nokind'"
+                    :shell="'pure'"
+                ></demolink>
+
+                <w-panel-bulge
+                    style="min-width:500px;"
+                    :headerBorderRadius="5"
+                    :headerBackgroundColor="'linear-gradient(60deg,#ab47bc,#7b1fa2)'"
+                >
+                    <template v-slot:header>
+
+                        <w-group-radio-capsule
+                            style="margin:0px 10px;"
+                            :items="WPanelBulge.menu.items"
+                            v-model="WPanelBulge.menu.select"
+                            :sizePadding="'12px 27px'"
+                            :borderRadius="5"
+                            :textColor="'white'"
+                            :textColorHover="'white'"
+                            :textColorActive="'white'"
+                            :iconColor="'white'"
+                            :iconColorHover="'white'"
+                            :iconColorActive="'white'"
+                            :backgroundColor="'rgba(255,255,255,0)'"
+                            :backgroundColorHover="'rgba(255,255,255,0)'"
+                            :backgroundColorActive="'rgba(255,255,255,0.15)'"
+                            :shadowActive="false"
+                        ></w-group-radio-capsule>
+
+                    </template>
+
+                    <div style="padding:20px;" v-html="WPanelBulge.table"></div>
+
                 </w-panel-bulge>
             </div>
 
@@ -146,14 +204,17 @@
 </template>
 
 <script>
+import { mdiViewDashboard, mdiClockTimeEightOutline, mdiBlenderSoftware, mdiApple, mdiSpoonSugar } from '@mdi/js'
 import demolink from './components/demolink.vue'
 import WPanelBulge from './components/WPanelBulge.vue'
+import WGroupRadioCapsule from './components/WGroupRadioCapsule.vue'
 
 
 export default {
     components: {
         demolink,
         WPanelBulge,
+        WGroupRadioCapsule,
     },
     props: {
         modeBorder: {
@@ -165,10 +226,15 @@ export default {
     },
     data: function() {
         return {
+            mdiViewDashboard,
+            mdiClockTimeEightOutline,
+            mdiBlenderSoftware,
+            mdiSpoonSugar,
+            mdiApple,
             'WPanelBulge': {
                 'table': `
 
-                    <div style="padding:10px;">
+                    <div style="margin-bottom:10px; padding:0px 10px;">
                         <span>A data table</span>
                     </div>
 
@@ -205,6 +271,30 @@ export default {
 
                 `,
                 'title': 'Bulge',
+                'menu': {
+                    'items': [
+                        {
+                            text: 'Dashboard',
+                            icon: mdiViewDashboard,
+                        },
+                        {
+                            text: 'Schedule',
+                            icon: mdiClockTimeEightOutline,
+                        },
+                        {
+                            text: 'Profile',
+                            icon: mdiBlenderSoftware,
+                        },
+                        {
+                            text: 'History',
+                            icon: mdiSpoonSugar,
+                        },
+                    ],
+                    'select': {
+                        text: 'Dashboard',
+                        icon: mdiViewDashboard,
+                    }
+                },
             },
             'actions': [
             ],

@@ -161,7 +161,7 @@
                     <div class="bk">
                         <demolink
                             :kbname="'w-group-buttons'"
-                            :casename="'textColor & backgroundColor & backgroundColorHover & backgroundColorActive'"
+                            :casename="'textColor & borderWidth & backgroundColor & backgroundColorHover & backgroundColorActive'"
                             :kind="'emboss'"
                             :shell="'pure'"
                         ></demolink>
@@ -442,7 +442,7 @@
                     <div class="bk">
                         <demolink
                             :kbname="'w-group-buttons'"
-                            :casename="'titleColor & leftIconColor & textColor & backgroundColor & backgroundColorHover & backgroundColorActive'"
+                            :casename="'titleColor & leftIconColor & textColor & borderWidth & backgroundColor & backgroundColorHover & backgroundColorActive'"
                             :kind="'emboss'"
                             :shell="'shell'"
                         ></demolink>
@@ -457,8 +457,7 @@
                             <w-group-buttons
                                 :borderShadow="true"
                                 :textColor="'white'"
-                                :borderColor="'cyan lighten-1'"
-                                :borderColorHover="'cyan lighten-1'"
+                                :borderWidth="0"
                                 :backgroundColor="'cyan darken-1'"
                                 :backgroundColorHover="'cyan lighten-1'"
                                 :backgroundColorActive="'cyan lighten-2'"
@@ -653,7 +652,7 @@
                     <div class="bk">
                         <demolink
                             :kbname="'w-group-buttons'"
-                            :casename="'textColor & backgroundColor & backgroundColorHover & backgroundColorActive'"
+                            :casename="'textColor & borderColor & borderColorHover & backgroundColor & backgroundColorHover & backgroundColorActive'"
                             :kind="'border'"
                             :shell="'pure'"
                         ></demolink>
@@ -886,7 +885,7 @@
                     <div class="bk">
                         <demolink
                             :kbname="'w-group-buttons'"
-                            :casename="'titleColor & leftIconColor & textColor & backgroundColor & backgroundColorHover & backgroundColorActive'"
+                            :casename="'titleColor & leftIconColor & textColor & borderColor & borderColorHover & backgroundColor & backgroundColorHover & backgroundColorActive'"
                             :kind="'border'"
                             :shell="'shell'"
                         ></demolink>

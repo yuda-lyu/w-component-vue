@@ -293,7 +293,7 @@ export default {
 
 <style scoped>
 .group {
-    transition: all 0.7s;
+    transition: all 0.3s;
     display: flex;
     justify-content: flex-start;
     align-items: center;

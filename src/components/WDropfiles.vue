@@ -1,7 +1,7 @@
 <template>
     <div
         ref="dropPanel"
-        :style="`border:${borderWidth}px solid ${useBorderColor}; border-radius:${borderRadius}px; background-color:${useBackgroundColor}; transition:${styleTransition};`"
+        :style="`border:${borderWidth}px solid ${useBorderColor}; border-radius:${borderRadius}px; background:${useBackgroundColor}; transition:${styleTransition};`"
         @mouseenter="bMouseIn=true"
         @mouseleave="bMouseIn=false"
     >

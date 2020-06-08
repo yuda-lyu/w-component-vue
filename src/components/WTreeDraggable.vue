@@ -34,10 +34,10 @@
                     <div :style="`border-bottom:1px solid ${useHoverLineColor}; width:${dgTipWidth}px; height:1px;`"></div>
                 </template>
                 <template v-else-if="dgTipMode==='block'">
-                    <div :style="`display:inline-block; width:${dgTipWidth}px; height:${dgTipHeight}px; background-color:${useHoverBlockColor};`"></div>
+                    <div :style="`display:inline-block; width:${dgTipWidth}px; height:${dgTipHeight}px; background:${useHoverBlockColor};`"></div>
                 </template>
                 <template v-else-if="dgTipMode==='disabled'">
-                    <div :style="`display:inline-block; width:${dgTipWidth}px; height:${dgTipHeight}px; background-color:${useTextDisabledBackgroundColor};`">
+                    <div :style="`display:inline-block; width:${dgTipWidth}px; height:${dgTipHeight}px; background:${useTextDisabledBackgroundColor};`">
                         <div :style="`height:${dgTipHeight}px; display:flex; align-items:center;`">
                             <div :style="`color:${useTextDisabledColor}; padding-left:${textDisabledPaddingLeft}px; font-size:${textDisabledFontSize};`">
                                 {{textDisabled}}
