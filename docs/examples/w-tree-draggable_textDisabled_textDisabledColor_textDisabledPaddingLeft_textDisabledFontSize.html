@@ -1,0 +1,328 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-tw">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui"
+    />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>example for w-tree-draggable: textDisabled & textDisabledColor & textDisabledPaddingLeft & textDisabledFontSize & textDisabledBackgroundColor</title>
+
+    <!-- fontawesome -->
+    <link
+        href="https://use.fontawesome.com/releases/v5.13.0/css/all.css"
+        rel="stylesheet"
+    />
+
+    <!-- mdi, 各組件使用mdi/js會於轉單頁時改為mdi icon, 故需引用mdi/css -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/@mdi/font/css/materialdesignicons.min.css"
+        rel="stylesheet"
+    />
+
+    <!-- google, 各組件使用mdi/js故不需引用 -->
+    <link
+        _href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900"
+        rel="stylesheet"
+    />
+    <link
+        _href="https://fonts.googleapis.com/css?family=Material+Icons"
+        rel="stylesheet"
+    />
+
+    <!-- data -->
+    <script
+        src="https://cdn.jsdelivr.net/npm/w-demores@1.0.10/res/data/dataAAPL.js"
+    ></script>
+    <script
+        src="https://cdn.jsdelivr.net/npm/w-demores@1.0.10/res/data/dataUSD2EUR.js"
+    ></script>
+    <script
+        src="https://cdn.jsdelivr.net/npm/w-demores@1.0.10/res/data/dataTemperature.js"
+    ></script>
+    <script
+        src="https://cdn.jsdelivr.net/npm/w-demores@1.0.10/res/data/dataHousePriceArea.js"
+    ></script>
+    <script
+        src="https://cdn.jsdelivr.net/npm/w-demores@1.0.10/res/data/dataFlare.js"
+    ></script>
+    <script>
+  //save in window
+  window.dataAAPL = dataAAPL;
+  window.dataUSD2EUR = dataUSD2EUR;
+  window.dataTemperature = dataTemperature;
+  window.dataHousePriceArea = dataHousePriceArea;
+  window.dataFlare = dataFlare;
+    </script>
+
+    <!-- @babel/polyfill -->
+    <script
+        nomodule
+        src="https://cdn.jsdelivr.net/npm/@babel/polyfill/dist/polyfill.min.js"
+    ></script>
+
+    <!-- vue -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
+
+    <!-- element-ui, 已按需打包故不需引用 -->
+    <link
+        _href="https://cdn.jsdelivr.net/npm/element-ui@2.13.0/lib/theme-chalk/index.css"
+        rel="stylesheet"
+    />
+    <script _src="https://cdn.jsdelivr.net/npm/element-ui@2.13.0/lib/index.js"></script>
+
+    <!-- vuetify -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.css"
+        rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.js"></script>
+
+    <!-- w-component-vue -->
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@1.3.40/dist/w-component-vue.umd.js"></script>
+
+    <style>
+  .v-application--wrap {
+    display: block; /* fix for IE11 */
+    font-family: inherit;
+    background-color: #fff;
+  }
+  .head1 {
+    margin-bottom: 20px;
+    padding: 0px;
+    font-size: 30pt;
+  }
+  .item {
+    border-left: 3px solid #ffba75;
+    margin: 5px 5px 8px 0px;
+    padding: 3px 3px 5px 10px;
+    font-size: 0.9rem;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
+  .bk {
+    vertical-align: top;
+    margin-top: 20px;
+  }
+  .list {
+    width: 100%;
+  }
+  @media screen and (min-width: 1000px) {
+    .bk {
+      display: inline-block;
+      margin: 10px 90px 60px 0px;
+    }
+    .list {
+      width: 400px;
+    }
+  }
+    </style>
+</head>
+<body
+    style="font-family:'Microsoft JhengHei','Avenir','Helvetica'; padding:20px;"
+>
+    <v-app id="app" style="font-family:inherit;">
+        <div class="head1">w-tree-draggable</div>
+        <div class="bk">
+            <div
+                class="item"
+            >textDisabled & textDisabledColor & textDisabledPaddingLeft & textDisabledFontSize & textDisabledBackgroundColor</div>
+
+            <w-tree-draggable
+                :items="WTreeDraggable.option4.items"
+                :text-disabled="'禁止拖曳至自己子節點當中'"
+                :text-disabled-color="'pink accent-3'"
+                :text-disabled-padding-left="13"
+                :text-disabled-font-size="'0.8rem'"
+                :text-disabled-background-color="'rgba(255,255,255,0.8)'"
+            >
+                <template v-slot:item="props">
+                    <div style="padding:7px;">
+                        <v-chip
+                            style="margin-right:5px;"
+                            small
+                            label
+                            dark
+                            color="purple darken-1"
+                        >{{props.node.id}}</v-chip>
+                        <v-chip
+                            small
+                            label
+                            color="blue lighten-4"
+                        >Lv{{(props.node.nk.length+1)/2}}</v-chip>
+                        {{props.node.name}}
+                    </div>
+                </template>
+            </w-tree-draggable>
+        </div>
+    </v-app>
+
+    <script>
+  //install WComponentVue
+  Vue.use(window["w-component-vue"]);
+
+  //initialize
+  new Vue({
+    el: "#app",
+    vuetify: new Vuetify(),
+    data: function() {
+      let items = [
+        {
+          id: 1,
+          name: "Display",
+          children: [
+            { id: 2, name: "Interpolate" },
+            {
+              id: 3,
+              name: "Graph",
+              children: [{ id: 4, name: "Animate" }]
+            }
+          ]
+        },
+        {
+          id: 5,
+          name: "Analysis"
+        }
+      ];
+      return {
+        WTreeDraggable: {
+          option1: {
+            items: [
+              {
+                id: 1,
+                name: "Applications :",
+                children: [
+                  { id: 2, name: "Calendar : app" },
+                  { id: 3, name: "Chrome : app" },
+                  { id: 4, name: "Webstorm : app" }
+                ]
+              },
+              {
+                id: 5,
+                name: "Documents :",
+                children: [
+                  {
+                    id: 6,
+                    name: "vuetify :",
+                    children: [
+                      {
+                        id: 7,
+                        name: "src :",
+                        children: [
+                          { id: 8, name: "index : ts" },
+                          { id: 9, name: "bootstrap : ts" }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    id: 10,
+                    name: "material2 :",
+                    children: [
+                      {
+                        id: 11,
+                        name: "src :",
+                        children: [
+                          { id: 12, name: "v-btn : ts" },
+                          { id: 13, name: "v-card : ts" },
+                          { id: 14, name: "v-window : ts" }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                id: 15,
+                name: "Downloads :",
+                children: [
+                  { id: 16, name: "October : pdf" },
+                  { id: 17, name: "November : pdf" },
+                  { id: 18, name: "Tutorial : html" }
+                ]
+              },
+              {
+                id: 19,
+                name: "Videos :",
+                children: [
+                  {
+                    id: 20,
+                    name: "Tutorials :",
+                    children: [
+                      { id: 21, name: "Basic layouts : mp4" },
+                      { id: 22, name: "Advanced techniques : mp4" },
+                      { id: 23, name: "All about app : dir" }
+                    ]
+                  },
+                  { id: 24, name: "Intro : mov" },
+                  { id: 25, name: "Conference introduction : avi" }
+                ]
+              }
+            ]
+          },
+          option2: {
+            items: [
+              {
+                id: 1,
+                name: "Display",
+                items: [
+                  { id: 2, name: "Interpolate" },
+                  {
+                    id: 3,
+                    name: "Graph",
+                    items: [{ id: 4, name: "Animate" }]
+                  }
+                ]
+              },
+              {
+                id: 5,
+                name: "Analysis"
+              }
+            ]
+          },
+          option3: {
+            items: JSON.parse(JSON.stringify(items))
+          },
+          option4: {
+            items: JSON.parse(JSON.stringify(items))
+          },
+          option5: {
+            items: [
+              {
+                id: 1,
+                name:
+                  "A Smarter Way to Learn JavaScript: The new tech-assisted approach that requires half the effort"
+              },
+              {
+                id: 2,
+                name:
+                  "Eloquent JavaScript: A Modern Introduction to Programming"
+              },
+              {
+                id: 3,
+                name:
+                  "JavaScript & JQuery: Interactive Front-End Web Development"
+              },
+              {
+                id: 4,
+                name: "JavaScript: The Good Parts"
+              },
+              {
+                id: 5,
+                name: "Learn JavaScript VISUALLY"
+              }
+            ]
+          }
+        },
+
+        actions: []
+      };
+    },
+    computed: {},
+    methods: {}
+  });
+    </script>
+</body>
+</html>
