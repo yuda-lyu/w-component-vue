@@ -114,13 +114,13 @@ export default {
 
         let vo = this
 
-        //de
+        //de, 不能用vuetify的v-resize, 其偵測雖是元素的尺寸變化, 但slot內容於外層組件初始化時, 這時指定元素的尺寸變更卻不會觸發v-resize, 故得要用基於timer的domDetect偵測尺寸變化
         let de = domDetect(() => {
             return get(vo, '$refs.hd')
         })
         de.on('resize', (s) => {
             // console.log('resize', s)
-            vo.headerHeight = s.snew.clientHeight
+            vo.headerHeight = s.snew.offsetHeight
         })
         de.on('display', (s) => {
             // console.log('display', s)
@@ -134,7 +134,9 @@ export default {
         let vo = this
 
         //clear
-        vo.de.clear()
+        if (vo.de) {
+            vo.de.clear()
+        }
 
     },
     computed: {

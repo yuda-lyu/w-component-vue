@@ -27,7 +27,7 @@
 <script>
 import get from 'lodash/get'
 import waitFun from 'wsemi/src/waitFun.mjs'
-import cancelEvent from '../js/cancelEvent.mjs'
+import domCancelEvent from 'wsemi/src/domCancelEvent.mjs'
 
 
 /**
@@ -76,7 +76,7 @@ export default {
         //eleMousedown
         vo.eleMousedown = (e) => {
             vo.clickInner = true
-            cancelEvent(e)
+            domCancelEvent(e)
         }
         waitFun(() => {
             return get(vo, '$refs.divContent.addEventListener', null) !== null //不能保證slot已載入有元素可addEventListener, 故需等待
@@ -96,7 +96,7 @@ export default {
         //windowMousedown
         vo.windowMousedown = (e) => {
             vo.clickInner = false //因為eleMousedown會cancelEvent, 所以點擊ele時不會觸發window mousedown
-            //cancelEvent(e)
+            //domCancelEvent(e)
         }
         window.addEventListener('mousedown', vo.windowMousedown)
 
@@ -104,7 +104,7 @@ export default {
         vo.windowMouseup = (e) => {
             if (!vo.clickInner && vo.value) {
                 vo.changeValue(false)
-                //cancelEvent(e)
+                //domCancelEvent(e)
             }
         }
         window.addEventListener('mouseup', vo.windowMouseup)

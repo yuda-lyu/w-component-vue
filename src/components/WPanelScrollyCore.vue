@@ -32,9 +32,8 @@
 </template>
 
 <script>
+import domDragBarAndScroll from 'wsemi/src/domDragBarAndScroll.mjs'
 import color2hex from '../js/vuetifyColor.mjs'
-import genID from 'wsemi/src/genID.mjs'
-import cancelEvent from '../js/cancelEvent.mjs'
 
 
 /**
@@ -84,21 +83,10 @@ export default {
     },
     data: function() {
         return {
-            mmkey: null, //window事件驅動序號
             ratioTrans: 0, //捲動比例
             barPressY: null, //bar按下準備拖曳前y座標
-            barPressing: false, //bar按下拖曳中
             barOpacity: 0.5,
-            eleWheel: null,
-            eleTouchstart: null,
-            eleTouchmove: null,
-            eleTouchend: null,
-            barMousedown: null,
-            barTouchstart: null,
-            barTouchmove: null,
-            barTouchend: null,
-            windowMousemove: null,
-            windowMouseup: null,
+            das: null,
         }
     },
     mounted: function() {
@@ -106,85 +94,15 @@ export default {
 
         let vo = this
 
-        //mmkey
-        vo.mmkey = genID()
+        //das
+        let das = domDragBarAndScroll(vo.$refs.divPanel, vo.$refs.divBar, { heighRatio: vo.heighRatio, stopEventScrollPanel: true })
+        das.on('scrollPanel', vo.scrollPanel)
+        das.on('pressBar', vo.pressBar)
+        das.on('dragBar', vo.dragBar)
+        das.on('freeBar', vo.freeBar)
 
-        //ele
-        let ele = vo.$refs.divPanel
-
-        //eleWheel
-        vo.eleWheel = (e) => {
-            let delta = e.deltaY / Math.abs(e.deltaY)
-            vo.scrollPanel(vo.mmkey, delta) //寬版頁面, 用滾輪上下捲動, 實際是傳移動距離給bar
-            cancelEvent(e) //要禁止外部元素如body也被捲動
-        }
-        ele.addEventListener('wheel', vo.eleWheel)
-
-        //eleTouchstart
-        vo.eleTouchstart = (e) => {
-            vo.pressBar(vo.mmkey, -e.touches[0].clientY * vo.heighRatio) //窄版頁面, 上鎖與紀錄頁面點擊y座標
-            // cancelEvent(e)
-        }
-        ele.addEventListener('touchstart', vo.eleTouchstart)
-
-        //eleTouchmove
-        vo.eleTouchmove = (e) => {
-            vo.dragBar(vo.mmkey, -e.touches[0].clientY * vo.heighRatio) //窄版頁面, 用滑動距離拖曳頁面, 實際是傳移動距離給bar
-            cancelEvent(e) //要禁止回傳否則會連外部body捲軸一起移動畫面
-        }
-        ele.addEventListener('touchmove', vo.eleTouchmove)
-
-        //eleTouchend
-        vo.eleTouchend = (e) => {
-            vo.freedBar(vo.mmkey) //窄版頁面, 解鎖
-            // cancelEvent(e)
-        }
-        ele.addEventListener('touchend', vo.eleTouchend)
-
-        //bar
-        let bar = vo.$refs.divBar
-
-        //barMousedown
-        vo.barMousedown = (e) => {
-            vo.pressBar(vo.mmkey, e.clientY) //寬版bar, 上鎖與紀錄點擊y座標
-            // cancelEvent(e)
-        }
-        bar.addEventListener('mousedown', vo.barMousedown)
-
-        //barTouchstart
-        vo.barTouchstart = (e) => {
-            vo.pressBar(vo.mmkey, e.touches[0].clientY) //窄版bar, 上鎖與紀錄bar點擊y座標
-            // cancelEvent(e)
-        }
-        bar.addEventListener('touchstart', vo.barTouchstart)
-
-        //barTouchmove
-        vo.barTouchmove = (e) => {
-            vo.dragBar(vo.mmkey, e.touches[0].clientY) //窄版bar, 用滑動距離拖曳bar, 實際是傳移動距離給bar
-            cancelEvent(e) //要禁止回傳否則會連外部body捲軸一起移動畫面
-        }
-        bar.addEventListener('touchmove', vo.barTouchmove)
-
-        //barTouchend
-        vo.barTouchend = (e) => {
-            vo.freedBar(vo.mmkey) //窄版bar, 解鎖
-            // cancelEvent(e)
-        }
-        bar.addEventListener('touchend', vo.barTouchend)
-
-        //windowMousemove
-        vo.windowMousemove = (e) => {
-            vo.dragBar(vo.mmkey, e.clientY) //寬版bar, 用鎖與滑動距離拖曳bar
-            // cancelEvent(e)
-        }
-        window.addEventListener('mousemove', vo.windowMousemove)
-
-        //windowMouseup
-        vo.windowMouseup = (e) => {
-            vo.freedBar(vo.mmkey) //寬版bar, 解鎖
-            cancelEvent(e) //要禁止回傳否則會連外部body捲軸一起移動畫面
-        }
-        window.addEventListener('mouseup', vo.windowMouseup)
+        //save
+        vo.das = das
 
     },
     beforeDestroy: function() {
@@ -192,27 +110,10 @@ export default {
 
         let vo = this
 
-        //ele
-        let ele = vo.$refs.divPanel
-
-        //ele remove wheel, touchstart, touchmove, touchend
-        ele.removeEventListener('wheel', vo.eleWheel)
-        ele.removeEventListener('touchstart', vo.eleTouchstart)
-        ele.removeEventListener('touchmove', vo.eleTouchmove)
-        ele.removeEventListener('touchend', vo.eleTouchend)
-
-        //bar
-        let bar = vo.$refs.divBar
-
-        //bar remove mousedown, mousemove, mouseup
-        bar.removeEventListener('mousedown', vo.barMousedown)
-        bar.removeEventListener('touchstart', vo.barTouchstart)
-        bar.removeEventListener('touchmove', vo.barTouchmove)
-        bar.removeEventListener('touchend', vo.barTouchend)
-
-        //window remove mousedown, mousemove, mouseup
-        window.removeEventListener('mousemove', vo.windowMousemove)
-        window.removeEventListener('mouseup', vo.windowMouseup)
+        //clear
+        if (vo.das) {
+            vo.das.clear()
+        }
 
     },
     computed: {
@@ -350,93 +251,47 @@ export default {
             return changed
         },
 
-        // pressWin: function(mmkey, v) {
-        //     //console.log('methods pressWin', mmkey, v)
-
-        //     let vo = this
-
-        //     //check
-        //     if (vo.mmkey !== mmkey) {
-        //         return
-        //     }
-
-        //     //barPressY
-        //     vo.barPressY = v //e.clientY
-
-        // },
-
-        pressBar: function(mmkey, v) {
-            //console.log('methods pressBar', mmkey, v)
+        pressBar: function({ clientY }) {
+            //console.log('methods pressBar', clientY)
 
             let vo = this
-
-            //check
-            if (vo.mmkey !== mmkey) {
-                return
-            }
-
-            //barPressing
-            vo.barPressing = true
 
             //save clientY
-            if (v) {
+            if (clientY) {
 
                 //barPressY
-                vo.barPressY = v //e.clientY
+                vo.barPressY = clientY //e.clientY
 
             }
 
         },
 
-        dragBar: function(mmkey, v) {
-            //console.log('methods dragBar', mmkey, v)
+        dragBar: function({ clientY }) {
+            //console.log('methods dragBar', clientY)
 
             let vo = this
 
-            //check
-            if (vo.mmkey !== mmkey) {
-                return
-            }
+            //d
+            let d = clientY - vo.barPressY //e.clientY
 
-            //check
-            if (vo.barPressing) {
+            //deltaRatio
+            let deltaRatio = d / vo.viewHeightEff
 
-                //d
-                let d = v - vo.barPressY //e.clientY
+            //scrollByDeltaRatio
+            vo.scrollByDeltaRatio(deltaRatio)
 
-                //deltaRatio
-                let deltaRatio = d / vo.viewHeightEff
-
-                //scrollByDeltaRatio
-                vo.scrollByDeltaRatio(deltaRatio)
-
-                //update
-                vo.barPressY = v //e.clientY
-
-            }
+            //update
+            vo.barPressY = clientY //e.clientY
 
         },
 
-        freedBar: function(mmkey) {
-            //console.log('methods freedBar', mmkey)
+        freeBar: function() {
+            //console.log('methods freeBar')
 
             let vo = this
-
-            //check
-            if (vo.mmkey !== mmkey) {
-                return
-            }
-
-            //check
-            if (!vo.barPressing) {
-                return
-            }
-
-            //barPressing
-            vo.barPressing = false
 
             //triggerEvent, 拖曳時有些外部組件處理過慢, 導致節點位置未更新完畢, 故於放掉滑鼠按鍵時triggerEvent, 使外部組件再次接收事件進行更新節點
-            vo.triggerEvent('freedBar')
+            vo.triggerEvent('freeBar')
 
         },
 
@@ -512,18 +367,13 @@ export default {
 
         },
 
-        scrollPanel: function(mmkey, normal) {
-            //console.log('methods scrollPanel', mmkey, normal)
+        scrollPanel: function({ ratioY }) {
+            //console.log('methods scrollPanel', ratioY)
 
             let vo = this
 
-            //check
-            if (vo.mmkey !== mmkey) {
-                return
-            }
-
             //delta
-            let delta = normal * vo.scrollDelta
+            let delta = ratioY * vo.scrollDelta
 
             //scrollByDelta
             vo.scrollByDelta(delta)

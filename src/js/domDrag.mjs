@@ -8,6 +8,7 @@ import isEle from 'wsemi/src/isEle.mjs'
 import cint from 'wsemi/src/cint.mjs'
 import evem from 'wsemi/src/evem.mjs'
 import domRemove from 'wsemi/src/domRemove.mjs'
+import domCancelEvent from 'wsemi/src/domCancelEvent.mjs'
 
 
 function getEles(ele, selectors) {
@@ -422,9 +423,9 @@ function domDrag(ele, opt = {}) {
             ele.addEventListener(name, f, false)
             _events.push({ ele, name, f })
 
-            name = 'touchcancel' //ele.addEventListener('touchcancel', cancelEvent, false)
+            name = 'touchcancel' //ele.addEventListener('touchcancel', domCancelEvent, false)
             f = function(e) {
-                cancelEvent(e)
+                domCancelEvent(e)
             }
             ele.addEventListener(name, f, false)
             _events.push({ ele, name, f })
@@ -641,8 +642,8 @@ function domDrag(ele, opt = {}) {
     function dragOver(e, el) {
         //console.log('dragOver', e, el)
 
-        //cancelEvent
-        cancelEvent(e)
+        //domCancelEvent
+        domCancelEvent(e)
 
         //check
         if (_startInd === null) {
@@ -703,8 +704,8 @@ function domDrag(ele, opt = {}) {
     function dragDrop(e, el, bTouch = false) {
         //console.log('dragDrop', e, el, bTouch)
 
-        //cancelEvent
-        cancelEvent(e)
+        //domCancelEvent
+        domCancelEvent(e)
 
         //removeDragPreview
         if (bTouch) {
@@ -744,8 +745,8 @@ function domDrag(ele, opt = {}) {
     function touchStart(e, el) {
         //console.log('touchStart', e, el)
 
-        //cancelEvent, touchstart需取消之後拖曳事件, 否則會變成捲動螢幕
-        cancelEvent(e)
+        //domCancelEvent, touchstart需取消之後拖曳事件, 否則會變成捲動螢幕
+        domCancelEvent(e)
 
         //dragStart
         dragStart(e, el, true)
@@ -794,19 +795,6 @@ function domDrag(ele, opt = {}) {
         //dragDrop
         dragDrop(e, el, true)
 
-    }
-
-    function cancelEvent(e) {
-        //console.log('cancelEvent', e)
-
-        //check, 拖曳事件因拖曳自己會捲動螢幕, 會觸發不可取消事件, 故需偵測直接跳出
-        if (!e.cancelable) {
-            return
-        }
-
-        e.preventDefault()
-        e.stopPropagation()
-        return false
     }
 
     //ev

@@ -162,6 +162,20 @@
             ></AppZoneWPanelScrolly>
 
 
+            <AppZoneWPanelDivideHorizontal
+                :modeBorder="modeBorder"
+                :modeShell="modeShell"
+                v-if="compname==='WPanelDivideHorizontal'"
+            ></AppZoneWPanelDivideHorizontal>
+
+
+            <AppZoneWPanelDivideVertical
+                :modeBorder="modeBorder"
+                :modeShell="modeShell"
+                v-if="compname==='WPanelDivideVertical'"
+            ></AppZoneWPanelDivideVertical>
+
+
             <AppZoneWIconSvg
                 :modeBorder="modeBorder"
                 :modeShell="modeShell"
@@ -413,6 +427,8 @@ import AppZoneWBadge from './AppZoneWBadge.vue'
 import AppZoneWPanelStripe from './AppZoneWPanelStripe.vue'
 import AppZoneWPanelBulge from './AppZoneWPanelBulge.vue'
 import AppZoneWPanelScrolly from './AppZoneWPanelScrolly.vue'
+import AppZoneWPanelDivideHorizontal from './AppZoneWPanelDivideHorizontal.vue'
+import AppZoneWPanelDivideVertical from './AppZoneWPanelDivideVertical.vue'
 import AppZoneWIconSvg from './AppZoneWIconSvg.vue'
 import AppZoneWDropfiles from './AppZoneWDropfiles.vue'
 import AppZoneWDialog from './AppZoneWDialog.vue'
@@ -455,6 +471,8 @@ export default {
         AppZoneWPanelStripe,
         AppZoneWPanelBulge,
         AppZoneWPanelScrolly,
+        AppZoneWPanelDivideHorizontal,
+        AppZoneWPanelDivideVertical,
         AppZoneWIconSvg,
         AppZoneWDropfiles,
         AppZoneWDialog,
@@ -513,6 +531,8 @@ export default {
                         'WPanelStripe',
                         'WPanelBulge',
                         'WPanelScrolly',
+                        'WPanelDivideHorizontal',
+                        'WPanelDivideVertical',
                     ]
                 },
                 {

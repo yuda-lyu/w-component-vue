@@ -21,11 +21,11 @@
                     _dragstart="dragStart($event,item,kitem)"
                     _drop="drop($event,item,kitem)"
                     _dragenter="dragEnter($event,item,kitem)"
-                    _dragover="cancelEvent"
+                    _dragover="domCancelEvent"
                     _touchstart="touchStart($event,item,kitem)"
                     _touchend="drop($event,item,kitem)"
                     _touchmove="touchEnter($event,item,kitem)"
-                    _touchcancel="cancelEvent"
+                    _touchcancel="domCancelEvent"
                 >
 
                     <div
@@ -285,8 +285,8 @@ export default {
 
         //     let vo = this
 
-        //     //cancelEvent, touchstart需取消之後拖曳事件, 否則會變成捲動螢幕
-        //     vo.cancelEvent(e)
+        //     //domCancelEvent, touchstart需取消之後拖曳事件, 否則會變成捲動螢幕
+        //     vo.domCancelEvent(e)
 
         //     //dragStart
         //     vo.dragStart(e, item, kitem)
@@ -330,8 +330,8 @@ export default {
 
         //     let vo = this
 
-        //     //cancelEvent
-        //     vo.cancelEvent(e)
+        //     //domCancelEvent
+        //     vo.domCancelEvent(e)
 
         //     //check
         //     if (vo.startInd === null) {
@@ -381,8 +381,8 @@ export default {
 
         // },
 
-        // cancelEvent: function (e) {
-        //     //console.log('methods cancelEvent', e)
+        // domCancelEvent: function (e) {
+        //     //console.log('methods domCancelEvent', e)
 
         //     // let vo = this
 

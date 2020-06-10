@@ -26,6 +26,8 @@ import WImageViewerDyn from './WImageViewerDyn.vue'
 import WJsonView from './WJsonView.vue'
 import WJsonViewCore from './WJsonViewCore.vue'
 import WPanelBulge from './WPanelBulge.vue'
+import WPanelDivideHorizontal from './WPanelDivideHorizontal.vue'
+import WPanelDivideVertical from './WPanelDivideVertical.vue'
 import WPanelScrolly from './WPanelScrolly.vue'
 import WPanelScrollyCore from './WPanelScrollyCore.vue'
 import WPanelStripe from './WPanelStripe.vue'
@@ -82,6 +84,8 @@ let WComponentVue = {
         Vue.component('w-json-view', WJsonView)
         Vue.component('w-json-view-core', WJsonViewCore)
         Vue.component('w-panel-bulge', WPanelBulge)
+        Vue.component('w-panel-divide-horizontal', WPanelDivideHorizontal)
+        Vue.component('w-panel-divide-vertical', WPanelDivideVertical)
         Vue.component('w-panel-scrolly', WPanelScrolly)
         Vue.component('w-panel-scrolly-core', WPanelScrollyCore)
         Vue.component('w-panel-stripe', WPanelStripe)
