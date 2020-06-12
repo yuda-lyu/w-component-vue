@@ -1,5 +1,5 @@
 <template>
-    <WPopupPanel
+    <WPopup
         :minWidth="minWidth"
         :maxWidth="maxWidth"
         :distY="distY"
@@ -67,14 +67,14 @@
 
         </template>
 
-    </WPopupPanel>
+    </WPopup>
 </template>
 
 <script>
 import color2hex from '../js/vuetifyColor.mjs'
 import get from 'lodash/get'
 import isobj from 'wsemi/src/isobj.mjs'
-import WPopupPanel from './WPopupPanel.vue'
+import WPopup from './WPopup.vue'
 import WTextCore from './WTextCore.vue'
 import WDynamicList from './WDynamicList.vue'
 
@@ -100,7 +100,7 @@ import WDynamicList from './WDynamicList.vue'
  */
 export default {
     components: {
-        WPopupPanel,
+        WPopup,
         WTextCore,
         WDynamicList,
     },

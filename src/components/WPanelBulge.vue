@@ -43,9 +43,9 @@
 
 <script>
 import get from 'lodash/get'
-import color2hex from '../js/vuetifyColor.mjs'
 import isnum from 'wsemi/src/isnum.mjs'
 import domDetect from 'wsemi/src/domDetect.mjs'
+import color2hex from '../js/vuetifyColor.mjs'
 
 
 /**

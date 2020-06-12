@@ -12,12 +12,19 @@
     >
 
         <template v-slot:activator="{ on }">
-            <div v-on="on" @click="clickTrigger">
+            <div
+                style="display:inline-block;"
+                v-on="on"
+                @click="clickTrigger"
+            >
                 <slot name="trigger"></slot>
             </div>
         </template>
 
-        <div ref="divContent">
+        <div
+            ref="divContent"
+            :style="`background:${useBackgroundColor};`"
+        >
             <slot name="content"></slot>
         </div>
 
@@ -28,6 +35,7 @@
 import get from 'lodash/get'
 import waitFun from 'wsemi/src/waitFun.mjs'
 import domCancelEvent from 'wsemi/src/domCancelEvent.mjs'
+import color2hex from '../js/vuetifyColor.mjs'
 
 
 /**
@@ -35,6 +43,7 @@ import domCancelEvent from 'wsemi/src/domCancelEvent.mjs'
  * @vue-prop {Number} [minWidth=undefined] 輸入最小寬度，單位為px，預設undefined
  * @vue-prop {Number} [maxWidth=undefined] 輸入最大寬度，單位為px，預設undefined
  * @vue-prop {Number} [distY=5] 輸入彈窗距離觸發元素底部的距離，單位為px，預設5
+ * @vue-prop {String} [backgroundColor='white'] 輸入內容區塊背景顏色字串，預設'white'
  * @vue-prop {Boolean} [editable=true] 輸入是否為編輯模式，預設true
  */
 export default {
@@ -54,6 +63,10 @@ export default {
         distY: {
             type: Number,
             default: 5,
+        },
+        backgroundColor: {
+            type: String,
+            default: 'white',
         },
         editable: {
             type: Boolean,
@@ -129,6 +142,15 @@ export default {
 
     },
     computed: {
+
+        useBackgroundColor: function() {
+            //console.log('computed useBackgroundColor')
+
+            let vo = this
+
+            return color2hex(vo.backgroundColor)
+        },
+
     },
     methods: {
 
@@ -136,6 +158,14 @@ export default {
             //console.log('methods changeValue', value)
 
             let vo = this
+
+            //覆蓋parentNode background
+            //因slot內可能使用margin導致會使用到parentNode的background, 通過使用者點擊而組件顯示或隱藏時馬上覆蓋parentNode的background, 可避免突然換色問題
+            //value因clickTrigger中強制v-menu要為顯示不隱藏, 故value會得到false但仍為顯示狀態, 所以此處不能用if判斷value作為執行依據
+            try {
+                vo.$refs.divContent.parentNode.style.background = vo.useBackgroundColor
+            }
+            catch (err) {}
 
             //setTimeout, 延遲更改, 要避免比window click快觸發
             setTimeout(() => {
@@ -152,15 +182,30 @@ export default {
 
             let vo = this
 
+            //check
+            if (!vo.editable) {
+
+                //setTimeout, 因無法簡單阻止使用者點擊slot內容. 只好延遲emit強制恢復隱藏
+                setTimeout(() => {
+
+                    //emit
+                    vo.$emit('input', false)
+
+                }, 10)
+
+                return
+            }
+
             if (vo.value) {
 
-                //setTimeout, 因無法簡單阻止重複點擊trigger隱藏v-menu, 只好延遲恢復顯示
+                //setTimeout, 因無法簡單阻止重複點擊trigger隱藏v-menu, 只好延遲emit強制恢復顯示
                 setTimeout(() => {
 
                     //emit
                     vo.$emit('input', true)
 
                 }, 10)
+
             }
 
         },
@@ -170,5 +215,8 @@ export default {
 </script>
 
 <style scoped>
+::v-deep .v-menu__content {
+    background: #62f;
+}
 </style>
 

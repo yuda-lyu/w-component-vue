@@ -260,6 +260,13 @@
             ></AppZoneWConfirm>
 
 
+            <AppZoneWPopup
+                :modeBorder="modeBorder"
+                :modeShell="modeShell"
+                v-if="compname==='WPopup'"
+            ></AppZoneWPopup>
+
+
             <AppZoneWGroupTags
                 :modeBorder="modeBorder"
                 :modeShell="modeShell"
@@ -433,6 +440,7 @@ import AppZoneWIconSvg from './AppZoneWIconSvg.vue'
 import AppZoneWDropfiles from './AppZoneWDropfiles.vue'
 import AppZoneWDialog from './AppZoneWDialog.vue'
 import AppZoneWConfirm from './AppZoneWConfirm.vue'
+import AppZoneWPopup from './AppZoneWPopup.vue'
 import AppZoneWButtonChip from './AppZoneWButtonChip.vue'
 import AppZoneWButtonCapsule from './AppZoneWButtonCapsule.vue'
 import AppZoneWButtonCircle from './AppZoneWButtonCircle.vue'
@@ -477,6 +485,7 @@ export default {
         AppZoneWDropfiles,
         AppZoneWDialog,
         AppZoneWConfirm,
+        AppZoneWPopup,
         AppZoneWButtonChip,
         AppZoneWButtonCapsule,
         AppZoneWButtonCircle,
@@ -586,6 +595,7 @@ export default {
                         'WAlert',
                         'WDialog',
                         'WConfirm',
+                        'WPopup',
                     ]
                 },
                 {
