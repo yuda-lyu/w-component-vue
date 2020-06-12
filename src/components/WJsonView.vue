@@ -40,8 +40,8 @@ import last from 'lodash/last'
 import isNumber from 'lodash/isNumber'
 import isString from 'lodash/isString'
 import isBoolean from 'lodash/isBoolean'
-// import isArray from 'lodash/isArray' //會誤判function
-// import isObject from 'lodash/isObject' //會誤判function
+// import isArray from 'lodash/isArray' //會誤判function為array
+// import isObject from 'lodash/isObject' //會誤判function為object
 import isFunction from 'lodash/isFunction'
 import toString from 'lodash/toString'
 import toInteger from 'lodash/toInteger'

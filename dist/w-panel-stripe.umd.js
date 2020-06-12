@@ -1,5 +1,5 @@
 /*!
- * w-panel-stripe v1.3.40
+ * w-panel-stripe v1.3.41
  * (c) 2018-2019 yuda-lyu(semisphere)
  * Released under the MIT License.
  */

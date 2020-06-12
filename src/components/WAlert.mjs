@@ -56,9 +56,10 @@ function WAlert(msg, opt = {}) {
 
     //noti
     noti({
+        message,
         position,
         dangerouslyUseHTMLString: true,
-        message,
+        showClose: true,
     })
 
 }

@@ -115,7 +115,7 @@ export default {
         vo.de = de
 
         //das
-        let das = domDragBarAndScroll(vo.$refs.divPanel, vo.$refs.divBar)
+        let das = domDragBarAndScroll(vo.$refs.divPanel, vo.$refs.divBar, { useTouchDragForPanel: false })
         das.on('dragBar', vo.dragBar)
 
         //save

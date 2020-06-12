@@ -95,7 +95,7 @@ export default {
         let vo = this
 
         //das
-        let das = domDragBarAndScroll(vo.$refs.divPanel, vo.$refs.divBar, { heighRatio: vo.heighRatio, stopEventScrollPanel: true })
+        let das = domDragBarAndScroll(vo.$refs.divPanel, vo.$refs.divBar, { getHeighRatio: () => vo.heighRatio, stopScrollPropagationForPanel: true })
         das.on('scrollPanel', vo.scrollPanel)
         das.on('pressBar', vo.pressBar)
         das.on('dragBar', vo.dragBar)
