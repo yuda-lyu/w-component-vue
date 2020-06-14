@@ -254,7 +254,7 @@ function dragPreview() {
         //console.log('window mousemove', e)
         updateDragPreview(e.clientX, e.clientY, 'window mousemove')
     }
-    window.addEventListener('mousemove', evMM, false)
+    window.addEventListener('mousemove', evMM)
 
     let evTM = function(e) {
         //console.log('window touchmove', e)
@@ -263,25 +263,25 @@ function dragPreview() {
             updateDragPreview(p.clientX, p.clientY, 'window touchmove')
         }
     }
-    window.addEventListener('touchmove', evTM, false)
+    window.addEventListener('touchmove', evTM)
 
     let evDg = function(e) {
         //console.log('window drag', e)
         updateDragPreview(e.clientX, e.clientY, 'window drag')
     }
-    window.addEventListener('drag', evDg, false)
+    window.addEventListener('drag', evDg)
 
     let evDge = function(e) {
         //console.log('window dragend', e)
         removeDragPreview()
     }
-    window.addEventListener('dragend', evDge, false)
+    window.addEventListener('dragend', evDge)
 
     function clear() {
-        removeEventListener('mousemove', evMM)
-        removeEventListener('touchmove', evTM)
-        removeEventListener('drag', evDg)
-        removeEventListener('dragend', evDge)
+        window.removeEventListener('mousemove', evMM)
+        window.removeEventListener('touchmove', evTM)
+        window.removeEventListener('drag', evDg)
+        window.removeEventListener('dragend', evDge)
     }
 
     return {
@@ -355,79 +355,79 @@ function domDrag(ele, opt = {}) {
         // f = function(e) {
         //     mouseMove(e)
         // }
-        // window.addEventListener('mousemove', f, false)
+        // window.addEventListener('mousemove', f)
         // _events.push({ window, name, f })
 
         // name = 'dragmove'
         // f = function(e) {
         //     winDragMove(e)
         // }
-        // window.addEventListener('dragmove', f, false)
+        // window.addEventListener('dragmove', f)
         // _events.push({ window, name, f })
 
         each(eles, (ele, k) => { //eles綁定成為元素需自動更新, 例如用vue自動由數據順序產生元素, 而拖曳完的eles將不會是原始元素順序, 故k不可信
 
-            name = 'dragstart' //ele.addEventListener('dragstart', dragStart, false)
+            name = 'dragstart' //ele.addEventListener('dragstart', dragStart)
             f = function(e) {
                 dragStart(e, ele)
             }
             ele.addEventListener(name, f, false)
             _events.push({ ele, name, f })
 
-            name = 'dragenter' //ele.addEventListener('dragenter', dragEnter, false)
+            name = 'dragenter' //ele.addEventListener('dragenter', dragEnter)
             f = function(e) {
                 dragEnter(e, ele)
             }
             ele.addEventListener(name, f, false)
             _events.push({ ele, name, f })
 
-            name = 'dragover' //ele.addEventListener('dragover', dragOver, false)
+            name = 'dragover' //ele.addEventListener('dragover', dragOver)
             f = function(e) {
                 dragOver(e, ele)
             }
             ele.addEventListener(name, f, false)
             _events.push({ ele, name, f })
 
-            name = 'dragleave' //ele.addEventListener('dragleave', dragLeave, false)
+            name = 'dragleave' //ele.addEventListener('dragleave', dragLeave)
             f = function(e) {
                 dragLeave(e, ele)
             }
             ele.addEventListener(name, f, false)
             _events.push({ ele, name, f })
 
-            name = 'drop' //ele.addEventListener('drop', dragDrop, false)
+            name = 'drop' //ele.addEventListener('drop', dragDrop)
             f = function(e) {
                 dragDrop(e, ele)
             }
             ele.addEventListener(name, f, false)
             _events.push({ ele, name, f })
 
-            name = 'touchstart' //ele.addEventListener('touchstart', touchStart, false)
+            name = 'touchstart' //ele.addEventListener('touchstart', touchStart)
             f = function(e) {
                 touchStart(e, ele)
             }
             ele.addEventListener(name, f, false)
             _events.push({ ele, name, f })
 
-            name = 'touchmove' //ele.addEventListener('touchmove', touchEnter, false)
+            name = 'touchmove' //ele.addEventListener('touchmove', touchEnter)
             f = function(e) {
                 touchEnter(e, ele)
             }
             ele.addEventListener(name, f, false)
             _events.push({ ele, name, f })
 
-            name = 'touchend' //ele.addEventListener('touchend', touchDrop, false)
+            name = 'touchend' //ele.addEventListener('touchend', touchDrop)
             f = function(e) {
                 touchDrop(e, ele)
             }
             ele.addEventListener(name, f, false)
             _events.push({ ele, name, f })
 
-            name = 'touchcancel' //ele.addEventListener('touchcancel', domCancelEvent, false)
+            name = 'touchcancel' //ele.addEventListener('touchcancel', domCancelEvent)
             f = function(e) {
                 domCancelEvent(e)
             }
-            ele.addEventListener(name, f, false)
+            ele.addEventListener(name, f)
             _events.push({ ele, name, f })
 
         })

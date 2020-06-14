@@ -1,5 +1,5 @@
 /*!
- * w-tree-draggable v1.3.43
+ * w-tree-draggable v1.3.44
  * (c) 2018-2019 yuda-lyu(semisphere)
  * Released under the MIT License.
  */
