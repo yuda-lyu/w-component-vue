@@ -1,5 +1,8 @@
 <template>
-    <div style="display:inline-block;">
+    <div
+        style="display:inline-block;"
+        role="button"
+    >
 
         <v-tooltip bottom transition="slide-y-transition" :disabled="tooltip===''">
 

@@ -1,5 +1,9 @@
 <template>
-    <div style="display:inline-block;" :changeActive="changeActive">
+    <div
+        style="display:inline-block;"
+        :changeActive="changeActive"
+        role="button"
+    >
 
         <div style="position:relative;">
 

@@ -1,5 +1,9 @@
 <template>
-    <div style="display:inline-block;" :changeParam="changeParam">
+    <div
+        style="display:inline-block;"
+        :changeParam="changeParam"
+        role="button"
+    >
 
         <v-tooltip bottom transition="slide-y-transition" :disabled="tooltip===''">
 
