@@ -65,9 +65,9 @@ export default {
         pathItems: {
             type: Array,
             default: () => [
-                'https://cdn.jsdelivr.net/npm/ag-grid-community@23.1.1/dist/ag-grid-community.min.noStyle.js',
-                'https://cdn.jsdelivr.net/npm/ag-grid-vue@23.1.1/dist/ag-grid-vue.umd.min.js', //於es5內載入時, AgGridVue會出現在window['ag-grid-vue'].AgGridVue
-                'https://cdn.jsdelivr.net/npm/w-aggrid-vue@1.0.46/dist/w-aggrid-vue.umd.js',
+                'https://cdn.jsdelivr.net/npm/ag-grid-community@23.2.0/dist/ag-grid-community.min.noStyle.js',
+                'https://cdn.jsdelivr.net/npm/ag-grid-vue@23.2.0/dist/ag-grid-vue.umd.min.js', //於es5內載入時, AgGridVue會出現在window['ag-grid-vue'].AgGridVue
+                'https://cdn.jsdelivr.net/npm/w-aggrid-vue@1.0.47/dist/w-aggrid-vue.umd.js',
             ],
         },
         opt: {

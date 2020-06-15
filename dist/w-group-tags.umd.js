@@ -1,5 +1,5 @@
 /*!
- * w-group-tags v1.3.45
+ * w-group-tags v1.3.46
  * (c) 2018-2019 yuda-lyu(semisphere)
  * Released under the MIT License.
  */
