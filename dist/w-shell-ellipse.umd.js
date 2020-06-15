@@ -1,5 +1,5 @@
 /*!
- * w-shell-ellipse v1.3.44
+ * w-shell-ellipse v1.3.45
  * (c) 2018-2019 yuda-lyu(semisphere)
  * Released under the MIT License.
  */
