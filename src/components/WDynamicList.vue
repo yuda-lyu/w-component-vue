@@ -61,7 +61,7 @@ let gm = globalMemory()
  * @vue-prop {String} [filterKeywords=''] 輸入過濾關鍵字字串，多關鍵字用空白分隔，預設''
  * @vue-prop {Number} [viewHeightMax=400] 輸入顯示區最大高度，單位為px，預設400
  * @vue-prop {Number} [itemMinHeight=24] 輸入各元素顯示高度，單位為px，預設24，會於真實顯示後自動更新高度
- * @vue-prop {Number} [itemsPreload=40] 輸入上下方預先載入元素數量，預設40
+ * @vue-prop {Number} [itemsPreload=5] 輸入上下方預先載入元素數量，預設5
  * @vue-prop {String} [searchEmpty='Empty'] 輸入無過濾結果字串，預設'Empty'
  */
 export default {
@@ -87,7 +87,7 @@ export default {
         },
         itemsPreload: {
             type: Number,
-            default: 40,
+            default: 5,
         },
         searchEmpty: {
             type: String,
@@ -231,7 +231,7 @@ export default {
 
             //core
             let n = 0
-            let limit = 2
+            let limit = 3
             async function core() {
                 let pm = genPm()
 
@@ -437,13 +437,23 @@ export default {
                 }
 
                 //update itemsHeight
-                if (vo.itemsHeight !== y) {
-                    vo.itemsHeight = y
+                let itemsHeightTemp = vo.itemsHeight
+                if (itemsHeightTemp !== y) {
+                    itemsHeightTemp = y
                 }
 
                 //check empty
-                if (vo.itemsHeight === 0) {
-                    vo.itemsHeight = 43 //先預算出empty時高度
+                if (itemsHeightTemp === 0) {
+                    itemsHeightTemp = 43 //先預算出empty時高度
+                }
+
+                //check same
+                let pxLimit = 4 //全部項目高度誤差門檻(px)
+                if (Math.abs(vo.itemsHeight - itemsHeightTemp) > pxLimit) { //偵測總項目高度是否與前次差超過pxLimit
+                    vo.itemsHeight = itemsHeightTemp
+                }
+                else {
+                    b = vo.changeFilter //若沒超過門檻pxLimit, 則b直接使用changeFilter, 否則b為包含changeHeight影響導致refresh while持續偵測
                 }
 
                 //reset
