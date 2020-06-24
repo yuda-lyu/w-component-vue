@@ -13,8 +13,9 @@
 
         <template v-slot:activator="{ on }">
             <div
-                style="display:inline-block;"
+                ref="divTrigger"
                 v-on="on"
+                :style="`display:${isBlock?'block':'inline-block'};`"
                 @click="clickTrigger"
             >
                 <slot name="trigger"></slot>
@@ -33,8 +34,10 @@
 
 <script>
 import get from 'lodash/get'
+import size from 'lodash/size'
 import waitFun from 'wsemi/src/waitFun.mjs'
 import domCancelEvent from 'wsemi/src/domCancelEvent.mjs'
+import isEle from 'wsemi/src/isEle.mjs'
 import color2hex from '../js/vuetifyColor.mjs'
 
 
@@ -79,6 +82,7 @@ export default {
             eleMousedown: null,
             windowMousedown: null,
             windowMouseup: null,
+            isBlock: false,
         }
     },
     mounted: function() {
@@ -122,6 +126,37 @@ export default {
         }
         window.addEventListener('mouseup', vo.windowMouseup)
 
+        //自動調整divTrigger的display
+        waitFun(() => {
+            return get(vo, '$refs.divTrigger', null) !== null
+        })
+            .then(() => {
+
+                //divTriggerChilds
+                let divTriggerChilds = get(vo, '$refs.divTrigger.children', null)
+
+                //check
+                if (size(divTriggerChilds) === 0) {
+                    //console.log('無法找到點擊區內元素')
+                    return
+                }
+
+                //找尋slot內各元素, 看是否有block或flex元素
+                let isBlock = false
+                for (let i = 0; i < size(divTriggerChilds); i++) {
+                    let divTriggerChild = divTriggerChilds[i]
+                    let display = getComputedStyle(divTriggerChild).display
+                    isBlock = display === 'block' || display === 'flex'
+                    if (isBlock) {
+                        break
+                    }
+                }
+
+                //save
+                vo.isBlock = isBlock
+
+            })
+
     },
     beforeDestroy: function() {
         //console.log('beforeDestroy')
@@ -159,13 +194,16 @@ export default {
 
             let vo = this
 
+            //ele
+            let ele = get(vo, '$refs.divContent.parentNode', null)
+
             //覆蓋parentNode background
             //因slot內可能使用margin導致會使用到parentNode的background, 通過使用者點擊而組件顯示或隱藏時馬上覆蓋parentNode的background, 可避免突然換色問題
             //value因clickTrigger中強制v-menu要為顯示不隱藏, 故value會得到false但仍為顯示狀態, 所以此處不能用if判斷value作為執行依據
-            try {
-                vo.$refs.divContent.parentNode.style.background = vo.useBackgroundColor
+            //找不到元素時不能提前離開, 因需把value emit出去給外部組件知道與變更
+            if (isEle(ele)) {
+                ele.style.background = vo.useBackgroundColor
             }
-            catch (err) {}
 
             //setTimeout, 延遲更改, 要避免比window click快觸發
             setTimeout(() => {
@@ -177,35 +215,50 @@ export default {
 
         },
 
+        hideForce: function() {
+            //console.log('methods hideForce')
+
+            let vo = this
+
+            //setTimeout, 因無法簡單阻止使用者點擊slot內容. 只好延遲emit強制恢復隱藏
+            setTimeout(() => {
+
+                //emit
+                vo.$emit('input', false)
+
+            }, 10) //不能1ms會過快
+
+        },
+
+        showForce: function() {
+            //console.log('methods showForce')
+
+            let vo = this
+
+            //setTimeout, 因無法簡單阻止重複點擊trigger隱藏v-menu, 只好延遲emit強制恢復顯示
+            setTimeout(() => {
+
+                //emit
+                vo.$emit('input', true)
+
+            }, 10) //不能1ms會過快
+
+        },
+
         clickTrigger: function(e) {
             //console.log('methods clickTrigger', e)
 
             let vo = this
 
-            //check
+            //check, 不能編輯時強制隱藏
             if (!vo.editable) {
-
-                //setTimeout, 因無法簡單阻止使用者點擊slot內容. 只好延遲emit強制恢復隱藏
-                setTimeout(() => {
-
-                    //emit
-                    vo.$emit('input', false)
-
-                }, 10)
-
+                vo.hideForce()
                 return
             }
 
+            //check, value=true時需強制顯示
             if (vo.value) {
-
-                //setTimeout, 因無法簡單阻止重複點擊trigger隱藏v-menu, 只好延遲emit強制恢復顯示
-                setTimeout(() => {
-
-                    //emit
-                    vo.$emit('input', true)
-
-                }, 10)
-
+                vo.showForce()
             }
 
         },
@@ -215,8 +268,5 @@ export default {
 </script>
 
 <style scoped>
-::v-deep .v-menu__content {
-    background: #62f;
-}
 </style>
 

@@ -6,7 +6,7 @@
         :contentHeight="itemsHeight"
         :changeColors="changeColors"
         :changeFilterKeyWords="changeFilterKeyWords"
-        @change="scrollItems"
+        @change="changeScroll"
         @toggleItemsEnd="toggleItemsEnd"
     >
 
@@ -45,7 +45,6 @@ import isBoolean from 'lodash/isBoolean'
 import isFunction from 'lodash/isFunction'
 import toString from 'lodash/toString'
 import toInteger from 'lodash/toInteger'
-import isEqual from 'lodash/isEqual'
 import isarr from 'wsemi/src/isarr.mjs'
 import isobj from 'wsemi/src/isobj.mjs'
 import sep from 'wsemi/src/sep.mjs'
@@ -924,8 +923,8 @@ export default {
 
         },
 
-        scrollItems: async function(e) {
-            //console.log('methods scrollItems', e)
+        changeScroll: async function(e) {
+            //console.log('methods changeScroll', e)
 
             let vo = this
 
@@ -934,10 +933,10 @@ export default {
                 return
             }
 
-            //check
-            if (isEqual(vo.scrollInfor, e)) {
-                return
-            }
+            // //check, 不能判斷scrollInfor是否相等, 因wsp會有resize觸發此事件, 會給出內部的scrollInfor與上次相同故為原值, 若檢查相同則離開將無法重算各動態項目高度
+            // if (isEqual(vo.scrollInfor, e)) {
+            //     return
+            // }
 
             //check, 有上鎖時不能執行
             if (vo.toggling) {
@@ -948,7 +947,7 @@ export default {
             vo.scrollInfor = e
 
             //refresh
-            await vo.refresh('scrollItems')
+            await vo.refresh('wsp')
 
         },
 

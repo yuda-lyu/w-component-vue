@@ -20,15 +20,17 @@
             @click-left="function(v){$emit('click-left', v)}"
         >
 
-            <WTextSuggestCore
-                :items="items"
-                :value="value"
-                :placeholder="placeholder"
-                :searchEmpty="searchEmpty"
-                :editable="editable"
-                @update:focused="changeFocused"
-                @input="function(v){$emit('input', v)}"
-            ></WTextSuggestCore>
+            <div style="margin-right:-5px;">
+                <w-text-suggest-core
+                    :items="items"
+                    :value="value"
+                    :placeholder="placeholder"
+                    :searchEmpty="searchEmpty"
+                    :editable="editable"
+                    @update:focused="changeFocused"
+                    @input="function(v){$emit('input', v)}"
+                ></w-text-suggest-core>
+            </div>
 
         </w-shell-ellipse>
 
@@ -37,7 +39,6 @@
 
 <script>
 import WShellEllipse from './WShellEllipse.vue'
-//import WTextSuggestCore from './WTextSuggestCore.vue'
 import WTextSuggestCore from './WTextSuggestCore.vue'
 
 

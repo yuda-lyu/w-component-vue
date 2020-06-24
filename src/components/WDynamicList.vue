@@ -4,16 +4,18 @@
         :viewHeightMax="viewHeightMax"
         :contentHeight="itemsHeight"
         :changeFilterKeyWords="changeFilterKeyWords"
-        @change="scrollItems"
+        @change="changeScroll"
     >
 
         <template v-for="(item,kitem) in useItems">
+            <!-- wdsDiv記得給width:100%，因ie11的flex內文字會自動撐開版面導致不會換行 -->
             <div
                 ref="wdsDiv"
                 :style="`position:absolute; top:${item.screenY}px; width:100%; opacity:${(item.nowShow && item.delayShow)?1:0.001}; ${item.delayShow?'transition:opacity 0.1s':''}`"
                 :index="item.index"
                 :nowShow="item.nowShow"
                 :delayShow="item.delayShow"
+                :y="item.y"
                 :key="kitem"
             >
                 <slot
@@ -37,7 +39,6 @@ import get from 'lodash/get'
 import map from 'lodash/map'
 import size from 'lodash/size'
 import toString from 'lodash/toString'
-import isEqual from 'lodash/isEqual'
 import cint from 'wsemi/src/cint.mjs'
 import genID from 'wsemi/src/genID.mjs'
 import genPm from 'wsemi/src/genPm.mjs'
@@ -95,7 +96,6 @@ export default {
     },
     data: function() {
         return {
-            //itemDiv的style記得給width:100%，因ie11的flex內文字會自動撐開版面導致不會換行
             mmkey: null,
             changeHeight: true, //是否有變更高度, 初始化給true使第一次顯示能自動重算節點高度
             changeFilter: false, //是否有變更過濾關鍵字
@@ -143,7 +143,7 @@ export default {
                 vo.changeRows(value)
 
             }
-        }
+        },
 
     },
     computed: {
@@ -455,8 +455,8 @@ export default {
             return b
         },
 
-        scrollItems: async function(e) {
-            //console.log('methods scrollItems', e)
+        changeScroll: async function(e) {
+            //console.log('methods changeScroll', e)
 
             let vo = this
 
@@ -465,16 +465,16 @@ export default {
                 return
             }
 
-            //check
-            if (isEqual(vo.scrollInfor, e)) {
-                return
-            }
+            // //check, 不能判斷scrollInfor是否相等, 因wsp會有resize觸發此事件, 會給出內部的scrollInfor與上次相同故為原值, 若檢查相同則離開將無法重算各動態項目高度
+            // if (isEqual(vo.scrollInfor, e)) {
+            //     return
+            // }
 
             //save
             vo.scrollInfor = e
 
             //refresh
-            await vo.refresh('scrollItems')
+            await vo.refresh('wsp')
 
         },
 

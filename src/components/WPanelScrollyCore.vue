@@ -1,5 +1,7 @@
 <template>
-    <div :style="`overflow:hidden; height:${Math.min(contentHeight,viewHeightMax)}px; box-sizing:content-box;`">
+    <div
+        :style="`overflow:hidden; height:${Math.min(contentHeight,viewHeightMax)}px; box-sizing:content-box;`"
+    >
         <div
             :style="`position:relative; overflow:hidden; height:${viewHeightMax}px; box-sizing:border-box;`"
             :changeRatio="changeRatio"
@@ -33,6 +35,7 @@
 
 <script>
 import domDragBarAndScroll from 'wsemi/src/domDragBarAndScroll.mjs'
+import domDetect from 'wsemi/src/domDetect.mjs'
 import color2hex from '../js/vuetifyColor.mjs'
 
 
@@ -83,16 +86,35 @@ export default {
     },
     data: function() {
         return {
+            de: null,
+            das: null,
+
             ratioTrans: 0, //捲動比例
             barPressY: null, //bar按下準備拖曳前y座標
             barOpacity: 0.5,
-            das: null,
+
         }
     },
     mounted: function() {
         //console.log('mounted')
 
         let vo = this
+
+        //de, 不能用vuetify的v-resize, 其偵測雖是元素的尺寸變化, 但slot內容於外層組件初始化時, 這時指定元素的尺寸變更卻不會觸發v-resize, 故得要用基於timer的domDetect偵測尺寸變化
+        let de = domDetect(() => {
+            return vo.$el
+        })
+        de.on('resize', (s) => {
+            //console.log('resize', s)
+
+            //triggerEvent
+            vo.triggerEvent('resize')
+
+        })
+        de.on('display', (s) => {
+            //console.log('display', s)
+        })
+        vo.de = de
 
         //das
         let das = domDragBarAndScroll(vo.$refs.divPanel, vo.$refs.divBar, { getHeighRatio: () => vo.heighRatio, stopScrollPropagationForPanel: true })
@@ -109,6 +131,11 @@ export default {
         //console.log('beforeDestroy')
 
         let vo = this
+
+        //clear
+        if (vo.de) {
+            vo.de.clear()
+        }
 
         //clear
         if (vo.das) {
@@ -157,7 +184,11 @@ export default {
 
             let vo = this
 
-            return vo.viewHeightMax / Math.max(vo.contentHeight, 1)
+            //r, 此處只有domDragBarAndScroll會調用, 也就是使用者拖曳捲軸才觸發
+            let ch = vo.contentHeight
+            let r = vo.viewHeightMax / Math.max(ch, 1)
+
+            return r
         },
 
         barSize: function() {
@@ -190,6 +221,9 @@ export default {
             //v
             let v = vo.contentHeight - vo.viewHeightMax
             v = Math.max(v, 0)
+
+            //triggerEvent, 若內容高度變更則也需要triggerEvent
+            vo.triggerEvent('changeContentHeight')
 
             return v
         },
@@ -348,7 +382,7 @@ export default {
             if (changed) {
 
                 //triggerEvent
-                vo.triggerEvent()
+                vo.triggerEvent('scroll')
 
             }
 
@@ -380,20 +414,20 @@ export default {
 
         },
 
-        refresh: function(from, trigger) {
-            //console.log('methods refresh', from, trigger)
+        // refresh: function(from, trigger) {
+        //     //console.log('methods refresh', from, trigger)
 
-            let vo = this
+        //     let vo = this
 
-            //check
-            if (trigger) {
+        //     //check
+        //     if (trigger) {
 
-                //triggerEvent
-                vo.triggerEvent()
+        //         //triggerEvent
+        //         vo.triggerEvent(from)
 
-            }
+        //     }
 
-        },
+        // },
 
     },
 }

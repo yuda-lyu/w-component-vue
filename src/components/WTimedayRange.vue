@@ -20,20 +20,16 @@
             @click-left="function(v){$emit('click-left', v)}"
         >
 
-            <div style="display:flex; align-items:center; padding-right:8px;">
-
-                <w-timeday-range-core
-                    :pickColor="pickColor"
-                    :dayBetween="dayBetween"
-                    :dayStart="dayStart"
-                    :dayEnd="dayEnd"
-                    :editable="editable"
-                    @update:focused="changeFocused"
-                    @update:dayStart="function(v){$emit('update:dayStart', v)}"
-                    @update:dayEnd="function(v){$emit('update:dayEnd', v)}"
-                ></w-timeday-range-core>
-
-            </div>
+            <w-timeday-range-core
+                :pickColor="pickColor"
+                :dayBetween="dayBetween"
+                :dayStart="dayStart"
+                :dayEnd="dayEnd"
+                :editable="editable"
+                @update:focused="changeFocused"
+                @update:dayStart="function(v){$emit('update:dayStart', v)}"
+                @update:dayEnd="function(v){$emit('update:dayEnd', v)}"
+            ></w-timeday-range-core>
 
         </w-shell-ellipse>
 

@@ -1,26 +1,28 @@
 <template>
-    <div style="display:flex; align-items:center;" :changeParam="changeParam">
+    <div style="display:inline-block;">
+        <div style="display:flex; align-items:center;" :changeParam="changeParam">
 
-        <w-timeday-core
-            style="margin-right:5px;"
-            :pickColor="pickColor"
-            :editable="editable"
-            :value="value_day"
-            @update:focused="(v)=>{focused_day=v;changeFocused()}"
-            @input="ch_day"
-        ></w-timeday-core>
-
-        <div style="display:inline-block; margin-right:-3px;">
-            <w-text-select-core
-                style="width:63px;"
+            <w-timeday-core
+                style="margin-right:5px;"
+                :pickColor="pickColor"
                 :editable="editable"
-                :items="getUseMinutes"
-                :value="value_time"
-                @update:focused="(v)=>{focused_time=v;changeFocused()}"
-                @input="ch_time"
-            ></w-text-select-core>
-        </div>
+                :value="value_day"
+                @update:focused="(v)=>{focused_day=v;changeFocused()}"
+                @input="ch_day"
+            ></w-timeday-core>
 
+            <div style="margin-right:-3px;">
+                <w-text-select-core
+                    :minWidth="70"
+                    :editable="editable"
+                    :items="getUseMinutes"
+                    :value="value_time"
+                    @update:focused="(v)=>{focused_time=v;changeFocused()}"
+                    @input="ch_time"
+                ></w-text-select-core>
+            </div>
+
+        </div>
     </div>
 </template>
 

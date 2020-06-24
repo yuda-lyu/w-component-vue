@@ -1,26 +1,28 @@
 <template>
-    <div style="display:flex; align-items:center;">
+    <div style="display:inline-block;">
+        <div style="display:flex; align-items:center;">
 
-        <w-timeday-core
-            :pickColor="pickColor"
-            :editable="editable"
-            :value="dayStart"
-            @update:focused="(v)=>{focused_start=v;changeFocused()}"
-            @input="function(v){$emit('update:dayStart', v)}"
-        ></w-timeday-core>
+            <w-timeday-core
+                :pickColor="pickColor"
+                :editable="editable"
+                :value="dayStart"
+                @update:focused="(v)=>{focused_start=v;changeFocused()}"
+                @input="function(v){$emit('update:dayStart', v)}"
+            ></w-timeday-core>
 
-        <div
-            :style="[{'display':'inline-block','padding-left':'5px','padding-right':'9px'}]"
-        >{{dayBetween}}</div>
+            <div
+                :style="[{'display':'inline-block','padding-left':'5px','padding-right':'9px'}]"
+            >{{dayBetween}}</div>
 
-        <w-timeday-core
-            :pickColor="pickColor"
-            :editable="editable"
-            :value="dayEnd"
-            @update:focused="(v)=>{focused_end=v;changeFocused()}"
-            @input="function(v){$emit('update:dayEnd', v)}"
-        ></w-timeday-core>
+            <w-timeday-core
+                :pickColor="pickColor"
+                :editable="editable"
+                :value="dayEnd"
+                @update:focused="(v)=>{focused_end=v;changeFocused()}"
+                @input="function(v){$emit('update:dayEnd', v)}"
+            ></w-timeday-core>
 
+        </div>
     </div>
 </template>
 

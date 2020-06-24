@@ -14,7 +14,6 @@
 
                 <w-text-core
                     style="width:100%;"
-                    ref="inp"
                     :textAlign="textAlign"
                     :placeholder="placeholder"
                     :editable="editable"
@@ -26,9 +25,18 @@
                     @input="changeValueTrans"
                 ></w-text-core>
 
-                <div :style="`padding:0px 5px; transform:rotate(${getRotateDeg}deg); transition:all 0.2s;`">
-                    <div style="display:flex; align-items:center; justify-content:center; transform:rotate(90deg) scaleX(0.7);">
-                        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" :fill="useIconColor" width="11px" height="11px" x="0px" y="0px" viewBox="0 0 415.346 415.346" xml:space="preserve"><g><path d="M41.712,415.346c-11.763,0-21.3-9.537-21.3-21.3V21.299C20.412,9.536,29.949,0,41.712,0l346.122,191.697 c0,0,15.975,15.975,0,31.951C371.859,239.622,41.712,415.346,41.712,415.346z"/></g></svg>
+                <div :style="`padding:0px 5px; transform:rotate(${getRotateDeg}deg); transition:all 0.2s; cursor:pointer;`">
+                    <div style="transform:rotate(90deg) scaleX(0.7);">
+                        <svg
+                            width="11px"
+                            height="11px"
+                            x="0px"
+                            y="0px"
+                            viewBox="0 0 415.346 415.346"
+                            :fill="useIconColor"
+                        >
+                            <g><path d="M41.712,415.346c-11.763,0-21.3-9.537-21.3-21.3V21.299C20.412,9.536,29.949,0,41.712,0l346.122,191.697 c0,0,15.975,15.975,0,31.951C371.859,239.622,41.712,415.346,41.712,415.346z"/></g>
+                        </svg>
                     </div>
                 </div>
 
@@ -81,7 +89,7 @@ import WDynamicList from './WDynamicList.vue'
 
 /**
  * @vue-prop {Object|String|Number} value 輸入初始項目物件
- * @vue-prop {Array} [items=400] 輸入項目陣列，預設[]
+ * @vue-prop {Array} [items=[]] 輸入項目陣列，預設[]
  * @vue-prop {String} [itemText='value'] 輸入取項目物件內之顯示用文字鍵值字串，預設'value'
  * @vue-prop {String} [itemTextColor='grey darken-3'] 輸入項目文字顏色字串，預設'grey darken-3'
  * @vue-prop {String} [itemTextColorHover='light-blue darken-2'] 輸入項目文字Hover顏色字串，預設'light-blue darken-2'
@@ -320,8 +328,12 @@ export default {
             //hide
             vo.show = false
 
-            //triggerEvent
-            vo.triggerEvent('input', item, kitem)
+            setTimeout(() => {
+
+                //triggerEvent
+                vo.triggerEvent('input', item, kitem)
+
+            }, 1)
 
         },
 
@@ -345,14 +357,5 @@ export default {
 </script>
 
 <style scoped>
-.wisc-item {
-    transition: all 0.2s;
-    background-color: #fff;
-    color: #444;
-}
-.wisc-item:hover {
-    background-color: #666;
-    color: #ddd;
-}
 </style>
 

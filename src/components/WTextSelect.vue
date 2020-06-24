@@ -20,14 +20,14 @@
             @click-left="function(v){$emit('click-left', v)}"
         >
 
-            <WTextSelectCore
-                style="transform:translateY(1px)"
-                :items="items"
-                :value="value"
-                :editable="editable"
-                @update:focused="changeFocused"
-                @input="function(v){$emit('input', v)}"
-            ></WTextSelectCore>
+            <div style="margin-right:-5px;">
+                <w-text-select-core
+                    :items="items"
+                    :value="value"
+                    :editable="editable"
+                    @input="function(v){$emit('input', v)}"
+                ></w-text-select-core>
+            </div>
 
         </w-shell-ellipse>
 

@@ -1,32 +1,39 @@
 <template>
-    <div style="display:inline-block; height:28px; min-height:28px; line-height:27px;" forceFix="line-height:27px;" :changeParam="changeParam">
+    <div
+        style="display:inline-block; height:28px;"
+        :changeParam="changeParam"
+    >
 
-        <v-menu
-            offset-y
-            :disabled="!editable"
-            v-model="show"
-        >
+        <div style="display:flex; align-items:center; height:100%;">
 
-            <template v-slot:activator="{ on }">
-                <div
-                    TimedayCore="day"
-                    style="display:inline-block; width:90px;"
-                    v-on="on"
-                >
-                    {{getShowTime}}
-                </div>
-            </template>
+            <v-menu
+                offset-y
+                :disabled="!editable"
+                v-model="show"
+            >
 
-            <v-date-picker
-                no-title
-                locale="zh-tw"
-                :color="pickColor"
-                :day-format="getDay"
-                :value="value_day"
-                @input="ch_day"
-            ></v-date-picker>
+                <template v-slot:activator="{ on }">
+                    <div
+                        TimedayCore="day"
+                        style="display:inline-block; width:90px;"
+                        v-on="on"
+                    >
+                        {{getShowTime}}
+                    </div>
+                </template>
 
-        </v-menu>
+                <v-date-picker
+                    no-title
+                    locale="zh-tw"
+                    :color="pickColor"
+                    :day-format="getDay"
+                    :value="value_day"
+                    @input="ch_day"
+                ></v-date-picker>
+
+            </v-menu>
+
+        </div>
 
     </div>
 </template>

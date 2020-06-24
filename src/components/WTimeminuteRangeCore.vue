@@ -1,36 +1,38 @@
 <template>
-    <div style="display:flex; align-items:center;">
+    <div style="display:inline-block;">
+        <div style="display:flex; align-items:center;">
 
-        <w-timeminute-core
-            :hourMin="hourMin"
-            :hourMax="hourMax"
-            :minuteInter="minuteInter"
-            :minutesCustom="minutesCustom"
-            :pickColor="pickColor"
-            :editable="editable"
-            :value="minuteStart"
-            @update:focused="(v)=>{focused_start=v;changeFocused()}"
-            @input="function(v){$emit('update:minuteStart', v)}"
-        ></w-timeminute-core>
+            <w-timeminute-core
+                :hourMin="hourMin"
+                :hourMax="hourMax"
+                :minuteInter="minuteInter"
+                :minutesCustom="minutesCustom"
+                :pickColor="pickColor"
+                :editable="editable"
+                :value="minuteStart"
+                @update:focused="(v)=>{focused_start=v;changeFocused()}"
+                @input="function(v){$emit('update:minuteStart', v)}"
+            ></w-timeminute-core>
 
-        <div
-            :style="[{'display':'inline-block','padding-left':'9px','padding-right':'13px'}]"
-        >
-            {{minuteBetween}}
+            <div
+                :style="[{'display':'inline-block','padding-left':'9px','padding-right':'13px'}]"
+            >
+                {{minuteBetween}}
+            </div>
+
+            <w-timeminute-core
+                :hourMin="hourMin"
+                :hourMax="hourMax"
+                :minuteInter="minuteInter"
+                :minutesCustom="minutesCustom"
+                :pickColor="pickColor"
+                :editable="editable"
+                :value="minuteEnd"
+                @update:focused="(v)=>{focused_end=v;changeFocused()}"
+                @input="function(v){$emit('update:minuteEnd', v)}"
+            ></w-timeminute-core>
+
         </div>
-
-        <w-timeminute-core
-            :hourMin="hourMin"
-            :hourMax="hourMax"
-            :minuteInter="minuteInter"
-            :minutesCustom="minutesCustom"
-            :pickColor="pickColor"
-            :editable="editable"
-            :value="minuteEnd"
-            @update:focused="(v)=>{focused_end=v;changeFocused()}"
-            @input="function(v){$emit('update:minuteEnd', v)}"
-        ></w-timeminute-core>
-
     </div>
 </template>
 
