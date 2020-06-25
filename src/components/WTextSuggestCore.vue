@@ -6,40 +6,56 @@
         :editable="editable"
         :changeValue="changeValue"
         v-model="show"
+        @input="(v)=>{changeFocused(v,'wpopup')}"
     >
 
         <template v-slot:trigger>
 
-            <div style="display:flex; align-items:center;">
+            <div>
+                <div style="display:flex; align-items:center;">
 
-                <w-text-core
-                    style="width:100%;"
-                    :textAlign="textAlign"
-                    :placeholder="placeholder"
-                    :editable="editable"
-                    :value="valueTrans"
-                    :focused="focusedTrans"
-                    @update:focused="changeFocused"
-                    @blur="triggerEvent('blur',value,null)"
-                    @enter="triggerEvent('enter',value,null)"
-                    @input="changeValueTrans"
-                ></w-text-core>
-
-                <div :style="`padding:0px 5px; transform:rotate(${getRotateDeg}deg); transition:all 0.2s; cursor:pointer;`">
-                    <div style="transform:rotate(90deg) scaleX(0.7);">
-                        <svg
-                            width="11px"
-                            height="11px"
-                            x="0px"
-                            y="0px"
-                            viewBox="0 0 415.346 415.346"
-                            :fill="useIconColor"
-                        >
-                            <g><path d="M41.712,415.346c-11.763,0-21.3-9.537-21.3-21.3V21.299C20.412,9.536,29.949,0,41.712,0l346.122,191.697 c0,0,15.975,15.975,0,31.951C371.859,239.622,41.712,415.346,41.712,415.346z"/></g>
-                        </svg>
+                    <div
+                        :style="`width:100%; height:${height}px; line-height:${height}px; vertical-align:middle; cursor:pointer;`"
+                        v-if="mode==='select'"
+                    >
+                        {{valueTrans}}
                     </div>
-                </div>
 
+                    <w-text-core
+                        style="width:100%;"
+                        :textAlign="textAlign"
+                        :placeholder="placeholder"
+                        :height="height"
+                        :editable="editable"
+                        :value="valueTrans"
+                        :focused="focusedTrans"
+                        @update:focused="(v)=>{changeFocused(v,'textcore')}"
+                        @blur="triggerEvent('blur',value,null)"
+                        @enter="triggerEvent('enter',value,null)"
+                        @input="changeValueTrans"
+                        v-if="mode==='suggest'"
+                    ></w-text-core>
+
+                    <div :style="`padding:0px 5px; transform:rotate(${getRotateDeg}deg); transition:all 0.2s; cursor:pointer;`">
+                        <div style="transform:rotate(90deg) scaleX(0.7);"> <!-- 調整svg角度與寬度 -->
+                            <div :style="`display:flex; align-items:center; height:${height}px;`"> <!-- 使svg垂直置中 -->
+                                <div style="display:flex; align-items:center; width:11px; height:11px;"> <!-- 使svg貼合div -->
+                                    <svg
+                                        width="11px"
+                                        height="11px"
+                                        x="0px"
+                                        y="0px"
+                                        viewBox="0 0 415.346 415.346"
+                                        :fill="useIconColor"
+                                    >
+                                        <g><path d="M41.712,415.346c-11.763,0-21.3-9.537-21.3-21.3V21.299C20.412,9.536,29.949,0,41.712,0l346.122,191.697 c0,0,15.975,15.975,0,31.951C371.859,239.622,41.712,415.346,41.712,415.346z"/></g>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
             </div>
 
         </template>
@@ -50,7 +66,7 @@
                 <WDynamicList
                     ref="wds"
                     :rows="items"
-                    :filterKeywords="valueTrans"
+                    :filterKeywords="mode==='suggest'?valueTrans:''"
                     :viewHeightMax="maxHeight"
                     :ratio.sync="ratio"
                     :itemMinHeight="43"
@@ -104,6 +120,7 @@ import WDynamicList from './WDynamicList.vue'
  * @vue-prop {String} [textAlign='left'] 輸入文字左右對齊字串，預設'left'
  * @vue-prop {String} [placeholder=''] 輸入無文字時的替代字符字串，預設''
  * @vue-prop {String} [searchEmpty='Empty'] 輸入無過濾結果字串，預設'Empty'
+ * @vue-prop {Number} [height=28] 輸入高度數字，單位為px，預設28
  * @vue-prop {Boolean} [editable=true] 輸入是否為編輯模式，預設true
  */
 export default {
@@ -113,6 +130,10 @@ export default {
         WDynamicList,
     },
     props: {
+        mode: {
+            type: String,
+            default: 'suggest',
+        },
         value: {
             type: [Object, String, Number],
             default: null,
@@ -176,6 +197,10 @@ export default {
         searchEmpty: {
             type: String,
             default: 'Empty',
+        },
+        height: {
+            type: Number,
+            default: 28,
         },
         editable: {
             type: Boolean,
@@ -279,9 +304,6 @@ export default {
 
             let vo = this
 
-            //show
-            vo.show = true
-
             setTimeout(() => {
 
                 //save
@@ -294,8 +316,8 @@ export default {
 
         },
 
-        changeFocused: function(focused) {
-            //console.log('methods changeFocused', focused)
+        changeFocused: function(focused, from) {
+            //console.log('methods changeFocused', focused, from)
 
             let vo = this
 
@@ -315,6 +337,11 @@ export default {
                 }, 300)
             }
 
+            //同步顯示狀態
+            setTimeout(() => {
+                vo.show = focused
+            }, 300)
+
             //triggerEvent
             vo.triggerEvent('update:focused', focused, null)
 
@@ -327,6 +354,9 @@ export default {
 
             //hide
             vo.show = false
+
+            //changeFocused, 點擊後自動取消focus
+            vo.changeFocused(false)
 
             setTimeout(() => {
 

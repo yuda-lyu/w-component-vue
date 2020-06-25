@@ -30,6 +30,7 @@
                 :type="type"
                 :textAlign="textAlign"
                 :placeholder="placeholder"
+                :height="height"
                 :editable="editable"
                 :value="value"
                 :focused="focusedTrans"
@@ -71,6 +72,7 @@ import WTextCore from './WTextCore.vue'
  * @vue-prop {String} [borderColorFocus='white'] 輸入邊框Focus顏色字串，預設'white'
  * @vue-prop {String} [placeholder=''] 輸入無文字時的替代字符字串，預設''
  * @vue-prop {Boolean} [small=true] 輸入是否為小型模式，預設true
+ * @vue-prop {Number} [height=28] 輸入高度數字，單位為px，預設28
  * @vue-prop {Boolean} [editable=true] 輸入是否為編輯模式，預設true
  * @vue-prop {Boolean} [focused=false] 輸入是否為駐點狀態，預設false
  */
@@ -162,6 +164,10 @@ export default {
         small: {
             type: Boolean,
             default: true,
+        },
+        height: {
+            type: Number,
+            default: 28,
         },
         editable: {
             type: Boolean,

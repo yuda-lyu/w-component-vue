@@ -3,9 +3,8 @@
 
         <input
             ref="inp"
-            class="basic"
             type="text"
-            :style="[{'width':'100%'},{'height':'28px'},{'text-align':textAlign},{'opacity':(!valueTrans && !focused)?0.6:1}]"
+            :style="`transition:all 0.3s; outline: none; width:100%; height:${height}px; text-align:${textAlign}; opacity:${(!valueTrans && !focused)?0.6:1};`"
             :readonly="!editable"
             :placeholder="placeholder"
             v-model="valueTrans"
@@ -27,6 +26,7 @@ import verifyValue from 'wsemi/src/verifyValue.mjs'
  * @vue-prop {String|Number} value 輸入文字框值
  * @vue-prop {String} [textAlign='left'] 輸入文字左右對齊字串，預設'left'
  * @vue-prop {String} [placeholder=''] 輸入無文字時的替代字符字串，預設''
+ * @vue-prop {Number} [height=28] 輸入高度數字，單位為px，預設28
  * @vue-prop {Boolean} [editable=true] 輸入是否為編輯模式，預設true
  * @vue-prop {Boolean} [focused=false] 輸入是否為駐點狀態，預設false
  */
@@ -46,6 +46,10 @@ export default {
         placeholder: {
             type: String,
             default: '',
+        },
+        height: {
+            type: Number,
+            default: 28,
         },
         editable: {
             type: Boolean,
@@ -127,8 +131,4 @@ export default {
 </script>
 
 <style scoped>
-.basic {
-    transition: all 0.3s;
-    outline: none;
-}
 </style>

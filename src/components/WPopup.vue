@@ -6,9 +6,10 @@
         :nudge-top="-distY"
         :close-on-click="false"
         :close-on-content-click="false"
-        :value="value"
         :disabled="!editable"
-        @input="changeValue"
+        :value="valueTrans"
+        @input="(v)=>{changeValueTrans(v,'v-menu')}"
+        :changeValue="changeValue"
     >
 
         <template v-slot:activator="{ on }">
@@ -78,6 +79,8 @@ export default {
     },
     data: function() {
         return {
+            timeDisabled: null,
+            valueTrans: false,
             clickInner: false,
             eleMousedown: null,
             windowMousedown: null,
@@ -119,8 +122,8 @@ export default {
 
         //windowMouseup
         vo.windowMouseup = (e) => {
-            if (!vo.clickInner && vo.value) {
-                vo.changeValue(false)
+            if (!vo.clickInner && vo.valueTrans) {
+                vo.triggerEventThreshold(false, 'clickOuter')
                 //domCancelEvent(e)
             }
         }
@@ -178,6 +181,17 @@ export default {
     },
     computed: {
 
+        changeValue: function () {
+            //console.log('computed changeValue')
+
+            let vo = this
+
+            //save
+            vo.valueTrans = vo.value
+
+            return ''
+        },
+
         useBackgroundColor: function() {
             //console.log('computed useBackgroundColor')
 
@@ -189,8 +203,22 @@ export default {
     },
     methods: {
 
-        changeValue: function(value) {
-            //console.log('methods changeValue', value)
+        triggerEvent: function(value, from) {
+            //console.log('methods triggerEvent', value, from)
+
+            let vo = this
+
+            setTimeout(() => {
+
+                //emit
+                vo.$emit('input', value)
+
+            }, 1)
+
+        },
+
+        changeBackground: function() {
+            //console.log('methods changeBackground')
 
             let vo = this
 
@@ -205,61 +233,49 @@ export default {
                 ele.style.background = vo.useBackgroundColor
             }
 
-            //setTimeout, 延遲更改, 要避免比window click快觸發
-            setTimeout(() => {
-
-                //emit
-                vo.$emit('input', value)
-
-            }, 1)
-
         },
 
-        hideForce: function() {
-            //console.log('methods hideForce')
+        changeValueTrans: function(value, from) {
+            //console.log('methods changeValueTrans', value, from)
 
             let vo = this
 
-            //setTimeout, 因無法簡單阻止使用者點擊slot內容. 只好延遲emit強制恢復隱藏
-            setTimeout(() => {
+            //changeBackground
+            vo.changeBackground()
 
-                //emit
-                vo.$emit('input', false)
+            //valueTrans
+            vo.valueTrans = value
 
-            }, 10) //不能1ms會過快
+            //triggerEventThreshold
+            // if (value) { //顯示時才觸發
+            //     vo.triggerEventThreshold(true, 'watchValueTrans')
+            // }
+            vo.triggerEventThreshold(value, from)
 
         },
 
-        showForce: function() {
-            //console.log('methods showForce')
+        triggerEventThreshold: function(value, from) {
+            //console.log('methods triggerEventThreshold', value, from)
 
             let vo = this
 
-            //setTimeout, 因無法簡單阻止重複點擊trigger隱藏v-menu, 只好延遲emit強制恢復顯示
-            setTimeout(() => {
+            //timeDisabled
+            if (new Date() - vo.timeDisabled < 300) {
+                return
+            }
 
-                //emit
-                vo.$emit('input', true)
+            //timeDisabled
+            vo.timeDisabled = new Date()
 
-            }, 10) //不能1ms會過快
+            //triggerEvent
+            vo.triggerEvent(value, from)
 
         },
 
         clickTrigger: function(e) {
             //console.log('methods clickTrigger', e)
 
-            let vo = this
-
-            //check, 不能編輯時強制隱藏
-            if (!vo.editable) {
-                vo.hideForce()
-                return
-            }
-
-            //check, value=true時需強制顯示
-            if (vo.value) {
-                vo.showForce()
-            }
+            // let vo = this
 
         },
 

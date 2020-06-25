@@ -21,7 +21,7 @@
                 >
 
                     <template v-slot:trigger>
-                        <v-btn small rounded @click="WPopup.bShow1=!WPopup.bShow1">Show({{WPopup.bShow1}})</v-btn>
+                        <v-btn small rounded>Show({{WPopup.bShow1}})</v-btn>
                     </template>
 
                     <template v-slot:content>
@@ -46,7 +46,7 @@
                 >
 
                     <template v-slot:trigger>
-                        <v-btn small rounded @click="WPopup.bShow2=!WPopup.bShow2">Show({{WPopup.bShow2}})</v-btn>
+                        <v-btn small rounded>Show({{WPopup.bShow2}})</v-btn>
                     </template>
 
                     <template v-slot:content>
@@ -71,7 +71,7 @@
                 >
 
                     <template v-slot:trigger>
-                        <v-btn small rounded @click="WPopup.bShow3=!WPopup.bShow3">Show({{WPopup.bShow3}})</v-btn>
+                        <v-btn small rounded>Show({{WPopup.bShow3}})</v-btn>
                     </template>
 
                     <template v-slot:content>
@@ -99,7 +99,7 @@
                 >
 
                     <template v-slot:trigger>
-                        <v-btn small rounded @click="WPopup.bShow4=!WPopup.bShow4">Show({{WPopup.bShow4}})</v-btn>
+                        <v-btn small rounded>Show({{WPopup.bShow4}})</v-btn>
                     </template>
 
                     <template v-slot:content>
@@ -124,7 +124,7 @@
                 >
 
                     <template v-slot:trigger>
-                        <v-btn small rounded @click="WPopup.bShow5=!WPopup.bShow5">Show({{WPopup.bShow5}})</v-btn>
+                        <v-btn small rounded>Show({{WPopup.bShow5}})</v-btn>
                     </template>
 
                     <template v-slot:content>
@@ -149,7 +149,7 @@
                 >
 
                     <template v-slot:trigger>
-                        <v-btn small rounded @click="WPopup.bShow6=!WPopup.bShow6">Show({{WPopup.bShow6}})</v-btn>
+                        <v-btn small rounded>Show({{WPopup.bShow6}})</v-btn>
                     </template>
 
                     <template v-slot:content>
@@ -174,7 +174,7 @@
                 >
 
                     <template v-slot:trigger>
-                        <v-btn small rounded @click="WPopup.bShow7=!WPopup.bShow7">Show({{WPopup.bShow7}})</v-btn>
+                        <v-btn small rounded>Show({{WPopup.bShow7}})</v-btn>
                     </template>
 
                     <template v-slot:content>

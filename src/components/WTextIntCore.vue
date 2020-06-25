@@ -20,6 +20,7 @@
                 ref="inp"
                 :style="{'width':width+'px'}"
                 :textAlign="'center'"
+                :height="height"
                 :editable="editable"
                 :value="valueTrans"
                 :focused="focusedTrans"
@@ -48,6 +49,7 @@ import WTextCore from './WTextCore.vue'
  * @vue-prop {String} [rightIconTooltip='增加'] 輸入框內右側圖標提示文字字串，預設'增加'
  * @vue-prop {String} [buttonColor='deep-orange lighten-2'] 輸入框內圖標按鈕顏色字串，預設'deep-orange lighten-2'
  * @vue-prop {String} [buttonColorFocus='deep-orange lighten-1'] 輸入框內圖標按鈕Focus顏色字串，預設'deep-orange lighten-1'
+ * @vue-prop {Number} [height=28] 輸入高度數字，單位為px，預設28
  * @vue-prop {Boolean} [editable=true] 輸入是否為編輯模式，預設true
  * @vue-prop {Boolean} [focused=false] 輸入是否為駐點狀態，預設false
  */
@@ -84,6 +86,10 @@ export default {
         buttonColorFocus: {
             type: String,
             default: 'white',
+        },
+        height: {
+            type: Number,
+            default: 28,
         },
         editable: {
             type: Boolean,

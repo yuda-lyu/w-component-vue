@@ -21,12 +21,14 @@
         >
 
             <div style="margin-right:-5px;">
-                <w-text-select-core
+                <w-text-suggest-core
+                    :mode="'select'"
                     :items="items"
                     :value="value"
                     :editable="editable"
+                    @update:focused="changeFocused"
                     @input="function(v){$emit('input', v)}"
-                ></w-text-select-core>
+                ></w-text-suggest-core>
             </div>
 
         </w-shell-ellipse>
@@ -36,7 +38,7 @@
 
 <script>
 import WShellEllipse from './WShellEllipse.vue'
-import WTextSelectCore from './WTextSelectCore.vue'
+import WTextSuggestCore from './WTextSuggestCore.vue'
 
 
 /**
@@ -61,7 +63,7 @@ import WTextSelectCore from './WTextSelectCore.vue'
 export default {
     components: {
         WShellEllipse,
-        WTextSelectCore,
+        WTextSuggestCore,
     },
     props: {
         title: {

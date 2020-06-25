@@ -3,8 +3,10 @@
         <div style="display:flex; align-items:center;" :changeParam="changeParam">
 
             <w-timeday-core
+                TimeminuteCore="day"
                 style="margin-right:5px;"
                 :pickColor="pickColor"
+                :height="height"
                 :editable="editable"
                 :value="value_day"
                 @update:focused="(v)=>{focused_day=v;changeFocused()}"
@@ -12,14 +14,17 @@
             ></w-timeday-core>
 
             <div style="margin-right:-3px;">
-                <w-text-select-core
+                <w-text-suggest-core
+                    TimeminuteCore="minute"
+                    :mode="'select'"
                     :minWidth="70"
+                    :height="height"
                     :editable="editable"
                     :items="getUseMinutes"
                     :value="value_time"
                     @update:focused="(v)=>{focused_time=v;changeFocused()}"
                     @input="ch_time"
-                ></w-text-select-core>
+                ></w-text-suggest-core>
             </div>
 
         </div>
@@ -38,7 +43,7 @@ import isarr from 'wsemi/src/isarr.mjs'
 import istime from 'wsemi/src/istime.mjs'
 import ispint from 'wsemi/src/ispint.mjs'
 import WTimedayCore from './WTimedayCore.vue'
-import WTextSelectCore from './WTextSelectCore.vue'
+import WTextSuggestCore from './WTextSuggestCore.vue'
 
 
 /**
@@ -48,12 +53,13 @@ import WTextSelectCore from './WTextSelectCore.vue'
  * @vue-prop {Number} [minuteInter=15] 輸入每小時的切分區間，單位為分鐘，預設15
  * @vue-prop {Array} [minutesCustom=null] 輸入自訂可選的時分點字串陣列，單位為時分(00:00)，若給予，則上述hourMin,hourMax,minuteInter自動失效，預設null
  * @vue-prop {String} [pickColor='deep-orange darken-1'] 輸入日期彈窗中選擇指定日期之顏色字串，預設'deep-orange darken-1'
+ * @vue-prop {Number} [height=28] 輸入高度數字，單位為px，預設28
  * @vue-prop {Boolean} [editable=true] 輸入是否為編輯模式，預設true
  */
 export default {
     components: {
         WTimedayCore,
-        WTextSelectCore
+        WTextSuggestCore
     },
     props: {
         value: {
@@ -79,6 +85,10 @@ export default {
         pickColor: {
             type: String,
             default: 'deep-orange darken-1',
+        },
+        height: {
+            type: Number,
+            default: 28,
         },
         editable: {
             type: Boolean,

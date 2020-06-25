@@ -42,7 +42,6 @@ import WTextCore from './WTextCore.vue'
 import WTextInt from './WTextInt.vue'
 import WTextIntCore from './WTextIntCore.vue'
 import WTextSelect from './WTextSelect.vue'
-import WTextSelectCore from './WTextSelectCore.vue'
 import WTextSuggest from './WTextSuggest.vue'
 import WTextSuggestCore from './WTextSuggestCore.vue'
 import WTimeday from './WTimeday.vue'
@@ -100,7 +99,6 @@ let WComponentVue = {
         Vue.component('w-text-int', WTextInt)
         Vue.component('w-text-int-core', WTextIntCore)
         Vue.component('w-text-select', WTextSelect)
-        Vue.component('w-text-select-core', WTextSelectCore)
         Vue.component('w-text-suggest', WTextSuggest)
         Vue.component('w-text-suggest-core', WTextSuggestCore)
         Vue.component('w-timeday', WTimeday)

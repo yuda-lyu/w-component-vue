@@ -37,6 +37,8 @@
 import each from 'lodash/each'
 import get from 'lodash/get'
 import map from 'lodash/map'
+import join from 'lodash/join'
+import values from 'lodash/values'
 import size from 'lodash/size'
 import toString from 'lodash/toString'
 import cint from 'wsemi/src/cint.mjs'
@@ -47,6 +49,7 @@ import sep from 'wsemi/src/sep.mjs'
 import isarr from 'wsemi/src/isarr.mjs'
 import isstr from 'wsemi/src/isstr.mjs'
 import isnum from 'wsemi/src/isnum.mjs'
+import iseobj from 'wsemi/src/iseobj.mjs'
 import o2j from 'wsemi/src/o2j.mjs'
 import debounce from 'wsemi/src/debounce.mjs'
 import binarySearch from '../js/binarySearch.mjs'
@@ -536,6 +539,10 @@ export default {
                     }
                     else if (isnum(r)) {
                         c = toString(r)
+                    }
+                    else if (iseobj(r)) {
+                        //console.log('r', r, 'values(r)', values(r))
+                        c = join(values(r), '')
                     }
                     else {
                         c = o2j(r)

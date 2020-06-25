@@ -1,10 +1,10 @@
 <template>
     <div
-        style="display:inline-block; height:28px;"
+        style="display:inline-block;"
         :changeParam="changeParam"
     >
 
-        <div style="display:flex; align-items:center; height:100%;">
+        <div _style="display:flex; align-items:center; height:100%;">
 
             <v-menu
                 offset-y
@@ -15,7 +15,7 @@
                 <template v-slot:activator="{ on }">
                     <div
                         TimedayCore="day"
-                        style="display:inline-block; width:90px;"
+                        :style="`display:inline-block; width:90px; height:${height}px; line-height:${height}px; vertical-align:middle;`"
                         v-on="on"
                     >
                         {{getShowTime}}
@@ -49,6 +49,7 @@ import cint from 'wsemi/src/cint.mjs'
 /**
  * @vue-prop {String} [value=''] 輸入日期字串，預設''
  * @vue-prop {String} [pickColor='deep-orange darken-1'] 輸入日期彈窗中選擇指定日期之顏色字串，預設'deep-orange darken-1'
+ * @vue-prop {Number} [height=28] 輸入高度數字，單位為px，預設28
  * @vue-prop {Boolean} [editable=true] 輸入是否為編輯模式，預設true
  */
 export default {
@@ -60,6 +61,10 @@ export default {
         pickColor: {
             type: String,
             default: 'deep-orange darken-1',
+        },
+        height: {
+            type: Number,
+            default: 28,
         },
         editable: {
             type: Boolean,
