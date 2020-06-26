@@ -109,9 +109,6 @@ export default {
             vo.panelWidth = s.snew.offsetWidth
             vo.panelHeight = s.snew.offsetHeight
         })
-        de.on('display', (s) => {
-            // console.log('display', s)
-        })
         vo.de = de
 
         //das

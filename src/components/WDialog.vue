@@ -89,7 +89,6 @@
 
 <script>
 import { mdiCheckCircle, mdiClose, mdiCheckerboard } from '@mdi/js'
-import get from 'lodash/get'
 import color2hex from '../js/vuetifyColor.mjs'
 import WButtonCircle from './WButtonCircle.vue'
 
@@ -226,17 +225,6 @@ export default {
 
     },
     methods: {
-
-        getContentHeight: function() {
-            //console.log('methods getContentHeight')
-
-            let vo = this
-
-            //get
-            let h = get(vo, '$refs.scrollZone.clientHeight', 0)
-
-            return h
-        },
 
         changeSize: function() {
             //console.log('methods changeSize')

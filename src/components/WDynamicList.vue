@@ -413,7 +413,7 @@ export default {
                     if (nowShow) {
                         let index = cint(v.getAttribute('index'))
                         if (index >= 0 && index < n) {
-                            let h = v.clientHeight //元素不要用margin避免計算高度有誤差
+                            let h = v.offsetHeight //元素不要用margin避免計算高度有誤差
                             if (items[index].height !== h) {
                                 items[index].height = h
                                 vo.changeHeight = true

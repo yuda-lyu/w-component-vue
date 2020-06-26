@@ -122,9 +122,6 @@ export default {
             // console.log('resize', s)
             vo.headerHeight = s.snew.offsetHeight
         })
-        de.on('display', (s) => {
-            // console.log('display', s)
-        })
         vo.de = de
 
     },

@@ -1,5 +1,5 @@
 /*!
- * w-badge v1.3.52
+ * w-badge v1.3.53
  * (c) 2018-2019 yuda-lyu(semisphere)
  * Released under the MIT License.
  */

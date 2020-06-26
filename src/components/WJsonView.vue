@@ -532,7 +532,7 @@ export default {
                     if (nowShow) {
                         let index = toInteger(v.getAttribute('index'))
                         if (index >= 0 && index < n) {
-                            let h = v.clientHeight
+                            let h = v.offsetHeight
                             if (items[index].height !== h) {
                                 items[index].height = h
                                 vo.changeHeight = true

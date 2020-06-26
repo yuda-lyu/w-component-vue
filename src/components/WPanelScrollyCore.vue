@@ -111,9 +111,6 @@ export default {
             vo.triggerEvent('resize')
 
         })
-        de.on('display', (s) => {
-            //console.log('display', s)
-        })
         vo.de = de
 
         //das
@@ -222,7 +219,7 @@ export default {
             let v = vo.contentHeight - vo.viewHeightMax
             v = Math.max(v, 0)
 
-            //triggerEvent, 若內容高度變更則也需要triggerEvent
+            //triggerEvent, 若內容高度變更則需要triggerEvent
             vo.triggerEvent('changeContentHeight')
 
             return v

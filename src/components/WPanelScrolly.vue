@@ -1,5 +1,5 @@
 <template>
-    <div ref="sp">
+    <div>
         <WPanelScrollyCore
             ref="wsp"
             :viewHeightMax="viewHeight"
@@ -21,6 +21,7 @@
 
 <script>
 import get from 'lodash/get'
+import domDetect from 'wsemi/src/domDetect.mjs'
 import WPanelScrollyCore from './WPanelScrollyCore.vue'
 
 
@@ -64,7 +65,8 @@ export default {
     },
     data: function() {
         return {
-            timer: null,
+            de: null,
+            decp: null,
             top: 0, //內容區top px
             viewHeight: 0, //外框區高度px
             viewHeightTemp: 0, //外框區上次偵測高度px
@@ -77,37 +79,37 @@ export default {
 
         let vo = this
 
-        //detect size
-        vo.timer = setInterval(() => {
+        //de
+        let de = domDetect(() => {
+            return vo.$el
+        })
+        de.on('resize', (s) => {
+            //console.log('de resize', s)
 
-            vo.viewHeightTemp = get(vo, '$refs.sp.clientHeight', 0)
-            if (vo.viewHeight !== vo.viewHeightTemp) {
+            //save
+            vo.viewHeight = s.snew.offsetHeight
 
-                //save
-                vo.viewHeight = vo.viewHeightTemp
+            //triggerEvent
+            vo.triggerEvent('changeViewHeight')
 
-                //triggerEvent, 目前不需防抖
-                vo.triggerEvent('changeViewHeight')
+        })
+        vo.de = de
 
-            }
+        //decp
+        let decp = domDetect(() => {
+            return get(vo, '$refs.cp', null)
+        })
+        decp.on('resize', (s) => {
+            //console.log('decp resize', s)
 
-            vo.contentHeightTemp = get(vo, '$refs.cp.clientHeight', 0)
-            if (vo.contentHeight !== vo.contentHeightTemp) {
+            //save
+            vo.contentHeight = s.snew.offsetHeight
 
-                //bTrigger, 需於contentHeight被變更前計算
-                let bTrigger = Math.abs(vo.contentHeight - vo.contentHeightTemp) > 1 //防抖, 當差值大於1px才triggerEvent
+            //triggerEvent
+            vo.triggerEvent('changeContentHeight')
 
-                //save
-                vo.contentHeight = vo.contentHeightTemp
-
-                //triggerEvent, 得放在變更contentHeight之後, 因WPanelScrollyCore會需要由新的contentHeight來triggerEvent
-                if (bTrigger) {
-                    vo.triggerEvent('changeContentHeight')
-                }
-
-            }
-
-        }, 100)
+        })
+        vo.decp = decp
 
     },
     beforeDestroy: function() {
@@ -115,8 +117,15 @@ export default {
 
         let vo = this
 
-        //clearInterval
-        clearInterval(vo.timer)
+        //clear
+        if (vo.de) {
+            vo.de.clear()
+        }
+
+        //clear
+        if (vo.decp) {
+            vo.decp.clear()
+        }
 
     },
     computed: {
