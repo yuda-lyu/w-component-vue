@@ -4,42 +4,41 @@
         :changeParam="changeParam"
     >
 
-        <div _style="display:flex; align-items:center; height:100%;">
+        <v-menu
+            offset-y
+            :close-on-content-click="false"
+            :disabled="!editable"
+            v-model="show"
+        >
 
-            <v-menu
-                offset-y
-                :disabled="!editable"
-                v-model="show"
-            >
+            <template v-slot:activator="{ on }">
+                <div
+                    TimedayCore="day"
+                    :style="`display:inline-block; width:90px; height:${height}px; line-height:${height}px; vertical-align:middle;`"
+                    v-on="on"
+                >
+                    {{getShowTime}}
+                </div>
+            </template>
 
-                <template v-slot:activator="{ on }">
-                    <div
-                        TimedayCore="day"
-                        :style="`display:inline-block; width:90px; height:${height}px; line-height:${height}px; vertical-align:middle;`"
-                        v-on="on"
-                    >
-                        {{getShowTime}}
-                    </div>
-                </template>
+            <v-date-picker
+                no-title
+                locale="zh-tw"
+                :prev-icon="mdiChevronLeft"
+                :next-icon="mdiChevronRight"
+                :color="pickColor"
+                :day-format="getDay"
+                :value="value_day"
+                @input="ch_day"
+            ></v-date-picker>
 
-                <v-date-picker
-                    no-title
-                    locale="zh-tw"
-                    :color="pickColor"
-                    :day-format="getDay"
-                    :value="value_day"
-                    @input="ch_day"
-                ></v-date-picker>
-
-            </v-menu>
-
-        </div>
+        </v-menu>
 
     </div>
 </template>
 
 <script>
-//顯示時間的div設定min-height, 是為了當無有效資料時, div因內無文字會高度為0, 故無法點擊
+import { mdiChevronLeft, mdiChevronRight } from '@mdi/js'
 import split from 'lodash/split'
 import get from 'lodash/get'
 import isday from 'wsemi/src/isday.mjs'
@@ -73,6 +72,9 @@ export default {
     },
     data: function() {
         return {
+            mdiChevronLeft,
+            mdiChevronRight,
+
             show: false,
             value_day: '',
         }

@@ -1,5 +1,5 @@
 /*!
- * w-button-capsule v1.3.51
+ * w-button-capsule v1.3.52
  * (c) 2018-2019 yuda-lyu(semisphere)
  * Released under the MIT License.
  */
