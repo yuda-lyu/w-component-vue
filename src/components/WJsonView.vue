@@ -957,7 +957,7 @@ export default {
             vo.scrollInfor = e
 
             //refresh
-            await vo.refresh('wsp')
+            await vo.refresh('changeWsp')
 
         },
 

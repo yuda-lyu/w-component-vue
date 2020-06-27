@@ -100,7 +100,7 @@ export default {
 
         let vo = this
 
-        //de, 不能用vuetify的v-resize, 其偵測雖是元素的尺寸變化, 但slot內容於外層組件初始化時, 這時指定元素的尺寸變更卻不會觸發v-resize, 故得要用基於timer的domDetect偵測尺寸變化
+        //de, 不能用vuetify的v-resize, 因是基於window resize無法偵測單純的元素尺寸變化
         let de = domDetect(() => {
             return vo.$el
         })
@@ -219,8 +219,8 @@ export default {
             let v = vo.contentHeight - vo.viewHeightMax
             v = Math.max(v, 0)
 
-            //triggerEvent, 若內容高度變更則需要triggerEvent
-            vo.triggerEvent('changeContentHeight')
+            //triggerEvent, 若內容高度contentHeight或顯示區最大高度viewHeightMax變更則需要triggerEvent
+            vo.triggerEvent('changeHeight')
 
             return v
         },
@@ -410,21 +410,6 @@ export default {
             vo.scrollByDelta(delta)
 
         },
-
-        // refresh: function(from, trigger) {
-        //     //console.log('methods refresh', from, trigger)
-
-        //     let vo = this
-
-        //     //check
-        //     if (trigger) {
-
-        //         //triggerEvent
-        //         vo.triggerEvent(from)
-
-        //     }
-
-        // },
 
     },
 }

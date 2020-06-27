@@ -1,5 +1,5 @@
 /*!
- * w-group-radio-capsule v1.3.53
+ * w-group-radio-capsule v1.3.54
  * (c) 2018-2019 yuda-lyu(semisphere)
  * Released under the MIT License.
  */
