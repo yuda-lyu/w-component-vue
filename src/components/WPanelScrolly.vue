@@ -79,7 +79,7 @@ export default {
 
         let vo = this
 
-        //de
+        //de, 不能用vuetify的v-resize, 因是基於window resize無法偵測單純的元素尺寸變化
         let de = domDetect(() => {
             return vo.$el
         })
@@ -95,7 +95,7 @@ export default {
         })
         vo.de = de
 
-        //decp
+        //decp, 不能用vuetify的v-resize, 因是基於window resize無法偵測單純的元素尺寸變化
         let decp = domDetect(() => {
             return get(vo, '$refs.cp', null)
         })

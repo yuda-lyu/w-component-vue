@@ -7,9 +7,9 @@
         <div style="position:relative;">
 
             <div
-                dragtag
                 :style="`user-select:none; cursor:pointer; padding-left:${(node.nk.length-1)*indent}px;`"
                 :key="get(node,bindKey,knode)"
+                dragtag
                 :dragindex="knode"
                 v-for="(node,knode) in nodes"
             >
@@ -24,20 +24,20 @@
 
             <div
                 :style="`position:absolute; z-index:9999; pointer-events:none; left:${dgTipLeft}px; top:${dgTipTop}px;`"
-                msg="需使用pointer-events:none;禁用事件,避免拖曳時因接觸此元素時出現enter與leave"
+                :msg="`需使用pointer-events:none;禁用事件,避免拖曳時因接觸此元素時出現enter與leave`"
                 v-if="dgTipMode!==''"
             >
                 <template v-if="dgTipMode==='lineTop'">
-                    <div :style="`border-top:1px solid ${useHoverLineColor}; width:${dgTipWidth}px; height:1px;`"></div>
+                    <div :style="`display:inline-block; width:${dgTipWidth}px; height:${dgTipHeight}px; background-color:${useShiftBlockColor}; border-top:1px solid ${useShiftLineColor};`"></div>
                 </template>
                 <template v-else-if="dgTipMode==='lineBottom'">
-                    <div :style="`border-bottom:1px solid ${useHoverLineColor}; width:${dgTipWidth}px; height:1px;`"></div>
+                    <div :style="`display:inline-block; width:${dgTipWidth}px; height:${dgTipHeight}px; background-color:${useShiftBlockColor}; border-bottom:1px solid ${useShiftLineColor};`"></div>
                 </template>
                 <template v-else-if="dgTipMode==='block'">
-                    <div :style="`display:inline-block; width:${dgTipWidth}px; height:${dgTipHeight}px; background:${useHoverBlockColor};`"></div>
+                    <div :style="`display:inline-block; width:${dgTipWidth}px; height:${dgTipHeight}px; background-color:${useJoinBlockColor};`"></div>
                 </template>
                 <template v-else-if="dgTipMode==='disabled'">
-                    <div :style="`display:inline-block; width:${dgTipWidth}px; height:${dgTipHeight}px; background:${useTextDisabledBackgroundColor};`">
+                    <div :style="`display:inline-block; width:${dgTipWidth}px; height:${dgTipHeight}px; background-color:${useTextDisabledBackgroundColor};`">
                         <div :style="`height:${dgTipHeight}px; display:flex; align-items:center;`">
                             <div :style="`color:${useTextDisabledColor}; padding-left:${textDisabledPaddingLeft}px; font-size:${textDisabledFontSize};`">
                                 {{textDisabled}}
@@ -63,14 +63,13 @@ import set from 'lodash/set'
 import min from 'lodash/min'
 import take from 'lodash/take'
 import isEqual from 'lodash/isEqual'
-import domDragDyn from 'wsemi/src/domDragDyn.mjs'
+import domDrag from 'wsemi/src/domDrag.mjs'
 import treeObj from 'wsemi/src/treeObj.mjs'
 import cint from 'wsemi/src/cint.mjs'
 import color2hex from '../js/vuetifyColor.mjs'
 
 
 /**
- * @vue-prop {Array} [pathItems=['詳見原始碼']] 輸入draggable.js檔案位置字串陣列，預設詳見原始碼處props->pathItems->default
  * @vue-prop {Array} [items=''] 輸入樹狀節點陣列，預設[]
  * @vue-prop {String} [bindKey='id'] 輸入節點物件識別用欄位字串，預設'id'
  * @vue-prop {String} [bindChildren='children'] 輸入節點物件內存放子節點欄位字串，預設'children'
@@ -80,17 +79,12 @@ import color2hex from '../js/vuetifyColor.mjs'
  * @vue-prop {Number} [textDisabledPaddingLeft=15] 輸入禁止拖曳padding-left數字，單位px，預設15
  * @vue-prop {String} [textDisabledFontSize='0.9rem'] 輸入禁止拖曳文字大小字串，預設'0.9rem'
  * @vue-prop {String} [textDisabledBackgroundColor='rgba(255,220,240,0.6)'] 輸入禁止拖曳文字區背景顏色字串，預設'rgba(255,220,240,0.6)'
- * @vue-prop {String} [hoverLineColor='#29f'] 輸入拖曳時顯示插入線顏色字串，預設'#29f'
- * @vue-prop {String} [hoverBlockColor='rgba(80,150,255,0.3)'] 輸入拖曳時顯示插入塊(成為目標的子節點)顏色字串，預設'rgba(80,150,255,0.3)'
+ * @vue-prop {String} [shiftLineColor='#29f'] 輸入拖曳時顯示插入區域線顏色字串，預設'#29f'
+ * @vue-prop {String} [shiftBlockColor='rgba(80,150,255,0.15)'] 輸入拖曳時顯示插入區域背景顏色字串，預設'rgba(80,150,255,0.15)'
+ * @vue-prop {String} [joinBlockColor='rgba(80,150,255,0.3)'] 輸入拖曳時顯示插入區域(成為目標的子節點)背景顏色字串，預設'rgba(80,150,255,0.3)'
  */
 export default {
     props: {
-        pathItems: {
-            type: Array,
-            default: () => [ //預設值詳見 wsemi/src/domDragDyn.mjs
-                'https://cdnjs.cloudflare.com/ajax/libs/draggable/1.0.0-beta.9/draggable.min.js',
-            ],
-        },
         items: {
             type: Array,
             default: () => [],
@@ -127,11 +121,15 @@ export default {
             type: String,
             default: 'rgba(255,220,240,0.6)',
         },
-        hoverLineColor: {
+        shiftLineColor: {
             type: String,
             default: '#29f',
         },
-        hoverBlockColor: {
+        shiftBlockColor: {
+            type: String,
+            default: 'rgba(80,150,255,0.15)',
+        },
+        joinBlockColor: {
             type: String,
             default: 'rgba(80,150,255,0.3)',
         },
@@ -153,87 +151,93 @@ export default {
 
         }
     },
-    mounted: async function() {
+    mounted: function() {
         //console.log('mounted')
 
         let vo = this
 
-        //dd, domDragDyn
-        let dd = await domDragDyn(vo.$el, { attIndex: 'dragindex', selectors: '[dragtag]' }, vo.pathItems)
+        //domDrag
+        let dd = domDrag(vo.$el, {
+            attIndex: 'dragindex',
+            attGroup: 'draggroup',
+            selectors: '[dragtag]',
+        })
 
         //change
         dd.on('change', (msg) => {
             //console.log('change', msg)
         })
-        dd.on('drag-start', (msg) => {
-            //console.log('drag-start', msg)
+        dd.on('start', (msg) => {
+            //console.log('start', msg)
         })
-        dd.on('drag-move', (msg) => {
-            //console.log('drag-move', msg)
+        dd.on('move', (msg) => {
+            //console.log('move', msg)
 
             //belong
-            let nodeSelf = vo.nodes[msg.selfInd]
-            let nodeEnter = vo.nodes[msg.enterInd]
+            let nodeSelf = vo.nodes[msg.startInd]
+            let nodeEnter = vo.nodes[msg.endInd]
             let belong = vo.isNkBelong(nodeEnter.nk, nodeSelf.nk)
-            // console.log('belong', belong)
 
-            //update size
-            vo.dgTipLeft = msg.enterEle.offsetLeft
-            vo.dgTipWidth = msg.enterEle.offsetWidth
-            vo.dgTipHeight = msg.enterEle.offsetHeight
+            //location
+            vo.dgTipTop = msg.endEle.offsetTop
+            vo.dgTipLeft = msg.endEle.offsetLeft
+            vo.dgTipWidth = msg.endEle.offsetWidth
+            vo.dgTipHeight = msg.endEle.offsetHeight
 
-            //update dgTipTop, dgTipMode
+            //dgTipMode
             if (belong) {
-                vo.dgTipTop = msg.enterEle.offsetTop
-                vo.dgTipMode = '' //先隱藏
                 vo.dgTipMode = 'disabled'
             }
-            else if (msg.cursorInfor.ry <= 0.3) {
-                vo.dgTipTop = msg.enterEle.offsetTop
-                vo.dgTipMode = '' //先隱藏
+            else if (msg.ry <= 0.3) {
                 vo.dgTipMode = 'lineTop'
             }
-            else if (msg.cursorInfor.ry >= 0.7) {
-                vo.dgTipTop = msg.enterEle.offsetTop + vo.dgTipHeight
-                vo.dgTipMode = '' //先隱藏
+            else if (msg.ry >= 0.7) {
                 vo.dgTipMode = 'lineBottom'
             }
-            else if (msg.cursorInfor.ry > 0.3 && msg.cursorInfor.ry < 0.7) {
-                vo.dgTipTop = msg.enterEle.offsetTop
-                vo.dgTipMode = '' //先隱藏
+            else if (msg.ry > 0.3 && msg.ry < 0.7) {
                 vo.dgTipMode = 'block'
             }
             else {
-                vo.dgTipMode = '' //清除
+                //不會有此狀況
+                vo.dgTipMode = ''
             }
 
         })
-        dd.on('drag-enter', (msg) => {
-            //console.log('drag-enter', msg)
+        dd.on('enter', (msg) => {
+            //console.log('enter', msg)
         })
-        dd.on('drag-leave', (msg) => {
-            //console.log('drag-leave', msg)
-            vo.dgTipMode = '' //清除
+        dd.on('leave', (msg) => {
+            //console.log('leave', msg)
+            vo.dgTipMode = ''
         })
-        dd.on('drag-drop', (msg) => {
-            //console.log('drag-drop', msg)
+        dd.on('drop', (msg) => {
+            //console.log('drop', msg)
 
             //check
             if (vo.dgTipMode === '') {
-                //console.log('拖曳過快導致尚未有有效拖曳模式')
+                //console.log('純點擊時無move故無有效拖曳模式')
                 return
             }
 
-            //modeDir, forward, backward
-            let modeDir = 'forward'
-            if (cint(msg.selfInd) < cint(msg.dropInd)) {
+            //modeDir
+            let modeDir = ''
+            if (cint(msg.startInd) < cint(msg.endInd)) {
                 modeDir = 'backward'
             }
+            else if (cint(msg.startInd) > cint(msg.endInd)) {
+                modeDir = 'forward'
+            }
 
-            //modeInsert, before, after, belongto
+            //check
+            if (modeDir === '') { //modeDir為空字串時代表拖曳至原始拖曳項目上
+                vo.dgTipMode = ''
+                return
+            }
+
+            //modeInsert
             let modeInsert
             if (vo.dgTipMode === 'disabled') {
-                vo.dgTipMode = '' //清除
+                vo.dgTipMode = ''
                 return
             }
             else if (vo.dgTipMode === 'lineTop') {
@@ -245,20 +249,24 @@ export default {
             else if (vo.dgTipMode === 'block') {
                 modeInsert = 'belongto'
             }
+            else {
+                //console.log('invalid dgTipMode', vo.dgTipMode)
+                //於最前面偵測並離開
+            }
 
             //nkFrom
-            let nodeFrom = vo.nodes[msg.selfInd]
+            let nodeFrom = vo.nodes[msg.startInd]
             let nkFrom = cloneDeep(nodeFrom.nk)
 
             //nkTo
-            let nodeTo = vo.nodes[msg.dropInd]
+            let nodeTo = vo.nodes[msg.endInd]
             let nkTo = cloneDeep(nodeTo.nk)
 
             //moveItem
             vo.tempItems = vo.moveItem(vo.tempItems, nkFrom, nkTo, modeDir, modeInsert)
 
             //clear
-            vo.dgTipMode = '' //清除
+            vo.dgTipMode = ''
 
             //emit
             vo.$emit('update:items', vo.tempItems)
@@ -327,6 +335,14 @@ export default {
             })
             // console.log('nodes', nodes)
 
+            //t
+            let t = {}
+            each(nodes, (v) => {
+                each(v.nk, (vv, kk) => {
+                    set(t, '')
+                })
+            })
+
             //save
             vo.nodes = nodes
 
@@ -349,20 +365,28 @@ export default {
             return color2hex(vo.textDisabledBackgroundColor)
         },
 
-        useHoverLineColor: function() {
-            //console.log('computed useHoverLineColor')
+        useShiftLineColor: function() {
+            //console.log('computed useShiftLineColor')
 
             let vo = this
 
-            return color2hex(vo.hoverLineColor)
+            return color2hex(vo.shiftLineColor)
         },
 
-        useHoverBlockColor: function() {
-            //console.log('computed useHoverBlockColor')
+        useShiftBlockColor: function() {
+            //console.log('computed useShiftBlockColor')
 
             let vo = this
 
-            return color2hex(vo.hoverBlockColor)
+            return color2hex(vo.shiftBlockColor)
+        },
+
+        useJoinBlockColor: function() {
+            //console.log('computed useJoinBlockColor')
+
+            let vo = this
+
+            return color2hex(vo.joinBlockColor)
         },
 
     },

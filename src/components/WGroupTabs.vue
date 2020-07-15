@@ -4,40 +4,35 @@
         <transition-group>
             <template v-for="(item,kitem) in valueTrans">
 
-                <v-chip
-                    :class="`WGroupTabsChip v-chpi-modify trans ${shadow?'shadow':''}`"
-                    small
+                <div
+                    class="trans"
+                    style="display:inline-block;"
                     :key="item.name+'|'+item.tag"
-                    :close-icon="mdiCloseCircle"
-                    :close="close"
-                    :text-color="getTextColor(item)"
-                    :color="getBackgroundColor(item)"
-                    :outlined="getOutlined(item)"
-                    @click="clcikItem(item)"
-                    @click:close="removeItem(item,kitem)"
                     dragtag
                     :dragindex="kitem"
-                    _draggable
-                    _dragstart="dragStart($event,item,kitem)"
-                    _drop="drop($event,item,kitem)"
-                    _dragenter="dragEnter($event,item,kitem)"
-                    _dragover="domCancelEvent"
-                    _touchstart="touchStart($event,item,kitem)"
-                    _touchend="drop($event,item,kitem)"
-                    _touchmove="touchEnter($event,item,kitem)"
-                    _touchcancel="domCancelEvent"
                 >
 
-                    <div
-                        class="trans"
-                        :style="`margin-left:-9px; margin-right:5px; border-radius:10px; font-size:0.85rem; ${isActive(item)?`padding:0px 12px; color:${useTagTextColorActive}; background:${useTagBackgroundColorActive};`:`padding:0px 8px; color:${useTagTextColor}; background:${useTagBackgroundColor};`}`"
+                    <v-chip
+                        :class="`WGroupTabsChip v-chpi-modify ${shadow?'shadow':''}`"
+                        small
+                        :close-icon="mdiCloseCircle"
+                        :close="close"
+                        :text-color="getTextColor(item)"
+                        :color="getBackgroundColor(item)"
+                        :outlined="getOutlined(item)"
+                        @click="clcikItem(item)"
+                        @click:close="removeItem(item,kitem)"
                     >
-                        {{item.tag}}
-                    </div>
 
-                    <span style="font-size:0.85rem;">{{item.name}}</span>
+                        <div :style="`display:inline-block; margin-left:-9px; margin-right:5px; border-radius:10px; font-size:0.85rem; ${isActive(item)?`padding:0px 12px; color:${useTagTextColorActive}; background:${useTagBackgroundColorActive};`:`padding:0px 8px; color:${useTagTextColor}; background:${useTagBackgroundColor};`}`">
+                            {{item.tag}}
+                        </div>
 
-                </v-chip>
+                        <span style="font-size:0.85rem;">{{item.name}}</span>
+
+                    </v-chip>
+
+                </div>
 
             </template>
         </transition-group>
@@ -45,7 +40,7 @@
         <template v-if="valueTrans.length===0">
 
             <v-chip
-                :class="`v-chpi-modify trans ${shadow?'shadow':''}`"
+                :class="`v-chpi-modify ${shadow?'shadow':''}`"
                 small
                 :text-color="textColor"
                 :color="backgroundColor"
@@ -68,8 +63,9 @@ import size from 'lodash/size'
 import get from 'lodash/get'
 import cloneDeep from 'lodash/cloneDeep'
 import pullAt from 'lodash/pullAt'
+import waitFun from 'wsemi/src/waitFun.mjs'
+import domDrag from 'wsemi/src/domDrag.mjs'
 import color2hex from '../js/vuetifyColor.mjs'
-import domDrag from '../js/domDrag.mjs'
 
 
 /**
@@ -164,12 +160,24 @@ export default {
         let vo = this
 
         //domDrag
-        let drag = domDrag(vo.$el)
+        let drag = domDrag(vo.$el, {
+            attIndex: 'dragindex',
+            attGroup: 'draggroup',
+            selectors: '[dragtag]',
+            previewOpacity: 1,
+            previewBorderWidth: 0,
+            previewBackground: 'transparent',
+        })
         drag.on('change', (msg) => {
             //console.log('onchange', msg)
         })
         drag.on('drop', ({ startInd, endInd }) => {
             //console.log('ondrop', startInd, endInd)
+
+            //check
+            if (startInd === endInd) {
+                return
+            }
 
             //cloneDeep
             let items = cloneDeep(vo.valueTrans)
@@ -217,6 +225,27 @@ export default {
         vo.drag.clear()
 
     },
+    watch: {
+
+        draggable: {
+            immediate: true,
+            handler(value) {
+                //console.log('watch draggable', value)
+
+                let vo = this
+
+                //waitFun
+                waitFun(() => {
+                    return vo.drag !== null
+                })
+                    .then(() => {
+                        vo.drag.setActive(vo.draggable)
+                    })
+
+            }
+        },
+
+    },
     computed: {
 
         changeParam: function () {
@@ -253,148 +282,6 @@ export default {
 
     },
     methods: {
-
-        // dragStart: function (e, item, kitem) {
-        //     //console.log('methods dragStart', e, item, kitem)
-
-        //     let vo = this
-
-        //     //startInd
-        //     if (vo.startInd !== kitem) {
-        //         vo.startInd = kitem
-        //         //console.log('startInd', vo.startInd)
-        //     }
-
-        // },
-
-        // dragEnter: function (e, item, kitem) {
-        //     //console.log('methods dragEnter', e, item, kitem)
-
-        //     let vo = this
-
-        //     //endInd
-        //     if (vo.startInd !== kitem && vo.endInd !== kitem) {
-        //         vo.endInd = kitem
-        //         //console.log('endInd', vo.endInd)
-        //     }
-
-        // },
-
-        // touchStart: function (e, item, kitem) {
-        //     //console.log('methods touchStart', e, item, kitem)
-
-        //     let vo = this
-
-        //     //domCancelEvent, touchstart需取消之後拖曳事件, 否則會變成捲動螢幕
-        //     vo.domCancelEvent(e)
-
-        //     //dragStart
-        //     vo.dragStart(e, item, kitem)
-
-        // },
-
-        // touchEnter: function (e, item, _kitem) {
-        //     //console.log('methods touchEnter', e, item, _kitem)
-
-        //     let vo = this
-
-        //     //check
-        //     let touches = get(e, 'touches', [])
-        //     if (size(touches) !== 1) {
-        //         return
-        //     }
-
-        //     //p
-        //     let p = touches[0]
-
-        //     //eles
-        //     let eles = vo.$el.querySelectorAll('.WGroupTabsChip')
-
-        //     //kitem, touch內為拖曳來源而非目標, 故得要遍歷尋找
-        //     let kitem = null
-        //     for (let i = 0; i < eles.length; i++) {
-        //         let ele = eles[i]
-        //         if (isInner(p, ele)) {
-        //             kitem = i
-        //         }
-        //     }
-        //     if (vo.startInd !== kitem && vo.endInd !== kitem) {
-        //         vo.endInd = kitem
-        //         //console.log('endInd', vo.endInd)
-        //     }
-
-        // },
-
-        // drop: function (e, item, kitem) {
-        //     //console.log('methods drop', e, item, kitem)
-
-        //     let vo = this
-
-        //     //domCancelEvent
-        //     vo.domCancelEvent(e)
-
-        //     //check
-        //     if (vo.startInd === null) {
-        //         return
-        //     }
-        //     if (vo.endInd === null) {
-        //         return
-        //     }
-        //     // console.log('vo.startInd', vo.startInd)
-        //     // console.log('vo.endInd', vo.endInd)
-
-        //     //cloneDeep
-        //     let items = cloneDeep(vo.valueTrans)
-
-        //     //move
-        //     if (vo.startInd > vo.endInd) { //往前拖曳, 先移除原始拖曳項目, 再於放下位置插入該拖曳項目
-
-        //         //pullAt
-        //         let src = pullAt(items, vo.startInd)[0]
-
-        //         //array insert
-        //         items.splice(vo.endInd, 0, src) //拖曳項目是要放在目標項目之前, 故不能+1
-
-        //     }
-        //     else { //往後拖曳, 先複製原始拖曳項目, 並於放下位置插入, 再刪除原始拖曳項目
-
-        //         //cloneDeep
-        //         let src = cloneDeep(items[vo.startInd])
-
-        //         //array insert
-        //         items.splice(vo.endInd + 1, 0, src) //拖曳項目是要放在目標項目之後, 故需要+1
-
-        //         //pullAt
-        //         pullAt(items, vo.startInd)
-
-        //     }
-
-        //     //save
-        //     vo.valueTrans = items
-
-        //     //emitDrag
-        //     vo.emitDrag(items)
-
-        //     //clear
-        //     vo.startInd = null
-        //     vo.endInd = null
-
-        // },
-
-        // domCancelEvent: function (e) {
-        //     //console.log('methods domCancelEvent', e)
-
-        //     // let vo = this
-
-        //     //check, 拖曳事件因拖曳自己會捲動螢幕, 會觸發不可取消事件, 故需偵測直接跳出
-        //     if (!e.cancelable) {
-        //         return
-        //     }
-
-        //     e.preventDefault()
-        //     e.stopPropagation()
-        //     return false
-        // },
 
         getTextColor: function(item) {
             //console.log('methods getTextColor', item)

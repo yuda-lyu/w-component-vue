@@ -7,7 +7,7 @@
         content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui"
     />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>example for w-tree-draggable: hoverLineColor & hoverBlockColor</title>
+    <title>example for w-tree-draggable: shiftLineColor & shiftBlockColor & joinBlockColor</title>
 
     <!-- fontawesome -->
     <link
@@ -80,7 +80,7 @@
     <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.js"></script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@1.3.54/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@1.3.55/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -126,12 +126,13 @@
     <v-app id="app" style="font-family:inherit;">
         <div class="head1">w-tree-draggable</div>
         <div class="bk">
-            <div class="item">hoverLineColor & hoverBlockColor</div>
+            <div class="item">shiftLineColor & shiftBlockColor & joinBlockColor</div>
 
             <w-tree-draggable
                 :items="WTreeDraggable.option5.items"
-                :hover-line-color="'rgba(120,255,150,0.9)'"
-                :hover-block-color="'rgba(50,255,100,0.25)'"
+                :shift-line-color="'rgba(120,220,150,0.9)'"
+                :shift-block-color="'rgba(50,220,100,0.1)'"
+                :join-block-color="'rgba(50,220,100,0.2)'"
             >
                 <template v-slot:item="props">
                     <div style="padding:7px;">

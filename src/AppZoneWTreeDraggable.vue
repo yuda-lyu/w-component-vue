@@ -171,15 +171,16 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-tree-draggable'"
-                    :casename="'hoverLineColor & hoverBlockColor'"
+                    :casename="'shiftLineColor & shiftBlockColor & joinBlockColor'"
                     :kind="'nokind'"
                     :shell="'pure'"
                 ></demolink>
 
                 <w-tree-draggable
                     :items="WTreeDraggable.option5.items"
-                    :hoverLineColor="'rgba(120,255,150,0.9)'"
-                    :hoverBlockColor="'rgba(50,255,100,0.25)'"
+                    :shiftLineColor="'rgba(120,220,150,0.9)'"
+                    :shiftBlockColor="'rgba(50,220,100,0.1)'"
+                    :joinBlockColor="'rgba(50,220,100,0.2)'"
                 >
                     <template v-slot:item="props">
                         <div style="padding:7px;">
