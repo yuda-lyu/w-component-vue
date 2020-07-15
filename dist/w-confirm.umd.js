@@ -1,5 +1,5 @@
 /*!
- * w-confirm v1.3.55
+ * w-confirm v1.4.0
  * (c) 2018-2020 yuda-lyu(semisphere)
  * Released under the MIT License.
  */

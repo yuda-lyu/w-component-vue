@@ -146,7 +146,7 @@ export default {
             dgTipWidth: 0,
             dgTipHeight: 0,
 
-            tempItems: [], //另存的節點
+            itemsTrans: [], //另存的節點
             nodes: [], //攤平後的節點
 
         }
@@ -263,13 +263,13 @@ export default {
             let nkTo = cloneDeep(nodeTo.nk)
 
             //moveItem
-            vo.tempItems = vo.moveItem(vo.tempItems, nkFrom, nkTo, modeDir, modeInsert)
+            vo.itemsTrans = vo.moveItem(vo.itemsTrans, nkFrom, nkTo, modeDir, modeInsert)
 
             //clear
             vo.dgTipMode = ''
 
             //emit
-            vo.$emit('update:items', vo.tempItems)
+            vo.$emit('update:items', vo.itemsTrans)
 
         })
 
@@ -297,7 +297,7 @@ export default {
             let vo = this
 
             //cloneDeep
-            vo.tempItems = cloneDeep(vo.items)
+            vo.itemsTrans = cloneDeep(vo.items)
 
             return ''
         },
@@ -319,7 +319,7 @@ export default {
             }
 
             let nodes = []
-            treeObj(vo.tempItems, (value, key, nk) => {
+            treeObj(vo.itemsTrans, (value, key, nk) => {
                 let pk = get(value, vo.bindKey, null)
                 let children = get(value, vo.bindChildren, null)
                 if (pk) {
