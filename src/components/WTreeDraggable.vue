@@ -3,11 +3,14 @@
         <div style="position:relative;">
 
             <div
-                :style="`user-select:none; cursor:pointer; padding-left:${(node.nk.length-1)*indent}px;`"
+                :style="`transition:all 0.2s linear; user-select:none; cursor:pointer; padding-left:${(node.nk.length-1)*indent}px;`"
                 :key="get(node,bindKey,knode)"
                 dragtag
                 :dragindex="knode"
                 v-for="(node,knode) in nodes"
+                @mouseenter="(e)=>{$emit('mouseenter',{event:e,ele:e.target,node,knode})}"
+                @mouseleave="(e)=>{$emit('mouseleave',{event:e,ele:e.target,node,knode})}"
+                @click="(e)=>{$emit('click',{event:e,ele:e.target,node,knode})}"
             >
 
                 <slot

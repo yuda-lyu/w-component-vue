@@ -1,5 +1,5 @@
 /*!
- * w-group-tabs v1.4.1
+ * w-group-tabs v1.4.2
  * (c) 2018-2020 yuda-lyu(semisphere)
  * Released under the MIT License.
  */
