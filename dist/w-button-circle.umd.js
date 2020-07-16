@@ -1,5 +1,5 @@
 /*!
- * w-button-circle v1.4.0
+ * w-button-circle v1.4.1
  * (c) 2018-2020 yuda-lyu(semisphere)
  * Released under the MIT License.
  */

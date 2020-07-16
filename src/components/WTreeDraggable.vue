@@ -1,9 +1,5 @@
 <template>
-    <div
-        style="display:inline-block;"
-        :changeItems="changeItems"
-        :flatItems="flatItems"
-    >
+    <div :changeItems="changeItems" :flatItems="flatItems">
         <div style="position:relative;">
 
             <div

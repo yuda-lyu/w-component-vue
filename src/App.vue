@@ -705,9 +705,6 @@ export default {
     vertical-align: top;
     margin-top: 20px;
 }
-.list {
-    width: 100%;
-}
 @media screen and (min-width:1000px){
     .bk {
         display: inline-block;

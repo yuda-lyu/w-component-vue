@@ -75,7 +75,7 @@ export default {
     computed: {
 
         fn: function() {
-            let fnc = `${this.casename}_${this.kind}_${this.shell}`
+            let fnc = `${this.kind}_${this.shell}_${this.casename}`
             return `${this.kbname}_${cvCasename(fnc)}`
         },
 

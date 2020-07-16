@@ -270,7 +270,7 @@ function extractAppZone(fn) {
         //console.log(i, tmp)
 
         //fn
-        let fnc = `${casename}_${kind}_${shell}`
+        let fnc = `${kind}_${shell}_${casename}`
         let fn = `${kbname}_${cvCasename(fnc)}`
 
         //writeHtml

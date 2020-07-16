@@ -432,7 +432,7 @@
 
                     <w-shell-material
                         style="margin-top:30px;"
-                        :title="'請選擇種植水果'"
+                        :title="'請選擇分頁頁籤'"
                         :leftIcon="mdiAccountSupervisorCircle"
                     >
 
@@ -456,7 +456,7 @@
 
                     <w-shell-material
                         style="margin-top:30px;"
-                        :title="'請選擇種植水果'"
+                        :title="'請選擇分頁頁籤'"
                         :leftIcon="mdiAccountSupervisorCircle"
                     >
 
@@ -480,7 +480,7 @@
 
                     <w-shell-material
                         style="margin-top:30px;"
-                        :title="'請選擇種植水果'"
+                        :title="'請選擇分頁頁籤'"
                         :leftIcon="mdiAccountSupervisorCircle"
                     >
 
@@ -504,7 +504,7 @@
 
                     <w-shell-material
                         style="margin-top:30px;"
-                        :title="'請選擇種植水果'"
+                        :title="'請選擇分頁頁籤'"
                         :leftIcon="mdiAccountSupervisorCircle"
                     >
 
@@ -529,7 +529,7 @@
 
                     <w-shell-material
                         style="margin-top:30px;"
-                        :title="'請選擇種植水果'"
+                        :title="'請選擇分頁頁籤'"
                         :leftIcon="mdiAccountSupervisorCircle"
                     >
 
@@ -554,7 +554,7 @@
 
                     <w-shell-material
                         style="margin-top:30px;"
-                        :title="'請選擇種植水果'"
+                        :title="'請選擇分頁頁籤'"
                         :leftIcon="mdiAccountSupervisorCircle"
                     >
 
@@ -579,7 +579,7 @@
 
                     <w-shell-material
                         style="margin-top:30px;"
-                        :title="'請選擇種植水果'"
+                        :title="'請選擇分頁頁籤'"
                         :leftIcon="mdiAccountSupervisorCircle"
                     >
 
@@ -604,7 +604,7 @@
 
                     <w-shell-material
                         style="margin-top:30px;"
-                        :title="'請選擇種植水果'"
+                        :title="'請選擇分頁頁籤'"
                         :leftIcon="mdiAccountSupervisorCircle"
                     >
 
@@ -629,7 +629,7 @@
 
                     <w-shell-material
                         style="margin-top:30px;"
-                        :title="'請選擇種植水果'"
+                        :title="'請選擇分頁頁籤'"
                         :leftIcon="mdiAccountSupervisorCircle"
                     >
 
@@ -655,7 +655,7 @@
 
                     <w-shell-material
                         style="margin-top:30px;"
-                        :title="'請選擇種植水果'"
+                        :title="'請選擇分頁頁籤'"
                         :leftIcon="mdiAccountSupervisorCircle"
                     >
 
@@ -680,7 +680,7 @@
 
                     <w-shell-material
                         style="margin-top:30px;"
-                        :title="'請選擇種植水果'"
+                        :title="'請選擇分頁頁籤'"
                         :leftIcon="mdiAccountSupervisorCircle"
                     >
 
@@ -706,7 +706,7 @@
 
                     <w-shell-material
                         style="margin-top:30px;"
-                        :title="'請選擇種植水果'"
+                        :title="'請選擇分頁頁籤'"
                         :leftIcon="mdiAccountSupervisorCircle"
                     >
 
@@ -731,7 +731,7 @@
 
                     <w-shell-material
                         style="margin-top:30px;"
-                        :title="'請選擇種植水果'"
+                        :title="'請選擇分頁頁籤'"
                         :leftIcon="mdiAccountSupervisorCircle"
                     >
 
@@ -756,7 +756,7 @@
 
                     <w-shell-material
                         style="margin-top:30px;"
-                        :title="'請選擇種植水果'"
+                        :title="'請選擇分頁頁籤'"
                         :leftIcon="mdiAccountSupervisorCircle"
                     >
 
@@ -781,7 +781,7 @@
 
                     <w-shell-material
                         style="margin-top:30px;"
-                        :title="'請選擇種植水果'"
+                        :title="'請選擇分頁頁籤'"
                         :leftIcon="mdiAccountSupervisorCircle"
                     >
 
@@ -807,7 +807,7 @@
 
                     <w-shell-material
                         style="margin-top:30px;"
-                        :title="'請選擇種植水果'"
+                        :title="'請選擇分頁頁籤'"
                         :leftIcon="mdiAccountSupervisorCircle"
                     >
 
@@ -832,7 +832,7 @@
 
                     <w-shell-material
                         style="margin-top:30px;"
-                        :title="'請選擇種植水果'"
+                        :title="'請選擇分頁頁籤'"
                         :leftIcon="mdiAccountSupervisorCircle"
                     >
 
@@ -858,7 +858,7 @@
 
                     <w-shell-material
                         style="margin-top:30px;"
-                        :title="'請選擇種植水果'"
+                        :title="'請選擇分頁頁籤'"
                         :leftIcon="mdiAccountSupervisorCircle"
                     >
 
@@ -883,7 +883,7 @@
 
                     <w-shell-material
                         style="margin-top:30px;"
-                        :title="'請選擇種植水果'"
+                        :title="'請選擇分頁頁籤'"
                         :leftIcon="mdiAccountSupervisorCircle"
                     >
 
@@ -901,31 +901,6 @@
                 <div class="bk">
                     <demolink
                         :kbname="'w-group-radio-capsule'"
-                        :casename="'shadow(10)'"
-                        :kind="'nokind'"
-                        :shell="'shell'"
-                    ></demolink>
-
-                    <w-shell-material
-                        style="margin-top:30px;"
-                        :title="'請選擇種植水果'"
-                        :leftIcon="mdiAccountSupervisorCircle"
-                    >
-
-                        <w-group-radio-capsule
-                            :items="WGroupRadioCapsule.object.items"
-                            v-model="WGroupRadioCapsule.object.select"
-                            :shadow="10"
-                        ></w-group-radio-capsule>
-
-                    </w-shell-material>
-
-                </div>
-
-
-                <div class="bk">
-                    <demolink
-                        :kbname="'w-group-radio-capsule'"
                         :casename="'no shadowActive'"
                         :kind="'nokind'"
                         :shell="'shell'"
@@ -933,7 +908,7 @@
 
                     <w-shell-material
                         style="margin-top:30px;"
-                        :title="'請選擇種植水果'"
+                        :title="'請選擇分頁頁籤'"
                         :leftIcon="mdiAccountSupervisorCircle"
                     >
 
@@ -958,7 +933,7 @@
 
                     <w-shell-material
                         style="margin-top:30px;"
-                        :title="'請選擇種植水果'"
+                        :title="'請選擇分頁頁籤'"
                         :leftIcon="mdiAccountSupervisorCircle"
                     >
 
@@ -983,7 +958,7 @@
 
                     <w-shell-material
                         style="margin-top:30px;"
-                        :title="'請選擇種植水果'"
+                        :title="'請選擇分頁頁籤'"
                         :leftIcon="mdiAccountSupervisorCircle"
                     >
 
@@ -992,6 +967,44 @@
                             v-model="WGroupRadioCapsule.object.select"
                             :editable="false"
                         ></w-group-radio-capsule>
+
+                    </w-shell-material>
+
+                </div>
+
+
+                <div class="bk">
+                    <demolink
+                        :kbname="'w-group-radio-capsule'"
+                        :casename="'sizePadding & borderRadius & textColor & iconColor & backgroundColor & backgroundColorHover & backgroundColorActive & shadowActive'"
+                        :kind="'nokind'"
+                        :shell="'shell'"
+                    ></demolink>
+
+                    <w-shell-material
+                        style="margin-top:30px;"
+                        :title="'請選擇分頁頁籤'"
+                        :leftIcon="mdiAccountSupervisorCircle"
+                    >
+
+                        <div style="padding:0px 10px; background:linear-gradient(60deg,#ab47bc,#7b1fa2); box-shadow:0 5px 20px 0 rgba(0,0,0,.2), 0 13px 24px -11px rgba(156,39,176,.6);">
+                            <w-group-radio-capsule
+                                :items="WGroupRadioCapsule.object.items"
+                                v-model="WGroupRadioCapsule.object.select"
+                                :sizePadding="'12px 27px'"
+                                :borderRadius="5"
+                                :textColor="'white'"
+                                :textColorHover="'white'"
+                                :textColorActive="'white'"
+                                :iconColor="'white'"
+                                :iconColorHover="'white'"
+                                :iconColorActive="'white'"
+                                :backgroundColor="'rgba(255,255,255,0)'"
+                                :backgroundColorHover="'rgba(255,255,255,0)'"
+                                :backgroundColorActive="'rgba(255,255,255,0.15)'"
+                                :shadowActive="false"
+                            ></w-group-radio-capsule>
+                        </div>
 
                     </w-shell-material>
 

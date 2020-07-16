@@ -11,7 +11,7 @@
             <template v-if="modeShell==='pure'">
 
 
-                <div class="bk" style="display:block;">
+                <div class="bk">
                     <demolink
                         :kbname="'w-group-tags'"
                         :casename="'default'"
@@ -22,7 +22,7 @@
                     <w-group-tags v-model="WGroupTags.items"></w-group-tags>
                 </div>
 
-                <div class="bk" style="display:block;">
+                <div class="bk">
                     <demolink
                         :kbname="'w-group-tags'"
                         :casename="'textColor & backgroundColor & inputTextBorderColor & inputTextBorderColorFocus & inputTextBackgroundColorFocus & inputTextButtonColor & inputTextButtonColorFocus'"
@@ -42,7 +42,7 @@
                     ></w-group-tags>
                 </div>
 
-                <div class="bk" style="display:block;">
+                <div class="bk">
                     <demolink
                         :kbname="'w-group-tags'"
                         :casename="'nodata'"
@@ -87,7 +87,7 @@
             <template v-if="modeShell==='shell'">
 
 
-                <div class="bk" style="display:block;">
+                <div class="bk">
                     <demolink
                         :kbname="'w-group-tags'"
                         :casename="'default'"
@@ -104,7 +104,7 @@
                     </w-shell-material>
                 </div>
 
-                <div class="bk" style="display:block;">
+                <div class="bk">
                     <demolink
                         :kbname="'w-group-tags'"
                         :casename="'textColor & backgroundColor & inputTextBorderColor & inputTextBorderColorFocus & inputTextBackgroundColorFocus & inputTextButtonColor & inputTextButtonColorFocus'"
@@ -130,7 +130,7 @@
                     </w-shell-material>
                 </div>
 
-                <div class="bk" style="display:block;">
+                <div class="bk">
                     <demolink
                         :kbname="'w-group-tags'"
                         :casename="'nodata'"

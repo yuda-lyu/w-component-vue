@@ -147,7 +147,7 @@
 
                     <w-shell-material
                         style="margin-top:30px;"
-                        :title="'通路蔬果種類'"
+                        :title="'請選擇進貨蔬果種類'"
                         :leftIcon="mdiEmailVariant"
                     >
                         <w-group-tabs
@@ -168,7 +168,7 @@
 
                     <w-shell-material
                         style="margin-top:30px;"
-                        :title="'通路蔬果種類'"
+                        :title="'請選擇進貨蔬果種類'"
                         :leftIcon="mdiEmailVariant"
                     >
                         <w-group-tabs
@@ -193,7 +193,7 @@
 
                     <w-shell-material
                         style="margin-top:30px;"
-                        :title="'通路蔬果種類'"
+                        :title="'請選擇進貨蔬果種類'"
                         :leftIcon="mdiEmailVariant"
                     >
                         <w-group-tabs
@@ -218,7 +218,7 @@
 
                     <w-shell-material
                         style="margin-top:30px;"
-                        :title="'通路蔬果種類'"
+                        :title="'請選擇進貨蔬果種類'"
                         :leftIcon="mdiEmailVariant"
                     >
                         <w-group-tabs
@@ -240,7 +240,7 @@
 
                     <w-shell-material
                         style="margin-top:30px;"
-                        :title="'通路蔬果種類'"
+                        :title="'請選擇進貨蔬果種類'"
                         :leftIcon="mdiEmailVariant"
                     >
                         <w-group-tabs
@@ -262,7 +262,7 @@
 
                     <w-shell-material
                         style="margin-top:30px;"
-                        :title="'通路蔬果種類'"
+                        :title="'請選擇進貨蔬果種類'"
                         :leftIcon="mdiEmailVariant"
                     >
                         <w-group-tabs
@@ -284,7 +284,7 @@
 
                     <w-shell-material
                         style="margin-top:30px;"
-                        :title="'通路蔬果種類'"
+                        :title="'請選擇分頁頁籤'"
                         :leftIcon="mdiEmailVariant"
                     >
                         <w-group-tabs

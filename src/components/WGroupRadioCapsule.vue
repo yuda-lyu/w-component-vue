@@ -1,8 +1,5 @@
 <template>
-    <div
-        :style="{'opacity':editable?1:0.65}"
-        :changeParam="changeParam"
-    >
+    <div :style="{'opacity':editable?1:0.65}" :changeParam="changeParam">
 
         <template v-for="(item,kitem) in itemsTrans">
 

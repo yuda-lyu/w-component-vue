@@ -17,8 +17,7 @@
                 ></demolink>
 
                 <w-dynamic-list
-                    class="list"
-                    style="border:1px solid #ddd;"
+                    style="width:400px; border:1px solid #ddd;"
                     :rows="WDynamicList.data1"
                 >
                     <template v-slot:block="props">
@@ -48,8 +47,7 @@
                 ></demolink>
 
                 <w-dynamic-list
-                    class="list"
-                    style="border:1px solid #ddd;"
+                    style="width:400px; border:1px solid #ddd;"
                     :viewHeightMax="250"
                     :rows="WDynamicList.data1"
                 >
@@ -88,8 +86,7 @@
                 </div>
 
                 <w-dynamic-list
-                    class="list"
-                    style="border:1px solid #ddd;"
+                    style="width:400px; border:1px solid #ddd;"
                     :filterKeywords="WDynamicList.keywords"
                     :searchEmpty="'There are no items to show...'"
                     :rows="WDynamicList.data1"
@@ -121,8 +118,7 @@
                 ></demolink>
 
                 <w-dynamic-list
-                    class="list"
-                    style="border:1px solid #ddd;"
+                    style="width:400px; border:1px solid #ddd;"
                     :rows="WDynamicList.data2"
                 >
                     <template v-slot:block="props">

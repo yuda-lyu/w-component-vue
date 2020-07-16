@@ -1,5 +1,5 @@
 <template>
-    <div style="display:inline-block;" :changeParam="changeParam">
+    <div :changeParam="changeParam">
 
         <template v-for="(item,kitem) in valueTrans">
 

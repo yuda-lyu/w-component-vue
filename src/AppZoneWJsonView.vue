@@ -17,8 +17,7 @@
                 ></demolink>
 
                 <w-json-view
-                    class="list"
-                    style="border:1px solid #ddd;"
+                    style="width:400px; border:1px solid #ddd;"
                     :data="WJsonView.data1"
                 ></w-json-view>
 
@@ -34,8 +33,7 @@
                 ></demolink>
 
                 <w-json-view
-                    class="list"
-                    style="border:1px solid #ddd;"
+                    style="width:400px; border:1px solid #ddd;"
                     :viewHeightMax="250"
                     :data="WJsonView.data2"
                 ></w-json-view>
@@ -60,8 +58,7 @@
                 </div>
 
                 <w-json-view
-                    class="list"
-                    style="border:1px solid #ddd;"
+                    style="width:400px; border:1px solid #ddd;"
                     :filterKeywords="WJsonView.keywords"
                     :searchEmpty="'There are no items to show...'"
                     :data="WJsonView.data2"
@@ -79,8 +76,7 @@
                 ></demolink>
 
                 <w-json-view
-                    class="list"
-                    style="border:1px solid #ddd;"
+                    style="width:400px; border:1px solid #ddd;"
                     :iconColor="'#aaa'"
                     :keyColor="'#f6a'"
                     :keyNumbersColor="'#f26'"
