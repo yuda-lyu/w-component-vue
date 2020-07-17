@@ -15,7 +15,8 @@
         <v-card v-if="show">
 
             <v-toolbar
-                max-height="64"
+                ref="tb"
+                style="flex:initial;"
                 :color="headerBackgroundColor"
             >
 
@@ -177,23 +178,6 @@ export default {
     },
     mounted: function() {
     },
-    watch: {
-
-        show: function(value) {
-            //console.log('watch show', value)
-
-            let vo = this
-
-            //當show改為true時自動捲至頂部
-            if (!vo.showTrans && value) {
-                setTimeout(() => {
-                    vo.$refs.scrollZone.scrollTop = 0
-                }, 1)
-            }
-
-        },
-
-    },
     computed: {
 
         changeParam: function () {
@@ -231,6 +215,7 @@ export default {
 
             let vo = this
 
+            //fullscreen
             if (vo.widthMax <= 0) {
                 vo.fullscreen = true
             }
