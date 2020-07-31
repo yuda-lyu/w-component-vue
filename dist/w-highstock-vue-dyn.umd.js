@@ -1,5 +1,5 @@
 /*!
- * w-highstock-vue-dyn v1.4.3
+ * w-highstock-vue-dyn v1.4.4
  * (c) 2018-2020 yuda-lyu(semisphere)
  * Released under the MIT License.
  */
