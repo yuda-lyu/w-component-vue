@@ -13,18 +13,18 @@
 
 
             <v-tabs
-                v-model="indKind"
+                v-model="io1"
                 background-color="grey lighten-3"
                 color="grey darken-4"
                 slider-color="red"
             >
                 <v-tab
-                    v-for="(oKind,kKind) in sComps"
-                    :key="kKind"
-                    @click="indName=0"
+                    v-for="(o1,ko1) in sComps"
+                    :key="'l1'+ko1"
+                    @click="clickMenu1"
                 >
                     <span style="text-transform:none">
-                        {{oKind.name}}
+                        {{kebabCase(o1.name)}}
                     </span>
                 </v-tab>
             </v-tabs>
@@ -33,22 +33,70 @@
             <div style="margin-top:5px;"></div>
 
 
-            <v-tabs
-                v-model="indName"
-                background-color="grey lighten-3"
-                color="grey darken-4"
-                slider-color="red"
-            >
-                <v-tab
-                    v-for="(name,kInd) in sComps[indKind].cmps"
-                    :key="kInd"
-                    @click="modeBorder='emboss';modeShell='pure'"
+            <template v-if="get(sComps,`${io1}.cmps`)">
+
+
+                <v-tabs
+                    v-model="io2"
+                    background-color="grey lighten-3"
+                    color="grey darken-4"
+                    slider-color="red"
                 >
-                    <span style="text-transform:none">
-                        {{kb(name)}}
-                    </span>
-                </v-tab>
-            </v-tabs>
+                    <v-tab
+                        v-for="(o2,ko2) in get(sComps,`${io1}.cmps`)"
+                        :key="'l2a'+ko2"
+                        @click="clickMenu2a"
+                    >
+                        <span style="text-transform:none">
+                            {{kebabCase(o2)}}
+                        </span>
+                    </v-tab>
+                </v-tabs>
+
+
+            </template>
+            <template v-else>
+
+
+                <v-tabs
+                    v-model="io2"
+                    background-color="grey lighten-3"
+                    color="grey darken-4"
+                    slider-color="red"
+                >
+                    <v-tab
+                        v-for="(o2,ko2) in get(sComps,`${io1}.children`)"
+                        :key="'l2b'+ko2"
+                        @click="clickMenu2b"
+                    >
+                        <span style="text-transform:none">
+                            {{kebabCase(o2.name)}}
+                        </span>
+                    </v-tab>
+                </v-tabs>
+
+
+                <div style="margin-top:5px;"></div>
+
+
+                <v-tabs
+                    v-model="io3"
+                    background-color="grey lighten-3"
+                    color="grey darken-4"
+                    slider-color="red"
+                >
+                    <v-tab
+                        v-for="(o3,ko3) in get(sComps,`${io1}.children.${io2}.cmps`)"
+                        :key="'l3'+ko3"
+                    >
+                        <span style="text-transform:none">
+                            {{kebabCase(o3)}}
+                        </span>
+                    </v-tab>
+                </v-tabs>
+
+
+            </template>
 
 
             <template v-if="haveModeBorder[compname] || haveModeShell[compname]">
@@ -421,6 +469,27 @@
             ></AppZoneWImageViewerDyn>
 
 
+            <AppZoneWCkeditorVueDyn
+                :modeBorder="modeBorder"
+                :modeShell="modeShell"
+                v-if="compname==='WCkeditorVueDyn'"
+            ></AppZoneWCkeditorVueDyn>
+
+
+            <AppZoneWTinymceVueDyn
+                :modeBorder="modeBorder"
+                :modeShell="modeShell"
+                v-if="compname==='WTinymceVueDyn'"
+            ></AppZoneWTinymceVueDyn>
+
+
+            <AppZoneWQuillVueDyn
+                :modeBorder="modeBorder"
+                :modeShell="modeShell"
+                v-if="compname==='WQuillVueDyn'"
+            ></AppZoneWQuillVueDyn>
+
+
         </div>
 
 
@@ -428,6 +497,7 @@
 </template>
 
 <script>
+import get from 'lodash/get'
 import kebabCase from 'lodash/kebabCase'
 import { mdiCheckCircle, mdiCheckboxBlankCircleOutline } from '@mdi/js'
 import AppZoneWBadge from './AppZoneWBadge.vue'
@@ -471,6 +541,9 @@ import AppZoneWHighstockVueDyn from './AppZoneWHighstockVueDyn.vue'
 import AppZoneWEchartsVueDyn from './AppZoneWEchartsVueDyn.vue'
 import AppZoneWAggridVueDyn from './AppZoneWAggridVueDyn.vue'
 import AppZoneWImageViewerDyn from './AppZoneWImageViewerDyn.vue'
+import AppZoneWCkeditorVueDyn from './AppZoneWCkeditorVueDyn.vue'
+import AppZoneWTinymceVueDyn from './AppZoneWTinymceVueDyn.vue'
+import AppZoneWQuillVueDyn from './AppZoneWQuillVueDyn.vue'
 
 
 export default {
@@ -516,13 +589,20 @@ export default {
         AppZoneWEchartsVueDyn,
         AppZoneWAggridVueDyn,
         AppZoneWImageViewerDyn,
+        AppZoneWCkeditorVueDyn,
+        AppZoneWTinymceVueDyn,
+        AppZoneWQuillVueDyn,
     },
     data: function() {
         return {
+            get,
+            kebabCase,
+
             mdiCheckCircle,
             mdiCheckboxBlankCircleOutline,
-            indKind: 0,
-            indName: 0,
+            io1: 0,
+            io2: 0,
+            io3: 0,
             sComps: [
                 {
                     name: 'basic',
@@ -607,13 +687,36 @@ export default {
                 },
                 {
                     name: 'dynamic',
-                    cmps: [
-                        'WHighchartsVueDyn',
-                        'WHighstockVueDyn',
-                        'WEchartsVueDyn',
-                        'WAggridVueDyn',
-                        'WImageViewerDyn',
-                    ]
+                    children: [
+                        {
+                            name: 'plot',
+                            cmps: [
+                                'WHighchartsVueDyn',
+                                'WHighstockVueDyn',
+                                'WEchartsVueDyn',
+                            ],
+                        },
+                        {
+                            name: 'table',
+                            cmps: [
+                                'WAggridVueDyn',
+                            ],
+                        },
+                        {
+                            name: 'viewer',
+                            cmps: [
+                                'WImageViewerDyn',
+                            ],
+                        },
+                        {
+                            name: 'editor',
+                            cmps: [
+                                'WCkeditorVueDyn',
+                                'WTinymceVueDyn',
+                                'WQuillVueDyn',
+                            ],
+                        },
+                    ],
                 },
             ],
             haveModeBorder: {
@@ -663,7 +766,13 @@ export default {
 
         compname: function () {
             let vo = this
-            return vo.sComps[vo.indKind].cmps[vo.indName]
+            if (vo.sComps[vo.io1].cmps) {
+                return vo.sComps[vo.io1].cmps[vo.io2]
+            }
+            if (vo.sComps[vo.io1].children[vo.io2]) {
+                return vo.sComps[vo.io1].children[vo.io2].cmps[vo.io3]
+            }
+            return 'unknow'
         },
 
         isNarrow: function() {
@@ -673,8 +782,28 @@ export default {
     },
     methods: {
 
-        kb: function(v) {
-            return kebabCase(v)
+        clickMenu1: function () {
+            let vo = this
+            setTimeout(() => {
+                vo.io2 = 0
+                vo.io3 = 0
+            }, 1)
+        },
+
+        clickMenu2a: function () {
+            let vo = this
+            setTimeout(() => {
+                vo.io3 = 0
+                vo.modeBorder = 'emboss'
+                vo.modeShell = 'pure'
+            }, 1)
+        },
+
+        clickMenu2b: function () {
+            let vo = this
+            setTimeout(() => {
+                vo.io3 = 0
+            }, 1)
         },
 
     }

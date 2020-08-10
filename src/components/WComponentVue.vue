@@ -6,6 +6,7 @@ import WButtonCapsule from './WButtonCapsule.vue'
 import WButtonChip from './WButtonChip.vue'
 import WButtonCircle from './WButtonCircle.vue'
 import WButtonProg from './WButtonProg.vue'
+import WCkeditorVueDyn from './WCkeditorVueDyn.vue'
 import WConfirm from './WConfirm.vue'
 import WDialog from './WDialog.vue'
 import WDropfiles from './WDropfiles.vue'
@@ -33,6 +34,7 @@ import WPanelScrollyCore from './WPanelScrollyCore.vue'
 import WPanelStripe from './WPanelStripe.vue'
 import WPopup from './WPopup.vue'
 import WProgressCircle from './WProgressCircle.vue'
+import WQuillVueDyn from './WQuillVueDyn.vue'
 import WShellEllipse from './WShellEllipse.vue'
 import WShellMaterial from './WShellMaterial.vue'
 import WSwitch from './WSwitch.vue'
@@ -52,6 +54,7 @@ import WTimeminute from './WTimeminute.vue'
 import WTimeminuteCore from './WTimeminuteCore.vue'
 import WTimeminuteRange from './WTimeminuteRange.vue'
 import WTimeminuteRangeCore from './WTimeminuteRangeCore.vue'
+import WTinymceVueDyn from './WTinymceVueDyn.vue'
 import WTreeDraggable from './WTreeDraggable.vue'
 
 let WComponentVue = {
@@ -63,6 +66,7 @@ let WComponentVue = {
         Vue.component('w-button-chip', WButtonChip)
         Vue.component('w-button-circle', WButtonCircle)
         Vue.component('w-button-prog', WButtonProg)
+        Vue.component('w-ckeditor-vue-dyn', WCkeditorVueDyn)
         Vue.component('w-confirm', WConfirm)
         Vue.component('w-dialog', WDialog)
         Vue.component('w-dropfiles', WDropfiles)
@@ -90,6 +94,7 @@ let WComponentVue = {
         Vue.component('w-panel-stripe', WPanelStripe)
         Vue.component('w-popup', WPopup)
         Vue.component('w-progress-circle', WProgressCircle)
+        Vue.component('w-quill-vue-dyn', WQuillVueDyn)
         Vue.component('w-shell-ellipse', WShellEllipse)
         Vue.component('w-shell-material', WShellMaterial)
         Vue.component('w-switch', WSwitch)
@@ -109,6 +114,7 @@ let WComponentVue = {
         Vue.component('w-timeminute-core', WTimeminuteCore)
         Vue.component('w-timeminute-range', WTimeminuteRange)
         Vue.component('w-timeminute-range-core', WTimeminuteRangeCore)
+        Vue.component('w-tinymce-vue-dyn', WTinymceVueDyn)
         Vue.component('w-tree-draggable', WTreeDraggable)
     }
 }

@@ -36,6 +36,12 @@ let defStyle = {
 }
 
 /**
+ * @vue-prop {Array} [pathItems=['詳見原始碼']] 輸入viewerjs組件js與css檔案位置字串陣列，預設詳見原始碼處props->pathItems->default
+ * @vue-prop {Array} [images=[]] 輸入
+ * @vue-prop {String} [imageClass=''] 輸入
+ * @vue-prop {Object} [imageStyle={}] 輸入
+ * @vue-prop {Object} [opt={}] 輸入viewerjs設定物件，預設使用optOne或optMuti，若img僅一個則使用optOne，反之使用optMuti
+ * @vue-prop {Boolean} [multiple=false] 輸入
  */
 export default {
     components: {

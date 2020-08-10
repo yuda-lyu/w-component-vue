@@ -3,7 +3,7 @@ import { build, test } from 'w-puppeteer-uitest/src/exp.mjs'
 import readJson from 'w-puppeteer-uitest/src/readJson.mjs'
 
 
-let fd = 'D:\\開源-Javascript-w-component-vue\\w-component-vue\\'
+let fd = 'D:\\開源-JS-104-2-w-component-vue\\w-component-vue\\'
 let fd_html = fd + 'test-html\\'
 let fd_action = fd + 'test-action\\'
 let fd_out = fd + 'test-screenshot\\'

@@ -1,5 +1,5 @@
 /*!
- * w-icon-svg v1.4.4
+ * w-icon-svg v1.4.5
  * (c) 2018-2020 yuda-lyu(semisphere)
  * Released under the MIT License.
  */
