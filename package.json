@@ -1,6 +1,6 @@
 {
   "name": "w-component-vue",
-  "version": "1.4.5",
+  "version": "1.4.6",
   "author": "yuda-lyu(semisphere)",
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -11,25 +11,25 @@
   },
   "main": "dist/w-component-vue.umd.js",
   "dependencies": {
-    "@mdi/js": "^5.4.55",
+    "@mdi/js": "^5.5.55",
     "@shopify/draggable": "^1.0.0-beta.8",
     "element-ui": "^2.13.2",
     "lodash": "^4.17.19",
     "vue-cli-plugin-vuetify": "^2.0.7",
     "vuetify": "^2.3.8",
     "vuetify-loader": "^1.6.0",
-    "wsemi": "^1.5.9"
+    "wsemi": "^1.5.10"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "^4.4.6",
-    "@vue/cli-plugin-eslint": "^4.4.6",
-    "@vue/cli-service": "^4.4.6",
+    "@vue/cli-plugin-babel": "^4.5.3",
+    "@vue/cli-plugin-eslint": "^4.5.3",
+    "@vue/cli-service": "^4.5.3",
     "@starptech/prettyhtml": "^0.10.0",
     "cheerio": "^1.0.0-rc.3",
     "sass": "^1.26.10",
     "sass-loader": "^9.0.3",
     "vue": "^2.6.11",
-    "w-package-tools": "^1.0.27"
+    "w-package-tools": "^1.0.28"
   },
   "eslintConfig": {
     "root": true,
