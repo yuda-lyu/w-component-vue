@@ -4,16 +4,24 @@
         <template v-for="(item,kitem) in valueTrans">
 
             <v-chip
-                class="v-chpi-modify"
+                :class="`v-chpi-modify ${outlined?'':'shadow'}`"
                 small
                 :text-color="textColor"
                 :color="backgroundColor"
                 :close="editable"
                 :close-icon="mdiCloseCircle"
+                :outlined="outlined"
                 @click="clickChip(item)"
                 @click:close="clickRemoveBtn(item)"
                 :key="kitem"
             >
+
+                <v-icon
+                    small
+                    left
+                    :color="buttonIconColor"
+                    v-if="buttonIcon!==''"
+                >{{buttonIcon}}</v-icon>
 
                 <span style="font-size:0.875rem;">{{item}}</span>
 
@@ -30,6 +38,8 @@
                 :color="backgroundColor"
             >
 
+                <v-icon small left v-if="buttonIcon!==''">{{buttonIcon}}</v-icon>
+
                 <span style="font-size:0.875rem;">{{nodata}}</span>
 
             </v-chip>
@@ -44,7 +54,7 @@
                 :rightIcon="mdiPlusCircle"
                 :rightIconColor="inputTextButtonColor"
                 :rightIconColorFocus="inputTextButtonColorFocus"
-                :rightIconTooltip="iconTooltip"
+                :rightIconTooltip="inputIconTooltip"
                 :backgroundColor="inputTextBackgroundColor"
                 :backgroundColorFocus="inputTextBackgroundColorFocus"
                 :borderColor="inputTextBorderColor"
@@ -72,7 +82,7 @@ import WText from './WText.vue'
  * @vue-prop {String} [inputTextBackgroundColorFocus='grey lighten-5'] 輸入輸入框背景Focus顏色字串，預設'grey lighten-5'
  * @vue-prop {String} [inputTextBorderColor='grey lighten-1'] 輸入輸入框未Focus時文字顏色字串，預設'grey lighten-1'
  * @vue-prop {String} [inputTextBorderColorFocus='grey darken-1'] 輸入輸入框Focus時文字顏色字串，預設'grey darken-1'
- * @vue-prop {String} [iconTooltip='新增'] 輸入輸入框右側按鈕提示文字字串，預設'新增'
+ * @vue-prop {String} [inputIconTooltip='新增'] 輸入輸入框右側按鈕提示文字字串，預設'新增'
  * @vue-prop {Boolean} [editable=true] 輸入是否為編輯模式，預設true
  * @vue-prop {String} [nodata='無'] 輸入無任何字串陣列時的預設文字字串，預設'無'
  */
@@ -84,6 +94,10 @@ export default {
         value: {
             type: Array,
         },
+        outlined: {
+            type: Boolean,
+            default: false,
+        },
         textColor: {
             type: String,
             default: 'grey darken-2',
@@ -91,6 +105,14 @@ export default {
         backgroundColor: {
             type: String,
             default: 'grey lighten-3',
+        },
+        buttonIcon: {
+            type: String,
+            default: '',
+        },
+        buttonIconColor: {
+            type: String,
+            default: 'grey darken-2',
         },
         inputTextBackgroundColor: {
             type: String,
@@ -116,9 +138,9 @@ export default {
             type: String,
             default: 'grey',
         },
-        iconTooltip: {
+        inputIconTooltip: {
             type: String,
-            default: '新增',
+            default: 'Add',
         },
         editable: {
             type: Boolean,
@@ -225,6 +247,8 @@ export default {
 .v-chpi-modify {
     vertical-align: middle;
     margin: 10px 10px 10px 0px;
+}
+.shadow {
     box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
 }
 </style>

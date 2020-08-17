@@ -703,7 +703,7 @@ export default {
                             ],
                         },
                         {
-                            name: 'viewer',
+                            name: 'imageViewer',
                             cmps: [
                                 'WImageViewerDyn',
                             ],

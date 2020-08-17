@@ -1,5 +1,6 @@
 <template>
     <component ref="$self" :is="cmpName" :opt="opt" :height="height" :filterall="filterall"></component>
+    <!-- ref=$self為供外部存取組件之用 -->
 </template>
 
 <script>

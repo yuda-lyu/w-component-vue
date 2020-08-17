@@ -25,6 +25,64 @@
                 <div class="bk">
                     <demolink
                         :kbname="'w-group-tags'"
+                        :casename="'inputIconTooltip'"
+                        :kind="'nokind'"
+                        :shell="'pure'"
+                    ></demolink>
+
+                    <w-group-tags
+                        :inputIconTooltip="'新增'"
+                        v-model="WGroupTags.items"
+                    ></w-group-tags>
+                </div>
+
+                <div class="bk">
+                    <demolink
+                        :kbname="'w-group-tags'"
+                        :casename="'outlined & backgroundColor'"
+                        :kind="'nokind'"
+                        :shell="'pure'"
+                    ></demolink>
+
+                    <w-group-tags
+                        :outlined="true"
+                        :backgroundColor="'grey'"
+                        v-model="WGroupTags.items"
+                    ></w-group-tags>
+                </div>
+
+                <div class="bk">
+                    <demolink
+                        :kbname="'w-group-tags'"
+                        :casename="'buttonIcon'"
+                        :kind="'nokind'"
+                        :shell="'pure'"
+                    ></demolink>
+
+                    <w-group-tags
+                        :buttonIcon="mdiBlenderSoftware"
+                        v-model="WGroupTags.items"
+                    ></w-group-tags>
+                </div>
+
+                <div class="bk">
+                    <demolink
+                        :kbname="'w-group-tags'"
+                        :casename="'buttonIcon & buttonIconColor'"
+                        :kind="'nokind'"
+                        :shell="'pure'"
+                    ></demolink>
+
+                    <w-group-tags
+                        :buttonIcon="mdiBlenderSoftware"
+                        :buttonIconColor="'light-blue darken-1'"
+                        v-model="WGroupTags.items"
+                    ></w-group-tags>
+                </div>
+
+                <div class="bk">
+                    <demolink
+                        :kbname="'w-group-tags'"
                         :casename="'textColor & backgroundColor & inputTextBorderColor & inputTextBorderColorFocus & inputTextBackgroundColorFocus & inputTextButtonColor & inputTextButtonColorFocus'"
                         :kind="'nokind'"
                         :shell="'pure'"
@@ -101,6 +159,88 @@
                         :leftIcon="mdiEmailVariant"
                     >
                         <w-group-tags v-model="WGroupTags.items"></w-group-tags>
+                    </w-shell-material>
+                </div>
+
+                <div class="bk">
+                    <demolink
+                        :kbname="'w-group-tags'"
+                        :casename="'inputIconTooltip'"
+                        :kind="'nokind'"
+                        :shell="'shell'"
+                    ></demolink>
+
+                    <w-shell-material
+                        style="margin-top:30px;"
+                        :title="'請輸入販賣水果種類'"
+                        :leftIcon="mdiEmailVariant"
+                    >
+                        <w-group-tags
+                            :inputIconTooltip="'新增'"
+                            v-model="WGroupTags.items"
+                        ></w-group-tags>
+                    </w-shell-material>
+                </div>
+
+                <div class="bk">
+                    <demolink
+                        :kbname="'w-group-tags'"
+                        :casename="'outlined & backgroundColor'"
+                        :kind="'nokind'"
+                        :shell="'shell'"
+                    ></demolink>
+
+                    <w-shell-material
+                        style="margin-top:30px;"
+                        :title="'請輸入販賣水果種類'"
+                        :leftIcon="mdiEmailVariant"
+                    >
+                        <w-group-tags
+                            :outlined="true"
+                            :backgroundColor="'grey'"
+                            v-model="WGroupTags.items"
+                        ></w-group-tags>
+                    </w-shell-material>
+                </div>
+
+                <div class="bk">
+                    <demolink
+                        :kbname="'w-group-tags'"
+                        :casename="'buttonIcon'"
+                        :kind="'nokind'"
+                        :shell="'shell'"
+                    ></demolink>
+
+                    <w-shell-material
+                        style="margin-top:30px;"
+                        :title="'請輸入販賣水果種類'"
+                        :leftIcon="mdiEmailVariant"
+                    >
+                        <w-group-tags
+                            :buttonIcon="mdiBlenderSoftware"
+                            v-model="WGroupTags.items"
+                        ></w-group-tags>
+                    </w-shell-material>
+                </div>
+
+                <div class="bk">
+                    <demolink
+                        :kbname="'w-group-tags'"
+                        :casename="'buttonIcon & buttonIconColor'"
+                        :kind="'nokind'"
+                        :shell="'shell'"
+                    ></demolink>
+
+                    <w-shell-material
+                        style="margin-top:30px;"
+                        :title="'請輸入販賣水果種類'"
+                        :leftIcon="mdiEmailVariant"
+                    >
+                        <w-group-tags
+                            :buttonIcon="mdiBlenderSoftware"
+                            :buttonIconColor="'light-blue darken-1'"
+                            v-model="WGroupTags.items"
+                        ></w-group-tags>
                     </w-shell-material>
                 </div>
 
@@ -197,7 +337,7 @@
 </template>
 
 <script>
-import { mdiEmailVariant } from '@mdi/js'
+import { mdiEmailVariant, mdiBlenderSoftware } from '@mdi/js'
 import demolink from './components/demolink.vue'
 import WShellMaterial from './components/WShellMaterial.vue'
 import WGroupTags from './components/WGroupTags.vue'
@@ -220,6 +360,7 @@ export default {
     data: function() {
         return {
             mdiEmailVariant,
+            mdiBlenderSoftware,
             'WGroupTags': {
                 'items': [
                     'foo',
