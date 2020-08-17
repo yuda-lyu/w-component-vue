@@ -28,6 +28,34 @@
                     <div class="bk">
                         <demolink
                             :kbname="'w-text'"
+                            :casename="'textColor'"
+                            :kind="'emboss'"
+                            :shell="'pure'"
+                        ></demolink>
+
+                        <w-text
+                            :textColor="'blue darken-1'"
+                            v-model="WText.text"
+                        ></w-text>
+                    </div>
+
+                    <div class="bk">
+                        <demolink
+                            :kbname="'w-text'"
+                            :casename="'textAlign'"
+                            :kind="'emboss'"
+                            :shell="'pure'"
+                        ></demolink>
+
+                        <w-text
+                            :textAlign="'right'"
+                            v-model="WText.text"
+                        ></w-text>
+                    </div>
+
+                    <div class="bk">
+                        <demolink
+                            :kbname="'w-text'"
                             :casename="'borderRadius'"
                             :kind="'emboss'"
                             :shell="'pure'"
@@ -239,6 +267,46 @@
                     <div class="bk">
                         <demolink
                             :kbname="'w-text'"
+                            :casename="'textColor'"
+                            :kind="'emboss'"
+                            :shell="'shell'"
+                        ></demolink>
+
+                        <w-shell-material
+                            style="margin-top:30px;"
+                            :title="'請輸入貨物商品編號'"
+                            :leftIcon="'fas fa-clipboard-check'"
+                        >
+                            <w-text
+                                :textColor="'blue darken-1'"
+                                v-model="WText.text"
+                            ></w-text>
+                        </w-shell-material>
+                    </div>
+
+                    <div class="bk">
+                        <demolink
+                            :kbname="'w-text'"
+                            :casename="'textAlign'"
+                            :kind="'emboss'"
+                            :shell="'shell'"
+                        ></demolink>
+
+                        <w-shell-material
+                            style="margin-top:30px;"
+                            :title="'請輸入貨物商品編號'"
+                            :leftIcon="'fas fa-clipboard-check'"
+                        >
+                            <w-text
+                                :textAlign="'right'"
+                                v-model="WText.text"
+                            ></w-text>
+                        </w-shell-material>
+                    </div>
+
+                    <div class="bk">
+                        <demolink
+                            :kbname="'w-text'"
                             :casename="'borderRadius'"
                             :kind="'emboss'"
                             :shell="'shell'"
@@ -350,6 +418,42 @@
                             :borderColor="'orange lighten-2'"
                             :borderColorFocus="'orange darken-2'"
                             :backgroundColorFocus="'orange lighten-5'"
+                            v-model="WText.text"
+                        ></w-text>
+                    </div>
+
+                    <div class="bk">
+                        <demolink
+                            :kbname="'w-text'"
+                            :casename="'textColor'"
+                            :kind="'border'"
+                            :shell="'pure'"
+                        ></demolink>
+
+                        <w-text
+                            :borderShadow="false"
+                            :borderColor="'orange lighten-2'"
+                            :borderColorFocus="'orange darken-2'"
+                            :backgroundColorFocus="'orange lighten-5'"
+                            :textColor="'orange darken-2'"
+                            v-model="WText.text"
+                        ></w-text>
+                    </div>
+
+                    <div class="bk">
+                        <demolink
+                            :kbname="'w-text'"
+                            :casename="'textAlign'"
+                            :kind="'border'"
+                            :shell="'pure'"
+                        ></demolink>
+
+                        <w-text
+                            :borderShadow="false"
+                            :borderColor="'orange lighten-2'"
+                            :borderColorFocus="'orange darken-2'"
+                            :backgroundColorFocus="'orange lighten-5'"
+                            :textAlign="'right'"
                             v-model="WText.text"
                         ></w-text>
                     </div>
@@ -646,6 +750,54 @@
                                 :borderColor="'orange lighten-2'"
                                 :borderColorFocus="'orange darken-2'"
                                 :backgroundColorFocus="'orange lighten-5'"
+                                v-model="WText.text"
+                            ></w-text>
+                        </w-shell-material>
+                    </div>
+
+                    <div class="bk">
+                        <demolink
+                            :kbname="'w-text'"
+                            :casename="'textColor'"
+                            :kind="'border'"
+                            :shell="'shell'"
+                        ></demolink>
+
+                        <w-shell-material
+                            style="margin-top:30px;"
+                            :title="'請輸入貨物商品編號'"
+                            :leftIcon="'fas fa-clipboard-check'"
+                        >
+                            <w-text
+                                :borderShadow="false"
+                                :borderColor="'orange lighten-2'"
+                                :borderColorFocus="'orange darken-2'"
+                                :backgroundColorFocus="'orange lighten-5'"
+                                :textColor="'orange darken-2'"
+                                v-model="WText.text"
+                            ></w-text>
+                        </w-shell-material>
+                    </div>
+
+                    <div class="bk">
+                        <demolink
+                            :kbname="'w-text'"
+                            :casename="'textAlign'"
+                            :kind="'border'"
+                            :shell="'shell'"
+                        ></demolink>
+
+                        <w-shell-material
+                            style="margin-top:30px;"
+                            :title="'請輸入貨物商品編號'"
+                            :leftIcon="'fas fa-clipboard-check'"
+                        >
+                            <w-text
+                                :borderShadow="false"
+                                :borderColor="'orange lighten-2'"
+                                :borderColorFocus="'orange darken-2'"
+                                :backgroundColorFocus="'orange lighten-5'"
+                                :textAlign="'right'"
                                 v-model="WText.text"
                             ></w-text>
                         </w-shell-material>

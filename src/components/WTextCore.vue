@@ -4,7 +4,7 @@
         <input
             ref="inp"
             type="text"
-            :style="`transition:all 0.3s; outline: none; width:100%; height:${height}px; text-align:${textAlign}; opacity:${(!valueTrans && !focused)?0.6:1};`"
+            :style="`transition:all 0.3s; outline: none; width:100%; color:${useTextColor}; height:${height}px; text-align:${textAlign}; opacity:${(!valueTrans && !focused)?0.6:1};`"
             :readonly="!editable"
             :placeholder="placeholder"
             v-model="valueTrans"
@@ -19,11 +19,13 @@
 
 <script>
 import verifyValue from 'wsemi/src/verifyValue.mjs'
+import color2hex from '../js/vuetifyColor.mjs'
 
 
 /**
  * @vue-prop {String} [type='any'] 輸入文字框類型字串，預設'any'
  * @vue-prop {String|Number} value 輸入文字框值
+ * @vue-prop {String} [textColor='black'] 輸入文字顏色字串，預設'black'
  * @vue-prop {String} [textAlign='left'] 輸入文字左右對齊字串，預設'left'
  * @vue-prop {String} [placeholder=''] 輸入無文字時的替代字符字串，預設''
  * @vue-prop {Number} [height=28] 輸入高度數字，單位為px，預設28
@@ -38,6 +40,10 @@ export default {
         },
         value: {
             type: [String, Number],
+        },
+        textColor: {
+            type: String,
+            default: 'black',
         },
         textAlign: {
             type: String,
@@ -79,6 +85,15 @@ export default {
 
             return ''
         },
+
+        useTextColor: function() {
+            //console.log('computed useTextColor')
+
+            let vo = this
+
+            return color2hex(vo.textColor)
+        },
+
 
     },
     methods: {

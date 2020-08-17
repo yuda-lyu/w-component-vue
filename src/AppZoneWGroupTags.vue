@@ -25,6 +25,20 @@
                 <div class="bk">
                     <demolink
                         :kbname="'w-group-tags'"
+                        :casename="'inputTextColor'"
+                        :kind="'nokind'"
+                        :shell="'pure'"
+                    ></demolink>
+
+                    <w-group-tags
+                        :inputTextColor="'purple accent-4'"
+                        v-model="WGroupTags.items"
+                    ></w-group-tags>
+                </div>
+
+                <div class="bk">
+                    <demolink
+                        :kbname="'w-group-tags'"
                         :casename="'inputIconTooltip'"
                         :kind="'nokind'"
                         :shell="'pure'"
@@ -54,13 +68,13 @@
                 <div class="bk">
                     <demolink
                         :kbname="'w-group-tags'"
-                        :casename="'buttonIcon'"
+                        :casename="'icon'"
                         :kind="'nokind'"
                         :shell="'pure'"
                     ></demolink>
 
                     <w-group-tags
-                        :buttonIcon="mdiBlenderSoftware"
+                        :icon="mdiBlenderSoftware"
                         v-model="WGroupTags.items"
                     ></w-group-tags>
                 </div>
@@ -68,14 +82,14 @@
                 <div class="bk">
                     <demolink
                         :kbname="'w-group-tags'"
-                        :casename="'buttonIcon & buttonIconColor'"
+                        :casename="'icon & iconColor'"
                         :kind="'nokind'"
                         :shell="'pure'"
                     ></demolink>
 
                     <w-group-tags
-                        :buttonIcon="mdiBlenderSoftware"
-                        :buttonIconColor="'light-blue darken-1'"
+                        :icon="mdiBlenderSoftware"
+                        :iconColor="'light-blue darken-1'"
                         v-model="WGroupTags.items"
                     ></w-group-tags>
                 </div>
@@ -165,6 +179,26 @@
                 <div class="bk">
                     <demolink
                         :kbname="'w-group-tags'"
+                        :casename="'inputTextColor'"
+                        :kind="'nokind'"
+                        :shell="'shell'"
+                    ></demolink>
+
+                    <w-shell-material
+                        style="margin-top:30px;"
+                        :title="'請輸入販賣水果種類'"
+                        :leftIcon="mdiEmailVariant"
+                    >
+                        <w-group-tags
+                            :inputTextColor="'purple accent-4'"
+                            v-model="WGroupTags.items"
+                        ></w-group-tags>
+                    </w-shell-material>
+                </div>
+
+                <div class="bk">
+                    <demolink
+                        :kbname="'w-group-tags'"
                         :casename="'inputIconTooltip'"
                         :kind="'nokind'"
                         :shell="'shell'"
@@ -206,7 +240,7 @@
                 <div class="bk">
                     <demolink
                         :kbname="'w-group-tags'"
-                        :casename="'buttonIcon'"
+                        :casename="'icon'"
                         :kind="'nokind'"
                         :shell="'shell'"
                     ></demolink>
@@ -217,7 +251,7 @@
                         :leftIcon="mdiEmailVariant"
                     >
                         <w-group-tags
-                            :buttonIcon="mdiBlenderSoftware"
+                            :icon="mdiBlenderSoftware"
                             v-model="WGroupTags.items"
                         ></w-group-tags>
                     </w-shell-material>
@@ -226,7 +260,7 @@
                 <div class="bk">
                     <demolink
                         :kbname="'w-group-tags'"
-                        :casename="'buttonIcon & buttonIconColor'"
+                        :casename="'icon & iconColor'"
                         :kind="'nokind'"
                         :shell="'shell'"
                     ></demolink>
@@ -237,8 +271,8 @@
                         :leftIcon="mdiEmailVariant"
                     >
                         <w-group-tags
-                            :buttonIcon="mdiBlenderSoftware"
-                            :buttonIconColor="'light-blue darken-1'"
+                            :icon="mdiBlenderSoftware"
+                            :iconColor="'light-blue darken-1'"
                             v-model="WGroupTags.items"
                         ></w-group-tags>
                     </w-shell-material>

@@ -19,9 +19,9 @@
                 <v-icon
                     small
                     left
-                    :color="buttonIconColor"
-                    v-if="buttonIcon!==''"
-                >{{buttonIcon}}</v-icon>
+                    :color="iconColor"
+                    v-if="icon!==''"
+                >{{icon}}</v-icon>
 
                 <span style="font-size:0.875rem;">{{item}}</span>
 
@@ -32,13 +32,19 @@
         <template v-if="valueTrans.length===0">
 
             <v-chip
-                class="v-chpi-modify"
+                :class="`v-chpi-modify ${outlined?'':'shadow'}`"
                 small
                 :text-color="textColor"
                 :color="backgroundColor"
+                :outlined="outlined"
             >
 
-                <v-icon small left v-if="buttonIcon!==''">{{buttonIcon}}</v-icon>
+                <v-icon
+                    small
+                    left
+                    :color="iconColor"
+                    v-if="icon!==''"
+                >{{icon}}</v-icon>
 
                 <span style="font-size:0.875rem;">{{nodata}}</span>
 
@@ -50,6 +56,7 @@
 
         <div style="display:inline-block; width:150px; vertical-align:middle;" v-if="editable">
             <w-text
+                :textColor="inputTextColor"
                 :borderShadow="false"
                 :rightIcon="mdiPlusCircle"
                 :rightIconColor="inputTextButtonColor"
@@ -76,12 +83,18 @@ import WText from './WText.vue'
 
 /**
  * @vue-prop {Array} value 輸入字串陣列
+ * @vue-prop {Boolean} [outlined=false] 輸入是否顯示為邊框模式布林值，詳見vuetify的chip設定，預設false
  * @vue-prop {String} [textColor='grey darken-2'] 輸入文字顏色字串，預設'grey darken-2'
  * @vue-prop {String} [backgroundColor='grey lighten-3'] 輸入背景顏色字串，預設'grey lighten-3'
+ * @vue-prop {String} [icon=''] 輸入左側圖標字串，預設''
+ * @vue-prop {String} [iconColor='grey darken-2'] 輸入左側圖標顏色字串，預設'grey darken-2'
+ * @vue-prop {String} [inputTextColor='black'] 輸入文字顏色字串，預設'black'
  * @vue-prop {String} [inputTextBackgroundColor='white'] 輸入輸入框背景顏色字串，預設'white'
  * @vue-prop {String} [inputTextBackgroundColorFocus='grey lighten-5'] 輸入輸入框背景Focus顏色字串，預設'grey lighten-5'
- * @vue-prop {String} [inputTextBorderColor='grey lighten-1'] 輸入輸入框未Focus時文字顏色字串，預設'grey lighten-1'
- * @vue-prop {String} [inputTextBorderColorFocus='grey darken-1'] 輸入輸入框Focus時文字顏色字串，預設'grey darken-1'
+ * @vue-prop {String} [inputTextBorderColor='grey lighten-1'] 輸入輸入框未Focus時邊框顏色字串，預設'grey lighten-1'
+ * @vue-prop {String} [inputTextBorderColorFocus='grey darken-1'] 輸入輸入框Focus時文字邊框字串，預設'grey darken-1'
+ * @vue-prop {String} [inputTextButtonColor='grey lighten-1'] 輸入輸入框未Focus時按鈕顏色字串，預設'grey lighten-1'
+ * @vue-prop {String} [inputTextButtonColorFocus='grey'] 輸入輸入框Focus時按鈕顏色字串，預設'grey'
  * @vue-prop {String} [inputIconTooltip='新增'] 輸入輸入框右側按鈕提示文字字串，預設'新增'
  * @vue-prop {Boolean} [editable=true] 輸入是否為編輯模式，預設true
  * @vue-prop {String} [nodata='無'] 輸入無任何字串陣列時的預設文字字串，預設'無'
@@ -106,13 +119,17 @@ export default {
             type: String,
             default: 'grey lighten-3',
         },
-        buttonIcon: {
+        icon: {
             type: String,
             default: '',
         },
-        buttonIconColor: {
+        iconColor: {
             type: String,
             default: 'grey darken-2',
+        },
+        inputTextColor: {
+            type: String,
+            default: 'black',
         },
         inputTextBackgroundColor: {
             type: String,
