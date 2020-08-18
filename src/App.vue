@@ -245,13 +245,6 @@
             ></AppZoneWButtonChip>
 
 
-            <AppZoneWButtonCapsule
-                :modeBorder="modeBorder"
-                :modeShell="modeShell"
-                v-if="compname==='WButtonCapsule'"
-            ></AppZoneWButtonCapsule>
-
-
             <AppZoneWButtonCircle
                 :modeBorder="modeBorder"
                 :modeShell="modeShell"
@@ -512,7 +505,6 @@ import AppZoneWDialog from './AppZoneWDialog.vue'
 import AppZoneWConfirm from './AppZoneWConfirm.vue'
 import AppZoneWPopup from './AppZoneWPopup.vue'
 import AppZoneWButtonChip from './AppZoneWButtonChip.vue'
-import AppZoneWButtonCapsule from './AppZoneWButtonCapsule.vue'
 import AppZoneWButtonCircle from './AppZoneWButtonCircle.vue'
 import AppZoneWButtonProg from './AppZoneWButtonProg.vue'
 import AppZoneWGroupButtons from './AppZoneWGroupButtons.vue'
@@ -560,7 +552,6 @@ export default {
         AppZoneWConfirm,
         AppZoneWPopup,
         AppZoneWButtonChip,
-        AppZoneWButtonCapsule,
         AppZoneWButtonCircle,
         AppZoneWButtonProg,
         AppZoneWGroupButtons,
@@ -628,7 +619,6 @@ export default {
                     name: 'button',
                     cmps: [
                         'WButtonChip',
-                        'WButtonCapsule',
                         'WButtonCircle',
                         'WButtonProg',
                     ]
@@ -817,9 +807,9 @@ export default {
     background-color: #fff;
 }
 .head1 {
-    margin-bottom: 20px;
-    padding: 0px;
-    font-size: 30pt;
+    margin: 0px;
+    padding: 0px 0px 20px 0px;
+    font-size: 2.5rem;
 }
 .item {
     border-left: 3px solid #ffba75;
@@ -832,15 +822,12 @@ export default {
 }
 .bk {
     vertical-align: top;
-    margin-top: 20px;
+    padding: 10px 0px 30px 0px;
 }
 @media screen and (min-width:1000px){
     .bk {
         display: inline-block;
-        margin: 10px 90px 60px 0px;
-    }
-    .list {
-        width: 400px;
+        padding: 10px 90px 60px 0px;
     }
 }
 </style>

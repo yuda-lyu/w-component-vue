@@ -338,6 +338,43 @@
                 <div class="bk">
                     <demolink
                         :kbname="'w-group-radio-capsule'"
+                        :casename="'shadow & shadowStyle'"
+                        :kind="'nokind'"
+                        :shell="'pure'"
+                    ></demolink>
+
+                    <w-group-radio-capsule
+                        :items="WGroupRadioCapsule.object.items"
+                        v-model="WGroupRadioCapsule.object.select"
+                        :shadow="true"
+                        :shadowStyle="'0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12)'"
+                        _shadowStyle="'0 3px 1px -2px {backgroundColorAlpha=0.2}, 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 {backgroundColorAlpha=0.12}'"
+                    ></w-group-radio-capsule>
+
+                </div>
+
+
+                <div class="bk">
+                    <demolink
+                        :kbname="'w-group-radio-capsule'"
+                        :casename="'shadowActiveStyle'"
+                        :kind="'nokind'"
+                        :shell="'pure'"
+                    ></demolink>
+
+                    <w-group-radio-capsule
+                        :items="WGroupRadioCapsule.object.items"
+                        v-model="WGroupRadioCapsule.object.select"
+                        :shadowActiveStyle="'0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12)'"
+                        _shadowActiveStyle="'0 3px 1px -2px {backgroundColorActiveAlpha=0.2}, 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 {backgroundColorActiveAlpha=0.12}'"
+                    ></w-group-radio-capsule>
+
+                </div>
+
+
+                <div class="bk">
+                    <demolink
+                        :kbname="'w-group-radio-capsule'"
                         :casename="'no shadowActive'"
                         :kind="'nokind'"
                         :shell="'pure'"
@@ -348,6 +385,43 @@
                         v-model="WGroupRadioCapsule.object.select"
                         :shadowActive="false"
                     ></w-group-radio-capsule>
+
+                </div>
+
+
+                <div class="bk">
+                    <demolink
+                        :kbname="'w-group-radio-capsule'"
+                        :casename="'slot & shadow'"
+                        :kind="'nokind'"
+                        :shell="'pure'"
+                    ></demolink>
+
+                    <w-group-radio-capsule
+                        :items="WGroupRadioCapsule.string.items"
+                        v-model="WGroupRadioCapsule.string.select"
+                        :shadow="true"
+                        :backgroundColorActive="'grey'"
+                    >
+                        <template v-slot="props">
+                            <div style="display:flex;">
+                                <v-chip
+                                    style="transform:scale(0.9); box-shadow:0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12)"
+                                    small
+                                    rounded
+                                    dark
+                                    color="purple accent-4"
+                                >{{props.item.data}}</v-chip>
+                                <v-chip
+                                    style="transform:scale(0.9); box-shadow:0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12)"
+                                    small
+                                    rounded
+                                    dark
+                                    color="cyan darken-1"
+                                >View</v-chip>
+                            </div>
+                        </template>
+                    </w-group-radio-capsule>
 
                 </div>
 
@@ -891,6 +965,59 @@
                             :items="WGroupRadioCapsule.object.items"
                             v-model="WGroupRadioCapsule.object.select"
                             :shadow="true"
+                        ></w-group-radio-capsule>
+
+                    </w-shell-material>
+
+                </div>
+
+
+                <div class="bk">
+                    <demolink
+                        :kbname="'w-group-radio-capsule'"
+                        :casename="'shadow & shadowStyle'"
+                        :kind="'nokind'"
+                        :shell="'shell'"
+                    ></demolink>
+
+                    <w-shell-material
+                        style="margin-top:30px;"
+                        :title="'請選擇分頁頁籤'"
+                        :leftIcon="mdiAccountSupervisorCircle"
+                    >
+
+                        <w-group-radio-capsule
+                            :items="WGroupRadioCapsule.object.items"
+                            v-model="WGroupRadioCapsule.object.select"
+                            :shadow="true"
+                            :shadowStyle="'0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12)'"
+                            _shadowStyle="'0 3px 1px -2px {backgroundColorAlpha=0.2}, 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 {backgroundColorAlpha=0.12}'"
+                        ></w-group-radio-capsule>
+
+                    </w-shell-material>
+
+                </div>
+
+
+                <div class="bk">
+                    <demolink
+                        :kbname="'w-group-radio-capsule'"
+                        :casename="'shadowActiveStyle'"
+                        :kind="'nokind'"
+                        :shell="'shell'"
+                    ></demolink>
+
+                    <w-shell-material
+                        style="margin-top:30px;"
+                        :title="'請選擇分頁頁籤'"
+                        :leftIcon="mdiAccountSupervisorCircle"
+                    >
+
+                        <w-group-radio-capsule
+                            :items="WGroupRadioCapsule.object.items"
+                            v-model="WGroupRadioCapsule.object.select"
+                            :shadowActiveStyle="'0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12)'"
+                            _shadowActiveStyle="'0 3px 1px -2px {backgroundColorActiveAlpha=0.2}, 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 {backgroundColorActiveAlpha=0.12}'"
                         ></w-group-radio-capsule>
 
                     </w-shell-material>

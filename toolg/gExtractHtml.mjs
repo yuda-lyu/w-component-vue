@@ -79,9 +79,9 @@ let h = `
             background-color: #fff;
         }
         .head1 {
-            margin-bottom: 20px;
-            padding: 0px;
-            font-size: 30pt;
+            margin: 0px;
+            padding: 0px 0px 20px 0px;
+            font-size: 2.5rem;
         }
         .item {
             border-left: 3px solid #ffba75;
@@ -94,18 +94,12 @@ let h = `
         }
         .bk {
             vertical-align: top;
-            margin-top: 20px;
-        }
-        .list {
-            width: 100%;
+            padding: 10px 0px 30px 0px;
         }
         @media screen and (min-width:1000px){
             .bk {
                 display: inline-block;
-                margin: 10px 90px 60px 0px;
-            }
-            .list {
-                width: 400px;
+                padding: 10px 90px 60px 0px;
             }
         }
     </style>

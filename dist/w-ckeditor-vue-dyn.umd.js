@@ -1,5 +1,5 @@
 /*!
- * w-ckeditor-vue-dyn v1.4.8
+ * w-ckeditor-vue-dyn v1.4.9
  * (c) 2018-2020 yuda-lyu(semisphere)
  * Released under the MIT License.
  */

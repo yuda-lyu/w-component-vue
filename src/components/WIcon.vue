@@ -1,5 +1,9 @@
 <template>
-    <div style="display:flex; align-items:center; user-select:none;" v-if="icon!==''">
+    <div 
+        style="display:flex; align-items:center; user-select:none;" 
+        @click="(v)=>{$emit('click',v)}"
+        v-if="icon!==''"
+    >
 
         <v-icon
             :style="useStyle"

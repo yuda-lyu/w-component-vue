@@ -3,7 +3,7 @@
 
         <template v-for="(item,kitem) in itemsTrans">
 
-            <WButtonCapsule
+            <WButtonChip
                 style="margin:10px 10px 10px 0px;"
                 :key="kitem"
                 :text="get(item,'data.text') || get(item,'data')"
@@ -24,14 +24,21 @@
                 :backgroundColorHover="backgroundColorHover"
                 :backgroundColorActive="backgroundColorActive"
                 :shadow="shadow"
+                :shadowStyle="shadowStyle"
                 :shadowActive="shadowActive"
+                :shadowActiveStyle="shadowActiveStyle"
                 :small="small"
                 :sizePadding="sizePadding"
                 :loading="loading"
                 :editable="editable"
                 :active="item.active"
                 @click="toggleState(item)"
-            ></WButtonCapsule>
+            >
+                <slot
+                    :item="item"
+                    :kitem="kitem"
+                ></slot>
+            </WButtonChip>
 
         </template>
 
@@ -43,7 +50,7 @@ import get from 'lodash/get'
 import map from 'lodash/map'
 import isEqual from 'lodash/isEqual'
 import cloneDeep from 'lodash/cloneDeep'
-import WButtonCapsule from './WButtonCapsule.vue'
+import WButtonChip from './WButtonChip.vue'
 
 
 /**
@@ -66,7 +73,9 @@ import WButtonCapsule from './WButtonCapsule.vue'
  * @vue-prop {String} [backgroundColorHover='rgba(200,200,200,0.25)'] 輸入滑鼠移入時背景顏色字串，預設'rgba(200,200,200,0.25)'
  * @vue-prop {String} [backgroundColorActive='orange'] 輸入主動模式時背景顏色字串，預設'orange'
  * @vue-prop {Boolean} [shadow=false] 輸入是否顯示陰影，預設false
- * @vue-prop {Boolean} [shadowActive=false] 輸入主動模式時是否顯示陰影，預設true
+ * @vue-prop {String} [shadowStyle=''] 輸入陰影顏色字串，預設值詳見props
+ * @vue-prop {Boolean} [shadowActive=true] 輸入主動模式時是否顯示陰影，預設true
+ * @vue-prop {String} [shadowActiveStyle=''] 輸入主動模式時陰影顏色字串，預設值詳見props
  * @vue-prop {Boolean} [small=true] 輸入是否為小型模式，預設true
  * @vue-prop {String} [sizePadding=''] 輸入內寬設定字串，會覆寫small所算得的padding，預設''，也就是由small決定預設padding值
  * @vue-prop {Boolean} [loading=false] 輸入是否為載入模式，預設false
@@ -74,7 +83,7 @@ import WButtonCapsule from './WButtonCapsule.vue'
  */
 export default {
     components: {
-        WButtonCapsule,
+        WButtonChip,
     },
     props: {
         items: {
@@ -151,9 +160,17 @@ export default {
             type: Boolean,
             default: false,
         },
+        shadowStyle: {
+            type: String,
+            default: '0 12px 20px -10px {backgroundColorAlpha=0.28}, 0 4px 20px 0 rgba(0,0,0,.12), 0 7px 8px -5px {backgroundColorAlpha=0.2}',
+        },
         shadowActive: {
             type: Boolean,
             default: true,
+        },
+        shadowActiveStyle: {
+            type: String,
+            default: '0 12px 20px -10px {backgroundColorActiveAlpha=0.28}, 0 4px 20px 0 rgba(0,0,0,.12), 0 7px 8px -5px {backgroundColorActiveAlpha=0.2}',
         },
         small: {
             type: Boolean,
