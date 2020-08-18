@@ -80,7 +80,7 @@
     <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.js"></script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@1.4.9/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@1.4.10/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -129,28 +129,30 @@
                 @click-close="ckBtnClose"
             >
                 <div style="display:flex; align-items:center;">
-                    <w-button-chip
-                        style="margin-right:5px;"
-                        :text="'Download'"
-                        :text-font-size="'0.75rem'"
-                        :size-padding="'0px 8px'"
-                        :text-color="'#fff'"
-                        :text-color-hover="'#fff'"
-                        :background-color="'rgba(250,50,120,0.9)'"
-                        :background-color-hover="'rgba(250,50,120,0.9)'"
-                        @click.stop="ckBtnItem1"
-                    />
-                    <w-button-chip
-                        style
-                        :text="'View'"
-                        :text-font-size="'0.75rem'"
-                        :size-padding="'0px 8px'"
-                        :text-color="'#fff'"
-                        :text-color-hover="'#fff'"
-                        :background-color="'rgba(200,20,170,0.9)'"
-                        :background-color-hover="'rgba(200,20,170,0.9)'"
-                        @click.stop="ckBtnItem2"
-                    />
+                    <div style="display:flex; margin-right:5px;">
+                        <w-button-chip
+                            :text="'Download'"
+                            :text-font-size="'0.75rem'"
+                            :size-padding="'0px 8px'"
+                            :text-color="'#fff'"
+                            :text-color-hover="'#fff'"
+                            :background-color="'rgba(250,50,120,0.9)'"
+                            :background-color-hover="'rgba(250,50,120,0.9)'"
+                            @click.stop="ckBtnItem1"
+                        />
+                    </div>
+                    <div style="display:flex;">
+                        <w-button-chip
+                            :text="'View'"
+                            :text-font-size="'0.75rem'"
+                            :size-padding="'0px 8px'"
+                            :text-color="'#fff'"
+                            :text-color-hover="'#fff'"
+                            :background-color="'rgba(200,20,170,0.9)'"
+                            :background-color-hover="'rgba(200,20,170,0.9)'"
+                            @click.stop="ckBtnItem2"
+                        />
+                    </div>
                 </div>
             </w-button-chip>
         </div>

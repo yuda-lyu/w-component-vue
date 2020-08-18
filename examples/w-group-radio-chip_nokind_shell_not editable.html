@@ -80,7 +80,7 @@
     <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.js"></script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@1.4.9/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@1.4.10/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -124,13 +124,13 @@
 
             <w-shell-material
                 style="margin-top:30px;"
-                :title="'請選擇種植水果'"
-                :left-icon="'mdi-email-variant'"
+                :title="'請選擇分頁頁籤'"
+                :left-icon="'mdi-account-supervisor-circle'"
             >
                 <w-group-radio-chip
-                    :items="WGroupRadioChip.items"
+                    :items="WGroupRadioChip.object.items"
+                    v-model="WGroupRadioChip.object.select"
                     :editable="false"
-                    v-model="WGroupRadioChip.select"
                 />
             </w-shell-material>
         </div>
@@ -147,21 +147,109 @@
     data: function() {
       return {
         WGroupRadioChip: {
-          items: ["foo", "bar", "fizz", "buzz", "Apple", "橘子"],
-          select: "Apple"
-        },
-        actions: [
-          {
-            mode: "eleclick",
-            nth: 1,
-            selector: "span.v-chpi-modify"
+          string: {
+            items: [
+              "Dashboard",
+              "Schedule",
+              "Profile",
+              "History",
+              "Apple",
+              "橘子"
+            ],
+            select: "Apple"
           },
-          {
-            mode: "eleclick",
-            nth: 2,
-            selector: "span.v-chpi-modify"
+          object: {
+            items: [
+              {
+                text: "Dashboard",
+                icon: "mdi-view-dashboard"
+              },
+              {
+                text: "Schedule",
+                icon: "mdi-clock-time-eight-outline"
+              },
+              {
+                text: "Profile",
+                icon: "mdi-blender-software"
+              },
+              {
+                text: "History",
+                icon: "mdi-spoon-sugar"
+              },
+              {
+                text: "蘋果",
+                icon: "mdi-apple"
+              }
+            ],
+            select: {
+              text: "Dashboard",
+              icon: "mdi-view-dashboard"
+            }
+          },
+          objectTP: {
+            items: [
+              {
+                text: "Dashboard",
+                icon: "mdi-view-dashboard",
+                tooltip: "tooltip for Dashboard"
+              },
+              {
+                text: "Schedule",
+                icon: "mdi-clock-time-eight-outline",
+                tooltip: "tooltip for Schedule"
+              },
+              {
+                text: "Profile",
+                icon: "mdi-blender-software",
+                tooltip: "tooltip for Profile"
+              },
+              {
+                text: "History",
+                icon: "mdi-spoon-sugar",
+                tooltip: "tooltip for History"
+              },
+              {
+                text: "蘋果",
+                icon: "mdi-apple",
+                tooltip: "tooltip for 蘋果"
+              }
+            ],
+            select: {
+              text: "Dashboard",
+              icon: "mdi-account-supervisor-circle",
+              tooltip: "tooltip for Dashboard"
+            }
+          },
+          objectFA: {
+            items: [
+              {
+                text: "Dashboard",
+                icon: "fa fa-address-book"
+              },
+              {
+                text: "Schedule",
+                icon: "fa fa-address-card"
+              },
+              {
+                text: "Profile",
+                icon: "fa fa-american-sign-language-interpreting"
+              },
+              {
+                text: "History",
+                icon: "fa fa-balance-scale"
+              },
+              {
+                text: "蘋果",
+                icon: "fa fa-heartbeat"
+              }
+            ],
+            select: {
+              text: "Dashboard",
+              icon: "fa fa-address-book"
+            }
           }
-        ]
+        },
+        actions: []
       };
     },
     computed: {},
