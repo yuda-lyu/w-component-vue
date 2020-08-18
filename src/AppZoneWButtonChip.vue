@@ -122,28 +122,30 @@
                     @click-close="ckBtnClose"
                 >
                     <div style="display:flex; align-items:center;">
-                        <w-button-chip
-                            style="margin-right:5px;"
-                            :text="'Download'"
-                            :textFontSize="'0.75rem'"
-                            :sizePadding="'0px 8px'"
-                            :textColor="'#fff'"
-                            :textColorHover="'#fff'"
-                            :backgroundColor="'rgba(250,50,120,0.9)'"
-                            :backgroundColorHover="'rgba(250,50,120,0.9)'"
-                            @click.stop="ckBtnItem1"
-                        ></w-button-chip>
-                        <w-button-chip
-                            style=""
-                            :text="'View'"
-                            :textFontSize="'0.75rem'"
-                            :sizePadding="'0px 8px'"
-                            :textColor="'#fff'"
-                            :textColorHover="'#fff'"
-                            :backgroundColor="'rgba(200,20,170,0.9)'"
-                            :backgroundColorHover="'rgba(200,20,170,0.9)'"
-                            @click.stop="ckBtnItem2"
-                        ></w-button-chip>
+                        <div style="display:flex; margin-right:5px;">
+                            <w-button-chip
+                                :text="'Download'"
+                                :textFontSize="'0.75rem'"
+                                :sizePadding="'0px 8px'"
+                                :textColor="'#fff'"
+                                :textColorHover="'#fff'"
+                                :backgroundColor="'rgba(250,50,120,0.9)'"
+                                :backgroundColorHover="'rgba(250,50,120,0.9)'"
+                                @click.stop="ckBtnItem1"
+                            ></w-button-chip>
+                        </div>
+                        <div style="display:flex;">
+                            <w-button-chip
+                                :text="'View'"
+                                :textFontSize="'0.75rem'"
+                                :sizePadding="'0px 8px'"
+                                :textColor="'#fff'"
+                                :textColorHover="'#fff'"
+                                :backgroundColor="'rgba(200,20,170,0.9)'"
+                                :backgroundColorHover="'rgba(200,20,170,0.9)'"
+                                @click.stop="ckBtnItem2"
+                            ></w-button-chip>
+                        </div>
                     </div>
                 </w-button-chip>
 

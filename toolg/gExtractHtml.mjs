@@ -187,15 +187,14 @@ function writeHtml(v) {
     c = c.replace('{{methods}}', t_methods)
 
     //replace mdi-icon
-    let r = `"mdi[A-Za-z]+"`
+    let r = `mdi[A-Za-z]+` //有些是元素的attr有些是vue的data, 故不能包含雙引號查找
     let reg = new RegExp(r, 'g')
     let mdis = c.match(reg)
     if (mdis) {
         _.each(mdis, function(mdi) {
-            let t = w.replace(mdi, '"', '') //取變數名稱
+            let t = mdi
             t = _.kebabCase(t) //轉kebab
             t = `'${t}'` //添加單引號成為字串
-            t = `"${t}"` //添加雙引號成為html屬性
             c = c.replace(mdi, t) //取代
         })
     }
