@@ -80,7 +80,7 @@
     <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.js"></script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@1.4.10/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@1.4.11/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -119,15 +119,19 @@
 >
     <v-app id="app" style="font-family:inherit;">
         <div class="head1">w-group-tags</div>
-        <div class="bk">
+        <div class="bk" style="display:block;">
             <div class="item">not editable</div>
 
             <w-shell-material
                 style="margin-top:30px;"
-                :title="'請輸入販賣水果種類'"
+                :title="'請選擇分頁頁籤'"
                 :left-icon="'mdi-email-variant'"
             >
-                <w-group-tags :editable="false" v-model="WGroupTags.items" />
+                <w-group-tags
+                    v-model="WGroupTags.items"
+                    :icon="'mdi-chart-bubble'"
+                    :editable="false"
+                />
             </w-shell-material>
         </div>
     </v-app>
@@ -143,34 +147,59 @@
     data: function() {
       return {
         WGroupTags: {
-          items: ["foo", "bar", "fizz", "buzz", "Apple", "橘子"],
+          items: [
+            "Dashboard",
+            "Schedule",
+            "Profile",
+            "History",
+            "Map",
+            "聯絡方式"
+          ],
           empty: []
         },
-        actions: [
-          {
-            mode: "eletype",
-            selector: "input.basic",
-            str: "新增1"
-          },
-          {
-            mode: "eletype",
-            selector: "input.basic",
-            str: "項目1",
-            noEnter: true
-          },
-          {
-            mode: "eleclick",
-            selector: 'div[shellellipse="rightIcon"]'
-          },
-          {
-            mode: "eleclick",
-            selector: 'i[role="button"]'
-          }
-        ]
+        actions: []
       };
     },
     computed: {},
-    methods: {}
+    methods: {
+      ckBtn: function(ev, msg) {
+        console.log("ckBtn", msg);
+      },
+      ckBtnClose: function(ev, item) {
+        console.log("ckBtnClose", item);
+      },
+      ckBtnClosePm: function(ev, item) {
+        console.log("ckBtnClosePm", item);
+        alert("pm.resolve() for close");
+        item.pm.resolve();
+        //item.pm.reject()
+      },
+      ckBtnItem1: function(msg) {
+        console.log("ckBtnItem1", msg);
+      },
+      ckBtnItem2: function(msg) {
+        console.log("ckBtnItem2", msg);
+      },
+      ckBtnModProg: function(ev, msg) {
+        console.log("ckBtnModProg", msg);
+        let n = 0;
+        let t = setInterval(function() {
+          n += 0.5;
+          msg.setProg(n);
+          if (n >= 100) {
+            //當prog>=100時會由內部自動設定為null
+            clearInterval(t);
+          }
+        }, 10);
+      },
+      ckBtnModLoading: function(ev, msg) {
+        console.log("ckBtnModLoading", msg);
+        msg.setLoading(true);
+        setTimeout(function() {
+          msg.setLoading(false);
+        }, 2000);
+      }
+    }
   });
     </script>
 </body>
