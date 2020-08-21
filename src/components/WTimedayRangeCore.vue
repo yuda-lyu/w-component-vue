@@ -92,13 +92,13 @@ export default {
             //focused
             let focused = vo.focused_start || vo.focused_end
 
-            //setTimeout
-            setTimeout(() => {
+            //$nextTick
+            vo.$nextTick(() => {
 
                 //emit
                 vo.$emit('update:focused', focused)
 
-            }, 1)
+            })
 
         },
 

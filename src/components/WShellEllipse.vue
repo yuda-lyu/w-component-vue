@@ -277,13 +277,13 @@ export default {
                 return
             }
 
-            //setTimeout
-            setTimeout(() => {
+            //$nextTick
+            vo.$nextTick(() => {
 
                 //emit
                 vo.$emit('click-' + mode)
 
-            }, 1)
+            })
 
         },
 

@@ -137,13 +137,13 @@ export default {
             //save
             vo.focusedTrans = focused
 
-            //setTimeout
-            setTimeout(() => {
+            //$nextTick
+            vo.$nextTick(() => {
 
                 //emit
                 vo.$emit('update:focused', focused)
 
-            }, 1)
+            })
 
         },
 
@@ -179,8 +179,8 @@ export default {
             let value = r.value
             let errmsg = r.errmsg
 
-            //setTimeout
-            setTimeout(() => {
+            //$nextTick
+            vo.$nextTick(() => {
 
                 //reset for error
                 vo.valueTrans = value
@@ -191,7 +191,7 @@ export default {
                 //emit
                 vo.$emit('errmsg', errmsg)
 
-            }, 1)
+            })
 
         },
 

@@ -235,13 +235,13 @@ export default {
 
             let vo = this
 
-            //setTimeout
-            setTimeout(() => {
+            //$nextTick
+            vo.$nextTick(() => {
 
                 //emit
                 vo.$emit('click-btns', evName)
 
-            }, 1)
+            })
 
         },
 
@@ -250,13 +250,13 @@ export default {
 
             let vo = this
 
-            //setTimeout
-            setTimeout(() => {
+            //$nextTick
+            vo.$nextTick(() => {
 
                 //emit
                 vo.$emit('click-save')
 
-            }, 1)
+            })
 
         },
 
@@ -273,8 +273,8 @@ export default {
             //hide
             vo.showTrans = false
 
-            //setTimeout
-            setTimeout(() => {
+            //$nextTick
+            vo.$nextTick(() => {
 
                 //emit
                 vo.$emit('update:show', vo.showTrans)
@@ -282,7 +282,7 @@ export default {
                 //emit
                 vo.$emit('click-close')
 
-            }, 1)
+            })
 
         },
 
@@ -297,10 +297,10 @@ export default {
             if (vo.fullscreen && e.code === 'Escape') {
                 //console.log('detect Escape in fullscreen')
 
-                //setTimeout, 需脫勾再強制改為顯示
-                setTimeout(() => {
+                //$nextTick, 需脫勾再強制改為顯示
+                vo.$nextTick(() => {
                     vo.showTrans = true
-                }, 1)
+                })
 
             }
 

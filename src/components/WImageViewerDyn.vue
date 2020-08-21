@@ -95,11 +95,11 @@ export default {
                 vo.loading = false
 
                 //domFadeIn
-                setTimeout(() => {
+                vo.$nextTick(() => {
                     each(vo.$refs.imgsGroup.children, (img, k) => {
                         domFadeIn(img, { duration: 200, delay: k * 100 })
                     })
-                }, 1)
+                })
 
             })
 

@@ -165,13 +165,13 @@ export default {
             //save
             vo.focusedTrans = focused
 
-            //setTimeout
-            setTimeout(() => {
+            //$nextTick
+            vo.$nextTick(() => {
 
                 //emit
                 vo.$emit('update:focused', focused)
 
-            }, 1)
+            })
 
         },
 

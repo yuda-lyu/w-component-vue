@@ -208,12 +208,12 @@ export default {
 
             let vo = this
 
-            setTimeout(() => {
+            vo.$nextTick(() => {
 
                 //emit
                 vo.$emit('input', value)
 
-            }, 1)
+            })
 
         },
 

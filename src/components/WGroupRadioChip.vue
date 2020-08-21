@@ -6,16 +6,19 @@
             <WButtonChip
                 style="margin:10px 10px 10px 0px;"
                 :key="kitem"
-                :text="get(item,'data.text') || get(item,'data')"
-                :tooltip="get(item,'data.tooltip')"
-                :icon="get(item,'data.icon')"
+                :text="get(item,`data.${keyText}`) || get(item,'data')"
+                :tooltip="get(item,`data.${keyTooltip}`)"
+                :icon="get(item,`data.${keyIcon}`)"
                 :iconColor="iconColor"
                 :iconColorHover="iconColorHover"
                 :iconColorActive="iconColorActive"
+                :iconSize="iconSize"
                 :iconShiftLeft="iconShiftLeft"
+                :iconShiftRight="iconShiftRight"
                 :textColor="textColor"
                 :textColorHover="textColorHover"
                 :textColorActive="textColorActive"
+                :textFontSize="textFontSize"
                 :borderRadius="borderRadius"
                 :borderColor="borderColor"
                 :borderColorHover="borderColorHover"
@@ -27,8 +30,8 @@
                 :shadowStyle="shadowStyle"
                 :shadowActive="shadowActive"
                 :shadowActiveStyle="shadowActiveStyle"
-                :small="small"
                 :sizePadding="sizePadding"
+                _close="close"
                 :loading="loading"
                 :editable="editable"
                 :active="item.active"
@@ -54,17 +57,21 @@ import WButtonChip from './WButtonChip.vue'
 
 
 /**
- * @vue-prop {Array} items 輸入全部可選字串或物件陣列
+ * @vue-prop {Array} [items=[]] 輸入全部可選字串或物件陣列，預設[]
  * @vue-prop {String|Object} value 輸入單選字串或物件
  * @vue-prop {String} [keyText=''] 輸入可選項目為物件時，存放顯示文字之欄位字串，預設''
  * @vue-prop {String} [keyIcon=''] 輸入可選項目為物件時，存放圖標之欄位字串，預設''
+ * @vue-prop {String} [keyTooltip=''] 輸入可選項目為物件時，存放提示之欄位字串，預設''
  * @vue-prop {String} [iconColor='black'] 輸入圖標顏色字串，預設'black'
  * @vue-prop {String} [iconColorHover='grey darken-3'] 輸入滑鼠移入時圖標顏色字串，預設'grey darken-3'
  * @vue-prop {String} [iconColorActive='white'] 輸入主動模式時圖標顏色字串，預設'white'
+ * @vue-prop {Number} [iconSize=22] 輸入左側圖標之尺寸數字，單位px，預設22
  * @vue-prop {Number} [iconShiftLeft=0] 輸入圖標左側平移距離數字，單位px，預設0
+ * @vue-prop {Number} [iconShiftRight=0] 輸入右側關閉圖標之右側距離數字，單位px，預設0
  * @vue-prop {String} [textColor='black'] 輸入文字顏色字串，預設'black'
  * @vue-prop {String} [textColorHover='grey darken-3'] 輸入滑鼠移入時文字顏色字串，預設'grey darken-3'
  * @vue-prop {String} [textColorActive='white'] 輸入主動模式時文字顏色字串，預設'white'
+ * @vue-prop {String} [textFontSize='0.85rem'] 輸入文字字型大小字串，預設'0.85rem'
  * @vue-prop {Number} [borderRadius=30] 輸入框圓角寬度，單位為px，預設30
  * @vue-prop {String} [borderColor='transparent'] 輸入邊框顏色字串，預設'transparent'
  * @vue-prop {String} [borderColorHover='transparent'] 輸入滑鼠移入時邊框顏色字串，預設'transparent'
@@ -76,8 +83,8 @@ import WButtonChip from './WButtonChip.vue'
  * @vue-prop {String} [shadowStyle=''] 輸入陰影顏色字串，預設值詳見props
  * @vue-prop {Boolean} [shadowActive=true] 輸入主動模式時是否顯示陰影，預設true
  * @vue-prop {String} [shadowActiveStyle=''] 輸入主動模式時陰影顏色字串，預設值詳見props
- * @vue-prop {Boolean} [small=true] 輸入是否為小型模式，預設true
- * @vue-prop {String} [sizePadding=''] 輸入內寬設定字串，會覆寫small所算得的padding，預設''，也就是由small決定預設padding值
+ * @vue-prop {String} [sizePadding='3px 15px'] 輸入內寬設定字串，預設'3px 15px'
+ * @vue-prop {Boolean} [close=false] 輸入是否具有關閉按鈕模式，預設false
  * @vue-prop {Boolean} [loading=false] 輸入是否為載入模式，預設false
  * @vue-prop {Boolean} [editable=true] 輸入是否為編輯模式，預設true
  */
@@ -88,6 +95,7 @@ export default {
     props: {
         items: {
             type: Array,
+            default: () => [],
         },
         value: {
             type: [String, Object],
@@ -99,6 +107,10 @@ export default {
         keyIcon: {
             type: String,
             default: 'icon',
+        },
+        keyTooltip: {
+            type: String,
+            default: 'tooltip',
         },
         iconColor: {
             type: String,
@@ -112,7 +124,15 @@ export default {
             type: String,
             default: 'white',
         },
+        iconSize: {
+            type: Number,
+            default: 22,
+        },
         iconShiftLeft: {
+            type: Number,
+            default: 0,
+        },
+        iconShiftRight: {
             type: Number,
             default: 0,
         },
@@ -127,6 +147,10 @@ export default {
         textColorActive: {
             type: String,
             default: 'white',
+        },
+        textFontSize: {
+            type: String,
+            default: '0.85rem',
         },
         borderRadius: {
             type: Number,
@@ -172,13 +196,13 @@ export default {
             type: String,
             default: '0 12px 20px -10px {backgroundColorActiveAlpha=0.28}, 0 4px 20px 0 rgba(0,0,0,.12), 0 7px 8px -5px {backgroundColorActiveAlpha=0.2}',
         },
-        small: {
-            type: Boolean,
-            default: true,
-        },
         sizePadding: {
             type: String,
-            default: '',
+            default: '3px 15px',
+        },
+        close: {
+            type: Boolean,
+            default: false,
         },
         loading: {
             type: Boolean,
@@ -235,13 +259,13 @@ export default {
                 return
             }
 
-            //setTimeout
-            setTimeout(() => {
+            //nextTick
+            vo.$nextTick(() => {
 
                 //emit
                 vo.$emit('input', item.data)
 
-            }, 1)
+            })
 
         },
 

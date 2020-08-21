@@ -119,7 +119,7 @@
                     :text="WButtonChip.text"
                     :close="true"
                     @click="ckBtn"
-                    @click-close="ckBtnClose"
+                    @click-close.stop="ckBtnClose"
                 >
                     <div style="display:flex; align-items:center;">
                         <div style="display:flex; margin-right:5px;">
@@ -155,32 +155,17 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-button-chip'"
-                    :casename="'not small (large)'"
+                    :casename="'sizePadding & icon & iconSize & textFontSize'"
                     :kind="'nokind'"
                     :shell="'pure'"
                 ></demolink>
 
                 <w-button-chip
                     :text="WButtonChip.text"
-                    :icon="mdiOrbit"
-                    :small="false"
-                ></w-button-chip>
-
-            </div>
-
-
-            <div class="bk">
-                <demolink
-                    :kbname="'w-button-chip'"
-                    :casename="'sizePadding'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
-                ></demolink>
-
-                <w-button-chip
-                    :text="WButtonChip.text"
+                    :sizePadding="'10px 24px'"
                     :icon="mdiCodepen"
-                    :sizePadding="'12px 27px'"
+                    :iconSize="26"
+                    :textFontSize="'0.9rem'"
                 ></w-button-chip>
 
             </div>
@@ -239,16 +224,17 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-button-chip'"
-                    :casename="'iconColor & iconColorHover'"
+                    :casename="'icon & iconColor & iconColorHover & close'"
                     :kind="'nokind'"
                     :shell="'pure'"
                 ></demolink>
 
                 <w-button-chip
                     :text="WButtonChip.text"
-                    :icon="mdiCheckUnderlineCircle"
+                    :icon="mdiWalletGiftcard"
                     :iconColor="'orange'"
                     :iconColorHover="'orange darken-2'"
+                    :close="true"
                 ></w-button-chip>
 
             </div>
@@ -301,7 +287,7 @@
                     :text="WButtonChip.text"
                     :icon="mdiCheckUnderlineCircle"
                     :borderColor="'transparent'"
-                    :borderColorHover="'pink lighten-1'"
+                    :borderColorHover="'grey darken-1'"
                 ></w-button-chip>
 
             </div>
@@ -336,8 +322,8 @@
                 <w-button-chip
                     :text="WButtonChip.text"
                     :icon="mdiCheckUnderlineCircle"
-                    :backgroundColor="'grey lighten-4'"
-                    :backgroundColorHover="'grey lighten-2'"
+                    :backgroundColor="'grey lighten-2'"
+                    :backgroundColorHover="'grey lighten-3'"
                 ></w-button-chip>
 
             </div>
@@ -473,6 +459,24 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-button-chip'"
+                    :casename="'modify prog by callback in click'"
+                    :kind="'nokind'"
+                    :shell="'pure'"
+                ></demolink>
+
+                <w-button-chip
+                    :text="WButtonChip.text"
+                    :icon="mdiCheckUnderlineCircle"
+                    :prog.sync="WButtonChip.prog"
+                    @click="ckBtnModProg"
+                ></w-button-chip>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-button-chip'"
                     :casename="'loading'"
                     :kind="'nokind'"
                     :shell="'pure'"
@@ -481,7 +485,8 @@
                 <w-button-chip
                     :text="WButtonChip.text"
                     :icon="mdiCheckUnderlineCircle"
-                    :loading="true"
+                    :loading="WButtonChip.loading"
+                    @click="ckBtnLoading"
                 ></w-button-chip>
 
             </div>
@@ -499,7 +504,26 @@
                     :text="WButtonChip.text"
                     :icon="mdiCheckUnderlineCircle"
                     :textColor="'rgba(255,30,60,0.9)'"
-                    :loading="true"
+                    :loading="WButtonChip.loading"
+                    @click="ckBtnLoading"
+                ></w-button-chip>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-button-chip'"
+                    :casename="'modify loading by callback in click'"
+                    :kind="'nokind'"
+                    :shell="'pure'"
+                ></demolink>
+
+                <w-button-chip
+                    :text="WButtonChip.text"
+                    :icon="mdiCheckUnderlineCircle"
+                    :loading.sync="WButtonChip.loading"
+                    @click="ckBtnModLoading"
                 ></w-button-chip>
 
             </div>
@@ -559,6 +583,7 @@ export default {
             'WButtonChip': {
                 'text': 'aBc數字123',
                 'prog': null,
+                'loading': false,
             },
             'actions': [
                 {
@@ -582,6 +607,7 @@ export default {
             console.log('ckBtnItem2')
         },
         ckBtnProg: function() {
+            console.log('ckBtnProg')
             let vo = this
             let n = 0
             let t = setInterval(function() {
@@ -592,6 +618,33 @@ export default {
                     clearInterval(t)
                 }
             }, 10)
+        },
+        ckBtnModProg: function(ev, msg) {
+            console.log('ckBtnModProg', msg)
+            let n = 0
+            let t = setInterval(function() {
+                n += 0.5
+                msg.setProg(n)
+                if (n >= 100) {
+                    //vo.WButtonChip.prog = null //當prog>=100時會由內部自動設定為null
+                    clearInterval(t)
+                }
+            }, 10)
+        },
+        ckBtnLoading: function() {
+            console.log('ckBtnLoading')
+            let vo = this
+            vo.WButtonChip.loading = true
+            setTimeout(function() {
+                vo.WButtonChip.loading = false
+            }, 2000)
+        },
+        ckBtnModLoading: function(ev, msg) {
+            console.log('ckBtnModLoading', msg)
+            msg.setLoading(true)
+            setTimeout(function() {
+                msg.setLoading(false)
+            }, 2000)
         },
     },
 }

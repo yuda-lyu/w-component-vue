@@ -94,13 +94,13 @@ export default {
                 }
             }
 
-            //setTimeout
-            setTimeout(() => {
+            //$nextTick
+            vo.$nextTick(() => {
 
                 //emit
                 vo.$emit('input', value)
 
-            }, 1)
+            })
 
         },
 

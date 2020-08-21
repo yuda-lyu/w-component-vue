@@ -117,13 +117,13 @@ export default {
 
             let vo = this
 
-            //setTimeout
-            setTimeout(() => {
+            //$nextTick
+            vo.$nextTick(() => {
 
                 //emit
                 vo.$emit('click')
 
-            }, 1)
+            })
 
         },
 

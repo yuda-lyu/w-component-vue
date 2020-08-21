@@ -342,8 +342,8 @@ export default {
             //save
             vo.itemActive = cloneDeep(item)
 
-            //setTimeout
-            setTimeout(() => {
+            //$nextTick
+            vo.$nextTick(() => {
 
                 //emit click
                 vo.$emit('click', item)
@@ -351,7 +351,7 @@ export default {
                 //emit valueActive
                 vo.$emit('update:valueActive', vo.itemActive)
 
-            }, 1)
+            })
 
         },
 
@@ -379,13 +379,13 @@ export default {
                     vo.itemActive = {}
                 }
 
-                //setTimeout
-                setTimeout(() => {
+                //$nextTick
+                vo.$nextTick(() => {
 
                     //emit valueActive
                     vo.$emit('update:valueActive', vo.itemActive)
 
-                }, 1)
+                })
 
             }
 
@@ -399,13 +399,13 @@ export default {
 
             let vo = this
 
-            //setTimeout
-            setTimeout(() => {
+            //$nextTick
+            vo.$nextTick(() => {
 
                 //emit
                 vo.$emit('input', cloneDeep(items))
 
-            }, 1)
+            })
 
         },
 

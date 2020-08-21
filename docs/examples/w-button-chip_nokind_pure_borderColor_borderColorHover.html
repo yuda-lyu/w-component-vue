@@ -80,7 +80,7 @@
     <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.js"></script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@1.4.10/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@1.4.11/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -126,7 +126,7 @@
                 :text="WButtonChip.text"
                 :icon="'mdi-check-underline-circle'"
                 :border-color="'transparent'"
-                :border-color-hover="'pink lighten-1'"
+                :border-color-hover="'grey darken-1'"
             />
         </div>
     </v-app>
@@ -143,7 +143,8 @@
       return {
         WButtonChip: {
           text: "aBc數字123",
-          prog: null
+          prog: null,
+          loading: false
         },
         actions: [
           {
@@ -168,6 +169,7 @@
         console.log("ckBtnItem2");
       },
       ckBtnProg: function() {
+        console.log("ckBtnProg");
         let vo = this;
         let n = 0;
         let t = setInterval(function() {
@@ -178,6 +180,33 @@
             clearInterval(t);
           }
         }, 10);
+      },
+      ckBtnModProg: function(ev, msg) {
+        console.log("ckBtnModProg", msg);
+        let n = 0;
+        let t = setInterval(function() {
+          n += 0.5;
+          msg.setProg(n);
+          if (n >= 100) {
+            //vo.WButtonChip.prog = null //當prog>=100時會由內部自動設定為null
+            clearInterval(t);
+          }
+        }, 10);
+      },
+      ckBtnLoading: function() {
+        console.log("ckBtnLoading");
+        let vo = this;
+        vo.WButtonChip.loading = true;
+        setTimeout(function() {
+          vo.WButtonChip.loading = false;
+        }, 2000);
+      },
+      ckBtnModLoading: function(ev, msg) {
+        console.log("ckBtnModLoading", msg);
+        msg.setLoading(true);
+        setTimeout(function() {
+          msg.setLoading(false);
+        }, 2000);
       }
     }
   });

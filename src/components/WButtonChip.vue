@@ -1,7 +1,9 @@
 <template>
     <div
-        style="display:inline-block;"
+        style="display:inline-block; vertical-align:middle;"
         :changeActive="changeActive"
+        :changeProg="changeProg"
+        :changeLoading="changeLoading"
         role="button"
     >
 
@@ -10,7 +12,7 @@
             <v-tooltip
                 bottom
                 transition="slide-y-transition"
-                :disabled="tooltip===''"
+                :disabled="!tooltip"
             >
 
                 <template v-slot:activator="{ on }">
@@ -19,14 +21,13 @@
                         v-on="on"
                         :style="`transition:all 0.3s; border-radius:${borderRadius}px; background:${activeTrans?useBackgroundColorActive:hoverTrans?useBackgroundColorHover:useBackgroundColor}; cursor:pointer; box-shadow:${useShadow};`"
                         v-ripple="editable?{ class: 'white--text' }:false"
-                        _ripple="{ class: 'white--text' }"
                         @mouseenter="hoverTrans=true"
                         @mouseleave="hoverTrans=false"
-                        @click="(v)=>{clickBtn(v)}"
+                        @click="clickBtn($event)"
                     >
 
                         <div
-                            :style="`transition:all 0.3s; opacity:${loading?0:1}; padding:${usePadding}; border-radius:${borderRadius}px; border:1px solid ${activeTrans?useBorderColorActive:hoverTrans?useBorderColorHover:useBorderColor}; `"
+                            :style="`transition:all 0.3s; opacity:${loadingTrans?0:1}; padding:${usePadding}; border-radius:${borderRadius}px; border:1px solid ${activeTrans?useBorderColorActive:hoverTrans?useBorderColorHover:useBorderColor}; `"
                         >
 
                             <div style="display:flex; align-items:center;">
@@ -39,7 +40,7 @@
                                     :style="`margin:0px 5px 0px ${useIconShiftLeft}px;`"
                                     :icon="icon"
                                     :color="activeTrans?useIconColorActive:hoverTrans?useIconColorHover:useIconColor"
-                                    :size="small?22:24"
+                                    :size="iconSize"
                                     v-if="icon"
                                 ></w-icon>
 
@@ -52,8 +53,9 @@
                                 <w-icon
                                     :style="`margin:0px ${useIconShiftRight}px 0px 5px;`"
                                     :icon="mdiCloseCircle"
-                                    :size="small?22:24"
-                                    @click.stop="(v)=>{clickClose(v)}"
+                                    :color="activeTrans?useIconColorActive:hoverTrans?useIconColorHover:useIconColor"
+                                    :size="iconSize"
+                                    @click="clickClose($event)"
                                     v-if="close"
                                 ></w-icon>
 
@@ -82,13 +84,13 @@
 
             <div
                 style="position:absolute; left:0; right:0; top:0; bottom:0;"
-                v-if="loading"
+                v-if="!isProging && loadingTrans"
             >
                 <div style="display:flex; align-items:center; justify-content:center; height:100%;">
                     <v-progress-circular
                         indeterminate
                         width="2"
-                        :size="small?24:28"
+                        :size="iconSize"
                         :color="useTextColor"
                     ></v-progress-circular>
                 </div>
@@ -104,6 +106,7 @@ import { mdiCloseCircle } from '@mdi/js'
 import map from 'lodash/map'
 import join from 'lodash/join'
 import isnum from 'wsemi/src/isnum.mjs'
+import isbol from 'wsemi/src/isbol.mjs'
 import isestr from 'wsemi/src/isestr.mjs'
 import cdbl from 'wsemi/src/cdbl.mjs'
 import replace from 'wsemi/src/replace.mjs'
@@ -120,6 +123,7 @@ import WIcon from './WIcon.vue'
  * @vue-prop {String} [iconColor='black'] 輸入圖標顏色字串，預設'black'
  * @vue-prop {String} [iconColorHover='grey darken-3'] 輸入滑鼠移入時圖標顏色字串，預設'grey darken-3'
  * @vue-prop {String} [iconColorActive='white'] 輸入主動模式時圖標顏色字串，預設'white'
+ * @vue-prop {Number} [iconSize=22] 輸入左側圖標之尺寸數字，單位px，預設22
  * @vue-prop {Number} [iconShiftLeft=0] 輸入左側圖標之左側距離數字，單位px，預設0
  * @vue-prop {Number} [iconShiftRight=0] 輸入右側關閉圖標之右側距離數字，單位px，預設0
  * @vue-prop {Number} [prog=null] 輸入進度條進度數字，單位%，預設null
@@ -140,10 +144,9 @@ import WIcon from './WIcon.vue'
  * @vue-prop {String} [shadowStyle=''] 輸入陰影顏色字串，預設值詳見props
  * @vue-prop {Boolean} [shadowActive=true] 輸入主動模式時是否顯示陰影，預設true
  * @vue-prop {String} [shadowActiveStyle=''] 輸入主動模式時陰影顏色字串，預設值詳見props
+ * @vue-prop {String} [sizePadding='3px 15px'] 輸入內寬設定字串，預設'3px 15px'
  * @vue-prop {Boolean} [active=false] 輸入是否為主動模式，預設false
  * @vue-prop {Boolean} [close=false] 輸入是否具有關閉按鈕模式，預設false
- * @vue-prop {Boolean} [small=true] 輸入是否為小型模式，預設true
- * @vue-prop {String} [sizePadding=''] 輸入內寬設定字串，會覆寫small所算得的padding，預設''，也就是由small決定預設padding值
  * @vue-prop {Boolean} [loading=false] 輸入是否為載入模式，預設false
  * @vue-prop {Boolean} [editable=true] 輸入是否為編輯模式，預設true
  */
@@ -175,6 +178,10 @@ export default {
         iconColorActive: {
             type: String,
             default: 'white',
+        },
+        iconSize: {
+            type: Number,
+            default: 22,
         },
         iconShiftLeft: {
             type: Number,
@@ -258,6 +265,10 @@ export default {
             type: String,
             default: '0 12px 20px -10px {backgroundColorActiveAlpha=0.28}, 0 4px 20px 0 rgba(0,0,0,.12), 0 7px 8px -5px {backgroundColorActiveAlpha=0.2}',
         },
+        sizePadding: {
+            type: String,
+            default: '3px 15px',
+        },
         active: {
             type: Boolean,
             default: false,
@@ -265,14 +276,6 @@ export default {
         close: {
             type: Boolean,
             default: false,
-        },
-        small: {
-            type: Boolean,
-            default: true,
-        },
-        sizePadding: {
-            type: String,
-            default: '',
         },
         loading: {
             type: Boolean,
@@ -289,6 +292,9 @@ export default {
 
             activeTrans: false,
             hoverTrans: false,
+            loadingTrans: false,
+            progTrans: null,
+
         }
     },
     mounted: function() {
@@ -306,9 +312,31 @@ export default {
             return ''
         },
 
+        changeProg: function() {
+            //console.log('computed changeProg')
+
+            let vo = this
+
+            //save
+            vo.progTrans = vo.prog
+
+            return ''
+        },
+
+        changeLoading: function() {
+            //console.log('computed changeLoading')
+
+            let vo = this
+
+            //save
+            vo.loadingTrans = vo.loading
+
+            return ''
+        },
+
         usePadding: function() {
             let vo = this
-            return vo.sizePadding ? vo.sizePadding : vo.small ? '3px 15px' : '7px 15px'
+            return vo.sizePadding
         },
 
         useIconColor: function() {
@@ -328,12 +356,12 @@ export default {
 
         useIconShiftLeft: function() {
             let vo = this
-            return vo.iconShiftLeft - (vo.small ? 6 : 3)
+            return vo.iconShiftLeft - 6
         },
 
         useIconShiftRight: function() {
             let vo = this
-            return vo.iconShiftRight - (vo.small ? 9 : 6)
+            return vo.iconShiftRight - 9
         },
 
         useProgColor: function() {
@@ -447,7 +475,7 @@ export default {
 
         useProg: function() {
             let vo = this
-            let p = vo.prog
+            let p = vo.progTrans
             if (isnum(p)) {
                 p = cdbl(p)
                 if (p < 0 || p > 100) {
@@ -471,8 +499,71 @@ export default {
                 return
             }
 
+            //msg
+            let msg = {
+                setProg: (prog) => {
+
+                    //check
+                    if (!(prog === null || isnum(prog))) {
+                        console.log('prog is not number')
+                        return
+                    }
+
+                    //cdbl, 不轉null
+                    if (isnum(prog)) {
+                        prog = cdbl(prog)
+                    }
+
+                    //$nextTick
+                    vo.$nextTick(() => {
+
+                        //update progTrans
+                        vo.progTrans = prog
+
+                        //emit
+                        vo.$emit('update:prog', vo.progTrans)
+
+                    })
+
+                    if (prog >= 100) {
+
+                        //$nextTick
+                        vo.$nextTick(() => {
+
+                            //update progTrans, 因可能外部為多組件同步prog, 於timer之前修改有可能又會被外部覆寫, 故得於timer內直接修改與觸發事件
+                            vo.progTrans = null
+
+                            //emit
+                            vo.$emit('update:prog', vo.progTrans)
+
+                        })
+
+                    }
+                },
+                setLoading: (loading) => {
+
+                    //check
+                    if (!isbol(loading)) {
+                        console.log('loading is not boolean')
+                        return
+                    }
+
+                    //$nextTick
+                    vo.$nextTick(() => {
+
+                        //update
+                        vo.loadingTrans = loading
+
+                        //emit
+                        vo.$emit('update:loading', vo.loadingTrans)
+
+                    })
+
+                },
+            }
+
             //emit
-            vo.$emit('click', ev)
+            vo.$emit('click', ev, msg)
 
         },
 
@@ -486,8 +577,13 @@ export default {
                 return
             }
 
-            //emit
-            vo.$emit('click-close', ev)
+            //$nextTick
+            vo.$nextTick(() => {
+
+                //emit
+                vo.$emit('click-close', ev)
+
+            })
 
         },
 

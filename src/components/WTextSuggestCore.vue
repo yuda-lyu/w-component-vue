@@ -304,7 +304,8 @@ export default {
 
             let vo = this
 
-            setTimeout(() => {
+            //$nextTick
+            vo.$nextTick(() => {
 
                 //save
                 vo.valueTrans = value
@@ -312,7 +313,7 @@ export default {
                 //triggerEvent
                 vo.triggerEvent('input', value, null)
 
-            }, 1)
+            })
 
         },
 
@@ -358,12 +359,13 @@ export default {
             //changeFocused, 點擊後自動取消focus
             vo.changeFocused(false)
 
-            setTimeout(() => {
+            //$nextTick
+            vo.$nextTick(() => {
 
                 //triggerEvent
                 vo.triggerEvent('input', item, kitem)
 
-            }, 1)
+            })
 
         },
 
@@ -372,13 +374,13 @@ export default {
 
             let vo = this
 
-            //setTimeout
-            setTimeout(() => {
+            //$nextTick
+            vo.$nextTick(() => {
 
                 //emit
                 vo.$emit(from, item, kitem)
 
-            }, 1)
+            })
 
         },
 

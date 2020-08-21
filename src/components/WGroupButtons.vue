@@ -380,8 +380,8 @@ export default {
                 return
             }
 
-            //setTimeout
-            setTimeout(() => {
+            //$nextTick
+            vo.$nextTick(() => {
 
                 //clicked
                 vo.clicked = kitem
@@ -391,7 +391,7 @@ export default {
                 //emit
                 vo.$emit('click', get(item, 'text'), kitem, vo.itemsIndex[kitem])
 
-            }, 1)
+            })
 
         },
 

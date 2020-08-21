@@ -270,8 +270,8 @@ export default {
             //hide
             vo.showTrans = false
 
-            //setTimeout
-            setTimeout(() => {
+            //$nextTick
+            vo.$nextTick(() => {
 
                 //emit
                 vo.$emit('update:show', vo.showTrans)
@@ -283,7 +283,7 @@ export default {
                 }
                 vo.$emit('click-' + c)
 
-            }, 1)
+            })
 
         },
 

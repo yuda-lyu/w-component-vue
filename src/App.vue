@@ -252,13 +252,6 @@
             ></AppZoneWButtonCircle>
 
 
-            <AppZoneWButtonProg
-                :modeBorder="modeBorder"
-                :modeShell="modeShell"
-                v-if="compname==='WButtonProg'"
-            ></AppZoneWButtonProg>
-
-
             <AppZoneWGroupButtons
                 :modeBorder="modeBorder"
                 :modeShell="modeShell"
@@ -499,7 +492,6 @@ import AppZoneWConfirm from './AppZoneWConfirm.vue'
 import AppZoneWPopup from './AppZoneWPopup.vue'
 import AppZoneWButtonChip from './AppZoneWButtonChip.vue'
 import AppZoneWButtonCircle from './AppZoneWButtonCircle.vue'
-import AppZoneWButtonProg from './AppZoneWButtonProg.vue'
 import AppZoneWGroupButtons from './AppZoneWGroupButtons.vue'
 import AppZoneWProgressCircle from './AppZoneWProgressCircle.vue'
 import AppZoneWSwitch from './AppZoneWSwitch.vue'
@@ -545,7 +537,6 @@ export default {
         AppZoneWPopup,
         AppZoneWButtonChip,
         AppZoneWButtonCircle,
-        AppZoneWButtonProg,
         AppZoneWGroupButtons,
         AppZoneWProgressCircle,
         AppZoneWSwitch,
@@ -611,7 +602,6 @@ export default {
                     cmps: [
                         'WButtonChip',
                         'WButtonCircle',
-                        'WButtonProg',
                     ]
                 },
                 {
@@ -763,26 +753,26 @@ export default {
 
         clickMenu1: function () {
             let vo = this
-            setTimeout(() => {
+            vo.$nextTick(() => {
                 vo.io2 = 0
                 vo.io3 = 0
-            }, 1)
+            })
         },
 
         clickMenu2a: function () {
             let vo = this
-            setTimeout(() => {
+            vo.$nextTick(() => {
                 vo.io3 = 0
                 vo.modeBorder = 'emboss'
                 vo.modeShell = 'pure'
-            }, 1)
+            })
         },
 
         clickMenu2b: function () {
             let vo = this
-            setTimeout(() => {
+            vo.$nextTick(() => {
                 vo.io3 = 0
-            }, 1)
+            })
         },
 
     }

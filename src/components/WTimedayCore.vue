@@ -151,13 +151,13 @@ export default {
             //hide
             vo.show = false
 
-            //setTimeout
-            setTimeout(() => {
+            //$nextTick
+            vo.$nextTick(() => {
 
                 //emit
                 vo.$emit('input', value)
 
-            }, 1)
+            })
 
         },
 

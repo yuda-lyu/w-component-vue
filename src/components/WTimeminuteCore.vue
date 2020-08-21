@@ -217,13 +217,13 @@ export default {
                 return
             }
 
-            //setTimeout
-            setTimeout(() => {
+            //$nextTick
+            vo.$nextTick(() => {
 
                 //emit
                 vo.$emit('input', value)
 
-            }, 1)
+            })
 
         },
 
@@ -235,13 +235,13 @@ export default {
             //focused
             let focused = vo.focused_day || vo.focused_time
 
-            //setTimeout
-            setTimeout(() => {
+            //$nextTick
+            vo.$nextTick(() => {
 
                 //emit
                 vo.$emit('update:focused', focused)
 
-            }, 1)
+            })
 
         },
 

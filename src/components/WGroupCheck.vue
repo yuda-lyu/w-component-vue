@@ -133,13 +133,13 @@ export default {
                 vo.value.push(item)
             }
 
-            //setTimeout
-            setTimeout(() => {
+            //$nextTick
+            vo.$nextTick(() => {
 
                 //emit
                 vo.$emit('input', vo.value)
 
-            }, 1)
+            })
 
         },
 

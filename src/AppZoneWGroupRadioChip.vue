@@ -96,7 +96,7 @@
                 <div class="bk">
                     <demolink
                         :kbname="'w-group-radio-chip'"
-                        :casename="'not small (large)'"
+                        :casename="'sizePadding & iconSize & textFontSize'"
                         :kind="'nokind'"
                         :shell="'pure'"
                     ></demolink>
@@ -104,24 +104,9 @@
                     <w-group-radio-chip
                         :items="WGroupRadioChip.object.items"
                         v-model="WGroupRadioChip.object.select"
-                        :small="false"
-                    ></w-group-radio-chip>
-
-                </div>
-
-
-                <div class="bk">
-                    <demolink
-                        :kbname="'w-group-radio-chip'"
-                        :casename="'sizePadding'"
-                        :kind="'nokind'"
-                        :shell="'pure'"
-                    ></demolink>
-
-                    <w-group-radio-chip
-                        :items="WGroupRadioChip.object.items"
-                        v-model="WGroupRadioChip.object.select"
-                        :sizePadding="'12px 27px'"
+                        :sizePadding="'10px 24px'"
+                        :iconSize="26"
+                        :textFontSize="'0.9rem'"
                     ></w-group-radio-chip>
 
                 </div>
@@ -404,21 +389,13 @@
                         :backgroundColorActive="'grey'"
                     >
                         <template v-slot="props">
-                            <div style="display:flex;">
-                                <v-chip
-                                    style="transform:scale(0.9); box-shadow:0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12)"
-                                    small
-                                    rounded
-                                    dark
-                                    color="purple accent-4"
-                                >{{props.item.data}}</v-chip>
-                                <v-chip
-                                    style="transform:scale(0.9); box-shadow:0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12)"
-                                    small
-                                    rounded
-                                    dark
-                                    color="cyan darken-1"
-                                >View</v-chip>
+                            <div style="display:flex; align-items:center;">
+                                <div
+                                    style="margin:2px 5px 2px 2px; user-select:none; padding:2px 12px; font-size:0.75rem; color:#fff; background:#aa00ff; border-radius:12px; box-shadow:0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12);"
+                                >{{props.item.data}}</div>
+                                <div
+                                    style="margin:2px; user-select:none; padding:2px 12px; font-size:0.75rem; color:#fff; background:#00acc1; border-radius:12px; box-shadow:0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12);"
+                                >View</div>
                             </div>
                         </template>
                     </w-group-radio-chip>
@@ -621,7 +598,7 @@
                 <div class="bk">
                     <demolink
                         :kbname="'w-group-radio-chip'"
-                        :casename="'not small (large)'"
+                        :casename="'sizePadding & iconSize & textFontSize'"
                         :kind="'nokind'"
                         :shell="'shell'"
                     ></demolink>
@@ -635,32 +612,9 @@
                         <w-group-radio-chip
                             :items="WGroupRadioChip.object.items"
                             v-model="WGroupRadioChip.object.select"
-                            :small="false"
-                        ></w-group-radio-chip>
-
-                    </w-shell-material>
-
-                </div>
-
-
-                <div class="bk">
-                    <demolink
-                        :kbname="'w-group-radio-chip'"
-                        :casename="'sizePadding'"
-                        :kind="'nokind'"
-                        :shell="'shell'"
-                    ></demolink>
-
-                    <w-shell-material
-                        style="margin-top:30px;"
-                        :title="'請選擇分頁頁籤'"
-                        :leftIcon="mdiAccountSupervisorCircle"
-                    >
-
-                        <w-group-radio-chip
-                            :items="WGroupRadioChip.object.items"
-                            v-model="WGroupRadioChip.object.select"
-                            :sizePadding="'12px 27px'"
+                            :sizePadding="'10px 24px'"
+                            :iconSize="26"
+                            :textFontSize="'0.9rem'"
                         ></w-group-radio-chip>
 
                     </w-shell-material>
@@ -1216,11 +1170,6 @@ export default {
     data: function() {
         return {
             mdiAccountSupervisorCircle,
-            mdiViewDashboard,
-            mdiClockTimeEightOutline,
-            mdiBlenderSoftware,
-            mdiSpoonSugar,
-            mdiApple,
             'WGroupRadioChip': {
                 'string': {
                     'items': [

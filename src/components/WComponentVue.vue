@@ -4,7 +4,6 @@ import WAlert from './WAlert.mjs'
 import WBadge from './WBadge.vue'
 import WButtonChip from './WButtonChip.vue'
 import WButtonCircle from './WButtonCircle.vue'
-import WButtonProg from './WButtonProg.vue'
 import WCkeditorVueDyn from './WCkeditorVueDyn.vue'
 import WConfirm from './WConfirm.vue'
 import WDialog from './WDialog.vue'
@@ -62,7 +61,6 @@ let WComponentVue = {
         Vue.component('w-badge', WBadge)
         Vue.component('w-button-chip', WButtonChip)
         Vue.component('w-button-circle', WButtonCircle)
-        Vue.component('w-button-prog', WButtonProg)
         Vue.component('w-ckeditor-vue-dyn', WCkeditorVueDyn)
         Vue.component('w-confirm', WConfirm)
         Vue.component('w-dialog', WDialog)

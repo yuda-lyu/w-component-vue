@@ -11,7 +11,7 @@
             <template v-if="modeShell==='pure'">
 
 
-                <div class="bk">
+                <div class="bk" style="display:block;">
                     <demolink
                         :kbname="'w-group-tags'"
                         :casename="'default'"
@@ -19,113 +19,348 @@
                         :shell="'pure'"
                     ></demolink>
 
-                    <w-group-tags v-model="WGroupTags.items"></w-group-tags>
+                    <w-group-tags
+                        v-model="WGroupTags.items"
+                    ></w-group-tags>
                 </div>
 
-                <div class="bk">
+
+                <div class="bk" style="display:block;">
                     <demolink
                         :kbname="'w-group-tags'"
-                        :casename="'inputTextColor'"
+                        :casename="'icon (material)'"
                         :kind="'nokind'"
                         :shell="'pure'"
                     ></demolink>
 
                     <w-group-tags
-                        :inputTextColor="'purple accent-4'"
                         v-model="WGroupTags.items"
+                        :icon="mdiChartBubble"
                     ></w-group-tags>
                 </div>
 
-                <div class="bk">
+
+                <div class="bk" style="display:block;">
                     <demolink
                         :kbname="'w-group-tags'"
-                        :casename="'inputIconTooltip'"
+                        :casename="'icon (fontawesome)'"
                         :kind="'nokind'"
                         :shell="'pure'"
                     ></demolink>
 
                     <w-group-tags
-                        :inputIconTooltip="'新增'"
                         v-model="WGroupTags.items"
+                        :icon="'fas fa-clipboard-check'"
                     ></w-group-tags>
                 </div>
 
-                <div class="bk">
+
+                <div class="bk" style="display:block;">
                     <demolink
                         :kbname="'w-group-tags'"
-                        :casename="'outlined & backgroundColor'"
+                        :casename="'iconShiftLeft'"
                         :kind="'nokind'"
                         :shell="'pure'"
                     ></demolink>
 
                     <w-group-tags
-                        :outlined="true"
-                        :backgroundColor="'grey'"
                         v-model="WGroupTags.items"
+                        :icon="'fas fa-clipboard-check'"
+                        :iconShiftLeft="-3"
                     ></w-group-tags>
                 </div>
 
-                <div class="bk">
+
+                <div class="bk" style="display:block;">
                     <demolink
                         :kbname="'w-group-tags'"
-                        :casename="'icon'"
+                        :casename="'funTooltip'"
                         :kind="'nokind'"
                         :shell="'pure'"
                     ></demolink>
 
                     <w-group-tags
-                        :icon="mdiBlenderSoftware"
                         v-model="WGroupTags.items"
+                        :funTooltip="(v)=>{return '測試中文tooltip: '+v}"
                     ></w-group-tags>
                 </div>
 
-                <div class="bk">
+
+                <div class="bk" style="display:block;">
                     <demolink
                         :kbname="'w-group-tags'"
-                        :casename="'icon & iconColor'"
+                        :casename="'slot'"
                         :kind="'nokind'"
                         :shell="'pure'"
                     ></demolink>
 
                     <w-group-tags
-                        :icon="mdiBlenderSoftware"
-                        :iconColor="'light-blue darken-1'"
                         v-model="WGroupTags.items"
-                    ></w-group-tags>
+                        @click="ckBtn"
+                        @click-close="ckBtnClose"
+                    >
+                        <template v-slot=props>
+                            <div style="display:flex; align-items:center;">
+                                <div style="display:flex; margin-right:5px;">
+                                    <w-button-chip
+                                        :text="props.item"
+                                        :textFontSize="'0.75rem'"
+                                        :sizePadding="'0px 8px'"
+                                        :textColor="'#fff'"
+                                        :textColorHover="'#fff'"
+                                        :backgroundColor="'rgba(250,50,120,0.9)'"
+                                        :backgroundColorHover="'rgba(250,50,120,0.9)'"
+                                        @click.stop="ckBtnItem1(props)"
+                                    ></w-button-chip>
+                                </div>
+                                <div style="display:flex;">
+                                    <w-button-chip
+                                        :text="'View'"
+                                        :textFontSize="'0.75rem'"
+                                        :sizePadding="'0px 8px'"
+                                        :textColor="'#fff'"
+                                        :textColorHover="'#fff'"
+                                        :backgroundColor="'rgba(200,20,170,0.9)'"
+                                        :backgroundColorHover="'rgba(200,20,170,0.9)'"
+                                        @click.stop="ckBtnItem2(props)"
+                                    ></w-button-chip>
+                                </div>
+                            </div>
+                        </template>
+                    </w-group-tags>
                 </div>
 
-                <div class="bk">
+
+                <div class="bk" style="display:block;">
                     <demolink
                         :kbname="'w-group-tags'"
-                        :casename="'textColor & backgroundColor & inputTextBorderColor & inputTextBorderColorFocus & inputTextBackgroundColorFocus & inputTextButtonColor & inputTextButtonColorFocus'"
+                        :casename="'sizePadding & icon & iconSize & textFontSize'"
                         :kind="'nokind'"
                         :shell="'pure'"
                     ></demolink>
 
                     <w-group-tags
-                        :textColor="'white'"
-                        :backgroundColor="'pink lighten-1'"
-                        :inputTextBorderColor="'pink accent-1'"
-                        :inputTextBorderColorFocus="'pink lighten-2'"
-                        :inputTextBackgroundColorFocus="'red lighten-5'"
-                        :inputTextButtonColor="'pink accent-1'"
-                        :inputTextButtonColorFocus="'pink lighten-2'"
                         v-model="WGroupTags.items"
+                        :sizePadding="'10px 24px'"
+                        :icon="mdiCodepen"
+                        :iconSize="26"
+                        :textFontSize="'0.9rem'"
                     ></w-group-tags>
                 </div>
 
-                <div class="bk">
+
+                <div class="bk" style="display:block;">
                     <demolink
                         :kbname="'w-group-tags'"
-                        :casename="'nodata'"
+                        :casename="'textColor'"
                         :kind="'nokind'"
                         :shell="'pure'"
                     ></demolink>
 
-                    <w-group-tags :nodata="'無'" v-model="WGroupTags.empty"></w-group-tags>
+                    <w-group-tags
+                        v-model="WGroupTags.items"
+                        :textColor="'light-blue darken-3'"
+                    ></w-group-tags>
                 </div>
 
-                <div class="bk">
+
+                <div class="bk" style="display:block;">
+                    <demolink
+                        :kbname="'w-group-tags'"
+                        :casename="'textColor & textColorHover'"
+                        :kind="'nokind'"
+                        :shell="'pure'"
+                    ></demolink>
+
+                    <w-group-tags
+                        v-model="WGroupTags.items"
+                        :textColor="'purple darken-1'"
+                        :textColorHover="'purple darken-4'"
+                    ></w-group-tags>
+                </div>
+
+
+                <div class="bk" style="display:block;">
+                    <demolink
+                        :kbname="'w-group-tags'"
+                        :casename="'icon & iconColor & iconColorHover'"
+                        :kind="'nokind'"
+                        :shell="'pure'"
+                    ></demolink>
+
+                    <w-group-tags
+                        v-model="WGroupTags.items"
+                        :icon="mdiChartBubble"
+                        :iconColor="'orange'"
+                        :iconColorHover="'orange darken-2'"
+                    ></w-group-tags>
+                </div>
+
+
+                <div class="bk" style="display:block;">
+                    <demolink
+                        :kbname="'w-group-tags'"
+                        :casename="'borderRadius'"
+                        :kind="'nokind'"
+                        :shell="'pure'"
+                    ></demolink>
+
+                    <w-group-tags
+                        v-model="WGroupTags.items"
+                        :icon="mdiChartBubble"
+                        :borderRadius="0"
+                    ></w-group-tags>
+                </div>
+
+
+                <div class="bk" style="display:block;">
+                    <demolink
+                        :kbname="'w-group-tags'"
+                        :casename="'borderColor & borderColorHover'"
+                        :kind="'nokind'"
+                        :shell="'pure'"
+                    ></demolink>
+
+                    <w-group-tags
+                        v-model="WGroupTags.items"
+                        :icon="mdiChartBubble"
+                        :borderColor="'transparent'"
+                        :borderColorHover="'grey darken-1'"
+                    ></w-group-tags>
+                </div>
+
+
+                <div class="bk" style="display:block;">
+                    <demolink
+                        :kbname="'w-group-tags'"
+                        :casename="'backgroundColor & backgroundColorHover'"
+                        :kind="'nokind'"
+                        :shell="'pure'"
+                    ></demolink>
+
+                    <w-group-tags
+                        v-model="WGroupTags.items"
+                        :icon="mdiChartBubble"
+                        :backgroundColor="'amber lighten-5'"
+                        :backgroundColorHover="'amber lighten-4'"
+                    ></w-group-tags>
+                </div>
+
+
+                <div class="bk" style="display:block;">
+                    <demolink
+                        :kbname="'w-group-tags'"
+                        :casename="'no shadow & borderColor & borderColorHover'"
+                        :kind="'nokind'"
+                        :shell="'pure'"
+                    ></demolink>
+
+                    <w-group-tags
+                        v-model="WGroupTags.items"
+                        :borderColor="'grey lighten-1'"
+                        :borderColorHover="'grey'"
+                        :shadow="false"
+                    ></w-group-tags>
+                </div>
+
+
+                <div class="bk" style="display:block;">
+                    <demolink
+                        :kbname="'w-group-tags'"
+                        :casename="'shadowStyle'"
+                        :kind="'nokind'"
+                        :shell="'pure'"
+                    ></demolink>
+
+                    <w-group-tags
+                        v-model="WGroupTags.items"
+                        :shadowStyle="'0 12px 20px -10px rgba(250,120,155,0.28), 0 4px 20px 0 rgba(0,0,0,.12), 0 7px 8px -5px rgba(250,120,155,0.2)'"
+                    ></w-group-tags>
+                </div>
+
+
+                <div class="bk" style="display:block;">
+                    <demolink
+                        :kbname="'w-group-tags'"
+                        :casename="'modify prog by callback in click'"
+                        :kind="'nokind'"
+                        :shell="'pure'"
+                    ></demolink>
+
+                    <w-group-tags
+                        v-model="WGroupTags.items"
+                        @click="ckBtnModProg"
+                    ></w-group-tags>
+                </div>
+
+
+                <div class="bk" style="display:block;">
+                    <demolink
+                        :kbname="'w-group-tags'"
+                        :casename="'progColor & progBackgroundColor'"
+                        :kind="'nokind'"
+                        :shell="'pure'"
+                    ></demolink>
+
+                    <w-group-tags
+                        v-model="WGroupTags.items"
+                        :progColor="'rgba(250,50,150,0.4)'"
+                        :progBackgroundColor="'rgba(250,50,150,0.075)'"
+                        @click="ckBtnModProg"
+                    ></w-group-tags>
+                </div>
+
+
+                <div class="bk" style="display:block;">
+                    <demolink
+                        :kbname="'w-group-tags'"
+                        :casename="'modify loading by callback in click'"
+                        :kind="'nokind'"
+                        :shell="'pure'"
+                    ></demolink>
+
+                    <w-group-tags
+                        v-model="WGroupTags.items"
+                        @click="ckBtnModLoading"
+                    ></w-group-tags>
+                </div>
+
+
+                <div class="bk" style="display:block;">
+                    <demolink
+                        :kbname="'w-group-tags'"
+                        :casename="'modify loading & textColor & textColorHover'"
+                        :kind="'nokind'"
+                        :shell="'pure'"
+                    ></demolink>
+
+                    <w-group-tags
+                        v-model="WGroupTags.items"
+                        :textColor="'rgba(255,30,60,0.9)'"
+                        :textColorHover="'rgba(255,20,50,1)'"
+                        @click="ckBtnModLoading"
+                    ></w-group-tags>
+                </div>
+
+
+                <div class="bk" style="display:block;">
+                    <demolink
+                        :kbname="'w-group-tags'"
+                        :casename="'closeWithInterceptor'"
+                        :kind="'nokind'"
+                        :shell="'pure'"
+                    ></demolink>
+
+                    <w-group-tags
+                        v-model="WGroupTags.items"
+                        :icon="mdiChartBubble"
+                        :closeWithInterceptor="true"
+                        @click-close="ckBtnClosePm"
+                    ></w-group-tags>
+                </div>
+
+
+                <div class="bk" style="display:block;">
                     <demolink
                         :kbname="'w-group-tags'"
                         :casename="'not editable'"
@@ -133,22 +368,10 @@
                         :shell="'pure'"
                     ></demolink>
 
-                    <w-group-tags :editable="false" v-model="WGroupTags.items"></w-group-tags>
-                </div>
-
-                <div class="bk">
-                    <demolink
-                        :kbname="'w-group-tags'"
-                        :casename="'not editable & textColor & backgroundColor'"
-                        :kind="'nokind'"
-                        :shell="'pure'"
-                    ></demolink>
-
                     <w-group-tags
-                        :textColor="'white'"
-                        :backgroundColor="'pink lighten-1'"
-                        :editable="false"
                         v-model="WGroupTags.items"
+                        :icon="mdiChartBubble"
+                        :editable="false"
                     ></w-group-tags>
                 </div>
 
@@ -159,7 +382,7 @@
             <template v-if="modeShell==='shell'">
 
 
-                <div class="bk">
+                <div class="bk" style="display:block;">
                     <demolink
                         :kbname="'w-group-tags'"
                         :casename="'default'"
@@ -169,159 +392,466 @@
 
                     <w-shell-material
                         style="margin-top:30px;"
-                        :title="'請輸入販賣水果種類'"
-                        :leftIcon="mdiEmailVariant"
-                    >
-                        <w-group-tags v-model="WGroupTags.items"></w-group-tags>
-                    </w-shell-material>
-                </div>
-
-                <div class="bk">
-                    <demolink
-                        :kbname="'w-group-tags'"
-                        :casename="'inputTextColor'"
-                        :kind="'nokind'"
-                        :shell="'shell'"
-                    ></demolink>
-
-                    <w-shell-material
-                        style="margin-top:30px;"
-                        :title="'請輸入販賣水果種類'"
+                        :title="'請選擇分頁頁籤'"
                         :leftIcon="mdiEmailVariant"
                     >
                         <w-group-tags
-                            :inputTextColor="'purple accent-4'"
                             v-model="WGroupTags.items"
                         ></w-group-tags>
                     </w-shell-material>
                 </div>
 
-                <div class="bk">
+
+                <div class="bk" style="display:block;">
                     <demolink
                         :kbname="'w-group-tags'"
-                        :casename="'inputIconTooltip'"
+                        :casename="'icon (material)'"
                         :kind="'nokind'"
                         :shell="'shell'"
                     ></demolink>
 
                     <w-shell-material
                         style="margin-top:30px;"
-                        :title="'請輸入販賣水果種類'"
+                        :title="'請選擇分頁頁籤'"
                         :leftIcon="mdiEmailVariant"
                     >
                         <w-group-tags
-                            :inputIconTooltip="'新增'"
                             v-model="WGroupTags.items"
+                            :icon="mdiChartBubble"
                         ></w-group-tags>
                     </w-shell-material>
                 </div>
 
-                <div class="bk">
+
+                <div class="bk" style="display:block;">
                     <demolink
                         :kbname="'w-group-tags'"
-                        :casename="'outlined & backgroundColor'"
+                        :casename="'icon (fontawesome)'"
                         :kind="'nokind'"
                         :shell="'shell'"
                     ></demolink>
 
                     <w-shell-material
                         style="margin-top:30px;"
-                        :title="'請輸入販賣水果種類'"
+                        :title="'請選擇分頁頁籤'"
                         :leftIcon="mdiEmailVariant"
                     >
                         <w-group-tags
-                            :outlined="true"
-                            :backgroundColor="'grey'"
                             v-model="WGroupTags.items"
+                            :icon="'fas fa-clipboard-check'"
                         ></w-group-tags>
                     </w-shell-material>
                 </div>
 
-                <div class="bk">
+
+                <div class="bk" style="display:block;">
                     <demolink
                         :kbname="'w-group-tags'"
-                        :casename="'icon'"
+                        :casename="'iconShiftLeft'"
                         :kind="'nokind'"
                         :shell="'shell'"
                     ></demolink>
 
                     <w-shell-material
                         style="margin-top:30px;"
-                        :title="'請輸入販賣水果種類'"
+                        :title="'請選擇分頁頁籤'"
                         :leftIcon="mdiEmailVariant"
                     >
                         <w-group-tags
-                            :icon="mdiBlenderSoftware"
                             v-model="WGroupTags.items"
+                            :icon="'fas fa-clipboard-check'"
+                            :iconShiftLeft="-3"
                         ></w-group-tags>
                     </w-shell-material>
                 </div>
 
-                <div class="bk">
+
+                <div class="bk" style="display:block;">
                     <demolink
                         :kbname="'w-group-tags'"
-                        :casename="'icon & iconColor'"
+                        :casename="'funTooltip'"
                         :kind="'nokind'"
                         :shell="'shell'"
                     ></demolink>
 
                     <w-shell-material
                         style="margin-top:30px;"
-                        :title="'請輸入販賣水果種類'"
+                        :title="'請選擇分頁頁籤'"
                         :leftIcon="mdiEmailVariant"
                     >
                         <w-group-tags
-                            :icon="mdiBlenderSoftware"
-                            :iconColor="'light-blue darken-1'"
                             v-model="WGroupTags.items"
+                            :funTooltip="(v)=>{return '測試中文tooltip: '+v}"
                         ></w-group-tags>
                     </w-shell-material>
                 </div>
 
-                <div class="bk">
+
+                <div class="bk" style="display:block;">
                     <demolink
                         :kbname="'w-group-tags'"
-                        :casename="'textColor & backgroundColor & inputTextBorderColor & inputTextBorderColorFocus & inputTextBackgroundColorFocus & inputTextButtonColor & inputTextButtonColorFocus'"
+                        :casename="'slot'"
                         :kind="'nokind'"
                         :shell="'shell'"
                     ></demolink>
 
                     <w-shell-material
                         style="margin-top:30px;"
-                        :title="'請輸入販賣水果種類'"
+                        :title="'請選擇分頁頁籤'"
                         :leftIcon="mdiEmailVariant"
                     >
                         <w-group-tags
-                            :textColor="'white'"
-                            :backgroundColor="'pink lighten-1'"
-                            :inputTextBorderColor="'pink accent-1'"
-                            :inputTextBorderColorFocus="'pink lighten-2'"
-                            :inputTextBackgroundColorFocus="'red lighten-5'"
-                            :inputTextButtonColor="'pink accent-1'"
-                            :inputTextButtonColorFocus="'pink lighten-2'"
                             v-model="WGroupTags.items"
+                            @click="ckBtn"
+                            @click-close="ckBtnClose"
+                        >
+                            <template v-slot=props>
+                                <div style="display:flex; align-items:center;">
+                                    <div style="display:flex; margin-right:5px;">
+                                        <w-button-chip
+                                            :text="props.item"
+                                            :textFontSize="'0.75rem'"
+                                            :sizePadding="'0px 8px'"
+                                            :textColor="'#fff'"
+                                            :textColorHover="'#fff'"
+                                            :backgroundColor="'rgba(250,50,120,0.9)'"
+                                            :backgroundColorHover="'rgba(250,50,120,0.9)'"
+                                            @click.stop="ckBtnItem1(props)"
+                                        ></w-button-chip>
+                                    </div>
+                                    <div style="display:flex;">
+                                        <w-button-chip
+                                            :text="'View'"
+                                            :textFontSize="'0.75rem'"
+                                            :sizePadding="'0px 8px'"
+                                            :textColor="'#fff'"
+                                            :textColorHover="'#fff'"
+                                            :backgroundColor="'rgba(200,20,170,0.9)'"
+                                            :backgroundColorHover="'rgba(200,20,170,0.9)'"
+                                            @click.stop="ckBtnItem2(props)"
+                                        ></w-button-chip>
+                                    </div>
+                                </div>
+                            </template>
+                        </w-group-tags>
+                    </w-shell-material>
+                </div>
+
+
+                <div class="bk" style="display:block;">
+                    <demolink
+                        :kbname="'w-group-tags'"
+                        :casename="'sizePadding & icon & iconSize & textFontSize'"
+                        :kind="'nokind'"
+                        :shell="'shell'"
+                    ></demolink>
+
+                    <w-shell-material
+                        style="margin-top:30px;"
+                        :title="'請選擇分頁頁籤'"
+                        :leftIcon="mdiEmailVariant"
+                    >
+                        <w-group-tags
+                            v-model="WGroupTags.items"
+                            :sizePadding="'10px 24px'"
+                            :icon="mdiCodepen"
+                            :iconSize="26"
+                            :textFontSize="'0.9rem'"
                         ></w-group-tags>
                     </w-shell-material>
                 </div>
 
-                <div class="bk">
+
+                <div class="bk" style="display:block;">
                     <demolink
                         :kbname="'w-group-tags'"
-                        :casename="'nodata'"
+                        :casename="'textColor'"
                         :kind="'nokind'"
                         :shell="'shell'"
                     ></demolink>
 
                     <w-shell-material
                         style="margin-top:30px;"
-                        :title="'請輸入販賣水果種類'"
+                        :title="'請選擇分頁頁籤'"
                         :leftIcon="mdiEmailVariant"
                     >
-                        <w-group-tags :nodata="'無'" v-model="WGroupTags.empty"></w-group-tags>
+                        <w-group-tags
+                            v-model="WGroupTags.items"
+                            :textColor="'light-blue darken-3'"
+                        ></w-group-tags>
                     </w-shell-material>
                 </div>
 
-                <div class="bk">
+
+                <div class="bk" style="display:block;">
+                    <demolink
+                        :kbname="'w-group-tags'"
+                        :casename="'textColor & textColorHover'"
+                        :kind="'nokind'"
+                        :shell="'shell'"
+                    ></demolink>
+
+                    <w-shell-material
+                        style="margin-top:30px;"
+                        :title="'請選擇分頁頁籤'"
+                        :leftIcon="mdiEmailVariant"
+                    >
+                        <w-group-tags
+                            v-model="WGroupTags.items"
+                            :textColor="'purple darken-1'"
+                            :textColorHover="'purple darken-4'"
+                        ></w-group-tags>
+                    </w-shell-material>
+                </div>
+
+
+                <div class="bk" style="display:block;">
+                    <demolink
+                        :kbname="'w-group-tags'"
+                        :casename="'icon & iconColor & iconColorHover'"
+                        :kind="'nokind'"
+                        :shell="'shell'"
+                    ></demolink>
+
+                    <w-shell-material
+                        style="margin-top:30px;"
+                        :title="'請選擇分頁頁籤'"
+                        :leftIcon="mdiEmailVariant"
+                    >
+                        <w-group-tags
+                            v-model="WGroupTags.items"
+                            :icon="mdiChartBubble"
+                            :iconColor="'orange'"
+                            :iconColorHover="'orange darken-2'"
+                        ></w-group-tags>
+                    </w-shell-material>
+                </div>
+
+
+                <div class="bk" style="display:block;">
+                    <demolink
+                        :kbname="'w-group-tags'"
+                        :casename="'borderRadius'"
+                        :kind="'nokind'"
+                        :shell="'shell'"
+                    ></demolink>
+
+                    <w-shell-material
+                        style="margin-top:30px;"
+                        :title="'請選擇分頁頁籤'"
+                        :leftIcon="mdiEmailVariant"
+                    >
+                        <w-group-tags
+                            v-model="WGroupTags.items"
+                            :icon="mdiChartBubble"
+                            :borderRadius="0"
+                        ></w-group-tags>
+                    </w-shell-material>
+                </div>
+
+
+                <div class="bk" style="display:block;">
+                    <demolink
+                        :kbname="'w-group-tags'"
+                        :casename="'borderColor & borderColorHover'"
+                        :kind="'nokind'"
+                        :shell="'shell'"
+                    ></demolink>
+
+                    <w-shell-material
+                        style="margin-top:30px;"
+                        :title="'請選擇分頁頁籤'"
+                        :leftIcon="mdiEmailVariant"
+                    >
+                        <w-group-tags
+                            v-model="WGroupTags.items"
+                            :icon="mdiChartBubble"
+                            :borderColor="'transparent'"
+                            :borderColorHover="'grey darken-1'"
+                        ></w-group-tags>
+                    </w-shell-material>
+                </div>
+
+
+                <div class="bk" style="display:block;">
+                    <demolink
+                        :kbname="'w-group-tags'"
+                        :casename="'backgroundColor & backgroundColorHover'"
+                        :kind="'nokind'"
+                        :shell="'shell'"
+                    ></demolink>
+
+                    <w-shell-material
+                        style="margin-top:30px;"
+                        :title="'請選擇分頁頁籤'"
+                        :leftIcon="mdiEmailVariant"
+                    >
+                        <w-group-tags
+                            v-model="WGroupTags.items"
+                            :icon="mdiChartBubble"
+                            :backgroundColor="'amber lighten-5'"
+                            :backgroundColorHover="'amber lighten-4'"
+                        ></w-group-tags>
+                    </w-shell-material>
+                </div>
+
+
+                <div class="bk" style="display:block;">
+                    <demolink
+                        :kbname="'w-group-tags'"
+                        :casename="'no shadow & borderColor & borderColorHover'"
+                        :kind="'nokind'"
+                        :shell="'shell'"
+                    ></demolink>
+
+                    <w-shell-material
+                        style="margin-top:30px;"
+                        :title="'請選擇分頁頁籤'"
+                        :leftIcon="mdiEmailVariant"
+                    >
+                        <w-group-tags
+                            v-model="WGroupTags.items"
+                            :borderColor="'grey lighten-1'"
+                            :borderColorHover="'grey'"
+                            :shadow="false"
+                        ></w-group-tags>
+                    </w-shell-material>
+                </div>
+
+
+                <div class="bk" style="display:block;">
+                    <demolink
+                        :kbname="'w-group-tags'"
+                        :casename="'shadowStyle'"
+                        :kind="'nokind'"
+                        :shell="'shell'"
+                    ></demolink>
+
+                    <w-shell-material
+                        style="margin-top:30px;"
+                        :title="'請選擇分頁頁籤'"
+                        :leftIcon="mdiEmailVariant"
+                    >
+                        <w-group-tags
+                            v-model="WGroupTags.items"
+                            :shadowStyle="'0 12px 20px -10px rgba(250,120,155,0.28), 0 4px 20px 0 rgba(0,0,0,.12), 0 7px 8px -5px rgba(250,120,155,0.2)'"
+                        ></w-group-tags>
+                    </w-shell-material>
+                </div>
+
+
+                <div class="bk" style="display:block;">
+                    <demolink
+                        :kbname="'w-group-tags'"
+                        :casename="'modify prog by callback in click'"
+                        :kind="'nokind'"
+                        :shell="'shell'"
+                    ></demolink>
+
+                    <w-shell-material
+                        style="margin-top:30px;"
+                        :title="'請選擇分頁頁籤'"
+                        :leftIcon="mdiEmailVariant"
+                    >
+                        <w-group-tags
+                            v-model="WGroupTags.items"
+                            @click="ckBtnModProg"
+                        ></w-group-tags>
+                    </w-shell-material>
+                </div>
+
+
+                <div class="bk" style="display:block;">
+                    <demolink
+                        :kbname="'w-group-tags'"
+                        :casename="'progColor & progBackgroundColor'"
+                        :kind="'nokind'"
+                        :shell="'shell'"
+                    ></demolink>
+
+                    <w-shell-material
+                        style="margin-top:30px;"
+                        :title="'請選擇分頁頁籤'"
+                        :leftIcon="mdiEmailVariant"
+                    >
+                        <w-group-tags
+                            v-model="WGroupTags.items"
+                            :progColor="'rgba(250,50,150,0.4)'"
+                            :progBackgroundColor="'rgba(250,50,150,0.075)'"
+                            @click="ckBtnModProg"
+                        ></w-group-tags>
+                    </w-shell-material>
+                </div>
+
+
+                <div class="bk" style="display:block;">
+                    <demolink
+                        :kbname="'w-group-tags'"
+                        :casename="'modify loading by callback in click'"
+                        :kind="'nokind'"
+                        :shell="'shell'"
+                    ></demolink>
+
+                    <w-shell-material
+                        style="margin-top:30px;"
+                        :title="'請選擇分頁頁籤'"
+                        :leftIcon="mdiEmailVariant"
+                    >
+                        <w-group-tags
+                            v-model="WGroupTags.items"
+                            @click="ckBtnModLoading"
+                        ></w-group-tags>
+                    </w-shell-material>
+                </div>
+
+
+                <div class="bk" style="display:block;">
+                    <demolink
+                        :kbname="'w-group-tags'"
+                        :casename="'modify loading & textColor & textColorHover'"
+                        :kind="'nokind'"
+                        :shell="'shell'"
+                    ></demolink>
+
+                    <w-shell-material
+                        style="margin-top:30px;"
+                        :title="'請選擇分頁頁籤'"
+                        :leftIcon="mdiEmailVariant"
+                    >
+                        <w-group-tags
+                            v-model="WGroupTags.items"
+                            :textColor="'rgba(255,30,60,0.9)'"
+                            :textColorHover="'rgba(255,20,50,1)'"
+                            @click="ckBtnModLoading"
+                        ></w-group-tags>
+                    </w-shell-material>
+                </div>
+
+
+                <div class="bk" style="display:block;">
+                    <demolink
+                        :kbname="'w-group-tags'"
+                        :casename="'closeWithInterceptor'"
+                        :kind="'nokind'"
+                        :shell="'shell'"
+                    ></demolink>
+
+                    <w-shell-material
+                        style="margin-top:30px;"
+                        :title="'請選擇分頁頁籤'"
+                        :leftIcon="mdiEmailVariant"
+                    >
+                        <w-group-tags
+                            v-model="WGroupTags.items"
+                            :icon="mdiChartBubble"
+                            :closeWithInterceptor="true"
+                            @click-close="ckBtnClosePm"
+                        ></w-group-tags>
+                    </w-shell-material>
+                </div>
+
+
+                <div class="bk" style="display:block;">
                     <demolink
                         :kbname="'w-group-tags'"
                         :casename="'not editable'"
@@ -331,31 +861,13 @@
 
                     <w-shell-material
                         style="margin-top:30px;"
-                        :title="'請輸入販賣水果種類'"
-                        :leftIcon="mdiEmailVariant"
-                    >
-                        <w-group-tags :editable="false" v-model="WGroupTags.items"></w-group-tags>
-                    </w-shell-material>
-                </div>
-
-                <div class="bk">
-                    <demolink
-                        :kbname="'w-group-tags'"
-                        :casename="'not editable & textColor & backgroundColor'"
-                        :kind="'nokind'"
-                        :shell="'shell'"
-                    ></demolink>
-
-                    <w-shell-material
-                        style="margin-top:30px;"
-                        :title="'請輸入販賣水果種類'"
+                        :title="'請選擇分頁頁籤'"
                         :leftIcon="mdiEmailVariant"
                     >
                         <w-group-tags
-                            :textColor="'white'"
-                            :backgroundColor="'pink lighten-1'"
-                            :editable="false"
                             v-model="WGroupTags.items"
+                            :icon="mdiChartBubble"
+                            :editable="false"
                         ></w-group-tags>
                     </w-shell-material>
                 </div>
@@ -371,10 +883,11 @@
 </template>
 
 <script>
-import { mdiEmailVariant, mdiBlenderSoftware } from '@mdi/js'
+import { mdiEmailVariant, mdiChartBubble, mdiCodepen } from '@mdi/js'
 import demolink from './components/demolink.vue'
 import WShellMaterial from './components/WShellMaterial.vue'
 import WGroupTags from './components/WGroupTags.vue'
+import WButtonChip from './components/WButtonChip.vue'
 
 
 export default {
@@ -382,6 +895,7 @@ export default {
         demolink,
         WShellMaterial,
         WGroupTags,
+        WButtonChip,
     },
     props: {
         modeBorder: {
@@ -394,40 +908,61 @@ export default {
     data: function() {
         return {
             mdiEmailVariant,
-            mdiBlenderSoftware,
+            mdiChartBubble,
+            mdiCodepen,
             'WGroupTags': {
                 'items': [
-                    'foo',
-                    'bar',
-                    'fizz',
-                    'buzz',
-                    'Apple',
-                    '橘子'
+                    'Dashboard',
+                    'Schedule',
+                    'Profile',
+                    'History',
+                    'Map',
+                    '聯絡方式'
                 ],
-                'empty': []
+                'empty': [],
             },
             'actions': [
-                {
-                    'mode': 'eletype',
-                    'selector': 'input.basic',
-                    'str': '新增1',
-                },
-                {
-                    'mode': 'eletype',
-                    'selector': 'input.basic',
-                    'str': '項目1',
-                    'noEnter': true,
-                },
-                {
-                    'mode': 'eleclick',
-                    'selector': 'div[shellellipse="rightIcon"]',
-                },
-                {
-                    'mode': 'eleclick',
-                    'selector': 'i[role="button"]',
-                },
             ],
         }
+    },
+    methods: {
+        ckBtn: function(ev, msg) {
+            console.log('ckBtn', msg)
+        },
+        ckBtnClose: function(ev, item) {
+            console.log('ckBtnClose', item)
+        },
+        ckBtnClosePm: function(ev, item) {
+            console.log('ckBtnClosePm', item)
+            alert('pm.resolve() for close')
+            item.pm.resolve()
+            //item.pm.reject()
+        },
+        ckBtnItem1: function(msg) {
+            console.log('ckBtnItem1', msg)
+        },
+        ckBtnItem2: function(msg) {
+            console.log('ckBtnItem2', msg)
+        },
+        ckBtnModProg: function(ev, msg) {
+            console.log('ckBtnModProg', msg)
+            let n = 0
+            let t = setInterval(function() {
+                n += 0.5
+                msg.setProg(n)
+                if (n >= 100) {
+                    //當prog>=100時會由內部自動設定為null
+                    clearInterval(t)
+                }
+            }, 10)
+        },
+        ckBtnModLoading: function(ev, msg) {
+            console.log('ckBtnModLoading', msg)
+            msg.setLoading(true)
+            setTimeout(function() {
+                msg.setLoading(false)
+            }, 2000)
+        },
     },
 }
 </script>
