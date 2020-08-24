@@ -1,14 +1,14 @@
 <template>
-    <div :style="{'opacity':editable?1:0.65}">
+    <div :style="{'opacity':editable?1:0.65}" :changeValue="changeValue">
 
         <template v-for="(item,kitem) in items">
 
             <v-chip
                 class="v-chpi-modify"
                 small
-                :text-color="getTextColor(item)"
-                :color="getBgColor(item)"
-                @click="toggleState(item)"
+                :text-color="getTextColor(item,kitem)"
+                :color="getBgColor(item,kitem)"
+                @click="toggleState(item,kitem)"
                 :key="kitem"
             >
 
@@ -31,6 +31,7 @@
 
 <script>
 import { mdiCheckCircle } from '@mdi/js'
+import each from 'lodash/each'
 import WIcon from './WIcon.vue'
 
 
@@ -83,16 +84,31 @@ export default {
     data: function() {
         return {
             mdiCheckCircle,
+
+            valueTrans: [],
+
         }
     },
     mounted: function() {
     },
     computed: {
+
+        changeValue: function() {
+            //console.log('computed changeValue')
+
+            let vo = this
+
+            //valueTrans
+            vo.valueTrans = vo.value
+
+            return ''
+        },
+
     },
     methods: {
 
         getSelected: function(item) {
-            return this.value.indexOf(item) >= 0
+            return this.valueTrans.indexOf(item) >= 0
         },
 
         getBgColor: function(item) {
@@ -110,13 +126,17 @@ export default {
         },
 
         pull: function(ar, item) {
-            let i = ar.indexOf(item)
-            ar.splice(i, 1)
-            return ar
+            let art = []
+            each(ar, (v, k) => {
+                if (v !== item) {
+                    art.push(v)
+                }
+            })
+            return art
         },
 
-        toggleState: function(item) {
-            //console.log('methods toggleState', item)
+        toggleState: function(item, kitem) {
+            //console.log('methods toggleState', item, kitem)
 
             let vo = this
 
@@ -126,18 +146,18 @@ export default {
 
             if (vo.getSelected(item)) {
                 //pull
-                vo.value = vo.pull(vo.value, item)
+                vo.valueTrans = vo.pull(vo.valueTrans, item)
             }
             else {
                 //push
-                vo.value.push(item)
+                vo.valueTrans.push(item)
             }
 
             //$nextTick
             vo.$nextTick(() => {
 
                 //emit
-                vo.$emit('input', vo.value)
+                vo.$emit('input', vo.valueTrans)
 
             })
 

@@ -86,6 +86,7 @@
                 _click-close="clickRemoveBtn($event,item,kitem)"
             >
                 <slot
+                    name="items"
                     :item="null"
                     :kitem="null"
                 ></slot>
@@ -94,21 +95,23 @@
         </template>
 
         <div style="display:inline-block; width:150px; vertical-align:middle;" v-if="editable">
-            <w-text
-                :textColor="inputTextColor"
-                :borderShadow="false"
-                :rightIcon="mdiPlusCircle"
-                :rightIconColor="inputTextButtonColor"
-                :rightIconColorFocus="inputTextButtonColorFocus"
-                :rightIconTooltip="inputIconTooltip"
-                :backgroundColor="inputTextBackgroundColor"
-                :backgroundColorFocus="inputTextBackgroundColorFocus"
-                :borderColor="inputTextBorderColor"
-                :borderColorFocus="inputTextBorderColorFocus"
-                @click-right="clickAddBtn"
-                @enter="clickAddBtn"
-                v-model="userinput"
-            ></w-text>
+            <slot name="input">
+                <w-text
+                    :textColor="inputTextColor"
+                    :borderShadow="false"
+                    :rightIcon="mdiPlusCircle"
+                    :rightIconColor="inputTextButtonColor"
+                    :rightIconColorFocus="inputTextButtonColorFocus"
+                    :rightIconTooltip="inputIconTooltip"
+                    :backgroundColor="inputTextBackgroundColor"
+                    :backgroundColorFocus="inputTextBackgroundColorFocus"
+                    :borderColor="inputTextBorderColor"
+                    :borderColorFocus="inputTextBorderColorFocus"
+                    @click-right="clickAddBtn"
+                    @enter="clickAddBtn"
+                    v-model="userinput"
+                ></w-text>
+            </slot>
         </div>
 
     </div>
@@ -117,9 +120,8 @@
 <script>
 import { mdiPlusCircle } from '@mdi/js'
 import get from 'lodash/get'
-import isEqual from 'lodash/isEqual'
+import each from 'lodash/each'
 import cloneDeep from 'lodash/cloneDeep'
-import filter from 'lodash/filter'
 import trim from 'lodash/trim'
 import isfun from 'wsemi/src/isfun.mjs'
 import genPm from 'wsemi/src/genPm.mjs'
@@ -420,10 +422,12 @@ export default {
 
         },
 
-        pull: function(ar, item) {
-            let art = cloneDeep(ar)
-            art = filter(art, (v) => {
-                return !isEqual(v, item)
+        pull: function(ar, kitem) {
+            let art = []
+            each(ar, (v, k) => {
+                if (k !== kitem) {
+                    art.push(v)
+                }
             })
             return art
         },
@@ -461,7 +465,7 @@ export default {
                             //console.log('pm then', msg)
 
                             //itemsNew
-                            let itemsNew = vo.pull(vo.itemsTrans, item)
+                            let itemsNew = vo.pull(vo.itemsTrans, kitem)
 
                             //emit
                             vo.$emit('input', itemsNew)
@@ -475,7 +479,7 @@ export default {
                 else {
 
                     //itemsNew
-                    let itemsNew = vo.pull(vo.itemsTrans, item)
+                    let itemsNew = vo.pull(vo.itemsTrans, kitem)
 
                     //emit
                     vo.$emit('input', itemsNew)

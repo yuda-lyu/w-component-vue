@@ -89,7 +89,7 @@
                 <div class="bk" style="display:block;">
                     <demolink
                         :kbname="'w-group-tags'"
-                        :casename="'slot'"
+                        :casename="'slot item'"
                         :kind="'nokind'"
                         :shell="'pure'"
                     ></demolink>
@@ -99,7 +99,7 @@
                         @click="ckBtn"
                         @click-close="ckBtnClose"
                     >
-                        <template v-slot=props>
+                        <template v-slot:item="props">
                             <div style="display:flex; align-items:center;">
                                 <div style="display:flex; margin-right:5px;">
                                     <w-button-chip
@@ -125,6 +125,38 @@
                                         @click.stop="ckBtnItem2(props)"
                                     ></w-button-chip>
                                 </div>
+                            </div>
+                        </template>
+                    </w-group-tags>
+                </div>
+
+
+                <div class="bk" style="display:block;">
+                    <demolink
+                        :kbname="'w-group-tags'"
+                        :casename="'slot input'"
+                        :kind="'nokind'"
+                        :shell="'pure'"
+                    ></demolink>
+
+                    <w-group-tags
+                        v-model="WGroupTags.items"
+                        @click="ckBtn"
+                        @click-close="ckBtnClose"
+                    >
+                        <template v-slot:input>
+                            <div style="display:flex; align-items:center;">
+                                <w-button-chip
+                                    :icon="mdiPlusCircle"
+                                    :iconColor="'#fff'"
+                                    :iconColorHover="'#fff'"
+                                    :text="'Add'"
+                                    :textColor="'#fff'"
+                                    :textColorHover="'#fff'"
+                                    :backgroundColor="'rgba(200,20,170,0.9)'"
+                                    :backgroundColorHover="'rgba(200,20,170,0.9)'"
+                                    @click.stop="ckBtnAdd"
+                                ></w-button-chip>
                             </div>
                         </template>
                     </w-group-tags>
@@ -490,7 +522,7 @@
                 <div class="bk" style="display:block;">
                     <demolink
                         :kbname="'w-group-tags'"
-                        :casename="'slot'"
+                        :casename="'slot item'"
                         :kind="'nokind'"
                         :shell="'shell'"
                     ></demolink>
@@ -505,7 +537,7 @@
                             @click="ckBtn"
                             @click-close="ckBtnClose"
                         >
-                            <template v-slot=props>
+                            <template v-slot:item="props">
                                 <div style="display:flex; align-items:center;">
                                     <div style="display:flex; margin-right:5px;">
                                         <w-button-chip
@@ -534,6 +566,24 @@
                                 </div>
                             </template>
                         </w-group-tags>
+                    </w-shell-material>
+                </div>
+
+
+                <div class="bk" style="display:block;">
+                    <demolink
+                        :kbname="'w-group-tags'"
+                        :casename="'slot input'"
+                        :kind="'nokind'"
+                        :shell="'shell'"
+                    ></demolink>
+
+                    <w-shell-material
+                        style="margin-top:30px;"
+                        :title="'請選擇分頁頁籤'"
+                        :leftIcon="mdiEmailVariant"
+                    >
+
                     </w-shell-material>
                 </div>
 
@@ -883,7 +933,7 @@
 </template>
 
 <script>
-import { mdiEmailVariant, mdiChartBubble, mdiCodepen } from '@mdi/js'
+import { mdiEmailVariant, mdiChartBubble, mdiCodepen, mdiPlusCircle } from '@mdi/js'
 import demolink from './components/demolink.vue'
 import WShellMaterial from './components/WShellMaterial.vue'
 import WGroupTags from './components/WGroupTags.vue'
@@ -910,6 +960,7 @@ export default {
             mdiEmailVariant,
             mdiChartBubble,
             mdiCodepen,
+            mdiPlusCircle,
             'WGroupTags': {
                 'items': [
                     'Dashboard',
@@ -928,6 +979,10 @@ export default {
     methods: {
         ckBtn: function(ev, msg) {
             console.log('ckBtn', msg)
+        },
+        ckBtnAdd: function(ev) {
+            console.log('ckBtnAdd')
+            this.WGroupTags.items.push('test')
         },
         ckBtnClose: function(ev, item) {
             console.log('ckBtnClose', item)

@@ -355,18 +355,18 @@ export default {
 
         },
 
-        pull: function(ar, item) { //刪除並具有cloenDeep功效
-            let r = []
-            each(ar, (v) => {
-                if (!isEqual(v, item)) {
-                    r.push(v)
+        pull: function(ar, kitem) {
+            let art = []
+            each(ar, (v, k) => {
+                if (k !== kitem) {
+                    art.push(v)
                 }
             })
-            return r
+            return art
         },
 
-        removeItem: function(item) {
-            //console.log('methods removeItem', cp)
+        removeItem: function(item, kitem) {
+            //console.log('methods removeItem', item, kitem)
 
             let vo = this
 
@@ -390,7 +390,7 @@ export default {
             }
 
             //emitDrag
-            vo.emitDrag(vo.pull(vo.valueTrans, item))
+            vo.emitDrag(vo.pull(vo.valueTrans, kitem))
 
         },
 

@@ -7,7 +7,7 @@
         content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui"
     />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>example for w-group-tags: slot</title>
+    <title>example for w-group-tags: slot input</title>
 
     <!-- fontawesome -->
     <link
@@ -80,7 +80,7 @@
     <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.js"></script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@1.4.11/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@1.4.12/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -120,39 +120,26 @@
     <v-app id="app" style="font-family:inherit;">
         <div class="head1">w-group-tags</div>
         <div class="bk" style="display:block;">
-            <div class="item">slot</div>
+            <div class="item">slot input</div>
 
             <w-group-tags
                 v-model="WGroupTags.items"
                 @click="ckBtn"
                 @click-close="ckBtnClose"
             >
-                <template v-slot="props">
+                <template v-slot:input>
                     <div style="display:flex; align-items:center;">
-                        <div style="display:flex; margin-right:5px;">
-                            <w-button-chip
-                                :text="props.item"
-                                :text-font-size="'0.75rem'"
-                                :size-padding="'0px 8px'"
-                                :text-color="'#fff'"
-                                :text-color-hover="'#fff'"
-                                :background-color="'rgba(250,50,120,0.9)'"
-                                :background-color-hover="'rgba(250,50,120,0.9)'"
-                                @click.stop="ckBtnItem1(props)"
-                            />
-                        </div>
-                        <div style="display:flex;">
-                            <w-button-chip
-                                :text="'View'"
-                                :text-font-size="'0.75rem'"
-                                :size-padding="'0px 8px'"
-                                :text-color="'#fff'"
-                                :text-color-hover="'#fff'"
-                                :background-color="'rgba(200,20,170,0.9)'"
-                                :background-color-hover="'rgba(200,20,170,0.9)'"
-                                @click.stop="ckBtnItem2(props)"
-                            />
-                        </div>
+                        <w-button-chip
+                            :icon="'mdi-plus-circle'"
+                            :icon-color="'#fff'"
+                            :icon-color-hover="'#fff'"
+                            :text="'Add'"
+                            :text-color="'#fff'"
+                            :text-color-hover="'#fff'"
+                            :background-color="'rgba(200,20,170,0.9)'"
+                            :background-color-hover="'rgba(200,20,170,0.9)'"
+                            @click.stop="ckBtnAdd"
+                        />
                     </div>
                 </template>
             </w-group-tags>
@@ -187,6 +174,10 @@
     methods: {
       ckBtn: function(ev, msg) {
         console.log("ckBtn", msg);
+      },
+      ckBtnAdd: function(ev) {
+        console.log("ckBtnAdd");
+        this.WGroupTags.items.push("test");
       },
       ckBtnClose: function(ev, item) {
         console.log("ckBtnClose", item);
