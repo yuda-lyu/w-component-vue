@@ -322,11 +322,11 @@
             ></AppZoneWGroupCheck>
 
 
-            <AppZoneWGroupRadioChip
+            <AppZoneWGroupRadio
                :modeBorder="modeBorder"
                 :modeShell="modeShell"
-                v-if="compname==='WGroupRadioChip'"
-            ></AppZoneWGroupRadioChip>
+                v-if="compname==='WGroupRadio'"
+            ></AppZoneWGroupRadio>
 
 
             <AppZoneWText
@@ -499,7 +499,7 @@ import AppZoneWAlert from './AppZoneWAlert.vue'
 import AppZoneWGroupTags from './AppZoneWGroupTags.vue'
 import AppZoneWGroupTabs from './AppZoneWGroupTabs.vue'
 import AppZoneWGroupCheck from './AppZoneWGroupCheck.vue'
-import AppZoneWGroupRadioChip from './AppZoneWGroupRadioChip.vue'
+import AppZoneWGroupRadio from './AppZoneWGroupRadio.vue'
 import AppZoneWText from './AppZoneWText.vue'
 import AppZoneWTextInt from './AppZoneWTextInt.vue'
 import AppZoneWTextarea from './AppZoneWTextarea.vue'
@@ -544,7 +544,7 @@ export default {
         AppZoneWGroupTags,
         AppZoneWGroupTabs,
         AppZoneWGroupCheck,
-        AppZoneWGroupRadioChip,
+        AppZoneWGroupRadio,
         AppZoneWText,
         AppZoneWTextInt,
         AppZoneWTextarea,
@@ -609,7 +609,7 @@ export default {
                     cmps: [
                         'WGroupButtons',
                         'WGroupCheck',
-                        'WGroupRadioChip',
+                        'WGroupRadio',
                         'WGroupTags',
                         'WGroupTabs',
                     ]
@@ -703,10 +703,7 @@ export default {
             haveModeShell: {
                 'WSwitch': true,
                 'WGroupButtons': true,
-                'WGroupTags': true,
-                'WGroupTabs': true,
                 'WGroupCheck': true,
-                'WGroupRadioChip': true,
                 'WText': true,
                 'WTextInt': true,
                 'WTextarea': true,

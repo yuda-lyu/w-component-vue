@@ -12,7 +12,7 @@ import WDynamicList from './WDynamicList.vue'
 import WEchartsVueDyn from './WEchartsVueDyn.vue'
 import WGroupButtons from './WGroupButtons.vue'
 import WGroupCheck from './WGroupCheck.vue'
-import WGroupRadioChip from './WGroupRadioChip.vue'
+import WGroupRadio from './WGroupRadio.vue'
 import WGroupTabs from './WGroupTabs.vue'
 import WGroupTags from './WGroupTags.vue'
 import WHighchartsVueDyn from './WHighchartsVueDyn.vue'
@@ -69,7 +69,7 @@ let WComponentVue = {
         Vue.component('w-echarts-vue-dyn', WEchartsVueDyn)
         Vue.component('w-group-buttons', WGroupButtons)
         Vue.component('w-group-check', WGroupCheck)
-        Vue.component('w-group-radio-chip', WGroupRadioChip)
+        Vue.component('w-group-radio', WGroupRadio)
         Vue.component('w-group-tabs', WGroupTabs)
         Vue.component('w-group-tags', WGroupTags)
         Vue.component('w-highcharts-vue-dyn', WHighchartsVueDyn)

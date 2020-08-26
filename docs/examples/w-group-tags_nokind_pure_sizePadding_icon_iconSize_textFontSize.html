@@ -80,7 +80,7 @@
     <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.js"></script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@1.4.12/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@1.4.13/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -123,7 +123,7 @@
             <div class="item">sizePadding & icon & iconSize & textFontSize</div>
 
             <w-group-tags
-                v-model="WGroupTags.items"
+                v-model="WGroupTags.strings"
                 :size-padding="'10px 24px'"
                 :icon="'mdi-codepen'"
                 :icon-size="26"
@@ -143,13 +143,167 @@
     data: function() {
       return {
         WGroupTags: {
-          items: [
+          strings: [
             "Dashboard",
             "Schedule",
             "Profile",
             "History",
             "Map",
             "聯絡方式"
+          ],
+          objects: [
+            {
+              id: "id-Dashboard",
+              text: "Dashboard"
+            },
+            {
+              id: "id-Schedule",
+              text: "Schedule"
+            },
+            {
+              id: "id-Profile",
+              text: "Profile"
+            },
+            {
+              id: "id-History",
+              text: "History"
+            },
+            {
+              id: "id-Map",
+              text: "Map"
+            },
+            {
+              id: "id-contact",
+              text: "聯絡方式"
+            }
+          ],
+          objectsText: [
+            {
+              id: "id-Dashboard",
+              value: "cmDashboard"
+            },
+            {
+              id: "id-Schedule",
+              value: "cmSchedule"
+            },
+            {
+              id: "id-Profile",
+              value: "cmProfile"
+            },
+            {
+              id: "id-History",
+              value: "cmHistory"
+            },
+            {
+              id: "id-Map",
+              value: "cmMap"
+            },
+            {
+              id: "id-contact",
+              value: "cm聯絡方式"
+            }
+          ],
+          objectsIcon: [
+            {
+              id: "id-Dashboard",
+              text: "Dashboard",
+              icon: "fab fa-accessible-icon"
+            },
+            {
+              id: "id-Schedule",
+              text: "Schedule",
+              icon: "fab fa-asymmetrik"
+            },
+            {
+              id: "id-Profile",
+              text: "Profile",
+              icon: "fas fa-baby"
+            },
+            {
+              id: "id-History",
+              text: "History",
+              icon: "fas fa-balance-scale"
+            },
+            {
+              id: "id-Map",
+              text: "Map",
+              icon: "fas fa-blender"
+            },
+            {
+              id: "id-contact",
+              text: "聯絡方式",
+              icon: "fas fa-hands-helping"
+            }
+          ],
+          objectsTooltip: [
+            {
+              id: "id-Dashboard",
+              text: "Dashboard",
+              tooltip: "Dashboard for tooltip"
+            },
+            {
+              id: "id-Schedule",
+              text: "Schedule",
+              tooltip: "Schedule for tooltip"
+            },
+            {
+              id: "id-Profile",
+              text: "Profile",
+              tooltip: "Profile for tooltip"
+            },
+            {
+              id: "id-History",
+              text: "History",
+              tooltip: "History for tooltip"
+            },
+            {
+              id: "id-Map",
+              text: "Map",
+              tooltip: "Map for tooltip"
+            },
+            {
+              id: "id-contact",
+              text: "聯絡方式",
+              tooltip: "聯絡方式 for tooltip"
+            }
+          ],
+          objectsSlotText: [
+            {
+              id: "id-Dashboard",
+              text: "Dashboard",
+              slotTextKind: "Efficacy",
+              slotTextLevel: "High"
+            },
+            {
+              id: "id-Schedule",
+              text: "Schedule",
+              slotTextKind: "Efficacy",
+              slotTextLevel: "Slow"
+            },
+            {
+              id: "id-Profile",
+              text: "Profile",
+              slotTextKind: "Basic",
+              slotTextLevel: "None"
+            },
+            {
+              id: "id-History",
+              text: "History",
+              slotTextKind: "Basic",
+              slotTextLevel: "None"
+            },
+            {
+              id: "id-Map",
+              text: "Map",
+              slotTextKind: "Efficacy",
+              slotTextLevel: "High"
+            },
+            {
+              id: "id-contact",
+              text: "聯絡方式",
+              slotTextKind: "Basic",
+              slotTextLevel: "None"
+            }
           ],
           empty: []
         },
@@ -161,9 +315,42 @@
       ckBtn: function(ev, msg) {
         console.log("ckBtn", msg);
       },
-      ckBtnAdd: function(ev) {
-        console.log("ckBtnAdd");
-        this.WGroupTags.items.push("test");
+      ckBtnAddString: function(ev) {
+        console.log("ckBtnAddString");
+        this.WGroupTags.strings.push("test");
+      },
+      ckBtnAddObj: function(ev) {
+        console.log("ckBtnAddObj");
+        this.WGroupTags.objects.push({ id: "id-test", text: "test" });
+      },
+      ckBtnAddObjText: function(ev) {
+        console.log("ckBtnAddObjText");
+        this.WGroupTags.objectsText.push({ id: "id-test", value: "test" });
+      },
+      ckBtnAddObjIcon: function(ev) {
+        console.log("ckBtnAddObjIcon");
+        this.WGroupTags.objectsIcon.push({
+          id: "id-test",
+          text: "test",
+          icon: "fas fa-hands-wash"
+        });
+      },
+      ckBtnAddObjTooltip: function(ev) {
+        console.log("ckBtnAddObjTooltip");
+        this.WGroupTags.objectsIcon.push({
+          id: "id-test",
+          text: "test",
+          tooltip: "test for tooltip"
+        });
+      },
+      ckBtnAddObjSlotText: function(ev) {
+        console.log("ckBtnAddObjSlotText");
+        this.WGroupTags.objectsSlotText.push({
+          id: "id-test",
+          text: "test",
+          slotTextKind: "Basic",
+          slotTextLevel: "None"
+        });
       },
       ckBtnClose: function(ev, item) {
         console.log("ckBtnClose", item);

@@ -6,9 +6,9 @@
             <WButtonChip
                 style="margin:10px 10px 10px 0px;"
                 :key="kitem"
-                :text="item"
-                :tooltip="useTooltip(item)"
-                :icon="icon"
+                :text="isObjValue?get(item,`${keyText}`):item"
+                :tooltip="isObjValue?get(item,`${keyTooltip}`):null"
+                :icon="isObjValue?get(item,`${keyIcon}`):icon"
                 :iconColor="iconColor"
                 :iconColorHover="iconColorHover"
                 :iconColorActive="iconColorActive"
@@ -34,13 +34,12 @@
                 :shadowActiveStyle="shadowActiveStyle"
                 :sizePadding="sizePadding"
                 :close="editable"
-                _loading="loading"
                 :editable="true"
-                _editable="可點擊"
                 @click="(ev,msg)=>{clickChip(ev,msg,item,kitem)}"
                 @click-close="clickRemoveBtn($event,item,kitem)"
             >
                 <slot
+                    name="items"
                     :item="item"
                     :kitem="kitem"
                 ></slot>
@@ -54,7 +53,7 @@
                 style="margin:10px 10px 10px 0px;"
                 _key="kitem"
                 :text="nodata"
-                :tooltip="useTooltip(item)"
+                :tooltip="nodata"
                 :icon="icon"
                 :iconColor="iconColor"
                 :iconColorHover="iconColorHover"
@@ -79,9 +78,7 @@
                 :shadowActiveStyle="shadowActiveStyle"
                 :sizePadding="sizePadding"
                 _close="editable"
-                _loading="loading"
                 :editable="true"
-                _editable="可點擊"
                 _click="(ev,msg)=>{clickChip(ev,msg,item,kitem)}"
                 _click-close="clickRemoveBtn($event,item,kitem)"
             >
@@ -96,21 +93,40 @@
 
         <div style="display:inline-block; width:150px; vertical-align:middle;" v-if="editable">
             <slot name="input">
-                <w-text
-                    :textColor="inputTextColor"
-                    :borderShadow="false"
-                    :rightIcon="mdiPlusCircle"
-                    :rightIconColor="inputTextButtonColor"
-                    :rightIconColorFocus="inputTextButtonColorFocus"
-                    :rightIconTooltip="inputIconTooltip"
-                    :backgroundColor="inputTextBackgroundColor"
-                    :backgroundColorFocus="inputTextBackgroundColorFocus"
-                    :borderColor="inputTextBorderColor"
-                    :borderColorFocus="inputTextBorderColorFocus"
-                    @click-right="clickAddBtn"
-                    @enter="clickAddBtn"
-                    v-model="userinput"
-                ></w-text>
+
+                <template v-if="isObjValue">
+                    <WButtonChip
+                        :icon="mdiPlusCircle"
+                        :iconColor="addButtonIconColor"
+                        :iconColorHover="addButtonIconColorHover"
+                        :text="addButtonText"
+                        :textColor="addButtonTextColor"
+                        :textColorHover="addButtonTextColorHover"
+                        :backgroundColor="addButtonBackgroundColor"
+                        :backgroundColorHover="addButtonBackgroundColorHover"
+                        :tooltip="addButtonTooltip"
+                        @click.stop="$emit('click-add')"
+                    ></WButtonChip>
+                </template>
+
+                <template v-else>
+                    <WText
+                        :borderShadow="false"
+                        :textColor="inputTextColor"
+                        :rightIcon="mdiPlusCircle"
+                        :rightIconColor="inputTextButtonColor"
+                        :rightIconColorFocus="inputTextButtonColorFocus"
+                        :rightIconTooltip="inputTextButtonTooltip"
+                        :backgroundColor="inputTextBackgroundColor"
+                        :backgroundColorFocus="inputTextBackgroundColorFocus"
+                        :borderColor="inputTextBorderColor"
+                        :borderColorFocus="inputTextBorderColorFocus"
+                        @click-right="clickAddBtn"
+                        @enter="clickAddBtn"
+                        v-model="userinput"
+                    ></WText>
+                </template>
+
             </slot>
         </div>
 
@@ -123,14 +139,18 @@ import get from 'lodash/get'
 import each from 'lodash/each'
 import cloneDeep from 'lodash/cloneDeep'
 import trim from 'lodash/trim'
-import isfun from 'wsemi/src/isfun.mjs'
+import every from 'lodash/every'
+import isobj from 'wsemi/src/isobj.mjs'
 import genPm from 'wsemi/src/genPm.mjs'
 import WButtonChip from './WButtonChip.vue'
 import WText from './WText.vue'
 
 
 /**
- * @vue-prop {Array} [value=[]] 輸入全部可選字串或物件陣列，預設[]
+ * @vue-prop {Array} [value=[]] 輸入標記項目的字串陣列或物件陣列，預設[]
+ * @vue-prop {String} [keyText='text'] 輸入標記項目為物件時，存放顯示文字之欄位字串，預設'text'
+ * @vue-prop {String} [keyIcon='icon'] 輸入標記項目為物件時，存放圖標之欄位字串，預設'icon'
+ * @vue-prop {String} [keyTooltip='tooltip'] 輸入標記項目為物件時，存放提示之欄位字串，預設'tooltip'
  * @vue-prop {String} [icon=''] 輸入左側圖標字串，預設''
  * @vue-prop {String} [iconColor='black'] 輸入圖標顏色字串，預設'black'
  * @vue-prop {String} [iconColorHover='grey darken-3'] 輸入滑鼠移入時圖標顏色字串，預設'grey darken-3'
@@ -151,7 +171,6 @@ import WText from './WText.vue'
  * @vue-prop {String} [backgroundColor='transparent'] 輸入背景顏色字串，預設'transparent'
  * @vue-prop {String} [backgroundColorHover='rgba(200,200,200,0.25)'] 輸入滑鼠移入時背景顏色字串，預設'rgba(200,200,200,0.25)'
  * @vue-prop {String} [backgroundColorActive='orange'] 輸入主動模式時背景顏色字串，預設'orange'
- * @vue-prop {Function} [funTooltip=()=>{}] 輸入提示函數，預設()=>{}
  * @vue-prop {Boolean} [shadow=true] 輸入是否顯示陰影，預設true
  * @vue-prop {String} [shadowStyle=''] 輸入陰影顏色字串，預設值詳見props
  * @vue-prop {Boolean} [shadowActive=true] 輸入主動模式時是否顯示陰影，預設true
@@ -164,7 +183,15 @@ import WText from './WText.vue'
  * @vue-prop {String} [inputTextBorderColorFocus='grey darken-1'] 輸入輸入框Focus時文字邊框字串，預設'grey darken-1'
  * @vue-prop {String} [inputTextButtonColor='grey lighten-1'] 輸入輸入框未Focus時按鈕顏色字串，預設'grey lighten-1'
  * @vue-prop {String} [inputTextButtonColorFocus='grey'] 輸入輸入框Focus時按鈕顏色字串，預設'grey'
- * @vue-prop {String} [inputIconTooltip='Add'] 輸入輸入框右側按鈕提示文字字串，預設'Add'
+ * @vue-prop {String} [inputTextButtonTooltip='Add'] 輸入輸入框右側按鈕提示文字字串，預設'Add'
+ * @vue-prop {String} [addButtonText='Add'] 輸入新增按鈕文字字串，預設'Add'
+ * @vue-prop {String} [addButtonTextColor='grey'] 輸入新增按鈕文字顏色字串，預設'grey'
+ * @vue-prop {String} [addButtonTextColorHover='grey'] 輸入滑鼠移入時新增按鈕文字顏色字串，預設'grey'
+ * @vue-prop {String} [addButtonIconColor='pink darken-1'] 輸入新增按鈕圖標顏色字串，預設'pink darken-1'
+ * @vue-prop {String} [addButtonIconColorHover='pink darken-1'] 輸入滑鼠移入時新增按鈕圖標顏色字串，預設'pink darken-1'
+ * @vue-prop {String} [addButtonBackgroundColor='white'] 輸入新增按鈕背景顏色字串，預設'white'
+ * @vue-prop {String} [addButtonBackgroundColorHover='white'] 輸入滑鼠移入時新增按鈕背景顏色字串，預設'white'
+ * @vue-prop {String} [addButtonTooltip='Add'] 輸入新增按鈕提示文字字串，預設'Add'
  * @vue-prop {Boolean} [closeWithInterceptor=false] 輸入是否通過攔截器來決定是否進行關閉，此處之攔截器係用promise來控制，當使用者點擊關閉時可先行確認或提示。當closeWithInterceptor=true時，於click-close事件所接收物件資訊中的pm，使用pm.resolve()則代表確定關閉，反之pm.reject()則取消關閉事件，預設false
  * @vue-prop {Boolean} [editable=true] 輸入是否為編輯模式，預設true
  * @vue-prop {String} [nodata='無'] 輸入無任何字串陣列時的預設文字字串，預設'無'
@@ -178,6 +205,18 @@ export default {
         value: {
             type: Array,
             default: () => [],
+        },
+        keyText: {
+            type: String,
+            default: 'text',
+        },
+        keyIcon: {
+            type: String,
+            default: 'icon',
+        },
+        keyTooltip: {
+            type: String,
+            default: 'tooltip',
         },
         icon: {
             type: String,
@@ -259,10 +298,6 @@ export default {
             type: String,
             default: 'orange',
         },
-        funTooltip: {
-            type: Function,
-            default: () => {},
-        },
         shadow: {
             type: Boolean,
             //default: false,
@@ -313,7 +348,39 @@ export default {
             type: String,
             default: 'grey',
         },
-        inputIconTooltip: {
+        inputTextButtonTooltip: {
+            type: String,
+            default: 'Add',
+        },
+        addButtonText: {
+            type: String,
+            default: 'Add',
+        },
+        addButtonTextColor: {
+            type: String,
+            default: 'grey',
+        },
+        addButtonTextColorHover: {
+            type: String,
+            default: 'grey',
+        },
+        addButtonIconColor: {
+            type: String,
+            default: 'pink darken-1',
+        },
+        addButtonIconColorHover: {
+            type: String,
+            default: 'pink darken-1',
+        },
+        addButtonBackgroundColor: {
+            type: String,
+            default: 'white',
+        },
+        addButtonBackgroundColorHover: {
+            type: String,
+            default: 'white',
+        },
+        addButtonTooltip: {
             type: String,
             default: 'Add',
         },
@@ -336,8 +403,7 @@ export default {
 
             mdiPlusCircle,
 
-            kpTooltips: {},
-
+            isObjValue: false,
             itemsTrans: [],
             userinput: '',
 
@@ -355,24 +421,16 @@ export default {
             //save
             vo.itemsTrans = cloneDeep(vo.value)
 
+            //isObjValue
+            vo.isObjValue = every(vo.itemsTrans, (v) => {
+                return isobj(v)
+            })
+
             return ''
         },
 
     },
     methods: {
-
-        useTooltip: function(item) {
-            //console.log('methods useTooltip', item)
-
-            let vo = this
-
-            //funTooltip
-            if (isfun(vo.funTooltip)) {
-                return vo.funTooltip(item)
-            }
-
-            return null
-        },
 
         clickChip: function(ev, msgTemp, item, kitem) {
             //console.log('methods clickChip', ev, msgTemp, item, kitem)

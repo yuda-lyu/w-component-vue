@@ -45,7 +45,7 @@
                                 ></w-icon>
 
                                 <div
-                                    :style="`transition:all 0.3s; text-transform:none; color:${activeTrans?useTextColorActive:hoverTrans?useTextColorHover:useTextColor}; user-select:none;`"
+                                    :style="`margin-right:${text?0:-10}px; transition:all 0.3s; text-transform:none; color:${activeTrans?useTextColorActive:hoverTrans?useTextColorHover:useTextColor}; user-select:none;`"
                                 >
                                     <div :style="`font-size:${textFontSize};`">{{text}}</div>
                                 </div>

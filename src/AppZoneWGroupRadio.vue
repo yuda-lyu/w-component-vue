@@ -1,0 +1,608 @@
+<template>
+    <div>
+
+
+        <div class="head1">w-group-radio</div>
+
+
+        <div style="padding:0px;">
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-group-radio'"
+                    :casename="'default'"
+                    :kind="'nokind'"
+                    :shell="'pure'"
+                ></demolink>
+
+                <w-group-radio
+                    :items="WGroupRadio.string.items"
+                    v-model="WGroupRadio.string.select"
+                ></w-group-radio>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-group-radio'"
+                    :casename="'icon (material)'"
+                    :kind="'nokind'"
+                    :shell="'pure'"
+                ></demolink>
+
+                <w-group-radio
+                    :items="WGroupRadio.object.items"
+                    v-model="WGroupRadio.object.select"
+                ></w-group-radio>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-group-radio'"
+                    :casename="'icon (fontawesome)'"
+                    :kind="'nokind'"
+                    :shell="'pure'"
+                ></demolink>
+
+                <w-group-radio
+                    :items="WGroupRadio.objectFA.items"
+                    v-model="WGroupRadio.objectFA.select"
+                ></w-group-radio>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-group-radio'"
+                    :casename="'iconShiftLeft'"
+                    :kind="'nokind'"
+                    :shell="'pure'"
+                ></demolink>
+
+                <w-group-radio
+                    :items="WGroupRadio.object.items"
+                    v-model="WGroupRadio.object.select"
+                    :iconShiftLeft="5"
+                ></w-group-radio>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-group-radio'"
+                    :casename="'tooltip'"
+                    :kind="'nokind'"
+                    :shell="'pure'"
+                ></demolink>
+
+                <w-group-radio
+                    :items="WGroupRadio.objectTP.items"
+                    v-model="WGroupRadio.objectTP.select"
+                    :tooltip="'測試中文tooltip'"
+                ></w-group-radio>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-group-radio'"
+                    :casename="'sizePadding & iconSize & textFontSize'"
+                    :kind="'nokind'"
+                    :shell="'pure'"
+                ></demolink>
+
+                <w-group-radio
+                    :items="WGroupRadio.object.items"
+                    v-model="WGroupRadio.object.select"
+                    :sizePadding="'10px 24px'"
+                    :iconSize="26"
+                    :textFontSize="'0.9rem'"
+                ></w-group-radio>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-group-radio'"
+                    :casename="'textColor'"
+                    :kind="'nokind'"
+                    :shell="'pure'"
+                ></demolink>
+
+                <w-group-radio
+                    :items="WGroupRadio.object.items"
+                    v-model="WGroupRadio.object.select"
+                    :textColor="'grey darken-1'"
+                ></w-group-radio>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-group-radio'"
+                    :casename="'textColor & textColorHover'"
+                    :kind="'nokind'"
+                    :shell="'pure'"
+                ></demolink>
+
+                <w-group-radio
+                    :items="WGroupRadio.object.items"
+                    v-model="WGroupRadio.object.select"
+                    :textColor="'grey darken-1'"
+                    :textColorHover="'orange darken-3'"
+                ></w-group-radio>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-group-radio'"
+                    :casename="'textColorActive'"
+                    :kind="'nokind'"
+                    :shell="'pure'"
+                ></demolink>
+
+                <w-group-radio
+                    :items="WGroupRadio.object.items"
+                    v-model="WGroupRadio.object.select"
+                    :textColorActive="'white'"
+                ></w-group-radio>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-group-radio'"
+                    :casename="'iconColor & iconColorHover'"
+                    :kind="'nokind'"
+                    :shell="'pure'"
+                ></demolink>
+
+                <w-group-radio
+                    :items="WGroupRadio.object.items"
+                    v-model="WGroupRadio.object.select"
+                    :iconColor="'orange'"
+                    :iconColorHover="'orange darken-2'"
+                ></w-group-radio>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-group-radio'"
+                    :casename="'iconColorActive'"
+                    :kind="'nokind'"
+                    :shell="'pure'"
+                ></demolink>
+
+                <w-group-radio
+                    :items="WGroupRadio.object.items"
+                    v-model="WGroupRadio.object.select"
+                    :iconColorActive="'yellow'"
+                ></w-group-radio>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-group-radio'"
+                    :casename="'borderRadius'"
+                    :kind="'nokind'"
+                    :shell="'pure'"
+                ></demolink>
+
+                <w-group-radio
+                    :items="WGroupRadio.object.items"
+                    v-model="WGroupRadio.object.select"
+                    :borderRadius="0"
+                ></w-group-radio>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-group-radio'"
+                    :casename="'borderColor'"
+                    :kind="'nokind'"
+                    :shell="'pure'"
+                ></demolink>
+
+                <w-group-radio
+                    :items="WGroupRadio.object.items"
+                    v-model="WGroupRadio.object.select"
+                    :borderColor="'grey'"
+                ></w-group-radio>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-group-radio'"
+                    :casename="'borderColor & borderColorHover'"
+                    :kind="'nokind'"
+                    :shell="'pure'"
+                ></demolink>
+
+                <w-group-radio
+                    :items="WGroupRadio.object.items"
+                    v-model="WGroupRadio.object.select"
+                    :borderColor="'grey'"
+                    :borderColorHover="'grey darken-2'"
+                ></w-group-radio>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-group-radio'"
+                    :casename="'borderColorActive'"
+                    :kind="'nokind'"
+                    :shell="'pure'"
+                ></demolink>
+
+                <w-group-radio
+                    :items="WGroupRadio.object.items"
+                    v-model="WGroupRadio.object.select"
+                    :borderColorActive="'white'"
+                ></w-group-radio>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-group-radio'"
+                    :casename="'backgroundColor & backgroundColorHover'"
+                    :kind="'nokind'"
+                    :shell="'pure'"
+                ></demolink>
+
+                <w-group-radio
+                    :items="WGroupRadio.object.items"
+                    v-model="WGroupRadio.object.select"
+                    :backgroundColor="'grey lighten-4'"
+                    :backgroundColorHover="'grey lighten-2'"
+                ></w-group-radio>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-group-radio'"
+                    :casename="'backgroundColorActive'"
+                    :kind="'nokind'"
+                    :shell="'pure'"
+                ></demolink>
+
+                <w-group-radio
+                    :items="WGroupRadio.object.items"
+                    v-model="WGroupRadio.object.select"
+                    :backgroundColorActive="'light-blue darken-2'"
+                ></w-group-radio>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-group-radio'"
+                    :casename="'shadow'"
+                    :kind="'nokind'"
+                    :shell="'pure'"
+                ></demolink>
+
+                <w-group-radio
+                    :items="WGroupRadio.object.items"
+                    v-model="WGroupRadio.object.select"
+                    :shadow="true"
+                ></w-group-radio>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-group-radio'"
+                    :casename="'shadow & shadowStyle'"
+                    :kind="'nokind'"
+                    :shell="'pure'"
+                ></demolink>
+
+                <w-group-radio
+                    :items="WGroupRadio.object.items"
+                    v-model="WGroupRadio.object.select"
+                    :shadow="true"
+                    :shadowStyle="'0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12)'"
+                    _shadowStyle="'0 3px 1px -2px {backgroundColorAlpha=0.2}, 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 {backgroundColorAlpha=0.12}'"
+                ></w-group-radio>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-group-radio'"
+                    :casename="'shadowActiveStyle'"
+                    :kind="'nokind'"
+                    :shell="'pure'"
+                ></demolink>
+
+                <w-group-radio
+                    :items="WGroupRadio.object.items"
+                    v-model="WGroupRadio.object.select"
+                    :shadowActiveStyle="'0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12)'"
+                    _shadowActiveStyle="'0 3px 1px -2px {backgroundColorActiveAlpha=0.2}, 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 {backgroundColorActiveAlpha=0.12}'"
+                ></w-group-radio>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-group-radio'"
+                    :casename="'no shadowActive'"
+                    :kind="'nokind'"
+                    :shell="'pure'"
+                ></demolink>
+
+                <w-group-radio
+                    :items="WGroupRadio.object.items"
+                    v-model="WGroupRadio.object.select"
+                    :shadowActive="false"
+                ></w-group-radio>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-group-radio'"
+                    :casename="'slot & shadow'"
+                    :kind="'nokind'"
+                    :shell="'pure'"
+                ></demolink>
+
+                <w-group-radio
+                    :items="WGroupRadio.string.items"
+                    v-model="WGroupRadio.string.select"
+                    :shadow="true"
+                    :backgroundColorActive="'grey'"
+                >
+                    <template v-slot="props">
+                        <div style="display:flex; align-items:center;">
+                            <div
+                                style="margin:2px 5px 2px 2px; user-select:none; padding:2px 12px; font-size:0.75rem; color:#fff; background:#aa00ff; border-radius:12px; box-shadow:0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12);"
+                            >{{props.item.data}}</div>
+                            <div
+                                style="margin:2px; user-select:none; padding:2px 12px; font-size:0.75rem; color:#fff; background:#00acc1; border-radius:12px; box-shadow:0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12);"
+                            >View</div>
+                        </div>
+                    </template>
+                </w-group-radio>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-group-radio'"
+                    :casename="'loading'"
+                    :kind="'nokind'"
+                    :shell="'pure'"
+                ></demolink>
+
+                <w-group-radio
+                    :items="WGroupRadio.object.items"
+                    v-model="WGroupRadio.object.select"
+                    :loading="true"
+                ></w-group-radio>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-group-radio'"
+                    :casename="'not editable'"
+                    :kind="'nokind'"
+                    :shell="'pure'"
+                ></demolink>
+
+                <w-group-radio
+                    :items="WGroupRadio.object.items"
+                    v-model="WGroupRadio.object.select"
+                    :editable="false"
+                ></w-group-radio>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-group-radio'"
+                    :casename="'sizePadding & borderRadius & textColor & iconColor & backgroundColor & backgroundColorHover & backgroundColorActive & shadowActive'"
+                    :kind="'nokind'"
+                    :shell="'pure'"
+                ></demolink>
+
+                <div style="padding:0px 10px; background:linear-gradient(60deg,#ab47bc,#7b1fa2); box-shadow:0 5px 20px 0 rgba(0,0,0,.2), 0 13px 24px -11px rgba(156,39,176,.6);">
+                    <w-group-radio
+                        :items="WGroupRadio.object.items"
+                        v-model="WGroupRadio.object.select"
+                        :sizePadding="'12px 27px'"
+                        :borderRadius="5"
+                        :textColor="'white'"
+                        :textColorHover="'white'"
+                        :textColorActive="'white'"
+                        :iconColor="'white'"
+                        :iconColorHover="'white'"
+                        :iconColorActive="'white'"
+                        :backgroundColor="'rgba(255,255,255,0)'"
+                        :backgroundColorHover="'rgba(255,255,255,0)'"
+                        :backgroundColorActive="'rgba(255,255,255,0.15)'"
+                        :shadowActive="false"
+                    ></w-group-radio>
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+</template>
+
+<script>
+import { mdiAccountSupervisorCircle, mdiViewDashboard, mdiClockTimeEightOutline, mdiBlenderSoftware, mdiApple, mdiSpoonSugar } from '@mdi/js'
+import demolink from './components/demolink.vue'
+import WShellMaterial from './components/WShellMaterial.vue'
+import WGroupRadio from './components/WGroupRadio.vue'
+
+
+export default {
+    components: {
+        demolink,
+        WShellMaterial,
+        WGroupRadio,
+    },
+    props: {
+        modeBorder: {
+            type: String,
+        },
+        modeShell: {
+            type: String,
+        },
+    },
+    data: function() {
+        return {
+            mdiAccountSupervisorCircle,
+            'WGroupRadio': {
+                'string': {
+                    'items': [
+                        'Dashboard',
+                        'Schedule',
+                        'Profile',
+                        'History',
+                        'Apple',
+                        '橘子'
+                    ],
+                    'select': 'Apple'
+                },
+                'object': {
+                    'items': [
+                        {
+                            text: 'Dashboard',
+                            icon: mdiViewDashboard,
+                        },
+                        {
+                            text: 'Schedule',
+                            icon: mdiClockTimeEightOutline,
+                        },
+                        {
+                            text: 'Profile',
+                            icon: mdiBlenderSoftware,
+                        },
+                        {
+                            text: 'History',
+                            icon: mdiSpoonSugar,
+                        },
+                        {
+                            text: '蘋果',
+                            icon: mdiApple,
+                        },
+                    ],
+                    'select': {
+                        text: 'Dashboard',
+                        icon: mdiViewDashboard,
+                    }
+                },
+                'objectTP': {
+                    'items': [
+                        {
+                            text: 'Dashboard',
+                            icon: mdiViewDashboard,
+                            tooltip: 'tooltip for Dashboard',
+                        },
+                        {
+                            text: 'Schedule',
+                            icon: mdiClockTimeEightOutline,
+                            tooltip: 'tooltip for Schedule',
+                        },
+                        {
+                            text: 'Profile',
+                            icon: mdiBlenderSoftware,
+                            tooltip: 'tooltip for Profile',
+                        },
+                        {
+                            text: 'History',
+                            icon: mdiSpoonSugar,
+                            tooltip: 'tooltip for History',
+                        },
+                        {
+                            text: '蘋果',
+                            icon: mdiApple,
+                            tooltip: 'tooltip for 蘋果',
+                        },
+                    ],
+                    'select': {
+                        text: 'Dashboard',
+                        icon: mdiAccountSupervisorCircle,
+                        tooltip: 'tooltip for Dashboard',
+                    }
+                },
+                'objectFA': {
+                    'items': [
+                        {
+                            text: 'Dashboard',
+                            icon: 'fa fa-address-book',
+                        },
+                        {
+                            text: 'Schedule',
+                            icon: 'fa fa-address-card',
+                        },
+                        {
+                            text: 'Profile',
+                            icon: 'fa fa-american-sign-language-interpreting',
+                        },
+                        {
+                            text: 'History',
+                            icon: 'fa fa-balance-scale',
+                        },
+                        {
+                            text: '蘋果',
+                            icon: 'fa fa-heartbeat',
+                        },
+                    ],
+                    'select': {
+                        text: 'Dashboard',
+                        icon: 'fa fa-address-book',
+                    }
+                },
+            },
+            'actions': [
+            ],
+        }
+    },
+}
+</script>
+
+<style scoped>
+</style>
