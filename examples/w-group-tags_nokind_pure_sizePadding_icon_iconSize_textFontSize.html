@@ -80,7 +80,7 @@
     <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.js"></script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@1.4.13/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@1.4.14/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -312,42 +312,59 @@
     },
     computed: {},
     methods: {
+      genName: function() {
+        let chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz".split(
+          ""
+        );
+        let radix = chars.length;
+        let len = 4;
+        let uuid = [];
+        for (let i = 0; i < len; i++)
+          uuid[i] = chars[0 | (Math.random() * radix)];
+        return uuid.join("");
+      },
       ckBtn: function(ev, msg) {
         console.log("ckBtn", msg);
       },
       ckBtnAddString: function(ev) {
         console.log("ckBtnAddString");
-        this.WGroupTags.strings.push("test");
+        let name = this.genName();
+        this.WGroupTags.strings.push(name);
       },
       ckBtnAddObj: function(ev) {
         console.log("ckBtnAddObj");
-        this.WGroupTags.objects.push({ id: "id-test", text: "test" });
+        let name = this.genName();
+        this.WGroupTags.objects.push({ id: "id-" + name, text: name });
       },
       ckBtnAddObjText: function(ev) {
         console.log("ckBtnAddObjText");
-        this.WGroupTags.objectsText.push({ id: "id-test", value: "test" });
+        let name = this.genName();
+        this.WGroupTags.objectsText.push({ id: "id-" + name, value: name });
       },
       ckBtnAddObjIcon: function(ev) {
         console.log("ckBtnAddObjIcon");
+        let name = this.genName();
         this.WGroupTags.objectsIcon.push({
-          id: "id-test",
-          text: "test",
+          id: "id-" + name,
+          text: name,
           icon: "fas fa-hands-wash"
         });
       },
       ckBtnAddObjTooltip: function(ev) {
         console.log("ckBtnAddObjTooltip");
-        this.WGroupTags.objectsIcon.push({
-          id: "id-test",
-          text: "test",
-          tooltip: "test for tooltip"
+        let name = this.genName();
+        this.WGroupTags.objectsTooltip.push({
+          id: "id-" + name,
+          text: name,
+          tooltip: name + " for tooltip"
         });
       },
       ckBtnAddObjSlotText: function(ev) {
         console.log("ckBtnAddObjSlotText");
+        let name = this.genName();
         this.WGroupTags.objectsSlotText.push({
-          id: "id-test",
-          text: "test",
+          id: "id-" + name,
+          text: name,
           slotTextKind: "Basic",
           slotTextLevel: "None"
         });
