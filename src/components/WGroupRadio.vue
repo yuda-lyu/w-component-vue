@@ -1,5 +1,5 @@
 <template>
-    <div :style="{'opacity':editable?1:0.65}" :changeParam="changeParam">
+    <div :style="{'opacity':editable?1:0.65}" :changeItems="changeItems">
 
         <template v-for="(item,kitem) in itemsTrans">
 
@@ -225,8 +225,8 @@ export default {
     },
     computed: {
 
-        changeParam: function () {
-            //console.log('computed changeParam')
+        changeItems: function () {
+            //console.log('computed changeItems')
 
             let vo = this
 

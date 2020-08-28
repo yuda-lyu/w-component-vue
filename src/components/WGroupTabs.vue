@@ -13,7 +13,7 @@
                 >
 
                     <v-chip
-                        :class="`WGroupTabsChip v-chpi-modify ${shadow?'shadow':''}`"
+                        :class="`v-chpi-modify ${shadow?'shadow':''}`"
                         small
                         :close-icon="mdiCloseCircle"
                         :close="close"
@@ -147,8 +147,6 @@ export default {
             mdiCloseCircle,
             valueTrans: [],
             itemActive: {},
-            startInd: null,
-            endInd: null,
 
             drag: null,
 
@@ -222,7 +220,11 @@ export default {
 
         let vo = this
 
-        vo.drag.clear()
+        //clear
+        if (vo.drag) {
+            vo.drag.clear()
+            vo.drag = null
+        }
 
     },
     watch: {

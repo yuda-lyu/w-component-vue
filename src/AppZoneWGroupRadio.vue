@@ -420,6 +420,24 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-group-radio'"
+                    :casename="'loading & textColor'"
+                    :kind="'nokind'"
+                    :shell="'pure'"
+                ></demolink>
+
+                <w-group-radio
+                    :items="WGroupRadio.object.items"
+                    v-model="WGroupRadio.object.select"
+                    :loading="true"
+                    :textColor="'orange darken-4'"
+                ></w-group-radio>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-group-radio'"
                     :casename="'not editable'"
                     :kind="'nokind'"
                     :shell="'pure'"
@@ -473,14 +491,12 @@
 <script>
 import { mdiAccountSupervisorCircle, mdiViewDashboard, mdiClockTimeEightOutline, mdiBlenderSoftware, mdiApple, mdiSpoonSugar } from '@mdi/js'
 import demolink from './components/demolink.vue'
-import WShellMaterial from './components/WShellMaterial.vue'
 import WGroupRadio from './components/WGroupRadio.vue'
 
 
 export default {
     components: {
         demolink,
-        WShellMaterial,
         WGroupRadio,
     },
     props: {

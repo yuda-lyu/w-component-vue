@@ -1,51 +1,63 @@
 <template>
-    <div :changeParam="changeParam">
+    <div
+        :changeValue="changeValue"
+        :changeDraggable="changeDraggable"
+    >
 
-        <template v-for="(item,kitem) in itemsTrans">
+        <transition-group>
+            <template v-for="(item,kitem) in itemsTrans">
 
-            <WButtonChip
-                style="margin:10px 10px 10px 0px;"
-                :key="kitem"
-                :text="isObjValue?get(item,`${keyText}`):item"
-                :tooltip="isObjValue?get(item,`${keyTooltip}`):null"
-                :icon="isObjValue?get(item,`${keyIcon}`):icon"
-                :iconColor="iconColor"
-                :iconColorHover="iconColorHover"
-                :iconColorActive="iconColorActive"
-                :iconSize="iconSize"
-                :iconShiftLeft="iconShiftLeft"
-                :iconShiftRight="iconShiftRight"
-                :progColor="progColor"
-                :progBackgroundColor="progBackgroundColor"
-                :textColor="textColor"
-                :textColorHover="textColorHover"
-                :textColorActive="textColorActive"
-                :textFontSize="textFontSize"
-                :borderRadius="borderRadius"
-                :borderColor="borderColor"
-                :borderColorHover="borderColorHover"
-                :borderColorActive="borderColorActive"
-                :backgroundColor="backgroundColor"
-                :backgroundColorHover="backgroundColorHover"
-                :backgroundColorActive="backgroundColorActive"
-                :shadow="shadow"
-                :shadowStyle="shadowStyle"
-                :shadowActive="shadowActive"
-                :shadowActiveStyle="shadowActiveStyle"
-                :sizePadding="sizePadding"
-                :close="editable"
-                :editable="true"
-                @click="(ev,msg)=>{clickChip(ev,msg,item,kitem)}"
-                @click-close="clickRemoveBtn($event,item,kitem)"
-            >
-                <slot
-                    name="items"
-                    :item="item"
-                    :kitem="kitem"
-                ></slot>
-            </WButtonChip>
+                <div
+                    class="trans"
+                    style="display:inline-block;"
+                    :key="`${isObjValue?get(item,`${keyText}`):item}`"
+                    dragtag
+                    :dragindex="kitem"
+                >
+                    <WButtonChip
+                        style="margin:10px 10px 10px 0px;"
+                        :text="isObjValue?get(item,`${keyText}`):item"
+                        :tooltip="isObjValue?get(item,`${keyTooltip}`):null"
+                        :icon="isObjValue?get(item,`${keyIcon}`):icon"
+                        :iconColor="iconColor"
+                        :iconColorHover="iconColorHover"
+                        :iconColorActive="iconColorActive"
+                        :iconSize="iconSize"
+                        :iconShiftLeft="iconShiftLeft"
+                        :iconShiftRight="iconShiftRight"
+                        :progColor="progColor"
+                        :progBackgroundColor="progBackgroundColor"
+                        :textColor="textColor"
+                        :textColorHover="textColorHover"
+                        :textColorActive="textColorActive"
+                        :textFontSize="textFontSize"
+                        :borderRadius="borderRadius"
+                        :borderColor="borderColor"
+                        :borderColorHover="borderColorHover"
+                        :borderColorActive="borderColorActive"
+                        :backgroundColor="backgroundColor"
+                        :backgroundColorHover="backgroundColorHover"
+                        :backgroundColorActive="backgroundColorActive"
+                        :shadow="shadow"
+                        :shadowStyle="shadowStyle"
+                        :shadowActive="shadowActive"
+                        :shadowActiveStyle="shadowActiveStyle"
+                        :sizePadding="sizePadding"
+                        :close="editable && editableClose"
+                        :editable="true"
+                        @click="(ev,msg)=>{clickChip(ev,msg,item,kitem)}"
+                        @click-close="clickRemoveBtn($event,item,kitem)"
+                    >
+                        <slot
+                            name="items"
+                            :item="item"
+                            :kitem="kitem"
+                        ></slot>
+                    </WButtonChip>
+                </div>
 
-        </template>
+            </template>
+        </transition-group>
 
         <template v-if="itemsTrans.length===0">
 
@@ -77,7 +89,7 @@
                 :shadowActive="shadowActive"
                 :shadowActiveStyle="shadowActiveStyle"
                 :sizePadding="sizePadding"
-                _close="editable"
+                _close="editable && editableClose"
                 :editable="true"
                 _click="(ev,msg)=>{clickChip(ev,msg,item,kitem)}"
                 _click-close="clickRemoveBtn($event,item,kitem)"
@@ -91,7 +103,7 @@
 
         </template>
 
-        <div style="display:inline-block; width:150px; vertical-align:middle;" v-if="editable">
+        <div style="display:inline-block; width:150px; vertical-align:middle;" v-if="editable && editableInput">
             <slot name="input">
 
                 <template v-if="isObjValue">
@@ -140,8 +152,14 @@ import each from 'lodash/each'
 import cloneDeep from 'lodash/cloneDeep'
 import trim from 'lodash/trim'
 import every from 'lodash/every'
+import pullAt from 'lodash/pullAt'
+import filter from 'lodash/filter'
+import isEqual from 'lodash/isEqual'
+import size from 'lodash/size'
+import domDrag from 'wsemi/src/domDrag.mjs'
 import isobj from 'wsemi/src/isobj.mjs'
 import genPm from 'wsemi/src/genPm.mjs'
+import waitFun from 'wsemi/src/waitFun.mjs'
 import WButtonChip from './WButtonChip.vue'
 import WText from './WText.vue'
 
@@ -193,7 +211,10 @@ import WText from './WText.vue'
  * @vue-prop {String} [addButtonBackgroundColorHover='white'] 輸入滑鼠移入時新增按鈕背景顏色字串，預設'white'
  * @vue-prop {String} [addButtonTooltip='Add'] 輸入新增按鈕提示文字字串，預設'Add'
  * @vue-prop {Boolean} [closeWithInterceptor=false] 輸入是否通過攔截器來決定是否進行關閉，此處之攔截器係用promise來控制，當使用者點擊關閉時可先行確認或提示。當closeWithInterceptor=true時，於click-close事件所接收物件資訊中的pm，使用pm.resolve()則代表確定關閉，反之pm.reject()則取消關閉事件，預設false
+ * @vue-prop {Boolean} [draggable=true] 輸入是否可拖曳模式，預設true
  * @vue-prop {Boolean} [editable=true] 輸入是否為編輯模式，預設true
+ * @vue-prop {Boolean} [editableClose=true] 輸入editable=true時，是否顯示關閉按鈕，預設true
+ * @vue-prop {Boolean} [editableInput=true] 輸入editable=true時，是否使用預設的slot input，預設true
  * @vue-prop {String} [nodata='無'] 輸入無任何字串陣列時的預設文字字串，預設'無'
  */
 export default {
@@ -388,13 +409,25 @@ export default {
             type: Boolean,
             default: false,
         },
+        draggable: {
+            type: Boolean,
+            default: true,
+        },
         editable: {
+            type: Boolean,
+            default: true,
+        },
+        editableClose: {
+            type: Boolean,
+            default: true,
+        },
+        editableInput: {
             type: Boolean,
             default: true,
         },
         nodata: {
             type: String,
-            default: '無',
+            default: 'empty',
         },
     },
     data: function() {
@@ -403,7 +436,7 @@ export default {
 
             mdiPlusCircle,
 
-            isObjValue: false,
+            drag: null,
             itemsTrans: [],
             userinput: '',
 
@@ -411,26 +444,165 @@ export default {
     },
     mounted: function() {
     },
+    beforeDestroy: function() {
+        //console.log('beforeDestroy')
+
+        let vo = this
+
+        //dragClear
+        vo.dragClear()
+
+    },
     computed: {
 
-        changeParam: function () {
-            //console.log('computed changeParam')
+        changeValue: function () {
+            //console.log('computed changeValue')
 
             let vo = this
+
+            //dragInit
+            vo.dragInit(true)
 
             //save
             vo.itemsTrans = cloneDeep(vo.value)
 
-            //isObjValue
-            vo.isObjValue = every(vo.itemsTrans, (v) => {
-                return isobj(v)
-            })
+            return ''
+        },
+
+        changeDraggable: function () {
+            //console.log('computed changeDraggable')
+
+            let vo = this
+
+            //draggable for trigger
+            let draggable = vo.draggable
+
+            //dragInit or dragClear
+            if (draggable) {
+                if (vo.drag === null) {
+                    vo.dragInit()
+                }
+            }
+            else {
+                vo.dragClear()
+            }
 
             return ''
         },
 
+        isObjValue: function() {
+            //console.log('computed isObjValue')
+
+            let vo = this
+
+            return every(vo.itemsTrans, (v) => {
+                return isobj(v)
+            })
+        },
+
     },
     methods: {
+
+        dragInit: function(restart = false) {
+            //console.log('methods dragInit', restart)
+
+            let vo = this
+
+            async function core() {
+
+                //wait $el
+                await waitFun(() => {
+                    return vo.$el !== null
+                })
+
+                //check
+                if (vo.drag !== null) {
+                    if (restart) {
+                        vo.dragClear()
+                    }
+                    else {
+                        return
+                    }
+                }
+
+                //domDrag
+                let drag = domDrag(vo.$el, {
+                    attIndex: 'dragindex',
+                    attGroup: 'draggroup',
+                    selectors: '[dragtag]',
+                    previewOpacity: 1,
+                    previewBorderWidth: 0,
+                    previewBackground: 'transparent',
+                })
+                drag.on('change', (msg) => {
+                    //console.log('onchange', msg)
+                })
+                drag.on('drop', ({ startInd, endInd }) => {
+                    //console.log('ondrop', startInd, endInd)
+
+                    //check
+                    if (startInd === endInd) {
+                        return
+                    }
+
+                    //cloneDeep
+                    let itemsNew = cloneDeep(vo.itemsTrans)
+
+                    //move
+                    if (startInd > endInd) { //往前拖曳, 先移除原始拖曳項目, 再於放下位置插入該拖曳項目
+
+                        //pullAt
+                        let src = pullAt(itemsNew, startInd)[0]
+
+                        //array insert
+                        itemsNew.splice(endInd, 0, src) //拖曳項目是要放在目標項目之前, 故不能+1
+
+                    }
+                    else { //往後拖曳, 先複製原始拖曳項目, 並於放下位置插入, 再刪除原始拖曳項目
+
+                        //cloneDeep
+                        let src = cloneDeep(itemsNew[startInd])
+
+                        //array insert
+                        itemsNew.splice(endInd + 1, 0, src) //拖曳項目是要放在目標項目之後, 故需要+1
+
+                        //pullAt
+                        pullAt(itemsNew, startInd)
+
+                    }
+
+                    //emit
+                    vo.$emit('input', itemsNew)
+
+                })
+
+                //save
+                vo.drag = drag
+
+            }
+
+            //$nextTick, 因value變更時需驅動, clear需先行與同步觸發, domDrag需等value變更儲存至itemsTrans後才執行
+            vo.$nextTick(() => {
+
+                //core
+                core()
+
+            })
+
+        },
+
+        dragClear: function() {
+            //console.log('methods dragClear')
+
+            let vo = this
+
+            //clear
+            if (vo.drag) {
+                vo.drag.clear()
+                vo.drag = null
+            }
+
+        },
 
         clickChip: function(ev, msgTemp, item, kitem) {
             //console.log('methods clickChip', ev, msgTemp, item, kitem)
@@ -461,6 +633,26 @@ export default {
 
             //check
             if (trim(vo.userinput) === '') {
+                return
+            }
+
+            //check
+            let r = filter(vo.itemsTrans, (v) => {
+                return isEqual(v, vo.userinput)
+            })
+            if (size(r) >= 1) {
+
+                //$nextTick
+                vo.$nextTick(() => {
+
+                    //emit
+                    vo.$emit('error', 'disable duplicate values')
+
+                    //clear
+                    vo.userinput = ''
+
+                })
+
                 return
             }
 
@@ -562,4 +754,7 @@ export default {
 </script>
 
 <style scoped>
+.trans { /* transition-group必須使用class */
+    transition: all 0.5s;
+}
 </style>

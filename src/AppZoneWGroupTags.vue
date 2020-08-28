@@ -174,7 +174,7 @@
                     :kind="'nokind'"
                     :shell="'pure'"
                 ></demolink>
-aaa
+
                 <w-group-tags
                     v-model="WGroupTags.objects"
                     :addButtonText="'新增'"
@@ -191,7 +191,7 @@ aaa
                     :kind="'nokind'"
                     :shell="'pure'"
                 ></demolink>
-aaa
+
                 <w-group-tags
                     v-model="WGroupTags.objects"
                     :addButtonTextColor="'white'"
@@ -257,7 +257,7 @@ aaa
                     :kind="'nokind'"
                     :shell="'pure'"
                 ></demolink>
-aaa
+
                 <w-group-tags
                     v-model="WGroupTags.objectsSlotText"
                     @click="ckBtn"
@@ -558,6 +558,22 @@ aaa
             <div class="bk" style="display:block;">
                 <demolink
                     :kbname="'w-group-tags'"
+                    :casename="'not draggable'"
+                    :kind="'nokind'"
+                    :shell="'pure'"
+                ></demolink>
+
+                <w-group-tags
+                    v-model="WGroupTags.strings"
+                    :icon="mdiChartBubble"
+                    :draggable="false"
+                ></w-group-tags>
+            </div>
+
+
+            <div class="bk" style="display:block;">
+                <demolink
+                    :kbname="'w-group-tags'"
                     :casename="'not editable'"
                     :kind="'nokind'"
                     :shell="'pure'"
@@ -571,6 +587,54 @@ aaa
             </div>
 
 
+            <div class="bk" style="display:block;">
+                <demolink
+                    :kbname="'w-group-tags'"
+                    :casename="'editableClose(no close button)'"
+                    :kind="'nokind'"
+                    :shell="'pure'"
+                ></demolink>
+
+                <w-group-tags
+                    v-model="WGroupTags.strings"
+                    :icon="mdiChartBubble"
+                    :editableClose="false"
+                ></w-group-tags>
+            </div>
+
+
+            <div class="bk" style="display:block;">
+                <demolink
+                    :kbname="'w-group-tags'"
+                    :casename="'editableInput(no slot input)'"
+                    :kind="'nokind'"
+                    :shell="'pure'"
+                ></demolink>
+
+                <w-group-tags
+                    v-model="WGroupTags.strings"
+                    :icon="mdiChartBubble"
+                    :editableInput="false"
+                ></w-group-tags>
+            </div>
+
+
+            <div class="bk" style="display:block;">
+                <demolink
+                    :kbname="'w-group-tags'"
+                    :casename="'not editable & nodata'"
+                    :kind="'nokind'"
+                    :shell="'pure'"
+                ></demolink>
+
+                <w-group-tags
+                    v-model="WGroupTags.empty"
+                    :editable="false"
+                    :nodata="'無'"
+                ></w-group-tags>
+            </div>
+
+
         </div>
 
 
@@ -580,7 +644,6 @@ aaa
 <script>
 import { mdiEmailVariant, mdiChartBubble, mdiCodepen, mdiPlusCircle } from '@mdi/js'
 import demolink from './components/demolink.vue'
-import WShellMaterial from './components/WShellMaterial.vue'
 import WGroupTags from './components/WGroupTags.vue'
 import WButtonChip from './components/WButtonChip.vue'
 
@@ -588,7 +651,6 @@ import WButtonChip from './components/WButtonChip.vue'
 export default {
     components: {
         demolink,
-        WShellMaterial,
         WGroupTags,
         WButtonChip,
     },
@@ -776,32 +838,46 @@ export default {
         }
     },
     methods: {
+        genName: function() {
+            let chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'.split('')
+            let radix = chars.length
+            let len = 4
+            let uuid = []
+            for (let i = 0; i < len; i++) uuid[i] = chars[0 | Math.random() * radix]
+            return uuid.join('')
+        },
         ckBtn: function(ev, msg) {
             console.log('ckBtn', msg)
         },
         ckBtnAddString: function(ev) {
             console.log('ckBtnAddString')
-            this.WGroupTags.strings.push('test')
+            let name = this.genName()
+            this.WGroupTags.strings.push(name)
         },
         ckBtnAddObj: function(ev) {
             console.log('ckBtnAddObj')
-            this.WGroupTags.objects.push({ id: 'id-test', text: 'test' })
+            let name = this.genName()
+            this.WGroupTags.objects.push({ id: 'id-' + name, text: name })
         },
         ckBtnAddObjText: function(ev) {
             console.log('ckBtnAddObjText')
-            this.WGroupTags.objectsText.push({ id: 'id-test', value: 'test' })
+            let name = this.genName()
+            this.WGroupTags.objectsText.push({ id: 'id-' + name, value: name })
         },
         ckBtnAddObjIcon: function(ev) {
             console.log('ckBtnAddObjIcon')
-            this.WGroupTags.objectsIcon.push({ id: 'id-test', text: 'test', icon: 'fas fa-hands-wash' })
+            let name = this.genName()
+            this.WGroupTags.objectsIcon.push({ id: 'id-' + name, text: name, icon: 'fas fa-hands-wash' })
         },
         ckBtnAddObjTooltip: function(ev) {
             console.log('ckBtnAddObjTooltip')
-            this.WGroupTags.objectsIcon.push({ id: 'id-test', text: 'test', tooltip: 'test for tooltip' })
+            let name = this.genName()
+            this.WGroupTags.objectsTooltip.push({ id: 'id-' + name, text: name, tooltip: name + ' for tooltip' })
         },
         ckBtnAddObjSlotText: function(ev) {
             console.log('ckBtnAddObjSlotText')
-            this.WGroupTags.objectsSlotText.push({ id: 'id-test', text: 'test', slotTextKind: 'Basic', slotTextLevel: 'None' })
+            let name = this.genName()
+            this.WGroupTags.objectsSlotText.push({ id: 'id-' + name, text: name, slotTextKind: 'Basic', slotTextLevel: 'None' })
         },
         ckBtnClose: function(ev, item) {
             console.log('ckBtnClose', item)

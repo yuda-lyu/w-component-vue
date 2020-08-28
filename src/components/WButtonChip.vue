@@ -30,7 +30,7 @@
                             :style="`transition:all 0.3s; opacity:${loadingTrans?0:1}; padding:${usePadding}; border-radius:${borderRadius}px; border:1px solid ${activeTrans?useBorderColorActive:hoverTrans?useBorderColorHover:useBorderColor}; `"
                         >
 
-                            <div style="display:flex; align-items:center;">
+                            <div style="display:flex; align-items:center; white-space:nowrap;">
 
                                 <div style="margin:0px 8px 0px -8px;">
                                     <slot></slot>
