@@ -80,7 +80,7 @@
     <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.js"></script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@1.4.14/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@1.4.15/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -126,6 +126,10 @@
                 v-model="WGroupTags.objects"
                 @click-add="ckBtnAddObj"
             />
+
+            <div
+                style="padding-left:5px; font-size:0.9rem; color:#ea6;"
+            >binding: objects</div>
         </div>
     </v-app>
 
@@ -148,6 +152,7 @@
             "Map",
             "聯絡方式"
           ],
+          stringActive: "Dashboard",
           objects: [
             {
               id: "id-Dashboard",
@@ -302,6 +307,12 @@
               slotTextLevel: "None"
             }
           ],
+          objectsSlotTextActive: {
+            id: "id-Dashboard",
+            text: "Dashboard",
+            slotTextKind: "Efficacy",
+            slotTextLevel: "High"
+          },
           empty: []
         },
         actions: []
