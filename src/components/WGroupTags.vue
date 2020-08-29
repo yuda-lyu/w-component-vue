@@ -43,6 +43,7 @@
                         :shadowActive="shadowActive"
                         :shadowActiveStyle="shadowActiveStyle"
                         :sizePadding="sizePadding"
+                        :active="isActive(item)"
                         :close="editable && editableClose"
                         :editable="true"
                         @click="(ev,msg)=>{clickChip(ev,msg,item,kitem)}"
@@ -52,6 +53,7 @@
                             name="items"
                             :item="item"
                             :kitem="kitem"
+                            :active="isActive(item)"
                         ></slot>
                     </WButtonChip>
                 </div>
@@ -98,6 +100,7 @@
                     name="items"
                     :item="null"
                     :kitem="null"
+                    :active="false"
                 ></slot>
             </WButtonChip>
 
@@ -165,10 +168,12 @@ import WText from './WText.vue'
 
 
 /**
- * @vue-prop {Array} [value=[]] 輸入標記項目的字串陣列或物件陣列，預設[]
- * @vue-prop {String} [keyText='text'] 輸入標記項目為物件時，存放顯示文字之欄位字串，預設'text'
- * @vue-prop {String} [keyIcon='icon'] 輸入標記項目為物件時，存放圖標之欄位字串，預設'icon'
- * @vue-prop {String} [keyTooltip='tooltip'] 輸入標記項目為物件時，存放提示之欄位字串，預設'tooltip'
+ * @vue-prop {Array} [value=[]] 輸入項目的字串陣列或物件陣列，預設[]
+ * @vue-prop {Boolean} [useActive=false] 輸入項目是否使用點擊成為活耀狀態，預設false
+ * @vue-prop {Object} [valueActive=null] 輸入活耀項目物件，預設null
+ * @vue-prop {String} [keyText='text'] 輸入項目為物件時，存放顯示文字之欄位字串，預設'text'
+ * @vue-prop {String} [keyIcon='icon'] 輸入項目為物件時，存放圖標之欄位字串，預設'icon'
+ * @vue-prop {String} [keyTooltip='tooltip'] 輸入項目為物件時，存放提示之欄位字串，預設'tooltip'
  * @vue-prop {String} [icon=''] 輸入左側圖標字串，預設''
  * @vue-prop {String} [iconColor='black'] 輸入圖標顏色字串，預設'black'
  * @vue-prop {String} [iconColorHover='grey darken-3'] 輸入滑鼠移入時圖標顏色字串，預設'grey darken-3'
@@ -226,6 +231,14 @@ export default {
         value: {
             type: Array,
             default: () => [],
+        },
+        useActive: {
+            type: Boolean,
+            default: false,
+        },
+        valueActive: {
+            type: [String, Object],
+            default: null,
         },
         keyText: {
             type: String,
@@ -438,6 +451,7 @@ export default {
 
             drag: null,
             itemsTrans: [],
+            itemActiveTrans: null,
             userinput: '',
 
         }
@@ -465,6 +479,7 @@ export default {
 
             //save
             vo.itemsTrans = cloneDeep(vo.value)
+            vo.itemActiveTrans = cloneDeep(vo.valueActive)
 
             return ''
         },
@@ -502,6 +517,19 @@ export default {
 
     },
     methods: {
+
+        isActive: function(item) {
+            //console.log('methods isActive', item)
+
+            let vo = this
+
+            //check
+            if (!vo.useActive) {
+                return false
+            }
+
+            return isEqual(vo.itemActiveTrans, item)
+        },
 
         dragInit: function(restart = false) {
             //console.log('methods dragInit', restart)
@@ -612,6 +640,17 @@ export default {
             //$nextTick
             vo.$nextTick(() => {
 
+                //useActive
+                if (vo.useActive) {
+
+                    // //isActive
+                    // vo.isActive(item)
+
+                    //emit
+                    vo.$emit('update:valueActive', item)
+
+                }
+
                 //msg
                 let msg = {
                     ...msgTemp,
@@ -714,6 +753,14 @@ export default {
                         .then((msg) => { //確認關閉
                             //console.log('pm then', msg)
 
+                            //useActive and isActive
+                            if (vo.useActive && vo.isActive(item)) {
+
+                                //emit
+                                vo.$emit('update:valueActive', null)
+
+                            }
+
                             //itemsNew
                             let itemsNew = vo.pull(vo.itemsTrans, kitem)
 
@@ -728,12 +775,6 @@ export default {
                 }
                 else {
 
-                    //itemsNew
-                    let itemsNew = vo.pull(vo.itemsTrans, kitem)
-
-                    //emit
-                    vo.$emit('input', itemsNew)
-
                     //msg
                     let msg = {
                         item,
@@ -742,6 +783,20 @@ export default {
 
                     //emit
                     vo.$emit('click-close', ev, msg)
+
+                    //useActive and isActive
+                    if (vo.useActive && vo.isActive(item)) {
+
+                        //emit
+                        vo.$emit('update:valueActive', null)
+
+                    }
+
+                    //itemsNew
+                    let itemsNew = vo.pull(vo.itemsTrans, kitem)
+
+                    //emit
+                    vo.$emit('input', itemsNew)
 
                 }
 

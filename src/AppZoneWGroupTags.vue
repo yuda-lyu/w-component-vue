@@ -116,6 +116,8 @@
                     v-model="WGroupTags.objects"
                     @click-add="ckBtnAddObj"
                 ></w-group-tags>
+
+                <div style="padding-left:5px; font-size:0.9rem; color:#ea6;">binding: objects</div>
             </div>
 
 
@@ -132,6 +134,8 @@
                     :keyText="'value'"
                     @click-add="ckBtnAddObjText"
                 ></w-group-tags>
+
+                <div style="padding-left:5px; font-size:0.9rem; color:#ea6;">binding: objectsText</div>
             </div>
 
 
@@ -148,6 +152,8 @@
                     :keyIcon="'icon'"
                     @click-add="ckBtnAddObjIcon"
                 ></w-group-tags>
+
+                <div style="padding-left:5px; font-size:0.9rem; color:#ea6;">binding: objectsIcon</div>
             </div>
 
 
@@ -164,6 +170,8 @@
                     :keyTooltip="'tooltip'"
                     @click-add="ckBtnAddObjTooltip"
                 ></w-group-tags>
+
+                <div style="padding-left:5px; font-size:0.9rem; color:#ea6;">binding: objectsTooltip</div>
             </div>
 
 
@@ -181,6 +189,8 @@
                     :addButtonTooltip="'新增項目'"
                     @click-add="ckBtnAddObj"
                 ></w-group-tags>
+
+                <div style="padding-left:5px; font-size:0.9rem; color:#ea6;">binding: objects</div>
             </div>
 
 
@@ -202,6 +212,8 @@
                     :addButtonBackgroundColorHover="'yellow darken-2'"
                     @click-add="ckBtnAddObj"
                 ></w-group-tags>
+
+                <div style="padding-left:5px; font-size:0.9rem; color:#ea6;">binding: objects</div>
             </div>
 
 
@@ -247,6 +259,8 @@
                         </div>
                     </template>
                 </w-group-tags>
+
+                <div style="padding-left:5px; font-size:0.9rem; color:#ea6;">binding: strings</div>
             </div>
 
 
@@ -293,6 +307,8 @@
                         </div>
                     </template>
                 </w-group-tags>
+
+                <div style="padding-left:5px; font-size:0.9rem; color:#ea6;">binding: objectsSlotText</div>
             </div>
 
 
@@ -323,6 +339,8 @@
                         ></w-button-chip>
                     </template>
                 </w-group-tags>
+
+                <div style="padding-left:5px; font-size:0.9rem; color:#ea6;">binding: strings</div>
             </div>
 
 
@@ -341,6 +359,8 @@
                     :iconSize="26"
                     :textFontSize="'0.9rem'"
                 ></w-group-tags>
+
+                <div style="padding-left:5px; font-size:0.9rem; color:#ea6;">binding: strings</div>
             </div>
 
 
@@ -356,6 +376,8 @@
                     v-model="WGroupTags.strings"
                     :textColor="'light-blue darken-3'"
                 ></w-group-tags>
+
+                <div style="padding-left:5px; font-size:0.9rem; color:#ea6;">binding: strings</div>
             </div>
 
 
@@ -372,6 +394,8 @@
                     :textColor="'purple darken-1'"
                     :textColorHover="'purple darken-4'"
                 ></w-group-tags>
+
+                <div style="padding-left:5px; font-size:0.9rem; color:#ea6;">binding: strings</div>
             </div>
 
 
@@ -389,6 +413,8 @@
                     :iconColor="'orange'"
                     :iconColorHover="'orange darken-2'"
                 ></w-group-tags>
+
+                <div style="padding-left:5px; font-size:0.9rem; color:#ea6;">binding: strings</div>
             </div>
 
 
@@ -405,6 +431,8 @@
                     :icon="mdiChartBubble"
                     :borderRadius="0"
                 ></w-group-tags>
+
+                <div style="padding-left:5px; font-size:0.9rem; color:#ea6;">binding: strings</div>
             </div>
 
 
@@ -422,6 +450,8 @@
                     :borderColor="'transparent'"
                     :borderColorHover="'grey darken-1'"
                 ></w-group-tags>
+
+                <div style="padding-left:5px; font-size:0.9rem; color:#ea6;">binding: strings</div>
             </div>
 
 
@@ -439,6 +469,8 @@
                     :backgroundColor="'amber lighten-5'"
                     :backgroundColorHover="'amber lighten-4'"
                 ></w-group-tags>
+
+                <div style="padding-left:5px; font-size:0.9rem; color:#ea6;">binding: strings</div>
             </div>
 
 
@@ -456,6 +488,8 @@
                     :borderColorHover="'grey'"
                     :shadow="false"
                 ></w-group-tags>
+
+                <div style="padding-left:5px; font-size:0.9rem; color:#ea6;">binding: strings</div>
             </div>
 
 
@@ -471,6 +505,8 @@
                     v-model="WGroupTags.strings"
                     :shadowStyle="'0 12px 20px -10px rgba(250,120,155,0.28), 0 4px 20px 0 rgba(0,0,0,.12), 0 7px 8px -5px rgba(250,120,155,0.2)'"
                 ></w-group-tags>
+
+                <div style="padding-left:5px; font-size:0.9rem; color:#ea6;">binding: strings</div>
             </div>
 
 
@@ -486,6 +522,8 @@
                     v-model="WGroupTags.strings"
                     @click="ckBtnModProg"
                 ></w-group-tags>
+
+                <div style="padding-left:5px; font-size:0.9rem; color:#ea6;">binding: strings</div>
             </div>
 
 
@@ -503,6 +541,8 @@
                     :progBackgroundColor="'rgba(250,50,150,0.075)'"
                     @click="ckBtnModProg"
                 ></w-group-tags>
+
+                <div style="padding-left:5px; font-size:0.9rem; color:#ea6;">binding: strings</div>
             </div>
 
 
@@ -518,6 +558,8 @@
                     v-model="WGroupTags.strings"
                     @click="ckBtnModLoading"
                 ></w-group-tags>
+
+                <div style="padding-left:5px; font-size:0.9rem; color:#ea6;">binding: strings</div>
             </div>
 
 
@@ -535,6 +577,8 @@
                     :textColorHover="'rgba(255,20,50,1)'"
                     @click="ckBtnModLoading"
                 ></w-group-tags>
+
+                <div style="padding-left:5px; font-size:0.9rem; color:#ea6;">binding: strings</div>
             </div>
 
 
@@ -552,6 +596,8 @@
                     :closeWithInterceptor="true"
                     @click-close="ckBtnClosePm"
                 ></w-group-tags>
+
+                <div style="padding-left:5px; font-size:0.9rem; color:#ea6;">binding: strings</div>
             </div>
 
 
@@ -568,6 +614,8 @@
                     :icon="mdiChartBubble"
                     :draggable="false"
                 ></w-group-tags>
+
+                <div style="padding-left:5px; font-size:0.9rem; color:#ea6;">binding: strings</div>
             </div>
 
 
@@ -584,6 +632,8 @@
                     :icon="mdiChartBubble"
                     :editable="false"
                 ></w-group-tags>
+
+                <div style="padding-left:5px; font-size:0.9rem; color:#ea6;">binding: strings</div>
             </div>
 
 
@@ -600,6 +650,8 @@
                     :icon="mdiChartBubble"
                     :editableClose="false"
                 ></w-group-tags>
+
+                <div style="padding-left:5px; font-size:0.9rem; color:#ea6;">binding: strings</div>
             </div>
 
 
@@ -616,6 +668,8 @@
                     :icon="mdiChartBubble"
                     :editableInput="false"
                 ></w-group-tags>
+
+                <div style="padding-left:5px; font-size:0.9rem; color:#ea6;">binding: strings</div>
             </div>
 
 
@@ -632,6 +686,95 @@
                     :editable="false"
                     :nodata="'無'"
                 ></w-group-tags>
+
+                <div style="padding-left:5px; font-size:0.9rem; color:#ea6;">binding: empty</div>
+            </div>
+
+
+            <div class="bk" style="display:block;">
+                <demolink
+                    :kbname="'w-group-tags'"
+                    :casename="'useActive & valueActive'"
+                    :kind="'nokind'"
+                    :shell="'pure'"
+                ></demolink>
+
+                <w-group-tags
+                    v-model="WGroupTags.strings"
+                    :useActive="true"
+                    :valueActive.sync="WGroupTags.stringActive"
+                ></w-group-tags>
+
+                <div style="padding-left:5px; font-size:0.9rem; color:#ea6;">binding: strings</div>
+            </div>
+
+
+            <div class="bk" style="display:block;">
+                <demolink
+                    :kbname="'w-group-tags'"
+                    :casename="'slot item & useActive & valueActive & sizePadding & textColor & textColorActive & backgroundColor & backgroundColorActive & shadowActiveStyle'"
+                    :kind="'nokind'"
+                    :shell="'pure'"
+                ></demolink>
+
+                <w-group-tags
+                    v-model="WGroupTags.strings"
+                    :useActive="true"
+                    :valueActive.sync="WGroupTags.stringActive"
+                    :sizePadding="'1px 13px'"
+                    :textColor="'pink lighten-1'"
+                    :textColorActive="'white'"
+                    :backgroundColor="'white'"
+                    :backgroundColorActive="'pink lighten-1'"
+                    :shadowActiveStyle="'0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12)'"
+                >
+                    <template v-slot:items="props">
+                        <div style="display:flex; align-items:center;">
+
+                            <div :style="`display:inline-block; border-radius:10px; font-size:0.85rem; ${props.active?`padding:0px 12px; color:#263238; background:rgba(255,255,255,0.7);`:`padding:0px 12px; color:#9E9E9E; background:rgba(100,100,100,0.1);`}`">
+                                Menu
+                            </div>
+
+                        </div>
+                    </template>
+                </w-group-tags>
+
+                <div style="padding-left:5px; font-size:0.9rem; color:#ea6;">binding: strings</div>
+            </div>
+
+
+            <div class="bk" style="display:block;">
+                <demolink
+                    :kbname="'w-group-tags'"
+                    :casename="'object items & slot item & editableInput(no slot input) & useActive & valueActive & sizePadding & textColor & textColorActive & backgroundColor & backgroundColorActive & shadowActiveStyle'"
+                    :kind="'nokind'"
+                    :shell="'pure'"
+                ></demolink>
+
+                <w-group-tags
+                    v-model="WGroupTags.objectsSlotText"
+                    :editableInput="false"
+                    :useActive="true"
+                    :valueActive.sync="WGroupTags.objectsSlotTextActive"
+                    :sizePadding="'1px 13px'"
+                    :textColor="'pink lighten-1'"
+                    :textColorActive="'white'"
+                    :backgroundColor="'white'"
+                    :backgroundColorActive="'pink lighten-1'"
+                    :shadowActiveStyle="'0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12)'"
+                >
+                    <template v-slot:items="props">
+                        <div style="display:flex; align-items:center;">
+
+                            <div :style="`display:inline-block; border-radius:10px; font-size:0.85rem; ${props.active?`padding:0px 12px; color:#263238; background:rgba(255,255,255,0.7);`:`padding:0px 12px; color:#9E9E9E; background:rgba(100,100,100,0.1);`}`">
+                                {{props.item.slotTextKind}}
+                            </div>
+
+                        </div>
+                    </template>
+                </w-group-tags>
+
+                <div style="padding-left:5px; font-size:0.9rem; color:#ea6;">binding: objectsSlotText</div>
             </div>
 
 
@@ -677,6 +820,7 @@ export default {
                     'Map',
                     '聯絡方式'
                 ],
+                'stringActive': 'Dashboard',
                 'objects': [
                     {
                         id: 'id-Dashboard',
@@ -831,6 +975,12 @@ export default {
                         slotTextLevel: 'None',
                     },
                 ],
+                'objectsSlotTextActive': {
+                    id: 'id-Dashboard',
+                    text: 'Dashboard',
+                    slotTextKind: 'Efficacy',
+                    slotTextLevel: 'High',
+                },
                 'empty': [],
             },
             'actions': [

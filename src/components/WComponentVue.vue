@@ -13,7 +13,6 @@ import WEchartsVueDyn from './WEchartsVueDyn.vue'
 import WGroupButtons from './WGroupButtons.vue'
 import WGroupCheck from './WGroupCheck.vue'
 import WGroupRadio from './WGroupRadio.vue'
-import WGroupTabs from './WGroupTabs.vue'
 import WGroupTags from './WGroupTags.vue'
 import WHighchartsVueDyn from './WHighchartsVueDyn.vue'
 import WHighstockVueDyn from './WHighstockVueDyn.vue'
@@ -70,7 +69,6 @@ let WComponentVue = {
         Vue.component('w-group-buttons', WGroupButtons)
         Vue.component('w-group-check', WGroupCheck)
         Vue.component('w-group-radio', WGroupRadio)
-        Vue.component('w-group-tabs', WGroupTabs)
         Vue.component('w-group-tags', WGroupTags)
         Vue.component('w-highcharts-vue-dyn', WHighchartsVueDyn)
         Vue.component('w-highstock-vue-dyn', WHighstockVueDyn)

@@ -1,5 +1,5 @@
 /*!
- * w-popup v1.4.14
+ * w-popup v1.4.15
  * (c) 2018-2020 yuda-lyu(semisphere)
  * Released under the MIT License.
  */
