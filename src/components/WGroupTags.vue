@@ -10,7 +10,7 @@
                 <div
                     class="trans"
                     style="display:inline-block;"
-                    :key="`${isObjValue?get(item,`${keyText}`):item}`"
+                    :key="`${isObjValue?o2j(item):item}`"
                     dragtag
                     :dragindex="kitem"
                 >
@@ -160,6 +160,7 @@ import filter from 'lodash/filter'
 import isEqual from 'lodash/isEqual'
 import size from 'lodash/size'
 import domDrag from 'wsemi/src/domDrag.mjs'
+import o2j from 'wsemi/src/o2j.mjs'
 import isobj from 'wsemi/src/isobj.mjs'
 import genPm from 'wsemi/src/genPm.mjs'
 import waitFun from 'wsemi/src/waitFun.mjs'
@@ -446,6 +447,7 @@ export default {
     data: function() {
         return {
             get,
+            o2j,
 
             mdiPlusCircle,
 
@@ -642,9 +644,6 @@ export default {
 
                 //useActive
                 if (vo.useActive) {
-
-                    // //isActive
-                    // vo.isActive(item)
 
                     //emit
                     vo.$emit('update:valueActive', item)
