@@ -7,7 +7,7 @@
         content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui"
     />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>example for w-group-tags: inputTextColor & inputTextBorderColor & inputTextBorderColorFocus & inputTextButtonColor & inputTextButtonColorHover & inputTextBackgroundColor & inputTextBackgroundColorFocus</title>
+    <title>example for w-group-tags: marginStyle</title>
 
     <!-- fontawesome -->
     <link
@@ -120,19 +120,12 @@
     <v-app id="app" style="font-family:inherit;">
         <div class="head1">w-group-tags</div>
         <div class="bk" style="display:block;">
-            <div
-                class="item"
-            >inputTextColor & inputTextBorderColor & inputTextBorderColorFocus & inputTextButtonColor & inputTextButtonColorHover & inputTextBackgroundColor & inputTextBackgroundColorFocus</div>
+            <div class="item">marginStyle</div>
 
             <w-group-tags
                 v-model="WGroupTags.strings"
-                :input-text-color="'indigo darken-1'"
-                :input-text-border-color="'indigo darken-1'"
-                :input-text-border-color-focus="'indigo darken-2'"
-                :input-text-button-color="'indigo'"
-                :input-text-button-color-focus="'indigo darken-1'"
-                :input-text-background-color="'white'"
-                :input-text-background-color-focus="'#f2f2ff'"
+                :icon="'fas fa-clipboard-check'"
+                :margin-style="'0px 15px 0px 0px'"
             />
         </div>
     </v-app>
