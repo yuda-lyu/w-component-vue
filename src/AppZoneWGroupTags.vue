@@ -241,7 +241,7 @@
                                     :textColorHover="'#fff'"
                                     :backgroundColor="'rgba(250,50,120,0.9)'"
                                     :backgroundColorHover="'rgba(250,50,120,0.9)'"
-                                    @click.stop="ckBtnItem1(props)"
+                                    @click="ckBtnItem1(props)"
                                 ></w-button-chip>
                             </div>
                             <div style="display:flex;">
@@ -253,7 +253,7 @@
                                     :textColorHover="'#fff'"
                                     :backgroundColor="'rgba(200,20,170,0.9)'"
                                     :backgroundColorHover="'rgba(200,20,170,0.9)'"
-                                    @click.stop="ckBtnItem2(props)"
+                                    @click="ckBtnItem2(props)"
                                 ></w-button-chip>
                             </div>
                         </div>
@@ -289,7 +289,7 @@
                                     :textColorHover="'#fff'"
                                     :backgroundColor="'rgba(250,50,120,0.9)'"
                                     :backgroundColorHover="'rgba(250,50,120,0.9)'"
-                                    @click.stop="ckBtnItem1(props)"
+                                    @click="ckBtnItem1(props)"
                                 ></w-button-chip>
                             </div>
                             <div style="display:flex;">
@@ -301,7 +301,7 @@
                                     :textColorHover="'#fff'"
                                     :backgroundColor="'rgba(200,20,170,0.9)'"
                                     :backgroundColorHover="'rgba(200,20,170,0.9)'"
-                                    @click.stop="ckBtnItem2(props)"
+                                    @click="ckBtnItem2(props)"
                                 ></w-button-chip>
                             </div>
                         </div>
@@ -335,7 +335,7 @@
                             :textColorHover="'#fff'"
                             :backgroundColor="'rgba(200,20,170,0.9)'"
                             :backgroundColorHover="'rgba(200,20,170,0.9)'"
-                            @click.stop="ckBtnAddString"
+                            @click="ckBtnAddString"
                         ></w-button-chip>
                     </template>
                 </w-group-tags>
@@ -731,7 +731,7 @@
                     <template v-slot:items="props">
                         <div style="display:flex; align-items:center;">
 
-                            <div :style="`display:inline-block; border-radius:10px; font-size:0.85rem; ${props.active?`padding:0px 12px; color:#263238; background:rgba(255,255,255,0.7);`:`padding:0px 12px; color:#9E9E9E; background:rgba(100,100,100,0.1);`}`">
+                            <div :style="`display:inline-block; border-radius:10px; font-size:0.85rem; user-select:none; ${props.active?`padding:0px 12px; color:#263238; background:rgba(255,255,255,0.7);`:`padding:0px 12px; color:#9E9E9E; background:rgba(100,100,100,0.1);`}`">
                                 Menu
                             </div>
 
@@ -766,7 +766,7 @@
                     <template v-slot:items="props">
                         <div style="display:flex; align-items:center;">
 
-                            <div :style="`display:inline-block; border-radius:10px; font-size:0.85rem; ${props.active?`padding:0px 12px; color:#263238; background:rgba(255,255,255,0.7);`:`padding:0px 12px; color:#9E9E9E; background:rgba(100,100,100,0.1);`}`">
+                            <div :style="`display:inline-block; border-radius:10px; font-size:0.85rem; user-select:none; ${props.active?`padding:0px 12px; color:#263238; background:rgba(255,255,255,0.7);`:`padding:0px 12px; color:#9E9E9E; background:rgba(100,100,100,0.1);`}`">
                                 {{props.item.slotTextKind}}
                             </div>
 
@@ -791,6 +791,39 @@
                     v-model="WGroupTags.strings"
                     @click-close="ckBtnClose"
                 ></w-group-tags>
+            </div>
+
+
+            <div class="bk" style="display:block;">
+                <demolink
+                    :kbname="'w-group-tags'"
+                    :casename="'object items & slot item & useColorsFromItem & editableInput(no slot input) & no shadow & no shadowActive & useActive & valueActive & sizePadding'"
+                    :kind="'nokind'"
+                    :shell="'pure'"
+                ></demolink>
+
+                <w-group-tags
+                    v-model="WGroupTags.objectsColor"
+                    :editableInput="false"
+                    :shadow="false"
+                    :shadowActive="false"
+                    :useActive="true"
+                    :valueActive.sync="WGroupTags.objectsColorActive"
+                    :sizePadding="'1px 12px'"
+                    :useColorsFromItem="true"
+                >
+                    <template v-slot:items="props">
+                        <div style="display:flex; align-items:center;">
+
+                            <div :style="`display:inline-block; border-radius:10px; font-size:0.85rem; user-select:none; ${props.active?`padding:0px 12px; color:#263238; background:rgba(255,255,255,0.7);`:`padding:0px 12px; color:#666; background:#fff;`}`">
+                                Menu
+                            </div>
+
+                        </div>
+                    </template>
+                </w-group-tags>
+
+                <div style="padding-left:5px; font-size:0.9rem; color:#ea6;">binding: objectsColor</div>
             </div>
 
 
@@ -997,6 +1030,120 @@ export default {
                     slotTextKind: 'Efficacy',
                     slotTextLevel: 'High',
                 },
+                'objectsColor': [
+                    {
+                        id: 'id-Dashboard',
+                        text: 'Dashboard',
+                        iconColor: 'pink accent-3',
+                        iconColorHover: 'pink accent-3',
+                        iconColorActive: 'white',
+                        textColor: 'pink accent-3',
+                        textColorHover: 'pink accent-3',
+                        textColorActive: 'white',
+                        borderColor: 'pink accent-3',
+                        borderColorHover: 'pink accent-3',
+                        borderColorActive: 'pink accent-3',
+                        backgroundColor: 'white',
+                        backgroundColorHover: 'white',
+                        backgroundColorActive: 'pink accent-3',
+                    },
+                    {
+                        id: 'id-Schedule',
+                        text: 'Schedule',
+                        iconColor: 'pink accent-3',
+                        iconColorHover: 'pink accent-3',
+                        iconColorActive: 'white',
+                        textColor: 'pink accent-3',
+                        textColorHover: 'pink accent-3',
+                        textColorActive: 'white',
+                        borderColor: 'pink accent-3',
+                        borderColorHover: 'pink accent-3',
+                        borderColorActive: 'pink accent-3',
+                        backgroundColor: 'white',
+                        backgroundColorHover: 'white',
+                        backgroundColorActive: 'pink accent-3',
+                    },
+                    {
+                        id: 'id-Profile',
+                        text: 'Profile',
+                        iconColor: 'pink accent-3',
+                        iconColorHover: 'pink accent-3',
+                        iconColorActive: 'white',
+                        textColor: 'pink accent-3',
+                        textColorHover: 'pink accent-3',
+                        textColorActive: 'white',
+                        borderColor: 'pink accent-3',
+                        borderColorHover: 'pink accent-3',
+                        borderColorActive: 'pink accent-3',
+                        backgroundColor: 'white',
+                        backgroundColorHover: 'white',
+                        backgroundColorActive: 'pink accent-3',
+                    },
+                    {
+                        id: 'id-History',
+                        text: 'History',
+                        iconColor: 'purple darken-1',
+                        iconColorHover: 'purple darken-1',
+                        iconColorActive: 'white',
+                        textColor: 'purple darken-1',
+                        textColorHover: 'purple darken-1',
+                        textColorActive: 'white',
+                        borderColor: 'purple darken-1',
+                        borderColorHover: 'purple darken-1',
+                        borderColorActive: 'purple darken-1',
+                        backgroundColor: 'white',
+                        backgroundColorHover: 'white',
+                        backgroundColorActive: 'purple darken-1',
+                    },
+                    {
+                        id: 'id-Map',
+                        text: 'Map',
+                        iconColor: 'purple darken-1',
+                        iconColorHover: 'purple darken-1',
+                        iconColorActive: 'white',
+                        textColor: 'purple darken-1',
+                        textColorHover: 'purple darken-1',
+                        textColorActive: 'white',
+                        borderColor: 'purple darken-1',
+                        borderColorHover: 'purple darken-1',
+                        borderColorActive: 'purple darken-1',
+                        backgroundColor: 'white',
+                        backgroundColorHover: 'white',
+                        backgroundColorActive: 'purple darken-1',
+                    },
+                    {
+                        id: 'id-contact',
+                        text: '聯絡方式',
+                        iconColor: 'purple darken-1',
+                        iconColorHover: 'purple darken-1',
+                        iconColorActive: 'white',
+                        textColor: 'purple darken-1',
+                        textColorHover: 'purple darken-1',
+                        textColorActive: 'white',
+                        borderColor: 'purple darken-1',
+                        borderColorHover: 'purple darken-1',
+                        borderColorActive: 'purple darken-1',
+                        backgroundColor: 'white',
+                        backgroundColorHover: 'white',
+                        backgroundColorActive: 'purple darken-1',
+                    },
+                ],
+                'objectsColorActive': {
+                    id: 'id-Dashboard',
+                    text: 'Dashboard',
+                    iconColor: 'pink accent-3',
+                    iconColorHover: 'pink accent-3',
+                    iconColorActive: 'white',
+                    textColor: 'pink accent-3',
+                    textColorHover: 'pink accent-3',
+                    textColorActive: 'white',
+                    borderColor: 'pink accent-3',
+                    borderColorHover: 'pink accent-3',
+                    borderColorActive: 'pink accent-3',
+                    backgroundColor: 'white',
+                    backgroundColorHover: 'white',
+                    backgroundColorActive: 'pink accent-3',
+                },
                 'empty': [],
             },
             'actions': [
@@ -1012,7 +1159,7 @@ export default {
             for (let i = 0; i < len; i++) uuid[i] = chars[0 | Math.random() * radix]
             return uuid.join('')
         },
-        ckBtn: function(ev, msg) {
+        ckBtn: function(msg) {
             console.log('ckBtn', msg)
         },
         ckBtnAddString: function(ev) {
@@ -1045,10 +1192,10 @@ export default {
             let name = this.genName()
             this.WGroupTags.objectsSlotText.push({ id: 'id-' + name, text: name, slotTextKind: 'Basic', slotTextLevel: 'None' })
         },
-        ckBtnClose: function(ev, item) {
+        ckBtnClose: function(item) {
             console.log('ckBtnClose', item)
         },
-        ckBtnClosePm: function(ev, item) {
+        ckBtnClosePm: function(item) {
             console.log('ckBtnClosePm', item)
             alert('pm.resolve() for close')
             item.pm.resolve()
@@ -1060,7 +1207,7 @@ export default {
         ckBtnItem2: function(msg) {
             console.log('ckBtnItem2', msg)
         },
-        ckBtnModProg: function(ev, msg) {
+        ckBtnModProg: function(msg) {
             console.log('ckBtnModProg', msg)
             let n = 0
             let t = setInterval(function() {
@@ -1072,7 +1219,7 @@ export default {
                 }
             }, 10)
         },
-        ckBtnModLoading: function(ev, msg) {
+        ckBtnModLoading: function(msg) {
             console.log('ckBtnModLoading', msg)
             msg.setLoading(true)
             setTimeout(function() {

@@ -494,6 +494,9 @@ export default {
 
             let vo = this
 
+            //stopPropagation, 避免按鈕中使用slot加入按鈕, 會因冒泡被觸發
+            ev.stopPropagation()
+
             //check
             if (!vo.editable) {
                 return
@@ -563,7 +566,7 @@ export default {
             }
 
             //emit
-            vo.$emit('click', ev, msg)
+            vo.$emit('click', msg)
 
         },
 
@@ -571,6 +574,9 @@ export default {
             //console.log('methods clickClose', ev)
 
             let vo = this
+
+            //stopPropagation, 避免按鈕中使用slot加入按鈕, 會因冒泡被觸發
+            ev.stopPropagation()
 
             //check
             if (!vo.editable) {
@@ -581,7 +587,7 @@ export default {
             vo.$nextTick(() => {
 
                 //emit
-                vo.$emit('click-close', ev)
+                vo.$emit('click-close')
 
             })
 

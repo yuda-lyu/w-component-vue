@@ -19,25 +19,25 @@
                         :text="isObjValue?get(item,`${keyText}`):item"
                         :tooltip="isObjValue?get(item,`${keyTooltip}`):null"
                         :icon="isObjValue?get(item,`${keyIcon}`):icon"
-                        :iconColor="iconColor"
-                        :iconColorHover="iconColorHover"
-                        :iconColorActive="iconColorActive"
+                        :iconColor="isObjValue?get(item,'iconColor'):iconColor"
+                        :iconColorHover="isObjValue?get(item,'iconColorHover'):iconColorHover"
+                        :iconColorActive="isObjValue?get(item,'iconColorActive'):iconColorActive"
                         :iconSize="iconSize"
                         :iconShiftLeft="iconShiftLeft"
                         :iconShiftRight="iconShiftRight"
-                        :progColor="progColor"
-                        :progBackgroundColor="progBackgroundColor"
-                        :textColor="textColor"
-                        :textColorHover="textColorHover"
-                        :textColorActive="textColorActive"
+                        :progColor="isObjValue?get(item,'progColor'):progColor"
+                        :progBackgroundColor="isObjValue?get(item,'progBackgroundColor'):progBackgroundColor"
+                        :textColor="isObjValue?get(item,'textColor'):textColor"
+                        :textColorHover="isObjValue?get(item,'textColorHover'):textColorHover"
+                        :textColorActive="isObjValue?get(item,'textColorActive'):textColorActive"
                         :textFontSize="textFontSize"
                         :borderRadius="borderRadius"
-                        :borderColor="borderColor"
-                        :borderColorHover="borderColorHover"
-                        :borderColorActive="borderColorActive"
-                        :backgroundColor="backgroundColor"
-                        :backgroundColorHover="backgroundColorHover"
-                        :backgroundColorActive="backgroundColorActive"
+                        :borderColor="isObjValue?get(item,'borderColor'):borderColor"
+                        :borderColorHover="isObjValue?get(item,'borderColorHover'):borderColorHover"
+                        :borderColorActive="isObjValue?get(item,'borderColorActive'):borderColorActive"
+                        :backgroundColor="isObjValue?get(item,'backgroundColor'):backgroundColor"
+                        :backgroundColorHover="isObjValue?get(item,'backgroundColorHover'):backgroundColorHover"
+                        :backgroundColorActive="isObjValue?get(item,'backgroundColorActive'):backgroundColorActive"
                         :shadow="shadow"
                         :shadowStyle="shadowStyle"
                         :shadowActive="shadowActive"
@@ -46,8 +46,8 @@
                         :active="isActive(item)"
                         :close="editable && editableClose"
                         :editable="true"
-                        @click="(ev,msg)=>{clickChip(ev,msg,item,kitem)}"
-                        @click-close="clickRemoveBtn($event,item,kitem)"
+                        @click="(msg)=>{clickChip(msg,item,kitem)}"
+                        @click-close="clickRemoveBtn(item,kitem)"
                     >
                         <slot
                             name="items"
@@ -65,7 +65,7 @@
 
             <WButtonChip
                 style="margin:10px 10px 10px 0px;"
-                _key="kitem"
+                _key=""
                 :text="nodata"
                 :tooltip="nodata"
                 :icon="icon"
@@ -93,8 +93,8 @@
                 :sizePadding="sizePadding"
                 _close="editable && editableClose"
                 :editable="true"
-                _click="(ev,msg)=>{clickChip(ev,msg,item,kitem)}"
-                _click-close="clickRemoveBtn($event,item,kitem)"
+                _click="(msg)=>{clickChip(msg,item,kitem)}"
+                _click-close="clickRemoveBtn(item,kitem)"
             >
                 <slot
                     name="items"
@@ -120,7 +120,7 @@
                         :backgroundColor="addButtonBackgroundColor"
                         :backgroundColorHover="addButtonBackgroundColorHover"
                         :tooltip="addButtonTooltip"
-                        @click.stop="$emit('click-add')"
+                        @click="$emit('click-add')"
                     ></WButtonChip>
                 </template>
 
@@ -175,6 +175,7 @@ import WText from './WText.vue'
  * @vue-prop {String} [keyText='text'] 輸入項目為物件時，存放顯示文字之欄位字串，預設'text'
  * @vue-prop {String} [keyIcon='icon'] 輸入項目為物件時，存放圖標之欄位字串，預設'icon'
  * @vue-prop {String} [keyTooltip='tooltip'] 輸入項目為物件時，存放提示之欄位字串，預設'tooltip'
+ * @vue-prop {Boolean} [useColorsFromItem=false] 輸入當項目為物件時，是否使用其內相關顏色設定用以覆蓋預設值，預設false
  * @vue-prop {String} [icon=''] 輸入左側圖標字串，預設''
  * @vue-prop {String} [iconColor='black'] 輸入圖標顏色字串，預設'black'
  * @vue-prop {String} [iconColorHover='grey darken-3'] 輸入滑鼠移入時圖標顏色字串，預設'grey darken-3'
@@ -253,6 +254,10 @@ export default {
         keyTooltip: {
             type: String,
             default: 'tooltip',
+        },
+        useColorsFromItem: {
+            type: Boolean,
+            default: false,
         },
         icon: {
             type: String,
@@ -639,8 +644,8 @@ export default {
 
         },
 
-        clickChip: function(ev, msgTemp, item, kitem) {
-            //console.log('methods clickChip', ev, msgTemp, item, kitem)
+        clickChip: function(msgTemp, item, kitem) {
+            //console.log('methods clickChip', msgTemp, item, kitem)
 
             let vo = this
 
@@ -663,7 +668,7 @@ export default {
                 }
 
                 //emit
-                vo.$emit('click', ev, msg)
+                vo.$emit('click', msg)
 
             })
 
@@ -708,6 +713,9 @@ export default {
                 //emit
                 vo.$emit('input', vo.itemsTrans)
 
+                //emit
+                vo.$emit('click-add', vo.userinput)
+
                 //clear
                 vo.userinput = ''
 
@@ -725,30 +733,28 @@ export default {
             return art
         },
 
-        clickRemoveBtn: function (ev, item, kitem) {
-            //console.log('methods clickRemoveBtnPromise', ev, item, kitem)
+        clickRemoveBtn: function (item, kitem) {
+            //console.log('methods clickRemoveBtnPromise', item, kitem)
 
             let vo = this
 
-            //stopPropagation
-            ev.stopPropagation()
-
-            //$nextTick
-            vo.$nextTick(() => {
-
-                //msg
-                let msg = {
-                    item,
-                    kitem,
-                }
-
-                //emit
-                vo.$emit('click-close', ev, msg)
-
-            })
-
             //check
             if (vo.disableCloseEvent) {
+
+                //$nextTick
+                vo.$nextTick(() => {
+
+                    //msg
+                    let msg = {
+                        item,
+                        kitem,
+                    }
+
+                    //emit
+                    vo.$emit('click-close', msg)
+
+                })
+
                 return
             }
 
@@ -769,7 +775,7 @@ export default {
                     }
 
                     //emit
-                    vo.$emit('click-close', ev, msg)
+                    vo.$emit('click-close', msg)
 
                     //pm
                     pm
@@ -805,7 +811,7 @@ export default {
                     }
 
                     //emit
-                    vo.$emit('click-close', ev, msg)
+                    vo.$emit('click-close', msg)
 
                     //useActive and isActive
                     if (vo.useActive && vo.isActive(item)) {

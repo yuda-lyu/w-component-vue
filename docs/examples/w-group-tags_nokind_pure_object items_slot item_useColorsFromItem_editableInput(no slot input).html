@@ -7,7 +7,7 @@
         content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui"
     />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>example for w-group-tags: object items & slot item & editableInput(no slot input) & useActive & valueActive & sizePadding & textColor & textColorActive & backgroundColor & backgroundColorActive & shadowActiveStyle</title>
+    <title>example for w-group-tags: object items & slot item & useColorsFromItem & editableInput(no slot input) & no shadow & no shadowActive & useActive & valueActive & sizePadding</title>
 
     <!-- fontawesome -->
     <link
@@ -122,32 +122,30 @@
         <div class="bk" style="display:block;">
             <div
                 class="item"
-            >object items & slot item & editableInput(no slot input) & useActive & valueActive & sizePadding & textColor & textColorActive & backgroundColor & backgroundColorActive & shadowActiveStyle</div>
+            >object items & slot item & useColorsFromItem & editableInput(no slot input) & no shadow & no shadowActive & useActive & valueActive & sizePadding</div>
 
             <w-group-tags
-                v-model="WGroupTags.objectsSlotText"
+                v-model="WGroupTags.objectsColor"
                 :editable-input="false"
+                :shadow="false"
+                :shadow-active="false"
                 :use-active="true"
-                :value-active.sync="WGroupTags.objectsSlotTextActive"
-                :size-padding="'1px 13px'"
-                :text-color="'pink lighten-1'"
-                :text-color-active="'white'"
-                :background-color="'white'"
-                :background-color-active="'pink lighten-1'"
-                :shadow-active-style="'0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12)'"
+                :value-active.sync="WGroupTags.objectsColorActive"
+                :size-padding="'1px 12px'"
+                :use-colors-from-item="true"
             >
                 <template v-slot:items="props">
                     <div style="display:flex; align-items:center;">
                         <div
-                            :style="`display:inline-block; border-radius:10px; font-size:0.85rem; user-select:none; ${props.active?`padding:0px 12px; color:#263238; background:rgba(255,255,255,0.7);`:`padding:0px 12px; color:#9E9E9E; background:rgba(100,100,100,0.1);`}`"
-                        >{{props.item.slotTextKind}}</div>
+                            :style="`display:inline-block; border-radius:10px; font-size:0.85rem; user-select:none; ${props.active?`padding:0px 12px; color:#263238; background:rgba(255,255,255,0.7);`:`padding:0px 12px; color:#666; background:#fff;`}`"
+                        >Menu</div>
                     </div>
                 </template>
             </w-group-tags>
 
             <div
                 style="padding-left:5px; font-size:0.9rem; color:#ea6;"
-            >binding: objectsSlotText</div>
+            >binding: objectsColor</div>
         </div>
     </v-app>
 

@@ -80,7 +80,7 @@
     <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.js"></script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@1.4.18/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@1.4.19/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -314,6 +314,120 @@
             slotTextKind: "Efficacy",
             slotTextLevel: "High"
           },
+          objectsColor: [
+            {
+              id: "id-Dashboard",
+              text: "Dashboard",
+              iconColor: "pink accent-3",
+              iconColorHover: "pink accent-3",
+              iconColorActive: "white",
+              textColor: "pink accent-3",
+              textColorHover: "pink accent-3",
+              textColorActive: "white",
+              borderColor: "pink accent-3",
+              borderColorHover: "pink accent-3",
+              borderColorActive: "pink accent-3",
+              backgroundColor: "white",
+              backgroundColorHover: "white",
+              backgroundColorActive: "pink accent-3"
+            },
+            {
+              id: "id-Schedule",
+              text: "Schedule",
+              iconColor: "pink accent-3",
+              iconColorHover: "pink accent-3",
+              iconColorActive: "white",
+              textColor: "pink accent-3",
+              textColorHover: "pink accent-3",
+              textColorActive: "white",
+              borderColor: "pink accent-3",
+              borderColorHover: "pink accent-3",
+              borderColorActive: "pink accent-3",
+              backgroundColor: "white",
+              backgroundColorHover: "white",
+              backgroundColorActive: "pink accent-3"
+            },
+            {
+              id: "id-Profile",
+              text: "Profile",
+              iconColor: "pink accent-3",
+              iconColorHover: "pink accent-3",
+              iconColorActive: "white",
+              textColor: "pink accent-3",
+              textColorHover: "pink accent-3",
+              textColorActive: "white",
+              borderColor: "pink accent-3",
+              borderColorHover: "pink accent-3",
+              borderColorActive: "pink accent-3",
+              backgroundColor: "white",
+              backgroundColorHover: "white",
+              backgroundColorActive: "pink accent-3"
+            },
+            {
+              id: "id-History",
+              text: "History",
+              iconColor: "purple darken-1",
+              iconColorHover: "purple darken-1",
+              iconColorActive: "white",
+              textColor: "purple darken-1",
+              textColorHover: "purple darken-1",
+              textColorActive: "white",
+              borderColor: "purple darken-1",
+              borderColorHover: "purple darken-1",
+              borderColorActive: "purple darken-1",
+              backgroundColor: "white",
+              backgroundColorHover: "white",
+              backgroundColorActive: "purple darken-1"
+            },
+            {
+              id: "id-Map",
+              text: "Map",
+              iconColor: "purple darken-1",
+              iconColorHover: "purple darken-1",
+              iconColorActive: "white",
+              textColor: "purple darken-1",
+              textColorHover: "purple darken-1",
+              textColorActive: "white",
+              borderColor: "purple darken-1",
+              borderColorHover: "purple darken-1",
+              borderColorActive: "purple darken-1",
+              backgroundColor: "white",
+              backgroundColorHover: "white",
+              backgroundColorActive: "purple darken-1"
+            },
+            {
+              id: "id-contact",
+              text: "聯絡方式",
+              iconColor: "purple darken-1",
+              iconColorHover: "purple darken-1",
+              iconColorActive: "white",
+              textColor: "purple darken-1",
+              textColorHover: "purple darken-1",
+              textColorActive: "white",
+              borderColor: "purple darken-1",
+              borderColorHover: "purple darken-1",
+              borderColorActive: "purple darken-1",
+              backgroundColor: "white",
+              backgroundColorHover: "white",
+              backgroundColorActive: "purple darken-1"
+            }
+          ],
+          objectsColorActive: {
+            id: "id-Dashboard",
+            text: "Dashboard",
+            iconColor: "pink accent-3",
+            iconColorHover: "pink accent-3",
+            iconColorActive: "white",
+            textColor: "pink accent-3",
+            textColorHover: "pink accent-3",
+            textColorActive: "white",
+            borderColor: "pink accent-3",
+            borderColorHover: "pink accent-3",
+            borderColorActive: "pink accent-3",
+            backgroundColor: "white",
+            backgroundColorHover: "white",
+            backgroundColorActive: "pink accent-3"
+          },
           empty: []
         },
         actions: []
@@ -332,7 +446,7 @@
           uuid[i] = chars[0 | (Math.random() * radix)];
         return uuid.join("");
       },
-      ckBtn: function(ev, msg) {
+      ckBtn: function(msg) {
         console.log("ckBtn", msg);
       },
       ckBtnAddString: function(ev) {
@@ -378,10 +492,10 @@
           slotTextLevel: "None"
         });
       },
-      ckBtnClose: function(ev, item) {
+      ckBtnClose: function(item) {
         console.log("ckBtnClose", item);
       },
-      ckBtnClosePm: function(ev, item) {
+      ckBtnClosePm: function(item) {
         console.log("ckBtnClosePm", item);
         alert("pm.resolve() for close");
         item.pm.resolve();
@@ -393,7 +507,7 @@
       ckBtnItem2: function(msg) {
         console.log("ckBtnItem2", msg);
       },
-      ckBtnModProg: function(ev, msg) {
+      ckBtnModProg: function(msg) {
         console.log("ckBtnModProg", msg);
         let n = 0;
         let t = setInterval(function() {
@@ -405,7 +519,7 @@
           }
         }, 10);
       },
-      ckBtnModLoading: function(ev, msg) {
+      ckBtnModLoading: function(msg) {
         console.log("ckBtnModLoading", msg);
         msg.setLoading(true);
         setTimeout(function() {
