@@ -71,6 +71,22 @@
             <div class="bk" style="display:block;">
                 <demolink
                     :kbname="'w-group-tags'"
+                    :casename="'marginStyle'"
+                    :kind="'nokind'"
+                    :shell="'pure'"
+                ></demolink>
+
+                <w-group-tags
+                    v-model="WGroupTags.strings"
+                    :icon="'fas fa-clipboard-check'"
+                    :marginStyle="'0px 15px 0px 0px'"
+                ></w-group-tags>
+            </div>
+
+
+            <div class="bk" style="display:block;">
+                <demolink
+                    :kbname="'w-group-tags'"
                     :casename="'inputTextButtonTooltip'"
                     :kind="'nokind'"
                     :shell="'pure'"

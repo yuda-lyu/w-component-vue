@@ -15,7 +15,7 @@
                     :dragindex="kitem"
                 >
                     <WButtonChip
-                        style="margin:10px 10px 10px 0px;"
+                        :style="[{margin:marginStyle}]"
                         :text="isObjValue?get(item,`${keyText}`):item"
                         :tooltip="isObjValue?get(item,`${keyTooltip}`):null"
                         :icon="isObjValue?get(item,`${keyIcon}`):icon"
@@ -338,6 +338,10 @@ export default {
         backgroundColorActive: {
             type: String,
             default: 'orange',
+        },
+        marginStyle: {
+            type: String,
+            default: '10px 10px 10px 0px',
         },
         shadow: {
             type: Boolean,

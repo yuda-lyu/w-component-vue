@@ -336,7 +336,7 @@ export default {
 
         usePadding: function() {
             let vo = this
-            return vo.sizePadding
+            return replace(vo.sizePadding, ';', '')
         },
 
         useIconColor: function() {
