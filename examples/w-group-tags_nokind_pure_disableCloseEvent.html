@@ -7,7 +7,7 @@
         content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui"
     />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>example for w-group-tags: slot input</title>
+    <title>example for w-group-tags: disableCloseEvent</title>
 
     <!-- fontawesome -->
     <link
@@ -120,31 +120,13 @@
     <v-app id="app" style="font-family:inherit;">
         <div class="head1">w-group-tags</div>
         <div class="bk" style="display:block;">
-            <div class="item">slot input</div>
+            <div class="item">disableCloseEvent</div>
 
             <w-group-tags
+                :disable-close-event="true"
                 v-model="WGroupTags.strings"
-                @click="ckBtn"
                 @click-close="ckBtnClose"
-            >
-                <template v-slot:input>
-                    <w-button-chip
-                        :icon="'mdi-plus-circle'"
-                        :icon-color="'#fff'"
-                        :icon-color-hover="'#fff'"
-                        :text="'Add'"
-                        :text-color="'#fff'"
-                        :text-color-hover="'#fff'"
-                        :background-color="'rgba(200,20,170,0.9)'"
-                        :background-color-hover="'rgba(200,20,170,0.9)'"
-                        @click.stop="ckBtnAddString"
-                    />
-                </template>
-            </w-group-tags>
-
-            <div
-                style="padding-left:5px; font-size:0.9rem; color:#ea6;"
-            >binding: strings</div>
+            />
         </div>
     </v-app>
 
