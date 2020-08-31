@@ -221,6 +221,7 @@ import WText from './WText.vue'
  * @vue-prop {Boolean} [editable=true] 輸入是否為編輯模式，預設true
  * @vue-prop {Boolean} [editableClose=true] 輸入editable=true時，是否顯示關閉按鈕，預設true
  * @vue-prop {Boolean} [editableInput=true] 輸入editable=true時，是否使用預設的slot input，預設true
+ * @vue-prop {Boolean} [disableCloseEvent=false] 輸入是否停用關閉事件，關閉後可監聽@click-close獲得關閉事件資訊，預設false
  * @vue-prop {String} [nodata='無'] 輸入無任何字串陣列時的預設文字字串，預設'無'
  */
 export default {
@@ -438,6 +439,10 @@ export default {
         editableInput: {
             type: Boolean,
             default: true,
+        },
+        disableCloseEvent: {
+            type: Boolean,
+            default: false,
         },
         nodata: {
             type: String,
@@ -727,6 +732,25 @@ export default {
 
             //stopPropagation
             ev.stopPropagation()
+
+            //$nextTick
+            vo.$nextTick(() => {
+
+                //msg
+                let msg = {
+                    item,
+                    kitem,
+                }
+
+                //emit
+                vo.$emit('click-close', ev, msg)
+
+            })
+
+            //check
+            if (vo.disableCloseEvent) {
+                return
+            }
 
             //$nextTick
             vo.$nextTick(() => {

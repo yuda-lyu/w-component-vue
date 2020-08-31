@@ -778,6 +778,22 @@
             </div>
 
 
+            <div class="bk" style="display:block;">
+                <demolink
+                    :kbname="'w-group-tags'"
+                    :casename="'disableCloseEvent'"
+                    :kind="'nokind'"
+                    :shell="'pure'"
+                ></demolink>
+
+                <w-group-tags
+                    :disableCloseEvent="true"
+                    v-model="WGroupTags.strings"
+                    @click-close="ckBtnClose"
+                ></w-group-tags>
+            </div>
+
+
         </div>
 
 

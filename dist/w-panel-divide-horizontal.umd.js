@@ -1,5 +1,5 @@
 /*!
- * w-panel-divide-horizontal v1.4.16
+ * w-panel-divide-horizontal v1.4.17
  * (c) 2018-2020 yuda-lyu(semisphere)
  * Released under the MIT License.
  */
