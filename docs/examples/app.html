@@ -1,0 +1,76 @@
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-tw">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+    <title>w-component-vue</title>
+
+    <!-- @babel/polyfill -->
+    <script nomodule src="https://cdn.jsdelivr.net/npm/@babel/polyfill/dist/polyfill.min.js"></script>
+
+    <!-- vue -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
+
+    
+
+    <!-- fontawesome -->
+    <link href="https://use.fontawesome.com/releases/v5.13.0/css/all.css" rel="stylesheet">
+
+    <!-- mdi, 各組件使用mdi/js故不需引用 -->
+    <link _href="https://cdn.jsdelivr.net/npm/@mdi/font/css/materialdesignicons.min.css" rel="stylesheet">
+
+    <!-- google, 各組件使用mdi/js故不需引用 -->
+    <link _href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+    <link _href="https://fonts.googleapis.com/css?family=Material+Icons" rel="stylesheet">
+
+    <!-- data -->
+    <script src="https://cdn.jsdelivr.net/npm/w-demores@1.0.10/res/data/dataAAPL.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-demores@1.0.10/res/data/dataUSD2EUR.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-demores@1.0.10/res/data/dataTemperature.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-demores@1.0.10/res/data/dataHousePriceArea.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-demores@1.0.10/res/data/dataFlare.js"></script>
+    <script>
+        //save in window
+        window.dataAAPL=dataAAPL
+        window.dataUSD2EUR=dataUSD2EUR
+        window.dataTemperature=dataTemperature
+        window.dataHousePriceArea=dataHousePriceArea
+        window.dataFlare=dataFlare
+    </script>
+
+    <!-- element-ui, 已按需打包故不需引用 -->
+    <link _href="https://cdn.jsdelivr.net/npm/element-ui@2.13.0/lib/theme-chalk/index.css" rel="stylesheet">
+    <script _src="https://cdn.jsdelivr.net/npm/element-ui@2.13.0/lib/index.js"></script>
+
+    <!-- vuetify -->
+    <link href="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.js"></script>
+
+    
+
+    <!-- app -->
+    <script src="app.umd.js?1598924189345"></script>
+
+</head>
+<body style="font-family:'Microsoft JhengHei','Avenir','Helvetica'; padding:0px; margin:0px;">
+
+    <div id="app">
+        <w-app></w-app>
+    </div>
+
+    <script>
+
+        //install app
+        Vue.component('w-app',app)
+
+        //initialize
+        new Vue({
+            el: '#app',
+            vuetify: new Vuetify(),
+        })
+
+    </script>
+
+</body>
+</html>
