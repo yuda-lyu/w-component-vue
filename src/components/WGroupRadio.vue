@@ -4,7 +4,7 @@
         <template v-for="(item,kitem) in itemsTrans">
 
             <WButtonChip
-                style="margin:10px 10px 10px 0px;"
+                :style="[{margin:marginStyle}]"
                 :key="kitem"
                 :text="get(item,`data.${keyText}`) || get(item,'data')"
                 :tooltip="get(item,`data.${keyTooltip}`)"
@@ -79,6 +79,7 @@ import WButtonChip from './WButtonChip.vue'
  * @vue-prop {String} [backgroundColor='transparent'] 輸入背景顏色字串，預設'transparent'
  * @vue-prop {String} [backgroundColorHover='rgba(200,200,200,0.25)'] 輸入滑鼠移入時背景顏色字串，預設'rgba(200,200,200,0.25)'
  * @vue-prop {String} [backgroundColorActive='orange'] 輸入主動模式時背景顏色字串，預設'orange'
+ * @vue-prop {String} [marginStyle='10px 10px 10px 0px'] 輸入外距設定字串，預設'10px 10px 10px 0px'
  * @vue-prop {Boolean} [shadow=false] 輸入是否顯示陰影，預設false
  * @vue-prop {String} [shadowStyle=''] 輸入陰影顏色字串，預設值詳見props
  * @vue-prop {Boolean} [shadowActive=true] 輸入主動模式時是否顯示陰影，預設true
@@ -179,6 +180,10 @@ export default {
         backgroundColorActive: {
             type: String,
             default: 'orange',
+        },
+        marginStyle: {
+            type: String,
+            default: '10px 10px 10px 0px',
         },
         shadow: {
             type: Boolean,

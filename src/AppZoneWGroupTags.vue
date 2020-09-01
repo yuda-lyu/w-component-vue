@@ -1178,44 +1178,44 @@ export default {
         ckBtn: function(msg) {
             console.log('ckBtn', msg)
         },
-        ckBtnAddString: function(ev) {
+        ckBtnAddString: function() {
             console.log('ckBtnAddString')
             let name = this.genName()
             this.WGroupTags.strings.push(name)
         },
-        ckBtnAddObj: function(ev) {
+        ckBtnAddObj: function() {
             console.log('ckBtnAddObj')
             let name = this.genName()
             this.WGroupTags.objects.push({ id: 'id-' + name, text: name })
         },
-        ckBtnAddObjText: function(ev) {
+        ckBtnAddObjText: function() {
             console.log('ckBtnAddObjText')
             let name = this.genName()
             this.WGroupTags.objectsText.push({ id: 'id-' + name, value: name })
         },
-        ckBtnAddObjIcon: function(ev) {
+        ckBtnAddObjIcon: function() {
             console.log('ckBtnAddObjIcon')
             let name = this.genName()
             this.WGroupTags.objectsIcon.push({ id: 'id-' + name, text: name, icon: 'fas fa-hands-wash' })
         },
-        ckBtnAddObjTooltip: function(ev) {
+        ckBtnAddObjTooltip: function() {
             console.log('ckBtnAddObjTooltip')
             let name = this.genName()
             this.WGroupTags.objectsTooltip.push({ id: 'id-' + name, text: name, tooltip: name + ' for tooltip' })
         },
-        ckBtnAddObjSlotText: function(ev) {
+        ckBtnAddObjSlotText: function() {
             console.log('ckBtnAddObjSlotText')
             let name = this.genName()
             this.WGroupTags.objectsSlotText.push({ id: 'id-' + name, text: name, slotTextKind: 'Basic', slotTextLevel: 'None' })
         },
-        ckBtnClose: function(item) {
-            console.log('ckBtnClose', item)
+        ckBtnClose: function(msg) {
+            console.log('ckBtnClose', msg)
         },
-        ckBtnClosePm: function(item) {
-            console.log('ckBtnClosePm', item)
+        ckBtnClosePm: function(msg) {
+            console.log('ckBtnClosePm', msg)
             alert('pm.resolve() for close')
-            item.pm.resolve()
-            //item.pm.reject()
+            msg.pm.resolve()
+            //msg.pm.reject()
         },
         ckBtnItem1: function(msg) {
             console.log('ckBtnItem1', msg)

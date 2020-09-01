@@ -76,6 +76,23 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-group-radio'"
+                    :casename="'marginStyle'"
+                    :kind="'nokind'"
+                    :shell="'pure'"
+                ></demolink>
+
+                <w-group-radio
+                    :items="WGroupRadio.object.items"
+                    v-model="WGroupRadio.object.select"
+                    :marginStyle="'0px 25px 0px 0px'"
+                ></w-group-radio>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-group-radio'"
                     :casename="'tooltip'"
                     :kind="'nokind'"
                     :shell="'pure'"

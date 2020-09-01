@@ -7,7 +7,7 @@
         content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui"
     />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>example for w-timeminute-range: iconTooltip</title>
+    <title>example for w-group-radio: marginStyle</title>
 
     <!-- fontawesome -->
     <link
@@ -118,25 +118,15 @@
     style="font-family:'Microsoft JhengHei','Avenir','Helvetica'; padding:20px;"
 >
     <v-app id="app" style="font-family:inherit;">
-        <div class="head1">w-timeminute-range</div>
+        <div class="head1">w-group-radio</div>
         <div class="bk">
-            <div class="item">iconTooltip</div>
+            <div class="item">marginStyle</div>
 
-            <w-shell-material
-                style="margin-top:30px;"
-                :title="'請選擇開會起訖時間'"
-                :left-icon="'mdi-paw'"
-            >
-                <w-timeminute-range
-                    :border-shadow="false"
-                    :border-color="'orange lighten-2'"
-                    :border-color-focus="'orange darken-2'"
-                    :background-color-focus="'orange lighten-5'"
-                    :icon-tooltip="'show tooltip'"
-                    :minute-start.sync="WTimeminuteRange.minuteStart"
-                    :minute-end.sync="WTimeminuteRange.minuteEnd"
-                />
-            </w-shell-material>
+            <w-group-radio
+                :items="WGroupRadio.object.items"
+                v-model="WGroupRadio.object.select"
+                :margin-style="'0px 25px 0px 0px'"
+            />
         </div>
     </v-app>
 
@@ -150,67 +140,110 @@
     vuetify: new Vuetify(),
     data: function() {
       return {
-        WTimeminuteRange: {
-          minuteStart: "2019-01-01T10:00:00",
-          minuteEnd: "2019-02-01T12:00:00"
-        },
-        actions: [
-          //pickColor測試不到
-
-          //起始時間
-          {
-            mode: "eleclick",
-            selector: 'div[TimedayCore="day"]',
-            nth: 0
+        WGroupRadio: {
+          string: {
+            items: [
+              "Dashboard",
+              "Schedule",
+              "Profile",
+              "History",
+              "Apple",
+              "橘子"
+            ],
+            select: "Apple"
           },
-          {
-            mode: "eleclick",
-            selector: 'button[type="button"]',
-            nth: 11
+          object: {
+            items: [
+              {
+                text: "Dashboard",
+                icon: "mdi-view-dashboard"
+              },
+              {
+                text: "Schedule",
+                icon: "mdi-clock-time-eight-outline"
+              },
+              {
+                text: "Profile",
+                icon: "mdi-blender-software"
+              },
+              {
+                text: "History",
+                icon: "mdi-spoon-sugar"
+              },
+              {
+                text: "蘋果",
+                icon: "mdi-apple"
+              }
+            ],
+            select: {
+              text: "Dashboard",
+              icon: "mdi-view-dashboard"
+            }
           },
-          {
-            mode: "eleclick",
-            selector: 'input[type="text"]',
-            nth: 0
+          objectTP: {
+            items: [
+              {
+                text: "Dashboard",
+                icon: "mdi-view-dashboard",
+                tooltip: "tooltip for Dashboard"
+              },
+              {
+                text: "Schedule",
+                icon: "mdi-clock-time-eight-outline",
+                tooltip: "tooltip for Schedule"
+              },
+              {
+                text: "Profile",
+                icon: "mdi-blender-software",
+                tooltip: "tooltip for Profile"
+              },
+              {
+                text: "History",
+                icon: "mdi-spoon-sugar",
+                tooltip: "tooltip for History"
+              },
+              {
+                text: "蘋果",
+                icon: "mdi-apple",
+                tooltip: "tooltip for 蘋果"
+              }
+            ],
+            select: {
+              text: "Dashboard",
+              icon: "mdi-account-supervisor-circle",
+              tooltip: "tooltip for Dashboard"
+            }
           },
-          {
-            mode: "eleclick",
-            selector: "div.v-list-item__title",
-            nth: 1
-          },
-
-          //結束時間
-          {
-            mode: "eleclick",
-            selector: 'div[TimedayCore="day"]',
-            nth: 1
-          },
-          {
-            mode: "eleclick",
-            selector: 'button[type="button"]',
-            nth: 14
-          },
-          {
-            mode: "eleclick",
-            selector: 'input[type="text"]',
-            nth: 1
-          },
-          {
-            mode: "eleclick",
-            selector: "div.v-list-item__title",
-            nth: 1
-          },
-
-          {
-            mode: "keypress",
-            key: "Tab"
-          },
-          {
-            mode: "elemove",
-            selector: 'div[ShellEllipse="leftIcon"]',
-            nth: -1
+          objectFA: {
+            items: [
+              {
+                text: "Dashboard",
+                icon: "fa fa-address-book"
+              },
+              {
+                text: "Schedule",
+                icon: "fa fa-address-card"
+              },
+              {
+                text: "Profile",
+                icon: "fa fa-american-sign-language-interpreting"
+              },
+              {
+                text: "History",
+                icon: "fa fa-balance-scale"
+              },
+              {
+                text: "蘋果",
+                icon: "fa fa-heartbeat"
+              }
+            ],
+            select: {
+              text: "Dashboard",
+              icon: "fa fa-address-book"
+            }
           }
-        ]
+        },
+        actions: []
       };
     },
     computed: {},
