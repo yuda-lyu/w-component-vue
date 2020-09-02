@@ -7,7 +7,7 @@
         content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui"
     />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>example for w-group-tags: object items & slot item & editableInput(no slot input) & useActive & valueActive & sizePadding & textColor & textColorActive & backgroundColor & backgroundColorActive & shadowActiveStyle</title>
+    <title>example for w-group-tags: object items & slot item & editableInput(no slot input) & useActive & valueActive & sizePadding & textColor & textColorHover & textColorActive & backgroundColor & backgroundColorActive & shadowActiveStyle</title>
 
     <!-- fontawesome -->
     <link
@@ -80,7 +80,7 @@
     <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.js"></script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@1.4.21/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@1.4.22/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -122,7 +122,7 @@
         <div class="bk" style="display:block;">
             <div
                 class="item"
-            >object items & slot item & editableInput(no slot input) & useActive & valueActive & sizePadding & textColor & textColorActive & backgroundColor & backgroundColorActive & shadowActiveStyle</div>
+            >object items & slot item & editableInput(no slot input) & useActive & valueActive & sizePadding & textColor & textColorHover & textColorActive & backgroundColor & backgroundColorActive & shadowActiveStyle</div>
 
             <w-group-tags
                 v-model="WGroupTags.objectsSlotText"
@@ -131,6 +131,7 @@
                 :value-active.sync="WGroupTags.objectsSlotTextActive"
                 :size-padding="'1px 13px'"
                 :text-color="'pink lighten-1'"
+                :text-color-hover="'red accent-3'"
                 :text-color-active="'white'"
                 :background-color="'white'"
                 :background-color-active="'pink lighten-1'"

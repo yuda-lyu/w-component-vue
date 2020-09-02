@@ -482,8 +482,8 @@
                 <w-group-tags
                     v-model="WGroupTags.strings"
                     :icon="mdiChartBubble"
-                    :backgroundColor="'amber lighten-5'"
-                    :backgroundColorHover="'amber lighten-4'"
+                    :backgroundColor="'#fea'"
+                    :backgroundColorHover="'#ffd888'"
                 ></w-group-tags>
 
                 <div style="padding-left:5px; font-size:0.9rem; color:#ea6;">binding: strings</div>
@@ -728,7 +728,7 @@
             <div class="bk" style="display:block;">
                 <demolink
                     :kbname="'w-group-tags'"
-                    :casename="'slot item & useActive & valueActive & sizePadding & textColor & textColorActive & backgroundColor & backgroundColorActive & shadowActiveStyle'"
+                    :casename="'slot item & useActive & valueActive & sizePadding & textColor & textColorHover & textColorActive & backgroundColor & backgroundColorActive & shadowActiveStyle'"
                     :kind="'nokind'"
                     :shell="'pure'"
                 ></demolink>
@@ -739,6 +739,7 @@
                     :valueActive.sync="WGroupTags.stringActive"
                     :sizePadding="'1px 13px'"
                     :textColor="'pink lighten-1'"
+                    :textColorHover="'red accent-3'"
                     :textColorActive="'white'"
                     :backgroundColor="'white'"
                     :backgroundColorActive="'pink lighten-1'"
@@ -762,7 +763,7 @@
             <div class="bk" style="display:block;">
                 <demolink
                     :kbname="'w-group-tags'"
-                    :casename="'object items & slot item & editableInput(no slot input) & useActive & valueActive & sizePadding & textColor & textColorActive & backgroundColor & backgroundColorActive & shadowActiveStyle'"
+                    :casename="'object items & slot item & editableInput(no slot input) & useActive & valueActive & sizePadding & textColor & textColorHover & textColorActive & backgroundColor & backgroundColorActive & shadowActiveStyle'"
                     :kind="'nokind'"
                     :shell="'pure'"
                 ></demolink>
@@ -774,6 +775,7 @@
                     :valueActive.sync="WGroupTags.objectsSlotTextActive"
                     :sizePadding="'1px 13px'"
                     :textColor="'pink lighten-1'"
+                    :textColorHover="'red accent-3'"
                     :textColorActive="'white'"
                     :backgroundColor="'white'"
                     :backgroundColorActive="'pink lighten-1'"

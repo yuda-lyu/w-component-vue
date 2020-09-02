@@ -1,5 +1,5 @@
 /*!
- * w-json-view v1.4.21
+ * w-json-view v1.4.22
  * (c) 2018-2020 yuda-lyu(semisphere)
  * Released under the MIT License.
  */

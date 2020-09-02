@@ -19,25 +19,25 @@
                         :text="isObjValue?get(item,`${keyText}`):item"
                         :tooltip="isObjValue?get(item,`${keyTooltip}`):null"
                         :icon="isObjValue?get(item,`${keyIcon}`):icon"
-                        :iconColor="isObjValue?get(item,'iconColor'):iconColor"
-                        :iconColorHover="isObjValue?get(item,'iconColorHover'):iconColorHover"
-                        :iconColorActive="isObjValue?get(item,'iconColorActive'):iconColorActive"
+                        :iconColor="getColor(item,'iconColor')"
+                        :iconColorHover="getColor(item,'iconColorHover')"
+                        :iconColorActive="getColor(item,'iconColorActive')"
                         :iconSize="iconSize"
                         :iconShiftLeft="iconShiftLeft"
                         :iconShiftRight="iconShiftRight"
-                        :progColor="isObjValue?get(item,'progColor'):progColor"
-                        :progBackgroundColor="isObjValue?get(item,'progBackgroundColor'):progBackgroundColor"
-                        :textColor="isObjValue?get(item,'textColor'):textColor"
-                        :textColorHover="isObjValue?get(item,'textColorHover'):textColorHover"
-                        :textColorActive="isObjValue?get(item,'textColorActive'):textColorActive"
+                        :progColor="getColor(item,'progColor')"
+                        :progBackgroundColor="getColor(item,'progBackgroundColor')"
+                        :textColor="getColor(item,'textColor')"
+                        :textColorHover="getColor(item,'textColorHover')"
+                        :textColorActive="getColor(item,'textColorActive')"
                         :textFontSize="textFontSize"
                         :borderRadius="borderRadius"
-                        :borderColor="isObjValue?get(item,'borderColor'):borderColor"
-                        :borderColorHover="isObjValue?get(item,'borderColorHover'):borderColorHover"
-                        :borderColorActive="isObjValue?get(item,'borderColorActive'):borderColorActive"
-                        :backgroundColor="isObjValue?get(item,'backgroundColor'):backgroundColor"
-                        :backgroundColorHover="isObjValue?get(item,'backgroundColorHover'):backgroundColorHover"
-                        :backgroundColorActive="isObjValue?get(item,'backgroundColorActive'):backgroundColorActive"
+                        :borderColor="getColor(item,'borderColor')"
+                        :borderColorHover="getColor(item,'borderColorHover')"
+                        :borderColorActive="getColor(item,'borderColorActive')"
+                        :backgroundColor="getColor(item,'backgroundColor')"
+                        :backgroundColorHover="getColor(item,'backgroundColorHover')"
+                        :backgroundColorActive="getColor(item,'backgroundColorActive')"
                         :shadow="shadow"
                         :shadowStyle="shadowStyle"
                         :shadowActive="shadowActive"
@@ -534,6 +534,23 @@ export default {
 
     },
     methods: {
+
+        getColor: function(item, keyColor) {
+            //console.log('methods getColor', item, keyColor)
+
+            let vo = this
+
+            //c
+            let c = null
+            if (vo.isObjValue) {
+                c = get(item, keyColor, null)
+            }
+            if (!c) {
+                c = get(vo, keyColor, null)
+            }
+
+            return c
+        },
 
         isActive: function(item) {
             //console.log('methods isActive', item)
