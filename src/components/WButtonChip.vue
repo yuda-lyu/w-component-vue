@@ -7,7 +7,7 @@
         role="button"
     >
 
-        <div aaa style="position:relative;">
+        <div style="position:relative;">
 
             <v-tooltip
                 bottom

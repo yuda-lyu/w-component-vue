@@ -225,6 +225,12 @@ export default {
         },
     },
     data: function() {
+        function f2c(f) {
+            let cont = String(f)
+            let r = cont.substring(cont.indexOf('/*') + 3, cont.lastIndexOf('*/'))
+            r = r.trim()
+            return r
+        }
         return {
             mdiViewDashboard,
             mdiClockTimeEightOutline,
@@ -232,8 +238,8 @@ export default {
             mdiSpoonSugar,
             mdiApple,
             'WPanelBulge': {
-                'table': `
-
+                'table': f2c(function() {
+                    /**
                     <div style="margin-bottom:10px; padding:0px 10px;">
                         <span>A data table</span>
                     </div>
@@ -268,8 +274,8 @@ export default {
                             </tr>
                         </tbody>
                     </table>
-
-                `,
+                     */
+                }),
                 'title': 'Bulge',
                 'menu': {
                     'items': [

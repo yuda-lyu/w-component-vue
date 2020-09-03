@@ -248,7 +248,7 @@
                 >
                     <template v-slot:items="props">
                         <div style="display:flex; align-items:center;">
-                            <div style="display:flex; margin-right:5px;">
+                            <div style="display:flex; margin-right:5px;" msg="inline-block元素會無法被垂直置中故使用flex">
                                 <w-button-chip
                                     :text="props.item"
                                     :textFontSize="'0.75rem'"
@@ -260,7 +260,7 @@
                                     @click="ckBtnItem1(props)"
                                 ></w-button-chip>
                             </div>
-                            <div style="display:flex;">
+                            <div style="display:flex;" msg="inline-block元素會無法被垂直置中故使用flex">
                                 <w-button-chip
                                     :text="'View'"
                                     :textFontSize="'0.75rem'"
@@ -296,7 +296,7 @@
                 >
                     <template v-slot:items="props">
                         <div style="display:flex; align-items:center;">
-                            <div style="display:flex; margin-right:5px;">
+                            <div style="display:flex; margin-right:5px;" msg="inline-block元素會無法被垂直置中故使用flex">
                                 <w-button-chip
                                     :text="props.item.slotTextKind"
                                     :textFontSize="'0.75rem'"
@@ -308,7 +308,7 @@
                                     @click="ckBtnItem1(props)"
                                 ></w-button-chip>
                             </div>
-                            <div style="display:flex;">
+                            <div style="display:flex;" msg="inline-block元素會無法被垂直置中故使用flex">
                                 <w-button-chip
                                     :text="props.item.slotTextLevel"
                                     :textFontSize="'0.75rem'"

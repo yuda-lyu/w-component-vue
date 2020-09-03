@@ -182,7 +182,9 @@
                             <div style="padding:10px 20px; background:#666;">
                                 <span style="color:#fff;">A data table</span>
                             </div>
-                            <div style="padding:10px;" v-html="WPopup.table"></div>
+                            <div msg="prettyhtml會把v-html視為可轉為self-closing元素, 但self-closing元素在vue模板內會失效">
+                                <div style="padding:10px;" v-html="WPopup.table"></div>
+                            </div>
                             <div style="padding:0px 20px 10px 20px; font-size:0.8rem;">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis praesentium cumque magnam odio iure quidem, quod illum numquam possimus obcaecati commodi minima assumenda consectetur culpa fuga nulla ullam. In, libero.</div>
                         </div>
                     </template>
@@ -217,6 +219,12 @@ export default {
         },
     },
     data: function() {
+        function f2c(f) {
+            let cont = String(f)
+            let r = cont.substring(cont.indexOf('/*') + 3, cont.lastIndexOf('*/'))
+            r = r.trim()
+            return r
+        }
         return {
             mdiViewDashboard,
             mdiClockTimeEightOutline,
@@ -234,7 +242,8 @@ export default {
                 'bShow8': false,
                 'items': ['foo', 'bar', 'fizz', 'buzz'],
                 'text': 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis praesentium cumque magnam odio iure quidem, quod illum numquam possimus obcaecati commodi minima assumenda consectetur culpa fuga nulla ullam. In, libero.',
-                'table': `
+                'table': f2c(function() {
+                    /**
                     <table style="width:100%; font-size:0.7rem;">
                         <thead>
                             <tr>
@@ -265,7 +274,8 @@ export default {
                             </tr>
                         </tbody>
                     </table>
-                `,
+                     */
+                }),
                 'title': 'Bulge',
             },
             'actions': [
