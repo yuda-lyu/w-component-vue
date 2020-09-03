@@ -80,7 +80,7 @@
     <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.js"></script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@1.4.22/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@1.4.24/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -140,10 +140,16 @@
     el: "#app",
     vuetify: new Vuetify(),
     data: function() {
+      function f2c(f) {
+        let cont = String(f);
+        let r = cont.substring(cont.indexOf("/*") + 3, cont.lastIndexOf("*/"));
+        r = r.trim();
+        return r;
+      }
       return {
         WPanelBulge: {
-          table: `
-
+          table: f2c(function() {
+            /**
                     <div style="margin-bottom:10px; padding:0px 10px;">
                         <span>A data table</span>
                     </div>
@@ -178,8 +184,8 @@
                             </tr>
                         </tbody>
                     </table>
-
-                `,
+                     */
+          }),
           title: "Bulge",
           menu: {
             items: [

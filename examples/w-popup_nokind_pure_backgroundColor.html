@@ -80,7 +80,7 @@
     <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.js"></script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@1.4.22/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@1.4.24/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -153,6 +153,12 @@
     el: "#app",
     vuetify: new Vuetify(),
     data: function() {
+      function f2c(f) {
+        let cont = String(f);
+        let r = cont.substring(cont.indexOf("/*") + 3, cont.lastIndexOf("*/"));
+        r = r.trim();
+        return r;
+      }
       return {
         WPopup: {
           bShow1: false,
@@ -166,7 +172,8 @@
           items: ["foo", "bar", "fizz", "buzz"],
           text:
             "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis praesentium cumque magnam odio iure quidem, quod illum numquam possimus obcaecati commodi minima assumenda consectetur culpa fuga nulla ullam. In, libero.",
-          table: `
+          table: f2c(function() {
+            /**
                     <table style="width:100%; font-size:0.7rem;">
                         <thead>
                             <tr>
@@ -197,7 +204,8 @@
                             </tr>
                         </tbody>
                     </table>
-                `,
+                     */
+          }),
           title: "Bulge"
         },
         actions: []
