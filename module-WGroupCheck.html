@@ -72,45 +72,183 @@
     <tbody><tr>
         <td><code>items</code></td>
         <td>Array</td>
-        <td>-</td>
-        <td><b>Yes</b></td>
-        <td>輸入全部可選字串陣列</td>
+        <td><code>[]</code></td>
+        <td>No</td>
+        <td>輸入全部可選字串或物件陣列，預設[]</td>
     </tr><tr>
         <td><code>value</code></td>
         <td>Array</td>
-        <td>-</td>
-        <td><b>Yes</b></td>
-        <td>輸入已複選字串陣列</td>
-    </tr><tr>
-        <td><code>textColor</code></td>
-        <td>String</td>
-        <td><code>'white'</code></td>
+        <td><code>[]</code></td>
         <td>No</td>
-        <td>輸入已選項目之文字顏色字串，預設'white'</td>
+        <td>輸入複選字串或物件陣列，預設[]</td>
     </tr><tr>
-        <td><code>backgroundColor</code></td>
+        <td><code>keyText</code></td>
         <td>String</td>
-        <td><code>'purple lighten-1'</code></td>
+        <td><code>'text'</code></td>
         <td>No</td>
-        <td>輸入已選項目之文字背景顏色字串，預設'purple lighten-1'</td>
+        <td>輸入可選項目為物件時，存放顯示文字之欄位字串，預設'text'</td>
+    </tr><tr>
+        <td><code>keyIcon</code></td>
+        <td>String</td>
+        <td><code>'icon'</code></td>
+        <td>No</td>
+        <td>輸入可選項目為物件時，存放圖標之欄位字串，預設'icon'</td>
+    </tr><tr>
+        <td><code>keyTooltip</code></td>
+        <td>String</td>
+        <td><code>'tooltip'</code></td>
+        <td>No</td>
+        <td>輸入可選項目為物件時，存放提示之欄位字串，預設'tooltip'</td>
     </tr><tr>
         <td><code>iconColor</code></td>
         <td>String</td>
+        <td><code>'black'</code></td>
+        <td>No</td>
+        <td>輸入圖標顏色字串，預設'black'</td>
+    </tr><tr>
+        <td><code>iconColorHover</code></td>
+        <td>String</td>
+        <td><code>'grey darken-3'</code></td>
+        <td>No</td>
+        <td>輸入滑鼠移入時圖標顏色字串，預設'grey darken-3'</td>
+    </tr><tr>
+        <td><code>iconColorActive</code></td>
+        <td>String</td>
         <td><code>'white'</code></td>
         <td>No</td>
-        <td>輸入已選項目之文字背景顏色字串，預設'white'</td>
+        <td>輸入主動模式時圖標顏色字串，預設'white'</td>
     </tr><tr>
-        <td><code>textcolorInactive</code></td>
-        <td>String</td>
-        <td><code>'grey darken-2'</code></td>
+        <td><code>iconSize</code></td>
+        <td>Number</td>
+        <td><code>22</code></td>
         <td>No</td>
-        <td>輸入未選項目之文字顏色字串，預設'grey darken-2'</td>
+        <td>輸入左側圖標之尺寸數字，單位px，預設22</td>
     </tr><tr>
-        <td><code>bgcolorInactive</code></td>
-        <td>String</td>
-        <td><code>'grey lighten-5'</code></td>
+        <td><code>iconShiftLeft</code></td>
+        <td>Number</td>
+        <td><code>0</code></td>
         <td>No</td>
-        <td>輸入未選項目之文字背景顏色字串，預設'grey lighten-5'</td>
+        <td>輸入圖標左側平移距離數字，單位px，預設0</td>
+    </tr><tr>
+        <td><code>iconShiftRight</code></td>
+        <td>Number</td>
+        <td><code>0</code></td>
+        <td>No</td>
+        <td>輸入右側關閉圖標之右側距離數字，單位px，預設0</td>
+    </tr><tr>
+        <td><code>textColor</code></td>
+        <td>String</td>
+        <td><code>'black'</code></td>
+        <td>No</td>
+        <td>輸入文字顏色字串，預設'black'</td>
+    </tr><tr>
+        <td><code>textColorHover</code></td>
+        <td>String</td>
+        <td><code>'grey darken-3'</code></td>
+        <td>No</td>
+        <td>輸入滑鼠移入時文字顏色字串，預設'grey darken-3'</td>
+    </tr><tr>
+        <td><code>textColorActive</code></td>
+        <td>String</td>
+        <td><code>'white'</code></td>
+        <td>No</td>
+        <td>輸入主動模式時文字顏色字串，預設'white'</td>
+    </tr><tr>
+        <td><code>textFontSize</code></td>
+        <td>String</td>
+        <td><code>'0.85rem'</code></td>
+        <td>No</td>
+        <td>輸入文字字型大小字串，預設'0.85rem'</td>
+    </tr><tr>
+        <td><code>borderRadius</code></td>
+        <td>Number</td>
+        <td><code>30</code></td>
+        <td>No</td>
+        <td>輸入框圓角寬度，單位為px，預設30</td>
+    </tr><tr>
+        <td><code>borderColor</code></td>
+        <td>String</td>
+        <td><code>'transparent'</code></td>
+        <td>No</td>
+        <td>輸入邊框顏色字串，預設'transparent'</td>
+    </tr><tr>
+        <td><code>borderColorHover</code></td>
+        <td>String</td>
+        <td><code>'transparent'</code></td>
+        <td>No</td>
+        <td>輸入滑鼠移入時邊框顏色字串，預設'transparent'</td>
+    </tr><tr>
+        <td><code>borderColorActive</code></td>
+        <td>String</td>
+        <td><code>'transparent'</code></td>
+        <td>No</td>
+        <td>輸入主動模式時邊框顏色字串，預設'transparent'</td>
+    </tr><tr>
+        <td><code>backgroundColor</code></td>
+        <td>String</td>
+        <td><code>'transparent'</code></td>
+        <td>No</td>
+        <td>輸入背景顏色字串，預設'transparent'</td>
+    </tr><tr>
+        <td><code>backgroundColorHover</code></td>
+        <td>String</td>
+        <td><code>'rgba(200,200,200,0.25)'</code></td>
+        <td>No</td>
+        <td>輸入滑鼠移入時背景顏色字串，預設'rgba(200,200,200,0.25)'</td>
+    </tr><tr>
+        <td><code>backgroundColorActive</code></td>
+        <td>String</td>
+        <td><code>'orange'</code></td>
+        <td>No</td>
+        <td>輸入主動模式時背景顏色字串，預設'orange'</td>
+    </tr><tr>
+        <td><code>marginStyle</code></td>
+        <td>String</td>
+        <td><code>'10px 10px 10px 0px'</code></td>
+        <td>No</td>
+        <td>輸入外距設定字串，預設'10px 10px 10px 0px'</td>
+    </tr><tr>
+        <td><code>shadow</code></td>
+        <td>Boolean</td>
+        <td><code>false</code></td>
+        <td>No</td>
+        <td>輸入是否顯示陰影，預設false</td>
+    </tr><tr>
+        <td><code>shadowStyle</code></td>
+        <td>String</td>
+        <td><code>''</code></td>
+        <td>No</td>
+        <td>輸入陰影顏色字串，預設值詳見props</td>
+    </tr><tr>
+        <td><code>shadowActive</code></td>
+        <td>Boolean</td>
+        <td><code>true</code></td>
+        <td>No</td>
+        <td>輸入主動模式時是否顯示陰影，預設true</td>
+    </tr><tr>
+        <td><code>shadowActiveStyle</code></td>
+        <td>String</td>
+        <td><code>''</code></td>
+        <td>No</td>
+        <td>輸入主動模式時陰影顏色字串，預設值詳見props</td>
+    </tr><tr>
+        <td><code>sizePadding</code></td>
+        <td>String</td>
+        <td><code>'3px 15px'</code></td>
+        <td>No</td>
+        <td>輸入內寬設定字串，預設'3px 15px'</td>
+    </tr><tr>
+        <td><code>close</code></td>
+        <td>Boolean</td>
+        <td><code>false</code></td>
+        <td>No</td>
+        <td>輸入是否具有關閉按鈕模式，預設false</td>
+    </tr><tr>
+        <td><code>loading</code></td>
+        <td>Boolean</td>
+        <td><code>false</code></td>
+        <td>No</td>
+        <td>輸入是否為載入模式，預設false</td>
     </tr><tr>
         <td><code>editable</code></td>
         <td>Boolean</td>
@@ -242,7 +380,7 @@
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.5</a> on Thu Sep 03 2020 14:32:37 GMT+0800 (台北標準時間) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.5</a> on Mon Sep 07 2020 16:58:17 GMT+0800 (台北標準時間) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>
