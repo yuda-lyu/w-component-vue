@@ -260,6 +260,7 @@ export default {
 
             let vo = this
 
+            //check
             if (vo.editable === false) {
                 return
             }

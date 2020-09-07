@@ -693,7 +693,6 @@ export default {
             haveModeShell: {
                 'WSwitch': true,
                 'WGroupButtons': true,
-                'WGroupCheck': true,
                 'WText': true,
                 'WTextInt': true,
                 'WTextarea': true,

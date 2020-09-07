@@ -527,6 +527,10 @@ export default {
 
             let vo = this
 
+            //check, 因every([])=true
+            if (size(vo.itemsTrans) === 0) {
+                return false
+            }
             return every(vo.itemsTrans, (v) => {
                 return isobj(v)
             })
