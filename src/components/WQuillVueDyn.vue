@@ -24,8 +24,8 @@ export default {
         pathItems: {
             type: Array,
             default: () => [
-                'https://cdn.jsdelivr.net/npm/quill@1.3.6/dist/quill.min.js',
-                'https://cdn.jsdelivr.net/npm/quill@1.3.6/dist/quill.snow.min.css',
+                'https://cdn.jsdelivr.net/npm/quill@1.3.7/dist/quill.min.js',
+                'https://cdn.jsdelivr.net/npm/quill@1.3.7/dist/quill.snow.min.css',
                 'https://cdn.jsdelivr.net/npm/w-quill-vue@1.0.25/dist/w-quill-vue.umd.js',
             ],
         },

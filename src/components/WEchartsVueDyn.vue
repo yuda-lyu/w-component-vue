@@ -22,9 +22,9 @@ export default {
         pathItems: {
             type: Array,
             default: () => [
-                'https://cdn.jsdelivr.net/npm/echarts@4.7.0/dist/echarts-en.min.js',
+                'https://cdn.jsdelivr.net/npm/echarts@4.9.0/dist/echarts-en.min.js',
                 'https://cdn.jsdelivr.net/npm/echarts-gl@1.1.1/dist/echarts-gl.min.js',
-                'https://cdn.jsdelivr.net/npm/vue-echarts@4.0.1/dist/vue-echarts.min.js',
+                'https://cdn.jsdelivr.net/npm/vue-echarts@4.1.0/dist/vue-echarts.min.js',
             ],
         },
         options: {

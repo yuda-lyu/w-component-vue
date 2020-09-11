@@ -51,8 +51,8 @@ export default {
         pathItems: {
             type: Array,
             default: () => [ //預設值詳見 wsemi/src/showImagesDyn.mjs, 因此處有預載, 故所使用viewerjs的版本得相同
-                'https://cdn.jsdelivr.net/npm/viewerjs@1.5.0/dist/viewer.min.css',
-                'https://cdn.jsdelivr.net/npm/viewerjs@1.5.0/dist/viewer.min.js',
+                'https://cdn.jsdelivr.net/npm/viewerjs@1.6.2/dist/viewer.min.css',
+                'https://cdn.jsdelivr.net/npm/viewerjs@1.6.2/dist/viewer.min.js',
             ],
         },
         images: {
