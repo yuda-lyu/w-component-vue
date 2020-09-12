@@ -252,7 +252,7 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-dialog'"
-                    :casename="'slot headerLeft & headerRight'"
+                    :casename="'slot header-left & header-right'"
                     :kind="'nokind'"
                     :shell="'pure'"
                 ></demolink>
@@ -266,7 +266,7 @@
                     @click-close="clickEvent('click-close')"
                 >
 
-                    <template v-slot:headerLeft>
+                    <template v-slot:header-left>
                         <select style="margin-left:15px; padding:0px 20px; background-color:rgba(255,255,255,0.1); color:#fff; border:1px solid rgba(255,255,255,0.7); border-radius:30px; outline:none;">
                             <option style="color:#000;" value="0">Select Fruit</option>
                             <option style="color:#000;" value="1">L-Apple</option>
@@ -275,7 +275,7 @@
                         </select>
                     </template>
 
-                    <template v-slot:headerRight>
+                    <template v-slot:header-right>
                         <select style="margin-right:15px; padding:0px 20px; background-color:rgba(255,255,255,0.1); color:#fff; border:1px solid rgba(255,255,255,0.7); border-radius:30px; outline:none;">
                             <option style="color:#000;" value="0">Select Fruit</option>
                             <option style="color:#000;" value="1">R-Apple</option>

@@ -31,11 +31,13 @@
                     <span :style="`color:${useHeaderTextColor}`">{{title}}</span>
                 </v-toolbar-title>
 
-                <slot name="headerLeft"></slot>
+                <!-- 記得slot name為小寫, 若使用駝峰於瀏覽器端會需要轉小寫, 但於vue-cli無法使用小寫識別得要用駝峰, 故統一都小寫較安全 -->
+                <slot name="header-left"></slot>
 
                 <v-spacer></v-spacer>
 
-                <slot name="headerRight"></slot>
+            <!-- 記得slot name為小寫, 若使用駝峰於瀏覽器端會需要轉小寫, 但於vue-cli無法使用小寫識別得要用駝峰, 故統一都小寫較安全 -->
+                <slot name="header-right"></slot>
 
                 <template v-for="(btn,kbtn) in headerBtns">
 
