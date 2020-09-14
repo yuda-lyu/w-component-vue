@@ -619,7 +619,7 @@ export default {
                 }
             }, 10)
         },
-        ckBtnModProg: function(ev, msg) {
+        ckBtnModProg: function(msg) {
             console.log('ckBtnModProg', msg)
             let n = 0
             let t = setInterval(function() {
@@ -639,7 +639,7 @@ export default {
                 vo.WButtonChip.loading = false
             }, 2000)
         },
-        ckBtnModLoading: function(ev, msg) {
+        ckBtnModLoading: function(msg) {
             console.log('ckBtnModLoading', msg)
             msg.setLoading(true)
             setTimeout(function() {
