@@ -80,7 +80,7 @@
     <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.js"></script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@1.4.27/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@1.4.28/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -182,7 +182,7 @@
           }
         }, 10);
       },
-      ckBtnModProg: function(ev, msg) {
+      ckBtnModProg: function(msg) {
         console.log("ckBtnModProg", msg);
         let n = 0;
         let t = setInterval(function() {
@@ -202,7 +202,7 @@
           vo.WButtonChip.loading = false;
         }, 2000);
       },
-      ckBtnModLoading: function(ev, msg) {
+      ckBtnModLoading: function(msg) {
         console.log("ckBtnModLoading", msg);
         msg.setLoading(true);
         setTimeout(function() {
