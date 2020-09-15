@@ -1,5 +1,5 @@
 /*!
- * w-dynamic-list v1.4.30
+ * w-dynamic-list v1.4.31
  * (c) 2018-2020 yuda-lyu(semisphere)
  * Released under the MIT License.
  */
