@@ -1,5 +1,5 @@
 /*!
- * w-tinymce-vue-dyn v1.4.28
+ * w-tinymce-vue-dyn v1.4.29
  * (c) 2018-2020 yuda-lyu(semisphere)
  * Released under the MIT License.
  */
