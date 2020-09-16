@@ -540,6 +540,9 @@
                 <w-button-chip
                     :text="WButtonChip.text"
                     :icon="mdiCheckUnderlineCircle"
+                    _textColor="'#fff'"
+                    _iconColor="'#fff'"
+                    _backgroundColor="'#000'"
                     :editable="false"
                     @click="ckBtn"
                 ></w-button-chip>

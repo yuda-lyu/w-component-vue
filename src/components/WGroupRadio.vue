@@ -1,5 +1,5 @@
 <template>
-    <div :style="{'opacity':editable?1:0.65}" :changeItems="changeItems">
+    <div :changeItems="changeItems">
 
         <template v-for="(item,kitem) in itemsTrans">
 
@@ -34,6 +34,7 @@
                 _close="close"
                 :loading="loading"
                 :editable="editable"
+                :disabledColor="'rgba(255,255,255,0.4)'"
                 :active="item.active"
                 @click="toggleState(item)"
             >

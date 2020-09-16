@@ -19,7 +19,7 @@
 
                     <div
                         v-on="on"
-                        :style="`transition:all 0.3s; border-radius:${borderRadius}px; background:${activeTrans?useBackgroundColorActive:hoverTrans?useBackgroundColorHover:useBackgroundColor}; cursor:pointer; box-shadow:${useShadow};`"
+                        :style="`transition:all 0.3s; border-radius:${borderRadius}px; background:${useBC}; cursor:pointer; box-shadow:${useShadow};`"
                         v-ripple="editable?{ class: 'white--text' }:false"
                         @mouseenter="hoverTrans=true"
                         @mouseleave="hoverTrans=false"
@@ -27,7 +27,7 @@
                     >
 
                         <div
-                            :style="`transition:all 0.3s; opacity:${loadingTrans?0:1}; padding:${usePadding}; border-radius:${borderRadius}px; border:1px solid ${activeTrans?useBorderColorActive:hoverTrans?useBorderColorHover:useBorderColor}; `"
+                            :style="`transition:all 0.3s; opacity:${loadingTrans?0:1}; padding:${usePadding}; border-radius:${borderRadius}px; border:1px solid ${useRC};`"
                         >
 
                             <div style="display:flex; align-items:center; white-space:nowrap;">
@@ -39,13 +39,13 @@
                                 <w-icon
                                     :style="`margin:0px 5px 0px ${useIconShiftLeft}px;`"
                                     :icon="icon"
-                                    :color="activeTrans?useIconColorActive:hoverTrans?useIconColorHover:useIconColor"
+                                    :color="useIC"
                                     :size="iconSize"
                                     v-if="icon"
                                 ></w-icon>
 
                                 <div
-                                    :style="`margin-right:${text?0:-10}px; transition:all 0.3s; text-transform:none; color:${activeTrans?useTextColorActive:hoverTrans?useTextColorHover:useTextColor}; user-select:none;`"
+                                    :style="`margin-right:${text?0:-10}px; transition:all 0.3s; text-transform:none; color:${useTC}; user-select:none;`"
                                 >
                                     <div :style="`font-size:${textFontSize};`">{{text}}</div>
                                 </div>
@@ -53,7 +53,7 @@
                                 <w-icon
                                     :style="`margin:0px ${useIconShiftRight}px 0px 5px;`"
                                     :icon="mdiCloseCircle"
-                                    :color="activeTrans?useIconColorActive:hoverTrans?useIconColorHover:useIconColor"
+                                    :color="useIC"
                                     :size="iconSize"
                                     @click="clickClose($event)"
                                     v-if="close"
@@ -77,7 +77,7 @@
             >
                 <div :style="`border-radius:${borderRadius}px; overflow:hidden; width:100%; height:100%;`">
                     <div :style="`background:${useProgBackgroundColor}; height:100%;`">
-                        <div :style="`width:${useProg}%; background:${useProgColor}; height:100%;`"></div>
+                        <div :style="`background:${useProgColor}; width:${useProg}%; height:100%;`"></div>
                     </div>
                 </div>
             </div>
@@ -93,6 +93,16 @@
                         :size="iconSize"
                         :color="useTextColor"
                     ></v-progress-circular>
+                </div>
+            </div>
+
+            <div
+                style="position:absolute; left:0; right:0; top:0; bottom:0;"
+                v-if="!editable"
+            >
+                <div :style="`border-radius:${borderRadius}px; overflow:hidden; width:100%; height:100%;`">
+                    <div :style="`background:${useDisabledColor}; height:100%;`">
+                    </div>
                 </div>
             </div>
 
@@ -149,6 +159,7 @@ import WIcon from './WIcon.vue'
  * @vue-prop {Boolean} [close=false] 輸入是否具有關閉按鈕模式，預設false
  * @vue-prop {Boolean} [loading=false] 輸入是否為載入模式，預設false
  * @vue-prop {Boolean} [editable=true] 輸入是否為編輯模式，預設true
+ * @vue-prop {String} [disabledColor='rgba(255,255,255,0.5)'] 輸入非編輯模式時遮罩顏色字串，預設'rgba(255,255,255,0.5)'
  */
 export default {
     components: {
@@ -285,6 +296,10 @@ export default {
             type: Boolean,
             default: true,
         },
+        disabledColor: {
+            type: String,
+            default: 'rgba(255,255,255,0.5)',
+        },
     },
     data: function() {
         return {
@@ -354,6 +369,21 @@ export default {
             return color2hex(vo.iconColorActive)
         },
 
+        useIC: function() {
+            let vo = this
+            let r = vo.activeTrans ? vo.useIconColorActive : vo.hoverTrans ? vo.useIconColorHover : vo.useIconColor
+            if (!vo.editable) {
+                r = vo.activeTrans ? vo.useIconColorActive : vo.useIconColor
+                // let t = tinycolor(r)
+                // let hsl = t.toHsl()
+                // hsl.s = hsl.s * 0.9 //降低飽和度s
+                // hsl.l = 1 - (1 - hsl.l) * 0.6 //提高亮度l
+                // let c = tinycolor.fromRatio(hsl)
+                // r = c.toRgbString()
+            }
+            return r
+        },
+
         useIconShiftLeft: function() {
             let vo = this
             return vo.iconShiftLeft - 6
@@ -362,6 +392,11 @@ export default {
         useIconShiftRight: function() {
             let vo = this
             return vo.iconShiftRight - 9
+        },
+
+        useDisabledColor: function() {
+            let vo = this
+            return color2hex(vo.disabledColor)
         },
 
         useProgColor: function() {
@@ -389,6 +424,21 @@ export default {
             return color2hex(vo.textColorActive)
         },
 
+        useTC: function() {
+            let vo = this
+            let r = vo.activeTrans ? vo.useTextColorActive : vo.hoverTrans ? vo.useTextColorHover : vo.useTextColor
+            if (!vo.editable) {
+                r = vo.activeTrans ? vo.useTextColorActive : vo.useTextColor
+                // let t = tinycolor(r)
+                // let hsl = t.toHsl()
+                // hsl.s = hsl.s * 0.9 //降低飽和度s
+                // hsl.l = 1 - (1 - hsl.l) * 0.6 //提高亮度l
+                // let c = tinycolor.fromRatio(hsl)
+                // r = c.toRgbString()
+            }
+            return r
+        },
+
         useBorderColor: function() {
             let vo = this
             return color2hex(vo.borderColor)
@@ -404,6 +454,21 @@ export default {
             return color2hex(vo.borderColorActive)
         },
 
+        useRC: function() {
+            let vo = this
+            let r = vo.activeTrans ? vo.useBorderColorActive : vo.hoverTrans ? vo.useBorderColorHover : vo.useBorderColor
+            if (!vo.editable) {
+                r = vo.activeTrans ? vo.useBorderColorActive : vo.useBorderColor
+                // let t = tinycolor(r)
+                // let hsl = t.toHsl()
+                // hsl.s = hsl.s * 0.9 //降低飽和度s
+                // hsl.l = 1 - (1 - hsl.l) * 0.6 //提高亮度l
+                // let c = tinycolor.fromRatio(hsl)
+                // r = c.toRgbString()
+            }
+            return r
+        },
+
         useBackgroundColor: function() {
             let vo = this
             return color2hex(vo.backgroundColor)
@@ -417,6 +482,21 @@ export default {
         useBackgroundColorActive: function() {
             let vo = this
             return color2hex(vo.backgroundColorActive)
+        },
+
+        useBC: function() {
+            let vo = this
+            let r = vo.activeTrans ? vo.useBackgroundColorActive : vo.hoverTrans ? vo.useBackgroundColorHover : vo.useBackgroundColor
+            if (!vo.editable) {
+                r = vo.activeTrans ? vo.useBackgroundColorActive : vo.useBackgroundColor
+                // let t = tinycolor(r)
+                // let hsl = t.toHsl()
+                // hsl.s = hsl.s * 0.9 //降低飽和度s
+                // hsl.l = 1 - (1 - hsl.l) * 0.6 //提高亮度l
+                // let c = tinycolor.fromRatio(hsl)
+                // r = c.toRgbString()
+            }
+            return r
         },
 
         useShadow: function() {

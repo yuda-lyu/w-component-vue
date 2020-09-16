@@ -45,7 +45,7 @@
                         :sizePadding="sizePadding"
                         :active="isActive(item)"
                         :close="editable && editableClose"
-                        :editable="true"
+                        :editable="editable"
                         @click="(msg)=>{clickChip(msg,item,kitem)}"
                         @click-close="clickRemoveBtn(item,kitem)"
                     >
