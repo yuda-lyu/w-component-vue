@@ -19,7 +19,7 @@
 
                     <div
                         v-on="on"
-                        :style="`transition:all 0.3s; border-radius:${borderRadius}px; background:${useBC}; cursor:pointer; box-shadow:${useShadow};`"
+                        :style="`transition:all 0.3s; ${useBorderRadiusStyle} background:${useBC}; cursor:pointer; box-shadow:${useShadow};`"
                         v-ripple="editable?{ class: 'white--text' }:false"
                         @mouseenter="hoverTrans=true"
                         @mouseleave="hoverTrans=false"
@@ -27,7 +27,7 @@
                     >
 
                         <div
-                            :style="`transition:all 0.3s; opacity:${loadingTrans?0:1}; padding:${usePadding}; border-radius:${borderRadius}px; border:1px solid ${useRC};`"
+                            :style="`transition:all 0.3s; opacity:${loadingTrans?0:1}; padding:${usePadding}; ${useBorderRadiusStyle} ${useBorderWidth} border-color:${useRC}; border-style:solid;`"
                         >
 
                             <div style="display:flex; align-items:center; white-space:nowrap;">
@@ -36,13 +36,15 @@
                                     <slot></slot>
                                 </div>
 
-                                <w-icon
-                                    :style="`margin:0px 5px 0px ${useIconShiftLeft}px;`"
-                                    :icon="icon"
-                                    :color="useIC"
-                                    :size="iconSize"
-                                    v-if="icon"
-                                ></w-icon>
+                                <div :style="`display:inline-block; margin-left:${shiftLeft}px;`">
+                                    <w-icon
+                                        :style="`margin:0px 5px 0px -6px;`"
+                                        :icon="icon"
+                                        :color="useIC"
+                                        :size="iconSize"
+                                        v-if="icon"
+                                    ></w-icon>
+                                </div>
 
                                 <div
                                     :style="`margin-right:${text?0:-10}px; transition:all 0.3s; text-transform:none; color:${useTC}; user-select:none;`"
@@ -50,14 +52,16 @@
                                     <div :style="`font-size:${textFontSize};`">{{text}}</div>
                                 </div>
 
-                                <w-icon
-                                    :style="`margin:0px ${useIconShiftRight}px 0px 5px;`"
-                                    :icon="mdiCloseCircle"
-                                    :color="useIC"
-                                    :size="iconSize"
-                                    @click="clickClose($event)"
-                                    v-if="close"
-                                ></w-icon>
+                                <div :style="`display:inline-block; margin-right:${shiftRight}px;`">
+                                    <w-icon
+                                        :style="`margin:0px -9px 0px 5px;`"
+                                        :icon="mdiCloseCircle"
+                                        :color="useIC"
+                                        :size="iconSize"
+                                        @click="clickClose($event)"
+                                        v-if="close"
+                                    ></w-icon>
+                                </div>
 
                             </div>
 
@@ -75,7 +79,7 @@
                 style="position:absolute; left:0; right:0; top:0; bottom:0;"
                 v-if="isProging"
             >
-                <div :style="`border-radius:${borderRadius}px; overflow:hidden; width:100%; height:100%;`">
+                <div :style="`${useBorderRadiusStyle} overflow:hidden; width:100%; height:100%;`">
                     <div :style="`background:${useProgBackgroundColor}; height:100%;`">
                         <div :style="`background:${useProgColor}; width:${useProg}%; height:100%;`"></div>
                     </div>
@@ -100,7 +104,7 @@
                 style="position:absolute; left:0; right:0; top:0; bottom:0;"
                 v-if="!editable"
             >
-                <div :style="`border-radius:${borderRadius}px; overflow:hidden; width:100%; height:100%;`">
+                <div :style="`${useBorderRadiusStyle} overflow:hidden; width:100%; height:100%;`">
                     <div :style="`background:${useDisabledColor}; height:100%;`">
                     </div>
                 </div>
@@ -115,6 +119,8 @@
 import { mdiCloseCircle } from '@mdi/js'
 import map from 'lodash/map'
 import join from 'lodash/join'
+import get from 'lodash/get'
+import isNumber from 'lodash/isNumber'
 import isnum from 'wsemi/src/isnum.mjs'
 import isbol from 'wsemi/src/isbol.mjs'
 import isestr from 'wsemi/src/isestr.mjs'
@@ -134,8 +140,8 @@ import WIcon from './WIcon.vue'
  * @vue-prop {String} [iconColorHover='grey darken-3'] 輸入滑鼠移入時圖標顏色字串，預設'grey darken-3'
  * @vue-prop {String} [iconColorActive='white'] 輸入主動模式時圖標顏色字串，預設'white'
  * @vue-prop {Number} [iconSize=22] 輸入左側圖標之尺寸數字，單位px，預設22
- * @vue-prop {Number} [iconShiftLeft=0] 輸入左側圖標之左側距離數字，單位px，預設0
- * @vue-prop {Number} [iconShiftRight=0] 輸入右側關閉圖標之右側距離數字，單位px，預設0
+ * @vue-prop {Number} [shiftLeft=0] 輸入左側平移距離數字，可調整例如圖標與左側邊框距離，單位px，預設0
+ * @vue-prop {Number} [shiftRight=0] 輸入右側平移距離數字，可調整例如關閉圖標與右側邊框距離，單位px，預設0
  * @vue-prop {Number} [prog=null] 輸入進度條進度數字，單位%，預設null
  * @vue-prop {String} [progColor='rgba(150,150,150,0.4)'] 輸入進度條背景顏色字串，預設'rgba(150,150,150,0.4)'
  * @vue-prop {String} [progBackgroundColor='rgba(150,150,150,0.075)'] 輸入進度條顏色字串，預設'rgba(150,150,150,0.075)'
@@ -143,7 +149,9 @@ import WIcon from './WIcon.vue'
  * @vue-prop {String} [textColorHover='grey darken-3'] 輸入滑鼠移入時文字顏色字串，預設'grey darken-3'
  * @vue-prop {String} [textColorActive='white'] 輸入主動模式時文字顏色字串，預設'white'
  * @vue-prop {String} [textFontSize='0.85rem'] 輸入文字字型大小字串，預設'0.85rem'
- * @vue-prop {Number} [borderRadius=30] 輸入框圓角寬度，單位為px，預設30
+ * @vue-prop {Object} [borderWidth={top:1,bottom:1,left:1,right:1}] 輸入框樣式物件，可用鍵值為left、right、top、bottom，各鍵值為寬度數字，單位為px，預設{top:1,bottom:1,left:1,right:1}
+ * @vue-prop {Number} [borderRadius=30] 輸入框圓角寬度數字，單位為px，預設30
+ * @vue-prop {Object} [borderRadiusStyle={left:true,right:true}] 輸入框圓角樣式物件，可用鍵值為left、right、top、bottom、top-left、bottom-left、top-right、bottom-right，各鍵值為布林值，預設{left:true,right:true}
  * @vue-prop {String} [borderColor='transparent'] 輸入邊框顏色字串，預設'transparent'
  * @vue-prop {String} [borderColorHover='transparent'] 輸入滑鼠移入時邊框顏色字串，預設'transparent'
  * @vue-prop {String} [borderColorActive='transparent'] 輸入主動模式時邊框顏色字串，預設'transparent'
@@ -194,11 +202,11 @@ export default {
             type: Number,
             default: 22,
         },
-        iconShiftLeft: {
+        shiftLeft: {
             type: Number,
             default: 0,
         },
-        iconShiftRight: {
+        shiftRight: {
             type: Number,
             default: 0,
         },
@@ -230,9 +238,29 @@ export default {
             type: String,
             default: '0.85rem',
         },
+        borderWidth: {
+            type: Object,
+            default: () => {
+                return {
+                    top: 1,
+                    bottom: 1,
+                    left: 1,
+                    right: 1,
+                }
+            },
+        },
         borderRadius: {
             type: Number,
             default: 30,
+        },
+        borderRadiusStyle: {
+            type: Object,
+            default: () => {
+                return {
+                    left: true,
+                    right: true,
+                }
+            },
         },
         borderColor: {
             type: String,
@@ -374,24 +402,8 @@ export default {
             let r = vo.activeTrans ? vo.useIconColorActive : vo.hoverTrans ? vo.useIconColorHover : vo.useIconColor
             if (!vo.editable) {
                 r = vo.activeTrans ? vo.useIconColorActive : vo.useIconColor
-                // let t = tinycolor(r)
-                // let hsl = t.toHsl()
-                // hsl.s = hsl.s * 0.9 //降低飽和度s
-                // hsl.l = 1 - (1 - hsl.l) * 0.6 //提高亮度l
-                // let c = tinycolor.fromRatio(hsl)
-                // r = c.toRgbString()
             }
             return r
-        },
-
-        useIconShiftLeft: function() {
-            let vo = this
-            return vo.iconShiftLeft - 6
-        },
-
-        useIconShiftRight: function() {
-            let vo = this
-            return vo.iconShiftRight - 9
         },
 
         useDisabledColor: function() {
@@ -429,12 +441,6 @@ export default {
             let r = vo.activeTrans ? vo.useTextColorActive : vo.hoverTrans ? vo.useTextColorHover : vo.useTextColor
             if (!vo.editable) {
                 r = vo.activeTrans ? vo.useTextColorActive : vo.useTextColor
-                // let t = tinycolor(r)
-                // let hsl = t.toHsl()
-                // hsl.s = hsl.s * 0.9 //降低飽和度s
-                // hsl.l = 1 - (1 - hsl.l) * 0.6 //提高亮度l
-                // let c = tinycolor.fromRatio(hsl)
-                // r = c.toRgbString()
             }
             return r
         },
@@ -459,14 +465,82 @@ export default {
             let r = vo.activeTrans ? vo.useBorderColorActive : vo.hoverTrans ? vo.useBorderColorHover : vo.useBorderColor
             if (!vo.editable) {
                 r = vo.activeTrans ? vo.useBorderColorActive : vo.useBorderColor
-                // let t = tinycolor(r)
-                // let hsl = t.toHsl()
-                // hsl.s = hsl.s * 0.9 //降低飽和度s
-                // hsl.l = 1 - (1 - hsl.l) * 0.6 //提高亮度l
-                // let c = tinycolor.fromRatio(hsl)
-                // r = c.toRgbString()
             }
             return r
+        },
+
+        useBorderWidth: function() {
+            //console.log('useBorderWidth')
+
+            let vo = this
+
+            //四方向width
+            let left = 0
+            let right = 0
+            let top = 0
+            let bottom = 0
+            if (isNumber(get(vo, 'borderWidth.left'))) {
+                left = get(vo, 'borderWidth.left')
+            }
+            if (isNumber(get(vo, 'borderWidth.right'))) {
+                right = get(vo, 'borderWidth.right')
+            }
+            if (isNumber(get(vo, 'borderWidth.top'))) {
+                top = get(vo, 'borderWidth.top')
+            }
+            if (isNumber(get(vo, 'borderWidth.bottom'))) {
+                bottom = get(vo, 'borderWidth.bottom')
+            }
+
+            //borderWidth
+            let borderWidth = `border-left-width:${left}px; border-right-width:${right}px; border-top-width:${top}px; border-bottom-width:${bottom}px;`
+
+            return borderWidth
+        },
+
+        useBorderRadiusStyle: function() {
+            //console.log('useBorderRadiusStyle')
+
+            let vo = this
+
+            //四方向radius
+            let tl = 0
+            let tr = 0
+            let bl = 0
+            let br = 0
+            if (get(vo, 'borderRadiusStyle.left') === true) {
+                tl = vo.borderRadius
+                bl = vo.borderRadius
+            }
+            if (get(vo, 'borderRadiusStyle.right') === true) {
+                tr = vo.borderRadius
+                br = vo.borderRadius
+            }
+            if (get(vo, 'borderRadiusStyle.top') === true) {
+                tl = vo.borderRadius
+                tr = vo.borderRadius
+            }
+            if (get(vo, 'borderRadiusStyle.bottom') === true) {
+                bl = vo.borderRadius
+                br = vo.borderRadius
+            }
+            if (get(vo, 'borderRadiusStyle.topLeft') === true || get(vo, 'borderRadiusStyle.top-left') === true) {
+                tl = vo.borderRadius
+            }
+            if (get(vo, 'borderRadiusStyle.topRight') === true || get(vo, 'borderRadiusStyle.top-right') === true) {
+                tr = vo.borderRadius
+            }
+            if (get(vo, 'borderRadiusStyle.bottomLeft') === true || get(vo, 'borderRadiusStyle.bottom-left') === true) {
+                bl = vo.borderRadius
+            }
+            if (get(vo, 'borderRadiusStyle.bottomRight') === true || get(vo, 'borderRadiusStyle.bottom-right') === true) {
+                br = vo.borderRadius
+            }
+
+            //borderRadius
+            let borderRadius = `border-top-left-radius:${tl}px; border-top-right-radius:${tr}px; border-bottom-left-radius:${bl}px; border-bottom-right-radius:${br}px;`
+
+            return borderRadius
         },
 
         useBackgroundColor: function() {
@@ -489,12 +563,6 @@ export default {
             let r = vo.activeTrans ? vo.useBackgroundColorActive : vo.hoverTrans ? vo.useBackgroundColorHover : vo.useBackgroundColor
             if (!vo.editable) {
                 r = vo.activeTrans ? vo.useBackgroundColorActive : vo.useBackgroundColor
-                // let t = tinycolor(r)
-                // let hsl = t.toHsl()
-                // hsl.s = hsl.s * 0.9 //降低飽和度s
-                // hsl.l = 1 - (1 - hsl.l) * 0.6 //提高亮度l
-                // let c = tinycolor.fromRatio(hsl)
-                // r = c.toRgbString()
             }
             return r
         },

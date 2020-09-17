@@ -59,7 +59,7 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-group-check'"
-                    :casename="'iconShiftLeft'"
+                    :casename="'shiftLeft'"
                     :kind="'nokind'"
                     :shell="'pure'"
                 ></demolink>
@@ -67,7 +67,7 @@
                 <w-group-check
                     :items="WGroupCheck.object.items"
                     v-model="WGroupCheck.object.selects"
-                    :iconShiftLeft="5"
+                    :shiftLeft="5"
                 ></w-group-check>
 
             </div>
@@ -84,7 +84,7 @@
                 <w-group-check
                     :items="WGroupCheck.object.items"
                     v-model="WGroupCheck.object.selects"
-                    :marginStyle="'0px 25px 0px 0px'"
+                    :marginStyle="{top:0,right:25,bottom:0,left:0}"
                 ></w-group-check>
 
             </div>
@@ -233,23 +233,6 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-group-check'"
-                    :casename="'borderColor'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
-                ></demolink>
-
-                <w-group-check
-                    :items="WGroupCheck.object.items"
-                    v-model="WGroupCheck.object.selects"
-                    :borderColor="'grey'"
-                ></w-group-check>
-
-            </div>
-
-
-            <div class="bk">
-                <demolink
-                    :kbname="'w-group-check'"
                     :casename="'borderColor & borderColorHover'"
                     :kind="'nokind'"
                     :shell="'pure'"
@@ -384,6 +367,82 @@
                     v-model="WGroupCheck.object.selects"
                     :shadowActive="false"
                 ></w-group-check>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-group-check'"
+                    :casename="'group & borderColor & borderColorHover & borderColorActive & no shadowActive'"
+                    :kind="'nokind'"
+                    :shell="'pure'"
+                ></demolink>
+
+                <div style="padding:10px 0px;"><!-- 因使用group故marginStyle會被取消, 此處添加padding只是讓排版一致 -->
+                    <w-group-check
+                        :items="WGroupCheck.object.items"
+                        v-model="WGroupCheck.object.selects"
+                        :group="true"
+                        :borderColor="'#aaa'"
+                        :borderColorHover="'#aaa'"
+                        :borderColorActive="'orange'"
+                        :shadowActive="false"
+                    ></w-group-check>
+                </div>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-group-check'"
+                    :casename="'group & groupBorderRadiusStyle & groupShift & borderRadius & borderColor & borderColorHover & borderColorActive & no shadowActive & marginStyle'"
+                    :kind="'nokind'"
+                    :shell="'pure'"
+                ></demolink>
+
+                <div style="margin:20px 0px">
+                    <div style="padding-left:20px; margin-bottom:-1px;"><!-- 因上下皆有border, 故需負margin-bottom來吃掉重複border -->
+                        <w-group-check
+                            :items="WGroupCheck.object.items"
+                            v-model="WGroupCheck.object.selects"
+                            :group="true"
+                            :groupBorderRadiusStyle="{top:true}"
+                            :groupShift="7"
+                            :borderRadius="20"
+                            :borderColor="'#aaa'"
+                            :borderColorHover="'#aaa'"
+                            :borderColorActive="'orange'"
+                            :shadowActive="false"
+                            :marginStyle="{}"
+                        ></w-group-check>
+                    </div>
+                    <div style="border:1px solid #aaa; padding:15px; font-size:0.85rem;">
+                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                    </div>
+                </div>
+
+                <div style="margin:20px 0px">
+                    <div style="border:1px solid #aaa; padding:15px; font-size:0.85rem;">
+                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                    </div>
+                    <div style="padding-left:20px; margin-top:-0.5px;"><!-- 因上下皆有border, 故需負margin-top來吃掉重複border, 0.5因渲染問題為手動調整結果 -->
+                        <w-group-check
+                            :items="WGroupCheck.object.items"
+                            v-model="WGroupCheck.object.selects"
+                            :group="true"
+                            :groupBorderRadiusStyle="{bottom:true}"
+                            :groupShift="7"
+                            :borderRadius="20"
+                            :borderColor="'#aaa'"
+                            :borderColorHover="'#aaa'"
+                            :borderColorActive="'orange'"
+                            :shadowActive="false"
+                            :marginStyle="{}"
+                        ></w-group-check>
+                    </div>
+                </div>
 
             </div>
 

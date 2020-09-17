@@ -23,8 +23,8 @@
                         :iconColorHover="getColor(item,'iconColorHover')"
                         :iconColorActive="getColor(item,'iconColorActive')"
                         :iconSize="iconSize"
-                        :iconShiftLeft="iconShiftLeft"
-                        :iconShiftRight="iconShiftRight"
+                        :shiftLeft="shiftLeft"
+                        :shiftRight="shiftRight"
                         :progColor="getColor(item,'progColor')"
                         :progBackgroundColor="getColor(item,'progBackgroundColor')"
                         :textColor="getColor(item,'textColor')"
@@ -73,8 +73,8 @@
                 :iconColorHover="iconColorHover"
                 :iconColorActive="iconColorActive"
                 :iconSize="iconSize"
-                :iconShiftLeft="iconShiftLeft"
-                :iconShiftRight="iconShiftRight"
+                :shiftLeft="shiftLeft"
+                :shiftRight="shiftRight"
                 :textColor="textColor"
                 :textColorHover="textColorHover"
                 :textColorActive="textColorActive"
@@ -181,8 +181,8 @@ import WText from './WText.vue'
  * @vue-prop {String} [iconColorHover='grey darken-3'] 輸入滑鼠移入時圖標顏色字串，預設'grey darken-3'
  * @vue-prop {String} [iconColorActive='white'] 輸入主動模式時圖標顏色字串，預設'white'
  * @vue-prop {Number} [iconSize=22] 輸入左側圖標之尺寸數字，單位px，預設22
- * @vue-prop {Number} [iconShiftLeft=0] 輸入圖標左側平移距離數字，單位px，預設0
- * @vue-prop {Number} [iconShiftRight=0] 輸入右側關閉圖標之右側距離數字，單位px，預設0
+ * @vue-prop {Number} [shiftLeft=0] 輸入圖標左側平移距離數字，單位px，預設0
+ * @vue-prop {Number} [shiftRight=0] 輸入右側關閉圖標之右側距離數字，單位px，預設0
  * @vue-prop {String} [progColor='rgba(150,150,150,0.4)'] 輸入進度條背景顏色字串，預設'rgba(150,150,150,0.4)'
  * @vue-prop {String} [progBackgroundColor='rgba(150,150,150,0.075)'] 輸入進度條顏色字串，預設'rgba(150,150,150,0.075)'
  * @vue-prop {String} [textColor='black'] 輸入文字顏色字串，預設'black'
@@ -280,11 +280,11 @@ export default {
             type: Number,
             default: 22,
         },
-        iconShiftLeft: {
+        shiftLeft: {
             type: Number,
             default: 0,
         },
-        iconShiftRight: {
+        shiftRight: {
             type: Number,
             default: 0,
         },

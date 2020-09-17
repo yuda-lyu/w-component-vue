@@ -7,7 +7,7 @@
         content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui"
     />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>example for w-group-buttons: textColor</title>
+    <title>example for w-group-radio: shiftLeft</title>
 
     <!-- fontawesome -->
     <link
@@ -80,7 +80,7 @@
     <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.js"></script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@1.4.32/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@1.4.33/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -118,26 +118,15 @@
     style="font-family:'Microsoft JhengHei','Avenir','Helvetica'; padding:20px;"
 >
     <v-app id="app" style="font-family:inherit;">
-        <div class="head1">w-group-buttons</div>
+        <div class="head1">w-group-radio</div>
         <div class="bk">
-            <div class="item">textColor</div>
+            <div class="item">shiftLeft</div>
 
-            <w-shell-material
-                style="margin-top:30px;"
-                :title="'請選擇水果種類'"
-                :left-icon="'mdi-fruit-cherries'"
-            >
-                <w-group-buttons
-                    :border-shadow="true"
-                    :border-color="'grey lighten-4'"
-                    :border-color-hover="'grey lighten-4'"
-                    :background-color-hover="'grey lighten-3'"
-                    :background-color-active="'grey lighten-2'"
-                    :text-color="'orange darken-1'"
-                    :active-index.sync="WGroupButtons.activeIndex"
-                    :value="WGroupButtons.basic"
-                />
-            </w-shell-material>
+            <w-group-radio
+                :items="WGroupRadio.object.items"
+                v-model="WGroupRadio.object.select"
+                :shift-left="5"
+            />
         </div>
     </v-app>
 
@@ -151,64 +140,110 @@
     vuetify: new Vuetify(),
     data: function() {
       return {
-        WGroupButtons: {
-          activeIndex: 0,
-          basic: [
-            {
-              text: "Apple"
-            },
-            {
-              text: "Orange"
-            },
-            {
-              text: "Banana"
+        WGroupRadio: {
+          string: {
+            items: [
+              "Dashboard",
+              "Schedule",
+              "Profile",
+              "History",
+              "Apple",
+              "橘子"
+            ],
+            select: "Apple"
+          },
+          object: {
+            items: [
+              {
+                text: "Dashboard",
+                icon: "mdi-view-dashboard"
+              },
+              {
+                text: "Schedule",
+                icon: "mdi-clock-time-eight-outline"
+              },
+              {
+                text: "Profile",
+                icon: "mdi-blender-software"
+              },
+              {
+                text: "History",
+                icon: "mdi-spoon-sugar"
+              },
+              {
+                text: "蘋果",
+                icon: "mdi-apple"
+              }
+            ],
+            select: {
+              text: "Dashboard",
+              icon: "mdi-view-dashboard"
             }
-          ],
-          basicTooltip: [
-            {
-              text: "Apple",
-              tooltip: "tooltip apple"
-            },
-            {
-              text: "Orange",
-              tooltip: "tooltip apple"
-            },
-            {
-              text: "Banana",
-              tooltip: "tooltip banana"
+          },
+          objectTP: {
+            items: [
+              {
+                text: "Dashboard",
+                icon: "mdi-view-dashboard",
+                tooltip: "tooltip for Dashboard"
+              },
+              {
+                text: "Schedule",
+                icon: "mdi-clock-time-eight-outline",
+                tooltip: "tooltip for Schedule"
+              },
+              {
+                text: "Profile",
+                icon: "mdi-blender-software",
+                tooltip: "tooltip for Profile"
+              },
+              {
+                text: "History",
+                icon: "mdi-spoon-sugar",
+                tooltip: "tooltip for History"
+              },
+              {
+                text: "蘋果",
+                icon: "mdi-apple",
+                tooltip: "tooltip for 蘋果"
+              }
+            ],
+            select: {
+              text: "Dashboard",
+              icon: "mdi-account-supervisor-circle",
+              tooltip: "tooltip for Dashboard"
             }
-          ],
-          breadcrumbs: [
-            {
-              text: "現在位置：",
-              clickable: false
-            },
-            {
-              text: "Domain"
-            },
-            {
-              text: ">",
-              clickable: false
-            },
-            {
-              text: "Kingdom"
-            },
-            {
-              text: ">",
-              clickable: false
-            },
-            {
-              text: "Class"
+          },
+          objectFA: {
+            items: [
+              {
+                text: "Dashboard",
+                icon: "fa fa-address-book"
+              },
+              {
+                text: "Schedule",
+                icon: "fa fa-address-card"
+              },
+              {
+                text: "Profile",
+                icon: "fa fa-american-sign-language-interpreting"
+              },
+              {
+                text: "History",
+                icon: "fa fa-balance-scale"
+              },
+              {
+                text: "蘋果",
+                icon: "fa fa-heartbeat"
+              }
+            ],
+            select: {
+              text: "Dashboard",
+              icon: "fa fa-address-book"
             }
-          ]
-        },
-        actions: [
-          {
-            mode: "eleclick",
-            nth: 1,
-            selector: 'div[ButtonGroupChip="item"]'
           }
-        ]
+        },
+        actions: []
       };
     },
     computed: {},

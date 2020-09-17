@@ -7,7 +7,7 @@
         content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui"
     />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>example for w-group-tags: iconShiftLeft</title>
+    <title>example for w-group-tags: shiftLeft</title>
 
     <!-- fontawesome -->
     <link
@@ -80,7 +80,7 @@
     <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.js"></script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@1.4.32/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@1.4.33/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -120,12 +120,12 @@
     <v-app id="app" style="font-family:inherit;">
         <div class="head1">w-group-tags</div>
         <div class="bk" style="display:block;">
-            <div class="item">iconShiftLeft</div>
+            <div class="item">shiftLeft</div>
 
             <w-group-tags
                 v-model="WGroupTags.strings"
                 :icon="'fas fa-clipboard-check'"
-                :icon-shift-left="-3"
+                :shift-left="-3"
             />
         </div>
     </v-app>

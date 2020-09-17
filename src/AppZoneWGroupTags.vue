@@ -55,7 +55,7 @@
             <div class="bk" style="display:block;">
                 <demolink
                     :kbname="'w-group-tags'"
-                    :casename="'iconShiftLeft'"
+                    :casename="'shiftLeft'"
                     :kind="'nokind'"
                     :shell="'pure'"
                 ></demolink>
@@ -63,7 +63,7 @@
                 <w-group-tags
                     v-model="WGroupTags.strings"
                     :icon="'fas fa-clipboard-check'"
-                    :iconShiftLeft="-3"
+                    :shiftLeft="-3"
                 ></w-group-tags>
             </div>
 

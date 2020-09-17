@@ -58,7 +58,7 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-button-chip'"
-                    :casename="'iconShiftLeft'"
+                    :casename="'shiftLeft'"
                     :kind="'nokind'"
                     :shell="'pure'"
                 ></demolink>
@@ -66,7 +66,7 @@
                 <w-button-chip
                     :text="WButtonChip.text"
                     :icon="mdiYoutubeTv"
-                    :iconShiftLeft="8"
+                    :shiftLeft="8"
                 ></w-button-chip>
 
             </div>
@@ -100,6 +100,25 @@
                 <w-button-chip
                     :text="WButtonChip.text"
                     :close="true"
+                    @click="ckBtn"
+                    @click-close="ckBtnClose"
+                ></w-button-chip>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-button-chip'"
+                    :casename="'close & shiftRight'"
+                    :kind="'nokind'"
+                    :shell="'pure'"
+                ></demolink>
+
+                <w-button-chip
+                    :text="WButtonChip.text"
+                    :close="true"
+                    :shiftRight="5"
                     @click="ckBtn"
                     @click-close="ckBtnClose"
                 ></w-button-chip>
@@ -278,6 +297,131 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-button-chip'"
+                    :casename="'borderRadiusStyle'"
+                    :kind="'nokind'"
+                    :shell="'pure'"
+                ></demolink>
+
+                <w-button-chip
+                    style="margin-right:15px;"
+                    :text="WButtonChip.text"
+                    :icon="mdiCheckUnderlineCircle"
+                    :borderRadiusStyle="{left:true}"
+                ></w-button-chip>
+
+                <w-button-chip
+                    style="margin-right:15px;"
+                    :text="WButtonChip.text"
+                    :icon="mdiCheckUnderlineCircle"
+                    :borderRadiusStyle="{right:true}"
+                ></w-button-chip>
+
+                <w-button-chip
+                    style="margin-right:15px;"
+                    :text="WButtonChip.text"
+                    :icon="mdiCheckUnderlineCircle"
+                    :borderRadiusStyle="{top:true}"
+                ></w-button-chip>
+
+                <w-button-chip
+                    style="margin-right:15px;"
+                    :text="WButtonChip.text"
+                    :icon="mdiCheckUnderlineCircle"
+                    :borderRadiusStyle="{bottom:true}"
+                ></w-button-chip>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-button-chip'"
+                    :casename="'borderWidth'"
+                    :kind="'nokind'"
+                    :shell="'pure'"
+                ></demolink>
+
+                <w-button-chip
+                    style="margin-right:15px;"
+                    :text="WButtonChip.text"
+                    :icon="mdiShakerOutline"
+                    :borderWidth="{left:1}"
+                    :borderColor="'#aaa'"
+                    :borderColorHover="'#aaa'"
+                ></w-button-chip>
+
+                <w-button-chip
+                    style="margin-right:15px;"
+                    :text="WButtonChip.text"
+                    :icon="mdiShakerOutline"
+                    :borderWidth="{right:1}"
+                    :borderColor="'#aaa'"
+                    :borderColorHover="'#aaa'"
+                ></w-button-chip>
+
+                <w-button-chip
+                    style="margin-right:15px;"
+                    :text="WButtonChip.text"
+                    :icon="mdiShakerOutline"
+                    :borderWidth="{top:1}"
+                    :borderColor="'#aaa'"
+                    :borderColorHover="'#aaa'"
+                ></w-button-chip>
+
+                <w-button-chip
+                    style="margin-right:15px;"
+                    :text="WButtonChip.text"
+                    :icon="mdiShakerOutline"
+                    :borderWidth="{bottom:1}"
+                    :borderColor="'#aaa'"
+                    :borderColorHover="'#aaa'"
+                ></w-button-chip>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-button-chip'"
+                    :casename="'borderRadiusStyle & borderWidth & borderColor & borderColorHover & no shadow'"
+                    :kind="'nokind'"
+                    :shell="'pure'"
+                ></demolink>
+
+                <w-button-chip
+                    :text="WButtonChip.text"
+                    :icon="mdiShakerOutline"
+                    :borderRadiusStyle="{left:true}"
+                    :borderColor="'#aaa'"
+                    :borderColorHover="'#aaa'"
+                    :shadow="false"
+                ></w-button-chip>
+
+                <w-button-chip
+                    :text="WButtonChip.text"
+                    :icon="mdiFlaskRoundBottom"
+                    :borderRadiusStyle="{}"
+                    :borderWidth="{top:1,bottom:1}"
+                    :shadow="false"
+                    :borderColor="'#aaa'"
+                    :borderColorHover="'#aaa'"
+                ></w-button-chip>
+
+                <w-button-chip
+                    :text="WButtonChip.text"
+                    :icon="mdiShoePrint"
+                    :borderRadiusStyle="{right:true}"
+                    :shadow="false"
+                    :borderColor="'#aaa'"
+                    :borderColorHover="'#aaa'"
+                ></w-button-chip>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-button-chip'"
                     :casename="'borderColor & borderColorHover'"
                     :kind="'nokind'"
                     :shell="'pure'"
@@ -286,8 +430,8 @@
                 <w-button-chip
                     :text="WButtonChip.text"
                     :icon="mdiCheckUnderlineCircle"
-                    :borderColor="'transparent'"
-                    :borderColorHover="'grey darken-1'"
+                    :borderColor="'#aaa'"
+                    :borderColorHover="'transparent'"
                 ></w-button-chip>
 
             </div>
@@ -557,7 +701,7 @@
 </template>
 
 <script>
-import { mdiWalletGiftcard, mdiFace, mdiOrbit, mdiCheckUnderlineCircle, mdiYoutubeTv, mdiCodepen } from '@mdi/js'
+import { mdiWalletGiftcard, mdiFace, mdiOrbit, mdiCheckUnderlineCircle, mdiYoutubeTv, mdiCodepen, mdiShakerOutline, mdiFlaskRoundBottom, mdiShoePrint } from '@mdi/js'
 import demolink from './components/demolink.vue'
 import WButtonChip from './components/WButtonChip.vue'
 
@@ -583,6 +727,9 @@ export default {
             mdiCheckUnderlineCircle,
             mdiYoutubeTv,
             mdiCodepen,
+            mdiShakerOutline,
+            mdiFlaskRoundBottom,
+            mdiShoePrint,
             'WButtonChip': {
                 'text': 'aBc數字123',
                 'prog': null,

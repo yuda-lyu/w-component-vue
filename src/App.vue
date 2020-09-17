@@ -252,13 +252,6 @@
             ></AppZoneWButtonCircle>
 
 
-            <AppZoneWGroupButtons
-                :modeBorder="modeBorder"
-                :modeShell="modeShell"
-                v-if="compname==='WGroupButtons'"
-            ></AppZoneWGroupButtons>
-
-
             <AppZoneWProgressCircle
                 :modeBorder="modeBorder"
                 :modeShell="modeShell"
@@ -485,7 +478,6 @@ import AppZoneWConfirm from './AppZoneWConfirm.vue'
 import AppZoneWPopup from './AppZoneWPopup.vue'
 import AppZoneWButtonChip from './AppZoneWButtonChip.vue'
 import AppZoneWButtonCircle from './AppZoneWButtonCircle.vue'
-import AppZoneWGroupButtons from './AppZoneWGroupButtons.vue'
 import AppZoneWProgressCircle from './AppZoneWProgressCircle.vue'
 import AppZoneWSwitch from './AppZoneWSwitch.vue'
 import AppZoneWAlert from './AppZoneWAlert.vue'
@@ -529,7 +521,6 @@ export default {
         AppZoneWPopup,
         AppZoneWButtonChip,
         AppZoneWButtonCircle,
-        AppZoneWGroupButtons,
         AppZoneWProgressCircle,
         AppZoneWSwitch,
         AppZoneWAlert,
@@ -598,7 +589,6 @@ export default {
                 {
                     name: 'group',
                     cmps: [
-                        'WGroupButtons',
                         'WGroupCheck',
                         'WGroupRadio',
                         'WGroupTags',
@@ -680,7 +670,6 @@ export default {
                 },
             ],
             haveModeBorder: {
-                'WGroupButtons': true,
                 'WText': true,
                 'WTextInt': true,
                 'WTextSelect': true,
@@ -692,7 +681,6 @@ export default {
             },
             haveModeShell: {
                 'WSwitch': true,
-                'WGroupButtons': true,
                 'WText': true,
                 'WTextInt': true,
                 'WTextarea': true,
