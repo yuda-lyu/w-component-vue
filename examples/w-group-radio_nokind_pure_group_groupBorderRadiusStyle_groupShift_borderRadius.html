@@ -7,7 +7,7 @@
         content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui"
     />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>example for w-group-radio: borderColor</title>
+    <title>example for w-group-radio: group & groupBorderRadiusStyle & groupShift & borderRadius & borderColor & borderColorHover & borderColorActive & marginStyle</title>
 
     <!-- fontawesome -->
     <link
@@ -80,7 +80,7 @@
     <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.js"></script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@1.4.32/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@1.4.33/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -120,13 +120,51 @@
     <v-app id="app" style="font-family:inherit;">
         <div class="head1">w-group-radio</div>
         <div class="bk">
-            <div class="item">borderColor</div>
+            <div
+                class="item"
+            >group & groupBorderRadiusStyle & groupShift & borderRadius & borderColor & borderColorHover & borderColorActive & marginStyle</div>
 
-            <w-group-radio
-                :items="WGroupRadio.object.items"
-                v-model="WGroupRadio.object.select"
-                :border-color="'grey'"
-            />
+            <div style="margin:20px 0px">
+                <div style="padding-left:20px; margin-bottom:-1px;">
+                    <!-- 因上下皆有border, 故需負margin-bottom來吃掉重複border -->
+                    <w-group-radio
+                        :items="WGroupRadio.object.items"
+                        v-model="WGroupRadio.object.select"
+                        :group="true"
+                        :group-border-radius-style="{top:true}"
+                        :group-shift="7"
+                        :border-radius="20"
+                        :border-color="'#aaa'"
+                        :border-color-hover="'#aaa'"
+                        :border-color-active="'orange'"
+                        :margin-style="{}"
+                    />
+                </div>
+                <div
+                    style="border:1px solid #aaa; padding:15px; font-size:0.85rem;"
+                >Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</div>
+            </div>
+
+            <div style="margin:20px 0px">
+                <div
+                    style="border:1px solid #aaa; padding:15px; font-size:0.85rem;"
+                >Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</div>
+                <div style="padding-left:20px; margin-top:-0.5px;">
+                    <!-- 因上下皆有border, 故需負margin-top來吃掉重複border, 0.5因渲染問題為手動調整結果 -->
+                    <w-group-radio
+                        :items="WGroupRadio.object.items"
+                        v-model="WGroupRadio.object.select"
+                        :group="true"
+                        :group-border-radius-style="{bottom:true}"
+                        :group-shift="7"
+                        :border-radius="20"
+                        :border-color="'#aaa'"
+                        :border-color-hover="'#aaa'"
+                        :border-color-active="'orange'"
+                        :margin-style="{}"
+                    />
+                </div>
+            </div>
         </div>
     </v-app>
 

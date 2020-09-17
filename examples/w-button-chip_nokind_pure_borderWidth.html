@@ -7,7 +7,7 @@
         content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui"
     />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>example for w-group-buttons: textColor</title>
+    <title>example for w-button-chip: borderWidth</title>
 
     <!-- fontawesome -->
     <link
@@ -80,7 +80,7 @@
     <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.js"></script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@1.4.32/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@1.4.33/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -118,21 +118,45 @@
     style="font-family:'Microsoft JhengHei','Avenir','Helvetica'; padding:20px;"
 >
     <v-app id="app" style="font-family:inherit;">
-        <div class="head1">w-group-buttons</div>
+        <div class="head1">w-button-chip</div>
         <div class="bk">
-            <div class="item">textColor</div>
+            <div class="item">borderWidth</div>
 
-            <w-shell-material
-                style="margin-top:30px;"
-                :title="'請選擇水果種類'"
-                :left-icon="'mdi-fruit-cherries'"
-            >
-                <w-group-buttons
-                    :text-color="'orange darken-1'"
-                    :active-index.sync="WGroupButtons.activeIndex"
-                    :value="WGroupButtons.basic"
-                />
-            </w-shell-material>
+            <w-button-chip
+                style="margin-right:15px;"
+                :text="WButtonChip.text"
+                :icon="'mdi-shaker-outline'"
+                :border-width="{left:1}"
+                :border-color="'#aaa'"
+                :border-color-hover="'#aaa'"
+            />
+
+            <w-button-chip
+                style="margin-right:15px;"
+                :text="WButtonChip.text"
+                :icon="'mdi-shaker-outline'"
+                :border-width="{right:1}"
+                :border-color="'#aaa'"
+                :border-color-hover="'#aaa'"
+            />
+
+            <w-button-chip
+                style="margin-right:15px;"
+                :text="WButtonChip.text"
+                :icon="'mdi-shaker-outline'"
+                :border-width="{top:1}"
+                :border-color="'#aaa'"
+                :border-color-hover="'#aaa'"
+            />
+
+            <w-button-chip
+                style="margin-right:15px;"
+                :text="WButtonChip.text"
+                :icon="'mdi-shaker-outline'"
+                :border-width="{bottom:1}"
+                :border-color="'#aaa'"
+                :border-color-hover="'#aaa'"
+            />
         </div>
     </v-app>
 
@@ -146,68 +170,74 @@
     vuetify: new Vuetify(),
     data: function() {
       return {
-        WGroupButtons: {
-          activeIndex: 0,
-          basic: [
-            {
-              text: "Apple"
-            },
-            {
-              text: "Orange"
-            },
-            {
-              text: "Banana"
-            }
-          ],
-          basicTooltip: [
-            {
-              text: "Apple",
-              tooltip: "tooltip apple"
-            },
-            {
-              text: "Orange",
-              tooltip: "tooltip apple"
-            },
-            {
-              text: "Banana",
-              tooltip: "tooltip banana"
-            }
-          ],
-          breadcrumbs: [
-            {
-              text: "現在位置：",
-              clickable: false
-            },
-            {
-              text: "Domain"
-            },
-            {
-              text: ">",
-              clickable: false
-            },
-            {
-              text: "Kingdom"
-            },
-            {
-              text: ">",
-              clickable: false
-            },
-            {
-              text: "Class"
-            }
-          ]
+        WButtonChip: {
+          text: "aBc數字123",
+          prog: null,
+          loading: false
         },
         actions: [
           {
-            mode: "eleclick",
-            nth: 1,
-            selector: 'div[ButtonGroupChip="item"]'
+            mode: "elemove",
+            selector: 'button[type="button"]'
           }
         ]
       };
     },
     computed: {},
-    methods: {}
+    methods: {
+      ckBtn: function() {
+        console.log("ckBtn");
+      },
+      ckBtnClose: function() {
+        console.log("ckBtnClose");
+      },
+      ckBtnItem1: function() {
+        console.log("ckBtnItem1");
+      },
+      ckBtnItem2: function() {
+        console.log("ckBtnItem2");
+      },
+      ckBtnProg: function() {
+        console.log("ckBtnProg");
+        let vo = this;
+        let n = 0;
+        let t = setInterval(function() {
+          n += 0.5;
+          vo.WButtonChip.prog = n;
+          if (n >= 100) {
+            vo.WButtonChip.prog = null;
+            clearInterval(t);
+          }
+        }, 10);
+      },
+      ckBtnModProg: function(msg) {
+        console.log("ckBtnModProg", msg);
+        let n = 0;
+        let t = setInterval(function() {
+          n += 0.5;
+          msg.setProg(n);
+          if (n >= 100) {
+            //vo.WButtonChip.prog = null //當prog>=100時會由內部自動設定為null
+            clearInterval(t);
+          }
+        }, 10);
+      },
+      ckBtnLoading: function() {
+        console.log("ckBtnLoading");
+        let vo = this;
+        vo.WButtonChip.loading = true;
+        setTimeout(function() {
+          vo.WButtonChip.loading = false;
+        }, 2000);
+      },
+      ckBtnModLoading: function(msg) {
+        console.log("ckBtnModLoading", msg);
+        msg.setLoading(true);
+        setTimeout(function() {
+          msg.setLoading(false);
+        }, 2000);
+      }
+    }
   });
     </script>
 </body>
