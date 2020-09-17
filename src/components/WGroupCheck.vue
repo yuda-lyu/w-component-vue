@@ -443,6 +443,9 @@ export default {
                 //emit
                 vo.$emit('input', valueTrans)
 
+                //emit
+                vo.$emit('click', item.data, `${item.active ? 'hide' : 'show'}`)
+
             })
 
         },

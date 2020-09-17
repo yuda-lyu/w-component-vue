@@ -27,6 +27,23 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-group-check'"
+                    :casename="'click (console.log)'"
+                    :kind="'nokind'"
+                    :shell="'pure'"
+                ></demolink>
+
+                <w-group-check
+                    :items="WGroupCheck.string.items"
+                    v-model="WGroupCheck.string.selects"
+                    @click="ckBtn"
+                ></w-group-check>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-group-check'"
                     :casename="'icon (material)'"
                     :kind="'nokind'"
                     :shell="'pure'"
@@ -711,6 +728,11 @@ export default {
             'actions': [
             ],
         }
+    },
+    methods: {
+        ckBtn: function(item, mode) {
+            console.log(item, mode)
+        },
     },
 }
 </script>

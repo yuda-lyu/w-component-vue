@@ -27,6 +27,23 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-group-radio'"
+                    :casename="'click (console.log)'"
+                    :kind="'nokind'"
+                    :shell="'pure'"
+                ></demolink>
+
+                <w-group-radio
+                    :items="WGroupRadio.string.items"
+                    v-model="WGroupRadio.string.select"
+                    @click="ckBtn"
+                ></w-group-radio>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-group-radio'"
                     :casename="'icon (material)'"
                     :kind="'nokind'"
                     :shell="'pure'"
@@ -689,6 +706,11 @@ export default {
             'actions': [
             ],
         }
+    },
+    methods: {
+        ckBtn: function(item) {
+            console.log(item)
+        },
     },
 }
 </script>

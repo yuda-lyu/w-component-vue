@@ -425,6 +425,9 @@ export default {
                 //emit
                 vo.$emit('input', item.data)
 
+                //emit
+                vo.$emit('click', item.data)
+
             })
 
         },
