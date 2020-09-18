@@ -7,7 +7,7 @@
         content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui"
     />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>example for w-button-chip: sizePadding & icon & iconSize & textFontSize</title>
+    <title>example for w-group-radio: shiftLeft & shiftRight</title>
 
     <!-- fontawesome -->
     <link
@@ -80,7 +80,7 @@
     <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.js"></script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@1.4.34/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@1.4.35/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -118,16 +118,15 @@
     style="font-family:'Microsoft JhengHei','Avenir','Helvetica'; padding:20px;"
 >
     <v-app id="app" style="font-family:inherit;">
-        <div class="head1">w-button-chip</div>
+        <div class="head1">w-group-radio</div>
         <div class="bk">
-            <div class="item">sizePadding & icon & iconSize & textFontSize</div>
+            <div class="item">shiftLeft & shiftRight</div>
 
-            <w-button-chip
-                :text="WButtonChip.text"
-                :size-padding="'10px 24px'"
-                :icon="'mdi-codepen'"
-                :icon-size="26"
-                :text-font-size="'0.9rem'"
+            <w-group-radio
+                :items="WGroupRadio.object.items"
+                v-model="WGroupRadio.object.select"
+                :shift-left="7"
+                :shift-right="5"
             />
         </div>
     </v-app>
@@ -142,72 +141,116 @@
     vuetify: new Vuetify(),
     data: function() {
       return {
-        WButtonChip: {
-          text: "aBc數字123",
-          prog: null,
-          loading: false
-        },
-        actions: [
-          {
-            mode: "elemove",
-            selector: 'button[type="button"]'
+        WGroupRadio: {
+          string: {
+            items: [
+              "Dashboard",
+              "Schedule",
+              "Profile",
+              "History",
+              "Apple",
+              "橘子"
+            ],
+            select: "Apple"
+          },
+          object: {
+            items: [
+              {
+                text: "Dashboard",
+                icon: "mdi-view-dashboard"
+              },
+              {
+                text: "Schedule",
+                icon: "mdi-clock-time-eight-outline"
+              },
+              {
+                text: "Profile",
+                icon: "mdi-blender-software"
+              },
+              {
+                text: "History",
+                icon: "mdi-spoon-sugar"
+              },
+              {
+                text: "蘋果",
+                icon: "mdi-apple"
+              }
+            ],
+            select: {
+              text: "Dashboard",
+              icon: "mdi-view-dashboard"
+            }
+          },
+          objectTP: {
+            items: [
+              {
+                text: "Dashboard",
+                icon: "mdi-view-dashboard",
+                tooltip: "tooltip for Dashboard"
+              },
+              {
+                text: "Schedule",
+                icon: "mdi-clock-time-eight-outline",
+                tooltip: "tooltip for Schedule"
+              },
+              {
+                text: "Profile",
+                icon: "mdi-blender-software",
+                tooltip: "tooltip for Profile"
+              },
+              {
+                text: "History",
+                icon: "mdi-spoon-sugar",
+                tooltip: "tooltip for History"
+              },
+              {
+                text: "蘋果",
+                icon: "mdi-apple",
+                tooltip: "tooltip for 蘋果"
+              }
+            ],
+            select: {
+              text: "Dashboard",
+              icon: "mdi-account-supervisor-circle",
+              tooltip: "tooltip for Dashboard"
+            }
+          },
+          objectFA: {
+            items: [
+              {
+                text: "Dashboard",
+                icon: "fa fa-address-book"
+              },
+              {
+                text: "Schedule",
+                icon: "fa fa-address-card"
+              },
+              {
+                text: "Profile",
+                icon: "fa fa-american-sign-language-interpreting"
+              },
+              {
+                text: "History",
+                icon: "fa fa-balance-scale"
+              },
+              {
+                text: "蘋果",
+                icon: "fa fa-heartbeat"
+              }
+            ],
+            select: {
+              text: "Dashboard",
+              icon: "fa fa-address-book"
+            }
           }
-        ]
+        },
+        actions: []
       };
     },
     computed: {},
     methods: {
-      ckBtn: function() {
-        console.log("ckBtn");
-      },
-      ckBtnClose: function() {
-        console.log("ckBtnClose");
-      },
-      ckBtnItem1: function() {
-        console.log("ckBtnItem1");
-      },
-      ckBtnItem2: function() {
-        console.log("ckBtnItem2");
-      },
-      ckBtnProg: function() {
-        console.log("ckBtnProg");
-        let vo = this;
-        let n = 0;
-        let t = setInterval(function() {
-          n += 0.5;
-          vo.WButtonChip.prog = n;
-          if (n >= 100) {
-            vo.WButtonChip.prog = null;
-            clearInterval(t);
-          }
-        }, 10);
-      },
-      ckBtnModProg: function(msg) {
-        console.log("ckBtnModProg", msg);
-        let n = 0;
-        let t = setInterval(function() {
-          n += 0.5;
-          msg.setProg(n);
-          if (n >= 100) {
-            //vo.WButtonChip.prog = null //當prog>=100時會由內部自動設定為null
-            clearInterval(t);
-          }
-        }, 10);
-      },
-      ckBtnLoading: function() {
-        console.log("ckBtnLoading");
-        let vo = this;
-        vo.WButtonChip.loading = true;
-        setTimeout(function() {
-          vo.WButtonChip.loading = false;
-        }, 2000);
-      },
-      ckBtnModLoading: function(msg) {
-        console.log("ckBtnModLoading", msg);
-        msg.setLoading(true);
-        setTimeout(function() {
-          msg.setLoading(false);
-        }, 2000);
+      ckBtn: function(item) {
+        console.log(item);
       }
     }
   });

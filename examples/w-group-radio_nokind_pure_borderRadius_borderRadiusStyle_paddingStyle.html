@@ -7,7 +7,7 @@
         content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui"
     />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>example for w-group-radio: borderColorActive</title>
+    <title>example for w-group-radio: borderRadius & borderRadiusStyle & paddingStyle</title>
 
     <!-- fontawesome -->
     <link
@@ -80,7 +80,7 @@
     <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.js"></script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@1.4.34/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@1.4.35/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -120,12 +120,14 @@
     <v-app id="app" style="font-family:inherit;">
         <div class="head1">w-group-radio</div>
         <div class="bk">
-            <div class="item">borderColorActive</div>
+            <div class="item">borderRadius & borderRadiusStyle & paddingStyle</div>
 
             <w-group-radio
                 :items="WGroupRadio.object.items"
                 v-model="WGroupRadio.object.select"
-                :border-color-active="'white'"
+                :border-radius="20"
+                :border-radius-style="{top:true}"
+                :padding-style="{v:3,h:20}"
             />
         </div>
     </v-app>

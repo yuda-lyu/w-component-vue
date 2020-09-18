@@ -7,7 +7,7 @@
         content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui"
     />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>example for w-group-radio: sizePadding & borderRadius & textColor & iconColor & backgroundColor & backgroundColorHover & backgroundColorActive & shadowActive</title>
+    <title>example for w-group-check: borderWidth & borderColor & borderColorHover & borderColorActive</title>
 
     <!-- fontawesome -->
     <link
@@ -80,7 +80,7 @@
     <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.js"></script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@1.4.34/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@1.4.35/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -118,32 +118,24 @@
     style="font-family:'Microsoft JhengHei','Avenir','Helvetica'; padding:20px;"
 >
     <v-app id="app" style="font-family:inherit;">
-        <div class="head1">w-group-radio</div>
+        <div class="head1">w-group-check</div>
         <div class="bk">
             <div
                 class="item"
-            >sizePadding & borderRadius & textColor & iconColor & backgroundColor & backgroundColorHover & backgroundColorActive & shadowActive</div>
+            >borderWidth & borderColor & borderColorHover & borderColorActive</div>
 
-            <div
-                style="padding:0px 10px; background:linear-gradient(60deg,#ab47bc,#7b1fa2); box-shadow:0 5px 20px 0 rgba(0,0,0,.2), 0 13px 24px -11px rgba(156,39,176,.6);"
-            >
-                <w-group-radio
-                    :items="WGroupRadio.object.items"
-                    v-model="WGroupRadio.object.select"
-                    :size-padding="'12px 27px'"
-                    :border-radius="5"
-                    :text-color="'white'"
-                    :text-color-hover="'white'"
-                    :text-color-active="'white'"
-                    :icon-color="'white'"
-                    :icon-color-hover="'white'"
-                    :icon-color-active="'white'"
-                    :background-color="'rgba(255,255,255,0)'"
-                    :background-color-hover="'rgba(255,255,255,0)'"
-                    :background-color-active="'rgba(255,255,255,0.15)'"
-                    :shadow-active="false"
-                />
-            </div>
+            <w-group-check
+                :items="WGroupCheck.object.items"
+                v-model="WGroupCheck.object.selects"
+                :border-width="{top:2,bottom:2,left:2,right:2}"
+                _1borderWidth="{top:1}"
+                _2borderWidth="{bottom:1}"
+                _3borderWidth="{left:1}"
+                _4borderWidth="{right:1}"
+                :border-color="'grey'"
+                :border-color-hover="'grey darken-2'"
+                :border-color-active="'#fff'"
+            />
         </div>
     </v-app>
 
@@ -157,7 +149,7 @@
     vuetify: new Vuetify(),
     data: function() {
       return {
-        WGroupRadio: {
+        WGroupCheck: {
           string: {
             items: [
               "Dashboard",
@@ -167,7 +159,7 @@
               "Apple",
               "橘子"
             ],
-            select: "Apple"
+            selects: ["Dashboard", "Apple"]
           },
           object: {
             items: [
@@ -192,10 +184,16 @@
                 icon: "mdi-apple"
               }
             ],
-            select: {
-              text: "Dashboard",
-              icon: "mdi-view-dashboard"
-            }
+            selects: [
+              {
+                text: "Dashboard",
+                icon: "mdi-view-dashboard"
+              },
+              {
+                text: "Profile",
+                icon: "mdi-blender-software"
+              }
+            ]
           },
           objectTP: {
             items: [
@@ -225,11 +223,18 @@
                 tooltip: "tooltip for 蘋果"
               }
             ],
-            select: {
-              text: "Dashboard",
-              icon: "mdi-account-supervisor-circle",
-              tooltip: "tooltip for Dashboard"
-            }
+            selects: [
+              {
+                text: "Dashboard",
+                icon: "mdi-account-supervisor-circle",
+                tooltip: "tooltip for Dashboard"
+              },
+              {
+                text: "Profile",
+                icon: "mdi-blender-software",
+                tooltip: "tooltip for Profile"
+              }
+            ]
           },
           objectFA: {
             items: [
@@ -254,10 +259,16 @@
                 icon: "fa fa-heartbeat"
               }
             ],
-            select: {
-              text: "Dashboard",
-              icon: "fa fa-address-book"
-            }
+            selects: [
+              {
+                text: "Dashboard",
+                icon: "fa fa-address-book"
+              },
+              {
+                text: "Profile",
+                icon: "fa fa-american-sign-language-interpreting"
+              }
+            ]
           }
         },
         actions: []
@@ -265,8 +276,8 @@
     },
     computed: {},
     methods: {
-      ckBtn: function(item) {
-        console.log(item);
+      ckBtn: function(item, mode) {
+        console.log(item, mode);
       }
     }
   });
