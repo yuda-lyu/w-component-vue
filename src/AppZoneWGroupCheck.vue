@@ -76,23 +76,6 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-group-check'"
-                    :casename="'shiftLeft'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
-                ></demolink>
-
-                <w-group-check
-                    :items="WGroupCheck.object.items"
-                    v-model="WGroupCheck.object.selects"
-                    :shiftLeft="5"
-                ></w-group-check>
-
-            </div>
-
-
-            <div class="bk">
-                <demolink
-                    :kbname="'w-group-check'"
                     :casename="'marginStyle'"
                     :kind="'nokind'"
                     :shell="'pure'"
@@ -127,7 +110,7 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-group-check'"
-                    :casename="'sizePadding & iconSize & textFontSize'"
+                    :casename="'paddingStyle & iconSize & textFontSize'"
                     :kind="'nokind'"
                     :shell="'pure'"
                 ></demolink>
@@ -135,9 +118,44 @@
                 <w-group-check
                     :items="WGroupCheck.object.items"
                     v-model="WGroupCheck.object.selects"
-                    :sizePadding="'10px 24px'"
+                    :paddingStyle="{v:10,h:24}"
                     :iconSize="26"
                     :textFontSize="'0.9rem'"
+                ></w-group-check>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-group-check'"
+                    :casename="'shiftLeft'"
+                    :kind="'nokind'"
+                    :shell="'pure'"
+                ></demolink>
+
+                <w-group-check
+                    :items="WGroupCheck.object.items"
+                    v-model="WGroupCheck.object.selects"
+                    :shiftLeft="5"
+                ></w-group-check>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-group-check'"
+                    :casename="'shiftLeft & shiftRight'"
+                    :kind="'nokind'"
+                    :shell="'pure'"
+                ></demolink>
+
+                <w-group-check
+                    :items="WGroupCheck.object.items"
+                    v-model="WGroupCheck.object.selects"
+                    :shiftLeft="7"
+                    :shiftRight="5"
                 ></w-group-check>
 
             </div>
@@ -250,7 +268,26 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-group-check'"
-                    :casename="'borderColor & borderColorHover'"
+                    :casename="'borderRadius & borderRadiusStyle & paddingStyle'"
+                    :kind="'nokind'"
+                    :shell="'pure'"
+                ></demolink>
+
+                <w-group-check
+                    :items="WGroupCheck.object.items"
+                    v-model="WGroupCheck.object.selects"
+                    :borderRadius="20"
+                    :borderRadiusStyle="{top:true}"
+                    :paddingStyle="{v:3,h:20}"
+                ></w-group-check>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-group-check'"
+                    :casename="'borderColor & borderColorHover & borderColorActive'"
                     :kind="'nokind'"
                     :shell="'pure'"
                 ></demolink>
@@ -260,6 +297,7 @@
                     v-model="WGroupCheck.object.selects"
                     :borderColor="'grey'"
                     :borderColorHover="'grey darken-2'"
+                    :borderColorActive="'transparent'"
                 ></w-group-check>
 
             </div>
@@ -268,7 +306,7 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-group-check'"
-                    :casename="'borderColorActive'"
+                    :casename="'borderWidth & borderColor & borderColorHover & borderColorActive'"
                     :kind="'nokind'"
                     :shell="'pure'"
                 ></demolink>
@@ -276,7 +314,14 @@
                 <w-group-check
                     :items="WGroupCheck.object.items"
                     v-model="WGroupCheck.object.selects"
-                    :borderColorActive="'white'"
+                    :borderWidth="{top:2,bottom:2,left:2,right:2}"
+                    _1borderWidth="{top:1}"
+                    _2borderWidth="{bottom:1}"
+                    _3borderWidth="{left:1}"
+                    _4borderWidth="{right:1}"
+                    :borderColor="'grey'"
+                    :borderColorHover="'grey darken-2'"
+                    :borderColorActive="'#fff'"
                 ></w-group-check>
 
             </div>
@@ -548,7 +593,7 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-group-check'"
-                    :casename="'sizePadding & borderRadius & textColor & iconColor & backgroundColor & backgroundColorHover & backgroundColorActive & shadowActive'"
+                    :casename="'paddingStyle & borderRadius & textColor & iconColor & backgroundColor & backgroundColorHover & backgroundColorActive & shadowActive'"
                     :kind="'nokind'"
                     :shell="'pure'"
                 ></demolink>
@@ -557,7 +602,7 @@
                     <w-group-check
                         :items="WGroupCheck.object.items"
                         v-model="WGroupCheck.object.selects"
-                        :sizePadding="'12px 27px'"
+                        :paddingStyle="{v:12,h:27}"
                         :borderRadius="5"
                         :textColor="'white'"
                         :textColorHover="'white'"

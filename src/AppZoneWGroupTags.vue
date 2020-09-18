@@ -79,7 +79,8 @@
                 <w-group-tags
                     v-model="WGroupTags.strings"
                     :icon="'fas fa-clipboard-check'"
-                    :marginStyle="'0px 15px 0px 0px'"
+                    _marginStyle="{v:0,h:20}"
+                    :marginStyle="{top:0,right:25,bottom:0,left:0}"
                 ></w-group-tags>
             </div>
 
@@ -252,7 +253,7 @@
                                 <w-button-chip
                                     :text="props.item"
                                     :textFontSize="'0.75rem'"
-                                    :sizePadding="'0px 8px'"
+                                    :paddingStyle="{v:0,h:8}"
                                     :textColor="'#fff'"
                                     :textColorHover="'#fff'"
                                     :backgroundColor="'rgba(250,50,120,0.9)'"
@@ -264,7 +265,7 @@
                                 <w-button-chip
                                     :text="'View'"
                                     :textFontSize="'0.75rem'"
-                                    :sizePadding="'0px 8px'"
+                                    :paddingStyle="{v:0,h:8}"
                                     :textColor="'#fff'"
                                     :textColorHover="'#fff'"
                                     :backgroundColor="'rgba(200,20,170,0.9)'"
@@ -300,7 +301,7 @@
                                 <w-button-chip
                                     :text="props.item.slotTextKind"
                                     :textFontSize="'0.75rem'"
-                                    :sizePadding="'0px 8px'"
+                                    :paddingStyle="{v:0,h:8}"
                                     :textColor="'#fff'"
                                     :textColorHover="'#fff'"
                                     :backgroundColor="'rgba(250,50,120,0.9)'"
@@ -312,7 +313,7 @@
                                 <w-button-chip
                                     :text="props.item.slotTextLevel"
                                     :textFontSize="'0.75rem'"
-                                    :sizePadding="'0px 8px'"
+                                    :paddingStyle="{v:0,h:8}"
                                     :textColor="'#fff'"
                                     :textColorHover="'#fff'"
                                     :backgroundColor="'rgba(200,20,170,0.9)'"
@@ -363,14 +364,14 @@
             <div class="bk" style="display:block;">
                 <demolink
                     :kbname="'w-group-tags'"
-                    :casename="'sizePadding & icon & iconSize & textFontSize'"
+                    :casename="'paddingStyle & icon & iconSize & textFontSize'"
                     :kind="'nokind'"
                     :shell="'pure'"
                 ></demolink>
 
                 <w-group-tags
                     v-model="WGroupTags.strings"
-                    :sizePadding="'10px 24px'"
+                    :paddingStyle="{v:10,h:24}"
                     :icon="mdiCodepen"
                     :iconSize="26"
                     :textFontSize="'0.9rem'"
@@ -728,7 +729,7 @@
             <div class="bk" style="display:block;">
                 <demolink
                     :kbname="'w-group-tags'"
-                    :casename="'slot item & useActive & valueActive & sizePadding & textColor & textColorHover & textColorActive & backgroundColor & backgroundColorActive & shadowActiveStyle'"
+                    :casename="'slot item & useActive & valueActive & paddingStyle & textColor & textColorHover & textColorActive & backgroundColor & backgroundColorActive & shadowActiveStyle'"
                     :kind="'nokind'"
                     :shell="'pure'"
                 ></demolink>
@@ -737,7 +738,7 @@
                     v-model="WGroupTags.strings"
                     :useActive="true"
                     :valueActive.sync="WGroupTags.stringActive"
-                    :sizePadding="'1px 13px'"
+                    :paddingStyle="{v:1,h:13}"
                     :textColor="'pink lighten-1'"
                     :textColorHover="'red accent-3'"
                     :textColorActive="'white'"
@@ -763,7 +764,7 @@
             <div class="bk" style="display:block;">
                 <demolink
                     :kbname="'w-group-tags'"
-                    :casename="'object items & slot item & editableInput(no slot input) & useActive & valueActive & sizePadding & textColor & textColorHover & textColorActive & backgroundColor & backgroundColorActive & shadowActiveStyle'"
+                    :casename="'object items & slot item & editableInput(no slot input) & useActive & valueActive & paddingStyle & textColor & textColorHover & textColorActive & backgroundColor & backgroundColorActive & shadowActiveStyle'"
                     :kind="'nokind'"
                     :shell="'pure'"
                 ></demolink>
@@ -773,7 +774,7 @@
                     :editableInput="false"
                     :useActive="true"
                     :valueActive.sync="WGroupTags.objectsSlotTextActive"
-                    :sizePadding="'1px 13px'"
+                    :paddingStyle="{v:1,h:13}"
                     :textColor="'pink lighten-1'"
                     :textColorHover="'red accent-3'"
                     :textColorActive="'white'"
@@ -815,7 +816,7 @@
             <div class="bk" style="display:block;">
                 <demolink
                     :kbname="'w-group-tags'"
-                    :casename="'object items & slot item & useColorsFromItem & editableInput(no slot input) & no shadow & no shadowActive & useActive & valueActive & sizePadding'"
+                    :casename="'object items & slot item & useColorsFromItem & editableInput(no slot input) & no shadow & no shadowActive & useActive & valueActive & paddingStyle'"
                     :kind="'nokind'"
                     :shell="'pure'"
                 ></demolink>
@@ -827,7 +828,7 @@
                     :shadowActive="false"
                     :useActive="true"
                     :valueActive.sync="WGroupTags.objectsColorActive"
-                    :sizePadding="'1px 12px'"
+                    :paddingStyle="{v:1,h:12}"
                     :useColorsFromItem="true"
                 >
                     <template v-slot:items="props">

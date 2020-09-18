@@ -7,7 +7,7 @@
         content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui"
     />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>example for w-group-tags: slot item & useActive & valueActive & sizePadding & textColor & textColorHover & textColorActive & backgroundColor & backgroundColorActive & shadowActiveStyle</title>
+    <title>example for w-group-tags: paddingStyle & icon & iconSize & textFontSize</title>
 
     <!-- fontawesome -->
     <link
@@ -80,7 +80,7 @@
     <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.js"></script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@1.4.34/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@1.4.35/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -120,30 +120,15 @@
     <v-app id="app" style="font-family:inherit;">
         <div class="head1">w-group-tags</div>
         <div class="bk" style="display:block;">
-            <div
-                class="item"
-            >slot item & useActive & valueActive & sizePadding & textColor & textColorHover & textColorActive & backgroundColor & backgroundColorActive & shadowActiveStyle</div>
+            <div class="item">paddingStyle & icon & iconSize & textFontSize</div>
 
             <w-group-tags
                 v-model="WGroupTags.strings"
-                :use-active="true"
-                :value-active.sync="WGroupTags.stringActive"
-                :size-padding="'1px 13px'"
-                :text-color="'pink lighten-1'"
-                :text-color-hover="'red accent-3'"
-                :text-color-active="'white'"
-                :background-color="'white'"
-                :background-color-active="'pink lighten-1'"
-                :shadow-active-style="'0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12)'"
-            >
-                <template v-slot:items="props">
-                    <div style="display:flex; align-items:center;">
-                        <div
-                            :style="`display:inline-block; border-radius:10px; font-size:0.85rem; user-select:none; ${props.active?`padding:0px 12px; color:#263238; background:rgba(255,255,255,0.7);`:`padding:0px 12px; color:#9E9E9E; background:rgba(100,100,100,0.1);`}`"
-                        >Menu</div>
-                    </div>
-                </template>
-            </w-group-tags>
+                :padding-style="{v:10,h:24}"
+                :icon="'mdi-codepen'"
+                :icon-size="26"
+                :text-font-size="'0.9rem'"
+            />
 
             <div
                 style="padding-left:5px; font-size:0.9rem; color:#ea6;"

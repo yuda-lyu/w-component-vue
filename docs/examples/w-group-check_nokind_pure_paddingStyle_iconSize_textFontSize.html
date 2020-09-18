@@ -7,7 +7,7 @@
         content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui"
     />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>example for w-group-radio: borderColor & borderColorHover</title>
+    <title>example for w-group-check: paddingStyle & iconSize & textFontSize</title>
 
     <!-- fontawesome -->
     <link
@@ -80,7 +80,7 @@
     <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.js"></script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@1.4.34/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@1.4.35/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -118,15 +118,16 @@
     style="font-family:'Microsoft JhengHei','Avenir','Helvetica'; padding:20px;"
 >
     <v-app id="app" style="font-family:inherit;">
-        <div class="head1">w-group-radio</div>
+        <div class="head1">w-group-check</div>
         <div class="bk">
-            <div class="item">borderColor & borderColorHover</div>
+            <div class="item">paddingStyle & iconSize & textFontSize</div>
 
-            <w-group-radio
-                :items="WGroupRadio.object.items"
-                v-model="WGroupRadio.object.select"
-                :border-color="'grey'"
-                :border-color-hover="'grey darken-2'"
+            <w-group-check
+                :items="WGroupCheck.object.items"
+                v-model="WGroupCheck.object.selects"
+                :padding-style="{v:10,h:24}"
+                :icon-size="26"
+                :text-font-size="'0.9rem'"
             />
         </div>
     </v-app>
@@ -141,7 +142,7 @@
     vuetify: new Vuetify(),
     data: function() {
       return {
-        WGroupRadio: {
+        WGroupCheck: {
           string: {
             items: [
               "Dashboard",
@@ -151,7 +152,7 @@
               "Apple",
               "橘子"
             ],
-            select: "Apple"
+            selects: ["Dashboard", "Apple"]
           },
           object: {
             items: [
@@ -176,10 +177,16 @@
                 icon: "mdi-apple"
               }
             ],
-            select: {
-              text: "Dashboard",
-              icon: "mdi-view-dashboard"
-            }
+            selects: [
+              {
+                text: "Dashboard",
+                icon: "mdi-view-dashboard"
+              },
+              {
+                text: "Profile",
+                icon: "mdi-blender-software"
+              }
+            ]
           },
           objectTP: {
             items: [
@@ -209,11 +216,18 @@
                 tooltip: "tooltip for 蘋果"
               }
             ],
-            select: {
-              text: "Dashboard",
-              icon: "mdi-account-supervisor-circle",
-              tooltip: "tooltip for Dashboard"
-            }
+            selects: [
+              {
+                text: "Dashboard",
+                icon: "mdi-account-supervisor-circle",
+                tooltip: "tooltip for Dashboard"
+              },
+              {
+                text: "Profile",
+                icon: "mdi-blender-software",
+                tooltip: "tooltip for Profile"
+              }
+            ]
           },
           objectFA: {
             items: [
@@ -238,10 +252,16 @@
                 icon: "fa fa-heartbeat"
               }
             ],
-            select: {
-              text: "Dashboard",
-              icon: "fa fa-address-book"
-            }
+            selects: [
+              {
+                text: "Dashboard",
+                icon: "fa fa-address-book"
+              },
+              {
+                text: "Profile",
+                icon: "fa fa-american-sign-language-interpreting"
+              }
+            ]
           }
         },
         actions: []
@@ -249,8 +269,8 @@
     },
     computed: {},
     methods: {
-      ckBtn: function(item) {
-        console.log(item);
+      ckBtn: function(item, mode) {
+        console.log(item, mode);
       }
     }
   });

@@ -145,7 +145,7 @@
                             <w-button-chip
                                 :text="'Download'"
                                 :textFontSize="'0.75rem'"
-                                :sizePadding="'0px 8px'"
+                                :paddingStyle="{v:0,h:8}"
                                 :textColor="'#fff'"
                                 :textColorHover="'#fff'"
                                 :backgroundColor="'rgba(250,50,120,0.9)'"
@@ -157,7 +157,7 @@
                             <w-button-chip
                                 :text="'View'"
                                 :textFontSize="'0.75rem'"
-                                :sizePadding="'0px 8px'"
+                                :paddingStyle="{v:0,h:8}"
                                 :textColor="'#fff'"
                                 :textColorHover="'#fff'"
                                 :backgroundColor="'rgba(200,20,170,0.9)'"
@@ -174,14 +174,14 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-button-chip'"
-                    :casename="'sizePadding & icon & iconSize & textFontSize'"
+                    :casename="'paddingStyle & icon & iconSize & textFontSize'"
                     :kind="'nokind'"
                     :shell="'pure'"
                 ></demolink>
 
                 <w-button-chip
                     :text="WButtonChip.text"
-                    :sizePadding="'10px 24px'"
+                    :paddingStyle="{v:10,h:24}"
                     :icon="mdiCodepen"
                     :iconSize="26"
                     :textFontSize="'0.9rem'"

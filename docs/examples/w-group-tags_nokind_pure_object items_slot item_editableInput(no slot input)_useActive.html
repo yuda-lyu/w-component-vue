@@ -7,7 +7,7 @@
         content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui"
     />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>example for w-group-tags: object items & slot item & editableInput(no slot input) & useActive & valueActive & sizePadding & textColor & textColorHover & textColorActive & backgroundColor & backgroundColorActive & shadowActiveStyle</title>
+    <title>example for w-group-tags: object items & slot item & editableInput(no slot input) & useActive & valueActive & paddingStyle & textColor & textColorHover & textColorActive & backgroundColor & backgroundColorActive & shadowActiveStyle</title>
 
     <!-- fontawesome -->
     <link
@@ -80,7 +80,7 @@
     <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.js"></script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@1.4.34/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@1.4.35/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -122,14 +122,14 @@
         <div class="bk" style="display:block;">
             <div
                 class="item"
-            >object items & slot item & editableInput(no slot input) & useActive & valueActive & sizePadding & textColor & textColorHover & textColorActive & backgroundColor & backgroundColorActive & shadowActiveStyle</div>
+            >object items & slot item & editableInput(no slot input) & useActive & valueActive & paddingStyle & textColor & textColorHover & textColorActive & backgroundColor & backgroundColorActive & shadowActiveStyle</div>
 
             <w-group-tags
                 v-model="WGroupTags.objectsSlotText"
                 :editable-input="false"
                 :use-active="true"
                 :value-active.sync="WGroupTags.objectsSlotTextActive"
-                :size-padding="'1px 13px'"
+                :padding-style="{v:1,h:13}"
                 :text-color="'pink lighten-1'"
                 :text-color-hover="'red accent-3'"
                 :text-color-active="'white'"

@@ -175,7 +175,7 @@
                             style="margin:0px 10px;"
                             :items="WPanelBulge.menu.items"
                             v-model="WPanelBulge.menu.select"
-                            :sizePadding="'12px 27px'"
+                            :paddingStyle="{v:12,h:27}"
                             :borderRadius="5"
                             :textColor="'white'"
                             :textColorHover="'white'"

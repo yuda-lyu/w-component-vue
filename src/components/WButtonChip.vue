@@ -27,7 +27,7 @@
                     >
 
                         <div
-                            :style="`transition:all 0.3s; opacity:${loadingTrans?0:1}; padding:${usePadding}; ${useBorderRadiusStyle} ${useBorderWidth} border-color:${useRC}; border-style:solid;`"
+                            :style="`transition:all 0.3s; opacity:${loadingTrans?0:1}; ${usePadding} ${useBorderRadiusStyle} ${useBorderWidth} border-color:${useRC}; border-style:solid;`"
                         >
 
                             <div style="display:flex; align-items:center; white-space:nowrap;">
@@ -36,7 +36,7 @@
                                     <slot></slot>
                                 </div>
 
-                                <div :style="`display:inline-block; margin-left:${shiftLeft}px;`">
+                                <div :style="`display:inline-block;`">
                                     <w-icon
                                         :style="`margin:0px 5px 0px -6px;`"
                                         :icon="icon"
@@ -52,7 +52,7 @@
                                     <div :style="`font-size:${textFontSize};`">{{text}}</div>
                                 </div>
 
-                                <div :style="`display:inline-block; margin-right:${shiftRight}px;`">
+                                <div :style="`display:inline-block;`">
                                     <w-icon
                                         :style="`margin:0px -9px 0px 5px;`"
                                         :icon="mdiCloseCircle"
@@ -140,8 +140,6 @@ import WIcon from './WIcon.vue'
  * @vue-prop {String} [iconColorHover='grey darken-3'] 輸入滑鼠移入時圖標顏色字串，預設'grey darken-3'
  * @vue-prop {String} [iconColorActive='white'] 輸入主動模式時圖標顏色字串，預設'white'
  * @vue-prop {Number} [iconSize=22] 輸入左側圖標之尺寸數字，單位px，預設22
- * @vue-prop {Number} [shiftLeft=0] 輸入左側平移距離數字，可調整例如圖標與左側邊框距離，單位px，預設0
- * @vue-prop {Number} [shiftRight=0] 輸入右側平移距離數字，可調整例如關閉圖標與右側邊框距離，單位px，預設0
  * @vue-prop {Number} [prog=null] 輸入進度條進度數字，單位%，預設null
  * @vue-prop {String} [progColor='rgba(150,150,150,0.4)'] 輸入進度條背景顏色字串，預設'rgba(150,150,150,0.4)'
  * @vue-prop {String} [progBackgroundColor='rgba(150,150,150,0.075)'] 輸入進度條顏色字串，預設'rgba(150,150,150,0.075)'
@@ -149,9 +147,9 @@ import WIcon from './WIcon.vue'
  * @vue-prop {String} [textColorHover='grey darken-3'] 輸入滑鼠移入時文字顏色字串，預設'grey darken-3'
  * @vue-prop {String} [textColorActive='white'] 輸入主動模式時文字顏色字串，預設'white'
  * @vue-prop {String} [textFontSize='0.85rem'] 輸入文字字型大小字串，預設'0.85rem'
- * @vue-prop {Object} [borderWidth={top:1,bottom:1,left:1,right:1}] 輸入框樣式物件，可用鍵值為left、right、top、bottom，各鍵值為寬度數字，單位為px，預設{top:1,bottom:1,left:1,right:1}
+ * @vue-prop {Object} [borderWidth={top:1,bottom:1,left:1,right:1}] 輸入框樣式物件，可用鍵值為left、right、top、bottom，若有重複設定時後面鍵值會覆蓋前面，各鍵值為寬度數字，單位為px，預設{top:1,bottom:1,left:1,right:1}
  * @vue-prop {Number} [borderRadius=30] 輸入框圓角寬度數字，單位為px，預設30
- * @vue-prop {Object} [borderRadiusStyle={left:true,right:true}] 輸入框圓角樣式物件，可用鍵值為left、right、top、bottom、top-left、bottom-left、top-right、bottom-right，各鍵值為布林值，預設{left:true,right:true}
+ * @vue-prop {Object} [borderRadiusStyle={left:true,right:true}] 輸入框圓角樣式物件，可用鍵值為left、right、top、bottom、top-left、bottom-left、top-right、bottom-right，left代表設定top-left與bottom-left，right代表設定top-right與bottom-right，top代表設定top-left與top-right，bottom代表設定bottom-left與bottom-right，若有重複設定時後面鍵值會覆蓋前面，各鍵值為布林值，預設{left:true,right:true}
  * @vue-prop {String} [borderColor='transparent'] 輸入邊框顏色字串，預設'transparent'
  * @vue-prop {String} [borderColorHover='transparent'] 輸入滑鼠移入時邊框顏色字串，預設'transparent'
  * @vue-prop {String} [borderColorActive='transparent'] 輸入主動模式時邊框顏色字串，預設'transparent'
@@ -162,7 +160,9 @@ import WIcon from './WIcon.vue'
  * @vue-prop {String} [shadowStyle=''] 輸入陰影顏色字串，預設值詳見props
  * @vue-prop {Boolean} [shadowActive=true] 輸入主動模式時是否顯示陰影，預設true
  * @vue-prop {String} [shadowActiveStyle=''] 輸入主動模式時陰影顏色字串，預設值詳見props
- * @vue-prop {String} [sizePadding='3px 15px'] 輸入內寬設定字串，預設'3px 15px'
+ * @vue-prop {Object} [paddingStyle={v:3,h:15}] 輸入內寬距離物件，可用鍵值為v、h、left、right、top、bottom，v代表同時設定top與bottom，h代表設定left與right，若有重複設定時後面鍵值會覆蓋前面，各鍵值為寬度數字，單位為px，預設{v:3,h:15}
+ * @vue-prop {Number} [shiftLeft=0] 輸入左側內寬平移距離數字，會對paddingStyle設定再添加，可調整例如圖標與左側邊框距離，單位px，預設0
+ * @vue-prop {Number} [shiftRight=0] 輸入右側內寬平移距離數字，會對paddingStyle設定再添加，可調整例如關閉圖標與右側邊框距離，單位px，預設0
  * @vue-prop {Boolean} [active=false] 輸入是否為主動模式，預設false
  * @vue-prop {Boolean} [close=false] 輸入是否具有關閉按鈕模式，預設false
  * @vue-prop {Boolean} [loading=false] 輸入是否為載入模式，預設false
@@ -201,14 +201,6 @@ export default {
         iconSize: {
             type: Number,
             default: 22,
-        },
-        shiftLeft: {
-            type: Number,
-            default: 0,
-        },
-        shiftRight: {
-            type: Number,
-            default: 0,
         },
         prog: {
             type: Number,
@@ -304,9 +296,22 @@ export default {
             type: String,
             default: '0 12px 20px -10px {backgroundColorActiveAlpha=0.28}, 0 4px 20px 0 rgba(0,0,0,.12), 0 7px 8px -5px {backgroundColorActiveAlpha=0.2}',
         },
-        sizePadding: {
-            type: String,
-            default: '3px 15px',
+        paddingStyle: {
+            type: Object,
+            default: () => {
+                return {
+                    v: 3,
+                    h: 15,
+                }
+            },
+        },
+        shiftLeft: {
+            type: Number,
+            default: 0,
+        },
+        shiftRight: {
+            type: Number,
+            default: 0,
         },
         active: {
             type: Boolean,
@@ -379,7 +384,41 @@ export default {
 
         usePadding: function() {
             let vo = this
-            return replace(vo.sizePadding, ';', '')
+
+            //四方向padding
+            let left = 0
+            let right = 0
+            let top = 0
+            let bottom = 0
+            if (isNumber(get(vo, 'paddingStyle.h'))) {
+                left = get(vo, 'paddingStyle.h')
+                right = left
+            }
+            if (isNumber(get(vo, 'paddingStyle.v'))) {
+                top = get(vo, 'paddingStyle.v')
+                bottom = top
+            }
+            if (isNumber(get(vo, 'paddingStyle.left'))) {
+                left = get(vo, 'paddingStyle.left')
+            }
+            if (isNumber(get(vo, 'paddingStyle.right'))) {
+                right = get(vo, 'paddingStyle.right')
+            }
+            if (isNumber(get(vo, 'paddingStyle.top'))) {
+                top = get(vo, 'paddingStyle.top')
+            }
+            if (isNumber(get(vo, 'paddingStyle.bottom'))) {
+                bottom = get(vo, 'paddingStyle.bottom')
+            }
+
+            //shiftLeft, shiftRight
+            left += vo.shiftLeft
+            right += vo.shiftRight
+
+            //padding
+            let padding = `padding:${top}px ${right}px ${bottom}px ${left}px;`
+
+            return padding
         },
 
         useIconColor: function() {
