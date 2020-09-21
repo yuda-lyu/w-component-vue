@@ -576,23 +576,6 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-group-check'"
-                    :casename="'not editable'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
-                ></demolink>
-
-                <w-group-check
-                    :items="WGroupCheck.object.items"
-                    v-model="WGroupCheck.object.selects"
-                    :editable="false"
-                ></w-group-check>
-
-            </div>
-
-
-            <div class="bk">
-                <demolink
-                    :kbname="'w-group-check'"
                     :casename="'paddingStyle & borderRadius & textColor & iconColor & backgroundColor & backgroundColorHover & backgroundColorActive & shadowActive'"
                     :kind="'nokind'"
                     :shell="'pure'"
@@ -616,6 +599,23 @@
                         :shadowActive="false"
                     ></w-group-check>
                 </div>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-group-check'"
+                    :casename="'not editable'"
+                    :kind="'nokind'"
+                    :shell="'pure'"
+                ></demolink>
+
+                <w-group-check
+                    :items="WGroupCheck.object.items"
+                    v-model="WGroupCheck.object.selects"
+                    :editable="false"
+                ></w-group-check>
 
             </div>
 

@@ -63,8 +63,9 @@ import WButtonChip from './WButtonChip.vue'
 
 
 /**
+ * @vue-prop {Boolean} [multiCheck=true] 輸入是否為複選模式，預設true
  * @vue-prop {Array} [items=[]] 輸入全部可選字串或物件陣列，預設[]
- * @vue-prop {Array} [value=[]] 輸入複選字串或物件陣列，預設[]
+ * @vue-prop {Array|String|Object} value 輸入複選字串或物件陣列，無預設
  * @vue-prop {String} [keyText='text'] 輸入可選項目為物件時，存放顯示文字之欄位字串，預設'text'
  * @vue-prop {String} [keyIcon='icon'] 輸入可選項目為物件時，存放圖標之欄位字串，預設'icon'
  * @vue-prop {String} [keyTooltip='tooltip'] 輸入可選項目為物件時，存放提示之欄位字串，預設'tooltip'
@@ -105,13 +106,16 @@ export default {
         WButtonChip,
     },
     props: {
+        multiCheck: {
+            type: Boolean,
+            default: true,
+        },
         items: {
             type: Array,
             default: () => [],
         },
         value: {
-            type: Array,
-            default: () => [],
+            type: [Array, String, Object],
         },
         keyText: {
             type: String,
@@ -304,11 +308,20 @@ export default {
 
                 //o
                 let o = {
-                    active: arrhas(vo.value, v),
                     data: v,
                 }
 
-                //spcBorderRadiusStyle
+                //add active
+                let active
+                if (vo.multiCheck) {
+                    active = arrhas(vo.value, v)
+                }
+                else {
+                    active = isEqual(v, vo.value)
+                }
+                o.active = active
+
+                //add spcBorderRadiusStyle
                 let spcBorderRadiusStyle = {}
                 if (vo.group) {
                     if (k === 0) {
@@ -348,7 +361,7 @@ export default {
                 }
                 o.spcBorderRadiusStyle = spcBorderRadiusStyle
 
-                //spcBorderWidth
+                //add spcBorderWidth
                 let spcBorderWidth = {}
                 if (vo.group) {
                     if (k === 0) {
@@ -360,7 +373,7 @@ export default {
                 }
                 o.spcBorderWidth = spcBorderWidth
 
-                //spcShiftLeft, spcShiftRight, 因按鈕本身亦提供設定shiftLeft與shiftRight, 故需額外添加group的偏移量
+                //add spcShiftLeft, spcShiftRight, 因按鈕本身亦提供設定shiftLeft與shiftRight, 故需額外添加group的偏移量
                 let spcShiftLeft = 0
                 let spcShiftRight = 0
                 if (vo.group) {
@@ -435,31 +448,50 @@ export default {
                 return
             }
 
-            //pull or push
-            let valueTrans = cloneDeep(vo.value)
-            if (item.active) {
-                let r = []
-                each(valueTrans, (v) => {
-                    if (!isEqual(v, item.data)) {
-                        r.push(v)
-                    }
+            //emit
+            if (vo.multiCheck) {
+
+                //pull or push
+                let valueTrans = cloneDeep(vo.value)
+                if (item.active) {
+                    let r = []
+                    each(valueTrans, (v) => {
+                        if (!isEqual(v, item.data)) {
+                            r.push(v)
+                        }
+                    })
+                    valueTrans = r
+                }
+                else {
+                    valueTrans.push(item.data)
+                }
+
+                //nextTick
+                vo.$nextTick(() => {
+
+                    //emit
+                    vo.$emit('input', valueTrans)
+
+                    //emit
+                    vo.$emit('click', item.data, `${item.active ? 'hide' : 'show'}`)
+
                 })
-                valueTrans = r
+
             }
             else {
-                valueTrans.push(item.data)
+
+                //nextTick
+                vo.$nextTick(() => {
+
+                    //emit
+                    vo.$emit('input', item.data)
+
+                    //emit
+                    vo.$emit('click', item.data)
+
+                })
+
             }
-
-            //nextTick
-            vo.$nextTick(() => {
-
-                //emit
-                vo.$emit('input', valueTrans)
-
-                //emit
-                vo.$emit('click', item.data, `${item.active ? 'hide' : 'show'}`)
-
-            })
 
         },
 

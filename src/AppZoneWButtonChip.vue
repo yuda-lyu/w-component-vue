@@ -138,7 +138,7 @@
                     :text="WButtonChip.text"
                     :close="true"
                     @click="ckBtn"
-                    @click-close.stop="ckBtnClose"
+                    @click-close="ckBtnClose"
                 >
                     <div style="display:flex; align-items:center;">
                         <div style="display:flex; margin-right:5px;">
@@ -150,7 +150,7 @@
                                 :textColorHover="'#fff'"
                                 :backgroundColor="'rgba(250,50,120,0.9)'"
                                 :backgroundColorHover="'rgba(250,50,120,0.9)'"
-                                @click.stop="ckBtnItem1"
+                                @click="ckBtnItem1"
                             ></w-button-chip>
                         </div>
                         <div style="display:flex;">
@@ -162,7 +162,7 @@
                                 :textColorHover="'#fff'"
                                 :backgroundColor="'rgba(200,20,170,0.9)'"
                                 :backgroundColorHover="'rgba(200,20,170,0.9)'"
-                                @click.stop="ckBtnItem2"
+                                @click="ckBtnItem2"
                             ></w-button-chip>
                         </div>
                     </div>
@@ -430,8 +430,8 @@
                 <w-button-chip
                     :text="WButtonChip.text"
                     :icon="mdiCheckUnderlineCircle"
-                    :borderColor="'#aaa'"
-                    :borderColorHover="'transparent'"
+                    :borderColor="'transparent'"
+                    :borderColorHover="'#aaa'"
                 ></w-button-chip>
 
             </div>

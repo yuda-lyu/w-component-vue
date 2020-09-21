@@ -573,23 +573,6 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-group-radio'"
-                    :casename="'not editable'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
-                ></demolink>
-
-                <w-group-radio
-                    :items="WGroupRadio.object.items"
-                    v-model="WGroupRadio.object.select"
-                    :editable="false"
-                ></w-group-radio>
-
-            </div>
-
-
-            <div class="bk">
-                <demolink
-                    :kbname="'w-group-radio'"
                     :casename="'paddingStyle & borderRadius & textColor & iconColor & backgroundColor & backgroundColorHover & backgroundColorActive & shadowActive'"
                     :kind="'nokind'"
                     :shell="'pure'"
@@ -613,6 +596,23 @@
                         :shadowActive="false"
                     ></w-group-radio>
                 </div>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-group-radio'"
+                    :casename="'not editable'"
+                    :kind="'nokind'"
+                    :shell="'pure'"
+                ></demolink>
+
+                <w-group-radio
+                    :items="WGroupRadio.object.items"
+                    v-model="WGroupRadio.object.select"
+                    :editable="false"
+                ></w-group-radio>
 
             </div>
 

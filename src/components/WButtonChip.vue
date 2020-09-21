@@ -27,7 +27,7 @@
                     >
 
                         <div
-                            :style="`transition:all 0.3s; opacity:${loadingTrans?0:1}; ${usePadding} ${useBorderRadiusStyle} ${useBorderWidth} border-color:${useRC}; border-style:solid;`"
+                            :style="`transition:all 0.3s; ${usePadding} ${useBorderRadiusStyle} ${useBorderWidth} border-color:${useRC}; border-style:solid;`"
                         >
 
                             <div style="display:flex; align-items:center; white-space:nowrap;">
@@ -88,6 +88,16 @@
 
             <div
                 style="position:absolute; left:0; right:0; top:0; bottom:0;"
+                v-if="!editable || loadingTrans"
+            >
+                <div :style="`${useBorderRadiusStyle} overflow:hidden; width:100%; height:100%;`">
+                    <div :style="`background:${useDisabledColor}; height:100%;`">
+                    </div>
+                </div>
+            </div>
+
+            <div
+                style="position:absolute; left:0; right:0; top:0; bottom:0;"
                 v-if="!isProging && loadingTrans"
             >
                 <div style="display:flex; align-items:center; justify-content:center; height:100%;">
@@ -97,16 +107,6 @@
                         :size="iconSize"
                         :color="useTextColor"
                     ></v-progress-circular>
-                </div>
-            </div>
-
-            <div
-                style="position:absolute; left:0; right:0; top:0; bottom:0;"
-                v-if="!editable"
-            >
-                <div :style="`${useBorderRadiusStyle} overflow:hidden; width:100%; height:100%;`">
-                    <div :style="`background:${useDisabledColor}; height:100%;`">
-                    </div>
                 </div>
             </div>
 

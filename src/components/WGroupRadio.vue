@@ -1,68 +1,18 @@
 <template>
-    <div :changeItems="changeItems">
-
-        <template v-for="(item,kitem) in itemsTrans">
-
-            <WButtonChip
-                :style="`${useMarginStyle}`"
-                :key="kitem"
-                :text="get(item,`data.${keyText}`) || get(item,'data')"
-                :tooltip="get(item,`data.${keyTooltip}`)"
-                :icon="get(item,`data.${keyIcon}`)"
-                :iconColor="iconColor"
-                :iconColorHover="iconColorHover"
-                :iconColorActive="iconColorActive"
-                :iconSize="iconSize"
-                :textColor="textColor"
-                :textColorHover="textColorHover"
-                :textColorActive="textColorActive"
-                :textFontSize="textFontSize"
-                :borderWidth="group?item.spcBorderWidth:borderWidth"
-                :borderRadius="borderRadius"
-                :borderRadiusStyle="group?item.spcBorderRadiusStyle:borderRadiusStyle"
-                :borderColor="borderColor"
-                :borderColorHover="borderColorHover"
-                :borderColorActive="borderColorActive"
-                :backgroundColor="backgroundColor"
-                :backgroundColorHover="backgroundColorHover"
-                :backgroundColorActive="backgroundColorActive"
-                :shadow="shadow"
-                :shadowStyle="shadowStyle"
-                :shadowActive="shadowActive"
-                :shadowActiveStyle="shadowActiveStyle"
-                :paddingStyle="paddingStyle"
-                :shiftLeft="shiftLeft+item.spcShiftLeft"
-                :shiftRight="shiftRight+item.spcShiftRight"
-                _close="close"
-                :loading="loading"
-                :editable="editable"
-                :disabledColor="'rgba(255,255,255,0.4)'"
-                :active="item.active"
-                @click="toggleState(item)"
-            >
-                <slot
-                    :item="item"
-                    :kitem="kitem"
-                ></slot>
-            </WButtonChip>
-
-        </template>
-
-    </div>
+    <WGroupCheck
+        :multiCheck="false"
+        v-bind="$props"
+        v-on="$listeners"
+    ></WGroupCheck>
 </template>
 
 <script>
-import get from 'lodash/get'
-import map from 'lodash/map'
-import isEqual from 'lodash/isEqual'
-import isNumber from 'lodash/isNumber'
-import cloneDeep from 'lodash/cloneDeep'
-import WButtonChip from './WButtonChip.vue'
+import WGroupCheck from './WGroupCheck.vue'
 
 
 /**
  * @vue-prop {Array} [items=[]] 輸入全部可選字串或物件陣列，預設[]
- * @vue-prop {String|Object} value 輸入單選字串或物件
+ * @vue-prop {String|Object} value 輸入單選字串或物件，無預設
  * @vue-prop {String} [keyText='text'] 輸入可選項目為物件時，存放顯示文字之欄位字串，預設'text'
  * @vue-prop {String} [keyIcon='icon'] 輸入可選項目為物件時，存放圖標之欄位字串，預設'icon'
  * @vue-prop {String} [keyTooltip='tooltip'] 輸入可選項目為物件時，存放提示之欄位字串，預設'tooltip'
@@ -100,7 +50,7 @@ import WButtonChip from './WButtonChip.vue'
  */
 export default {
     components: {
-        WButtonChip,
+        WGroupCheck,
     },
     props: {
         items: {
@@ -278,173 +228,13 @@ export default {
     },
     data: function() {
         return {
-            get,
-
-            itemsTrans: [],
-
         }
     },
     mounted: function() {
     },
     computed: {
-
-        changeItems: function () {
-            //console.log('computed changeItems')
-
-            let vo = this
-
-            //t
-            let t = cloneDeep(vo.items)
-
-            //items
-            let items = map(t, (v, k) => {
-
-                //o
-                let o = {
-                    active: isEqual(v, vo.value),
-                    data: v,
-                }
-
-                //spcBorderRadiusStyle
-                let spcBorderRadiusStyle = {}
-                if (vo.group) {
-                    if (k === 0) {
-                        if (get(vo, 'groupBorderRadiusStyle.left') === true) {
-                            spcBorderRadiusStyle.left = true
-                        }
-                        if (get(vo, 'groupBorderRadiusStyle.topLeft') === true || get(vo, 'groupBorderRadiusStyle.top-left') === true) {
-                            spcBorderRadiusStyle.topLeft = true
-                        }
-                        if (get(vo, 'groupBorderRadiusStyle.bottomLeft') === true || get(vo, 'groupBorderRadiusStyle.bottom-left') === true) {
-                            spcBorderRadiusStyle.bottomLeft = true
-                        }
-                        if (get(vo, 'groupBorderRadiusStyle.top') === true) {
-                            spcBorderRadiusStyle.topLeft = true
-                        }
-                        if (get(vo, 'groupBorderRadiusStyle.bottom') === true) {
-                            spcBorderRadiusStyle.bottomLeft = true
-                        }
-                    }
-                    else if (k === t.length - 1) {
-                        if (get(vo, 'groupBorderRadiusStyle.right') === true) {
-                            spcBorderRadiusStyle.right = true
-                        }
-                        if (get(vo, 'groupBorderRadiusStyle.topRight') === true || get(vo, 'groupBorderRadiusStyle.top-right') === true) {
-                            spcBorderRadiusStyle.topRight = true
-                        }
-                        if (get(vo, 'groupBorderRadiusStyle.bottomRight') === true || get(vo, 'groupBorderRadiusStyle.bottom-right') === true) {
-                            spcBorderRadiusStyle.bottomRight = true
-                        }
-                        if (get(vo, 'groupBorderRadiusStyle.top') === true) {
-                            spcBorderRadiusStyle.topRight = true
-                        }
-                        if (get(vo, 'groupBorderRadiusStyle.bottom') === true) {
-                            spcBorderRadiusStyle.bottomRight = true
-                        }
-                    }
-                }
-                o.spcBorderRadiusStyle = spcBorderRadiusStyle
-
-                //spcBorderWidth
-                let spcBorderWidth = {}
-                if (vo.group) {
-                    if (k === 0) {
-                        spcBorderWidth = { top: 1, bottom: 1, left: 1, right: 1 }
-                    }
-                    else {
-                        spcBorderWidth = { top: 1, bottom: 1, left: 0, right: 1 }
-                    }
-                }
-                o.spcBorderWidth = spcBorderWidth
-
-                //spcShiftLeft, spcShiftRight, 因按鈕本身亦提供設定shiftLeft與shiftRight, 故需額外添加group的偏移量
-                let spcShiftLeft = 0
-                let spcShiftRight = 0
-                if (vo.group) {
-                    if (k === 0) {
-                        spcShiftLeft = vo.groupShift
-                    }
-                    else if (k === t.length - 1) {
-                        spcShiftRight = vo.groupShift
-                    }
-                }
-                o.spcShiftLeft = spcShiftLeft
-                o.spcShiftRight = spcShiftRight
-
-                return o
-            })
-
-            //save
-            vo.itemsTrans = items
-
-            return ''
-        },
-
-        useMarginStyle: function() {
-            let vo = this
-
-            //四方向margin
-            let left = 0
-            let right = 0
-            let top = 0
-            let bottom = 0
-
-            //group, 非群組化時才使用marginStyle
-            if (!vo.group) {
-                if (isNumber(get(vo, 'marginStyle.h'))) {
-                    left = get(vo, 'marginStyle.h')
-                    right = left
-                }
-                if (isNumber(get(vo, 'marginStyle.v'))) {
-                    top = get(vo, 'marginStyle.v')
-                    bottom = top
-                }
-                if (isNumber(get(vo, 'marginStyle.left'))) {
-                    left = get(vo, 'marginStyle.left')
-                }
-                if (isNumber(get(vo, 'marginStyle.right'))) {
-                    right = get(vo, 'marginStyle.right')
-                }
-                if (isNumber(get(vo, 'marginStyle.top'))) {
-                    top = get(vo, 'marginStyle.top')
-                }
-                if (isNumber(get(vo, 'marginStyle.bottom'))) {
-                    bottom = get(vo, 'marginStyle.bottom')
-                }
-            }
-
-            //margin
-            let margin = `margin-left:${left}px; margin-right:${right}px; margin-top:${top}px; margin-bottom:${bottom}px;`
-
-            return margin
-        },
-
     },
     methods: {
-
-        toggleState: function(item) {
-            //console.log('methods toggleState', item)
-
-            let vo = this
-
-            //check
-            if (vo.editable === false) {
-                return
-            }
-
-            //nextTick
-            vo.$nextTick(() => {
-
-                //emit
-                vo.$emit('input', item.data)
-
-                //emit
-                vo.$emit('click', item.data)
-
-            })
-
-        },
-
     },
 }
 </script>
