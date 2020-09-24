@@ -36,7 +36,7 @@
 
                 <v-spacer></v-spacer>
 
-            <!-- 記得slot name為小寫, 若使用駝峰於瀏覽器端會需要轉小寫, 但於vue-cli無法使用小寫識別得要用駝峰, 故統一都小寫較安全 -->
+                <!-- 記得slot name為小寫, 若使用駝峰於瀏覽器端會需要轉小寫, 但於vue-cli無法使用小寫識別得要用駝峰, 故統一都小寫較安全 -->
                 <slot name="header-right"></slot>
 
                 <template v-for="(btn,kbtn) in headerBtns">

@@ -26,6 +26,7 @@
                     :value="value"
                     :placeholder="placeholder"
                     :searchEmpty="searchEmpty"
+                    :distY="small?5:8"
                     :editable="editable"
                     @update:focused="changeFocused"
                     @input="function(v){$emit('input', v)}"

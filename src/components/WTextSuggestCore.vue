@@ -1,12 +1,13 @@
 <template>
     <WPopup
+        style="display:block;"
         :minWidth="minWidth"
         :maxWidth="maxWidth"
         :distY="distY"
         :editable="editable"
-        :changeValue="changeValue"
         v-model="show"
-        @input="(v)=>{changeFocused(v,'wpopup')}"
+        @input="changeShow"
+        :changeValue="changeValue"
     >
 
         <template v-slot:trigger>
@@ -28,11 +29,10 @@
                         :height="height"
                         :editable="editable"
                         :value="valueTrans"
-                        :focused="focusedTrans"
-                        @update:focused="(v)=>{changeFocused(v,'textcore')}"
-                        @blur="triggerEvent('blur',value,null)"
-                        @enter="triggerEvent('enter',value,null)"
+                        @blur="triggerEvent('blur',value,null,'blur')"
+                        @enter="triggerEvent('enter',value,null,'enter')"
                         @input="changeValueTrans"
+                        @select="selectText"
                         v-if="mode==='suggest'"
                     ></w-text-core>
 
@@ -62,7 +62,7 @@
 
         <template v-slot:content>
 
-            <div style="background-color:#fff;">
+            <div>
                 <WDynamicList
                     ref="wds"
                     :rows="items"
@@ -71,6 +71,7 @@
                     :ratio.sync="ratio"
                     :itemMinHeight="43"
                     :searchEmpty="searchEmpty"
+                    :show="show"
                 >
                     <template v-slot:block="props">
 
@@ -95,9 +96,9 @@
 </template>
 
 <script>
-import color2hex from '../js/vuetifyColor.mjs'
 import get from 'lodash/get'
 import isobj from 'wsemi/src/isobj.mjs'
+import color2hex from '../js/vuetifyColor.mjs'
 import WPopup from './WPopup.vue'
 import WTextCore from './WTextCore.vue'
 import WDynamicList from './WDynamicList.vue'
@@ -114,8 +115,8 @@ import WDynamicList from './WDynamicList.vue'
  * @vue-prop {String} [itemBackgroundColorHover='light-blue lighten-5'] 輸入項目背景Hover顏色字串，預設'light-blue lighten-5'
  * @vue-prop {String} [iconColor='#999'] 輸入圖標顏色字串，預設'#999'
  * @vue-prop {Number} [maxHeight=200] 輸入顯示區最大高度，單位為px，預設200
- * @vue-prop {Number} [minWidth=undefined] 輸入最小寬度，單位為px，預設undefined
- * @vue-prop {Number} [maxWidth=undefined] 輸入最大寬度，單位為px，預設undefined
+ * @vue-prop {Number} [minWidth=null] 輸入最小寬度，單位為px，預設null
+ * @vue-prop {Number} [maxWidth=null] 輸入最大寬度，單位為px，預設null
  * @vue-prop {Number} [distY=5] 輸入彈窗距離觸發元素底部的距離，單位為px，預設5
  * @vue-prop {String} [textAlign='left'] 輸入文字左右對齊字串，預設'left'
  * @vue-prop {String} [placeholder=''] 輸入無文字時的替代字符字串，預設''
@@ -176,11 +177,11 @@ export default {
         },
         minWidth: {
             type: Number,
-            default: undefined,
+            default: null,
         },
         maxWidth: {
             type: Number,
-            default: undefined,
+            default: null,
         },
         distY: {
             type: Number,
@@ -211,11 +212,26 @@ export default {
         return {
             show: false,
             valueTrans: null,
-            focusedTrans: false,
             ratio: 0,
         }
     },
     computed: {
+
+        changeValue: function () {
+            //console.log('computed changeValue')
+
+            let vo = this
+
+            //valueTrans
+            if (isobj(vo.value)) {
+                vo.valueTrans = vo.value[vo.itemText]
+            }
+            else {
+                vo.valueTrans = vo.value
+            }
+
+            return ''
+        },
 
         useItemBackgroundColor: function() {
             //console.log('computed useItemBackgroundColor')
@@ -257,22 +273,6 @@ export default {
             return color2hex(vo.iconColor)
         },
 
-        changeValue: function () {
-            //console.log('computed changeValue')
-
-            let vo = this
-
-            //valueTrans
-            if (isobj(vo.value)) {
-                vo.valueTrans = vo.value[vo.itemText]
-            }
-            else {
-                vo.valueTrans = vo.value
-            }
-
-            return ''
-        },
-
         getRotateDeg: function() {
             //console.log('computed getRotateDeg')
 
@@ -299,10 +299,35 @@ export default {
 
         },
 
+        selectText: function() {
+            //console.log('methods selectText')
+
+            let vo = this
+
+            //check, 不可編輯時跳出
+            if (!vo.editable) {
+                return
+            }
+
+            //check, 若由滑鼠進行範圍選擇, 離開時位於組件外時, 會被popup視為滑鼠點擊至內容區外側(於外面mousuup), 故會自動隱藏選單, 得重新顯示
+            if (!vo.show) {
+
+                //show
+                vo.show = true
+
+            }
+
+        },
+
         changeValueTrans: function(value) {
             //console.log('methods changeValueTrans')
 
             let vo = this
+
+            //check, 不可編輯時跳出
+            if (!vo.editable) {
+                return
+            }
 
             //$nextTick
             vo.$nextTick(() => {
@@ -311,40 +336,30 @@ export default {
                 vo.valueTrans = value
 
                 //triggerEvent
-                vo.triggerEvent('input', value, null)
+                vo.triggerEvent('input', value, null, 'changeValueTrans') //文字框查詢關鍵字
 
             })
 
         },
 
-        changeFocused: function(focused, from) {
-            //console.log('methods changeFocused', focused, from)
+        changeShow: function(show) {
+            //console.log('methods changeShow', show)
 
             let vo = this
 
-            //focusedTrans
-            vo.focusedTrans = focused
-
-            //因WPopupPanel內v-menu顯示後有延遲顯示dom, 導致組件WDynamicList於focused=true時尚未出現或mounted, 此處靠算準延遲調用triggerEvent
-            if (focused) {
-                setTimeout(async () => {
-
+            //因WPopup內第二次重新顯示後僅panel元素由display:none轉為block, 而重新顯示時會因沒觸發高度或捲軸變化, 導致組件WDynamicList無法依照最新顯示數據重算顯示項目高度, 故延遲調用triggerEvent
+            if (show) {
+                setTimeout(() => {
                     //t
                     let t = get(vo, '$refs.wds.refreshAndTriggerEvent', null)
                     if (t) {
                         t('show')
                     }
-
-                }, 300)
+                }, 100)
             }
 
-            //同步顯示狀態
-            setTimeout(() => {
-                vo.show = focused
-            }, 300)
-
             //triggerEvent
-            vo.triggerEvent('update:focused', focused, null)
+            vo.triggerEvent('update:focused', show, null, 'changeShow')
 
         },
 
@@ -353,32 +368,37 @@ export default {
 
             let vo = this
 
+            //check, 不可編輯時跳出
+            if (!vo.editable) {
+                return
+            }
+
             //hide
             vo.show = false
 
-            //changeFocused, 點擊後自動取消focus
-            vo.changeFocused(false)
+            //triggerEvent, 因直接修改show不會觸發WPopup的input事件, 得自己補觸發update:focused
+            vo.triggerEvent('update:focused', vo.show, null, 'clickItem')
 
-            //$nextTick
-            vo.$nextTick(() => {
-
-                //triggerEvent
-                vo.triggerEvent('input', item, kitem)
-
-            })
+            //triggerEvent
+            vo.triggerEvent('input', item, kitem, 'clickItem') //點擊選擇項目
 
         },
 
-        triggerEvent: function(from, item, kitem) {
-            //console.log('methods triggerEvent', from, item, kitem)
+        triggerEvent: function(name, item, kitem, from) {
+            //console.log('methods triggerEvent', name, item, kitem, from)
 
             let vo = this
+
+            //check, 不可編輯時跳出
+            if (!vo.editable) {
+                return
+            }
 
             //$nextTick
             vo.$nextTick(() => {
 
                 //emit
-                vo.$emit(from, item, kitem)
+                vo.$emit(name, item, kitem)
 
             })
 

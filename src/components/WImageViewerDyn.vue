@@ -94,9 +94,10 @@ export default {
                 //loading
                 vo.loading = false
 
-                //domFadeIn
+                //$nextTick
                 vo.$nextTick(() => {
                     each(vo.$refs.imgsGroup.children, (img, k) => {
+                        //domFadeIn
                         domFadeIn(img, { duration: 200, delay: k * 100 })
                     })
                 })

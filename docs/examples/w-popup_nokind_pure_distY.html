@@ -80,7 +80,7 @@
     <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.js"></script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@1.4.36/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@1.4.37/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -122,13 +122,13 @@
         <div class="bk">
             <div class="item">distY</div>
 
-            <w-popup :dist-y="0" v-model="WPopup.bShow4">
+            <w-popup :dist-y="10" v-model="WPopup.bShow5">
                 <template v-slot:trigger>
-                    <v-btn small rounded>Show({{WPopup.bShow4}})</v-btn>
+                    <v-btn small rounded>Show({{WPopup.bShow5}})</v-btn>
                 </template>
 
                 <template v-slot:content>
-                    <v-list>
+                    <v-list style="background:transparent;">
                         <v-list-item
                             style="min-height:inherit; padding:5px 15px;"
                             :key="kitem"
@@ -166,6 +166,15 @@
           bShow6: false,
           bShow7: false,
           bShow8: false,
+          bShow9: false,
+          bShow10: false,
+          bShow11: false,
+          bShow11a: false,
+          bShow11b: false,
+          bShow12: false,
+          bShow12a: false,
+          bShow13: false,
+          bShow14: false,
           items: ["foo", "bar", "fizz", "buzz"],
           text:
             "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis praesentium cumque magnam odio iure quidem, quod illum numquam possimus obcaecati commodi minima assumenda consectetur culpa fuga nulla ullam. In, libero.",
@@ -209,7 +218,14 @@
       };
     },
     computed: {},
-    methods: {}
+    methods: {
+      clickHide: function() {
+        let vo = this;
+        setTimeout(function() {
+          vo.WPopup.bShow2 = false;
+        }, 200);
+      }
+    }
   });
     </script>
 </body>

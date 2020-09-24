@@ -367,7 +367,7 @@ export default {
             //ratioTrans
             let ratioTrans = vo.ratioTrans
 
-            //change
+            //update
             if (ratioTrans >= 0 && ratioTrans <= 1) {
                 ratioTrans += deltaRatio
             }

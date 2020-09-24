@@ -1,6 +1,6 @@
 {
   "name": "w-component-vue",
-  "version": "1.4.36",
+  "version": "1.4.37",
   "author": "yuda-lyu(semisphere)",
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -12,13 +12,12 @@
   "main": "dist/w-component-vue.umd.js",
   "dependencies": {
     "@mdi/js": "^5.6.55",
-    "@shopify/draggable": "^1.0.0-beta.8",
     "element-ui": "^2.13.2",
     "lodash": "^4.17.20",
     "vue-cli-plugin-vuetify": "^2.0.7",
     "vuetify": "^2.3.10",
     "vuetify-loader": "^1.6.0",
-    "wsemi": "^1.5.18"
+    "wsemi": "^1.5.19"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^4.5.6",

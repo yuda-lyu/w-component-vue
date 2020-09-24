@@ -6,7 +6,7 @@
         :contentHeight="itemsHeight"
         :changeColors="changeColors"
         :changeFilterKeyWords="changeFilterKeyWords"
-        @change="changeScroll"
+        @change="changeScrollInfor"
         @toggleItemsEnd="toggleItemsEnd"
     >
 
@@ -57,8 +57,10 @@ import globalMemory from '../js/globalMemory.mjs'
 import WPanelScrollyCore from './WPanelScrollyCore.vue'
 import WJsonViewCore from './WJsonViewCore.vue'
 
+
 //gm
 let gm = globalMemory()
+
 
 /**
  * @vue-prop {*} data 輸入資料陣列或物件
@@ -297,8 +299,8 @@ export default {
                 //delay
                 await delay(1)
 
-                //updateItems
-                let b = vo.updateItems()
+                //updateItemsHeight
+                let b = vo.updateItemsHeight()
 
                 //resolve
                 pm.resolve(b)
@@ -424,8 +426,8 @@ export default {
 
         },
 
-        updateItems: function() {
-            //console.log('methods updateItems')
+        updateItemsHeight: function() {
+            //console.log('methods updateItemsHeight')
 
             let vo = this
 
@@ -933,8 +935,8 @@ export default {
 
         },
 
-        changeScroll: async function(e) {
-            //console.log('methods changeScroll', e)
+        changeScrollInfor: async function(e) {
+            //console.log('methods changeScrollInfor', e)
 
             let vo = this
 

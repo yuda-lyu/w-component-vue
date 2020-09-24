@@ -25,7 +25,31 @@
                     </template>
 
                     <template v-slot:content>
-                        <v-list><v-list-item style="min-height:inherit; padding:5px 15px;" :key="kitem" @click="()=>{}" v-for="(item,kitem) in WPopup.items">Item {{item}}</v-list-item></v-list>
+                        <v-list style="background:transparent;"><v-list-item style="min-height:inherit; padding:5px 15px;" :key="kitem" @click="()=>{}" v-for="(item,kitem) in WPopup.items">Item {{item}}</v-list-item></v-list>
+                    </template>
+
+                </w-popup>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-popup'"
+                    :casename="'click item and delay hiding'"
+                    :kind="'nokind'"
+                    :shell="'pure'"
+                ></demolink>
+
+                <w-popup
+                    v-model="WPopup.bShow2"
+                >
+
+                    <template v-slot:trigger>
+                        <v-btn small rounded>Show({{WPopup.bShow2}})</v-btn>
+                    </template>
+
+                    <template v-slot:content>
+                        <v-list style="background:transparent;"><v-list-item style="min-height:inherit; padding:5px 15px;" :key="kitem" @click="clickHide" v-for="(item,kitem) in WPopup.items">Item {{item}}</v-list-item></v-list>
                     </template>
 
                 </w-popup>
@@ -41,16 +65,16 @@
                 ></demolink>
 
                 <w-popup
-                    :minWidth="300"
-                    v-model="WPopup.bShow2"
+                    :minWidth="200"
+                    v-model="WPopup.bShow3"
                 >
 
                     <template v-slot:trigger>
-                        <v-btn small rounded>Show({{WPopup.bShow2}})</v-btn>
+                        <v-btn small rounded>Show({{WPopup.bShow3}})</v-btn>
                     </template>
 
                     <template v-slot:content>
-                        <v-list><v-list-item style="min-height:inherit; padding:5px 15px;" :key="kitem" @click="()=>{}" v-for="(item,kitem) in WPopup.items">Item {{item}}</v-list-item></v-list>
+                        <v-list style="background:transparent;"><v-list-item style="min-height:inherit; padding:5px 15px;" :key="kitem" @click="()=>{}" v-for="(item,kitem) in WPopup.items">Item {{item}}</v-list-item></v-list>
                     </template>
 
                 </w-popup>
@@ -67,11 +91,11 @@
 
                 <w-popup
                     :maxWidth="500"
-                    v-model="WPopup.bShow3"
+                    v-model="WPopup.bShow4"
                 >
 
                     <template v-slot:trigger>
-                        <v-btn small rounded>Show({{WPopup.bShow3}})</v-btn>
+                        <v-btn small rounded>Show({{WPopup.bShow4}})</v-btn>
                     </template>
 
                     <template v-slot:content>
@@ -94,16 +118,41 @@
                 ></demolink>
 
                 <w-popup
-                    :distY="0"
-                    v-model="WPopup.bShow4"
+                    :distY="10"
+                    v-model="WPopup.bShow5"
                 >
 
                     <template v-slot:trigger>
-                        <v-btn small rounded>Show({{WPopup.bShow4}})</v-btn>
+                        <v-btn small rounded>Show({{WPopup.bShow5}})</v-btn>
                     </template>
 
                     <template v-slot:content>
-                        <v-list><v-list-item style="min-height:inherit; padding:5px 15px;" :key="kitem" @click="()=>{}" v-for="(item,kitem) in WPopup.items">Item {{item}}</v-list-item></v-list>
+                        <v-list style="background:transparent;"><v-list-item style="min-height:inherit; padding:5px 15px;" :key="kitem" @click="()=>{}" v-for="(item,kitem) in WPopup.items">Item {{item}}</v-list-item></v-list>
+                    </template>
+
+                </w-popup>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-popup'"
+                    :casename="'borderRadius'"
+                    :kind="'nokind'"
+                    :shell="'pure'"
+                ></demolink>
+
+                <w-popup
+                    :borderRadius="10"
+                    v-model="WPopup.bShow6"
+                >
+
+                    <template v-slot:trigger>
+                        <v-btn small rounded>Show({{WPopup.bShow6}})</v-btn>
+                    </template>
+
+                    <template v-slot:content>
+                        <v-list style="background:transparent;"><v-list-item style="min-height:inherit; padding:5px 15px;" :key="kitem" @click="()=>{}" v-for="(item,kitem) in WPopup.items">Item {{item}}</v-list-item></v-list>
                     </template>
 
                 </w-popup>
@@ -120,15 +169,15 @@
 
                 <w-popup
                     :backgroundColor="'pink darken-2'"
-                    v-model="WPopup.bShow5"
+                    v-model="WPopup.bShow7"
                 >
 
                     <template v-slot:trigger>
-                        <v-btn small rounded>Show({{WPopup.bShow5}})</v-btn>
+                        <v-btn small rounded>Show({{WPopup.bShow7}})</v-btn>
                     </template>
 
                     <template v-slot:content>
-                        <v-list dark color="pink darken-2"><v-list-item style="min-height:inherit; padding:5px 15px;" :key="kitem" @click="()=>{}" v-for="(item,kitem) in WPopup.items">Item {{item}}</v-list-item></v-list>
+                        <v-list style="background:transparent;"><v-list-item style="min-height:inherit; padding:5px 15px;" dark :key="kitem" @click="()=>{}" v-for="(item,kitem) in WPopup.items">Item {{item}}</v-list-item></v-list>
                     </template>
 
                 </w-popup>
@@ -138,25 +187,196 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-popup'"
-                    :casename="'not editable'"
+                    :casename="'no shadow & backgroundColor'"
                     :kind="'nokind'"
                     :shell="'pure'"
                 ></demolink>
 
                 <w-popup
-                    :editable="false"
-                    v-model="WPopup.bShow6"
+                    :shadow="false"
+                    :backgroundColor="'#e08956'"
+                    v-model="WPopup.bShow8"
                 >
 
                     <template v-slot:trigger>
-                        <v-btn small rounded>Show({{WPopup.bShow6}})</v-btn>
+                        <v-btn small rounded>Show({{WPopup.bShow8}})</v-btn>
                     </template>
 
                     <template v-slot:content>
-                        <v-list><v-list-item style="min-height:inherit; padding:5px 15px;" :key="kitem" @click="()=>{}" v-for="(item,kitem) in WPopup.items">Item {{item}}</v-list-item></v-list>
+                        <v-list style="background:transparent;"><v-list-item style="min-height:inherit; padding:5px 15px;" dark :key="kitem" @click="()=>{}" v-for="(item,kitem) in WPopup.items">Item {{item}}</v-list-item></v-list>
                     </template>
 
                 </w-popup>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-popup'"
+                    :casename="'shadowStyle'"
+                    :kind="'nokind'"
+                    :shell="'pure'"
+                ></demolink>
+
+                <w-popup
+                    :shadowStyle="'0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);'"
+                    v-model="WPopup.bShow9"
+                >
+
+                    <template v-slot:trigger>
+                        <v-btn small rounded>Show({{WPopup.bShow9}})</v-btn>
+                    </template>
+
+                    <template v-slot:content>
+                        <v-list style="background:transparent;"><v-list-item style="min-height:inherit; padding:5px 15px;" :key="kitem" @click="()=>{}" v-for="(item,kitem) in WPopup.items">Item {{item}}</v-list-item></v-list>
+                    </template>
+
+                </w-popup>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-popup'"
+                    :casename="'in scroll panel'"
+                    :kind="'nokind'"
+                    :shell="'pure'"
+                ></demolink>
+
+                <div style="height:300px; overflow-y:auto;">
+                    <div style="height:600px;">
+
+                        <div style="height:200px;"></div>
+
+                        <w-popup
+                            v-model="WPopup.bShow10"
+                        >
+
+                            <template v-slot:trigger>
+                                <v-btn small rounded>Show({{WPopup.bShow10}})</v-btn>
+                            </template>
+
+                            <template v-slot:content>
+                                <v-list style="background:transparent;"><v-list-item style="min-height:inherit; padding:5px 15px;" :key="kitem" @click="()=>{}" v-for="(item,kitem) in WPopup.items">Item {{item}}</v-list-item></v-list>
+                            </template>
+
+                        </w-popup>
+
+                        <div style="height:200px;"></div>
+
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-popup'"
+                    :casename="'in popup'"
+                    :kind="'nokind'"
+                    :shell="'pure'"
+                ></demolink>
+
+                <w-popup
+                    v-model="WPopup.bShow11"
+                >
+
+                    <template v-slot:trigger>
+                        <v-btn small rounded>Show({{WPopup.bShow11}})</v-btn>
+                    </template>
+
+                    <template v-slot:content>
+                        <div style="padding:50px;">
+
+                            <div style="font-size:0.8rem; white-space:nowrap;">Here is 1st pupop.</div>
+
+                            <w-popup
+                                v-model="WPopup.bShow11a"
+                            >
+
+                                <template v-slot:trigger>
+                                    <v-btn small rounded>Show({{WPopup.bShow11a}})</v-btn>
+                                </template>
+
+                                <template v-slot:content>
+                                    <div style="padding:50px;">
+
+                                        <div style="font-size:0.8rem; white-space:nowrap;">Here is 2nd pupop.</div>
+                                        <div style="font-size:0.7rem; white-space:nowrap; color:#f26;">It will close when click to the outside of the content of 1st pupop.</div>
+
+                                        <w-popup
+                                            v-model="WPopup.bShow11b"
+                                        >
+
+                                            <template v-slot:trigger>
+                                                <v-btn small rounded>Show({{WPopup.bShow11b}})</v-btn>
+                                            </template>
+
+                                            <template v-slot:content>
+                                                <div style="padding:10px 15px 0px 15px;">
+                                                    <div style="font-size:0.8rem; white-space:nowrap;">Here is 3rd pupop.</div>
+                                                    <div style="font-size:0.7rem; white-space:nowrap; color:#f26;">It will close when click to the outside of the content of 1st or 2st pupop.</div>
+                                                </div>
+                                                <v-list style="background:transparent;"><v-list-item style="min-height:inherit; padding:5px 15px;" :key="kitem" @click="()=>{}" v-for="(item,kitem) in WPopup.items">Item {{item}}</v-list-item></v-list>
+                                            </template>
+
+                                        </w-popup>
+
+                                    </div>
+                                </template>
+
+                            </w-popup>
+
+                        </div>
+                    </template>
+
+                </w-popup>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-popup'"
+                    :casename="'in dialog'"
+                    :kind="'nokind'"
+                    :shell="'pure'"
+                ></demolink>
+
+                <v-btn small rounded @click="WPopup.bShow12=!WPopup.bShow12">Show({{WPopup.bShow12}})</v-btn>
+
+                <w-dialog
+                    :show.sync="WPopup.bShow12"
+                    :title="'in dialog'"
+                    :widthMax="300"
+                >
+
+                    <template v-slot:content>
+                        <div style="padding:20px; height:400px;">
+
+                            <div style="height:200px;"></div>
+
+                            <w-popup
+                                v-model="WPopup.bShow12a"
+                            >
+
+                                <template v-slot:trigger>
+                                    <v-btn small rounded>Show({{WPopup.bShow12a}})</v-btn>
+                                </template>
+
+                                <template v-slot:content>
+                                    <v-list style="background:transparent;"><v-list-item style="min-height:inherit; padding:5px 15px;" :key="kitem" @click="()=>{}" v-for="(item,kitem) in WPopup.items">Item {{item}}</v-list-item></v-list>
+                                </template>
+
+                            </w-popup>
+
+                            <div style="height:500px;"></div>
+
+                        </div>
+                    </template>
+
+                </w-dialog>
+
             </div>
 
 
@@ -170,11 +390,11 @@
 
                 <w-popup
                     :maxWidth="400"
-                    v-model="WPopup.bShow7"
+                    v-model="WPopup.bShow13"
                 >
 
                     <template v-slot:trigger>
-                        <v-btn small rounded>Show({{WPopup.bShow7}})</v-btn>
+                        <v-btn small rounded>Show({{WPopup.bShow13}})</v-btn>
                     </template>
 
                     <template v-slot:content>
@@ -193,6 +413,31 @@
             </div>
 
 
+            <div class="bk">
+                <demolink
+                    :kbname="'w-popup'"
+                    :casename="'not editable'"
+                    :kind="'nokind'"
+                    :shell="'pure'"
+                ></demolink>
+
+                <w-popup
+                    :editable="false"
+                    v-model="WPopup.bShow14"
+                >
+
+                    <template v-slot:trigger>
+                        <v-btn small rounded>Show({{WPopup.bShow14}})</v-btn>
+                    </template>
+
+                    <template v-slot:content>
+                        <v-list style="background:transparent;"><v-list-item style="min-height:inherit; padding:5px 15px;" :key="kitem" @click="()=>{}" v-for="(item,kitem) in WPopup.items">Item {{item}}</v-list-item></v-list>
+                    </template>
+
+                </w-popup>
+            </div>
+
+
         </div>
 
 
@@ -203,12 +448,14 @@
 import { mdiViewDashboard, mdiClockTimeEightOutline, mdiBlenderSoftware, mdiApple, mdiSpoonSugar } from '@mdi/js'
 import demolink from './components/demolink.vue'
 import WPopup from './components/WPopup.vue'
+import WDialog from './components/WDialog.vue'
 
 
 export default {
     components: {
         demolink,
         WPopup,
+        WDialog,
     },
     props: {
         modeBorder: {
@@ -240,6 +487,15 @@ export default {
                 'bShow6': false,
                 'bShow7': false,
                 'bShow8': false,
+                'bShow9': false,
+                'bShow10': false,
+                'bShow11': false,
+                'bShow11a': false,
+                'bShow11b': false,
+                'bShow12': false,
+                'bShow12a': false,
+                'bShow13': false,
+                'bShow14': false,
                 'items': ['foo', 'bar', 'fizz', 'buzz'],
                 'text': 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis praesentium cumque magnam odio iure quidem, quod illum numquam possimus obcaecati commodi minima assumenda consectetur culpa fuga nulla ullam. In, libero.',
                 'table': f2c(function() {
@@ -281,6 +537,14 @@ export default {
             'actions': [
             ],
         }
+    },
+    methods: {
+        clickHide: function() {
+            let vo = this
+            setTimeout(function() {
+                vo.WPopup.bShow2 = false
+            }, 200)
+        },
     },
 }
 </script>

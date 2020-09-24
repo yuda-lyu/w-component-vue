@@ -4,7 +4,7 @@
         :viewHeightMax="viewHeightMax"
         :contentHeight="itemsHeight"
         :changeFilterKeyWords="changeFilterKeyWords"
-        @change="changeScroll"
+        @change="changeScrollInfor"
     >
 
         <template v-for="(item,kitem) in useItems">
@@ -56,8 +56,10 @@ import binarySearch from '../js/binarySearch.mjs'
 import globalMemory from '../js/globalMemory.mjs'
 import WPanelScrollyCore from './WPanelScrollyCore.vue'
 
+
 //gm
 let gm = globalMemory()
+
 
 /**
  * @vue-prop {Array} [rows=[]] 輸入資料陣列，預設[]，各元素配合slot顯示即可，slot內提供row與irow，對應原始rows內各元素與指標，另外各元素slot時不要用margin避免計算高度有誤差
@@ -66,6 +68,7 @@ let gm = globalMemory()
  * @vue-prop {Number} [itemMinHeight=24] 輸入各元素顯示高度，單位為px，預設24，會於真實顯示後自動更新高度
  * @vue-prop {Number} [itemsPreload=5] 輸入上下方預先載入元素數量，預設5
  * @vue-prop {String} [searchEmpty='Empty'] 輸入無過濾結果字串，預設'Empty'
+ * @vue-prop {Boolean} [show=true] 輸入是否為顯示模式，預設true，供組件嵌入popup時, 因先初始化但尚未顯示不需渲染, 可給予show=false避免無限偵測與重算高度問題
  */
 export default {
     components: {
@@ -96,6 +99,10 @@ export default {
             type: String,
             default: 'Empty',
         },
+        show: {
+            type: Boolean,
+            default: true,
+        },
     },
     data: function() {
         return {
@@ -107,6 +114,8 @@ export default {
             filterKeywordsTemp: '', //上次過濾關鍵字
             itemsHeight: 0, //全部節點高度
             useItems: [], //實際需顯示節點陣列
+            refreshList: [],
+            refreshing: false,
         }
     },
     mounted: function() {
@@ -260,8 +269,8 @@ export default {
                 //delay
                 await delay(1)
 
-                //updateItems
-                let b = vo.updateItems()
+                //updateItemsHeight
+                let b = vo.updateItemsHeight()
 
                 //resolve
                 pm.resolve(b)
@@ -389,8 +398,8 @@ export default {
 
         },
 
-        updateItems: function() {
-            //console.log('methods updateItems')
+        updateItemsHeight: function() {
+            //console.log('methods updateItemsHeight')
 
             let vo = this
 
@@ -406,7 +415,7 @@ export default {
             //n
             let n = size(items)
 
-            //update height
+            //check changeHeight
             each(vo.$refs.wdsDiv, (v) => {
                 if (v.getAttribute) {
                     let nowShow = v.getAttribute('nowShow')
@@ -422,6 +431,11 @@ export default {
                     }
                 }
             })
+
+            //check visible, 若組件未顯示(例如display:none)則不視為高度有變更狀態, 避免無限更新
+            if (!vo.show) {
+                vo.changeHeight = false
+            }
 
             //check
             let b = vo.changeHeight || vo.changeFilter //changeHeight預設為true, 故第1次一定會重算itemsHeight
@@ -447,6 +461,7 @@ export default {
 
                 //check empty
                 if (itemsHeightTemp === 0) {
+                    //console.log('偵測出現itemsHeightTemp=0, 強制改為43')
                     itemsHeightTemp = 43 //先預算出empty時高度
                 }
 
@@ -468,8 +483,8 @@ export default {
             return b
         },
 
-        changeScroll: async function(e) {
-            //console.log('methods changeScroll', e)
+        changeScrollInfor: async function(e) {
+            //console.log('methods changeScrollInfor', e)
 
             let vo = this
 
@@ -541,7 +556,6 @@ export default {
                         c = toString(r)
                     }
                     else if (iseobj(r)) {
-                        //console.log('r', r, 'values(r)', values(r))
                         c = join(values(r), '')
                     }
                     else {

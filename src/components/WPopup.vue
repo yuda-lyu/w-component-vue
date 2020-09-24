@@ -1,53 +1,47 @@
-<template >
-    <v-menu
-        offset-y
-        :min-width="minWidth"
-        :max-width="maxWidth"
-        :nudge-top="-distY"
-        :close-on-click="false"
-        :close-on-content-click="false"
-        :disabled="!editable"
-        :value="valueTrans"
-        @input="(v)=>{changeValueTrans(v,'v-menu')}"
-        :changeValue="changeValue"
-    >
-
-        <template v-slot:activator="{ on }">
-            <div
-                ref="divTrigger"
-                v-on="on"
-                :style="`display:${isBlock?'block':'inline-block'};`"
-                @click="clickTrigger"
-            >
-                <slot name="trigger"></slot>
-            </div>
-        </template>
+<template>
+    <div style="display:inline-block;" :changeValue="changeValue">
 
         <div
+            divTrigger
+            ref="divTrigger"
+            @click.stop="clickTrigger"
+        >
+            <slot name="trigger"></slot>
+        </div>
+
+        <!-- 不用v-if因註冊監聽divContent僅mounted一次, 若用v-if顯隱則需每次都重新監聽較為複雜 -->
+        <div
+            divContent
             ref="divContent"
-            :style="`background:${useBackgroundColor};`"
+            class="WPopup"
+            :style="`z-index:99999; background:${useBackgroundColor}; ${useMinWidth} ${useMaxWidth} ${useBorderRadius} ${useShadow}`"
+            v-show="valueTrans"
         >
             <slot name="content"></slot>
         </div>
 
-    </v-menu>
+    </div>
 </template>
 
 <script>
 import get from 'lodash/get'
-import size from 'lodash/size'
-import waitFun from 'wsemi/src/waitFun.mjs'
-import domCancelEvent from 'wsemi/src/domCancelEvent.mjs'
-import isEle from 'wsemi/src/isEle.mjs'
+import isNumber from 'lodash/isNumber'
+import replace from 'wsemi/src/replace.mjs'
+import domIsClientXYIn from 'wsemi/src/domIsClientXYIn.mjs'
 import color2hex from '../js/vuetifyColor.mjs'
+import { createPopper } from '@popperjs/core' //不用安裝, 因wsemi安裝tippy.js內有依賴@popperjs/core
+//import { createPopper } from '@popperjs/core/lib/popper-lite'
 
 
 /**
  * @vue-prop {Number} [value=false] 輸入是否顯示，預設false
- * @vue-prop {Number} [minWidth=undefined] 輸入最小寬度，單位為px，預設undefined
- * @vue-prop {Number} [maxWidth=undefined] 輸入最大寬度，單位為px，預設undefined
+ * @vue-prop {Number} [minWidth=null] 輸入最小寬度，單位為px，預設null
+ * @vue-prop {Number} [maxWidth=null] 輸入最大寬度，單位為px，預設null
  * @vue-prop {Number} [distY=5] 輸入彈窗距離觸發元素底部的距離，單位為px，預設5
+ * @vue-prop {Number} [borderRadius=4] 輸入框圓角寬度數字，單位為px，預設4
  * @vue-prop {String} [backgroundColor='white'] 輸入內容區塊背景顏色字串，預設'white'
+ * @vue-prop {Boolean} [shadow=true] 輸入是否顯示陰影，預設true
+ * @vue-prop {String} [shadowStyle=''] 輸入陰影顏色字串，預設值詳見props
  * @vue-prop {Boolean} [editable=true] 輸入是否為編輯模式，預設true
  */
 export default {
@@ -58,19 +52,31 @@ export default {
         },
         minWidth: {
             type: Number,
-            default: undefined,
+            default: null,
         },
         maxWidth: {
             type: Number,
-            default: undefined,
+            default: null,
         },
         distY: {
             type: Number,
             default: 5,
         },
+        borderRadius: {
+            type: Number,
+            default: 4,
+        },
         backgroundColor: {
             type: String,
             default: 'white',
+        },
+        shadow: {
+            type: Boolean,
+            default: true,
+        },
+        shadowStyle: {
+            type: String,
+            default: '0 5px 5px -3px rgba(0,0,0,.2), 0 8px 10px 1px rgba(0,0,0,.14), 0 3px 14px 2px rgba(0,0,0,.12)',
         },
         editable: {
             type: Boolean,
@@ -79,13 +85,16 @@ export default {
     },
     data: function() {
         return {
-            timeDisabled: null,
+
             valueTrans: false,
+
+            triggerWidth: null,
             clickInner: false,
-            eleMousedown: null,
             windowMousedown: null,
             windowMouseup: null,
-            isBlock: false,
+
+            popperInstance: null,
+
         }
     },
     mounted: function() {
@@ -93,72 +102,40 @@ export default {
 
         let vo = this
 
-        //eleMousedown
-        vo.eleMousedown = (e) => {
-            vo.clickInner = true
-            domCancelEvent(e)
-        }
-        waitFun(() => {
-            return get(vo, '$refs.divContent.addEventListener', null) !== null //不能保證slot已載入有元素可addEventListener, 故需等待
-        })
-            .then(() => {
-
-                //ele
-                let ele = vo.$refs.divContent
-
-                //check, 因為hotreload會導致重新載入, 而若剛好waitFun剛通過觸發then就會再失去該元素, 故需再次檢核
-                if (ele) {
-                    ele.addEventListener('mousedown', vo.eleMousedown)
-                }
-
-            })
-
         //windowMousedown
         vo.windowMousedown = (e) => {
-            vo.clickInner = false //因為eleMousedown會cancelEvent, 所以點擊ele時不會觸發window mousedown
-            //domCancelEvent(e)
+            //console.log('windowMousedown', e)
+
+            //divContent
+            let divContent = get(vo, '$refs.divContent', null)
+
+            //是否點擊於內容區內
+            if (divContent) {
+                vo.clickInner = domIsClientXYIn(e.clientX, e.clientY, divContent)
+            }
+
         }
         window.addEventListener('mousedown', vo.windowMousedown)
 
         //windowMouseup
         vo.windowMouseup = (e) => {
-            if (!vo.clickInner && vo.valueTrans) {
-                vo.triggerEventThreshold(false, 'clickOuter')
-                //domCancelEvent(e)
+            //console.log('windowMouseup', e)
+
+            //console.log(vo.mmkey, 'windowMouseup', `clickOuter`, !vo.clickInner)
+            //console.log(vo.mmkey, 'windowMouseup', `valueTrans`, vo.valueTrans)
+            if (!vo.clickInner && vo.valueTrans) { //非點擊divContent與當前為顯示狀態時, 才觸發事件進行隱藏
+
+                //triggerEvent for hide
+                vo.triggerEvent(false)
+
+                //console.log(vo.mmkey, '隱藏')
+            }
+            else {
+                vo.clickInner = false
+                //console.log(vo.mmkey, '不隱藏')
             }
         }
         window.addEventListener('mouseup', vo.windowMouseup)
-
-        //自動調整divTrigger的display
-        waitFun(() => {
-            return get(vo, '$refs.divTrigger', null) !== null
-        })
-            .then(() => {
-
-                //divTriggerChilds
-                let divTriggerChilds = get(vo, '$refs.divTrigger.children', null)
-
-                //check
-                if (size(divTriggerChilds) === 0) {
-                    //console.log('無法找到點擊區內元素')
-                    return
-                }
-
-                //找尋slot內各元素, 看是否有block或flex元素
-                let isBlock = false
-                for (let i = 0; i < size(divTriggerChilds); i++) {
-                    let divTriggerChild = divTriggerChilds[i]
-                    let display = getComputedStyle(divTriggerChild).display
-                    isBlock = display === 'block' || display === 'flex'
-                    if (isBlock) {
-                        break
-                    }
-                }
-
-                //save
-                vo.isBlock = isBlock
-
-            })
 
     },
     beforeDestroy: function() {
@@ -166,17 +143,12 @@ export default {
 
         let vo = this
 
-        //ele
-        let ele = get(vo, '$refs.divContent', null)
-
-        //ele remove mousedown
-        if (ele) {
-            ele.removeEventListener('mousedown', vo.eleMousedown)
-        }
-
-        //window remove mousedown, mouseup
+        //window remove mousedown mouseup
         window.removeEventListener('mousedown', vo.windowMousedown)
         window.removeEventListener('mouseup', vo.windowMouseup)
+
+        //hidePopper
+        vo.hidePopper()
 
     },
     computed: {
@@ -186,9 +158,52 @@ export default {
 
             let vo = this
 
+            //check, 不可編輯時跳出
+            if (!vo.editable) {
+                return
+            }
+
             //save
             vo.valueTrans = vo.value
 
+            //display
+            vo.display()
+
+            return ''
+        },
+
+        useMinWidth: function() {
+            //console.log('computed useMinWidth')
+
+            let vo = this
+
+            //minWidth
+            let minWidth = vo.triggerWidth
+            if (isNumber(vo.minWidth)) {
+                minWidth = vo.minWidth
+            }
+            return `min-width:${minWidth}px;`
+        },
+
+        useMaxWidth: function() {
+            //console.log('computed useMaxWidth')
+
+            let vo = this
+
+            if (isNumber(vo.maxWidth)) {
+                return `max-width:${vo.maxWidth}px;`
+            }
+            return ''
+        },
+
+        useBorderRadius: function() {
+            //console.log('computed useBorderRadius')
+
+            let vo = this
+
+            if (isNumber(vo.borderRadius)) {
+                return `border-radius:${vo.borderRadius}px;`
+            }
             return ''
         },
 
@@ -200,14 +215,51 @@ export default {
             return color2hex(vo.backgroundColor)
         },
 
-    },
-    methods: {
-
-        triggerEvent: function(value, from) {
-            //console.log('methods triggerEvent', value, from)
+        useShadow: function() {
+            //console.log('computed useShadow')
 
             let vo = this
 
+            //check
+            if (!vo.shadow) {
+                return ''
+            }
+
+            //shadowStyle
+            let s = replace(vo.shadowStyle, ';', '')
+            if (s !== '') {
+                return `box-shadow:${s};`
+            }
+
+            return ''
+        },
+
+    },
+    methods: {
+
+        display: function() {
+            //console.log('methods display')
+
+            let vo = this
+
+            //showPopper or hidePopper
+            vo.$nextTick(() => {
+                if (vo.editable && vo.valueTrans) { //顯示時valueTrans=true與可編輯時才顯示, 否則一律隱藏
+                    vo.showPopper()
+                }
+                else {
+                    vo.hidePopper()
+                }
+            })
+
+        },
+
+        triggerEvent: function(value) {
+            //console.log('methods triggerEvent', value)
+
+            let vo = this
+
+            //$nextTick
             vo.$nextTick(() => {
 
                 //emit
@@ -217,65 +269,99 @@ export default {
 
         },
 
-        changeBackground: function() {
-            //console.log('methods changeBackground')
+        showPopper: function() {
+            //console.log('methods showPopper')
 
             let vo = this
 
-            //ele
-            let ele = get(vo, '$refs.divContent.parentNode', null)
+            //divTrigger
+            let divTrigger = get(vo, '$refs.divTrigger', null)
+            if (divTrigger === null) {
+                return //console.log('無法找到點擊區元素')
+            }
 
-            //覆蓋parentNode background
-            //因slot內可能使用margin導致會使用到parentNode的background, 通過使用者點擊而組件顯示或隱藏時馬上覆蓋parentNode的background, 可避免突然換色問題
-            //value因clickTrigger中強制v-menu要為顯示不隱藏, 故value會得到false但仍為顯示狀態, 所以此處不能用if判斷value作為執行依據
-            //找不到元素時不能提前離開, 因需把value emit出去給外部組件知道與變更
-            if (isEle(ele)) {
-                ele.style.background = vo.useBackgroundColor
+            //$nextTick, 因顯示後popperjs會用divContent撐開導致divTrigger寬度等同於divContent, 需延遲取得offsetWidth才是正確寬度
+            vo.$nextTick(() => {
+
+                //update triggerWidth
+                vo.triggerWidth = divTrigger.offsetWidth
+
+            })
+
+            //divContent
+            let divContent = get(vo, '$refs.divContent', null)
+
+            //check
+            if (divContent === null) {
+                return //console.log('無法找到顯示元素')
+            }
+
+            //@popperjs/core 2.x
+            let opt = {
+                //strategy: 'fixed',
+                placement: 'bottom-start',
+                modifiers: [
+                    // {
+                    //     name: 'computeStyles',
+                    //     options: {
+                    //         gpuAcceleration: false, //預設true, 可關閉GPU加速
+                    //     },
+                    // },
+                    {
+                        name: 'offset',
+                        options: {
+                            //offset: [0, 5], //因popperjs會自動調位置, 故得通過callback函數處理指定位置時的偏移量
+                            offset: ({ placement, reference, popper }) => {
+                                //console.log('offset', placement, reference, popper)
+                                if (placement === 'bottom-start' || placement === 'bottom-end') {
+                                    return [0, vo.distY]
+                                }
+                                else if (placement === 'top-start' || placement === 'top-end') {
+                                    return [0, vo.distY]
+                                }
+                                else {
+                                    return []
+                                }
+                            },
+                        },
+                    },
+                ],
+            }
+            vo.popperInstance = createPopper(divTrigger, divContent, opt)
+            // console.log('popperInstance', vo.popperInstance)
+
+        },
+
+        hidePopper: function() {
+            //console.log('methods hidePopper')
+
+            let vo = this
+
+            //destroy
+            if (vo.popperInstance) {
+                vo.popperInstance.destroy()
+                vo.popperInstance = null
             }
 
         },
 
-        changeValueTrans: function(value, from) {
-            //console.log('methods changeValueTrans', value, from)
+        clickTrigger: function() {
+            //console.log('methods clickTrigger')
 
             let vo = this
 
-            //changeBackground
-            vo.changeBackground()
-
-            //valueTrans
-            vo.valueTrans = value
-
-            //triggerEventThreshold
-            // if (value) { //顯示時才觸發
-            //     vo.triggerEventThreshold(true, 'watchValueTrans')
-            // }
-            vo.triggerEventThreshold(value, from)
-
-        },
-
-        triggerEventThreshold: function(value, from) {
-            //console.log('methods triggerEventThreshold', value, from)
-
-            let vo = this
-
-            //timeDisabled
-            if (new Date() - vo.timeDisabled < 300) {
+            //check, 不可編輯時跳出
+            if (!vo.editable) {
                 return
             }
 
-            //timeDisabled
-            vo.timeDisabled = new Date()
+            //check, 已經顯示就不再顯示
+            if (vo.valueTrans) {
+                return
+            }
 
-            //triggerEvent
-            vo.triggerEvent(value, from)
-
-        },
-
-        clickTrigger: function(e) {
-            //console.log('methods clickTrigger', e)
-
-            // let vo = this
+            //triggerEvent for show
+            vo.triggerEvent(true)
 
         },
 
@@ -284,5 +370,9 @@ export default {
 </script>
 
 <style scoped>
+.WPopup[data-popper-reference-hidden] {
+    visibility: hidden;
+    pointer-events: none;
+}
 </style>
 

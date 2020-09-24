@@ -189,7 +189,7 @@
                         ></w-text-suggest>
                     </div>
 
-                    <div class="bk" style="width:240px;">
+                    <div class="bk">
                         <demolink
                             :kbname="'w-text-suggest'"
                             :casename="'a lot of items'"
@@ -403,7 +403,7 @@
                         </w-shell-material>
                     </div>
 
-                    <div class="bk" style="width:240px;">
+                    <div class="bk">
                         <demolink
                             :kbname="'w-text-suggest'"
                             :casename="'a lot of items'"
@@ -716,7 +716,7 @@
                         ></w-text-suggest>
                     </div>
 
-                    <div class="bk" style="width:240px;">
+                    <div class="bk">
                         <demolink
                             :kbname="'w-text-suggest'"
                             :casename="'a lot of items'"
@@ -974,7 +974,7 @@
                         </w-shell-material>
                     </div>
 
-                    <div class="bk" style="width:240px;">
+                    <div class="bk">
                         <demolink
                             :kbname="'w-text-suggest'"
                             :casename="'a lot of items'"

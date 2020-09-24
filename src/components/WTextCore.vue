@@ -12,6 +12,7 @@
             @focus="changeFocused(true)"
             @blur="changeFocused(false);changeContent('blur');"
             @keyup.enter="changeContent('enter')"
+            @select="$emit('select')"
         >
 
     </div>
