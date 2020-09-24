@@ -246,6 +246,7 @@
                 <div style="height:300px; overflow-y:auto;">
                     <div style="height:600px;">
 
+                        <!-- 內嵌span為避免self-closing於前端vue模板無法解析問題 -->
                         <div style="height:200px;"><span></span></div>
 
                         <w-popup
@@ -262,6 +263,7 @@
 
                         </w-popup>
 
+                        <!-- 內嵌span為避免self-closing於前端vue模板無法解析問題 -->
                         <div style="height:200px;"><span></span></div>
 
                     </div>
@@ -354,6 +356,7 @@
                     <template v-slot:content>
                         <div style="padding:20px; height:400px;">
 
+                            <!-- 內嵌span為避免self-closing於前端vue模板無法解析問題 -->
                             <div style="height:200px;"><span></span></div>
 
                             <w-popup
@@ -370,6 +373,7 @@
 
                             </w-popup>
 
+                            <!-- 內嵌span為避免self-closing於前端vue模板無法解析問題 -->
                             <div style="height:500px;"><span></span></div>
 
                         </div>

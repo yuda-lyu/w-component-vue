@@ -8,7 +8,7 @@
             <template v-for="(item,kitem) in itemsTrans">
 
                 <div
-                    class="trans"
+                    class="WGroupTags-Trans"
                     style="display:inline-block;"
                     :key="`${isObjValue?o2j(item):item}`"
                     dragtag
@@ -912,7 +912,7 @@ export default {
 </script>
 
 <style scoped>
-.trans { /* transition-group必須使用class */
+.WGroupTags-Trans { /* transition-group必須使用class */
     transition: all 0.5s;
 }
 </style>

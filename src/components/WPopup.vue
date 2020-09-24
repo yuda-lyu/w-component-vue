@@ -9,15 +9,19 @@
             <slot name="trigger"></slot>
         </div>
 
-        <!-- 不用v-if因註冊監聽divContent僅mounted一次, 若用v-if顯隱則需每次都重新監聽較為複雜 -->
-        <div
-            divContent
-            ref="divContent"
-            class="WPopup"
-            :style="`z-index:99999; background:${useBackgroundColor}; ${useMinWidth} ${useMaxWidth} ${useBorderRadius} ${useShadow}`"
-            v-show="valueTrans"
-        >
-            <slot name="content"></slot>
+        <!-- 需外層使用position包覆隔離, 因popper會對外層產生影響(添加class) -->
+        <div style="position:fixed; left:0; top:0; z-index:99999;">
+            <!-- 不用v-if因註冊監聽divContent僅mounted一次, 若用v-if顯隱則需每次都重新監聽較為複雜 -->
+            <!-- style不需使用position, 因會被popper洗掉 -->
+            <div
+                divContent
+                ref="divContent"
+                class="WPopup-Content"
+                :style="`z-index:100000; background:${useBackgroundColor}; ${useMinWidth} ${useMaxWidth} ${useBorderRadius} ${useShadow}`"
+                v-show="valueTrans"
+            >
+                <slot name="content"></slot>
+            </div>
         </div>
 
     </div>
@@ -298,7 +302,7 @@ export default {
 
             //@popperjs/core 2.x
             let opt = {
-                //strategy: 'fixed',
+                strategy: 'fixed', //需使用fixed, 否則popup彈窗會盡量基於trigger寬度而盡量窄化
                 placement: 'bottom-start',
                 modifiers: [
                     // {
@@ -370,7 +374,7 @@ export default {
 </script>
 
 <style scoped>
-.WPopup[data-popper-reference-hidden] {
+.WPopup-Content[data-popper-reference-hidden] {
     visibility: hidden;
     pointer-events: none;
 }

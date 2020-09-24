@@ -80,7 +80,7 @@
     <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.js"></script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@1.4.37/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@1.4.38/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -124,6 +124,7 @@
 
             <div style="height:300px; overflow-y:auto;">
                 <div style="height:600px;">
+                    <!-- 內嵌span為避免self-closing於前端vue模板無法解析問題 -->
                     <div style="height:200px;">
                         <span />
                     </div>
@@ -145,6 +146,7 @@
                         </template>
                     </w-popup>
 
+                    <!-- 內嵌span為避免self-closing於前端vue模板無法解析問題 -->
                     <div style="height:200px;">
                         <span />
                     </div>

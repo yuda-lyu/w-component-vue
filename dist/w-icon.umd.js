@@ -1,5 +1,5 @@
 /*!
- * w-icon v1.4.37
+ * w-icon v1.4.38
  * (c) 2018-2020 yuda-lyu(semisphere)
  * Released under the MIT License.
  */
