@@ -246,7 +246,7 @@
                 <div style="height:300px; overflow-y:auto;">
                     <div style="height:600px;">
 
-                        <div style="height:200px;"></div>
+                        <div style="height:200px;"><span></span></div>
 
                         <w-popup
                             v-model="WPopup.bShow10"
@@ -262,7 +262,7 @@
 
                         </w-popup>
 
-                        <div style="height:200px;"></div>
+                        <div style="height:200px;"><span></span></div>
 
                     </div>
                 </div>
@@ -354,7 +354,7 @@
                     <template v-slot:content>
                         <div style="padding:20px; height:400px;">
 
-                            <div style="height:200px;"></div>
+                            <div style="height:200px;"><span></span></div>
 
                             <w-popup
                                 v-model="WPopup.bShow12a"
@@ -370,7 +370,7 @@
 
                             </w-popup>
 
-                            <div style="height:500px;"></div>
+                            <div style="height:500px;"><span></span></div>
 
                         </div>
                     </template>
