@@ -7,7 +7,7 @@
         content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui"
     />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>example for w-panel-bulge: default</title>
+    <title>example for w-popup: auto flipping in scroll panel</title>
 
     <!-- fontawesome -->
     <link
@@ -118,16 +118,46 @@
     style="font-family:'Microsoft JhengHei','Avenir','Helvetica'; padding:20px;"
 >
     <v-app id="app" style="font-family:inherit;">
-        <div class="head1">w-panel-bulge</div>
+        <div class="head1">w-popup</div>
         <div class="bk">
-            <div class="item">default</div>
+            <div class="item">auto flipping in scroll panel</div>
 
-            <w-panel-bulge
-                style="min-width:500px;"
-                :header-text="WPanelBulge.title"
-            >
-                <div style="padding:20px;" v-html="WPanelBulge.table" />
-            </w-panel-bulge>
+            <div style="width:95vw; height:300px; overflow-y:auto;">
+                <div style="height:600px;">
+                    <!-- 內嵌span為避免self-closing於前端vue模板無法解析問題 -->
+                    <div style="height:200px;">
+                        <span />
+                    </div>
+
+                    <div style="text-align:right; padding-right:30px;">
+                        <w-popup v-model="WPopup.bShow11">
+                            <template v-slot:trigger>
+                                <v-btn
+                                    small
+                                    rounded
+                                    @click="expandItem"
+                                >Show({{WPopup.bShow11}})</v-btn>
+                            </template>
+
+                            <template v-slot:content>
+                                <v-list style="background:transparent;">
+                                    <v-list-item
+                                        style="min-height:inherit; padding:5px 15px;"
+                                        :key="kitem"
+                                        @click="()=>{}"
+                                        v-for="(item,kitem) in WPopup.itemsExpand"
+                                    >Item {{item}}</v-list-item>
+                                </v-list>
+                            </template>
+                        </w-popup>
+                    </div>
+
+                    <!-- 內嵌span為避免self-closing於前端vue模板無法解析問題 -->
+                    <div style="height:200px;">
+                        <span />
+                    </div>
+                </div>
+            </div>
         </div>
     </v-app>
 
@@ -147,13 +177,31 @@
         return r;
       }
       return {
-        WPanelBulge: {
+        WPopup: {
+          bShow1: false,
+          bShow2: false,
+          bShow3: false,
+          bShow4: false,
+          bShow5: false,
+          bShow6: false,
+          bShow7: false,
+          bShow8: false,
+          bShow9: false,
+          bShow10: false,
+          bShow11: false,
+          bShow12: false,
+          bShow12a: false,
+          bShow12b: false,
+          bShow13: false,
+          bShow13a: false,
+          bShow14: false,
+          bShow15: false,
+          items: ["foo", "bar", "fizz", "buzz"],
+          itemsExpand: ["foo", "bar", "fizz", "buzz"],
+          text:
+            "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis praesentium cumque magnam odio iure quidem, quod illum numquam possimus obcaecati commodi minima assumenda consectetur culpa fuga nulla ullam. In, libero.",
           table: f2c(function() {
             /**
-                    <div style="margin-bottom:10px; padding:0px 10px;">
-                        <span>A data table</span>
-                    </div>
-
                     <table style="width:100%; font-size:0.7rem;">
                         <thead>
                             <tr>
@@ -186,37 +234,34 @@
                     </table>
                      */
           }),
-          title: "Bulge",
-          menu: {
-            items: [
-              {
-                text: "Dashboard",
-                icon: "mdi-view-dashboard"
-              },
-              {
-                text: "Schedule",
-                icon: "mdi-clock-time-eight-outline"
-              },
-              {
-                text: "Profile",
-                icon: "mdi-blender-software"
-              },
-              {
-                text: "History",
-                icon: "mdi-spoon-sugar"
-              }
-            ],
-            select: {
-              text: "Dashboard",
-              icon: "mdi-view-dashboard"
-            }
-          }
+          title: "Bulge"
         },
         actions: []
       };
     },
     computed: {},
-    methods: {}
+    methods: {
+      clickHide: function() {
+        let vo = this;
+        setTimeout(function() {
+          vo.WPopup.bShow2 = false;
+        }, 200);
+      },
+      expandItem: function() {
+        let vo = this;
+        setTimeout(function() {
+          vo.WPopup.itemsExpand = [
+            "Lorem ipsum dolor sit, amet consectetur",
+            "bar",
+            "fizz",
+            "buzz"
+          ];
+        }, 1000);
+        setTimeout(function() {
+          vo.WPopup.itemsExpand = ["foo", "bar", "fizz", "buzz"];
+        }, 3000);
+      }
+    }
   });
     </script>
 </body>
