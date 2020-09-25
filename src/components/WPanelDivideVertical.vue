@@ -1,6 +1,8 @@
 <template>
     <div
         :changeParam="changeParam"
+        v-domresize
+        @domresize="updatePanelSize"
     >
 
         <div
@@ -40,8 +42,8 @@
 
 <script>
 import get from 'lodash/get'
-import domDetect from 'wsemi/src/domDetect.mjs'
 import domDragBarAndScroll from 'wsemi/src/domDragBarAndScroll.mjs'
+import domResize from '../js/domResize.mjs'
 
 
 /**
@@ -54,7 +56,8 @@ import domDragBarAndScroll from 'wsemi/src/domDragBarAndScroll.mjs'
  * @vue-prop {Number} [barBorderSize=3] 輸入分隔條框線寬度數字，單位為px，預設3，通常配合barBorderColor='transparent'使可拖曳區加大又不遮蔽可視區
  */
 export default {
-    components: {
+    directives: {
+        domresize: domResize,
     },
     props: {
         ratio: {
@@ -91,7 +94,6 @@ export default {
             r: null,
             panelWidth: 0,
             panelHeight: 0,
-            de: null,
             das: null,
         }
     },
@@ -99,17 +101,6 @@ export default {
         //console.log('mounted')
 
         let vo = this
-
-        //de, 不能用vuetify的v-resize, 因是基於window resize無法偵測單純的元素尺寸變化
-        let de = domDetect(() => {
-            return get(vo, '$el')
-        })
-        de.on('resize', (s) => {
-            // console.log('resize', s)
-            vo.panelWidth = s.snew.offsetWidth
-            vo.panelHeight = s.snew.offsetHeight
-        })
-        vo.de = de
 
         //das
         let das = domDragBarAndScroll(vo.$refs.divPanel, vo.$refs.divBar, { useTouchDragForPanel: false })
@@ -123,11 +114,6 @@ export default {
         //console.log('beforeDestroy')
 
         let vo = this
-
-        //clear
-        if (vo.de) {
-            vo.de.clear()
-        }
 
         //clear
         if (vo.das) {
@@ -165,6 +151,17 @@ export default {
 
     },
     methods: {
+
+        updatePanelSize: function({ snew }) {
+            //console.log('methods updatePanelSize', snew)
+
+            let vo = this
+
+            //update
+            vo.panelWidth = snew.offsetWidth
+            vo.panelHeight = snew.offsetHeight
+
+        },
 
         dragBar: function({ clientY }) {
             //console.log('methods dragBar', clientY)

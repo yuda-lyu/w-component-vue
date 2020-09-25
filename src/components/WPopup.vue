@@ -19,6 +19,8 @@
                 class="WPopup-Content"
                 :style="`z-index:100000; background:${useBackgroundColor}; ${useMinWidth} ${useMaxWidth} ${useBorderRadius} ${useShadow}`"
                 v-show="valueTrans"
+                v-domresize
+                @domresize="updatePopper"
             >
                 <slot name="content"></slot>
             </div>
@@ -33,6 +35,7 @@ import isNumber from 'lodash/isNumber'
 import replace from 'wsemi/src/replace.mjs'
 import domIsClientXYIn from 'wsemi/src/domIsClientXYIn.mjs'
 import color2hex from '../js/vuetifyColor.mjs'
+import domResize from '../js/domResize.mjs'
 import { createPopper } from '@popperjs/core' //不用安裝, 因wsemi安裝tippy.js內有依賴@popperjs/core
 //import { createPopper } from '@popperjs/core/lib/popper-lite'
 
@@ -49,6 +52,9 @@ import { createPopper } from '@popperjs/core' //不用安裝, 因wsemi安裝tipp
  * @vue-prop {Boolean} [editable=true] 輸入是否為編輯模式，預設true
  */
 export default {
+    directives: {
+        domresize: domResize,
+    },
     props: {
         value: {
             type: Boolean,
@@ -345,6 +351,18 @@ export default {
             if (vo.popperInstance) {
                 vo.popperInstance.destroy()
                 vo.popperInstance = null
+            }
+
+        },
+
+        updatePopper: function() {
+            //console.log('methods updatePopper')
+
+            let vo = this
+
+            //update
+            if (vo.popperInstance) {
+                vo.popperInstance.update()
             }
 
         },

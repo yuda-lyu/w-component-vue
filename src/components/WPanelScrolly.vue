@@ -1,5 +1,8 @@
 <template>
-    <div>
+    <div
+        v-domresize
+        @domresize="resizePanel"
+    >
         <WPanelScrollyCore
             ref="wsp"
             :viewHeightMax="viewHeight"
@@ -12,7 +15,11 @@
             :ratio="ratio"
             @change="scrollItems"
         >
-            <div ref="cp" :style="`position:absolute; top:${top}px; width:100%; box-sizing:border-box;`">
+            <div
+                :style="`position:absolute; top:${top}px; width:100%; box-sizing:border-box;`"
+                v-domresize
+                @domresize="resizeContent"
+            >
                 <slot></slot>
             </div>
         </WPanelScrollyCore>
@@ -21,8 +28,8 @@
 
 <script>
 import get from 'lodash/get'
-import domDetect from 'wsemi/src/domDetect.mjs'
 import WPanelScrollyCore from './WPanelScrollyCore.vue'
+import domResize from '../js/domResize.mjs'
 
 
 /**
@@ -34,6 +41,9 @@ import WPanelScrollyCore from './WPanelScrollyCore.vue'
  * @vue-prop {Number} [ratio=0] 輸入目前捲動比例數字，預設0
  */
 export default {
+    directives: {
+        domresize: domResize,
+    },
     components: {
         WPanelScrollyCore,
     },
@@ -65,8 +75,6 @@ export default {
     },
     data: function() {
         return {
-            de: null,
-            decp: null,
             top: 0, //內容區top px
             viewHeight: 0, //外框區高度px
             viewHeightTemp: 0, //外框區上次偵測高度px
@@ -74,63 +82,35 @@ export default {
             contentHeightTemp: 0, //內容區上次偵測高度px
         }
     },
-    mounted: function() {
-        //console.log('mounted')
+    computed: {
+    },
+    methods: {
 
-        let vo = this
+        resizePanel: function({ snew }) {
+            //console.log('methods resizePanel', snew)
 
-        //de, 不能用vuetify的v-resize, 因是基於window resize無法偵測單純的元素尺寸變化
-        let de = domDetect(() => {
-            return vo.$el
-        })
-        de.on('resize', (s) => {
-            //console.log('de resize', s)
+            let vo = this
 
             //save
-            vo.viewHeight = s.snew.offsetHeight
+            vo.viewHeight = snew.offsetHeight
 
             //triggerEvent
             vo.triggerEvent('changeViewHeight')
 
-        })
-        vo.de = de
+        },
 
-        //decp, 不能用vuetify的v-resize, 因是基於window resize無法偵測單純的元素尺寸變化
-        let decp = domDetect(() => {
-            return get(vo, '$refs.cp', null)
-        })
-        decp.on('resize', (s) => {
-            //console.log('decp resize', s)
+        resizeContent: function({ snew }) {
+            //console.log('methods resizeContent', snew)
+
+            let vo = this
 
             //save
-            vo.contentHeight = s.snew.offsetHeight
+            vo.contentHeight = snew.offsetHeight
 
             //triggerEvent
             vo.triggerEvent('changeContentHeight')
 
-        })
-        vo.decp = decp
-
-    },
-    beforeDestroy: function() {
-        //console.log('beforeDestroy')
-
-        let vo = this
-
-        //clear
-        if (vo.de) {
-            vo.de.clear()
-        }
-
-        //clear
-        if (vo.decp) {
-            vo.decp.clear()
-        }
-
-    },
-    computed: {
-    },
-    methods: {
+        },
 
         scrollItems: async function(e) {
             //console.log('methods scrollItems', e)

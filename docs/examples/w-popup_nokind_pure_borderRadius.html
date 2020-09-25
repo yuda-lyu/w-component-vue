@@ -80,7 +80,7 @@
     <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.js"></script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@1.4.38/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@1.4.39/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -169,13 +169,15 @@
           bShow9: false,
           bShow10: false,
           bShow11: false,
-          bShow11a: false,
-          bShow11b: false,
           bShow12: false,
           bShow12a: false,
+          bShow12b: false,
           bShow13: false,
+          bShow13a: false,
           bShow14: false,
+          bShow15: false,
           items: ["foo", "bar", "fizz", "buzz"],
+          itemsExpand: ["foo", "bar", "fizz", "buzz"],
           text:
             "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis praesentium cumque magnam odio iure quidem, quod illum numquam possimus obcaecati commodi minima assumenda consectetur culpa fuga nulla ullam. In, libero.",
           table: f2c(function() {
@@ -224,6 +226,20 @@
         setTimeout(function() {
           vo.WPopup.bShow2 = false;
         }, 200);
+      },
+      expandItem: function() {
+        let vo = this;
+        setTimeout(function() {
+          vo.WPopup.itemsExpand = [
+            "Lorem ipsum dolor sit, amet consectetur",
+            "bar",
+            "fizz",
+            "buzz"
+          ];
+        }, 1000);
+        setTimeout(function() {
+          vo.WPopup.itemsExpand = ["foo", "bar", "fizz", "buzz"];
+        }, 3000);
       }
     }
   });

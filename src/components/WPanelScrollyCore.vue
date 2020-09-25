@@ -1,6 +1,8 @@
 <template>
     <div
         :style="`overflow:hidden; height:${Math.min(contentHeight,viewHeightMax)}px; box-sizing:content-box;`"
+        v-domresize
+        @domresize="resize"
     >
         <div
             :style="`position:relative; overflow:hidden; height:${viewHeightMax}px; box-sizing:border-box;`"
@@ -35,8 +37,8 @@
 
 <script>
 import domDragBarAndScroll from 'wsemi/src/domDragBarAndScroll.mjs'
-import domDetect from 'wsemi/src/domDetect.mjs'
 import color2hex from '../js/vuetifyColor.mjs'
+import domResize from '../js/domResize.mjs'
 
 
 /**
@@ -50,6 +52,9 @@ import color2hex from '../js/vuetifyColor.mjs'
  * @vue-prop {Number} [ratio=0] 輸入目前捲動比例數字，預設0
  */
 export default {
+    directives: {
+        domresize: domResize,
+    },
     props: {
         viewHeightMax: {
             type: Number,
@@ -86,7 +91,6 @@ export default {
     },
     data: function() {
         return {
-            de: null,
             das: null,
 
             ratioTrans: 0, //捲動比例
@@ -99,19 +103,6 @@ export default {
         //console.log('mounted')
 
         let vo = this
-
-        //de, 不能用vuetify的v-resize, 因是基於window resize無法偵測單純的元素尺寸變化
-        let de = domDetect(() => {
-            return vo.$el
-        })
-        de.on('resize', (s) => {
-            //console.log('resize', s)
-
-            //triggerEvent
-            vo.triggerEvent('resize')
-
-        })
-        vo.de = de
 
         //das
         let das = domDragBarAndScroll(vo.$refs.divPanel, vo.$refs.divBar, { getHeighRatio: () => vo.heighRatio, stopScrollPropagationForPanel: true })
@@ -128,11 +119,6 @@ export default {
         //console.log('beforeDestroy')
 
         let vo = this
-
-        //clear
-        if (vo.de) {
-            vo.de.clear()
-        }
 
         //clear
         if (vo.das) {
@@ -255,6 +241,16 @@ export default {
 
     },
     methods: {
+
+        resize: function({ snew }) {
+            //console.log('methods resize', snew)
+
+            let vo = this
+
+            //triggerEvent
+            vo.triggerEvent('resize')
+
+        },
 
         updateRatioTrans: function(ratioTrans) {
             //console.log('methods updateRatioTrans', ratioTrans)

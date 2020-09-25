@@ -5,9 +5,10 @@
             :style="`padding:${useHeaderPadding}; z-index:2;`"
         >
             <div
-                ref="hd"
                 :class="{'shadow-header':headerShadow}"
                 :style="`display:inline-block; background:${useHeaderBackgroundColor}; border-radius:${headerBorderRadius}px;`"
+                v-domresize
+                @domresize="updateHeaderHeight"
             >
 
                 <slot name="header">
@@ -42,10 +43,9 @@
 </template>
 
 <script>
-import get from 'lodash/get'
 import isnum from 'wsemi/src/isnum.mjs'
-import domDetect from 'wsemi/src/domDetect.mjs'
 import color2hex from '../js/vuetifyColor.mjs'
+import domResize from '../js/domResize.mjs'
 
 
 /**
@@ -61,6 +61,9 @@ import color2hex from '../js/vuetifyColor.mjs'
  * @vue-prop {Boolean} [contentShadow=true] 輸入內容區是否使用陰影模式，預設true
  */
 export default {
+    directives: {
+        domresize: domResize,
+    },
     props: {
         headerBorderRadius: {
             type: Number,
@@ -105,36 +108,8 @@ export default {
     },
     data: function() {
         return {
-            de: null,
             headerHeight: 0,
         }
-    },
-    mounted: function() {
-        //console.log('mounted')
-
-        let vo = this
-
-        //de, 不能用vuetify的v-resize, 因是基於window resize無法偵測單純的元素尺寸變化
-        let de = domDetect(() => {
-            return get(vo, '$refs.hd')
-        })
-        de.on('resize', (s) => {
-            // console.log('resize', s)
-            vo.headerHeight = s.snew.offsetHeight
-        })
-        vo.de = de
-
-    },
-    beforeDestroy: function() {
-        //console.log('beforeDestroy')
-
-        let vo = this
-
-        //clear
-        if (vo.de) {
-            vo.de.clear()
-        }
-
     },
     computed: {
 
@@ -190,6 +165,17 @@ export default {
 
     },
     methods: {
+
+        updateHeaderHeight: function({ snew }) {
+            //console.log('methods updateHeaderHeight', snew)
+
+            let vo = this
+
+            //update
+            vo.headerHeight = snew.offsetHeight
+
+        },
+
     },
 }
 </script>

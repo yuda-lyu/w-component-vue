@@ -275,17 +275,56 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-popup'"
+                    :casename="'auto flipping in scroll panel'"
+                    :kind="'nokind'"
+                    :shell="'pure'"
+                ></demolink>
+
+                <div style="width:95vw; height:300px; overflow-y:auto;">
+                    <div style="height:600px;">
+
+                        <!-- 內嵌span為避免self-closing於前端vue模板無法解析問題 -->
+                        <div style="height:200px;"><span></span></div>
+
+                        <div style="text-align:right; padding-right:30px;">
+                            <w-popup
+                                v-model="WPopup.bShow11"
+                            >
+
+                                <template v-slot:trigger>
+                                    <v-btn small rounded @click="expandItem">Show({{WPopup.bShow11}})</v-btn>
+                                </template>
+
+                                <template v-slot:content>
+                                    <v-list style="background:transparent;"><v-list-item style="min-height:inherit; padding:5px 15px;" :key="kitem" @click="()=>{}" v-for="(item,kitem) in WPopup.itemsExpand">Item {{item}}</v-list-item></v-list>
+                                </template>
+
+                            </w-popup>
+                        </div>
+
+                        <!-- 內嵌span為避免self-closing於前端vue模板無法解析問題 -->
+                        <div style="height:200px;"><span></span></div>
+
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-popup'"
                     :casename="'in popup'"
                     :kind="'nokind'"
                     :shell="'pure'"
                 ></demolink>
 
                 <w-popup
-                    v-model="WPopup.bShow11"
+                    v-model="WPopup.bShow12"
                 >
 
                     <template v-slot:trigger>
-                        <v-btn small rounded>Show({{WPopup.bShow11}})</v-btn>
+                        <v-btn small rounded>Show({{WPopup.bShow12}})</v-btn>
                     </template>
 
                     <template v-slot:content>
@@ -294,11 +333,11 @@
                             <div style="font-size:0.8rem; white-space:nowrap;">Here is 1st pupop.</div>
 
                             <w-popup
-                                v-model="WPopup.bShow11a"
+                                v-model="WPopup.bShow12a"
                             >
 
                                 <template v-slot:trigger>
-                                    <v-btn small rounded>Show({{WPopup.bShow11a}})</v-btn>
+                                    <v-btn small rounded>Show({{WPopup.bShow12a}})</v-btn>
                                 </template>
 
                                 <template v-slot:content>
@@ -308,11 +347,11 @@
                                         <div style="font-size:0.7rem; white-space:nowrap; color:#f26;">It will close when click to the outside of the content of 1st pupop.</div>
 
                                         <w-popup
-                                            v-model="WPopup.bShow11b"
+                                            v-model="WPopup.bShow12b"
                                         >
 
                                             <template v-slot:trigger>
-                                                <v-btn small rounded>Show({{WPopup.bShow11b}})</v-btn>
+                                                <v-btn small rounded>Show({{WPopup.bShow12b}})</v-btn>
                                             </template>
 
                                             <template v-slot:content>
@@ -345,30 +384,31 @@
                     :shell="'pure'"
                 ></demolink>
 
-                <v-btn small rounded @click="WPopup.bShow12=!WPopup.bShow12">Show({{WPopup.bShow12}})</v-btn>
+                <v-btn small rounded @click="WPopup.bShow13=!WPopup.bShow13">Show({{WPopup.bShow13}})</v-btn>
 
                 <w-dialog
-                    :show.sync="WPopup.bShow12"
+                    :show.sync="WPopup.bShow13"
                     :title="'in dialog'"
-                    :widthMax="300"
+                    :widthMax="500"
                 >
 
                     <template v-slot:content>
                         <div style="padding:20px; height:400px;">
 
                             <!-- 內嵌span為避免self-closing於前端vue模板無法解析問題 -->
-                            <div style="height:200px;"><span></span></div>
+                            <div style="height:300px;"><span></span></div>
 
                             <w-popup
-                                v-model="WPopup.bShow12a"
+                                style="margin-left:250px;"
+                                v-model="WPopup.bShow13a"
                             >
 
                                 <template v-slot:trigger>
-                                    <v-btn small rounded>Show({{WPopup.bShow12a}})</v-btn>
+                                    <v-btn small rounded @click="expandItem">Show({{WPopup.bShow13a}})</v-btn>
                                 </template>
 
                                 <template v-slot:content>
-                                    <v-list style="background:transparent;"><v-list-item style="min-height:inherit; padding:5px 15px;" :key="kitem" @click="()=>{}" v-for="(item,kitem) in WPopup.items">Item {{item}}</v-list-item></v-list>
+                                    <v-list style="background:transparent;"><v-list-item style="min-height:inherit; padding:5px 15px;" :key="kitem" @click="()=>{}" v-for="(item,kitem) in WPopup.itemsExpand">Item {{item}}</v-list-item></v-list>
                                 </template>
 
                             </w-popup>
@@ -394,11 +434,11 @@
 
                 <w-popup
                     :maxWidth="400"
-                    v-model="WPopup.bShow13"
+                    v-model="WPopup.bShow14"
                 >
 
                     <template v-slot:trigger>
-                        <v-btn small rounded>Show({{WPopup.bShow13}})</v-btn>
+                        <v-btn small rounded>Show({{WPopup.bShow14}})</v-btn>
                     </template>
 
                     <template v-slot:content>
@@ -427,11 +467,11 @@
 
                 <w-popup
                     :editable="false"
-                    v-model="WPopup.bShow14"
+                    v-model="WPopup.bShow15"
                 >
 
                     <template v-slot:trigger>
-                        <v-btn small rounded>Show({{WPopup.bShow14}})</v-btn>
+                        <v-btn small rounded>Show({{WPopup.bShow15}})</v-btn>
                     </template>
 
                     <template v-slot:content>
@@ -494,13 +534,15 @@ export default {
                 'bShow9': false,
                 'bShow10': false,
                 'bShow11': false,
-                'bShow11a': false,
-                'bShow11b': false,
                 'bShow12': false,
                 'bShow12a': false,
+                'bShow12b': false,
                 'bShow13': false,
+                'bShow13a': false,
                 'bShow14': false,
+                'bShow15': false,
                 'items': ['foo', 'bar', 'fizz', 'buzz'],
+                'itemsExpand': ['foo', 'bar', 'fizz', 'buzz'],
                 'text': 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis praesentium cumque magnam odio iure quidem, quod illum numquam possimus obcaecati commodi minima assumenda consectetur culpa fuga nulla ullam. In, libero.',
                 'table': f2c(function() {
                     /**
@@ -548,6 +590,15 @@ export default {
             setTimeout(function() {
                 vo.WPopup.bShow2 = false
             }, 200)
+        },
+        expandItem: function() {
+            let vo = this
+            setTimeout(function() {
+                vo.WPopup.itemsExpand = ['Lorem ipsum dolor sit, amet consectetur', 'bar', 'fizz', 'buzz']
+            }, 1000)
+            setTimeout(function() {
+                vo.WPopup.itemsExpand = ['foo', 'bar', 'fizz', 'buzz']
+            }, 3000)
         },
     },
 }
