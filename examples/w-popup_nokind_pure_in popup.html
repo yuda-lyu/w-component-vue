@@ -65,13 +65,6 @@
     <!-- vue -->
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
 
-    <!-- element-ui, 已按需打包故不需引用 -->
-    <link
-        _href="https://cdn.jsdelivr.net/npm/element-ui@2.13.0/lib/theme-chalk/index.css"
-        rel="stylesheet"
-    />
-    <script _src="https://cdn.jsdelivr.net/npm/element-ui@2.13.0/lib/index.js"></script>
-
     <!-- vuetify -->
     <link
         href="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.css"
@@ -80,7 +73,7 @@
     <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.js"></script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@1.4.39/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@1.4.40/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -128,7 +121,7 @@
                 </template>
 
                 <template v-slot:content>
-                    <div style="padding:50px;">
+                    <div style="padding:40px;">
                         <div
                             style="font-size:0.8rem; white-space:nowrap;"
                         >Here is 1st pupop.</div>
@@ -139,7 +132,7 @@
                             </template>
 
                             <template v-slot:content>
-                                <div style="padding:50px;">
+                                <div style="padding:40px;">
                                     <div
                                         style="font-size:0.8rem; white-space:nowrap;"
                                     >Here is 2nd pupop.</div>
@@ -147,7 +140,10 @@
                                         style="font-size:0.7rem; white-space:nowrap; color:#f26;"
                                     >It will close when click to the outside of the content of 1st pupop.</div>
 
-                                    <w-popup v-model="WPopup.bShow12b">
+                                    <w-popup
+                                        style="margin-bottom:20px;"
+                                        v-model="WPopup.bShow12b"
+                                    >
                                         <template v-slot:trigger>
                                             <v-btn
                                                 small
