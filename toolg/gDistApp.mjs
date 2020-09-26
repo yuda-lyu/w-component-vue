@@ -30,10 +30,6 @@ let opt = {
         window.dataFlare=dataFlare
     </script>
 
-    <!-- element-ui, 已按需打包故不需引用 -->
-    <link _href="https://cdn.jsdelivr.net/npm/element-ui@2.13.0/lib/theme-chalk/index.css" rel="stylesheet">
-    <script _src="https://cdn.jsdelivr.net/npm/element-ui@2.13.0/lib/index.js"></script>
-
     <!-- vuetify -->
     <link href="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.js"></script>

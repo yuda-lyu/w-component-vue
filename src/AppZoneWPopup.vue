@@ -219,7 +219,7 @@
                 ></demolink>
 
                 <w-popup
-                    :shadowStyle="'0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);'"
+                    :shadowStyle="'0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12)'"
                     v-model="WPopup.bShow9"
                 >
 
@@ -328,7 +328,7 @@
                     </template>
 
                     <template v-slot:content>
-                        <div style="padding:50px;">
+                        <div style="padding:40px;">
 
                             <div style="font-size:0.8rem; white-space:nowrap;">Here is 1st pupop.</div>
 
@@ -341,12 +341,13 @@
                                 </template>
 
                                 <template v-slot:content>
-                                    <div style="padding:50px;">
+                                    <div style="padding:40px;">
 
                                         <div style="font-size:0.8rem; white-space:nowrap;">Here is 2nd pupop.</div>
                                         <div style="font-size:0.7rem; white-space:nowrap; color:#f26;">It will close when click to the outside of the content of 1st pupop.</div>
 
                                         <w-popup
+                                            style="margin-bottom:20px;"
                                             v-model="WPopup.bShow12b"
                                         >
 

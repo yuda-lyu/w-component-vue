@@ -36,8 +36,12 @@ import replace from 'wsemi/src/replace.mjs'
 import domIsClientXYIn from 'wsemi/src/domIsClientXYIn.mjs'
 import color2hex from '../js/vuetifyColor.mjs'
 import domResize from '../js/domResize.mjs'
-import { createPopper } from '@popperjs/core' //不用安裝, 因wsemi安裝tippy.js內有依賴@popperjs/core
-//import { createPopper } from '@popperjs/core/lib/popper-lite'
+//不用安裝@popperjs/core, 因wsemi安裝tippy.js內有依賴@popperjs/core
+import { createPopper } from '@popperjs/core/lib/popper-lite.js'
+import flip from '@popperjs/core/lib/modifiers/flip.js'
+import offset from '@popperjs/core/lib/modifiers/offset.js'
+import hide from '@popperjs/core/lib/modifiers/hide.js'
+//import computeStyles from '@popperjs/core/lib/modifiers/computeStyles'
 
 
 /**
@@ -311,12 +315,16 @@ export default {
                 strategy: 'fixed', //需使用fixed, 否則popup彈窗會盡量基於trigger寬度而盡量窄化
                 placement: 'bottom-start',
                 modifiers: [
+                    flip,
+                    hide,
+                    // computeStyles,
                     // {
                     //     name: 'computeStyles',
                     //     options: {
                     //         gpuAcceleration: false, //預設true, 可關閉GPU加速
                     //     },
                     // },
+                    offset,
                     {
                         name: 'offset',
                         options: {
