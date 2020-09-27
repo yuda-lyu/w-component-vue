@@ -751,7 +751,7 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-dialog'"
-                    :casename="'multi windows'"
+                    :casename="'multi dialogs'"
                     :kind="'nokind'"
                     :shell="'pure'"
                 ></demolink>

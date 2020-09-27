@@ -35,6 +35,7 @@
                 :shiftRight="shiftRight+item.spcShiftRight"
                 _close="close"
                 :loading="loading"
+                :loadingColor="loadingColor"
                 :editable="editable"
                 :disabledColor="'rgba(255,255,255,0.4)'"
                 :active="item.active"
@@ -99,6 +100,7 @@ import WButtonChip from './WButtonChip.vue'
  * @vue-prop {Number} [groupShift=5] 輸入群組模式時第一按鈕左側以及最末按鈕右側與邊框距離數字，單位px，預設5
  * @vue-prop {Boolean} [close=false] 輸入是否具有關閉按鈕模式，預設false
  * @vue-prop {Boolean} [loading=false] 輸入是否為載入模式，預設false
+ * @vue-prop {String} [loadingColor='black'] 輸入載入圖標顏色字串，預設'black'
  * @vue-prop {Boolean} [editable=true] 輸入是否為編輯模式，預設true
  */
 export default {
@@ -277,6 +279,10 @@ export default {
         loading: {
             type: Boolean,
             default: false,
+        },
+        loadingColor: {
+            type: String,
+            default: 'black',
         },
         editable: {
             type: Boolean,

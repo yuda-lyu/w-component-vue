@@ -555,7 +555,7 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-group-radio'"
-                    :casename="'loading & textColor'"
+                    :casename="'loading & loadingColor'"
                     :kind="'nokind'"
                     :shell="'pure'"
                 ></demolink>
@@ -564,7 +564,7 @@
                     :items="WGroupRadio.object.items"
                     v-model="WGroupRadio.object.select"
                     :loading="true"
-                    :textColor="'orange darken-4'"
+                    :loadingColor="'orange darken-4'"
                 ></w-group-radio>
 
             </div>

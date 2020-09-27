@@ -105,7 +105,7 @@
                         indeterminate
                         width="2"
                         :size="iconSize"
-                        :color="useTextColor"
+                        :color="useLoadingColor"
                     ></v-progress-circular>
                 </div>
             </div>
@@ -166,6 +166,7 @@ import WIcon from './WIcon.vue'
  * @vue-prop {Boolean} [active=false] 輸入是否為主動模式，預設false
  * @vue-prop {Boolean} [close=false] 輸入是否具有關閉按鈕模式，預設false
  * @vue-prop {Boolean} [loading=false] 輸入是否為載入模式，預設false
+ * @vue-prop {String} [loadingColor='black'] 輸入載入圖標顏色字串，預設'black'
  * @vue-prop {Boolean} [editable=true] 輸入是否為編輯模式，預設true
  * @vue-prop {String} [disabledColor='rgba(255,255,255,0.5)'] 輸入非編輯模式時遮罩顏色字串，預設'rgba(255,255,255,0.5)'
  */
@@ -324,6 +325,10 @@ export default {
         loading: {
             type: Boolean,
             default: false,
+        },
+        loadingColor: {
+            type: String,
+            default: 'black',
         },
         editable: {
             type: Boolean,
@@ -671,6 +676,11 @@ export default {
                 return p
             }
             return null
+        },
+
+        useLoadingColor: function() {
+            let vo = this
+            return color2hex(vo.loadingColor)
         },
 
     },

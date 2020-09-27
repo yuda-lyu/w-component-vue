@@ -225,12 +225,6 @@ export default {
         },
     },
     data: function() {
-        function f2c(f) {
-            let cont = String(f)
-            let r = cont.substring(cont.indexOf('/*') + 3, cont.lastIndexOf('*/'))
-            r = r.trim()
-            return r
-        }
         return {
             mdiViewDashboard,
             mdiClockTimeEightOutline,
@@ -238,7 +232,7 @@ export default {
             mdiSpoonSugar,
             mdiApple,
             'WPanelBulge': {
-                'table': f2c(function() {
+                'tableFun': function() { //註解會於編譯階段被清除無法用f2c
                     /**
                     <div style="margin-bottom:10px; padding:0px 10px;">
                         <span>A data table</span>
@@ -275,7 +269,8 @@ export default {
                         </tbody>
                     </table>
                      */
-                }),
+                },
+                'table': '\n<div style="margin-bottom:10px; padding:0px 10px;">\n                        <span>A data table</span>\n                    </div>\n\n                    <table style="width:100%; font-size:0.7rem;">\n                        <thead>\n                            <tr>\n                                <th style="padding:2px 8px; text-align:left;">Dessert</th>\n                                <th style="padding:2px 8px; text-align:left;">Calories</th>\n                                <th style="padding:2px 8px; text-align:left;">Fat</th>\n                                <th style="padding:2px 8px; text-align:left;">Carbs</th>\n                            </tr>\n                        </thead>\n                        <tbody>\n                            <tr>\n                                <td style="padding:2px 8px; border-top:1px solid #ddd;">Frozen Yogurt</td>\n                                <td style="padding:2px 8px; border-top:1px solid #ddd;">159</td>\n                                <td style="padding:2px 8px; border-top:1px solid #ddd;">6</td>\n                                <td style="padding:2px 8px; border-top:1px solid #ddd;">24</td>\n                            </tr>\n                            <tr>\n                                <td style="padding:2px 8px; border-top:1px solid #ddd;">Ice cream sandwich</td>\n                                <td style="padding:2px 8px; border-top:1px solid #ddd;">237</td>\n                                <td style="padding:2px 8px; border-top:1px solid #ddd;">9</td>\n                                <td style="padding:2px 8px; border-top:1px solid #ddd;">37</td>\n                            </tr>\n                            <tr>\n                                <td style="padding:2px 8px; border-top:1px solid #ddd;">Eclair</td>\n                                <td style="padding:2px 8px; border-top:1px solid #ddd;">262</td>\n                                <td style="padding:2px 8px; border-top:1px solid #ddd;">16</td>\n                                <td style="padding:2px 8px; border-top:1px solid #ddd;">23</td>\n                            </tr>\n                        </tbody>\n                    </table>\n',
                 'title': 'Bulge',
                 'menu': {
                     'items': [

@@ -558,7 +558,7 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-group-check'"
-                    :casename="'loading & textColor'"
+                    :casename="'loading & loadingColor'"
                     :kind="'nokind'"
                     :shell="'pure'"
                 ></demolink>
@@ -567,7 +567,7 @@
                     :items="WGroupCheck.object.items"
                     v-model="WGroupCheck.object.selects"
                     :loading="true"
-                    :textColor="'orange darken-4'"
+                    :loadingColor="'orange darken-4'"
                 ></w-group-check>
 
             </div>

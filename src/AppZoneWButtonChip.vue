@@ -388,33 +388,37 @@
                     :shell="'pure'"
                 ></demolink>
 
-                <w-button-chip
-                    :text="WButtonChip.text"
-                    :icon="mdiShakerOutline"
-                    :borderRadiusStyle="{left:true}"
-                    :borderColor="'#aaa'"
-                    :borderColorHover="'#aaa'"
-                    :shadow="false"
-                ></w-button-chip>
+                <div style="display:flex;"><!-- 用display:flex避免編譯後因換行符號導致按鈕組件間出現間格 -->
 
-                <w-button-chip
-                    :text="WButtonChip.text"
-                    :icon="mdiFlaskRoundBottom"
-                    :borderRadiusStyle="{}"
-                    :borderWidth="{top:1,bottom:1}"
-                    :shadow="false"
-                    :borderColor="'#aaa'"
-                    :borderColorHover="'#aaa'"
-                ></w-button-chip>
+                    <w-button-chip
+                        :text="WButtonChip.text"
+                        :icon="mdiShakerOutline"
+                        :borderRadiusStyle="{left:true}"
+                        :borderColor="'#aaa'"
+                        :borderColorHover="'#aaa'"
+                        :shadow="false"
+                    ></w-button-chip>
 
-                <w-button-chip
-                    :text="WButtonChip.text"
-                    :icon="mdiShoePrint"
-                    :borderRadiusStyle="{right:true}"
-                    :shadow="false"
-                    :borderColor="'#aaa'"
-                    :borderColorHover="'#aaa'"
-                ></w-button-chip>
+                    <w-button-chip
+                        :text="WButtonChip.text"
+                        :icon="mdiFlaskRoundBottom"
+                        :borderRadiusStyle="{}"
+                        :borderWidth="{top:1,bottom:1}"
+                        :shadow="false"
+                        :borderColor="'#aaa'"
+                        :borderColorHover="'#aaa'"
+                    ></w-button-chip>
+
+                    <w-button-chip
+                        :text="WButtonChip.text"
+                        :icon="mdiShoePrint"
+                        :borderRadiusStyle="{right:true}"
+                        :shadow="false"
+                        :borderColor="'#aaa'"
+                        :borderColorHover="'#aaa'"
+                    ></w-button-chip>
+
+                </div>
 
             </div>
 

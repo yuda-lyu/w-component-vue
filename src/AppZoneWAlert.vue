@@ -57,7 +57,7 @@
 
                 <v-btn style="margin-right:10px;" small @click="$alert(WAlert.text,{
                     position:'bottom-right'
-                })">top-right</v-btn>
+                })">bottom-right</v-btn>
 
                 <v-btn style="margin-right:10px;" small @click="$alert(WAlert.text,{
                     position:'top-left'

@@ -83,7 +83,7 @@ export default {
         },
         headerBackgroundColor: {
             type: String,
-            default: 'rgb(77, 182, 172, 0.8)', //teal lighten-2
+            default: 'rgba(77, 182, 172, 0.8)', //teal lighten-2
         },
         headerShadow: {
             type: Boolean,
