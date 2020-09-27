@@ -73,7 +73,7 @@
     <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.js"></script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@1.4.44/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@1.4.45/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -157,7 +157,7 @@
         vo.WAlert.number += 1;
         let n = vo.WAlert.number;
         vo.$alert(vo.WAlert.textCallAtEnd + " [" + n + "]").then(function() {
-          vo.$alert("Call function at the end" + " [" + n + "]");
+          vo.$alert("Call function " + "[" + n + "]" + " at the end");
         });
       }
     }

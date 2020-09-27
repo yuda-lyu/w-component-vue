@@ -249,7 +249,7 @@ export default {
             let n = vo.WAlert.number
             vo.$alert(vo.WAlert.textCallAtEnd + ' [' + n + ']')
                 .then(function() {
-                    vo.$alert('Call function at the end' + ' [' + n + ']')
+                    vo.$alert('Call function ' + '[' + n + ']' + ' at the end')
                 })
         },
     },
