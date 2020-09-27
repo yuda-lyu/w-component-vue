@@ -73,7 +73,7 @@
     <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.js"></script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@1.4.46/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@1.4.47/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -117,33 +117,37 @@
                 class="item"
             >borderRadiusStyle & borderWidth & borderColor & borderColorHover & no shadow</div>
 
-            <w-button-chip
-                :text="WButtonChip.text"
-                :icon="'mdi-shaker-outline'"
-                :border-radius-style="{left:true}"
-                :border-color="'#aaa'"
-                :border-color-hover="'#aaa'"
-                :shadow="false"
-            />
+            <div style="display:flex;">
+                <!-- 用display:flex避免編譯後因換行符號導致按鈕組件間出現間格 -->
 
-            <w-button-chip
-                :text="WButtonChip.text"
-                :icon="'mdi-flask-round-bottom'"
-                :border-radius-style="{}"
-                :border-width="{top:1,bottom:1}"
-                :shadow="false"
-                :border-color="'#aaa'"
-                :border-color-hover="'#aaa'"
-            />
+                <w-button-chip
+                    :text="WButtonChip.text"
+                    :icon="'mdi-shaker-outline'"
+                    :border-radius-style="{left:true}"
+                    :border-color="'#aaa'"
+                    :border-color-hover="'#aaa'"
+                    :shadow="false"
+                />
 
-            <w-button-chip
-                :text="WButtonChip.text"
-                :icon="'mdi-shoe-print'"
-                :border-radius-style="{right:true}"
-                :shadow="false"
-                :border-color="'#aaa'"
-                :border-color-hover="'#aaa'"
-            />
+                <w-button-chip
+                    :text="WButtonChip.text"
+                    :icon="'mdi-flask-round-bottom'"
+                    :border-radius-style="{}"
+                    :border-width="{top:1,bottom:1}"
+                    :shadow="false"
+                    :border-color="'#aaa'"
+                    :border-color-hover="'#aaa'"
+                />
+
+                <w-button-chip
+                    :text="WButtonChip.text"
+                    :icon="'mdi-shoe-print'"
+                    :border-radius-style="{right:true}"
+                    :shadow="false"
+                    :border-color="'#aaa'"
+                    :border-color-hover="'#aaa'"
+                />
+            </div>
         </div>
     </v-app>
 

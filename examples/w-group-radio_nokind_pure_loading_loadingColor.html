@@ -7,7 +7,7 @@
         content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui"
     />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>example for w-group-radio: loading & textColor</title>
+    <title>example for w-group-radio: loading & loadingColor</title>
 
     <!-- fontawesome -->
     <link
@@ -73,7 +73,7 @@
     <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.js"></script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@1.4.46/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@1.4.47/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -113,13 +113,13 @@
     <v-app id="app" style="font-family:inherit;">
         <div class="head1">w-group-radio</div>
         <div class="bk">
-            <div class="item">loading & textColor</div>
+            <div class="item">loading & loadingColor</div>
 
             <w-group-radio
                 :items="WGroupRadio.object.items"
                 v-model="WGroupRadio.object.select"
                 :loading="true"
-                :text-color="'orange darken-4'"
+                :loading-color="'orange darken-4'"
             />
         </div>
     </v-app>
