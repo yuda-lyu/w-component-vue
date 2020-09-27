@@ -77,6 +77,7 @@ let gm = globalMemory()
  * @vue-prop {String} [defaultColor='grey darken-4'] 輸入值為其他類型時的顏色字串，預設'grey darken-4'
  * @vue-prop {Boolean} [defDisplayChildren=true] 輸入是否預先展開全部節點，預設true
  * @vue-prop {String} [searchEmpty='Empty'] 輸入無過濾結果字串，預設'Empty'
+ * @vue-prop {Boolean} [show=true] 輸入是否為顯示模式，預設true，供組件嵌入popup時, 因先初始化但尚未顯示不需渲染, 可給予show=false避免無限偵測與重算高度問題
  */
 export default {
     components: {
@@ -140,6 +141,10 @@ export default {
         searchEmpty: {
             type: String,
             default: 'Empty',
+        },
+        show: {
+            type: Boolean,
+            default: true,
         },
     },
     data: function() {
@@ -543,6 +548,11 @@ export default {
                     }
                 }
             })
+
+            //check visible, 若組件未顯示(例如display:none)則不視為高度有變更狀態, 避免無限更新
+            if (!vo.show) {
+                vo.changeHeight = false
+            }
 
             //check
             let b = vo.changeHeight || vo.changeDisplayChildren || vo.changeFilter
