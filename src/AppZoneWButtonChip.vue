@@ -774,19 +774,34 @@ export default {
             }, 10)
         },
         ckBtnModProg: function(msg) {
-            console.log('ckBtnModProg', msg)
+            //console.log('ckBtnModProg', msg)
+
+            //lock
             msg.setProg(0) //先設定prog為0使按鈕自動上鎖禁止高頻觸發
-            setTimeout(function() { //模擬呼叫api時至少等1s才有反應能setProg, 若沒先設定prog為0按鈕不會上鎖
-                let n = 0
-                let t = setInterval(function() {
-                    n += 0.5
-                    msg.setProg(n)
-                    if (n >= 100) {
-                    //vo.WButtonChip.prog = null //當prog>=100時會由內部自動設定為null
-                        clearInterval(t)
-                    }
-                }, 10)
-            }, 1000)
+
+            try {
+                // if (Math.random() < 0.5) { //隨機添加出錯
+                //     throw new Error('Whoops!')
+                // }
+                setTimeout(function() { //模擬呼叫api時至少等1s才有反應能setProg, 若沒先設定prog為0按鈕不會上鎖
+                    let n = 0
+                    let t = setInterval(function() {
+                        n += 0.5
+                        msg.setProg(n)
+                        if (n >= 100) {
+                            //vo.WButtonChip.prog = null //當prog>=100時會由內部自動設定為null
+                            clearInterval(t)
+                        }
+                    }, 10)
+                }, 1000)
+            }
+            catch (err) {
+
+                //unlock
+                msg.setProg(null)
+
+            }
+
         },
         ckBtnLoading: function() {
             console.log('ckBtnLoading')

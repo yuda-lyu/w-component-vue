@@ -1,6 +1,6 @@
 <template>
     <div
-        style="display:inline-block; vertical-align:middle;"
+        style="display:inline-block; vertical-align:middle; user-select:none;"
         :changeActive="changeActive"
         :changeProg="changeProg"
         :changeLoading="changeLoading"
@@ -47,7 +47,7 @@
                                 </div>
 
                                 <div
-                                    :style="`margin-right:${text?0:-10}px; transition:all 0.3s; text-transform:none; color:${useTC}; user-select:none;`"
+                                    :style="`margin-right:${text?0:-10}px; transition:all 0.3s; text-transform:none; color:${useTC};`"
                                 >
                                     <div :style="`font-size:${textFontSize};`">{{text}}</div>
                                 </div>
@@ -698,6 +698,12 @@ export default {
             if (!vo.editable) {
                 return
             }
+            if (vo.isProging) {
+                return
+            }
+            if (vo.loadingTrans) {
+                return
+            }
 
             //msg
             let msg = {
@@ -714,11 +720,11 @@ export default {
                         prog = cdbl(prog)
                     }
 
+                    //update, 得先更新否則會等$nextTick才更新, 會有可能連續觸發無法上鎖
+                    vo.progTrans = prog
+
                     //$nextTick
                     vo.$nextTick(() => {
-
-                        //update progTrans
-                        vo.progTrans = prog
 
                         //emit
                         vo.$emit('update:prog', vo.progTrans)
@@ -748,11 +754,11 @@ export default {
                         return
                     }
 
+                    //update, 得先更新否則會等$nextTick才更新, 會有可能連續觸發無法上鎖
+                    vo.loadingTrans = loading
+
                     //$nextTick
                     vo.$nextTick(() => {
-
-                        //update
-                        vo.loadingTrans = loading
 
                         //emit
                         vo.$emit('update:loading', vo.loadingTrans)

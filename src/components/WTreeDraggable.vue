@@ -1,9 +1,10 @@
 <template>
     <div :changeItems="changeItems" :flatItems="flatItems">
-        <div style="position:relative;">
+        <!-- 不讓position:relative露出至組件元素 -->
+        <div style="position:relative; user-select:none;">
 
             <div
-                :style="`transition:all 0.2s linear; user-select:none; cursor:pointer; padding-left:${(node.nk.length-1)*indent}px;`"
+                :style="`transition:all 0.2s linear; cursor:pointer; padding-left:${(node.nk.length-1)*indent}px;`"
                 :key="get(node,bindKey,knode)"
                 dragtag
                 :dragindex="knode"
