@@ -66,7 +66,7 @@ Vue.component('w-text',WText)
 [Optional] Add link for icon.
 ```alias
 <link href="https://cdn.jsdelivr.net/npm/@mdi/font/css/materialdesignicons.min.css" rel="stylesheet">
-<link href="https://use.fontawesome.com/releases/v5.13.0/css/all.css" rel="stylesheet">
+<link href="https://use.fontawesome.com/releases/v5.14.0/css/all.css" rel="stylesheet">
 ```
 [Necessary] Add script and link for vuetify.
 ```alias

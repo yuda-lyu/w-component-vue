@@ -6,7 +6,7 @@ let opt = {
     head: `
 
     <!-- fontawesome -->
-    <link href="https://use.fontawesome.com/releases/v5.13.0/css/all.css" rel="stylesheet">
+    <link href="https://use.fontawesome.com/releases/v5.14.0/css/all.css" rel="stylesheet">
 
     <!-- mdi, 各組件使用mdi/js故不需引用 -->
     <link _href="https://cdn.jsdelivr.net/npm/@mdi/font/css/materialdesignicons.min.css" rel="stylesheet">
