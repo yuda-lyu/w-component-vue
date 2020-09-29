@@ -38,6 +38,7 @@ function bind(el, binding, vnode) {
             ...s,
             winHeight,
         }
+
         //emit
         emit(vnode, 'domresize', msg)
 

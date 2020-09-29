@@ -28,6 +28,7 @@ import WPanelScrolly from './WPanelScrolly.vue'
 import WPanelScrollyCore from './WPanelScrollyCore.vue'
 import WPanelStripe from './WPanelStripe.vue'
 import WPopup from './WPopup.vue'
+import WProgressBar from './WProgressBar.vue'
 import WProgressCircle from './WProgressCircle.vue'
 import WQuillVueDyn from './WQuillVueDyn.vue'
 import WShellEllipse from './WShellEllipse.vue'
@@ -83,6 +84,7 @@ let WComponentVue = {
         Vue.component('w-panel-scrolly-core', WPanelScrollyCore)
         Vue.component('w-panel-stripe', WPanelStripe)
         Vue.component('w-popup', WPopup)
+        Vue.component('w-progress-bar', WProgressBar)
         Vue.component('w-progress-circle', WProgressCircle)
         Vue.component('w-quill-vue-dyn', WQuillVueDyn)
         Vue.component('w-shell-ellipse', WShellEllipse)

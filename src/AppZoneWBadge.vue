@@ -17,7 +17,56 @@
                 ></demolink>
 
                 <w-badge
+                    :text="WBadge.number"
+                >
+                    <v-chip style="margin:0px;" label>{{WBadge.labelText}}</v-chip>
+                </w-badge>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-badge'"
+                    :casename="'badgeAlign'"
+                    :kind="'nokind'"
+                    :shell="'pure'"
+                ></demolink>
+
+                <w-badge
+                    :text="WBadge.textLong"
+                    :badgeAlign="'center'"
+                >
+                    <v-chip style="margin:0px;" label>{{WBadge.labelText}}</v-chip>
+                </w-badge>
+
+                <w-badge
+                    :text="WBadge.textLong"
+                    :badgeAlign="'left'"
+                >
+                    <v-chip style="margin:0px;" label>{{WBadge.labelText}}</v-chip>
+                </w-badge>
+
+                <w-badge
+                    :text="WBadge.textLong"
+                    :badgeAlign="'right'"
+                >
+                    <v-chip style="margin:0px;" label>{{WBadge.labelText}}</v-chip>
+                </w-badge>
+
+            </div>
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-badge'"
+                    :casename="'textFontSize'"
+                    :kind="'nokind'"
+                    :shell="'pure'"
+                ></demolink>
+
+                <w-badge
                     :text="WBadge.text"
+                    :textFontSize="'0.9rem'"
                 >
                     <v-chip style="margin:0px;" label>{{WBadge.labelText}}</v-chip>
                 </w-badge>
@@ -62,6 +111,44 @@
             </div>
 
 
+            <div class="bk">
+                <demolink
+                    :kbname="'w-badge'"
+                    :casename="'borderRadius'"
+                    :kind="'nokind'"
+                    :shell="'pure'"
+                ></demolink>
+
+                <w-badge
+                    :text="WBadge.text"
+                    :borderRadius="3"
+                >
+                    <v-chip style="margin:0px;" label>{{WBadge.labelText}}</v-chip>
+                </w-badge>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-badge'"
+                    :casename="'borderColor & textColor & backgroundColor'"
+                    :kind="'nokind'"
+                    :shell="'pure'"
+                ></demolink>
+
+                <w-badge
+                    :text="WBadge.text"
+                    :textColor="'orange accent-4'"
+                    :backgroundColor="'orange lighten-5'"
+                    :borderColor="'deep-orange darken-1'"
+                >
+                    <v-chip style="margin:0px;" label>{{WBadge.labelText}}</v-chip>
+                </w-badge>
+
+            </div>
+
+
         </div>
 
 
@@ -89,7 +176,9 @@ export default {
     data: function() {
         return {
             'WBadge': {
-                'text': 'aBc數字123',
+                'number': '5',
+                'text': 'A',
+                'textLong': 'Abc中文123',
                 'labelText': '測試中文Label'
             },
             'actions': [

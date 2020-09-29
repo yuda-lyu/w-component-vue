@@ -49,7 +49,7 @@ import hide from '@popperjs/core/lib/modifiers/hide.js'
  * @vue-prop {Number} [minWidth=null] 輸入最小寬度，單位為px，預設null
  * @vue-prop {Number} [maxWidth=null] 輸入最大寬度，單位為px，預設null
  * @vue-prop {Number} [distY=5] 輸入彈窗距離觸發元素底部的距離，單位為px，預設5
- * @vue-prop {Number} [borderRadius=4] 輸入框圓角寬度數字，單位為px，預設4
+ * @vue-prop {Number} [borderRadius=4] 輸入框圓角度數字，單位為px，預設4
  * @vue-prop {String} [backgroundColor='white'] 輸入內容區塊背景顏色字串，預設'white'
  * @vue-prop {Boolean} [shadow=true] 輸入是否顯示陰影，預設true
  * @vue-prop {String} [shadowStyle=''] 輸入陰影顏色字串，預設值詳見props

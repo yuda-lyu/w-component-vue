@@ -46,7 +46,7 @@ import WTextSuggestCore from './WTextSuggestCore.vue'
 /**
  * @vue-prop {String} [title=''] 輸入標題字串，預設''
  * @vue-prop {String} [titleColor='deep-orange darken-1'] 輸入標題顏色字串，預設'deep-orange darken-1'
- * @vue-prop {Number} [borderRadius=30] 輸入框圓角寬度，單位為px，預設30
+ * @vue-prop {Number} [borderRadius=30] 輸入框圓角度，單位為px，預設30
  * @vue-prop {Boolean} [borderShadow=true] 輸入是否為陰影模式，預設true
  * @vue-prop {Array} [items=[]] 輸入可選(建議)項目陣列，預設[]
  * @vue-prop {Object|String|Number} [value=null] 輸入目前選擇項目，可為物件、字串、數字，預設null

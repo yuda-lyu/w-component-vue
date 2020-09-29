@@ -52,7 +52,7 @@ import WTextIntCore from './WTextIntCore.vue'
  * @vue-prop {Number} [width=70] 輸入框寬度，單位為px，預設70
  * @vue-prop {String} [title=''] 輸入標題字串，預設''
  * @vue-prop {String} [titleColor='deep-orange darken-1'] 輸入標題顏色字串，預設'deep-orange darken-1'
- * @vue-prop {Number} [borderRadius=30] 輸入框圓角寬度，單位為px，預設30
+ * @vue-prop {Number} [borderRadius=30] 輸入框圓角度，單位為px，預設30
  * @vue-prop {Boolean} [borderShadow=true] 輸入是否為陰影模式，預設true
  * @vue-prop {Number} [value=0] 輸入整數值數字，預設0
  * @vue-prop {Number} [valueMax=null] 輸入最大整數值數字，預設null

@@ -41,7 +41,6 @@
 </template>
 
 <script>
-import get from 'lodash/get'
 import domDragBarAndScroll from 'wsemi/src/domDragBarAndScroll.mjs'
 import domResize from '../js/domResize.mjs'
 

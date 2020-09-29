@@ -73,7 +73,7 @@
     <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.js"></script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@1.4.48/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@1.4.49/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -115,7 +115,7 @@
         <div class="bk">
             <div class="item">default</div>
 
-            <w-badge :text="WBadge.text">
+            <w-badge :text="WBadge.number">
                 <v-chip style="margin:0px;" label>{{WBadge.labelText}}</v-chip>
             </w-badge>
         </div>
@@ -132,7 +132,9 @@
     data: function() {
       return {
         WBadge: {
-          text: "aBc數字123",
+          number: "5",
+          text: "A",
+          textLong: "Abc中文123",
           labelText: "測試中文Label"
         },
         actions: [
