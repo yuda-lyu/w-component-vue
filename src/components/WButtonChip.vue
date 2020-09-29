@@ -141,8 +141,8 @@ import WIcon from './WIcon.vue'
  * @vue-prop {String} [iconColorActive='white'] 輸入主動模式時圖標顏色字串，預設'white'
  * @vue-prop {Number} [iconSize=22] 輸入左側圖標之尺寸數字，單位px，預設22
  * @vue-prop {Number} [prog=null] 輸入進度條進度數字，單位%，預設null
- * @vue-prop {String} [progColor='rgba(150,150,150,0.4)'] 輸入進度條背景顏色字串，預設'rgba(150,150,150,0.4)'
- * @vue-prop {String} [progBackgroundColor='rgba(150,150,150,0.075)'] 輸入進度條顏色字串，預設'rgba(150,150,150,0.075)'
+ * @vue-prop {String} [progColor='rgba(150,150,150,0.4)'] 輸入進度條顏色字串，預設'rgba(150,150,150,0.4)'
+ * @vue-prop {String} [progBackgroundColor='rgba(150,150,150,0.075)'] 輸入進度條背景顏色字串，預設'rgba(150,150,150,0.075)'
  * @vue-prop {String} [textColor='black'] 輸入文字顏色字串，預設'black'
  * @vue-prop {String} [textColorHover='grey darken-3'] 輸入滑鼠移入時文字顏色字串，預設'grey darken-3'
  * @vue-prop {String} [textColorActive='white'] 輸入主動模式時文字顏色字串，預設'white'
@@ -490,13 +490,9 @@ export default {
         },
 
         useTextFontSize: function() {
-            //console.log('computed useTextFontSize')
-
             let vo = this
-
             let s = vo.textFontSize
             s = replace(s, ';', '')
-
             return `font-size:${s};`
         },
 

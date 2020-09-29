@@ -73,7 +73,7 @@
     <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.js"></script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@1.4.49/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@1.4.50/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -125,7 +125,7 @@
                 :show.sync="WConfirm.bShow3"
                 :title="WConfirm.title"
                 :content="WConfirm.content"
-                :content-icon-color="'pink'"
+                :content-icon-color="'pink darken-1'"
                 @click-no="clickEvent('click-no')"
                 @click-yes="clickEvent('click-yes')"
             />
@@ -153,6 +153,7 @@
           bShow8: false,
           bShow9: false,
           bShow10: false,
+          bShow11: false,
           title: "Confirm",
           content: "Do you agree to upload the information?"
         },

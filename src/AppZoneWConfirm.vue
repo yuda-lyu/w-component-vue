@@ -65,7 +65,7 @@
                     :show.sync="WConfirm.bShow3"
                     :title="WConfirm.title"
                     :content="WConfirm.content"
-                    :contentIconColor="'pink'"
+                    :contentIconColor="'pink darken-1'"
                     @click-no="clickEvent('click-no')"
                     @click-yes="clickEvent('click-yes')"
                 ></w-confirm>
@@ -155,8 +155,8 @@
                     :title="WConfirm.title"
                     :content="WConfirm.content"
                     :titleColor="'white'"
-                    :headerBackgroundColor="'grey darken-1'"
-                    :footerBackgroundColor="'grey lighten-4'"
+                    :headerBackgroundColor="'grey darken-2'"
+                    :footerBackgroundColor="'brown lighten-5'"
                     @click-no="clickEvent('click-no')"
                     @click-yes="clickEvent('click-yes')"
                 ></w-confirm>
@@ -235,6 +235,69 @@
             </div>
 
 
+            <div class="bk">
+                <demolink
+                    :kbname="'w-confirm'"
+                    :casename="'slot content'"
+                    :kind="'nokind'"
+                    :shell="'pure'"
+                ></demolink>
+
+                <v-btn small rounded @click="WConfirm.bShow11=!WConfirm.bShow11">Show({{WConfirm.bShow11}})</v-btn>
+
+                <w-confirm
+                    :show.sync="WConfirm.bShow11"
+                    :title="WConfirm.title"
+                    @click-no="clickEvent('click-no')"
+                    @click-yes="clickEvent('click-yes')"
+                >
+
+                    <div style="padding:20px 20px 0px 20px; font-size:1.5rem;">
+                        A data table
+                    </div>
+
+                    <div style="padding:10px 20px; font-size:0.9rem;">
+                        Vuetify is a progressive framework that attempts to push web development to the next level.
+                    </div>
+
+                    <div style="padding:10px 20px 20px 20px;">
+                        <table style="width:100%; font-size:0.8rem; border-collapse:collapse; border:1px solid #ddd;">
+                            <thead>
+                                <tr>
+                                    <th style="padding:5px 20px; text-align:left;">Dessert</th>
+                                    <th style="padding:5px 20px; text-align:left;">Calories</th>
+                                    <th style="padding:5px 20px; text-align:left;">Fat</th>
+                                    <th style="padding:5px 20px; text-align:left;">Carbs</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td style="padding:5px 20px; border-top:1px solid #ddd; background:#afeb25; color:#000;">Frozen Yogurt</td>
+                                    <td style="padding:5px 20px; border-top:1px solid #ddd; background:#afeb25; color:#000;">159</td>
+                                    <td style="padding:5px 20px; border-top:1px solid #ddd; background:#afeb25; color:#000;">6</td>
+                                    <td style="padding:5px 20px; border-top:1px solid #ddd; background:#afeb25; color:#000;">24</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding:5px 20px; border-top:1px solid #ddd;">Ice cream sandwich</td>
+                                    <td style="padding:5px 20px; border-top:1px solid #ddd;">237</td>
+                                    <td style="padding:5px 20px; border-top:1px solid #ddd;">9</td>
+                                    <td style="padding:5px 20px; border-top:1px solid #ddd;">37</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding:5px 20px; border-top:1px solid #ddd; background:#afeb25; color:#000;">Eclair</td>
+                                    <td style="padding:5px 20px; border-top:1px solid #ddd; background:#afeb25; color:#000;">262</td>
+                                    <td style="padding:5px 20px; border-top:1px solid #ddd; background:#afeb25; color:#000;">16</td>
+                                    <td style="padding:5px 20px; border-top:1px solid #ddd; background:#afeb25; color:#000;">23</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </w-confirm>
+
+            </div>
+
+
         </div>
 
 
@@ -272,6 +335,7 @@ export default {
                 'bShow8': false,
                 'bShow9': false,
                 'bShow10': false,
+                'bShow11': false,
                 'title': 'Confirm',
                 'content': 'Do you agree to upload the information?',
             },

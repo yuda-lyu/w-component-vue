@@ -34,6 +34,7 @@
                 ></demolink>
 
                 <w-badge
+                    style="margin-right:20px;"
                     :text="WBadge.textLong"
                     :badgeAlign="'center'"
                 >
@@ -41,6 +42,7 @@
                 </w-badge>
 
                 <w-badge
+                    style="margin-right:20px;"
                     :text="WBadge.textLong"
                     :badgeAlign="'left'"
                 >
@@ -48,6 +50,7 @@
                 </w-badge>
 
                 <w-badge
+                    style="margin-right:20px;"
                     :text="WBadge.textLong"
                     :badgeAlign="'right'"
                 >
@@ -178,8 +181,8 @@ export default {
             'WBadge': {
                 'number': '5',
                 'text': 'A',
-                'textLong': 'Abc中文123',
-                'labelText': '測試中文Label'
+                'textLong': 'A123',
+                'labelText': '測試中文Label',
             },
             'actions': [
                 {

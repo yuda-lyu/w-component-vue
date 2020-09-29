@@ -16,19 +16,23 @@
                 </span>
             </div>
 
-            <div :style="useContentStyle">
+            <div>
+                <slot>
+                    <div :style="useContentStyle">
 
-                <div style="display:table-cell; vertical-align:middle; padding-right:15px;">
-                    <v-icon
-                        :size="contentIconSize"
-                        :color="contentIconColor"
-                    >
-                        {{contentIcon}}
-                    </v-icon>
-                </div>
+                        <div style="display:table-cell; vertical-align:middle; padding-right:15px;">
+                            <v-icon
+                                :size="contentIconSize"
+                                :color="contentIconColor"
+                            >
+                                {{contentIcon}}
+                            </v-icon>
+                        </div>
 
-                <div style="display:table-cell; vertical-align:middle; width:100%;">{{content}}</div>
+                        <div style="display:table-cell; vertical-align:middle; width:100%;">{{content}}</div>
 
+                    </div>
+                </slot>
             </div>
 
             <div :style="useFooterStyle">

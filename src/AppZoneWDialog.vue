@@ -710,7 +710,7 @@
                             </div>
                         </div>
 
-                        <table style="width:100%; font-size:0.8rem;">
+                        <table style="width:100%; font-size:0.8rem; border-collapse:collapse;">
                             <thead>
                                 <tr>
                                     <th style="padding:5px 20px; text-align:left;">Dessert</th>

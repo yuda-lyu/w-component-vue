@@ -90,8 +90,6 @@ export default {
             shiftX: 0,
         }
     },
-    mounted: function() {
-    },
     computed: {
 
         changeBadgeAlign: function() {
@@ -148,8 +146,8 @@ export default {
     },
     methods: {
 
-        resize: function({ snew }) {
-            //console.log('methods resize', snew)
+        resize: function() {
+            //console.log('methods resize')
 
             let vo = this
 

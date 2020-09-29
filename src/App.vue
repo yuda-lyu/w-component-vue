@@ -252,6 +252,13 @@
             ></AppZoneWButtonCircle>
 
 
+            <AppZoneWProgressBar
+                :modeBorder="modeBorder"
+                :modeShell="modeShell"
+                v-if="compname==='WProgressBar'"
+            ></AppZoneWProgressBar>
+
+
             <AppZoneWProgressCircle
                 :modeBorder="modeBorder"
                 :modeShell="modeShell"
@@ -478,6 +485,7 @@ import AppZoneWConfirm from './AppZoneWConfirm.vue'
 import AppZoneWPopup from './AppZoneWPopup.vue'
 import AppZoneWButtonChip from './AppZoneWButtonChip.vue'
 import AppZoneWButtonCircle from './AppZoneWButtonCircle.vue'
+import AppZoneWProgressBar from './AppZoneWProgressBar.vue'
 import AppZoneWProgressCircle from './AppZoneWProgressCircle.vue'
 import AppZoneWSwitch from './AppZoneWSwitch.vue'
 import AppZoneWAlert from './AppZoneWAlert.vue'
@@ -521,6 +529,7 @@ export default {
         AppZoneWPopup,
         AppZoneWButtonChip,
         AppZoneWButtonCircle,
+        AppZoneWProgressBar,
         AppZoneWProgressCircle,
         AppZoneWSwitch,
         AppZoneWAlert,
@@ -566,6 +575,7 @@ export default {
                         'WSwitch',
                         'WIconSvg',
                         'WDropfiles',
+                        'WProgressBar',
                         'WProgressCircle',
                     ]
                 },

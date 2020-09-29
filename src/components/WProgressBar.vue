@@ -1,32 +1,33 @@
 <template>
     <div>
 
-        <div :style="`color:${useTitleTextColor}; font-size:${titleTextFontSize};`">
+        <div
+            :style="`color:${useTitleTextColor}; ${useTitleTextFontSize};`"
+            v-if="title"
+        >
             {{title}}
         </div>
 
         <div style="display:flex; align-items:center;">
 
             <div :style="`${useBorderRadius} overflow:hidden; width:100%; height:${height}px;`">
-                <div :style="`background:${useBackgroundColor}; height:${height}px;`">
+                <div :style="`background:${useProgBackgroundColor}; height:${height}px;`">
                     <div :style="`background:${useProgColor}; width:${useProg}%; height:${height}px;`"></div>
                 </div>
             </div>
 
-            <div>
+            <div style="padding-left:5px;">
                 <w-icon
-                    :style="`margin:0px 5px 0px -6px;`"
-                    :icon="status==='wating'?mdiCloudOffOutline:mdiCheck"
-                    :color="status==='wating'?iconColorWating:iconColorFinish"
+                    :icon="status==='waiting'?iconWaiting:iconFinish"
+                    :color="status==='waiting'?useIconWatingColor:useIconFinishColor"
                     :size="iconSize"
-                    v-if="status==='wating' || status==='finish'"
+                    v-if="status==='waiting' || status==='finish'"
                 ></w-icon>
                 <div
-                    :style="`color:${useValueTextColor}; font-size:${valueTextFontSize};`"
+                    :style="`color:${useValueTextColor}; ${useValueTextFontSize};`"
                     v-else
                 >
-                    <div style="height:0px;">100%</div>
-                    {{value}}%
+                    <div>{{useProg}}%</div>
                 </div>
             </div>
 
@@ -36,25 +37,30 @@
 </template>
 
 <script>
-import { mdiCheck, mdiCloudOffOutline } from '@mdi/js'
+import { mdiCheck, mdiOrbitVariant } from '@mdi/js'
+import dig from 'wsemi/src/dig.mjs'
+import replace from 'wsemi/src/replace.mjs'
 import color2hex from '../js/vuetifyColor.mjs'
 import WIcon from './WIcon.vue'
 
 
 /**
- * @vue-prop {Number} [value=0] 輸入進度數字，單位%，介於0至100之間，預設0，進度條出現需狀態status設定為'running'
- * @vue-prop {String} [status='waiting'] 輸入狀態字串，可有'wating'、'running'、'finish'，預設'wating'
+ * @vue-prop {Number} [value=0] 輸入進度數字，單位%，介於0至100之間，預設0
+ * @vue-prop {Number} [decimal=1] 輸入進度取小數位數字，預設1
  * @vue-prop {String} [title=''] 輸入項目名稱字串，預設''
- * @vue-prop {Number} [height=2] 輸入高度數字，單位為px，預設2
- * @vue-prop {Number} [borderRadius=5] 輸入框圓角度數字，單位為px，預設5
- * @vue-prop {String} [progColor='rgba(150,150,150,0.4)'] 輸入進度條背景顏色字串，預設'rgba(150,150,150,0.4)'
- * @vue-prop {String} [backgroundColor='rgba(150,150,150,0.075)'] 輸入進度條顏色字串，預設'rgba(150,150,150,0.075)'
- * @vue-prop {String} [titleTextColor='black'] 輸入文字顏色字串，預設'black'
+ * @vue-prop {String} [titleTextColor='grey darken-2'] 輸入文字顏色字串，預設'grey darken-2'
  * @vue-prop {String} [titleTextFontSize='0.85rem'] 輸入文字字型大小字串，預設'0.85rem'
- * @vue-prop {Number} [iconSize=22] 輸入左側圖標之尺寸數字，單位px，預設22
- * @vue-prop {String} [valueTextColor='black'] 輸入文字顏色字串，預設'black'
+ * @vue-prop {Number} [height=3] 輸入高度數字，單位為px，預設3
+ * @vue-prop {Number} [borderRadius=5] 輸入框圓角度數字，單位為px，預設5
+ * @vue-prop {String} [progColor='light-green accent-4'] 輸入進度條顏色字串，預設'light-green accent-4'
+ * @vue-prop {String} [progBackgroundColor='rgba(150,150,150,0.2)'] 輸入進度條背景顏色字串，預設'rgba(150,150,150,0.2)'
+ * @vue-prop {Number} [iconSize=20] 輸入左側圖標之尺寸數字，單位px，預設20
+ * @vue-prop {String} [iconWaiting='mdiOrbitVariant'] 輸入等待狀態(value<=0)圖標字串，可為mdi,md,fa代號或mdi/js路徑，預設'mdiOrbitVariant'
+ * @vue-prop {String} [iconFinish='mdiCheck'] 輸入完成狀態(value>=100)圖標字串，可為mdi,md,fa代號或mdi/js路徑，預設'mdiCheck'
+ * @vue-prop {String} [iconWatingColor='grey'] 輸入等待狀態(value<=0)圖標顏色字串，預設'grey'
+ * @vue-prop {String} [iconFinishColor='green'] 輸入完成狀態(value>=100)圖標顏色字串，預設'green'
+ * @vue-prop {String} [valueTextColor='grey darken-2'] 輸入文字顏色字串，預設'grey darken-2'
  * @vue-prop {String} [valueTextFontSize='0.85rem'] 輸入文字字型大小字串，預設'0.85rem'
- *
  */
 export default {
     components: {
@@ -65,17 +71,25 @@ export default {
             type: Number,
             default: 0,
         },
-        status: {
-            type: String,
-            default: 'wating',
+        decimal: {
+            type: Number,
+            default: 1,
         },
         title: {
             type: String,
             default: '',
         },
+        titleTextColor: {
+            type: String,
+            default: 'grey darken-2',
+        },
+        titleTextFontSize: {
+            type: String,
+            default: '0.85rem',
+        },
         height: {
             type: Number,
-            default: 2,
+            default: 3,
         },
         borderRadius: {
             type: Number,
@@ -83,35 +97,35 @@ export default {
         },
         progColor: {
             type: String,
-            default: 'rgba(150,150,150,0.4)',
+            default: 'light-green accent-4',
         },
         progBackgroundColor: {
             type: String,
-            default: 'rgba(150,150,150,0.075)',
-        },
-        titleTextColor: {
-            type: String,
-            default: 'black',
-        },
-        titleTextFontSize: {
-            type: String,
-            default: '0.85rem',
+            default: 'rgba(150,150,150,0.2)',
         },
         iconSize: {
             type: Number,
-            default: 22,
+            default: 20,
         },
-        iconColorWating: {
+        iconWaiting: {
+            type: String,
+            default: mdiOrbitVariant,
+        },
+        iconFinish: {
+            type: String,
+            default: mdiCheck,
+        },
+        iconWatingColor: {
             type: String,
             default: 'grey',
         },
-        iconColorFinish: {
+        iconFinishColor: {
             type: String,
             default: 'green',
         },
         valueTextColor: {
             type: String,
-            default: 'black',
+            default: 'grey darken-2',
         },
         valueTextFontSize: {
             type: String,
@@ -121,16 +135,40 @@ export default {
     data: function() {
         return {
             mdiCheck,
-            mdiCloudOffOutline,
+            mdiOrbitVariant,
         }
     },
     computed: {
 
-        useBorderRadius: function() {
-            //console.log('computed useBorderRadius')
-
+        status: function() {
             let vo = this
+            if (vo.value <= 0) {
+                return 'waiting'
+            }
+            else if (vo.value >= 100) {
+                return 'finish'
+            }
+            return 'running'
+        },
 
+        useProg: function() {
+            let vo = this
+            let p = vo.value
+            p = Math.max(p, 0)
+            p = Math.min(p, 100)
+            p = vo.digValue(p)
+            return p
+        },
+
+        useTitleTextFontSize: function() {
+            let vo = this
+            let s = vo.titleTextFontSize
+            s = replace(s, ';', '')
+            return `font-size:${s};`
+        },
+
+        useBorderRadius: function() {
+            let vo = this
             return `border-radius:${vo.borderRadius}px;`
         },
 
@@ -139,9 +177,9 @@ export default {
             return color2hex(vo.progColor)
         },
 
-        useBackgroundColor: function() {
+        useProgBackgroundColor: function() {
             let vo = this
-            return color2hex(vo.backgroundColor)
+            return color2hex(vo.progBackgroundColor)
         },
 
         useTitleTextColor: function() {
@@ -149,22 +187,35 @@ export default {
             return color2hex(vo.titleTextColor)
         },
 
+        useIconWatingColor: function() {
+            let vo = this
+            return color2hex(vo.iconWatingColor)
+        },
+
+        useIconFinishColor: function() {
+            let vo = this
+            return color2hex(vo.iconFinishColor)
+        },
+
         useValueTextColor: function() {
             let vo = this
             return color2hex(vo.valueTextColor)
         },
 
+        useValueTextFontSize: function() {
+            let vo = this
+            let s = vo.valueTextFontSize
+            s = replace(s, ';', '')
+            return `font-size:${s};`
+        },
+
     },
     methods: {
 
-        updateHeaderHeight: function({ snew }) {
-            //console.log('methods updateHeaderHeight', snew)
-
+        digValue: function(value) {
+            //console.log('methods digValue', value)
             let vo = this
-
-            //update
-            vo.headerHeight = snew.offsetHeight
-
+            return dig(value, vo.decimal)
         },
 
     },
@@ -172,10 +223,4 @@ export default {
 </script>
 
 <style scoped>
-.shadow {
-    box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
-}
-.shadow-header {
-    box-shadow: 0px 4px 5px -2px rgba(0, 0, 0, 0.12), 0px 7px 10px 1px rgba(0, 0, 0, 0.06), 0px 2px 16px 1px rgba(0, 0, 0, 0.04);
-}
 </style>

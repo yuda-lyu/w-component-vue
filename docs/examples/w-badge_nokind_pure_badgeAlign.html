@@ -73,7 +73,7 @@
     <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.js"></script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@1.4.49/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@1.4.50/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -115,15 +115,27 @@
         <div class="bk">
             <div class="item">badgeAlign</div>
 
-            <w-badge :text="WBadge.textLong" :badge-align="'center'">
+            <w-badge
+                style="margin-right:20px;"
+                :text="WBadge.textLong"
+                :badge-align="'center'"
+            >
                 <v-chip style="margin:0px;" label>{{WBadge.labelText}}</v-chip>
             </w-badge>
 
-            <w-badge :text="WBadge.textLong" :badge-align="'left'">
+            <w-badge
+                style="margin-right:20px;"
+                :text="WBadge.textLong"
+                :badge-align="'left'"
+            >
                 <v-chip style="margin:0px;" label>{{WBadge.labelText}}</v-chip>
             </w-badge>
 
-            <w-badge :text="WBadge.textLong" :badge-align="'right'">
+            <w-badge
+                style="margin-right:20px;"
+                :text="WBadge.textLong"
+                :badge-align="'right'"
+            >
                 <v-chip style="margin:0px;" label>{{WBadge.labelText}}</v-chip>
             </w-badge>
         </div>
@@ -142,7 +154,7 @@
         WBadge: {
           number: "5",
           text: "A",
-          textLong: "Abc中文123",
+          textLong: "A123",
           labelText: "測試中文Label"
         },
         actions: [

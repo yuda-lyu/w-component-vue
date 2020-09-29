@@ -545,7 +545,7 @@
                             <span>A data table</span>
                         </div>
 
-                        <table style="width:100%; font-size:0.7rem;">
+                        <table style="width:100%; font-size:0.7rem; border-collapse:collapse;">
                             <thead>
                                 <tr>
                                     <th style="padding:2px 8px; text-align:left;">Dessert</th>
