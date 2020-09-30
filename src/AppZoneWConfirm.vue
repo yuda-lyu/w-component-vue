@@ -155,8 +155,8 @@
                     :title="WConfirm.title"
                     :content="WConfirm.content"
                     :titleColor="'white'"
-                    :headerBackgroundColor="'grey darken-2'"
-                    :footerBackgroundColor="'brown lighten-5'"
+                    :headerBackgroundColor="'#a36'"
+                    :footerBackgroundColor="'#eee'"
                     @click-no="clickEvent('click-no')"
                     @click-yes="clickEvent('click-yes')"
                 ></w-confirm>
@@ -238,7 +238,7 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-confirm'"
-                    :casename="'slot content'"
+                    :casename="'slot header'"
                     :kind="'nokind'"
                     :shell="'pure'"
                 ></demolink>
@@ -248,51 +248,117 @@
                 <w-confirm
                     :show.sync="WConfirm.bShow11"
                     :title="WConfirm.title"
+                    :content="WConfirm.content"
                     @click-no="clickEvent('click-no')"
                     @click-yes="clickEvent('click-yes')"
                 >
+                    <template v-slot:header>
+                        <div style="padding:30px; background:linear-gradient(135deg,#e9aa16,#c99314);">
+                            <div style="font-size:1.8rem; color:#fff; margin-top:-10px;">
+                                System Broadcast
+                            </div>
+                            <div style="font-size:0.8rem; color:rgba(255,255,255,0.75);">
+                                You are now subscribing to the System Broadcast, let us serve you!
+                            </div>
+                        </div>
+                    </template>
+                </w-confirm>
 
-                    <div style="padding:20px 20px 0px 20px; font-size:1.5rem;">
-                        A data table
-                    </div>
+            </div>
 
-                    <div style="padding:10px 20px; font-size:0.9rem;">
-                        Vuetify is a progressive framework that attempts to push web development to the next level.
-                    </div>
 
-                    <div style="padding:10px 20px 20px 20px;">
-                        <table style="width:100%; font-size:0.8rem; border-collapse:collapse; border:1px solid #ddd;">
-                            <thead>
-                                <tr>
-                                    <th style="padding:5px 20px; text-align:left;">Dessert</th>
-                                    <th style="padding:5px 20px; text-align:left;">Calories</th>
-                                    <th style="padding:5px 20px; text-align:left;">Fat</th>
-                                    <th style="padding:5px 20px; text-align:left;">Carbs</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td style="padding:5px 20px; border-top:1px solid #ddd; background:#afeb25; color:#000;">Frozen Yogurt</td>
-                                    <td style="padding:5px 20px; border-top:1px solid #ddd; background:#afeb25; color:#000;">159</td>
-                                    <td style="padding:5px 20px; border-top:1px solid #ddd; background:#afeb25; color:#000;">6</td>
-                                    <td style="padding:5px 20px; border-top:1px solid #ddd; background:#afeb25; color:#000;">24</td>
-                                </tr>
-                                <tr>
-                                    <td style="padding:5px 20px; border-top:1px solid #ddd;">Ice cream sandwich</td>
-                                    <td style="padding:5px 20px; border-top:1px solid #ddd;">237</td>
-                                    <td style="padding:5px 20px; border-top:1px solid #ddd;">9</td>
-                                    <td style="padding:5px 20px; border-top:1px solid #ddd;">37</td>
-                                </tr>
-                                <tr>
-                                    <td style="padding:5px 20px; border-top:1px solid #ddd; background:#afeb25; color:#000;">Eclair</td>
-                                    <td style="padding:5px 20px; border-top:1px solid #ddd; background:#afeb25; color:#000;">262</td>
-                                    <td style="padding:5px 20px; border-top:1px solid #ddd; background:#afeb25; color:#000;">16</td>
-                                    <td style="padding:5px 20px; border-top:1px solid #ddd; background:#afeb25; color:#000;">23</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
+            <div class="bk">
+                <demolink
+                    :kbname="'w-confirm'"
+                    :casename="'slot content'"
+                    :kind="'nokind'"
+                    :shell="'pure'"
+                ></demolink>
 
+                <v-btn small rounded @click="WConfirm.bShow12=!WConfirm.bShow12">Show({{WConfirm.bShow12}})</v-btn>
+
+                <w-confirm
+                    :show.sync="WConfirm.bShow12"
+                    :title="WConfirm.title"
+                    @click-no="clickEvent('click-no')"
+                    @click-yes="clickEvent('click-yes')"
+                >
+                    <template v-slot:content>
+
+                        <div style="padding:20px 20px 0px 20px; font-size:1.5rem;">
+                            A data table
+                        </div>
+
+                        <div style="padding:10px 20px; font-size:0.9rem;">
+                            Vuetify is a progressive framework that attempts to push web development to the next level.
+                        </div>
+
+                        <div style="padding:10px 20px 20px 20px;">
+                            <table style="width:100%; font-size:0.8rem; border-collapse:collapse; border:1px solid #ddd;">
+                                <thead>
+                                    <tr>
+                                        <th style="padding:5px 20px; text-align:left; background:#eee;">Dessert</th>
+                                        <th style="padding:5px 20px; text-align:left; background:#eee;">Calories</th>
+                                        <th style="padding:5px 20px; text-align:left; background:#eee;">Fat</th>
+                                        <th style="padding:5px 20px; text-align:left; background:#eee;">Carbs</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td style="padding:5px 20px; border-top:1px solid #ddd;">Frozen Yogurt</td>
+                                        <td style="padding:5px 20px; border-top:1px solid #ddd;">159</td>
+                                        <td style="padding:5px 20px; border-top:1px solid #ddd;">6</td>
+                                        <td style="padding:5px 20px; border-top:1px solid #ddd;">24</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding:5px 20px; border-top:1px solid #ddd; color:#f26;">Ice cream sandwich</td>
+                                        <td style="padding:5px 20px; border-top:1px solid #ddd; color:#f26;">237</td>
+                                        <td style="padding:5px 20px; border-top:1px solid #ddd; color:#f26;">9</td>
+                                        <td style="padding:5px 20px; border-top:1px solid #ddd; color:#f26;">37</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding:5px 20px; border-top:1px solid #ddd;">Eclair</td>
+                                        <td style="padding:5px 20px; border-top:1px solid #ddd;">262</td>
+                                        <td style="padding:5px 20px; border-top:1px solid #ddd;">16</td>
+                                        <td style="padding:5px 20px; border-top:1px solid #ddd;">23</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </template>
+                </w-confirm>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-confirm'"
+                    :casename="'slot footer'"
+                    :kind="'nokind'"
+                    :shell="'pure'"
+                ></demolink>
+
+                <v-btn small rounded @click="WConfirm.bShow13=!WConfirm.bShow13">Show({{WConfirm.bShow13}})</v-btn>
+
+                <w-confirm
+                    :show.sync="WConfirm.bShow13"
+                    :title="WConfirm.title"
+                    :content="WConfirm.content"
+                    @click-no="clickEvent('click-no')"
+                    @click-yes="clickEvent('click-yes')"
+                >
+                    <template v-slot:footer>
+                        <div style="border-top:1px solid #ddd; padding:30px; text-align:center; background:#923a60;">
+                            <div style="font-size:0.8rem; color:#fff; margin-bottom:10px;">
+                                Please confirm the message and then press the AGREE button.
+                            </div>
+                            <div style="">
+                                <v-btn color="pink" dark @click="WConfirm.bShow13=false">Agree</v-btn>
+                            </div>
+                        </div>
+                    </template>
                 </w-confirm>
 
             </div>
@@ -336,6 +402,8 @@ export default {
                 'bShow9': false,
                 'bShow10': false,
                 'bShow11': false,
+                'bShow12': false,
+                'bShow13': false,
                 'title': 'Confirm',
                 'content': 'Do you agree to upload the information?',
             },

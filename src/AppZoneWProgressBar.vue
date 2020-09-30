@@ -102,7 +102,7 @@
                     style="width:400px;"
                     :value="WProgressBar.value"
                     :title="WProgressBar.title"
-                    :titleTextColor="'light-green accent-4'"
+                    :titleTextColor="'light-green darken-1'"
                 ></w-progress-bar>
 
             </div>
@@ -137,7 +137,7 @@
                 <w-progress-bar
                     style="width:400px;"
                     :value="WProgressBar.value"
-                    :height="6"
+                    :height="10"
                 ></w-progress-bar>
 
             </div>
@@ -146,7 +146,7 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-progress-bar'"
-                    :casename="'borderRadius'"
+                    :casename="'height & borderRadius'"
                     :kind="'nokind'"
                     :shell="'pure'"
                 ></demolink>
@@ -154,6 +154,7 @@
                 <w-progress-bar
                     style="width:400px;"
                     :value="WProgressBar.value"
+                    :height="10"
                     :borderRadius="0"
                 ></w-progress-bar>
 
@@ -232,7 +233,7 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-progress-bar'"
-                    :casename="'iconWatingColor'"
+                    :casename="'iconWaitingColor'"
                     :kind="'nokind'"
                     :shell="'pure'"
                 ></demolink>
@@ -240,7 +241,24 @@
                 <w-progress-bar
                     style="width:400px;"
                     :value="WProgressBar.valueWaiting"
-                    :iconWatingColor="'light-blue accent-2'"
+                    :iconWaitingColor="'light-blue accent-2'"
+                ></w-progress-bar>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-progress-bar'"
+                    :casename="'enableIconWaiting (no iconWaiting)'"
+                    :kind="'nokind'"
+                    :shell="'pure'"
+                ></demolink>
+
+                <w-progress-bar
+                    style="width:400px;"
+                    :value="WProgressBar.valueWaiting"
+                    :enableIconWaiting="false"
                 ></w-progress-bar>
 
             </div>
@@ -275,6 +293,23 @@
                     style="width:400px;"
                     :value="WProgressBar.valueFinish"
                     :iconFinishColor="'lime accent-4'"
+                ></w-progress-bar>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-progress-bar'"
+                    :casename="'enableIconFinish (no iconFinish)'"
+                    :kind="'nokind'"
+                    :shell="'pure'"
+                ></demolink>
+
+                <w-progress-bar
+                    style="width:400px;"
+                    :value="WProgressBar.valueFinish"
+                    :enableIconFinish="false"
                 ></w-progress-bar>
 
             </div>
@@ -349,6 +384,16 @@ export default {
             'actions': [
             ],
         }
+    },
+    mounted: function() {
+        let vo = this
+        setInterval(function() {
+            vo.WProgressBar.value += 0.1
+            if (vo.WProgressBar.value > 100) {
+                vo.WProgressBar.value = 0
+            }
+            //console.log('vo.WProgressBar.value', vo.WProgressBar.value)
+        }, 10)
     },
 }
 </script>

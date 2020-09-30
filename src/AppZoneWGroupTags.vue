@@ -800,13 +800,13 @@
             <div class="bk" style="display:block;">
                 <demolink
                     :kbname="'w-group-tags'"
-                    :casename="'disableCloseEvent'"
+                    :casename="'enableCloseEventOnly'"
                     :kind="'nokind'"
                     :shell="'pure'"
                 ></demolink>
 
                 <w-group-tags
-                    :disableCloseEvent="true"
+                    :enableCloseEventOnly="true"
                     v-model="WGroupTags.strings"
                     @click-close="ckBtnClose"
                 ></w-group-tags>

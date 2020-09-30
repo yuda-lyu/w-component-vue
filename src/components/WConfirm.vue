@@ -8,16 +8,20 @@
 
         <v-card>
 
-            <div :style="useHeaderStyle">
-                <span
-                    :style="[{'font-size':'1.2rem'},useTitleColor]"
-                >
-                    {{title}}
-                </span>
+            <div>
+                <slot name="header">
+                    <div :style="useHeaderStyle">
+                        <span
+                            :style="[{'font-size':'1.2rem'},useTitleColor]"
+                        >
+                            {{title}}
+                        </span>
+                    </div>
+                </slot>
             </div>
 
             <div>
-                <slot>
+                <slot name="content">
                     <div :style="useContentStyle">
 
                         <div style="display:table-cell; vertical-align:middle; padding-right:15px;">
@@ -35,31 +39,35 @@
                 </slot>
             </div>
 
-            <div :style="useFooterStyle">
+            <div>
+                <slot name="footer">
+                    <div :style="useFooterStyle">
 
-                <v-btn
-                    style="margin-left:20px;"
-                    small
-                    rounded
-                    :color="noBtnBackgroundColor"
-                    @click="clickBtns(false)"
-                    v-if="hasNoBtn"
-                >
-                    <v-icon style="margin-left:-8px;" :color="noBtnTextColor">{{mdiCloseCircle}}</v-icon>
-                    <span :style="`margin-left:5px; font-size:0.875rem; text-transform:none; color:${useNoBtnTextColor}`">{{noBtnText}}</span>
-                </v-btn>
+                        <v-btn
+                            style="margin-left:20px;"
+                            small
+                            rounded
+                            :color="noBtnBackgroundColor"
+                            @click="clickBtns(false)"
+                            v-if="hasNoBtn"
+                        >
+                            <v-icon style="margin-left:-8px;" :color="noBtnTextColor">{{mdiCloseCircle}}</v-icon>
+                            <span :style="`margin-left:5px; font-size:0.875rem; text-transform:none; color:${useNoBtnTextColor}`">{{noBtnText}}</span>
+                        </v-btn>
 
-                <v-btn
-                    style="margin-left:20px;"
-                    small
-                    rounded
-                    :color="yesBtnBackgroundColor"
-                    @click="clickBtns(true)"
-                >
-                    <v-icon style="margin-left:-8px;" :color="yesBtnTextColor">{{mdiCheckboxMarkedCircle}}</v-icon>
-                    <span :style="`margin-left:5px; font-size:0.875rem; text-transform:none; color:${useYesBtnTextColor}`">{{yesBtnText}}</span>
-                </v-btn>
+                        <v-btn
+                            style="margin-left:20px;"
+                            small
+                            rounded
+                            :color="yesBtnBackgroundColor"
+                            @click="clickBtns(true)"
+                        >
+                            <v-icon style="margin-left:-8px;" :color="yesBtnTextColor">{{mdiCheckboxMarkedCircle}}</v-icon>
+                            <span :style="`margin-left:5px; font-size:0.875rem; text-transform:none; color:${useYesBtnTextColor}`">{{yesBtnText}}</span>
+                        </v-btn>
 
+                    </div>
+                </slot>
             </div>
 
         </v-card>

@@ -19,9 +19,9 @@
             <div style="padding-left:5px;">
                 <w-icon
                     :icon="status==='waiting'?iconWaiting:iconFinish"
-                    :color="status==='waiting'?useIconWatingColor:useIconFinishColor"
+                    :color="status==='waiting'?useIconWaitingColor:useIconFinishColor"
                     :size="iconSize"
-                    v-if="status==='waiting' || status==='finish'"
+                    v-if="(enableIconWaiting && status==='waiting') || (enableIconFinish && status==='finish')"
                 ></w-icon>
                 <div
                     :style="`color:${useValueTextColor}; ${useValueTextFontSize};`"
@@ -50,15 +50,17 @@ import WIcon from './WIcon.vue'
  * @vue-prop {String} [title=''] 輸入項目名稱字串，預設''
  * @vue-prop {String} [titleTextColor='grey darken-2'] 輸入文字顏色字串，預設'grey darken-2'
  * @vue-prop {String} [titleTextFontSize='0.85rem'] 輸入文字字型大小字串，預設'0.85rem'
- * @vue-prop {Number} [height=3] 輸入高度數字，單位為px，預設3
+ * @vue-prop {Number} [height=4] 輸入高度數字，單位為px，預設4
  * @vue-prop {Number} [borderRadius=5] 輸入框圓角度數字，單位為px，預設5
  * @vue-prop {String} [progColor='light-green accent-4'] 輸入進度條顏色字串，預設'light-green accent-4'
- * @vue-prop {String} [progBackgroundColor='rgba(150,150,150,0.2)'] 輸入進度條背景顏色字串，預設'rgba(150,150,150,0.2)'
+ * @vue-prop {String} [progBackgroundColor='light-green lighten-5'] 輸入進度條背景顏色字串，預設'light-green lighten-5'
  * @vue-prop {Number} [iconSize=20] 輸入左側圖標之尺寸數字，單位px，預設20
  * @vue-prop {String} [iconWaiting='mdiOrbitVariant'] 輸入等待狀態(value<=0)圖標字串，可為mdi,md,fa代號或mdi/js路徑，預設'mdiOrbitVariant'
  * @vue-prop {String} [iconFinish='mdiCheck'] 輸入完成狀態(value>=100)圖標字串，可為mdi,md,fa代號或mdi/js路徑，預設'mdiCheck'
- * @vue-prop {String} [iconWatingColor='grey'] 輸入等待狀態(value<=0)圖標顏色字串，預設'grey'
+ * @vue-prop {String} [iconWaitingColor='grey'] 輸入等待狀態(value<=0)圖標顏色字串，預設'grey'
  * @vue-prop {String} [iconFinishColor='green'] 輸入完成狀態(value>=100)圖標顏色字串，預設'green'
+ * @vue-prop {Boolean} [enableIconWaiting=true] 輸入是否使用等待狀態(value<=0)圖標，預設true
+ * @vue-prop {Boolean} [enableIconFinish=true] 輸入是否使用完成狀態(value>=100)圖標，預設true
  * @vue-prop {String} [valueTextColor='grey darken-2'] 輸入文字顏色字串，預設'grey darken-2'
  * @vue-prop {String} [valueTextFontSize='0.85rem'] 輸入文字字型大小字串，預設'0.85rem'
  */
@@ -89,7 +91,7 @@ export default {
         },
         height: {
             type: Number,
-            default: 3,
+            default: 4,
         },
         borderRadius: {
             type: Number,
@@ -97,11 +99,11 @@ export default {
         },
         progColor: {
             type: String,
-            default: 'light-green accent-4',
+            default: 'lime accent-4',
         },
         progBackgroundColor: {
             type: String,
-            default: 'rgba(150,150,150,0.2)',
+            default: 'light-green lighten-5',
         },
         iconSize: {
             type: Number,
@@ -115,13 +117,21 @@ export default {
             type: String,
             default: mdiCheck,
         },
-        iconWatingColor: {
+        iconWaitingColor: {
             type: String,
             default: 'grey',
         },
         iconFinishColor: {
             type: String,
             default: 'green',
+        },
+        enableIconWaiting: {
+            type: Boolean,
+            default: true,
+        },
+        enableIconFinish: {
+            type: Boolean,
+            default: true,
         },
         valueTextColor: {
             type: String,
@@ -187,9 +197,9 @@ export default {
             return color2hex(vo.titleTextColor)
         },
 
-        useIconWatingColor: function() {
+        useIconWaitingColor: function() {
             let vo = this
-            return color2hex(vo.iconWatingColor)
+            return color2hex(vo.iconWaitingColor)
         },
 
         useIconFinishColor: function() {
