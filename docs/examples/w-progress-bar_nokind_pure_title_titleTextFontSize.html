@@ -143,6 +143,16 @@
         actions: []
       };
     },
+    mounted: function() {
+      let vo = this;
+      setInterval(function() {
+        vo.WProgressBar.value += 0.1;
+        if (vo.WProgressBar.value > 100) {
+          vo.WProgressBar.value = 0;
+        }
+        //console.log('vo.WProgressBar.value', vo.WProgressBar.value)
+      }, 10);
+    },
     computed: {},
     methods: {}
   });

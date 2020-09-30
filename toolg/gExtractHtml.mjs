@@ -119,6 +119,7 @@ let h = `
             el: '#app',
             vuetify: new Vuetify(),
             data: {{data}},
+            mounted: {{mounted}},
             computed: {{computed}},
             methods: {{methods}},
         })
@@ -174,6 +175,10 @@ function writeHtml(v) {
     let t_data = v.data
     c = c.replace('{{data}}', t_data)
 
+    //replace mounted
+    let t_mounted = v.mounted
+    c = c.replace('{{mounted}}', t_mounted)
+
     //replace computed
     let t_computed = v.computed
     c = c.replace('{{computed}}', t_computed)
@@ -227,7 +232,7 @@ function extractAppZone(fn) {
     name = name.replace('.vue', '')
 
     //parseVueCode
-    let { tmp, mounted, data, computed, methods, action } = parseVueCode(hh)
+    let { tmp, data, mounted, computed, methods, action } = parseVueCode(hh)
 
     //clear data
     let ss = data.split('\r\n')
@@ -263,7 +268,7 @@ function extractAppZone(fn) {
         let fn = `${kbname}_${cvCasename(fnc)}`
 
         //writeHtml
-        writeHtml({ name, kbname, casename, tmp, data, action, computed, methods, fn })
+        writeHtml({ name, kbname, casename, tmp, data, mounted, computed, methods, action, fn })
 
     })
 
