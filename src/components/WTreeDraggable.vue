@@ -4,13 +4,15 @@
         <div style="position:relative; user-select:none;">
 
             <div
-                :style="`transition:all 0.2s linear; cursor:pointer; padding-left:${(node.nk.length-1)*indent}px;`"
+                tabindex="0"
+                :style="`transition:all 0.2s linear; cursor:pointer; outline:none; padding-left:${(node.nk.length-1)*indent}px;`"
                 :key="get(node,bindKey,knode)"
                 dragtag
                 :dragindex="knode"
                 v-for="(node,knode) in nodes"
                 @mouseenter="(e)=>{$emit('mouseenter',{event:e,ele:e.target,node,knode})}"
                 @mouseleave="(e)=>{$emit('mouseleave',{event:e,ele:e.target,node,knode})}"
+                @keyup.enter="(e)=>{$emit('click',{event:e,ele:e.target,node,knode})}"
                 @click="(e)=>{$emit('click',{event:e,ele:e.target,node,knode})}"
             >
 

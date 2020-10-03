@@ -5,7 +5,13 @@
         :style="[usePadding,{'opacity':editable?1:0.6}]"
     >
 
-        <div style="cursor:pointer;" @click="clickIcon('left')" v-if="leftIcon">
+        <div
+            style="cursor:pointer; outline:none;"
+            tabindex="0"
+            @keyup.enter="clickIcon('left')"
+            @click="clickIcon('left')"
+            v-if="leftIcon"
+        >
 
             <v-tooltip bottom transition="slide-y-transition" :disabled="leftIconTooltip===''">
 
@@ -38,7 +44,13 @@
 
         </div>
 
-        <div style="cursor:pointer;" @click="clickIcon('right')" v-if="rightIcon">
+        <div
+            style="cursor:pointer; outline:none;"
+            tabindex="0"
+            @keyup.enter="clickIcon('right')"
+            @click="clickIcon('right')"
+            v-if="rightIcon"
+        >
 
             <v-tooltip bottom transition="slide-y-transition" :disabled="rightIconTooltip===''">
 

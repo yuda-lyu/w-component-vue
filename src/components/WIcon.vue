@@ -1,6 +1,7 @@
 <template>
     <div
         style="display:flex; align-items:center; user-select:none;"
+        @keyup.enter="(v)=>{$emit('click',v)}"
         @click="(v)=>{$emit('click',v)}"
         v-if="icon!==''"
     >

@@ -12,8 +12,13 @@
 
             <div style="position:relative;">
 
-                <div style="position:absolute; top:0px; left:0px; transform:translateX(-100%); user-select:none;">
-                    <div v-if="item.stateChildren===1" @click.capture="toggleItems(item)">
+                <div style="position:absolute; top:0px; left:0px; transform:translateX(-100%); user-select:none; cursor:pointer; outline:none;">
+                    <div
+                        tabindex="0"
+                        @keyup.enter.capture="toggleItems(item)"
+                        @click.capture="toggleItems(item)"
+                        v-if="item.stateChildren===1"
+                    >
                         <span :class="[{'caretRight':true,'showChildren':item.displayChildren}]">
                             <span class="center">
                                 <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" :fill="useIconColor" width="11px" height="11px" x="0px" y="0px" viewBox="0 0 415.346 415.346" xml:space="preserve"><g><path d="M41.712,415.346c-11.763,0-21.3-9.537-21.3-21.3V21.299C20.412,9.536,29.949,0,41.712,0l346.122,191.697 c0,0,15.975,15.975,0,31.951C371.859,239.622,41.712,415.346,41.712,415.346z"/></g></svg>

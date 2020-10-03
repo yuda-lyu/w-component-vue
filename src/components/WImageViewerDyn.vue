@@ -6,14 +6,16 @@
         <div ref="imgsGroup" v-else>
             <template v-for="(image,k) in images">
                 <div
-                    style="display:inline-block; opacity:0;"
+                    tabindex="0"
+                    style="display:inline-block; opacity:0; cursor:pointer; outline:none;"
                     :key="k"
+                    @keyup.enter="showImg"
+                    @click="showImg"
                 >
                     <img
                         :class="imageClass"
                         :style="useImageStyle"
                         :src="image"
-                        @click="showImg"
                     >
                 </div>
             </template>
@@ -30,10 +32,12 @@ import showImagesDyn from 'wsemi/src/showImagesDyn.mjs'
 import domFadeIn from 'wsemi/src/domFadeIn.mjs'
 import WIconLoading from './WIconLoading.vue'
 
+
+//defStyle
 let defStyle = {
     'margin': '5px',
-    'cursor': 'pointer',
 }
+
 
 /**
  * @vue-prop {Array} [pathItems=['詳見原始碼']] 輸入viewerjs組件js與css檔案位置字串陣列，預設詳見原始碼處props->pathItems->default

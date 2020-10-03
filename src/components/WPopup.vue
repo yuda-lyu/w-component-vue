@@ -2,8 +2,10 @@
     <div style="display:inline-block;" :changeValue="changeValue">
 
         <div
-            divTrigger
             ref="divTrigger"
+            style="outline:none;"
+            tabindex="0"
+            @keyup.enter="clickTrigger"
             @click.stop="clickTrigger"
         >
             <slot name="trigger"></slot>

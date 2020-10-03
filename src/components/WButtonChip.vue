@@ -19,10 +19,12 @@
 
                     <div
                         v-on="on"
-                        :style="`transition:all 0.3s; ${useBorderRadiusStyle} background:${useBC}; cursor:pointer; box-shadow:${useShadow};`"
+                        :style="`transition:all 0.3s; ${useBorderRadiusStyle} background:${useBC}; cursor:pointer; outline:none; box-shadow:${useShadow};`"
                         v-ripple="editable?{ class: 'white--text' }:false"
+                        tabindex="0"
                         @mouseenter="hoverTrans=true"
                         @mouseleave="hoverTrans=false"
+                        @keyup.enter="clickBtn($event)"
                         @click="clickBtn($event)"
                     >
 
@@ -52,14 +54,18 @@
                                     <div :style="`${useTextFontSize}`">{{text}}</div>
                                 </div>
 
-                                <div :style="`display:inline-block;`">
+                                <div
+                                    tabindex="0"
+                                    :style="`display:inline-block; cursor:pointer; outline:none;`"
+                                    @keyup.enter="clickClose($event)"
+                                    @click="clickClose($event)"
+                                    v-if="close"
+                                >
                                     <w-icon
                                         :style="`margin:0px -9px 0px 5px;`"
                                         :icon="mdiCloseCircle"
                                         :color="useIC"
                                         :size="iconSize"
-                                        @click="clickClose($event)"
-                                        v-if="close"
                                     ></w-icon>
                                 </div>
 
