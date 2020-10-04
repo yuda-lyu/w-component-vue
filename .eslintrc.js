@@ -4,7 +4,7 @@ module.exports = {
         "es6": true,
         "mocha": true
     },
-    "extends": ["plugin:vue/essential", "standard"],
+    "extends": ["plugin:vue/base", "plugin:vue/essential", "standard"],
     "plugins": [
         "vue"
     ],
