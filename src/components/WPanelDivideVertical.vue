@@ -56,7 +56,7 @@ import domResize from '../js/domResize.mjs'
  */
 export default {
     directives: {
-        domresize: domResize,
+        domresize: domResize(),
     },
     props: {
         ratio: {

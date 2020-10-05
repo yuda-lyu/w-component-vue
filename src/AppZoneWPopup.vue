@@ -243,7 +243,7 @@
                     :shell="'pure'"
                 ></demolink>
 
-                <div style="height:300px; overflow-y:auto;">
+                <div style="height:300px; border:1px solid #ddd; overflow-y:auto;">
                     <div style="height:600px;">
 
                         <!-- 內嵌span為避免self-closing於前端vue模板無法解析問題 -->
@@ -280,13 +280,13 @@
                     :shell="'pure'"
                 ></demolink>
 
-                <div style="width:95vw; height:300px; overflow-y:auto;">
-                    <div style="height:600px;">
+                <div style="width:95vw; text-align:right;">
+                    <div style="display:inline-block; width:200px; height:300px; border:1px solid #ddd; overflow-y:auto;">
+                        <div style="text-align:left; height:600px;">
 
-                        <!-- 內嵌span為避免self-closing於前端vue模板無法解析問題 -->
-                        <div style="height:200px;"><span></span></div>
+                            <!-- 內嵌span為避免self-closing於前端vue模板無法解析問題 -->
+                            <div style="height:200px;"><span></span></div>
 
-                        <div style="text-align:right; padding-right:30px;">
                             <w-popup
                                 v-model="WPopup.bShow11"
                             >
@@ -300,11 +300,11 @@
                                 </template>
 
                             </w-popup>
+
+                            <!-- 內嵌span為避免self-closing於前端vue模板無法解析問題 -->
+                            <div style="height:200px;"><span></span></div>
+
                         </div>
-
-                        <!-- 內嵌span為避免self-closing於前端vue模板無法解析問題 -->
-                        <div style="height:200px;"><span></span></div>
-
                     </div>
                 </div>
 

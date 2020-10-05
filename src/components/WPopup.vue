@@ -59,7 +59,7 @@ import hide from '@popperjs/core/lib/modifiers/hide.js'
  */
 export default {
     directives: {
-        domresize: domResize,
+        domresize: domResize(),
     },
     props: {
         value: {
