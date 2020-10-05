@@ -73,7 +73,7 @@
     <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.js"></script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@1.5.0/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@1.5.1/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -115,14 +115,16 @@
         <div class="bk">
             <div class="item">auto flipping in scroll panel</div>
 
-            <div style="width:95vw; height:300px; overflow-y:auto;">
-                <div style="height:600px;">
-                    <!-- 內嵌span為避免self-closing於前端vue模板無法解析問題 -->
-                    <div style="height:200px;">
-                        <span />
-                    </div>
+            <div style="width:95vw; text-align:right;">
+                <div
+                    style="display:inline-block; width:200px; height:300px; border:1px solid #ddd; overflow-y:auto;"
+                >
+                    <div style="text-align:left; height:600px;">
+                        <!-- 內嵌span為避免self-closing於前端vue模板無法解析問題 -->
+                        <div style="height:200px;">
+                            <span />
+                        </div>
 
-                    <div style="text-align:right; padding-right:30px;">
                         <w-popup v-model="WPopup.bShow11">
                             <template v-slot:trigger>
                                 <v-btn
@@ -143,11 +145,11 @@
                                 </v-list>
                             </template>
                         </w-popup>
-                    </div>
 
-                    <!-- 內嵌span為避免self-closing於前端vue模板無法解析問題 -->
-                    <div style="height:200px;">
-                        <span />
+                        <!-- 內嵌span為避免self-closing於前端vue模板無法解析問題 -->
+                        <div style="height:200px;">
+                            <span />
+                        </div>
                     </div>
                 </div>
             </div>
