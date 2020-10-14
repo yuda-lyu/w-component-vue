@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="utf-8">
+    <title>flattenTree.mjs - Documentation</title>
+    
+    
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+    <script src="scripts/nav.js" defer></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav >
+    
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-WAggridVueDyn.html">WAggridVueDyn</a></li><li><a href="module-WBadge.html">WBadge</a></li><li><a href="module-WButtonChip.html">WButtonChip</a></li><li><a href="module-WButtonCircle.html">WButtonCircle</a></li><li><a href="module-WCkeditorVueDyn.html">WCkeditorVueDyn</a></li><li><a href="module-WConfirm.html">WConfirm</a></li><li><a href="module-WDialog.html">WDialog</a></li><li><a href="module-WDropfiles.html">WDropfiles</a></li><li><a href="module-WDynamicList.html">WDynamicList</a></li><li><a href="module-WEchartsVueDyn.html">WEchartsVueDyn</a></li><li><a href="module-WGroupCheck.html">WGroupCheck</a></li><li><a href="module-WGroupRadio.html">WGroupRadio</a></li><li><a href="module-WGroupTags.html">WGroupTags</a></li><li><a href="module-WHighchartsVueDyn.html">WHighchartsVueDyn</a></li><li><a href="module-WHighstockVueDyn.html">WHighstockVueDyn</a></li><li><a href="module-WIcon.html">WIcon</a></li><li><a href="module-WIconLoading.html">WIconLoading</a></li><li><a href="module-WIconSvg.html">WIconSvg</a></li><li><a href="module-WImageViewerDyn.html">WImageViewerDyn</a></li><li><a href="module-WJsonView.html">WJsonView</a></li><li><a href="module-WJsonViewCore.html">WJsonViewCore</a></li><li><a href="module-WPanelBulge.html">WPanelBulge</a></li><li><a href="module-WPanelDivideHorizontal.html">WPanelDivideHorizontal</a></li><li><a href="module-WPanelDivideVertical.html">WPanelDivideVertical</a></li><li><a href="module-WPanelScrolly.html">WPanelScrolly</a></li><li><a href="module-WPanelScrollyCore.html">WPanelScrollyCore</a></li><li><a href="module-WPanelStripe.html">WPanelStripe</a></li><li><a href="module-WPopup.html">WPopup</a></li><li><a href="module-WProgressBar.html">WProgressBar</a></li><li><a href="module-WProgressCircle.html">WProgressCircle</a></li><li><a href="module-WQuillVueDyn.html">WQuillVueDyn</a></li><li><a href="module-WShellEllipse.html">WShellEllipse</a></li><li><a href="module-WShellMaterial.html">WShellMaterial</a></li><li><a href="module-WSwitch.html">WSwitch</a></li><li><a href="module-WText.html">WText</a></li><li><a href="module-WTextarea.html">WTextarea</a></li><li><a href="module-WTextCore.html">WTextCore</a></li><li><a href="module-WTextInt.html">WTextInt</a></li><li><a href="module-WTextIntCore.html">WTextIntCore</a></li><li><a href="module-WTextSelect.html">WTextSelect</a></li><li><a href="module-WTextSuggest.html">WTextSuggest</a></li><li><a href="module-WTextSuggestCore.html">WTextSuggestCore</a></li><li><a href="module-WTimeday.html">WTimeday</a></li><li><a href="module-WTimedayCore.html">WTimedayCore</a></li><li><a href="module-WTimedayRange.html">WTimedayRange</a></li><li><a href="module-WTimedayRangeCore.html">WTimedayRangeCore</a></li><li><a href="module-WTimeminute.html">WTimeminute</a></li><li><a href="module-WTimeminuteCore.html">WTimeminuteCore</a></li><li><a href="module-WTimeminuteRange.html">WTimeminuteRange</a></li><li><a href="module-WTimeminuteRangeCore.html">WTimeminuteRangeCore</a></li><li><a href="module-WTinymceVueDyn.html">WTinymceVueDyn</a></li><li><a href="module-WTree.html">WTree</a></li><li><a href="module-WTreeDraggable.html">WTreeDraggable</a></li></ul><h3>Global</h3><ul><li><a href="global.html#binarySearch">binarySearch</a></li><li><a href="global.html#color2hex">color2hex</a></li><li><a href="global.html#flattenTree">flattenTree</a></li><li><a href="global.html#getHCDataGrouping">getHCDataGrouping</a></li><li><a href="global.html#getHCDateFmt">getHCDateFmt</a></li><li><a href="global.html#getHCGlobal">getHCGlobal</a></li><li><a href="global.html#getHCMarker">getHCMarker</a></li><li><a href="global.html#getHCUnits">getHCUnits</a></li></ul>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">flattenTree.mjs</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import get from 'lodash/get'
+import treeObj from 'wsemi/src/treeObj.mjs'
+
+
+/**
+ * 展平樹狀物件陣列
+ *
+ * @param {Array} items 輸入樹狀物件陣列
+ * @param {String} [bindKey='id'] 輸入節點物件識別用欄位字串，預設'id'
+ * @param {String} [bindChildren='children'] 輸入節點物件內存放子節點欄位字串，預設'children'
+ * @returns {Array} 回傳節點物件陣列
+ */
+function flattenTree(items, bindKey = 'id', bindChildren = 'children') {
+
+    function getNk(nk) {
+        //將nk內插入bindChildren, 因主節點為array, 各節點內的子節點也為array
+        let r = [nk[0]]
+        for (let i = 1; i &lt; nk.length; i++) {
+            let k = nk[i]
+            r.push(bindChildren)
+            r.push(k)
+        }
+        return r
+    }
+
+    //nodes
+    let nodes = []
+    treeObj(items, (value, key, nk) => {
+
+        //pk
+        let pk = get(value, bindKey, null)
+
+        //children
+        let children = get(value, bindChildren, null)
+
+        //push
+        if (pk) {
+            nodes.push({
+                ...value,
+                nk: getNk([...nk, key]),
+                key,
+            })
+            if (children) {
+                return children
+            }
+        }
+
+    })
+
+    return nodes
+}
+
+
+export default flattenTree
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+    
+    
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.6</a> on Wed Oct 14 2020 16:17:57 GMT+0800 (台北標準時間) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/polyfill.js"></script>
+<script src="scripts/linenumber.js"></script>
+
+
+
+</body>
+</html>
