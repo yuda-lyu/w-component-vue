@@ -388,7 +388,7 @@ export default {
                 if (v.filterShow) {
                     v.screenY = v.y - vo.scrollInfor.t //換算成實際顯示y向的px位置
                     v.nowShow = k >= indStartActual //顯示區下方之預載節點都直接顯示供重算高度
-                    v.delayShow = kpDelayShow[k] === true //已經顯示的節點就直接顯示, 否則就延遲顯示
+                    v.delayShow = kpDelayShow[k] === true //已經顯示的節點就直接顯示, 否則delayShow=false就是延遲顯示
                     useItems.push(v)
                 }
             }

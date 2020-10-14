@@ -12,9 +12,10 @@
 
             <div style="position:relative;">
 
-                <div style="position:absolute; top:0px; left:0px; transform:translateX(-100%); user-select:none; cursor:pointer; outline:none;">
+                <div style="position:absolute; top:0px; left:0px; transform:translateX(-100%); user-select:none; cursor:pointer;">
                     <div
                         tabindex="0"
+                        style="outline:none;"
                         @keyup.enter.capture="toggleItems(item)"
                         @click.capture="toggleItems(item)"
                         v-if="item.stateChildren===1"

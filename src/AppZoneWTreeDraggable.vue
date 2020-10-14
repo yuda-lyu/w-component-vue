@@ -383,7 +383,6 @@ export default {
                     ],
                 },
             },
-
             'actions': [
             ],
         }

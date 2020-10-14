@@ -55,8 +55,8 @@
                                 </div>
 
                                 <div
-                                    tabindex="0"
                                     :style="`display:inline-block; cursor:pointer; outline:none;`"
+                                    tabindex="0"
                                     @keyup.enter="clickClose($event)"
                                     @click="clickClose($event)"
                                     v-if="close"

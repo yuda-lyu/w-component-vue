@@ -2,8 +2,6 @@
     <div :changeParam="changeParam">
 
         <w-shell-ellipse
-            :title="title"
-            :titleColor="titleColor"
             :borderRadius="borderRadius"
             :borderShadow="borderShadow"
             :leftIcon="icon"
@@ -24,6 +22,7 @@
                 <w-text-suggest-core
                     :items="items"
                     :value="value"
+                    :keyText="keyText"
                     :placeholder="placeholder"
                     :searchEmpty="searchEmpty"
                     :distY="small?5:8"
@@ -44,12 +43,11 @@ import WTextSuggestCore from './WTextSuggestCore.vue'
 
 
 /**
- * @vue-prop {String} [title=''] 輸入標題字串，預設''
- * @vue-prop {String} [titleColor='deep-orange darken-1'] 輸入標題顏色字串，預設'deep-orange darken-1'
  * @vue-prop {Number} [borderRadius=30] 輸入框圓角度，單位為px，預設30
  * @vue-prop {Boolean} [borderShadow=true] 輸入是否為陰影模式，預設true
  * @vue-prop {Array} [items=[]] 輸入可選(建議)項目陣列，預設[]
  * @vue-prop {Object|String|Number} [value=null] 輸入目前選擇項目，可為物件、字串、數字，預設null
+ * @vue-prop {String} [keyText='text'] 輸入取項目物件內之顯示用文字鍵值字串，預設'text'
  * @vue-prop {String} [icon=''] 輸入框外左側圖標字串，可為mdi,md,fa代號或mdi/js路徑，預設''
  * @vue-prop {String} [iconColor='deep-orange lighten-2'] 輸入框外左側圖標顏色字串，預設'deep-orange lighten-2'
  * @vue-prop {String} [iconColorFocus='deep-orange lighten-1'] 輸入框外左側圖標Focus顏色字串，預設'deep-orange lighten-1'
@@ -70,14 +68,6 @@ export default {
         WTextSuggestCore,
     },
     props: {
-        title: {
-            type: String,
-            default: '',
-        },
-        titleColor: {
-            type: String,
-            default: 'deep-orange darken-1',
-        },
         borderRadius: {
             type: Number,
             default: 30,
@@ -88,9 +78,15 @@ export default {
         },
         items: {
             type: Array,
+            default: () => [],
         },
         value: {
             type: [Object, String, Number],
+            default: null,
+        },
+        keyText: {
+            type: String,
+            default: 'text',
         },
         icon: {
             type: String,

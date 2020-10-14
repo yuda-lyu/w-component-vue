@@ -6,7 +6,7 @@
         :distY="distY"
         :editable="editable"
         v-model="show"
-        @input="changeShow"
+        @input="(v)=>{changeShow(v,'WPopup')}"
         :changeValue="changeValue"
     >
 
@@ -16,7 +16,9 @@
                 <div style="display:flex; align-items:center;">
 
                     <div
-                        :style="`width:100%; height:${height}px; line-height:${height}px; vertical-align:middle; cursor:pointer;`"
+                        :style="`width:100%; height:${height}px; line-height:${height}px; vertical-align:middle; cursor:pointer; outline:none;`"
+                        tabindex="0"
+                        @focus="focusText"
                         v-if="mode==='select'"
                     >
                         {{valueTrans}}
@@ -82,6 +84,8 @@
                             @click="clickItem(props.row,props.irow)"
                             @mouseenter="(e)=>{let es=e.target.style; es.backgroundColor=useItemBackgroundColorHover; es.color=useItemTextColorHover;}"
                             @mouseleave="(e)=>{let es=e.target.style; es.backgroundColor=useItemBackgroundColor; es.color=useItemTextColor;}"
+                            @focus="(e)=>{let es=e.target.style; es.backgroundColor=useItemBackgroundColorHover; es.color=useItemTextColorHover;}"
+                            @blur="(e)=>{let es=e.target.style; es.backgroundColor=useItemBackgroundColor; es.color=useItemTextColor;}"
                         >
 
                             <div :style="`font-size:${itemFontSize};`">{{getText(props.row)}}</div>
@@ -107,9 +111,10 @@ import WDynamicList from './WDynamicList.vue'
 
 
 /**
+ * @vue-prop {String} [mode='suggest'] 輸入模式字串，可有'suggest'與'select'，suggest代表可查詢並不綁定選項的下拉選單，select代表只能選擇的下拉選單，預設'suggest'
  * @vue-prop {Object|String|Number} value 輸入初始項目物件
  * @vue-prop {Array} [items=[]] 輸入項目陣列，預設[]
- * @vue-prop {String} [itemText='value'] 輸入取項目物件內之顯示用文字鍵值字串，預設'value'
+ * @vue-prop {String} [keyText='text'] 輸入取項目物件內之顯示用文字鍵值字串，預設'text'
  * @vue-prop {String} [itemTextColor='grey darken-3'] 輸入項目文字顏色字串，預設'grey darken-3'
  * @vue-prop {String} [itemTextColorHover='light-blue darken-2'] 輸入項目文字Hover顏色字串，預設'light-blue darken-2'
  * @vue-prop {String} [itemFontSize='0.9rem'] 輸入項目顯示文字大小字串，預設'0.9rem'
@@ -145,7 +150,7 @@ export default {
             type: Array,
             default: () => [],
         },
-        itemText: {
+        keyText: {
             type: String,
             default: 'text',
         },
@@ -226,7 +231,7 @@ export default {
 
             //valueTrans
             if (isobj(vo.value)) {
-                vo.valueTrans = vo.value[vo.itemText]
+                vo.valueTrans = vo.value[vo.keyText]
             }
             else {
                 vo.valueTrans = vo.value
@@ -293,7 +298,7 @@ export default {
 
             //valueTrans
             if (isobj(value)) {
-                return value[vo.itemText]
+                return value[vo.keyText]
             }
             else {
                 return value
@@ -321,6 +326,25 @@ export default {
 
         },
 
+        focusText: function() {
+            //console.log('methods focusText')
+
+            let vo = this
+
+            //check, 不可編輯時跳出
+            if (!vo.editable) {
+                return
+            }
+
+            //因由鍵盤觸發不會有點擊事件, 得直接變更show
+            vo.show = true
+
+            //changeShow
+            vo.changeShow(vo.show, 'focusText')
+
+        },
+
+
         changeValueTrans: function(value) {
             //console.log('methods changeValueTrans')
 
@@ -344,10 +368,13 @@ export default {
 
         },
 
-        changeShow: function(show) {
-            //console.log('methods changeShow', show)
+        changeShow: function(show, from) {
+            //console.log('methods changeShow', show, from)
 
             let vo = this
+
+            // //show, 因WPopup會更新show才觸發, 不需再次覆寫vo.show避免事件多重觸發, 若div focus要呼叫得先變更show=true才調用此函數
+            // vo.show = show
 
             //因WPopup內第二次重新顯示後僅panel元素由display:none轉為block, 而重新顯示時會因沒觸發高度或捲軸變化, 導致組件WDynamicList無法依照最新顯示數據重算顯示項目高度, 故延遲調用triggerEvent
             if (show) {

@@ -8,7 +8,7 @@ import maxBy from 'lodash/maxBy'
  *
  * @param {Array} items 輸入欲搜尋陣列
  * @param {Function} fGetValue 輸入取值函數，傳入index
- * @returns {Object} index 回傳物件，最靠近0但小於0的值、所在的index與所查得的數據items[index]
+ * @returns {Object} 回傳物件index，最靠近0但小於0的值、所在的index與所查得的數據items[index]
  */
 function binarySearch(items, fGetValue) {
     let n = size(items)

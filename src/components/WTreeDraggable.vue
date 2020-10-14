@@ -4,9 +4,9 @@
         <div style="position:relative; user-select:none;">
 
             <div
-                tabindex="0"
                 :style="`transition:all 0.2s linear; cursor:pointer; outline:none; padding-left:${(node.nk.length-1)*indent}px;`"
                 :key="get(node,bindKey,knode)"
+                tabindex="0"
                 dragtag
                 :dragindex="knode"
                 v-for="(node,knode) in nodes"
@@ -69,6 +69,7 @@ import domDrag from 'wsemi/src/domDrag.mjs'
 import treeObj from 'wsemi/src/treeObj.mjs'
 import cint from 'wsemi/src/cint.mjs'
 import color2hex from '../js/vuetifyColor.mjs'
+import flattenTree from '../js/flattenTree.mjs'
 
 
 /**
@@ -309,44 +310,47 @@ export default {
 
             let vo = this
 
-            function getNk(nk) {
-                //將nk內插入vo.bindChildren, 因主節點為array, 各節點內的子節點也為array
-                let r = [nk[0]]
-                for (let i = 1; i < nk.length; i++) {
-                    let k = nk[i]
-                    r.push(vo.bindChildren)
-                    r.push(k)
-                }
-                return r
-            }
+            //nodes
+            vo.nodes = flattenTree(vo.itemsTrans, vo.bindKey, vo.bindChildren)
 
-            let nodes = []
-            treeObj(vo.itemsTrans, (value, key, nk) => {
-                let pk = get(value, vo.bindKey, null)
-                let children = get(value, vo.bindChildren, null)
-                if (pk) {
-                    nodes.push({
-                        ...value,
-                        nk: getNk([...nk, key]),
-                        key,
-                    })
-                    if (children) {
-                        return children
-                    }
-                }
-            })
-            // console.log('nodes', nodes)
+            // function getNk(nk) {
+            //     //將nk內插入vo.bindChildren, 因主節點為array, 各節點內的子節點也為array
+            //     let r = [nk[0]]
+            //     for (let i = 1; i < nk.length; i++) {
+            //         let k = nk[i]
+            //         r.push(vo.bindChildren)
+            //         r.push(k)
+            //     }
+            //     return r
+            // }
 
-            //t
-            let t = {}
-            each(nodes, (v) => {
-                each(v.nk, (vv, kk) => {
-                    set(t, '')
-                })
-            })
+            // let nodes = []
+            // treeObj(vo.itemsTrans, (value, key, nk) => {
+            //     let pk = get(value, vo.bindKey, null)
+            //     let children = get(value, vo.bindChildren, null)
+            //     if (pk) {
+            //         nodes.push({
+            //             ...value,
+            //             nk: getNk([...nk, key]),
+            //             key,
+            //         })
+            //         if (children) {
+            //             return children
+            //         }
+            //     }
+            // })
+            // // console.log('nodes', nodes)
 
-            //save
-            vo.nodes = nodes
+            // // //t
+            // // let t = {}
+            // // each(nodes, (v) => {
+            // //     each(v.nk, (vv, kk) => {
+            // //         set(t, '')
+            // //     })
+            // // })
+
+            // //save
+            // vo.nodes = nodes
 
             return ''
         },

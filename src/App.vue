@@ -392,6 +392,13 @@
             ></AppZoneWTreeDraggable>
 
 
+            <AppZoneWTree
+                :modeBorder="modeBorder"
+                :modeShell="modeShell"
+                v-if="compname==='WTree'"
+            ></AppZoneWTree>
+
+
             <AppZoneWJsonView
                 :modeBorder="modeBorder"
                 :modeShell="modeShell"
@@ -502,6 +509,7 @@ import AppZoneWTimeminute from './AppZoneWTimeminute.vue'
 import AppZoneWTimedayRange from './AppZoneWTimedayRange.vue'
 import AppZoneWTimeminuteRange from './AppZoneWTimeminuteRange.vue'
 import AppZoneWTreeDraggable from './AppZoneWTreeDraggable.vue'
+import AppZoneWTree from './AppZoneWTree.vue'
 import AppZoneWJsonView from './AppZoneWJsonView.vue'
 import AppZoneWDynamicList from './AppZoneWDynamicList.vue'
 import AppZoneWHighchartsVueDyn from './AppZoneWHighchartsVueDyn.vue'
@@ -546,6 +554,7 @@ export default {
         AppZoneWTimedayRange,
         AppZoneWTimeminuteRange,
         AppZoneWTreeDraggable,
+        AppZoneWTree,
         AppZoneWJsonView,
         AppZoneWDynamicList,
         AppZoneWHighchartsVueDyn,
@@ -641,6 +650,7 @@ export default {
                 {
                     name: 'scroll',
                     cmps: [
+                        //'WTree',
                         'WJsonView',
                         'WDynamicList',
                     ]
@@ -682,8 +692,6 @@ export default {
             haveModeBorder: {
                 'WText': true,
                 'WTextInt': true,
-                'WTextSelect': true,
-                'WTextSuggest': true,
                 'WTimeday': true,
                 'WTimeminute': true,
                 'WTimedayRange': true,
@@ -694,8 +702,6 @@ export default {
                 'WText': true,
                 'WTextInt': true,
                 'WTextarea': true,
-                'WTextSelect': true,
-                'WTextSuggest': true,
                 'WTimeday': true,
                 'WTimeminute': true,
                 'WTimedayRange': true,
