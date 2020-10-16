@@ -1,7 +1,14 @@
 <template>
     <div :changeParam="changeParam">
 
-        <w-shell-material
+        <w-shell-ellipse
+            :shadow="false"
+            :paddingStyle="{v:0,h:0}"
+            :backgroundColor="'transparent'"
+            :backgroundColorFocus="'transparent'"
+            :borderColor="'transparent'"
+            :borderColorFocus="'transparent'"
+            :iconShiftOuter="0"
             :leftIcon="mdiMinusCircle"
             :leftIconColor="buttonColor"
             :leftIconColorFocus="buttonColorFocus"
@@ -28,14 +35,14 @@
                 @input="function(v){changeContent(v,'')}"
             ></w-text-core>
 
-        </w-shell-material>
+        </w-shell-ellipse>
 
     </div>
 </template>
 
 <script>
 import { mdiPlusCircle, mdiMinusCircle } from '@mdi/js'
-import WShellMaterial from './WShellMaterial.vue'
+import WShellEllipse from './WShellEllipse.vue'
 import cint from 'wsemi/src/cint.mjs'
 import verifyValue from 'wsemi/src/verifyValue.mjs'
 import WTextCore from './WTextCore.vue'
@@ -55,7 +62,7 @@ import WTextCore from './WTextCore.vue'
  */
 export default {
     components: {
-        WShellMaterial,
+        WShellEllipse,
         WTextCore,
     },
     props: {

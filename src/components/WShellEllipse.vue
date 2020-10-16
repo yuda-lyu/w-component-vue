@@ -1,21 +1,13 @@
 <template>
     <div :changeParam="changeParam">
 
-        <div style="position:relative;">
-
-            <div :style="[{'position':'absolute','top':'0px','transform': 'translateY(-120%)','font-size':'0.9rem','white-space':'nowrap','opacity':0.7},useTitleColor]">
-                {{title}}
-            </div>
-
-        </div>
-
         <div
-            :class="{'group':true,'shadow':borderShadow}"
+            :class="{'group':true,'shadow':shadow}"
             :style="[useBackgroundColor,useBorder,usePadding,{'border-radius':borderRadius+'px'},{'opacity':editable?1:0.6}]"
         >
 
             <div
-                style="margin-left:5px; cursor:pointer; outline:none;"
+                :style="`margin-left:${iconShiftOuter}px; margin-right:${iconShiftInner}px; cursor:pointer; outline:none;`"
                 tabindex="0"
                 @keyup.enter="clickIcon('left')"
                 @click="clickIcon('left')"
@@ -39,14 +31,14 @@
 
             </div>
 
-            <div :style="[{'width':'100%'},usePaddingSlot]">
+            <div :style="[{'width':'100%'}]">
 
                 <slot></slot>
 
             </div>
 
             <div
-                style="margin-right:5px; cursor:pointer; outline:none;"
+                :style="`margin-right:${iconShiftOuter}px; margin-left:${iconShiftInner}px; cursor:pointer; outline:none;`"
                 tabindex="0"
                 @keyup.enter="clickIcon('right')"
                 @click="clickIcon('right')"
@@ -76,19 +68,20 @@
 </template>
 
 <script>
+import isNumber from 'lodash/isNumber'
+import get from 'lodash/get'
 import color2hex from '../js/vuetifyColor.mjs'
 import WIcon from './WIcon.vue'
 
 
 /**
- * @vue-prop {String} [title=''] 輸入標題字串，預設''
- * @vue-prop {String} [titleColor='deep-orange darken-1'] 輸入標題顏色字串，預設'deep-orange darken-1'
- * @vue-prop {Number} [borderRadius=30] 輸入圓角寬度，單位為px，預設30
+ * @vue-prop {Object} [paddingStyle={v:0,h:15}] 輸入內寬距離物件，可用鍵值為v、h、left、right、top、bottom，v代表同時設定top與bottom，h代表設定left與right，若有重複設定時後面鍵值會覆蓋前面，各鍵值為寬度數字，單位為px，預設{v:0,h:15}
+ * @vue-prop {Number} [borderRadius=30] 輸入圓角寬度數字，單位為px，預設30
  * @vue-prop {String} [backgroundColor='white'] 輸入背景顏色字串，預設'white'
  * @vue-prop {String} [backgroundColorFocus='white'] 輸入背景Focus顏色字串，預設'white'
  * @vue-prop {String} [borderColor='white'] 輸入邊框顏色字串，預設'white'
  * @vue-prop {String} [borderColorFocus='white'] 輸入邊框Focus顏色字串，預設'white'
- * @vue-prop {Boolean} [borderShadow=true] 輸入是否為陰影模式，預設true
+ * @vue-prop {Boolean} [shadow=true] 輸入是否為陰影模式，預設true
  * @vue-prop {String} [leftIcon=''] 輸入左側圖標字串，可為mdi,md,fa代號或mdi/js路徑，預設''
  * @vue-prop {String} [leftIconColor='deep-orange lighten-2'] 輸入左側圖標顏色字串，預設'deep-orange lighten-2'
  * @vue-prop {String} [leftIconColorFocus='deep-orange lighten-1'] 輸入左側圖標Focus顏色字串，預設'deep-orange lighten-1'
@@ -97,7 +90,8 @@ import WIcon from './WIcon.vue'
  * @vue-prop {String} [rightIconColor='deep-orange lighten-2'] 輸入右側圖標顏色字串，預設'deep-orange lighten-2'
  * @vue-prop {String} [rightIconColorFocus='deep-orange lighten-1'] 輸入右側圖標Focus顏色字串，預設'deep-orange lighten-1'
  * @vue-prop {String} [rightIconTooltip=''] 輸入右側圖標提示文字字串，預設''
- * @vue-prop {Boolean} [small=true] 輸入是否為小型模式，預設true
+ * @vue-prop {Number} [iconShiftOuter=-10] 輸入左右側圖標與外框距離數字，單位為px，預設-10
+ * @vue-prop {Number} [iconShiftInner=10] 輸入左右側圖標與內插槽區距離數字，單位為px，預設10
  * @vue-prop {Boolean} [editable=true] 輸入是否為編輯模式，預設true
  * @vue-prop {Boolean} [focused=false] 輸入是否為駐點狀態，預設false
  */
@@ -106,13 +100,14 @@ export default {
         WIcon,
     },
     props: {
-        title: {
-            type: String,
-            default: '',
-        },
-        titleColor: {
-            type: String,
-            default: 'deep-orange darken-1',
+        paddingStyle: {
+            type: Object,
+            default: () => {
+                return {
+                    v: 0,
+                    h: 15,
+                }
+            },
         },
         backgroundColor: {
             type: String,
@@ -134,7 +129,7 @@ export default {
             type: String,
             default: 'white',
         },
-        borderShadow: {
+        shadow: {
             type: Boolean,
             default: true,
         },
@@ -170,9 +165,13 @@ export default {
             type: String,
             default: '',
         },
-        small: {
-            type: Boolean,
-            default: true,
+        iconShiftOuter: {
+            type: Number,
+            default: -10,
+        },
+        iconShiftInner: {
+            type: Number,
+            default: 10,
         },
         editable: {
             type: Boolean,
@@ -187,8 +186,6 @@ export default {
         return {
             focusedTrans: false,
         }
-    },
-    mounted: function() {
     },
     computed: {
 
@@ -248,32 +245,37 @@ export default {
 
             let vo = this
 
-            let s = {}
-            if (vo.small) {
-                s['padding'] = '0px'
+            //四方向padding
+            let left = 0
+            let right = 0
+            let top = 0
+            let bottom = 0
+            if (isNumber(get(vo, 'paddingStyle.h'))) {
+                left = get(vo, 'paddingStyle.h')
+                right = left
             }
-            else {
-                s['padding'] = '3px 6px'
+            if (isNumber(get(vo, 'paddingStyle.v'))) {
+                top = get(vo, 'paddingStyle.v')
+                bottom = top
             }
-            return s
-        },
+            if (isNumber(get(vo, 'paddingStyle.left'))) {
+                left = get(vo, 'paddingStyle.left')
+            }
+            if (isNumber(get(vo, 'paddingStyle.right'))) {
+                right = get(vo, 'paddingStyle.right')
+            }
+            if (isNumber(get(vo, 'paddingStyle.top'))) {
+                top = get(vo, 'paddingStyle.top')
+            }
+            if (isNumber(get(vo, 'paddingStyle.bottom'))) {
+                bottom = get(vo, 'paddingStyle.bottom')
+            }
 
-        usePaddingSlot: function() {
-            //console.log('computed usePaddingSlot')
-
-            let vo = this
-
-            let s = {}
-            s['padding-top'] = '0px'
-            s['padding-bottom'] = '0px'
-            s['padding-left'] = '15px'
-            s['padding-right'] = '15px'
-            if (vo.leftIcon !== '') {
-                s['padding-left'] = '10px'
+            //s
+            let s = {
+                padding: `${top}px ${right}px ${bottom}px ${left}px`
             }
-            if (vo.rightIcon !== '') {
-                s['padding-right'] = '10px'
-            }
+
             return s
         },
 

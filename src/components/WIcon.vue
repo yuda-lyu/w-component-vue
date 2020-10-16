@@ -1,13 +1,13 @@
 <template>
     <div
-        style="display:flex; align-items:center; user-select:none;"
+        :style="[useStyleSize,{'display':'flex','align-items':'center','user-select':'none'}]"
         @keyup.enter="(v)=>{$emit('click',v)}"
         @click="(v)=>{$emit('click',v)}"
         v-if="icon!==''"
     >
 
         <v-icon
-            :style="useStyle"
+            :style="[useStyleSize]"
             :color="color"
             :size="useSize"
         >
@@ -47,12 +47,40 @@ export default {
     },
     computed: {
 
+        useIconType: function () {
+            //console.log('computed useIconType')
+
+            let vo = this
+
+            if (vo.icon.indexOf('fa-') >= 0) {
+                return 'fontawesome'
+            }
+            return 'mdi/js'
+        },
+
+        isFontawesome: function() {
+            return this.useIconType === 'fontawesome'
+        },
+
+        // useShiftY: function () {
+        //     //console.log('computed useShiftY')
+
+        //     let vo = this
+
+        //     let s = {}
+        //     // s.transform = `translateY(-1px)`
+        //     // if (vo.isFontawesome) {
+        //     //     s.transform = `translateY(-2px)`
+        //     // }
+        //     return s
+        // },
+
         useIcon: function () {
             //console.log('computed useIcon')
 
             let vo = this
 
-            if (vo.icon.indexOf('fa-') >= 0) {
+            if (vo.isFontawesome) {
                 return vo.icon + ' fa-fw'
             }
             return vo.icon
@@ -66,28 +94,26 @@ export default {
             //size
             let size = vo.size
 
-            if (vo.icon.indexOf('fa-') >= 0) {
-                return size - 4
+            if (vo.isFontawesome) {
+                return size / 24 * 20 //size - 4
             }
             return size
         },
 
-        useStyle: function () {
-            //console.log('computed useStyle')
+        useStyleSize: function () {
+            //console.log('computed useStyleSize')
 
-            //let vo = this
+            let vo = this
 
             let s = {
-                'vertical-align': 'middle'
+                'width': `${vo.size}px`,
+                'height': `${vo.size}px`,
+                'line-height': `${vo.size}px`,
+                'max-height': `${vo.size}px`,
+                'min-height': `${vo.size}px`,
             }
-            // s['transform'] = ''
-            // if (vo.icon.indexOf('fa-') >= 0) {
-            //     s['transform'] += ' translateY(-1px)'
-            // }
-            // s['transform'] += ' translateX(-1px)'
             return s
         },
-
 
     },
     methods: {

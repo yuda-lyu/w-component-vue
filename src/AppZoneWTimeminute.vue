@@ -8,993 +8,380 @@
         <div style="padding:0px;">
 
 
-            <template v-if="modeBorder==='emboss'">
-
-
-                <template v-if="modeShell==='pure'">
-
-
-                    <div class="bk">
-                        <demolink
-                            :kbname="'w-timeminute'"
-                            :casename="'default'"
-                            :kind="'emboss'"
-                            :shell="'pure'"
-                        ></demolink>
-
-                        <w-timeminute v-model="WTimeminute.value"></w-timeminute>
-                    </div>
-
-                    <div class="bk">
-                        <demolink
-                            :kbname="'w-timeminute'"
-                            :casename="'borderRadius'"
-                            :kind="'emboss'"
-                            :shell="'pure'"
-                        ></demolink>
-
-                        <w-timeminute
-                            :borderRadius="5"
-                            v-model="WTimeminute.value"
-                        ></w-timeminute>
-                    </div>
-
-                    <div class="bk">
-                        <demolink
-                            :kbname="'w-timeminute'"
-                            :casename="'icon (material)'"
-                            :kind="'emboss'"
-                            :shell="'pure'"
-                        ></demolink>
-
-                        <w-timeminute
-                            :icon="mdiCheckUnderlineCircle"
-                            v-model="WTimeminute.value"
-                        ></w-timeminute>
-                    </div>
-
-                    <div class="bk">
-                        <demolink
-                            :kbname="'w-timeminute'"
-                            :casename="'icon (fontawesome)'"
-                            :kind="'emboss'"
-                            :shell="'pure'"
-                        ></demolink>
-
-                        <w-timeminute
-                            :icon="'fas fa-clipboard-check'"
-                            v-model="WTimeminute.value"
-                        ></w-timeminute>
-                    </div>
-
-                    <div class="bk">
-                        <demolink
-                            :kbname="'w-timeminute'"
-                            :casename="'iconColor & iconColorFoucs'"
-                            :kind="'emboss'"
-                            :shell="'pure'"
-                        ></demolink>
-
-                        <w-timeminute
-                            :iconColor="'cyan lighten-2'"
-                            :iconColorFocus="'cyan darken-1'"
-                            v-model="WTimeminute.value"
-                        ></w-timeminute>
-                    </div>
-
-                    <div class="bk">
-                        <demolink
-                            :kbname="'w-timeminute'"
-                            :casename="'pickColor'"
-                            :kind="'emboss'"
-                            :shell="'pure'"
-                        ></demolink>
-
-                        <w-timeminute
-                            :pickColor="'brown'"
-                            v-model="WTimeminute.value"
-                        ></w-timeminute>
-                    </div>
-
-                    <div class="bk">
-                        <demolink
-                            :kbname="'w-timeminute'"
-                            :casename="'iconTooltip'"
-                            :kind="'emboss'"
-                            :shell="'pure'"
-                        ></demolink>
-
-                        <w-timeminute
-                            :icon="mdiCheckUnderlineCircle"
-                            :iconTooltip="'show tooltip'"
-                            v-model="WTimeminute.value"
-                        ></w-timeminute>
-                    </div>
-
-                    <div class="bk">
-                        <demolink
-                            :kbname="'w-timeminute'"
-                            :casename="'title'"
-                            :kind="'emboss'"
-                            :shell="'pure'"
-                        ></demolink>
-
-                        <w-timeminute
-                            style="margin-top:30px;"
-                            :title="'請選擇出發日期'"
-                            v-model="WTimeminute.value"
-                        ></w-timeminute>
-                    </div>
-
-                    <div class="bk">
-                        <demolink
-                            :kbname="'w-timeminute'"
-                            :casename="'title & titleColor'"
-                            :kind="'emboss'"
-                            :shell="'pure'"
-                        ></demolink>
-
-                        <w-timeminute
-                            style="margin-top:30px;"
-                            :title="'請選擇出發日期'"
-                            :titleColor="'brown'"
-                            v-model="WTimeminute.value"
-                        ></w-timeminute>
-                    </div>
-
-                    <div class="bk">
-                        <demolink
-                            :kbname="'w-timeminute'"
-                            :casename="'not small (large)'"
-                            :kind="'emboss'"
-                            :shell="'pure'"
-                        ></demolink>
-
-                        <w-timeminute :small="false" v-model="WTimeminute.value"></w-timeminute>
-                    </div>
-
-                    <div class="bk">
-                        <demolink
-                            :kbname="'w-timeminute'"
-                            :casename="'not editable'"
-                            :kind="'emboss'"
-                            :shell="'pure'"
-                        ></demolink>
-
-                        <w-timeminute
-                            :editable="false"
-                            v-model="WTimeminute.value"
-                        ></w-timeminute>
-                    </div>
-
-                    <div class="bk">
-                        <demolink
-                            :kbname="'w-timeminute'"
-                            :casename="'hourMin & hourMax'"
-                            :kind="'emboss'"
-                            :shell="'pure'"
-                        ></demolink>
-
-                        <w-timeminute
-                            :hourMin="9"
-                            :hourMax="12"
-                            v-model="WTimeminute.value"
-                        ></w-timeminute>
-                    </div>
-
-                    <div class="bk">
-                        <demolink
-                            :kbname="'w-timeminute'"
-                            :casename="'minuteInter'"
-                            :kind="'emboss'"
-                            :shell="'pure'"
-                        ></demolink>
-
-                        <w-timeminute
-                            :minuteInter="10"
-                            v-model="WTimeminute.value"
-                        ></w-timeminute>
-                    </div>
-
-                    <div class="bk">
-                        <demolink
-                            :kbname="'w-timeminute'"
-                            :casename="'minutesCustom'"
-                            :kind="'emboss'"
-                            :shell="'pure'"
-                        ></demolink>
-
-                        <w-timeminute
-                            :minutesCustom="['10:00','10:30','11:15','12:00']"
-                            v-model="WTimeminute.value"
-                        ></w-timeminute>
-                    </div>
-
-
-                </template>
-
-
-                <template v-if="modeShell==='shell'">
-
-
-                    <div class="bk">
-                        <demolink
-                            :kbname="'w-timeminute'"
-                            :casename="'leftIcon (material)'"
-                            :kind="'emboss'"
-                            :shell="'shell'"
-                        ></demolink>
-
-                        <w-shell-material
-                            style="margin-top:30px;"
-                            :title="'請選擇出發日期'"
-                            :leftIcon="mdiPaw"
-                        >
-                            <w-timeminute
-                                :icon="mdiCheckUnderlineCircle"
-                                v-model="WTimeminute.value"
-                            ></w-timeminute>
-                        </w-shell-material>
-                    </div>
-
-                    <div class="bk">
-                        <demolink
-                            :kbname="'w-timeminute'"
-                            :casename="'leftIcon (fontawesome)'"
-                            :kind="'emboss'"
-                            :shell="'shell'"
-                        ></demolink>
-
-                        <w-shell-material
-                            style="margin-top:30px;"
-                            :title="'請選擇出發日期'"
-                            :leftIcon="mdiPaw"
-                        >
-                            <w-timeminute
-                                :icon="'fas fa-clipboard-check'"
-                                v-model="WTimeminute.value"
-                            ></w-timeminute>
-                        </w-shell-material>
-                    </div>
-
-                    <div class="bk">
-                        <demolink
-                            :kbname="'w-timeminute'"
-                            :casename="'borderRadius'"
-                            :kind="'emboss'"
-                            :shell="'shell'"
-                        ></demolink>
-
-                        <w-shell-material
-                            style="margin-top:30px;"
-                            :title="'請選擇出發日期'"
-                            :leftIcon="mdiPaw"
-                        >
-                            <w-timeminute
-                                :borderRadius="5"
-                                v-model="WTimeminute.value"
-                            ></w-timeminute>
-                        </w-shell-material>
-                    </div>
-
-                    <div class="bk">
-                        <demolink
-                            :kbname="'w-timeminute'"
-                            :casename="'titleColor & leftIconColor & iconColor & iconColorFocus'"
-                            :kind="'emboss'"
-                            :shell="'shell'"
-                        ></demolink>
-
-                        <w-shell-material
-                            style="margin-top:30px;"
-                            :title="'請選擇出發日期'"
-                            :titleColor="'cyan darken-1'"
-                            :leftIcon="mdiPaw"
-                            :leftIconColor="'cyan lighten-1'"
-                        >
-                            <w-timeminute
-                                :iconColor="'cyan lighten-2'"
-                                :iconColorFocus="'cyan darken-1'"
-                                v-model="WTimeminute.value"
-                            ></w-timeminute>
-                        </w-shell-material>
-                    </div>
-
-                    <div class="bk">
-                        <demolink
-                            :kbname="'w-timeminute'"
-                            :casename="'pickColor'"
-                            :kind="'emboss'"
-                            :shell="'shell'"
-                        ></demolink>
-
-                        <w-shell-material
-                            style="margin-top:30px;"
-                            :title="'請選擇出發日期'"
-                            :leftIcon="mdiPaw"
-                        >
-                            <w-timeminute
-                                :pickColor="'brown'"
-                                v-model="WTimeminute.value"
-                            ></w-timeminute>
-                        </w-shell-material>
-                    </div>
-
-                    <div class="bk">
-                        <demolink
-                            :kbname="'w-timeminute'"
-                            :casename="'leftIconTooltip & iconTooltip'"
-                            :kind="'emboss'"
-                            :shell="'shell'"
-                        ></demolink>
-
-                        <w-shell-material
-                            style="margin-top:30px;"
-                            :title="'請選擇出發日期'"
-                            :leftIcon="mdiPaw"
-                            :leftIconTooltip="'出發日期'"
-                        >
-                            <w-timeminute
-                                :icon="mdiCheckUnderlineCircle"
-                                :iconTooltip="'請點選日期以進行選擇'"
-                                v-model="WTimeminute.value"
-                            ></w-timeminute>
-                        </w-shell-material>
-                    </div>
-
-                    <div class="bk">
-                        <demolink
-                            :kbname="'w-timeminute'"
-                            :casename="'not small (large)'"
-                            :kind="'emboss'"
-                            :shell="'shell'"
-                        ></demolink>
-
-                        <w-shell-material
-                            style="margin-top:30px;"
-                            :title="'請選擇出發日期'"
-                            :leftIcon="mdiPaw"
-                        >
-                            <w-timeminute
-                                :small="false"
-                                v-model="WTimeminute.value"
-                            ></w-timeminute>
-                        </w-shell-material>
-                    </div>
-
-                    <div class="bk">
-                        <demolink
-                            :kbname="'w-timeminute'"
-                            :casename="'not editable'"
-                            :kind="'emboss'"
-                            :shell="'shell'"
-                        ></demolink>
-
-                        <w-shell-material
-                            style="margin-top:30px;"
-                            :title="'請選擇出發日期'"
-                            :leftIcon="mdiPaw"
-                        >
-                            <w-timeminute
-                                :editable="false"
-                                v-model="WTimeminute.value"
-                            ></w-timeminute>
-                        </w-shell-material>
-                    </div>
-
-                    <div class="bk">
-                        <demolink
-                            :kbname="'w-timeminute'"
-                            :casename="'hourMin & hourMax'"
-                            :kind="'emboss'"
-                            :shell="'shell'"
-                        ></demolink>
-
-                        <w-shell-material
-                            style="margin-top:30px;"
-                            :title="'請選擇出發日期'"
-                            :leftIcon="mdiPaw"
-                        >
-                            <w-timeminute
-                                :hourMin="9"
-                                :hourMax="12"
-                                v-model="WTimeminute.value"
-                            ></w-timeminute>
-                        </w-shell-material>
-                    </div>
-
-                    <div class="bk">
-                        <demolink
-                            :kbname="'w-timeminute'"
-                            :casename="'minuteInter'"
-                            :kind="'emboss'"
-                            :shell="'shell'"
-                        ></demolink>
-
-                        <w-shell-material
-                            style="margin-top:30px;"
-                            :title="'請選擇出發日期'"
-                            :leftIcon="mdiPaw"
-                        >
-                            <w-timeminute
-                                :minuteInter="10"
-                                v-model="WTimeminute.value"
-                            ></w-timeminute>
-                        </w-shell-material>
-                    </div>
-
-                    <div class="bk">
-                        <demolink
-                            :kbname="'w-timeminute'"
-                            :casename="'minutesCustom'"
-                            :kind="'emboss'"
-                            :shell="'shell'"
-                        ></demolink>
-
-                        <w-shell-material
-                            style="margin-top:30px;"
-                            :title="'請選擇出發日期'"
-                            :leftIcon="mdiPaw"
-                        >
-                            <w-timeminute
-                                :minutesCustom="['10:00','10:30','11:15','12:00']"
-                                v-model="WTimeminute.value"
-                            ></w-timeminute>
-                        </w-shell-material>
-                    </div>
-
-
-                </template>
-
-
-            </template>
-
-
-            <template v-if="modeBorder==='border'">
-
-
-                <template v-if="modeShell==='pure'">
-
-
-                    <div class="bk">
-                        <demolink
-                            :kbname="'w-timeminute'"
-                            :casename="'default'"
-                            :kind="'border'"
-                            :shell="'pure'"
-                        ></demolink>
-
-                        <w-timeminute
-                            :borderShadow="false"
-                            :borderColor="'orange lighten-2'"
-                            :borderColorFocus="'orange darken-2'"
-                            :backgroundColorFocus="'orange lighten-5'"
-                            v-model="WTimeminute.value"
-                        ></w-timeminute>
-                    </div>
-
-                    <div class="bk">
-                        <demolink
-                            :kbname="'w-timeminute'"
-                            :casename="'borderRadius'"
-                            :kind="'border'"
-                            :shell="'pure'"
-                        ></demolink>
-
-                        <w-timeminute
-                            :borderShadow="false"
-                            :borderColor="'orange lighten-2'"
-                            :borderColorFocus="'orange darken-2'"
-                            :backgroundColorFocus="'orange lighten-5'"
-                            :borderRadius="5"
-                            v-model="WTimeminute.value"
-                        ></w-timeminute>
-                    </div>
-
-                    <div class="bk">
-                        <demolink
-                            :kbname="'w-timeminute'"
-                            :casename="'icon (material)'"
-                            :kind="'border'"
-                            :shell="'pure'"
-                        ></demolink>
-
-                        <w-timeminute
-                            :borderShadow="false"
-                            :borderColor="'orange lighten-2'"
-                            :borderColorFocus="'orange darken-2'"
-                            :backgroundColorFocus="'orange lighten-5'"
-                            :icon="mdiCheckUnderlineCircle"
-                            v-model="WTimeminute.value"
-                        ></w-timeminute>
-                    </div>
-
-                    <div class="bk">
-                        <demolink
-                            :kbname="'w-timeminute'"
-                            :casename="'icon (fontawesome)'"
-                            :kind="'border'"
-                            :shell="'pure'"
-                        ></demolink>
-
-                        <w-timeminute
-                            :borderShadow="false"
-                            :borderColor="'orange lighten-2'"
-                            :borderColorFocus="'orange darken-2'"
-                            :backgroundColorFocus="'orange lighten-5'"
-                            :icon="'fas fa-clipboard-check'"
-                            v-model="WTimeminute.value"
-                        ></w-timeminute>
-                    </div>
-
-                    <div class="bk">
-                        <demolink
-                            :kbname="'w-timeminute'"
-                            :casename="'iconColor & iconColorFoucs & borderColor & borderColorFocus & backgroundColorFocus'"
-                            :kind="'border'"
-                            :shell="'pure'"
-                        ></demolink>
-
-                        <w-timeminute
-                            :borderShadow="false"
-                            :borderColor="'cyan lighten-2'"
-                            :borderColorFocus="'cyan darken-1'"
-                            :backgroundColorFocus="'cyan lighten-5'"
-                            :iconColor="'cyan lighten-2'"
-                            :iconColorFocus="'cyan darken-1'"
-                            v-model="WTimeminute.value"
-                        ></w-timeminute>
-                    </div>
-
-                    <div class="bk">
-                        <demolink
-                            :kbname="'w-timeminute'"
-                            :casename="'pickColor'"
-                            :kind="'border'"
-                            :shell="'pure'"
-                        ></demolink>
-
-                        <w-timeminute
-                            :borderShadow="false"
-                            :borderColor="'orange lighten-2'"
-                            :borderColorFocus="'orange darken-2'"
-                            :backgroundColorFocus="'orange lighten-5'"
-                            :pickColor="'brown'"
-                            v-model="WTimeminute.value"
-                        ></w-timeminute>
-                    </div>
-
-                    <div class="bk">
-                        <demolink
-                            :kbname="'w-timeminute'"
-                            :casename="'iconTooltip'"
-                            :kind="'border'"
-                            :shell="'pure'"
-                        ></demolink>
-
-                        <w-timeminute
-                            :borderShadow="false"
-                            :borderColor="'orange lighten-2'"
-                            :borderColorFocus="'orange darken-2'"
-                            :backgroundColorFocus="'orange lighten-5'"
-                            :icon="mdiCheckUnderlineCircle"
-                            :iconTooltip="'show tooltip'"
-                            v-model="WTimeminute.value"
-                        ></w-timeminute>
-                    </div>
-
-                    <div class="bk">
-                        <demolink
-                            :kbname="'w-timeminute'"
-                            :casename="'title'"
-                            :kind="'border'"
-                            :shell="'pure'"
-                        ></demolink>
-
-                        <w-timeminute
-                            :borderShadow="false"
-                            :borderColor="'orange lighten-2'"
-                            :borderColorFocus="'orange darken-2'"
-                            :backgroundColorFocus="'orange lighten-5'"
-                            style="margin-top:30px;"
-                            :title="'請選擇出發日期'"
-                            v-model="WTimeminute.value"
-                        ></w-timeminute>
-                    </div>
-
-                    <div class="bk">
-                        <demolink
-                            :kbname="'w-timeminute'"
-                            :casename="'title & titleColor'"
-                            :kind="'border'"
-                            :shell="'pure'"
-                        ></demolink>
-
-                        <w-timeminute
-                            :borderShadow="false"
-                            :borderColor="'orange lighten-2'"
-                            :borderColorFocus="'orange darken-2'"
-                            :backgroundColorFocus="'orange lighten-5'"
-                            style="margin-top:30px;"
-                            :title="'請選擇出發日期'"
-                            :titleColor="'brown'"
-                            v-model="WTimeminute.value"
-                        ></w-timeminute>
-                    </div>
-
-                    <div class="bk">
-                        <demolink
-                            :kbname="'w-timeminute'"
-                            :casename="'not small (large)'"
-                            :kind="'border'"
-                            :shell="'pure'"
-                        ></demolink>
-
-                        <w-timeminute
-                            :borderShadow="false"
-                            :borderColor="'orange lighten-2'"
-                            :borderColorFocus="'orange darken-2'"
-                            :backgroundColorFocus="'orange lighten-5'"
-                            :small="false"
-                            v-model="WTimeminute.value"
-                        ></w-timeminute>
-                    </div>
-
-                    <div class="bk">
-                        <demolink
-                            :kbname="'w-timeminute'"
-                            :casename="'not editable'"
-                            :kind="'border'"
-                            :shell="'pure'"
-                        ></demolink>
-
-                        <w-timeminute
-                            :borderShadow="false"
-                            :borderColor="'orange lighten-2'"
-                            :borderColorFocus="'orange darken-2'"
-                            :backgroundColorFocus="'orange lighten-5'"
-                            :editable="false"
-                            v-model="WTimeminute.value"
-                        ></w-timeminute>
-                    </div>
-
-                    <div class="bk">
-                        <demolink
-                            :kbname="'w-timeminute'"
-                            :casename="'hourMin & hourMax'"
-                            :kind="'border'"
-                            :shell="'pure'"
-                        ></demolink>
-
-                        <w-timeminute
-                            :borderShadow="false"
-                            :borderColor="'orange lighten-2'"
-                            :borderColorFocus="'orange darken-2'"
-                            :backgroundColorFocus="'orange lighten-5'"
-                            :hourMin="9"
-                            :hourMax="12"
-                            v-model="WTimeminute.value"
-                        ></w-timeminute>
-                    </div>
-
-                    <div class="bk">
-                        <demolink
-                            :kbname="'w-timeminute'"
-                            :casename="'minuteInter'"
-                            :kind="'border'"
-                            :shell="'pure'"
-                        ></demolink>
-
-                        <w-timeminute
-                            :borderShadow="false"
-                            :borderColor="'orange lighten-2'"
-                            :borderColorFocus="'orange darken-2'"
-                            :backgroundColorFocus="'orange lighten-5'"
-                            :minuteInter="10"
-                            v-model="WTimeminute.value"
-                        ></w-timeminute>
-                    </div>
-
-                    <div class="bk">
-                        <demolink
-                            :kbname="'w-timeminute'"
-                            :casename="'minutesCustom'"
-                            :kind="'border'"
-                            :shell="'pure'"
-                        ></demolink>
-
-                        <w-timeminute
-                            :borderShadow="false"
-                            :borderColor="'orange lighten-2'"
-                            :borderColorFocus="'orange darken-2'"
-                            :backgroundColorFocus="'orange lighten-5'"
-                            :minutesCustom="['10:00','10:30','11:15','12:00']"
-                            v-model="WTimeminute.value"
-                        ></w-timeminute>
-                    </div>
-
-
-                </template>
-
-
-                <template v-if="modeShell==='shell'">
-
-
-                    <div class="bk">
-                        <demolink
-                            :kbname="'w-timeminute'"
-                            :casename="'leftIcon (material)'"
-                            :kind="'border'"
-                            :shell="'shell'"
-                        ></demolink>
-
-                        <w-shell-material
-                            style="margin-top:30px;"
-                            :title="'請選擇出發日期'"
-                            :leftIcon="mdiPaw"
-                        >
-                            <w-timeminute
-                                :borderShadow="false"
-                                :borderColor="'orange lighten-2'"
-                                :borderColorFocus="'orange darken-2'"
-                                :backgroundColorFocus="'orange lighten-5'"
-                                :icon="mdiCheckUnderlineCircle"
-                                v-model="WTimeminute.value"
-                            ></w-timeminute>
-                        </w-shell-material>
-                    </div>
-
-                    <div class="bk">
-                        <demolink
-                            :kbname="'w-timeminute'"
-                            :casename="'leftIcon (fontawesome)'"
-                            :kind="'border'"
-                            :shell="'shell'"
-                        ></demolink>
-
-                        <w-shell-material
-                            style="margin-top:30px;"
-                            :title="'請選擇出發日期'"
-                            :leftIcon="mdiPaw"
-                        >
-                            <w-timeminute
-                                :borderShadow="false"
-                                :borderColor="'orange lighten-2'"
-                                :borderColorFocus="'orange darken-2'"
-                                :backgroundColorFocus="'orange lighten-5'"
-                                :icon="'fas fa-clipboard-check'"
-                                v-model="WTimeminute.value"
-                            ></w-timeminute>
-                        </w-shell-material>
-                    </div>
-
-                    <div class="bk">
-                        <demolink
-                            :kbname="'w-timeminute'"
-                            :casename="'borderRadius'"
-                            :kind="'border'"
-                            :shell="'shell'"
-                        ></demolink>
-
-                        <w-shell-material
-                            style="margin-top:30px;"
-                            :title="'請選擇出發日期'"
-                            :leftIcon="mdiPaw"
-                        >
-                            <w-timeminute
-                                :borderShadow="false"
-                                :borderColor="'orange lighten-2'"
-                                :borderColorFocus="'orange darken-2'"
-                                :backgroundColorFocus="'orange lighten-5'"
-                                :borderRadius="5"
-                                v-model="WTimeminute.value"
-                            ></w-timeminute>
-                        </w-shell-material>
-                    </div>
-
-                    <div class="bk">
-                        <demolink
-                            :kbname="'w-timeminute'"
-                            :casename="'titleColor & leftIconColor & borderColor & borderColorFocus & backgroundColorFocus & iconColor & iconColorFocus'"
-                            :kind="'border'"
-                            :shell="'shell'"
-                        ></demolink>
-
-                        <w-shell-material
-                            style="margin-top:30px;"
-                            :title="'請選擇出發日期'"
-                            :titleColor="'cyan darken-1'"
-                            :leftIcon="mdiPaw"
-                            :leftIconColor="'cyan lighten-1'"
-                        >
-                            <w-timeminute
-                                :borderShadow="false"
-                                :borderColor="'cyan lighten-2'"
-                                :borderColorFocus="'cyan darken-1'"
-                                :backgroundColorFocus="'cyan lighten-5'"
-                                :iconColor="'cyan lighten-2'"
-                                :iconColorFocus="'cyan darken-1'"
-                                v-model="WTimeminute.value"
-                            ></w-timeminute>
-                        </w-shell-material>
-                    </div>
-
-                    <div class="bk">
-                        <demolink
-                            :kbname="'w-timeminute'"
-                            :casename="'pickColor'"
-                            :kind="'border'"
-                            :shell="'shell'"
-                        ></demolink>
-
-                        <w-shell-material
-                            style="margin-top:30px;"
-                            :title="'請選擇出發日期'"
-                            :leftIcon="mdiPaw"
-                        >
-                            <w-timeminute
-                                :borderShadow="false"
-                                :borderColor="'orange lighten-2'"
-                                :borderColorFocus="'orange darken-2'"
-                                :backgroundColorFocus="'orange lighten-5'"
-                                :pickColor="'brown'"
-                                v-model="WTimeminute.value"
-                            ></w-timeminute>
-                        </w-shell-material>
-                    </div>
-
-                    <div class="bk">
-                        <demolink
-                            :kbname="'w-timeminute'"
-                            :casename="'leftIconTooltip & iconTooltip'"
-                            :kind="'border'"
-                            :shell="'shell'"
-                        ></demolink>
-
-                        <w-shell-material
-                            style="margin-top:30px;"
-                            :title="'請選擇出發日期'"
-                            :leftIcon="mdiPaw"
-                            :leftIconTooltip="'出發日期'"
-                        >
-                            <w-timeminute
-                                :borderShadow="false"
-                                :borderColor="'orange lighten-2'"
-                                :borderColorFocus="'orange darken-2'"
-                                :backgroundColorFocus="'orange lighten-5'"
-                                :icon="mdiCheckUnderlineCircle"
-                                :iconTooltip="'請點選日期以進行選擇'"
-                                v-model="WTimeminute.value"
-                            ></w-timeminute>
-                        </w-shell-material>
-                    </div>
-
-                    <div class="bk">
-                        <demolink
-                            :kbname="'w-timeminute'"
-                            :casename="'not small (large)'"
-                            :kind="'border'"
-                            :shell="'shell'"
-                        ></demolink>
-
-                        <w-shell-material
-                            style="margin-top:30px;"
-                            :title="'請選擇出發日期'"
-                            :leftIcon="mdiPaw"
-                        >
-                            <w-timeminute
-                                :borderShadow="false"
-                                :borderColor="'orange lighten-2'"
-                                :borderColorFocus="'orange darken-2'"
-                                :backgroundColorFocus="'orange lighten-5'"
-                                :small="false"
-                                v-model="WTimeminute.value"
-                            ></w-timeminute>
-                        </w-shell-material>
-                    </div>
-
-                    <div class="bk">
-                        <demolink
-                            :kbname="'w-timeminute'"
-                            :casename="'not editable'"
-                            :kind="'border'"
-                            :shell="'shell'"
-                        ></demolink>
-
-                        <w-shell-material
-                            style="margin-top:30px;"
-                            :title="'請選擇出發日期'"
-                            :leftIcon="mdiPaw"
-                        >
-                            <w-timeminute
-                                :borderShadow="false"
-                                :borderColor="'orange lighten-2'"
-                                :borderColorFocus="'orange darken-2'"
-                                :backgroundColorFocus="'orange lighten-5'"
-                                :editable="false"
-                                v-model="WTimeminute.value"
-                            ></w-timeminute>
-                        </w-shell-material>
-                    </div>
-
-                    <div class="bk">
-                        <demolink
-                            :kbname="'w-timeminute'"
-                            :casename="'hourMin & hourMax'"
-                            :kind="'border'"
-                            :shell="'shell'"
-                        ></demolink>
-
-                        <w-shell-material
-                            style="margin-top:30px;"
-                            :title="'請選擇出發日期'"
-                            :leftIcon="mdiPaw"
-                        >
-                            <w-timeminute
-                                :borderShadow="false"
-                                :borderColor="'orange lighten-2'"
-                                :borderColorFocus="'orange darken-2'"
-                                :backgroundColorFocus="'orange lighten-5'"
-                                :hourMin="9"
-                                :hourMax="12"
-                                v-model="WTimeminute.value"
-                            ></w-timeminute>
-                        </w-shell-material>
-                    </div>
-
-                    <div class="bk">
-                        <demolink
-                            :kbname="'w-timeminute'"
-                            :casename="'minuteInter'"
-                            :kind="'border'"
-                            :shell="'shell'"
-                        ></demolink>
-
-                        <w-shell-material
-                            style="margin-top:30px;"
-                            :title="'請選擇出發日期'"
-                            :leftIcon="mdiPaw"
-                        >
-                            <w-timeminute
-                                :borderShadow="false"
-                                :borderColor="'orange lighten-2'"
-                                :borderColorFocus="'orange darken-2'"
-                                :backgroundColorFocus="'orange lighten-5'"
-                                :minuteInter="10"
-                                v-model="WTimeminute.value"
-                            ></w-timeminute>
-                        </w-shell-material>
-                    </div>
-
-                    <div class="bk">
-                        <demolink
-                            :kbname="'w-timeminute'"
-                            :casename="'minutesCustom'"
-                            :kind="'border'"
-                            :shell="'shell'"
-                        ></demolink>
-
-                        <w-shell-material
-                            style="margin-top:30px;"
-                            :title="'請選擇出發日期'"
-                            :leftIcon="mdiPaw"
-                        >
-                            <w-timeminute
-                                :borderShadow="false"
-                                :borderColor="'orange lighten-2'"
-                                :borderColorFocus="'orange darken-2'"
-                                :backgroundColorFocus="'orange lighten-5'"
-                                :minutesCustom="['10:00','10:30','11:15','12:00']"
-                                v-model="WTimeminute.value"
-                            ></w-timeminute>
-                        </w-shell-material>
-                    </div>
-
-
-                </template>
-
-
-            </template>
+            <div class="bk">
+                <demolink
+                    :kbname="'w-timeminute'"
+                    :casename="'default'"
+                    :kind="'nokind'"
+                    :shell="'pure'"
+                ></demolink>
+
+                <w-timeminute v-model="WTimeminute.value"></w-timeminute>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-timeminute'"
+                    :casename="'borderRadius'"
+                    :kind="'nokind'"
+                    :shell="'pure'"
+                ></demolink>
+
+                <w-timeminute
+                    :borderRadius="5"
+                    v-model="WTimeminute.value"
+                ></w-timeminute>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-timeminute'"
+                    :casename="'icon (material)'"
+                    :kind="'nokind'"
+                    :shell="'pure'"
+                ></demolink>
+
+                <w-timeminute
+                    :icon="mdiCheckUnderlineCircle"
+                    v-model="WTimeminute.value"
+                ></w-timeminute>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-timeminute'"
+                    :casename="'icon (fontawesome)'"
+                    :kind="'nokind'"
+                    :shell="'pure'"
+                ></demolink>
+
+                <w-timeminute
+                    :icon="'fas fa-clipboard-check'"
+                    v-model="WTimeminute.value"
+                ></w-timeminute>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-timeminute'"
+                    :casename="'iconColor & iconColorFoucs'"
+                    :kind="'nokind'"
+                    :shell="'pure'"
+                ></demolink>
+
+                <w-timeminute
+                    :iconColor="'cyan lighten-2'"
+                    :iconColorFocus="'cyan darken-1'"
+                    v-model="WTimeminute.value"
+                ></w-timeminute>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-timeminute'"
+                    :casename="'pickColor'"
+                    :kind="'nokind'"
+                    :shell="'pure'"
+                ></demolink>
+
+                <w-timeminute
+                    :pickColor="'brown'"
+                    v-model="WTimeminute.value"
+                ></w-timeminute>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-timeminute'"
+                    :casename="'iconTooltip'"
+                    :kind="'nokind'"
+                    :shell="'pure'"
+                ></demolink>
+
+                <w-timeminute
+                    :icon="mdiCheckUnderlineCircle"
+                    :iconTooltip="'show tooltip'"
+                    v-model="WTimeminute.value"
+                ></w-timeminute>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-timeminute'"
+                    :casename="'not editable'"
+                    :kind="'nokind'"
+                    :shell="'pure'"
+                ></demolink>
+
+                <w-timeminute
+                    :editable="false"
+                    v-model="WTimeminute.value"
+                ></w-timeminute>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-timeminute'"
+                    :casename="'hourMin & hourMax'"
+                    :kind="'nokind'"
+                    :shell="'pure'"
+                ></demolink>
+
+                <w-timeminute
+                    :hourMin="9"
+                    :hourMax="12"
+                    v-model="WTimeminute.value"
+                ></w-timeminute>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-timeminute'"
+                    :casename="'minuteInter'"
+                    :kind="'nokind'"
+                    :shell="'pure'"
+                ></demolink>
+
+                <w-timeminute
+                    :minuteInter="10"
+                    v-model="WTimeminute.value"
+                ></w-timeminute>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-timeminute'"
+                    :casename="'minutesCustom'"
+                    :kind="'nokind'"
+                    :shell="'pure'"
+                ></demolink>
+
+                <w-timeminute
+                    :minutesCustom="['10:00','10:30','11:15','12:00']"
+                    v-model="WTimeminute.value"
+                ></w-timeminute>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-timeminute'"
+                    :casename="'border & default'"
+                    :kind="'nokind'"
+                    :shell="'pure'"
+                ></demolink>
+
+                <w-timeminute
+                    :shadow="false"
+                    :borderColor="'orange lighten-2'"
+                    :borderColorFocus="'orange darken-2'"
+                    :backgroundColorFocus="'orange lighten-5'"
+                    v-model="WTimeminute.value"
+                ></w-timeminute>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-timeminute'"
+                    :casename="'border & borderRadius'"
+                    :kind="'nokind'"
+                    :shell="'pure'"
+                ></demolink>
+
+                <w-timeminute
+                    :shadow="false"
+                    :borderColor="'orange lighten-2'"
+                    :borderColorFocus="'orange darken-2'"
+                    :backgroundColorFocus="'orange lighten-5'"
+                    :borderRadius="5"
+                    v-model="WTimeminute.value"
+                ></w-timeminute>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-timeminute'"
+                    :casename="'border & icon (material)'"
+                    :kind="'nokind'"
+                    :shell="'pure'"
+                ></demolink>
+
+                <w-timeminute
+                    :shadow="false"
+                    :borderColor="'orange lighten-2'"
+                    :borderColorFocus="'orange darken-2'"
+                    :backgroundColorFocus="'orange lighten-5'"
+                    :icon="mdiCheckUnderlineCircle"
+                    v-model="WTimeminute.value"
+                ></w-timeminute>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-timeminute'"
+                    :casename="'border & icon (fontawesome)'"
+                    :kind="'nokind'"
+                    :shell="'pure'"
+                ></demolink>
+
+                <w-timeminute
+                    :shadow="false"
+                    :borderColor="'orange lighten-2'"
+                    :borderColorFocus="'orange darken-2'"
+                    :backgroundColorFocus="'orange lighten-5'"
+                    :icon="'fas fa-clipboard-check'"
+                    v-model="WTimeminute.value"
+                ></w-timeminute>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-timeminute'"
+                    :casename="'border & iconColor & iconColorFoucs & borderColor & borderColorFocus & backgroundColorFocus'"
+                    :kind="'nokind'"
+                    :shell="'pure'"
+                ></demolink>
+
+                <w-timeminute
+                    :shadow="false"
+                    :borderColor="'cyan lighten-2'"
+                    :borderColorFocus="'cyan darken-1'"
+                    :backgroundColorFocus="'cyan lighten-5'"
+                    :iconColor="'cyan lighten-2'"
+                    :iconColorFocus="'cyan darken-1'"
+                    v-model="WTimeminute.value"
+                ></w-timeminute>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-timeminute'"
+                    :casename="'border & pickColor'"
+                    :kind="'nokind'"
+                    :shell="'pure'"
+                ></demolink>
+
+                <w-timeminute
+                    :shadow="false"
+                    :borderColor="'orange lighten-2'"
+                    :borderColorFocus="'orange darken-2'"
+                    :backgroundColorFocus="'orange lighten-5'"
+                    :pickColor="'brown'"
+                    v-model="WTimeminute.value"
+                ></w-timeminute>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-timeminute'"
+                    :casename="'border & iconTooltip'"
+                    :kind="'nokind'"
+                    :shell="'pure'"
+                ></demolink>
+
+                <w-timeminute
+                    :shadow="false"
+                    :borderColor="'orange lighten-2'"
+                    :borderColorFocus="'orange darken-2'"
+                    :backgroundColorFocus="'orange lighten-5'"
+                    :icon="mdiCheckUnderlineCircle"
+                    :iconTooltip="'show tooltip'"
+                    v-model="WTimeminute.value"
+                ></w-timeminute>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-timeminute'"
+                    :casename="'border & not editable'"
+                    :kind="'nokind'"
+                    :shell="'pure'"
+                ></demolink>
+
+                <w-timeminute
+                    :shadow="false"
+                    :borderColor="'orange lighten-2'"
+                    :borderColorFocus="'orange darken-2'"
+                    :backgroundColorFocus="'orange lighten-5'"
+                    :editable="false"
+                    v-model="WTimeminute.value"
+                ></w-timeminute>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-timeminute'"
+                    :casename="'border & hourMin & hourMax'"
+                    :kind="'nokind'"
+                    :shell="'pure'"
+                ></demolink>
+
+                <w-timeminute
+                    :shadow="false"
+                    :borderColor="'orange lighten-2'"
+                    :borderColorFocus="'orange darken-2'"
+                    :backgroundColorFocus="'orange lighten-5'"
+                    :hourMin="9"
+                    :hourMax="12"
+                    v-model="WTimeminute.value"
+                ></w-timeminute>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-timeminute'"
+                    :casename="'border & minuteInter'"
+                    :kind="'nokind'"
+                    :shell="'pure'"
+                ></demolink>
+
+                <w-timeminute
+                    :shadow="false"
+                    :borderColor="'orange lighten-2'"
+                    :borderColorFocus="'orange darken-2'"
+                    :backgroundColorFocus="'orange lighten-5'"
+                    :minuteInter="10"
+                    v-model="WTimeminute.value"
+                ></w-timeminute>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-timeminute'"
+                    :casename="'border & minutesCustom'"
+                    :kind="'nokind'"
+                    :shell="'pure'"
+                ></demolink>
+
+                <w-timeminute
+                    :shadow="false"
+                    :borderColor="'orange lighten-2'"
+                    :borderColorFocus="'orange darken-2'"
+                    :backgroundColorFocus="'orange lighten-5'"
+                    :minutesCustom="['10:00','10:30','11:15','12:00']"
+                    v-model="WTimeminute.value"
+                ></w-timeminute>
+            </div>
 
 
         </div>
@@ -1006,14 +393,12 @@
 <script>
 import { mdiCheckUnderlineCircle, mdiPaw } from '@mdi/js'
 import demolink from './components/demolink.vue'
-import WShellMaterial from './components/WShellMaterial.vue'
 import WTimeminute from './components/WTimeminute.vue'
 
 
 export default {
     components: {
         demolink,
-        WShellMaterial,
         WTimeminute,
     },
     props: {

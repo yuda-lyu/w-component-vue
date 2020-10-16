@@ -126,7 +126,7 @@
 
                 <template v-else>
                     <WText
-                        :borderShadow="false"
+                        :shadow="false"
                         :textColor="inputTextColor"
                         :rightIcon="mdiPlusCircle"
                         :rightIconColor="inputTextButtonColor"

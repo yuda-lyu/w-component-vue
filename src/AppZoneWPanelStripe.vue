@@ -209,7 +209,7 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-panel-stripe'"
-                    :casename="'no borderShadow, with crimson outer'"
+                    :casename="'no shadow, with crimson outer'"
                     :kind="'nokind'"
                     :shell="'pure'"
                 ></demolink>
@@ -218,7 +218,7 @@
 
                     <w-panel-stripe
                         style="width:520px;"
-                        :borderShadow="false"
+                        :shadow="false"
                     >
 
                         <template v-slot:icon>

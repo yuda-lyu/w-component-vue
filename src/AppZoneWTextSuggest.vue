@@ -126,23 +126,6 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-text-suggest'"
-                    :casename="'not small (large)'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
-                ></demolink>
-
-                <w-text-suggest
-                    :icon="mdiCheckUnderlineCircle"
-                    :small="false"
-                    :items="WTextSuggest.objItems"
-                    v-model="WTextSuggest.objValue"
-                ></w-text-suggest>
-            </div>
-
-
-            <div class="bk">
-                <demolink
-                    :kbname="'w-text-suggest'"
                     :casename="'keyText'"
                     :kind="'nokind'"
                     :shell="'pure'"
@@ -233,7 +216,7 @@
                 ></demolink>
 
                 <w-text-suggest
-                    :borderShadow="false"
+                    :shadow="false"
                     :borderColor="'orange lighten-2'"
                     :borderColorFocus="'orange darken-2'"
                     :backgroundColorFocus="'orange lighten-5'"
@@ -252,7 +235,7 @@
                 ></demolink>
 
                 <w-text-suggest
-                    :borderShadow="false"
+                    :shadow="false"
                     :borderColor="'orange lighten-2'"
                     :borderColorFocus="'orange darken-2'"
                     :backgroundColorFocus="'orange lighten-5'"
@@ -272,7 +255,7 @@
                 ></demolink>
 
                 <w-text-suggest
-                    :borderShadow="false"
+                    :shadow="false"
                     :borderColor="'orange lighten-2'"
                     :borderColorFocus="'orange darken-2'"
                     :backgroundColorFocus="'orange lighten-5'"
@@ -292,7 +275,7 @@
                 ></demolink>
 
                 <w-text-suggest
-                    :borderShadow="false"
+                    :shadow="false"
                     :borderColor="'orange lighten-2'"
                     :borderColorFocus="'orange darken-2'"
                     :backgroundColorFocus="'orange lighten-5'"
@@ -312,7 +295,7 @@
                 ></demolink>
 
                 <w-text-suggest
-                    :borderShadow="false"
+                    :shadow="false"
                     :borderColor="'cyan lighten-2'"
                     :borderColorFocus="'cyan darken-1'"
                     :backgroundColorFocus="'cyan lighten-5'"
@@ -334,7 +317,7 @@
                 ></demolink>
 
                 <w-text-suggest
-                    :borderShadow="false"
+                    :shadow="false"
                     :borderColor="'orange lighten-2'"
                     :borderColorFocus="'orange darken-2'"
                     :backgroundColorFocus="'orange lighten-5'"
@@ -355,33 +338,12 @@
                 ></demolink>
 
                 <w-text-suggest
-                    :borderShadow="false"
+                    :shadow="false"
                     :borderColor="'orange lighten-2'"
                     :borderColorFocus="'orange darken-2'"
                     :backgroundColorFocus="'orange lighten-5'"
                     :icon="mdiCheckUnderlineCircle"
                     :borderRadius="5"
-                    :items="WTextSuggest.objItems"
-                    v-model="WTextSuggest.objValue"
-                ></w-text-suggest>
-            </div>
-
-
-            <div class="bk">
-                <demolink
-                    :kbname="'w-text-suggest'"
-                    :casename="'border & not small (large)'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
-                ></demolink>
-
-                <w-text-suggest
-                    :borderShadow="false"
-                    :borderColor="'orange lighten-2'"
-                    :borderColorFocus="'orange darken-2'"
-                    :backgroundColorFocus="'orange lighten-5'"
-                    :icon="mdiCheckUnderlineCircle"
-                    :small="false"
                     :items="WTextSuggest.objItems"
                     v-model="WTextSuggest.objValue"
                 ></w-text-suggest>
@@ -397,7 +359,7 @@
                 ></demolink>
 
                 <w-text-suggest
-                    :borderShadow="false"
+                    :shadow="false"
                     :borderColor="'orange lighten-2'"
                     :borderColorFocus="'orange darken-2'"
                     :backgroundColorFocus="'orange lighten-5'"
@@ -419,7 +381,7 @@
                 ></demolink>
 
                 <w-text-suggest
-                    :borderShadow="false"
+                    :shadow="false"
                     :borderColor="'orange lighten-2'"
                     :borderColorFocus="'orange darken-2'"
                     :backgroundColorFocus="'orange lighten-5'"
@@ -440,7 +402,7 @@
                 ></demolink>
 
                 <w-text-suggest
-                    :borderShadow="false"
+                    :shadow="false"
                     :borderColor="'orange lighten-2'"
                     :borderColorFocus="'orange darken-2'"
                     :backgroundColorFocus="'orange lighten-5'"
@@ -460,7 +422,7 @@
                 ></demolink>
 
                 <w-text-suggest
-                    :borderShadow="false"
+                    :shadow="false"
                     :borderColor="'orange lighten-2'"
                     :borderColorFocus="'orange darken-2'"
                     :backgroundColorFocus="'orange lighten-5'"
@@ -480,7 +442,7 @@
                 ></demolink>
 
                 <w-text-suggest
-                    :borderShadow="false"
+                    :shadow="false"
                     :borderColor="'orange lighten-2'"
                     :borderColorFocus="'orange darken-2'"
                     :backgroundColorFocus="'orange lighten-5'"

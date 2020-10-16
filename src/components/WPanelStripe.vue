@@ -1,5 +1,5 @@
 <template>
-    <div :class="{'shadow':borderShadow}" :style="[usePanelStyle]">
+    <div :class="{'shadow':shadow}" :style="[usePanelStyle]">
 
         <div :style="[useHeaderStyle]" v-if="hasHeader">
             <slot name="icon"></slot>
@@ -28,11 +28,11 @@ import color2hex from '../js/vuetifyColor.mjs'
  * @vue-prop {Boolean} [hasHeader=true] 輸入是否有上部標題區，預設true
  * @vue-prop {Boolean} [hasFooter=true] 輸入是否有下部基底區，預設true
  * @vue-prop {Number} [padding=20] 輸入內間距，單位為px，預設20
- * @vue-prop {Number} [borderRadius=5] 輸入圓角寬度，單位為px，預設5
+ * @vue-prop {Number} [borderRadius=5] 輸入圓角寬度數字，單位為px，預設5
  * @vue-prop {String} [headerBackgroundColor='grey lighten-5'] 輸入上方區塊背景顏色字串，預設'grey lighten-5'
  * @vue-prop {String} [contentBackgroundColor='white'] 輸入內容區塊背景顏色字串，預設'white'
  * @vue-prop {String} [footerBackgroundColor='grey lighten-5'] 輸入下方區塊背景顏色字串，預設'grey lighten-5'
- * @vue-prop {Boolean} [borderShadow=true] 輸入是否為陰影模式，預設true
+ * @vue-prop {Boolean} [shadow=true] 輸入是否為陰影模式，預設true
  */
 export default {
     props: {
@@ -64,7 +64,7 @@ export default {
             type: String,
             default: 'grey lighten-5',
         },
-        borderShadow: {
+        shadow: {
             type: Boolean,
             default: true,
         },

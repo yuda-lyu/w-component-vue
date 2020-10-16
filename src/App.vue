@@ -99,83 +99,6 @@
             </template>
 
 
-            <template v-if="haveModeBorder[compname] || haveModeShell[compname]">
-
-
-                <div style="margin-top:5px;"></div>
-
-
-                <div style="padding:5px 15px; background-color:#eee;">
-
-                    <div style="display:inline-block; margin-right:15px;" v-if="haveModeBorder[compname]">
-
-                        <div style="margin:5px 0px; font-size:10pt; color:#aaa;">border :</div>
-
-                        <v-radio-group
-                            style="margin:0px; padding:0px;"
-                            hide-details
-                            row
-                            v-model="modeBorder"
-                        >
-
-                            <v-radio
-                                color="deep-purple lighten-2"
-                                label="emboss"
-                                value="emboss"
-                                :on-icon="mdiCheckCircle"
-                                :off-icon="mdiCheckboxBlankCircleOutline"
-                            ></v-radio>
-
-                            <v-radio
-                                color="deep-purple lighten-2"
-                                label="border"
-                                value="border"
-                                :on-icon="mdiCheckCircle"
-                                :off-icon="mdiCheckboxBlankCircleOutline"
-                            ></v-radio>
-
-                        </v-radio-group>
-
-                    </div>
-
-                    <div style="display:inline-block; margin-right:15px;" v-if="haveModeShell[compname]">
-
-                        <div style="margin:5px 0px; font-size:10pt; color:#aaa;">shell :</div>
-
-                        <v-radio-group
-                            style="margin:0px; padding:0px;"
-                            hide-details
-                            row
-                            v-model="modeShell"
-                        >
-
-                            <v-radio
-                                color="pink darken-1"
-                                label="pure"
-                                value="pure"
-                                :on-icon="mdiCheckCircle"
-                                :off-icon="mdiCheckboxBlankCircleOutline"
-                            ></v-radio>
-
-                            <v-radio
-                                color="pink darken-1"
-                                label="shell"
-                                value="shell"
-                                :on-icon="mdiCheckCircle"
-                                :off-icon="mdiCheckboxBlankCircleOutline"
-                            ></v-radio>
-
-                        </v-radio-group>
-
-
-                    </div>
-
-                </div>
-
-
-            </template>
-
-
         </div>
 
 
@@ -689,24 +612,6 @@ export default {
                     ],
                 },
             ],
-            haveModeBorder: {
-                'WText': true,
-                'WTextInt': true,
-                'WTimeday': true,
-                'WTimeminute': true,
-                'WTimedayRange': true,
-                'WTimeminuteRange': true,
-            },
-            haveModeShell: {
-                'WSwitch': true,
-                'WText': true,
-                'WTextInt': true,
-                'WTextarea': true,
-                'WTimeday': true,
-                'WTimeminute': true,
-                'WTimedayRange': true,
-                'WTimeminuteRange': true,
-            },
             modeBorder: 'emboss',
             modeBorders: [
                 'emboss',

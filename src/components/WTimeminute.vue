@@ -2,19 +2,19 @@
     <div style="display:inline-block; cursor:pointer;" :changeParam="changeParam">
 
         <w-shell-ellipse
-            :title="title"
-            :titleColor="titleColor"
+            :paddingStyle="paddingStyle"
             :borderRadius="borderRadius"
-            :borderShadow="borderShadow"
+            :shadow="shadow"
             :leftIcon="icon"
             :leftIconColor="iconColor"
             :leftIconColorFocus="iconColorFocus"
             :leftIconTooltip="iconTooltip"
+            :iconShiftOuter="iconShiftOuter"
+            :iconShiftInner="iconShiftInner"
             :backgroundColor="backgroundColor"
             :backgroundColorFocus="backgroundColorFocus"
             :borderColor="borderColor"
             :borderColorFocus="borderColorFocus"
-            :small="small"
             :editable="editable"
             :focused="focusedTrans"
             @click-left="function(v){$emit('click-left', v)}"
@@ -44,10 +44,9 @@ import WTimeminuteCore from './WTimeminuteCore.vue'
 
 
 /**
- * @vue-prop {String} [title=''] 輸入標題字串，預設''
- * @vue-prop {String} [titleColor='deep-orange darken-1'] 輸入標題顏色字串，預設'deep-orange darken-1'
+ * @vue-prop {Object} [paddingStyle={v:0,h:15}] 輸入內寬距離物件，可用鍵值為v、h、left、right、top、bottom，v代表同時設定top與bottom，h代表設定left與right，若有重複設定時後面鍵值會覆蓋前面，各鍵值為寬度數字，單位為px，預設{v:0,h:15}
  * @vue-prop {Number} [borderRadius=30] 輸入文字框圓角寬度，單位為px，預設30
- * @vue-prop {Boolean} [borderShadow=true] 輸入是否為陰影模式，預設true
+ * @vue-prop {Boolean} [shadow=true] 輸入是否為陰影模式，預設true
  * @vue-prop {String} [value=''] 輸入日期字串，預設''
  * @vue-prop {Number} [hourMin=8] 輸入可選最小小時，單位為小時，預設8
  * @vue-prop {Number} [hourMax=8] 輸入可選最大小時，單位為小時，預設8
@@ -57,12 +56,13 @@ import WTimeminuteCore from './WTimeminuteCore.vue'
  * @vue-prop {String} [iconColor='deep-orange lighten-2'] 輸入圖標顏色字串，預設'deep-orange lighten-2'
  * @vue-prop {String} [iconColorFocus='deep-orange lighten-1'] 輸入圖標Focus顏色字串，預設'deep-orange lighten-1'
  * @vue-prop {String} [iconTooltip=''] 輸入圖標提示文字字串，預設''
+ * @vue-prop {Number} [iconShiftOuter=-10] 輸入左右側圖標與外框距離數字，單位為px，預設-10
+ * @vue-prop {Number} [iconShiftInner=10] 輸入左右側圖標與內插槽區距離數字，單位為px，預設10
  * @vue-prop {String} [backgroundColor='white'] 輸入背景顏色字串，預設'white'
  * @vue-prop {String} [backgroundColorFocus='white'] 輸入背景Focus顏色字串，預設'white'
  * @vue-prop {String} [borderColor='white'] 輸入邊框顏色字串，預設'white'
  * @vue-prop {String} [borderColorFocus='white'] 輸入邊框Focus顏色字串，預設'white'
  * @vue-prop {String} [pickColor='deep-orange darken-1'] 輸入日期彈窗中選擇指定日期之顏色字串，預設'deep-orange darken-1'
- * @vue-prop {Boolean} [small=true] 輸入是否為小型模式，預設true
  * @vue-prop {Boolean} [editable=true] 輸入是否為編輯模式，預設true
  * @vue-prop {Boolean} [focused=false] 輸入是否為駐點狀態，預設false
  */
@@ -72,19 +72,20 @@ export default {
         WTimeminuteCore
     },
     props: {
-        title: {
-            type: String,
-            default: '',
-        },
-        titleColor: {
-            type: String,
-            default: 'deep-orange darken-1',
+        paddingStyle: {
+            type: Object,
+            default: () => {
+                return {
+                    v: 0,
+                    h: 15,
+                }
+            },
         },
         borderRadius: {
             type: Number,
             default: 30,
         },
-        borderShadow: {
+        shadow: {
             type: Boolean,
             default: true,
         },
@@ -124,6 +125,14 @@ export default {
             type: String,
             default: '',
         },
+        iconShiftOuter: {
+            type: Number,
+            default: -10,
+        },
+        iconShiftInner: {
+            type: Number,
+            default: 10,
+        },
         backgroundColor: {
             type: String,
             default: 'white',
@@ -143,10 +152,6 @@ export default {
         pickColor: {
             type: String,
             default: 'deep-orange darken-1',
-        },
-        small: {
-            type: Boolean,
-            default: true,
         },
         editable: {
             type: Boolean,
