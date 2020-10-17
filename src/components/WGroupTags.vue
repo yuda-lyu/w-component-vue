@@ -127,6 +127,11 @@
                 <template v-else>
                     <WText
                         :shadow="false"
+                        :bottomLineBorderColor="'transparent'"
+                        :bottomLineBorderColorHover="'transparent'"
+                        :bottomLineBorderColorFocus="'transparent'"
+                        :paddingStyle="{h:15}"
+                        :iconShiftOuter="-10"
                         :textColor="inputTextColor"
                         :rightIcon="mdiPlusCircle"
                         :rightIconColor="inputTextButtonColor"
