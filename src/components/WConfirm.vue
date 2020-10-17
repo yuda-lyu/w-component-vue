@@ -1,12 +1,13 @@
 <template>
     <v-dialog
         :changeParam="changeParam"
+        scrollable
         persistent
         :max-width="widthMax"
         v-model="showTrans"
     >
 
-        <v-card>
+        <v-card v-if="showTrans">
 
             <div>
                 <slot name="header">
@@ -20,7 +21,7 @@
                 </slot>
             </div>
 
-            <div>
+            <v-card-text style="padding:0px;">
                 <slot name="content">
                     <div :style="useContentStyle">
 
@@ -37,7 +38,7 @@
 
                     </div>
                 </slot>
-            </div>
+            </v-card-text>
 
             <div>
                 <slot name="footer">

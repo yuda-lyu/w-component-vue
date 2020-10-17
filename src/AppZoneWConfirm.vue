@@ -364,6 +364,79 @@
             </div>
 
 
+            <div class="bk">
+                <demolink
+                    :kbname="'w-confirm'"
+                    :casename="'scrollable, extensive text'"
+                    :kind="'nokind'"
+                    :shell="'pure'"
+                ></demolink>
+
+                <v-btn small rounded @click="WConfirm.bShow14=!WConfirm.bShow14">Show({{WConfirm.bShow14}})</v-btn>
+
+                <w-confirm
+                    :show.sync="WConfirm.bShow14"
+                    :title="WConfirm.title"
+                    :content="WConfirm.contentExtensive"
+                    @click-no="clickEvent('click-no')"
+                    @click-yes="clickEvent('click-yes')"
+                ></w-confirm>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-confirm'"
+                    :casename="'scrollable, extensive text (slot content)'"
+                    :kind="'nokind'"
+                    :shell="'pure'"
+                ></demolink>
+
+                <v-btn small rounded @click="WConfirm.bShow15=!WConfirm.bShow15">Show({{WConfirm.bShow15}})</v-btn>
+
+                <w-confirm
+                    :show.sync="WConfirm.bShow15"
+                    :title="WConfirm.title"
+                    @click-no="clickEvent('click-no')"
+                    @click-yes="clickEvent('click-yes')"
+                >
+                    <template v-slot:content>
+
+                        <div style="padding:30px 20px 10px 20px; font-size:1.5rem;">
+                            Cupiditate anim officia
+                        </div>
+
+                        <div style="padding:10px 20px; font-size:0.9rem;">
+                            Deserunt mollit amet sunt sed. Mollit dolor est in voluptate blanditiis in. Tempor sint consequat quod mollitia ad qui dolore pariatur. Laborum dolorum amet eos sint. Nulla ullamco similique elit eos. Est nulla eu proident exercitation vero.
+                            <br><br>
+                            In laboris odio dolor voluptatum deleniti pariatur in. Et excepteur est ad omnis corrupti. Quos dolore aliqua corrupti. Dolores soluta commodo similique est quos. Amet et molestias est vero cupiditate dolorum proident fugiat. Aliquip omnis vero laboris ea dolore voluptatum corrupti.
+                            <br><br>
+                            Possimus facere excepteur qui praesentium. Non expedita accusamus quis dolore. Elit omnis aliqua voluptate culpa. Laborum placeat non facilis est elit. Provident animi at fugiat labore eiusmod harum.
+                            <br><br>
+                            Atque facere aliqua qui iusto mollit enim. Et cumque et omnis. Anim irure id at do duis. Fugiat aute culpa nobis ad irure quod et. Assumenda elit est exercitation sunt est laborum nulla fugiat.
+                            <br><br>
+                            Tempor eiusmod deserunt ducimus iusto cumque adipisicing consequat ex. Deleniti et officia qui esse similique harum. Molestias pariatur laborum cupidatat sint rerum. Deserunt do sit mollit ad animi distinctio soluta. Eos vero aliqua cupiditate sunt id.
+                            <br><br>
+                            Quis voluptas in excepteur optio voluptas. Enim animi non nisi eu ex obcaecati at. Cumque aliquip et at soluta sunt. Cupidatat mollit nostrud veniam dolor eos. Placeat qui adipisicing voluptas quas laboris odio voluptate. In atque sint expedita eos nobis irure.
+                            <br><br>
+                            Sed quo officia excepteur est. Minim libero dolore in fuga. Soluta optio expedita culpa omnis consequat adipisicing mollitia ut. Consectetur magna ut sed accusamus. Facilis quas facilis ut ea sed dolor placeat non. Omnis provident reprehenderit est et.
+                            <br><br>
+                            Nihil dolorum odio aute sit corrupti cumque. Tempore at laboris quis est impedit ea. Nihil expedita commodo est tempor sint. Ut excepturi aute tempor ut laboris cumque. Similique vero aliqua at in culpa consequat sunt.
+                            <br><br>
+                            Est et cupiditate praesentium facilis dolores sit. Deserunt ducimus amet veniam assumenda. Laborum excepturi enim proident tempor sunt dolorum atque aliquip. Irure deleniti magna ullamco ipsum eligendi et nihil.
+                            <br><br>
+                            Reprehenderit omnis anim enim dignissimos dolor obcaecati occaecat. Id cupiditate et corrupti labore proident omnis est. Dolor obcaecati id est sit. Qui dolorum aliquip et occaecat labore pariatur cupidatat. Quo nobis expedita amet dignissimos qui.
+                            <br><br>
+                            Accusamus in animi pariatur ducimus tempor. Et dignissimos in deserunt est dignissimos. Rerum impedit et est quod. Id ex ea laborum aliquip ipsum amet. Ut dolor est blanditiis incididunt minus magna culpa. Labore aute aute optio facere cumque. Cum minus eos culpa dolore enim.
+                        </div>
+
+                    </template>
+                </w-confirm>
+
+            </div>
+
+
         </div>
 
 
@@ -404,8 +477,11 @@ export default {
                 'bShow11': false,
                 'bShow12': false,
                 'bShow13': false,
+                'bShow15': false,
+                'bShow14': false,
                 'title': 'Confirm',
                 'content': 'Do you agree to upload the information?',
+                'contentExtensive': 'Est aliqua irure deserunt excepteur. Ullamco do blanditiis nobis aute exercitation. Possimus in optio quod at. Dolores dolorum dolores eu excepteur proident. Quas distinctio sunt dolor amet lorem nostrud deserunt. Dolor molestias exercitation deserunt ut est aute occaecat dolore. Quod ut laboris dolores mollitia vero non corrupti?',
             },
             'actions': [
             ],

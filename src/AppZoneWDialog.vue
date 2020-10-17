@@ -593,7 +593,7 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-dialog'"
-                    :casename="'scrollable, a lot of text'"
+                    :casename="'scrollable, extensive text'"
                     :kind="'nokind'"
                     :shell="'pure'"
                 ></demolink>

@@ -15,8 +15,6 @@
         <v-card v-if="show">
 
             <v-toolbar
-                ref="tb"
-                style="flex:initial;"
                 :color="headerBackgroundColor"
             >
 
@@ -78,9 +76,7 @@
             </v-toolbar>
 
             <v-card-text
-                ref="scrollZone"
-                :style="`line-height:inherit; font-size:inherit; font-weight:inherit; letter-spacing:inherit; padding:0px; background:${useContentBackgroundColor};`"
-                :msg="`因v-card內文字大小與間距預設改小, 故強制還原成inherit`"
+                :style="`padding:0px; background:${useContentBackgroundColor};`"
             >
                 <slot name="content"></slot>
             </v-card-text>
@@ -313,4 +309,20 @@ export default {
 </script>
 
 <style scoped>
+/* 因v-toolbar使用contain:layout, 以及v-toolbar__content使用z-index:0, 導致v-toolbar的內容物展示低於v-card, 若v-toolbar內使用popup會被v-card內容物遮, 故需覆寫v-toolbar與v-toolbar__content的css屬性 */
+/* 於fullscreen且v-card高度小時, v-toolbar會自動撐開, 需設置flex:initial覆寫原本flex: 1 1 auto */
+::v-deep .v-toolbar {
+    contain: none;
+    flex: initial;
+}
+::v-deep .v-toolbar__content {
+    z-index: inherit;
+}
+/* 因v-card內文字大小與間距預設改小, 故強制還原成inherit */
+::v-deep .v-card__text {
+    line-height: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+    letter-spacing: inherit;
+}
 </style>
