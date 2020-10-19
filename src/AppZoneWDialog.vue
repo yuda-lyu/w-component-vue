@@ -470,7 +470,7 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-dialog'"
-                    :casename="'contentBackgroundColor'"
+                    :casename="'contentTextColor & contentBackgroundColor'"
                     :kind="'nokind'"
                     :shell="'pure'"
                 ></demolink>
@@ -480,23 +480,24 @@
                 <w-dialog
                     :show.sync="WDialog.bShow12"
                     :title="WDialog.title"
+                    :contentTextColor="'#fff'"
                     :contentBackgroundColor="'cyan darken-2'"
                     @click-save="clickEvent('click-save')"
                     @click-close="clickEvent('click-close')"
                 >
 
                     <template v-slot:content>
-                        <div style="padding:20px; color:#ddd;">
-                            <div style="font-size:1.5rem; margin:10px 0px 20px 0px; color:#fff;">
+                        <div style="padding:20px;">
+                            <div style="font-size:1.5rem; margin:10px 0px 20px 0px;">
                                 {{WDialog.text1}}
                             </div>
-                            <div style="margin:15px 0px;">
+                            <div style="margin:15px 0px; color:#eee;">
                                 {{WDialog.text2}}
                             </div>
-                            <div style="margin:15px 0px;">
+                            <div style="margin:15px 0px; color:#eee;">
                                 {{WDialog.text3}}
                             </div>
-                            <div style="margin:15px 0px;">
+                            <div style="margin:15px 0px; color:#eee;">
                                 {{WDialog.text4}}
                             </div>
                         </div>
