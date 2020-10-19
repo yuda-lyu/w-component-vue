@@ -76,7 +76,7 @@
             </v-toolbar>
 
             <v-card-text
-                :style="`padding:0px; background:${useContentBackgroundColor};`"
+                :style="`padding:0px; color:${useContentTextColor}; background:${useContentBackgroundColor};`"
             >
                 <slot name="content"></slot>
             </v-card-text>
@@ -105,6 +105,7 @@ import WButtonCircle from './WButtonCircle.vue'
  * @vue-prop {Boolean} [hasCloseBtn=true] 輸入是否顯示關閉按鈕，預設true
  * @vue-prop {String} [closeBtnTooltip='關閉'] 輸入關閉按鈕的提示文字字串，預設'關閉'
  * @vue-prop {Number} [widthMax=1000] 輸入彈窗最大寬度，單位為px，預設1000，當裝置寬度小於彈窗最大寬度，則彈窗改為全螢幕顯示，若給予widthMax<=0則代表全螢幕
+ * @vue-prop {String} [contentTextColor='black'] 輸入內容文字顏色字串，預設'black'
  * @vue-prop {String} [contentBackgroundColor='transparent'] 輸入內容背景顏色字串，預設'transparent'
  */
 export default {
@@ -160,6 +161,10 @@ export default {
             type: Number,
             default: 1000,
         },
+        contentTextColor: {
+            type: String,
+            default: 'black',
+        },
         contentBackgroundColor: {
             type: String,
             default: 'transparent',
@@ -195,6 +200,14 @@ export default {
             let vo = this
 
             return color2hex(vo.headerTextColor)
+        },
+
+        useContentTextColor: function () {
+            //console.log('computed useContentTextColor')
+
+            let vo = this
+
+            return color2hex(vo.contentTextColor)
         },
 
         useContentBackgroundColor: function () {
@@ -318,11 +331,15 @@ export default {
 ::v-deep .v-toolbar__content {
     z-index: inherit;
 }
-/* 因v-card內文字大小與間距預設改小, 故強制還原成inherit */
+/* 因v-card內文字大小與間距改小, 故強制還原成inherit */
 ::v-deep .v-card__text {
     line-height: inherit;
     font-size: inherit;
     font-weight: inherit;
     letter-spacing: inherit;
+}
+/* 因v-card內文字顏色變淡, 故強制還原成inherit */
+::v-deep .theme--light.v-card > v-card__text {
+    color: inherit;
 }
 </style>
