@@ -24,8 +24,8 @@ export default {
         pathItems: {
             type: Array,
             default: () => [
-                'https://cdn.jsdelivr.net/npm/@ckeditor/ckeditor5-build-classic@21.0.0/build/ckeditor.js',
-                'https://cdn.jsdelivr.net/npm/w-ckeditor-vue@1.0.21/dist/w-ckeditor-vue.umd.js',
+                'https://cdn.jsdelivr.net/npm/w-ckeditor-vue@1.0.22/dist/ckeditor.js',
+                'https://cdn.jsdelivr.net/npm/w-ckeditor-vue@1.0.22/dist/w-ckeditor-vue.umd.js',
             ],
         },
         value: {

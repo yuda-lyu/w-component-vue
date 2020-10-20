@@ -38,8 +38,7 @@ import replace from 'wsemi/src/replace.mjs'
 import domIsClientXYIn from 'wsemi/src/domIsClientXYIn.mjs'
 import color2hex from '../js/vuetifyColor.mjs'
 import domResize from '../js/domResize.mjs'
-//不用安裝@popperjs/core, 因wsemi安裝tippy.js內有依賴@popperjs/core
-import { createPopper } from '@popperjs/core/lib/popper-lite.js'
+import { createPopper } from '@popperjs/core/lib/popper-lite.js' //不用安裝@popperjs/core, 因wsemi安裝tippy.js內有依賴@popperjs/core
 import flip from '@popperjs/core/lib/modifiers/flip.js'
 import offset from '@popperjs/core/lib/modifiers/offset.js'
 import hide from '@popperjs/core/lib/modifiers/hide.js'

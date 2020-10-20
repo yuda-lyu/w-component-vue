@@ -73,7 +73,7 @@
     <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.js"></script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@1.5.9/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@1.5.10/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -137,17 +137,42 @@
           content: "abc中文123",
           settings: {
             language: "zh",
-            //toolbar: ['heading', '|', 'bold', 'italic', 'link', '|', 'subscript', 'superscript', '|', 'alignment:left', 'alignment:right', 'alignment:center', 'alignment:justify', '|', 'bulletedList', 'numberedList', 'blockQuote', '|', 'Undo', 'Redo'],
             toolbar: [
               "heading",
               "|",
+              "fontSize",
+              "fontColor",
+              "fontBackgroundColor",
+              "|",
               "bold",
               "italic",
-              "link",
+              "|",
+              "subscript",
+              "superscript",
+              "|",
+              "alignment:left",
+              "alignment:right",
+              "alignment:center",
+              "alignment:justify",
+              "|",
               "bulletedList",
               "numberedList",
-              "blockQuote"
-            ]
+              "blockQuote",
+              "|",
+              "insertTable",
+              "|",
+              "Undo",
+              "Redo"
+            ],
+            table: {
+              contentToolbar: [
+                "tableColumn",
+                "tableRow",
+                "mergeTableCells",
+                "tableProperties",
+                "tableCellProperties"
+              ]
+            }
           }
         },
         actions: []
