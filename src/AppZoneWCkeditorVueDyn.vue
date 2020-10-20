@@ -119,9 +119,31 @@ export default {
                 'content': 'abc中文123',
                 'settings': {
                     language: 'zh',
-                    toolbar: ['heading', '|', 'fontSize', 'fontColor', 'fontBackgroundColor', '|', 'bold', 'italic', '|', 'subscript', 'superscript', '|', 'alignment:left', 'alignment:right', 'alignment:center', 'alignment:justify', '|', 'bulletedList', 'numberedList', 'blockQuote', '|', 'insertTable', '|', 'Undo', 'Redo'],
-                    table: {
-                        contentToolbar: ['tableColumn', 'tableRow', 'mergeTableCells', 'tableProperties', 'tableCellProperties']
+                    toolbar: {
+                        items: [
+                            'heading',
+                            '|',
+                            'fontSize',
+                            'fontColor',
+                            'fontBackgroundColor',
+                            '|',
+                            'bold',
+                            'italic',
+                            'underline',
+                            'strikethrough',
+                            '|',
+                            'subscript',
+                            'superscript',
+                            '|',
+                            'alignment',
+                            'bulletedList',
+                            'numberedList',
+                            '|',
+                            'redo',
+                            'undo',
+                            '|',
+                            'removeFormat'
+                        ]
                     },
                 },
             },
