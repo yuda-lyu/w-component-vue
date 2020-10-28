@@ -22,8 +22,6 @@
                 <demolink
                     :kbname="'w-echarts-vue-dyn'"
                     :casename="'line'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-echarts-vue-dyn
@@ -38,8 +36,6 @@
                 <demolink
                     :kbname="'w-echarts-vue-dyn'"
                     :casename="'area'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-echarts-vue-dyn
@@ -54,8 +50,6 @@
                 <demolink
                     :kbname="'w-echarts-vue-dyn'"
                     :casename="'stack'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-echarts-vue-dyn
@@ -70,8 +64,6 @@
                 <demolink
                     :kbname="'w-echarts-vue-dyn'"
                     :casename="'radar'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-echarts-vue-dyn
@@ -86,8 +78,6 @@
                 <demolink
                     :kbname="'w-echarts-vue-dyn'"
                     :casename="'polar'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-echarts-vue-dyn
@@ -102,8 +92,6 @@
                 <demolink
                     :kbname="'w-echarts-vue-dyn'"
                     :casename="'heatmap'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-echarts-vue-dyn
@@ -118,8 +106,6 @@
                 <demolink
                     :kbname="'w-echarts-vue-dyn'"
                     :casename="'scatter'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-echarts-vue-dyn
@@ -134,8 +120,6 @@
                 <demolink
                     :kbname="'w-echarts-vue-dyn'"
                     :casename="'parallel'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-echarts-vue-dyn
@@ -150,11 +134,10 @@
                 <demolink
                     :kbname="'w-echarts-vue-dyn'"
                     :casename="'tree'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
-                <div style="overflow-y:auto; height:300px;">
+                <!-- 用:style才能支援IE11因vue會自動把overflow-y:auto轉為-ms-overflow-y:auto -->
+                <div :style="'overflow-y:auto; height:300px;'">
                     <w-echarts-vue-dyn
                         style="width:95%; height:2300px;"
                         :options="WEchartsVueDyn.options9"
@@ -168,8 +151,6 @@
                 <demolink
                     :kbname="'w-echarts-vue-dyn'"
                     :casename="'treemap'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-echarts-vue-dyn
@@ -184,8 +165,6 @@
                 <demolink
                     :kbname="'w-echarts-vue-dyn'"
                     :casename="'continuous'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-echarts-vue-dyn
@@ -200,8 +179,6 @@
                 <demolink
                     :kbname="'w-echarts-vue-dyn'"
                     :casename="'polar heatmap'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-echarts-vue-dyn
@@ -216,8 +193,6 @@
                 <demolink
                     :kbname="'w-echarts-vue-dyn'"
                     :casename="'bar3D'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-echarts-vue-dyn
@@ -232,8 +207,6 @@
                 <demolink
                     :kbname="'w-echarts-vue-dyn'"
                     :casename="'line3D'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-echarts-vue-dyn
@@ -248,8 +221,6 @@
                 <demolink
                     :kbname="'w-echarts-vue-dyn'"
                     :casename="'surface'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-echarts-vue-dyn

@@ -12,8 +12,6 @@
                 <demolink
                     :kbname="'w-dropfiles'"
                     :casename="'default'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-dropfiles
@@ -33,8 +31,6 @@
                 <demolink
                     :kbname="'w-dropfiles'"
                     :casename="'backgroundColor & backgroundColorDropIn & backgroundColorHover'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-dropfiles
@@ -57,8 +53,6 @@
                 <demolink
                     :kbname="'w-dropfiles'"
                     :casename="'borderRadius'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-dropfiles
@@ -79,8 +73,6 @@
                 <demolink
                     :kbname="'w-dropfiles'"
                     :casename="'borderWidth'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-dropfiles
@@ -101,8 +93,6 @@
                 <demolink
                     :kbname="'w-dropfiles'"
                     :casename="'borderColor & borderColorDropIn & borderColorHover & backgroundColorDropIn & backgroundColorHover'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-dropfiles
@@ -127,8 +117,6 @@
                 <demolink
                     :kbname="'w-dropfiles'"
                     :casename="'styleTransition'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-dropfiles

@@ -12,8 +12,6 @@
                 <demolink
                     :kbname="'w-tree'"
                     :casename="'default'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-tree
@@ -28,8 +26,6 @@
                 <demolink
                     :kbname="'w-tree'"
                     :casename="'viewHeightMax'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-tree
@@ -45,8 +41,6 @@
                 <demolink
                     :kbname="'w-tree'"
                     :casename="'indent'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-tree
@@ -62,8 +56,6 @@
                 <demolink
                     :kbname="'w-tree'"
                     :casename="'iconColor'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-tree
@@ -79,8 +71,6 @@
                 <demolink
                     :kbname="'w-tree'"
                     :casename="'keyPrimary & keyText & keyChildren'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-tree
@@ -98,8 +88,6 @@
                 <demolink
                     :kbname="'w-tree'"
                     :casename="'slot'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-tree
@@ -139,8 +127,6 @@
                 <demolink
                     :kbname="'w-tree'"
                     :casename="'selectable'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <div style="display:flex;">
@@ -180,7 +166,8 @@
                         </template>
                     </w-tree>
 
-                    <div style="padding:0px 20px; height:402px; overflow-y:auto; -ms-overflow-y:auto; border:1px solid #ddd; border-left-width:0px;">
+                    <!-- 用:style才能支援IE11因vue會自動把overflow-y:auto轉為-ms-overflow-y:auto -->
+                    <div :style="'padding:10px 20px; height:402px; overflow-y:auto; border:1px solid #ddd; border-left-width:0px;'">
                         <div style="margin-bottom:5px;">selections: </div>
                         <pre style="font-size:0.7rem;">{{JSON.stringify(showSelection(WTree.option.selections),null,4)}}</pre>
                     </div>
@@ -194,8 +181,6 @@
                 <demolink
                     :kbname="'w-tree'"
                     :casename="'locked & selectable'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <div style="display:flex;">
@@ -236,7 +221,8 @@
                         </template>
                     </w-tree>
 
-                    <div style="padding:0px 20px; height:402px; overflow-y:auto; -ms-overflow-y:auto; border:1px solid #ddd; border-left-width:0px;">
+                    <!-- 用:style才能支援IE11因vue會自動把overflow-y:auto轉為-ms-overflow-y:auto -->
+                    <div :style="'padding:10px 20px; height:402px; overflow-y:auto; border:1px solid #ddd; border-left-width:0px;'">
                         <div style="margin-bottom:5px;">selections: </div>
                         <pre style="font-size:0.7rem;">{{JSON.stringify(showSelection(WTree.optionLocked.selections),null,4)}}</pre>
                     </div>
@@ -250,8 +236,6 @@
                 <demolink
                     :kbname="'w-tree'"
                     :casename="'iconUncheckedColor & iconUncheckedDisabledColor & iconCheckedColor & iconCheckedDisabledColor & iconCheckedPartiallyColor & iconCheckedPartiallyDisabledColor & locked & selectable'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <div style="display:flex;">
@@ -298,7 +282,8 @@
                         </template>
                     </w-tree>
 
-                    <div style="padding:0px 20px; height:402px; overflow-y:auto; -ms-overflow-y:auto; border:1px solid #ddd; border-left-width:0px;">
+                    <!-- 用:style才能支援IE11因vue會自動把overflow-y:auto轉為-ms-overflow-y:auto -->
+                    <div :style="'padding:10px 20px; height:402px; overflow-y:auto; border:1px solid #ddd; border-left-width:0px;'">
                         <div style="margin-bottom:5px;">selections: </div>
                         <pre style="font-size:0.7rem;">{{JSON.stringify(showSelection(WTree.optionLocked.selections),null,4)}}</pre>
                     </div>
@@ -312,8 +297,6 @@
                 <demolink
                     :kbname="'w-tree'"
                     :casename="'filterKeywords & searchEmpty & selectable'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <div style="margin-bottom:10px;">
@@ -363,7 +346,8 @@
                         </template>
                     </w-tree>
 
-                    <div style="padding:0px 20px; height:402px; overflow-y:auto; -ms-overflow-y:auto; border:1px solid #ddd; border-left-width:0px;">
+                    <!-- 用:style才能支援IE11因vue會自動把overflow-y:auto轉為-ms-overflow-y:auto -->
+                    <div :style="'padding:10px 20px; height:402px; overflow-y:auto; border:1px solid #ddd; border-left-width:0px;'">
                         <div style="margin-bottom:5px;">selections: </div>
                         <pre style="font-size:0.7rem;">{{JSON.stringify(showSelection(WTree.option.selections),null,4)}}</pre>
                     </div>
@@ -377,8 +361,6 @@
                 <demolink
                     :kbname="'w-tree'"
                     :casename="'large data (50,000 items)'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <div style="display:flex;">
@@ -400,7 +382,8 @@
                         </template>
                     </w-tree>
 
-                    <div style="padding:0px 20px; height:402px; overflow-y:auto; -ms-overflow-y:auto; border:1px solid #ddd; border-left-width:0px;">
+                    <!-- 用:style才能支援IE11因vue會自動把overflow-y:auto轉為-ms-overflow-y:auto -->
+                    <div :style="'padding:10px 20px; height:402px; overflow-y:auto; border:1px solid #ddd; border-left-width:0px;'">
                         <div style="margin-bottom:5px;">selections: </div>
                         <pre style="font-size:0.7rem;">{{JSON.stringify(showSelection(WTree.optionLarge.selections),null,4)}}</pre>
                     </div>

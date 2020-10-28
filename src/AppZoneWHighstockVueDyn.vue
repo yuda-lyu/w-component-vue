@@ -22,8 +22,6 @@
                 <demolink
                     :kbname="'w-highstock-vue-dyn'"
                     :casename="'line'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-highstock-vue-dyn
@@ -38,8 +36,6 @@
                 <demolink
                     :kbname="'w-highstock-vue-dyn'"
                     :casename="'area'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-highstock-vue-dyn

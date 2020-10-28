@@ -12,8 +12,6 @@
                 <demolink
                     :kbname="'w-icon-svg'"
                     :casename="'path (mdi-fruit-cherries)'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-icon-svg
@@ -27,8 +25,6 @@
                 <demolink
                     :kbname="'w-icon-svg'"
                     :casename="'path (mdi-graph-outline) & color & colorHover'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-icon-svg
@@ -44,8 +40,6 @@
                 <demolink
                     :kbname="'w-icon-svg'"
                     :casename="'path (mdi-access-point) & size'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-icon-svg
@@ -60,8 +54,6 @@
                 <demolink
                     :kbname="'w-icon-svg'"
                     :casename="'path (mdi-account-badge-horizontal) & styleTransition'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-icon-svg
@@ -76,8 +68,6 @@
                 <demolink
                     :kbname="'w-icon-svg'"
                     :casename="'path & sizeOriginal'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-icon-svg
@@ -92,8 +82,6 @@
                 <demolink
                     :kbname="'w-icon-svg'"
                     :casename="'path (use 3 paths) & sizeOriginal'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-icon-svg

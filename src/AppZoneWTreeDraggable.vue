@@ -12,8 +12,6 @@
                 <demolink
                     :kbname="'w-tree-draggable'"
                     :casename="'default'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-tree-draggable
@@ -54,8 +52,6 @@
                 <demolink
                     :kbname="'w-tree-draggable'"
                     :casename="'bindChildren'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-tree-draggable
@@ -92,8 +88,6 @@
                 <demolink
                     :kbname="'w-tree-draggable'"
                     :casename="'indent'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-tree-draggable
@@ -130,8 +124,6 @@
                 <demolink
                     :kbname="'w-tree-draggable'"
                     :casename="'textDisabled & textDisabledColor & textDisabledPaddingLeft & textDisabledFontSize & textDisabledBackgroundColor'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-tree-draggable
@@ -172,8 +164,6 @@
                 <demolink
                     :kbname="'w-tree-draggable'"
                     :casename="'shiftLineColor & shiftBlockColor & joinBlockColor'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-tree-draggable

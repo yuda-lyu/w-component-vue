@@ -12,8 +12,6 @@
                 <demolink
                     :kbname="'w-dialog'"
                     :casename="'slot content'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <v-btn small rounded @click="WDialog.bShow1=!WDialog.bShow1">Show({{WDialog.bShow1}})</v-btn>
@@ -51,8 +49,6 @@
                 <demolink
                     :kbname="'w-dialog'"
                     :casename="'icon (fontawesome)'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <v-btn small rounded @click="WDialog.bShow2=!WDialog.bShow2">Show({{WDialog.bShow2}})</v-btn>
@@ -91,8 +87,6 @@
                 <demolink
                     :kbname="'w-dialog'"
                     :casename="'title'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <v-btn small rounded @click="WDialog.bShow3=!WDialog.bShow3">Show({{WDialog.bShow3}})</v-btn>
@@ -130,8 +124,6 @@
                 <demolink
                     :kbname="'w-dialog'"
                     :casename="'headerBackgroundColor'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <v-btn small rounded @click="WDialog.bShow4=!WDialog.bShow4">Show({{WDialog.bShow4}})</v-btn>
@@ -170,8 +162,6 @@
                 <demolink
                     :kbname="'w-dialog'"
                     :casename="'headerIconColor & headerTextColor & headerBackgroundColor'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <v-btn small rounded @click="WDialog.bShow5=!WDialog.bShow5">Show({{WDialog.bShow5}})</v-btn>
@@ -212,8 +202,6 @@
                 <demolink
                     :kbname="'w-dialog'"
                     :casename="'headerBtns'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <v-btn small rounded @click="WDialog.bShow6=!WDialog.bShow6">Show({{WDialog.bShow6}})</v-btn>
@@ -253,8 +241,6 @@
                 <demolink
                     :kbname="'w-dialog'"
                     :casename="'slot header-left & header-right'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <v-btn small rounded @click="WDialog.bShow7=!WDialog.bShow7">Show({{WDialog.bShow7}})</v-btn>
@@ -310,8 +296,6 @@
                 <demolink
                     :kbname="'w-dialog'"
                     :casename="'saveBtnTooltip'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <v-btn small rounded @click="WDialog.bShow8=!WDialog.bShow8">Show({{WDialog.bShow8}})</v-btn>
@@ -350,8 +334,6 @@
                 <demolink
                     :kbname="'w-dialog'"
                     :casename="'hasSaveBtn, no save button'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <v-btn small rounded @click="WDialog.bShow9=!WDialog.bShow9">Show({{WDialog.bShow9}})</v-btn>
@@ -390,8 +372,6 @@
                 <demolink
                     :kbname="'w-dialog'"
                     :casename="'closeBtnTooltip'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <v-btn small rounded @click="WDialog.bShow10=!WDialog.bShow10">Show({{WDialog.bShow10}})</v-btn>
@@ -430,8 +410,6 @@
                 <demolink
                     :kbname="'w-dialog'"
                     :casename="'hasSaveBtn and hasCloseBtn, no save and close button'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <v-btn small rounded @click="WDialog.bShow11=!WDialog.bShow11">Show({{WDialog.bShow11}})</v-btn>
@@ -471,8 +449,6 @@
                 <demolink
                     :kbname="'w-dialog'"
                     :casename="'contentTextColor & contentBackgroundColor'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <v-btn small rounded @click="WDialog.bShow12=!WDialog.bShow12">Show({{WDialog.bShow12}})</v-btn>
@@ -512,8 +488,6 @@
                 <demolink
                     :kbname="'w-dialog'"
                     :casename="'widthMax, for narrow width'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <v-btn small rounded @click="WDialog.bShow13=!WDialog.bShow13">Show({{WDialog.bShow13}})</v-btn>
@@ -552,8 +526,6 @@
                 <demolink
                     :kbname="'w-dialog'"
                     :casename="'fullscreen'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <v-btn small rounded @click="WDialog.bShow14=!WDialog.bShow14">Show({{WDialog.bShow14}})</v-btn>
@@ -595,8 +567,6 @@
                 <demolink
                     :kbname="'w-dialog'"
                     :casename="'scrollable, extensive text'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <v-btn small rounded @click="WDialog.bShow15=!WDialog.bShow15">Show({{WDialog.bShow15}})</v-btn>
@@ -637,8 +607,6 @@
                 <demolink
                     :kbname="'w-dialog'"
                     :casename="'separate for slot content'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <v-btn small rounded @click="WDialog.bShow16=!WDialog.bShow16">Show({{WDialog.bShow16}})</v-btn>
@@ -683,8 +651,6 @@
                 <demolink
                     :kbname="'w-dialog'"
                     :casename="'table in slot content'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <v-btn small rounded @click="WDialog.bShow17=!WDialog.bShow17">Show({{WDialog.bShow17}})</v-btn>
@@ -753,8 +719,6 @@
                 <demolink
                     :kbname="'w-dialog'"
                     :casename="'multi dialogs'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <v-btn small rounded @click="WDialog.bShow18=!WDialog.bShow18">Show({{WDialog.bShow18}})</v-btn>

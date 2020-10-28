@@ -12,8 +12,6 @@
                 <demolink
                     :kbname="'w-confirm'"
                     :casename="'title & content'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <v-btn small rounded @click="WConfirm.bShow1=!WConfirm.bShow1">Show({{WConfirm.bShow1}})</v-btn>
@@ -33,8 +31,6 @@
                 <demolink
                     :kbname="'w-confirm'"
                     :casename="'contentIcon (fontawesome)'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <v-btn small rounded @click="WConfirm.bShow2=!WConfirm.bShow2">Show({{WConfirm.bShow2}})</v-btn>
@@ -55,8 +51,6 @@
                 <demolink
                     :kbname="'w-confirm'"
                     :casename="'contentIconColor'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <v-btn small rounded @click="WConfirm.bShow3=!WConfirm.bShow3">Show({{WConfirm.bShow3}})</v-btn>
@@ -77,8 +71,6 @@
                 <demolink
                     :kbname="'w-confirm'"
                     :casename="'contentIconSize'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <v-btn small rounded @click="WConfirm.bShow4=!WConfirm.bShow4">Show({{WConfirm.bShow4}})</v-btn>
@@ -99,8 +91,6 @@
                 <demolink
                     :kbname="'w-confirm'"
                     :casename="'noBtnText & yesBtnText'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <v-btn small rounded @click="WConfirm.bShow5=!WConfirm.bShow5">Show({{WConfirm.bShow5}})</v-btn>
@@ -122,8 +112,6 @@
                 <demolink
                     :kbname="'w-confirm'"
                     :casename="'hasNoBtn & yesBtnText'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <v-btn small rounded @click="WConfirm.bShow6=!WConfirm.bShow6">Show({{WConfirm.bShow6}})</v-btn>
@@ -144,8 +132,6 @@
                 <demolink
                     :kbname="'w-confirm'"
                     :casename="'titleColor & headerBackgroundColor & footerBackgroundColor'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <v-btn small rounded @click="WConfirm.bShow7=!WConfirm.bShow7">Show({{WConfirm.bShow7}})</v-btn>
@@ -168,8 +154,6 @@
                 <demolink
                     :kbname="'w-confirm'"
                     :casename="'contentColor & contentIconColor & contentBackgroundColor'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <v-btn small rounded @click="WConfirm.bShow8=!WConfirm.bShow8">Show({{WConfirm.bShow8}})</v-btn>
@@ -192,8 +176,6 @@
                 <demolink
                     :kbname="'w-confirm'"
                     :casename="'noBtnTextColor & noBtnBackgroundColor & yesBtnTextColor & yesBtnBackgroundColor'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <v-btn small rounded @click="WConfirm.bShow9=!WConfirm.bShow9">Show({{WConfirm.bShow9}})</v-btn>
@@ -217,8 +199,6 @@
                 <demolink
                     :kbname="'w-confirm'"
                     :casename="'widthMax'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <v-btn small rounded @click="WConfirm.bShow10=!WConfirm.bShow10">Show({{WConfirm.bShow10}})</v-btn>
@@ -239,8 +219,6 @@
                 <demolink
                     :kbname="'w-confirm'"
                     :casename="'slot header'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <v-btn small rounded @click="WConfirm.bShow11=!WConfirm.bShow11">Show({{WConfirm.bShow11}})</v-btn>
@@ -271,8 +249,6 @@
                 <demolink
                     :kbname="'w-confirm'"
                     :casename="'slot content'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <v-btn small rounded @click="WConfirm.bShow12=!WConfirm.bShow12">Show({{WConfirm.bShow12}})</v-btn>
@@ -336,8 +312,6 @@
                 <demolink
                     :kbname="'w-confirm'"
                     :casename="'slot footer'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <v-btn small rounded @click="WConfirm.bShow13=!WConfirm.bShow13">Show({{WConfirm.bShow13}})</v-btn>
@@ -368,8 +342,6 @@
                 <demolink
                     :kbname="'w-confirm'"
                     :casename="'scrollable, extensive text'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <v-btn small rounded @click="WConfirm.bShow14=!WConfirm.bShow14">Show({{WConfirm.bShow14}})</v-btn>
@@ -389,8 +361,6 @@
                 <demolink
                     :kbname="'w-confirm'"
                     :casename="'scrollable, extensive text (slot content)'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <v-btn small rounded @click="WConfirm.bShow15=!WConfirm.bShow15">Show({{WConfirm.bShow15}})</v-btn>

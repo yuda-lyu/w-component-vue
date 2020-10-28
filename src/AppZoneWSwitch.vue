@@ -12,8 +12,6 @@
                 <demolink
                     :kbname="'w-switch'"
                     :casename="'default'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-switch v-model="WSwitch.valueNo1"></w-switch>
@@ -23,8 +21,6 @@
                 <demolink
                     :kbname="'w-switch'"
                     :casename="'boolean'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-switch v-model="WSwitch.valueBol"></w-switch>
@@ -34,8 +30,6 @@
                 <demolink
                     :kbname="'w-switch'"
                     :casename="'text'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-switch :text="WSwitch.text" v-model="WSwitch.valueNo2"></w-switch>
@@ -45,8 +39,6 @@
                 <demolink
                     :kbname="'w-switch'"
                     :casename="'text & color'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-switch
@@ -60,8 +52,6 @@
                 <demolink
                     :kbname="'w-switch'"
                     :casename="'not editable'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-switch :editable="false" v-model="WSwitch.valueYes"></w-switch>

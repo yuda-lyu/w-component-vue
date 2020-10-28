@@ -12,8 +12,6 @@
                 <demolink
                     :kbname="'w-timeminute'"
                     :casename="'default'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-timeminute v-model="WTimeminute.value"></w-timeminute>
@@ -24,8 +22,6 @@
                 <demolink
                     :kbname="'w-timeminute'"
                     :casename="'borderRadius'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-timeminute
@@ -39,8 +35,6 @@
                 <demolink
                     :kbname="'w-timeminute'"
                     :casename="'icon (material)'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-timeminute
@@ -54,8 +48,6 @@
                 <demolink
                     :kbname="'w-timeminute'"
                     :casename="'icon (fontawesome)'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-timeminute
@@ -69,8 +61,6 @@
                 <demolink
                     :kbname="'w-timeminute'"
                     :casename="'iconColor & iconColorFoucs'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-timeminute
@@ -85,8 +75,6 @@
                 <demolink
                     :kbname="'w-timeminute'"
                     :casename="'pickColor'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-timeminute
@@ -100,8 +88,6 @@
                 <demolink
                     :kbname="'w-timeminute'"
                     :casename="'iconTooltip'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-timeminute
@@ -116,8 +102,6 @@
                 <demolink
                     :kbname="'w-timeminute'"
                     :casename="'not editable'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-timeminute
@@ -131,8 +115,6 @@
                 <demolink
                     :kbname="'w-timeminute'"
                     :casename="'hourMin & hourMax'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-timeminute
@@ -147,8 +129,6 @@
                 <demolink
                     :kbname="'w-timeminute'"
                     :casename="'minuteInter'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-timeminute
@@ -162,8 +142,6 @@
                 <demolink
                     :kbname="'w-timeminute'"
                     :casename="'minutesCustom'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-timeminute
@@ -177,8 +155,6 @@
                 <demolink
                     :kbname="'w-timeminute'"
                     :casename="'border & default'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-timeminute
@@ -195,8 +171,6 @@
                 <demolink
                     :kbname="'w-timeminute'"
                     :casename="'border & borderRadius'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-timeminute
@@ -214,8 +188,6 @@
                 <demolink
                     :kbname="'w-timeminute'"
                     :casename="'border & icon (material)'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-timeminute
@@ -233,8 +205,6 @@
                 <demolink
                     :kbname="'w-timeminute'"
                     :casename="'border & icon (fontawesome)'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-timeminute
@@ -252,8 +222,6 @@
                 <demolink
                     :kbname="'w-timeminute'"
                     :casename="'border & iconColor & iconColorFoucs & borderColor & borderColorFocus & backgroundColorFocus'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-timeminute
@@ -272,8 +240,6 @@
                 <demolink
                     :kbname="'w-timeminute'"
                     :casename="'border & pickColor'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-timeminute
@@ -291,8 +257,6 @@
                 <demolink
                     :kbname="'w-timeminute'"
                     :casename="'border & iconTooltip'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-timeminute
@@ -311,8 +275,6 @@
                 <demolink
                     :kbname="'w-timeminute'"
                     :casename="'border & not editable'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-timeminute
@@ -330,8 +292,6 @@
                 <demolink
                     :kbname="'w-timeminute'"
                     :casename="'border & hourMin & hourMax'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-timeminute
@@ -350,8 +310,6 @@
                 <demolink
                     :kbname="'w-timeminute'"
                     :casename="'border & minuteInter'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-timeminute
@@ -369,8 +327,6 @@
                 <demolink
                     :kbname="'w-timeminute'"
                     :casename="'border & minutesCustom'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-timeminute

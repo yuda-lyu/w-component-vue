@@ -26,8 +26,6 @@
                 <demolink
                     :kbname="'w-aggrid-vue-dyn'"
                     :casename="'simple data'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-aggrid-vue-dyn
@@ -43,8 +41,6 @@
                 <demolink
                     :kbname="'w-aggrid-vue-dyn'"
                     :casename="'defCellEditable'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-aggrid-vue-dyn
@@ -60,8 +56,6 @@
                 <demolink
                     :kbname="'w-aggrid-vue-dyn'"
                     :casename="'kpHeadTooltip & kpCellTooltip'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-aggrid-vue-dyn
@@ -77,8 +71,6 @@
                 <demolink
                     :kbname="'w-aggrid-vue-dyn'"
                     :casename="'kpCellEditable & kpRowStyle'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-aggrid-vue-dyn
@@ -94,8 +86,6 @@
                 <demolink
                     :kbname="'w-aggrid-vue-dyn'"
                     :casename="'large data (1,000,000 items)'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-aggrid-vue-dyn

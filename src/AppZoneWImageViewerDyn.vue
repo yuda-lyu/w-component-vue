@@ -19,8 +19,6 @@
                 <demolink
                     :kbname="'w-image-viewer-dyn'"
                     :casename="'one image'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-image-viewer-dyn
@@ -36,8 +34,6 @@
                 <demolink
                     :kbname="'w-image-viewer-dyn'"
                     :casename="'multiple image with navbar'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-image-viewer-dyn

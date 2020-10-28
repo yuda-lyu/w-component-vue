@@ -12,8 +12,6 @@
                 <demolink
                     :kbname="'w-text-suggest'"
                     :casename="'default'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-text-suggest
@@ -27,8 +25,6 @@
                 <demolink
                     :kbname="'w-text-suggest'"
                     :casename="'searchEmpty'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-text-suggest
@@ -43,8 +39,6 @@
                 <demolink
                     :kbname="'w-text-suggest'"
                     :casename="'icon (material)'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-text-suggest
@@ -59,8 +53,6 @@
                 <demolink
                     :kbname="'w-text-suggest'"
                     :casename="'icon (fontawesome)'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-text-suggest
@@ -75,8 +67,6 @@
                 <demolink
                     :kbname="'w-text-suggest'"
                     :casename="'icon & iconColor & iconColorFoucs'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-text-suggest
@@ -93,8 +83,6 @@
                 <demolink
                     :kbname="'w-text-suggest'"
                     :casename="'iconTooltip'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-text-suggest
@@ -110,8 +98,6 @@
                 <demolink
                     :kbname="'w-text-suggest'"
                     :casename="'borderRadius'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-text-suggest
@@ -127,8 +113,6 @@
                 <demolink
                     :kbname="'w-text-suggest'"
                     :casename="'keyText'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-text-suggest
@@ -145,8 +129,6 @@
                 <demolink
                     :kbname="'w-text-suggest'"
                     :casename="'a lot of items'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-text-suggest
@@ -162,8 +144,6 @@
                 <demolink
                     :kbname="'w-text-suggest'"
                     :casename="'items(string array)'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-text-suggest
@@ -178,8 +158,6 @@
                 <demolink
                     :kbname="'w-text-suggest'"
                     :casename="'fullwidth'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-text-suggest
@@ -194,8 +172,6 @@
                 <demolink
                     :kbname="'w-text-suggest'"
                     :casename="'not editable'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-text-suggest
@@ -211,8 +187,6 @@
                 <demolink
                     :kbname="'w-text-suggest'"
                     :casename="'border & default'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-text-suggest
@@ -230,8 +204,6 @@
                 <demolink
                     :kbname="'w-text-suggest'"
                     :casename="'border & searchEmpty'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-text-suggest
@@ -250,8 +222,6 @@
                 <demolink
                     :kbname="'w-text-suggest'"
                     :casename="'border & icon (material)'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-text-suggest
@@ -270,8 +240,6 @@
                 <demolink
                     :kbname="'w-text-suggest'"
                     :casename="'border & icon (fontawesome)'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-text-suggest
@@ -290,8 +258,6 @@
                 <demolink
                     :kbname="'w-text-suggest'"
                     :casename="'border & icon & iconColor & iconColorFoucs & borderColor & borderColorFocus & backgroundColorFocus'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-text-suggest
@@ -312,8 +278,6 @@
                 <demolink
                     :kbname="'w-text-suggest'"
                     :casename="'border & iconTooltip'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-text-suggest
@@ -333,8 +297,6 @@
                 <demolink
                     :kbname="'w-text-suggest'"
                     :casename="'border & borderRadius'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-text-suggest
@@ -354,8 +316,6 @@
                 <demolink
                     :kbname="'w-text-suggest'"
                     :casename="'border & keyText'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-text-suggest
@@ -376,8 +336,6 @@
                 <demolink
                     :kbname="'w-text-suggest'"
                     :casename="'border & a lot of items'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-text-suggest
@@ -397,8 +355,6 @@
                 <demolink
                     :kbname="'w-text-suggest'"
                     :casename="'border & items(string array)'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-text-suggest
@@ -417,8 +373,6 @@
                 <demolink
                     :kbname="'w-text-suggest'"
                     :casename="'border & fullwidth'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-text-suggest
@@ -437,8 +391,6 @@
                 <demolink
                     :kbname="'w-text-suggest'"
                     :casename="'border & not editable'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-text-suggest

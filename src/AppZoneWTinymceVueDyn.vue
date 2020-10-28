@@ -26,8 +26,6 @@
                 <demolink
                     :kbname="'w-tinymce-vue-dyn'"
                     :casename="'default'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-tinymce-vue-dyn
@@ -42,8 +40,6 @@
                 <demolink
                     :kbname="'w-tinymce-vue-dyn'"
                     :casename="'height'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-tinymce-vue-dyn
@@ -59,8 +55,6 @@
                 <demolink
                     :kbname="'w-tinymce-vue-dyn'"
                     :casename="'settings'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-tinymce-vue-dyn
@@ -76,8 +70,6 @@
                 <demolink
                     :kbname="'w-tinymce-vue-dyn'"
                     :casename="'not editable'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-tinymce-vue-dyn

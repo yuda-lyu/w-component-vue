@@ -12,8 +12,6 @@
                 <demolink
                     :kbname="'w-text-select'"
                     :casename="'default'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-text-select
@@ -27,8 +25,6 @@
                 <demolink
                     :kbname="'w-text-select'"
                     :casename="'icon (material)'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-text-select
@@ -43,8 +39,6 @@
                 <demolink
                     :kbname="'w-text-select'"
                     :casename="'icon (fontawesome)'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-text-select
@@ -59,8 +53,6 @@
                 <demolink
                     :kbname="'w-text-select'"
                     :casename="'icon & iconColor & iconColorFoucs'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-text-select
@@ -77,8 +69,6 @@
                 <demolink
                     :kbname="'w-text-select'"
                     :casename="'iconTooltip'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-text-select
@@ -94,8 +84,6 @@
                 <demolink
                     :kbname="'w-text-select'"
                     :casename="'borderRadius'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-text-select
@@ -111,8 +99,6 @@
                 <demolink
                     :kbname="'w-text-select'"
                     :casename="'keyText'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-text-select
@@ -128,8 +114,6 @@
                 <demolink
                     :kbname="'w-text-select'"
                     :casename="'a lot of items'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-text-select
@@ -144,8 +128,6 @@
                 <demolink
                     :kbname="'w-text-select'"
                     :casename="'items(string array)'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-text-select
@@ -160,8 +142,6 @@
                 <demolink
                     :kbname="'w-text-select'"
                     :casename="'fullwidth'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-text-select
@@ -176,8 +156,6 @@
                 <demolink
                     :kbname="'w-text-select'"
                     :casename="'not editable'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-text-select
@@ -193,8 +171,6 @@
                 <demolink
                     :kbname="'w-text-select'"
                     :casename="'border & default'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-text-select
@@ -212,8 +188,6 @@
                 <demolink
                     :kbname="'w-text-select'"
                     :casename="'border & icon (material)'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-text-select
@@ -232,8 +206,6 @@
                 <demolink
                     :kbname="'w-text-select'"
                     :casename="'border & icon (fontawesome)'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-text-select
@@ -252,8 +224,6 @@
                 <demolink
                     :kbname="'w-text-select'"
                     :casename="'border & icon & iconColor & iconColorFoucs & borderColor & borderColorFocus & backgroundColorFocus'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-text-select
@@ -274,8 +244,6 @@
                 <demolink
                     :kbname="'w-text-select'"
                     :casename="'border & iconTooltip'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-text-select
@@ -295,8 +263,6 @@
                 <demolink
                     :kbname="'w-text-select'"
                     :casename="'border & borderRadius'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-text-select
@@ -316,8 +282,6 @@
                 <demolink
                     :kbname="'w-text-select'"
                     :casename="'border & keyText'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-text-select
@@ -337,8 +301,6 @@
                 <demolink
                     :kbname="'w-text-select'"
                     :casename="'border & a lot of items'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-text-select
@@ -357,8 +319,6 @@
                 <demolink
                     :kbname="'w-text-select'"
                     :casename="'border & items(string array)'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-text-select
@@ -377,8 +337,6 @@
                 <demolink
                     :kbname="'w-text-select'"
                     :casename="'border & fullwidth'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-text-select
@@ -397,8 +355,6 @@
                 <demolink
                     :kbname="'w-text-select'"
                     :casename="'border & not editable'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-text-select

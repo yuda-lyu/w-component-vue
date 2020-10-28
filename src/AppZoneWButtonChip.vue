@@ -12,8 +12,6 @@
                 <demolink
                     :kbname="'w-button-chip'"
                     :casename="'default'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-button-chip
@@ -27,8 +25,6 @@
                 <demolink
                     :kbname="'w-button-chip'"
                     :casename="'icon (material)'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-button-chip
@@ -43,8 +39,6 @@
                 <demolink
                     :kbname="'w-button-chip'"
                     :casename="'icon (fontawesome)'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-button-chip
@@ -59,8 +53,6 @@
                 <demolink
                     :kbname="'w-button-chip'"
                     :casename="'shiftLeft'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-button-chip
@@ -76,8 +68,6 @@
                 <demolink
                     :kbname="'w-button-chip'"
                     :casename="'tooltip'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-button-chip
@@ -93,8 +83,6 @@
                 <demolink
                     :kbname="'w-button-chip'"
                     :casename="'close'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-button-chip
@@ -111,8 +99,6 @@
                 <demolink
                     :kbname="'w-button-chip'"
                     :casename="'close & shiftRight'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-button-chip
@@ -130,8 +116,6 @@
                 <demolink
                     :kbname="'w-button-chip'"
                     :casename="'slot & close'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-button-chip
@@ -175,8 +159,6 @@
                 <demolink
                     :kbname="'w-button-chip'"
                     :casename="'paddingStyle & icon & iconSize & textFontSize'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-button-chip
@@ -194,8 +176,6 @@
                 <demolink
                     :kbname="'w-button-chip'"
                     :casename="'textColor'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-button-chip
@@ -210,8 +190,6 @@
                 <demolink
                     :kbname="'w-button-chip'"
                     :casename="'textColor & textColorHover'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-button-chip
@@ -227,8 +205,6 @@
                 <demolink
                     :kbname="'w-button-chip'"
                     :casename="'active & textColorActive'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-button-chip
@@ -244,8 +220,6 @@
                 <demolink
                     :kbname="'w-button-chip'"
                     :casename="'icon & iconColor & iconColorHover & close'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-button-chip
@@ -263,8 +237,6 @@
                 <demolink
                     :kbname="'w-button-chip'"
                     :casename="'active & iconColorActive'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-button-chip
@@ -281,8 +253,6 @@
                 <demolink
                     :kbname="'w-button-chip'"
                     :casename="'borderRadius'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-button-chip
@@ -298,8 +268,6 @@
                 <demolink
                     :kbname="'w-button-chip'"
                     :casename="'borderRadiusStyle'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-button-chip
@@ -337,8 +305,6 @@
                 <demolink
                     :kbname="'w-button-chip'"
                     :casename="'borderWidth'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-button-chip
@@ -384,8 +350,6 @@
                 <demolink
                     :kbname="'w-button-chip'"
                     :casename="'borderRadiusStyle & borderWidth & borderColor & borderColorHover & no shadow'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <!-- 用display:flex避免編譯後因換行符號導致按鈕組件間出現間格 -->
@@ -428,8 +392,6 @@
                 <demolink
                     :kbname="'w-button-chip'"
                     :casename="'borderColor & borderColorHover'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-button-chip
@@ -446,8 +408,6 @@
                 <demolink
                     :kbname="'w-button-chip'"
                     :casename="'active & borderColorActive'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-button-chip
@@ -464,8 +424,6 @@
                 <demolink
                     :kbname="'w-button-chip'"
                     :casename="'backgroundColor & backgroundColorHover'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-button-chip
@@ -482,8 +440,6 @@
                 <demolink
                     :kbname="'w-button-chip'"
                     :casename="'active & backgroundColorActive'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-button-chip
@@ -500,8 +456,6 @@
                 <demolink
                     :kbname="'w-button-chip'"
                     :casename="'no shadow'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-button-chip
@@ -517,8 +471,6 @@
                 <demolink
                     :kbname="'w-button-chip'"
                     :casename="'shadowStyle'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-button-chip
@@ -534,8 +486,6 @@
                 <demolink
                     :kbname="'w-button-chip'"
                     :casename="'active & shadowActiveStyle'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-button-chip
@@ -552,8 +502,6 @@
                 <demolink
                     :kbname="'w-button-chip'"
                     :casename="'active & no shadow & no shadowActive'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-button-chip
@@ -571,8 +519,6 @@
                 <demolink
                     :kbname="'w-button-chip'"
                     :casename="'prog'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-button-chip
@@ -589,8 +535,6 @@
                 <demolink
                     :kbname="'w-button-chip'"
                     :casename="'prog & progColor & progBackgroundColor'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-button-chip
@@ -609,8 +553,6 @@
                 <demolink
                     :kbname="'w-button-chip'"
                     :casename="'modify prog by callback in click'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-button-chip
@@ -627,8 +569,6 @@
                 <demolink
                     :kbname="'w-button-chip'"
                     :casename="'loading'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-button-chip
@@ -645,8 +585,6 @@
                 <demolink
                     :kbname="'w-button-chip'"
                     :casename="'loading & textColor'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-button-chip
@@ -664,8 +602,6 @@
                 <demolink
                     :kbname="'w-button-chip'"
                     :casename="'modify loading by callback in click'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-button-chip
@@ -682,8 +618,6 @@
                 <demolink
                     :kbname="'w-button-chip'"
                     :casename="'not editable'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-button-chip

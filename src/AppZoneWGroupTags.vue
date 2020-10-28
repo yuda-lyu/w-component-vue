@@ -12,8 +12,6 @@
                 <demolink
                     :kbname="'w-group-tags'"
                     :casename="'default'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-group-tags
@@ -26,8 +24,6 @@
                 <demolink
                     :kbname="'w-group-tags'"
                     :casename="'icon (material)'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-group-tags
@@ -41,8 +37,6 @@
                 <demolink
                     :kbname="'w-group-tags'"
                     :casename="'icon (fontawesome)'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-group-tags
@@ -56,8 +50,6 @@
                 <demolink
                     :kbname="'w-group-tags'"
                     :casename="'shiftLeft'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-group-tags
@@ -72,8 +64,6 @@
                 <demolink
                     :kbname="'w-group-tags'"
                     :casename="'marginStyle'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-group-tags
@@ -89,8 +79,6 @@
                 <demolink
                     :kbname="'w-group-tags'"
                     :casename="'inputTextButtonTooltip'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-group-tags
@@ -104,8 +92,6 @@
                 <demolink
                     :kbname="'w-group-tags'"
                     :casename="'inputTextColor & inputTextBorderColor & inputTextBorderColorFocus & inputTextButtonColor & inputTextButtonColorHover & inputTextBackgroundColor & inputTextBackgroundColorFocus'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-group-tags
@@ -125,8 +111,6 @@
                 <demolink
                     :kbname="'w-group-tags'"
                     :casename="'object items'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-group-tags
@@ -142,8 +126,6 @@
                 <demolink
                     :kbname="'w-group-tags'"
                     :casename="'object items & keyText'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-group-tags
@@ -160,8 +142,6 @@
                 <demolink
                     :kbname="'w-group-tags'"
                     :casename="'object items & keyIcon'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-group-tags
@@ -178,8 +158,6 @@
                 <demolink
                     :kbname="'w-group-tags'"
                     :casename="'object items & keyTooltip'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-group-tags
@@ -196,8 +174,6 @@
                 <demolink
                     :kbname="'w-group-tags'"
                     :casename="'object items & addButtonText & addButtonTooltip'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-group-tags
@@ -215,8 +191,6 @@
                 <demolink
                     :kbname="'w-group-tags'"
                     :casename="'object items & addButtonTextColor & addButtonTextColorHover & addButtonIconColor & addButtonIconColorHover & addButtonBackgroundColor &  addButtonBackgroundColorHover'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-group-tags
@@ -238,8 +212,6 @@
                 <demolink
                     :kbname="'w-group-tags'"
                     :casename="'slot item'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-group-tags
@@ -285,8 +257,6 @@
                 <demolink
                     :kbname="'w-group-tags'"
                     :casename="'object items & slot item'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-group-tags
@@ -333,8 +303,6 @@
                 <demolink
                     :kbname="'w-group-tags'"
                     :casename="'slot input'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-group-tags
@@ -365,8 +333,6 @@
                 <demolink
                     :kbname="'w-group-tags'"
                     :casename="'paddingStyle & icon & iconSize & textFontSize'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-group-tags
@@ -385,8 +351,6 @@
                 <demolink
                     :kbname="'w-group-tags'"
                     :casename="'textColor'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-group-tags
@@ -402,8 +366,6 @@
                 <demolink
                     :kbname="'w-group-tags'"
                     :casename="'textColor & textColorHover'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-group-tags
@@ -420,8 +382,6 @@
                 <demolink
                     :kbname="'w-group-tags'"
                     :casename="'icon & iconColor & iconColorHover'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-group-tags
@@ -439,8 +399,6 @@
                 <demolink
                     :kbname="'w-group-tags'"
                     :casename="'borderRadius'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-group-tags
@@ -457,8 +415,6 @@
                 <demolink
                     :kbname="'w-group-tags'"
                     :casename="'borderColor & borderColorHover'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-group-tags
@@ -476,8 +432,6 @@
                 <demolink
                     :kbname="'w-group-tags'"
                     :casename="'backgroundColor & backgroundColorHover'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-group-tags
@@ -495,8 +449,6 @@
                 <demolink
                     :kbname="'w-group-tags'"
                     :casename="'no shadow & borderColor & borderColorHover'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-group-tags
@@ -514,8 +466,6 @@
                 <demolink
                     :kbname="'w-group-tags'"
                     :casename="'shadowStyle'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-group-tags
@@ -531,8 +481,6 @@
                 <demolink
                     :kbname="'w-group-tags'"
                     :casename="'modify prog by callback in click'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-group-tags
@@ -548,8 +496,6 @@
                 <demolink
                     :kbname="'w-group-tags'"
                     :casename="'progColor & progBackgroundColor'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-group-tags
@@ -567,8 +513,6 @@
                 <demolink
                     :kbname="'w-group-tags'"
                     :casename="'modify loading by callback in click'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-group-tags
@@ -584,8 +528,6 @@
                 <demolink
                     :kbname="'w-group-tags'"
                     :casename="'modify loading & textColor & textColorHover'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-group-tags
@@ -603,8 +545,6 @@
                 <demolink
                     :kbname="'w-group-tags'"
                     :casename="'closeWithInterceptor'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-group-tags
@@ -622,8 +562,6 @@
                 <demolink
                     :kbname="'w-group-tags'"
                     :casename="'not draggable'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-group-tags
@@ -640,8 +578,6 @@
                 <demolink
                     :kbname="'w-group-tags'"
                     :casename="'not editable'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-group-tags
@@ -658,8 +594,6 @@
                 <demolink
                     :kbname="'w-group-tags'"
                     :casename="'editableClose(no close button)'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-group-tags
@@ -676,8 +610,6 @@
                 <demolink
                     :kbname="'w-group-tags'"
                     :casename="'editableInput(no slot input)'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-group-tags
@@ -694,8 +626,6 @@
                 <demolink
                     :kbname="'w-group-tags'"
                     :casename="'not editable & nodata'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-group-tags
@@ -712,8 +642,6 @@
                 <demolink
                     :kbname="'w-group-tags'"
                     :casename="'useActive & valueActive'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-group-tags
@@ -730,8 +658,6 @@
                 <demolink
                     :kbname="'w-group-tags'"
                     :casename="'slot item & useActive & valueActive & paddingStyle & textColor & textColorHover & textColorActive & backgroundColor & backgroundColorActive & shadowActiveStyle'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-group-tags
@@ -749,7 +675,7 @@
                     <template v-slot:items="props">
                         <div style="display:flex; align-items:center;">
 
-                            <div :style="`display:inline-block; border-radius:10px; font-size:0.85rem; user-select:none; ${props.active?`padding:0px 12px; color:#263238; background:rgba(255,255,255,0.7);`:`padding:0px 12px; color:#9E9E9E; background:rgba(100,100,100,0.1);`}`">
+                            <div :style="'display:inline-block; border-radius:10px; font-size:0.85rem; user-select:none; '.concat(props.active ? 'padding:0px 12px; color:#263238; background:rgba(255,255,255,0.7);' : 'padding:0px 12px; color:#9E9E9E; background:rgba(100,100,100,0.1);')">
                                 Menu
                             </div>
 
@@ -765,8 +691,6 @@
                 <demolink
                     :kbname="'w-group-tags'"
                     :casename="'object items & slot item & editableInput(no slot input) & useActive & valueActive & paddingStyle & textColor & textColorHover & textColorActive & backgroundColor & backgroundColorActive & shadowActiveStyle'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-group-tags
@@ -785,7 +709,7 @@
                     <template v-slot:items="props">
                         <div style="display:flex; align-items:center;">
 
-                            <div :style="`display:inline-block; border-radius:10px; font-size:0.85rem; user-select:none; ${props.active?`padding:0px 12px; color:#263238; background:rgba(255,255,255,0.7);`:`padding:0px 12px; color:#9E9E9E; background:rgba(100,100,100,0.1);`}`">
+                            <div :style="'display:inline-block; border-radius:10px; font-size:0.85rem; user-select:none; '.concat(props.active ? 'padding:0px 12px; color:#263238; background:rgba(255,255,255,0.7);' : 'padding:0px 12px; color:#9E9E9E; background:rgba(100,100,100,0.1);')">
                                 {{props.item.slotTextKind}}
                             </div>
 
@@ -801,8 +725,6 @@
                 <demolink
                     :kbname="'w-group-tags'"
                     :casename="'enableCloseEventOnly'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-group-tags
@@ -817,8 +739,6 @@
                 <demolink
                     :kbname="'w-group-tags'"
                     :casename="'object items & slot item & useColorsFromItem & editableInput(no slot input) & no shadow & no shadowActive & useActive & valueActive & paddingStyle'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-group-tags
@@ -834,7 +754,7 @@
                     <template v-slot:items="props">
                         <div style="display:flex; align-items:center;">
 
-                            <div :style="`display:inline-block; border-radius:10px; font-size:0.85rem; user-select:none; ${props.active?`padding:0px 12px; color:#263238; background:rgba(255,255,255,0.7);`:`padding:0px 12px; color:#666; background:#fff;`}`">
+                            <div :style="'display:inline-block; border-radius:10px; font-size:0.85rem; user-select:none; '.concat(props.active ? 'padding:0px 12px; color:#263238; background:rgba(255,255,255,0.7);' : 'padding:0px 12px; color:#666; background:#fff;')">
                                 Menu
                             </div>
 

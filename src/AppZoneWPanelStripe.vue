@@ -12,8 +12,6 @@
                 <demolink
                     :kbname="'w-panel-stripe'"
                     :casename="'slot icon, slot title, slot description, slot content and slot footer'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-panel-stripe style="width:600px;">
@@ -49,8 +47,6 @@
                 <demolink
                     :kbname="'w-panel-stripe'"
                     :casename="'slot icon (fontawesome)'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-panel-stripe style="width:600px;">
@@ -86,8 +82,6 @@
                 <demolink
                     :kbname="'w-panel-stripe'"
                     :casename="'headerBackgroundColor & footerBackgroundColor'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-panel-stripe
@@ -127,8 +121,6 @@
                 <demolink
                     :kbname="'w-panel-stripe'"
                     :casename="'borderRadius'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-panel-stripe
@@ -167,8 +159,6 @@
                 <demolink
                     :kbname="'w-panel-stripe'"
                     :casename="'with grey outer'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <div style="background-color:#bbb; padding:40px;">
@@ -210,8 +200,6 @@
                 <demolink
                     :kbname="'w-panel-stripe'"
                     :casename="'no shadow, with crimson outer'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <div style="background-color:#a77; padding:40px;">
@@ -254,8 +242,6 @@
                 <demolink
                     :kbname="'w-panel-stripe'"
                     :casename="'only slot icon and slot title in header'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-panel-stripe style="width:600px;">
@@ -287,8 +273,6 @@
                 <demolink
                     :kbname="'w-panel-stripe'"
                     :casename="'only slot title in header'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-panel-stripe style="width:600px;">
@@ -316,8 +300,6 @@
                 <demolink
                     :kbname="'w-panel-stripe'"
                     :casename="'padding'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-panel-stripe
@@ -356,8 +338,6 @@
                 <demolink
                     :kbname="'w-panel-stripe'"
                     :casename="'buttons in slot footer'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-panel-stripe style="width:600px;">
@@ -396,8 +376,6 @@
                 <demolink
                     :kbname="'w-panel-stripe'"
                     :casename="'no header'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-panel-stripe
@@ -436,8 +414,6 @@
                 <demolink
                     :kbname="'w-panel-stripe'"
                     :casename="'no footer'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-panel-stripe
@@ -476,8 +452,6 @@
                 <demolink
                     :kbname="'w-panel-stripe'"
                     :casename="'separate for slot content'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-panel-stripe style="width:600px;">
@@ -500,7 +474,9 @@
                             <span>A panel subtitle</span>
                         </div>
 
-                        <div style="border-top:1px solid #ddd;"></div>
+                        <!-- 內嵌span為避免self-closing於前端vue模板無法解析問題 -->
+                        <!-- 此處會導致IE11解析異常進而導致footer無法出現 -->
+                        <div style="border-top:1px solid #ddd;"><span></span></div>
 
                         <div style="padding:20px; font-size:0.85rem;">
                             {{WPanelStripe.content}}
@@ -509,7 +485,7 @@
                     </template>
 
                     <template v-slot:footer>
-                        {{WPanelStripe.footer}}
+                        <div>{{WPanelStripe.footer}}</div>
                     </template>
 
                 </w-panel-stripe>
@@ -521,8 +497,6 @@
                 <demolink
                     :kbname="'w-panel-stripe'"
                     :casename="'table in slot content'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-panel-stripe style="width:600px;">

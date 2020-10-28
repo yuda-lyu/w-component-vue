@@ -12,8 +12,6 @@
                 <demolink
                     :kbname="'w-dynamic-list'"
                     :casename="'default'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-dynamic-list
@@ -42,8 +40,6 @@
                 <demolink
                     :kbname="'w-dynamic-list'"
                     :casename="'viewHeightMax'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-dynamic-list
@@ -73,8 +69,6 @@
                 <demolink
                     :kbname="'w-dynamic-list'"
                     :casename="'filterKeywords & searchEmpty'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <div style="margin-bottom:10px;">
@@ -113,8 +107,6 @@
                 <demolink
                     :kbname="'w-dynamic-list'"
                     :casename="'slot item with image'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-dynamic-list
@@ -152,8 +144,6 @@
                 <demolink
                     :kbname="'w-dynamic-list'"
                     :casename="'processItems'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <div style="margin-bottom:10px;">
@@ -197,8 +187,6 @@
                 <demolink
                     :kbname="'w-dynamic-list'"
                     :casename="'large data (1,000,000 items)'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-dynamic-list

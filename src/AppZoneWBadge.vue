@@ -12,8 +12,6 @@
                 <demolink
                     :kbname="'w-badge'"
                     :casename="'default'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-badge
@@ -29,8 +27,6 @@
                 <demolink
                     :kbname="'w-badge'"
                     :casename="'badgeAlign'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-badge
@@ -64,8 +60,6 @@
                 <demolink
                     :kbname="'w-badge'"
                     :casename="'textFontSize'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-badge
@@ -82,8 +76,6 @@
                 <demolink
                     :kbname="'w-badge'"
                     :casename="'backgroundColor'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-badge
@@ -100,8 +92,6 @@
                 <demolink
                     :kbname="'w-badge'"
                     :casename="'textColor & backgroundColor'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-badge
@@ -119,8 +109,6 @@
                 <demolink
                     :kbname="'w-badge'"
                     :casename="'borderRadius'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-badge
@@ -137,8 +125,6 @@
                 <demolink
                     :kbname="'w-badge'"
                     :casename="'borderColor & textColor & backgroundColor'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-badge

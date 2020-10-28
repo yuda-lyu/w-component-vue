@@ -12,8 +12,6 @@
                 <demolink
                     :kbname="'w-panel-scrolly'"
                     :casename="'default'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-panel-scrolly
@@ -30,8 +28,6 @@
                 <demolink
                     :kbname="'w-panel-scrolly'"
                     :casename="'scrollDelta'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-panel-scrolly
@@ -48,8 +44,6 @@
                 <demolink
                     :kbname="'w-panel-scrolly'"
                     :casename="'barColor & barBackgroundColor'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-panel-scrolly
@@ -67,8 +61,6 @@
                 <demolink
                     :kbname="'w-panel-scrolly'"
                     :casename="'barWidth'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-panel-scrolly
@@ -85,15 +77,13 @@
                 <demolink
                     :kbname="'w-panel-scrolly'"
                     :casename="'barHeightMin'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-panel-scrolly
                     style="width:240px; height:200px;"
                     :barHeightMin="20"
                 >
-                    <div :style="`height:10000px; background-image:linear-gradient(141deg, #4cc5f8 0%, #fae 75%);`"></div>
+                    <div style="height:10000px; background-image:linear-gradient(141deg, #4cc5f8 0%, #fae 75%);"></div>
                 </w-panel-scrolly>
 
             </div>
@@ -103,8 +93,6 @@
                 <demolink
                     :kbname="'w-panel-scrolly'"
                     :casename="'ratio'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-panel-scrolly

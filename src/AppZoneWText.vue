@@ -12,8 +12,6 @@
                 <demolink
                     :kbname="'w-text'"
                     :casename="'default'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-text v-model="WText.text"></w-text>
@@ -24,8 +22,6 @@
                 <demolink
                     :kbname="'w-text'"
                     :casename="'textColor'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-text
@@ -39,8 +35,6 @@
                 <demolink
                     :kbname="'w-text'"
                     :casename="'textAlign'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-text
@@ -69,8 +63,6 @@
                 <demolink
                     :kbname="'w-text'"
                     :casename="'placeholder'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-text
@@ -85,8 +77,6 @@
                 <demolink
                     :kbname="'w-text'"
                     :casename="'leftIcon (material)'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-text
@@ -100,8 +90,6 @@
                 <demolink
                     :kbname="'w-text'"
                     :casename="'leftIcon (fontawesome)'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-text
@@ -115,8 +103,6 @@
                 <demolink
                     :kbname="'w-text'"
                     :casename="'leftIcon & leftIconColorFocus'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-text
@@ -131,8 +117,6 @@
                 <demolink
                     :kbname="'w-text'"
                     :casename="'leftIcon & leftIconTooltip'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-text
@@ -147,8 +131,6 @@
                 <demolink
                     :kbname="'w-text'"
                     :casename="'rightIcon'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-text :rightIcon="mdiAvTimer" v-model="WText.text"></w-text>
@@ -159,8 +141,6 @@
                 <demolink
                     :kbname="'w-text'"
                     :casename="'rightIcon & rightIconColorFocus'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-text
@@ -175,8 +155,6 @@
                 <demolink
                     :kbname="'w-text'"
                     :casename="'rightIcon & rightIconTooltip'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-text
@@ -191,8 +169,6 @@
                 <demolink
                     :kbname="'w-text'"
                     :casename="'fullwidth'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-text
@@ -206,8 +182,6 @@
                 <demolink
                     :kbname="'w-text'"
                     :casename="'not editable'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-text
@@ -225,8 +199,6 @@
                 <demolink
                     :kbname="'w-text'"
                     :casename="'border & default'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-text
@@ -248,8 +220,6 @@
                 <demolink
                     :kbname="'w-text'"
                     :casename="'border & borderRadius'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-text
@@ -272,8 +242,6 @@
                 <demolink
                     :kbname="'w-text'"
                     :casename="'border & textColor'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-text
@@ -296,8 +264,6 @@
                 <demolink
                     :kbname="'w-text'"
                     :casename="'border & textAlign'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-text
@@ -353,8 +319,6 @@
                 <demolink
                     :kbname="'w-text'"
                     :casename="'border & placeholder'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-text
@@ -377,8 +341,6 @@
                 <demolink
                     :kbname="'w-text'"
                     :casename="'border & leftIcon (material)'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-text
@@ -401,8 +363,6 @@
                 <demolink
                     :kbname="'w-text'"
                     :casename="'border & leftIcon (fontawesome)'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-text
@@ -425,8 +385,6 @@
                 <demolink
                     :kbname="'w-text'"
                     :casename="'border & leftIcon & leftIconColor & leftIconColorFocus & borderColor & borderColorFocus & backgroundColorFocus'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-text
@@ -451,8 +409,6 @@
                 <demolink
                     :kbname="'w-text'"
                     :casename="'border & rightIcon'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-text
@@ -475,8 +431,6 @@
                 <demolink
                     :kbname="'w-text'"
                     :casename="'border & rightIcon & rightIconColorFocus'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-text
@@ -500,8 +454,6 @@
                 <demolink
                     :kbname="'w-text'"
                     :casename="'border & rightIcon & rightIconTooltip'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-text
@@ -525,8 +477,6 @@
                 <demolink
                     :kbname="'w-text'"
                     :casename="'border & fullwidth'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-text
@@ -549,8 +499,6 @@
                 <demolink
                     :kbname="'w-text'"
                     :casename="'border & not editable'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-text

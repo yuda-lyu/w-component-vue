@@ -12,8 +12,6 @@
                 <demolink
                     :kbname="'w-progress-circle'"
                     :casename="'default'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-progress-circle
@@ -27,8 +25,6 @@
                 <demolink
                     :kbname="'w-progress-circle'"
                     :casename="'中文text'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-progress-circle :text="'完成進度'" :value="12"></w-progress-circle>
@@ -39,8 +35,6 @@
                 <demolink
                     :kbname="'w-progress-circle'"
                     :casename="'color'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-progress-circle
@@ -55,8 +49,6 @@
                 <demolink
                     :kbname="'w-progress-circle'"
                     :casename="'width'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-progress-circle
@@ -71,8 +63,6 @@
                 <demolink
                     :kbname="'w-progress-circle'"
                     :casename="'small size'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-progress-circle
@@ -89,8 +79,6 @@
                 <demolink
                     :kbname="'w-progress-circle'"
                     :casename="'very small size'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-progress-circle
@@ -106,8 +94,6 @@
                 <demolink
                     :kbname="'w-progress-circle'"
                     :casename="'tooltip'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-progress-circle

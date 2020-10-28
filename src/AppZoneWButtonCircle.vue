@@ -12,8 +12,6 @@
                 <demolink
                     :kbname="'w-button-circle'"
                     :casename="'icon (material)'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-button-circle
@@ -27,8 +25,6 @@
                 <demolink
                     :kbname="'w-button-circle'"
                     :casename="'icon (fontawesome)'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-button-circle
@@ -42,8 +38,6 @@
                 <demolink
                     :kbname="'w-button-circle'"
                     :casename="'no shadow'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-button-circle
@@ -58,8 +52,6 @@
                 <demolink
                     :kbname="'w-button-circle'"
                     :casename="'tooltip'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-button-circle
@@ -74,8 +66,6 @@
                 <demolink
                     :kbname="'w-button-circle'"
                     :casename="'not small (large)'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-button-circle
@@ -90,8 +80,6 @@
                 <demolink
                     :kbname="'w-button-circle'"
                     :casename="'backgroundColor'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-button-circle
@@ -106,8 +94,6 @@
                 <demolink
                     :kbname="'w-button-circle'"
                     :casename="'backgroundColor & iconColor'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-button-circle
@@ -123,8 +109,6 @@
                 <demolink
                     :kbname="'w-button-circle'"
                     :casename="'loading'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-button-circle
@@ -139,8 +123,6 @@
                 <demolink
                     :kbname="'w-button-circle'"
                     :casename="'not editable'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-button-circle

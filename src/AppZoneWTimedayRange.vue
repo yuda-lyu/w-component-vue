@@ -12,8 +12,6 @@
                 <demolink
                     :kbname="'w-timeday-range'"
                     :casename="'default'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-timeday-range
@@ -27,8 +25,6 @@
                 <demolink
                     :kbname="'w-timeday-range'"
                     :casename="'borderRadius'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-timeday-range
@@ -43,8 +39,6 @@
                 <demolink
                     :kbname="'w-timeday-range'"
                     :casename="'dayBetween'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-timeday-range
@@ -59,8 +53,6 @@
                 <demolink
                     :kbname="'w-timeday-range'"
                     :casename="'icon (material)'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-timeday-range
@@ -75,8 +67,6 @@
                 <demolink
                     :kbname="'w-timeday-range'"
                     :casename="'icon (fontawesome)'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-timeday-range
@@ -91,8 +81,6 @@
                 <demolink
                     :kbname="'w-timeday-range'"
                     :casename="'iconColor & iconColorFoucs'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-timeday-range
@@ -108,8 +96,6 @@
                 <demolink
                     :kbname="'w-timeday-range'"
                     :casename="'pickColor'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-timeday-range
@@ -124,8 +110,6 @@
                 <demolink
                     :kbname="'w-timeday-range'"
                     :casename="'iconTooltip'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-timeday-range
@@ -140,8 +124,6 @@
                 <demolink
                     :kbname="'w-timeday-range'"
                     :casename="'not editable'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-timeday-range
@@ -156,8 +138,6 @@
                 <demolink
                     :kbname="'w-timeday-range'"
                     :casename="'border & default'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-timeday-range
@@ -175,8 +155,6 @@
                 <demolink
                     :kbname="'w-timeday-range'"
                     :casename="'border & borderRadius'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-timeday-range
@@ -195,8 +173,6 @@
                 <demolink
                     :kbname="'w-timeday-range'"
                     :casename="'border & dayBetween'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-timeday-range
@@ -215,8 +191,6 @@
                 <demolink
                     :kbname="'w-timeday-range'"
                     :casename="'border & icon (material)'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-timeday-range
@@ -235,8 +209,6 @@
                 <demolink
                     :kbname="'w-timeday-range'"
                     :casename="'border & icon (fontawesome)'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-timeday-range
@@ -255,8 +227,6 @@
                 <demolink
                     :kbname="'w-timeday-range'"
                     :casename="'border & iconColor & iconColorFoucs & borderColor & borderColorFocus & backgroundColorFocus'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-timeday-range
@@ -276,8 +246,6 @@
                 <demolink
                     :kbname="'w-timeday-range'"
                     :casename="'border & pickColor'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-timeday-range
@@ -296,8 +264,6 @@
                 <demolink
                     :kbname="'w-timeday-range'"
                     :casename="'border & iconTooltip'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-timeday-range
@@ -316,8 +282,6 @@
                 <demolink
                     :kbname="'w-timeday-range'"
                     :casename="'border & not editable'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-timeday-range

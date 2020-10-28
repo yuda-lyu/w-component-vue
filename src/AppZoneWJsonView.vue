@@ -12,8 +12,6 @@
                 <demolink
                     :kbname="'w-json-view'"
                     :casename="'default'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-json-view
@@ -28,8 +26,6 @@
                 <demolink
                     :kbname="'w-json-view'"
                     :casename="'viewHeightMax'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-json-view
@@ -45,8 +41,6 @@
                 <demolink
                     :kbname="'w-json-view'"
                     :casename="'filterKeywords & searchEmpty'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <div style="margin-bottom:10px;">
@@ -71,8 +65,6 @@
                 <demolink
                     :kbname="'w-json-view'"
                     :casename="'iconColor & keyColor & keyNumbersColor & numColor & strColor & bolColor & funColor'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-json-view
@@ -94,8 +86,6 @@
                 <demolink
                     :kbname="'w-json-view'"
                     :casename="'large data (100,000 lines)'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-json-view

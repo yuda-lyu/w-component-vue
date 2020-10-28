@@ -22,8 +22,6 @@
                 <demolink
                     :kbname="'w-highcharts-vue-dyn'"
                     :casename="'line'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-highcharts-vue-dyn
@@ -38,8 +36,6 @@
                 <demolink
                     :kbname="'w-highcharts-vue-dyn'"
                     :casename="'area'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-highcharts-vue-dyn
@@ -54,8 +50,6 @@
                 <demolink
                     :kbname="'w-highcharts-vue-dyn'"
                     :casename="'bar'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-highcharts-vue-dyn
@@ -70,8 +64,6 @@
                 <demolink
                     :kbname="'w-highcharts-vue-dyn'"
                     :casename="'pie'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-highcharts-vue-dyn
@@ -86,8 +78,6 @@
                 <demolink
                     :kbname="'w-highcharts-vue-dyn'"
                     :casename="'heatmap'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-highcharts-vue-dyn
@@ -102,8 +92,6 @@
                 <demolink
                     :kbname="'w-highcharts-vue-dyn'"
                     :casename="'large heatmap'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-highcharts-vue-dyn

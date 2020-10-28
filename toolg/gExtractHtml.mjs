@@ -255,16 +255,14 @@ function extractAppZone(fn) {
         //ss
         let kbname = getAttr(me, 'kbname')
         let casename = getAttr(me, 'casename')
-        let kind = getAttr(me, 'kind')
-        let shell = getAttr(me, 'shell')
-        // console.log(i, kbname, casename, kind, shell)
+        // console.log(i, kbname, casename)
 
         //tmp
         let tmp = me.html()
         //console.log(i, tmp)
 
         //fn
-        let fnc = `${kind}_${shell}_${casename}`
+        let fnc = `${casename}`
         let fn = `${kbname}_${cvCasename(fnc)}`
 
         //writeHtml

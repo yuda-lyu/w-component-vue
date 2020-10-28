@@ -57,12 +57,6 @@ export default {
         casename: {
             type: String,
         },
-        kind: {
-            type: String,
-        },
-        shell: {
-            type: String,
-        },
     },
     data: function() {
         return {
@@ -75,7 +69,7 @@ export default {
     computed: {
 
         fn: function() {
-            let fnc = `${this.kind}_${this.shell}_${this.casename}`
+            let fnc = `${this.casename}`
             return `${this.kbname}_${cvCasename(fnc)}`
         },
 

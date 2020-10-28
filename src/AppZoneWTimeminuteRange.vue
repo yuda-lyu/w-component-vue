@@ -12,8 +12,6 @@
                 <demolink
                     :kbname="'w-timeminute-range'"
                     :casename="'default'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-timeminute-range
@@ -27,8 +25,6 @@
                 <demolink
                     :kbname="'w-timeminute-range'"
                     :casename="'borderRadius'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-timeminute-range
@@ -43,8 +39,6 @@
                 <demolink
                     :kbname="'w-timeminute-range'"
                     :casename="'minuteBetween'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-timeminute-range
@@ -59,8 +53,6 @@
                 <demolink
                     :kbname="'w-timeminute-range'"
                     :casename="'icon (material)'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-timeminute-range
@@ -75,8 +67,6 @@
                 <demolink
                     :kbname="'w-timeminute-range'"
                     :casename="'icon (fontawesome)'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-timeminute-range
@@ -91,8 +81,6 @@
                 <demolink
                     :kbname="'w-timeminute-range'"
                     :casename="'iconColor & iconColorFoucs'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-timeminute-range
@@ -108,8 +96,6 @@
                 <demolink
                     :kbname="'w-timeminute-range'"
                     :casename="'pickColor'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-timeminute-range
@@ -124,8 +110,6 @@
                 <demolink
                     :kbname="'w-timeminute-range'"
                     :casename="'iconTooltip'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-timeminute-range
@@ -140,8 +124,6 @@
                 <demolink
                     :kbname="'w-timeminute-range'"
                     :casename="'not editable'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-timeminute-range
@@ -156,8 +138,6 @@
                 <demolink
                     :kbname="'w-timeminute-range'"
                     :casename="'hourMin & hourMax'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-timeminute-range
@@ -173,8 +153,6 @@
                 <demolink
                     :kbname="'w-timeminute-range'"
                     :casename="'minuteInter'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-timeminute-range
@@ -189,8 +167,6 @@
                 <demolink
                     :kbname="'w-timeminute-range'"
                     :casename="'minutesCustom'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-timeminute-range
@@ -205,8 +181,6 @@
                 <demolink
                     :kbname="'w-timeminute-range'"
                     :casename="'border & default'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-timeminute-range
@@ -224,8 +198,6 @@
                 <demolink
                     :kbname="'w-timeminute-range'"
                     :casename="'border & borderRadius'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-timeminute-range
@@ -244,8 +216,6 @@
                 <demolink
                     :kbname="'w-timeminute-range'"
                     :casename="'border & minuteBetween'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-timeminute-range
@@ -264,8 +234,6 @@
                 <demolink
                     :kbname="'w-timeminute-range'"
                     :casename="'border & icon (material)'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-timeminute-range
@@ -284,8 +252,6 @@
                 <demolink
                     :kbname="'w-timeminute-range'"
                     :casename="'border & icon (fontawesome)'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-timeminute-range
@@ -304,8 +270,6 @@
                 <demolink
                     :kbname="'w-timeminute-range'"
                     :casename="'border & iconColor & iconColorFoucs & borderColor & borderColorFocus & backgroundColorFocus'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-timeminute-range
@@ -325,8 +289,6 @@
                 <demolink
                     :kbname="'w-timeminute-range'"
                     :casename="'border & pickColor'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-timeminute-range
@@ -345,8 +307,6 @@
                 <demolink
                     :kbname="'w-timeminute-range'"
                     :casename="'border & iconTooltip'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-timeminute-range
@@ -365,8 +325,6 @@
                 <demolink
                     :kbname="'w-timeminute-range'"
                     :casename="'border & not editable'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-timeminute-range
@@ -385,8 +343,6 @@
                 <demolink
                     :kbname="'w-timeminute-range'"
                     :casename="'border & hourMin & hourMax'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-timeminute-range
@@ -406,8 +362,6 @@
                 <demolink
                     :kbname="'w-timeminute-range'"
                     :casename="'border & minuteInter'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-timeminute-range
@@ -426,8 +380,6 @@
                 <demolink
                     :kbname="'w-timeminute-range'"
                     :casename="'border & minutesCustom'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-timeminute-range

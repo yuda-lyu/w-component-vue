@@ -12,8 +12,6 @@
                 <demolink
                     :kbname="'w-group-check'"
                     :casename="'default'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-group-check
@@ -28,8 +26,6 @@
                 <demolink
                     :kbname="'w-group-check'"
                     :casename="'click (console.log)'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-group-check
@@ -45,8 +41,6 @@
                 <demolink
                     :kbname="'w-group-check'"
                     :casename="'icon (material)'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-group-check
@@ -61,8 +55,6 @@
                 <demolink
                     :kbname="'w-group-check'"
                     :casename="'icon (fontawesome)'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-group-check
@@ -77,8 +69,6 @@
                 <demolink
                     :kbname="'w-group-check'"
                     :casename="'marginStyle'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-group-check
@@ -94,8 +84,6 @@
                 <demolink
                     :kbname="'w-group-check'"
                     :casename="'tooltip'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-group-check
@@ -111,8 +99,6 @@
                 <demolink
                     :kbname="'w-group-check'"
                     :casename="'paddingStyle & iconSize & textFontSize'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-group-check
@@ -130,8 +116,6 @@
                 <demolink
                     :kbname="'w-group-check'"
                     :casename="'shiftLeft'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-group-check
@@ -147,8 +131,6 @@
                 <demolink
                     :kbname="'w-group-check'"
                     :casename="'shiftLeft & shiftRight'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-group-check
@@ -165,8 +147,6 @@
                 <demolink
                     :kbname="'w-group-check'"
                     :casename="'textColor'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-group-check
@@ -182,8 +162,6 @@
                 <demolink
                     :kbname="'w-group-check'"
                     :casename="'textColor & textColorHover'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-group-check
@@ -200,8 +178,6 @@
                 <demolink
                     :kbname="'w-group-check'"
                     :casename="'textColorActive'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-group-check
@@ -217,8 +193,6 @@
                 <demolink
                     :kbname="'w-group-check'"
                     :casename="'iconColor & iconColorHover'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-group-check
@@ -235,8 +209,6 @@
                 <demolink
                     :kbname="'w-group-check'"
                     :casename="'iconColorActive'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-group-check
@@ -252,8 +224,6 @@
                 <demolink
                     :kbname="'w-group-check'"
                     :casename="'borderRadius'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-group-check
@@ -269,8 +239,6 @@
                 <demolink
                     :kbname="'w-group-check'"
                     :casename="'borderRadius & borderRadiusStyle & paddingStyle'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-group-check
@@ -288,8 +256,6 @@
                 <demolink
                     :kbname="'w-group-check'"
                     :casename="'borderColor & borderColorHover & borderColorActive'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-group-check
@@ -307,8 +273,6 @@
                 <demolink
                     :kbname="'w-group-check'"
                     :casename="'borderWidth & borderColor & borderColorHover & borderColorActive'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-group-check
@@ -331,8 +295,6 @@
                 <demolink
                     :kbname="'w-group-check'"
                     :casename="'backgroundColor & backgroundColorHover'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-group-check
@@ -349,8 +311,6 @@
                 <demolink
                     :kbname="'w-group-check'"
                     :casename="'backgroundColorActive'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-group-check
@@ -366,8 +326,6 @@
                 <demolink
                     :kbname="'w-group-check'"
                     :casename="'shadow'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-group-check
@@ -383,8 +341,6 @@
                 <demolink
                     :kbname="'w-group-check'"
                     :casename="'shadow & shadowStyle'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-group-check
@@ -402,8 +358,6 @@
                 <demolink
                     :kbname="'w-group-check'"
                     :casename="'shadowActiveStyle'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-group-check
@@ -420,8 +374,6 @@
                 <demolink
                     :kbname="'w-group-check'"
                     :casename="'no shadowActive'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-group-check
@@ -437,8 +389,6 @@
                 <demolink
                     :kbname="'w-group-check'"
                     :casename="'group & borderColor & borderColorHover & borderColorActive & no shadowActive'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <div style="padding:10px 0px;"><!-- 因使用group故marginStyle會被取消, 此處添加padding只是讓排版一致 -->
@@ -460,8 +410,6 @@
                 <demolink
                     :kbname="'w-group-check'"
                     :casename="'group & groupBorderRadiusStyle & groupShift & borderRadius & borderColor & borderColorHover & borderColorActive & no shadowActive & marginStyle'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <div style="margin:20px 0px">
@@ -513,8 +461,6 @@
                 <demolink
                     :kbname="'w-group-check'"
                     :casename="'slot & shadow'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-group-check
@@ -542,8 +488,6 @@
                 <demolink
                     :kbname="'w-group-check'"
                     :casename="'loading'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-group-check
@@ -559,8 +503,6 @@
                 <demolink
                     :kbname="'w-group-check'"
                     :casename="'loading & loadingColor'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-group-check
@@ -577,8 +519,6 @@
                 <demolink
                     :kbname="'w-group-check'"
                     :casename="'paddingStyle & borderRadius & textColor & iconColor & backgroundColor & backgroundColorHover & backgroundColorActive & shadowActive'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <div style="padding:0px 10px; background:linear-gradient(60deg,#ab47bc,#7b1fa2); box-shadow:0 5px 20px 0 rgba(0,0,0,.2), 0 13px 24px -11px rgba(156,39,176,.6);">
@@ -607,8 +547,6 @@
                 <demolink
                     :kbname="'w-group-check'"
                     :casename="'not editable'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-group-check

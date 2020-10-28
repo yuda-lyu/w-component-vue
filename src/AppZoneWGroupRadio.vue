@@ -12,8 +12,6 @@
                 <demolink
                     :kbname="'w-group-radio'"
                     :casename="'default'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-group-radio
@@ -28,8 +26,6 @@
                 <demolink
                     :kbname="'w-group-radio'"
                     :casename="'click (console.log)'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-group-radio
@@ -45,8 +41,6 @@
                 <demolink
                     :kbname="'w-group-radio'"
                     :casename="'icon (material)'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-group-radio
@@ -61,8 +55,6 @@
                 <demolink
                     :kbname="'w-group-radio'"
                     :casename="'icon (fontawesome)'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-group-radio
@@ -77,8 +69,6 @@
                 <demolink
                     :kbname="'w-group-radio'"
                     :casename="'marginStyle'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-group-radio
@@ -94,8 +84,6 @@
                 <demolink
                     :kbname="'w-group-radio'"
                     :casename="'tooltip'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-group-radio
@@ -111,8 +99,6 @@
                 <demolink
                     :kbname="'w-group-radio'"
                     :casename="'paddingStyle & iconSize & textFontSize'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-group-radio
@@ -130,8 +116,6 @@
                 <demolink
                     :kbname="'w-group-radio'"
                     :casename="'shiftLeft'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-group-radio
@@ -147,8 +131,6 @@
                 <demolink
                     :kbname="'w-group-radio'"
                     :casename="'shiftLeft & shiftRight'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-group-radio
@@ -165,8 +147,6 @@
                 <demolink
                     :kbname="'w-group-radio'"
                     :casename="'textColor'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-group-radio
@@ -182,8 +162,6 @@
                 <demolink
                     :kbname="'w-group-radio'"
                     :casename="'textColor & textColorHover'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-group-radio
@@ -200,8 +178,6 @@
                 <demolink
                     :kbname="'w-group-radio'"
                     :casename="'textColorActive'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-group-radio
@@ -217,8 +193,6 @@
                 <demolink
                     :kbname="'w-group-radio'"
                     :casename="'iconColor & iconColorHover'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-group-radio
@@ -235,8 +209,6 @@
                 <demolink
                     :kbname="'w-group-radio'"
                     :casename="'iconColorActive'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-group-radio
@@ -252,8 +224,6 @@
                 <demolink
                     :kbname="'w-group-radio'"
                     :casename="'borderRadius'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-group-radio
@@ -269,8 +239,6 @@
                 <demolink
                     :kbname="'w-group-radio'"
                     :casename="'borderRadius & borderRadiusStyle & paddingStyle'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-group-radio
@@ -288,8 +256,6 @@
                 <demolink
                     :kbname="'w-group-radio'"
                     :casename="'borderColor & borderColorHover & borderColorActive'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-group-radio
@@ -307,8 +273,6 @@
                 <demolink
                     :kbname="'w-group-radio'"
                     :casename="'borderWidth & borderColor & borderColorHover & borderColorActive'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-group-radio
@@ -331,8 +295,6 @@
                 <demolink
                     :kbname="'w-group-radio'"
                     :casename="'backgroundColor & backgroundColorHover'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-group-radio
@@ -349,8 +311,6 @@
                 <demolink
                     :kbname="'w-group-radio'"
                     :casename="'backgroundColorActive'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-group-radio
@@ -366,8 +326,6 @@
                 <demolink
                     :kbname="'w-group-radio'"
                     :casename="'shadow'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-group-radio
@@ -383,8 +341,6 @@
                 <demolink
                     :kbname="'w-group-radio'"
                     :casename="'shadow & shadowStyle'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-group-radio
@@ -402,8 +358,6 @@
                 <demolink
                     :kbname="'w-group-radio'"
                     :casename="'shadowActiveStyle'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-group-radio
@@ -420,8 +374,6 @@
                 <demolink
                     :kbname="'w-group-radio'"
                     :casename="'no shadowActive'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-group-radio
@@ -437,8 +389,6 @@
                 <demolink
                     :kbname="'w-group-radio'"
                     :casename="'group & borderColor & borderColorHover & borderColorActive'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <div style="padding:10px 0px;"><!-- 因使用group故marginStyle會被取消, 此處添加padding只是讓排版一致 -->
@@ -459,8 +409,6 @@
                 <demolink
                     :kbname="'w-group-radio'"
                     :casename="'group & groupBorderRadiusStyle & groupShift & borderRadius & borderColor & borderColorHover & borderColorActive & marginStyle'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <div style="margin:20px 0px">
@@ -510,8 +458,6 @@
                 <demolink
                     :kbname="'w-group-radio'"
                     :casename="'slot & shadow'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-group-radio
@@ -539,8 +485,6 @@
                 <demolink
                     :kbname="'w-group-radio'"
                     :casename="'loading'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-group-radio
@@ -556,8 +500,6 @@
                 <demolink
                     :kbname="'w-group-radio'"
                     :casename="'loading & loadingColor'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-group-radio
@@ -574,8 +516,6 @@
                 <demolink
                     :kbname="'w-group-radio'"
                     :casename="'paddingStyle & borderRadius & textColor & iconColor & backgroundColor & backgroundColorHover & backgroundColorActive & shadowActive'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <div style="padding:0px 10px; background:linear-gradient(60deg,#ab47bc,#7b1fa2); box-shadow:0 5px 20px 0 rgba(0,0,0,.2), 0 13px 24px -11px rgba(156,39,176,.6);">
@@ -604,8 +544,6 @@
                 <demolink
                     :kbname="'w-group-radio'"
                     :casename="'not editable'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-group-radio

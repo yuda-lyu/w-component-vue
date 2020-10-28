@@ -12,8 +12,6 @@
                 <demolink
                     :kbname="'w-panel-bulge'"
                     :casename="'default'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-panel-bulge
@@ -29,8 +27,6 @@
                 <demolink
                     :kbname="'w-panel-bulge'"
                     :casename="'headerBorderRadius'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-panel-bulge
@@ -47,8 +43,6 @@
                 <demolink
                     :kbname="'w-panel-bulge'"
                     :casename="'headerPadding'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-panel-bulge
@@ -65,8 +59,6 @@
                 <demolink
                     :kbname="'w-panel-bulge'"
                     :casename="'headerTextColor & headerBackgroundColor'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-panel-bulge
@@ -84,8 +76,6 @@
                 <demolink
                     :kbname="'w-panel-bulge'"
                     :casename="'with grey outer'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <div style="background-color:#bbb; padding:40px;">
@@ -103,8 +93,6 @@
                 <demolink
                     :kbname="'w-panel-bulge'"
                     :casename="'no headerShadow & no contentShadow, with green outer'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <div style="background-color:#8FF4B1; padding:40px;">
@@ -124,8 +112,6 @@
                 <demolink
                     :kbname="'w-panel-bulge'"
                     :casename="'contentBorderRadius'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-panel-bulge
@@ -142,8 +128,6 @@
                 <demolink
                     :kbname="'w-panel-bulge'"
                     :casename="'contentBackgroundColor'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-panel-bulge
@@ -160,8 +144,6 @@
                 <demolink
                     :kbname="'w-panel-bulge'"
                     :casename="'slot for header & headerBorderRadius & headerBackgroundColor(linear-gradient)'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-panel-bulge
@@ -171,6 +153,7 @@
                 >
                     <template v-slot:header>
 
+                        <!-- 內嵌span為避免self-closing於前端vue模板無法解析問題 -->
                         <w-group-radio
                             style="margin:0px 10px;"
                             :items="WPanelBulge.menu.items"
@@ -187,7 +170,7 @@
                             :backgroundColorHover="'rgba(255,255,255,0)'"
                             :backgroundColorActive="'rgba(255,255,255,0.15)'"
                             :shadowActive="false"
-                        ></w-group-radio>
+                        ><span></span></w-group-radio>
 
                     </template>
 

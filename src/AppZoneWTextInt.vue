@@ -12,8 +12,6 @@
                 <demolink
                     :kbname="'w-text-int'"
                     :casename="'default'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-text-int v-model="WTextInt.int"></w-text-int>
@@ -24,8 +22,6 @@
                 <demolink
                     :kbname="'w-text-int'"
                     :casename="'buttonColorFocus'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-text-int
@@ -39,8 +35,6 @@
                 <demolink
                     :kbname="'w-text-int'"
                     :casename="'buttonColor & buttonColorFocus'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-text-int
@@ -55,8 +49,6 @@
                 <demolink
                     :kbname="'w-text-int'"
                     :casename="'borderRadius'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-text-int :borderRadius="5" v-model="WTextInt.int"></w-text-int>
@@ -67,8 +59,6 @@
                 <demolink
                     :kbname="'w-text-int'"
                     :casename="'width'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-text-int :width="100" v-model="WTextInt.int"></w-text-int>
@@ -79,8 +69,6 @@
                 <demolink
                     :kbname="'w-text-int'"
                     :casename="'not editable'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-text-int :editable="false" v-model="WTextInt.int"></w-text-int>
@@ -91,8 +79,6 @@
                 <demolink
                     :kbname="'w-text-int'"
                     :casename="'border & default'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-text-int
@@ -109,8 +95,6 @@
                 <demolink
                     :kbname="'w-text-int'"
                     :casename="'border & buttonColorFocus'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-text-int
@@ -128,8 +112,6 @@
                 <demolink
                     :kbname="'w-text-int'"
                     :casename="'border & buttonColor & buttonColorFocus & borderColor & borderColorFocus & backgroundColorFocus'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-text-int
@@ -148,8 +130,6 @@
                 <demolink
                     :kbname="'w-text-int'"
                     :casename="'border & borderRadius'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-text-int
@@ -167,8 +147,6 @@
                 <demolink
                     :kbname="'w-text-int'"
                     :casename="'border & width'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-text-int
@@ -186,8 +164,6 @@
                 <demolink
                     :kbname="'w-text-int'"
                     :casename="'border & not editable'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-text-int

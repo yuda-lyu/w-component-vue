@@ -12,8 +12,6 @@
                 <demolink
                     :kbname="'w-popup'"
                     :casename="'default'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-popup
@@ -25,7 +23,7 @@
                     </template>
 
                     <template v-slot:content>
-                        <v-list style="background:transparent;"><v-list-item style="min-height:inherit; padding:5px 15px;" :key="kitem" @click="()=>{}" v-for="(item,kitem) in WPopup.items">Item {{item}}</v-list-item></v-list>
+                        <v-list style="background:transparent;"><v-list-item style="min-height:inherit; padding:5px 15px;" :key="kitem" @click="function(){}" v-for="(item,kitem) in WPopup.items">Item {{item}}</v-list-item></v-list>
                     </template>
 
                 </w-popup>
@@ -36,8 +34,6 @@
                 <demolink
                     :kbname="'w-popup'"
                     :casename="'click item and delay hiding'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-popup
@@ -60,8 +56,6 @@
                 <demolink
                     :kbname="'w-popup'"
                     :casename="'minWidth'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-popup
@@ -74,7 +68,7 @@
                     </template>
 
                     <template v-slot:content>
-                        <v-list style="background:transparent;"><v-list-item style="min-height:inherit; padding:5px 15px;" :key="kitem" @click="()=>{}" v-for="(item,kitem) in WPopup.items">Item {{item}}</v-list-item></v-list>
+                        <v-list style="background:transparent;"><v-list-item style="min-height:inherit; padding:5px 15px;" :key="kitem" @click="function(){}" v-for="(item,kitem) in WPopup.items">Item {{item}}</v-list-item></v-list>
                     </template>
 
                 </w-popup>
@@ -85,8 +79,6 @@
                 <demolink
                     :kbname="'w-popup'"
                     :casename="'maxWidth'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-popup
@@ -113,8 +105,6 @@
                 <demolink
                     :kbname="'w-popup'"
                     :casename="'distY'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-popup
@@ -127,7 +117,7 @@
                     </template>
 
                     <template v-slot:content>
-                        <v-list style="background:transparent;"><v-list-item style="min-height:inherit; padding:5px 15px;" :key="kitem" @click="()=>{}" v-for="(item,kitem) in WPopup.items">Item {{item}}</v-list-item></v-list>
+                        <v-list style="background:transparent;"><v-list-item style="min-height:inherit; padding:5px 15px;" :key="kitem" @click="function(){}" v-for="(item,kitem) in WPopup.items">Item {{item}}</v-list-item></v-list>
                     </template>
 
                 </w-popup>
@@ -138,8 +128,6 @@
                 <demolink
                     :kbname="'w-popup'"
                     :casename="'borderRadius'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-popup
@@ -152,7 +140,7 @@
                     </template>
 
                     <template v-slot:content>
-                        <v-list style="background:transparent;"><v-list-item style="min-height:inherit; padding:5px 15px;" :key="kitem" @click="()=>{}" v-for="(item,kitem) in WPopup.items">Item {{item}}</v-list-item></v-list>
+                        <v-list style="background:transparent;"><v-list-item style="min-height:inherit; padding:5px 15px;" :key="kitem" @click="function(){}" v-for="(item,kitem) in WPopup.items">Item {{item}}</v-list-item></v-list>
                     </template>
 
                 </w-popup>
@@ -163,8 +151,6 @@
                 <demolink
                     :kbname="'w-popup'"
                     :casename="'backgroundColor'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-popup
@@ -177,7 +163,7 @@
                     </template>
 
                     <template v-slot:content>
-                        <v-list style="background:transparent;"><v-list-item style="min-height:inherit; padding:5px 15px;" dark :key="kitem" @click="()=>{}" v-for="(item,kitem) in WPopup.items">Item {{item}}</v-list-item></v-list>
+                        <v-list style="background:transparent;"><v-list-item style="min-height:inherit; padding:5px 15px;" dark :key="kitem" @click="function(){}" v-for="(item,kitem) in WPopup.items">Item {{item}}</v-list-item></v-list>
                     </template>
 
                 </w-popup>
@@ -188,8 +174,6 @@
                 <demolink
                     :kbname="'w-popup'"
                     :casename="'no shadow & backgroundColor'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-popup
@@ -203,7 +187,7 @@
                     </template>
 
                     <template v-slot:content>
-                        <v-list style="background:transparent;"><v-list-item style="min-height:inherit; padding:5px 15px;" dark :key="kitem" @click="()=>{}" v-for="(item,kitem) in WPopup.items">Item {{item}}</v-list-item></v-list>
+                        <v-list style="background:transparent;"><v-list-item style="min-height:inherit; padding:5px 15px;" dark :key="kitem" @click="function(){}" v-for="(item,kitem) in WPopup.items">Item {{item}}</v-list-item></v-list>
                     </template>
 
                 </w-popup>
@@ -214,8 +198,6 @@
                 <demolink
                     :kbname="'w-popup'"
                     :casename="'shadowStyle'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-popup
@@ -228,7 +210,7 @@
                     </template>
 
                     <template v-slot:content>
-                        <v-list style="background:transparent;"><v-list-item style="min-height:inherit; padding:5px 15px;" :key="kitem" @click="()=>{}" v-for="(item,kitem) in WPopup.items">Item {{item}}</v-list-item></v-list>
+                        <v-list style="background:transparent;"><v-list-item style="min-height:inherit; padding:5px 15px;" :key="kitem" @click="function(){}" v-for="(item,kitem) in WPopup.items">Item {{item}}</v-list-item></v-list>
                     </template>
 
                 </w-popup>
@@ -239,14 +221,13 @@
                 <demolink
                     :kbname="'w-popup'"
                     :casename="'in scroll panel'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
-                <div style="height:300px; border:1px solid #ddd; overflow-y:auto;">
+                <!-- 用:style才能支援IE11因vue會自動把overflow-y:auto轉為-ms-overflow-y:auto -->
+                <div :style="'width:200px; height:300px; border:1px solid #ddd; overflow-y:auto;'">
                     <div style="height:600px;">
 
-                        <!-- 內嵌span為避免self-closing於前端vue模板無法解析問題 -->
+                        <!-- 內嵌br為避免self-closing於前端vue模板無法解析問題 -->
                         <div style="height:200px;"><span></span></div>
 
                         <w-popup
@@ -258,12 +239,12 @@
                             </template>
 
                             <template v-slot:content>
-                                <v-list style="background:transparent;"><v-list-item style="min-height:inherit; padding:5px 15px;" :key="kitem" @click="()=>{}" v-for="(item,kitem) in WPopup.items">Item {{item}}</v-list-item></v-list>
+                                <v-list style="background:transparent;"><v-list-item style="min-height:inherit; padding:5px 15px;" :key="kitem" @click="function(){}" v-for="(item,kitem) in WPopup.items">Item {{item}}</v-list-item></v-list>
                             </template>
 
                         </w-popup>
 
-                        <!-- 內嵌span為避免self-closing於前端vue模板無法解析問題 -->
+                        <!-- 內嵌br為避免self-closing於前端vue模板無法解析問題 -->
                         <div style="height:200px;"><span></span></div>
 
                     </div>
@@ -276,12 +257,11 @@
                 <demolink
                     :kbname="'w-popup'"
                     :casename="'auto flipping in scroll panel'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <div style="width:95vw; text-align:right;">
-                    <div style="display:inline-block; width:200px; height:300px; border:1px solid #ddd; overflow-y:auto;">
+                    <!-- 用:style才能支援IE11因vue會自動把overflow-y:auto轉為-ms-overflow-y:auto -->
+                    <div :style="'display:inline-block; width:200px; height:300px; border:1px solid #ddd; overflow-y:auto;'">
                         <div style="text-align:left; height:600px;">
 
                             <!-- 內嵌span為避免self-closing於前端vue模板無法解析問題 -->
@@ -296,7 +276,7 @@
                                 </template>
 
                                 <template v-slot:content>
-                                    <v-list style="background:transparent;"><v-list-item style="min-height:inherit; padding:5px 15px;" :key="kitem" @click="()=>{}" v-for="(item,kitem) in WPopup.itemsExpand">Item {{item}}</v-list-item></v-list>
+                                    <v-list style="background:transparent;"><v-list-item style="min-height:inherit; padding:5px 15px;" :key="kitem" @click="function(){}" v-for="(item,kitem) in WPopup.itemsExpand">Item {{item}}</v-list-item></v-list>
                                 </template>
 
                             </w-popup>
@@ -315,8 +295,6 @@
                 <demolink
                     :kbname="'w-popup'"
                     :casename="'in popup'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-popup
@@ -360,7 +338,7 @@
                                                     <div style="font-size:0.8rem; white-space:nowrap;">Here is 3rd pupop.</div>
                                                     <div style="font-size:0.7rem; white-space:nowrap; color:#f26;">It will close when click to the outside of the content of 1st or 2st pupop.</div>
                                                 </div>
-                                                <v-list style="background:transparent;"><v-list-item style="min-height:inherit; padding:5px 15px;" :key="kitem" @click="()=>{}" v-for="(item,kitem) in WPopup.items">Item {{item}}</v-list-item></v-list>
+                                                <v-list style="background:transparent;"><v-list-item style="min-height:inherit; padding:5px 15px;" :key="kitem" @click="function(){}" v-for="(item,kitem) in WPopup.items">Item {{item}}</v-list-item></v-list>
                                             </template>
 
                                         </w-popup>
@@ -381,8 +359,6 @@
                 <demolink
                     :kbname="'w-popup'"
                     :casename="'in dialog'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <v-btn small rounded @click="WPopup.bShow13=!WPopup.bShow13">Show({{WPopup.bShow13}})</v-btn>
@@ -409,7 +385,7 @@
                                 </template>
 
                                 <template v-slot:content>
-                                    <v-list style="background:transparent;"><v-list-item style="min-height:inherit; padding:5px 15px;" :key="kitem" @click="()=>{}" v-for="(item,kitem) in WPopup.itemsExpand">Item {{item}}</v-list-item></v-list>
+                                    <v-list style="background:transparent;"><v-list-item style="min-height:inherit; padding:5px 15px;" :key="kitem" @click="function(){}" v-for="(item,kitem) in WPopup.itemsExpand">Item {{item}}</v-list-item></v-list>
                                 </template>
 
                             </w-popup>
@@ -429,8 +405,6 @@
                 <demolink
                     :kbname="'w-popup'"
                     :casename="'slot for table & maxWidth'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-popup
@@ -447,9 +421,8 @@
                             <div style="padding:10px 20px; background:#666;">
                                 <span style="color:#fff;">A data table</span>
                             </div>
-                            <div msg="prettyhtml會把v-html視為可轉為self-closing元素, 但self-closing元素在vue模板內會失效">
-                                <div style="padding:10px;" v-html="WPopup.table"></div>
-                            </div>
+                            <!-- 內嵌span為避免self-closing於前端vue模板無法解析問題 -->
+                            <div style="padding:10px;" v-html="WPopup.table"><span></span></div>
                             <div style="padding:0px 20px 10px 20px; font-size:0.8rem;">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis praesentium cumque magnam odio iure quidem, quod illum numquam possimus obcaecati commodi minima assumenda consectetur culpa fuga nulla ullam. In, libero.</div>
                         </div>
                     </template>
@@ -462,8 +435,6 @@
                 <demolink
                     :kbname="'w-popup'"
                     :casename="'not editable'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-popup
@@ -476,7 +447,7 @@
                     </template>
 
                     <template v-slot:content>
-                        <v-list style="background:transparent;"><v-list-item style="min-height:inherit; padding:5px 15px;" :key="kitem" @click="()=>{}" v-for="(item,kitem) in WPopup.items">Item {{item}}</v-list-item></v-list>
+                        <v-list style="background:transparent;"><v-list-item style="min-height:inherit; padding:5px 15px;" :key="kitem" @click="function(){}" v-for="(item,kitem) in WPopup.items">Item {{item}}</v-list-item></v-list>
                     </template>
 
                 </w-popup>

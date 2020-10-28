@@ -12,8 +12,6 @@
                 <demolink
                     :kbname="'w-progress-bar'"
                     :casename="'default'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-progress-bar
@@ -28,8 +26,6 @@
                 <demolink
                     :kbname="'w-progress-bar'"
                     :casename="'value=0 (waiting)'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-progress-bar
@@ -44,8 +40,6 @@
                 <demolink
                     :kbname="'w-progress-bar'"
                     :casename="'value=100 (finish)'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-progress-bar
@@ -60,8 +54,6 @@
                 <demolink
                     :kbname="'w-progress-bar'"
                     :casename="'decimal'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-progress-bar
@@ -77,8 +69,6 @@
                 <demolink
                     :kbname="'w-progress-bar'"
                     :casename="'title'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-progress-bar
@@ -94,8 +84,6 @@
                 <demolink
                     :kbname="'w-progress-bar'"
                     :casename="'title & titleTextColor'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-progress-bar
@@ -112,8 +100,6 @@
                 <demolink
                     :kbname="'w-progress-bar'"
                     :casename="'title & titleTextFontSize'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-progress-bar
@@ -130,8 +116,6 @@
                 <demolink
                     :kbname="'w-progress-bar'"
                     :casename="'height'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-progress-bar
@@ -147,8 +131,6 @@
                 <demolink
                     :kbname="'w-progress-bar'"
                     :casename="'height & borderRadius'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-progress-bar
@@ -165,8 +147,6 @@
                 <demolink
                     :kbname="'w-progress-bar'"
                     :casename="'progColor'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-progress-bar
@@ -182,8 +162,6 @@
                 <demolink
                     :kbname="'w-progress-bar'"
                     :casename="'progColor & progBackgroundColor'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-progress-bar
@@ -200,8 +178,6 @@
                 <demolink
                     :kbname="'w-progress-bar'"
                     :casename="'iconSize'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-progress-bar
@@ -217,8 +193,6 @@
                 <demolink
                     :kbname="'w-progress-bar'"
                     :casename="'iconWaiting (fontawesome)'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-progress-bar
@@ -234,8 +208,6 @@
                 <demolink
                     :kbname="'w-progress-bar'"
                     :casename="'iconWaitingColor'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-progress-bar
@@ -251,8 +223,6 @@
                 <demolink
                     :kbname="'w-progress-bar'"
                     :casename="'enableIconWaiting (no iconWaiting)'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-progress-bar
@@ -268,8 +238,6 @@
                 <demolink
                     :kbname="'w-progress-bar'"
                     :casename="'iconFinish (fontawesome)'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-progress-bar
@@ -285,8 +253,6 @@
                 <demolink
                     :kbname="'w-progress-bar'"
                     :casename="'iconFinishColor'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-progress-bar
@@ -302,8 +268,6 @@
                 <demolink
                     :kbname="'w-progress-bar'"
                     :casename="'enableIconFinish (no iconFinish)'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-progress-bar
@@ -319,8 +283,6 @@
                 <demolink
                     :kbname="'w-progress-bar'"
                     :casename="'valueTextColor'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-progress-bar
@@ -336,8 +298,6 @@
                 <demolink
                     :kbname="'w-progress-bar'"
                     :casename="'valueTextFontSize'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-progress-bar

@@ -12,8 +12,6 @@
                 <demolink
                     :kbname="'w-timeday'"
                     :casename="'default'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-timeday v-model="WTimeday.day"></w-timeday>
@@ -24,8 +22,6 @@
                 <demolink
                     :kbname="'w-timeday'"
                     :casename="'borderRadius'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-timeday :borderRadius="5" v-model="WTimeday.day"></w-timeday>
@@ -36,8 +32,6 @@
                 <demolink
                     :kbname="'w-timeday'"
                     :casename="'icon (material)'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-timeday
@@ -51,8 +45,6 @@
                 <demolink
                     :kbname="'w-timeday'"
                     :casename="'icon (fontawesome)'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-timeday
@@ -66,8 +58,6 @@
                 <demolink
                     :kbname="'w-timeday'"
                     :casename="'iconColor & iconColorFoucs'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-timeday
@@ -82,8 +72,6 @@
                 <demolink
                     :kbname="'w-timeday'"
                     :casename="'pickColor'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-timeday :pickColor="'brown'" v-model="WTimeday.day"></w-timeday>
@@ -94,8 +82,6 @@
                 <demolink
                     :kbname="'w-timeday'"
                     :casename="'iconTooltip'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-timeday
@@ -110,8 +96,6 @@
                 <demolink
                     :kbname="'w-timeday'"
                     :casename="'not editable'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-timeday :editable="false" v-model="WTimeday.day"></w-timeday>
@@ -122,8 +106,6 @@
                 <demolink
                     :kbname="'w-timeday'"
                     :casename="'border & default'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-timeday
@@ -140,8 +122,6 @@
                 <demolink
                     :kbname="'w-timeday'"
                     :casename="'border & borderRadius'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-timeday
@@ -159,8 +139,6 @@
                 <demolink
                     :kbname="'w-timeday'"
                     :casename="'border & icon (material)'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-timeday
@@ -178,8 +156,6 @@
                 <demolink
                     :kbname="'w-timeday'"
                     :casename="'border & icon (fontawesome)'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-timeday
@@ -197,8 +173,6 @@
                 <demolink
                     :kbname="'w-timeday'"
                     :casename="'border & iconColor & iconColorFoucs & borderColor & borderColorFocus & backgroundColorFocus'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-timeday
@@ -217,8 +191,6 @@
                 <demolink
                     :kbname="'w-timeday'"
                     :casename="'border & pickColor'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-timeday
@@ -236,8 +208,6 @@
                 <demolink
                     :kbname="'w-timeday'"
                     :casename="'border & iconTooltip'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-timeday
@@ -256,8 +226,6 @@
                 <demolink
                     :kbname="'w-timeday'"
                     :casename="'border & not editable'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-timeday

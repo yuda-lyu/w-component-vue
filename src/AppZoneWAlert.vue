@@ -12,8 +12,6 @@
                 <demolink
                     :kbname="'w-alert'"
                     :casename="'default'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <v-btn small @click="$alert(WAlert.textSuccess)">Success</v-btn>
@@ -25,8 +23,6 @@
                 <demolink
                     :kbname="'w-alert'"
                     :casename="'type error'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <v-btn small @click="$alert(WAlert.textError,{type:'error'})">Error</v-btn>
@@ -38,8 +34,6 @@
                 <demolink
                     :kbname="'w-alert'"
                     :casename="'type warning'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <v-btn small @click="$alert(WAlert.textWarning,{type:'warning'})">Warning</v-btn>
@@ -51,8 +45,6 @@
                 <demolink
                     :kbname="'w-alert'"
                     :casename="'position'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <v-btn style="margin-right:10px;" small @click="$alert(WAlert.text,{
@@ -74,8 +66,6 @@
                 <demolink
                     :kbname="'w-alert'"
                     :casename="'time (6s)'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <v-btn small @click="$alert(WAlert.text,{
@@ -89,8 +79,6 @@
                 <demolink
                     :kbname="'w-alert'"
                     :casename="'textColor'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <v-btn small @click="$alert(WAlert.text,{
@@ -104,8 +92,6 @@
                 <demolink
                     :kbname="'w-alert'"
                     :casename="'backgroundColor'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <v-btn small @click="$alert(WAlert.text,{
@@ -119,8 +105,6 @@
                 <demolink
                     :kbname="'w-alert'"
                     :casename="'borderWidth'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <v-btn small @click="$alert(WAlert.text,{
@@ -134,8 +118,6 @@
                 <demolink
                     :kbname="'w-alert'"
                     :casename="'borderColor'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <v-btn small @click="$alert(WAlert.text,{
@@ -149,8 +131,6 @@
                 <demolink
                     :kbname="'w-alert'"
                     :casename="'borderRadius'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <v-btn small @click="$alert(WAlert.text,{
@@ -164,8 +144,6 @@
                 <demolink
                     :kbname="'w-alert'"
                     :casename="'shadowStyle'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <v-btn small @click="$alert(WAlert.text,{
@@ -179,8 +157,6 @@
                 <demolink
                     :kbname="'w-alert'"
                     :casename="'icon'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <v-btn small @click="$alert(WAlert.text,{
@@ -194,8 +170,6 @@
                 <demolink
                     :kbname="'w-alert'"
                     :casename="'recive closed event by promise'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <v-btn small @click="receiveCloseEvent">Show</v-btn>

@@ -12,8 +12,6 @@
                 <demolink
                     :kbname="'w-textarea'"
                     :casename="'default'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-textarea v-model="WTextarea.text"></w-textarea>
@@ -23,8 +21,6 @@
                 <demolink
                     :kbname="'w-textarea'"
                     :casename="'borderColorFocus'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-textarea
@@ -37,8 +33,6 @@
                 <demolink
                     :kbname="'w-textarea'"
                     :casename="'placeholder'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-textarea
@@ -51,8 +45,6 @@
                 <demolink
                     :kbname="'w-textarea'"
                     :casename="'not editable'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-textarea :editable="false" v-model="WTextarea.text"></w-textarea>
@@ -62,8 +54,6 @@
                 <demolink
                     :kbname="'w-textarea'"
                     :casename="'fullwidth'"
-                    :kind="'nokind'"
-                    :shell="'pure'"
                 ></demolink>
 
                 <w-textarea v-model="WTextarea.text"></w-textarea>
