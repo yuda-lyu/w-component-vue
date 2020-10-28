@@ -180,7 +180,7 @@
                         </template>
                     </w-tree>
 
-                    <div style="padding:0px 20px; height:402px; overflow-y:auto; border:1px solid #ddd; border-left-width:0px;">
+                    <div style="padding:0px 20px; height:402px; overflow-y:auto; -ms-overflow-y:auto; border:1px solid #ddd; border-left-width:0px;">
                         <div style="margin-bottom:5px;">selections: </div>
                         <pre style="font-size:0.7rem;">{{JSON.stringify(showSelection(WTree.option.selections),null,4)}}</pre>
                     </div>
@@ -236,7 +236,7 @@
                         </template>
                     </w-tree>
 
-                    <div style="padding:0px 20px; height:402px; overflow-y:auto; border:1px solid #ddd; border-left-width:0px;">
+                    <div style="padding:0px 20px; height:402px; overflow-y:auto; -ms-overflow-y:auto; border:1px solid #ddd; border-left-width:0px;">
                         <div style="margin-bottom:5px;">selections: </div>
                         <pre style="font-size:0.7rem;">{{JSON.stringify(showSelection(WTree.optionLocked.selections),null,4)}}</pre>
                     </div>
@@ -298,7 +298,7 @@
                         </template>
                     </w-tree>
 
-                    <div style="padding:0px 20px; height:402px; overflow-y:auto; border:1px solid #ddd; border-left-width:0px;">
+                    <div style="padding:0px 20px; height:402px; overflow-y:auto; -ms-overflow-y:auto; border:1px solid #ddd; border-left-width:0px;">
                         <div style="margin-bottom:5px;">selections: </div>
                         <pre style="font-size:0.7rem;">{{JSON.stringify(showSelection(WTree.optionLocked.selections),null,4)}}</pre>
                     </div>
@@ -363,7 +363,7 @@
                         </template>
                     </w-tree>
 
-                    <div style="padding:0px 20px; height:402px; overflow-y:auto; border:1px solid #ddd; border-left-width:0px;">
+                    <div style="padding:0px 20px; height:402px; overflow-y:auto; -ms-overflow-y:auto; border:1px solid #ddd; border-left-width:0px;">
                         <div style="margin-bottom:5px;">selections: </div>
                         <pre style="font-size:0.7rem;">{{JSON.stringify(showSelection(WTree.option.selections),null,4)}}</pre>
                     </div>
@@ -400,7 +400,7 @@
                         </template>
                     </w-tree>
 
-                    <div style="padding:0px 20px; height:402px; overflow-y:auto; border:1px solid #ddd; border-left-width:0px;">
+                    <div style="padding:0px 20px; height:402px; overflow-y:auto; -ms-overflow-y:auto; border:1px solid #ddd; border-left-width:0px;">
                         <div style="margin-bottom:5px;">selections: </div>
                         <pre style="font-size:0.7rem;">{{JSON.stringify(showSelection(WTree.optionLarge.selections),null,4)}}</pre>
                     </div>
