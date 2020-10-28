@@ -12,7 +12,8 @@
 
         <template v-slot:trigger>
 
-            <div> <!-- 盡量不要讓display:flex暴露至外層 -->
+            <div>
+                <!-- 盡量不要讓display:flex暴露至外層 -->
                 <div style="display:flex; align-items:center;">
 
                     <div

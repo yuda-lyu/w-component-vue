@@ -1,36 +1,62 @@
 <template>
-    <WPanelScrollyCore
-        ref="wsp"
+    <WDynamicList
+        ref="wdl"
+        :rows="rows"
         :viewHeightMax="viewHeightMax"
-        :contentHeight="itemsHeight"
+        :itemMinHeight="itemMinHeight"
+        :itemsPreload="itemsPreload"
+        :searchEmpty="searchEmpty"
+        :show="show"
+        :changeSelection="changeSelection"
         :changeFilterKeyWords="changeFilterKeyWords"
-        @change="changeScrollInfor"
     >
+        <template v-slot:block="props">
+            <!-- 記得要:key使各div都是可識別元素, 避免捲動時不同方向圖標因transition而會有微轉動問題 -->
+            <div :key="props.index">
+                <!-- 盡量不要讓display:flex暴露至外層 -->
+                <div :style="`display:flex; min-height:${iconHeight}px;`">
 
-        <template v-for="(item,kitem) in useItems">
-            <!-- wdsDiv記得給width:100%，因ie11的flex內文字會自動撐開版面導致不會換行 -->
-            <div
-                ref="wdsDiv"
-                :style="`position:absolute; top:${item.screenY}px; width:100%; opacity:${(item.nowShow && item.delayShow)?1:0.001}; ${item.delayShow?'transition:opacity 0.1s':''}`"
-                :index="item.index"
-                :nowShow="item.nowShow"
-                :delayShow="item.delayShow"
-                :y="item.y"
-                :key="kitem"
-            >
-                <slot
-                    name="block"
-                    :row="item.row"
-                    :irow="item.index"
-                ></slot>
+                    <div :style="`padding-left:${getLevel(props.row)*indent}px;`"></div>
+
+                    <WTreeIconToggle
+                        :style="`padding:0px 5px 0px 10px; width:30px; height:${iconHeight}px;`"
+                        :dir="`${props.row.unfolding?'bottom':'right'}`"
+                        :iconColor="iconColor"
+                        @click="toggleItems(props.row)"
+                        v-if="hasChildrenByIndex(props.index)"
+                    ></WTreeIconToggle>
+                    <div style="padding-right:30px;" v-else></div>
+
+                    <WTreeIconCheckbox
+                        :style="`margin-right:5px; height:${iconHeight}px;`"
+                        :mode="props.row.checked"
+                        :editable="getEditable(props.row.item)"
+                        :uncheckedColor="iconUncheckedColor"
+                        :uncheckedDisabledColor="iconUncheckedDisabledColor"
+                        :checkedColor="iconCheckedColor"
+                        :checkedDisabledColor="iconCheckedDisabledColor"
+                        :checkedPartiallyColor="iconCheckedPartiallyColor"
+                        :checkedPartiallyDisabledColor="iconCheckedPartiallyDisabledColor"
+                        @click="checkItems(props.row)"
+                        v-if="selectable"
+                    ></WTreeIconCheckbox>
+
+                    <div :style="`display:flex; align-items:center; min-height:${iconHeight}px;`">
+                        <slot
+                            name="block"
+                            :data="props.row.item"
+                            :index="props.index"
+                        >
+                            {{getText(props.row.item)}}
+                        </slot>
+                    </div>
+
+                </div>
+
             </div>
         </template>
 
-        <div style="padding:12px; font-size:0.8rem;" v-if="useItems.length===0">
-            {{searchEmpty}}
-        </div>
-
-    </WPanelScrollyCore>
+    </WDynamicList>
 </template>
 
 <script>
@@ -38,68 +64,141 @@ import each from 'lodash/each'
 import get from 'lodash/get'
 import map from 'lodash/map'
 import join from 'lodash/join'
-import values from 'lodash/values'
+import find from 'lodash/find'
 import size from 'lodash/size'
-import toString from 'lodash/toString'
+import isEqual from 'lodash/isEqual'
+import reverse from 'lodash/reverse'
+import remove from 'lodash/remove'
 import cloneDeep from 'lodash/cloneDeep'
-import cint from 'wsemi/src/cint.mjs'
+import isInteger from 'lodash/isInteger'
+import dropRight from 'lodash/dropRight'
 import genID from 'wsemi/src/genID.mjs'
-import genPm from 'wsemi/src/genPm.mjs'
-import delay from 'wsemi/src/delay.mjs'
 import sep from 'wsemi/src/sep.mjs'
 import isarr from 'wsemi/src/isarr.mjs'
-import isstr from 'wsemi/src/isstr.mjs'
-import isnum from 'wsemi/src/isnum.mjs'
-import iseobj from 'wsemi/src/iseobj.mjs'
-import o2j from 'wsemi/src/o2j.mjs'
+import isfun from 'wsemi/src/isfun.mjs'
+import haskey from 'wsemi/src/haskey.mjs'
+import waitFun from 'wsemi/src/waitFun.mjs'
 import debounce from 'wsemi/src/debounce.mjs'
-import binarySearch from '../js/binarySearch.mjs'
-import globalMemory from '../js/globalMemory.mjs'
 import flattenTree from '../js/flattenTree.mjs'
-import WPanelScrollyCore from './WPanelScrollyCore.vue'
-
-
-//gm
-let gm = globalMemory()
+import WDynamicList from './WDynamicList.vue'
+import WTreeIconToggle from './WTreeIconToggle.vue'
+import WTreeIconCheckbox from './WTreeIconCheckbox.vue'
 
 
 /**
- * @vue-prop {Array} [treeItems=[]] 輸入資料陣列，預設[]，各元素配合slot顯示即可，slot內提供row與irow，對應原始rows內各元素與指標，另外各元素slot時不要用margin避免計算高度有誤差
- * @vue-prop {String} [filterKeywords=''] 輸入過濾關鍵字字串，多關鍵字用空白分隔，預設''
+ * @vue-prop {Array} [items=[]] 輸入資料陣列，預設[]，各元素配合slot顯示即可，slot內提供row與irow，對應原始rows內各元素與指標，另外各元素slot時不要用margin避免計算高度有誤差
  * @vue-prop {Number} [viewHeightMax=400] 輸入顯示區最大高度，單位為px，預設400
- * @vue-prop {Number} [itemMinHeight=24] 輸入各元素顯示高度，單位為px，預設24，會於真實顯示後自動更新高度
- * @vue-prop {Number} [itemsPreload=5] 輸入上下方預先載入元素數量，預設5
+ * @vue-prop {Boolean} [selectable=false] 輸入是否具有勾選模式，預設false
+ * @vue-prop {Array} [selections=[]] 輸入勾選項目陣列，當selectable=true時才可使用，預設[]
+ * @vue-prop {String} [keyPrimary='id'] 輸入可選項目為物件時，主鍵之欄位字串，預設'id'
+ * @vue-prop {String} [keyText='text'] 輸入可選項目為物件時，顯示文字之欄位字串，預設'text'
+ * @vue-prop {String} [keyChildren='children'] 輸入可選項目為物件時，所屬子項目之欄位字串，預設'children'
+ * @vue-prop {String} [keyLock='locked'] 輸入可選項目為物件時，禁止勾選之欄位字串，預設'locked'
+ * @vue-prop {Number} [indent=30] 輸入縮排距離數字，單位為px，預設30
+ * @vue-prop {String} [iconColor='grey'] 輸入顯隱icon按鈕顏色字串，預設'grey'
+ * @vue-prop {String} [iconUncheckedColor='grey darken-2'] 輸入未勾選時顏色字串，預設'grey darken-2'
+ * @vue-prop {String} [iconUncheckedDisabledColor='grey'] 輸入禁用時未勾選時顏色字串，預設'grey'
+ * @vue-prop {String} [iconCheckedColor='blue darken-3'] 輸入勾選時顏色字串，預設'blue darken-3'
+ * @vue-prop {String} [iconCheckedDisabledColor='grey'] 輸入禁用時勾選時顏色字串，預設'grey'
+ * @vue-prop {String} [iconCheckedPartiallyColor='blue darken-3'] 輸入部份勾選時(子節點任一有勾選但非全部勾選)顏色字串，預設'blue darken-3'
+ * @vue-prop {String} [iconCheckedPartiallyDisabledColor='grey'] 輸入禁用部份勾選時(子節點任一有勾選但非全部勾選)顏色字串，預設'grey'
+ * @vue-prop {String} [filterKeywords=''] 輸入過濾關鍵字字串，多關鍵字用空白分隔，預設''
+ * @vue-prop {Function} [filterFunction=null] 輸入過濾時呼叫處理函數，傳入為各項目物件資料，回傳布林值代表項目內是否含有關鍵字，預設null
  * @vue-prop {String} [searchEmpty='Empty'] 輸入無過濾結果字串，預設'Empty'
+ * @vue-prop {Number} [itemMinHeight=34] 輸入各元素顯示高度，單位為px，預設34，會於真實顯示後自動更新高度
+ * @vue-prop {Number} [itemsPreload=5] 輸入上下方預先載入元素數量，預設5
  * @vue-prop {Boolean} [show=true] 輸入是否為顯示模式，預設true，供組件嵌入popup時, 因先初始化但尚未顯示不需渲染, 可給予show=false避免無限偵測與重算高度問題
  */
 export default {
     components: {
-        WPanelScrollyCore,
+        WDynamicList,
+        WTreeIconToggle,
+        WTreeIconCheckbox,
     },
     props: {
-        treeItems: {
+        items: {
             type: Array,
             default: () => [],
-        },
-        filterKeywords: {
-            type: String,
-            default: '',
         },
         viewHeightMax: {
             type: Number,
             default: 400,
         },
-        itemMinHeight: {
-            type: Number,
-            default: 24,
+        selectable: {
+            type: Boolean,
+            default: false,
         },
-        itemsPreload: {
+        selections: {
+            type: Array,
+            default: () => [],
+        },
+        keyPrimary: {
+            type: String,
+            default: 'id',
+        },
+        keyText: {
+            type: String,
+            default: 'text',
+        },
+        keyChildren: {
+            type: String,
+            default: 'children',
+        },
+        keyLocked: {
+            type: String,
+            default: 'locked',
+        },
+        indent: {
             type: Number,
-            default: 5,
+            default: 30,
+        },
+        iconColor: {
+            type: String,
+            default: 'grey',
+        },
+        iconUncheckedColor: {
+            type: String,
+            default: 'grey darken-2',
+        },
+        iconUncheckedDisabledColor: {
+            type: String,
+            default: 'grey',
+        },
+        iconCheckedColor: {
+            type: String,
+            default: 'blue darken-3',
+        },
+        iconCheckedDisabledColor: {
+            type: String,
+            default: 'grey',
+        },
+        iconCheckedPartiallyColor: {
+            type: String,
+            default: 'blue darken-3',
+        },
+        iconCheckedPartiallyDisabledColor: {
+            type: String,
+            default: 'grey',
+        },
+        filterKeywords: {
+            type: String,
+            default: '',
+        },
+        filterFunction: {
+            type: Function,
+            default: null,
         },
         searchEmpty: {
             type: String,
             default: 'Empty',
+        },
+        itemMinHeight: {
+            type: Number,
+            default: 34,
+        },
+        itemsPreload: {
+            type: Number,
+            default: 5,
         },
         show: {
             type: Boolean,
@@ -109,58 +208,59 @@ export default {
     data: function() {
         return {
             mmkey: null,
-            changeHeight: true, //是否有變更高度, 初始化給true使第一次顯示能自動重算節點高度
-            changeFilter: false, //是否有變更過濾關鍵字
-            scrollInfor: null, //目前捲軸資訊
-            scrollToEnd: false, //捲動至底部, 額外refresh
+            iconHeight: 34,
+            selectionsTrans: [],
+            rows: [],
             filterKeywordsTemp: '', //上次過濾關鍵字
-            itemsHeight: 0, //全部節點高度
-            useItems: [], //實際需顯示節點陣列
-            refreshList: [],
-            refreshing: false,
+            filtering: false, //是否過濾中
         }
-    },
-    mounted: function() {
-        //console.log('mounted')
-
-        let vo = this
-
-        //refresh, watch時觸發的change因為元素沒實際高度故無法自動調整, 得於mounted再觸發一次
-        vo.refresh('mounted')
-
-    },
-    beforeDestroy: function() {
-        //console.log('beforeMount')
-
-        let vo = this
-
-        //remove
-        gm.remove(vo.mmkey)
-
     },
     watch: {
 
-        treeItems: {
+        items: {
             immediate: true,
             deep: true,
             handler(value) {
-                //console.log('watch treeItems', value)
+                //console.log('watch items', value)
 
                 let vo = this
+
+                //mmkey, 產生mmkey要放在資料變更的地方, 否則beforeCreate只有1次(mounted會比computed還慢), 於vue-cli編譯情況下會有部份情境有問題
+                if (vo.mmkey === null) {
+
+                    //mmkey
+                    vo.mmkey = genID()
+
+                }
 
                 //check
                 if (size(value) === 0) {
                     return
                 }
 
-                //changeTreeItems
-                vo.changeTreeItems(value)
+                //changeItems
+                vo.changeItems(value)
 
             }
         },
 
     },
     computed: {
+
+        changeSelection: function() {
+            //console.log('computed changeSelection')
+
+            let vo = this
+
+            //ss for trigger
+            let ss = vo.selections
+
+            //updateSelection
+            vo.updateSelection()
+
+            vo.___selections___ = ss
+            return ''
+        },
 
         changeFilterKeyWords: function() {
             //console.log('computed changeFilterKeyWords')
@@ -170,378 +270,768 @@ export default {
             //ft for trigger
             let ft = vo.filterKeywords
 
-            //refreshDebounce
-            vo.refreshDebounce('changeFilterKeyWords')
+            //filterKeyWordsDebounce
+            vo.filterKeyWordsDebounce()
 
-            return ft
+            vo.__filterKeywords__ = ft
+            return ''
         },
 
     },
     methods: {
 
-        changeTreeItems: function(treeItems) {
-            //console.log('methods changeTreeItems', treeItems)
+        changeItems: function(itemsOri) {
+            //console.log('methods changeItems', itemsOri)
 
             let vo = this
 
             //check
-            if (!isarr(treeItems)) {
-                let msg = 'treeItems is not array'
+            if (!isarr(itemsOri)) {
+                let msg = 'items is not array'
                 //console.log(msg)
                 return msg
             }
-            if (size(treeItems) === 0) {
-                let msg = 'treeItems is empty'
+            if (size(itemsOri) === 0) {
+                let msg = 'items is empty'
                 //console.log(msg)
                 return msg
-            }
-
-            //mmkey
-            if (vo.mmkey === null) {
-
-                //mmkey
-                vo.mmkey = genID()
-
-            }
-            else {
-
-                //remove
-                gm.remove(vo.mmkey)
-
             }
 
             //flattenTree
-            let rows = flattenTree(treeItems)
-            console.log('rows', cloneDeep(rows))
+            let ts = flattenTree(itemsOri, vo.keyPrimary, vo.keyChildren)
 
-            //items, lodash使用new Array建構比for+push快
-            let items = map(rows, (v, k) => {
+            //rows, lodash使用new Array建構比for+push快
+            let rows = map(ts, (v, k) => {
                 return {
                     index: k,
-                    height: vo.itemMinHeight,
                     filterShow: true, //bol, 是否過濾後顯示此節點
-                    y: k * vo.itemMinHeight,
-                    // screenY: 0, //num, 節點換算比率後的顯示y向位置
-                    // nowShow: false, //bol, 預先載入時是否隸屬於顯示區域內
-                    // delayShow: false, //bol, 延遲載入用, 是否顯示節點
-                    row: v,
+                    unfolding: true, //bol, 是否展開顯示此節點
+                    checked: 'unchecked', //str, 節點勾選狀態, 'unchecked'代表未勾選, 'checked'代表已勾選, 'checkedPartially'代表部份勾選時(子節點任一有勾選但非全部勾選)
+                    item: v,
                 }
             })
-            console.log('items', cloneDeep(items))
 
             //save
-            //vo.items = items
-            gm.set(vo.mmkey, items)
-
-            //refresh
-            vo.refresh('changeTreeItems')
+            vo.rows = rows
 
         },
 
-        refresh: async function(from) {
-            //console.log('methods refresh', from)
+        getText: function (item) {
+            //console.log('methods getText', item)
+            let vo = this
+            return get(item, vo.keyText, '')
+        },
+
+        getEditable: function (item) {
+            //console.log('methods getEditable', item)
+            let vo = this
+            return !get(item, vo.keyLocked, false)
+        },
+
+        updateSelection: function() {
+            //console.log('methods updateSelection')
 
             let vo = this
 
-            //check
-            if (vo.mmkey === null) {
-                return
+            async function core() {
+                let selectionsTrans = [] //由外部selections變更時, 直接由空的selectionsTrans進行重產
+
+                //wait wdl, 組件初始化時會先觸發computed才會有實體元素出現, 故得用waitFun等待
+                await waitFun(() => {
+                    return vo.$refs.wdl !== undefined
+                }, { timeInterval: 20 })
+
+                //check
+                if (isEqual(vo.selectionsTrans, vo.selections)) {
+                    return
+                }
+
+                //opt
+                let opt = {
+                    fun: function(items) {
+                        //console.log('items', cloneDeep(items))
+
+                        //kpInd, 建立各item的速查表, 由keyPrimary直接取得項目位於items陣列內的指標
+                        let kpInd = {}
+                        each(items, (v, ind) => {
+
+                            //pk
+                            let pk = get(v, `row.item.${vo.keyPrimary}`)
+
+                            //build kpInd
+                            if (haskey(kpInd, pk)) {
+                                console.log(`Duplicate primary key[${vo.keyPrimary}] in items`, pk)
+                            }
+                            else {
+                                kpInd[pk] = ind
+                            }
+
+                            //預設
+                            items[ind].row.checked = 'unchecked'
+
+                        })
+
+                        //each, 遍歷selections進行虛擬操作取得selectionsTrans
+                        each(cloneDeep(vo.selections), (v) => {
+
+                            //pk
+                            let pk = v[vo.keyPrimary]
+
+                            //ind
+                            let ind = kpInd[pk]
+
+                            //check
+                            if (ind) {
+
+                                //checked
+                                let checked = items[ind].row.checked
+
+                                //check, 若節點原本的勾選狀態非checked, 才需要呼叫
+                                if (checked !== 'checked') {
+
+                                    //modify
+                                    checked = 'checked'
+
+                                    //checkItemsCore
+                                    vo.checkItemsCore(selectionsTrans, items, ind, checked)
+
+                                }
+
+                            }
+
+                        })
+
+                    }
+                }
+
+                //processItems
+                await vo.$refs.wdl.processItems(opt)
+
+                //save
+                vo.selectionsTrans = selectionsTrans
+
+                //emit, 要放在wdl更新後才觸發事件
+                vo.$emit('update:selections', cloneDeep(vo.selectionsTrans))
+
             }
 
             //core
-            let n = 0
-            let limit = 3
-            async function core() {
-                let pm = genPm()
+            core()
+                .catch((err) => {
+                    console.log(err)
+                })
 
-                //n
-                n += 1
+        },
 
-                //check, 取得元素高度因文字換行會有來回變動問題, 需有強制跳出機制
-                if (n > limit) {
-                    //console.log(`已重複refresh ${limit} 次, 強制跳出`)
-                    pm.resolve(false)
-                    return pm
+        addSelection: function(selections, item) {
+            //console.log('methods addSelection', selections, item.text, item)
+
+            let vo = this
+
+            //pk
+            let pk = get(item, vo.keyPrimary, null)
+
+            //push
+            if (pk !== null) {
+
+                //find
+                let r = find(selections, { [vo.keyPrimary]: pk })
+
+                //check, 若無項目物件則新增
+                if (!r) {
+
+                    //複製項目物件, 僅儲存非keyChildren的key, 避免複製父層物件時使用過多記憶體
+                    let t = {}
+                    each(item, (v, k) => {
+                        if (k !== vo.keyChildren && k !== 'level' && k !== 'nk' && k !== 'msg') { //
+                            t[k] = cloneDeep(v)
+                        }
+                    })
+
+                    //push, 會直接修改selections的記憶體
+                    selections.push(t)
+
                 }
 
-                //genUseItems
-                vo.genUseItems()
-
-                //delay
-                await delay(1)
-
-                //filterItems
-                vo.filterItems()
-
-                //delay
-                await delay(1)
-
-                //updateItemsHeight
-                let b = vo.updateItemsHeight()
-
-                //resolve
-                pm.resolve(b)
-
-                return pm
             }
 
-            async function call() {
+        },
 
-                //若任何元素高度有變更則再重新計算需顯示的節點, 此時的確有可能會載入新節點, 所以原本給予節點之預設高度不能太高, 偵測時元素就多是變高, 所以需顯示的節點就會變少, 避免造成重新載入新節點狀況
-                let r = await core()
-                while (r) {
-                    r = await core()
+        removeSelection: function(selections, item) {
+            //console.log('methods removeSelection', selections, item.text, item)
+
+            let vo = this
+
+            //pk
+            let pk = get(item, vo.keyPrimary, null)
+
+            //push
+            if (pk !== null) {
+
+                //find
+                let r = find(selections, { [vo.keyPrimary]: pk })
+
+                //check, 若有項目物件則刪除
+                if (r) {
+
+                    //remove, 直接修改selections的記憶體
+                    remove(selections, { [vo.keyPrimary]: pk })
+
                 }
 
+            }
+
+        },
+
+        modifySelection: function(selections, checkedOld, checkedNew, item) {
+            //console.log('methods modifySelection', selections, checkedOld, checkedNew, item)
+
+            let vo = this
+
+            //check
+            if (checkedOld === checkedNew) {
+                return
             }
 
             //call
-            await call()
-
-            //genUseItems
-            vo.genUseItems()
-
-            //delayShow
-            for (let k = 0; k < size(vo.useItems); k++) {
-                let v = vo.useItems[k]
-                if (!v.delayShow) {
-                    v.delayShow = true
-                }
+            if (checkedNew === 'checked') {
+                vo.addSelection(selections, item)
+            }
+            else {
+                vo.removeSelection(selections, item)
             }
 
         },
 
-        refreshDebounce: function(from) {
-            //console.log('methods refreshDebounce', from)
-
+        hasChildrenByIndex: function(ind) {
+            //console.log('methods hasChildrenByIndex', ind)
             let vo = this
-
-            //debounce
-            debounce(`${vo.mmkey}|refresh`, () => {
-
-                //refresh
-                vo.refresh(from)
-
-            })
-
+            return vo.getLevelDiff(ind) > 0
         },
 
-        genUseItems: function() {
-            //console.log('methods genUseItems')
+        getLevelDiff: function(ind) {
+            //console.log('methods getLevelDiff', ind)
 
             let vo = this
 
-            //check
-            if (vo.mmkey === null) {
-                return
-            }
-
-            //default scrollInfor
-            if (vo.scrollInfor === null) {
-                vo.scrollInfor = {
-                    r: 0,
-                    t: 0,
-                    b: vo.viewHeightMax,
-                    ch: vo.itemsHeight,
-                }
-            }
-
-            //items
-            //let items = vo.items
-            let items = gm.get(vo.mmkey)
-
-            //n
-            let n = size(items)
+            //lev1, lev2
+            let lev1 = get(vo, `rows.${ind}.item.level`, null)
+            let lev2 = get(vo, `rows.${ind + 1}.item.level`, null)
 
             //check
-            if (n === 0) {
-                return
+            if (!isInteger(lev1) || !isInteger(lev2)) {
+                return 0
             }
 
-            //indStart, 該元素區(底部)有侵入顯示區
-            let indStartActual = binarySearch(items, (ind) => {
-                let v = items[ind]
-                let dy = vo.scrollInfor.t - (v.y + v.height)
-                return dy
-            })
-            if (indStartActual === null) {
-                indStartActual = 0
-            }
-            let indStart = Math.max(indStartActual - vo.itemsPreload, 0)
-
-            //indEnd, 該元素區(頂部)有侵入顯示區
-            let indEndActual = binarySearch(items, (ind) => {
-                let v = items[ind]
-                let dy = vo.scrollInfor.b - v.y
-                return dy
-            })
-            if (indEndActual === null) {
-                indEndActual = n - 1
-            }
-            let indEnd = Math.min(indEndActual + vo.itemsPreload, n - 1)
-
-            //kpDelayShow
-            let kpDelayShow = {}
-            each(vo.useItems, (v) => {
-                kpDelayShow[v.index] = true
-            })
-
-            //useItems
-            let useItems = []
-            for (let k = indStart; k <= indEnd; k++) {
-                let v = {
-                    ...items[k]
-                }
-                if (v.filterShow) {
-                    v.screenY = v.y - vo.scrollInfor.t //換算成實際顯示y向的px位置
-                    v.nowShow = k >= indStartActual //顯示區下方之預載節點都直接顯示供重算高度
-                    v.delayShow = kpDelayShow[k] === true //已經顯示的節點就直接顯示, 否則delayShow=false就是延遲顯示
-                    useItems.push(v)
-                }
-            }
-
-            //save
-            vo.useItems = useItems
-
+            return lev2 - lev1
         },
 
-        updateItemsHeight: function() {
-            //console.log('methods updateItemsHeight')
+        getLevel: function(row) {
+            //console.log('methods getLevel', row)
+            return get(row, `item.level`, 0)
+        },
+
+        toggleItemsCore: function(items, ind, unfolding) {
+            //console.log('methods toggleItemsCore', items, ind, unfolding)
 
             let vo = this
 
-            //check
-            if (vo.mmkey === null) {
-                return false
+            //unfoldingChain
+            let unfoldingChain = []
+
+            //依照unfoldingChain計算節點displayShow
+            function getDisplayShow() {
+                for (let i = 0; i < unfoldingChain.length; i++) {
+                    if (unfoldingChain[i] === false) {
+                        return false
+                    }
+                }
+                return true
             }
 
-            //items
-            //let items = vo.items
-            let items = gm.get(vo.mmkey)
+            //本身節點變更unfolding
+            function modifySelf(ind, unfolding) {
 
-            //n
-            let n = size(items)
+                //save unfolding
+                items[ind].row.unfolding = unfolding
 
-            //check changeHeight
-            each(vo.$refs.wdsDiv, (v) => {
-                if (v.getAttribute) {
-                    let nowShow = v.getAttribute('nowShow')
-                    if (nowShow) {
-                        let index = cint(v.getAttribute('index'))
-                        if (index >= 0 && index < n) {
-                            let h = v.offsetHeight //元素不要用margin避免計算高度有誤差
-                            if (items[index].height !== h) {
-                                items[index].height = h
-                                vo.changeHeight = true
-                            }
+                //add unfolding
+                unfoldingChain.push(unfolding)
+
+            }
+
+            //若有子節點, 則變更所屬子節點
+            function modifyChildren(ind, unfolding) {
+
+                //level
+                let level = get(items, `${ind}.row.item.level`, null)
+                if (level === null) {
+                    console.log('invalid level')
+                    return
+                }
+
+                //modify displayShow
+                for (let i = ind + 1; i < items.length; i++) {
+                    //點擊節點後之各子節點
+
+                    //levelNow
+                    let levelNow = get(items, `${i}.row.item.level`, null)
+                    if (levelNow === null) {
+                        console.log('invalid levelNow')
+                        return
+                    }
+
+                    //偵測至與點擊節點同層或父層之節點, 代表已處理完畢展隱所影響之全部節點, 可跳出迴圈加速
+                    if (level >= levelNow) {
+                        break
+                    }
+
+                    //displayShow, 當unfoldingChain內都是true時才能顯示, 有任一是false就得隱藏
+                    let displayShow = getDisplayShow()
+
+                    //save displayShow
+                    items[i].displayShow = displayShow
+
+                    //levDiff, 計算此節點與下個節點之level差值
+                    let levDiff = vo.getLevelDiff(i)
+
+                    //此節點有所屬子節點
+                    if (levDiff > 0) {
+
+                        //unfolding
+                        let unfoldingNow = get(items, `${i}.row.unfolding`, null)
+                        if (unfoldingNow === null) {
+                            console.log('invalid unfoldingNow')
+                            return
                         }
+
+                        //add unfolding
+                        unfoldingChain.push(unfoldingNow)
+
                     }
-                }
-            })
 
-            //check visible, 若組件未顯示(例如display:none)則不視為高度有變更狀態, 避免無限更新
-            if (!vo.show) {
-                vo.changeHeight = false
-            }
+                    //此節點之下為父層或更上層之節點
+                    if (levDiff < 0) {
 
-            //check
-            let b = vo.changeHeight || vo.changeFilter //changeHeight預設為true, 故第1次一定會重算itemsHeight
-            if (b) {
+                        //dropRight, 刪除所屬各層節點的unfolding
+                        unfoldingChain = dropRight(unfoldingChain, -levDiff)
 
-                //update y
-                let y = 0
-                for (let i = 0; i < n; i++) {
-                    let v = items[i]
-                    if (v.y !== y) {
-                        v.y = y
                     }
-                    if (v.filterShow) {
-                        y += v.height
-                    }
-                }
 
-                //update itemsHeight
-                let itemsHeightTemp = vo.itemsHeight
-                if (itemsHeightTemp !== y) {
-                    itemsHeightTemp = y
                 }
-
-                //check empty
-                if (itemsHeightTemp === 0) {
-                    //console.log('偵測出現itemsHeightTemp=0, 強制改為43')
-                    itemsHeightTemp = 43 //先預算出empty時高度
-                }
-
-                //check same
-                let pxLimit = 4 //全部項目高度誤差門檻(px)
-                if (Math.abs(vo.itemsHeight - itemsHeightTemp) > pxLimit) { //偵測總項目高度是否與前次差超過pxLimit
-                    vo.itemsHeight = itemsHeightTemp
-                }
-                else {
-                    b = vo.changeFilter //若沒超過門檻pxLimit, 則b直接使用changeFilter, 否則b為包含changeHeight影響導致refresh while持續偵測
-                }
-
-                //reset
-                vo.changeHeight = false
-                vo.changeFilter = false
 
             }
 
-            return b
-        },
+            //modifySelf
+            modifySelf(ind, unfolding)
 
-        changeScrollInfor: async function(e) {
-            //console.log('methods changeScrollInfor', e)
-
-            let vo = this
-
-            //check
-            if (vo.mmkey === null) {
-                return
-            }
-
-            // //check, 不能判斷scrollInfor是否相等, 因wsp會有resize觸發此事件, 會給出內部的scrollInfor與上次相同故為原值, 若檢查相同則離開將無法重算各動態項目高度
-            // if (isEqual(vo.scrollInfor, e)) {
-            //     return
-            // }
-
-            //save
-            vo.scrollInfor = e
-
-            //refresh
-            await vo.refresh('changeWsp')
+            //modifyChildren
+            modifyChildren(ind, unfolding)
 
         },
 
-        filterItems: function() {
-            //console.log('methods filterItems')
+        toggleItems: function(item) {
+            //console.log('methods toggleItems', item)
 
             let vo = this
 
-            //check
-            if (vo.mmkey === null) {
-                return
+            async function core() {
+
+                //check
+                if (!vo.$refs.wdl) {
+                    return
+                }
+
+                //opt
+                let opt = {
+                    fun: function(items) {
+                    //console.log('items', cloneDeep(items))
+
+                        //ind
+                        let ind = item.index
+
+                        //unfolding
+                        let unfolding = get(items, `${ind}.row.unfolding`, null)
+                        if (unfolding === null) {
+                            console.log('invalid unfolding')
+                            return
+                        }
+
+                        //本身節點變更unfolding
+                        unfolding = !unfolding
+
+                        //toggleItemsCore
+                        vo.toggleItemsCore(items, ind, unfolding)
+
+                    }
+                }
+
+                //processItems
+                await vo.$refs.wdl.processItems(opt)
+
             }
+
+            //core
+            core()
+                .catch((err) => {
+                    console.log(err)
+                })
+
+        },
+
+        getAllParentIndex: function(items, ind) {
+            //console.log('methods getAllParentIndex', items, ind)
+            //取得全部父層節點指標與path
+
+            let vo = this
+
+            //selfInd
+            let selfInd = ind
+
+            //無限迴圈尋找
+            let inds = []
+            while (true) {
+
+                //parentInd
+                let parentInd = vo.getParentIndex(items, selfInd)
+
+                //break
+                if (parentInd === null) {
+                    break
+                }
+
+                //push
+                inds.push(parentInd)
+
+                //save
+                selfInd = parentInd
+
+            }
+
+            //path
+            let path = join(reverse(inds), '-')
+
+            return {
+                inds,
+                path,
+            }
+        },
+
+        getParentIndex: function(items, ind) {
+            //console.log('methods getParentIndex', items, ind)
+            //取得父層節點指標
+
+            //level
+            let level = get(items, `${ind}.row.item.level`, null)
+            if (level === null) {
+                return null
+            }
+
+            //往前偵測
+            for (let i = ind - 1; i >= 0; i--) {
+
+                //levelNow
+                let levelNow = get(items, `${i}.row.item.level`, null)
+                if (levelNow === null) {
+                    return null
+                }
+
+                //若已出現父層節點, 繼續算則不可能出現同層節點, 可跳出迴圈加速
+                if (level > levelNow) {
+                    return i
+                }
+
+            }
+
+            return null //找不到父層節點
+        },
+
+        checkItemsCore: function(selections, items, ind, checked) {
+            //console.log('methods checkItemsCore', selections, items, ind, checked)
+            //由外部傳入selections並直接修改記憶體, 外部selections需先cloneDeep用以計算本次操作所增減項目
+
+            let vo = this
+
+            //本身節點變更checked
+            function modifySelf(selections, ind, checked) {
+
+                //checkedOld
+                let checkedOld = items[ind].row.checked
+
+                //save checked
+                items[ind].row.checked = checked
+
+                //modifySelection
+                vo.modifySelection(selections, checkedOld, checked, items[ind].row.item)
+
+            }
+
+            //若有子節點, 則變更所屬子節點
+            function modifyChildren(selections, ind, checked) {
+                if (vo.hasChildrenByIndex(ind)) {
+
+                    //level
+                    let level = get(items, `${ind}.row.item.level`, null)
+                    if (level === null) {
+                        console.log('invalid level')
+                        return
+                    }
+
+                    //modify checked
+                    for (let i = ind + 1; i < items.length; i++) {
+                    //點擊節點後之各子節點
+
+                        //levelNow
+                        let levelNow = get(items, `${i}.row.item.level`, null)
+                        if (levelNow === null) {
+                            console.log('invalid levelNow')
+                            return
+                        }
+
+                        //偵測至與點擊節點同層或父層之節點, 代表已處理完畢全部所屬子節點, 可跳出迴圈加速
+                        if (level >= levelNow) {
+                            break
+                        }
+                        //console.log(`[${items[i].row.item.name}]`, 'level', level, 'levelNow', levelNow)
+
+                        //checkedOld
+                        let checkedOld = items[i].row.checked
+
+                        //save checked
+                        items[i].row.checked = checked
+
+                        //modifySelection
+                        vo.modifySelection(selections, checkedOld, checked, items[i].row.item)
+
+                    }
+
+                }
+            }
+
+            //偵測全部同層的checked狀態, 回傳為父層節點的checked狀態
+            function detectSameLevelChecked(ind) {
+
+                //level
+                let level = get(items, `${ind}.row.item.level`, null)
+                if (level === null) {
+                    console.log('invalid level')
+                    return null
+                }
+
+                //sameLevelInds, 把點擊節點先加入至偵測清單
+                let sameLevelInds = [{
+                    ind,
+                    checked: get(items, `${ind}.row.checked`, ''),
+                }]
+
+                //往前偵測
+                for (let i = ind - 1; i >= 0; i--) {
+
+                    //levelNow
+                    let levelNow = get(items, `${i}.row.item.level`, null)
+                    if (levelNow === null) {
+                        console.log('invalid levelNow')
+                        return
+                    }
+
+                    //若已出現父層節點, 繼續算則不可能出現同層節點, 可跳出迴圈加速
+                    if (level > levelNow) {
+                        break
+                    }
+
+                    //若為同層節點才加入偵測清單
+                    if (level === levelNow) {
+
+                        //push
+                        sameLevelInds.push({
+                            ind: i,
+                            checked: get(items, `${i}.row.checked`, ''),
+                        })
+
+                    }
+
+                }
+
+                //往後偵測
+                for (let i = ind + 1; i < items.length; i++) {
+
+                    //levelNow
+                    let levelNow = get(items, `${i}.row.item.level`, null)
+                    if (levelNow === null) {
+                        console.log('invalid levelNow')
+                        return
+                    }
+
+                    //若已出現父層節點, 繼續算不可能出現同層節點, 可跳出迴圈加速
+                    if (level > levelNow) {
+                        break
+                    }
+
+                    //若為同層節點才加入偵測清單
+                    if (level === levelNow) {
+
+                        //push
+                        sameLevelInds.push({
+                            ind: i,
+                            checked: get(items, `${i}.row.checked`, ''),
+                        })
+
+                    }
+
+                }
+
+                //count
+                let nAll = size(sameLevelInds)
+                let nChecked = 0
+                let nUnchecked = 0
+                each(sameLevelInds, (v) => {
+                    if (v.checked === 'checked') {
+                        nChecked += 1
+                    }
+                    else if (v.checked === 'unchecked') {
+                        nUnchecked += 1
+                    }
+                })
+
+                if (nChecked === nAll) {
+                    return 'checked'
+                }
+                else if (nUnchecked === nAll) {
+                    return 'unchecked'
+                }
+                return 'checkedPartially'
+            }
+
+            //調整全部父層節點的checked狀態
+            function modifyParent(selections, ind) {
+
+                //parentInd, 父層節點指標
+                let parentInd = vo.getParentIndex(items, ind)
+
+                //check
+                if (parentInd === null) {
+                    return
+                }
+
+                //取得父層節點與checked資訊
+                let parent = get(items, parentInd, null)
+                let parentCheckedOld = get(parent, 'row.checked', '')
+                let parentCheckedNew = detectSameLevelChecked(ind) //偵測與自己同層節點的checked資訊, 代表父層應該的checked
+
+                //比對父層現在與應該checked是否不同, 若不同則覆寫
+                if (parentCheckedOld !== parentCheckedNew) {
+
+                    //parentCheckedOld
+                    let parentCheckedOld = items[parentInd].row.checked
+
+                    //save checked
+                    items[parentInd].row.checked = parentCheckedNew
+
+                    //modifySelection
+                    vo.modifySelection(selections, parentCheckedOld, parentCheckedNew, items[parentInd].row.item)
+
+                    //modifyParent, 遞迴繼續查找父層節點
+                    modifyParent(selections, parentInd)
+
+                }
+
+            }
+
+            //modifySelf
+            modifySelf(selections, ind, checked)
+            // console.log(vo.mmkey, 'modifySelf selections', cloneDeep(selections))
+
+            //modifyChildren
+            modifyChildren(selections, ind, checked)
+            // console.log(vo.mmkey, 'modifyChildren selections', cloneDeep(selections))
+
+            //modifyParent
+            modifyParent(selections, ind)
+            // console.log(vo.mmkey, 'modifyParent selections', cloneDeep(selections))
+
+        },
+
+        checkItems: function(item) {
+            //console.log('methods checkItems', item)
+
+            let vo = this
+
+            async function core() {
+                let selectionsTrans = cloneDeep(vo.selectionsTrans) //由內部selectionsTrans當初始值, cloneDeep後進行修改
+
+                //check
+                if (!vo.$refs.wdl) {
+                    return
+                }
+
+                //opt
+                let opt = {
+                    fun: function(items) {
+                    //console.log('items', cloneDeep(items))
+
+                        //ind
+                        let ind = item.index
+
+                        //checked
+                        let checked = get(items, `${ind}.row.checked`, null)
+                        if (checked === null) {
+                            console.log('invalid checked')
+                            return
+                        }
+
+                        //本身節點變更checked
+                        if (checked === 'checked') {
+                            checked = 'unchecked'
+                        }
+                        else if (checked === 'unchecked') {
+                            checked = 'checked'
+                        }
+                        else {
+                            checked = 'checked'
+                        }
+
+                        //checkItemsCore
+                        vo.checkItemsCore(selectionsTrans, items, ind, checked)
+
+                    }
+                }
+
+                //processItems
+                await vo.$refs.wdl.processItems(opt)
+
+                //save
+                vo.selectionsTrans = selectionsTrans
+
+                //emit, 要放在wdl更新後才觸發事件
+                vo.$emit('update:selections', cloneDeep(vo.selectionsTrans))
+
+            }
+
+            //core
+            core()
+                .catch((err) => {
+                    console.log(err)
+                })
+
+        },
+
+        filterKeyWordsCore: function(items) {
+            //console.log('methods filterKeyWordsCore', items)
+
+            let vo = this
 
             //check filterKeywordsTemp
             if (vo.filterKeywordsTemp === vo.filterKeywords) {
                 return
             }
-            vo.filterKeywordsTemp = vo.filterKeywords
-
-            //items
-            //let items = vo.items
-            let items = gm.get(vo.mmkey)
-
-            //n
-            let n = size(items)
+            vo.filterKeywordsTemp = vo.filterKeywords //因為函數為同步故可以先覆寫至temp
 
             //check
             if (size(vo.filterKeywords) === 0) {
 
                 //預設可見
-                for (let k = 0; k < n; k++) {
-                    items[k].filterShow = true
+                for (let i = 0; i < items.length; i++) {
+                    items[i].filterShow = true
                 }
 
             }
@@ -550,69 +1040,136 @@ export default {
                 //kws
                 let kws = sep(vo.filterKeywords.toLowerCase(), ' ')
 
-                //預設不可見
-                for (let k = 0; k < n; k++) {
-                    let r = items[k].row
+                //針對各項目偵測過濾
+                let pathHasShow = {} //儲存已經強制顯示的父層鏈
+                for (let i = 0; i < items.length; i++) {
 
-                    //c
-                    let c = ''
-                    if (isstr(r)) {
-                        c = r
-                    }
-                    else if (isnum(r)) {
-                        c = toString(r)
-                    }
-                    else if (iseobj(r)) {
-                        c = join(values(r), '')
+                    //預設不可見
+                    let b = false
+
+                    //filter
+                    if (isfun(vo.filterFunction)) {
+
+                        //filterFunction
+                        b = vo.filterFunction(items[i].row.item)
+
                     }
                     else {
-                        c = o2j(r)
-                    }
-                    c = c.toLowerCase()
 
-                    //若值含有關建字
-                    let b = false
-                    for (let i = 0; i < size(kws); i++) {
-                        let kw = kws[i]
-                        if (c.indexOf(kw) >= 0) {
-                            b = true
-                            break
+                        //預設取得項目文字供關鍵字過濾
+                        let c = vo.getText(items[i].row.item)
+
+                        //toLowerCase
+                        c = c.toLowerCase()
+
+                        //若值含有關建字
+                        for (let k = 0; k < kws.length; k++) {
+                            let kw = kws[k]
+                            if (c.indexOf(kw) >= 0) {
+                                b = true
+                                break
+                            }
                         }
+
                     }
-                    items[k].filterShow = b
+
+                    //若項目有關鍵字, 則需設定全部父層節點為可見, 不能被過濾掉
+                    if (b) {
+
+                        //此節點顯示
+                        items[i].filterShow = true
+
+                        //getAllParentIndex, 取得全部父層資訊
+                        let pai = vo.getAllParentIndex(items, i)
+
+                        //若有找到一個以上的父層
+                        if (pai.path !== '') {
+
+                            //若尚未處理過此父層鏈
+                            if (!haskey(pathHasShow, pai.path)) {
+
+                                //針對各父層設定filterShow=true
+                                each(pai.inds, (ind) => {
+                                    items[ind].filterShow = true
+                                })
+
+                                //儲存此父層鏈, 避免下次重複設定減少功耗
+                                pathHasShow[pai.path] = pai
+
+                            }
+
+                        }
+
+                    }
+                    else {
+
+                        //此節點隱藏
+                        items[i].filterShow = false
+
+                    }
 
                 }
 
             }
 
-            //changeFilter
-            vo.changeFilter = true
-
         },
 
-        triggerEvent: function(from) {
-            //console.log('methods triggerEvent', from)
+        filterKeyWords: function() {
+            //console.log('methods filterKeyWords')
 
             let vo = this
 
-            //triggerEvent
-            let t = get(vo, '$refs.wsp.triggerEvent', null)
-            if (t) {
-                t(from)
+            async function core() {
+
+                //check
+                if (!vo.$refs.wdl) {
+                    return
+                }
+
+                //check
+                if (vo.filtering) {
+                    return
+                }
+
+                //opt
+                let opt = {
+                    fun: function(items) {
+                        //console.log('items', cloneDeep(items))
+
+                        //filterKeyWordsCore
+                        vo.filterKeyWordsCore(items)
+
+                    }
+                }
+
+                //processItems
+                await vo.$refs.wdl.processItems(opt)
+
+                //filtering
+                vo.filtering = false
+
             }
 
+            //core
+            core()
+                .catch((err) => {
+                    console.log(err)
+                })
+
         },
 
-        refreshAndTriggerEvent: async function(from) {
-            //console.log('methods refreshAndTriggerEvent', from)
+        filterKeyWordsDebounce: function() {
+            //console.log('methods filterKeyWordsDebounce')
 
             let vo = this
 
-            //refresh
-            await vo.refresh(from)
+            //debounce
+            debounce(`${vo.mmkey}|filterKeyWords`, () => {
 
-            //triggerEvent
-            vo.triggerEvent(from)
+                //refresh
+                vo.filterKeyWords()
+
+            })
 
         },
 

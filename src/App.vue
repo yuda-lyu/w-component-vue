@@ -573,7 +573,7 @@ export default {
                 {
                     name: 'scroll',
                     cmps: [
-                        //'WTree',
+                        'WTree',
                         'WJsonView',
                         'WDynamicList',
                     ]

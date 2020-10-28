@@ -388,7 +388,8 @@
                     :shell="'pure'"
                 ></demolink>
 
-                <div style="display:flex;"><!-- 用display:flex避免編譯後因換行符號導致按鈕組件間出現間格 -->
+                <!-- 用display:flex避免編譯後因換行符號導致按鈕組件間出現間格 -->
+                <div style="display:flex;">
 
                     <w-button-chip
                         :text="WButtonChip.text"

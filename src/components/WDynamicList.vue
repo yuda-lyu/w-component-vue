@@ -1,6 +1,7 @@
 <template>
     <WPanelScrollyCore
         ref="wsp"
+        :ratio.sync="scrollRatio"
         :viewHeightMax="viewHeightMax"
         :contentHeight="itemsHeight"
         :changeFilterKeyWords="changeFilterKeyWords"
@@ -8,7 +9,7 @@
     >
 
         <template v-for="(item,kitem) in useItems">
-            <!-- wdsDiv記得給width:100%，因ie11的flex內文字會自動撐開版面導致不會換行 -->
+            <!-- 需設定width:100%, 因ie11的flex內文字會自動撐開版面導致不會換行 -->
             <div
                 ref="wdsDiv"
                 :style="`position:absolute; top:${item.screenY}px; width:100%; opacity:${(item.nowShow && item.delayShow)?1:0.001}; ${item.delayShow?'transition:opacity 0.1s':''}`"
@@ -21,7 +22,7 @@
                 <slot
                     name="block"
                     :row="item.row"
-                    :irow="item.index"
+                    :index="item.index"
                 ></slot>
             </div>
         </template>
@@ -41,6 +42,7 @@ import join from 'lodash/join'
 import values from 'lodash/values'
 import size from 'lodash/size'
 import toString from 'lodash/toString'
+import cloneDeep from 'lodash/cloneDeep'
 import cint from 'wsemi/src/cint.mjs'
 import genID from 'wsemi/src/genID.mjs'
 import genPm from 'wsemi/src/genPm.mjs'
@@ -50,6 +52,9 @@ import isarr from 'wsemi/src/isarr.mjs'
 import isstr from 'wsemi/src/isstr.mjs'
 import isnum from 'wsemi/src/isnum.mjs'
 import iseobj from 'wsemi/src/iseobj.mjs'
+import isfun from 'wsemi/src/isfun.mjs'
+import isint from 'wsemi/src/isint.mjs'
+import isbol from 'wsemi/src/isbol.mjs'
 import o2j from 'wsemi/src/o2j.mjs'
 import debounce from 'wsemi/src/debounce.mjs'
 import binarySearch from '../js/binarySearch.mjs'
@@ -108,14 +113,14 @@ export default {
         return {
             mmkey: null,
             changeHeight: true, //是否有變更高度, 初始化給true使第一次顯示能自動重算節點高度
+            changeDisplay: false, //是否有變更節點顯隱狀態
             changeFilter: false, //是否有變更過濾關鍵字
+            processing: false, //上鎖changeRows, 使能由外部強制變更內部數據而不會重產items
+            scrollRatio: 0, //捲動比例
             scrollInfor: null, //目前捲軸資訊
-            scrollToEnd: false, //捲動至底部, 額外refresh
             filterKeywordsTemp: '', //上次過濾關鍵字
             itemsHeight: 0, //全部節點高度
             useItems: [], //實際需顯示節點陣列
-            refreshList: [],
-            refreshing: false,
         }
     },
     mounted: function() {
@@ -183,6 +188,11 @@ export default {
             let vo = this
 
             //check
+            if (vo.processing) {
+                return
+            }
+
+            //check
             if (!isarr(rows)) {
                 let msg = 'rows is not array'
                 //console.log(msg)
@@ -194,7 +204,7 @@ export default {
                 return msg
             }
 
-            //mmkey
+            //mmkey, 產生mmkey要放在資料變更的地方, 否則beforeCreate只有1次(mounted會比computed還慢), 於vue-cli編譯情況下會有部份情境有問題
             if (vo.mmkey === null) {
 
                 //mmkey
@@ -213,11 +223,9 @@ export default {
                 return {
                     index: k,
                     height: vo.itemMinHeight,
+                    displayShow: true, //bol, 是否直接顯示此節點
                     filterShow: true, //bol, 是否過濾後顯示此節點
                     y: k * vo.itemMinHeight,
-                    // screenY: 0, //num, 節點換算比率後的顯示y向位置
-                    // nowShow: false, //bol, 預先載入時是否隸屬於顯示區域內
-                    // delayShow: false, //bol, 延遲載入用, 是否顯示節點
                     row: v,
                 }
             })
@@ -385,7 +393,7 @@ export default {
                 let v = {
                     ...items[k]
                 }
-                if (v.filterShow) {
+                if (v.displayShow && v.filterShow) {
                     v.screenY = v.y - vo.scrollInfor.t //換算成實際顯示y向的px位置
                     v.nowShow = k >= indStartActual //顯示區下方之預載節點都直接顯示供重算高度
                     v.delayShow = kpDelayShow[k] === true //已經顯示的節點就直接顯示, 否則delayShow=false就是延遲顯示
@@ -438,7 +446,7 @@ export default {
             }
 
             //check
-            let b = vo.changeHeight || vo.changeFilter //changeHeight預設為true, 故第1次一定會重算itemsHeight
+            let b = vo.changeHeight || vo.changeDisplay || vo.changeFilter //changeHeight預設為true, 故第1次一定會重算itemsHeight
             if (b) {
 
                 //update y
@@ -448,7 +456,7 @@ export default {
                     if (v.y !== y) {
                         v.y = y
                     }
-                    if (v.filterShow) {
+                    if (v.displayShow && v.filterShow) {
                         y += v.height
                     }
                 }
@@ -471,11 +479,12 @@ export default {
                     vo.itemsHeight = itemsHeightTemp
                 }
                 else {
-                    b = vo.changeFilter //若沒超過門檻pxLimit, 則b直接使用changeFilter, 否則b為包含changeHeight影響導致refresh while持續偵測
+                    b = vo.changeDisplay || vo.changeFilter //若沒超過門檻pxLimit, 則b直接使用changeDisplay與changeFilter, 否則b包含changeHeight會影響導致refresh while導致無限偵測
                 }
 
                 //reset
                 vo.changeHeight = false
+                vo.changeDisplay = false
                 vo.changeFilter = false
 
             }
@@ -498,11 +507,166 @@ export default {
             //     return
             // }
 
+            //check, 有上鎖時不能執行
+            if (vo.processing) {
+                return
+            }
+
             //save
             vo.scrollInfor = e
 
             //refresh
-            await vo.refresh('changeWsp')
+            await vo.refresh('changeScrollInfor')
+
+        },
+
+        genScrollRatioAfterToggle: function() {
+            //console.log('methods genScrollRatioAfterToggle')
+
+            let vo = this
+
+            //重算r
+            let r = 0
+            if (size(vo.useItems) > 0 && vo.itemsHeight > 0 && vo.scrollInforTemp.ch > 0) { //已有內容資料
+
+                //內容高度變少, 點擊節點為隱藏動作
+                if (vo.itemsHeight < vo.scrollInforTemp.ch) {
+
+                    //內容高度小於等於當前視窗高度
+                    if (vo.itemsHeight <= vo.viewHeightMax) {
+                        r = 0
+                        //console.log('隱藏, 內容高度小於當前視窗高度, r=', r)
+                    }
+                    //內容高度大於當前視窗高度
+                    else {
+                        r = vo.scrollInforTemp.t / (vo.itemsHeight - vo.viewHeightMax)
+                        //console.log('隱藏, 內容高度大於當前視窗高度, r=', r, vo.scrollInforTemp.t, vo.itemsHeight, vo.viewHeightMax)
+                    }
+
+                }
+                //內容高度變高, 點擊節點為顯示動作
+                else {
+
+                    //內容高度小於等於當前視窗高度
+                    if (vo.itemsHeight <= vo.viewHeightMax) {
+                        r = 0
+                        //console.log('顯示, 內容高度小於當前視窗高度, r=', r)
+                    }
+                    //內容高度大於當前視窗高度
+                    else {
+                        r = vo.scrollInforTemp.t / (vo.itemsHeight - vo.viewHeightMax)
+                        //console.log('顯示, 內容高度大於當前視窗高度, r=', r, vo.scrollInforTemp.t, vo.itemsHeight, vo.viewHeightMax)
+                    }
+
+                }
+
+            }
+
+            //scrollRatio, 變更scrollRatio不會觸發panel捲動事件, 得自己呼叫
+            vo.scrollRatio = r
+
+        },
+
+        processItems: async function(opt = {}) {
+            //console.log('methods processItems', opt)
+            //供外部調用時需要知道什麼時候結束, 故需為async function
+
+            let vo = this
+
+            async function core() {
+
+                //check
+                if (vo.mmkey === null) {
+                    return
+                }
+
+                //lock
+                vo.processing = true
+
+                //先儲存scrollInfor一份至scrollInforTemp, 供顯隱後重算scrollInfor
+                vo.scrollInforTemp = cloneDeep(vo.scrollInfor)
+
+                //items
+                //let items = vo.items
+                let items = gm.get(vo.mmkey)
+
+                //外部使用fun直接修改items
+                let fun = get(opt, 'fun', null)
+                if (isfun(fun)) {
+
+                    //呼叫fun, items直接傳入被修改, 因記憶體共用不用回傳覆寫items
+                    fun(items)
+
+                    //changeDisplay
+                    vo.changeDisplay = true
+
+                    //changeFilter
+                    vo.changeFilter = true
+
+                }
+
+                //對起訖點設定
+                let indStart = get(opt, 'indStart', null)
+                let indEnd = get(opt, 'indEnd', null)
+                if (isint(indStart) && isint(indEnd)) {
+
+                    //修改displayShow
+                    let displayShow = get(opt, 'displayShow', null)
+                    if (isbol(displayShow)) {
+
+                        //each
+                        for (let k = indStart; k <= indEnd; k++) {
+                            let item = get(items, k, null)
+                            if (item) {
+                                items[k].displayShow = displayShow
+                            }
+                        }
+
+                        //changeDisplay
+                        vo.changeDisplay = true
+
+                    }
+
+                    //修改filterShow
+                    let filterShow = get(opt, 'filterShow', null)
+                    if (isbol(filterShow)) {
+
+                        //each
+                        for (let k = indStart; k <= indEnd; k++) {
+                            let item = get(items, k, null)
+                            if (item) {
+                                items[k].filterShow = filterShow
+                            }
+                        }
+
+                        //changeFilter
+                        vo.changeFilter = true
+
+                    }
+
+                }
+
+                //refresh
+                //要先變更changeDisplay才能呼叫refresh, 使內部能重算各顯示元素高度
+                //需先refresh才能呼叫genScrollRatioAfterToggle, 因需由前次scrollInforTemp重算最新的scrollInfor, 使點擊節點於顯隱節點後不會改變位置
+                await vo.refresh('processItems')
+
+                //genScrollRatioAfterToggle
+                vo.genScrollRatioAfterToggle()
+
+                //triggerEvent
+                vo.triggerEvent(null)
+
+                //unluck
+                vo.processing = false
+
+            }
+
+            //core
+            await core()
+                .catch((err) => {
+                    console.log(err)
+                })
 
         },
 
@@ -520,7 +684,7 @@ export default {
             if (vo.filterKeywordsTemp === vo.filterKeywords) {
                 return
             }
-            vo.filterKeywordsTemp = vo.filterKeywords
+            vo.filterKeywordsTemp = vo.filterKeywords //因為函數為同步故可以先覆寫至temp
 
             //items
             //let items = vo.items
@@ -598,6 +762,7 @@ export default {
 
         refreshAndTriggerEvent: async function(from) {
             //console.log('methods refreshAndTriggerEvent', from)
+            //供外部呼叫之用
 
             let vo = this
 

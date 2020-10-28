@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>WIconSvg - Documentation</title>
+    <title>WTreeIconCheckbox - Documentation</title>
     
     
     <script src="scripts/prettify/prettify.js"></script>
@@ -32,7 +32,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">WIconSvg</h1>
+    <h1 class="page-title">WTreeIconCheckbox</h1>
     
 
     
@@ -70,41 +70,53 @@
     </tr>
     </thead>
     <tbody><tr>
-        <td><code>color</code></td>
+        <td><code>mode</code></td>
         <td>String</td>
-        <td><code>'grey darken-1'</code></td>
+        <td><code>'unchecked'</code></td>
         <td>No</td>
-        <td>輸入圖標顏色字串，預設'grey darken-1'</td>
+        <td>輸入勾選模式字串，可選'unchecked'、'checked'、'checkedPartially'，預設'unchecked'</td>
     </tr><tr>
-        <td><code>colorHover</code></td>
+        <td><code>editable</code></td>
+        <td>Boolean</td>
+        <td><code>true</code></td>
+        <td>No</td>
+        <td>輸入是否為編輯模式，預設true</td>
+    </tr><tr>
+        <td><code>uncheckedColor</code></td>
         <td>String</td>
-        <td><code>'grey darken-3'</code></td>
+        <td><code>'grey darken-2'</code></td>
         <td>No</td>
-        <td>輸入滑鼠移入圖標顏色字串，預設'grey darken-3'</td>
+        <td>輸入未勾選時顏色字串，預設'grey darken-2'</td>
     </tr><tr>
-        <td><code>sizeOriginal</code></td>
-        <td>Number</td>
-        <td><code>24</code></td>
-        <td>No</td>
-        <td>輸入svg原始尺寸浮點數，預設24</td>
-    </tr><tr>
-        <td><code>size</code></td>
-        <td>Number</td>
-        <td><code>24</code></td>
-        <td>No</td>
-        <td>輸入圖標欲顯示的尺寸浮點數，預設24</td>
-    </tr><tr>
-        <td><code>path</code></td>
-        <td>String|Array</td>
-        <td><code>''</code></td>
-        <td>No</td>
-        <td>輸入svg path字串，預設''</td>
-    </tr><tr>
-        <td><code>styleTransition</code></td>
+        <td><code>uncheckedDisabledColor</code></td>
         <td>String</td>
-        <td><code>'all 0.5s linear'</code></td>
+        <td><code>'grey'</code></td>
         <td>No</td>
-        <td>輸入圖標style設定transition字串，預設'all 0.5s linear'</td>
+        <td>輸入禁用時未勾選時顏色字串，預設'grey'</td>
+    </tr><tr>
+        <td><code>checkedColor</code></td>
+        <td>String</td>
+        <td><code>'blue darken-3'</code></td>
+        <td>No</td>
+        <td>輸入勾選時顏色字串，預設'blue darken-3'</td>
+    </tr><tr>
+        <td><code>checkedDisabledColor</code></td>
+        <td>String</td>
+        <td><code>'grey'</code></td>
+        <td>No</td>
+        <td>輸入禁用時勾選時顏色字串，預設'grey'</td>
+    </tr><tr>
+        <td><code>checkedPartiallyColor</code></td>
+        <td>String</td>
+        <td><code>'blue darken-3'</code></td>
+        <td>No</td>
+        <td>輸入部份勾選時(子節點任一有勾選但非全部勾選)顏色字串，預設'blue darken-3'</td>
+    </tr><tr>
+        <td><code>checkedPartiallyDisabledColor</code></td>
+        <td>String</td>
+        <td><code>'grey'</code></td>
+        <td>No</td>
+        <td>輸入禁用部份勾選時(子節點任一有勾選但非全部勾選)顏色字串，預設'grey'</td>
     </tr></tbody>
 </table>
 

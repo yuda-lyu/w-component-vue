@@ -7,7 +7,7 @@
         :changeColors="changeColors"
         :changeFilterKeyWords="changeFilterKeyWords"
         @change="changeScrollInfor"
-        @toggleItemsEnd="toggleItemsEnd"
+        @after-toggle-items="afterToggleItems"
     >
 
         <template v-for="(item,kitem) in useItems">
@@ -19,7 +19,7 @@
                 :iconColor="iconColor"
                 :keyColor="keyColor"
                 :keyNumbersColor="keyNumbersColor"
-                @toggleItems="toggleItems"
+                @toggle-items="toggleItems"
             ></WJsonViewCore>
         </template>
 
@@ -37,6 +37,7 @@ import get from 'lodash/get'
 import size from 'lodash/size'
 import keys from 'lodash/keys'
 import last from 'lodash/last'
+import cloneDeep from 'lodash/cloneDeep'
 import isNumber from 'lodash/isNumber'
 import isString from 'lodash/isString'
 import isBoolean from 'lodash/isBoolean'
@@ -44,7 +45,7 @@ import isBoolean from 'lodash/isBoolean'
 // import isObject from 'lodash/isObject' //會誤判function為object
 import isFunction from 'lodash/isFunction'
 import toString from 'lodash/toString'
-import toInteger from 'lodash/toInteger'
+import cint from 'wsemi/src/cint.mjs'
 import isarr from 'wsemi/src/isarr.mjs'
 import isobj from 'wsemi/src/isobj.mjs'
 import sep from 'wsemi/src/sep.mjs'
@@ -63,7 +64,7 @@ let gm = globalMemory()
 
 
 /**
- * @vue-prop {*} data 輸入資料陣列或物件
+ * @vue-prop {Array|Object} [data={}] 輸入資料陣列或物件，預設{}
  * @vue-prop {Number} [viewHeightMax=400] 輸入顯示區最大高度，單位為px，預設400
  * @vue-prop {Number} [itemMinHeight=24] 輸入各元素顯示高度，單位為px，預設24，會於真實顯示後自動更新高度
  * @vue-prop {Number} [itemsPreload=5] 輸入上下方預先載入元素數量，預設5
@@ -85,7 +86,10 @@ export default {
         WJsonViewCore,
     },
     props: {
-        data: {},
+        data: {
+            type: [Array, Object],
+            default: () => {},
+        },
         filterKeywords: {
             type: String,
             default: '',
@@ -149,16 +153,15 @@ export default {
     },
     data: function() {
         return {
-            //itemDiv的style記得給width:100%，因ie11的flex內文字會自動撐開版面導致不會換行
             mmkey: null,
             useColors: {},
-            changeDisplayChildren: true, //是否有變更displayChildren
-            changeDisplayChildrenIndex: null, //變更displayChildren的item指標
             changeHeight: true, //是否有變更高度, 預設true使一開始能強制計算各節點高度
+            changeDisplay: true, //是否有變更displayChildren
+            changeDisplayIndex: null, //變更displayChildren的item指標
             changeFilter: false, //是否有變更過濾關鍵字
-            toggling: false, //是否顯隱節點中
-            scrollRatio: 0, //捲動比例
             lineNumberWidth: 0, //列號區寬度
+            toggling: false, //上鎖afterToggleItems, 是否顯隱節點中
+            scrollRatio: 0, //捲動比例
             scrollInfor: null, //目前捲軸資訊
             toggleInfor: {}, //之前捲軸位置資訊物件
             itemsHeight: 0, //儲存全部項目高度
@@ -403,14 +406,11 @@ export default {
             }
             let indEnd = Math.min(indEndActual + vo.itemsPreload, n - 1)
 
-            // //delayShow
-            // let delayShow = false
-            // let m = size(vo.useItems)
-            // if (m > 0) {
-            //     let bIndexStart = vo.useItems[0].index === indStart
-            //     let bIndexEnd = vo.useItems[m - 1].index === indEndActual
-            //     delayShow = bIndexStart && bIndexEnd
-            // }
+            // //kpDelayShow
+            // let kpDelayShow = {}
+            // each(vo.useItems, (v) => {
+            //     kpDelayShow[v.index] = true
+            // })
 
             //useItems
             let useItems = []
@@ -421,7 +421,7 @@ export default {
                 if (v.show && v.filterShow) {
                     v.screenY = v.y - vo.scrollInfor.t //換算成實際顯示y向的px位置
                     v.nowShow = k >= indStartActual //顯示區下方之預載節點都直接顯示供重算高度
-                    //v.delayShow = delayShow //起訖指標相同才直接顯示, 否則就採用延遲顯示
+                    //v.delayShow = kpDelayShow[k] === true //已經顯示的節點就直接顯示, 否則delayShow=false就是延遲顯示
                     useItems.push(v)
                 }
             }
@@ -457,12 +457,12 @@ export default {
                 }
                 return true
             }
-            if (vo.changeDisplayChildren) {
+            if (vo.changeDisplay) {
 
                 //check
                 let indexClick = 0
-                if (vo.changeDisplayChildrenIndex !== null) {
-                    indexClick = vo.changeDisplayChildrenIndex
+                if (vo.changeDisplayIndex !== null) {
+                    indexClick = vo.changeDisplayIndex
                 }
 
                 //update show
@@ -531,15 +531,15 @@ export default {
 
             }
 
-            //update height
+            //check changeHeight
             each(vo.$refs.wjvc, (cmp) => {
                 let v = cmp.$el
                 if (v.getAttribute) {
                     let nowShow = v.getAttribute('nowShow')
                     if (nowShow) {
-                        let index = toInteger(v.getAttribute('index'))
+                        let index = cint(v.getAttribute('index'))
                         if (index >= 0 && index < n) {
-                            let h = v.offsetHeight
+                            let h = v.offsetHeight //元素不要用margin避免計算高度有誤差
                             if (items[index].height !== h) {
                                 items[index].height = h
                                 vo.changeHeight = true
@@ -555,7 +555,7 @@ export default {
             }
 
             //check
-            let b = vo.changeHeight || vo.changeDisplayChildren || vo.changeFilter
+            let b = vo.changeHeight || vo.changeDisplay || vo.changeFilter
             if (b) {
 
                 //update y
@@ -591,8 +591,8 @@ export default {
                 }
 
                 //reset
-                vo.changeDisplayChildren = false
-                vo.changeDisplayChildrenIndex = null
+                vo.changeDisplay = false
+                vo.changeDisplayIndex = null
                 vo.changeHeight = false
                 vo.changeFilter = false
 
@@ -859,7 +859,7 @@ export default {
 
             let vo = this
 
-            //luck
+            //lock
             vo.toggling = true
 
             //items
@@ -869,26 +869,27 @@ export default {
             //toggle, 先變更displayChildren使頁面icon動畫先更新
             items[item.index].displayChildren = !items[item.index].displayChildren
 
-            //changeDisplayChildren, changeDisplayChildrenIndex
-            vo.changeDisplayChildren = true
-            vo.changeDisplayChildrenIndex = item.index
+            //changeDisplay, changeDisplayIndex
+            vo.changeDisplay = true
+            vo.changeDisplayIndex = item.index
 
             //save toggleInfor
-            vo.toggleInfor = {
-                ...vo.scrollInfor,
-                itemClickY: items[item.index].y, //點擊時, 點擊節點的頂端y座標
-            }
+            // vo.toggleInfor = {
+            //     ...vo.scrollInfor,
+            //     itemClickY: items[item.index].y, //點擊時, 點擊節點的頂端y座標
+            // }
+            vo.toggleInfor = cloneDeep(vo.scrollInfor)
 
             //refresh
             await vo.refresh('toggleItems')
 
             //triggerEvent, 上鎖階段呼叫自行創建的toggleItemsEnd事件
-            vo.triggerEvent('toggleItemsEnd')
+            vo.triggerEvent('after-toggle-items')
 
         },
 
-        toggleItemsEnd: async function(e) {
-            //console.log('methods toggleItemsEnd', e)
+        afterToggleItems: async function(e) {
+            //console.log('methods afterToggleItems', e)
 
             let vo = this
 
@@ -938,7 +939,7 @@ export default {
             vo.scrollRatio = r
 
             //triggerEvent
-            vo.triggerEvent()
+            vo.triggerEvent(null)
 
             //unluck
             vo.toggling = false

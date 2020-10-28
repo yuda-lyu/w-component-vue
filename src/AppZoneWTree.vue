@@ -17,35 +17,395 @@
                 ></demolink>
 
                 <w-tree
-                    :treeItems="WTree.option1.items"
+                    style="width:600px; border:1px solid #ddd;"
+                    :items="WTree.option.items"
+                ></w-tree>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-tree'"
+                    :casename="'viewHeightMax'"
+                    :kind="'nokind'"
+                    :shell="'pure'"
+                ></demolink>
+
+                <w-tree
+                    style="width:600px; border:1px solid #ddd;"
+                    :viewHeightMax="300"
+                    :items="WTree.option.items"
+                ></w-tree>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-tree'"
+                    :casename="'indent'"
+                    :kind="'nokind'"
+                    :shell="'pure'"
+                ></demolink>
+
+                <w-tree
+                    style="width:600px; border:1px solid #ddd;"
+                    :indent="15"
+                    :items="WTree.option.items"
+                ></w-tree>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-tree'"
+                    :casename="'iconColor'"
+                    :kind="'nokind'"
+                    :shell="'pure'"
+                ></demolink>
+
+                <w-tree
+                    style="width:600px; border:1px solid #ddd;"
+                    :iconColor="'#d39a70'"
+                    :items="WTree.option.items"
+                ></w-tree>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-tree'"
+                    :casename="'keyPrimary & keyText & keyChildren'"
+                    :kind="'nokind'"
+                    :shell="'pure'"
+                ></demolink>
+
+                <w-tree
+                    style="width:600px; border:1px solid #ddd;"
+                    :keyPrimary="'sid'"
+                    :keyText="'name'"
+                    :keyChildren="'packages'"
+                    :items="WTree.optionKeys.items"
+                ></w-tree>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-tree'"
+                    :casename="'slot'"
+                    :kind="'nokind'"
+                    :shell="'pure'"
+                ></demolink>
+
+                <w-tree
+                    style="width:600px; border:1px solid #ddd;"
+                    :items="WTree.option.items"
                 >
-                    <template v-slot:item="props">
-                        <div style="padding:7px;">
-                            <div style="display:table-cell; white-space:nowrap; padding-right:10px;">
-                                <v-chip
-                                    style="margin-right:5px;"
-                                    small
-                                    label
-                                    dark
-                                    color="purple darken-1"
-                                >
-                                    {{props.node.id}}
-                                </v-chip>
-                                <v-chip
-                                    small
-                                    label
-                                    color="blue lighten-4"
-                                >
-                                    Lv{{(props.node.nk.length+1)/2}}
-                                </v-chip>
+                    <template v-slot:block="props">
+                        <div style="display:flex;">
+
+                            <div style="display:flex; align-items:center; padding-right:5px;" v-if="props.data.avatar">
+                                <img style="border-radius:50%; width:24px; height:24px;" :src="props.data.avatar">
                             </div>
-                            <div style="display:table-cell;">
-                                {{props.node.name}}
-                                <div style="font-size:0.8rem; color:#aaa;">{{props.node}}</div>
+
+                            <div style="display:flex; align-items:center; padding-right:5px;" v-if="props.data.icon">
+                                <v-icon size="18" color="deep-orange">{{props.data.icon}}</v-icon>
                             </div>
+
+                            <div style="padding:5px 0px;">
+                                <div style="display:flex; align-items:center;">
+                                    <div style="margin-right:7px;">{{props.data.text}}</div>
+                                    <div style="padding:0px 9px; font-size:0.7rem; color:#fff; border-radius:30px; background:#f26;" v-if="props.data.key">{{props.data.key}}</div>
+                                </div>
+                                <div style="padding-right:20px;" v-if="props.data.msg">
+                                    <div style="font-size:0.7rem; color:#999; text-indent:1rem; padding:12px 18px; background:#fefafa;">{{props.data.msg}}</div>
+                                </div>
+                            </div>
+
                         </div>
+
                     </template>
                 </w-tree>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-tree'"
+                    :casename="'selectable'"
+                    :kind="'nokind'"
+                    :shell="'pure'"
+                ></demolink>
+
+                <div style="display:flex;">
+
+                    <w-tree
+                        style="width:600px; min-width:600px; border:1px solid #ddd;"
+                        :items="WTree.option.items"
+                        :selectable="true"
+                        :selections.sync="WTree.option.selections"
+                    >
+                        <template v-slot:block="props">
+                            <div style="display:flex;">
+
+                                <div style="display:flex; align-items:center; padding-right:5px;" v-if="props.data.avatar">
+                                    <img style="border-radius:50%; width:24px; height:24px;" :src="props.data.avatar">
+                                </div>
+
+                                <div style="display:flex; align-items:center; padding-right:5px;" v-if="props.data.icon">
+                                    <v-icon size="18" color="deep-orange">{{props.data.icon}}</v-icon>
+                                </div>
+
+                                <div style="padding:5px 0px;">
+                                    <div style="display:flex; align-items:center;">
+                                        <div style="margin-right:7px;">
+                                            {{props.data.text}}
+                                            <div style="display:inline-block; color:#26f; font-size:0.7rem;">[id:{{props.data.id}}]</div>
+                                        </div>
+                                        <div style="padding:0px 9px; font-size:0.7rem; color:#fff; border-radius:30px; background:#f26;" v-if="props.data.key">{{props.data.key}}</div>
+                                    </div>
+                                    <div style="padding-right:20px;" v-if="props.data.msg">
+                                        <div style="font-size:0.7rem; color:#999; text-indent:1rem; padding:12px 18px; background:#fefafa;">{{props.data.msg}}</div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </template>
+                    </w-tree>
+
+                    <div style="padding:0px 20px; height:402px; overflow-y:auto; border:1px solid #ddd; border-left-width:0px;">
+                        <div style="margin-bottom:5px;">selections: </div>
+                        <pre style="font-size:0.7rem;">{{JSON.stringify(showSelection(WTree.option.selections),null,4)}}</pre>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-tree'"
+                    :casename="'locked & selectable'"
+                    :kind="'nokind'"
+                    :shell="'pure'"
+                ></demolink>
+
+                <div style="display:flex;">
+
+                    <w-tree
+                        style="width:600px; min-width:600px; border:1px solid #ddd;"
+                        :items="WTree.optionLocked.items"
+                        :selectable="true"
+                        :selections.sync="WTree.optionLocked.selections"
+                        :locked="'locked'"
+                    >
+                        <template v-slot:block="props">
+                            <div style="display:flex;">
+
+                                <div style="display:flex; align-items:center; padding-right:5px;" v-if="props.data.avatar">
+                                    <img style="border-radius:50%; width:24px; height:24px;" :src="props.data.avatar">
+                                </div>
+
+                                <div style="display:flex; align-items:center; padding-right:5px;" v-if="props.data.icon">
+                                    <v-icon size="18" color="deep-orange">{{props.data.icon}}</v-icon>
+                                </div>
+
+                                <div style="padding:5px 0px;">
+                                    <div style="display:flex; align-items:center;">
+                                        <div style="margin-right:7px;">
+                                            {{props.data.text}}
+                                            <div style="display:inline-block; color:#26f; font-size:0.7rem;">[id:{{props.data.id}}]</div>
+                                        </div>
+                                        <div style="padding:0px 9px; font-size:0.7rem; color:#fff; border-radius:30px; background:#f26;" v-if="props.data.key">{{props.data.key}}</div>
+                                    </div>
+                                    <div style="padding-right:20px;" v-if="props.data.msg">
+                                        <div style="font-size:0.7rem; color:#999; text-indent:1rem; padding:12px 18px; background:#fefafa;">{{props.data.msg}}</div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </template>
+                    </w-tree>
+
+                    <div style="padding:0px 20px; height:402px; overflow-y:auto; border:1px solid #ddd; border-left-width:0px;">
+                        <div style="margin-bottom:5px;">selections: </div>
+                        <pre style="font-size:0.7rem;">{{JSON.stringify(showSelection(WTree.optionLocked.selections),null,4)}}</pre>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-tree'"
+                    :casename="'iconUncheckedColor & iconUncheckedDisabledColor & iconCheckedColor & iconCheckedDisabledColor & iconCheckedPartiallyColor & iconCheckedPartiallyDisabledColor & locked & selectable'"
+                    :kind="'nokind'"
+                    :shell="'pure'"
+                ></demolink>
+
+                <div style="display:flex;">
+
+                    <w-tree
+                        style="width:600px; min-width:600px; border:1px solid #ddd;"
+                        :items="WTree.optionLocked.items"
+                        :selectable="true"
+                        :selections.sync="WTree.optionLocked.selections"
+                        :locked="'locked'"
+                        :iconUncheckedColor="'grey darken-1'"
+                        :iconUncheckedDisabledColor="'orange lighten-4'"
+                        :iconCheckedColor="'orange darken-2'"
+                        :iconCheckedDisabledColor="'orange lighten-4'"
+                        :iconCheckedPartiallyColor="'orange lighten-2'"
+                        :iconCheckedPartiallyDisabledColor="'orange lighten-4'"
+                    >
+                        <template v-slot:block="props">
+                            <div style="display:flex;">
+
+                                <div style="display:flex; align-items:center; padding-right:5px;" v-if="props.data.avatar">
+                                    <img style="border-radius:50%; width:24px; height:24px;" :src="props.data.avatar">
+                                </div>
+
+                                <div style="display:flex; align-items:center; padding-right:5px;" v-if="props.data.icon">
+                                    <v-icon size="18" color="deep-orange">{{props.data.icon}}</v-icon>
+                                </div>
+
+                                <div style="padding:5px 0px;">
+                                    <div style="display:flex; align-items:center;">
+                                        <div style="margin-right:7px;">
+                                            {{props.data.text}}
+                                            <div style="display:inline-block; color:#26f; font-size:0.7rem;">[id:{{props.data.id}}]</div>
+                                        </div>
+                                        <div style="padding:0px 9px; font-size:0.7rem; color:#fff; border-radius:30px; background:#f26;" v-if="props.data.key">{{props.data.key}}</div>
+                                    </div>
+                                    <div style="padding-right:20px;" v-if="props.data.msg">
+                                        <div style="font-size:0.7rem; color:#999; text-indent:1rem; padding:12px 18px; background:#fefafa;">{{props.data.msg}}</div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </template>
+                    </w-tree>
+
+                    <div style="padding:0px 20px; height:402px; overflow-y:auto; border:1px solid #ddd; border-left-width:0px;">
+                        <div style="margin-bottom:5px;">selections: </div>
+                        <pre style="font-size:0.7rem;">{{JSON.stringify(showSelection(WTree.optionLocked.selections),null,4)}}</pre>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-tree'"
+                    :casename="'filterKeywords & searchEmpty & selectable'"
+                    :kind="'nokind'"
+                    :shell="'pure'"
+                ></demolink>
+
+                <div style="margin-bottom:10px;">
+                    <span style="padding-right:10px;">Search :</span>
+                    <input
+                        style="padding:2px 15px; color:#666; border:1px solid #fca; border-radius:30px; outline:none;"
+                        v-model="WTree.option.keywords"
+                    />
+                </div>
+
+                <div style="display:flex;">
+
+                    <w-tree
+                        style="width:600px; min-width:600px; border:1px solid #ddd;"
+                        :items="WTree.option.items"
+                        :selectable="true"
+                        :selections.sync="WTree.option.selections"
+                        :filterKeywords="WTree.option.keywords"
+                        :searchEmpty="'There are no items to show...'"
+                    >
+                        <template v-slot:block="props">
+                            <div style="display:flex;">
+
+                                <div style="display:flex; align-items:center; padding-right:5px;" v-if="props.data.avatar">
+                                    <img style="border-radius:50%; width:24px; height:24px;" :src="props.data.avatar">
+                                </div>
+
+                                <div style="display:flex; align-items:center; padding-right:5px;" v-if="props.data.icon">
+                                    <v-icon size="18" color="deep-orange">{{props.data.icon}}</v-icon>
+                                </div>
+
+                                <div style="padding:5px 0px;">
+                                    <div style="display:flex; align-items:center;">
+                                        <div style="margin-right:7px;">
+                                            {{props.data.text}}
+                                            <div style="display:inline-block; color:#26f; font-size:0.7rem;">[id:{{props.data.id}}]</div>
+                                        </div>
+                                        <div style="padding:0px 9px; font-size:0.7rem; color:#fff; border-radius:30px; background:#f26;" v-if="props.data.key">{{props.data.key}}</div>
+                                    </div>
+                                    <div style="padding-right:20px;" v-if="props.data.msg">
+                                        <div style="font-size:0.7rem; color:#999; text-indent:1rem; padding:12px 18px; background:#fefafa;">{{props.data.msg}}</div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </template>
+                    </w-tree>
+
+                    <div style="padding:0px 20px; height:402px; overflow-y:auto; border:1px solid #ddd; border-left-width:0px;">
+                        <div style="margin-bottom:5px;">selections: </div>
+                        <pre style="font-size:0.7rem;">{{JSON.stringify(showSelection(WTree.option.selections),null,4)}}</pre>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-tree'"
+                    :casename="'large data (50,000 items)'"
+                    :kind="'nokind'"
+                    :shell="'pure'"
+                ></demolink>
+
+                <div style="display:flex;">
+
+                    <w-tree
+                        style="width:600px; min-width:600px; border:1px solid #ddd;"
+                        :items="WTree.optionLarge.items"
+                        :selectable="true"
+                        :selections.sync="WTree.optionLarge.selections"
+                        :filterKeywords="WTree.optionLarge.keywords"
+                    >
+                        <template v-slot:block="props">
+                            <div style="display:inline-block; margin-right:7px;">
+                                {{props.data.text}}
+                            </div>
+                            <div style="display:inline-block; color:#26f; font-size:0.7rem;">
+                                [id:{{props.data.id}}]
+                            </div>
+                        </template>
+                    </w-tree>
+
+                    <div style="padding:0px 20px; height:402px; overflow-y:auto; border:1px solid #ddd; border-left-width:0px;">
+                        <div style="margin-bottom:5px;">selections: </div>
+                        <pre style="font-size:0.7rem;">{{JSON.stringify(showSelection(WTree.optionLarge.selections),null,4)}}</pre>
+                    </div>
+
+                </div>
 
             </div>
 
@@ -59,6 +419,27 @@
 <script>
 import demolink from './components/demolink.vue'
 import WTree from './components/WTree.vue'
+
+
+// let data = (function (n) {
+//     let msg = 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis praesentium cumque magnam odio iure quidem, quod illum numquam possimus obcaecati commodi minima assumenda consectetur culpa fuga nulla ullam. In, libero.'
+//     let cItems = '{"id":"{n+1}","text":"Satisfied customers","avatar":"https://cdn.vuetifyjs.com/images/lists/1.jpg","children":[{"id":"{n+2}","text":"Good food","icon":"fas fa-utensils","children":[{"id":"{n+3}","text":"Quality ingredients","children":[{"id":"{n+4}","text":"Character","key":"Genus","msg":"{msg}"},{"id":"{n+5}","text":"Fabric","key":"Genus","msg":"{msg}"}]},{"id":"{n+6}","text":"Good recipe","key":"Family","msg":"{msg}"}]},{"id":"{n+7}","text":"Good service","icon":"fas fa-concierge-bell","children":[{"id":"{n+8}","text":"Prompt attention","key":"Order","msg":"{msg}"},{"id":"{n+9}","text":"Professional waiter","key":"Order","children":[{"id":"{n+10}","text":"Others customers","avatar":"https://cdn.vuetifyjs.com/images/lists/2.jpg","children":[{"id":"{n+11}","text":"Conformance to requirements","key":"Phylum"},{"id":"{n+12}","text":"Fitness for use","children":[{"id":"{n+13}","text":"Refers","key":"Expanded","msg":"{msg}"}]},{"id":"{n+14}","text":"Need to care","children":[{"id":"{n+15}","text":"Models","key":"Disables","msg":"{msg}"}]}]}]}]},{"id":"{n+16}","text":"Pleasant surroundings","icon":"fas fa-camera-retro","children":[{"id":"{n+17}","text":"Happy atmosphere","key":"Class","msg":"{msg}"},{"id":"{n+18}","text":"Good table presentation","key":"Class","msg":"{msg}"},{"id":"{n+19}","text":"Pleasing decor","key":"Class","msg":"{msg}"},{"id":"{n+20}","text":"Special experience","key":"Class","msg":"{msg}"}]}]}'
+//     function getOneObj(j) {
+//         let t = cItems
+//         t = t.replace(new RegExp('{msg}', 'g'), msg)
+//         for (let i = 1; i <= 20; i++) {
+//             t = t.replace(`{n+${i}}`, `${j + i}`)
+//         }
+//         return JSON.parse(t)
+//     }
+//     let rs = []
+//     for (let j = 0; j < n; j++) {
+//         let r = getOneObj(j * 20)
+//         rs.push(r)
+//     }
+//     return rs
+// })(100)
+// console.log(data)
 
 
 export default {
@@ -75,68 +456,177 @@ export default {
         },
     },
     data: function() {
-        let items = [
-            {
-                id: 1,
-                name: 'Display',
-                children: [
-                    { id: 2, name: 'Interpolate' },
-                    {
-                        id: 3,
-                        name: 'Graph',
-                        children: [
-                            { id: 4, name: 'Animate' },
-                        ],
-                    },
-                ],
-            },
-            {
-                id: 5,
-                name: 'Analysis',
-            },
-        ]
         return {
             'WTree': {
-                'option1': {
+                'option': {
+                    keywords: 'abr care att',
+                    selections: [
+                        { 'id': 5 },
+                        { 'id': 9 },
+                        { 'id': 18 },
+                        //勾選id:18會自動再加入id:19
+                    ],
                     items: [
                         {
                             id: 1,
-                            name: 'Applications :',
-                            children: [
-                                { id: 2, name: 'Calendar : app' },
-                                { id: 3, name: 'Chrome : app' },
-                                { id: 4, name: 'Webstorm : app' },
-                            ],
-                        },
-                        {
-                            id: 5,
-                            name: 'Documents :',
+                            text: 'Satisfied customers',
+                            avatar: 'https://cdn.vuetifyjs.com/images/lists/1.jpg',
                             children: [
                                 {
-                                    id: 6,
-                                    name: 'vuetify :',
+                                    id: 2,
+                                    text: 'Good food',
+                                    icon: 'fas fa-utensils',
                                     children: [
                                         {
-                                            id: 7,
-                                            name: 'src :',
+                                            id: 3,
+                                            text: 'Quality ingredients',
                                             children: [
-                                                { id: 8, name: 'index : ts' },
-                                                { id: 9, name: 'bootstrap : ts' },
-                                            ],
+                                                {
+                                                    id: 4,
+                                                    text: 'Character',
+                                                    key: 'Genus',
+                                                    msg: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis praesentium cumque magnam odio iure quidem, quod illum numquam possimus obcaecati commodi minima assumenda consectetur culpa fuga nulla ullam. In, libero.',
+                                                },
+                                                {
+                                                    id: 5,
+                                                    text: 'Fabric',
+                                                    key: 'Genus',
+                                                    msg: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis praesentium cumque magnam odio iure quidem, quod illum numquam possimus obcaecati commodi minima assumenda consectetur culpa fuga nulla ullam. In, libero.',
+                                                }
+                                            ]
                                         },
-                                    ],
+                                        {
+                                            id: 6,
+                                            text: 'Good recipe',
+                                            key: 'Family',
+                                            msg: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis praesentium cumque magnam odio iure quidem, quod illum numquam possimus obcaecati commodi minima assumenda consectetur culpa fuga nulla ullam. In, libero.',
+                                        }
+                                    ]
+                                },
+                                {
+                                    id: 7,
+                                    text: 'Good service',
+                                    icon: 'fas fa-concierge-bell',
+                                    children: [
+                                        {
+                                            id: 8,
+                                            text: 'Prompt attention',
+                                            key: 'Order',
+                                            msg: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis praesentium cumque magnam odio iure quidem, quod illum numquam possimus obcaecati commodi minima assumenda consectetur culpa fuga nulla ullam. In, libero.',
+                                        },
+                                        {
+                                            id: 9,
+                                            text: 'Professional waiter',
+                                            key: 'Order',
+                                            msg: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis praesentium cumque magnam odio iure quidem, quod illum numquam possimus obcaecati commodi minima assumenda consectetur culpa fuga nulla ullam. In, libero.',
+                                        }
+                                    ]
                                 },
                                 {
                                     id: 10,
-                                    name: 'material2 :',
+                                    text: 'Pleasant surroundings',
+                                    icon: 'fas fa-camera-retro',
                                     children: [
                                         {
                                             id: 11,
+                                            text: 'Happy atmosphere',
+                                            key: 'Class',
+                                            msg: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis praesentium cumque magnam odio iure quidem, quod illum numquam possimus obcaecati commodi minima assumenda consectetur culpa fuga nulla ullam. In, libero.',
+                                        },
+                                        {
+                                            id: 12,
+                                            text: 'Good table presentation',
+                                            key: 'Class',
+                                            msg: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis praesentium cumque magnam odio iure quidem, quod illum numquam possimus obcaecati commodi minima assumenda consectetur culpa fuga nulla ullam. In, libero.',
+                                        },
+                                        {
+                                            id: 13,
+                                            text: 'Pleasing decor',
+                                            key: 'Class',
+                                            msg: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis praesentium cumque magnam odio iure quidem, quod illum numquam possimus obcaecati commodi minima assumenda consectetur culpa fuga nulla ullam. In, libero.',
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            id: 14,
+                            text: 'Others customers',
+                            avatar: 'https://cdn.vuetifyjs.com/images/lists/2.jpg',
+                            children: [
+                                {
+                                    id: 15,
+                                    text: 'Conformance to requirements',
+                                    key: 'Phylum',
+                                },
+                                {
+                                    id: 16,
+                                    text: 'Fitness for use',
+                                    children: [
+                                        {
+                                            id: 17,
+                                            text: 'Refers',
+                                            key: 'Expanded',
+                                            msg: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis praesentium cumque magnam odio iure quidem, quod illum numquam possimus obcaecati commodi minima assumenda consectetur culpa fuga nulla ullam. In, libero.',
+                                        }
+                                    ]
+                                },
+                                {
+                                    id: 18,
+                                    text: 'Need to care',
+                                    children: [
+                                        {
+                                            id: 19,
+                                            text: 'Models',
+                                            key: 'Disables',
+                                            msg: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis praesentium cumque magnam odio iure quidem, quod illum numquam possimus obcaecati commodi minima assumenda consectetur culpa fuga nulla ullam. In, libero.',
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ],
+                },
+                'optionKeys': {
+                    items: [
+                        {
+                            sid: 's1',
+                            name: 'Applications :',
+                            packages: [
+                                { sid: 's2', name: 'Calendar : app' },
+                                { sid: 's3', name: 'Chrome : app' },
+                                { sid: 's4', name: 'Webstorm : app' },
+                            ],
+                        },
+                        {
+                            sid: 's5',
+                            name: 'Documents :',
+                            packages: [
+                                {
+                                    sid: 's6',
+                                    name: 'vuetify :',
+                                    packages: [
+                                        {
+                                            sid: 's7',
                                             name: 'src :',
-                                            children: [
-                                                { id: 12, name: 'v-btn : ts' },
-                                                { id: 13, name: 'v-card : ts' },
-                                                { id: 14, name: 'v-window : ts' },
+                                            packages: [
+                                                { sid: 's8', name: 'index : ts' },
+                                                { sid: 's9', name: 'bootstrap : ts' },
+                                            ],
+                                        },
+                                    ],
+                                },
+                                {
+                                    sid: 's10',
+                                    name: 'material2 :',
+                                    packages: [
+                                        {
+                                            sid: 's11',
+                                            name: 'src :',
+                                            packages: [
+                                                { sid: 's12', name: 'v-btn : ts' },
+                                                { sid: 's13', name: 'v-card : ts' },
+                                                { sid: 's14', name: 'v-window : ts' },
                                             ],
                                         },
                                     ],
@@ -144,89 +634,195 @@ export default {
                             ],
                         },
                         {
-                            id: 15,
+                            sid: 's15',
                             name: 'Downloads :',
-                            children: [
-                                { id: 16, name: 'October : pdf' },
-                                { id: 17, name: 'November : pdf' },
-                                { id: 18, name: 'Tutorial : html' },
+                            packages: [
+                                { sid: 's16', name: 'October : pdf' },
+                                { sid: 's17', name: 'November : pdf' },
+                                { sid: 's18', name: 'Tutorial : html' },
                             ],
                         },
                         {
-                            id: 19,
+                            sid: 's19',
                             name: 'Videos :',
+                            packages: [
+                                {
+                                    sid: 's20',
+                                    name: 'Tutorials :',
+                                    packages: [
+                                        { sid: 's21', name: 'Basic layouts : mp4' },
+                                        { sid: 's22', name: 'Advanced techniques : mp4' },
+                                        { sid: 's23', name: 'All about app : dir' },
+                                    ],
+                                },
+                                { sid: 's24', name: 'Intro : mov' },
+                                { sid: 's25', name: 'Conference introduction : avi' },
+                            ],
+                        },
+                    ],
+                },
+                'optionLocked': {
+                    selections: [
+                        { 'id': 5 },
+                        { 'id': 9 },
+                        { 'id': 18 },
+                        //勾選id:18會自動再加入id:19
+                    ],
+                    items: [
+                        {
+                            id: 1,
+                            text: 'Satisfied customers',
+                            avatar: 'https://cdn.vuetifyjs.com/images/lists/1.jpg',
                             children: [
                                 {
-                                    id: 20,
-                                    name: 'Tutorials :',
+                                    id: 2,
+                                    locked: true,
+                                    text: 'Good food',
+                                    icon: 'fas fa-utensils',
                                     children: [
-                                        { id: 21, name: 'Basic layouts : mp4' },
-                                        { id: 22, name: 'Advanced techniques : mp4' },
-                                        { id: 23, name: 'All about app : dir' },
-                                    ],
+                                        {
+                                            id: 3,
+                                            text: 'Quality ingredients',
+                                            children: [
+                                                {
+                                                    id: 4,
+                                                    locked: true,
+                                                    text: 'Character',
+                                                    key: 'Genus',
+                                                    msg: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis praesentium cumque magnam odio iure quidem, quod illum numquam possimus obcaecati commodi minima assumenda consectetur culpa fuga nulla ullam. In, libero.',
+                                                },
+                                                {
+                                                    id: 5,
+                                                    text: 'Fabric',
+                                                    key: 'Genus',
+                                                    msg: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis praesentium cumque magnam odio iure quidem, quod illum numquam possimus obcaecati commodi minima assumenda consectetur culpa fuga nulla ullam. In, libero.',
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            id: 6,
+                                            text: 'Good recipe',
+                                            key: 'Family',
+                                            msg: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis praesentium cumque magnam odio iure quidem, quod illum numquam possimus obcaecati commodi minima assumenda consectetur culpa fuga nulla ullam. In, libero.',
+                                        }
+                                    ]
                                 },
-                                { id: 24, name: 'Intro : mov' },
-                                { id: 25, name: 'Conference introduction : avi' },
-                            ],
-                        },
-                    ],
-                },
-                'option2': {
-                    items: [
-                        {
-                            id: 1,
-                            name: 'Display',
-                            items: [
-                                { id: 2, name: 'Interpolate' },
                                 {
-                                    id: 3,
-                                    name: 'Graph',
-                                    items: [
-                                        { id: 4, name: 'Animate' },
-                                    ],
+                                    id: 7,
+                                    text: 'Good service',
+                                    icon: 'fas fa-concierge-bell',
+                                    children: [
+                                        {
+                                            id: 8,
+                                            text: 'Prompt attention',
+                                            key: 'Order',
+                                            msg: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis praesentium cumque magnam odio iure quidem, quod illum numquam possimus obcaecati commodi minima assumenda consectetur culpa fuga nulla ullam. In, libero.',
+                                        },
+                                        {
+                                            id: 9,
+                                            text: 'Professional waiter',
+                                            key: 'Order',
+                                            msg: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis praesentium cumque magnam odio iure quidem, quod illum numquam possimus obcaecati commodi minima assumenda consectetur culpa fuga nulla ullam. In, libero.',
+                                        }
+                                    ]
                                 },
-                            ],
+                                {
+                                    id: 10,
+                                    text: 'Pleasant surroundings',
+                                    icon: 'fas fa-camera-retro',
+                                    children: [
+                                        {
+                                            id: 11,
+                                            text: 'Happy atmosphere',
+                                            key: 'Class',
+                                            msg: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis praesentium cumque magnam odio iure quidem, quod illum numquam possimus obcaecati commodi minima assumenda consectetur culpa fuga nulla ullam. In, libero.',
+                                        },
+                                        {
+                                            id: 12,
+                                            text: 'Good table presentation',
+                                            key: 'Class',
+                                            msg: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis praesentium cumque magnam odio iure quidem, quod illum numquam possimus obcaecati commodi minima assumenda consectetur culpa fuga nulla ullam. In, libero.',
+                                        },
+                                        {
+                                            id: 13,
+                                            text: 'Pleasing decor',
+                                            key: 'Class',
+                                            msg: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis praesentium cumque magnam odio iure quidem, quod illum numquam possimus obcaecati commodi minima assumenda consectetur culpa fuga nulla ullam. In, libero.',
+                                        }
+                                    ]
+                                }
+                            ]
                         },
                         {
-                            id: 5,
-                            name: 'Analysis',
-                        },
-                    ]
-                },
-                'option3': {
-                    items: JSON.parse(JSON.stringify(items)),
-                },
-                'option4': {
-                    items: JSON.parse(JSON.stringify(items)),
-                },
-                'option5': {
-                    items: [
-                        {
-                            id: 1,
-                            name: 'A Smarter Way to Learn JavaScript: The new tech-assisted approach that requires half the effort',
-                        },
-                        {
-                            id: 2,
-                            name: 'Eloquent JavaScript: A Modern Introduction to Programming',
-                        },
-                        {
-                            id: 3,
-                            name: 'JavaScript & JQuery: Interactive Front-End Web Development',
-                        },
-                        {
-                            id: 4,
-                            name: 'JavaScript: The Good Parts',
-                        },
-                        {
-                            id: 5,
-                            name: 'Learn JavaScript VISUALLY',
-                        },
+                            id: 14,
+                            text: 'Others customers',
+                            avatar: 'https://cdn.vuetifyjs.com/images/lists/2.jpg',
+                            children: [
+                                {
+                                    id: 15,
+                                    text: 'Conformance to requirements',
+                                    key: 'Phylum',
+                                },
+                                {
+                                    id: 16,
+                                    text: 'Fitness for use',
+                                    children: [
+                                        {
+                                            id: 17,
+                                            text: 'Refers',
+                                            key: 'Expanded',
+                                            msg: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis praesentium cumque magnam odio iure quidem, quod illum numquam possimus obcaecati commodi minima assumenda consectetur culpa fuga nulla ullam. In, libero.',
+                                        }
+                                    ]
+                                },
+                                {
+                                    id: 18,
+                                    text: 'Need to care',
+                                    children: [
+                                        {
+                                            id: 19,
+                                            text: 'Models',
+                                            key: 'Disables',
+                                            msg: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis praesentium cumque magnam odio iure quidem, quod illum numquam possimus obcaecati commodi minima assumenda consectetur culpa fuga nulla ullam. In, libero.',
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
                     ],
+                },
+                'optionLarge': {
+                    keywords: '',
+                    selections: [],
+                    items: (function (n) {
+                        let msg = 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis praesentium cumque magnam odio iure quidem, quod illum numquam possimus obcaecati commodi minima assumenda consectetur culpa fuga nulla ullam. In, libero.'; let cItems = '{"id":"{n+1}","text":"Satisfied customers","avatar":"https://cdn.vuetifyjs.com/images/lists/1.jpg","children":[{"id":"{n+2}","text":"Good food","icon":"fas fa-utensils","children":[{"id":"{n+3}","text":"Quality ingredients","children":[{"id":"{n+4}","text":"Character","key":"Genus","msg":"{msg}"},{"id":"{n+5}","text":"Fabric","key":"Genus","msg":"{msg}"}]},{"id":"{n+6}","text":"Good recipe","key":"Family","msg":"{msg}"}]},{"id":"{n+7}","text":"Good service","icon":"fas fa-concierge-bell","children":[{"id":"{n+8}","text":"Prompt attention","key":"Order","msg":"{msg}"},{"id":"{n+9}","text":"Professional waiter","key":"Order","children":[{"id":"{n+10}","text":"Others customers","avatar":"https://cdn.vuetifyjs.com/images/lists/2.jpg","children":[{"id":"{n+11}","text":"Conformance to requirements","key":"Phylum"},{"id":"{n+12}","text":"Fitness for use","children":[{"id":"{n+13}","text":"Refers","key":"Expanded","msg":"{msg}"}]},{"id":"{n+14}","text":"Need to care","children":[{"id":"{n+15}","text":"Models","key":"Disables","msg":"{msg}"}]}]}]}]},{"id":"{n+16}","text":"Pleasant surroundings","icon":"fas fa-camera-retro","children":[{"id":"{n+17}","text":"Happy atmosphere","key":"Class","msg":"{msg}"},{"id":"{n+18}","text":"Good table presentation","key":"Class","msg":"{msg}"},{"id":"{n+19}","text":"Pleasing decor","key":"Class","msg":"{msg}"},{"id":"{n+20}","text":"Special experience","key":"Class","msg":"{msg}"}]}]}'; function getOneObj(j) {
+                            let t = cItems; t = t.replace(new RegExp('{msg}', 'g'), msg); for (let i = 1; i <= 20; i++) {
+                                t = t.replace('{n+'.concat(i, '}'), ''.concat(j + i))
+                            } return JSON.parse(t)
+                        } let rs = []; for (let j = 0; j < n; j++) {
+                            let r = getOneObj(j * 20); rs.push(r)
+                        } return rs
+                    })(2500), //2500, 1500, 100
                 },
             },
             'actions': [
             ],
         }
+    },
+    methods: {
+        showSelection: function(selections) {
+            let ss = {}
+            for (let i = 0; i < selections.length; i++) {
+                let s = JSON.parse(JSON.stringify(selections[i]))
+                delete s.msg
+                ss[1e6 + s.id] = s
+            }
+            let t = []
+            Object.keys(ss).sort().forEach(function(key) {
+                t.push(ss[key])
+            })
+            return t
+        },
     },
 }
 </script>

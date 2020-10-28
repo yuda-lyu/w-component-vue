@@ -73,7 +73,7 @@
     <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.js"></script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@1.5.11/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@1.5.12/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -117,9 +117,8 @@
                 class="item"
             >borderRadiusStyle & borderWidth & borderColor & borderColorHover & no shadow</div>
 
+            <!-- 用display:flex避免編譯後因換行符號導致按鈕組件間出現間格 -->
             <div style="display:flex;">
-                <!-- 用display:flex避免編譯後因換行符號導致按鈕組件間出現間格 -->
-
                 <w-button-chip
                     :text="WButtonChip.text"
                     :icon="'mdi-shaker-outline'"

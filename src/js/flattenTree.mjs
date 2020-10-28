@@ -1,4 +1,5 @@
 import get from 'lodash/get'
+import size from 'lodash/size'
 import treeObj from 'wsemi/src/treeObj.mjs'
 
 
@@ -35,10 +36,12 @@ function flattenTree(items, bindKey = 'id', bindChildren = 'children') {
 
         //push
         if (pk) {
+            let nkt = getNk([...nk, key])
             nodes.push({
                 ...value,
-                nk: getNk([...nk, key]),
-                key,
+                level: (size(nkt) - 1) / 2,
+                nk: nkt,
+                // key,
             })
             if (children) {
                 return children

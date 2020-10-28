@@ -1,4 +1,5 @@
 <template>
+    <!-- 需設定width:100%, 因ie11的flex內文字會自動撐開版面導致不會換行 -->
     <div
         :style="`position:absolute; top:${item.screenY}px; width:100%; opacity:${item.nowShow?1:0.001};`"
         :index="item.index"
@@ -12,20 +13,14 @@
 
             <div style="position:relative;">
 
-                <div style="position:absolute; top:0px; left:0px; transform:translateX(-100%); user-select:none; cursor:pointer;">
-                    <div
-                        tabindex="0"
-                        style="outline:none;"
-                        @keyup.enter.capture="toggleItems(item)"
-                        @click.capture="toggleItems(item)"
+                <div style="position:absolute; top:0px; left:0px; transform:translateX(-100%);">
+                    <WTreeIconToggle
+                        style="display:inline-block; width:16px; transform:translateX(-2px);"
+                        :dir="`${item.displayChildren?'bottom':'right'}`"
+                        :iconColor="iconColor"
+                        @click="toggleItems(item)"
                         v-if="item.stateChildren===1"
-                    >
-                        <span :class="[{'caretRight':true,'showChildren':item.displayChildren}]">
-                            <span class="center">
-                                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" :fill="useIconColor" width="11px" height="11px" x="0px" y="0px" viewBox="0 0 415.346 415.346" xml:space="preserve"><g><path d="M41.712,415.346c-11.763,0-21.3-9.537-21.3-21.3V21.299C20.412,9.536,29.949,0,41.712,0l346.122,191.697 c0,0,15.975,15.975,0,31.951C371.859,239.622,41.712,415.346,41.712,415.346z"/></g></svg>
-                            </span>
-                        </span>
-                    </div>
+                    ></WTreeIconToggle>
                     <div style="display:inline-block; width:16px;" v-else></div>
                 </div>
 
@@ -62,6 +57,7 @@
 </template>
 
 <script>
+import WTreeIconToggle from './WTreeIconToggle.vue'
 import color2hex from '../js/vuetifyColor.mjs'
 
 
@@ -73,6 +69,9 @@ import color2hex from '../js/vuetifyColor.mjs'
  * @vue-prop {String} [keyNumbersColor='grey lighten-1'] 輸入鍵值內含子節點數量顏色字串，預設'grey lighten-1'
  */
 export default {
+    components: {
+        WTreeIconToggle,
+    },
     props: {
         item: {
             type: Object,
@@ -106,14 +105,6 @@ export default {
     },
     computed: {
 
-        useIconColor: function() {
-            //console.log('computed useIconColor')
-
-            let vo = this
-
-            return color2hex(vo.iconColor)
-        },
-
         useKeyColor: function() {
             //console.log('computed useKeyColor')
 
@@ -135,12 +126,11 @@ export default {
 
         toggleItems: function(item) {
             //console.log('methods toggleItems', item)
-            //記得click需使用capture, 先處理完自己節點點擊才釋出事件, 適用於窄板裝置
 
             let vo = this
 
             //emit
-            vo.$emit('toggleItems', item)
+            vo.$emit('toggle-items', item)
 
         },
 
@@ -149,20 +139,5 @@ export default {
 </script>
 
 <style scoped>
-.caretRight {
-    transform: translateY(-1px);
-    cursor: pointer;
-    display: inline-block;
-    vertical-align: middle;
-    margin-right: 5px;
-}
-.center {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-.showChildren {
-    transform: rotate(90deg);
-}
 </style>
 

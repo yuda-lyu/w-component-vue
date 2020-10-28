@@ -631,7 +631,7 @@ export default {
 
                 //wait $el
                 await waitFun(() => {
-                    return vo.$el !== null
+                    return vo.$el !== undefined
                 })
 
                 //check

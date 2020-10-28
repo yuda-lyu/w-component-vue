@@ -2,14 +2,13 @@
     <v-dialog
         :changeParam="changeParam"
         scrollable
-        :persistent="!fullscreen && hasCloseBtn"
+        :persistent="hasCloseBtn"
         :max-width="widthMax"
         :fullscreen="fullscreen"
         :hide-overlay="fullscreen"
         v-resize="changeSize"
         v-model="showTrans"
         @click:outside="clickClose(true)"
-        @keydown.esc.capture.stop="keyEsc"
     >
 
         <v-card v-if="show">
@@ -294,26 +293,6 @@ export default {
                 vo.$emit('click-close')
 
             })
-
-        },
-
-        keyEsc: function(e) {
-            //console.log('methods keyEsc', e)
-
-            let vo = this
-
-            //check
-            //vuetify於dialog為fullscreen狀態時有問題, 第1次按esc不會關閉, 但第2次之後按esc會關閉, 待vuetify修復
-            //使用.capture.stop無法停掉事件, 推測vuetify是於更外層偵測esc並對dialog關閉
-            if (vo.fullscreen && e.code === 'Escape') {
-                //console.log('detect Escape in fullscreen')
-
-                //$nextTick, 需脫勾再強制改為顯示
-                vo.$nextTick(() => {
-                    vo.showTrans = true
-                })
-
-            }
 
         },
 
