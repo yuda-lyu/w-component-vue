@@ -110,7 +110,7 @@
                         <div style="display:flex;">
 
                             <div style="display:flex; align-items:center; padding-right:5px;" v-if="props.data.avatar">
-                                <img style="border-radius:50%; width:24px; height:24px;" :src="props.data.avatar">
+                                <img style="border-radius:50%; width:24px; height:24px;" :src="props.data.avatar" />
                             </div>
 
                             <div style="display:flex; align-items:center; padding-right:5px;" v-if="props.data.icon">
@@ -155,7 +155,7 @@
                             <div style="display:flex;">
 
                                 <div style="display:flex; align-items:center; padding-right:5px;" v-if="props.data.avatar">
-                                    <img style="border-radius:50%; width:24px; height:24px;" :src="props.data.avatar">
+                                    <img style="border-radius:50%; width:24px; height:24px;" :src="props.data.avatar" />
                                 </div>
 
                                 <div style="display:flex; align-items:center; padding-right:5px;" v-if="props.data.icon">
@@ -211,7 +211,7 @@
                             <div style="display:flex;">
 
                                 <div style="display:flex; align-items:center; padding-right:5px;" v-if="props.data.avatar">
-                                    <img style="border-radius:50%; width:24px; height:24px;" :src="props.data.avatar">
+                                    <img style="border-radius:50%; width:24px; height:24px;" :src="props.data.avatar" />
                                 </div>
 
                                 <div style="display:flex; align-items:center; padding-right:5px;" v-if="props.data.icon">
@@ -273,7 +273,7 @@
                             <div style="display:flex;">
 
                                 <div style="display:flex; align-items:center; padding-right:5px;" v-if="props.data.avatar">
-                                    <img style="border-radius:50%; width:24px; height:24px;" :src="props.data.avatar">
+                                    <img style="border-radius:50%; width:24px; height:24px;" :src="props.data.avatar" />
                                 </div>
 
                                 <div style="display:flex; align-items:center; padding-right:5px;" v-if="props.data.icon">
@@ -338,7 +338,7 @@
                             <div style="display:flex;">
 
                                 <div style="display:flex; align-items:center; padding-right:5px;" v-if="props.data.avatar">
-                                    <img style="border-radius:50%; width:24px; height:24px;" :src="props.data.avatar">
+                                    <img style="border-radius:50%; width:24px; height:24px;" :src="props.data.avatar" />
                                 </div>
 
                                 <div style="display:flex; align-items:center; padding-right:5px;" v-if="props.data.icon">

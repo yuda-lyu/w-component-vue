@@ -310,6 +310,7 @@ export default {
                     item: v,
                 }
             })
+            // console.log('size(rows)', size(rows))
 
             //save
             vo.rows = rows

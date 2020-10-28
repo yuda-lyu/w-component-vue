@@ -257,7 +257,7 @@ function extractAppZone(fn) {
         let casename = getAttr(me, 'casename')
         let kind = getAttr(me, 'kind')
         let shell = getAttr(me, 'shell')
-        //console.log(i, kbname, casename, kind, shell)
+        // console.log(i, kbname, casename, kind, shell)
 
         //tmp
         let tmp = me.html()
