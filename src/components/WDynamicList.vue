@@ -56,6 +56,7 @@ import isfun from 'wsemi/src/isfun.mjs'
 import isint from 'wsemi/src/isint.mjs'
 import isbol from 'wsemi/src/isbol.mjs'
 import o2j from 'wsemi/src/o2j.mjs'
+import oo from 'wsemi/src/oo.mjs'
 import debounce from 'wsemi/src/debounce.mjs'
 import binarySearch from '../js/binarySearch.mjs'
 import globalMemory from '../js/globalMemory.mjs'
@@ -138,7 +139,9 @@ export default {
         let vo = this
 
         //remove
-        gm.remove(vo.mmkey)
+        if (vo.mmkey !== null) {
+            gm.remove(vo.mmkey)
+        }
 
     },
     watch: {
@@ -151,13 +154,8 @@ export default {
 
                 let vo = this
 
-                //check
-                if (size(value) === 0) {
-                    return
-                }
-
-                //changeRows
-                vo.changeRows(value)
+                //setRows
+                vo.setRows(value)
 
             }
         },
@@ -182,14 +180,15 @@ export default {
     },
     methods: {
 
-        changeRows: function(rows) {
-            //console.log('methods changeRows', rows)
+        setRows: function(rows) {
+            //console.log('methods setRows', rows)
 
             let vo = this
 
             //check
             if (vo.processing) {
-                return
+                let msg = 'disabling call when processing'
+                return msg
             }
 
             //check
@@ -235,7 +234,7 @@ export default {
             gm.set(vo.mmkey, items)
 
             //refresh
-            vo.refresh('changeRows')
+            vo.refresh('setRows')
 
         },
 

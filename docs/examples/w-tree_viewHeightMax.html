@@ -73,7 +73,7 @@
     <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.js"></script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@1.5.13/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@1.5.14/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -118,7 +118,7 @@
             <w-tree
                 style="width:600px; border:1px solid #ddd;"
                 :view-height-max="300"
-                :items="WTree.option.items"
+                :data="WTree.option.items"
             />
         </div>
     </v-app>
@@ -491,6 +491,7 @@
             keywords: "",
             selections: [],
             items: (function(n) {
+              n /= 20;
               let msg =
                 "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis praesentium cumque magnam odio iure quidem, quod illum numquam possimus obcaecati commodi minima assumenda consectetur culpa fuga nulla ullam. In, libero.";
               let cItems =
@@ -509,7 +510,7 @@
                 rs.push(r);
               }
               return rs;
-            })(2500) //2500, 1500, 100
+            })(100000) //1000000, 100000, 1000
           }
         },
         actions: []
@@ -525,11 +526,14 @@
         for (let i = 0; i < selections.length; i++) {
           let s = JSON.parse(JSON.stringify(selections[i]));
           delete s.msg;
-          ss[1e6 + s.id] = s;
+          let id = parseInt(s.id, 10); //原本為字串, 轉成整數
+          ss[id] = s;
         }
         let t = [];
         Object.keys(ss)
-          .sort()
+          .sort(function(a, b) {
+            return a - b;
+          })
           .forEach(function(key) {
             t.push(ss[key]);
           });

@@ -1,7 +1,6 @@
 <template>
     <WDynamicList
         ref="wdl"
-        :rows="rows"
         :viewHeightMax="viewHeightMax"
         :itemMinHeight="itemMinHeight"
         :itemsPreload="itemsPreload"
@@ -23,7 +22,7 @@
                         :dir="`${props.row.unfolding?'bottom':'right'}`"
                         :iconColor="iconColor"
                         @click="toggleItems(props.row)"
-                        v-if="hasChildrenByIndex(props.index)"
+                        v-if="hasChildren(props.index)"
                     ></WTreeIconToggle>
                     <div style="padding-right:30px;" v-else></div>
 
@@ -75,18 +74,25 @@ import dropRight from 'lodash/dropRight'
 import genID from 'wsemi/src/genID.mjs'
 import sep from 'wsemi/src/sep.mjs'
 import isarr from 'wsemi/src/isarr.mjs'
+import isobj from 'wsemi/src/isobj.mjs'
 import isfun from 'wsemi/src/isfun.mjs'
 import haskey from 'wsemi/src/haskey.mjs'
+import oo from 'wsemi/src/oo.mjs'
 import waitFun from 'wsemi/src/waitFun.mjs'
 import debounce from 'wsemi/src/debounce.mjs'
 import flattenTree from '../js/flattenTree.mjs'
+import globalMemory from '../js/globalMemory.mjs'
 import WDynamicList from './WDynamicList.vue'
 import WTreeIconToggle from './WTreeIconToggle.vue'
 import WTreeIconCheckbox from './WTreeIconCheckbox.vue'
 
 
+//gm
+let gm = globalMemory()
+
+
 /**
- * @vue-prop {Array} [items=[]] 輸入資料陣列，預設[]，各元素配合slot顯示即可，slot內提供row與irow，對應原始rows內各元素與指標，另外各元素slot時不要用margin避免計算高度有誤差
+ * @vue-prop {Array|Object} [data=[]] 輸入資料陣列，預設[]，各元素配合slot顯示即可，slot內提供row與irow，對應原始rows內各元素與指標，另外各元素slot時不要用margin避免計算高度有誤差
  * @vue-prop {Number} [viewHeightMax=400] 輸入顯示區最大高度，單位為px，預設400
  * @vue-prop {Boolean} [selectable=false] 輸入是否具有勾選模式，預設false
  * @vue-prop {Array} [selections=[]] 輸入勾選項目陣列，當selectable=true時才可使用，預設[]
@@ -116,8 +122,8 @@ export default {
         WTreeIconCheckbox,
     },
     props: {
-        items: {
-            type: Array,
+        data: {
+            type: [Array, Object],
             default: () => [],
         },
         viewHeightMax: {
@@ -210,36 +216,33 @@ export default {
             mmkey: null,
             iconHeight: 34,
             selectionsTrans: [],
-            rows: [],
             filterKeywordsTemp: '', //上次過濾關鍵字
             filtering: false, //是否過濾中
         }
     },
+    beforeDestroy: function() {
+        //console.log('beforeMount')
+
+        let vo = this
+
+        //remove
+        if (vo.mmkey !== null) {
+            gm.remove(vo.mmkey)
+        }
+
+    },
     watch: {
 
-        items: {
+        data: {
             immediate: true,
             deep: true,
             handler(value) {
-                //console.log('watch items', value)
+                //console.log('watch data', value)
 
                 let vo = this
 
-                //mmkey, 產生mmkey要放在資料變更的地方, 否則beforeCreate只有1次(mounted會比computed還慢), 於vue-cli編譯情況下會有部份情境有問題
-                if (vo.mmkey === null) {
-
-                    //mmkey
-                    vo.mmkey = genID()
-
-                }
-
-                //check
-                if (size(value) === 0) {
-                    return
-                }
-
-                //changeItems
-                vo.changeItems(value)
+                //setData
+                vo.setData(value)
 
             }
         },
@@ -280,40 +283,69 @@ export default {
     },
     methods: {
 
-        changeItems: function(itemsOri) {
-            //console.log('methods changeItems', itemsOri)
+        setData: function(data) {
+            //console.log('methods setData', data)
 
             let vo = this
 
-            //check
-            if (!isarr(itemsOri)) {
-                let msg = 'items is not array'
-                //console.log(msg)
-                return msg
-            }
-            if (size(itemsOri) === 0) {
-                let msg = 'items is empty'
-                //console.log(msg)
-                return msg
-            }
+            async function core() {
 
-            //flattenTree
-            let ts = flattenTree(itemsOri, vo.keyPrimary, vo.keyChildren)
-
-            //rows, lodash使用new Array建構比for+push快
-            let rows = map(ts, (v, k) => {
-                return {
-                    index: k,
-                    filterShow: true, //bol, 是否過濾後顯示此節點
-                    unfolding: true, //bol, 是否展開顯示此節點
-                    checked: 'unchecked', //str, 節點勾選狀態, 'unchecked'代表未勾選, 'checked'代表已勾選, 'checkedPartially'代表部份勾選時(子節點任一有勾選但非全部勾選)
-                    item: v,
+                //check
+                if (!isarr(data) && !isobj(data)) {
+                    let msg = 'data is not array or object'
+                    //console.log(msg)
+                    return msg
                 }
-            })
-            // console.log('size(rows)', size(rows))
 
-            //save
-            vo.rows = rows
+                //mmkey, 產生mmkey要放在資料變更的地方, 否則beforeCreate只有1次(mounted會比computed還慢), 於vue-cli編譯情況下會有部份情境有問題
+                if (vo.mmkey === null) {
+
+                    //mmkey
+                    vo.mmkey = genID()
+
+                }
+                else {
+
+                    //remove
+                    gm.remove(vo.mmkey)
+
+                }
+
+                //cloneDeep
+                data = cloneDeep(data)
+
+                //flattenTree
+                let ts = flattenTree(data, vo.keyPrimary, vo.keyChildren)
+
+                //rows, lodash使用new Array建構比for+push快
+                let rows = map(ts, (v, k) => {
+                    return {
+                        index: k,
+                        unfolding: true, //bol, 是否展開顯示此節點
+                        checked: 'unchecked', //str, 節點勾選狀態, 'unchecked'代表未勾選, 'checked'代表已勾選, 'checkedPartially'代表部份勾選時(子節點任一有勾選但非全部勾選)
+                        item: v,
+                    }
+                })
+
+                //save
+                //vo.rows = rows
+                gm.set(vo.mmkey, rows)
+
+                //wait wdl, 組件初始化時會先觸發computed才會有實體元素出現, 故得用waitFun等待
+                await waitFun(() => {
+                    return vo.$refs.wdl !== undefined
+                }, { timeInterval: 20 })
+
+                //setRows
+                await vo.$refs.wdl.setRows(rows)
+
+            }
+
+            //core
+            core()
+                .catch((err) => {
+                    console.log(err)
+                })
 
         },
 
@@ -504,10 +536,20 @@ export default {
 
         },
 
-        hasChildrenByIndex: function(ind) {
-            //console.log('methods hasChildrenByIndex', ind)
+        hasChildren: function(ind) {
+            //console.log('methods hasChildren', ind)
+
             let vo = this
+
             return vo.getLevelDiff(ind) > 0
+        },
+
+        hasChildrenFromItems: function(items, ind) {
+            //console.log('methods hasChildrenFromItems', items, ind)
+
+            let vo = this
+
+            return vo.getLevelDiffFromItems(items, ind) > 0
         },
 
         getLevelDiff: function(ind) {
@@ -515,9 +557,40 @@ export default {
 
             let vo = this
 
+            //rows
+            let rows = gm.get(vo.mmkey)
+
+            return vo.getLevelDiffFromRows(rows, ind)
+        },
+
+        getLevelDiffFromRows: function(rows, ind) {
+            //console.log('methods getLevelDiffFromRows', rows, ind)
+
+            let vo = this
+
             //lev1, lev2
-            let lev1 = get(vo, `rows.${ind}.item.level`, null)
-            let lev2 = get(vo, `rows.${ind + 1}.item.level`, null)
+            let lev1 = get(rows, `${ind}.item.level`, null)
+            let lev2 = get(rows, `${ind + 1}.item.level`, null)
+
+            return vo.calcLevelDiff(lev1, lev2)
+        },
+
+        getLevelDiffFromItems: function(items, ind) {
+            //console.log('methods getLevelDiffFromItems', items, ind)
+
+            let vo = this
+
+            //lev1, lev2
+            let lev1 = get(items, `${ind}.row.item.level`, null)
+            let lev2 = get(items, `${ind + 1}.row.item.level`, null)
+
+            return vo.calcLevelDiff(lev1, lev2)
+        },
+
+        calcLevelDiff: function(lev1, lev2) {
+            //console.log('methods calcLevelDiff', lev1, lev2)
+
+            // let vo = this
 
             //check
             if (!isInteger(lev1) || !isInteger(lev2)) {
@@ -594,7 +667,7 @@ export default {
                     items[i].displayShow = displayShow
 
                     //levDiff, 計算此節點與下個節點之level差值
-                    let levDiff = vo.getLevelDiff(i)
+                    let levDiff = vo.getLevelDiffFromItems(items, i)
 
                     //此節點有所屬子節點
                     if (levDiff > 0) {
@@ -769,7 +842,7 @@ export default {
 
             //若有子節點, 則變更所屬子節點
             function modifyChildren(selections, ind, checked) {
-                if (vo.hasChildrenByIndex(ind)) {
+                if (vo.hasChildrenFromItems(items, ind)) {
 
                     //level
                     let level = get(items, `${ind}.row.item.level`, null)

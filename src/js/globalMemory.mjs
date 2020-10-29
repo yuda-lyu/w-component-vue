@@ -7,6 +7,7 @@ function globalMemory() {
 
     function set(key, value) {
         kpItems[key] = value
+        // console.log('globalMemory kpItems', key, kpItems)
     }
 
     function get(key) {

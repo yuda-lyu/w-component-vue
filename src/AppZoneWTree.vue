@@ -16,7 +16,7 @@
 
                 <w-tree
                     style="width:600px; border:1px solid #ddd;"
-                    :items="WTree.option.items"
+                    :data="WTree.option.items"
                 ></w-tree>
 
             </div>
@@ -31,7 +31,7 @@
                 <w-tree
                     style="width:600px; border:1px solid #ddd;"
                     :viewHeightMax="300"
-                    :items="WTree.option.items"
+                    :data="WTree.option.items"
                 ></w-tree>
 
             </div>
@@ -46,7 +46,7 @@
                 <w-tree
                     style="width:600px; border:1px solid #ddd;"
                     :indent="15"
-                    :items="WTree.option.items"
+                    :data="WTree.option.items"
                 ></w-tree>
 
             </div>
@@ -61,7 +61,7 @@
                 <w-tree
                     style="width:600px; border:1px solid #ddd;"
                     :iconColor="'#d39a70'"
-                    :items="WTree.option.items"
+                    :data="WTree.option.items"
                 ></w-tree>
 
             </div>
@@ -78,7 +78,7 @@
                     :keyPrimary="'sid'"
                     :keyText="'name'"
                     :keyChildren="'packages'"
-                    :items="WTree.optionKeys.items"
+                    :data="WTree.optionKeys.items"
                 ></w-tree>
 
             </div>
@@ -92,7 +92,7 @@
 
                 <w-tree
                     style="width:600px; border:1px solid #ddd;"
-                    :items="WTree.option.items"
+                    :data="WTree.option.items"
                 >
                     <template v-slot:block="props">
                         <div style="display:flex;">
@@ -133,9 +133,73 @@
 
                     <w-tree
                         style="width:600px; min-width:600px; border:1px solid #ddd;"
-                        :items="WTree.option.items"
+                        :data="WTree.option.items"
                         :selectable="true"
                         :selections.sync="WTree.option.selections"
+                    >
+                        <template v-slot:block="props">
+                            <div style="display:flex;">
+
+                                <div style="display:flex; align-items:center; padding-right:5px;" v-if="props.data.avatar">
+                                    <img style="border-radius:50%; width:24px; height:24px;" :src="props.data.avatar" />
+                                </div>
+
+                                <div style="display:flex; align-items:center; padding-right:5px;" v-if="props.data.icon">
+                                    <v-icon size="18" color="deep-orange">{{props.data.icon}}</v-icon>
+                                </div>
+
+                                <div style="padding:5px 0px;">
+                                    <div style="display:flex; align-items:center;">
+                                        <div style="margin-right:7px;">
+                                            {{props.data.text}}
+                                            <div style="display:inline-block; color:#26f; font-size:0.7rem;">[id:{{props.data.id}}]</div>
+                                        </div>
+                                        <div style="padding:0px 9px; font-size:0.7rem; color:#fff; border-radius:30px; background:#f26;" v-if="props.data.key">{{props.data.key}}</div>
+                                    </div>
+                                    <div style="padding-right:20px;" v-if="props.data.msg">
+                                        <div style="font-size:0.7rem; color:#999; text-indent:1rem; padding:12px 18px; background:#fefafa;">{{props.data.msg}}</div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </template>
+                    </w-tree>
+
+                    <!-- 用:style才能支援IE11因vue會自動把overflow-y:auto轉為-ms-overflow-y:auto -->
+                    <div :style="'padding:10px 20px; height:402px; overflow-y:auto; border:1px solid #ddd; border-left-width:0px;'">
+                        <div style="margin-bottom:5px;">selections: </div>
+                        <pre style="font-size:0.7rem;">{{JSON.stringify(showSelection(WTree.option.selections),null,4)}}</pre>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-tree'"
+                    :casename="'filterKeywords & searchEmpty & selectable'"
+                ></demolink>
+
+                <div style="margin-bottom:10px;">
+                    <span style="padding-right:10px;">Search :</span>
+                    <input
+                        style="padding:2px 15px; color:#666; border:1px solid #fca; border-radius:30px; outline:none;"
+                        v-model="WTree.option.keywords"
+                    />
+                </div>
+
+                <div style="display:flex;">
+
+                    <w-tree
+                        style="width:600px; min-width:600px; border:1px solid #ddd;"
+                        :data="WTree.option.items"
+                        :selectable="true"
+                        :selections.sync="WTree.option.selections"
+                        :filterKeywords="WTree.option.keywords"
+                        :searchEmpty="'There are no items to show...'"
                     >
                         <template v-slot:block="props">
                             <div style="display:flex;">
@@ -187,7 +251,7 @@
 
                     <w-tree
                         style="width:600px; min-width:600px; border:1px solid #ddd;"
-                        :items="WTree.optionLocked.items"
+                        :data="WTree.optionLocked.items"
                         :selectable="true"
                         :selections.sync="WTree.optionLocked.selections"
                         :locked="'locked'"
@@ -242,7 +306,7 @@
 
                     <w-tree
                         style="width:600px; min-width:600px; border:1px solid #ddd;"
-                        :items="WTree.optionLocked.items"
+                        :data="WTree.optionLocked.items"
                         :selectable="true"
                         :selections.sync="WTree.optionLocked.selections"
                         :locked="'locked'"
@@ -296,78 +360,14 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-tree'"
-                    :casename="'filterKeywords & searchEmpty & selectable'"
-                ></demolink>
-
-                <div style="margin-bottom:10px;">
-                    <span style="padding-right:10px;">Search :</span>
-                    <input
-                        style="padding:2px 15px; color:#666; border:1px solid #fca; border-radius:30px; outline:none;"
-                        v-model="WTree.option.keywords"
-                    />
-                </div>
-
-                <div style="display:flex;">
-
-                    <w-tree
-                        style="width:600px; min-width:600px; border:1px solid #ddd;"
-                        :items="WTree.option.items"
-                        :selectable="true"
-                        :selections.sync="WTree.option.selections"
-                        :filterKeywords="WTree.option.keywords"
-                        :searchEmpty="'There are no items to show...'"
-                    >
-                        <template v-slot:block="props">
-                            <div style="display:flex;">
-
-                                <div style="display:flex; align-items:center; padding-right:5px;" v-if="props.data.avatar">
-                                    <img style="border-radius:50%; width:24px; height:24px;" :src="props.data.avatar" />
-                                </div>
-
-                                <div style="display:flex; align-items:center; padding-right:5px;" v-if="props.data.icon">
-                                    <v-icon size="18" color="deep-orange">{{props.data.icon}}</v-icon>
-                                </div>
-
-                                <div style="padding:5px 0px;">
-                                    <div style="display:flex; align-items:center;">
-                                        <div style="margin-right:7px;">
-                                            {{props.data.text}}
-                                            <div style="display:inline-block; color:#26f; font-size:0.7rem;">[id:{{props.data.id}}]</div>
-                                        </div>
-                                        <div style="padding:0px 9px; font-size:0.7rem; color:#fff; border-radius:30px; background:#f26;" v-if="props.data.key">{{props.data.key}}</div>
-                                    </div>
-                                    <div style="padding-right:20px;" v-if="props.data.msg">
-                                        <div style="font-size:0.7rem; color:#999; text-indent:1rem; padding:12px 18px; background:#fefafa;">{{props.data.msg}}</div>
-                                    </div>
-                                </div>
-
-                            </div>
-
-                        </template>
-                    </w-tree>
-
-                    <!-- 用:style才能支援IE11因vue會自動把overflow-y:auto轉為-ms-overflow-y:auto -->
-                    <div :style="'padding:10px 20px; height:402px; overflow-y:auto; border:1px solid #ddd; border-left-width:0px;'">
-                        <div style="margin-bottom:5px;">selections: </div>
-                        <pre style="font-size:0.7rem;">{{JSON.stringify(showSelection(WTree.option.selections),null,4)}}</pre>
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <div class="bk">
-                <demolink
-                    :kbname="'w-tree'"
-                    :casename="'large data (50,000 items)'"
+                    :casename="'large data (100,000 items)'"
                 ></demolink>
 
                 <div style="display:flex;">
 
                     <w-tree
                         style="width:600px; min-width:600px; border:1px solid #ddd;"
-                        :items="WTree.optionLarge.items"
+                        :data="WTree.optionLarge.items"
                         :selectable="true"
                         :selections.sync="WTree.optionLarge.selections"
                         :filterKeywords="WTree.optionLarge.keywords"
@@ -405,6 +405,7 @@ import WTree from './components/WTree.vue'
 
 
 // let data = (function (n) {
+//     n /= 20
 //     let msg = 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis praesentium cumque magnam odio iure quidem, quod illum numquam possimus obcaecati commodi minima assumenda consectetur culpa fuga nulla ullam. In, libero.'
 //     let cItems = '{"id":"{n+1}","text":"Satisfied customers","avatar":"https://cdn.vuetifyjs.com/images/lists/1.jpg","children":[{"id":"{n+2}","text":"Good food","icon":"fas fa-utensils","children":[{"id":"{n+3}","text":"Quality ingredients","children":[{"id":"{n+4}","text":"Character","key":"Genus","msg":"{msg}"},{"id":"{n+5}","text":"Fabric","key":"Genus","msg":"{msg}"}]},{"id":"{n+6}","text":"Good recipe","key":"Family","msg":"{msg}"}]},{"id":"{n+7}","text":"Good service","icon":"fas fa-concierge-bell","children":[{"id":"{n+8}","text":"Prompt attention","key":"Order","msg":"{msg}"},{"id":"{n+9}","text":"Professional waiter","key":"Order","children":[{"id":"{n+10}","text":"Others customers","avatar":"https://cdn.vuetifyjs.com/images/lists/2.jpg","children":[{"id":"{n+11}","text":"Conformance to requirements","key":"Phylum"},{"id":"{n+12}","text":"Fitness for use","children":[{"id":"{n+13}","text":"Refers","key":"Expanded","msg":"{msg}"}]},{"id":"{n+14}","text":"Need to care","children":[{"id":"{n+15}","text":"Models","key":"Disables","msg":"{msg}"}]}]}]}]},{"id":"{n+16}","text":"Pleasant surroundings","icon":"fas fa-camera-retro","children":[{"id":"{n+17}","text":"Happy atmosphere","key":"Class","msg":"{msg}"},{"id":"{n+18}","text":"Good table presentation","key":"Class","msg":"{msg}"},{"id":"{n+19}","text":"Pleasing decor","key":"Class","msg":"{msg}"},{"id":"{n+20}","text":"Special experience","key":"Class","msg":"{msg}"}]}]}'
 //     function getOneObj(j) {
@@ -778,14 +779,14 @@ export default {
                     keywords: '',
                     selections: [],
                     items: (function (n) {
-                        let msg = 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis praesentium cumque magnam odio iure quidem, quod illum numquam possimus obcaecati commodi minima assumenda consectetur culpa fuga nulla ullam. In, libero.'; let cItems = '{"id":"{n+1}","text":"Satisfied customers","avatar":"https://cdn.vuetifyjs.com/images/lists/1.jpg","children":[{"id":"{n+2}","text":"Good food","icon":"fas fa-utensils","children":[{"id":"{n+3}","text":"Quality ingredients","children":[{"id":"{n+4}","text":"Character","key":"Genus","msg":"{msg}"},{"id":"{n+5}","text":"Fabric","key":"Genus","msg":"{msg}"}]},{"id":"{n+6}","text":"Good recipe","key":"Family","msg":"{msg}"}]},{"id":"{n+7}","text":"Good service","icon":"fas fa-concierge-bell","children":[{"id":"{n+8}","text":"Prompt attention","key":"Order","msg":"{msg}"},{"id":"{n+9}","text":"Professional waiter","key":"Order","children":[{"id":"{n+10}","text":"Others customers","avatar":"https://cdn.vuetifyjs.com/images/lists/2.jpg","children":[{"id":"{n+11}","text":"Conformance to requirements","key":"Phylum"},{"id":"{n+12}","text":"Fitness for use","children":[{"id":"{n+13}","text":"Refers","key":"Expanded","msg":"{msg}"}]},{"id":"{n+14}","text":"Need to care","children":[{"id":"{n+15}","text":"Models","key":"Disables","msg":"{msg}"}]}]}]}]},{"id":"{n+16}","text":"Pleasant surroundings","icon":"fas fa-camera-retro","children":[{"id":"{n+17}","text":"Happy atmosphere","key":"Class","msg":"{msg}"},{"id":"{n+18}","text":"Good table presentation","key":"Class","msg":"{msg}"},{"id":"{n+19}","text":"Pleasing decor","key":"Class","msg":"{msg}"},{"id":"{n+20}","text":"Special experience","key":"Class","msg":"{msg}"}]}]}'; function getOneObj(j) {
+                        n /= 20; let msg = 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis praesentium cumque magnam odio iure quidem, quod illum numquam possimus obcaecati commodi minima assumenda consectetur culpa fuga nulla ullam. In, libero.'; let cItems = '{"id":"{n+1}","text":"Satisfied customers","avatar":"https://cdn.vuetifyjs.com/images/lists/1.jpg","children":[{"id":"{n+2}","text":"Good food","icon":"fas fa-utensils","children":[{"id":"{n+3}","text":"Quality ingredients","children":[{"id":"{n+4}","text":"Character","key":"Genus","msg":"{msg}"},{"id":"{n+5}","text":"Fabric","key":"Genus","msg":"{msg}"}]},{"id":"{n+6}","text":"Good recipe","key":"Family","msg":"{msg}"}]},{"id":"{n+7}","text":"Good service","icon":"fas fa-concierge-bell","children":[{"id":"{n+8}","text":"Prompt attention","key":"Order","msg":"{msg}"},{"id":"{n+9}","text":"Professional waiter","key":"Order","children":[{"id":"{n+10}","text":"Others customers","avatar":"https://cdn.vuetifyjs.com/images/lists/2.jpg","children":[{"id":"{n+11}","text":"Conformance to requirements","key":"Phylum"},{"id":"{n+12}","text":"Fitness for use","children":[{"id":"{n+13}","text":"Refers","key":"Expanded","msg":"{msg}"}]},{"id":"{n+14}","text":"Need to care","children":[{"id":"{n+15}","text":"Models","key":"Disables","msg":"{msg}"}]}]}]}]},{"id":"{n+16}","text":"Pleasant surroundings","icon":"fas fa-camera-retro","children":[{"id":"{n+17}","text":"Happy atmosphere","key":"Class","msg":"{msg}"},{"id":"{n+18}","text":"Good table presentation","key":"Class","msg":"{msg}"},{"id":"{n+19}","text":"Pleasing decor","key":"Class","msg":"{msg}"},{"id":"{n+20}","text":"Special experience","key":"Class","msg":"{msg}"}]}]}'; function getOneObj(j) {
                             let t = cItems; t = t.replace(new RegExp('{msg}', 'g'), msg); for (let i = 1; i <= 20; i++) {
                                 t = t.replace('{n+'.concat(i, '}'), ''.concat(j + i))
                             } return JSON.parse(t)
                         } let rs = []; for (let j = 0; j < n; j++) {
                             let r = getOneObj(j * 20); rs.push(r)
                         } return rs
-                    })(2500), //2500, 1500, 100
+                    })(100000), //1000000, 100000, 1000
                 },
             },
             'actions': [
@@ -798,12 +799,17 @@ export default {
             for (let i = 0; i < selections.length; i++) {
                 let s = JSON.parse(JSON.stringify(selections[i]))
                 delete s.msg
-                ss[1e6 + s.id] = s
+                let id = parseInt(s.id, 10) //原本為字串, 轉成整數
+                ss[id] = s
             }
             let t = []
-            Object.keys(ss).sort().forEach(function(key) {
-                t.push(ss[key])
-            })
+            Object.keys(ss)
+                .sort(function(a, b) {
+                    return a - b
+                })
+                .forEach(function(key) {
+                    t.push(ss[key])
+                })
             return t
         },
     },

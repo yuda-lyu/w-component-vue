@@ -186,7 +186,9 @@ export default {
         let vo = this
 
         //remove
-        gm.remove(vo.mmkey)
+        if (vo.mmkey !== null) {
+            gm.remove(vo.mmkey)
+        }
 
     },
     watch: {
