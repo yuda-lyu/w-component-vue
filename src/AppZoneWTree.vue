@@ -130,7 +130,7 @@
                 ></demolink>
 
                 <!-- 用:style才能支援IE11因vue會自動把overflow-x:auto轉為-ms-overflow-x:auto -->
-                <div :style="`overflow-x:auto;`">
+                <div :style="'overflow-x:auto;'">
 
                     <div style="display:table-cell; vertical-align:top;">
                         <w-tree
@@ -197,7 +197,7 @@
                 </div>
 
                 <!-- 用:style才能支援IE11因vue會自動把overflow-x:auto轉為-ms-overflow-x:auto -->
-                <div :style="`overflow-x:auto;`">
+                <div :style="'overflow-x:auto;'">
 
                     <div style="display:table-cell; vertical-align:top;">
                         <w-tree
@@ -258,7 +258,7 @@
                 ></demolink>
 
                 <!-- 用:style才能支援IE11因vue會自動把overflow-x:auto轉為-ms-overflow-x:auto -->
-                <div :style="`overflow-x:auto;`">
+                <div :style="'overflow-x:auto;'">
 
                     <div style="display:table-cell; vertical-align:top;">
                         <w-tree
@@ -318,7 +318,7 @@
                 ></demolink>
 
                 <!-- 用:style才能支援IE11因vue會自動把overflow-x:auto轉為-ms-overflow-x:auto -->
-                <div :style="`overflow-x:auto;`">
+                <div :style="'overflow-x:auto;'">
 
                     <div style="display:table-cell; vertical-align:top;">
                         <w-tree
@@ -384,7 +384,7 @@
                 ></demolink>
 
                 <!-- 用:style才能支援IE11因vue會自動把overflow-x:auto轉為-ms-overflow-x:auto -->
-                <div :style="`overflow-x:auto;`">
+                <div :style="'overflow-x:auto;'">
 
                     <div style="display:table-cell; vertical-align:top;">
                         <w-tree
