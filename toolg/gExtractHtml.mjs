@@ -79,23 +79,18 @@ let h = `
             padding: 0px 0px 20px 0px;
             font-size: 2.5rem;
         }
-        .item {
-            border-left: 3px solid #ffba75;
-            margin: 5px 5px 8px 0px;
-            padding: 3px 3px 5px 10px;
-            font-size: 0.9rem;
-            display: flex;
-            justify-content: flex-start;
-            align-items: center;
-        }
         .bk {
             vertical-align: top;
-            padding: 10px 0px 30px 0px;
+            margin: 10px 0px 0px 0px;
+            padding: 0px 0px 60px 0px;
         }
-        @media screen and (min-width:1000px){
+        @media screen and (min-width:1000px){ /* 寬版 */
             .bk {
                 display: inline-block;
-                padding: 10px 90px 60px 0px;
+                margin: 0px 80px 0px 0px;
+            }
+            .dz {
+                width: 400px;
             }
         }
     </style>

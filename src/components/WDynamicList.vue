@@ -12,7 +12,7 @@
             <!-- 需設定width:100%, 因ie11的flex內文字會自動撐開版面導致不會換行 -->
             <div
                 ref="wdsDiv"
-                :style="`position:absolute; top:${item.screenY}px; width:100%; opacity:${(item.nowShow && item.delayShow)?1:0.001}; ${item.delayShow?'transition:opacity 0.1s':''}`"
+                :style="`position:absolute; top:${item.screenY}px; left:0px; width:100%; opacity:${(item.nowShow && item.delayShow)?1:0.001}; ${item.delayShow?'transition:opacity 0.1s':''}`"
                 :index="item.index"
                 :nowShow="item.nowShow"
                 :delayShow="item.delayShow"
@@ -56,7 +56,6 @@ import isfun from 'wsemi/src/isfun.mjs'
 import isint from 'wsemi/src/isint.mjs'
 import isbol from 'wsemi/src/isbol.mjs'
 import o2j from 'wsemi/src/o2j.mjs'
-import oo from 'wsemi/src/oo.mjs'
 import debounce from 'wsemi/src/debounce.mjs'
 import binarySearch from '../js/binarySearch.mjs'
 import globalMemory from '../js/globalMemory.mjs'

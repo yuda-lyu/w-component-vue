@@ -8,14 +8,14 @@
         <div style="padding:0px;">
 
 
-            <div class="bk">
+            <div class="bk dz">
                 <demolink
                     :kbname="'w-dynamic-list'"
                     :casename="'default'"
                 ></demolink>
 
                 <w-dynamic-list
-                    style="width:400px; border:1px solid #ddd;"
+                    style="border:1px solid #ddd;"
                     :rows="WDynamicList.data1"
                 >
                     <template v-slot:block="props">
@@ -36,14 +36,14 @@
             </div>
 
 
-            <div class="bk">
+            <div class="bk dz">
                 <demolink
                     :kbname="'w-dynamic-list'"
                     :casename="'viewHeightMax'"
                 ></demolink>
 
                 <w-dynamic-list
-                    style="width:400px; border:1px solid #ddd;"
+                    style="border:1px solid #ddd;"
                     :viewHeightMax="250"
                     :rows="WDynamicList.data1"
                 >
@@ -65,7 +65,7 @@
             </div>
 
 
-            <div class="bk">
+            <div class="bk dz">
                 <demolink
                     :kbname="'w-dynamic-list'"
                     :casename="'filterKeywords & searchEmpty'"
@@ -80,7 +80,7 @@
                 </div>
 
                 <w-dynamic-list
-                    style="width:400px; border:1px solid #ddd;"
+                    style="border:1px solid #ddd;"
                     :filterKeywords="WDynamicList.keywords"
                     :searchEmpty="'There are no items to show...'"
                     :rows="WDynamicList.data1"
@@ -103,14 +103,14 @@
             </div>
 
 
-            <div class="bk">
+            <div class="bk dz">
                 <demolink
                     :kbname="'w-dynamic-list'"
                     :casename="'slot item with image'"
                 ></demolink>
 
                 <w-dynamic-list
-                    style="width:400px; border:1px solid #ddd;"
+                    style="border:1px solid #ddd;"
                     :rows="WDynamicList.data2"
                 >
                     <template v-slot:block="props">
@@ -140,7 +140,7 @@
             </div>
 
 
-            <div class="bk">
+            <div class="bk dz">
                 <demolink
                     :kbname="'w-dynamic-list'"
                     :casename="'processItems'"
@@ -153,7 +153,7 @@
 
                 <w-dynamic-list
                     ref="wdl"
-                    style="width:400px; border:1px solid #ddd;"
+                    style="border:1px solid #ddd;"
                     :rows="WDynamicList.data3"
                 >
                     <template v-slot:block="props">
@@ -183,7 +183,7 @@
             </div>
 
 
-            <div class="bk" style="display:block;">
+            <div class="bk" style="display:block; margin:0px 10px 0px 0px;">
                 <demolink
                     :kbname="'w-dynamic-list'"
                     :casename="'large data (1,000,000 items)'"
@@ -308,6 +308,37 @@ export default {
             ],
         }
     },
+    // mounted: function() {
+    //     this.evtm = (e) => {
+    //         console.log('window touchmove', e, 'clientY', e.touches[0].clientY)
+    //     }
+    //     window.addEventListener('touchmove', this.evtm)
+
+    //     this.evwl = (e) => {
+    //         console.log('window wheel', e, 'deltaY', e.deltaY)
+    //     }
+    //     window.addEventListener('wheel', this.evwl)
+    //     this.evsl = (e) => {
+    //         console.log('window scroll', e)
+    //     }
+    //     window.addEventListener('scroll', this.evsl)
+
+    //     this.dewl = (e) => {
+    //         console.log('document wheel', e, 'deltaY', e.deltaY)
+    //     }
+    //     document.addEventListener('wheel', this.dewl)
+    //     this.desl = (e) => {
+    //         console.log('document scroll', e)
+    //     }
+    //     document.addEventListener('scroll', this.desl)
+    // },
+    // beforeDestroy: function() {
+    //     window.removeEventListener('touchmove', this.evtm)
+    //     window.removeEventListener('wheel', this.evwl)
+    //     window.removeEventListener('scroll', this.evsl)
+    //     document.removeEventListener('wheel', this.dewl)
+    //     document.removeEventListener('scroll', this.desl)
+    // },
     methods: {
         processItemsByFun: function() {
             let vo = this

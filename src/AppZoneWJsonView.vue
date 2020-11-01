@@ -8,28 +8,28 @@
         <div style="padding:0px;">
 
 
-            <div class="bk">
+            <div class="bk dz">
                 <demolink
                     :kbname="'w-json-view'"
                     :casename="'default'"
                 ></demolink>
 
                 <w-json-view
-                    style="width:400px; border:1px solid #ddd;"
+                    style="border:1px solid #ddd;"
                     :data="WJsonView.data1"
                 ></w-json-view>
 
             </div>
 
 
-            <div class="bk">
+            <div class="bk dz">
                 <demolink
                     :kbname="'w-json-view'"
                     :casename="'viewHeightMax'"
                 ></demolink>
 
                 <w-json-view
-                    style="width:400px; border:1px solid #ddd;"
+                    style="border:1px solid #ddd;"
                     :viewHeightMax="250"
                     :data="WJsonView.data2"
                 ></w-json-view>
@@ -37,7 +37,7 @@
             </div>
 
 
-            <div class="bk">
+            <div class="bk dz">
                 <demolink
                     :kbname="'w-json-view'"
                     :casename="'filterKeywords & searchEmpty'"
@@ -52,7 +52,7 @@
                 </div>
 
                 <w-json-view
-                    style="width:400px; border:1px solid #ddd;"
+                    style="border:1px solid #ddd;"
                     :filterKeywords="WJsonView.keywords"
                     :searchEmpty="'There are no items to show...'"
                     :data="WJsonView.data2"
@@ -61,14 +61,14 @@
             </div>
 
 
-            <div class="bk">
+            <div class="bk dz">
                 <demolink
                     :kbname="'w-json-view'"
                     :casename="'iconColor & keyColor & keyNumbersColor & numColor & strColor & bolColor & funColor'"
                 ></demolink>
 
                 <w-json-view
-                    style="width:400px; border:1px solid #ddd;"
+                    style="border:1px solid #ddd;"
                     :iconColor="'#aaa'"
                     :keyColor="'#f6a'"
                     :keyNumbersColor="'#f26'"
@@ -82,7 +82,7 @@
             </div>
 
 
-            <div class="bk" style="display:block;">
+            <div class="bk" style="display:block; margin:0px 10px 0px 0px;">
                 <demolink
                     :kbname="'w-json-view'"
                     :casename="'large data (100,000 lines)'"

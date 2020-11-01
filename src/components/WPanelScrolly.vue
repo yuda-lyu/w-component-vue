@@ -16,7 +16,7 @@
             @change="scrollItems"
         >
             <div
-                :style="`position:absolute; top:${top}px; width:100%; box-sizing:border-box;`"
+                :style="`position:absolute; top:${top}px; left:0px; width:100%;`"
                 v-domresize
                 @domresize="resizeContent"
             >

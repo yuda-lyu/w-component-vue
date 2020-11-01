@@ -11,7 +11,7 @@
     >
         <template v-slot:block="props">
             <!-- 記得要:key使各div都是可識別元素, 避免捲動時不同方向圖標因transition而會有微轉動問題 -->
-            <div :key="props.index">
+            <div :key="`wdl-${props.index}`">
                 <!-- 盡量不要讓display:flex暴露至外層 -->
                 <div :style="`display:flex; min-height:${iconHeight}px;`">
 
@@ -77,7 +77,6 @@ import isarr from 'wsemi/src/isarr.mjs'
 import isobj from 'wsemi/src/isobj.mjs'
 import isfun from 'wsemi/src/isfun.mjs'
 import haskey from 'wsemi/src/haskey.mjs'
-import oo from 'wsemi/src/oo.mjs'
 import waitFun from 'wsemi/src/waitFun.mjs'
 import debounce from 'wsemi/src/debounce.mjs'
 import flattenTree from '../js/flattenTree.mjs'

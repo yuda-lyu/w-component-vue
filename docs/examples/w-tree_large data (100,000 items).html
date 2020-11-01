@@ -73,7 +73,7 @@
     <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.js"></script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@1.5.14/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@1.5.15/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -86,23 +86,19 @@
     padding: 0px 0px 20px 0px;
     font-size: 2.5rem;
   }
-  .item {
-    border-left: 3px solid #ffba75;
-    margin: 5px 5px 8px 0px;
-    padding: 3px 3px 5px 10px;
-    font-size: 0.9rem;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-  }
   .bk {
     vertical-align: top;
-    padding: 10px 0px 30px 0px;
+    margin: 10px 0px 0px 0px;
+    padding: 0px 0px 60px 0px;
   }
   @media screen and (min-width: 1000px) {
+    /* 寬版 */
     .bk {
       display: inline-block;
-      padding: 10px 90px 60px 0px;
+      margin: 0px 80px 0px 0px;
+    }
+    .dz {
+      width: 400px;
     }
   }
     </style>
@@ -112,33 +108,38 @@
 >
     <v-app id="app" style="font-family:inherit;">
         <div class="head1">w-tree</div>
-        <div class="bk">
+        <div class="bk" style="display:block; margin:0px 10px 0px 0px;">
             <div class="item">large data (100,000 items)</div>
 
-            <div style="display:flex;">
-                <w-tree
-                    style="width:600px; min-width:600px; border:1px solid #ddd;"
-                    :data="WTree.optionLarge.items"
-                    :selectable="true"
-                    :selections.sync="WTree.optionLarge.selections"
-                    :filter-keywords="WTree.optionLarge.keywords"
-                >
-                    <template v-slot:block="props">
-                        <div
-                            style="display:inline-block; margin-right:7px;"
-                        >{{props.data.text}}</div>
-                        <div
-                            style="display:inline-block; color:#26f; font-size:0.7rem;"
-                        >[id:{{props.data.id}}]</div>
-                    </template>
-                </w-tree>
+            <!-- 用:style才能支援IE11因vue會自動把overflow-x:auto轉為-ms-overflow-x:auto -->
+            <div :style="`overflow-x:auto;`">
+                <div style="display:table-cell; vertical-align:top;">
+                    <w-tree
+                        style="width:500px; border:1px solid #ddd;"
+                        :data="WTree.optionLarge.items"
+                        :selectable="true"
+                        :selections.sync="WTree.optionLarge.selections"
+                        :filter-keywords="WTree.optionLarge.keywords"
+                    >
+                        <template v-slot:block="props">
+                            <div
+                                style="display:inline-block; margin-right:7px;"
+                            >{{props.data.text}}</div>
+                            <div
+                                style="display:inline-block; color:#26f; font-size:0.7rem;"
+                            >[id:{{props.data.id}}]</div>
+                        </template>
+                    </w-tree>
+                </div>
 
-                <!-- 用:style才能支援IE11因vue會自動把overflow-y:auto轉為-ms-overflow-y:auto -->
-                <div
-                    :style="'padding:10px 20px; height:402px; overflow-y:auto; border:1px solid #ddd; border-left-width:0px;'"
-                >
-                    <div style="margin-bottom:5px;">selections:</div>
-                    <pre style="font-size:0.7rem;">{{JSON.stringify(showSelection(WTree.optionLarge.selections),null,4)}}</pre>
+                <div style="display:table-cell; vertical-align:top;">
+                    <!-- 用:style才能支援IE11因vue會自動把overflow-y:auto轉為-ms-overflow-y:auto -->
+                    <div
+                        :style="'padding:10px 20px; height:402px; overflow-y:auto; border:1px solid #ddd; border-left-width:0px;'"
+                    >
+                        <div style="margin-bottom:5px;">selections:</div>
+                        <pre style="font-size:0.7rem;">{{JSON.stringify(showSelection(WTree.optionLarge.selections),null,4)}}</pre>
+                    </div>
                 </div>
             </div>
         </div>
@@ -531,7 +532,7 @@
                 rs.push(r);
               }
               return rs;
-            })(100000) //1000000, 100000, 1000
+            })(100) //1000000, 100000, 1000
           }
         },
         actions: []

@@ -73,7 +73,7 @@
     <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.js"></script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@1.5.14/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@1.5.15/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -86,23 +86,19 @@
     padding: 0px 0px 20px 0px;
     font-size: 2.5rem;
   }
-  .item {
-    border-left: 3px solid #ffba75;
-    margin: 5px 5px 8px 0px;
-    padding: 3px 3px 5px 10px;
-    font-size: 0.9rem;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-  }
   .bk {
     vertical-align: top;
-    padding: 10px 0px 30px 0px;
+    margin: 10px 0px 0px 0px;
+    padding: 0px 0px 60px 0px;
   }
   @media screen and (min-width: 1000px) {
+    /* 寬版 */
     .bk {
       display: inline-block;
-      padding: 10px 90px 60px 0px;
+      margin: 0px 80px 0px 0px;
+    }
+    .dz {
+      width: 400px;
     }
   }
     </style>
@@ -112,7 +108,7 @@
 >
     <v-app id="app" style="font-family:inherit;">
         <div class="head1">w-dynamic-list</div>
-        <div class="bk">
+        <div class="bk dz">
             <div class="item">processItems</div>
 
             <div style="margin-bottom:10px;">
@@ -132,7 +128,7 @@
 
             <w-dynamic-list
                 ref="wdl"
-                style="width:400px; border:1px solid #ddd;"
+                style="border:1px solid #ddd;"
                 :rows="WDynamicList.data3"
             >
                 <template v-slot:block="props">
@@ -168,190 +164,146 @@
     </v-app>
 
     <script>
-  //install WComponentVue
-  Vue.use(window["w-component-vue"]);
+      //install WComponentVue
+      Vue.use(window['w-component-vue'])
 
-  //initialize
-  new Vue({
-    el: "#app",
-    vuetify: new Vuetify(),
-    data: function() {
+      //initialize
+      new Vue({
+          el: '#app',
+          vuetify: new Vuetify(),
+          data: function() {
       return {
-        WDynamicList: {
-          keywords: "fede 80",
-          data1: [
-            "Examine trends in the movement of guns across different states.",
-            "Code of Federal Regulations - Alcohol, Tobacco Products and Firearms",
-            "1980-2014 November General Election Turnout and Registration",
-            "Reported Voting and Registration, by Sex and Single Years of Age: November 2016",
-            "felon-disenfranchisement",
-            "623e708e-574e-45a2-9dc9-b53178903325",
-            "https://assembly-public-spotlight.s3.amazonaws.com/assets/images/public-welcome/card_disenfranchisement.jpg",
-            "Map felon disenfranchisement patterns by state.",
-            "Estimate how felon enfranchisement could affect close elections. Track how disenfranchisement has varied over time. an American non-profit journalism outlet dedicated to expanding media coverage on the state of guns in the U.S., spent 11 months amassing data on stolen and recovered guns. They filed hundreds of public record requests to over 1,000 law enforcement agencies in 36 states to investigate what happens to guns when they are reported stolen. The data reveals that guns were recovered by a variety of means, from being turned in as evidence or by abandonment.",
-            "Vivien Ngo, Data Journalism Fellow."
+          'WDynamicList': {
+              'keywords': 'fede 80',
+              'data1': [
+                  'Examine trends in the movement of guns across different states.',
+                  'Code of Federal Regulations - Alcohol, Tobacco Products and Firearms',
+                  '1980-2014 November General Election Turnout and Registration',
+                  'Reported Voting and Registration, by Sex and Single Years of Age: November 2016',
+                  'felon-disenfranchisement',
+                  '623e708e-574e-45a2-9dc9-b53178903325',
+                  'https://assembly-public-spotlight.s3.amazonaws.com/assets/images/public-welcome/card_disenfranchisement.jpg',
+                  'Map felon disenfranchisement patterns by state.',
+                  'Estimate how felon enfranchisement could affect close elections. Track how disenfranchisement has varied over time. an American non-profit journalism outlet dedicated to expanding media coverage on the state of guns in the U.S., spent 11 months amassing data on stolen and recovered guns. They filed hundreds of public record requests to over 1,000 law enforcement agencies in 36 states to investigate what happens to guns when they are reported stolen. The data reveals that guns were recovered by a variety of means, from being turned in as evidence or by abandonment.',
+                  'Vivien Ngo, Data Journalism Fellow.',
+              ],
+              'data2': (function(a) {
+                  a /= 5; let b = [{ name: 'Jason Oner', msg: 'Boost campaign performance by targeting specific user groups.', avatar: 'https://cdn.vuetifyjs.com/images/lists/1.jpg' }, { name: 'Travis Howard', msg: 'Determine the exact users you\'d like to target with a message or an experiment, based on behavioral data, like watching a video, or abandoning a cart, and demographic data, like age or location.', avatar: 'https://cdn.vuetifyjs.com/images/lists/2.jpg' }, { name: 'Ali Connors', msg: 'Integer porttitor urna ultricies justo iaculis vulputate ac non neque. Etiam iaculis est quis urna consequat ornare. Suspendisse a augue sit amet urna tincidunt rhoncus sed non tellus. Mauris ultricies lectus sit amet tellus egestas, in interdum elit rhoncus. Nullam viverra lectus mattis felis semper, in vulputate lorem tincidunt. Suspendisse dapibus arcu id nunc blandit, ut egestas nisi pulvinar. Examine trends in the movement of guns across different states. Code of Federal Regulations - Alcohol, Tobacco Products and Firearms 1980-2014 November General Election Turnout and Registration. Reported Voting and Registration, by Sex and Single Years of Age: November 2016. Map felon disenfranchisement patterns by state.', avatar: 'https://cdn.vuetifyjs.com/images/lists/3.jpg' }, { name: 'Cindy Baker', msg: 'Easily build highly personalized messages, and test multiple versions to see what works\u2014all in Mixpanel, no code required.', avatar: 'https://cdn.vuetifyjs.com/images/lists/4.jpg' }, { name: 'Deborah Lee', msg: 'Set detailed behavioral triggers, sequences, and rate limits for messages, to ensure that each campaign is relevant, timely, and delivered at the right pace.', avatar: 'https://cdn.vuetifyjs.com/images/lists/5.jpg' }]; let c = []; for (let d = 0; d < a; d++) for (let a = 0; a < b.length; a++)c.push(b[a]); return c
+              })(100),
+              'data3': (function(a) {
+                  a /= 5; let b = [{ name: 'Jason Oner', msg: 'Boost campaign performance by targeting specific user groups.', avatar: 'https://cdn.vuetifyjs.com/images/lists/1.jpg' }, { name: 'Travis Howard', msg: 'Determine the exact users you\'d like to target with a message or an experiment, based on behavioral data, like watching a video, or abandoning a cart, and demographic data, like age or location.', avatar: 'https://cdn.vuetifyjs.com/images/lists/2.jpg' }, { name: 'Ali Connors', msg: 'Integer porttitor urna ultricies justo iaculis vulputate ac non neque. Etiam iaculis est quis urna consequat ornare. Suspendisse a augue sit amet urna tincidunt rhoncus sed non tellus. Mauris ultricies lectus sit amet tellus egestas, in interdum elit rhoncus. Nullam viverra lectus mattis felis semper, in vulputate lorem tincidunt. Suspendisse dapibus arcu id nunc blandit, ut egestas nisi pulvinar. Examine trends in the movement of guns across different states. Code of Federal Regulations - Alcohol, Tobacco Products and Firearms 1980-2014 November General Election Turnout and Registration. Reported Voting and Registration, by Sex and Single Years of Age: November 2016. Map felon disenfranchisement patterns by state.', avatar: 'https://cdn.vuetifyjs.com/images/lists/3.jpg' }, { name: 'Cindy Baker', msg: 'Easily build highly personalized messages, and test multiple versions to see what works\u2014all in Mixpanel, no code required.', avatar: 'https://cdn.vuetifyjs.com/images/lists/4.jpg' }, { name: 'Deborah Lee', msg: 'Set detailed behavioral triggers, sequences, and rate limits for messages, to ensure that each campaign is relevant, timely, and delivered at the right pace.', avatar: 'https://cdn.vuetifyjs.com/images/lists/5.jpg' }]; let c = []; for (let d = 0; d < a; d++) for (let a = 0; a < b.length; a++)c.push(b[a]); return c
+              })(100),
+              'data4': (function(a) {
+                  a /= 5; let b = [{ name: 'Jason Oner', msg: 'Boost campaign performance by targeting specific user groups.', avatar: 'https://cdn.vuetifyjs.com/images/lists/1.jpg' }, { name: 'Travis Howard', msg: 'Determine the exact users you\'d like to target with a message or an experiment, based on behavioral data, like watching a video, or abandoning a cart, and demographic data, like age or location.', avatar: 'https://cdn.vuetifyjs.com/images/lists/2.jpg' }, { name: 'Ali Connors', msg: 'Integer porttitor urna ultricies justo iaculis vulputate ac non neque. Etiam iaculis est quis urna consequat ornare. Suspendisse a augue sit amet urna tincidunt rhoncus sed non tellus. Mauris ultricies lectus sit amet tellus egestas, in interdum elit rhoncus. Nullam viverra lectus mattis felis semper, in vulputate lorem tincidunt. Suspendisse dapibus arcu id nunc blandit, ut egestas nisi pulvinar. Examine trends in the movement of guns across different states. Code of Federal Regulations - Alcohol, Tobacco Products and Firearms 1980-2014 November General Election Turnout and Registration. Reported Voting and Registration, by Sex and Single Years of Age: November 2016. Map felon disenfranchisement patterns by state.', avatar: 'https://cdn.vuetifyjs.com/images/lists/3.jpg' }, { name: 'Cindy Baker', msg: 'Easily build highly personalized messages, and test multiple versions to see what works\u2014all in Mixpanel, no code required.', avatar: 'https://cdn.vuetifyjs.com/images/lists/4.jpg' }, { name: 'Deborah Lee', msg: 'Set detailed behavioral triggers, sequences, and rate limits for messages, to ensure that each campaign is relevant, timely, and delivered at the right pace.', avatar: 'https://cdn.vuetifyjs.com/images/lists/5.jpg' }]; let c = []; for (let d = 0; d < a; d++) for (let a = 0; a < b.length; a++)c.push(b[a]); return c
+              })(1000000), //20000000 1000000 1000
+          },
+          'actions': [
           ],
-          data2: (function(a) {
-            a /= 5;
-            let b = [
-              {
-                name: "Jason Oner",
-                msg:
-                  "Boost campaign performance by targeting specific user groups.",
-                avatar: "https://cdn.vuetifyjs.com/images/lists/1.jpg"
-              },
-              {
-                name: "Travis Howard",
-                msg:
-                  "Determine the exact users you'd like to target with a message or an experiment, based on behavioral data, like watching a video, or abandoning a cart, and demographic data, like age or location.",
-                avatar: "https://cdn.vuetifyjs.com/images/lists/2.jpg"
-              },
-              {
-                name: "Ali Connors",
-                msg:
-                  "Integer porttitor urna ultricies justo iaculis vulputate ac non neque. Etiam iaculis est quis urna consequat ornare. Suspendisse a augue sit amet urna tincidunt rhoncus sed non tellus. Mauris ultricies lectus sit amet tellus egestas, in interdum elit rhoncus. Nullam viverra lectus mattis felis semper, in vulputate lorem tincidunt. Suspendisse dapibus arcu id nunc blandit, ut egestas nisi pulvinar. Examine trends in the movement of guns across different states. Code of Federal Regulations - Alcohol, Tobacco Products and Firearms 1980-2014 November General Election Turnout and Registration. Reported Voting and Registration, by Sex and Single Years of Age: November 2016. Map felon disenfranchisement patterns by state.",
-                avatar: "https://cdn.vuetifyjs.com/images/lists/3.jpg"
-              },
-              {
-                name: "Cindy Baker",
-                msg:
-                  "Easily build highly personalized messages, and test multiple versions to see what works\u2014all in Mixpanel, no code required.",
-                avatar: "https://cdn.vuetifyjs.com/images/lists/4.jpg"
-              },
-              {
-                name: "Deborah Lee",
-                msg:
-                  "Set detailed behavioral triggers, sequences, and rate limits for messages, to ensure that each campaign is relevant, timely, and delivered at the right pace.",
-                avatar: "https://cdn.vuetifyjs.com/images/lists/5.jpg"
-              }
-            ];
-            let c = [];
-            for (let d = 0; d < a; d++)
-              for (let a = 0; a < b.length; a++) c.push(b[a]);
-            return c;
-          })(100),
-          data3: (function(a) {
-            a /= 5;
-            let b = [
-              {
-                name: "Jason Oner",
-                msg:
-                  "Boost campaign performance by targeting specific user groups.",
-                avatar: "https://cdn.vuetifyjs.com/images/lists/1.jpg"
-              },
-              {
-                name: "Travis Howard",
-                msg:
-                  "Determine the exact users you'd like to target with a message or an experiment, based on behavioral data, like watching a video, or abandoning a cart, and demographic data, like age or location.",
-                avatar: "https://cdn.vuetifyjs.com/images/lists/2.jpg"
-              },
-              {
-                name: "Ali Connors",
-                msg:
-                  "Integer porttitor urna ultricies justo iaculis vulputate ac non neque. Etiam iaculis est quis urna consequat ornare. Suspendisse a augue sit amet urna tincidunt rhoncus sed non tellus. Mauris ultricies lectus sit amet tellus egestas, in interdum elit rhoncus. Nullam viverra lectus mattis felis semper, in vulputate lorem tincidunt. Suspendisse dapibus arcu id nunc blandit, ut egestas nisi pulvinar. Examine trends in the movement of guns across different states. Code of Federal Regulations - Alcohol, Tobacco Products and Firearms 1980-2014 November General Election Turnout and Registration. Reported Voting and Registration, by Sex and Single Years of Age: November 2016. Map felon disenfranchisement patterns by state.",
-                avatar: "https://cdn.vuetifyjs.com/images/lists/3.jpg"
-              },
-              {
-                name: "Cindy Baker",
-                msg:
-                  "Easily build highly personalized messages, and test multiple versions to see what works\u2014all in Mixpanel, no code required.",
-                avatar: "https://cdn.vuetifyjs.com/images/lists/4.jpg"
-              },
-              {
-                name: "Deborah Lee",
-                msg:
-                  "Set detailed behavioral triggers, sequences, and rate limits for messages, to ensure that each campaign is relevant, timely, and delivered at the right pace.",
-                avatar: "https://cdn.vuetifyjs.com/images/lists/5.jpg"
-              }
-            ];
-            let c = [];
-            for (let d = 0; d < a; d++)
-              for (let a = 0; a < b.length; a++) c.push(b[a]);
-            return c;
-          })(100),
-          data4: (function(a) {
-            a /= 5;
-            let b = [
-              {
-                name: "Jason Oner",
-                msg:
-                  "Boost campaign performance by targeting specific user groups.",
-                avatar: "https://cdn.vuetifyjs.com/images/lists/1.jpg"
-              },
-              {
-                name: "Travis Howard",
-                msg:
-                  "Determine the exact users you'd like to target with a message or an experiment, based on behavioral data, like watching a video, or abandoning a cart, and demographic data, like age or location.",
-                avatar: "https://cdn.vuetifyjs.com/images/lists/2.jpg"
-              },
-              {
-                name: "Ali Connors",
-                msg:
-                  "Integer porttitor urna ultricies justo iaculis vulputate ac non neque. Etiam iaculis est quis urna consequat ornare. Suspendisse a augue sit amet urna tincidunt rhoncus sed non tellus. Mauris ultricies lectus sit amet tellus egestas, in interdum elit rhoncus. Nullam viverra lectus mattis felis semper, in vulputate lorem tincidunt. Suspendisse dapibus arcu id nunc blandit, ut egestas nisi pulvinar. Examine trends in the movement of guns across different states. Code of Federal Regulations - Alcohol, Tobacco Products and Firearms 1980-2014 November General Election Turnout and Registration. Reported Voting and Registration, by Sex and Single Years of Age: November 2016. Map felon disenfranchisement patterns by state.",
-                avatar: "https://cdn.vuetifyjs.com/images/lists/3.jpg"
-              },
-              {
-                name: "Cindy Baker",
-                msg:
-                  "Easily build highly personalized messages, and test multiple versions to see what works\u2014all in Mixpanel, no code required.",
-                avatar: "https://cdn.vuetifyjs.com/images/lists/4.jpg"
-              },
-              {
-                name: "Deborah Lee",
-                msg:
-                  "Set detailed behavioral triggers, sequences, and rate limits for messages, to ensure that each campaign is relevant, timely, and delivered at the right pace.",
-                avatar: "https://cdn.vuetifyjs.com/images/lists/5.jpg"
-              }
-            ];
-            let c = [];
-            for (let d = 0; d < a; d++)
-              for (let a = 0; a < b.length; a++) c.push(b[a]);
-            return c;
-          })(1000000) //20000000 1000000 1000
-        },
-        actions: []
-      };
-    },
-    mounted: function() {
-      return {};
-    },
-    computed: {},
-    methods: {
+      }
+  },
+          mounted: function() {
+  //     this.evtm = (e) => {
+  //         console.log('window touchmove', e, 'clientY', e.touches[0].clientY)
+  //     }
+  //     window.addEventListener('touchmove', this.evtm)
+
+  //     this.evwl = (e) => {
+  //         console.log('window wheel', e, 'deltaY', e.deltaY)
+  //     }
+  //     window.addEventListener('wheel', this.evwl)
+  //     this.evsl = (e) => {
+  //         console.log('window scroll', e)
+  //     }
+  //     window.addEventListener('scroll', this.evsl)
+
+  //     this.dewl = (e) => {
+  //         console.log('document wheel', e, 'deltaY', e.deltaY)
+  //     }
+  //     document.addEventListener('wheel', this.dewl)
+  //     this.desl = (e) => {
+  //         console.log('document scroll', e)
+  //     }
+  //     document.addEventListener('scroll', this.desl)
+  // },
+  // beforeDestroy: function() {
+  //     window.removeEventListener('touchmove', this.evtm)
+  //     window.removeEventListener('wheel', this.evwl)
+  //     window.removeEventListener('scroll', this.evsl)
+  //     document.removeEventListener('wheel', this.dewl)
+  //     document.removeEventListener('scroll', this.desl)
+  // },
+  methods: {
       processItemsByFun: function() {
-        let vo = this;
-        let opt = {
-          fun: function(items) {
-            for (let i = 0; i < items.length; i++) {
-              items[i].displayShow = i % 10 === 0;
-            }
+          let vo = this
+          let opt = {
+              fun: function(items) {
+                  for (let i = 0; i < items.length; i++) {
+                      items[i].displayShow = (i % 10 === 0)
+                  }
+              }
           }
-        };
-        vo.$refs.wdl.processItems(opt);
+          vo.$refs.wdl.processItems(opt)
       },
       processItemsByInd: function() {
-        let vo = this;
-        let opt;
-        opt = {
-          indStart: 0,
-          indEnd: 99,
-          displayShow: true
-        };
-        vo.$refs.wdl.processItems(opt);
-        opt = {
-          indStart: 0,
-          indEnd: 5,
-          displayShow: false
-        };
-        vo.$refs.wdl.processItems(opt);
-        opt = {
-          indStart: 8,
-          indEnd: 97,
-          displayShow: false
-        };
-        vo.$refs.wdl.processItems(opt);
-      }
-    }
-  });
+          let vo = this
+          let opt
+          opt = {
+              indStart: 0,
+              indEnd: 99,
+              displayShow: true,
+          }
+          vo.$refs.wdl.processItems(opt)
+          opt = {
+              indStart: 0,
+              indEnd: 5,
+              displayShow: false,
+          }
+          vo.$refs.wdl.processItems(opt)
+          opt = {
+              indStart: 8,
+              indEnd: 97,
+              displayShow: false,
+          }
+          vo.$refs.wdl.processItems(opt)
+      },
+  },
+          computed: {},
+          methods:  {
+      processItemsByFun: function() {
+          let vo = this
+          let opt = {
+              fun: function(items) {
+                  for (let i = 0; i < items.length; i++) {
+                      items[i].displayShow = (i % 10 === 0)
+                  }
+              }
+          }
+          vo.$refs.wdl.processItems(opt)
+      },
+      processItemsByInd: function() {
+          let vo = this
+          let opt
+          opt = {
+              indStart: 0,
+              indEnd: 99,
+              displayShow: true,
+          }
+          vo.$refs.wdl.processItems(opt)
+          opt = {
+              indStart: 0,
+              indEnd: 5,
+              displayShow: false,
+          }
+          vo.$refs.wdl.processItems(opt)
+          opt = {
+              indStart: 8,
+              indEnd: 97,
+              displayShow: false,
+          }
+          vo.$refs.wdl.processItems(opt)
+      },
+  },
+      })
     </script>
 </body>
 </html>

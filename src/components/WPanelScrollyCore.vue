@@ -1,33 +1,39 @@
 <template>
     <div
-        :style="`overflow:hidden; height:${Math.min(contentHeight,viewHeightMax)}px; box-sizing:content-box;`"
+        :style="`height:${Math.min(contentHeight,viewHeightMax)}px; box-sizing:content-box;`"
         v-domresize
         @domresize="resize"
     >
-        <div
-            :style="`position:relative; overflow:hidden; height:${viewHeightMax}px; box-sizing:border-box;`"
-            :changeRatio="changeRatio"
-            @mouseenter="barOpacity=1"
-            @mouseleave="barOpacity=0.8"
-        >
-
-            <div :style="`height:${viewHeightMax+1}px;`"></div>
-
-            <div style="position:absolute; top:0; right:0px; height:100%; z-index:1;" v-show="contentHeightEff>0">
-                <div :style="`position:relative; width:${barWidth}px; height:100%; background:${useBarBackgroundColor}; padding:2px 1px; box-sizing:border-box;`">
-                    <div
-                        ref="divBar"
-                        :style="`width:100%; height:${barSize}px; background:${useBarColor}; border-radius:15px; user-select:none; transform:translateY(${barLoc}px); cursor:pointer; opacity:${barOpacity}; transition:opacity 0.5s;`"
-                    ></div>
-                </div>
-            </div>
+        <!-- 不能設定border-width=0, 瀏覽器會額外進行偵測渲染導致抖動 -->
+        <div :style="`overflow:hidden; height:${viewHeightMax}px;`">
 
             <div
                 ref="divPanel"
-                :style="`position:absolute; top:0px; width:calc(100% + 18px); overflow-y:scroll; overflow-x:hidden; height:${viewHeightMax}px;`"
+                :style="`position:relative; overflow-x:hidden; overflow-y:auto; width:calc( 100% + ${nativeBarWidth+extWidth}px ); height:${viewHeightMax}px;`"
+                :changeRatio="changeRatio"
+                @mouseenter="barOpacity=1"
+                @mouseleave="barOpacity=0.8"
+                @scroll="changeScroll"
             >
 
-                <slot></slot>
+                <!-- 通過高度設定為viewHeightMax+extHeight使divPanel出現捲軸, 並強制設定scrollTop=extHeight/2可使保持監聽上下捲動與拖曳事件 -->
+                <div :style="`position:absolute; top:0px; left:0px; width:calc( 100% + ${extWidth}px ); height:${viewHeightMax+extHeight}px;`"></div>
+
+                <div :style="`position:absolute; top:${extHeight/2}px; right:${extWidth}px; z-index:1; height:${viewHeightMax}px;`" v-show="contentHeightEff>0">
+                    <!-- 外層設定box-sizing=content-box也就是高度不包括border與padding, 內層高度就會是viewHeightMax不需減少, 此時bar的設定box-sizing=border-box才能自動考量padding影響 -->
+                    <div :style="`box-sizing:border-box; position:relative; width:${barWidth}px; height:100%; background:${useBarBackgroundColor}; padding:${barPanelPadding}px 1px;`">
+                        <div :style="``">
+                            <div
+                                ref="divBar"
+                                :style="`width:100%; height:${barSize}px; background:${useBarColor}; border-radius:15px; user-select:none; transform:translateY(${barLoc}px); cursor:pointer; opacity:${barOpacity}; transition:opacity 0.5s;`"
+                            ></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div :style="`position:absolute; top:${extHeight/2}px; left:0px; overflow:hidden; width:calc( 100% + ${extWidth}px ); height:${viewHeightMax}px;`">
+                    <slot></slot>
+                </div>
 
             </div>
 
@@ -36,6 +42,7 @@
 </template>
 
 <script>
+import get from 'lodash/get'
 import domDragBarAndScroll from 'wsemi/src/domDragBarAndScroll.mjs'
 import color2hex from '../js/vuetifyColor.mjs'
 import domResize from '../js/domResize.mjs'
@@ -96,6 +103,10 @@ export default {
             ratioTrans: 0, //捲動比例
             barPressY: null, //bar按下準備拖曳前y座標
             barOpacity: 0.5,
+            nativeBarWidth: 100, //預設給超大值避免初始化時顯示捲軸出來
+            extHeight: 2, //最小上下留1px故為2, 若給更大時拖曳會出現回彈效果, 此處不採用
+            extWidth: 0,
+            barPanelPadding: 1,
 
         }
     },
@@ -105,7 +116,11 @@ export default {
         let vo = this
 
         //das
-        let das = domDragBarAndScroll(vo.$refs.divPanel, vo.$refs.divBar, { getHeighRatio: () => vo.heighRatio, stopScrollPropagationForPanel: true })
+        let das = domDragBarAndScroll(vo.$refs.divPanel, vo.$refs.divBar, {
+            getHeighRatio: () => vo.heighRatio,
+            //stopScrollPropagationForPanel: true, //禁止滑鼠捲動事件傳遞至外, 現已強制原生捲軸再攔截相關事件, 故不需要停用傳遞
+            //stopTouchDragPropagationForPanel: true, //禁止觸控拖曳事件傳遞至外, 現已強制原生捲軸再攔截相關事件, 故不需要停用傳遞
+        })
         das.on('scrollPanel', vo.scrollPanel)
         das.on('pressBar', vo.pressBar)
         das.on('dragBar', vo.dragBar)
@@ -113,6 +128,9 @@ export default {
 
         //save
         vo.das = das
+
+        //changeScroll
+        vo.changeScroll({ target: vo.$refs.divPanel })
 
     },
     beforeDestroy: function() {
@@ -217,7 +235,7 @@ export default {
             let vo = this
 
             //v
-            let v = vo.viewHeightMax - vo.barSize - 4 //4px為padding 2px*2
+            let v = vo.viewHeightMax - vo.barSize - vo.barPanelPadding * 2
             v = Math.max(v, 0)
 
             return v
@@ -242,10 +260,43 @@ export default {
     },
     methods: {
 
-        resize: function({ snew }) {
-            //console.log('methods resize', snew)
+        changeScroll: function(e) {
+            //console.log('changeScroll', e)
 
             let vo = this
+
+            //使內容物捲軸位置置中可持續接收上下捲動與拖曳事件
+            let div = get(e, 'target', null)
+            if (div !== null) {
+
+                //scrollTop
+                div.scrollTop = vo.extHeight / 2
+
+            }
+
+        },
+
+        resize: function({ snew, ele }) {
+            //console.log('methods resize', snew, ele)
+
+            let vo = this
+
+            //nativeBarWidth
+            let divPanel = get(vo, '$refs.divPanel')
+            if (divPanel) { //未顯示組件會無divPanel
+
+                //nativeBarWidth
+                let nativeBarWidth = vo.$refs.divPanel.offsetWidth - vo.$refs.divPanel.clientWidth
+
+                //save
+                vo.nativeBarWidth = nativeBarWidth
+
+                //extWidth
+                if (vo.nativeBarWidth <= 0) {
+                    vo.extWidth = 20
+                }
+
+            }
 
             //triggerEvent
             vo.triggerEvent('resize')

@@ -86,4 +86,13 @@ export default {
 </script>
 
 <style scoped>
+.item {
+    border-left: 3px solid #ffba75;
+    margin: 5px 5px 8px 0px;
+    padding: 3px 3px 5px 10px;
+    font-size: 0.9rem;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
 </style>
