@@ -103,9 +103,9 @@ export default {
             ratioTrans: 0, //捲動比例
             barPressY: null, //bar按下準備拖曳前y座標
             barOpacity: 0.5,
-            nativeBarWidth: 100, //預設給超大值避免初始化時顯示捲軸出來
-            extHeight: 2, //最小上下留1px故為2, 若給更大時拖曳會出現回彈效果, 此處不採用
-            extWidth: 0,
+            nativeBarWidth: 100, //原生捲軸寬度, 預設給超大值避免初始化時顯示捲軸出來
+            extHeight: 2, //額外撐開高度, 最小上下留1px故為2, 若給更大時拖曳會出現回彈效果, 此處不採用
+            extWidth: 0, //額外撐開寬度, 當手機瀏覽時會沒有原生捲軸寬度, 此時需額外撐開使捲軸隱藏
             barPanelPadding: 1,
 
         }

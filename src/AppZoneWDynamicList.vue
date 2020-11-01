@@ -308,37 +308,6 @@ export default {
             ],
         }
     },
-    // mounted: function() {
-    //     this.evtm = (e) => {
-    //         console.log('window touchmove', e, 'clientY', e.touches[0].clientY)
-    //     }
-    //     window.addEventListener('touchmove', this.evtm)
-
-    //     this.evwl = (e) => {
-    //         console.log('window wheel', e, 'deltaY', e.deltaY)
-    //     }
-    //     window.addEventListener('wheel', this.evwl)
-    //     this.evsl = (e) => {
-    //         console.log('window scroll', e)
-    //     }
-    //     window.addEventListener('scroll', this.evsl)
-
-    //     this.dewl = (e) => {
-    //         console.log('document wheel', e, 'deltaY', e.deltaY)
-    //     }
-    //     document.addEventListener('wheel', this.dewl)
-    //     this.desl = (e) => {
-    //         console.log('document scroll', e)
-    //     }
-    //     document.addEventListener('scroll', this.desl)
-    // },
-    // beforeDestroy: function() {
-    //     window.removeEventListener('touchmove', this.evtm)
-    //     window.removeEventListener('wheel', this.evwl)
-    //     window.removeEventListener('scroll', this.evsl)
-    //     document.removeEventListener('wheel', this.dewl)
-    //     document.removeEventListener('scroll', this.desl)
-    // },
     methods: {
         processItemsByFun: function() {
             let vo = this
