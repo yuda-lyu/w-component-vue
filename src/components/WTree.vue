@@ -81,7 +81,7 @@ import isfun from 'wsemi/src/isfun.mjs'
 import haskey from 'wsemi/src/haskey.mjs'
 import waitFun from 'wsemi/src/waitFun.mjs'
 import debounce from 'wsemi/src/debounce.mjs'
-import flattenTree from '../js/flattenTree.mjs'
+import flattenTreeObj from 'wsemi/src/flattenTreeObj'
 import globalMemory from '../js/globalMemory.mjs'
 import WDynamicList from './WDynamicList.vue'
 import WTreeIconToggle from './WTreeIconToggle.vue'
@@ -315,8 +315,8 @@ export default {
                 //cloneDeep
                 data = cloneDeep(data)
 
-                //flattenTree
-                let ts = flattenTree(data, vo.keyPrimary, vo.keyChildren)
+                //flattenTreeObj
+                let ts = flattenTreeObj(data, { bindKey: vo.keyPrimary, bindChildren: vo.keyChildren })
 
                 //rows, lodash使用new Array建構比for+push快
                 let rows = map(ts, (v, k) => {

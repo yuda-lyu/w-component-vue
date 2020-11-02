@@ -66,8 +66,8 @@ import take from 'lodash/take'
 import isEqual from 'lodash/isEqual'
 import domDrag from 'wsemi/src/domDrag.mjs'
 import cint from 'wsemi/src/cint.mjs'
+import flattenTreeObj from 'wsemi/src/flattenTreeObj'
 import color2hex from '../js/vuetifyColor.mjs'
-import flattenTree from '../js/flattenTree.mjs'
 
 
 /**
@@ -309,46 +309,7 @@ export default {
             let vo = this
 
             //nodes
-            vo.nodes = flattenTree(vo.itemsTrans, vo.bindKey, vo.bindChildren)
-
-            // function getNk(nk) {
-            //     //將nk內插入vo.bindChildren, 因主節點為array, 各節點內的子節點也為array
-            //     let r = [nk[0]]
-            //     for (let i = 1; i < nk.length; i++) {
-            //         let k = nk[i]
-            //         r.push(vo.bindChildren)
-            //         r.push(k)
-            //     }
-            //     return r
-            // }
-
-            // let nodes = []
-            // treeObj(vo.itemsTrans, (value, key, nk) => {
-            //     let pk = get(value, vo.bindKey, null)
-            //     let children = get(value, vo.bindChildren, null)
-            //     if (pk) {
-            //         nodes.push({
-            //             ...value,
-            //             nk: getNk([...nk, key]),
-            //             key,
-            //         })
-            //         if (children) {
-            //             return children
-            //         }
-            //     }
-            // })
-            // // console.log('nodes', nodes)
-
-            // // //t
-            // // let t = {}
-            // // each(nodes, (v) => {
-            // //     each(v.nk, (vv, kk) => {
-            // //         set(t, '')
-            // //     })
-            // // })
-
-            // //save
-            // vo.nodes = nodes
+            vo.nodes = flattenTreeObj(vo.itemsTrans, { bindKey: vo.bindKey, bindChildren: vo.bindChildren })
 
             return ''
         },
