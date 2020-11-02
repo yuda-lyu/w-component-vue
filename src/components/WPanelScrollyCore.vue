@@ -104,7 +104,6 @@ export default {
             barPressY: null, //bar按下準備拖曳前y座標
             barOpacity: 0.5,
             nativeBarWidth: 100, //原生捲軸寬度, 預設給超大值避免初始化時顯示捲軸出來
-            extHeight: 2, //額外撐開高度, 最小上下留1px故為2, 若給更大時拖曳會出現回彈效果, 此處不採用
             extWidth: 0, //額外撐開寬度, 當手機瀏覽時會沒有原生捲軸寬度, 此時需額外撐開使捲軸隱藏
             barPanelPadding: 1,
 
@@ -145,6 +144,25 @@ export default {
 
     },
     computed: {
+
+        extHeight: function() {
+            //console.log('computed extHeight')
+
+            let vo = this
+
+            //放大比率(依照viewHeightMax)與增量
+            let r = 10 //桌機需高放大比率, 於複雜dom中比較有緩衝能平滑拖曳, 不容易觸發拖曳外層document
+            let d = 0
+            if (vo.nativeBarWidth <= 0) {
+                r = 0 //手機需低放大比率, 大值時拖曳會出現回彈效果使用者體驗比較好, 但會常觸發回彈導致無法拖曳
+                d = 2
+            }
+
+            //額外撐開高度, 最小上下留1px也就是需為viewHeightMax+2
+            let h = vo.viewHeightMax * r + d
+
+            return h
+        },
 
         useBarColor: function() {
             //console.log('computed useBarColor')

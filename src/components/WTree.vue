@@ -40,13 +40,15 @@
                         v-if="selectable"
                     ></WTreeIconCheckbox>
 
-                    <div :style="`display:flex; align-items:center; min-height:${iconHeight}px;`">
+                    <div :style="`min-height:${iconHeight}px;`">
                         <slot
                             name="block"
                             :data="props.row.item"
                             :index="props.index"
                         >
-                            {{getText(props.row.item)}}
+                            <div :style="`height:${iconHeight}px; display:flex; align-items:center;`">
+                                {{getText(props.row.item)}}
+                            </div>
                         </slot>
                     </div>
 
@@ -199,7 +201,7 @@ export default {
         },
         itemMinHeight: {
             type: Number,
-            default: 34,
+            default: 34, //設定與iconHeight同高提高效能
         },
         itemsPreload: {
             type: Number,

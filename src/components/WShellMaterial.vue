@@ -6,7 +6,7 @@
     >
 
         <div
-            style="cursor:pointer; outline:none;"
+            style="user-select:none; cursor:pointer; outline:none;"
             tabindex="0"
             @keyup.enter="clickIcon('left')"
             @click="clickIcon('left')"
@@ -45,7 +45,7 @@
         </div>
 
         <div
-            style="cursor:pointer; outline:none;"
+            style="user-select:none; cursor:pointer; outline:none;"
             tabindex="0"
             @keyup.enter="clickIcon('right')"
             @click="clickIcon('right')"

@@ -6,8 +6,8 @@
         <div ref="imgsGroup" v-else>
             <template v-for="(image,k) in images">
                 <div
+                    style="display:inline-block; opacity:0; user-select:none; cursor:pointer; outline:none;"
                     tabindex="0"
-                    style="display:inline-block; opacity:0; cursor:pointer; outline:none;"
                     :key="k"
                     @keyup.enter="showImg"
                     @click="showImg"

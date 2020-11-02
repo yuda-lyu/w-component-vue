@@ -54,7 +54,6 @@
 </template>
 
 <script>
-import each from 'lodash/each'
 import pullAt from 'lodash/pullAt'
 import size from 'lodash/size'
 import dropRight from 'lodash/dropRight'
@@ -66,7 +65,6 @@ import min from 'lodash/min'
 import take from 'lodash/take'
 import isEqual from 'lodash/isEqual'
 import domDrag from 'wsemi/src/domDrag.mjs'
-import treeObj from 'wsemi/src/treeObj.mjs'
 import cint from 'wsemi/src/cint.mjs'
 import color2hex from '../js/vuetifyColor.mjs'
 import flattenTree from '../js/flattenTree.mjs'

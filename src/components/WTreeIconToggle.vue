@@ -1,6 +1,6 @@
 <template>
     <div
-        style="display:inline-block; cursor:pointer; outline:none;"
+        style="display:inline-block; user-select:none; cursor:pointer; outline:none;"
         tabindex="0"
         @keyup.enter="(v)=>{$emit('click',v)}"
         @click="(v)=>{$emit('click',v)}"

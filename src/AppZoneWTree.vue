@@ -395,11 +395,13 @@
                             :filterKeywords="WTree.optionLarge.keywords"
                         >
                             <template v-slot:block="props">
-                                <div style="display:inline-block; margin-right:7px;">
-                                    {{props.data.text}}
-                                </div>
-                                <div style="display:inline-block; color:#26f; font-size:0.7rem;">
-                                    [id:{{props.data.id}}]
+                                <div style="height:100%; display:flex; align-items:center;">
+                                    <div style="margin-right:5px;">
+                                        {{props.data.text}}
+                                    </div>
+                                    <div style="color:#26f; font-size:0.7rem;">
+                                        [id:{{props.data.id}}]
+                                    </div>
                                 </div>
                             </template>
                         </w-tree>
