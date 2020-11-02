@@ -11,6 +11,7 @@
     >
         <template v-slot:block="props">
             <!-- 記得要:key使各div都是可識別元素, 避免捲動時不同方向圖標因transition而會有微轉動問題 -->
+            <!-- 主鍵綁定元素高度需設定min-height不能用height, wdl會偵測元素高度來按需顯示, 用height會導致元素高度被寫死無法由slot撐開 -->
             <div :key="`wdl-${props.index}`" :style="`min-height:${iconHeight}px;`">
 
                 <div :style="`display:table-cell; vertical-align:top; padding-left:${getLevel(props.row)*indent}px;`"></div>
@@ -42,7 +43,7 @@
                 </div>
 
                 <!-- 給予width:100%使slot區可自動展開寬度至組件寬 -->
-                <div :style="`display:table-cell; vertical-align:top; min-height:${iconHeight}px; width:100%;`">
+                <div :style="`display:table-cell; vertical-align:top; height:${iconHeight}px; width:100%;`">
                     <slot
                         name="block"
                         :data="props.row.item"
