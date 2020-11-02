@@ -73,7 +73,7 @@
     <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.js"></script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@1.5.20/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@1.5.21/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -599,6 +599,17 @@
             t.push(ss[key]);
           });
         return t;
+      },
+      mouseenter: function(msg) {
+        //console.log('mouseenter', msg)
+        msg.ele.style.transition = "all 0.3s";
+        msg.ele.style.background = "#f0f0f0";
+        //msg.ele.style.color = '#fff'
+      },
+      mouseleave: function(msg) {
+        //console.log('mouseleave', msg)
+        msg.ele.style.background = "rgba(255, 255, 255, 0)";
+        //msg.ele.style.color = 'black'
       }
     }
   });

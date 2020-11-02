@@ -5,7 +5,7 @@
         <div class="head1">w-tree</div>
 
 
-        <div style="padding:0px;">
+        <div style="padding:0px; _background:#e4d3a7;">
 
 
             <div class="bk dz">
@@ -79,6 +79,22 @@
                     :keyText="'name'"
                     :keyChildren="'packages'"
                     :data="WTree.optionKeys.items"
+                ></w-tree>
+
+            </div>
+
+
+            <div class="bk dz">
+                <demolink
+                    :kbname="'w-tree'"
+                    :casename="'mouseenter & mouseleave'"
+                ></demolink>
+
+                <w-tree
+                    style="border:1px solid #ddd;"
+                    :data="WTree.option.items"
+                    @mouseenter="mouseenter"
+                    @mouseleave="mouseleave"
                 ></w-tree>
 
             </div>
@@ -838,6 +854,17 @@ export default {
                     t.push(ss[key])
                 })
             return t
+        },
+        mouseenter: function(msg) {
+            //console.log('mouseenter', msg)
+            msg.ele.style.transition = 'all 0.3s'
+            msg.ele.style.background = '#f0f0f0'
+            //msg.ele.style.color = '#fff'
+        },
+        mouseleave: function(msg) {
+            //console.log('mouseleave', msg)
+            msg.ele.style.background = 'rgba(255, 255, 255, 0)'
+            //msg.ele.style.color = 'black'
         },
     },
 }

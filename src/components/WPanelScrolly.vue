@@ -4,7 +4,7 @@
         @domresize="resizePanel"
     >
         <WPanelScrollyCore
-            ref="wsp"
+            ref="wpsc"
             :viewHeightMax="viewHeight"
             :contentHeight="contentHeight"
             :scrollDelta="scrollDelta"
@@ -147,7 +147,7 @@ export default {
             let vo = this
 
             //t
-            let t = get(vo, '$refs.wsp.triggerEvent', null)
+            let t = get(vo, '$refs.wpsc.triggerEvent', null)
             if (t) {
                 t(from)
             }

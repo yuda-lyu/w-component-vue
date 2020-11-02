@@ -1,6 +1,6 @@
 <template>
     <WPanelScrollyCore
-        ref="wsp"
+        ref="wpsc"
         :ratio.sync="scrollRatio"
         :viewHeightMax="viewHeightMax"
         :contentHeight="itemsHeight"
@@ -12,12 +12,12 @@
             <!-- 需設定width:100%, 因ie11的flex內文字會自動撐開版面導致不會換行 -->
             <div
                 ref="wdsDiv"
+                :key="`wpsc-${kitem}`"
                 :style="`position:absolute; top:${item.screenY}px; left:0px; width:100%; opacity:${(item.nowShow && item.delayShow)?1:0.001}; ${item.delayShow?'transition:opacity 0.1s':''}`"
                 :index="item.index"
                 :nowShow="item.nowShow"
                 :delayShow="item.delayShow"
                 :y="item.y"
-                :key="kitem"
             >
                 <slot
                     name="block"
@@ -751,7 +751,7 @@ export default {
             let vo = this
 
             //triggerEvent
-            let t = get(vo, '$refs.wsp.triggerEvent', null)
+            let t = get(vo, '$refs.wpsc.triggerEvent', null)
             if (t) {
                 t(from)
             }

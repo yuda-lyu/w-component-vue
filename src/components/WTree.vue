@@ -10,9 +10,15 @@
         :changeFilterKeyWords="changeFilterKeyWords"
     >
         <template v-slot:block="props">
+
             <!-- 記得要:key使各div都是可識別元素, 避免捲動時不同方向圖標因transition而會有微轉動問題 -->
-            <!-- 主鍵綁定元素高度需設定min-height不能用height, wdl會偵測元素高度來按需顯示, 用height會導致元素高度被寫死無法由slot撐開 -->
-            <div :key="`wdl-${props.index}`" :style="`min-height:${iconHeight}px;`">
+            <!-- wdl template內第1層元素高度需設定min-height不能用height, 因會偵測此元素高度來按需顯示, 用height會導致元素高度被寫死無法由slot撐開 -->
+            <div
+                :key="`wt-${props.index}`"
+                :style="`min-height:${iconHeight}px;`"
+                @mouseenter="(e)=>{$emit('mouseenter',{event:e,ele:e.target,data:props.row.item,index:props.index})}"
+                @mouseleave="(e)=>{$emit('mouseleave',{event:e,ele:e.target,data:props.row.item,index:props.index})}"
+            >
 
                 <div :style="`display:table-cell; vertical-align:top; padding-left:${getLevel(props.row)*indent}px;`"></div>
 
@@ -56,8 +62,8 @@
                 </div>
 
             </div>
-        </template>
 
+        </template>
     </WDynamicList>
 </template>
 

@@ -1,6 +1,6 @@
 <template>
     <WPanelScrollyCore
-        ref="wsp"
+        ref="wpsc"
         :ratio.sync="scrollRatio"
         :viewHeightMax="viewHeightMax"
         :contentHeight="itemsHeight"
@@ -1135,7 +1135,7 @@ export default {
             let vo = this
 
             //t
-            let t = get(vo, '$refs.wsp.triggerEvent', null)
+            let t = get(vo, '$refs.wpsc.triggerEvent', null)
             if (t) {
                 t(from)
             }
