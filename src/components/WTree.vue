@@ -11,23 +11,24 @@
     >
         <template v-slot:block="props">
             <!-- 記得要:key使各div都是可識別元素, 避免捲動時不同方向圖標因transition而會有微轉動問題 -->
-            <div :key="`wdl-${props.index}`">
-                <!-- 盡量不要讓display:flex暴露至外層 -->
-                <div :style="`display:flex; min-height:${iconHeight}px;`">
+            <div :key="`wdl-${props.index}`" :style="`min-height:${iconHeight}px;`">
 
-                    <div :style="`padding-left:${getLevel(props.row)*indent}px;`"></div>
+                <div :style="`display:table-cell; vertical-align:top; padding-left:${getLevel(props.row)*indent}px;`"></div>
 
+                <div style="display:table-cell; vertical-align:top; padding-left:3px;" v-if="hasChildren(props.index)">
                     <WTreeIconToggle
-                        :style="`padding:0px 5px 0px 10px; width:30px; height:${iconHeight}px;`"
+                        :style="`width:24px; height:${iconHeight}px;`"
                         :dir="`${props.row.unfolding?'bottom':'right'}`"
                         :iconColor="iconColor"
                         @click="toggleItems(props.row)"
-                        v-if="hasChildren(props.index)"
                     ></WTreeIconToggle>
-                    <div style="padding-right:30px;" v-else></div>
+                </div>
+                <!-- 需使用padding撐開寬度避免被壓縮 -->
+                <div style="display:table-cell; vertical-align:top; padding-left:30px;" v-else></div>
 
+                <div style="display:table-cell; vertical-align:top; padding-right:5px;" v-if="selectable">
                     <WTreeIconCheckbox
-                        :style="`margin-right:5px; height:${iconHeight}px;`"
+                        :style="`height:${iconHeight}px;`"
                         :mode="props.row.checked"
                         :editable="getEditable(props.row.item)"
                         :uncheckedColor="iconUncheckedColor"
@@ -37,21 +38,20 @@
                         :checkedPartiallyColor="iconCheckedPartiallyColor"
                         :checkedPartiallyDisabledColor="iconCheckedPartiallyDisabledColor"
                         @click="checkItems(props.row)"
-                        v-if="selectable"
                     ></WTreeIconCheckbox>
+                </div>
 
-                    <div :style="`min-height:${iconHeight}px;`">
-                        <slot
-                            name="block"
-                            :data="props.row.item"
-                            :index="props.index"
-                        >
-                            <div :style="`height:${iconHeight}px; display:flex; align-items:center;`">
-                                {{getText(props.row.item)}}
-                            </div>
-                        </slot>
-                    </div>
-
+                <!-- 給予width:100%使slot區可自動展開寬度至組件寬 -->
+                <div :style="`display:table-cell; vertical-align:top; min-height:${iconHeight}px; width:100%;`">
+                    <slot
+                        name="block"
+                        :data="props.row.item"
+                        :index="props.index"
+                    >
+                        <div :style="`height:${iconHeight}px; display:flex; align-items:center;`">
+                            {{getText(props.row.item)}}
+                        </div>
+                    </slot>
                 </div>
 
             </div>
