@@ -912,6 +912,14 @@ export default {
                         r = 0
                         //console.log('隱藏, 內容高度小於當前視窗高度, r=', r)
                     }
+                    // else if (vo.toggleInfor.r === 0) {
+                    //     r = vo.toggleInfor.r
+                    //     //console.log('顯示, 原本為置頂故需維持, r=', r)
+                    // }
+                    // else if (vo.toggleInfor.r === 1) { //若顯示的節點過多就不會固定畫面於滑鼠點擊處, 不使用
+                    //     r = vo.toggleInfor.r
+                    //     //console.log('顯示, 原本為置底, r=', r)
+                    // }
                     //內容高度大於當前視窗高度
                     else {
                         r = vo.toggleInfor.t / (vo.itemsHeight - vo.viewHeightMax)
@@ -919,7 +927,7 @@ export default {
                     }
 
                 }
-                //內容高度變高, 點擊節點為顯示動作
+                //內容高度變高或不變, 點擊節點為顯示動作
                 else {
 
                     //內容高度小於等於當前視窗高度
@@ -927,6 +935,14 @@ export default {
                         r = 0
                         //console.log('顯示, 內容高度小於當前視窗高度, r=', r)
                     }
+                    // else if (vo.toggleInfor.r === 0) {
+                    //     r = vo.toggleInfor.r
+                    //     //console.log('顯示, 原本為置頂故需維持, r=', r)
+                    // }
+                    // else if (vo.toggleInfor.r === 1) { //若顯示的節點過多就不會固定畫面於滑鼠點擊處, 不使用
+                    //     r = vo.toggleInfor.r
+                    //     //console.log('顯示, 原本為置底, r=', r)
+                    // }
                     //內容高度大於當前視窗高度
                     else {
                         r = vo.toggleInfor.t / (vo.itemsHeight - vo.viewHeightMax)

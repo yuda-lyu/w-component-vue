@@ -42,9 +42,14 @@
                     :casename="'viewHeightMax'"
                 ></demolink>
 
+                <div style="margin-bottom:10px;">
+                    <v-btn style="margin:5px;" small rounded @click="WDynamicList.viewHeightMax=250">set height to 250px</v-btn>
+                    <v-btn style="margin:5px;" small rounded @click="WDynamicList.viewHeightMax=350">set height to 350px</v-btn>
+                </div>
+
                 <w-dynamic-list
                     style="border:1px solid #ddd;"
-                    :viewHeightMax="250"
+                    :viewHeightMax="WDynamicList.viewHeightMax"
                     :rows="WDynamicList.data1"
                 >
                     <template v-slot:block="props">
@@ -281,6 +286,7 @@ export default {
     data: function() {
         return {
             'WDynamicList': {
+                'viewHeightMax': 250,
                 'keywords': 'fede 80',
                 'data1': [
                     'Examine trends in the movement of guns across different states.',

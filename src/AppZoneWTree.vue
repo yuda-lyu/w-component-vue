@@ -844,7 +844,7 @@ export default {
                         } let rs = []; for (let j = 0; j < n; j++) {
                             let r = getOneObj(j * 20); rs.push(r)
                         } return rs
-                    })(100), //1000000, 100000, 1000
+                    })(100000), //1000000, 100000, 1000
                 },
             },
             'actions': [

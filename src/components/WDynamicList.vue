@@ -518,50 +518,16 @@ export default {
 
         },
 
-        genScrollRatioAfterToggle: function() {
-            //console.log('methods genScrollRatioAfterToggle')
+        resumeScrollRatio: function() {
+            //console.log('methods resumeScrollRatio')
 
             let vo = this
 
-            //重算r
-            let r = 0
-            if (size(vo.useItems) > 0 && vo.itemsHeight > 0 && vo.scrollInforTemp.ch > 0) { //已有內容資料
-
-                //內容高度變少, 點擊節點為隱藏動作
-                if (vo.itemsHeight < vo.scrollInforTemp.ch) {
-
-                    //內容高度小於等於當前視窗高度
-                    if (vo.itemsHeight <= vo.viewHeightMax) {
-                        r = 0
-                        //console.log('隱藏, 內容高度小於當前視窗高度, r=', r)
-                    }
-                    //內容高度大於當前視窗高度
-                    else {
-                        r = vo.scrollInforTemp.t / (vo.itemsHeight - vo.viewHeightMax)
-                        //console.log('隱藏, 內容高度大於當前視窗高度, r=', r, vo.scrollInforTemp.t, vo.itemsHeight, vo.viewHeightMax)
-                    }
-
-                }
-                //內容高度變高, 點擊節點為顯示動作
-                else {
-
-                    //內容高度小於等於當前視窗高度
-                    if (vo.itemsHeight <= vo.viewHeightMax) {
-                        r = 0
-                        //console.log('顯示, 內容高度小於當前視窗高度, r=', r)
-                    }
-                    //內容高度大於當前視窗高度
-                    else {
-                        r = vo.scrollInforTemp.t / (vo.itemsHeight - vo.viewHeightMax)
-                        //console.log('顯示, 內容高度大於當前視窗高度, r=', r, vo.scrollInforTemp.t, vo.itemsHeight, vo.viewHeightMax)
-                    }
-
-                }
-
+            //resumeRatio
+            let t = get(vo, '$refs.wpsc.resumeRatio', null)
+            if (t) {
+                t(vo.scrollInforTemp)
             }
-
-            //scrollRatio, 變更scrollRatio不會觸發panel捲動事件, 得自己呼叫
-            vo.scrollRatio = r
 
         },
 
@@ -646,11 +612,11 @@ export default {
 
                 //refresh
                 //要先變更changeDisplay才能呼叫refresh, 使內部能重算各顯示元素高度
-                //需先refresh才能呼叫genScrollRatioAfterToggle, 因需由前次scrollInforTemp重算最新的scrollInfor, 使點擊節點於顯隱節點後不會改變位置
+                //需先refresh才能呼叫resumeScrollRatio, 因需由前次scrollInforTemp重算最新的scrollInfor, 使點擊節點於顯隱節點後不會改變位置
                 await vo.refresh('processItems')
 
-                //genScrollRatioAfterToggle
-                vo.genScrollRatioAfterToggle()
+                //resumeScrollRatio
+                vo.resumeScrollRatio()
 
                 //triggerEvent
                 vo.triggerEvent(null)

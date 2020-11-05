@@ -3,6 +3,7 @@
         :style="`height:${Math.min(contentHeight,viewHeightMax)}px; box-sizing:content-box;`"
         v-domresize
         @domresize="resize"
+        :changeViewHeightMax="changeViewHeightMax"
     >
         <!-- 不能設定border-width=0, 瀏覽器會額外進行偵測渲染導致抖動 -->
         <div :style="`overflow:hidden; height:${viewHeightMax}px;`">
@@ -43,6 +44,7 @@
 
 <script>
 import get from 'lodash/get'
+import cloneDeep from 'lodash/cloneDeep'
 import domDragBarAndScroll from 'wsemi/src/domDragBarAndScroll.mjs'
 import color2hex from '../js/vuetifyColor.mjs'
 import domResize from '../js/domResize.mjs'
@@ -106,6 +108,8 @@ export default {
             nativeBarWidth: 100, //原生捲軸寬度, 預設給超大值避免初始化時顯示捲軸出來
             extWidth: 0, //額外撐開寬度, 當手機瀏覽時會沒有原生捲軸寬度, 此時需額外撐開使捲軸隱藏
             barPanelPadding: 1,
+            scrollInforLast: null, //上次算得的srcollInfor
+            scrollInforTemp: null, //要恢復上次捲軸位置時用暫存的srcollInfor
 
         }
     },
@@ -143,7 +147,33 @@ export default {
         }
 
     },
+    watch: {
+        viewHeightMax: function() {
+            //console.log('watch viewHeightMax')
+
+            let vo = this
+
+            //由watch處儲存scrollInfor供後續恢復, 因放在computed會被vue偵測記憶體變動
+            vo.scrollInforTemp = cloneDeep(vo.scrollInforLast)
+
+        },
+    },
     computed: {
+
+        changeViewHeightMax: function() {
+            //console.log('computed changeViewHeightMax')
+
+            let vo = this
+
+            //viewHeightMax for trigger
+            let viewHeightMax = vo.viewHeightMax
+
+            //keepRatioByChangeViewHeightMax
+            vo.keepRatioByChangeViewHeightMax()
+
+            vo.___viewHeightMax___ = viewHeightMax
+            return ''
+        },
 
         extHeight: function() {
             //console.log('computed extHeight')
@@ -263,7 +293,6 @@ export default {
             //console.log('computed viewTop')
 
             let vo = this
-
             return vo.ratioTrans * vo.contentHeightEff
         },
 
@@ -291,6 +320,90 @@ export default {
                 div.scrollTop = vo.extHeight / 2
 
             }
+
+        },
+
+        keepRatioByChangeViewHeightMax: function() {
+            //console.log('keepRatioByChangeViewHeightMax')
+
+            let vo = this
+
+            //changeScroll, 因變更viewHeightMax會影響extHeight, 需自行呼叫changeScroll來變更scrollTop
+            vo.changeScroll({ target: vo.$refs.divPanel })
+
+            //nextTick
+            vo.$nextTick(() => {
+
+                //resumeRatio
+                vo.resumeRatio()
+
+            })
+
+        },
+
+        resumeRatio: function(si = null) {
+            //console.log('resumeRatio', si)
+
+            let vo = this
+
+            //si
+            if (si === null) {
+                //若非外部調用直接傳入, 則使用組件自己儲存的scrollInforTemp
+                si = vo.scrollInforTemp
+            }
+
+            //check, 因vue-cli編譯會重置組件導致scrollInforTemp恢復初始值null
+            if (si === null) {
+                return
+            }
+
+            //重算ratioTrans
+            let ratioTrans = 0
+            if (vo.contentHeight > 0 && si.ch > 0) { //已有內容資料
+
+                //內容高度變少
+                if (vo.contentHeight < si.ch) {
+
+                    //內容高度小於等於當前視窗高度
+                    if (vo.contentHeight <= vo.viewHeightMax) {
+                        ratioTrans = 0
+                        //console.log('內容高度變少, 內容高度小於當前視窗高度故改為置頂, ratioTrans=', ratioTrans)
+                    }
+                    // else if (si.r === 0) { //置底(si.r === 1)不需維持避免內容撐開過多時無法固定畫面於原本瀏覽處
+                    //     ratioTrans = si.r
+                    //     //console.log('內容高度變少, 原本為置頂故需維持, ratioTrans=', ratioTrans)
+                    // }
+                    //內容高度大於當前視窗高度
+                    else {
+                        ratioTrans = si.t / (vo.contentHeight - vo.viewHeightMax)
+                        //console.log('內容高度變少, 內容高度大於當前視窗高度, ratioTrans=', ratioTrans, si.t, vo.contentHeight, vo.viewHeightMax)
+                    }
+
+                }
+                //內容高度變高或不變
+                else {
+
+                    //內容高度小於等於當前視窗高度
+                    if (vo.contentHeight <= vo.viewHeightMax) {
+                        ratioTrans = 0
+                        //console.log('內容高度變高或不變, 內容高度小於當前視窗高度故改為置頂, ratioTrans=', ratioTrans)
+                    }
+                    // else if (si.r === 0) { //置底(si.r === 1)不需維持避免內容撐開過多時無法固定畫面於原本瀏覽處
+                    //     ratioTrans = si.r
+                    //     //console.log('內容高度變高或不變, 原本為置頂故需維持, ratioTrans=', ratioTrans)
+                    // }
+                    //內容高度大於當前視窗高度
+                    else {
+                        ratioTrans = si.t / (vo.contentHeight - vo.viewHeightMax)
+                        //console.log('內容高度變高或不變, 內容高度大於當前視窗高度, ratioTrans=', ratioTrans, si.t, vo.contentHeight, vo.viewHeightMax)
+                    }
+
+                }
+
+            }
+
+            //updateRatioTrans
+            vo.updateRatioTrans(ratioTrans)
 
         },
 
@@ -342,6 +455,9 @@ export default {
                 //ratioTrans
                 vo.ratioTrans = ratioTrans
 
+                //triggerEvent
+                vo.triggerEvent('scroll')
+
             }
 
             return changed
@@ -391,6 +507,23 @@ export default {
 
         },
 
+        getScrollInfor: function(from) {
+            //console.log('methods getScrollInfor', from)
+
+            let vo = this
+
+            //scrollInfor
+            let scrollInfor = {
+                from,
+                r: vo.ratioTrans,
+                t: vo.viewTop,
+                b: vo.viewBottom,
+                ch: vo.contentHeight,
+            }
+
+            return scrollInfor
+        },
+
         triggerEvent: function(from) {
             //console.log('methods triggerEvent', from)
 
@@ -399,26 +532,22 @@ export default {
             //nextTick, 因為外部可以因變更而呼叫triggerEvent, throttle第1次觸發是直接呼叫執行, 導致還沒收到外部傳入數據就由當前資訊emit出去
             vo.$nextTick(() => {
 
-                //o
-                let o = {
-                    from,
-                    r: vo.ratioTrans,
-                    t: vo.viewTop,
-                    b: vo.viewBottom,
-                    ch: vo.contentHeight,
-                }
-                //console.log('emit', o)
+                //scrollInfor
+                let scrollInfor = vo.getScrollInfor(from)
 
                 //emit ratio
                 vo.$emit('update:ratio', vo.ratioTrans)
 
-                //emit change
-                vo.$emit('change', o)
-
                 //emit from
                 if (from) {
-                    vo.$emit(from, o)
+                    vo.$emit(from, scrollInfor)
                 }
+
+                //emit change
+                vo.$emit('change', scrollInfor)
+
+                //save scrollInforLast
+                vo.scrollInforLast = cloneDeep(scrollInfor)
 
             })
 
@@ -438,15 +567,7 @@ export default {
             }
 
             //updateRatioTrans
-            let changed = vo.updateRatioTrans(ratioTrans)
-
-            //changed
-            if (changed) {
-
-                //triggerEvent
-                vo.triggerEvent('scroll')
-
-            }
+            vo.updateRatioTrans(ratioTrans)
 
         },
 
