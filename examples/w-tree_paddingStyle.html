@@ -7,7 +7,7 @@
         content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui"
     />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>example for w-tree: indent</title>
+    <title>example for w-tree: paddingStyle</title>
 
     <!-- fontawesome -->
     <link
@@ -109,11 +109,11 @@
     <v-app id="app" style="font-family:inherit;">
         <div class="head1">w-tree</div>
         <div class="bk dz">
-            <div class="item">indent</div>
+            <div class="item">paddingStyle</div>
 
             <w-tree
                 style="border:1px solid #ddd;"
-                :indent="0.5"
+                :padding-style="{v:5,h:5}"
                 :data="WTree.option.items"
             />
         </div>
