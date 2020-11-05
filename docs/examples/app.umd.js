@@ -1,5 +1,5 @@
 /*!
- * app v1.5.24
+ * app v1.5.25
  * (c) 2018-2020 yuda-lyu(semisphere)
  * Released under the MIT License.
  */
