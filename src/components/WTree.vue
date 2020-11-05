@@ -30,7 +30,9 @@
                         <WTreeIconToggle
                             :style="`width:24px; height:${iconHeight}px;`"
                             :dir="`${props.row.unfolding?'bottom':'right'}`"
-                            :iconColor="iconColor"
+                            :iconColor="iconToggleColor"
+                            :iconBackgroundColor="iconToggleBackgroundColor"
+                            :iconBackgroundColorHover="iconToggleBackgroundColorHover"
                             @click="toggleItems(props.row)"
                              v-if="hasChildren(props.index)"
                         ></WTreeIconToggle>
@@ -117,7 +119,9 @@ let gm = globalMemory()
  * @vue-prop {String} [keyLock='locked'] 輸入可選項目為物件時，禁止勾選之欄位字串，預設'locked'
  * @vue-prop {Object} [paddingStyle={v:0,h:0}] 輸入內寬距離物件，可用鍵值為v、h、left、right、top、bottom，v代表同時設定top與bottom，h代表設定left與right，若有重複設定時後面鍵值會覆蓋前面，各鍵值為寬度數字，單位為px，預設{v:0,h:0}
  * @vue-prop {Number} [indent=1] 輸入縮排比率數字，若使用1就是1倍的圖標寬度(24px)+2*separation(3px)，預設1
- * @vue-prop {String} [iconColor='grey'] 輸入顯隱icon按鈕顏色字串，預設'grey'
+ * @vue-prop {String} [iconToggleColor='grey'] 輸入顯隱icon按鈕顏色字串，預設'grey'
+ * @vue-prop {String} [iconToggleBackgroundColor='transparent'] 輸入顯隱icon按鈕背景顏色字串，預設'transparent'
+ * @vue-prop {String} [iconToggleBackgroundColorHover='rgba(128,128,128,0.15)'] 輸入滑鼠移入時顯隱icon按鈕背景顏色字串，預設'rgba(128,128,128,0.15)'
  * @vue-prop {String} [iconUncheckedColor='grey darken-2'] 輸入未勾選時顏色字串，預設'grey darken-2'
  * @vue-prop {String} [iconUncheckedDisabledColor='grey'] 輸入禁用時未勾選時顏色字串，預設'grey'
  * @vue-prop {String} [iconCheckedColor='blue darken-3'] 輸入勾選時顏色字串，預設'blue darken-3'
@@ -183,9 +187,17 @@ export default {
             type: Number,
             default: 1,
         },
-        iconColor: {
+        iconToggleColor: {
             type: String,
             default: 'grey',
+        },
+        iconToggleBackgroundColor: {
+            type: String,
+            default: 'transparent',
+        },
+        iconToggleBackgroundColorHover: {
+            type: String,
+            default: 'rgba(128,128,128,0.15)',
         },
         iconUncheckedColor: {
             type: String,

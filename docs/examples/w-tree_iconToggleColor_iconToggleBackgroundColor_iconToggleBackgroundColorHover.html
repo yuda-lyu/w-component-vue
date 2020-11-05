@@ -7,7 +7,7 @@
         content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui"
     />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>example for w-tree: iconColor</title>
+    <title>example for w-tree: iconToggleColor & iconToggleBackgroundColor & iconToggleBackgroundColorHover</title>
 
     <!-- fontawesome -->
     <link
@@ -73,7 +73,7 @@
     <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.js"></script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@1.5.27/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@1.5.28/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -109,11 +109,15 @@
     <v-app id="app" style="font-family:inherit;">
         <div class="head1">w-tree</div>
         <div class="bk dz">
-            <div class="item">iconColor</div>
+            <div
+                class="item"
+            >iconToggleColor & iconToggleBackgroundColor & iconToggleBackgroundColorHover</div>
 
             <w-tree
                 style="border:1px solid #ddd;"
-                :icon-color="'#d39a70'"
+                :icon-toggle-color="'#d39a70'"
+                :icon-toggle-background-color="'rgba(211,154,112,0.1)'"
+                :icon-toggle-background-color-hover="'rgba(211,154,112,0.3)'"
                 :data="WTree.option.items"
             />
         </div>

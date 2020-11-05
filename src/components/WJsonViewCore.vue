@@ -18,6 +18,8 @@
                         style="display:inline-block; width:16px; transform:translateX(-2px);"
                         :dir="`${item.displayChildren?'bottom':'right'}`"
                         :iconColor="iconColor"
+                        :iconBackgroundColor="'transparent'"
+                        :iconBackgroundColorHover="'transparent'"
                         @click="toggleItems(item)"
                         v-if="item.stateChildren===1"
                     ></WTreeIconToggle>

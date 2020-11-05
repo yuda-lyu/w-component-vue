@@ -70,12 +70,14 @@
             <div class="bk dz">
                 <demolink
                     :kbname="'w-tree'"
-                    :casename="'iconColor'"
+                    :casename="'iconToggleColor & iconToggleBackgroundColor & iconToggleBackgroundColorHover'"
                 ></demolink>
 
                 <w-tree
                     style="border:1px solid #ddd;"
-                    :iconColor="'#d39a70'"
+                    :iconToggleColor="'#d39a70'"
+                    :iconToggleBackgroundColor="'rgba(211,154,112,0.1)'"
+                    :iconToggleBackgroundColorHover="'rgba(211,154,112,0.3)'"
                     :data="WTree.option.items"
                 ></w-tree>
 
