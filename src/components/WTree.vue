@@ -19,48 +19,54 @@
                 @mouseenter="(e)=>{$emit('mouseenter',{event:e,ele:e.target,data:props.row.item,index:props.index})}"
                 @mouseleave="(e)=>{$emit('mouseleave',{event:e,ele:e.target,data:props.row.item,index:props.index})}"
             >
+                <div :style="`display:table; ${usePadding}`">
+                    <!-- 各元素需使用padding撐開寬度避免被壓縮 -->
 
-                <div :style="`display:table-cell; vertical-align:top; padding-left:${getLevel(props.row)*indent}px;`"></div>
+                    <div :style="`display:table-cell; vertical-align:top; padding-right:${getLevel(props.row)*useIndent}px;`"></div>
 
-                <div style="display:table-cell; vertical-align:top; padding-left:3px;" v-if="hasChildren(props.index)">
-                    <WTreeIconToggle
-                        :style="`width:24px; height:${iconHeight}px;`"
-                        :dir="`${props.row.unfolding?'bottom':'right'}`"
-                        :iconColor="iconColor"
-                        @click="toggleItems(props.row)"
-                    ></WTreeIconToggle>
+                    <div :style="`display:table-cell; vertical-align:top; padding-right:${separation}px;`"></div>
+
+                    <div :style="`display:table-cell; vertical-align:top; padding:0px ${separation}px;`">
+                        <WTreeIconToggle
+                            :style="`width:24px; height:${iconHeight}px;`"
+                            :dir="`${props.row.unfolding?'bottom':'right'}`"
+                            :iconColor="iconColor"
+                            @click="toggleItems(props.row)"
+                             v-if="hasChildren(props.index)"
+                        ></WTreeIconToggle>
+                        <div style="padding-right:24px;" v-else></div>
+                    </div>
+
+                    <!-- 因顯隱圖標比較小而勾選圖標比較大, 讓separation全灌到padding-right處使排版比較均勻 -->
+                    <div :style="`display:table-cell; vertical-align:top; padding:0px ${2*separation}px 0px 0px;`" v-if="selectable">
+                        <WTreeIconCheckbox
+                            :style="`height:${iconHeight}px;`"
+                            :mode="props.row.checked"
+                            :editable="getEditable(props.row.item)"
+                            :uncheckedColor="iconUncheckedColor"
+                            :uncheckedDisabledColor="iconUncheckedDisabledColor"
+                            :checkedColor="iconCheckedColor"
+                            :checkedDisabledColor="iconCheckedDisabledColor"
+                            :checkedPartiallyColor="iconCheckedPartiallyColor"
+                            :checkedPartiallyDisabledColor="iconCheckedPartiallyDisabledColor"
+                            @click="checkItems(props.row)"
+                        ></WTreeIconCheckbox>
+                    </div>
+
+                    <!-- 給予width:100%使slot區可自動展開寬度至組件寬 -->
+                    <div :style="`display:table-cell; vertical-align:top; height:${iconHeight}px; width:100%;`">
+                        <slot
+                            name="block"
+                            :data="props.row.item"
+                            :index="props.index"
+                        >
+                            <div :style="`height:${iconHeight}px; display:flex; align-items:center;`">
+                                {{getText(props.row.item)}}
+                            </div>
+                        </slot>
+                    </div>
+
                 </div>
-                <!-- 需使用padding撐開寬度避免被壓縮 -->
-                <div style="display:table-cell; vertical-align:top; padding-left:30px;" v-else></div>
-
-                <div style="display:table-cell; vertical-align:top; padding-right:5px;" v-if="selectable">
-                    <WTreeIconCheckbox
-                        :style="`height:${iconHeight}px;`"
-                        :mode="props.row.checked"
-                        :editable="getEditable(props.row.item)"
-                        :uncheckedColor="iconUncheckedColor"
-                        :uncheckedDisabledColor="iconUncheckedDisabledColor"
-                        :checkedColor="iconCheckedColor"
-                        :checkedDisabledColor="iconCheckedDisabledColor"
-                        :checkedPartiallyColor="iconCheckedPartiallyColor"
-                        :checkedPartiallyDisabledColor="iconCheckedPartiallyDisabledColor"
-                        @click="checkItems(props.row)"
-                    ></WTreeIconCheckbox>
-                </div>
-
-                <!-- 給予width:100%使slot區可自動展開寬度至組件寬 -->
-                <div :style="`display:table-cell; vertical-align:top; height:${iconHeight}px; width:100%;`">
-                    <slot
-                        name="block"
-                        :data="props.row.item"
-                        :index="props.index"
-                    >
-                        <div :style="`height:${iconHeight}px; display:flex; align-items:center;`">
-                            {{getText(props.row.item)}}
-                        </div>
-                    </slot>
-                </div>
-
             </div>
 
         </template>
@@ -79,6 +85,7 @@ import reverse from 'lodash/reverse'
 import remove from 'lodash/remove'
 import cloneDeep from 'lodash/cloneDeep'
 import isInteger from 'lodash/isInteger'
+import isNumber from 'lodash/isNumber'
 import dropRight from 'lodash/dropRight'
 import genID from 'wsemi/src/genID.mjs'
 import sep from 'wsemi/src/sep.mjs'
@@ -108,7 +115,8 @@ let gm = globalMemory()
  * @vue-prop {String} [keyText='text'] 輸入可選項目為物件時，顯示文字之欄位字串，預設'text'
  * @vue-prop {String} [keyChildren='children'] 輸入可選項目為物件時，所屬子項目之欄位字串，預設'children'
  * @vue-prop {String} [keyLock='locked'] 輸入可選項目為物件時，禁止勾選之欄位字串，預設'locked'
- * @vue-prop {Number} [indent=30] 輸入縮排距離數字，單位為px，預設30
+ * @vue-prop {Object} [paddingStyle={v:0,h:0}] 輸入內寬距離物件，可用鍵值為v、h、left、right、top、bottom，v代表同時設定top與bottom，h代表設定left與right，若有重複設定時後面鍵值會覆蓋前面，各鍵值為寬度數字，單位為px，預設{v:0,h:0}
+ * @vue-prop {Number} [indent=1] 輸入縮排比率數字，若使用1就是1倍的圖標寬度(24px)+2*separation(3px)，預設1
  * @vue-prop {String} [iconColor='grey'] 輸入顯隱icon按鈕顏色字串，預設'grey'
  * @vue-prop {String} [iconUncheckedColor='grey darken-2'] 輸入未勾選時顏色字串，預設'grey darken-2'
  * @vue-prop {String} [iconUncheckedDisabledColor='grey'] 輸入禁用時未勾選時顏色字串，預設'grey'
@@ -162,9 +170,18 @@ export default {
             type: String,
             default: 'locked',
         },
+        paddingStyle: {
+            type: Object,
+            default: () => {
+                return {
+                    v: 0,
+                    h: 0,
+                }
+            },
+        },
         indent: {
             type: Number,
-            default: 30,
+            default: 1,
         },
         iconColor: {
             type: String,
@@ -222,6 +239,7 @@ export default {
     data: function() {
         return {
             mmkey: null,
+            separation: 3,
             iconHeight: 34,
             selectionsTrans: [],
             filterKeywordsTemp: '', //上次過濾關鍵字
@@ -286,6 +304,51 @@ export default {
 
             vo.__filterKeywords__ = ft
             return ''
+        },
+
+        useIndent: function() {
+            //console.log('computed useIndent')
+
+            let vo = this
+
+            return vo.indent * (24 + 2 * vo.separation)
+        },
+
+        usePadding: function() {
+            //console.log('computed usePadding')
+
+            let vo = this
+
+            //四方向padding
+            let left = 0
+            let right = 0
+            let top = 0
+            let bottom = 0
+            if (isNumber(get(vo, 'paddingStyle.h'))) {
+                left = get(vo, 'paddingStyle.h')
+                right = left
+            }
+            if (isNumber(get(vo, 'paddingStyle.v'))) {
+                top = get(vo, 'paddingStyle.v')
+                bottom = top
+            }
+            if (isNumber(get(vo, 'paddingStyle.left'))) {
+                left = get(vo, 'paddingStyle.left')
+            }
+            if (isNumber(get(vo, 'paddingStyle.right'))) {
+                right = get(vo, 'paddingStyle.right')
+            }
+            if (isNumber(get(vo, 'paddingStyle.top'))) {
+                top = get(vo, 'paddingStyle.top')
+            }
+            if (isNumber(get(vo, 'paddingStyle.bottom'))) {
+                bottom = get(vo, 'paddingStyle.bottom')
+            }
+
+            //padding
+            let padding = `padding:${top}px ${right}px ${bottom}px ${left}px;`
+
+            return padding
         },
 
     },

@@ -40,12 +40,27 @@
             <div class="bk dz">
                 <demolink
                     :kbname="'w-tree'"
+                    :casename="'paddingStyle'"
+                ></demolink>
+
+                <w-tree
+                    style="border:1px solid #ddd;"
+                    :paddingStyle="{v:5,h:5}"
+                    :data="WTree.option.items"
+                ></w-tree>
+
+            </div>
+
+
+            <div class="bk dz">
+                <demolink
+                    :kbname="'w-tree'"
                     :casename="'indent'"
                 ></demolink>
 
                 <w-tree
                     style="border:1px solid #ddd;"
-                    :indent="15"
+                    :indent="0.5"
                     :data="WTree.option.items"
                 ></w-tree>
 

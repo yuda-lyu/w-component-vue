@@ -394,6 +394,8 @@ export default {
         },
 
         usePadding: function() {
+            //console.log('computed usePadding')
+
             let vo = this
 
             //四方向padding
