@@ -9,6 +9,8 @@
             :contentHeight="contentHeight"
             :scrollDelta="scrollDelta"
             :barColor="barColor"
+            :barOpacity="barOpacity"
+            :barOpacityHover="barOpacityHover"
             :barBackgroundColor="barBackgroundColor"
             :barWidth="barWidth"
             :barHeightMin="barHeightMin"
@@ -34,6 +36,8 @@ import domResize from '../js/domResize.mjs'
 
 /**
  * @vue-prop {Number} [scrollDelta=100] 輸入一次捲動高度，單位為px，預設100
+ * @vue-prop {Number} [barOpacity=0.6] 輸入捲軸內區塊透明度數字，預設0.6
+ * @vue-prop {Number} [barOpacityHover=1] 輸入滑鼠進入內時捲軸內區塊透明度數字，預設1
  * @vue-prop {String} [barColor='rgba(0,0,0,0.2)'] 輸入捲軸內區塊顏色字串，預設'rgba(0,0,0,0.2)'
  * @vue-prop {String} [barBackgroundColor='transparent'] 輸入捲軸背景顏色字串，預設'transparent'
  * @vue-prop {Number} [barWidth=8] 輸入捲軸區寬度，單位為px，預設8
@@ -51,6 +55,14 @@ export default {
         scrollDelta: {
             type: Number,
             default: 100,
+        },
+        barOpacity: {
+            type: Number,
+            default: 0.6,
+        },
+        barOpacityHover: {
+            type: Number,
+            default: 1,
         },
         barColor: {
             type: String,
