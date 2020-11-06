@@ -122,12 +122,6 @@ export default {
         WProgressCircle,
     },
     props: {
-        modeBorder: {
-            type: String,
-        },
-        modeShell: {
-            type: String,
-        },
     },
     data: function() {
         return {

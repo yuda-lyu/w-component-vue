@@ -19,22 +19,19 @@
                 slider-color="red"
             >
                 <v-tab
-                    v-for="(o1,ko1) in sComps"
+                    v-for="(o1,ko1) in sCmps"
                     :key="'l1'+ko1"
-                    @click="clickMenu1"
+                    @click="clickMenu1(ko1)"
                 >
                     <span style="text-transform:none">
                         {{kebabCase(o1.name)}}
                     </span>
                 </v-tab>
             </v-tabs>
+            <div style="padding-top:5px;"></div>
 
 
-            <div style="margin-top:5px;"></div>
-
-
-            <template v-if="get(sComps,`${io1}.cmps`)">
-
+            <template v-if="useL2Cmps">
 
                 <v-tabs
                     v-model="io2"
@@ -43,41 +40,21 @@
                     slider-color="red"
                 >
                     <v-tab
-                        v-for="(o2,ko2) in get(sComps,`${io1}.cmps`)"
-                        :key="'l2a'+ko2"
-                        @click="clickMenu2a"
-                    >
-                        <span style="text-transform:none">
-                            {{kebabCase(o2)}}
-                        </span>
-                    </v-tab>
-                </v-tabs>
-
-
-            </template>
-            <template v-else>
-
-
-                <v-tabs
-                    v-model="io2"
-                    background-color="grey lighten-3"
-                    color="grey darken-4"
-                    slider-color="red"
-                >
-                    <v-tab
-                        v-for="(o2,ko2) in get(sComps,`${io1}.children`)"
-                        :key="'l2b'+ko2"
-                        @click="clickMenu2b"
+                        v-for="(o2,ko2) in useL2Cmps"
+                        :key="'l2'+ko2"
+                        @click="clickMenu2(ko2)"
                     >
                         <span style="text-transform:none">
                             {{kebabCase(o2.name)}}
                         </span>
                     </v-tab>
                 </v-tabs>
+                <div style="padding-top:5px;"></div>
+
+            </template>
 
 
-                <div style="margin-top:5px;"></div>
-
+            <template v-if="useL3Cmps">
 
                 <v-tabs
                     v-model="io3"
@@ -86,15 +63,16 @@
                     slider-color="red"
                 >
                     <v-tab
-                        v-for="(o3,ko3) in get(sComps,`${io1}.children.${io2}.cmps`)"
+                        v-for="(o3,ko3) in useL3Cmps"
                         :key="'l3'+ko3"
+                        @click="clickMenu3(ko3)"
                     >
                         <span style="text-transform:none">
-                            {{kebabCase(o3)}}
+                            {{kebabCase(o3.name)}}
                         </span>
                     </v-tab>
                 </v-tabs>
-
+                <div style="padding-top:5px;"></div>
 
             </template>
 
@@ -106,289 +84,207 @@
 
 
             <AppZoneWBadge
-                :modeBorder="modeBorder"
-                :modeShell="modeShell"
-                v-if="compname==='WBadge'"
+                v-if="useCmpName==='WBadge'"
             ></AppZoneWBadge>
 
 
             <AppZoneWPanelStripe
-                :modeBorder="modeBorder"
-                :modeShell="modeShell"
-                v-if="compname==='WPanelStripe'"
+                v-if="useCmpName==='WPanelStripe'"
             ></AppZoneWPanelStripe>
 
 
             <AppZoneWPanelBulge
-                :modeBorder="modeBorder"
-                :modeShell="modeShell"
-                v-if="compname==='WPanelBulge'"
+                v-if="useCmpName==='WPanelBulge'"
             ></AppZoneWPanelBulge>
 
 
             <AppZoneWPanelScrolly
-                :modeBorder="modeBorder"
-                :modeShell="modeShell"
-                v-if="compname==='WPanelScrolly'"
+                v-if="useCmpName==='WPanelScrolly'"
             ></AppZoneWPanelScrolly>
 
 
             <AppZoneWPanelDivideHorizontal
-                :modeBorder="modeBorder"
-                :modeShell="modeShell"
-                v-if="compname==='WPanelDivideHorizontal'"
+                v-if="useCmpName==='WPanelDivideHorizontal'"
             ></AppZoneWPanelDivideHorizontal>
 
 
             <AppZoneWPanelDivideVertical
-                :modeBorder="modeBorder"
-                :modeShell="modeShell"
-                v-if="compname==='WPanelDivideVertical'"
+                v-if="useCmpName==='WPanelDivideVertical'"
             ></AppZoneWPanelDivideVertical>
 
 
             <AppZoneWIconSvg
-                :modeBorder="modeBorder"
-                :modeShell="modeShell"
-                v-if="compname==='WIconSvg'"
+                v-if="useCmpName==='WIconSvg'"
             ></AppZoneWIconSvg>
 
 
             <AppZoneWDropfiles
-                :modeBorder="modeBorder"
-                :modeShell="modeShell"
-                v-if="compname==='WDropfiles'"
+                v-if="useCmpName==='WDropfiles'"
             ></AppZoneWDropfiles>
 
 
             <AppZoneWButtonChip
-                :modeBorder="modeBorder"
-                :modeShell="modeShell"
-                v-if="compname==='WButtonChip'"
+                v-if="useCmpName==='WButtonChip'"
             ></AppZoneWButtonChip>
 
 
             <AppZoneWButtonCircle
-                :modeBorder="modeBorder"
-                :modeShell="modeShell"
-                v-if="compname==='WButtonCircle'"
+                v-if="useCmpName==='WButtonCircle'"
             ></AppZoneWButtonCircle>
 
 
             <AppZoneWProgressBar
-                :modeBorder="modeBorder"
-                :modeShell="modeShell"
-                v-if="compname==='WProgressBar'"
+                v-if="useCmpName==='WProgressBar'"
             ></AppZoneWProgressBar>
 
 
             <AppZoneWProgressCircle
-                :modeBorder="modeBorder"
-                :modeShell="modeShell"
-                v-if="compname==='WProgressCircle'"
+                v-if="useCmpName==='WProgressCircle'"
             ></AppZoneWProgressCircle>
 
 
             <AppZoneWSwitch
-                :modeBorder="modeBorder"
-                :modeShell="modeShell"
-                v-if="compname==='WSwitch'"
+                v-if="useCmpName==='WSwitch'"
             ></AppZoneWSwitch>
 
 
             <AppZoneWAlert
-                :modeBorder="modeBorder"
-                :modeShell="modeShell"
-                v-if="compname==='WAlert'"
+                v-if="useCmpName==='WAlert'"
             ></AppZoneWAlert>
 
 
             <AppZoneWDialog
-                :modeBorder="modeBorder"
-                :modeShell="modeShell"
-                v-if="compname==='WDialog'"
+                v-if="useCmpName==='WDialog'"
             ></AppZoneWDialog>
 
 
             <AppZoneWConfirm
-                :modeBorder="modeBorder"
-                :modeShell="modeShell"
-                v-if="compname==='WConfirm'"
+                v-if="useCmpName==='WConfirm'"
             ></AppZoneWConfirm>
 
 
             <AppZoneWPopup
-                :modeBorder="modeBorder"
-                :modeShell="modeShell"
-                v-if="compname==='WPopup'"
+                v-if="useCmpName==='WPopup'"
             ></AppZoneWPopup>
 
 
             <AppZoneWGroupTags
-                :modeBorder="modeBorder"
-                :modeShell="modeShell"
-                v-if="compname==='WGroupTags'"
+                v-if="useCmpName==='WGroupTags'"
             ></AppZoneWGroupTags>
 
 
             <AppZoneWGroupCheck
-                :modeBorder="modeBorder"
-                :modeShell="modeShell"
-                v-if="compname==='WGroupCheck'"
+                v-if="useCmpName==='WGroupCheck'"
             ></AppZoneWGroupCheck>
 
 
             <AppZoneWGroupRadio
-               :modeBorder="modeBorder"
-                :modeShell="modeShell"
-                v-if="compname==='WGroupRadio'"
+                v-if="useCmpName==='WGroupRadio'"
             ></AppZoneWGroupRadio>
 
 
             <AppZoneWText
-                :modeBorder="modeBorder"
-                :modeShell="modeShell"
-                v-if="compname==='WText'"
+                v-if="useCmpName==='WText'"
             ></AppZoneWText>
 
 
             <AppZoneWTextInt
-                :modeBorder="modeBorder"
-                :modeShell="modeShell"
-                v-if="compname==='WTextInt'"
+                v-if="useCmpName==='WTextInt'"
             ></AppZoneWTextInt>
 
 
             <AppZoneWTextarea
-                :modeBorder="modeBorder"
-                :modeShell="modeShell"
-                v-if="compname==='WTextarea'"
+                v-if="useCmpName==='WTextarea'"
             ></AppZoneWTextarea>
 
 
             <AppZoneWTextSelect
-                :modeBorder="modeBorder"
-                :modeShell="modeShell"
-                v-if="compname==='WTextSelect'"
+                v-if="useCmpName==='WTextSelect'"
             ></AppZoneWTextSelect>
 
 
             <AppZoneWTextSuggest
-                :modeBorder="modeBorder"
-                :modeShell="modeShell"
-                v-if="compname==='WTextSuggest'"
+                v-if="useCmpName==='WTextSuggest'"
             ></AppZoneWTextSuggest>
 
 
             <AppZoneWTimeday
-                :modeBorder="modeBorder"
-                :modeShell="modeShell"
-                v-if="compname==='WTimeday'"
+                v-if="useCmpName==='WTimeday'"
             ></AppZoneWTimeday>
 
 
             <AppZoneWTimeminute
-                :modeBorder="modeBorder"
-                :modeShell="modeShell"
-                v-if="compname==='WTimeminute'"
+                v-if="useCmpName==='WTimeminute'"
             ></AppZoneWTimeminute>
 
 
             <AppZoneWTimedayRange
-                :modeBorder="modeBorder"
-                :modeShell="modeShell"
-                v-if="compname==='WTimedayRange'"
+                v-if="useCmpName==='WTimedayRange'"
             ></AppZoneWTimedayRange>
 
 
             <AppZoneWTimeminuteRange
-                :modeBorder="modeBorder"
-                :modeShell="modeShell"
-                v-if="compname==='WTimeminuteRange'"
+                v-if="useCmpName==='WTimeminuteRange'"
             ></AppZoneWTimeminuteRange>
 
 
             <AppZoneWTreeDraggable
-                :modeBorder="modeBorder"
-                :modeShell="modeShell"
-                v-if="compname==='WTreeDraggable'"
+                v-if="useCmpName==='WTreeDraggable'"
             ></AppZoneWTreeDraggable>
 
 
-            <AppZoneWTree
-                :modeBorder="modeBorder"
-                :modeShell="modeShell"
-                v-if="compname==='WTree'"
-            ></AppZoneWTree>
-
-
-            <AppZoneWJsonView
-                :modeBorder="modeBorder"
-                :modeShell="modeShell"
-                v-if="compname==='WJsonView'"
-            ></AppZoneWJsonView>
-
-
             <AppZoneWDynamicList
-                :modeBorder="modeBorder"
-                :modeShell="modeShell"
-                v-if="compname==='WDynamicList'"
+                v-if="useCmpName==='WDynamicList'"
             ></AppZoneWDynamicList>
 
 
+            <AppZoneWJsonView
+                v-if="useCmpName==='WJsonView'"
+            ></AppZoneWJsonView>
+
+
+            <AppZoneWTree
+                v-if="useCmpName==='WTree'"
+            ></AppZoneWTree>
+
+
             <AppZoneWHighchartsVueDyn
-                :modeBorder="modeBorder"
-                :modeShell="modeShell"
-                v-if="compname==='WHighchartsVueDyn'"
+                v-if="useCmpName==='WHighchartsVueDyn'"
             ></AppZoneWHighchartsVueDyn>
 
 
             <AppZoneWHighstockVueDyn
-                :modeBorder="modeBorder"
-                :modeShell="modeShell"
-                v-if="compname==='WHighstockVueDyn'"
+                v-if="useCmpName==='WHighstockVueDyn'"
             ></AppZoneWHighstockVueDyn>
 
 
             <AppZoneWEchartsVueDyn
-                :modeBorder="modeBorder"
-                :modeShell="modeShell"
-                v-if="compname==='WEchartsVueDyn'"
+                v-if="useCmpName==='WEchartsVueDyn'"
             ></AppZoneWEchartsVueDyn>
 
 
             <AppZoneWAggridVueDyn
-                :modeBorder="modeBorder"
-                :modeShell="modeShell"
-                v-if="compname==='WAggridVueDyn'"
+                v-if="useCmpName==='WAggridVueDyn'"
             ></AppZoneWAggridVueDyn>
 
 
             <AppZoneWImageViewerDyn
-                :modeBorder="modeBorder"
-                :modeShell="modeShell"
-                v-if="compname==='WImageViewerDyn'"
+                v-if="useCmpName==='WImageViewerDyn'"
             ></AppZoneWImageViewerDyn>
 
 
             <AppZoneWCkeditorVueDyn
-                :modeBorder="modeBorder"
-                :modeShell="modeShell"
-                v-if="compname==='WCkeditorVueDyn'"
+                v-if="useCmpName==='WCkeditorVueDyn'"
             ></AppZoneWCkeditorVueDyn>
 
 
             <AppZoneWTinymceVueDyn
-                :modeBorder="modeBorder"
-                :modeShell="modeShell"
-                v-if="compname==='WTinymceVueDyn'"
+                v-if="useCmpName==='WTinymceVueDyn'"
             ></AppZoneWTinymceVueDyn>
 
 
             <AppZoneWQuillVueDyn
-                :modeBorder="modeBorder"
-                :modeShell="modeShell"
-                v-if="compname==='WQuillVueDyn'"
+                v-if="useCmpName==='WQuillVueDyn'"
             ></AppZoneWQuillVueDyn>
 
 
@@ -432,9 +328,9 @@ import AppZoneWTimeminute from './AppZoneWTimeminute.vue'
 import AppZoneWTimedayRange from './AppZoneWTimedayRange.vue'
 import AppZoneWTimeminuteRange from './AppZoneWTimeminuteRange.vue'
 import AppZoneWTreeDraggable from './AppZoneWTreeDraggable.vue'
-import AppZoneWTree from './AppZoneWTree.vue'
-import AppZoneWJsonView from './AppZoneWJsonView.vue'
 import AppZoneWDynamicList from './AppZoneWDynamicList.vue'
+import AppZoneWJsonView from './AppZoneWJsonView.vue'
+import AppZoneWTree from './AppZoneWTree.vue'
 import AppZoneWHighchartsVueDyn from './AppZoneWHighchartsVueDyn.vue'
 import AppZoneWHighstockVueDyn from './AppZoneWHighstockVueDyn.vue'
 import AppZoneWEchartsVueDyn from './AppZoneWEchartsVueDyn.vue'
@@ -477,9 +373,9 @@ export default {
         AppZoneWTimedayRange,
         AppZoneWTimeminuteRange,
         AppZoneWTreeDraggable,
-        AppZoneWTree,
-        AppZoneWJsonView,
         AppZoneWDynamicList,
+        AppZoneWJsonView,
+        AppZoneWTree,
         AppZoneWHighchartsVueDyn,
         AppZoneWHighstockVueDyn,
         AppZoneWEchartsVueDyn,
@@ -499,128 +395,119 @@ export default {
             io1: 0,
             io2: 0,
             io3: 0,
-            sComps: [
+            sCmps: [
                 {
                     name: 'basic',
                     cmps: [
-                        'WBadge',
-                        'WSwitch',
-                        'WIconSvg',
-                        'WDropfiles',
-                        'WProgressBar',
-                        'WProgressCircle',
+                        { name: 'WBadge' },
+                        { name: 'WSwitch' },
+                        { name: 'WIconSvg' },
+                        { name: 'WDropfiles' },
+                        { name: 'WProgressBar' },
+                        { name: 'WProgressCircle' },
                     ]
                 },
                 {
                     name: 'panel',
                     cmps: [
-                        'WPanelStripe',
-                        'WPanelBulge',
-                        'WPanelScrolly',
-                        'WPanelDivideHorizontal',
-                        'WPanelDivideVertical',
+                        { name: 'WPanelStripe' },
+                        { name: 'WPanelBulge' },
+                        { name: 'WPanelScrolly' },
+                        { name: 'WPanelDivideHorizontal' },
+                        { name: 'WPanelDivideVertical' },
                     ]
                 },
                 {
                     name: 'button',
                     cmps: [
-                        'WButtonChip',
-                        'WButtonCircle',
+                        { name: 'WButtonChip' },
+                        { name: 'WButtonCircle' },
                     ]
                 },
                 {
                     name: 'group',
                     cmps: [
-                        'WGroupCheck',
-                        'WGroupRadio',
-                        'WGroupTags',
+                        { name: 'WGroupCheck' },
+                        { name: 'WGroupRadio' },
+                        { name: 'WGroupTags' },
                     ]
                 },
                 {
                     name: 'text',
                     cmps: [
-                        'WText',
-                        'WTextInt',
-                        'WTextarea',
-                        'WTextSelect',
-                        'WTextSuggest',
+                        { name: 'WText' },
+                        { name: 'WTextInt' },
+                        { name: 'WTextarea' },
+                        { name: 'WTextSelect' },
+                        { name: 'WTextSuggest' },
                     ]
                 },
                 {
                     name: 'time',
                     cmps: [
-                        'WTimeday',
-                        'WTimeminute',
-                        'WTimedayRange',
-                        'WTimeminuteRange',
+                        { name: 'WTimeday' },
+                        { name: 'WTimeminute' },
+                        { name: 'WTimedayRange' },
+                        { name: 'WTimeminuteRange' },
                     ]
                 },
                 {
                     name: 'tree',
                     cmps: [
-                        'WTreeDraggable',
+                        { name: 'WTreeDraggable' },
+
                     ]
                 },
                 {
                     name: 'window',
                     cmps: [
-                        'WAlert',
-                        'WDialog',
-                        'WConfirm',
-                        'WPopup',
+                        { name: 'WAlert' },
+                        { name: 'WDialog' },
+                        { name: 'WConfirm' },
+                        { name: 'WPopup' },
                     ]
                 },
                 {
                     name: 'scroll',
                     cmps: [
-                        'WTree',
-                        'WJsonView',
-                        'WDynamicList',
+                        { name: 'WDynamicList' },
+                        { name: 'WJsonView' },
+                        { name: 'WTree' },
                     ]
                 },
                 {
                     name: 'dynamic',
-                    children: [
+                    cmps: [
                         {
                             name: 'plot',
                             cmps: [
-                                'WHighchartsVueDyn',
-                                'WHighstockVueDyn',
-                                'WEchartsVueDyn',
+                                { name: 'WHighchartsVueDyn' },
+                                { name: 'WHighstockVueDyn' },
+                                { name: 'WEchartsVueDyn' },
                             ],
                         },
                         {
                             name: 'table',
                             cmps: [
-                                'WAggridVueDyn',
+                                { name: 'WAggridVueDyn' },
                             ],
                         },
                         {
                             name: 'imageViewer',
                             cmps: [
-                                'WImageViewerDyn',
+                                { name: 'WImageViewerDyn' },
                             ],
                         },
                         {
                             name: 'editor',
                             cmps: [
-                                'WCkeditorVueDyn',
-                                'WTinymceVueDyn',
-                                'WQuillVueDyn',
+                                { name: 'WCkeditorVueDyn' },
+                                { name: 'WTinymceVueDyn' },
+                                { name: 'WQuillVueDyn' },
                             ],
                         },
                     ],
                 },
-            ],
-            modeBorder: 'emboss',
-            modeBorders: [
-                'emboss',
-                'border',
-            ],
-            modeShell: 'pure',
-            modeShells: [
-                'pure',
-                'shell',
             ],
         }
     },
@@ -628,15 +515,32 @@ export default {
     },
     computed: {
 
-        compname: function () {
+        useL2Cmps: function() {
             let vo = this
-            if (vo.sComps[vo.io1].cmps) {
-                return vo.sComps[vo.io1].cmps[vo.io2]
+            return get(vo, `sCmps.${vo.io1}.cmps`)
+        },
+
+        useL3Cmps: function() {
+            let vo = this
+            return get(vo, `sCmps.${vo.io1}.cmps.${vo.io2}.cmps`)
+        },
+
+        useCmpName: function () {
+            let vo = this
+            let name = 'unknow'
+            name = get(vo, `sCmps.${vo.io1}.cmps.${vo.io2}.cmps.${vo.io3}.name`)
+            if (name) {
+                return name
             }
-            if (vo.sComps[vo.io1].children[vo.io2]) {
-                return vo.sComps[vo.io1].children[vo.io2].cmps[vo.io3]
+            name = get(vo, `sCmps.${vo.io1}.cmps.${vo.io2}.name`)
+            if (name) {
+                return name
             }
-            return 'unknow'
+            name = get(vo, `sCmps.${vo.io1}.name`)
+            if (name) {
+                return name
+            }
+            return name
         },
 
         isNarrow: function() {
@@ -646,27 +550,27 @@ export default {
     },
     methods: {
 
-        clickMenu1: function () {
+        clickMenu1: function (io1) {
             let vo = this
             vo.$nextTick(() => {
+                vo.io1 = io1
                 vo.io2 = 0
                 vo.io3 = 0
             })
         },
 
-        clickMenu2a: function () {
+        clickMenu2: function (io2) {
             let vo = this
             vo.$nextTick(() => {
+                vo.io2 = io2
                 vo.io3 = 0
-                vo.modeBorder = 'emboss'
-                vo.modeShell = 'pure'
             })
         },
 
-        clickMenu2b: function () {
+        clickMenu3: function (io3) {
             let vo = this
             vo.$nextTick(() => {
-                vo.io3 = 0
+                vo.io3 = io3
             })
         },
 

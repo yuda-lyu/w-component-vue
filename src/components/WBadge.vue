@@ -147,7 +147,7 @@ export default {
     methods: {
 
         resize: function(msg) {
-            console.log('methods resize', msg)
+            //console.log('methods resize', msg)
 
             let vo = this
 

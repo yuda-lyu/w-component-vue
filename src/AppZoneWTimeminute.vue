@@ -358,12 +358,6 @@ export default {
         WTimeminute,
     },
     props: {
-        modeBorder: {
-            type: String,
-        },
-        modeShell: {
-            type: String,
-        },
     },
     data: function() {
         return {

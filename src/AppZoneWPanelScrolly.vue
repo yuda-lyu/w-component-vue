@@ -144,12 +144,6 @@ export default {
         WPanelScrolly,
     },
     props: {
-        modeBorder: {
-            type: String,
-        },
-        modeShell: {
-            type: String,
-        },
     },
     data: function() {
         return {

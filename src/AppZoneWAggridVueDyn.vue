@@ -137,12 +137,6 @@ export default {
         WAggridVueDyn,
     },
     props: {
-        modeBorder: {
-            type: String,
-        },
-        modeShell: {
-            type: String,
-        },
     },
     data: function() {
         let keys = ['make', 'model', 'price']

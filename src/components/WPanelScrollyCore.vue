@@ -5,6 +5,7 @@
         @domresize="resize"
         @mouseenter="mouseEntering=true"
         @mouseleave="mouseEntering=false"
+        :changeRatio="changeRatio"
         :changeViewHeightMax="changeViewHeightMax"
     >
         <!-- 不能設定border-width=0, 瀏覽器會額外進行偵測渲染導致抖動 -->
@@ -13,8 +14,7 @@
             <div
                 ref="divPanel"
                 :style="`position:relative; overflow-x:hidden; overflow-y:auto; width:calc( 100% + ${nativeBarWidth+extWidth}px ); height:${viewHeightMax}px;`"
-                :changeRatio="changeRatio"
-                @scroll="changeScroll"
+                @scroll="resetScrollTop"
             >
 
                 <!-- 通過高度設定為viewHeightMax+extHeight使divPanel出現捲軸, 並強制設定scrollTop=extHeight/2可使保持監聽上下捲動與拖曳事件 -->
@@ -140,9 +140,6 @@ export default {
         //save
         vo.das = das
 
-        //changeScroll
-        vo.changeScroll({ target: vo.$refs.divPanel })
-
     },
     beforeDestroy: function() {
         //console.log('beforeDestroy')
@@ -156,6 +153,7 @@ export default {
 
     },
     watch: {
+
         viewHeightMax: function() {
             //console.log('watch viewHeightMax')
 
@@ -165,8 +163,27 @@ export default {
             vo.scrollInforTemp = cloneDeep(vo.scrollInforLast)
 
         },
+
     },
     computed: {
+
+        changeRatio: function () {
+            //console.log('computed changeRatio')
+
+            let vo = this
+
+            //ratioTrans
+            let ratioTrans = vo.ratio
+
+            //limit
+            ratioTrans = Math.max(ratioTrans, 0)
+            ratioTrans = Math.min(ratioTrans, 1)
+
+            //save
+            vo.ratioTrans = ratioTrans
+
+            return ''
+        },
 
         changeViewHeightMax: function() {
             //console.log('computed changeViewHeightMax')
@@ -230,24 +247,6 @@ export default {
                 return color2hex(vo.barBackgroundColorHover)
             }
             return color2hex(vo.barBackgroundColor)
-        },
-
-        changeRatio: function () {
-            //console.log('computed changeRatio')
-
-            let vo = this
-
-            //ratioTrans
-            let ratioTrans = vo.ratio
-
-            //limit
-            ratioTrans = Math.max(ratioTrans, 0)
-            ratioTrans = Math.min(ratioTrans, 1)
-
-            //save
-            vo.ratioTrans = ratioTrans
-
-            return ''
         },
 
         heighRatio: function() {
@@ -329,8 +328,8 @@ export default {
     },
     methods: {
 
-        changeScroll: function(e) {
-            //console.log('changeScroll', e)
+        resetScrollTop: function(e) {
+            //console.log('resetScrollTop', e)
 
             let vo = this
 
@@ -350,8 +349,8 @@ export default {
 
             let vo = this
 
-            //changeScroll, 因變更viewHeightMax會影響extHeight, 需自行呼叫changeScroll來變更scrollTop
-            vo.changeScroll({ target: vo.$refs.divPanel })
+            //resetScrollTop, 因變更viewHeightMax會影響extHeight, 故需重設ScrollTop
+            vo.resetScrollTop({ target: vo.$refs.divPanel })
 
             //nextTick
             vo.$nextTick(() => {
@@ -450,6 +449,9 @@ export default {
                 }
 
             }
+
+            //resetScrollTop, 初始化、顯示、嵌入彈窗出現元素或resize時就需重設ScrollTop
+            vo.resetScrollTop({ target: vo.$refs.divPanel })
 
             //triggerEvent
             vo.triggerEvent('resize')

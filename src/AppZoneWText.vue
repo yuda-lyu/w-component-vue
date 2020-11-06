@@ -536,12 +536,6 @@ export default {
         WText,
     },
     props: {
-        modeBorder: {
-            type: String,
-        },
-        modeShell: {
-            type: String,
-        },
     },
     data: function() {
         return {

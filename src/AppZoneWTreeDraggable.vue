@@ -216,12 +216,6 @@ export default {
         WTreeDraggable,
     },
     props: {
-        modeBorder: {
-            type: String,
-        },
-        modeShell: {
-            type: String,
-        },
     },
     data: function() {
         let items = [

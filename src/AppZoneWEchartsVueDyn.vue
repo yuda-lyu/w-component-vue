@@ -248,12 +248,6 @@ export default {
         WEchartsVueDyn,
     },
     props: {
-        modeBorder: {
-            type: String,
-        },
-        modeShell: {
-            type: String,
-        },
     },
     data: function() {
         let df = function(d) {

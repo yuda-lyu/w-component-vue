@@ -195,12 +195,6 @@ export default {
         WTextInt,
     },
     props: {
-        modeBorder: {
-            type: String,
-        },
-        modeShell: {
-            type: String,
-        },
     },
     data: function() {
         return {
