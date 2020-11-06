@@ -8,9 +8,22 @@
         :changeRatio="changeRatio"
         :changeViewHeightMax="changeViewHeightMax"
     >
-        <!-- 不能設定border-width=0, 瀏覽器會額外進行偵測渲染導致抖動 -->
-        <div :style="`overflow:hidden; height:${viewHeightMax}px;`">
 
+        <!-- 不能設定border-width=0, 瀏覽器會額外進行偵測渲染導致抖動 -->
+        <div :style="`position:relative; overflow:hidden; height:${viewHeightMax}px;`">
+
+            <!-- bar區 -->
+            <div :style="`position:absolute; top:0px; right:0px; z-index:1; height:${viewHeightMax}px;`" v-show="contentHeightEff>0">
+                <!-- 外層設定box-sizing=content-box也就是高度不包括border與padding, 內層高度就會是viewHeightMax不需減少, 此時bar的設定box-sizing=border-box才能自動考量padding影響 -->
+                <div :style="`box-sizing:border-box; padding:${barPanelPadding}px 1px; position:relative; width:${barWidth}px; height:100%; background:${useBarBackgroundColor}; transition:background 0.5s;`">
+                    <div
+                        ref="divBar"
+                        :style="`transform:translateY(${barLoc}px); width:100%; height:${barSize}px; user-select:none; cursor:pointer; border-radius:15px; background:${useBarColor}; transition:background 0.5s;`"
+                    ></div>
+                </div>
+            </div>
+
+            <!-- 內容區 -->
             <div
                 ref="divPanel"
                 :style="`position:relative; overflow-x:hidden; overflow-y:auto; width:calc( 100% + ${nativeBarWidth+extWidth}px ); height:${viewHeightMax}px;`"
@@ -20,16 +33,6 @@
                 <!-- 通過高度設定為viewHeightMax+extHeight使divPanel出現捲軸, 並強制設定scrollTop=extHeight/2可使保持監聽上下捲動與拖曳事件 -->
                 <div :style="`position:absolute; top:0px; left:0px; width:calc( 100% + ${extWidth}px ); height:${viewHeightMax+extHeight}px;`"></div>
 
-                <div :style="`position:absolute; top:${extHeight/2}px; right:${extWidth}px; z-index:1; height:${viewHeightMax}px;`" v-show="contentHeightEff>0">
-                    <!-- 外層設定box-sizing=content-box也就是高度不包括border與padding, 內層高度就會是viewHeightMax不需減少, 此時bar的設定box-sizing=border-box才能自動考量padding影響 -->
-                    <div :style="`box-sizing:border-box; padding:${barPanelPadding}px 1px; position:relative; width:${barWidth}px; height:100%; background:${useBarBackgroundColor}; transition:background 0.5s;`">
-                        <div
-                            ref="divBar"
-                            :style="`transform:translateY(${barLoc}px); width:100%; height:${barSize}px; user-select:none; cursor:pointer; border-radius:15px; background:${useBarColor}; transition:background 0.5s;`"
-                        ></div>
-                    </div>
-                </div>
-
                 <div :style="`position:absolute; top:${extHeight/2}px; left:0px; overflow:hidden; width:calc( 100% + ${extWidth}px ); height:${viewHeightMax}px;`">
                     <slot></slot>
                 </div>
@@ -37,6 +40,7 @@
             </div>
 
         </div>
+
     </div>
 </template>
 
