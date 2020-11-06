@@ -22,10 +22,10 @@
 
                 <div :style="`position:absolute; top:${extHeight/2}px; right:${extWidth}px; z-index:1; height:${viewHeightMax}px;`" v-show="contentHeightEff>0">
                     <!-- 外層設定box-sizing=content-box也就是高度不包括border與padding, 內層高度就會是viewHeightMax不需減少, 此時bar的設定box-sizing=border-box才能自動考量padding影響 -->
-                    <div :style="`box-sizing:border-box; position:relative; width:${barWidth}px; height:100%; background:${useBarBackgroundColor}; padding:${barPanelPadding}px 1px;`">
+                    <div :style="`box-sizing:border-box; padding:${barPanelPadding}px 1px; position:relative; width:${barWidth}px; height:100%; background:${useBarBackgroundColor}; transition:background 0.5s;`">
                         <div
                             ref="divBar"
-                            :style="`width:100%; height:${barSize}px; background:${useBarColor}; border-radius:15px; user-select:none; transform:translateY(${barLoc}px); cursor:pointer; opacity:${mouseEntering?barOpacityHover:barOpacity}; transition:opacity 0.5s;`"
+                            :style="`transform:translateY(${barLoc}px); width:100%; height:${barSize}px; user-select:none; cursor:pointer; border-radius:15px; background:${useBarColor}; transition:background 0.5s;`"
                         ></div>
                     </div>
                 </div>
@@ -52,10 +52,10 @@ import domResize from '../js/domResize.mjs'
  * @vue-prop {Number} [viewHeightMax=400] 輸入顯示區最大高度，單位為px，預設400
  * @vue-prop {Number} [contentHeight=10000] 輸入內容最大高度，單位為px，預設10000
  * @vue-prop {Number} [scrollDelta=100] 輸入一次捲動高度，單位為px，預設100
- * @vue-prop {Number} [barOpacity=0.6] 輸入捲軸內區塊透明度數字，預設0.6
- * @vue-prop {Number} [barOpacityHover=1] 輸入滑鼠進入內時捲軸內區塊透明度數字，預設1
- * @vue-prop {String} [barColor='rgba(0,0,0,0.2)'] 輸入捲軸內區塊顏色字串，預設'rgba(0,0,0,0.2)'
+ * @vue-prop {String} [barColor='rgba(0,0,0,0.15)'] 輸入捲軸內區塊顏色字串，預設'rgba(0,0,0,0.15)'
+ * @vue-prop {String} [barColorHover='rgba(0,0,0,0.3)'] 輸入滑鼠移入時捲軸內區塊顏色字串，預設'rgba(0,0,0,0.3)'
  * @vue-prop {String} [barBackgroundColor='transparent'] 輸入捲軸背景顏色字串，預設'transparent'
+ * @vue-prop {String} [barBackgroundColorHover='transparent'] 輸入滑鼠移入時捲軸背景顏色字串，預設'transparent'
  * @vue-prop {Number} [barWidth=8] 輸入捲軸區寬度，單位為px，預設8
  * @vue-prop {Number} [barHeightMin=50] 輸入捲軸內區塊最小高度，單位為px，預設50
  * @vue-prop {Number} [ratio=0] 輸入目前捲動比例數字，預設0
@@ -77,19 +77,19 @@ export default {
             type: Number,
             default: 100,
         },
-        barOpacity: {
-            type: Number,
-            default: 0.6,
-        },
-        barOpacityHover: {
-            type: Number,
-            default: 1,
-        },
         barColor: {
             type: String,
-            default: 'rgba(0,0,0,0.2)',
+            default: 'rgba(0,0,0,0.15)',
+        },
+        barColorHover: {
+            type: String,
+            default: 'rgba(0,0,0,0.3)',
         },
         barBackgroundColor: {
+            type: String,
+            default: 'transparent',
+        },
+        barBackgroundColorHover: {
             type: String,
             default: 'transparent',
         },
@@ -202,11 +202,22 @@ export default {
             return h
         },
 
+        useEntering: function() {
+            //console.log('computed useEntering')
+
+            let vo = this
+
+            return vo.mouseEntering || vo.barPressY
+        },
+
         useBarColor: function() {
             //console.log('computed useBarColor')
 
             let vo = this
 
+            if (vo.useEntering) {
+                return color2hex(vo.barColorHover)
+            }
             return color2hex(vo.barColor)
         },
 
@@ -215,6 +226,9 @@ export default {
 
             let vo = this
 
+            if (vo.useEntering) {
+                return color2hex(vo.barBackgroundColorHover)
+            }
             return color2hex(vo.barBackgroundColor)
         },
 
@@ -509,6 +523,9 @@ export default {
             //console.log('methods freeBar')
 
             let vo = this
+
+            //barPressY
+            vo.barPressY = null
 
             //triggerEvent, 拖曳時有些外部組件處理過慢, 導致節點位置未更新完畢, 故於放掉滑鼠按鍵時triggerEvent, 使外部組件再次接收事件進行更新節點
             vo.triggerEvent('freeBar')
