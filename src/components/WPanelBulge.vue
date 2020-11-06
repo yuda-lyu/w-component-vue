@@ -166,13 +166,16 @@ export default {
     },
     methods: {
 
-        updateHeaderHeight: function({ snew }) {
-            //console.log('methods updateHeaderHeight', snew)
+        updateHeaderHeight: function(msg) {
+            //console.log('methods updateHeaderHeight', msg)
 
             let vo = this
 
             //update
-            vo.headerHeight = snew.offsetHeight
+            vo.headerHeight = msg.snew.offsetHeight
+
+            //emit
+            vo.$emit('resize', msg)
 
         },
 

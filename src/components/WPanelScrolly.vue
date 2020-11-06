@@ -106,29 +106,36 @@ export default {
     },
     methods: {
 
-        resizePanel: function({ snew }) {
-            //console.log('methods resizePanel', snew)
+        resizePanel: function(msg) {
+            //console.log('methods resizePanel', msg)
 
             let vo = this
 
             //save
-            vo.viewHeight = snew.offsetHeight
+            vo.viewHeight = msg.snew.offsetHeight
 
             //triggerEvent
             vo.triggerEvent('changeViewHeight')
 
+            //emit
+            vo.$emit('resize', { ...msg, from: 'panel' })
+
         },
 
-        resizeContent: function({ snew }) {
-            //console.log('methods resizeContent', snew)
+        resizeContent: function(msg) {
+            //console.log('methods resizeContent', msg)
 
             let vo = this
 
             //save
-            vo.contentHeight = snew.offsetHeight
+            vo.contentHeight = msg.snew.offsetHeight
 
             //triggerEvent
             vo.triggerEvent('changeContentHeight')
+
+            //emit
+            vo.$emit('resize', { ...msg, from: 'content' })
+
 
         },
 

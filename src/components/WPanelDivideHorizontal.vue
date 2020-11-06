@@ -151,14 +151,17 @@ export default {
     },
     methods: {
 
-        updatePanelSize: function({ snew }) {
-            //console.log('methods updatePanelSize', snew)
+        updatePanelSize: function(msg) {
+            //console.log('methods updatePanelSize', msg)
 
             let vo = this
 
             //update
-            vo.panelWidth = snew.offsetWidth
-            vo.panelHeight = snew.offsetHeight
+            vo.panelWidth = msg.snew.offsetWidth
+            vo.panelHeight = msg.snew.offsetHeight
+
+            //emit
+            vo.$emit('resize', msg)
 
         },
 

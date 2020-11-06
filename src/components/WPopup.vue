@@ -364,8 +364,8 @@ export default {
 
         },
 
-        updatePopper: function() {
-            //console.log('methods updatePopper')
+        updatePopper: function(msg) {
+            //console.log('methods updatePopper', msg)
 
             let vo = this
 
@@ -373,6 +373,9 @@ export default {
             if (vo.popperInstance) {
                 vo.popperInstance.update()
             }
+
+            //emit
+            vo.$emit('resize', msg)
 
         },
 

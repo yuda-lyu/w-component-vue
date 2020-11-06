@@ -146,8 +146,8 @@ export default {
     },
     methods: {
 
-        resize: function() {
-            //console.log('methods resize')
+        resize: function(msg) {
+            console.log('methods resize', msg)
 
             let vo = this
 
@@ -167,6 +167,9 @@ export default {
             //update
             vo.paddingTop = h * 0.5
             vo.paddingRight = w * vo.multiplyW - vo.shiftX
+
+            //emit
+            vo.$emit('resize', msg)
 
         },
 

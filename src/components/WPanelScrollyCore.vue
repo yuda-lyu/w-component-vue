@@ -429,8 +429,8 @@ export default {
 
         },
 
-        resize: function({ snew, ele }) {
-            //console.log('methods resize', snew, ele)
+        resize: function(msg) {
+            //console.log('methods resize', msg)
 
             let vo = this
 
@@ -453,6 +453,9 @@ export default {
 
             //triggerEvent
             vo.triggerEvent('resize')
+
+            //emit
+            vo.$emit('resize', msg)
 
         },
 
