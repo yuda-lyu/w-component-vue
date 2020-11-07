@@ -33,7 +33,12 @@
                 <!-- 通過高度設定為viewHeightMax+extHeight使divPanel出現捲軸, 並強制設定scrollTop=extHeight/2可使保持監聽上下捲動與拖曳事件 -->
                 <div :style="`position:absolute; top:0px; left:0px; width:calc( 100% + ${extWidth}px ); height:${viewHeightMax+extHeight}px;`"></div>
 
-                <div :style="`position:absolute; top:${extHeight/2}px; left:0px; overflow:hidden; width:calc( 100% + ${extWidth}px ); height:${viewHeightMax}px;`">
+                <div
+                    ref="divSlot"
+                    :style="`position:absolute; top:${extHeight/2}px; left:0px; overflow:hidden; width:calc( 100% + ${extWidth}px ); height:${viewHeightMax}px;`"
+                    v-dommutation
+                    @dommutation="mutation"
+                >
                     <slot></slot>
                 </div>
 
@@ -50,6 +55,7 @@ import cloneDeep from 'lodash/cloneDeep'
 import domDragBarAndScroll from 'wsemi/src/domDragBarAndScroll.mjs'
 import color2hex from '../js/vuetifyColor.mjs'
 import domResize from '../js/domResize.mjs'
+import domMutation from '../js/domMutation.mjs'
 
 
 /**
@@ -67,6 +73,7 @@ import domResize from '../js/domResize.mjs'
 export default {
     directives: {
         domresize: domResize(),
+        dommutation: domMutation(),
     },
     props: {
         viewHeightMax: {
@@ -120,8 +127,8 @@ export default {
             nativeBarWidth: 100, //原生捲軸寬度, 預設給超大值避免初始化時顯示捲軸出來
             extWidth: 0, //額外撐開寬度, 當手機瀏覽時會沒有原生捲軸寬度, 此時需額外撐開使捲軸隱藏
             barPanelPadding: 1, //捲軸內與區塊的y向內間距
-            scrollInforLast: null, //上次算得的srcollInfor
-            scrollInforTemp: null, //要恢復上次捲軸位置時用暫存的srcollInfor
+            scrollInforLast: null, //上次算得的捲軸資訊
+            scrollInforTemp: null, //要恢復上次捲軸位置時用暫存的捲軸資訊
 
         }
     },
@@ -163,7 +170,7 @@ export default {
 
             let vo = this
 
-            //由watch處儲存scrollInfor供後續恢復, 因放在computed會被vue偵測記憶體變動
+            //由watch處儲存捲軸資訊scrollInfor供後續恢復, 因放在computed會被vue偵測記憶體變動
             vo.scrollInforTemp = cloneDeep(vo.scrollInforLast)
 
         },
@@ -228,6 +235,7 @@ export default {
 
             let vo = this
 
+            //滑鼠移入以及對捲軸按下正在拖曳中時, 都視為滑鼠移入狀態
             return vo.mouseEntering || vo.barPressY
         },
 
@@ -258,7 +266,7 @@ export default {
 
             let vo = this
 
-            //r, 此處只有domDragBarAndScroll會調用, 也就是使用者拖曳捲軸才觸發
+            //r, 顯示區與實際內容高度比, 此處只有domDragBarAndScroll會調用, 也就是使用者拖曳捲軸才觸發
             let ch = vo.contentHeight
             let r = vo.viewHeightMax / Math.max(ch, 1)
 
@@ -439,7 +447,7 @@ export default {
 
             //nativeBarWidth
             let divPanel = get(vo, '$refs.divPanel')
-            if (divPanel) { //未顯示組件會無divPanel
+            if (divPanel) { //未顯示組件會無
 
                 //nativeBarWidth
                 let nativeBarWidth = vo.$refs.divPanel.offsetWidth - vo.$refs.divPanel.clientWidth
@@ -457,11 +465,21 @@ export default {
             //resetScrollTop, 初始化、顯示、嵌入彈窗出現元素或resize時就需重設ScrollTop
             vo.resetScrollTop({ target: vo.$refs.divPanel })
 
-            //triggerEvent
+            //triggerEvent, resize觸發事件
             vo.triggerEvent('resize')
 
-            //emit
-            vo.$emit('resize', msg)
+            // //emit, 有triggerEvent故取消emit
+            // vo.$emit('resize', msg)
+
+        },
+
+        mutation: function(msg) {
+            //console.log('methods mutation', msg)
+
+            let vo = this
+
+            //triggerEvent, 內容slot有dom變更時觸發事件
+            vo.triggerEvent('mutation')
 
         },
 
@@ -486,7 +504,7 @@ export default {
                 //ratioTrans
                 vo.ratioTrans = ratioTrans
 
-                //triggerEvent
+                //triggerEvent, 捲動觸發事件
                 vo.triggerEvent('scroll')
 
             }
@@ -566,7 +584,7 @@ export default {
             //nextTick, 因為外部可以因變更而呼叫triggerEvent, throttle第1次觸發是直接呼叫執行, 導致還沒收到外部傳入數據就由當前資訊emit出去
             vo.$nextTick(() => {
 
-                //scrollInfor
+                //scrollInfor, 計算捲軸資訊
                 let scrollInfor = vo.getScrollInfor(from)
 
                 //emit ratio
@@ -580,7 +598,7 @@ export default {
                 //emit change
                 vo.$emit('change', scrollInfor)
 
-                //save scrollInforLast
+                //save scrollInforLast, 紀錄捲軸資訊, 供恢復捲軸資訊之用
                 vo.scrollInforLast = cloneDeep(scrollInfor)
 
             })

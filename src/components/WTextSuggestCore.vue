@@ -345,7 +345,6 @@ export default {
 
         },
 
-
         changeValueTrans: function(value) {
             //console.log('methods changeValueTrans')
 
@@ -355,6 +354,7 @@ export default {
             if (!vo.editable) {
                 return
             }
+            console.log('aaaaaaaaaa methods changeValueTrans', value)
 
             //$nextTick
             vo.$nextTick(() => {
@@ -377,15 +377,15 @@ export default {
             // //show, 因WPopup會更新show才觸發, 不需再次覆寫vo.show避免事件多重觸發, 若div focus要呼叫得先變更show=true才調用此函數
             // vo.show = show
 
-            //因WPopup內第二次重新顯示後僅panel元素由display:none轉為block, 而重新顯示時會因沒觸發高度或捲軸變化, 導致組件WDynamicList無法依照最新顯示數據重算顯示項目高度, 故延遲調用triggerEvent
+            //因重新顯示時會因沒觸發高度或捲軸變化, 需自行調用WDynamicList的refreshAndTriggerEvent重新渲染
             if (show) {
-                setTimeout(() => {
-                    //t
-                    let t = get(vo, '$refs.wds.refreshAndTriggerEvent', null)
-                    if (t) {
-                        t('show')
-                    }
-                }, 100)
+
+                //t
+                let t = get(vo, '$refs.wds.refreshAndTriggerEvent', null)
+                if (t) {
+                    t('show')
+                }
+
             }
 
             //triggerEvent

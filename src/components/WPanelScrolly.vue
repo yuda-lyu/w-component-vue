@@ -117,8 +117,8 @@ export default {
             //triggerEvent
             vo.triggerEvent('changeViewHeight')
 
-            //emit
-            vo.$emit('resize', { ...msg, from: 'panel' })
+            // //emit, 有triggerEvent故取消emit
+            // vo.$emit('resize', { ...msg, from: 'panel' })
 
         },
 
@@ -133,9 +133,8 @@ export default {
             //triggerEvent
             vo.triggerEvent('changeContentHeight')
 
-            //emit
-            vo.$emit('resize', { ...msg, from: 'content' })
-
+            // //emit, 有triggerEvent故取消emit
+            // vo.$emit('resize', { ...msg, from: 'content' })
 
         },
 
