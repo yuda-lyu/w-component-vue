@@ -57,6 +57,7 @@ import isint from 'wsemi/src/isint.mjs'
 import isbol from 'wsemi/src/isbol.mjs'
 import o2j from 'wsemi/src/o2j.mjs'
 import debounce from 'wsemi/src/debounce.mjs'
+import pmThrottle from 'wsemi/src/pmThrottle.mjs'
 import binarySearch from '../js/binarySearch.mjs'
 import globalMemory from '../js/globalMemory.mjs'
 import WPanelScrollyCore from './WPanelScrollyCore.vue'
@@ -64,83 +65,6 @@ import WPanelScrollyCore from './WPanelScrollyCore.vue'
 
 //gm
 let gm = globalMemory()
-
-
-function Throttle() {
-    let q = [] //queue
-    let t = null //timer
-    let running = false
-    function detect() {
-        if (t !== null) {
-            return
-        }
-        t = setInterval(async() => {
-        //console.log('q', q)
-
-            //check
-            if (running) {
-                return
-            }
-            running = true
-
-            //取最後的任務
-            let m = q.pop()
-
-            //先清空佇列, 若後續有添加進來就是之後再處理
-            q = []
-
-            if (isfun(m.func)) {
-
-                //func
-                await m.func(...m.input)
-
-            }
-
-            //free
-            running = false
-
-            //clear
-            if (!running && q.length === 0) {
-                clearInterval(t)
-                t = null
-            }
-
-        }, 10) //10ms偵測, 啟動後跑timer, 無佇列則會停止減耗
-    }
-
-    function throttle(func, input) {
-
-        //check
-        if (!isfun(func)) {
-            console.log('need function')
-            return
-        }
-
-        //push
-        q.push({ func, input, finished: false })
-
-        //detect
-        detect()
-
-    }
-
-    // return {
-    //     queues: () => {
-    //         return q
-    //     },
-    //     isRunning: () => {
-    //         return t !== null
-    //     },
-    //     throttle,
-    // }
-    return throttle
-}
-
-
-function pmThrottle(func, ...input) {
-    let t = new Throttle()
-    return t(func, input)
-}
 
 
 /**
@@ -188,6 +112,8 @@ export default {
     },
     data: function() {
         return {
+            pmt: pmThrottle(),
+            dbc: debounce(),
             mmkey: null,
             changeHeight: true, //是否有變更高度, 初始化給true使第一次顯示能自動重算節點高度
             changeDisplay: false, //是否有變更節點顯隱狀態
@@ -320,7 +246,8 @@ export default {
             let vo = this
 
             //refreshCore
-            pmThrottle(vo.refreshCore, from)
+            vo.pmt(vo.refreshCore, from)
+                .catch(() => { })
 
         },
 
@@ -402,8 +329,8 @@ export default {
 
             let vo = this
 
-            //debounce
-            debounce(`${vo.mmkey}|refresh`, () => {
+            //dbc
+            vo.dbc(() => {
 
                 //refresh
                 vo.refresh(from)

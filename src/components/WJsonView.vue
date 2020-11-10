@@ -153,6 +153,7 @@ export default {
     },
     data: function() {
         return {
+            dbc: debounce(),
             mmkey: null,
             useColors: {},
             changeHeight: true, //是否有變更高度, 預設true使一開始能強制計算各節點高度
@@ -349,8 +350,8 @@ export default {
 
             let vo = this
 
-            //debounce
-            debounce(`${vo.mmkey}|refresh`, () => {
+            //dbc
+            vo.dbc(() => {
 
                 //refresh
                 vo.refresh(from)

@@ -354,7 +354,6 @@ export default {
             if (!vo.editable) {
                 return
             }
-            console.log('aaaaaaaaaa methods changeValueTrans', value)
 
             //$nextTick
             vo.$nextTick(() => {

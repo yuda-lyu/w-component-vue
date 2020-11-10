@@ -250,6 +250,7 @@ export default {
     },
     data: function() {
         return {
+            dbc: debounce(),
             mmkey: null,
             separation: 3,
             iconHeight: 34,
@@ -1320,8 +1321,8 @@ export default {
 
             let vo = this
 
-            //debounce
-            debounce(`${vo.mmkey}|filterKeyWords`, () => {
+            //dbc
+            vo.dbc(() => {
 
                 //refresh
                 vo.filterKeyWords()
