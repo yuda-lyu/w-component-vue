@@ -35,7 +35,7 @@
 
                 <div
                     ref="divSlot"
-                    :style="`position:absolute; top:${extHeight/2}px; left:0px; overflow:hidden; width:calc( 100% + ${extWidth}px ); height:${viewHeightMax}px;`"
+                    :style="`position:absolute; top:${fakeScrollTop}px; left:0px; overflow:hidden; width:calc( 100% + ${extWidth}px ); height:${viewHeightMax}px;`"
                     v-dommutation
                     @dommutation="mutation"
                 >
@@ -126,7 +126,6 @@ export default {
             ratioTrans: 0, //捲動比例
             barPressY: null, //bar按下準備拖曳前y座標
             nativeBarWidth: 100, //原生捲軸寬度, 預設給超大值避免初始化時顯示捲軸出來
-            extWidth: 0, //額外撐開寬度, 當手機瀏覽時會沒有原生捲軸寬度, 此時需額外撐開使捲軸隱藏
             barPanelPadding: 1, //捲軸內與區塊的y向內間距
             scrollInforLast: null, //上次算得的捲軸資訊
             scrollInforTemp: null, //要恢復上次捲軸位置時用暫存的捲軸資訊
@@ -157,7 +156,7 @@ export default {
         vo.timerScrollTop = setInterval(() => {
 
             //resetScrollTop, 因vue切換組件時若為共用狀態則mounted只會觸發1次, 此導致顯示區塊的scrollTop會自動被歸0但又不觸發scroll事件, 故需通過timer偵測並重設scrollTop
-            vo.resetScrollTop(vo.$refs.divPanel)
+            vo.resetScrollTop()
 
         }, 100)
 
@@ -350,6 +349,50 @@ export default {
             return vo.viewTop + vo.viewHeightMax
         },
 
+        isMobile: function() {
+            //console.log('computed isMobile')
+
+            let vo = this
+
+            return vo.nativeBarWidth <= 0
+        },
+
+        extWidth: function() {
+            //console.log('computed extWidth')
+
+            let vo = this
+
+            //額外撐開寬度, 當手機瀏覽時會沒有原生捲軸寬度, 此時需額外撐開使捲軸隱藏
+            if (vo.isMobile) {
+                return 20
+            }
+            return 0
+        },
+
+        fakeScrollTop: function() {
+            //console.log('computed fakeScrollTop')
+
+            let vo = this
+
+            let st
+
+            //依照ratioTrans調整scrollTop
+            // if (vo.isMobile) {
+            //     st = vo.ratioTrans * vo.extHeight
+            // }
+            // else {
+            //     st = vo.extHeight / 2
+            // }
+
+            // //resetScrollTopDelay
+            // vo.resetScrollTopDelay()
+
+            //固定scrollTop為extHeight/2, 支援桌機, 手機拖曳捲軸正常但拖曳內容較卡
+            st = vo.extHeight / 2
+
+            return st
+        },
+
     },
     methods: {
 
@@ -358,32 +401,44 @@ export default {
 
             let vo = this
 
-            //div
-            let div = get(e, 'target')
+            // //div
+            // let div = get(e, 'target')
 
             //resetScrollTop
-            vo.resetScrollTop(div)
+            vo.resetScrollTop()
 
         },
 
-        resetScrollTop: function(div) {
-            //console.log('resetScrollTop', div)
+        resetScrollTopDelay: function() {
+            //console.log('resetScrollTopDelay')
 
             let vo = this
+
+            //nextTick
+            vo.$nextTick(() => {
+                vo.resetScrollTop()
+            })
+
+        },
+
+        resetScrollTop: function() {
+            //console.log('resetScrollTop')
+
+            let vo = this
+
+            //div
+            let div = get(vo, '$refs.divPanel', null)
 
             //check
             if (!isEle(div)) {
                 return
             }
 
-            //h
-            let h = vo.extHeight / 2
-
             //check
-            if (div.scrollTop !== h) {
+            if (div.scrollTop !== vo.fakeScrollTop) {
 
                 //修改scrollTop, 使內容物捲軸位置置中可持續接收上下捲動與拖曳事件
-                div.scrollTop = h
+                div.scrollTop = vo.fakeScrollTop
 
             }
 
@@ -395,7 +450,7 @@ export default {
             let vo = this
 
             //resetScrollTop, 因變更viewHeightMax會影響extHeight, 故需重設ScrollTop
-            vo.resetScrollTop(vo.$refs.divPanel)
+            vo.resetScrollTop()
 
             //nextTick
             vo.$nextTick(() => {
@@ -488,15 +543,10 @@ export default {
                 //save
                 vo.nativeBarWidth = nativeBarWidth
 
-                //extWidth
-                if (vo.nativeBarWidth <= 0) {
-                    vo.extWidth = 20
-                }
-
             }
 
             //resetScrollTop, 初始化、顯示、嵌入彈窗出現元素或resize時就需重設ScrollTop
-            vo.resetScrollTop(vo.$refs.divPanel)
+            vo.resetScrollTop()
 
             //triggerEvent, resize觸發事件
             vo.triggerEvent('resize')
