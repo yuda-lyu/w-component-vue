@@ -7,15 +7,15 @@
 
         <div style="font-size:0.9rem; margin-bottom:10px;">
             <span style="margin-right:10px;">Links:</span>
-            <a href="//github.com/tinymce/tinymce" target="_blank">tinymce</a>
+            <a href="//github.com/tinymce/tinymce" target="_blank" rel="noreferrer noopener">tinymce</a>
             <span style="margin:0px 10px">|</span>
-            <a href="//www.tiny.cloud/docs/demo/full-featured/" target="_blank">tinymce examples</a>
+            <a href="//www.tiny.cloud/docs/demo/full-featured/" target="_blank" rel="noreferrer noopener">tinymce examples</a>
             <span style="margin:0px 10px">|</span>
-            <a href="//github.com/tinymce/tinymce-vue" target="_blank">tinymce-vue</a>
+            <a href="//github.com/tinymce/tinymce-vue" target="_blank" rel="noreferrer noopener">tinymce-vue</a>
             <span style="margin:0px 10px">|</span>
-            <a href="//github.com/yuda-lyu/w-tinymce-vue" target="_blank">w-tinymce-vue</a>
+            <a href="//github.com/yuda-lyu/w-tinymce-vue" target="_blank" rel="noreferrer noopener">w-tinymce-vue</a>
             <span style="margin:0px 10px">|</span>
-            <a href="//yuda-lyu.github.io/w-tinymce-vue/examples/ex-default.html" target="_blank">w-tinymce-vue examples</a>
+            <a href="//yuda-lyu.github.io/w-tinymce-vue/examples/ex-default.html" target="_blank" rel="noreferrer noopener">w-tinymce-vue examples</a>
         </div>
 
 

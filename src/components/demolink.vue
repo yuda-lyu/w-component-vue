@@ -15,6 +15,7 @@
                     elevation="2"
                     color="red darken-1"
                     target="_blank"
+                    rel="noreferrer noopener"
                     :href="web"
                 >
                     <v-icon small>{{mdiLaunch}}</v-icon>
@@ -32,7 +33,7 @@
                     icon
                     elevation="2"
                     color="red darken-1"
-                    target="_blank"
+                    target="_blank" rel="noreferrer noopener"
                     :href="src"
                 >
                     <v-icon small>{{mdiUnfoldMoreVertical}}</v-icon>

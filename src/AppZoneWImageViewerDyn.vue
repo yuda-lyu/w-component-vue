@@ -7,9 +7,9 @@
 
         <div style="font-size:0.9rem; margin-bottom:10px;">
             <span style="margin-right:10px;">Links:</span>
-            <a href="//github.com/fengyuanchen/viewerjs" target="_blank">Viewer.js</a>
+            <a href="//github.com/fengyuanchen/viewerjs" target="_blank" rel="noreferrer noopener">Viewer.js</a>
             <span style="margin:0px 10px">|</span>
-            <a href="//fengyuanchen.github.io/viewerjs/" target="_blank">Viewer.js examples</a>
+            <a href="//fengyuanchen.github.io/viewerjs/" target="_blank" rel="noreferrer noopener">Viewer.js examples</a>
         </div>
 
 

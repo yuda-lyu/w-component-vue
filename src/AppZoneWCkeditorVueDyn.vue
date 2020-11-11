@@ -7,15 +7,15 @@
 
         <div style="font-size:0.9rem; margin-bottom:10px;">
             <span style="margin-right:10px;">Links:</span>
-            <a href="//github.com/ckeditor/ckeditor5" target="_blank">ckeditor 5</a>
+            <a href="//github.com/ckeditor/ckeditor5" target="_blank" rel="noreferrer noopener">ckeditor 5</a>
             <span style="margin:0px 10px">|</span>
-            <a href="//ckeditor.com/docs/ckeditor5/latest/examples/builds/classic-editor.html" target="_blank">ckeditor 5 examples</a>
+            <a href="//ckeditor.com/docs/ckeditor5/latest/examples/builds/classic-editor.html" target="_blank" rel="noreferrer noopener">ckeditor 5 examples</a>
             <span style="margin:0px 10px">|</span>
-            <a href="//github.com/ckeditor/ckeditor5-vue" target="_blank">ckeditor5-vue</a>
+            <a href="//github.com/ckeditor/ckeditor5-vue" target="_blank" rel="noreferrer noopener">ckeditor5-vue</a>
             <span style="margin:0px 10px">|</span>
-            <a href="//github.com/yuda-lyu/w-ckeditor-vue" target="_blank">w-ckeditor-vue</a>
+            <a href="//github.com/yuda-lyu/w-ckeditor-vue" target="_blank" rel="noreferrer noopener">w-ckeditor-vue</a>
             <span style="margin:0px 10px">|</span>
-            <a href="//yuda-lyu.github.io/w-ckeditor-vue/examples/ex-default.html" target="_blank">w-ckeditor-vue examples</a>
+            <a href="//yuda-lyu.github.io/w-ckeditor-vue/examples/ex-default.html" target="_blank" rel="noreferrer noopener">w-ckeditor-vue examples</a>
         </div>
 
 

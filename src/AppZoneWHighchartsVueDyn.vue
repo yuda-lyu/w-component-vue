@@ -7,11 +7,11 @@
 
         <div style="font-size:0.9rem; margin-bottom:10px;">
             <span style="margin-right:10px;">Links:</span>
-            <a href="//www.highcharts.com/" target="_blank">highcharts</a>
+            <a href="//www.highcharts.com/" target="_blank" rel="noreferrer noopener">highcharts</a>
             <span style="margin:0px 10px">|</span>
-            <a href="//www.highcharts.com/demo" target="_blank">highcharts examples</a>
+            <a href="//www.highcharts.com/demo" target="_blank" rel="noreferrer noopener">highcharts examples</a>
             <span style="margin:0px 10px">|</span>
-            <a href="//github.com/weizhenye/vue-highcharts" target="_blank">vue-highcharts</a>
+            <a href="//github.com/weizhenye/vue-highcharts" target="_blank" rel="noreferrer noopener">vue-highcharts</a>
         </div>
 
 

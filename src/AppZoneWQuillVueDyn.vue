@@ -7,15 +7,15 @@
 
         <div style="font-size:0.9rem; margin-bottom:10px;">
             <span style="margin-right:10px;">Links:</span>
-            <a href="//github.com/quilljs/quill" target="_blank">quill</a>
+            <a href="//github.com/quilljs/quill" target="_blank" rel="noreferrer noopener">quill</a>
             <span style="margin:0px 10px">|</span>
-            <a href="//quilljs.com/playground/" target="_blank">quill examples</a>
+            <a href="//quilljs.com/playground/" target="_blank" rel="noreferrer noopener">quill examples</a>
             <span style="margin:0px 10px">|</span>
-            <a href="//github.com/surmon-china/vue-quill-editor" target="_blank">vue-quill-editor</a>
+            <a href="//github.com/surmon-china/vue-quill-editor" target="_blank" rel="noreferrer noopener">vue-quill-editor</a>
             <span style="margin:0px 10px">|</span>
-            <a href="//github.com/yuda-lyu/w-quill-vue" target="_blank">w-quill-vue</a>
+            <a href="//github.com/yuda-lyu/w-quill-vue" target="_blank" rel="noreferrer noopener">w-quill-vue</a>
             <span style="margin:0px 10px">|</span>
-            <a href="//yuda-lyu.github.io/w-quill-vue/examples/ex-default.html" target="_blank">w-quill-vue examples</a>
+            <a href="//yuda-lyu.github.io/w-quill-vue/examples/ex-default.html" target="_blank" rel="noreferrer noopener">w-quill-vue examples</a>
         </div>
 
 

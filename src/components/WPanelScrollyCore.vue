@@ -27,7 +27,7 @@
             <div
                 ref="divPanel"
                 :style="`position:relative; overflow-x:hidden; overflow-y:auto; width:calc( 100% + ${nativeBarWidth+extWidth}px ); height:${viewHeightMax}px;`"
-                @scroll="resetScrollTop"
+                @scroll="scroll"
             >
 
                 <!-- 通過高度設定為viewHeightMax+extHeight使divPanel出現捲軸, 並強制設定scrollTop=extHeight/2可使保持監聽上下捲動與拖曳事件 -->
@@ -52,6 +52,7 @@
 <script>
 import get from 'lodash/get'
 import cloneDeep from 'lodash/cloneDeep'
+import isEle from 'wsemi/src/isEle.mjs'
 import domDragBarAndScroll from 'wsemi/src/domDragBarAndScroll.mjs'
 import color2hex from '../js/vuetifyColor.mjs'
 import domResize from '../js/domResize.mjs'
@@ -129,6 +130,7 @@ export default {
             barPanelPadding: 1, //捲軸內與區塊的y向內間距
             scrollInforLast: null, //上次算得的捲軸資訊
             scrollInforTemp: null, //要恢復上次捲軸位置時用暫存的捲軸資訊
+            timerScrollTop: null, //偵測顯示區捲軸變動的timer
 
         }
     },
@@ -143,13 +145,21 @@ export default {
             //stopScrollPropagationForPanel: true, //禁止滑鼠捲動事件傳遞至外, 現已強制原生捲軸再攔截相關事件, 故不需要停用傳遞
             //stopTouchDragPropagationForPanel: true, //禁止觸控拖曳事件傳遞至外, 現已強制原生捲軸再攔截相關事件, 故不需要停用傳遞
         })
-        das.on('scrollPanel', vo.scrollPanel)
-        das.on('pressBar', vo.pressBar)
-        das.on('dragBar', vo.dragBar)
-        das.on('freeBar', vo.freeBar)
+        das.on('scrollPanel', vo.dgScrollPanel)
+        das.on('pressBar', vo.dgPressBar)
+        das.on('dragBar', vo.dgDragBar)
+        das.on('freeBar', vo.dgFreeBar)
 
         //save
         vo.das = das
+
+        //detect
+        vo.timerScrollTop = setInterval(() => {
+
+            //resetScrollTop, 因vue切換組件時若為共用狀態則mounted只會觸發1次, 此導致顯示區塊的scrollTop會自動被歸0但又不觸發scroll事件, 故需通過timer偵測並重設scrollTop
+            vo.resetScrollTop(vo.$refs.divPanel)
+
+        }, 100)
 
     },
     beforeDestroy: function() {
@@ -161,6 +171,9 @@ export default {
         if (vo.das) {
             vo.das.clear()
         }
+
+        //clearInterval
+        clearInterval(vo.timerScrollTop)
 
     },
     watch: {
@@ -220,7 +233,7 @@ export default {
             let r = 10 //桌機需高放大比率, 於複雜dom中比較有緩衝能平滑拖曳, 不容易觸發拖曳外層document
             let d = 0
             if (vo.nativeBarWidth <= 0) {
-                r = 0 //手機需低放大比率, 大值時拖曳會出現回彈效果使用者體驗比較好, 但會常觸發回彈導致無法拖曳
+                r = 0.2 //手機需低放大比率, 大值時拖曳會出現回彈效果使用者體驗比較好, 但會常觸發回彈導致無法拖曳
                 d = 2
             }
 
@@ -340,17 +353,37 @@ export default {
     },
     methods: {
 
-        resetScrollTop: function(e) {
-            //console.log('resetScrollTop', e)
+        scroll: function(e) {
+            //console.log('scroll', e)
 
             let vo = this
 
-            //使內容物捲軸位置置中可持續接收上下捲動與拖曳事件
-            let div = get(e, 'target', null)
-            if (div !== null) {
+            //div
+            let div = get(e, 'target')
 
-                //scrollTop
-                div.scrollTop = vo.extHeight / 2
+            //resetScrollTop
+            vo.resetScrollTop(div)
+
+        },
+
+        resetScrollTop: function(div) {
+            //console.log('resetScrollTop', div)
+
+            let vo = this
+
+            //check
+            if (!isEle(div)) {
+                return
+            }
+
+            //h
+            let h = vo.extHeight / 2
+
+            //check
+            if (div.scrollTop !== h) {
+
+                //修改scrollTop, 使內容物捲軸位置置中可持續接收上下捲動與拖曳事件
+                div.scrollTop = h
 
             }
 
@@ -362,7 +395,7 @@ export default {
             let vo = this
 
             //resetScrollTop, 因變更viewHeightMax會影響extHeight, 故需重設ScrollTop
-            vo.resetScrollTop({ target: vo.$refs.divPanel })
+            vo.resetScrollTop(vo.$refs.divPanel)
 
             //nextTick
             vo.$nextTick(() => {
@@ -463,7 +496,7 @@ export default {
             }
 
             //resetScrollTop, 初始化、顯示、嵌入彈窗出現元素或resize時就需重設ScrollTop
-            vo.resetScrollTop({ target: vo.$refs.divPanel })
+            vo.resetScrollTop(vo.$refs.divPanel)
 
             //triggerEvent, resize觸發事件
             vo.triggerEvent('resize')
@@ -512,8 +545,8 @@ export default {
             return changed
         },
 
-        pressBar: function({ clientY }) {
-            //console.log('methods pressBar', clientY)
+        dgPressBar: function({ clientY }) {
+            //console.log('methods dgPressBar', clientY)
 
             let vo = this
 
@@ -527,8 +560,8 @@ export default {
 
         },
 
-        dragBar: function({ clientY }) {
-            //console.log('methods dragBar', clientY)
+        dgDragBar: function({ clientY }) {
+            //console.log('methods dgDragBar', clientY)
 
             let vo = this
 
@@ -546,8 +579,8 @@ export default {
 
         },
 
-        freeBar: function() {
-            //console.log('methods freeBar')
+        dgFreeBar: function() {
+            //console.log('methods dgFreeBar')
 
             let vo = this
 
@@ -555,7 +588,7 @@ export default {
             vo.barPressY = null
 
             //triggerEvent, 拖曳時有些外部組件處理過慢, 導致節點位置未更新完畢, 故於放掉滑鼠按鍵時triggerEvent, 使外部組件再次接收事件進行更新節點
-            vo.triggerEvent('freeBar')
+            vo.triggerEvent('dgFreeBar')
 
         },
 
@@ -636,8 +669,8 @@ export default {
 
         },
 
-        scrollPanel: function({ ratioY }) {
-            //console.log('methods scrollPanel', ratioY)
+        dgScrollPanel: function({ ratioY }) {
+            //console.log('methods dgScrollPanel', ratioY)
 
             let vo = this
 

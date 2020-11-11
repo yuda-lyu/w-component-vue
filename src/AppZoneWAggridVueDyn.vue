@@ -7,15 +7,15 @@
 
         <div style="font-size:0.9rem; margin-bottom:10px;">
             <span style="margin-right:10px;">Links:</span>
-            <a href="//www.ag-grid.com/" target="_blank">ag-grid</a>
+            <a href="//www.ag-grid.com/" target="_blank" rel="noreferrer noopener">ag-grid</a>
             <span style="margin:0px 10px">|</span>
-            <a href="//www.ag-grid.com/example.php" target="_blank">ag-grid examples</a>
+            <a href="//www.ag-grid.com/example.php" target="_blank" rel="noreferrer noopener">ag-grid examples</a>
             <span style="margin:0px 10px">|</span>
-            <a href="//www.ag-grid.com/vuejs-grid/" target="_blank">ag-grid-vue</a>
+            <a href="//www.ag-grid.com/vuejs-grid/" target="_blank" rel="noreferrer noopener">ag-grid-vue</a>
             <span style="margin:0px 10px">|</span>
-            <a href="//github.com/yuda-lyu/w-aggrid-vue" target="_blank">w-aggrid-vue</a>
+            <a href="//github.com/yuda-lyu/w-aggrid-vue" target="_blank" rel="noreferrer noopener">w-aggrid-vue</a>
             <span style="margin:0px 10px">|</span>
-            <a href="//yuda-lyu.github.io/w-aggrid-vue/examples/app.html" target="_blank">w-aggrid-vue examples</a>
+            <a href="//yuda-lyu.github.io/w-aggrid-vue/examples/app.html" target="_blank" rel="noreferrer noopener">w-aggrid-vue examples</a>
         </div>
 
 

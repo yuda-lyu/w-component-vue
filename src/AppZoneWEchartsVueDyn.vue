@@ -7,11 +7,11 @@
 
         <div style="font-size:0.9rem; margin-bottom:10px;">
             <span style="margin-right:10px;">Links:</span>
-            <a href="//github.com/apache/incubator-echarts" target="_blank">echarts</a>
+            <a href="//github.com/apache/incubator-echarts" target="_blank" rel="noreferrer noopener">echarts</a>
             <span style="margin:0px 10px">|</span>
-            <a href="//echarts.apache.org/examples/zh/index.html" target="_blank">echarts examples</a>
+            <a href="//echarts.apache.org/examples/zh/index.html" target="_blank" rel="noreferrer noopener">echarts examples</a>
             <span style="margin:0px 10px">|</span>
-            <a href="//github.com/ecomfe/vue-echarts" target="_blank">vue-echarts</a>
+            <a href="//github.com/ecomfe/vue-echarts" target="_blank" rel="noreferrer noopener">vue-echarts</a>
         </div>
 
 
