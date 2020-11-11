@@ -50,9 +50,9 @@ function domMutation(opt = {}) {
         //config
         let config = {
             attributes: true,
-            // childList: true,
+            childList: true, //節點清單有變更
+            subtree: true, //所屬子節點變更
             // characterData: true,
-            subtree: true,
         }
 
         //observe
