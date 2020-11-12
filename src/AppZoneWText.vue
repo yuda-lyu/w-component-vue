@@ -14,7 +14,9 @@
                     :casename="'default'"
                 ></demolink>
 
-                <w-text v-model="WText.text"></w-text>
+                <w-text
+                    v-model="WText.text"
+                ></w-text>
             </div>
 
 
@@ -133,7 +135,10 @@
                     :casename="'rightIcon'"
                 ></demolink>
 
-                <w-text :rightIcon="mdiAvTimer" v-model="WText.text"></w-text>
+                <w-text
+                    :rightIcon="mdiAvTimer"
+                    v-model="WText.text"
+                ></w-text>
             </div>
 
 
@@ -210,6 +215,7 @@
                     :iconShiftOuter="-10"
                     :borderColor="'blue lighten-2'"
                     :borderColorFocus="'blue darken-2'"
+                    :backgroundColor="'white'"
                     :backgroundColorFocus="'blue lighten-5'"
                     v-model="WText.text"
                 ></w-text>
@@ -231,6 +237,7 @@
                     :iconShiftOuter="-10"
                     :borderColor="'blue lighten-2'"
                     :borderColorFocus="'blue darken-2'"
+                    :backgroundColor="'white'"
                     :backgroundColorFocus="'blue lighten-5'"
                     :borderRadius="5"
                     v-model="WText.text"
@@ -253,6 +260,7 @@
                     :iconShiftOuter="-10"
                     :borderColor="'blue lighten-2'"
                     :borderColorFocus="'blue darken-2'"
+                    :backgroundColor="'white'"
                     :backgroundColorFocus="'blue lighten-5'"
                     :textColor="'blue darken-2'"
                     v-model="WText.text"
@@ -275,6 +283,7 @@
                     :iconShiftOuter="-10"
                     :borderColor="'blue lighten-2'"
                     :borderColorFocus="'blue darken-2'"
+                    :backgroundColor="'white'"
                     :backgroundColorFocus="'blue lighten-5'"
                     :textAlign="'left'"
                     v-model="WText.text"
@@ -291,6 +300,7 @@
                     :iconShiftOuter="-10"
                     :borderColor="'blue lighten-2'"
                     :borderColorFocus="'blue darken-2'"
+                    :backgroundColor="'white'"
                     :backgroundColorFocus="'blue lighten-5'"
                     :textAlign="'center'"
                     v-model="WText.text"
@@ -307,6 +317,7 @@
                     :iconShiftOuter="-10"
                     :borderColor="'blue lighten-2'"
                     :borderColorFocus="'blue darken-2'"
+                    :backgroundColor="'white'"
                     :backgroundColorFocus="'blue lighten-5'"
                     :textAlign="'right'"
                     v-model="WText.text"
@@ -330,6 +341,7 @@
                     :iconShiftOuter="-10"
                     :borderColor="'blue lighten-2'"
                     :borderColorFocus="'blue darken-2'"
+                    :backgroundColor="'white'"
                     :backgroundColorFocus="'blue lighten-5'"
                     :placeholder="'請輸入數據'"
                     v-model="WText.text"
@@ -352,6 +364,7 @@
                     :iconShiftOuter="-10"
                     :borderColor="'blue lighten-2'"
                     :borderColorFocus="'blue darken-2'"
+                    :backgroundColor="'white'"
                     :backgroundColorFocus="'blue lighten-5'"
                     :leftIcon="mdiCheckUnderlineCircle"
                     v-model="WText.text"
@@ -374,6 +387,7 @@
                     :iconShiftOuter="-10"
                     :borderColor="'blue lighten-2'"
                     :borderColorFocus="'blue darken-2'"
+                    :backgroundColor="'white'"
                     :backgroundColorFocus="'blue lighten-5'"
                     :leftIcon="'fas fa-clipboard-check'"
                     v-model="WText.text"
@@ -420,6 +434,7 @@
                     :iconShiftOuter="-10"
                     :borderColor="'blue lighten-2'"
                     :borderColorFocus="'blue darken-2'"
+                    :backgroundColor="'white'"
                     :backgroundColorFocus="'blue lighten-5'"
                     :rightIcon="mdiAvTimer"
                     v-model="WText.text"
@@ -442,6 +457,7 @@
                     :iconShiftOuter="-10"
                     :borderColor="'blue lighten-2'"
                     :borderColorFocus="'blue darken-2'"
+                    :backgroundColor="'white'"
                     :backgroundColorFocus="'blue lighten-5'"
                     :rightIcon="mdiSend"
                     :rightIconColorFocus="'blue darken-3'"
@@ -465,6 +481,7 @@
                     :iconShiftOuter="-10"
                     :borderColor="'blue lighten-2'"
                     :borderColorFocus="'blue darken-2'"
+                    :backgroundColor="'white'"
                     :backgroundColorFocus="'blue lighten-5'"
                     :rightIcon="mdiSend"
                     :rightIconTooltip="'Send'"
@@ -488,6 +505,7 @@
                     :iconShiftOuter="-10"
                     :borderColor="'blue lighten-2'"
                     :borderColorFocus="'blue darken-2'"
+                    :backgroundColor="'white'"
                     :backgroundColorFocus="'blue lighten-5'"
                     :leftIcon="mdiArrowRightDropCircleOutline"
                     v-model="WText.text"
@@ -510,6 +528,7 @@
                     :iconShiftOuter="-10"
                     :borderColor="'blue lighten-2'"
                     :borderColorFocus="'blue darken-2'"
+                    :backgroundColor="'white'"
                     :backgroundColorFocus="'blue lighten-5'"
                     :leftIcon="mdiCheckUnderlineCircle"
                     :editable="false"
