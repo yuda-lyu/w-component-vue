@@ -7,7 +7,7 @@
         content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui"
     />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>example for w-group-radio: shiftLeft & shiftRight</title>
+    <title>example for w-group-check: group (only one)</title>
 
     <!-- fontawesome -->
     <link
@@ -107,16 +107,22 @@
     style="font-family:'Microsoft JhengHei','Avenir','Helvetica'; padding:20px;"
 >
     <v-app id="app" style="font-family:inherit;">
-        <div class="head1">w-group-radio</div>
+        <div class="head1">w-group-check</div>
         <div class="bk">
-            <div class="item">shiftLeft & shiftRight</div>
+            <div class="item">group (only one)</div>
 
-            <w-group-radio
-                :items="WGroupRadio.object.items"
-                v-model="WGroupRadio.object.select"
-                :shift-left="7"
-                :shift-right="5"
-            />
+            <div style="padding:10px 0px;">
+                <!-- 因使用group故marginStyle會被取消, 此處添加padding只是讓排版一致 -->
+                <w-group-check
+                    :items="WGroupCheck.objectOne.items"
+                    v-model="WGroupCheck.objectOne.selects"
+                    :group="true"
+                    :border-color="'#aaa'"
+                    :border-color-hover="'#aaa'"
+                    :border-color-active="'orange'"
+                    :shadow-active="false"
+                />
+            </div>
         </div>
     </v-app>
 
@@ -130,7 +136,7 @@
     vuetify: new Vuetify(),
     data: function() {
       return {
-        WGroupRadio: {
+        WGroupCheck: {
           string: {
             items: [
               "Dashboard",
@@ -140,7 +146,7 @@
               "Apple",
               "橘子"
             ],
-            select: "Apple"
+            selects: ["Dashboard", "Apple"]
           },
           object: {
             items: [
@@ -165,10 +171,30 @@
                 icon: "mdi-apple"
               }
             ],
-            select: {
-              text: "Dashboard",
-              icon: "mdi-view-dashboard"
-            }
+            selects: [
+              {
+                text: "Dashboard",
+                icon: "mdi-view-dashboard"
+              },
+              {
+                text: "Profile",
+                icon: "mdi-blender-software"
+              }
+            ]
+          },
+          objectOne: {
+            items: [
+              {
+                text: "Dashboard",
+                icon: "mdi-view-dashboard"
+              }
+            ],
+            selects: [
+              {
+                text: "Dashboard",
+                icon: "mdi-view-dashboard"
+              }
+            ]
           },
           objectTP: {
             items: [
@@ -198,11 +224,18 @@
                 tooltip: "tooltip for 蘋果"
               }
             ],
-            select: {
-              text: "Dashboard",
-              icon: "mdi-account-supervisor-circle",
-              tooltip: "tooltip for Dashboard"
-            }
+            selects: [
+              {
+                text: "Dashboard",
+                icon: "mdi-account-supervisor-circle",
+                tooltip: "tooltip for Dashboard"
+              },
+              {
+                text: "Profile",
+                icon: "mdi-blender-software",
+                tooltip: "tooltip for Profile"
+              }
+            ]
           },
           objectFA: {
             items: [
@@ -227,10 +260,16 @@
                 icon: "fa fa-heartbeat"
               }
             ],
-            select: {
-              text: "Dashboard",
-              icon: "fa fa-address-book"
-            }
+            selects: [
+              {
+                text: "Dashboard",
+                icon: "fa fa-address-book"
+              },
+              {
+                text: "Profile",
+                icon: "fa fa-american-sign-language-interpreting"
+              }
+            ]
           }
         },
         actions: []
@@ -241,8 +280,8 @@
     },
     computed: {},
     methods: {
-      ckBtn: function(item) {
-        console.log(item);
+      ckBtn: function(item, mode) {
+        console.log(item, mode);
       }
     }
   });
