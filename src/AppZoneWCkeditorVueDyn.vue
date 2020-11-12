@@ -6,6 +6,7 @@
 
 
         <div style="font-size:0.9rem; margin-bottom:10px;">
+            <div style="color:#f26; margin-bottom:5px;">* Can not support IE11</div>
             <span style="margin-right:10px;">Links:</span>
             <a href="//github.com/ckeditor/ckeditor5" target="_blank" rel="noreferrer noopener">ckeditor 5</a>
             <span style="margin:0px 10px">|</span>

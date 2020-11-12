@@ -409,6 +409,27 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-group-check'"
+                    :casename="'group (only one)'"
+                ></demolink>
+
+                <div style="padding:10px 0px;"><!-- 因使用group故marginStyle會被取消, 此處添加padding只是讓排版一致 -->
+                    <w-group-check
+                        :items="WGroupCheck.objectOne.items"
+                        v-model="WGroupCheck.objectOne.selects"
+                        :group="true"
+                        :borderColor="'#aaa'"
+                        :borderColorHover="'#aaa'"
+                        :borderColorActive="'orange'"
+                        :shadowActive="false"
+                    ></w-group-check>
+                </div>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-group-check'"
                     :casename="'group & groupBorderRadiusStyle & groupShift & borderRadius & borderColor & borderColorHover & borderColorActive & no shadowActive & marginStyle'"
                 ></demolink>
 
@@ -624,6 +645,20 @@ export default {
                             text: 'Profile',
                             icon: mdiBlenderSoftware,
                         }
+                    ]
+                },
+                'objectOne': {
+                    'items': [
+                        {
+                            text: 'Dashboard',
+                            icon: mdiViewDashboard,
+                        },
+                    ],
+                    'selects': [
+                        {
+                            text: 'Dashboard',
+                            icon: mdiViewDashboard,
+                        },
                     ]
                 },
                 'objectTP': {

@@ -1,6 +1,6 @@
 {
   "name": "w-component-vue",
-  "version": "1.5.43",
+  "version": "1.5.44",
   "author": "yuda-lyu(semisphere)",
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -25,7 +25,7 @@
     "@starptech/prettyhtml": "^0.10.0",
     "cheerio": "^1.0.0-rc.3",
     "sass": "^1.29.0",
-    "sass-loader": "^10.0.5",
+    "sass-loader": "^10.1.0",
     "vue": "^2.6.12",
     "w-package-tools": "^1.0.30"
   },

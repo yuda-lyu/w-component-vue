@@ -347,7 +347,7 @@ export default {
                             spcBorderRadiusStyle.bottomLeft = true
                         }
                     }
-                    else if (k === t.length - 1) {
+                    if (k === t.length - 1) { //不能用else if, 否則只有1個項目會無法左右側都設定到borderRadiusStyle
                         if (get(vo, 'groupBorderRadiusStyle.right') === true) {
                             spcBorderRadiusStyle.right = true
                         }
