@@ -42,10 +42,6 @@ export default {
     components: {
     },
     props: {
-        borderWidth: {
-            type: Number,
-            default: 1,
-        },
         borderColor: {
             type: String,
             default: 'grey lighten-1',
@@ -57,6 +53,10 @@ export default {
         borderColorFocus: {
             type: String,
             default: 'blue darken-2',
+        },
+        borderWidth: {
+            type: Number,
+            default: 1,
         },
         borderWidthHover: {
             type: Number,

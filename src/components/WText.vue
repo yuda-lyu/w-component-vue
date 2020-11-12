@@ -2,12 +2,12 @@
     <div :changeParam="changeParam">
 
         <w-shell-bottom-line
-            :borderWidth="bottomLineBorderWidth"
             :borderColor="bottomLineBorderColor"
-            :borderWidthHover="bottomLineBorderWidthHover"
             :borderColorHover="bottomLineBorderColorHover"
-            :borderWidthFocus="bottomLineBorderWidthFocus"
             :borderColorFocus="bottomLineBorderColorFocus"
+            :borderWidth="bottomLineBorderWidth"
+            :borderWidthHover="bottomLineBorderWidthHover"
+            :borderWidthFocus="bottomLineBorderWidthFocus"
             :focused="focusedTrans"
         >
             <w-shell-ellipse
@@ -71,12 +71,12 @@ import WTextCore from './WTextCore.vue'
  * @vue-prop {String} [textColor='black'] 輸入文字顏色字串，預設'black'
  * @vue-prop {String} [textAlign='left'] 輸入文字左右對齊字串，預設'left'
  * @vue-prop {String} [leftIcon=''] 輸入左側圖標字串，可為mdi,md,fa代號或mdi/js路徑，預設''
- * @vue-prop {String} [leftIconColor='deep-orange lighten-2'] 輸入左側圖標顏色字串，預設'deep-orange lighten-2'
- * @vue-prop {String} [leftIconColorFocus='deep-orange lighten-1'] 輸入左側圖標Focus顏色字串，預設'deep-orange lighten-1'
+ * @vue-prop {String} [leftIconColor='blue darken-1'] 輸入左側圖標顏色字串，預設'blue darken-1'
+ * @vue-prop {String} [leftIconColorFocus='blue'] 輸入左側圖標Focus顏色字串，預設'blue'
  * @vue-prop {String} [leftIconTooltip=''] 輸入左側圖標提示文字字串，預設''
  * @vue-prop {String} [rightIcon=''] 輸入右側圖標字串，可為mdi,md,fa代號或mdi/js路徑，預設''
- * @vue-prop {String} [rightIconColor='deep-orange lighten-2'] 輸入右側圖標顏色字串，預設'deep-orange lighten-2'
- * @vue-prop {String} [rightIconColorFocus='deep-orange lighten-1'] 輸入右側圖標Focus顏色字串，預設'deep-orange lighten-1'
+ * @vue-prop {String} [rightIconColor='blue darken-1'] 輸入右側圖標顏色字串，預設'blue darken-1'
+ * @vue-prop {String} [rightIconColorFocus='blue'] 輸入右側圖標Focus顏色字串，預設'blue'
  * @vue-prop {String} [rightIconTooltip=''] 輸入右側圖標提示文字字串，預設''
  * @vue-prop {Number} [iconShiftOuter=0] 輸入左右側圖標與外框距離數字，單位為px，預設0
  * @vue-prop {Number} [iconShiftInner=10] 輸入左右側圖標與內插槽區距離數字，單位為px，預設10
@@ -184,29 +184,29 @@ export default {
             type: String,
             default: 'transparent', //'white',
         },
-        bottomLineBorderWidth: {
-            type: Number,
-            default: 1,
-        },
         bottomLineBorderColor: {
             type: String,
             default: 'grey lighten-1', //'transparent',
-        },
-        bottomLineBorderWidthHover: {
-            type: Number,
-            default: 1,
         },
         bottomLineBorderColorHover: {
             type: String,
             default: 'grey', //'transparent',
         },
-        bottomLineBorderWidthFocus: {
-            type: Number,
-            default: 2,
-        },
         bottomLineBorderColorFocus: {
             type: String,
             default: 'blue darken-2', //'transparent',
+        },
+        bottomLineBorderWidth: {
+            type: Number,
+            default: 1,
+        },
+        bottomLineBorderWidthHover: {
+            type: Number,
+            default: 1,
+        },
+        bottomLineBorderWidthFocus: {
+            type: Number,
+            default: 2,
         },
         placeholder: {
             type: String,

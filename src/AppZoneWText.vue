@@ -78,6 +78,21 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-text'"
+                    :casename="'bottomLineBorderColor & bottomLineBorderColorHover & bottomLineBorderColorFocus'"
+                ></demolink>
+
+                <w-text
+                    :bottomLineBorderColor="'pink lighten-3'"
+                    :bottomLineBorderColorHover="'pink lighten-1'"
+                    :bottomLineBorderColorFocus="'pink'"
+                    v-model="WText.emptytext"
+                ></w-text>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-text'"
                     :casename="'leftIcon (material)'"
                 ></demolink>
 
@@ -104,12 +119,13 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-text'"
-                    :casename="'leftIcon & leftIconColorFocus'"
+                    :casename="'leftIcon & leftIconColor & leftIconColorFocus'"
                 ></demolink>
 
                 <w-text
                     :leftIcon="mdiCheckUnderlineCircle"
-                    :leftIconColorFocus="'blue darken-3'"
+                    :leftIconColor="'pink lighten-2'"
+                    :leftIconColorFocus="'pink'"
                     v-model="WText.text"
                 ></w-text>
             </div>
@@ -145,12 +161,13 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-text'"
-                    :casename="'rightIcon & rightIconColorFocus'"
+                    :casename="'rightIcon & rightIconColor & rightIconColorFocus'"
                 ></demolink>
 
                 <w-text
                     :rightIcon="mdiSend"
-                    :rightIconColorFocus="'blue darken-3'"
+                    :rightIconColor="'pink lighten-2'"
+                    :rightIconColorFocus="'pink'"
                     v-model="WText.text"
                 ></w-text>
             </div>
