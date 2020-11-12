@@ -7,7 +7,7 @@
         content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui"
     />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>example for w-text: leftIcon & leftIconColorFocus</title>
+    <title>example for w-text: rightIcon & rightIconColor & rightIconColorFocus</title>
 
     <!-- fontawesome -->
     <link
@@ -109,11 +109,12 @@
     <v-app id="app" style="font-family:inherit;">
         <div class="head1">w-text</div>
         <div class="bk">
-            <div class="item">leftIcon & leftIconColorFocus</div>
+            <div class="item">rightIcon & rightIconColor & rightIconColorFocus</div>
 
             <w-text
-                :left-icon="'mdi-check-underline-circle'"
-                :left-icon-color-focus="'blue darken-3'"
+                :right-icon="'mdi-send'"
+                :right-icon-color="'pink lighten-2'"
+                :right-icon-color-focus="'pink'"
                 v-model="WText.text"
             />
         </div>

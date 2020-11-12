@@ -7,7 +7,7 @@
         content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui"
     />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>example for w-text: rightIcon & rightIconColorFocus</title>
+    <title>example for w-text: bottomLineBorderColor & bottomLineBorderColorHover & bottomLineBorderColorFocus</title>
 
     <!-- fontawesome -->
     <link
@@ -109,12 +109,15 @@
     <v-app id="app" style="font-family:inherit;">
         <div class="head1">w-text</div>
         <div class="bk">
-            <div class="item">rightIcon & rightIconColorFocus</div>
+            <div
+                class="item"
+            >bottomLineBorderColor & bottomLineBorderColorHover & bottomLineBorderColorFocus</div>
 
             <w-text
-                :right-icon="'mdi-send'"
-                :right-icon-color-focus="'blue darken-3'"
-                v-model="WText.text"
+                :bottom-line-border-color="'pink lighten-3'"
+                :bottom-line-border-color-hover="'pink lighten-1'"
+                :bottom-line-border-color-focus="'pink'"
+                v-model="WText.emptytext"
             />
         </div>
     </v-app>
