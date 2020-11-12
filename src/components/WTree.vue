@@ -1216,6 +1216,7 @@ export default {
 
                         //預設取得項目文字供關鍵字過濾
                         let c = vo.getText(items[i].row.item)
+                        console.log('vo.getText', items[i].row.item, 'c=', c)
 
                         //toLowerCase
                         c = c.toLowerCase()

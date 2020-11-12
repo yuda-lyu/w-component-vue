@@ -501,8 +501,8 @@ export default {
                         {
                             name: 'editor',
                             cmps: [
-                                { name: 'WCkeditorVueDyn' },
                                 { name: 'WTinymceVueDyn' },
+                                { name: 'WCkeditorVueDyn' },
                                 { name: 'WQuillVueDyn' },
                             ],
                         },
