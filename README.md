@@ -50,6 +50,15 @@ import WText from 'w-component-vue/src/components/WText.vue'
 
 //component
 Vue.component('w-text',WText)
+//or
+export default {
+    components: {
+        WText,
+        //or
+        'w-text': WText,
+    },
+    ...
+}
 ```
 
 ### In a browser(UMD module):
