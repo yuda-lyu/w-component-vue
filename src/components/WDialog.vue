@@ -10,12 +10,16 @@
         v-model="showTrans"
         @click:outside="clickClose(true)"
     >
-
         <v-card v-if="show">
 
             <v-toolbar
+                ref="tb"
                 :color="headerBackgroundColor"
+                v-domresize
+                @domresize="resize"
             >
+
+                <!-- v-toolbar於IE11會因為內容區高度不夠時, 因使用display:flex導致自己撐開, 得通過強制設定max-height處理 -->
 
                 <div style="margin-right:10px;">
                     <v-icon :color="headerIconColor" >
@@ -87,7 +91,10 @@
 
 <script>
 import { mdiCheckCircle, mdiClose, mdiCheckerboard } from '@mdi/js'
+import get from 'lodash/get'
+import cint from 'wsemi/src/cint.mjs'
 import color2hex from '../js/vuetifyColor.mjs'
+import domResize from '../js/domResize.mjs'
 import WButtonCircle from './WButtonCircle.vue'
 
 
@@ -108,6 +115,9 @@ import WButtonCircle from './WButtonCircle.vue'
  * @vue-prop {String} [contentBackgroundColor='transparent'] 輸入內容背景顏色字串，預設'transparent'
  */
 export default {
+    directives: {
+        domresize: domResize(),
+    },
     components: {
         WButtonCircle,
     },
@@ -220,6 +230,28 @@ export default {
     },
     methods: {
 
+        resize: function(msg) {
+            //console.log('methods resize', msg)
+
+            let vo = this
+
+            //設定最高高度, 因v-toolbar會於v-dialog全螢幕時自動撐開, 改flex又於IE11很多問題, 故直接於resize強制設定maxHeight
+            let tb = get(vo, '$refs.tb.$el')
+            if (tb) {
+
+                //取得vuetify給予toolbar的高度
+                let ch = tb.style.height
+
+                //取得高度數字
+                ch = cint(ch.replace('px', ''))
+
+                //設定最高高度
+                tb.style.maxHeight = `${ch}px`
+
+            }
+
+        },
+
         changeSize: function() {
             //console.log('methods changeSize')
 
@@ -302,10 +334,8 @@ export default {
 
 <style scoped>
 /* 因v-toolbar使用contain:layout, 以及v-toolbar__content使用z-index:0, 導致v-toolbar的內容物展示低於v-card, 若v-toolbar內使用popup會被v-card內容物遮, 故需覆寫v-toolbar與v-toolbar__content的css屬性 */
-/* 於fullscreen且v-card高度小時, v-toolbar會自動撐開, 需設置flex:initial覆寫原本flex: 1 1 auto */
 ::v-deep .v-toolbar {
     contain: none;
-    flex: initial;
 }
 ::v-deep .v-toolbar__content {
     z-index: inherit;
