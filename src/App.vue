@@ -413,6 +413,7 @@ export default {
                         { name: 'WPanelStripe' },
                         { name: 'WPanelBulge' },
                         { name: 'WPanelScrolly' },
+                        { name: 'WDynamicList' },
                         { name: 'WPanelDivideHorizontal' },
                         { name: 'WPanelDivideVertical' },
                     ]
@@ -454,6 +455,8 @@ export default {
                 {
                     name: 'tree',
                     cmps: [
+                        { name: 'WJsonView' },
+                        { name: 'WTree' },
                         { name: 'WTreeDraggable' },
 
                     ]
@@ -465,14 +468,6 @@ export default {
                         { name: 'WDialog' },
                         { name: 'WConfirm' },
                         { name: 'WPopup' },
-                    ]
-                },
-                {
-                    name: 'scroll',
-                    cmps: [
-                        { name: 'WDynamicList' },
-                        { name: 'WJsonView' },
-                        { name: 'WTree' },
                     ]
                 },
                 {
