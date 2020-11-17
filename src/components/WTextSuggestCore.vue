@@ -17,7 +17,7 @@
                 <div style="display:flex; align-items:center;">
 
                     <div
-                        :style="`width:100%; height:${height}px; line-height:${height}px; vertical-align:middle; cursor:pointer; outline:none;`"
+                        :style="`width:100%; height:${height}px; line-height:${height}px; vertical-align:middle; white-space:nowrap; text-overflow:ellipsis; cursor:pointer; outline:none;`"
                         tabindex="0"
                         @focus="focusText"
                         v-if="mode==='select'"
