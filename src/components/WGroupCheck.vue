@@ -17,6 +17,7 @@
                 :textColorHover="textColorHover"
                 :textColorActive="textColorActive"
                 :textFontSize="textFontSize"
+                :borderUsed="group?item.spcBorderUsed:borderUsed"
                 :borderWidth="group?item.spcBorderWidth:borderWidth"
                 :borderRadius="borderRadius"
                 :borderRadiusStyle="group?item.spcBorderRadiusStyle:borderRadiusStyle"
@@ -40,6 +41,8 @@
                 :disabledColor="'rgba(255,255,255,0.4)'"
                 :active="item.active"
                 @click="toggleState(item)"
+                @mouseenter="mouseenter(item,kitem)"
+                @mouseleave="mouseleave(item,kitem)"
             >
                 <slot
                     :item="item"
@@ -295,6 +298,13 @@ export default {
 
             itemsTrans: [],
 
+            borderUsed: {
+                top: true,
+                bottom: true,
+                left: true,
+                right: true,
+            },
+
         }
     },
     mounted: function() {
@@ -306,8 +316,37 @@ export default {
 
             let vo = this
 
+            function getActive(v) {
+                let active
+                if (vo.multiCheck) {
+                    active = arrhas(vo.value, v)
+                }
+                else {
+                    active = isEqual(v, vo.value)
+                }
+                return active
+            }
+
             //t
             let t = cloneDeep(vo.items)
+
+            //itemActives
+            let itemActives = map(t, (v) => {
+                let active = getActive(v)
+                return {
+                    active,
+                    hover: false,
+                    borderColor: vo.borderColor,
+                    borderColorHover: vo.borderColorHover,
+                    borderColorActive: vo.borderColorActive,
+                    // borderLeftColor: borderColor,
+                    // borderRightColor: borderColor,
+                    // borderLeftColorHover: borderColorHover,
+                    // borderRightColorHover: borderColorHover,
+                    // borderLeftColorActive: vo.borderColorActive,
+                    // borderRightColorActive: vo.borderColorActive,
+                }
+            })
 
             //items
             let items = map(t, (v, k) => {
@@ -317,15 +356,27 @@ export default {
                     data: v,
                 }
 
+                //add ia
+                let ia = itemActives[k]
+                o.ia = ia
+
                 //add active
-                let active
-                if (vo.multiCheck) {
-                    active = arrhas(vo.value, v)
+                o.active = ia.active
+
+                //add hover, 預設為false, 故儲存至spcBorderUsedBackup可直接用於恢復
+                o.hover = false
+
+                //iaPre, 前一個項目的itemActive
+                let iaPre = null
+                if (k > 0) {
+                    iaPre = itemActives[k - 1]
                 }
-                else {
-                    active = isEqual(v, vo.value)
+
+                //iaAft, 後一個項目的itemActive
+                let iaAft = null
+                if (k < t.length - 1) {
+                    iaAft = itemActives[k + 1]
                 }
-                o.active = active
 
                 //add spcBorderRadiusStyle
                 let spcBorderRadiusStyle = {}
@@ -370,14 +421,32 @@ export default {
                 //add spcBorderWidth
                 let spcBorderWidth = {}
                 if (vo.group) {
-                    if (k === 0) {
-                        spcBorderWidth = { top: 1, bottom: 1, left: 1, right: 1 }
+
+                    //top與bottom先預設成borderWidth
+                    spcBorderWidth = { top: vo.borderWidth.top, bottom: vo.borderWidth.bottom, left: 1, right: 1 }
+
+                    if (k === 0) { //為最左者
+                        spcBorderWidth.left = vo.borderWidth.left
                     }
-                    else {
-                        spcBorderWidth = { top: 1, bottom: 1, left: 0, right: 1 }
+                    if (k === t.length - 1) { //為最右者
+                        spcBorderWidth.right = vo.borderWidth.right
                     }
+
                 }
                 o.spcBorderWidth = spcBorderWidth
+
+                //add spcBorderUsed
+                let spcBorderUsed = {}
+                if (vo.group) {
+
+                    //getSpcBorderUsed
+                    spcBorderUsed = vo.getSpcBorderUsed(k, false, iaPre, ia, iaAft)
+
+                }
+                o.spcBorderUsed = spcBorderUsed
+
+                //add spcBorderUsedBackup, 供滑鼠移出時恢復之用
+                o.spcBorderUsedBackup = cloneDeep(spcBorderUsed)
 
                 //add spcShiftLeft, spcShiftRight, 因按鈕本身亦提供設定shiftLeft與shiftRight, 故需額外添加group的偏移量
                 let spcShiftLeft = 0
@@ -443,6 +512,138 @@ export default {
 
     },
     methods: {
+
+        getSpcBorderUsed: function(k, isSelf, iaPre, ia, iaAft) {
+            //console.log('methods getSpcBorderUsed', isSelf, iaPre, ia, iaAft)
+
+            // let vo = this
+
+            //全部項目皆顯示左右框線, 若框線同色則使線變寬
+            let spcBorderUsed = { top: true, bottom: true, left: true, right: true }
+
+            if (iaPre) { //前者有效時
+
+                //preBorderColor
+                let preBorderColor = null
+                preBorderColor = iaPre.hover ? iaPre.borderColorHover : iaPre.borderColor
+                preBorderColor = iaPre.active ? iaPre.borderColorActive : preBorderColor
+
+                //selfBorderColor
+                let selfBorderColor = null
+                selfBorderColor = ia.hover ? ia.borderColorHover : ia.borderColor
+                selfBorderColor = ia.active ? ia.borderColorActive : selfBorderColor
+
+                //若自己左邊界顏色與前項目右邊界顏色相同者
+                let bSame = false
+                if (preBorderColor === selfBorderColor) {
+                    bSame = true
+                }
+                //console.log(k, 'bSame', bSame, 'preBorderColor', preBorderColor, 'selfBorderColor', selfBorderColor)
+
+                //若前項目為active但自己非active
+                let bAgainstActive = false
+                if (iaPre.active && !ia.active) {
+                    bAgainstActive = true
+                }
+                //console.log(k, 'bAgainstActive', bAgainstActive)
+
+                //若自己為hover狀態
+                let bHover = false
+                if (ia.hover) {
+                    bHover = true
+                }
+                //console.log(k, 'bHover', bHover, cloneDeep(ia))
+
+                //是否取消邊界
+                let bCancel = false
+                if (!bHover) {
+                    bCancel = bAgainstActive //自己非hover時, 前項目為active但自己非active, 就取消
+                }
+                //console.log(k, 'bCancel a', bCancel)
+                bCancel = bCancel || bSame //若同顏色就取消
+                //console.log(k, 'bCancel b', bCancel)
+
+                //save
+                spcBorderUsed.left = !bCancel
+                //console.log(k, 'spcBorderUsed.left', spcBorderUsed.left)
+
+            }
+            if (iaAft) { //後者有效時
+
+                //若前項目為active但自己非active
+                let bAgainstActive = false
+                if (iaAft.active && !ia.active) {
+                    bAgainstActive = true
+                }
+                //console.log(k, 'bAgainstActive', bAgainstActive)
+
+                //若自己為hover狀態
+                let bHover = false
+                if (ia.hover) {
+                    bHover = true
+                }
+                //console.log(k, 'bHover', bHover, cloneDeep(ia))
+
+                //是否取消邊界
+                let bCancel = false
+                if (!bHover) {
+                    bCancel = bAgainstActive //自己非hover時, 前項目為active但自己非active, 就取消
+                }
+                //console.log(k, 'bCancel', bCancel)
+
+                //save
+                spcBorderUsed.right = !bCancel
+                //console.log(k, 'spcBorderUsed.right', spcBorderUsed.right)
+
+            }
+
+            return spcBorderUsed
+        },
+
+        mouseenter: function(item, kitem) {
+            //console.log('methods mouseenter', item, kitem)
+
+            let vo = this
+
+            //調整hover
+            each(vo.itemsTrans, (v, k) => {
+                vo.itemsTrans[k].ia.hover = k === kitem
+            })
+
+            //各項目逐一判斷
+            each(vo.itemsTrans, (v, k) => {
+
+                //ia, iaPre
+                let ia = get(vo, `itemsTrans[${k}].ia`, null)
+                let iaPre = get(vo, `itemsTrans[${k - 1}].ia`, null)
+                let iaAft = get(vo, `itemsTrans[${k + 1}].ia`, null)
+
+                //getSpcBorderUsed
+                let spcBorderUsed = vo.getSpcBorderUsed(k, k === kitem, iaPre, ia, iaAft)
+
+                //save spcBorderUsed
+                vo.itemsTrans[k].spcBorderUsed = spcBorderUsed
+
+            })
+
+        },
+
+        mouseleave: function(item, kitem) {
+            //console.log('methods mouseleave', item, kitem)
+
+            let vo = this
+
+            // //調整hover
+            // each(vo.itemsTrans, (v, k) => {
+            //     vo.itemsTrans[k].ia.hover = false
+            // })
+
+            //各項目使用spcBorderUsedBackup還原至spcBorderUsed, 比重算快
+            each(vo.itemsTrans, (v, k) => {
+                vo.itemsTrans[k].spcBorderUsed = cloneDeep(vo.itemsTrans[k].spcBorderUsedBackup)
+            })
+
+        },
 
         toggleState: function(item) {
             //console.log('methods toggleState', item)

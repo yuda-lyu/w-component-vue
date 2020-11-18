@@ -19,17 +19,17 @@
 
                     <div
                         v-on="on"
-                        :style="`transition:all 0.3s; ${useBorderRadiusStyle} background:${useBC}; cursor:pointer; outline:none; box-shadow:${useShadow};`"
+                        :style="`transition:all 0.3s; ${useBorderRadiusStyle} background:${useBackgroundColor}; cursor:pointer; outline:none; box-shadow:${useShadow};`"
                         v-ripple="editable?{ class: 'white--text' }:false"
                         tabindex="0"
-                        @mouseenter="hoverTrans=true"
-                        @mouseleave="hoverTrans=false"
+                        @mouseenter="hoverTrans=true;$emit('mouseenter',$event)"
+                        @mouseleave="hoverTrans=false;$emit('mouseleave',$event)"
                         @keyup.enter="clickBtn($event)"
                         @click="clickBtn($event)"
                     >
 
                         <div
-                            :style="`transition:all 0.3s; ${usePadding} ${useBorderRadiusStyle} ${useBorderWidth} border-color:${useRC}; border-style:solid;`"
+                            :style="`transition:all 0.3s; ${usePadding} ${useBorderRadiusStyle} ${useBorderWidth} ${useBorderColor} border-style:solid;`"
                         >
 
                             <div style="display:flex; align-items:center; white-space:nowrap;">
@@ -42,14 +42,14 @@
                                     <w-icon
                                         :style="`margin:0px 5px 0px -6px;`"
                                         :icon="icon"
-                                        :color="useIC"
+                                        :color="useIconColor"
                                         :size="iconSize"
                                         v-if="icon"
                                     ></w-icon>
                                 </div>
 
                                 <div
-                                    :style="`margin-right:${text?0:-10}px; transition:all 0.3s; text-transform:none; color:${useTC};`"
+                                    :style="`margin-right:${text?0:-10}px; transition:all 0.3s; text-transform:none; color:${useTextColor};`"
                                 >
                                     <div :style="`${useTextFontSize}`">{{text}}</div>
                                 </div>
@@ -64,7 +64,7 @@
                                     <w-icon
                                         :style="`margin:0px -9px 0px 5px;`"
                                         :icon="mdiCloseCircle"
-                                        :color="useIC"
+                                        :color="useIconColor"
                                         :size="iconSize"
                                     ></w-icon>
                                 </div>
@@ -86,8 +86,8 @@
                 v-if="isProging"
             >
                 <div :style="`${useBorderRadiusStyle} overflow:hidden; width:100%; height:100%;`">
-                    <div :style="`background:${useProgBackgroundColor}; height:100%;`">
-                        <div :style="`background:${useProgColor}; width:${useProg}%; height:100%;`"></div>
+                    <div :style="`background:${effProgBackgroundColor}; height:100%;`">
+                        <div :style="`background:${effProgColor}; width:${useProg}%; height:100%;`"></div>
                     </div>
                 </div>
             </div>
@@ -97,7 +97,7 @@
                 v-if="!editable || loadingTrans"
             >
                 <div :style="`${useBorderRadiusStyle} overflow:hidden; width:100%; height:100%;`">
-                    <div :style="`background:${useDisabledColor}; height:100%;`">
+                    <div :style="`background:${effDisabledColor}; height:100%;`">
                     </div>
                 </div>
             </div>
@@ -111,7 +111,7 @@
                         indeterminate
                         width="2"
                         :size="iconSize"
-                        :color="useLoadingColor"
+                        :color="effLoadingColor"
                     ></v-progress-circular>
                 </div>
             </div>
@@ -153,9 +153,10 @@ import WIcon from './WIcon.vue'
  * @vue-prop {String} [textColorHover='grey darken-3'] 輸入滑鼠移入時文字顏色字串，預設'grey darken-3'
  * @vue-prop {String} [textColorActive='white'] 輸入主動模式時文字顏色字串，預設'white'
  * @vue-prop {String} [textFontSize='0.85rem'] 輸入文字字型大小字串，預設'0.85rem'
- * @vue-prop {Object} [borderWidth={top:1,bottom:1,left:1,right:1}] 輸入框樣式物件，可用鍵值為left、right、top、bottom，若有重複設定時後面鍵值會覆蓋前面，各鍵值為寬度數字，單位為px，預設{top:1,bottom:1,left:1,right:1}
+ * @vue-prop {Object} [borderUsed={top:true,bottom:true,left:true,right:true}] 輸入是否繪製框設定物件，可用鍵值為left、right、top、bottom，各鍵值為是否繪製框線布林值，單位為px，預設{top:true,bottom:true,left:true,right:true}
+ * @vue-prop {Object} [borderWidth={top:1,bottom:1,left:1,right:1}] 輸入框寬度設定物件，可用鍵值為left、right、top、bottom，各鍵值為寬度數字，單位為px，預設{top:1,bottom:1,left:1,right:1}
  * @vue-prop {Number} [borderRadius=30] 輸入框圓角度數字，單位為px，預設30
- * @vue-prop {Object} [borderRadiusStyle={left:true,right:true}] 輸入框圓角樣式物件，可用鍵值為left、right、top、bottom、top-left、bottom-left、top-right、bottom-right，left代表設定top-left與bottom-left，right代表設定top-right與bottom-right，top代表設定top-left與top-right，bottom代表設定bottom-left與bottom-right，若有重複設定時後面鍵值會覆蓋前面，各鍵值為布林值，預設{left:true,right:true}
+ * @vue-prop {Object} [borderRadiusStyle={left:true,right:true}] 輸入框圓角設定物件，可用鍵值為left、right、top、bottom、top-left、bottom-left、top-right、bottom-right，left代表設定top-left與bottom-left，right代表設定top-right與bottom-right，top代表設定top-left與top-right，bottom代表設定bottom-left與bottom-right，若有重複設定時後面鍵值會覆蓋前面，各鍵值為布林值，預設{left:true,right:true}
  * @vue-prop {String} [borderColor='transparent'] 輸入邊框顏色字串，預設'transparent'
  * @vue-prop {String} [borderColorHover='transparent'] 輸入滑鼠移入時邊框顏色字串，預設'transparent'
  * @vue-prop {String} [borderColorActive='transparent'] 輸入主動模式時邊框顏色字串，預設'transparent'
@@ -166,7 +167,7 @@ import WIcon from './WIcon.vue'
  * @vue-prop {String} [shadowStyle=''] 輸入陰影顏色字串，預設值詳見props
  * @vue-prop {Boolean} [shadowActive=true] 輸入主動模式時是否顯示陰影，預設true
  * @vue-prop {String} [shadowActiveStyle=''] 輸入主動模式時陰影顏色字串，預設值詳見props
- * @vue-prop {Object} [paddingStyle={v:3,h:15}] 輸入內寬距離物件，可用鍵值為v、h、left、right、top、bottom，v代表同時設定top與bottom，h代表設定left與right，若有重複設定時後面鍵值會覆蓋前面，各鍵值為寬度數字，單位為px，預設{v:3,h:15}
+ * @vue-prop {Object} [paddingStyle={v:3,h:15}] 輸入內寬距離設定物件，可用鍵值為v、h、left、right、top、bottom，v代表同時設定top與bottom，h代表設定left與right，若有重複設定時後面鍵值會覆蓋前面，各鍵值為寬度數字，單位為px，預設{v:3,h:15}
  * @vue-prop {Number} [shiftLeft=0] 輸入左側內寬平移距離數字，會對paddingStyle設定再添加，可調整例如圖標與左側邊框距離，單位px，預設0
  * @vue-prop {Number} [shiftRight=0] 輸入右側內寬平移距離數字，會對paddingStyle設定再添加，可調整例如關閉圖標與右側邊框距離，單位px，預設0
  * @vue-prop {Boolean} [active=false] 輸入是否為主動模式，預設false
@@ -236,6 +237,17 @@ export default {
         textFontSize: {
             type: String,
             default: '0.85rem',
+        },
+        borderUsed: {
+            type: Object,
+            default: () => {
+                return {
+                    top: true,
+                    bottom: true,
+                    left: true,
+                    right: true,
+                }
+            },
         },
         borderWidth: {
             type: Object,
@@ -434,65 +446,65 @@ export default {
             return padding
         },
 
-        useIconColor: function() {
+        effIconColor: function() {
             let vo = this
             return color2hex(vo.iconColor)
         },
 
-        useIconColorHover: function() {
+        effIconColorHover: function() {
             let vo = this
             return color2hex(vo.iconColorHover)
         },
 
-        useIconColorActive: function() {
+        effIconColorActive: function() {
             let vo = this
             return color2hex(vo.iconColorActive)
         },
 
-        useIC: function() {
+        useIconColor: function() {
             let vo = this
-            let r = vo.activeTrans ? vo.useIconColorActive : vo.hoverTrans ? vo.useIconColorHover : vo.useIconColor
+            let r = vo.activeTrans ? vo.effIconColorActive : vo.hoverTrans ? vo.effIconColorHover : vo.effIconColor
             if (!vo.editable) {
-                r = vo.activeTrans ? vo.useIconColorActive : vo.useIconColor
+                r = vo.activeTrans ? vo.effIconColorActive : vo.effIconColor
             }
             return r
         },
 
-        useDisabledColor: function() {
+        effDisabledColor: function() {
             let vo = this
             return color2hex(vo.disabledColor)
         },
 
-        useProgColor: function() {
+        effProgColor: function() {
             let vo = this
             return color2hex(vo.progColor)
         },
 
-        useProgBackgroundColor: function() {
+        effProgBackgroundColor: function() {
             let vo = this
             return color2hex(vo.progBackgroundColor)
         },
 
-        useTextColor: function() {
+        effTextColor: function() {
             let vo = this
             return color2hex(vo.textColor)
         },
 
-        useTextColorHover: function() {
+        effTextColorHover: function() {
             let vo = this
             return color2hex(vo.textColorHover)
         },
 
-        useTextColorActive: function() {
+        effTextColorActive: function() {
             let vo = this
             return color2hex(vo.textColorActive)
         },
 
-        useTC: function() {
+        useTextColor: function() {
             let vo = this
-            let r = vo.activeTrans ? vo.useTextColorActive : vo.hoverTrans ? vo.useTextColorHover : vo.useTextColor
+            let r = vo.activeTrans ? vo.effTextColorActive : vo.hoverTrans ? vo.effTextColorHover : vo.effTextColor
             if (!vo.editable) {
-                r = vo.activeTrans ? vo.useTextColorActive : vo.useTextColor
+                r = vo.activeTrans ? vo.effTextColorActive : vo.effTextColor
             }
             return r
         },
@@ -504,28 +516,71 @@ export default {
             return `font-size:${s};`
         },
 
-        useBorderColor: function() {
+        effBorderColor: function() {
             let vo = this
             return color2hex(vo.borderColor)
         },
 
-        useBorderColorHover: function() {
+        effBorderColorHover: function() {
             let vo = this
             return color2hex(vo.borderColorHover)
         },
 
-        useBorderColorActive: function() {
+        effBorderColorActive: function() {
             let vo = this
             return color2hex(vo.borderColorActive)
         },
 
-        useRC: function() {
+        useBorderColor: function() {
             let vo = this
-            let r = vo.activeTrans ? vo.useBorderColorActive : vo.hoverTrans ? vo.useBorderColorHover : vo.useBorderColor
+
+            //r
+            let r = vo.activeTrans ? vo.effBorderColorActive : vo.hoverTrans ? vo.effBorderColorHover : vo.effBorderColor
             if (!vo.editable) {
-                r = vo.activeTrans ? vo.useBorderColorActive : vo.useBorderColor
+                r = vo.activeTrans ? vo.effBorderColorActive : vo.effBorderColor
             }
-            return r
+
+            //useBorderUsed
+            let bcs = map(vo.useBorderUsed, (v, k) => {
+                let c = v ? r : 'transparent'
+                return `border-${k}-color:${c};`
+            })
+
+            //bc
+            let bc = join(bcs, ' ')
+
+            return bc
+        },
+
+        useBorderUsed: function() {
+            //console.log('useBorderUsed')
+
+            let vo = this
+
+            //四方向style
+            let left = true
+            let right = true
+            let top = true
+            let bottom = true
+            if (isbol(get(vo, 'borderUsed.left'))) {
+                left = get(vo, 'borderUsed.left')
+            }
+            if (isbol(get(vo, 'borderUsed.right'))) {
+                right = get(vo, 'borderUsed.right')
+            }
+            if (isbol(get(vo, 'borderUsed.top'))) {
+                top = get(vo, 'borderUsed.top')
+            }
+            if (isbol(get(vo, 'borderUsed.bottom'))) {
+                bottom = get(vo, 'borderUsed.bottom')
+            }
+
+            return {
+                left,
+                right,
+                top,
+                bottom,
+            }
         },
 
         useBorderWidth: function() {
@@ -602,26 +657,26 @@ export default {
             return borderRadius
         },
 
-        useBackgroundColor: function() {
+        effBackgroundColor: function() {
             let vo = this
             return color2hex(vo.backgroundColor)
         },
 
-        useBackgroundColorHover: function() {
+        effBackgroundColorHover: function() {
             let vo = this
             return color2hex(vo.backgroundColorHover)
         },
 
-        useBackgroundColorActive: function() {
+        effBackgroundColorActive: function() {
             let vo = this
             return color2hex(vo.backgroundColorActive)
         },
 
-        useBC: function() {
+        useBackgroundColor: function() {
             let vo = this
-            let r = vo.activeTrans ? vo.useBackgroundColorActive : vo.hoverTrans ? vo.useBackgroundColorHover : vo.useBackgroundColor
+            let r = vo.activeTrans ? vo.effBackgroundColorActive : vo.hoverTrans ? vo.effBackgroundColorHover : vo.effBackgroundColor
             if (!vo.editable) {
-                r = vo.activeTrans ? vo.useBackgroundColorActive : vo.useBackgroundColor
+                r = vo.activeTrans ? vo.effBackgroundColorActive : vo.effBackgroundColor
             }
             return r
         },
@@ -693,7 +748,7 @@ export default {
             return null
         },
 
-        useLoadingColor: function() {
+        effLoadingColor: function() {
             let vo = this
             return color2hex(vo.loadingColor)
         },

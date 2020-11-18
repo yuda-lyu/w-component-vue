@@ -398,7 +398,31 @@
                         :group="true"
                         :borderColor="'#aaa'"
                         :borderColorHover="'#aaa'"
-                        :borderColorActive="'orange'"
+                        :borderColorActive="'orange lighten-2'"
+                        :shadowActive="false"
+                    ></w-group-check>
+                </div>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-group-check'"
+                    :casename="'group & borderColor & borderColorHover & borderColorActive & textColorActive & iconColorActive & backgroundColorActive & no shadowActive'"
+                ></demolink>
+
+                <div style="padding:10px 0px;"><!-- 因使用group故marginStyle會被取消, 此處添加padding只是讓排版一致 -->
+                    <w-group-check
+                        :items="WGroupCheck.object.items"
+                        v-model="WGroupCheck.object.selects"
+                        :group="true"
+                        :borderColor="'#ccc'"
+                        :borderColorHover="'orange lighten-2'"
+                        :borderColorActive="'orange lighten-2'"
+                        :textColorActive="'orange darken-3'"
+                        :iconColorActive="'orange darken-3'"
+                        :backgroundColorActive="'orange lighten-5'"
                         :shadowActive="false"
                     ></w-group-check>
                 </div>
@@ -419,7 +443,7 @@
                         :group="true"
                         :borderColor="'#aaa'"
                         :borderColorHover="'#aaa'"
-                        :borderColorActive="'orange'"
+                        :borderColorActive="'orange lighten-2'"
                         :shadowActive="false"
                     ></w-group-check>
                 </div>
@@ -444,7 +468,7 @@
                             :borderRadius="20"
                             :borderColor="'#aaa'"
                             :borderColorHover="'#aaa'"
-                            :borderColorActive="'orange'"
+                            :borderColorActive="'orange lighten-2'"
                             :shadowActive="false"
                             :marginStyle="{}"
                         ></w-group-check>
@@ -468,7 +492,7 @@
                             :borderRadius="20"
                             :borderColor="'#aaa'"
                             :borderColorHover="'#aaa'"
-                            :borderColorActive="'orange'"
+                            :borderColorActive="'orange lighten-2'"
                             :shadowActive="false"
                             :marginStyle="{}"
                         ></w-group-check>

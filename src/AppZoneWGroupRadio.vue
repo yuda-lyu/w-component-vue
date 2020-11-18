@@ -398,7 +398,52 @@
                         :group="true"
                         :borderColor="'#aaa'"
                         :borderColorHover="'#aaa'"
-                        :borderColorActive="'orange'"
+                        :borderColorActive="'orange lighten-2'"
+                    ></w-group-radio>
+                </div>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-group-radio'"
+                    :casename="'group & borderColor & borderColorHover & borderColorActive & textColorActive & iconColorActive & backgroundColorActive & no shadowActive'"
+                ></demolink>
+
+                <div style="padding:10px 0px;"><!-- 因使用group故marginStyle會被取消, 此處添加padding只是讓排版一致 -->
+                    <w-group-radio
+                        :items="WGroupRadio.object.items"
+                        v-model="WGroupRadio.object.select"
+                        :group="true"
+                        :borderColor="'#ccc'"
+                        :borderColorHover="'#ccc'"
+                        :borderColorActive="'orange lighten-2'"
+                        :textColorActive="'orange darken-3'"
+                        :iconColorActive="'orange darken-3'"
+                        :backgroundColorActive="'orange lighten-5'"
+                        :shadowActive="false"
+                    ></w-group-radio>
+                </div>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-group-radio'"
+                    :casename="'group (only one)'"
+                ></demolink>
+
+                <div style="padding:10px 0px;"><!-- 因使用group故marginStyle會被取消, 此處添加padding只是讓排版一致 -->
+                    <w-group-radio
+                        :items="WGroupRadio.objectOne.items"
+                        v-model="WGroupRadio.objectOne.select"
+                        :group="true"
+                        :borderColor="'#aaa'"
+                        :borderColorHover="'#aaa'"
+                        :borderColorActive="'orange lighten-2'"
+                        :shadowActive="false"
                     ></w-group-radio>
                 </div>
 
@@ -422,7 +467,7 @@
                             :borderRadius="20"
                             :borderColor="'#aaa'"
                             :borderColorHover="'#aaa'"
-                            :borderColorActive="'orange'"
+                            :borderColorActive="'orange lighten-2'"
                             :marginStyle="{}"
                         ></w-group-radio>
                     </div>
@@ -445,7 +490,7 @@
                             :borderRadius="20"
                             :borderColor="'#aaa'"
                             :borderColorHover="'#aaa'"
-                            :borderColorActive="'orange'"
+                            :borderColorActive="'orange lighten-2'"
                             :marginStyle="{}"
                         ></w-group-radio>
                     </div>
@@ -610,6 +655,18 @@ export default {
                         {
                             text: '蘋果',
                             icon: mdiApple,
+                        },
+                    ],
+                    'select': {
+                        text: 'Dashboard',
+                        icon: mdiViewDashboard,
+                    }
+                },
+                'objectOne': {
+                    'items': [
+                        {
+                            text: 'Dashboard',
+                            icon: mdiViewDashboard,
                         },
                     ],
                     'select': {
