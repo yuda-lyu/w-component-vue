@@ -7,7 +7,7 @@
         content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui"
     />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>example for w-group-radio: group & borderColor & borderColorHover & borderColorActive</title>
+    <title>example for w-group-radio: group & borderColor & borderColorHover & borderColorActive & textColorActive & iconColorActive & backgroundColorActive & no shadowActive</title>
 
     <!-- fontawesome -->
     <link
@@ -73,7 +73,7 @@
     <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.js"></script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@1.5.46/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@1.5.47/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -111,7 +111,7 @@
         <div class="bk">
             <div
                 class="item"
-            >group & borderColor & borderColorHover & borderColorActive</div>
+            >group & borderColor & borderColorHover & borderColorActive & textColorActive & iconColorActive & backgroundColorActive & no shadowActive</div>
 
             <div style="padding:10px 0px;">
                 <!-- 因使用group故marginStyle會被取消, 此處添加padding只是讓排版一致 -->
@@ -119,9 +119,13 @@
                     :items="WGroupRadio.object.items"
                     v-model="WGroupRadio.object.select"
                     :group="true"
-                    :border-color="'#aaa'"
-                    :border-color-hover="'#aaa'"
-                    :border-color-active="'orange'"
+                    :border-color="'#ccc'"
+                    :border-color-hover="'#ccc'"
+                    :border-color-active="'orange lighten-2'"
+                    :text-color-active="'orange darken-3'"
+                    :icon-color-active="'orange darken-3'"
+                    :background-color-active="'orange lighten-5'"
+                    :shadow-active="false"
                 />
             </div>
         </div>
@@ -170,6 +174,18 @@
               {
                 text: "蘋果",
                 icon: "mdi-apple"
+              }
+            ],
+            select: {
+              text: "Dashboard",
+              icon: "mdi-view-dashboard"
+            }
+          },
+          objectOne: {
+            items: [
+              {
+                text: "Dashboard",
+                icon: "mdi-view-dashboard"
               }
             ],
             select: {
