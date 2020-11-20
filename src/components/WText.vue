@@ -79,7 +79,7 @@ import WTextCore from './WTextCore.vue'
  * @vue-prop {String} [rightIconColorFocus='blue'] 輸入右側圖標Focus顏色字串，預設'blue'
  * @vue-prop {String} [rightIconTooltip=''] 輸入右側圖標提示文字字串，預設''
  * @vue-prop {Number} [iconShiftOuter=0] 輸入左右側圖標與外框距離數字，單位為px，預設0
- * @vue-prop {Number} [iconShiftInner=10] 輸入左右側圖標與內插槽區距離數字，單位為px，預設10
+ * @vue-prop {Number} [iconShiftInner=5] 輸入左右側圖標與內插槽區距離數字，單位為px，預設5
  * @vue-prop {String} [backgroundColor='transparent'] 輸入背景顏色字串，預設'transparent'
  * @vue-prop {String} [backgroundColorFocus='transparent'] 輸入背景Focus顏色字串，預設'transparent'
  * @vue-prop {String} [borderColor='transparent'] 輸入邊框顏色字串，預設'transparent'
@@ -166,7 +166,7 @@ export default {
         },
         iconShiftInner: {
             type: Number,
-            default: 10,
+            default: 5,
         },
         backgroundColor: {
             type: String,

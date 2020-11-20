@@ -91,7 +91,7 @@ import WIcon from './WIcon.vue'
  * @vue-prop {String} [rightIconColorFocus='deep-orange lighten-1'] 輸入右側圖標Focus顏色字串，預設'deep-orange lighten-1'
  * @vue-prop {String} [rightIconTooltip=''] 輸入右側圖標提示文字字串，預設''
  * @vue-prop {Number} [iconShiftOuter=-10] 輸入左右側圖標與外框距離數字，單位為px，預設-10
- * @vue-prop {Number} [iconShiftInner=10] 輸入左右側圖標與內插槽區距離數字，單位為px，預設10
+ * @vue-prop {Number} [iconShiftInner=5] 輸入左右側圖標與內插槽區距離數字，單位為px，預設5
  * @vue-prop {Boolean} [editable=true] 輸入是否為編輯模式，預設true
  * @vue-prop {Boolean} [focused=false] 輸入是否為駐點狀態，預設false
  */
@@ -171,7 +171,7 @@ export default {
         },
         iconShiftInner: {
             type: Number,
-            default: 10,
+            default: 5,
         },
         editable: {
             type: Boolean,

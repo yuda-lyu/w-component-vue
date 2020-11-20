@@ -242,7 +242,7 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-text'"
-                    :casename="'border & borderRadius'"
+                    :casename="'border & borderRadius & paddingStyle'"
                 ></demolink>
 
                 <w-text
@@ -250,7 +250,7 @@
                     :bottomLineBorderColor="'transparent'"
                     :bottomLineBorderColorHover="'transparent'"
                     :bottomLineBorderColorFocus="'transparent'"
-                    :paddingStyle="{h:15}"
+                    :paddingStyle="{h:10}"
                     :iconShiftOuter="-10"
                     :borderColor="'blue lighten-2'"
                     :borderColorFocus="'blue darken-2'"
