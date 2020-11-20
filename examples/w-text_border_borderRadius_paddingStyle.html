@@ -7,7 +7,7 @@
         content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui"
     />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>example for w-text: border & borderRadius</title>
+    <title>example for w-text: border & borderRadius & paddingStyle</title>
 
     <!-- fontawesome -->
     <link
@@ -73,7 +73,7 @@
     <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.js"></script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@1.5.47/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.0.0/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -109,14 +109,14 @@
     <v-app id="app" style="font-family:inherit;">
         <div class="head1">w-text</div>
         <div class="bk">
-            <div class="item">border & borderRadius</div>
+            <div class="item">border & borderRadius & paddingStyle</div>
 
             <w-text
                 :shadow="false"
                 :bottom-line-border-color="'transparent'"
                 :bottom-line-border-color-hover="'transparent'"
                 :bottom-line-border-color-focus="'transparent'"
-                :padding-style="{h:15}"
+                :padding-style="{h:10}"
                 :icon-shift-outer="-10"
                 :border-color="'blue lighten-2'"
                 :border-color-focus="'blue darken-2'"
