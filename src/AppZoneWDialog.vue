@@ -840,6 +840,8 @@ export default {
                         icon: 'fas fa-book-reader',
                         tooltip: '測試book-reader',
                         evName: 'bookReader',
+                        iconColor: '#f26',
+                        backgroundColor: 'rgba(255,255,255,0.7)',
                     },
                     {
                         icon: 'fab fa-codepen',

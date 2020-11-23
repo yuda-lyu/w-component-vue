@@ -45,11 +45,12 @@
                     <WButtonCircle
                         style="margin-left:5px;"
                         :key="kbtn"
-                        :icon="btn.icon"
+                        :icon="get(btn,'icon')"
                         :shadow="false"
-                        :iconColor="headerIconColor"
-                        :tooltip="btn.tooltip"
-                        @click="clickBtns(btn.evName)"
+                        :iconColor="get(btn,'iconColor') || headerIconColor"
+                        :backgroundColor="get(btn,'backgroundColor') || 'transparent'"
+                        :tooltip="get(btn,'tooltip')"
+                        @click="clickBtns(get(btn,'evName'))"
                     ></WButtonCircle>
 
                 </template>
@@ -181,6 +182,8 @@ export default {
     },
     data: function() {
         return {
+            get,
+
             mdiCheckCircle,
             mdiClose,
             mdiCheckerboard,
