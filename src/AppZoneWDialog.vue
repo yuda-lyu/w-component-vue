@@ -210,7 +210,7 @@
                     :show.sync="WDialog.bShow6"
                     :title="WDialog.title"
                     :headerBtns="WDialog.headerBtns"
-                    @click-btns="(v)=>{clickEvent('click-btns: '+v)}"
+                    @click-btns="(v)=>{clickEvent('click-btns',v)}"
                     @click-save="clickEvent('click-save')"
                     @click-close="clickEvent('click-close')"
                 >
@@ -867,8 +867,8 @@ export default {
     },
     methods: {
 
-        clickEvent: function (data) {
-            console.log(data)
+        clickEvent: function (data, msg) {
+            console.log(data, msg)
         },
 
     },

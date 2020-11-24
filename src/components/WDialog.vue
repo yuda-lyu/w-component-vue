@@ -50,7 +50,7 @@
                         :iconColor="get(btn,'iconColor') || headerIconColor"
                         :backgroundColor="get(btn,'backgroundColor') || 'transparent'"
                         :tooltip="get(btn,'tooltip')"
-                        @click="clickBtns(get(btn,'evName'))"
+                        @click="clickBtns(btn)"
                     ></WButtonCircle>
 
                 </template>
@@ -93,6 +93,7 @@
 <script>
 import { mdiCheckCircle, mdiClose, mdiCheckerboard } from '@mdi/js'
 import get from 'lodash/get'
+import cloneDeep from 'lodash/cloneDeep'
 import cint from 'wsemi/src/cint.mjs'
 import color2hex from '../js/vuetifyColor.mjs'
 import domResize from '../js/domResize.mjs'
@@ -106,7 +107,7 @@ import WButtonCircle from './WButtonCircle.vue'
  * @vue-prop {String} [headerIconColor='white'] 輸入彈窗標題列圖標顏色字串，預設'white'
  * @vue-prop {String} [headerTextColor='white'] 輸入彈窗標題列文字顏色字串，預設'white'
  * @vue-prop {String} [headerBackgroundColor='light-blue darken-3'] 輸入彈窗標題列背景顏色字串，預設'light-blue darken-3'
- * @vue-prop {Array} [headerBtns=[]] 輸入彈窗標題列自訂按鈕陣列，預設[]，各元素為物件，需有'icon'欄位值為字串、'tooltip'欄位值為字串、'evName'欄位值為字串，其中按鈕被click時會觸發彈窗的clickBtns事件(監聽@clickBtns)，裡面會提供evName供辨識觸發按鈕之用
+ * @vue-prop {Array} [headerBtns=[]] 輸入彈窗標題列自訂按鈕陣列，預設[]，各元素為物件，需有'icon'欄位值為字串、'tooltip'欄位值為字串、'evName'欄位值為字串，其中按鈕被click時會觸發彈窗的clickBtns事件(監聽@click-btns)，並回傳指定headerBtns內物件資訊供識別之用
  * @vue-prop {Boolean} [hasSaveBtn=true] 輸入是否顯示儲存按鈕，預設true
  * @vue-prop {String} [saveBtnTooltip='儲存'] 輸入儲存按鈕的提示文字字串，預設'儲存'
  * @vue-prop {Boolean} [hasCloseBtn=true] 輸入是否顯示關閉按鈕，預設true
@@ -275,8 +276,8 @@ export default {
 
         },
 
-        clickBtns: function(evName) {
-            //console.log('methods clickBtns', evName)
+        clickBtns: function(msg) {
+            //console.log('methods clickBtns', msg)
 
             let vo = this
 
@@ -284,7 +285,7 @@ export default {
             vo.$nextTick(() => {
 
                 //emit
-                vo.$emit('click-btns', evName)
+                vo.$emit('click-btns', cloneDeep(msg))
 
             })
 
