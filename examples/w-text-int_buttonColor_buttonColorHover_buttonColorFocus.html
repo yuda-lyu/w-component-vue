@@ -7,7 +7,7 @@
         content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui"
     />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>example for w-text-int: buttonColor & buttonColorFocus</title>
+    <title>example for w-text-int: buttonColor & buttonColorHover & buttonColorFocus</title>
 
     <!-- fontawesome -->
     <link
@@ -73,7 +73,7 @@
     <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.js"></script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.0.2/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.0.3/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -109,11 +109,12 @@
     <v-app id="app" style="font-family:inherit;">
         <div class="head1">w-text-int</div>
         <div class="bk">
-            <div class="item">buttonColor & buttonColorFocus</div>
+            <div class="item">buttonColor & buttonColorHover & buttonColorFocus</div>
 
             <w-text-int
-                :button-color="'cyan accent-4'"
-                :button-color-focus="'cyan accent-3'"
+                :button-color="'orange lighten-1'"
+                :button-color-hover="'orange accent-3'"
+                :button-color-focus="'orange darken-2'"
                 v-model="WTextInt.int"
             />
         </div>
