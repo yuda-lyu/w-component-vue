@@ -33,10 +33,10 @@ import color2hex from '../js/vuetifyColor.mjs'
  * @vue-prop {Number} [borderWidth=1] 輸入線寬度數字，單位為px，預設1
  * @vue-prop {String} [borderColor='grey lighten-1'] 輸入線顏色字串，預設'grey lighten-1'
  * @vue-prop {String} [borderColorHover='grey'] 輸入滑鼠移入時線顏色字串，預設'grey'
- * @vue-prop {String} [borderColorFocus='blue darken-2'] 輸入為駐點狀態時線顏色字串，預設'blue darken-2'
+ * @vue-prop {String} [borderColorFocus='blue darken-2'] 輸入取得焦點時線顏色字串，預設'blue darken-2'
  * @vue-prop {Number} [borderWidthHover=1] 輸入滑鼠移入時線寬度數字，單位為px，預設1
- * @vue-prop {Number} [borderWidthFocus=2] 輸入為駐點狀態時線寬度數字，單位為px，預設2
- * @vue-prop {Boolean} [focused=false] 輸入是否為駐點狀態，預設false
+ * @vue-prop {Number} [borderWidthFocus=2] 輸入取得焦點時線寬度數字，單位為px，預設2
+ * @vue-prop {Boolean} [focused=false] 輸入是否為取得焦點狀態，預設false
  */
 export default {
     components: {

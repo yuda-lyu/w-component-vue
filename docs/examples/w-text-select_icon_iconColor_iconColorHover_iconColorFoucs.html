@@ -7,7 +7,7 @@
         content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui"
     />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>example for w-text-select: border & icon & iconColor & iconColorFoucs & borderColor & borderColorFocus & backgroundColorFocus</title>
+    <title>example for w-text-select: icon & iconColor & iconColorHover & iconColorFoucs</title>
 
     <!-- fontawesome -->
     <link
@@ -73,7 +73,7 @@
     <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.js"></script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.0.2/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.0.3/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -109,18 +109,13 @@
     <v-app id="app" style="font-family:inherit;">
         <div class="head1">w-text-select</div>
         <div class="bk">
-            <div
-                class="item"
-            >border & icon & iconColor & iconColorFoucs & borderColor & borderColorFocus & backgroundColorFocus</div>
+            <div class="item">icon & iconColor & iconColorHover & iconColorFoucs</div>
 
             <w-text-select
-                :shadow="false"
-                :border-color="'cyan lighten-2'"
-                :border-color-focus="'cyan darken-1'"
-                :background-color-focus="'cyan lighten-5'"
                 :icon="'mdi-check-underline-circle'"
-                :icon-color="'cyan lighten-2'"
-                :icon-color-focus="'cyan darken-1'"
+                :icon-color="'orange lighten-1'"
+                :icon-color-hover="'orange accent-3'"
+                :icon-color-focus="'orange darken-2'"
                 :items="WTextSelect.objItems"
                 v-model="WTextSelect.objValue"
             />

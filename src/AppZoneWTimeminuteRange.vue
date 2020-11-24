@@ -186,6 +186,7 @@
                 <w-timeminute-range
                     :shadow="false"
                     :borderColor="'orange lighten-2'"
+                    :borderColorHover="'orange'"
                     :borderColorFocus="'orange darken-2'"
                     :backgroundColorFocus="'orange lighten-5'"
                     :minuteStart.sync="WTimeminuteRange.minuteStart"
@@ -203,6 +204,7 @@
                 <w-timeminute-range
                     :shadow="false"
                     :borderColor="'orange lighten-2'"
+                    :borderColorHover="'orange'"
                     :borderColorFocus="'orange darken-2'"
                     :backgroundColorFocus="'orange lighten-5'"
                     :borderRadius="5"
@@ -221,6 +223,7 @@
                 <w-timeminute-range
                     :shadow="false"
                     :borderColor="'orange lighten-2'"
+                    :borderColorHover="'orange'"
                     :borderColorFocus="'orange darken-2'"
                     :backgroundColorFocus="'orange lighten-5'"
                     :minuteBetween="'to'"
@@ -239,6 +242,7 @@
                 <w-timeminute-range
                     :shadow="false"
                     :borderColor="'orange lighten-2'"
+                    :borderColorHover="'orange'"
                     :borderColorFocus="'orange darken-2'"
                     :backgroundColorFocus="'orange lighten-5'"
                     :icon="mdiCheckUnderlineCircle"
@@ -257,6 +261,7 @@
                 <w-timeminute-range
                     :shadow="false"
                     :borderColor="'orange lighten-2'"
+                    :borderColorHover="'orange'"
                     :borderColorFocus="'orange darken-2'"
                     :backgroundColorFocus="'orange lighten-5'"
                     :icon="'fas fa-clipboard-check'"
@@ -294,6 +299,7 @@
                 <w-timeminute-range
                     :shadow="false"
                     :borderColor="'orange lighten-2'"
+                    :borderColorHover="'orange'"
                     :borderColorFocus="'orange darken-2'"
                     :backgroundColorFocus="'orange lighten-5'"
                     :pickColor="'brown'"
@@ -312,6 +318,7 @@
                 <w-timeminute-range
                     :shadow="false"
                     :borderColor="'orange lighten-2'"
+                    :borderColorHover="'orange'"
                     :borderColorFocus="'orange darken-2'"
                     :backgroundColorFocus="'orange lighten-5'"
                     :iconTooltip="'show tooltip'"
@@ -330,6 +337,7 @@
                 <w-timeminute-range
                     :shadow="false"
                     :borderColor="'orange lighten-2'"
+                    :borderColorHover="'orange'"
                     :borderColorFocus="'orange darken-2'"
                     :backgroundColorFocus="'orange lighten-5'"
                     :editable="false"
@@ -348,6 +356,7 @@
                 <w-timeminute-range
                     :shadow="false"
                     :borderColor="'orange lighten-2'"
+                    :borderColorHover="'orange'"
                     :borderColorFocus="'orange darken-2'"
                     :backgroundColorFocus="'orange lighten-5'"
                     :hourMin="9"
@@ -367,6 +376,7 @@
                 <w-timeminute-range
                     :shadow="false"
                     :borderColor="'orange lighten-2'"
+                    :borderColorHover="'orange'"
                     :borderColorFocus="'orange darken-2'"
                     :backgroundColorFocus="'orange lighten-5'"
                     :minuteInter="10"
@@ -385,6 +395,7 @@
                 <w-timeminute-range
                     :shadow="false"
                     :borderColor="'orange lighten-2'"
+                    :borderColorHover="'orange'"
                     :borderColorFocus="'orange darken-2'"
                     :backgroundColorFocus="'orange lighten-5'"
                     :minutesCustom="['10:00','10:30','11:15','12:00']"

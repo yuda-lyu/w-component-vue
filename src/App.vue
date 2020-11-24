@@ -437,8 +437,8 @@ export default {
                     name: 'text',
                     cmps: [
                         { name: 'WText' },
-                        { name: 'WTextInt' },
                         { name: 'WTextarea' },
+                        { name: 'WTextInt' },
                         { name: 'WTextSelect' },
                         { name: 'WTextSuggest' },
                     ]

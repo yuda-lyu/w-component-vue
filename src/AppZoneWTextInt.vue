@@ -21,25 +21,13 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-text-int'"
-                    :casename="'buttonColorFocus'"
+                    :casename="'buttonColor & buttonColorHover & buttonColorFocus'"
                 ></demolink>
 
                 <w-text-int
-                    :buttonColorFocus="'pink accent-2'"
-                    v-model="WTextInt.int"
-                ></w-text-int>
-            </div>
-
-
-            <div class="bk">
-                <demolink
-                    :kbname="'w-text-int'"
-                    :casename="'buttonColor & buttonColorFocus'"
-                ></demolink>
-
-                <w-text-int
-                    :buttonColor="'cyan accent-4'"
-                    :buttonColorFocus="'cyan accent-3'"
+                    :buttonColor="'orange lighten-1'"
+                    :buttonColorHover="'orange accent-3'"
+                    :buttonColorFocus="'orange darken-2'"
                     v-model="WTextInt.int"
                 ></w-text-int>
             </div>
@@ -84,6 +72,7 @@
                 <w-text-int
                     :shadow="false"
                     :borderColor="'orange lighten-2'"
+                    :borderColorHover="'orange'"
                     :borderColorFocus="'orange darken-2'"
                     :backgroundColorFocus="'orange lighten-5'"
                     v-model="WTextInt.int"
@@ -94,15 +83,18 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-text-int'"
-                    :casename="'border & buttonColorFocus'"
+                    :casename="'border & buttonColor & buttonColorHover & buttonColorFocus'"
                 ></demolink>
 
                 <w-text-int
                     :shadow="false"
                     :borderColor="'orange lighten-2'"
+                    :borderColorHover="'orange'"
                     :borderColorFocus="'orange darken-2'"
                     :backgroundColorFocus="'orange lighten-5'"
-                    :buttonColorFocus="'pink accent-2'"
+                    :buttonColor="'orange lighten-1'"
+                    :buttonColorHover="'orange accent-3'"
+                    :buttonColorFocus="'orange darken-2'"
                     v-model="WTextInt.int"
                 ></w-text-int>
             </div>
@@ -111,16 +103,18 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-text-int'"
-                    :casename="'border & buttonColor & buttonColorFocus & borderColor & borderColorFocus & backgroundColorFocus'"
+                    :casename="'border & backgroundColor & backgroundColorHover & backgroundColorFocus'"
                 ></demolink>
 
                 <w-text-int
                     :shadow="false"
-                    :borderColor="'cyan lighten-1'"
-                    :borderColorFocus="'cyan darken-1'"
-                    :backgroundColorFocus="'cyan lighten-5'"
-                    :buttonColor="'cyan lighten-1'"
-                    :buttonColorFocus="'cyan darken-1'"
+                    :borderColor="'orange lighten-2'"
+                    :borderColorHover="'orange'"
+                    :borderColorFocus="'orange darken-2'"
+                    _backgroundColorFocus="'orange lighten-5'"
+                    :backgroundColor="'rgba(255, 171, 64, 0.05)'"
+                    :backgroundColorHover="'rgba(255, 171, 64, 0.1)'"
+                    :backgroundColorFocus="'rgba(255, 171, 64, 0.2)'"
                     v-model="WTextInt.int"
                 ></w-text-int>
             </div>
@@ -135,6 +129,7 @@
                 <w-text-int
                     :shadow="false"
                     :borderColor="'orange lighten-2'"
+                    :borderColorHover="'orange'"
                     :borderColorFocus="'orange darken-2'"
                     :backgroundColorFocus="'orange lighten-5'"
                     :borderRadius="5"
@@ -152,6 +147,7 @@
                 <w-text-int
                     :shadow="false"
                     :borderColor="'orange lighten-2'"
+                    :borderColorHover="'orange'"
                     :borderColorFocus="'orange darken-2'"
                     :backgroundColorFocus="'orange lighten-5'"
                     :width="100"
@@ -169,6 +165,7 @@
                 <w-text-int
                     :shadow="false"
                     :borderColor="'orange lighten-2'"
+                    :borderColorHover="'orange'"
                     :borderColorFocus="'orange darken-2'"
                     :backgroundColorFocus="'orange lighten-5'"
                     :editable="false"

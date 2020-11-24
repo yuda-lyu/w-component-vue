@@ -111,6 +111,7 @@
                 <w-timeday
                     :shadow="false"
                     :borderColor="'orange lighten-2'"
+                    :borderColorHover="'orange'"
                     :borderColorFocus="'orange darken-2'"
                     :backgroundColorFocus="'orange lighten-5'"
                     v-model="WTimeday.day"
@@ -127,6 +128,7 @@
                 <w-timeday
                     :shadow="false"
                     :borderColor="'orange lighten-2'"
+                    :borderColorHover="'orange'"
                     :borderColorFocus="'orange darken-2'"
                     :backgroundColorFocus="'orange lighten-5'"
                     :borderRadius="5"
@@ -144,6 +146,7 @@
                 <w-timeday
                     :shadow="false"
                     :borderColor="'orange lighten-2'"
+                    :borderColorHover="'orange'"
                     :borderColorFocus="'orange darken-2'"
                     :backgroundColorFocus="'orange lighten-5'"
                     :icon="mdiCheckUnderlineCircle"
@@ -161,6 +164,7 @@
                 <w-timeday
                     :shadow="false"
                     :borderColor="'orange lighten-2'"
+                    :borderColorHover="'orange'"
                     :borderColorFocus="'orange darken-2'"
                     :backgroundColorFocus="'orange lighten-5'"
                     :icon="'fas fa-clipboard-check'"
@@ -196,6 +200,7 @@
                 <w-timeday
                     :shadow="false"
                     :borderColor="'orange lighten-2'"
+                    :borderColorHover="'orange'"
                     :borderColorFocus="'orange darken-2'"
                     :backgroundColorFocus="'orange lighten-5'"
                     :pickColor="'brown'"
@@ -213,6 +218,7 @@
                 <w-timeday
                     :shadow="false"
                     :borderColor="'orange lighten-2'"
+                    :borderColorHover="'orange'"
                     :borderColorFocus="'orange darken-2'"
                     :backgroundColorFocus="'orange lighten-5'"
                     :icon="mdiCheckUnderlineCircle"
@@ -231,6 +237,7 @@
                 <w-timeday
                     :shadow="false"
                     :borderColor="'orange lighten-2'"
+                    :borderColorHover="'orange'"
                     :borderColorFocus="'orange darken-2'"
                     :backgroundColorFocus="'orange lighten-5'"
                     :editable="false"

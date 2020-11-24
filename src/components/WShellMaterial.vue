@@ -90,7 +90,7 @@ import WIcon from './WIcon.vue'
  * @vue-prop {String} [rightIconTooltip=''] 輸入右側圖標提示文字字串，預設''
  * @vue-prop {Boolean} [small=true] 輸入是否為小型模式，預設true
  * @vue-prop {Boolean} [editable=true] 輸入是否為編輯模式，預設true
- * @vue-prop {Boolean} [focused=false] 輸入是否為駐點狀態，預設false
+ * @vue-prop {Boolean} [focused=false] 輸入是否為取得焦點狀態，預設false
  */
 export default {
     components: {

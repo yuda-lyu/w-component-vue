@@ -52,13 +52,14 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-text-select'"
-                    :casename="'icon & iconColor & iconColorFoucs'"
+                    :casename="'icon & iconColor & iconColorHover & iconColorFoucs'"
                 ></demolink>
 
                 <w-text-select
                     :icon="mdiCheckUnderlineCircle"
-                    :iconColor="'cyan lighten-2'"
-                    :iconColorFocus="'cyan darken-1'"
+                    :iconColor="'orange lighten-1'"
+                    :iconColorHover="'orange accent-3'"
+                    :iconColorFocus="'orange darken-2'"
                     :items="WTextSelect.objItems"
                     v-model="WTextSelect.objValue"
                 ></w-text-select>
@@ -176,6 +177,7 @@
                 <w-text-select
                     :shadow="false"
                     :borderColor="'orange lighten-2'"
+                    :borderColorHover="'orange'"
                     :borderColorFocus="'orange darken-2'"
                     :backgroundColorFocus="'orange lighten-5'"
                     :items="WTextSelect.objItems"
@@ -193,6 +195,7 @@
                 <w-text-select
                     :shadow="false"
                     :borderColor="'orange lighten-2'"
+                    :borderColorHover="'orange'"
                     :borderColorFocus="'orange darken-2'"
                     :backgroundColorFocus="'orange lighten-5'"
                     :icon="mdiCheckUnderlineCircle"
@@ -211,6 +214,7 @@
                 <w-text-select
                     :shadow="false"
                     :borderColor="'orange lighten-2'"
+                    :borderColorHover="'orange'"
                     :borderColorFocus="'orange darken-2'"
                     :backgroundColorFocus="'orange lighten-5'"
                     :icon="'fas fa-clipboard-check'"
@@ -223,17 +227,41 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-text-select'"
-                    :casename="'border & icon & iconColor & iconColorFoucs & borderColor & borderColorFocus & backgroundColorFocus'"
+                    :casename="'border & iconColor & iconColorHover & iconColorFoucs'"
                 ></demolink>
 
                 <w-text-select
                     :shadow="false"
-                    :borderColor="'cyan lighten-2'"
-                    :borderColorFocus="'cyan darken-1'"
-                    :backgroundColorFocus="'cyan lighten-5'"
+                    :borderColor="'orange lighten-2'"
+                    :borderColorHover="'orange'"
+                    :borderColorFocus="'orange darken-2'"
+                    :backgroundColorFocus="'orange lighten-5'"
                     :icon="mdiCheckUnderlineCircle"
-                    :iconColor="'cyan lighten-2'"
-                    :iconColorFocus="'cyan darken-1'"
+                    :iconColor="'orange lighten-1'"
+                    :iconColorHover="'orange accent-3'"
+                    :iconColorFocus="'orange darken-2'"
+                    :items="WTextSelect.objItems"
+                    v-model="WTextSelect.objValue"
+                ></w-text-select>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-text-select'"
+                    :casename="'border & backgroundColor & backgroundColorHover & backgroundColorFocus'"
+                ></demolink>
+
+                <w-text-select
+                    :shadow="false"
+                    :borderColor="'orange lighten-2'"
+                    :borderColorHover="'orange'"
+                    :borderColorFocus="'orange darken-2'"
+                    _backgroundColorFocus="'orange lighten-5'"
+                    :icon="mdiCheckUnderlineCircle"
+                    :backgroundColor="'rgba(255, 171, 64, 0.05)'"
+                    :backgroundColorHover="'rgba(255, 171, 64, 0.1)'"
+                    :backgroundColorFocus="'rgba(255, 171, 64, 0.2)'"
                     :items="WTextSelect.objItems"
                     v-model="WTextSelect.objValue"
                 ></w-text-select>
@@ -249,6 +277,7 @@
                 <w-text-select
                     :shadow="false"
                     :borderColor="'orange lighten-2'"
+                    :borderColorHover="'orange'"
                     :borderColorFocus="'orange darken-2'"
                     :backgroundColorFocus="'orange lighten-5'"
                     :icon="mdiCheckUnderlineCircle"
@@ -268,6 +297,7 @@
                 <w-text-select
                     :shadow="false"
                     :borderColor="'orange lighten-2'"
+                    :borderColorHover="'orange'"
                     :borderColorFocus="'orange darken-2'"
                     :backgroundColorFocus="'orange lighten-5'"
                     :icon="mdiCheckUnderlineCircle"
@@ -287,6 +317,7 @@
                 <w-text-select
                     :shadow="false"
                     :borderColor="'orange lighten-2'"
+                    :borderColorHover="'orange'"
                     :borderColorFocus="'orange darken-2'"
                     :backgroundColorFocus="'orange lighten-5'"
                     :icon="mdiCheckUnderlineCircle"
@@ -306,6 +337,7 @@
                 <w-text-select
                     :shadow="false"
                     :borderColor="'orange lighten-2'"
+                    :borderColorHover="'orange'"
                     :borderColorFocus="'orange darken-2'"
                     :backgroundColorFocus="'orange lighten-5'"
                     :icon="mdiCheckUnderlineCircle"
@@ -324,6 +356,7 @@
                 <w-text-select
                     :shadow="false"
                     :borderColor="'orange lighten-2'"
+                    :borderColorHover="'orange'"
                     :borderColorFocus="'orange darken-2'"
                     :backgroundColorFocus="'orange lighten-5'"
                     :icon="mdiCheckUnderlineCircle"
@@ -342,6 +375,7 @@
                 <w-text-select
                     :shadow="false"
                     :borderColor="'orange lighten-2'"
+                    :borderColorHover="'orange'"
                     :borderColorFocus="'orange darken-2'"
                     :backgroundColorFocus="'orange lighten-5'"
                     :icon="mdiCheckUnderlineCircle"
@@ -360,6 +394,7 @@
                 <w-text-select
                     :shadow="false"
                     :borderColor="'orange lighten-2'"
+                    :borderColorHover="'orange'"
                     :borderColorFocus="'orange darken-2'"
                     :backgroundColorFocus="'orange lighten-5'"
                     :icon="mdiCheckUnderlineCircle"

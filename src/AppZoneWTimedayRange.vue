@@ -143,6 +143,7 @@
                 <w-timeday-range
                     :shadow="false"
                     :borderColor="'orange lighten-2'"
+                    :borderColorHover="'orange'"
                     :borderColorFocus="'orange darken-2'"
                     :backgroundColorFocus="'orange lighten-5'"
                     :dayStart.sync="WTimedayRange.dayStart"
@@ -160,6 +161,7 @@
                 <w-timeday-range
                     :shadow="false"
                     :borderColor="'orange lighten-2'"
+                    :borderColorHover="'orange'"
                     :borderColorFocus="'orange darken-2'"
                     :backgroundColorFocus="'orange lighten-5'"
                     :borderRadius="5"
@@ -178,6 +180,7 @@
                 <w-timeday-range
                     :shadow="false"
                     :borderColor="'orange lighten-2'"
+                    :borderColorHover="'orange'"
                     :borderColorFocus="'orange darken-2'"
                     :backgroundColorFocus="'orange lighten-5'"
                     :dayBetween="'to'"
@@ -196,6 +199,7 @@
                 <w-timeday-range
                     :shadow="false"
                     :borderColor="'orange lighten-2'"
+                    :borderColorHover="'orange'"
                     :borderColorFocus="'orange darken-2'"
                     :backgroundColorFocus="'orange lighten-5'"
                     :icon="mdiCheckUnderlineCircle"
@@ -214,6 +218,7 @@
                 <w-timeday-range
                     :shadow="false"
                     :borderColor="'orange lighten-2'"
+                    :borderColorHover="'orange'"
                     :borderColorFocus="'orange darken-2'"
                     :backgroundColorFocus="'orange lighten-5'"
                     :icon="'fas fa-clipboard-check'"
@@ -251,6 +256,7 @@
                 <w-timeday-range
                     :shadow="false"
                     :borderColor="'orange lighten-2'"
+                    :borderColorHover="'orange'"
                     :borderColorFocus="'orange darken-2'"
                     :backgroundColorFocus="'orange lighten-5'"
                     :pickColor="'brown'"
@@ -269,6 +275,7 @@
                 <w-timeday-range
                     :shadow="false"
                     :borderColor="'orange lighten-2'"
+                    :borderColorHover="'orange'"
                     :borderColorFocus="'orange darken-2'"
                     :backgroundColorFocus="'orange lighten-5'"
                     :iconTooltip="'show tooltip'"
@@ -287,6 +294,7 @@
                 <w-timeday-range
                     :shadow="false"
                     :borderColor="'orange lighten-2'"
+                    :borderColorHover="'orange'"
                     :borderColorFocus="'orange darken-2'"
                     :backgroundColorFocus="'orange lighten-5'"
                     :editable="false"

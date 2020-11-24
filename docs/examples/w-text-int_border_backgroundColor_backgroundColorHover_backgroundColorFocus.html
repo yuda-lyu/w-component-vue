@@ -7,7 +7,7 @@
         content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui"
     />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>example for w-text-int: buttonColorFocus</title>
+    <title>example for w-text-int: border & backgroundColor & backgroundColorHover & backgroundColorFocus</title>
 
     <!-- fontawesome -->
     <link
@@ -73,7 +73,7 @@
     <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.js"></script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.0.2/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.0.3/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -109,10 +109,19 @@
     <v-app id="app" style="font-family:inherit;">
         <div class="head1">w-text-int</div>
         <div class="bk">
-            <div class="item">buttonColorFocus</div>
+            <div
+                class="item"
+            >border & backgroundColor & backgroundColorHover & backgroundColorFocus</div>
 
             <w-text-int
-                :button-color-focus="'pink accent-2'"
+                :shadow="false"
+                :border-color="'orange lighten-2'"
+                :border-color-hover="'orange'"
+                :border-color-focus="'orange darken-2'"
+                _backgroundColorFocus="'orange lighten-5'"
+                :background-color="'rgba(255, 171, 64, 0.05)'"
+                :background-color-hover="'rgba(255, 171, 64, 0.1)'"
+                :background-color-focus="'rgba(255, 171, 64, 0.2)'"
                 v-model="WTextInt.int"
             />
         </div>

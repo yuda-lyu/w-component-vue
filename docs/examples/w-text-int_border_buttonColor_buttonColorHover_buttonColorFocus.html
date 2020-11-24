@@ -7,7 +7,7 @@
         content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui"
     />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>example for w-text-select: icon & iconColor & iconColorFoucs</title>
+    <title>example for w-text-int: border & buttonColor & buttonColorHover & buttonColorFocus</title>
 
     <!-- fontawesome -->
     <link
@@ -73,7 +73,7 @@
     <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.js"></script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.0.2/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.0.3/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -107,16 +107,22 @@
     style="font-family:'Microsoft JhengHei','Avenir','Helvetica'; padding:20px;"
 >
     <v-app id="app" style="font-family:inherit;">
-        <div class="head1">w-text-select</div>
+        <div class="head1">w-text-int</div>
         <div class="bk">
-            <div class="item">icon & iconColor & iconColorFoucs</div>
+            <div
+                class="item"
+            >border & buttonColor & buttonColorHover & buttonColorFocus</div>
 
-            <w-text-select
-                :icon="'mdi-check-underline-circle'"
-                :icon-color="'cyan lighten-2'"
-                :icon-color-focus="'cyan darken-1'"
-                :items="WTextSelect.objItems"
-                v-model="WTextSelect.objValue"
+            <w-text-int
+                :shadow="false"
+                :border-color="'orange lighten-2'"
+                :border-color-hover="'orange'"
+                :border-color-focus="'orange darken-2'"
+                :background-color-focus="'orange lighten-5'"
+                :button-color="'orange lighten-1'"
+                :button-color-hover="'orange accent-3'"
+                :button-color-focus="'orange darken-2'"
+                v-model="WTextInt.int"
             />
         </div>
     </v-app>
@@ -131,77 +137,29 @@
     vuetify: new Vuetify(),
     data: function() {
       return {
-        WTextSelect: {
-          objItems: [
-            {
-              key: "orange",
-              text: "橘子(orange)"
-            },
-            {
-              key: "banana",
-              text: "香蕉(banana)"
-            },
-            {
-              key: "strawberry",
-              text: "草莓(strawberry)"
-            }
-          ],
-          objValue: {
-            key: "banana",
-            text: "香蕉(banana)"
-          },
-          objItemsKeyText: [
-            {
-              key: "orange",
-              name: "橘子(orange)"
-            },
-            {
-              key: "banana",
-              name: "香蕉(banana)"
-            },
-            {
-              key: "strawberry",
-              name: "草莓(strawberry)"
-            }
-          ],
-          objValueKeyText: {
-            key: "banana",
-            name: "香蕉(banana)"
-          },
-          objItemsLarge: (function() {
-            let vs = [];
-            vs.push({
-              key: "banana:1",
-              text: "香蕉(banana:1)"
-            });
-            for (let i = 2; i <= 10000; i++) {
-              vs.push({
-                key: "banana:" + i,
-                text: "香蕉(banana:" + i + ")"
-              });
-            }
-            return vs;
-          })(),
-          objValueLarge: {
-            key: "banana:1",
-            text: "香蕉(banana:1)"
-          },
-          strItems: ["orange(橘子)", "banana(香蕉)", "strawberry(草莓)"],
-          strValue: "strawberry(草莓)"
+        WTextInt: {
+          int: 123
         },
         actions: [
           {
-            mode: "eleclick",
-            selector: 'input[type="text"]'
+            mode: "eletype",
+            selector: "input.basic",
+            str: "a"
           },
           {
             mode: "eleclick",
-            selector: 'div[tabindex="0"]',
-            nth: 2
+            selector: 'div[ShellMaterial="rightIcon"]',
+            nth: -1
           },
           {
-            mode: "keypress",
-            key: "Tab"
+            mode: "eleclick",
+            selector: 'div[ShellMaterial="rightIcon"]',
+            nth: -1
+          },
+          {
+            mode: "eleclick",
+            selector: 'div[ShellMaterial="leftIcon"]',
+            nth: -1
           }
         ]
       };

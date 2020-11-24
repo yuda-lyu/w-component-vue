@@ -7,7 +7,7 @@
         content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui"
     />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>example for w-text-suggest: icon & iconColor & iconColorFoucs</title>
+    <title>example for w-text-suggest: icon & iconColor & iconColorHover & iconColorFoucs</title>
 
     <!-- fontawesome -->
     <link
@@ -73,7 +73,7 @@
     <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.js"></script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.0.2/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.0.3/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -109,12 +109,13 @@
     <v-app id="app" style="font-family:inherit;">
         <div class="head1">w-text-suggest</div>
         <div class="bk">
-            <div class="item">icon & iconColor & iconColorFoucs</div>
+            <div class="item">icon & iconColor & iconColorHover & iconColorFoucs</div>
 
             <w-text-suggest
                 :icon="'mdi-check-underline-circle'"
-                :icon-color="'cyan lighten-2'"
-                :icon-color-focus="'cyan darken-1'"
+                :icon-color="'orange lighten-1'"
+                :icon-color-hover="'orange accent-3'"
+                :icon-color-focus="'orange darken-2'"
                 :items="WTextSuggest.objItems"
                 v-model="WTextSuggest.objValue"
             />

@@ -16,17 +16,21 @@
                 :shadow="shadow"
                 :leftIcon="leftIcon"
                 :leftIconColor="leftIconColor"
+                :leftIconColorHover="leftIconColorHover"
                 :leftIconColorFocus="leftIconColorFocus"
                 :leftIconTooltip="leftIconTooltip"
                 :rightIcon="rightIcon"
                 :rightIconColor="rightIconColor"
+                :rightIconColorHover="rightIconColorHover"
                 :rightIconColorFocus="rightIconColorFocus"
                 :rightIconTooltip="rightIconTooltip"
                 :iconShiftOuter="iconShiftOuter"
                 :iconShiftInner="iconShiftInner"
                 :backgroundColor="backgroundColor"
+                :backgroundColorHover="backgroundColorHover"
                 :backgroundColorFocus="backgroundColorFocus"
                 :borderColor="borderColor"
+                :borderColorHover="borderColorHover"
                 :borderColorFocus="borderColorFocus"
                 :editable="editable"
                 :focused="focusedTrans"
@@ -71,23 +75,27 @@ import WTextCore from './WTextCore.vue'
  * @vue-prop {String} [textColor='black'] 輸入文字顏色字串，預設'black'
  * @vue-prop {String} [textAlign='left'] 輸入文字左右對齊字串，預設'left'
  * @vue-prop {String} [leftIcon=''] 輸入左側圖標字串，可為mdi,md,fa代號或mdi/js路徑，預設''
- * @vue-prop {String} [leftIconColor='blue darken-1'] 輸入左側圖標顏色字串，預設'blue darken-1'
- * @vue-prop {String} [leftIconColorFocus='blue'] 輸入左側圖標Focus顏色字串，預設'blue'
+ * @vue-prop {String} [leftIconColor='blue'] 輸入左側圖標顏色字串，預設'blue'
+ * @vue-prop {String} [leftIconColorHover='blue darken-1'] 輸入滑鼠移入時左側圖標顏色字串，預設'blue darken-1'
+ * @vue-prop {String} [leftIconColorFocus='blue darken-1'] 輸入取得焦點時左側圖標顏色字串，預設'blue darken-1'
  * @vue-prop {String} [leftIconTooltip=''] 輸入左側圖標提示文字字串，預設''
  * @vue-prop {String} [rightIcon=''] 輸入右側圖標字串，可為mdi,md,fa代號或mdi/js路徑，預設''
- * @vue-prop {String} [rightIconColor='blue darken-1'] 輸入右側圖標顏色字串，預設'blue darken-1'
- * @vue-prop {String} [rightIconColorFocus='blue'] 輸入右側圖標Focus顏色字串，預設'blue'
+ * @vue-prop {String} [rightIconColor='blue'] 輸入右側圖標顏色字串，預設'blue'
+ * @vue-prop {String} [rightIconColorHover='blue darken-1'] 輸入滑鼠移入時右側圖標顏色字串，預設'blue darken-1'
+ * @vue-prop {String} [rightIconColorFocus='blue darken-1'] 輸入取得焦點時右側圖標顏色字串，預設'blue darken-1'
  * @vue-prop {String} [rightIconTooltip=''] 輸入右側圖標提示文字字串，預設''
  * @vue-prop {Number} [iconShiftOuter=0] 輸入左右側圖標與外框距離數字，單位為px，預設0
  * @vue-prop {Number} [iconShiftInner=5] 輸入左右側圖標與內插槽區距離數字，單位為px，預設5
  * @vue-prop {String} [backgroundColor='transparent'] 輸入背景顏色字串，預設'transparent'
- * @vue-prop {String} [backgroundColorFocus='transparent'] 輸入背景Focus顏色字串，預設'transparent'
+ * @vue-prop {String} [backgroundColorHover='transparent'] 輸入滑鼠移入時背景顏色字串，預設'transparent'
+ * @vue-prop {String} [backgroundColorFocus='transparent'] 輸入取得焦點時背景顏色字串，預設'transparent'
  * @vue-prop {String} [borderColor='transparent'] 輸入邊框顏色字串，預設'transparent'
- * @vue-prop {String} [borderColorFocus='transparent'] 輸入邊框Focus顏色字串，預設'transparent'
+ * @vue-prop {String} [borderColorHover='transparent'] 輸入滑鼠移入時邊框顏色字串，預設'transparent'
+ * @vue-prop {String} [borderColorFocus='transparent'] 輸入取得焦點時邊框顏色字串，預設'transparent'
  * @vue-prop {String} [placeholder=''] 輸入無文字時的替代字符字串，預設''
  * @vue-prop {Number} [height=28] 輸入高度數字，單位為px，預設28
  * @vue-prop {Boolean} [editable=true] 輸入是否為編輯模式，預設true
- * @vue-prop {Boolean} [focused=false] 輸入是否為駐點狀態，預設false
+ * @vue-prop {Boolean} [focused=false] 輸入是否為取得焦點狀態，預設false
  */
 export default {
     components: {
@@ -134,11 +142,15 @@ export default {
         },
         leftIconColor: {
             type: String,
+            default: 'blue',
+        },
+        leftIconColorHover: {
+            type: String,
             default: 'blue darken-1',
         },
         leftIconColorFocus: {
             type: String,
-            default: 'blue',
+            default: 'blue darken-1',
         },
         leftIconTooltip: {
             type: String,
@@ -150,11 +162,15 @@ export default {
         },
         rightIconColor: {
             type: String,
+            default: 'blue',
+        },
+        rightIconColorHover: {
+            type: String,
             default: 'blue darken-1',
         },
         rightIconColorFocus: {
             type: String,
-            default: 'blue',
+            default: 'blue darken-1',
         },
         rightIconTooltip: {
             type: String,
@@ -170,19 +186,27 @@ export default {
         },
         backgroundColor: {
             type: String,
-            default: 'transparent', //'white',
+            default: 'transparent',
+        },
+        backgroundColorHover: {
+            type: String,
+            default: 'transparent',
         },
         backgroundColorFocus: {
             type: String,
-            default: 'transparent', //'white',
+            default: 'transparent',
         },
         borderColor: {
             type: String,
-            default: 'transparent', //'white',
+            default: 'transparent',
+        },
+        borderColorHover: {
+            type: String,
+            default: 'transparent',
         },
         borderColorFocus: {
             type: String,
-            default: 'transparent', //'white',
+            default: 'transparent',
         },
         bottomLineBorderColor: {
             type: String,
@@ -194,7 +218,7 @@ export default {
         },
         bottomLineBorderColorFocus: {
             type: String,
-            default: 'blue darken-2', //'transparent',
+            default: 'blue darken-1', //'transparent',
         },
         bottomLineBorderWidth: {
             type: Number,

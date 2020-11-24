@@ -1,9 +1,12 @@
 <template>
     <div :changeParam="changeParam">
 
+        <!-- 避免class group所使用display:flex直接暴露至外部 -->
         <div
             :class="{'group':true,'shadow':shadow}"
-            :style="[useBackgroundColor,useBorder,usePadding,{'border-radius':borderRadius+'px'},{'opacity':editable?1:0.6}]"
+            :style="[usePadding,useBackgroundColor,useBorder,{'border-radius':borderRadius+'px'},{'opacity':editable?1:0.6}]"
+            @mouseenter="mouseenter"
+            @mouseleave="mouseleave"
         >
 
             <div
@@ -20,7 +23,7 @@
                         <div ShellEllipse="leftIcon" v-on="{...ttShellEllipseLeft}">
                             <w-icon
                                 :icon="leftIcon"
-                                :color="focusedTrans?leftIconColorFocus:leftIconColor"
+                                :color="useLeftIconColor"
                             ></w-icon>
                         </div>
                     </template>
@@ -51,7 +54,7 @@
                         <div ShellEllipse="rightIcon" v-on="{...ttShellEllipseRight}">
                             <w-icon
                                 :icon="rightIcon"
-                                :color="focusedTrans?rightIconColorFocus:rightIconColor"
+                                :color="useRightIconColor"
                             ></w-icon>
                         </div>
                     </template>
@@ -77,23 +80,28 @@ import WIcon from './WIcon.vue'
 /**
  * @vue-prop {Object} [paddingStyle={v:0,h:15}] 輸入內寬距離物件，可用鍵值為v、h、left、right、top、bottom，v代表同時設定top與bottom，h代表設定left與right，若有重複設定時後面鍵值會覆蓋前面，各鍵值為寬度數字，單位為px，預設{v:0,h:15}
  * @vue-prop {Number} [borderRadius=30] 輸入圓角寬度數字，單位為px，預設30
- * @vue-prop {String} [backgroundColor='white'] 輸入背景顏色字串，預設'white'
- * @vue-prop {String} [backgroundColorFocus='white'] 輸入背景Focus顏色字串，預設'white'
- * @vue-prop {String} [borderColor='white'] 輸入邊框顏色字串，預設'white'
- * @vue-prop {String} [borderColorFocus='white'] 輸入邊框Focus顏色字串，預設'white'
+ * @vue-prop {String} [backgroundColor='transparent'] 輸入背景顏色字串，預設'transparent'
+ * @vue-prop {String} [backgroundColorHover='transparent'] 輸入滑鼠移入時背景顏色字串，預設'transparent'
+ * @vue-prop {String} [backgroundColorFocus='transparent'] 輸入取得焦點時背景顏色字串，預設'transparent'
+ * @vue-prop {String} [borderColor='transparent'] 輸入邊框顏色字串，預設'transparent'
+ * @vue-prop {String} [borderColorHover='transparent'] 輸入滑鼠移入時邊框顏色字串，預設'transparent'
+ * @vue-prop {String} [borderColorFocus='transparent'] 輸入取得焦點時邊框顏色字串，預設'transparent'
  * @vue-prop {Boolean} [shadow=true] 輸入是否為陰影模式，預設true
  * @vue-prop {String} [leftIcon=''] 輸入左側圖標字串，可為mdi,md,fa代號或mdi/js路徑，預設''
  * @vue-prop {String} [leftIconColor='deep-orange lighten-2'] 輸入左側圖標顏色字串，預設'deep-orange lighten-2'
- * @vue-prop {String} [leftIconColorFocus='deep-orange lighten-1'] 輸入左側圖標Focus顏色字串，預設'deep-orange lighten-1'
+ * @vue-prop {String} [leftIconColorHover='deep-orange lighten-1'] 輸入滑鼠移入時左側圖標顏色字串，預設'deep-orange lighten-1'
+ * @vue-prop {String} [leftIconColorFocus='deep-orange lighten-1'] 輸入取得焦點時左側圖標顏色字串，預設'deep-orange lighten-1'
  * @vue-prop {String} [leftIconTooltip=''] 輸入左側圖標提示文字字串，預設''
  * @vue-prop {String} [rightIcon=''] 輸入右側圖標字串，可為mdi,md,fa代號或mdi/js路徑，預設''
  * @vue-prop {String} [rightIconColor='deep-orange lighten-2'] 輸入右側圖標顏色字串，預設'deep-orange lighten-2'
- * @vue-prop {String} [rightIconColorFocus='deep-orange lighten-1'] 輸入右側圖標Focus顏色字串，預設'deep-orange lighten-1'
+ * @vue-prop {String} [rightIconColorHover='deep-orange lighten-1'] 輸入滑鼠移入時右側圖標顏色字串，預設'deep-orange lighten-1'
+ * @vue-prop {String} [rightIconColorFocus='deep-orange lighten-1'] 輸入取得焦點時右側圖標顏色字串，預設'deep-orange lighten-1'
  * @vue-prop {String} [rightIconTooltip=''] 輸入右側圖標提示文字字串，預設''
  * @vue-prop {Number} [iconShiftOuter=-10] 輸入左右側圖標與外框距離數字，單位為px，預設-10
  * @vue-prop {Number} [iconShiftInner=5] 輸入左右側圖標與內插槽區距離數字，單位為px，預設5
  * @vue-prop {Boolean} [editable=true] 輸入是否為編輯模式，預設true
- * @vue-prop {Boolean} [focused=false] 輸入是否為駐點狀態，預設false
+ * @vue-prop {Boolean} [hovered=false] 輸入是否為滑鼠移入狀態，預設false
+ * @vue-prop {Boolean} [focused=false] 輸入是否為取得焦點狀態，預設false
  */
 export default {
     components: {
@@ -111,11 +119,15 @@ export default {
         },
         backgroundColor: {
             type: String,
-            default: 'white',
+            default: 'transparent',
+        },
+        backgroundColorHover: {
+            type: String,
+            default: 'transparent',
         },
         backgroundColorFocus: {
             type: String,
-            default: 'white',
+            default: 'transparent',
         },
         borderRadius: {
             type: Number,
@@ -123,11 +135,15 @@ export default {
         },
         borderColor: {
             type: String,
-            default: 'white',
+            default: 'transparent',
+        },
+        borderColorHover: {
+            type: String,
+            default: 'transparent',
         },
         borderColorFocus: {
             type: String,
-            default: 'white',
+            default: 'transparent',
         },
         shadow: {
             type: Boolean,
@@ -140,6 +156,10 @@ export default {
         leftIconColor: {
             type: String,
             default: 'deep-orange lighten-2',
+        },
+        leftIconColorHover: {
+            type: String,
+            default: 'deep-orange lighten-1',
         },
         leftIconColorFocus: {
             type: String,
@@ -154,6 +174,10 @@ export default {
             default: '',
         },
         rightIconColor: {
+            type: String,
+            default: 'deep-orange lighten-2',
+        },
+        rightIconColorHover: {
             type: String,
             default: 'deep-orange lighten-2',
         },
@@ -177,6 +201,10 @@ export default {
             type: Boolean,
             default: true,
         },
+        hovered: {
+            type: Boolean,
+            default: false,
+        },
         focused: {
             type: Boolean,
             default: false,
@@ -184,6 +212,7 @@ export default {
     },
     data: function() {
         return {
+            hoveredTrans: false,
             focusedTrans: false,
         }
     },
@@ -193,6 +222,9 @@ export default {
             //console.log('computed changeParam')
 
             let vo = this
+
+            //hoveredTrans
+            vo.hoveredTrans = vo.hovered
 
             //focusedTrans
             vo.focusedTrans = vo.focused
@@ -208,10 +240,13 @@ export default {
             let s = {}
             if (vo.focusedTrans) {
                 s['background-color'] = color2hex(vo.backgroundColorFocus)
+                return s
             }
-            else {
-                s['background-color'] = color2hex(vo.backgroundColor)
+            if (vo.hoveredTrans) {
+                s['background-color'] = color2hex(vo.backgroundColorHover)
+                return s
             }
+            s['background-color'] = color2hex(vo.backgroundColor)
             return s
         },
 
@@ -223,11 +258,42 @@ export default {
             let s = {}
             if (vo.focusedTrans) {
                 s['border'] = '1px solid ' + color2hex(vo.borderColorFocus)
+                return s
             }
-            else {
-                s['border'] = '1px solid ' + color2hex(vo.borderColor)
+            if (vo.hoveredTrans) {
+                s['border'] = '1px solid ' + color2hex(vo.borderColorHover)
+                return s
             }
+            s['border'] = '1px solid ' + color2hex(vo.borderColor)
             return s
+        },
+
+        useLeftIconColor: function() {
+            //console.log('computed useLeftIconColor')
+
+            let vo = this
+
+            if (vo.focusedTrans) {
+                return color2hex(vo.leftIconColorFocus)
+            }
+            if (vo.hoveredTrans) {
+                return color2hex(vo.leftIconColorHover)
+            }
+            return color2hex(vo.leftIconColor)
+        },
+
+        useRightIconColor: function() {
+            //console.log('computed useRightIconColor')
+
+            let vo = this
+
+            if (vo.focusedTrans) {
+                return color2hex(vo.rightIconColorFocus)
+            }
+            if (vo.hoveredTrans) {
+                return color2hex(vo.rightIconColorHover)
+            }
+            return color2hex(vo.rightIconColor)
         },
 
         useTitleColor: function() {
@@ -301,6 +367,42 @@ export default {
 
         },
 
+        mouseenter: function() {
+            //console.log('methods mouseenter')
+
+            let vo = this
+
+            //hoveredTrans
+            vo.hoveredTrans = true
+
+            //$nextTick
+            vo.$nextTick(() => {
+
+                //emit
+                vo.$emit('update:hovered', true)
+
+            })
+
+        },
+
+        mouseleave: function() {
+            //console.log('methods mouseleave')
+
+            let vo = this
+
+            //hoveredTrans
+            vo.hoveredTrans = false
+
+            //$nextTick
+            vo.$nextTick(() => {
+
+                //emit
+                vo.$emit('update:hovered', false)
+
+            })
+
+        },
+
     },
 }
 </script>
@@ -315,7 +417,7 @@ export default {
 .shadow {
     box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
 }
-.shadow:hover {
+/* .shadow:hover {
     box-shadow: 0 3px 9px -2px rgba(0,0,0,.2), 0 2px 7px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
-}
+} */
 </style>
