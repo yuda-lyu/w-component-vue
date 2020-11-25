@@ -55,7 +55,7 @@ import WTextIntCore from './WTextIntCore.vue'
 /**
  * @vue-prop {Number} [width=70] 輸入框寬度，單位為px，預設70
  * @vue-prop {Object} [paddingStyle={v:0,h:15}] 輸入內寬距離物件，可用鍵值為v、h、left、right、top、bottom，v代表同時設定top與bottom，h代表設定left與right，若有重複設定時後面鍵值會覆蓋前面，各鍵值為寬度數字，單位為px，預設{v:0,h:15}
- * @vue-prop {Number} [borderRadius=30] 輸入框圓角度，單位為px，預設30
+ * @vue-prop {Number} [borderRadius=30] 輸入框圓角度數字，單位為px，預設30
  * @vue-prop {Boolean} [shadow=true] 輸入是否為陰影模式，預設true
  * @vue-prop {Number} [value=0] 輸入整數值數字，預設0
  * @vue-prop {Number} [valueMax=null] 輸入最大整數值數字，預設null

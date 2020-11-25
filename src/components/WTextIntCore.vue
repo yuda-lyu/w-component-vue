@@ -1,12 +1,14 @@
 <template>
     <div :changeParam="changeParam">
 
+        <!-- 此處w-shell-ellipse僅提供左右按鈕而由w-text-int提供邊框, 故borderWidth需為0 -->
         <w-shell-ellipse
             :shadow="false"
             :paddingStyle="{v:0,h:0}"
             :backgroundColor="'transparent'"
             :backgroundColorHover="'transparent'"
             :backgroundColorFocus="'transparent'"
+            :borderWidth="0"
             :borderColor="'transparent'"
             :borderColorHover="'transparent'"
             :borderColorFocus="'transparent'"

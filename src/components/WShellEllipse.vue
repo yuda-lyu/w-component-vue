@@ -79,7 +79,8 @@ import WIcon from './WIcon.vue'
 
 /**
  * @vue-prop {Object} [paddingStyle={v:0,h:15}] 輸入內寬距離物件，可用鍵值為v、h、left、right、top、bottom，v代表同時設定top與bottom，h代表設定left與right，若有重複設定時後面鍵值會覆蓋前面，各鍵值為寬度數字，單位為px，預設{v:0,h:15}
- * @vue-prop {Number} [borderRadius=30] 輸入圓角寬度數字，單位為px，預設30
+ * @vue-prop {Number} [borderWidth=1] 輸入邊框寬度數字，單位為px，預設1
+ * @vue-prop {Number} [borderRadius=30] 輸入框圓角度數字，單位為px，預設30
  * @vue-prop {String} [backgroundColor='transparent'] 輸入背景顏色字串，預設'transparent'
  * @vue-prop {String} [backgroundColorHover='transparent'] 輸入滑鼠移入時背景顏色字串，預設'transparent'
  * @vue-prop {String} [backgroundColorFocus='transparent'] 輸入取得焦點時背景顏色字串，預設'transparent'
@@ -128,6 +129,10 @@ export default {
         backgroundColorFocus: {
             type: String,
             default: 'transparent',
+        },
+        borderWidth: {
+            type: Number,
+            default: 1,
         },
         borderRadius: {
             type: Number,
@@ -257,14 +262,14 @@ export default {
 
             let s = {}
             if (vo.focusedTrans) {
-                s['border'] = '1px solid ' + color2hex(vo.borderColorFocus)
+                s['border'] = `${vo.borderWidth}px solid ${color2hex(vo.borderColorFocus)}`
                 return s
             }
             if (vo.hoveredTrans) {
-                s['border'] = '1px solid ' + color2hex(vo.borderColorHover)
+                s['border'] = `${vo.borderWidth}px solid ${color2hex(vo.borderColorHover)}`
                 return s
             }
-            s['border'] = '1px solid ' + color2hex(vo.borderColor)
+            s['border'] = `${vo.borderWidth}px solid ${color2hex(vo.borderColor)}`
             return s
         },
 

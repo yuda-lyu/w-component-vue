@@ -193,7 +193,7 @@ import WText from './WText.vue'
  * @vue-prop {String} [textColorHover='grey darken-3'] 輸入滑鼠移入時文字顏色字串，預設'grey darken-3'
  * @vue-prop {String} [textColorActive='white'] 輸入主動模式時文字顏色字串，預設'white'
  * @vue-prop {String} [textFontSize='0.85rem'] 輸入文字字型大小字串，預設'0.85rem'
- * @vue-prop {Number} [borderRadius=30] 輸入框圓角度，單位為px，預設30
+ * @vue-prop {Number} [borderRadius=30] 輸入框圓角度數字，單位為px，預設30
  * @vue-prop {String} [borderColor='transparent'] 輸入邊框顏色字串，預設'transparent'
  * @vue-prop {String} [borderColorHover='transparent'] 輸入滑鼠移入時邊框顏色字串，預設'transparent'
  * @vue-prop {String} [borderColorActive='transparent'] 輸入主動模式時邊框顏色字串，預設'transparent'

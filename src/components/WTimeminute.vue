@@ -49,7 +49,7 @@ import WTimeminuteCore from './WTimeminuteCore.vue'
 
 /**
  * @vue-prop {Object} [paddingStyle={v:0,h:15}] 輸入內寬距離物件，可用鍵值為v、h、left、right、top、bottom，v代表同時設定top與bottom，h代表設定left與right，若有重複設定時後面鍵值會覆蓋前面，各鍵值為寬度數字，單位為px，預設{v:0,h:15}
- * @vue-prop {Number} [borderRadius=30] 輸入文字框圓角寬度，單位為px，預設30
+ * @vue-prop {Number} [borderRadius=30] 輸入框圓角度數字，單位為px，預設30
  * @vue-prop {Boolean} [shadow=true] 輸入是否為陰影模式，預設true
  * @vue-prop {String} [value=''] 輸入日期字串，預設''
  * @vue-prop {Number} [hourMin=8] 輸入可選最小小時，單位為小時，預設8
