@@ -7,7 +7,7 @@
         content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui"
     />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>example for w-text-suggest: border & icon (fontawesome)</title>
+    <title>example for w-button-chip: icon & no text</title>
 
     <!-- fontawesome -->
     <link
@@ -107,20 +107,11 @@
     style="font-family:'Microsoft JhengHei','Avenir','Helvetica'; padding:20px;"
 >
     <v-app id="app" style="font-family:inherit;">
-        <div class="head1">w-text-suggest</div>
+        <div class="head1">w-button-chip</div>
         <div class="bk">
-            <div class="item">border & icon (fontawesome)</div>
+            <div class="item">icon & no text</div>
 
-            <w-text-suggest
-                :shadow="false"
-                :border-color="'orange lighten-2'"
-                :border-color-hover="'orange'"
-                :border-color-focus="'orange darken-2'"
-                :background-color-focus="'orange lighten-5'"
-                :icon="'fas fa-clipboard-check'"
-                :items="WTextSuggest.objItems"
-                v-model="WTextSuggest.objValue"
-            />
+            <w-button-chip :icon="'mdi-wallet-giftcard'" />
         </div>
     </v-app>
 
@@ -134,86 +125,15 @@
     vuetify: new Vuetify(),
     data: function() {
       return {
-        WTextSuggest: {
-          objItems: [
-            {
-              key: "orange",
-              text: "橘子(orange)"
-            },
-            {
-              key: "banana",
-              text: "香蕉(banana)"
-            },
-            {
-              key: "strawberry",
-              text: "草莓(strawberry)"
-            }
-          ],
-          objValue: {
-            key: "banana",
-            text: "香蕉(banana)"
-          },
-          objItemsKeyText: [
-            {
-              key: "orange",
-              name: "橘子(orange)"
-            },
-            {
-              key: "banana",
-              name: "香蕉(banana)"
-            },
-            {
-              key: "strawberry",
-              name: "草莓(strawberry)"
-            }
-          ],
-          objValueKeyText: {
-            key: "banana",
-            name: "香蕉(banana)"
-          },
-          objItemsLarge: (function() {
-            let vs = [];
-            vs.push({
-              key: "banana:1",
-              text: "香蕉(banana:1)"
-            });
-            for (let i = 2; i <= 10000; i++) {
-              vs.push({
-                key: "banana:" + i,
-                text: "香蕉(banana:" + i + ")"
-              });
-            }
-            return vs;
-          })(),
-          objValueLarge: {
-            key: "banana:1",
-            text: "香蕉(banana:1)"
-          },
-          strItems: ["orange(橘子)", "banana(香蕉)", "strawberry(草莓)"],
-          strValue: "strawberry(草莓)"
+        WButtonChip: {
+          text: "aBc數字123",
+          prog: null,
+          loading: false
         },
         actions: [
           {
-            mode: "eleclick",
-            selector: 'input[type="text"]'
-          },
-          {
-            mode: "keypress",
-            key: "End"
-          },
-          {
-            mode: "keypress",
-            key: "Backspace",
-            count: 15
-          },
-          {
-            mode: "eleclick",
-            selector: 'li[role="option"]',
-            nth: 2
-          },
-          {
-            mode: "eleclick",
-            selector: "div.bk"
+            mode: "elemove",
+            selector: 'button[type="button"]'
           }
         ]
       };
@@ -222,7 +142,75 @@
       return {};
     },
     computed: {},
-    methods: {}
+    methods: {
+      ckBtn: function() {
+        console.log("ckBtn");
+      },
+      ckBtnClose: function() {
+        console.log("ckBtnClose");
+      },
+      ckBtnItem1: function() {
+        console.log("ckBtnItem1");
+      },
+      ckBtnItem2: function() {
+        console.log("ckBtnItem2");
+      },
+      ckBtnProg: function() {
+        console.log("ckBtnProg");
+        let vo = this;
+        let n = 0;
+        let t = setInterval(function() {
+          n += 0.5;
+          vo.WButtonChip.prog = n;
+          if (n >= 100) {
+            vo.WButtonChip.prog = null;
+            clearInterval(t);
+          }
+        }, 10);
+      },
+      ckBtnModProg: function(msg) {
+        //console.log('ckBtnModProg', msg)
+
+        //lock
+        msg.setProg(0); //先設定prog為0使按鈕自動上鎖禁止高頻觸發
+
+        try {
+          // if (Math.random() < 0.5) { //隨機添加出錯
+          //     throw new Error('Whoops!')
+          // }
+          setTimeout(function() {
+            //模擬呼叫api時至少等1s才有反應能setProg, 若沒先設定prog為0按鈕不會上鎖
+            let n = 0;
+            let t = setInterval(function() {
+              n += 0.5;
+              msg.setProg(n);
+              if (n >= 100) {
+                //vo.WButtonChip.prog = null //當prog>=100時會由內部自動設定為null
+                clearInterval(t);
+              }
+            }, 10);
+          }, 1000);
+        } catch (err) {
+          //unlock
+          msg.setProg(null);
+        }
+      },
+      ckBtnLoading: function() {
+        console.log("ckBtnLoading");
+        let vo = this;
+        vo.WButtonChip.loading = true;
+        setTimeout(function() {
+          vo.WButtonChip.loading = false;
+        }, 2000);
+      },
+      ckBtnModLoading: function(msg) {
+        console.log("ckBtnModLoading", msg);
+        msg.setLoading(true);
+        setTimeout(function() {
+          msg.setLoading(false);
+        }, 2000);
+      }
+    }
   });
     </script>
 </body>

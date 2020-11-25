@@ -52,6 +52,19 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-button-chip'"
+                    :casename="'icon & no text'"
+                ></demolink>
+
+                <w-button-chip
+                    :icon="mdiWalletGiftcard"
+                ></w-button-chip>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-button-chip'"
                     :casename="'shiftLeft'"
                 ></demolink>
 

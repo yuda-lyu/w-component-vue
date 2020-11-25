@@ -49,7 +49,7 @@
                                 </div>
 
                                 <div
-                                    :style="`margin-right:${text?0:-10}px; transition:all 0.3s; text-transform:none; color:${useTextColor};`"
+                                    :style="`margin-right:${text?0:-10}px; transition:all 0.3s; text-transform:none; color:${useTextColor}; min-height:${iconSize}px; display:flex; align-items:center;`"
                                 >
                                     <div :style="`${useTextFontSize}`">{{text}}</div>
                                 </div>
