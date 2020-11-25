@@ -1,6 +1,6 @@
 {
   "name": "w-component-vue",
-  "version": "2.0.3",
+  "version": "2.0.4",
   "author": "yuda-lyu(semisphere)",
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -14,7 +14,7 @@
     "@mdi/js": "^5.8.55",
     "lodash": "^4.17.20",
     "vue-cli-plugin-vuetify": "^2.0.7",
-    "vuetify": "^2.3.18",
+    "vuetify": "^2.3.19",
     "vuetify-loader": "^1.6.0",
     "wsemi": "^1.5.35"
   },
