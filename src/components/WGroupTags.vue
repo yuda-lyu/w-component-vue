@@ -135,11 +135,14 @@
                         :textColor="inputTextColor"
                         :rightIcon="mdiPlusCircle"
                         :rightIconColor="inputTextButtonColor"
+                        :rightIconColorHover="inputTextButtonColorHover"
                         :rightIconColorFocus="inputTextButtonColorFocus"
                         :rightIconTooltip="inputTextButtonTooltip"
                         :backgroundColor="inputTextBackgroundColor"
+                        :backgroundColorHover="inputTextBackgroundColorHover"
                         :backgroundColorFocus="inputTextBackgroundColorFocus"
                         :borderColor="inputTextBorderColor"
+                        :borderColorHover="inputTextBorderColorHover"
                         :borderColorFocus="inputTextBorderColorFocus"
                         @click-right="clickAddBtn"
                         @enter="clickAddBtn"
@@ -210,11 +213,14 @@ import WText from './WText.vue'
  * @vue-prop {Number} [shiftRight=0] 輸入右側內寬平移距離數字，會對paddingStyle設定再添加，可調整例如關閉圖標與右側邊框距離，單位px，預設0
  * @vue-prop {String} [inputTextColor='black'] 輸入文字顏色字串，預設'black'
  * @vue-prop {String} [inputTextBackgroundColor='white'] 輸入輸入框背景顏色字串，預設'white'
- * @vue-prop {String} [inputTextBackgroundColorFocus='grey lighten-5'] 輸入輸入框背景Focus顏色字串，預設'grey lighten-5'
- * @vue-prop {String} [inputTextBorderColor='grey lighten-1'] 輸入輸入框未Focus時邊框顏色字串，預設'grey lighten-1'
- * @vue-prop {String} [inputTextBorderColorFocus='grey darken-1'] 輸入輸入框Focus時文字邊框字串，預設'grey darken-1'
- * @vue-prop {String} [inputTextButtonColor='grey lighten-1'] 輸入輸入框未Focus時按鈕顏色字串，預設'grey lighten-1'
- * @vue-prop {String} [inputTextButtonColorFocus='grey'] 輸入輸入框Focus時按鈕顏色字串，預設'grey'
+ * @vue-prop {String} [inputTextBackgroundColorHover='white'] 輸入滑鼠移入時輸入框背景顏色字串，預設'white'
+ * @vue-prop {String} [inputTextBackgroundColorFocus='grey lighten-5'] 輸入取得焦點時輸入框背景顏色字串，預設'grey lighten-5'
+ * @vue-prop {String} [inputTextBorderColor='grey lighten-1'] 輸入輸入框邊框顏色字串，預設'grey lighten-1'
+ * @vue-prop {String} [inputTextBorderColorHover='grey'] 輸入滑鼠移入時輸入框邊框字串，預設'grey'
+ * @vue-prop {String} [inputTextBorderColorFocus='grey'] 輸入取得焦點時輸入框文字邊框字串，預設'grey'
+ * @vue-prop {String} [inputTextButtonColor='grey lighten-1'] 輸入輸入框按鈕顏色字串，預設'grey lighten-1'
+ * @vue-prop {String} [inputTextButtonColorHover='grey'] 輸入滑鼠移入時輸入框按鈕顏色字串，預設'grey'
+ * @vue-prop {String} [inputTextButtonColorFocus='grey'] 輸入取得焦點時輸入框按鈕顏色字串，預設'grey'
  * @vue-prop {String} [inputTextButtonTooltip='Add'] 輸入輸入框右側按鈕提示文字字串，預設'Add'
  * @vue-prop {String} [addButtonText='Add'] 輸入新增按鈕文字字串，預設'Add'
  * @vue-prop {String} [addButtonTextColor='grey'] 輸入新增按鈕文字顏色字串，預設'grey'
@@ -392,6 +398,10 @@ export default {
             type: String,
             default: 'white',
         },
+        inputTextBackgroundColorHover: {
+            type: String,
+            default: 'white',
+        },
         inputTextBackgroundColorFocus: {
             type: String,
             default: 'grey lighten-5',
@@ -400,6 +410,10 @@ export default {
             type: String,
             default: 'grey lighten-1',
         },
+        inputTextBorderColorHover: {
+            type: String,
+            default: 'grey',
+        },
         inputTextBorderColorFocus: {
             type: String,
             default: 'grey',
@@ -407,6 +421,10 @@ export default {
         inputTextButtonColor: {
             type: String,
             default: 'grey lighten-1',
+        },
+        inputTextButtonColorHover: {
+            type: String,
+            default: 'grey',
         },
         inputTextButtonColorFocus: {
             type: String,

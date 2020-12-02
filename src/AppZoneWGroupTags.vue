@@ -91,17 +91,20 @@
             <div class="bk" style="display:block;">
                 <demolink
                     :kbname="'w-group-tags'"
-                    :casename="'inputTextColor & inputTextBorderColor & inputTextBorderColorFocus & inputTextButtonColor & inputTextButtonColorHover & inputTextBackgroundColor & inputTextBackgroundColorFocus'"
+                    :casename="'inputTextColor & inputTextBorderColor & inputTextBorderColorHover & inputTextBorderColorFocus & inputTextButtonColor & inputTextButtonColorHover & inputTextButtonColorHover & inputTextBackgroundColor & inputTextBackgroundColorHover & inputTextBackgroundColorFocus'"
                 ></demolink>
 
                 <w-group-tags
                     v-model="WGroupTags.strings"
                     :inputTextColor="'indigo darken-1'"
                     :inputTextBorderColor="'indigo darken-1'"
+                    :inputTextBorderColorHover="'indigo darken-1'"
                     :inputTextBorderColorFocus="'indigo darken-2'"
                     :inputTextButtonColor="'indigo'"
+                    :inputTextButtonColorHover="'indigo'"
                     :inputTextButtonColorFocus="'indigo darken-1'"
                     :inputTextBackgroundColor="'white'"
+                    :inputTextBackgroundColorHover="'#fafaff'"
                     :inputTextBackgroundColorFocus="'#f2f2ff'"
                 ></w-group-tags>
             </div>
