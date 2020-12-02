@@ -73,7 +73,7 @@
     <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.js"></script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.0.8/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.0.9/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -538,6 +538,9 @@
       },
       click: function(msg) {
         console.log("click", msg);
+      },
+      render: function(msg) {
+        console.log("render", msg);
       },
       mouseenter: function(msg) {
         console.log("mouseenter", msg);

@@ -7,7 +7,7 @@
         content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui"
     />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>example for w-dynamic-list: filterKeywords & searchEmpty</title>
+    <title>example for w-dynamic-list: render</title>
 
     <!-- fontawesome -->
     <link
@@ -109,21 +109,12 @@
     <v-app id="app" style="font-family:inherit;">
         <div class="head1">w-dynamic-list</div>
         <div class="bk dz">
-            <div class="item">filterKeywords & searchEmpty</div>
-
-            <div style="margin-bottom:10px;">
-                <span style="padding-right:10px;">Search :</span>
-                <input
-                    style="padding:2px 15px; color:#666; border:1px solid #fca; border-radius:30px; outline:none;"
-                    v-model="WDynamicList.keywords"
-                />
-            </div>
+            <div class="item">render</div>
 
             <w-dynamic-list
                 style="border:1px solid #ddd;"
-                :filter-keywords="WDynamicList.keywords"
-                :search-empty="'There are no items to show...'"
                 :rows="WDynamicList.data1"
+                @render="render"
             >
                 <template v-slot:block="props">
                     <div
@@ -133,9 +124,7 @@
 
                         <div style="padding-right:10px;">:</div>
 
-                        <div
-                            style="color:#999; word-break:normal;"
-                        >{{props.row}}</div>
+                        <div style="color:#999;">{{props.row}}</div>
                     </div>
                 </template>
             </w-dynamic-list>

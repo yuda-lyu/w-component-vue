@@ -7,7 +7,7 @@
         content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui"
     />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>example for w-tree: mouseenter & mouseleave & click</title>
+    <title>example for w-tree: mouseenter & mouseleave & click & render</title>
 
     <!-- fontawesome -->
     <link
@@ -73,7 +73,7 @@
     <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.js"></script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.0.8/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.0.9/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -109,7 +109,7 @@
     <v-app id="app" style="font-family:inherit;">
         <div class="head1">w-tree</div>
         <div class="bk dz">
-            <div class="item">mouseenter & mouseleave & click</div>
+            <div class="item">mouseenter & mouseleave & click & render</div>
 
             <w-tree
                 style="border:1px solid #ddd;"
@@ -117,6 +117,7 @@
                 @mouseenter="mouseenter"
                 @mouseleave="mouseleave"
                 @click="click"
+                @render="render"
             />
         </div>
     </v-app>
@@ -538,6 +539,9 @@
       },
       click: function(msg) {
         console.log("click", msg);
+      },
+      render: function(msg) {
+        console.log("render", msg);
       },
       mouseenter: function(msg) {
         console.log("mouseenter", msg);
