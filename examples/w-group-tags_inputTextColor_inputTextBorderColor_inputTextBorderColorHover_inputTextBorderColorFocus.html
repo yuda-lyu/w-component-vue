@@ -7,7 +7,7 @@
         content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui"
     />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>example for w-group-tags: inputTextColor & inputTextBorderColor & inputTextBorderColorFocus & inputTextButtonColor & inputTextButtonColorHover & inputTextBackgroundColor & inputTextBackgroundColorFocus</title>
+    <title>example for w-group-tags: inputTextColor & inputTextBorderColor & inputTextBorderColorHover & inputTextBorderColorFocus & inputTextButtonColor & inputTextButtonColorHover & inputTextButtonColorHover & inputTextBackgroundColor & inputTextBackgroundColorHover & inputTextBackgroundColorFocus</title>
 
     <!-- fontawesome -->
     <link
@@ -73,7 +73,7 @@
     <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.js"></script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.0.11/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.0.12/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -111,16 +111,19 @@
         <div class="bk" style="display:block;">
             <div
                 class="item"
-            >inputTextColor & inputTextBorderColor & inputTextBorderColorFocus & inputTextButtonColor & inputTextButtonColorHover & inputTextBackgroundColor & inputTextBackgroundColorFocus</div>
+            >inputTextColor & inputTextBorderColor & inputTextBorderColorHover & inputTextBorderColorFocus & inputTextButtonColor & inputTextButtonColorHover & inputTextButtonColorHover & inputTextBackgroundColor & inputTextBackgroundColorHover & inputTextBackgroundColorFocus</div>
 
             <w-group-tags
                 v-model="WGroupTags.strings"
                 :input-text-color="'indigo darken-1'"
                 :input-text-border-color="'indigo darken-1'"
+                :input-text-border-color-hover="'indigo darken-1'"
                 :input-text-border-color-focus="'indigo darken-2'"
                 :input-text-button-color="'indigo'"
+                :input-text-button-color-hover="'indigo'"
                 :input-text-button-color-focus="'indigo darken-1'"
                 :input-text-background-color="'white'"
+                :input-text-background-color-hover="'#fafaff'"
                 :input-text-background-color-focus="'#f2f2ff'"
             />
         </div>
