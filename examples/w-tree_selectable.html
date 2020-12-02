@@ -73,7 +73,7 @@
     <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.js"></script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.0.7/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.0.8/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -600,16 +600,16 @@
         return t;
       },
       click: function(msg) {
-        console.log("click", msg, "getEle", msg.getEle());
+        console.log("click", msg);
       },
       mouseenter: function(msg) {
-        //console.log('mouseenter', msg)
+        console.log("mouseenter", msg);
         msg.ele.style.transition = "all 0.3s";
         msg.ele.style.background = "#f0f0f0";
         //msg.ele.style.color = '#fff'
       },
       mouseleave: function(msg) {
-        //console.log('mouseleave', msg)
+        console.log("mouseleave", msg);
         msg.ele.style.background = "rgba(255, 255, 255, 0)";
         //msg.ele.style.color = 'black'
       }
