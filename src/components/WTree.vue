@@ -37,7 +37,7 @@
                             :iconColor="iconToggleColor"
                             :iconBackgroundColor="iconToggleBackgroundColor"
                             :iconBackgroundColorHover="iconToggleBackgroundColorHover"
-                            @click="toggleItems(props.row)"
+                            @click.stop="toggleItems(props.row)"
                              v-if="hasChildren(props.index)"
                         ></WTreeIconToggle>
                         <div style="padding-right:24px;" v-else></div>
