@@ -73,7 +73,7 @@
     <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.js"></script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.0.6/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.0.7/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -608,6 +608,9 @@
             t.push(ss[key]);
           });
         return t;
+      },
+      click: function(msg) {
+        console.log("click", msg, "getEle", msg.getEle());
       },
       mouseenter: function(msg) {
         //console.log('mouseenter', msg)
