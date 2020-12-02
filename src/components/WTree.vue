@@ -14,11 +14,11 @@
             <!-- 記得要:key使各div都是可識別元素, 避免捲動時不同方向圖標因transition而會有微轉動問題 -->
             <!-- wdl template內第1層元素高度需設定min-height不能用height, 因會偵測此元素高度來按需顯示, 用height會導致元素高度被寫死無法由slot撐開 -->
             <div
-                :w-tree-id="`wt-${props.index}`"
                 :key="`wt-${props.index}`"
                 :style="`min-height:${iconHeight}px;`"
-                @mouseenter="(e)=>{$emit('mouseenter',{event:e,ele:e.target,data:props.row.item,index:props.index})}"
-                @mouseleave="(e)=>{$emit('mouseleave',{event:e,ele:e.target,data:props.row.item,index:props.index})}"
+                @mouseenter="(e)=>{$emit('mouseenter',{event:e,ele:e.currentTarget,data:props.row.item,index:props.index})}"
+                @mouseleave="(e)=>{$emit('mouseleave',{event:e,ele:e.currentTarget,data:props.row.item,index:props.index})}"
+                @click="(e)=>{$emit('click',{event:e,ele:e.currentTarget,data:props.row.item,index:props.index})}"
             >
                 <div :style="`display:table; ${usePadding}`">
                     <!-- 各元素需使用padding撐開寬度避免被壓縮 -->
@@ -63,7 +63,6 @@
                             name="block"
                             :data="props.row.item"
                             :index="props.index"
-                            :getEle="()=>{return $refs.wdl.$el.querySelector(`[w-tree-id='wt-${props.index}']`)}"
                         >
                             <div :style="`height:${iconHeight}px; display:flex; align-items:center;`">
                                 {{getText(props.row.item)}}

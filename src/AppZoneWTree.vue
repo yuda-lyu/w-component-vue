@@ -104,7 +104,7 @@
             <div class="bk dz">
                 <demolink
                     :kbname="'w-tree'"
-                    :casename="'mouseenter & mouseleave'"
+                    :casename="'mouseenter & mouseleave & click'"
                 ></demolink>
 
                 <w-tree
@@ -112,6 +112,7 @@
                     :data="WTree.option.items"
                     @mouseenter="mouseenter"
                     @mouseleave="mouseleave"
+                    @click="click"
                 ></w-tree>
 
             </div>
@@ -128,7 +129,7 @@
                     :data="WTree.option.items"
                 >
                     <template v-slot:block="props">
-                        <div style="display:flex;" @click="click(props)">
+                        <div style="display:flex;">
 
                             <div style="display:flex; align-items:center; padding-right:5px;" v-if="props.data.avatar">
                                 <img style="border-radius:50%; width:24px; height:24px;" :src="props.data.avatar" />
@@ -865,16 +866,16 @@ export default {
             return t
         },
         click: function(msg) {
-            console.log('click', msg, 'getEle', msg.getEle())
+            console.log('click', msg)
         },
         mouseenter: function(msg) {
-            //console.log('mouseenter', msg)
+            console.log('mouseenter', msg)
             msg.ele.style.transition = 'all 0.3s'
             msg.ele.style.background = '#f0f0f0'
             //msg.ele.style.color = '#fff'
         },
         mouseleave: function(msg) {
-            //console.log('mouseleave', msg)
+            console.log('mouseleave', msg)
             msg.ele.style.background = 'rgba(255, 255, 255, 0)'
             //msg.ele.style.color = 'black'
         },
