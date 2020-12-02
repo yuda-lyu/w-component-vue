@@ -5,6 +5,8 @@
         :itemMinHeight="itemMinHeight"
         :itemsPreload="itemsPreload"
         :searchEmpty="searchEmpty"
+        :separatorHeight="separatorHeight"
+        :separatorColor="separatorColor"
         :show="show"
         @render="(msg)=>{$emit('render',msg)}"
         :changeSelection="changeSelection"
@@ -136,6 +138,8 @@ let gm = globalMemory()
  * @vue-prop {String} [searchEmpty='Empty'] 輸入無過濾結果字串，預設'Empty'
  * @vue-prop {Number} [itemMinHeight=34] 輸入各元素顯示高度，單位為px，預設34，會於真實顯示後自動更新高度
  * @vue-prop {Number} [itemsPreload=5] 輸入上下方預先載入元素數量，預設5
+ * @vue-prop {Number} [separatorHeight=1] 輸入分隔線高度數字，預設1
+ * @vue-prop {String} [separatorColor='transparent'] 輸入分隔線顏色字串，預設'transparent'
  * @vue-prop {Boolean} [show=true] 輸入是否為顯示模式，預設true，供組件嵌入popup時, 因先初始化但尚未顯示不需渲染, 可給予show=false避免無限偵測與重算高度問題
  */
 export default {
@@ -245,6 +249,14 @@ export default {
         itemsPreload: {
             type: Number,
             default: 5,
+        },
+        separatorHeight: {
+            type: Number,
+            default: 1,
+        },
+        separatorColor: {
+            type: String,
+            default: 'transparent',
         },
         show: {
             type: Boolean,

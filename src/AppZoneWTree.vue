@@ -70,6 +70,37 @@
             <div class="bk dz">
                 <demolink
                     :kbname="'w-tree'"
+                    :casename="'separatorColor'"
+                ></demolink>
+
+                <w-tree
+                    style="border:1px solid #ddd;"
+                    :separatorColor="'rgba(0,0,0,0.1)'"
+                    :data="WTree.option.items"
+                ></w-tree>
+
+            </div>
+
+
+            <div class="bk dz">
+                <demolink
+                    :kbname="'w-tree'"
+                    :casename="'separatorColor & separatorHeight'"
+                ></demolink>
+
+                <w-tree
+                    style="border:1px solid #ddd;"
+                    :separatorColor="'#f2f2f2'"
+                    :separatorHeight="4"
+                    :data="WTree.option.items"
+                ></w-tree>
+
+            </div>
+
+
+            <div class="bk dz">
+                <demolink
+                    :kbname="'w-tree'"
                     :casename="'iconToggleColor & iconToggleBackgroundColor & iconToggleBackgroundColorHover'"
                 ></demolink>
 

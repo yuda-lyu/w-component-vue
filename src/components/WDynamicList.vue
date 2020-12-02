@@ -13,17 +13,25 @@
             <div
                 ref="wdsDiv"
                 :key="`wpsc-${kitem}`"
-                :style="`position:absolute; top:${item.screenY}px; left:0px; width:100%; opacity:${(item.nowShow && item.delayShow)?1:0.001}; ${item.delayShow?'transition:opacity 0.1s':''}`"
+                :style="`position:absolute; top:${item.screenY}px; left:0px; width:100%; opacity:${(item.nowShow && item.delayShow)?1:0.001}; ${item.delayShow?'transition:opacity 0.1s':''};`"
                 :index="item.index"
                 :nowShow="item.nowShow"
                 :delayShow="item.delayShow"
                 :y="item.y"
             >
-                <slot
-                    name="block"
-                    :row="item.row"
-                    :index="item.index"
-                ></slot>
+                <!-- 因分隔線若是直接用border或translateY或_padding, 於渲染時會有多層更新而讓迭代收斂更為困難, 此處直接用定位div去繪製分隔線 -->
+                <div :style="`position:relative;`">
+
+                    <slot
+                        name="block"
+                        :row="item.row"
+                        :index="item.index"
+                    ></slot>
+
+                    <!-- 用position:absolute定位方式繪製分隔線, top為(-高度/2), 直接畫在兩元素中間, 故線設定太高會遮蔽過多元素內容 -->
+                    <div :style="`position:absolute; top:${-getSeparatorHeight(kitem)/2}px; left:0px; width:100%; border-top:${getSeparatorHeight(kitem)}px solid ${useSeparatorColor};`"></div>
+
+                </div>
             </div>
         </template>
 
@@ -60,6 +68,7 @@ import debounce from 'wsemi/src/debounce.mjs'
 import pmThrottle from 'wsemi/src/pmThrottle.mjs'
 import binarySearch from '../js/binarySearch.mjs'
 import globalMemory from '../js/globalMemory.mjs'
+import color2hex from '../js/vuetifyColor.mjs'
 import WPanelScrollyCore from './WPanelScrollyCore.vue'
 
 
@@ -74,6 +83,8 @@ let gm = globalMemory()
  * @vue-prop {Number} [itemMinHeight=24] 輸入各元素顯示高度，單位為px，預設24，會於真實顯示後自動更新高度
  * @vue-prop {Number} [itemsPreload=5] 輸入上下方預先載入元素數量，預設5
  * @vue-prop {String} [searchEmpty='Empty'] 輸入無過濾結果字串，預設'Empty'
+ * @vue-prop {Number} [separatorHeight=1] 輸入分隔線高度數字，預設1
+ * @vue-prop {String} [separatorColor='transparent'] 輸入分隔線顏色字串，預設'transparent'
  * @vue-prop {Boolean} [show=true] 輸入是否為顯示模式，預設true，供組件嵌入popup時, 因先初始化但尚未顯示不需渲染, 可給予show=false避免無限偵測與重算高度問題
  */
 export default {
@@ -104,6 +115,14 @@ export default {
         searchEmpty: {
             type: String,
             default: 'Empty',
+        },
+        separatorHeight: {
+            type: Number,
+            default: 1,
+        },
+        separatorColor: {
+            type: String,
+            default: 'transparent',
         },
         show: {
             type: Boolean,
@@ -179,8 +198,24 @@ export default {
             return ft
         },
 
+        useSeparatorColor: function() {
+            //console.log('computed useSeparatorColor')
+
+            let vo = this
+
+            return color2hex(vo.separatorColor)
+        },
+
     },
     methods: {
+
+        getSeparatorHeight: function(kitem) {
+            //console.log('methods getSeparatorHeight', kitem)
+
+            let vo = this
+
+            return kitem > 0 ? vo.separatorHeight : 0
+        },
 
         setRows: function(rows) {
             //console.log('methods setRows', rows)
@@ -269,10 +304,11 @@ export default {
 
                 //n
                 n += 1
+                // console.log('n', n)
 
                 //check, 取得元素高度因文字換行會有來回變動問題, 需有強制跳出機制
                 if (n > limit) {
-                    //console.log(`已重複refresh ${limit} 次, 強制跳出`)
+                    console.log(`已重複refresh ${limit} 次, 強制跳出`)
                     pm.resolve(false)
                     return pm
                 }
