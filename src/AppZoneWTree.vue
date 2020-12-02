@@ -128,7 +128,7 @@
                     :data="WTree.option.items"
                 >
                     <template v-slot:block="props">
-                        <div style="display:flex;">
+                        <div style="display:flex;" @click="click(props)">
 
                             <div style="display:flex; align-items:center; padding-right:5px;" v-if="props.data.avatar">
                                 <img style="border-radius:50%; width:24px; height:24px;" :src="props.data.avatar" />
@@ -863,6 +863,9 @@ export default {
                     t.push(ss[key])
                 })
             return t
+        },
+        click: function(msg) {
+            console.log('click', msg, 'getEle', msg.getEle())
         },
         mouseenter: function(msg) {
             //console.log('mouseenter', msg)

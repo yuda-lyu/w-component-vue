@@ -14,6 +14,7 @@
             <!-- 記得要:key使各div都是可識別元素, 避免捲動時不同方向圖標因transition而會有微轉動問題 -->
             <!-- wdl template內第1層元素高度需設定min-height不能用height, 因會偵測此元素高度來按需顯示, 用height會導致元素高度被寫死無法由slot撐開 -->
             <div
+                :w-tree-id="`wt-${props.index}`"
                 :key="`wt-${props.index}`"
                 :style="`min-height:${iconHeight}px;`"
                 @mouseenter="(e)=>{$emit('mouseenter',{event:e,ele:e.target,data:props.row.item,index:props.index})}"
@@ -57,10 +58,12 @@
 
                     <!-- 給予width:100%使slot區可自動展開寬度至組件寬 -->
                     <div :style="`display:table-cell; vertical-align:top; height:${iconHeight}px; width:100%;`">
+                        <!-- getEle為因外部需要直接取得動態渲染的元素, 故getEle需於執行階段呼叫, 且也不能使用method只能寫於slot內 -->
                         <slot
                             name="block"
                             :data="props.row.item"
                             :index="props.index"
+                            :getEle="()=>{return $refs.wdl.$el.querySelector(`[w-tree-id='wt-${props.index}']`)}"
                         >
                             <div :style="`height:${iconHeight}px; display:flex; align-items:center;`">
                                 {{getText(props.row.item)}}
