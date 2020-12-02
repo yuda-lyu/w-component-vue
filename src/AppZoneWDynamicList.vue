@@ -188,6 +188,35 @@
             <div class="bk dz">
                 <demolink
                     :kbname="'w-dynamic-list'"
+                    :casename="'render'"
+                ></demolink>
+
+                <w-dynamic-list
+                    style="border:1px solid #ddd;"
+                    :rows="WDynamicList.data1"
+                    @render="render"
+                >
+                    <template v-slot:block="props">
+
+                        <div style="display:flex; align-items:flex-start; padding:5px 15px;">
+
+                            <div style="color:#f26;">{{props.index+1}}</div>
+
+                            <div style="padding-right:10px;">:</div>
+
+                            <div style="color:#999;">{{props.row}}</div>
+
+                        </div>
+
+                    </template>
+                </w-dynamic-list>
+
+            </div>
+
+
+            <div class="bk dz">
+                <demolink
+                    :kbname="'w-dynamic-list'"
                     :casename="'slot item with image'"
                 ></demolink>
 
@@ -436,6 +465,9 @@ export default {
                 displayShow: false,
             }
             vo.$refs.wdl.processItems(opt)
+        },
+        render: function(msg) {
+            console.log('render', msg)
         },
     },
 }

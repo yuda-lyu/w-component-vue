@@ -6,6 +6,7 @@
         :itemsPreload="itemsPreload"
         :searchEmpty="searchEmpty"
         :show="show"
+        @render="(msg)=>{$emit('render',msg)}"
         :changeSelection="changeSelection"
         :changeFilterKeyWords="changeFilterKeyWords"
     >
@@ -16,9 +17,9 @@
             <div
                 :key="`wt-${props.index}`"
                 :style="`min-height:${iconHeight}px;`"
-                @mouseenter="(e)=>{$emit('mouseenter',{event:e,ele:e.currentTarget,data:props.row.item,index:props.index})}"
-                @mouseleave="(e)=>{$emit('mouseleave',{event:e,ele:e.currentTarget,data:props.row.item,index:props.index})}"
-                @click="(e)=>{$emit('click',{event:e,ele:e.currentTarget,data:props.row.item,index:props.index})}"
+                @mouseenter="(e)=>{$emit('mouseenter',getEmitData(e,props))}"
+                @mouseleave="(e)=>{$emit('mouseleave',getEmitData(e,props))}"
+                @click="(e)=>{$emit('click',getEmitData(e,props))}"
             >
                 <div :style="`display:table; ${usePadding}`">
                     <!-- 各元素需使用padding撐開寬度避免被壓縮 -->
@@ -368,6 +369,14 @@ export default {
 
     },
     methods: {
+
+        getEmitData: function(e, props) {
+            //console.log('methods getEmitData', e, props)
+
+            // let vo = this
+
+            return { event: e, ele: e.currentTarget, row: props.row, item: props.row.item, index: props.index }
+        },
 
         setData: function(data) {
             //console.log('methods setData', data)

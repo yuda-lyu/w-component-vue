@@ -1,6 +1,6 @@
 <template>
     <div
-        :style="`height:${Math.min(contentHeight,viewHeightMax)}px; box-sizing:content-box;`"
+        :style="`height:${panelHeight}px; box-sizing:content-box;`"
         v-domresize
         @domresize="resize"
         @mouseenter="mouseEntering=true"
@@ -26,7 +26,7 @@
             <!-- 內容區 -->
             <div
                 ref="divPanel"
-                :style="`position:relative; overflow-x:hidden; overflow-y:auto; width:calc( 100% + ${nativeBarWidth+extWidth}px ); height:${viewHeightMax}px;`"
+                :style="`position:relative; overflow-x:hidden; overflow-y:auto; width:calc( 100% + ${nativeBarWidth+extWidth}px ); height:${panelHeight}px;`"
                 @scroll="scroll"
             >
 
@@ -221,6 +221,14 @@ export default {
 
             vo.___viewHeightMax___ = viewHeightMax
             return ''
+        },
+
+        panelHeight: function () {
+            //console.log('computed panelHeight')
+
+            let vo = this
+
+            return Math.min(vo.contentHeight, vo.viewHeightMax)
         },
 
         extHeight: function() {

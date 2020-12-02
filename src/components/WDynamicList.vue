@@ -416,6 +416,14 @@ export default {
             //save
             vo.useItems = useItems
 
+            //偵測是否已有wdsDiv
+            if (vo.$refs.wdsDiv) {
+
+                //emit render
+                vo.$emit('render', { eles: vo.$refs.wdsDiv, rows: map(useItems, 'row'), items: map(useItems, 'row.item') })
+
+            }
+
         },
 
         updateItemsHeight: function() {

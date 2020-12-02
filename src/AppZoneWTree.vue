@@ -104,7 +104,7 @@
             <div class="bk dz">
                 <demolink
                     :kbname="'w-tree'"
-                    :casename="'mouseenter & mouseleave & click'"
+                    :casename="'mouseenter & mouseleave & click & render'"
                 ></demolink>
 
                 <w-tree
@@ -113,6 +113,7 @@
                     @mouseenter="mouseenter"
                     @mouseleave="mouseleave"
                     @click="click"
+                    @render="render"
                 ></w-tree>
 
             </div>
@@ -867,6 +868,9 @@ export default {
         },
         click: function(msg) {
             console.log('click', msg)
+        },
+        render: function(msg) {
+            console.log('render', msg)
         },
         mouseenter: function(msg) {
             console.log('mouseenter', msg)
