@@ -23,7 +23,6 @@
                 <div :style="`position:relative;`">
 
                     <slot
-                        name="block"
                         :row="item.row"
                         :index="item.index"
                     ></slot>

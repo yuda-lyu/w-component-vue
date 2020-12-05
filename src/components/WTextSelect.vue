@@ -29,11 +29,28 @@
                     :items="items"
                     :value="value"
                     :keyText="keyText"
+                    :itemTextColor="itemTextColor"
+                    :itemTextColorHover="itemTextColorHover"
+                    :itemFontSize="itemFontSize"
+                    :itemBackgroundColor="itemBackgroundColor"
+                    :itemBackgroundColorHover="itemBackgroundColorHover"
+                    :itemPaddingStyle="itemPaddingStyle"
                     :distY="5"
                     :editable="editable"
                     @update:focused="changeFocused"
                     @input="function(v){$emit('input', v)}"
-                ></w-text-suggest-core>
+                >
+                    <template v-slot="props">
+
+                        <slot
+                            :item="props.item"
+                            :index="props.index"
+                        >
+                            <div>{{getText(props.item)}}</div>
+                        </slot>
+
+                    </template>
+                </w-text-suggest-core>
             </div>
 
         </w-shell-ellipse>
@@ -42,6 +59,7 @@
 </template>
 
 <script>
+import isobj from 'wsemi/src/isobj.mjs'
 import WShellEllipse from './WShellEllipse.vue'
 import WTextSuggestCore from './WTextSuggestCore.vue'
 
@@ -53,6 +71,12 @@ import WTextSuggestCore from './WTextSuggestCore.vue'
  * @vue-prop {Array} [items=[]] 輸入可選項目陣列，預設[]
  * @vue-prop {Object|String|Number} [value=null] 輸入目前選擇項目，可為物件、字串、數字，預設null
  * @vue-prop {String} [keyText='text'] 輸入取項目物件內之顯示用文字鍵值字串，預設'text'
+ * @vue-prop {String} [itemTextColor='grey darken-3'] 輸入項目文字顏色字串，預設'grey darken-3'
+ * @vue-prop {String} [itemTextColorHover='light-blue darken-2'] 輸入項目文字Hover顏色字串，預設'light-blue darken-2'
+ * @vue-prop {String} [itemFontSize='0.9rem'] 輸入項目顯示文字大小字串，預設'0.9rem'
+ * @vue-prop {String} [itemBackgroundColor='white'] 輸入項目背景顏色字串，預設'white'
+ * @vue-prop {String} [itemBackgroundColorHover='light-blue lighten-5'] 輸入項目背景Hover顏色字串，預設'light-blue lighten-5'
+ * @vue-prop {Object} [itemPaddingStyle={v:12,h:16}] 輸入內寬距離設定物件，可用鍵值為v、h、left、right、top、bottom，v代表同時設定top與bottom，h代表設定left與right，若有重複設定時後面鍵值會覆蓋前面，各鍵值為寬度數字，單位為px，預設{v:12,h:16}
  * @vue-prop {String} [icon=''] 輸入框外左側圖標字串，可為mdi,md,fa代號或mdi/js路徑，預設''
  * @vue-prop {String} [iconColor='deep-orange lighten-2'] 輸入框外左側圖標顏色字串，預設'deep-orange lighten-2'
  * @vue-prop {String} [iconColorHover='deep-orange lighten-1'] 輸入滑鼠移入時框外左側圖標顏色字串，預設'deep-orange lighten-1'
@@ -103,6 +127,35 @@ export default {
         keyText: {
             type: String,
             default: 'text',
+        },
+        itemTextColor: {
+            type: String,
+            default: 'grey darken-3',
+        },
+        itemTextColorHover: {
+            type: String,
+            default: 'light-blue darken-2',
+        },
+        itemFontSize: {
+            type: String,
+            default: '0.8rem',
+        },
+        itemBackgroundColor: {
+            type: String,
+            default: 'white',
+        },
+        itemBackgroundColorHover: {
+            type: String,
+            default: 'light-blue lighten-5',
+        },
+        itemPaddingStyle: {
+            type: Object,
+            default: () => {
+                return {
+                    v: 12,
+                    h: 16,
+                }
+            },
         },
         icon: {
             type: String,
@@ -187,6 +240,21 @@ export default {
 
     },
     methods: {
+
+        getText: function(value) {
+            //console.log('methods getText', value)
+
+            let vo = this
+
+            //valueTrans
+            if (isobj(value)) {
+                return value[vo.keyText]
+            }
+            else {
+                return value
+            }
+
+        },
 
         changeFocused: function(focused) {
             //console.log('methods changeFocused', focused)

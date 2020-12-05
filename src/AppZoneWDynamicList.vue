@@ -18,7 +18,7 @@
                     style="border:1px solid #ddd;"
                     :rows="WDynamicList.data1"
                 >
-                    <template v-slot:block="props">
+                    <template v-slot="props">
 
                         <div style="display:flex; align-items:flex-start; padding:5px 15px;">
 
@@ -52,7 +52,7 @@
                     :viewHeightMax="WDynamicList.viewHeightMax"
                     :rows="WDynamicList.data1"
                 >
-                    <template v-slot:block="props">
+                    <template v-slot="props">
 
                         <div style="display:flex; align-items:flex-start; padding:5px 15px;">
 
@@ -81,7 +81,7 @@
                     :rows="WDynamicList.data1"
                     :separatorColor="'rgba(0,0,0,0.1)'"
                 >
-                    <template v-slot:block="props">
+                    <template v-slot="props">
 
                         <div style="display:flex; align-items:flex-start; padding:5px 15px;">
 
@@ -111,7 +111,7 @@
                     :separatorColor="'rgba(255, 150, 200, 0.1)'"
                     :separatorHeight="8"
                 >
-                    <template v-slot:block="props">
+                    <template v-slot="props">
 
                         <div style="display:flex; align-items:flex-start; padding:5px 15px; background:#222;">
 
@@ -144,7 +144,7 @@
                     style="border:1px solid #ddd;"
                     :rows="WDynamicList.changeText?WDynamicList.data2:WDynamicList.data1"
                 >
-                    <template v-slot:block="props">
+                    <template v-slot="props">
 
                         <div style="display:flex; align-items:flex-start; padding:5px 15px;">
 
@@ -177,7 +177,7 @@
                     style="border:1px solid #ddd;"
                     :rows="WDynamicList.data1"
                 >
-                    <template v-slot:block="props">
+                    <template v-slot="props">
 
                         <div style="display:flex; align-items:flex-start; padding:5px 15px;" v-if="!WDynamicList.changeSlot">
 
@@ -226,7 +226,7 @@
                     :searchEmpty="'There are no items to show...'"
                     :rows="WDynamicList.data1"
                 >
-                    <template v-slot:block="props">
+                    <template v-slot="props">
 
                         <div style="display:flex; align-items:flex-start; padding:5px 15px;">
 
@@ -255,7 +255,7 @@
                     :rows="WDynamicList.data1"
                     @render="render"
                 >
-                    <template v-slot:block="props">
+                    <template v-slot="props">
 
                         <div style="display:flex; align-items:flex-start; padding:5px 15px;">
 
@@ -283,7 +283,7 @@
                     style="border:1px solid #ddd;"
                     :rows="WDynamicList.data3"
                 >
-                    <template v-slot:block="props">
+                    <template v-slot="props">
 
                         <div style="padding:15px;">
 
@@ -326,7 +326,7 @@
                     style="border:1px solid #ddd;"
                     :rows="WDynamicList.data4"
                 >
-                    <template v-slot:block="props">
+                    <template v-slot="props">
 
                         <div style="padding:15px;">
 
@@ -363,7 +363,7 @@
                     style="border:1px solid #ddd;"
                     :rows="WDynamicList.data5"
                 >
-                    <template v-slot:block="props">
+                    <template v-slot="props">
 
                         <div style="padding:15px;">
 

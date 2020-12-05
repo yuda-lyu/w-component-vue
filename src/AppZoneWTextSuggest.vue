@@ -129,6 +129,39 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-text-suggest'"
+                    :casename="'itemFontSize'"
+                ></demolink>
+
+                <w-text-suggest
+                    :icon="mdiCheckUnderlineCircle"
+                    :itemFontSize="'1rem'"
+                    :items="WTextSuggest.objItems"
+                    v-model="WTextSuggest.objValue"
+                ></w-text-suggest>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-text-suggest'"
+                    :casename="'itemTextColor & itemTextColorHover & itemBackgroundColor & itemBackgroundColorHover'"
+                ></demolink>
+
+                <w-text-suggest
+                    :icon="mdiCheckUnderlineCircle"
+                    :itemTextColor="'orange darken-3'"
+                    :itemTextColorHover="'white'"
+                    :itemBackgroundColor="'white'"
+                    :itemBackgroundColorHover="'orange darken-3'"
+                    :items="WTextSuggest.objItems"
+                    v-model="WTextSuggest.objValue"
+                ></w-text-suggest>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-text-suggest'"
                     :casename="'a lot of items'"
                 ></demolink>
 
@@ -152,6 +185,25 @@
                     :items="WTextSuggest.strItems"
                     v-model="WTextSuggest.strValue"
                 ></w-text-suggest>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-text-suggest'"
+                    :casename="'slot'"
+                ></demolink>
+
+                <w-text-suggest
+                    :icon="mdiCheckUnderlineCircle"
+                    :items="WTextSuggest.objItems"
+                    v-model="WTextSuggest.objValue"
+                >
+                    <template v-slot="props">
+                        <div style="color:#f26; font-size:0.7rem;">{{props.item.key}}</div>
+                        <div>{{props.item.text}}</div>
+                    </template>
+                </w-text-suggest>
             </div>
 
 
@@ -367,6 +419,49 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-text-suggest'"
+                    :casename="'border & itemFontSize'"
+                ></demolink>
+
+                <w-text-suggest
+                    :shadow="false"
+                    :borderColor="'orange lighten-2'"
+                    :borderColorHover="'orange'"
+                    :borderColorFocus="'orange darken-2'"
+                    :backgroundColorFocus="'orange lighten-5'"
+                    :icon="mdiCheckUnderlineCircle"
+                    :itemFontSize="'1rem'"
+                    :items="WTextSuggest.objItems"
+                    v-model="WTextSuggest.objValue"
+                ></w-text-suggest>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-text-suggest'"
+                    :casename="'border & itemTextColor & itemTextColorHover & itemBackgroundColor & itemBackgroundColorHover'"
+                ></demolink>
+
+                <w-text-suggest
+                    :shadow="false"
+                    :borderColor="'orange lighten-2'"
+                    :borderColorHover="'orange'"
+                    :borderColorFocus="'orange darken-2'"
+                    :backgroundColorFocus="'orange lighten-5'"
+                    :icon="mdiCheckUnderlineCircle"
+                    :itemTextColor="'orange darken-3'"
+                    :itemTextColorHover="'white'"
+                    :itemBackgroundColor="'white'"
+                    :itemBackgroundColorHover="'orange darken-3'"
+                    :items="WTextSuggest.objItems"
+                    v-model="WTextSuggest.objValue"
+                ></w-text-suggest>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-text-suggest'"
                     :casename="'border & a lot of items'"
                 ></demolink>
 
@@ -400,6 +495,30 @@
                     :items="WTextSuggest.strItems"
                     v-model="WTextSuggest.strValue"
                 ></w-text-suggest>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-text-suggest'"
+                    :casename="'border & slot'"
+                ></demolink>
+
+                <w-text-suggest
+                    :shadow="false"
+                    :borderColor="'orange lighten-2'"
+                    :borderColorHover="'orange'"
+                    :borderColorFocus="'orange darken-2'"
+                    :backgroundColorFocus="'orange lighten-5'"
+                    :icon="mdiCheckUnderlineCircle"
+                    :items="WTextSuggest.objItems"
+                    v-model="WTextSuggest.objValue"
+                >
+                    <template v-slot="props">
+                        <div style="color:#f26; font-size:0.7rem;">{{props.item.key}}</div>
+                        <div>{{props.item.text}}</div>
+                    </template>
+                </w-text-suggest>
             </div>
 
 

@@ -76,10 +76,10 @@
                     :searchEmpty="searchEmpty"
                     :show="show"
                 >
-                    <template v-slot:block="props">
+                    <template v-slot="props">
 
                         <div
-                            :style="`padding:12px 16px; transition:all 0.2s; cursor:pointer; outline:none; background:${useItemBackgroundColor}; color:${useItemTextColor};`"
+                            :style="`transition:all 0.2s; cursor:pointer; outline:none; background:${useItemBackgroundColor}; color:${useItemTextColor}; font-size:${itemFontSize}; ${useItemPadding}`"
                             tabindex="0"
                             @keyup.enter="clickItem(props.row,props.irow)"
                             @click="clickItem(props.row,props.irow)"
@@ -89,7 +89,12 @@
                             @blur="(e)=>{let es=e.target.style; es.backgroundColor=useItemBackgroundColor; es.color=useItemTextColor;}"
                         >
 
-                            <div :style="`font-size:${itemFontSize};`">{{getText(props.row)}}</div>
+                            <slot
+                                :item="props.row"
+                                :index="props.irow"
+                            >
+                                <div>{{getText(props.row)}}</div>
+                            </slot>
 
                         </div>
 
@@ -104,6 +109,7 @@
 
 <script>
 import get from 'lodash/get'
+import isNumber from 'lodash/isNumber'
 import isobj from 'wsemi/src/isobj.mjs'
 import color2hex from '../js/vuetifyColor.mjs'
 import WPopup from './WPopup.vue'
@@ -121,6 +127,7 @@ import WDynamicList from './WDynamicList.vue'
  * @vue-prop {String} [itemFontSize='0.9rem'] 輸入項目顯示文字大小字串，預設'0.9rem'
  * @vue-prop {String} [itemBackgroundColor='white'] 輸入項目背景顏色字串，預設'white'
  * @vue-prop {String} [itemBackgroundColorHover='light-blue lighten-5'] 輸入項目背景Hover顏色字串，預設'light-blue lighten-5'
+ * @vue-prop {Object} [itemPaddingStyle={v:12,h:16}] 輸入內寬距離設定物件，可用鍵值為v、h、left、right、top、bottom，v代表同時設定top與bottom，h代表設定left與right，若有重複設定時後面鍵值會覆蓋前面，各鍵值為寬度數字，單位為px，預設{v:12,h:16}
  * @vue-prop {String} [iconColor='#999'] 輸入圖標顏色字串，預設'#999'
  * @vue-prop {Number} [maxHeight=200] 輸入顯示區最大高度，單位為px，預設200
  * @vue-prop {Number} [minWidth=null] 輸入最小寬度，單位為px，預設null
@@ -174,6 +181,15 @@ export default {
         itemBackgroundColorHover: {
             type: String,
             default: 'light-blue lighten-5',
+        },
+        itemPaddingStyle: {
+            type: Object,
+            default: () => {
+                return {
+                    v: 12,
+                    h: 16,
+                }
+            },
         },
         iconColor: {
             type: String,
@@ -271,6 +287,47 @@ export default {
             let vo = this
 
             return color2hex(vo.itemTextColorHover)
+        },
+
+        useItemPadding: function() {
+            //console.log('computed useItemPadding')
+
+            let vo = this
+
+            //四方向padding
+            let left = 0
+            let right = 0
+            let top = 0
+            let bottom = 0
+            if (isNumber(get(vo, 'itemPaddingStyle.h'))) {
+                left = get(vo, 'itemPaddingStyle.h')
+                right = left
+            }
+            if (isNumber(get(vo, 'itemPaddingStyle.v'))) {
+                top = get(vo, 'itemPaddingStyle.v')
+                bottom = top
+            }
+            if (isNumber(get(vo, 'itemPaddingStyle.left'))) {
+                left = get(vo, 'itemPaddingStyle.left')
+            }
+            if (isNumber(get(vo, 'itemPaddingStyle.right'))) {
+                right = get(vo, 'itemPaddingStyle.right')
+            }
+            if (isNumber(get(vo, 'itemPaddingStyle.top'))) {
+                top = get(vo, 'itemPaddingStyle.top')
+            }
+            if (isNumber(get(vo, 'itemPaddingStyle.bottom'))) {
+                bottom = get(vo, 'itemPaddingStyle.bottom')
+            }
+
+            // //shiftLeft, shiftRight
+            // left += vo.shiftLeft
+            // right += vo.shiftRight
+
+            //padding
+            let padding = `padding:${top}px ${right}px ${bottom}px ${left}px;`
+
+            return padding
         },
 
         useIconColor: function() {

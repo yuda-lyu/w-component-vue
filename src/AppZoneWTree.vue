@@ -160,7 +160,7 @@
                     style="border:1px solid #ddd;"
                     :data="WTree.option.items"
                 >
-                    <template v-slot:block="props">
+                    <template v-slot="props">
                         <div style="display:flex;">
 
                             <div style="display:flex; align-items:center; padding-right:5px;" v-if="props.data.avatar">
@@ -205,7 +205,7 @@
                             :selectable="true"
                             :selections.sync="WTree.option.selections"
                         >
-                            <template v-slot:block="props">
+                            <template v-slot="props">
                                 <div style="display:flex;">
 
                                     <div style="display:flex; align-items:center; padding-right:5px;" v-if="props.data.avatar">
@@ -274,7 +274,7 @@
                             :filterKeywords="WTree.option.keywords"
                             :searchEmpty="'There are no items to show...'"
                         >
-                            <template v-slot:block="props">
+                            <template v-slot="props">
                                 <div style="display:flex;">
 
                                     <div style="display:flex; align-items:center; padding-right:5px;" v-if="props.data.avatar">
@@ -334,7 +334,7 @@
                             :selections.sync="WTree.optionLocked.selections"
                             :locked="'locked'"
                         >
-                            <template v-slot:block="props">
+                            <template v-slot="props">
                                 <div style="display:flex;">
 
                                     <div style="display:flex; align-items:center; padding-right:5px;" v-if="props.data.avatar">
@@ -400,7 +400,7 @@
                             :iconCheckedPartiallyColor="'orange lighten-2'"
                             :iconCheckedPartiallyDisabledColor="'orange lighten-4'"
                         >
-                            <template v-slot:block="props">
+                            <template v-slot="props">
                                 <div style="display:flex;">
 
                                     <div style="display:flex; align-items:center; padding-right:5px;" v-if="props.data.avatar">
@@ -459,7 +459,7 @@
                             :selectable="true"
                             :selections.sync="WTree.optionLarge.selections"
                         >
-                            <template v-slot:block="props">
+                            <template v-slot="props">
                                 <div style="height:100%; display:flex; align-items:center;">
                                     <div style="margin-right:5px;">
                                         {{props.data.text}}

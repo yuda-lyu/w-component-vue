@@ -114,6 +114,40 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-text-select'"
+                    :casename="'itemFontSize & width'"
+                ></demolink>
+
+                <w-text-select
+                    style="width:250px;"
+                    :icon="mdiCheckUnderlineCircle"
+                    :itemFontSize="'1rem'"
+                    :items="WTextSelect.objItems"
+                    v-model="WTextSelect.objValue"
+                ></w-text-select>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-text-select'"
+                    :casename="'itemTextColor & itemTextColorHover & itemBackgroundColor & itemBackgroundColorHover'"
+                ></demolink>
+
+                <w-text-select
+                    :icon="mdiCheckUnderlineCircle"
+                    :itemTextColor="'orange darken-3'"
+                    :itemTextColorHover="'white'"
+                    :itemBackgroundColor="'white'"
+                    :itemBackgroundColorHover="'orange darken-3'"
+                    :items="WTextSelect.objItems"
+                    v-model="WTextSelect.objValue"
+                ></w-text-select>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-text-select'"
                     :casename="'a lot of items'"
                 ></demolink>
 
@@ -136,6 +170,25 @@
                     :items="WTextSelect.strItems"
                     v-model="WTextSelect.strValue"
                 ></w-text-select>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-text-select'"
+                    :casename="'slot'"
+                ></demolink>
+
+                <w-text-select
+                    :icon="mdiCheckUnderlineCircle"
+                    :items="WTextSelect.objItems"
+                    v-model="WTextSelect.objValue"
+                >
+                    <template v-slot="props">
+                        <div style="color:#f26; font-size:0.7rem;">{{props.item.key}}</div>
+                        <div>{{props.item.text}}</div>
+                    </template>
+                </w-text-select>
             </div>
 
 
@@ -331,6 +384,50 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-text-select'"
+                    :casename="'border & itemFontSize & width'"
+                ></demolink>
+
+                <w-text-select
+                    style="width:250px;"
+                    :shadow="false"
+                    :borderColor="'orange lighten-2'"
+                    :borderColorHover="'orange'"
+                    :borderColorFocus="'orange darken-2'"
+                    :backgroundColorFocus="'orange lighten-5'"
+                    :icon="mdiCheckUnderlineCircle"
+                    :itemFontSize="'1rem'"
+                    :items="WTextSelect.objItems"
+                    v-model="WTextSelect.objValue"
+                ></w-text-select>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-text-select'"
+                    :casename="'border & itemTextColor & itemTextColorHover & itemBackgroundColor & itemBackgroundColorHover'"
+                ></demolink>
+
+                <w-text-select
+                    :shadow="false"
+                    :borderColor="'orange lighten-2'"
+                    :borderColorHover="'orange'"
+                    :borderColorFocus="'orange darken-2'"
+                    :backgroundColorFocus="'orange lighten-5'"
+                    :icon="mdiCheckUnderlineCircle"
+                    :itemTextColor="'orange darken-3'"
+                    :itemTextColorHover="'white'"
+                    :itemBackgroundColor="'white'"
+                    :itemBackgroundColorHover="'orange darken-3'"
+                    :items="WTextSelect.objItems"
+                    v-model="WTextSelect.objValue"
+                ></w-text-select>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-text-select'"
                     :casename="'border & a lot of items'"
                 ></demolink>
 
@@ -363,6 +460,30 @@
                     :items="WTextSelect.strItems"
                     v-model="WTextSelect.strValue"
                 ></w-text-select>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-text-select'"
+                    :casename="'border & slot'"
+                ></demolink>
+
+                <w-text-select
+                    :shadow="false"
+                    :borderColor="'orange lighten-2'"
+                    :borderColorHover="'orange'"
+                    :borderColorFocus="'orange darken-2'"
+                    :backgroundColorFocus="'orange lighten-5'"
+                    :icon="mdiCheckUnderlineCircle"
+                    :items="WTextSelect.objItems"
+                    v-model="WTextSelect.objValue"
+                >
+                    <template v-slot="props">
+                        <div style="color:#f26; font-size:0.7rem;">{{props.item.key}}</div>
+                        <div>{{props.item.text}}</div>
+                    </template>
+                </w-text-select>
             </div>
 
 
