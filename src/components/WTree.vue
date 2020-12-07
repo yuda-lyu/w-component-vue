@@ -2,7 +2,7 @@
     <WDynamicList
         ref="wdl"
         :viewHeightMax="viewHeightMax"
-        :itemMinHeight="itemMinHeight"
+        :itemMinHeight="defItemHeight"
         :itemsPreload="itemsPreload"
         :searchEmpty="searchEmpty"
         :separatorHeight="separatorHeight"
@@ -137,7 +137,7 @@ let gm = globalMemory()
  * @vue-prop {String} [filterKeywords=''] 輸入過濾關鍵字字串，多關鍵字用空白分隔，預設''
  * @vue-prop {Function} [filterFunction=null] 輸入過濾時呼叫處理函數，傳入為各項目物件資料，回傳布林值代表項目內是否含有關鍵字，預設null
  * @vue-prop {String} [searchEmpty='Empty'] 輸入無過濾結果字串，預設'Empty'
- * @vue-prop {Number} [itemMinHeight=34] 輸入各元素顯示高度，單位為px，預設34，會於真實顯示後自動更新高度
+ * @vue-prop {Number} [defItemHeight=34] 輸入按需顯示時各項目預設高度值，給越準或給大部分項目的高度則渲染速度越快，單位為px，預設34
  * @vue-prop {Number} [itemsPreload=5] 輸入上下方預先載入元素數量，預設5
  * @vue-prop {Number} [separatorHeight=1] 輸入分隔線高度數字，預設1
  * @vue-prop {String} [separatorColor='transparent'] 輸入分隔線顏色字串，預設'transparent'
@@ -243,9 +243,9 @@ export default {
             type: String,
             default: 'Empty',
         },
-        itemMinHeight: {
+        defItemHeight: {
             type: Number,
-            default: 34, //設定與iconHeight同高提高效能
+            default: 34,
         },
         itemsPreload: {
             type: Number,
