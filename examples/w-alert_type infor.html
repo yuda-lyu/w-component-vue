@@ -7,7 +7,7 @@
         content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui"
     />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>example for w-alert: icon</title>
+    <title>example for w-alert: type infor</title>
 
     <!-- fontawesome -->
     <link
@@ -109,14 +109,9 @@
     <v-app id="app" style="font-family:inherit;">
         <div class="head1">w-alert</div>
         <div class="bk">
-            <div class="item">icon</div>
+            <div class="item">type infor</div>
 
-            <v-btn
-                small
-                @click="$alert(WAlert.text,{
-                    icon:WAlert.icon
-                })"
-            >Show</v-btn>
+            <v-btn small @click="$alert(WAlert.textInfor,{type:'infor'})">Infor</v-btn>
         </div>
     </v-app>
 

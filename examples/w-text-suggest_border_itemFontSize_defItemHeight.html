@@ -7,7 +7,7 @@
         content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui"
     />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>example for w-text-select: border & itemFontSize & width</title>
+    <title>example for w-text-suggest: border & itemFontSize & defItemHeight</title>
 
     <!-- fontawesome -->
     <link
@@ -73,7 +73,7 @@
     <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.js"></script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.0.13/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.0.14/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -107,21 +107,21 @@
     style="font-family:'Microsoft JhengHei','Avenir','Helvetica'; padding:20px;"
 >
     <v-app id="app" style="font-family:inherit;">
-        <div class="head1">w-text-select</div>
+        <div class="head1">w-text-suggest</div>
         <div class="bk">
-            <div class="item">border & itemFontSize & width</div>
+            <div class="item">border & itemFontSize & defItemHeight</div>
 
-            <w-text-select
-                style="width:250px;"
+            <w-text-suggest
                 :shadow="false"
                 :border-color="'orange lighten-2'"
                 :border-color-hover="'orange'"
                 :border-color-focus="'orange darken-2'"
                 :background-color-focus="'orange lighten-5'"
                 :icon="'mdi-check-underline-circle'"
+                :def-item-height="48"
                 :item-font-size="'1rem'"
-                :items="WTextSelect.objItems"
-                v-model="WTextSelect.objValue"
+                :items="WTextSuggest.objItems"
+                v-model="WTextSuggest.objValue"
             />
         </div>
     </v-app>
@@ -136,7 +136,7 @@
     vuetify: new Vuetify(),
     data: function() {
       return {
-        WTextSelect: {
+        WTextSuggest: {
           objItems: [
             {
               key: "orange",
@@ -200,13 +200,22 @@
             selector: 'input[type="text"]'
           },
           {
-            mode: "eleclick",
-            selector: 'div[tabindex="0"]',
-            nth: 2
+            mode: "keypress",
+            key: "End"
           },
           {
             mode: "keypress",
-            key: "Tab"
+            key: "Backspace",
+            count: 15
+          },
+          {
+            mode: "eleclick",
+            selector: 'li[role="option"]',
+            nth: 2
+          },
+          {
+            mode: "eleclick",
+            selector: "div.bk"
           }
         ]
       };
