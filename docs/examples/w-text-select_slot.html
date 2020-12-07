@@ -73,7 +73,7 @@
     <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.js"></script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.0.13/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.0.14/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -116,7 +116,7 @@
                 :items="WTextSelect.objItems"
                 v-model="WTextSelect.objValue"
             >
-                <template v-slot="props">
+                <template v-slot:item="props">
                     <div
                         style="color:#f26; font-size:0.7rem;"
                     >{{props.item.key}}</div>

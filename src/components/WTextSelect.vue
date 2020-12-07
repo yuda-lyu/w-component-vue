@@ -3,6 +3,7 @@
 
         <w-shell-ellipse
             :paddingStyle="paddingStyle"
+            :borderWidth="constBorderWidth"
             :borderRadius="borderRadius"
             :shadow="shadow"
             :leftIcon="icon"
@@ -29,6 +30,7 @@
                     :items="items"
                     :value="value"
                     :keyText="keyText"
+                    :height="useHeight"
                     :itemTextColor="itemTextColor"
                     :itemTextColorHover="itemTextColorHover"
                     :itemFontSize="itemFontSize"
@@ -36,6 +38,7 @@
                     :itemBackgroundColorHover="itemBackgroundColorHover"
                     :itemPaddingStyle="itemPaddingStyle"
                     :distY="5"
+                    :defItemHeight="defItemHeight"
                     :editable="editable"
                     @update:focused="changeFocused"
                     @input="function(v){$emit('input', v)}"
@@ -43,6 +46,7 @@
                     <template v-slot="props">
 
                         <slot
+                            name="item"
                             :item="props.item"
                             :index="props.index"
                         >
@@ -71,6 +75,7 @@ import WTextSuggestCore from './WTextSuggestCore.vue'
  * @vue-prop {Array} [items=[]] 輸入可選項目陣列，預設[]
  * @vue-prop {Object|String|Number} [value=null] 輸入目前選擇項目，可為物件、字串、數字，預設null
  * @vue-prop {String} [keyText='text'] 輸入取項目物件內之顯示用文字鍵值字串，預設'text'
+ * @vue-prop {Number} [height=30] 輸入項目高度數字，單位為px，預設30
  * @vue-prop {String} [itemTextColor='grey darken-3'] 輸入項目文字顏色字串，預設'grey darken-3'
  * @vue-prop {String} [itemTextColorHover='light-blue darken-2'] 輸入項目文字Hover顏色字串，預設'light-blue darken-2'
  * @vue-prop {String} [itemFontSize='0.9rem'] 輸入項目顯示文字大小字串，預設'0.9rem'
@@ -90,6 +95,7 @@ import WTextSuggestCore from './WTextSuggestCore.vue'
  * @vue-prop {String} [borderColor='white'] 輸入邊框顏色字串，預設'white'
  * @vue-prop {String} [borderColorHover='white'] 輸入滑鼠移入時邊框顏色字串，預設'white'
  * @vue-prop {String} [borderColorFocus='white'] 輸入取得焦點時邊框顏色字串，預設'white'
+ * @vue-prop {Number} [defItemHeight=43] 輸入按需顯示時各項目預設高度值，給越準或給大部分項目的高度則渲染速度越快，單位為px，預設43
  * @vue-prop {Boolean} [editable=true] 輸入是否為編輯模式，預設true
  * @vue-prop {Boolean} [focused=false] 輸入是否為取得焦點狀態，預設false
  */
@@ -123,6 +129,10 @@ export default {
         value: {
             type: [Object, String, Number],
             default: null,
+        },
+        height: {
+            type: Number,
+            default: 30,
         },
         keyText: {
             type: String,
@@ -209,6 +219,10 @@ export default {
             type: String,
             default: 'white',
         },
+        defItemHeight: {
+            type: Number,
+            default: 43,
+        },
         editable: {
             type: Boolean,
             default: true,
@@ -220,6 +234,7 @@ export default {
     },
     data: function() {
         return {
+            constBorderWidth: 1,
             focusedTrans: false,
         }
     },
@@ -236,6 +251,20 @@ export default {
             vo.focusedTrans = vo.focused
 
             return ''
+        },
+
+        useHeight: function () {
+            //console.log('computed useHeight')
+
+            let vo = this
+
+            //height
+            let height = vo.height - 2 * vo.constBorderWidth
+
+            //max
+            height = Math.max(height, 0)
+
+            return height
         },
 
     },

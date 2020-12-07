@@ -7,7 +7,7 @@
         content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui"
     />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>example for w-text-select: itemFontSize & width</title>
+    <title>example for w-text-select: itemFontSize & defItemHeight & width</title>
 
     <!-- fontawesome -->
     <link
@@ -73,7 +73,7 @@
     <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.js"></script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.0.13/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.0.14/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -109,11 +109,12 @@
     <v-app id="app" style="font-family:inherit;">
         <div class="head1">w-text-select</div>
         <div class="bk">
-            <div class="item">itemFontSize & width</div>
+            <div class="item">itemFontSize & defItemHeight & width</div>
 
             <w-text-select
                 style="width:250px;"
                 :icon="'mdi-check-underline-circle'"
+                :def-item-height="48"
                 :item-font-size="'1rem'"
                 :items="WTextSelect.objItems"
                 v-model="WTextSelect.objValue"

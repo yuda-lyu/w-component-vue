@@ -72,7 +72,7 @@
                     :filterKeywords="mode==='suggest'?valueTrans:''"
                     :viewHeightMax="maxHeight"
                     :ratio.sync="ratio"
-                    :itemMinHeight="43"
+                    :itemMinHeight="defItemHeight"
                     :searchEmpty="searchEmpty"
                     :show="show"
                 >
@@ -121,6 +121,7 @@ import WDynamicList from './WDynamicList.vue'
  * @vue-prop {String} [mode='suggest'] 輸入模式字串，可有'suggest'與'select'，suggest代表可查詢並不綁定選項的下拉選單，select代表只能選擇的下拉選單，預設'suggest'
  * @vue-prop {Object|String|Number} value 輸入初始項目物件
  * @vue-prop {Array} [items=[]] 輸入項目陣列，預設[]
+ * @vue-prop {Number} [height=28] 輸入項目高度數字，單位為px，預設28
  * @vue-prop {String} [keyText='text'] 輸入取項目物件內之顯示用文字鍵值字串，預設'text'
  * @vue-prop {String} [itemTextColor='grey darken-3'] 輸入項目文字顏色字串，預設'grey darken-3'
  * @vue-prop {String} [itemTextColorHover='light-blue darken-2'] 輸入項目文字Hover顏色字串，預設'light-blue darken-2'
@@ -136,7 +137,7 @@ import WDynamicList from './WDynamicList.vue'
  * @vue-prop {String} [textAlign='left'] 輸入文字左右對齊字串，預設'left'
  * @vue-prop {String} [placeholder=''] 輸入無文字時的替代字符字串，預設''
  * @vue-prop {String} [searchEmpty='Empty'] 輸入無過濾結果字串，預設'Empty'
- * @vue-prop {Number} [height=28] 輸入高度數字，單位為px，預設28
+ * @vue-prop {Number} [defItemHeight=43] 輸入按需顯示時各項目預設高度值，給越準或給大部分項目的高度則渲染速度越快，單位為px，預設43
  * @vue-prop {Boolean} [editable=true] 輸入是否為編輯模式，預設true
  */
 export default {
@@ -157,6 +158,10 @@ export default {
         items: {
             type: Array,
             default: () => [],
+        },
+        height: {
+            type: Number,
+            default: 28,
         },
         keyText: {
             type: String,
@@ -223,9 +228,9 @@ export default {
             type: String,
             default: 'Empty',
         },
-        height: {
+        defItemHeight: {
             type: Number,
-            default: 28,
+            default: 43,
         },
         editable: {
             type: Boolean,

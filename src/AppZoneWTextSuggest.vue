@@ -129,11 +129,12 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-text-suggest'"
-                    :casename="'itemFontSize'"
+                    :casename="'itemFontSize & defItemHeight'"
                 ></demolink>
 
                 <w-text-suggest
                     :icon="mdiCheckUnderlineCircle"
+                    :defItemHeight="48"
                     :itemFontSize="'1rem'"
                     :items="WTextSuggest.objItems"
                     v-model="WTextSuggest.objValue"
@@ -199,7 +200,7 @@
                     :items="WTextSuggest.objItems"
                     v-model="WTextSuggest.objValue"
                 >
-                    <template v-slot="props">
+                    <template v-slot:item="props">
                         <div style="color:#f26; font-size:0.7rem;">{{props.item.key}}</div>
                         <div>{{props.item.text}}</div>
                     </template>
@@ -419,7 +420,7 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-text-suggest'"
-                    :casename="'border & itemFontSize'"
+                    :casename="'border & itemFontSize & defItemHeight'"
                 ></demolink>
 
                 <w-text-suggest
@@ -429,6 +430,7 @@
                     :borderColorFocus="'orange darken-2'"
                     :backgroundColorFocus="'orange lighten-5'"
                     :icon="mdiCheckUnderlineCircle"
+                    :defItemHeight="48"
                     :itemFontSize="'1rem'"
                     :items="WTextSuggest.objItems"
                     v-model="WTextSuggest.objValue"
@@ -514,7 +516,7 @@
                     :items="WTextSuggest.objItems"
                     v-model="WTextSuggest.objValue"
                 >
-                    <template v-slot="props">
+                    <template v-slot:item="props">
                         <div style="color:#f26; font-size:0.7rem;">{{props.item.key}}</div>
                         <div>{{props.item.text}}</div>
                     </template>

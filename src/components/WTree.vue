@@ -61,8 +61,9 @@
 
                     <!-- 給予width:100%使slot區可自動展開寬度至組件寬 -->
                     <div :style="`display:table-cell; vertical-align:top; height:${iconHeight}px; width:100%;`">
-                        <!-- getEle為因外部需要直接取得動態渲染的元素, 故getEle需於執行階段呼叫, 且也不能使用method只能寫於slot內 -->
+
                         <slot
+                            name="item"
                             :data="props.row.item"
                             :index="props.index"
                         >
@@ -70,6 +71,7 @@
                                 {{getText(props.row.item)}}
                             </div>
                         </slot>
+
                     </div>
 
                 </div>

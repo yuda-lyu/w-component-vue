@@ -114,12 +114,13 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-text-select'"
-                    :casename="'itemFontSize & width'"
+                    :casename="'itemFontSize & defItemHeight & width'"
                 ></demolink>
 
                 <w-text-select
                     style="width:250px;"
                     :icon="mdiCheckUnderlineCircle"
+                    :defItemHeight="48"
                     :itemFontSize="'1rem'"
                     :items="WTextSelect.objItems"
                     v-model="WTextSelect.objValue"
@@ -184,7 +185,7 @@
                     :items="WTextSelect.objItems"
                     v-model="WTextSelect.objValue"
                 >
-                    <template v-slot="props">
+                    <template v-slot:item="props">
                         <div style="color:#f26; font-size:0.7rem;">{{props.item.key}}</div>
                         <div>{{props.item.text}}</div>
                     </template>
@@ -384,7 +385,7 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-text-select'"
-                    :casename="'border & itemFontSize & width'"
+                    :casename="'border & itemFontSize & defItemHeight & width'"
                 ></demolink>
 
                 <w-text-select
@@ -395,6 +396,7 @@
                     :borderColorFocus="'orange darken-2'"
                     :backgroundColorFocus="'orange lighten-5'"
                     :icon="mdiCheckUnderlineCircle"
+                    :defItemHeight="48"
                     :itemFontSize="'1rem'"
                     :items="WTextSelect.objItems"
                     v-model="WTextSelect.objValue"
@@ -479,7 +481,7 @@
                     :items="WTextSelect.objItems"
                     v-model="WTextSelect.objValue"
                 >
-                    <template v-slot="props">
+                    <template v-slot:item="props">
                         <div style="color:#f26; font-size:0.7rem;">{{props.item.key}}</div>
                         <div>{{props.item.text}}</div>
                     </template>
