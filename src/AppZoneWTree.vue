@@ -182,6 +182,32 @@
                             </div>
 
                         </div>
+                    </template>
+                </w-tree>
+
+            </div>
+
+
+            <div class="bk dz">
+                <demolink
+                    :kbname="'w-tree'"
+                    :casename="'slot & defItemHeight'"
+                ></demolink>
+
+                <w-tree
+                    style="border:1px solid #ddd;"
+                    :data="WTree.option.items"
+                    :defItemHeight="62"
+                >
+                    <template v-slot:item="props">
+
+                        <div style="display:flex; align-items:center; height:34px;">
+                            {{props.data.text}}
+                        </div>
+
+                        <div style="padding:5px; background:#fee; font-size:0.7rem;">
+                            addition text
+                        </div>
 
                     </template>
                 </w-tree>
