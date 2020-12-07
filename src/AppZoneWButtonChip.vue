@@ -24,6 +24,34 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-button-chip'"
+                    :casename="'paddingStyle (thin style)'"
+                ></demolink>
+
+                <w-button-chip
+                    :text="WButtonChip.text"
+                    :paddingStyle="{v:0,h:8}"
+                ></w-button-chip>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-button-chip'"
+                    :casename="'paddingStyle (equal height to using icon)'"
+                ></demolink>
+
+                <w-button-chip
+                    :text="WButtonChip.text"
+                    :paddingStyle="{v:4,h:15}"
+                ></w-button-chip>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-button-chip'"
                     :casename="'icon (material)'"
                 ></demolink>
 

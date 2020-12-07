@@ -44,12 +44,12 @@
                                         :icon="icon"
                                         :color="useIconColor"
                                         :size="iconSize"
-                                        v-if="icon"
+                                        v-if="hasIcon"
                                     ></w-icon>
                                 </div>
 
                                 <div
-                                    :style="`margin-right:${text?0:-10}px; transition:all 0.3s; text-transform:none; color:${useTextColor}; min-height:${iconSize}px; display:flex; align-items:center;`"
+                                    :style="`margin-right:${text?0:-10}px; transition:all 0.3s; text-transform:none; color:${useTextColor}; ${hasIcon?'min-height:'+iconSize+'px':''}; display:flex; align-items:center;`"
                                 >
                                     <div :style="`${useTextFontSize}`">{{text}}</div>
                                 </div>
@@ -459,6 +459,11 @@ export default {
         effIconColorActive: function() {
             let vo = this
             return color2hex(vo.iconColorActive)
+        },
+
+        hasIcon: function() {
+            let vo = this
+            return vo.icon !== ''
         },
 
         useIconColor: function() {
