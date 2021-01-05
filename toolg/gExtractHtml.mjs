@@ -238,7 +238,8 @@ function extractAppZone(fn) {
     //console.log('data', data)
 
     function getAttr(me, name) {
-        let c = me('demolink').attr(':' + name)
+        //let c = me('demolink').attr(':' + name)
+        let c = me.children('demolink').attr(':' + name)
         c = w.replace(c, `\'`, '')
         return c
     }
@@ -246,17 +247,19 @@ function extractAppZone(fn) {
     //取各個bk
     $('div.bk').map(function(i, v) {
         // console.log('v', v)
-        let t = $(this).text()
-        let me = cheerio.load(t, $setting)
+        // let t = $(this).text()
+        // let me = cheerio.load(t, $setting)
+        let me = $(this)
+        // console.log(i, 'me', me)
 
         //ss
         let kbname = getAttr(me, 'kbname')
         let casename = getAttr(me, 'casename')
-        // console.log(i, kbname, casename)
+        // console.log(i, 'kbname & casename', kbname, casename)
 
         //tmp
         let tmp = me.html()
-        //console.log(i, tmp)
+        // console.log(i, 'tmp', tmp)
 
         //fn
         let fnc = `${casename}`
