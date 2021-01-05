@@ -7,7 +7,7 @@
         content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui"
     />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>example for :</title>
+    <title>example for w-tree-draggable: shiftLineColor & shiftBlockColor & joinBlockColor</title>
 
     <!-- fontawesome -->
     <link
@@ -73,7 +73,7 @@
     <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.js"></script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.0.17/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.0.18/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -107,11 +107,33 @@
     style="font-family:'Microsoft JhengHei','Avenir','Helvetica'; padding:20px;"
 >
     <v-app id="app" style="font-family:inherit;">
-        <div class="head1"></div>
+        <div class="head1">w-tree-draggable</div>
 
-        {{props.node.id}}
-        Lv{{(props.node.nk.length+1)/2}}
-        {{props.node.name}}
+        <w-tree-draggable
+            :items="WTreeDraggable.option5.items"
+            :shift-line-color="'rgba(120,220,150,0.9)'"
+            :shift-block-color="'rgba(50,220,100,0.1)'"
+            :join-block-color="'rgba(50,220,100,0.2)'"
+        >
+            <template v-slot:item="props">
+                <div style="padding:7px;">
+                    <v-chip
+                        style="margin-right:5px;"
+                        small
+                        label
+                        dark
+                        color="purple darken-1"
+                    >{{props.node.id}}</v-chip>
+                    <v-chip
+                        style="margin-right:5px;"
+                        small
+                        label
+                        color="blue lighten-4"
+                    >Lv{{(props.node.nk.length+1)/2}}</v-chip>
+                    <span style="font-size:0.85rem;">{{props.node.name}}</span>
+                </div>
+            </template>
+        </w-tree-draggable>
     </v-app>
 
     <script>
