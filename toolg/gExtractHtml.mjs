@@ -245,7 +245,9 @@ function extractAppZone(fn) {
 
     //取各個bk
     $('div.bk').map(function(i, v) {
-        let me = cheerio.load(v, $setting)
+        // console.log('v', v)
+        let t = $(this).text()
+        let me = cheerio.load(t, $setting)
 
         //ss
         let kbname = getAttr(me, 'kbname')

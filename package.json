@@ -13,8 +13,8 @@
   "dependencies": {
     "@mdi/js": "^5.8.55",
     "lodash": "^4.17.20",
-    "vue-cli-plugin-vuetify": "^2.0.8",
-    "vuetify": "^2.3.19",
+    "vue-cli-plugin-vuetify": "^2.0.9",
+    "vuetify": "^2.4.0",
     "vuetify-loader": "^1.6.0",
     "wsemi": "^1.5.42"
   },
