@@ -1,6 +1,6 @@
 {
   "name": "w-component-vue",
-  "version": "2.0.16",
+  "version": "2.0.17",
   "author": "yuda-lyu(semisphere)",
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -16,15 +16,15 @@
     "vue-cli-plugin-vuetify": "^2.0.8",
     "vuetify": "^2.3.19",
     "vuetify-loader": "^1.6.0",
-    "wsemi": "^1.5.40"
+    "wsemi": "^1.5.42"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^4.5.9",
     "@vue/cli-plugin-eslint": "^4.5.9",
     "@vue/cli-service": "^4.5.9",
     "@starptech/prettyhtml": "^0.10.0",
-    "cheerio": "^1.0.0-rc.3",
-    "sass": "^1.30.0",
+    "cheerio": "^1.0.0-rc.5",
+    "sass": "^1.32.0",
     "sass-loader": "^10.1.0",
     "vue": "^2.6.12",
     "w-package-tools": "^1.0.30"
