@@ -70,7 +70,7 @@
                             :textColorHover="yesBtnTextColorHover"
                             :backgroundColor="yesBtnBackgroundColor"
                             :backgroundColorHover="yesBtnBackgroundColorHover"
-                            @click="clickBtns(false)"
+                            @click="clickBtns(true)"
                         ></w-button-chip>
 
                     </div>
