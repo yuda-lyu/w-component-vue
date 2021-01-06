@@ -73,7 +73,7 @@
     <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.js"></script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.0.18/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.0.19/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -110,8 +110,9 @@
         <div class="head1">w-confirm</div>
 
         <v-btn
+            depressed
             small
-            rounded
+            elevation="2"
             @click="WConfirm.bShow3=!WConfirm.bShow3"
         >Show({{WConfirm.bShow3}})</v-btn>
 

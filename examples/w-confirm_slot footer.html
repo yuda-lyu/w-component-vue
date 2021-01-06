@@ -73,7 +73,7 @@
     <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.js"></script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.0.18/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.0.19/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -110,8 +110,9 @@
         <div class="head1">w-confirm</div>
 
         <v-btn
+            depressed
             small
-            rounded
+            elevation="2"
             @click="WConfirm.bShow13=!WConfirm.bShow13"
         >Show({{WConfirm.bShow13}})</v-btn>
 
@@ -127,11 +128,13 @@
                     style="border-top:1px solid #ddd; padding:30px; text-align:center; background:#923a60;"
                 >
                     <div
-                        style="font-size:0.8rem; color:#fff; margin-bottom:10px;"
+                        style="font-size:0.8rem; color:#fff; margin-bottom:15px;"
                     >Please confirm the message and then press the AGREE button.</div>
                     <div style>
                         <v-btn
-                            color="pink"
+                            depressed
+                            elevation="2"
+                            color="pink darken-1"
                             dark
                             @click="WConfirm.bShow13=false"
                         >Agree</v-btn>

@@ -73,7 +73,7 @@
     <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.js"></script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.0.18/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.0.19/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -110,8 +110,9 @@
         <div class="head1">w-dialog</div>
 
         <v-btn
+            depressed
             small
-            rounded
+            elevation="2"
             @click="WDialog.bShow18=!WDialog.bShow18"
         >Show({{WDialog.bShow18}})</v-btn>
 
@@ -127,8 +128,9 @@
                     <div style="margin:15px 0px;">Here is 1st window.</div>
 
                     <v-btn
+                        depressed
                         small
-                        rounded
+                        elevation="2"
                         @click="WDialog.bShow18A=!WDialog.bShow18A"
                     >Show({{WDialog.bShow18A}})</v-btn>
 
@@ -149,8 +151,9 @@
                     <div style="margin:15px 0px;">Here is 2nd window.</div>
 
                     <v-btn
+                        depressed
                         small
-                        rounded
+                        elevation="2"
                         @click="WDialog.bShow18B=!WDialog.bShow18B"
                     >Show({{WDialog.bShow18B}})</v-btn>
 

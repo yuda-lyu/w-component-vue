@@ -73,7 +73,7 @@
     <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.js"></script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.0.18/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.0.19/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -110,7 +110,9 @@
         <div class="head1">w-alert</div>
 
         <v-btn
+            depressed
             small
+            elevation="2"
             @click="$alert(WAlert.text,{
                     borderRadius:0
                 })"

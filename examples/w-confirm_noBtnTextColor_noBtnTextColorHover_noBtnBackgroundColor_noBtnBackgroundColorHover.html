@@ -7,7 +7,7 @@
         content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui"
     />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>example for w-confirm: noBtnTextColor & noBtnBackgroundColor & yesBtnTextColor & yesBtnBackgroundColor</title>
+    <title>example for w-confirm: noBtnTextColor & noBtnTextColorHover & noBtnBackgroundColor & noBtnBackgroundColorHover & yesBtnTextColor & yesBtnTextColorHover & yesBtnBackgroundColor & yesBtnBackgroundColorHover</title>
 
     <!-- fontawesome -->
     <link
@@ -73,7 +73,7 @@
     <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.js"></script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.0.18/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.0.19/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -110,8 +110,9 @@
         <div class="head1">w-confirm</div>
 
         <v-btn
+            depressed
             small
-            rounded
+            elevation="2"
             @click="WConfirm.bShow9=!WConfirm.bShow9"
         >Show({{WConfirm.bShow9}})</v-btn>
 
@@ -120,9 +121,13 @@
             :title="WConfirm.title"
             :content="WConfirm.content"
             :no-btn-text-color="'pink lighten-1'"
+            :no-btn-text-color-hover="'pink darken-1'"
             :no-btn-background-color="'white'"
+            :no-btn-background-color-hover="'pink lighten-5'"
             :yes-btn-text-color="'light-blue darken-1'"
+            :yes-btn-text-color-hover="'light-blue darken-3'"
             :yes-btn-background-color="'white'"
+            :yes-btn-background-color-hover="'light-blue lighten-5'"
             @click-no="clickEvent('click-no')"
             @click-yes="clickEvent('click-yes')"
         />

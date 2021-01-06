@@ -73,7 +73,7 @@
     <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.js"></script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.0.18/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.0.19/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -111,7 +111,7 @@
 
         <w-popup :background-color="'pink darken-2'" v-model="WPopup.bShow7">
             <template v-slot:trigger>
-                <v-btn small rounded>Show({{WPopup.bShow7}})</v-btn>
+                <v-btn depressed small elevation="2">Show({{WPopup.bShow7}})</v-btn>
             </template>
 
             <template v-slot:content>
