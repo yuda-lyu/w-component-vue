@@ -10,30 +10,14 @@
 
                 <v-btn
                     v-on="on"
-                    icon
-                    :large="!small"
-                    :elevation="shadow?4:0"
-                    :color="iconColor"
-                    :loading="loading"
-                    :disabled="!editable"
-                    @click="clickBtn"
-                    v-if="backgroundColor==='transparent'"
-                >
-                    <w-icon
-                        :icon="icon"
-                    ></w-icon>
-                </v-btn>
-
-                <v-btn
-                    v-on="on"
                     fab
+                    depressed
+                    :class="{bx:shadow}"
                     :small="small"
-                    :elevation="shadow?4:0"
                     :color="backgroundColor"
                     :loading="loading"
                     :disabled="!editable"
                     @click="clickBtn"
-                    v-else
                 >
                     <w-icon
                         :icon="icon"
@@ -132,4 +116,7 @@ export default {
 </script>
 
 <style scoped>
+.bx {
+    box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2), 0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
+}
 </style>

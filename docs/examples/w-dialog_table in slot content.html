@@ -73,7 +73,7 @@
     <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.js"></script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.0.18/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.0.19/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -110,8 +110,9 @@
         <div class="head1">w-dialog</div>
 
         <v-btn
+            depressed
             small
-            rounded
+            elevation="2"
             @click="WDialog.bShow17=!WDialog.bShow17"
         >Show({{WDialog.bShow17}})</v-btn>
 
@@ -125,7 +126,7 @@
             <template v-slot:content>
                 <div style="padding:20px 20px 10px 20px;">
                     <div style="margin:10px 0px 20px 0px;">{{WDialog.text2}}</div>
-                    <div style="margin:10px 0px 25px 0px;">{{WDialog.text4}}</div>
+                    <div style="margin:10px 0px 25px 0px;">{{WDialog.text3}}</div>
                     <div style="font-size:1.5rem;">A data table</div>
                 </div>
 
@@ -189,6 +190,10 @@
                         </tr>
                     </tbody>
                 </table>
+
+                <div style="padding:20px 20px 10px 20px;">
+                    <div style="margin:10px 0px 25px 0px;">{{WDialog.text4}}</div>
+                </div>
             </template>
         </w-dialog>
     </v-app>

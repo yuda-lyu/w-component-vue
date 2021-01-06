@@ -720,9 +720,9 @@ export default {
                                             sid: 's11',
                                             name: 'src :',
                                             packages: [
-                                                { sid: 's12', name: 'v-btn : ts' },
-                                                { sid: 's13', name: 'v-card : ts' },
-                                                { sid: 's14', name: 'v-window : ts' },
+                                                { sid: 's12', name: 't-btn : ts' },
+                                                { sid: 's13', name: 't-card : ts' },
+                                                { sid: 's14', name: 't-window : ts' },
                                             ],
                                         },
                                     ],

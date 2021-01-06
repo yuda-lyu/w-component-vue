@@ -73,7 +73,7 @@
     <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.js"></script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.0.18/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.0.19/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -112,14 +112,16 @@
         <div style="margin-bottom:10px;">
             <v-btn
                 style="margin:5px;"
+                depressed
                 small
-                rounded
+                elevation="2"
                 @click="processItemsByFun"
             >hide items by fun</v-btn>
             <v-btn
                 style="margin:5px;"
+                depressed
                 small
-                rounded
+                elevation="2"
                 @click="processItemsByInd"
             >hide items by ind</v-btn>
         </div>

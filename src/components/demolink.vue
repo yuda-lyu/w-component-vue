@@ -14,7 +14,6 @@
                     v-on="on"
                     x-small
                     icon
-                    _elevation="2"
                     color="red darken-1"
                     target="_blank"
                     rel="noreferrer noopener"
@@ -34,7 +33,6 @@
                     v-on="on"
                     x-small
                     icon
-                    _elevation="2"
                     color="red darken-1"
                     target="_blank" rel="noreferrer noopener"
                     :href="src"

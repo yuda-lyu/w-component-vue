@@ -277,9 +277,9 @@ export default {
                                             id: 11,
                                             name: 'src :',
                                             children: [
-                                                { id: 12, name: 'v-btn : ts' },
-                                                { id: 13, name: 'v-card : ts' },
-                                                { id: 14, name: 'v-window : ts' },
+                                                { id: 12, name: 't-btn : ts' },
+                                                { id: 13, name: 't-card : ts' },
+                                                { id: 14, name: 't-window : ts' },
                                             ],
                                         },
                                     ],

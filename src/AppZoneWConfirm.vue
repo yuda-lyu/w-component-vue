@@ -14,7 +14,7 @@
                     :casename="'title & content'"
                 ></demolink>
 
-                <v-btn small rounded @click="WConfirm.bShow1=!WConfirm.bShow1">Show({{WConfirm.bShow1}})</v-btn>
+                <v-btn depressed small elevation="2" @click="WConfirm.bShow1=!WConfirm.bShow1">Show({{WConfirm.bShow1}})</v-btn>
 
                 <w-confirm
                     :show.sync="WConfirm.bShow1"
@@ -33,7 +33,7 @@
                     :casename="'contentIcon (fontawesome)'"
                 ></demolink>
 
-                <v-btn small rounded @click="WConfirm.bShow2=!WConfirm.bShow2">Show({{WConfirm.bShow2}})</v-btn>
+                <v-btn depressed small elevation="2" @click="WConfirm.bShow2=!WConfirm.bShow2">Show({{WConfirm.bShow2}})</v-btn>
 
                 <w-confirm
                     :show.sync="WConfirm.bShow2"
@@ -53,7 +53,7 @@
                     :casename="'contentIconColor'"
                 ></demolink>
 
-                <v-btn small rounded @click="WConfirm.bShow3=!WConfirm.bShow3">Show({{WConfirm.bShow3}})</v-btn>
+                <v-btn depressed small elevation="2" @click="WConfirm.bShow3=!WConfirm.bShow3">Show({{WConfirm.bShow3}})</v-btn>
 
                 <w-confirm
                     :show.sync="WConfirm.bShow3"
@@ -73,7 +73,7 @@
                     :casename="'contentIconSize'"
                 ></demolink>
 
-                <v-btn small rounded @click="WConfirm.bShow4=!WConfirm.bShow4">Show({{WConfirm.bShow4}})</v-btn>
+                <v-btn depressed small elevation="2" @click="WConfirm.bShow4=!WConfirm.bShow4">Show({{WConfirm.bShow4}})</v-btn>
 
                 <w-confirm
                     :show.sync="WConfirm.bShow4"
@@ -93,7 +93,7 @@
                     :casename="'noBtnText & yesBtnText'"
                 ></demolink>
 
-                <v-btn small rounded @click="WConfirm.bShow5=!WConfirm.bShow5">Show({{WConfirm.bShow5}})</v-btn>
+                <v-btn depressed small elevation="2" @click="WConfirm.bShow5=!WConfirm.bShow5">Show({{WConfirm.bShow5}})</v-btn>
 
                 <w-confirm
                     :show.sync="WConfirm.bShow5"
@@ -114,7 +114,7 @@
                     :casename="'hasNoBtn & yesBtnText'"
                 ></demolink>
 
-                <v-btn small rounded @click="WConfirm.bShow6=!WConfirm.bShow6">Show({{WConfirm.bShow6}})</v-btn>
+                <v-btn depressed small elevation="2" @click="WConfirm.bShow6=!WConfirm.bShow6">Show({{WConfirm.bShow6}})</v-btn>
 
                 <w-confirm
                     :show.sync="WConfirm.bShow6"
@@ -134,7 +134,7 @@
                     :casename="'titleColor & headerBackgroundColor & footerBackgroundColor'"
                 ></demolink>
 
-                <v-btn small rounded @click="WConfirm.bShow7=!WConfirm.bShow7">Show({{WConfirm.bShow7}})</v-btn>
+                <v-btn depressed small elevation="2" @click="WConfirm.bShow7=!WConfirm.bShow7">Show({{WConfirm.bShow7}})</v-btn>
 
                 <w-confirm
                     :show.sync="WConfirm.bShow7"
@@ -156,7 +156,7 @@
                     :casename="'contentColor & contentIconColor & contentBackgroundColor'"
                 ></demolink>
 
-                <v-btn small rounded @click="WConfirm.bShow8=!WConfirm.bShow8">Show({{WConfirm.bShow8}})</v-btn>
+                <v-btn depressed small elevation="2" @click="WConfirm.bShow8=!WConfirm.bShow8">Show({{WConfirm.bShow8}})</v-btn>
 
                 <w-confirm
                     :show.sync="WConfirm.bShow8"
@@ -175,19 +175,23 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-confirm'"
-                    :casename="'noBtnTextColor & noBtnBackgroundColor & yesBtnTextColor & yesBtnBackgroundColor'"
+                    :casename="'noBtnTextColor & noBtnTextColorHover & noBtnBackgroundColor & noBtnBackgroundColorHover & yesBtnTextColor & yesBtnTextColorHover & yesBtnBackgroundColor & yesBtnBackgroundColorHover'"
                 ></demolink>
 
-                <v-btn small rounded @click="WConfirm.bShow9=!WConfirm.bShow9">Show({{WConfirm.bShow9}})</v-btn>
+                <v-btn depressed small elevation="2" @click="WConfirm.bShow9=!WConfirm.bShow9">Show({{WConfirm.bShow9}})</v-btn>
 
                 <w-confirm
                     :show.sync="WConfirm.bShow9"
                     :title="WConfirm.title"
                     :content="WConfirm.content"
                     :noBtnTextColor="'pink lighten-1'"
+                    :noBtnTextColorHover="'pink darken-1'"
                     :noBtnBackgroundColor="'white'"
+                    :noBtnBackgroundColorHover="'pink lighten-5'"
                     :yesBtnTextColor="'light-blue darken-1'"
+                    :yesBtnTextColorHover="'light-blue darken-3'"
                     :yesBtnBackgroundColor="'white'"
+                    :yesBtnBackgroundColorHover="'light-blue lighten-5'"
                     @click-no="clickEvent('click-no')"
                     @click-yes="clickEvent('click-yes')"
                 ></w-confirm>
@@ -201,7 +205,7 @@
                     :casename="'widthMax'"
                 ></demolink>
 
-                <v-btn small rounded @click="WConfirm.bShow10=!WConfirm.bShow10">Show({{WConfirm.bShow10}})</v-btn>
+                <v-btn depressed small elevation="2" @click="WConfirm.bShow10=!WConfirm.bShow10">Show({{WConfirm.bShow10}})</v-btn>
 
                 <w-confirm
                     :show.sync="WConfirm.bShow10"
@@ -221,7 +225,7 @@
                     :casename="'slot header'"
                 ></demolink>
 
-                <v-btn small rounded @click="WConfirm.bShow11=!WConfirm.bShow11">Show({{WConfirm.bShow11}})</v-btn>
+                <v-btn depressed small elevation="2" @click="WConfirm.bShow11=!WConfirm.bShow11">Show({{WConfirm.bShow11}})</v-btn>
 
                 <w-confirm
                     :show.sync="WConfirm.bShow11"
@@ -251,7 +255,7 @@
                     :casename="'slot content'"
                 ></demolink>
 
-                <v-btn small rounded @click="WConfirm.bShow12=!WConfirm.bShow12">Show({{WConfirm.bShow12}})</v-btn>
+                <v-btn depressed small elevation="2" @click="WConfirm.bShow12=!WConfirm.bShow12">Show({{WConfirm.bShow12}})</v-btn>
 
                 <w-confirm
                     :show.sync="WConfirm.bShow12"
@@ -314,7 +318,7 @@
                     :casename="'slot footer'"
                 ></demolink>
 
-                <v-btn small rounded @click="WConfirm.bShow13=!WConfirm.bShow13">Show({{WConfirm.bShow13}})</v-btn>
+                <v-btn depressed small elevation="2" @click="WConfirm.bShow13=!WConfirm.bShow13">Show({{WConfirm.bShow13}})</v-btn>
 
                 <w-confirm
                     :show.sync="WConfirm.bShow13"
@@ -325,11 +329,11 @@
                 >
                     <template v-slot:footer>
                         <div style="border-top:1px solid #ddd; padding:30px; text-align:center; background:#923a60;">
-                            <div style="font-size:0.8rem; color:#fff; margin-bottom:10px;">
+                            <div style="font-size:0.8rem; color:#fff; margin-bottom:15px;">
                                 Please confirm the message and then press the AGREE button.
                             </div>
                             <div style="">
-                                <v-btn color="pink" dark @click="WConfirm.bShow13=false">Agree</v-btn>
+                                <v-btn depressed elevation="2" color="pink darken-1" dark @click="WConfirm.bShow13=false">Agree</v-btn>
                             </div>
                         </div>
                     </template>
@@ -344,7 +348,7 @@
                     :casename="'scrollable, extensive text'"
                 ></demolink>
 
-                <v-btn small rounded @click="WConfirm.bShow14=!WConfirm.bShow14">Show({{WConfirm.bShow14}})</v-btn>
+                <v-btn depressed small elevation="2" @click="WConfirm.bShow14=!WConfirm.bShow14">Show({{WConfirm.bShow14}})</v-btn>
 
                 <w-confirm
                     :show.sync="WConfirm.bShow14"
@@ -363,7 +367,7 @@
                     :casename="'scrollable, extensive text (slot content)'"
                 ></demolink>
 
-                <v-btn small rounded @click="WConfirm.bShow15=!WConfirm.bShow15">Show({{WConfirm.bShow15}})</v-btn>
+                <v-btn depressed small elevation="2" @click="WConfirm.bShow15=!WConfirm.bShow15">Show({{WConfirm.bShow15}})</v-btn>
 
                 <w-confirm
                     :show.sync="WConfirm.bShow15"

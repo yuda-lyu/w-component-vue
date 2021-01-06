@@ -43,8 +43,8 @@
                 ></demolink>
 
                 <div style="margin-bottom:10px;">
-                    <v-btn style="margin:5px;" small rounded @click="WDynamicList.viewHeightMax=250">set height to 250px</v-btn>
-                    <v-btn style="margin:5px;" small rounded @click="WDynamicList.viewHeightMax=350">set height to 350px</v-btn>
+                    <v-btn style="margin:5px;" depressed small elevation="2" @click="WDynamicList.viewHeightMax=250">set height to 250px</v-btn>
+                    <v-btn style="margin:5px;" depressed small elevation="2" @click="WDynamicList.viewHeightMax=350">set height to 350px</v-btn>
                 </div>
 
                 <w-dynamic-list
@@ -136,8 +136,8 @@
                 ></demolink>
 
                 <div style="margin-bottom:10px;">
-                    <v-btn style="margin:5px;" small rounded @click="WDynamicList.changeText=false">original set</v-btn>
-                    <v-btn style="margin:5px;" small rounded @click="WDynamicList.changeText=true">other set</v-btn>
+                    <v-btn style="margin:5px;" depressed small elevation="2" @click="WDynamicList.changeText=false">original set</v-btn>
+                    <v-btn style="margin:5px;" depressed small elevation="2" @click="WDynamicList.changeText=true">other set</v-btn>
                 </div>
 
                 <w-dynamic-list
@@ -169,8 +169,8 @@
                 ></demolink>
 
                 <div style="margin-bottom:10px;">
-                    <v-btn style="margin:5px;" small rounded @click="WDynamicList.changeSlot=false">original slot</v-btn>
-                    <v-btn style="margin:5px;" small rounded @click="WDynamicList.changeSlot=true">other slot</v-btn>
+                    <v-btn style="margin:5px;" depressed small elevation="2" @click="WDynamicList.changeSlot=false">original slot</v-btn>
+                    <v-btn style="margin:5px;" depressed small elevation="2" @click="WDynamicList.changeSlot=true">other slot</v-btn>
                 </div>
 
                 <w-dynamic-list
@@ -317,8 +317,8 @@
                 ></demolink>
 
                 <div style="margin-bottom:10px;">
-                    <v-btn style="margin:5px;" small rounded @click="processItemsByFun">hide items by fun</v-btn>
-                    <v-btn style="margin:5px;" small rounded @click="processItemsByInd">hide items by ind</v-btn>
+                    <v-btn style="margin:5px;" depressed small elevation="2" @click="processItemsByFun">hide items by fun</v-btn>
+                    <v-btn style="margin:5px;" depressed small elevation="2" @click="processItemsByInd">hide items by ind</v-btn>
                 </div>
 
                 <w-dynamic-list

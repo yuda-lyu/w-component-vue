@@ -44,28 +44,34 @@
                 <slot name="footer">
                     <div :style="useFooterStyle">
 
-                        <v-btn
+                        <w-button-chip
                             style="margin-left:20px;"
-                            small
-                            rounded
-                            :color="noBtnBackgroundColor"
+                            :shiftLeft="-5"
+                            :icon="mdiCloseCircle"
+                            :iconColor="noBtnTextColor"
+                            :iconColorHover="noBtnTextColorHover"
+                            :text="noBtnText"
+                            :textColor="noBtnTextColor"
+                            :textColorHover="noBtnTextColorHover"
+                            :backgroundColor="noBtnBackgroundColor"
+                            :backgroundColorHover="noBtnBackgroundColorHover"
                             @click="clickBtns(false)"
                             v-if="hasNoBtn"
-                        >
-                            <v-icon style="margin-left:-8px;" :color="noBtnTextColor">{{mdiCloseCircle}}</v-icon>
-                            <span :style="`margin-left:5px; font-size:0.875rem; text-transform:none; color:${useNoBtnTextColor}`">{{noBtnText}}</span>
-                        </v-btn>
+                        ></w-button-chip>
 
-                        <v-btn
+                        <w-button-chip
                             style="margin-left:20px;"
-                            small
-                            rounded
-                            :color="yesBtnBackgroundColor"
-                            @click="clickBtns(true)"
-                        >
-                            <v-icon style="margin-left:-8px;" :color="yesBtnTextColor">{{mdiCheckboxMarkedCircle}}</v-icon>
-                            <span :style="`margin-left:5px; font-size:0.875rem; text-transform:none; color:${useYesBtnTextColor}`">{{yesBtnText}}</span>
-                        </v-btn>
+                            :shiftLeft="-5"
+                            :icon="mdiCheckboxMarkedCircle"
+                            :iconColor="yesBtnTextColor"
+                            :iconColorHover="yesBtnTextColorHover"
+                            :text="yesBtnText"
+                            :textColor="yesBtnTextColor"
+                            :textColorHover="yesBtnTextColorHover"
+                            :backgroundColor="yesBtnBackgroundColor"
+                            :backgroundColorHover="yesBtnBackgroundColorHover"
+                            @click="clickBtns(false)"
+                        ></w-button-chip>
 
                     </div>
                 </slot>
@@ -79,6 +85,7 @@
 <script>
 import { mdiAlert, mdiCheckboxMarkedCircle, mdiCloseCircle } from '@mdi/js'
 import color2hex from '../js/vuetifyColor.mjs'
+import WButtonChip from './WButtonChip.vue'
 
 
 /**
@@ -93,10 +100,14 @@ import color2hex from '../js/vuetifyColor.mjs'
  * @vue-prop {Boolean} [hasNoBtn=true] 輸入是否顯示取消按鈕，預設true
  * @vue-prop {String} [noBtnText='Cancel'] 輸入否決按鈕文字字串，預設'Cancel'
  * @vue-prop {String} [noBtnTextColor='white'] 輸入否決按鈕文字顏色字串，預設'white'
+ * @vue-prop {String} [noBtnTextColorHover='white'] 輸入滑鼠移入時否決按鈕文字顏色字串，預設'white'
  * @vue-prop {String} [noBtnBackgroundColor='pink lighten-1'] 輸入否決按鈕顏色字串，預設'pink lighten-1'
+ * @vue-prop {String} [noBtnBackgroundColorHover='pink lighten-1'] 輸入滑鼠移入時否決按鈕顏色字串，預設'pink lighten-1'
  * @vue-prop {String} [yesBtnText='Yes'] 輸入同意按鈕文字字串，預設'Yes'
  * @vue-prop {String} [yesBtnTextColor='white'] 輸入同意按鈕文字顏色字串，預設'white'
+ * @vue-prop {String} [yesBtnTextColorHover='white'] 輸入滑鼠移入時同意按鈕文字顏色字串，預設'white'
  * @vue-prop {String} [yesBtnBackgroundColor='blue'] 輸入同意按鈕顏色字串，預設'blue'
+ * @vue-prop {String} [yesBtnBackgroundColorHover='blue'] 輸入滑鼠移入時同意按鈕顏色字串，預設'blue'
  * @vue-prop {String} [headerBackgroundColor='grey lighten-5'] 輸入上方區塊背景顏色字串，預設'grey lighten-5'
  * @vue-prop {String} [contentBackgroundColor='white'] 輸入內容區塊背景顏色字串，預設'white'
  * @vue-prop {String} [footerBackgroundColor='grey lighten-5'] 輸入下方區塊背景顏色字串，預設'grey lighten-5'
@@ -104,6 +115,7 @@ import color2hex from '../js/vuetifyColor.mjs'
  */
 export default {
     components: {
+        WButtonChip,
     },
     props: {
         show: {
@@ -150,7 +162,15 @@ export default {
             type: String,
             default: 'white',
         },
+        noBtnTextColorHover: {
+            type: String,
+            default: 'white',
+        },
         noBtnBackgroundColor: {
+            type: String,
+            default: 'pink lighten-1',
+        },
+        noBtnBackgroundColorHover: {
             type: String,
             default: 'pink lighten-1',
         },
@@ -162,7 +182,15 @@ export default {
             type: String,
             default: 'white',
         },
+        yesBtnTextColorHover: {
+            type: String,
+            default: 'white',
+        },
         yesBtnBackgroundColor: {
+            type: String,
+            default: 'blue',
+        },
+        yesBtnBackgroundColorHover: {
             type: String,
             default: 'blue',
         },
@@ -254,22 +282,6 @@ export default {
             s['border-top'] = '1px solid #ddd'
             s['text-align'] = 'right'
             return s
-        },
-
-        useNoBtnTextColor: function() {
-            //console.log('computed useNoBtnTextColor')
-
-            let vo = this
-
-            return color2hex(vo.noBtnTextColor)
-        },
-
-        useYesBtnTextColor: function() {
-            //console.log('computed useYesBtnTextColor')
-
-            let vo = this
-
-            return color2hex(vo.yesBtnTextColor)
         },
 
     },

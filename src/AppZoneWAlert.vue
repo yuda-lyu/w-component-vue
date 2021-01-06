@@ -14,7 +14,7 @@
                     :casename="'default'"
                 ></demolink>
 
-                <v-btn small @click="$alert(WAlert.textSuccess)">Success</v-btn>
+                <v-btn depressed small elevation="2" @click="$alert(WAlert.textSuccess)">Success</v-btn>
 
             </div>
 
@@ -25,7 +25,7 @@
                     :casename="'type infor'"
                 ></demolink>
 
-                <v-btn small @click="$alert(WAlert.textInfor,{type:'infor'})">Infor</v-btn>
+                <v-btn depressed small elevation="2" @click="$alert(WAlert.textInfor,{type:'infor'})">Infor</v-btn>
 
             </div>
 
@@ -36,7 +36,7 @@
                     :casename="'type warning'"
                 ></demolink>
 
-                <v-btn small @click="$alert(WAlert.textWarning,{type:'warning'})">Warning</v-btn>
+                <v-btn depressed small elevation="2" @click="$alert(WAlert.textWarning,{type:'warning'})">Warning</v-btn>
 
             </div>
 
@@ -47,7 +47,7 @@
                     :casename="'type error'"
                 ></demolink>
 
-                <v-btn small @click="$alert(WAlert.textError,{type:'error'})">Error</v-btn>
+                <v-btn depressed small elevation="2" @click="$alert(WAlert.textError,{type:'error'})">Error</v-btn>
 
             </div>
 
@@ -58,15 +58,15 @@
                     :casename="'position'"
                 ></demolink>
 
-                <v-btn style="margin-right:10px;" small @click="$alert(WAlert.text,{
+                <v-btn style="margin-right:10px;" depressed small elevation="2" @click="$alert(WAlert.text,{
                     position:'bottom-right'
                 })">bottom-right</v-btn>
 
-                <v-btn style="margin-right:10px;" small @click="$alert(WAlert.text,{
+                <v-btn style="margin-right:10px;" depressed small elevation="2" @click="$alert(WAlert.text,{
                     position:'top-left'
                 })">top-left</v-btn>
 
-                <v-btn style="margin-right:10px;" small @click="$alert(WAlert.text,{
+                <v-btn style="margin-right:10px;" depressed small elevation="2" @click="$alert(WAlert.text,{
                     position:'bottom-left'
                 })">bottom-left</v-btn>
 
@@ -79,7 +79,7 @@
                     :casename="'time (6s)'"
                 ></demolink>
 
-                <v-btn small @click="$alert(WAlert.text,{
+                <v-btn depressed small elevation="2" @click="$alert(WAlert.text,{
                     time:6000
                 })">Show</v-btn>
 
@@ -92,7 +92,7 @@
                     :casename="'textColor'"
                 ></demolink>
 
-                <v-btn small @click="$alert(WAlert.text,{
+                <v-btn depressed small elevation="2" @click="$alert(WAlert.text,{
                     textColor:'#f52'
                 })">Show</v-btn>
 
@@ -105,7 +105,7 @@
                     :casename="'backgroundColor'"
                 ></demolink>
 
-                <v-btn small @click="$alert(WAlert.text,{
+                <v-btn depressed small elevation="2" @click="$alert(WAlert.text,{
                     backgroundColor:'linear-gradient(135deg,rgba(155,255,120,0.4),#fff)'
                 })">Show</v-btn>
 
@@ -118,7 +118,7 @@
                     :casename="'borderWidth'"
                 ></demolink>
 
-                <v-btn small @click="$alert(WAlert.text,{
+                <v-btn depressed small elevation="2" @click="$alert(WAlert.text,{
                     borderWidth:15
                 })">Show</v-btn>
 
@@ -131,7 +131,7 @@
                     :casename="'borderColor'"
                 ></demolink>
 
-                <v-btn small @click="$alert(WAlert.text,{
+                <v-btn depressed small elevation="2" @click="$alert(WAlert.text,{
                     borderColor:'#9f5'
                 })">Show</v-btn>
 
@@ -144,7 +144,7 @@
                     :casename="'borderRadius'"
                 ></demolink>
 
-                <v-btn small @click="$alert(WAlert.text,{
+                <v-btn depressed small elevation="2" @click="$alert(WAlert.text,{
                     borderRadius:0
                 })">Show</v-btn>
 
@@ -157,7 +157,7 @@
                     :casename="'shadowStyle'"
                 ></demolink>
 
-                <v-btn small @click="$alert(WAlert.text,{
+                <v-btn depressed small elevation="2" @click="$alert(WAlert.text,{
                     shadowStyle:'0px 3px 1px -2px rgba(0, 0, 0, 0.08), 0px 2px 2px 0px rgba(0, 0, 0, 0.09), 0px 1px 5px 0px rgba(0, 0, 0, 0.07)'
                 })">Show</v-btn>
 
@@ -170,7 +170,7 @@
                     :casename="'icon'"
                 ></demolink>
 
-                <v-btn small @click="$alert(WAlert.text,{
+                <v-btn depressed small elevation="2" @click="$alert(WAlert.text,{
                     icon:WAlert.icon
                 })">Show</v-btn>
 
@@ -183,7 +183,7 @@
                     :casename="'recive closed event by promise'"
                 ></demolink>
 
-                <v-btn small @click="receiveCloseEvent">Show</v-btn>
+                <v-btn depressed small elevation="2" @click="receiveCloseEvent">Show</v-btn>
 
             </div>
 

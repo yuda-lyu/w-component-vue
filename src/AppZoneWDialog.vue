@@ -14,7 +14,7 @@
                     :casename="'slot content'"
                 ></demolink>
 
-                <v-btn small rounded @click="WDialog.bShow1=!WDialog.bShow1">Show({{WDialog.bShow1}})</v-btn>
+                <v-btn depressed small elevation="2" @click="WDialog.bShow1=!WDialog.bShow1">Show({{WDialog.bShow1}})</v-btn>
 
                 <w-dialog
                     :show.sync="WDialog.bShow1"
@@ -51,7 +51,7 @@
                     :casename="'icon (fontawesome)'"
                 ></demolink>
 
-                <v-btn small rounded @click="WDialog.bShow2=!WDialog.bShow2">Show({{WDialog.bShow2}})</v-btn>
+                <v-btn depressed small elevation="2" @click="WDialog.bShow2=!WDialog.bShow2">Show({{WDialog.bShow2}})</v-btn>
 
                 <w-dialog
                     :show.sync="WDialog.bShow2"
@@ -89,7 +89,7 @@
                     :casename="'title'"
                 ></demolink>
 
-                <v-btn small rounded @click="WDialog.bShow3=!WDialog.bShow3">Show({{WDialog.bShow3}})</v-btn>
+                <v-btn depressed small elevation="2" @click="WDialog.bShow3=!WDialog.bShow3">Show({{WDialog.bShow3}})</v-btn>
 
                 <w-dialog
                     :show.sync="WDialog.bShow3"
@@ -126,7 +126,7 @@
                     :casename="'headerBackgroundColor'"
                 ></demolink>
 
-                <v-btn small rounded @click="WDialog.bShow4=!WDialog.bShow4">Show({{WDialog.bShow4}})</v-btn>
+                <v-btn depressed small elevation="2" @click="WDialog.bShow4=!WDialog.bShow4">Show({{WDialog.bShow4}})</v-btn>
 
                 <w-dialog
                     :show.sync="WDialog.bShow4"
@@ -164,7 +164,7 @@
                     :casename="'headerIconColor & headerTextColor & headerBackgroundColor'"
                 ></demolink>
 
-                <v-btn small rounded @click="WDialog.bShow5=!WDialog.bShow5">Show({{WDialog.bShow5}})</v-btn>
+                <v-btn depressed small elevation="2" @click="WDialog.bShow5=!WDialog.bShow5">Show({{WDialog.bShow5}})</v-btn>
 
                 <w-dialog
                     :show.sync="WDialog.bShow5"
@@ -204,7 +204,7 @@
                     :casename="'headerBtns'"
                 ></demolink>
 
-                <v-btn small rounded @click="WDialog.bShow6=!WDialog.bShow6">Show({{WDialog.bShow6}})</v-btn>
+                <v-btn depressed small elevation="2" @click="WDialog.bShow6=!WDialog.bShow6">Show({{WDialog.bShow6}})</v-btn>
 
                 <w-dialog
                     :show.sync="WDialog.bShow6"
@@ -243,7 +243,7 @@
                     :casename="'slot header-left & header-right'"
                 ></demolink>
 
-                <v-btn small rounded @click="WDialog.bShow7=!WDialog.bShow7">Show({{WDialog.bShow7}})</v-btn>
+                <v-btn depressed small elevation="2" @click="WDialog.bShow7=!WDialog.bShow7">Show({{WDialog.bShow7}})</v-btn>
 
                 <w-dialog
                     :show.sync="WDialog.bShow7"
@@ -298,7 +298,7 @@
                     :casename="'saveBtnTooltip'"
                 ></demolink>
 
-                <v-btn small rounded @click="WDialog.bShow8=!WDialog.bShow8">Show({{WDialog.bShow8}})</v-btn>
+                <v-btn depressed small elevation="2" @click="WDialog.bShow8=!WDialog.bShow8">Show({{WDialog.bShow8}})</v-btn>
 
                 <w-dialog
                     :show.sync="WDialog.bShow8"
@@ -336,7 +336,7 @@
                     :casename="'hasSaveBtn, no save button'"
                 ></demolink>
 
-                <v-btn small rounded @click="WDialog.bShow9=!WDialog.bShow9">Show({{WDialog.bShow9}})</v-btn>
+                <v-btn depressed small elevation="2" @click="WDialog.bShow9=!WDialog.bShow9">Show({{WDialog.bShow9}})</v-btn>
 
                 <w-dialog
                     :show.sync="WDialog.bShow9"
@@ -374,7 +374,7 @@
                     :casename="'closeBtnTooltip'"
                 ></demolink>
 
-                <v-btn small rounded @click="WDialog.bShow10=!WDialog.bShow10">Show({{WDialog.bShow10}})</v-btn>
+                <v-btn depressed small elevation="2" @click="WDialog.bShow10=!WDialog.bShow10">Show({{WDialog.bShow10}})</v-btn>
 
                 <w-dialog
                     :show.sync="WDialog.bShow10"
@@ -412,7 +412,7 @@
                     :casename="'hasSaveBtn and hasCloseBtn, no save and close button'"
                 ></demolink>
 
-                <v-btn small rounded @click="WDialog.bShow11=!WDialog.bShow11">Show({{WDialog.bShow11}})</v-btn>
+                <v-btn depressed small elevation="2" @click="WDialog.bShow11=!WDialog.bShow11">Show({{WDialog.bShow11}})</v-btn>
 
                 <w-dialog
                     :show.sync="WDialog.bShow11"
@@ -451,7 +451,7 @@
                     :casename="'contentTextColor & contentBackgroundColor'"
                 ></demolink>
 
-                <v-btn small rounded @click="WDialog.bShow12=!WDialog.bShow12">Show({{WDialog.bShow12}})</v-btn>
+                <v-btn depressed small elevation="2" @click="WDialog.bShow12=!WDialog.bShow12">Show({{WDialog.bShow12}})</v-btn>
 
                 <w-dialog
                     :show.sync="WDialog.bShow12"
@@ -490,7 +490,7 @@
                     :casename="'widthMax, for narrow width'"
                 ></demolink>
 
-                <v-btn small rounded @click="WDialog.bShow13=!WDialog.bShow13">Show({{WDialog.bShow13}})</v-btn>
+                <v-btn depressed small elevation="2" @click="WDialog.bShow13=!WDialog.bShow13">Show({{WDialog.bShow13}})</v-btn>
 
                 <w-dialog
                     :show.sync="WDialog.bShow13"
@@ -528,7 +528,7 @@
                     :casename="'fullscreen'"
                 ></demolink>
 
-                <v-btn small rounded @click="WDialog.bShow14=!WDialog.bShow14">Show({{WDialog.bShow14}})</v-btn>
+                <v-btn depressed small elevation="2" @click="WDialog.bShow14=!WDialog.bShow14">Show({{WDialog.bShow14}})</v-btn>
 
                 <w-dialog
                     :show.sync="WDialog.bShow14"
@@ -553,7 +553,7 @@
                                 {{WDialog.text4}}
                             </div>
 
-                            <v-btn small rounded @click="WDialog.bShow14=!WDialog.bShow14">Hide Window</v-btn>
+                            <v-btn depressed small elevation="2" @click="WDialog.bShow14=!WDialog.bShow14">Hide Window</v-btn>
 
                         </div>
                     </template>
@@ -569,7 +569,7 @@
                     :casename="'scrollable, extensive text'"
                 ></demolink>
 
-                <v-btn small rounded @click="WDialog.bShow15=!WDialog.bShow15">Show({{WDialog.bShow15}})</v-btn>
+                <v-btn depressed small elevation="2" @click="WDialog.bShow15=!WDialog.bShow15">Show({{WDialog.bShow15}})</v-btn>
 
                 <w-dialog
                     :show.sync="WDialog.bShow15"
@@ -609,7 +609,7 @@
                     :casename="'separate for slot content'"
                 ></demolink>
 
-                <v-btn small rounded @click="WDialog.bShow16=!WDialog.bShow16">Show({{WDialog.bShow16}})</v-btn>
+                <v-btn depressed small elevation="2" @click="WDialog.bShow16=!WDialog.bShow16">Show({{WDialog.bShow16}})</v-btn>
 
                 <w-dialog
                     :show.sync="WDialog.bShow16"
@@ -653,7 +653,7 @@
                     :casename="'table in slot content'"
                 ></demolink>
 
-                <v-btn small rounded @click="WDialog.bShow17=!WDialog.bShow17">Show({{WDialog.bShow17}})</v-btn>
+                <v-btn depressed small elevation="2" @click="WDialog.bShow17=!WDialog.bShow17">Show({{WDialog.bShow17}})</v-btn>
 
                 <w-dialog
                     :show.sync="WDialog.bShow17"
@@ -670,7 +670,7 @@
                                 {{WDialog.text2}}
                             </div>
                             <div style="margin:10px 0px 25px 0px;">
-                                {{WDialog.text4}}
+                                {{WDialog.text3}}
                             </div>
                             <div style="font-size:1.5rem;">
                                 A data table
@@ -708,6 +708,12 @@
                             </tbody>
                         </table>
 
+                        <div style="padding:20px 20px 10px 20px;">
+                            <div style="margin:10px 0px 25px 0px;">
+                                {{WDialog.text4}}
+                            </div>
+                        </div>
+
                     </template>
 
                 </w-dialog>
@@ -721,7 +727,7 @@
                     :casename="'multi dialogs'"
                 ></demolink>
 
-                <v-btn small rounded @click="WDialog.bShow18=!WDialog.bShow18">Show({{WDialog.bShow18}})</v-btn>
+                <v-btn depressed small elevation="2" @click="WDialog.bShow18=!WDialog.bShow18">Show({{WDialog.bShow18}})</v-btn>
 
                 <w-dialog
                     :show.sync="WDialog.bShow18"
@@ -738,7 +744,7 @@
                                 Here is 1st window.
                             </div>
 
-                            <v-btn small rounded @click="WDialog.bShow18A=!WDialog.bShow18A">Show({{WDialog.bShow18A}})</v-btn>
+                            <v-btn depressed small elevation="2" @click="WDialog.bShow18A=!WDialog.bShow18A">Show({{WDialog.bShow18A}})</v-btn>
 
                             <div style="height:160px;"></div>
 
@@ -762,7 +768,7 @@
                                 Here is 2nd window.
                             </div>
 
-                            <v-btn small rounded @click="WDialog.bShow18B=!WDialog.bShow18B">Show({{WDialog.bShow18B}})</v-btn>
+                            <v-btn depressed small elevation="2" @click="WDialog.bShow18B=!WDialog.bShow18B">Show({{WDialog.bShow18B}})</v-btn>
 
                             <div style="height:80px;"></div>
 
