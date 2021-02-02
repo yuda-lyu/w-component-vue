@@ -338,21 +338,21 @@ export default {
 
 <style scoped>
 /* 因v-toolbar使用contain:layout, 以及v-toolbar__content使用z-index:0, 導致v-toolbar的內容物展示低於v-card, 若v-toolbar內使用popup會被v-card內容物遮, 故需覆寫v-toolbar與v-toolbar__content的css屬性 */
-::v-deep .v-toolbar {
+::v-deep(.v-toolbar) {
     contain: none;
 }
-::v-deep .v-toolbar__content {
+::v-deep(.v-toolbar__content) {
     z-index: inherit;
 }
 /* 因v-card內文字大小與間距改小, 故強制還原成inherit */
-::v-deep .v-card__text {
+::v-deep(.v-card__text) {
     line-height: inherit;
     font-size: inherit;
     font-weight: inherit;
     letter-spacing: inherit;
 }
 /* 因v-card內文字顏色變淡, 故強制還原成inherit */
-::v-deep .theme--light.v-card > v-card__text {
+::v-deep(.theme--light.v-card) > v-card__text {
     color: inherit;
 }
 </style>

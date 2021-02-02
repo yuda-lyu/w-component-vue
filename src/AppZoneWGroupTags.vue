@@ -628,6 +628,33 @@
             <div class="bk" style="display:block;">
                 <demolink
                     :kbname="'w-group-tags'"
+                    :casename="'iconColor & iconColorHover & textColor & textColorHover & borderColor & borderColorHover & backgroundColor & backgroundColorHover & not draggable & no shadow & editableClose(no close button) & editableInput(no slot input)'"
+                ></demolink>
+
+                <w-group-tags
+                    v-model="WGroupTags.strings"
+                    :icon="mdiChartBubble"
+                    :iconColor="'pink darken-1'"
+                    :iconColorHover="'pink'"
+                    :textColor="'pink darken-1'"
+                    :textColorHover="'pink'"
+                    :borderColor="'pink'"
+                    :borderColorHover="'pink lighten-3'"
+                    :backgroundColor="'transparent'"
+                    :backgroundColorHover="'transparent'"
+                    :shadow="false"
+                    :draggable="false"
+                    :editableClose="false"
+                    :editableInput="false"
+                ></w-group-tags>
+
+                <div style="padding-left:5px; font-size:0.9rem; color:#ea6;">binding: strings</div>
+            </div>
+
+
+            <div class="bk" style="display:block;">
+                <demolink
+                    :kbname="'w-group-tags'"
                     :casename="'not editable & nodata'"
                 ></demolink>
 

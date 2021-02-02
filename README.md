@@ -70,7 +70,7 @@ export default {
 ```
 [Necessary] Add script for vue.
 ```alias
-<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.min.js"></script>
 ```
 [Optional] Add link for icon.
 ```alias
@@ -84,7 +84,7 @@ export default {
 ```
 [Necessary] Add script for w-component-vue.
 ```alias
-<script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.0.24/dist/w-component-vue.umd.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.0.25/dist/w-component-vue.umd.js"></script>
 ```
 Directly use:
 ```alias

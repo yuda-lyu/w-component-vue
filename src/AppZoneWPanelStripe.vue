@@ -475,7 +475,6 @@
                         </div>
 
                         <!-- 內嵌span為避免self-closing於前端vue模板無法解析問題 -->
-                        <!-- 此處會導致IE11解析異常進而導致footer無法出現 -->
                         <div style="border-top:1px solid #ddd;"><span></span></div>
 
                         <div style="padding:20px; font-size:0.85rem;">
