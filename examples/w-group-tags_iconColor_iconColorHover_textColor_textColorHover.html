@@ -7,7 +7,7 @@
         content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui"
     />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>example for w-group-tags: closeWithInterceptor</title>
+    <title>example for w-group-tags: iconColor & iconColorHover & textColor & textColorHover & borderColor & borderColorHover & backgroundColor & backgroundColorHover & not draggable & no shadow & editableClose(no close button) & editableInput(no slot input)</title>
 
     <!-- fontawesome -->
     <link
@@ -112,8 +112,18 @@
         <w-group-tags
             v-model="WGroupTags.strings"
             :icon="'mdi-chart-bubble'"
-            :close-with-interceptor="true"
-            @click-close="ckBtnClosePm"
+            :icon-color="'pink darken-1'"
+            :icon-color-hover="'pink'"
+            :text-color="'pink darken-1'"
+            :text-color-hover="'pink'"
+            :border-color="'pink'"
+            :border-color-hover="'pink lighten-3'"
+            :background-color="'transparent'"
+            :background-color-hover="'transparent'"
+            :shadow="false"
+            :draggable="false"
+            :editable-close="false"
+            :editable-input="false"
         />
 
         <div
