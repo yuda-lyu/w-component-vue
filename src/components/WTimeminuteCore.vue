@@ -252,7 +252,7 @@ export default {
 </script>
 
 <style scoped>
-::v-deep(div.v-input__icon) {
+::v-deep div.v-input__icon {
     transform: translateX(-5px);
 }
 </style>
