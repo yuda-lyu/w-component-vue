@@ -28,7 +28,7 @@
 import each from 'lodash/each'
 import merge from 'lodash/merge'
 import importResources from 'wsemi/src/importResources.mjs'
-import showImagesDyn from 'wsemi/src/showImagesDyn.mjs'
+import domShowImagesDyn from 'wsemi/src/domShowImagesDyn.mjs'
 import domFadeIn from 'wsemi/src/domFadeIn.mjs'
 import WIconLoading from './WIconLoading.vue'
 
@@ -54,7 +54,7 @@ export default {
     props: {
         pathItems: {
             type: Array,
-            default: () => [ //預設值詳見 wsemi/src/showImagesDyn.mjs, 因此處有預載, 故所使用viewerjs的版本得相同
+            default: () => [ //預設值詳見 wsemi/src/domShowImagesDyn.mjs, 因此處有預載, 故所使用viewerjs的版本得相同
                 'https://cdn.jsdelivr.net/npm/viewerjs@1.6.2/dist/viewer.min.css',
                 'https://cdn.jsdelivr.net/npm/viewerjs@1.6.2/dist/viewer.min.js',
             ],
@@ -136,8 +136,8 @@ export default {
                 eleGroup = vo.$refs.imgsGroup
             }
 
-            //showImagesDyn
-            showImagesDyn(e.target, eleGroup, vo.opt, vo.pathItems)
+            //domShowImagesDyn
+            domShowImagesDyn(e.target, eleGroup, vo.opt, vo.pathItems)
                 .catch((err) => {
                     console.log(err)
                 })
