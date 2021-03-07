@@ -20,7 +20,7 @@ To view some examples for more understanding, visit examples:
 
 ## Installation
 ### Using npm(ES6 module):
-> **Note:** w-component-vue is mainly composed of `vuetify` and `@mdi/js`.
+> **Note:** w-component-vue is mainly dependent on `vuetify` and `@mdi/js`.
 
 ```alias
 npm i w-component-vue
@@ -62,7 +62,7 @@ export default {
 ```
 
 ### In a browser(UMD module):
-> **Note:** umd file of `w-component-vue` depends on `vue` and `vuetify`.
+> **Note:** umd file of `w-component-vue` is mainly dependent on `vue` and `vuetify`.
 
 [Optional] Add script with nomodule for IE11.
 ```alias
@@ -84,7 +84,7 @@ export default {
 ```
 [Necessary] Add script for w-component-vue.
 ```alias
-<script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.0.27/dist/w-component-vue.umd.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.0.28/dist/w-component-vue.umd.js"></script>
 ```
 Directly use:
 ```alias

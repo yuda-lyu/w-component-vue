@@ -16,11 +16,11 @@ let opt = {
     <link _href="https://fonts.googleapis.com/css?family=Material+Icons" rel="stylesheet">
 
     <!-- data -->
-    <script src="https://cdn.jsdelivr.net/npm/w-demores@1.0.10/res/data/dataAAPL.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/w-demores@1.0.10/res/data/dataUSD2EUR.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/w-demores@1.0.10/res/data/dataTemperature.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/w-demores@1.0.10/res/data/dataHousePriceArea.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/w-demores@1.0.10/res/data/dataFlare.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-demores@1.0.12/res/data/dataAAPL.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-demores@1.0.12/res/data/dataUSD2EUR.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-demores@1.0.12/res/data/dataTemperature.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-demores@1.0.12/res/data/dataHousePriceArea.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-demores@1.0.12/res/data/dataFlare.js"></script>
     <script>
         //save in window
         window.dataAAPL=dataAAPL
@@ -29,6 +29,9 @@ let opt = {
         window.dataHousePriceArea=dataHousePriceArea
         window.dataFlare=dataFlare
     </script>
+
+    <!-- @babel/polyfill -->
+    <script nomodule src="https://cdn.jsdelivr.net/npm/@babel/polyfill/dist/polyfill.min.js"></script>
 
     <!-- vuetify -->
     <link href="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.css" rel="stylesheet">

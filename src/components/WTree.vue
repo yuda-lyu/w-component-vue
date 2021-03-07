@@ -1349,7 +1349,7 @@ export default {
             //dbc
             vo.dbc(() => {
 
-                //refresh
+                //filterKeyWords
                 vo.filterKeyWords()
 
             })
