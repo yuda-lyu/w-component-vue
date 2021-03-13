@@ -26,6 +26,7 @@
 
             <div style="margin-right:-5px;">
                 <w-text-suggest-core
+                    :mode="'suggest'"
                     :items="items"
                     :value="value"
                     :height="useHeight"
@@ -43,6 +44,8 @@
                     :editable="editable"
                     @update:focused="changeFocused"
                     @input="function(v){$emit('input', v)}"
+                    @enter="function(v){$emit('enter', v)}"
+                    @blur="function(v){$emit('blur', v)}"
                 >
                     <template v-slot="props">
 
