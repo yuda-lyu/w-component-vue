@@ -84,7 +84,7 @@ let gm = globalMemory()
  * @vue-prop {String} [searchEmpty='Empty'] 輸入無過濾結果字串，預設'Empty'
  * @vue-prop {Number} [separatorHeight=1] 輸入分隔線高度數字，預設1
  * @vue-prop {String} [separatorColor='transparent'] 輸入分隔線顏色字串，預設'transparent'
- * @vue-prop {Boolean} [show=true] 輸入是否為顯示模式，預設true，供組件嵌入popup時, 因先初始化但尚未顯示不需渲染, 可給予show=false避免無限偵測與重算高度問題
+ * @vue-prop {Boolean} [show=true] 輸入是否為顯示模式布林值，預設true，供組件嵌入popup時, 因先初始化但尚未顯示不需渲染, 可給予show=false避免無限偵測與重算高度問題
  */
 export default {
     components: {

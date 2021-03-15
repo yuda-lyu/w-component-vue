@@ -207,6 +207,26 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-text-suggest'"
+                    :casename="'showPanel'"
+                ></demolink>
+
+                <div style="margin-bottom:5px;">
+                    <span style="margin-right:5px; font-size:0.8rem;">showPanel={{WTextSuggest.showPanel}}</span>
+                    <v-btn style="margin-right:5px;" small @click="WTextSuggest.showPanel=true">show panel</v-btn>
+                    <v-btn style="margin-right:5px;" small @click="WTextSuggest.showPanel=false">hide panel</v-btn>
+                </div>
+
+                <w-text-suggest
+                    :showPanel.sync="WTextSuggest.showPanel"
+                    :items="WTextSuggest.objItems"
+                    v-model="WTextSuggest.objValue"
+                ></w-text-suggest>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-text-suggest'"
                     :casename="'slot'"
                 ></demolink>
 
@@ -538,6 +558,31 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-text-suggest'"
+                    :casename="'border & showPanel'"
+                ></demolink>
+
+                <div style="margin-bottom:5px;">
+                    <span style="margin-right:5px; font-size:0.8rem;">showPanel={{WTextSuggest.showPanel}}</span>
+                    <v-btn style="margin-right:5px;" small @click="WTextSuggest.showPanel=true">show panel</v-btn>
+                    <v-btn style="margin-right:5px;" small @click="WTextSuggest.showPanel=false">hide panel</v-btn>
+                </div>
+
+                <w-text-suggest
+                    :showPanel.sync="WTextSuggest.showPanel"
+                    :shadow="false"
+                    :borderColor="'orange lighten-2'"
+                    :borderColorHover="'orange'"
+                    :borderColorFocus="'orange darken-2'"
+                    :backgroundColorFocus="'orange lighten-5'"
+                    :items="WTextSuggest.objItems"
+                    v-model="WTextSuggest.objValue"
+                ></w-text-suggest>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-text-suggest'"
                     :casename="'border & slot'"
                 ></demolink>
 
@@ -622,6 +667,7 @@ export default {
             mdiCheckUnderlineCircle,
             mdiPaw,
             'WTextSuggest': {
+                showPanel: false,
                 objItems: [
                     {
                         key: 'orange',

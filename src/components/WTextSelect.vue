@@ -71,7 +71,7 @@ import WTextSuggestCore from './WTextSuggestCore.vue'
 /**
  * @vue-prop {Object} [paddingStyle={v:0,h:15}] 輸入內寬距離物件，可用鍵值為v、h、left、right、top、bottom，v代表同時設定top與bottom，h代表設定left與right，若有重複設定時後面鍵值會覆蓋前面，各鍵值為寬度數字，單位為px，預設{v:0,h:15}
  * @vue-prop {Number} [borderRadius=30] 輸入框圓角度數字，單位為px，預設30
- * @vue-prop {Boolean} [shadow=true] 輸入是否為陰影模式，預設true
+ * @vue-prop {Boolean} [shadow=true] 輸入是否為陰影模式布林值，預設true
  * @vue-prop {Array} [items=[]] 輸入可選項目陣列，預設[]
  * @vue-prop {Object|String|Number} [value=null] 輸入目前選擇項目，可為物件、字串、數字，預設null
  * @vue-prop {String} [keyText='text'] 輸入取項目物件內之顯示用文字鍵值字串，預設'text'
@@ -95,9 +95,9 @@ import WTextSuggestCore from './WTextSuggestCore.vue'
  * @vue-prop {String} [borderColor='white'] 輸入邊框顏色字串，預設'white'
  * @vue-prop {String} [borderColorHover='white'] 輸入滑鼠移入時邊框顏色字串，預設'white'
  * @vue-prop {String} [borderColorFocus='white'] 輸入取得焦點時邊框顏色字串，預設'white'
- * @vue-prop {Number} [defItemHeight=43] 輸入按需顯示時各項目預設高度值，給越準或給大部分項目的高度則渲染速度越快，單位為px，預設43
- * @vue-prop {Boolean} [editable=true] 輸入是否為編輯模式，預設true
- * @vue-prop {Boolean} [focused=false] 輸入是否為取得焦點狀態，預設false
+ * @vue-prop {Number} [defItemHeight=43] 輸入按需顯示時各項目預設高度值數字，給越準或給大部分項目的高度則渲染速度越快，單位為px，預設43
+ * @vue-prop {Boolean} [editable=true] 輸入是否為編輯模式布林值，預設true
+ * @vue-prop {Boolean} [focused=false] 輸入是否為取得焦點狀態布林值，預設false
  */
 export default {
     components: {

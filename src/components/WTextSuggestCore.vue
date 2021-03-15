@@ -5,9 +5,10 @@
         :maxWidth="maxWidth"
         :distY="distY"
         :editable="editable"
-        v-model="show"
-        @input="(v)=>{changeShow(v,'WPopup')}"
+        v-model="showPanelTrans"
+        @input="(v)=>{triggerShow(v,'WPopup')}"
         :changeValue="changeValue"
+        :changeShow="changeShow"
     >
 
         <template v-slot:trigger>
@@ -74,7 +75,7 @@
                     :ratio.sync="ratio"
                     :itemMinHeight="defItemHeight"
                     :searchEmpty="searchEmpty"
-                    :show="show"
+                    :show="showPanelTrans"
                 >
                     <template v-slot="props">
 
@@ -137,8 +138,9 @@ import WDynamicList from './WDynamicList.vue'
  * @vue-prop {String} [textAlign='left'] 輸入文字左右對齊字串，預設'left'
  * @vue-prop {String} [placeholder=''] 輸入無文字時的替代字符字串，預設''
  * @vue-prop {String} [searchEmpty='Empty'] 輸入無過濾結果字串，預設'Empty'
- * @vue-prop {Number} [defItemHeight=43] 輸入按需顯示時各項目預設高度值，給越準或給大部分項目的高度則渲染速度越快，單位為px，預設43
- * @vue-prop {Boolean} [editable=true] 輸入是否為編輯模式，預設true
+ * @vue-prop {Number} [defItemHeight=43] 輸入按需顯示時各項目預設高度數字，給越準或給大部分項目的高度則渲染速度越快，單位為px，預設43
+ * @vue-prop {Boolean} [editable=true] 輸入是否為編輯模式布林值，預設true
+ * @vue-prop {Boolean} [showPanel=false] 輸入是否顯示清單布林值，預設false
  */
 export default {
     components: {
@@ -236,15 +238,30 @@ export default {
             type: Boolean,
             default: true,
         },
+        showPanel: {
+            type: Boolean,
+            default: false,
+        },
     },
     data: function() {
         return {
-            show: false,
+            showPanelTrans: false,
             valueTrans: null,
             ratio: 0,
         }
     },
     computed: {
+
+        changeShow: function () {
+            //console.log('computed changeShow')
+
+            let vo = this
+
+            //showPanelTrans
+            vo.showPanelTrans = vo.showPanel
+
+            return ''
+        },
 
         changeValue: function () {
             //console.log('computed changeValue')
@@ -348,7 +365,7 @@ export default {
 
             let vo = this
 
-            return vo.show ? 180 : 0
+            return vo.showPanelTrans ? 180 : 0
         },
 
     },
@@ -380,10 +397,10 @@ export default {
             }
 
             //check, 若由滑鼠進行範圍選擇, 離開時位於組件外時, 會被popup視為滑鼠點擊至內容區外側(於外面mousuup), 故會自動隱藏選單, 得重新顯示
-            if (!vo.show) {
+            if (!vo.showPanelTrans) {
 
-                //show
-                vo.show = true
+                //showPanelTrans
+                vo.showPanelTrans = true
 
             }
 
@@ -399,11 +416,11 @@ export default {
                 return
             }
 
-            //因由鍵盤觸發不會有點擊事件, 得直接變更show
-            vo.show = true
+            //因由鍵盤觸發不會有點擊事件, 得直接變更showPanel
+            vo.showPanelTrans = true
 
-            //changeShow
-            vo.changeShow(vo.show, 'focusText')
+            //triggerShow
+            vo.triggerShow(vo.showPanelTrans, 'focusText')
 
         },
 
@@ -430,27 +447,35 @@ export default {
 
         },
 
-        changeShow: function(show, from) {
-            //console.log('methods changeShow', show, from)
+        triggerShow: function(showPanel, from) {
+            //console.log('methods triggerShow', showPanel, from)
 
             let vo = this
 
-            // //show, 因WPopup會更新show才觸發, 不需再次覆寫vo.show避免事件多重觸發, 若div focus要呼叫得先變更show=true才調用此函數
-            // vo.show = show
+            //check, 不可編輯時跳出
+            if (!vo.editable) {
+                return
+            }
+
+            // //showPanelTrans, 因WPopup會更新showPanel才觸發, 不需再次覆寫vo.showPanel避免事件多重觸發, 若div focus要呼叫得先變更showPanel=true才調用此函數
+            // vo.showPanelTrans = showPanel
 
             //因重新顯示時會因沒觸發高度或捲軸變化, 需自行調用WDynamicList的refreshAndTriggerEvent重新渲染
-            if (show) {
+            if (showPanel) {
 
                 //t
                 let t = get(vo, '$refs.wds.refreshAndTriggerEvent', null)
                 if (t) {
-                    t('show')
+                    t('showPanel')
                 }
 
             }
 
             //triggerEvent
-            vo.triggerEvent('update:focused', show, null, 'changeShow')
+            vo.triggerEvent('update:focused', showPanel, null, 'triggerShow')
+
+            //triggerEvent
+            vo.triggerEvent('update:showPanel', showPanel, null, 'triggerShow')
 
         },
 
@@ -465,10 +490,10 @@ export default {
             }
 
             //hide
-            vo.show = false
+            vo.showPanelTrans = false
 
-            //triggerEvent, 因直接修改show不會觸發WPopup的input事件, 得自己補觸發update:focused
-            vo.triggerEvent('update:focused', vo.show, null, 'clickItem')
+            //triggerShow, 因直接修改showPanel不會觸發WPopup的input事件, 得自己補觸發
+            vo.triggerShow(vo.showPanelTrans, 'clickItem')
 
             //triggerEvent
             vo.triggerEvent('input', item, kitem, 'clickItem') //點擊選擇項目

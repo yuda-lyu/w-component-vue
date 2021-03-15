@@ -42,7 +42,9 @@
                     :distY="5"
                     :defItemHeight="defItemHeight"
                     :editable="editable"
+                    :showPanel="showPanelTrans"
                     @update:focused="changeFocused"
+                    @update:showPanel="changeShowPanel"
                     @input="function(v){$emit('input', v)}"
                     @enter="function(v){$emit('enter', v)}"
                     @blur="function(v){$emit('blur', v)}"
@@ -75,7 +77,7 @@ import WTextSuggestCore from './WTextSuggestCore.vue'
 /**
  * @vue-prop {Object} [paddingStyle={v:0,h:15}] 輸入內寬距離物件，可用鍵值為v、h、left、right、top、bottom，v代表同時設定top與bottom，h代表設定left與right，若有重複設定時後面鍵值會覆蓋前面，各鍵值為寬度數字，單位為px，預設{v:0,h:15}
  * @vue-prop {Number} [borderRadius=30] 輸入框圓角度數字，單位為px，預設30
- * @vue-prop {Boolean} [shadow=true] 輸入是否為陰影模式，預設true
+ * @vue-prop {Boolean} [shadow=true] 輸入是否為陰影模式布林值，預設true
  * @vue-prop {Array} [items=[]] 輸入可選(建議)項目陣列，預設[]
  * @vue-prop {Object|String|Number} [value=null] 輸入目前選擇項目，可為物件、字串、數字，預設null
  * @vue-prop {Number} [height=30] 輸入項目高度數字，單位為px，預設30
@@ -101,9 +103,10 @@ import WTextSuggestCore from './WTextSuggestCore.vue'
  * @vue-prop {String} [borderColorFocus='white'] 輸入取得焦點時邊框顏色字串，預設'white'
  * @vue-prop {String} [placeholder=''] 輸入無文字時的替代字符字串，預設''
  * @vue-prop {String} [searchEmpty='Empty'] 輸入無過濾結果字串，預設'Empty'
- * @vue-prop {Number} [defItemHeight=43] 輸入按需顯示時各項目預設高度值，給越準或給大部分項目的高度則渲染速度越快，單位為px，預設43
- * @vue-prop {Boolean} [editable=true] 輸入是否為編輯模式，預設true
- * @vue-prop {Boolean} [focused=false] 輸入是否為取得焦點狀態，預設false
+ * @vue-prop {Number} [defItemHeight=43] 輸入按需顯示時各項目預設高度值數字，給越準或給大部分項目的高度則渲染速度越快，單位為px，預設43
+ * @vue-prop {Boolean} [editable=true] 輸入是否為編輯模式布林值，預設true
+ * @vue-prop {Boolean} [focused=false] 輸入是否為取得焦點狀態布林值，預設false
+ * @vue-prop {Boolean} [showPanel=false] 輸入是否顯示清單布林值，預設false
  */
 export default {
     components: {
@@ -245,11 +248,16 @@ export default {
             type: Boolean,
             default: false,
         },
+        showPanel: {
+            type: Boolean,
+            default: false,
+        },
     },
     data: function() {
         return {
             constBorderWidth: 1,
             focusedTrans: false,
+            showPanelTrans: false,
         }
     },
     mounted: function() {
@@ -263,6 +271,9 @@ export default {
 
             //focusedTrans
             vo.focusedTrans = vo.focused
+
+            //showPanelTrans
+            vo.showPanelTrans = vo.showPanel
 
             return ''
         },
@@ -312,6 +323,24 @@ export default {
 
                 //emit
                 vo.$emit('update:focused', focused)
+
+            })
+
+        },
+
+        changeShowPanel: function(showPanel) {
+            //console.log('methods changeShowPanel', showPanel)
+
+            let vo = this
+
+            //save
+            vo.showPanelTrans = showPanel
+
+            //$nextTick
+            vo.$nextTick(() => {
+
+                //emit
+                vo.$emit('update:showPanel', showPanel)
 
             })
 
