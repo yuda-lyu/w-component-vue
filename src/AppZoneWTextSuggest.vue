@@ -24,6 +24,26 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-text-suggest'"
+                    :casename="'events'"
+                ></demolink>
+
+                <w-text-suggest
+                    :items="WTextSuggest.objItems"
+                    v-model="WTextSuggest.objValue"
+                    @update:focused="evUpdateFocused"
+                    @update:showPanel="evUpdateShowPanel"
+                    @blur="evBlur"
+                    @input="evInput"
+                    @enter="evEnter"
+                    @click-item="evClickItem"
+                    @click-left="evClickLeft"
+                ></w-text-suggest>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-text-suggest'"
                     :casename="'searchEmpty'"
                 ></demolink>
 
@@ -761,6 +781,27 @@ export default {
         }
     },
     methods: {
+        evUpdateFocused: function(item, kitem) {
+            console.log('evUpdateFocused', 'item=', item, 'kitem', kitem)
+        },
+        evUpdateShowPanel: function(item, kitem) {
+            console.log('evUpdateShowPanel', 'item=', item, 'kitem', kitem)
+        },
+        evBlur: function(item, kitem) {
+            console.log('evBlur', 'item=', item, 'kitem', kitem)
+        },
+        evInput: function(item, kitem) {
+            console.log('evInput', 'item=', item, 'kitem', kitem)
+        },
+        evEnter: function(item, kitem) {
+            console.log('evEnter', 'item=', item, 'kitem', kitem)
+        },
+        evClickItem: function(item, kitem) {
+            console.log('evClickItem', 'item=', item, 'kitem', kitem)
+        },
+        evClickLeft: function(item, kitem) {
+            console.log('evClickLeft', 'item=', item, 'kitem', kitem)
+        },
         hidePanelWhenEnter: function() {
             // console.log('hidePanelWhenEnter')
 

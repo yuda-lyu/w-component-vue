@@ -40,8 +40,12 @@
                     :distY="5"
                     :defItemHeight="defItemHeight"
                     :editable="editable"
-                    @update:focused="changeFocused"
-                    @input="(v)=>{$emit('input', v)}"
+                    :focused="focusedTrans"
+                    :showPanel="showPanelTrans"
+                    @update:focused="(v)=>{updateFocused(v);$emit('blur',null,null)}"
+                    @update:showPanel="updateShowPanel"
+                    @input="(item,kitem)=>{$emit('input',item,kitem)}"
+                    @click-item="(item,kitem)=>{$emit('click-item',item,kitem)}"
                 >
                     <template v-slot="props">
 
@@ -231,11 +235,16 @@ export default {
             type: Boolean,
             default: false,
         },
+        showPanel: {
+            type: Boolean,
+            default: false,
+        },
     },
     data: function() {
         return {
             constBorderWidth: 1,
             focusedTrans: false,
+            showPanelTrans: false,
         }
     },
     mounted: function() {
@@ -285,8 +294,8 @@ export default {
 
         },
 
-        changeFocused: function(focused) {
-            //console.log('methods changeFocused', focused)
+        updateFocused: function(focused) {
+            //console.log('methods updateFocused', focused)
 
             let vo = this
 
@@ -298,6 +307,24 @@ export default {
 
                 //emit
                 vo.$emit('update:focused', focused)
+
+            })
+
+        },
+
+        updateShowPanel: function(showPanel) {
+            //console.log('methods updateShowPanel', showPanel)
+
+            let vo = this
+
+            //save
+            vo.showPanelTrans = showPanel
+
+            //$nextTick
+            vo.$nextTick(() => {
+
+                //emit
+                vo.$emit('update:showPanel', showPanel)
 
             })
 

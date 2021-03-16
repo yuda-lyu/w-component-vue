@@ -529,7 +529,10 @@ export default {
             }, 'clickItem')
 
             //triggerEvent
-            vo.triggerEvent('input', item, kitem, 'clickItem') //點擊選擇項目
+            vo.triggerEvent('input', item, kitem, 'clickItem')
+
+            //triggerEvent
+            vo.triggerEvent('click-item', item, kitem, 'clickItem')
 
         },
 

@@ -47,10 +47,11 @@
                     :editable="editable"
                     :focused="focusedTrans"
                     :showPanel="showPanelTrans"
-                    @update:focused="(v)=>{updateFocused(v);$emit('blur', v)}"
+                    @update:focused="(v)=>{updateFocused(v);$emit('blur',null,null)}"
                     @update:showPanel="updateShowPanel"
-                    @input="(v)=>{$emit('input', v)}"
-                    @enter="(v)=>{$emit('enter', v)}"
+                    @input="(item,kitem)=>{$emit('input',item,kitem)}"
+                    @enter="(item,kitem)=>{$emit('enter',item,kitem)}"
+                    @click-item="(item,kitem)=>{$emit('click-item',item,kitem)}"
                 >
                     <template v-slot="props">
 
