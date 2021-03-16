@@ -104,7 +104,8 @@ export default {
             valueTrans: false,
 
             triggerWidth: null,
-            clickInner: false,
+            clickTriggerInner: false,
+            clickContentInner: false,
             windowMousedown: null,
             windowMouseup: null,
 
@@ -121,12 +122,26 @@ export default {
         vo.windowMousedown = (e) => {
             //console.log('windowMousedown', e)
 
+            //divTrigger
+            let divTrigger = get(vo, '$refs.divTrigger', null)
+
+            //是否點擊於觸發區內
+            if (divTrigger) {
+                vo.clickTriggerInner = domIsClientXYIn(e.clientX, e.clientY, divTrigger)
+            }
+            else {
+                vo.clickTriggerInner = false
+            }
+
             //divContent
             let divContent = get(vo, '$refs.divContent', null)
 
-            //是否點擊於內容區內
-            if (divContent) {
-                vo.clickInner = domIsClientXYIn(e.clientX, e.clientY, divContent)
+            //是否當前為顯示且擊於內容區內
+            if (vo.valueTrans && divContent) {
+                vo.clickContentInner = domIsClientXYIn(e.clientX, e.clientY, divContent)
+            }
+            else {
+                vo.clickContentInner = false
             }
 
         }
@@ -136,9 +151,13 @@ export default {
         vo.windowMouseup = (e) => {
             //console.log('windowMouseup', e)
 
-            //console.log(vo.mmkey, 'windowMouseup', `clickOuter`, !vo.clickInner)
+            //console.log(vo.mmkey, 'windowMouseup', `clickOuter`, !vo.clickContentInner)
             //console.log(vo.mmkey, 'windowMouseup', `valueTrans`, vo.valueTrans)
-            if (!vo.clickInner && vo.valueTrans) { //非點擊divContent與當前為顯示狀態時, 才觸發事件進行隱藏
+            //當前為顯示時, 非點擊於觸發區與內容區, 才觸發隱藏事件
+            if (vo.valueTrans && !vo.clickTriggerInner && !vo.clickContentInner) {
+                // console.log('vo.valueTrans', vo.valueTrans)
+                // console.log('vo.clickTriggerInner', vo.clickTriggerInner)
+                // console.log('vo.clickContentInner', vo.clickContentInner)
 
                 //triggerEvent for hide
                 vo.triggerEvent(false)
@@ -146,7 +165,8 @@ export default {
                 //console.log(vo.mmkey, '隱藏')
             }
             else {
-                vo.clickInner = false
+                vo.clickTriggerInner = false
+                vo.clickContentInner = false
                 //console.log(vo.mmkey, '不隱藏')
             }
         }
@@ -270,7 +290,7 @@ export default {
         },
 
         triggerEvent: function(value) {
-            //console.log('methods triggerEvent', value)
+            // console.log('methods triggerEvent', value)
 
             let vo = this
 

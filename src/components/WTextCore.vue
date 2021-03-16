@@ -1,6 +1,5 @@
 <template>
     <div :changeValue="changeValue">
-
         <input
             ref="inp"
             type="text"
@@ -8,13 +7,12 @@
             :readonly="!editable"
             :placeholder="placeholder"
             v-model="valueTrans"
-            @input="changeFocused(true);changeContent('input')"
-            @focus="changeFocused(true)"
-            @blur="changeFocused(false);changeContent('blur');"
-            @keyup.enter="changeContent('enter')"
+            @input="updateContent('input');updateFocused(true)"
+            @focus="updateFocused(true)"
+            @blur="updateContent('blur');updateFocused(false)"
+            @keyup.enter="$emit('enter')"
             @select="$emit('select')"
         >
-
     </div>
 </template>
 
@@ -95,14 +93,18 @@ export default {
             return color2hex(vo.textColor)
         },
 
-
     },
     methods: {
 
-        changeFocused: function(focused) {
-            //console.log('methods changeFocused', focused)
+        updateFocused: function(focused) {
+            //console.log('methods updateFocused', focused)
 
             let vo = this
+
+            //check
+            if (vo.focused === focused) {
+                return
+            }
 
             //$nextTick
             vo.$nextTick(() => {
@@ -114,8 +116,8 @@ export default {
 
         },
 
-        changeContent: function (evname) {
-            //console.log('methods changeContent', evname)
+        updateContent: function (evname) {
+            //console.log('methods updateContent', evname)
 
             let vo = this
 

@@ -207,17 +207,21 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-text-suggest'"
-                    :casename="'showPanel'"
+                    :casename="'showPanel(press enter to hide panel) & focused'"
                 ></demolink>
 
                 <div style="margin-bottom:5px;">
-                    <span style="margin-right:5px; font-size:0.8rem;">showPanel={{WTextSuggest.showPanel}}</span>
-                    <v-btn style="margin-right:5px;" small @click="WTextSuggest.showPanel=true">show panel</v-btn>
-                    <v-btn style="margin-right:5px;" small @click="WTextSuggest.showPanel=false">hide panel</v-btn>
+                    <div style="font-size:0.8rem;">focused={{WTextSuggest.focused}}, showPanel={{WTextSuggest.showPanel}}</div>
+                    <div>
+                        <v-btn style="margin-right:5px;" small @click="WTextSuggest.showPanel=true">show panel</v-btn>
+                        <v-btn style="margin-right:5px;" small @click="WTextSuggest.showPanel=false">hide panel</v-btn>
+                    </div>
                 </div>
 
                 <w-text-suggest
+                    :focused.sync="WTextSuggest.focused"
                     :showPanel.sync="WTextSuggest.showPanel"
+                    @enter="hidePanelWhenEnter"
                     :items="WTextSuggest.objItems"
                     v-model="WTextSuggest.objValue"
                 ></w-text-suggest>
@@ -558,17 +562,21 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-text-suggest'"
-                    :casename="'border & showPanel'"
+                    :casename="'border & showPanel(press enter to hide panel) & focused'"
                 ></demolink>
 
                 <div style="margin-bottom:5px;">
-                    <span style="margin-right:5px; font-size:0.8rem;">showPanel={{WTextSuggest.showPanel}}</span>
-                    <v-btn style="margin-right:5px;" small @click="WTextSuggest.showPanel=true">show panel</v-btn>
-                    <v-btn style="margin-right:5px;" small @click="WTextSuggest.showPanel=false">hide panel</v-btn>
+                    <div style="font-size:0.8rem;">focused={{WTextSuggest.focused}}, showPanel={{WTextSuggest.showPanel}}</div>
+                    <div>
+                        <v-btn style="margin-right:5px;" small @click="WTextSuggest.showPanel=true">show panel</v-btn>
+                        <v-btn style="margin-right:5px;" small @click="WTextSuggest.showPanel=false">hide panel</v-btn>
+                    </div>
                 </div>
 
                 <w-text-suggest
+                    :focused.sync="WTextSuggest.focused"
                     :showPanel.sync="WTextSuggest.showPanel"
+                    @enter="hidePanelWhenEnter"
                     :shadow="false"
                     :borderColor="'orange lighten-2'"
                     :borderColorHover="'orange'"
@@ -667,6 +675,7 @@ export default {
             mdiCheckUnderlineCircle,
             mdiPaw,
             'WTextSuggest': {
+                focused: false,
                 showPanel: false,
                 objItems: [
                     {
@@ -750,6 +759,25 @@ export default {
                 },
             ],
         }
+    },
+    methods: {
+        hidePanelWhenEnter: function() {
+            // console.log('hidePanelWhenEnter')
+
+            let vo = this
+
+            //blur, 要先將text的焦點取消, 先觸發掉focused變更事件(此會再觸發changeContent內容變更事件, 故會觸發顯示panel)
+            document.activeElement.blur()
+
+            //delay hide, 因enter觸發blur後會觸發changeContent內容變更事件, 故得等顯示事件完成才給予showPanel=false, 100ms是經驗值, 使其完整觸發隱藏panel流程
+            setTimeout(function() {
+
+                //hide
+                vo.WTextSuggest.showPanel = false
+
+            }, 100)
+
+        },
     },
 }
 </script>

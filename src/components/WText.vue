@@ -34,8 +34,8 @@
                 :borderColorFocus="borderColorFocus"
                 :editable="editable"
                 :focused="focusedTrans"
-                @click-left="function(v){$emit('click-left', v)}"
-                @click-right="function(v){$emit('click-right', v)}"
+                @click-left="(v)=>{$emit('click-left', v)}"
+                @click-right="(v)=>{$emit('click-right', v)}"
             >
 
                 <w-text-core

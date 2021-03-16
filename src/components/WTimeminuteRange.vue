@@ -21,7 +21,7 @@
             :borderColorFocus="borderColorFocus"
             :editable="editable"
             :focused="focusedTrans"
-            @click-left="function(v){$emit('click-left', v)}"
+            @click-left="(v)=>{$emit('click-left', v)}"
         >
 
             <w-timeminute-range-core
@@ -35,8 +35,8 @@
                 :minuteStart="minuteStart"
                 :editable="editable"
                 @update:focused="changeFocused"
-                @update:minuteEnd="function(v){$emit('update:minuteEnd', v)}"
-                @update:minuteStart="function(v){$emit('update:minuteStart', v)}"
+                @update:minuteEnd="(v)=>{$emit('update:minuteEnd', v)}"
+                @update:minuteStart="(v)=>{$emit('update:minuteStart', v)}"
             ></w-timeminute-range-core>
 
         </w-shell-ellipse>

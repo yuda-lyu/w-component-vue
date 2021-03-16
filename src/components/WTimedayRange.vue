@@ -21,7 +21,7 @@
             :borderColorFocus="borderColorFocus"
             :editable="editable"
             :focused="focusedTrans"
-            @click-left="function(v){$emit('click-left', v)}"
+            @click-left="(v)=>{$emit('click-left', v)}"
         >
 
             <w-timeday-range-core
@@ -31,8 +31,8 @@
                 :dayEnd="dayEnd"
                 :editable="editable"
                 @update:focused="changeFocused"
-                @update:dayStart="function(v){$emit('update:dayStart', v)}"
-                @update:dayEnd="function(v){$emit('update:dayEnd', v)}"
+                @update:dayStart="(v)=>{$emit('update:dayStart', v)}"
+                @update:dayEnd="(v)=>{$emit('update:dayEnd', v)}"
             ></w-timeday-range-core>
 
         </w-shell-ellipse>

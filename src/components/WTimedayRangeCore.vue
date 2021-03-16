@@ -11,7 +11,7 @@
                 :editable="editable"
                 :value="dayStart"
                 @update:focused="(v)=>{focused_start=v;changeFocused()}"
-                @input="function(v){$emit('update:dayStart', v)}"
+                @input="(v)=>{$emit('update:dayStart', v)}"
             ></w-timeday-core>
 
             <div :style="`display:inline-block; padding-left:5px; padding-right:9px; height:${height}px; line-height:${height}px; vertical-align:middle;`">
@@ -25,7 +25,7 @@
                 :editable="editable"
                 :value="dayEnd"
                 @update:focused="(v)=>{focused_end=v;changeFocused()}"
-                @input="function(v){$emit('update:dayEnd', v)}"
+                @input="(v)=>{$emit('update:dayEnd', v)}"
             ></w-timeday-core>
 
         </div>

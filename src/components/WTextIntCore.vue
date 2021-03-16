@@ -38,7 +38,7 @@
                 :value="valueTrans"
                 :focused="focusedTrans"
                 @update:focused="changeFocused"
-                @input="function(v){changeContent(v,'')}"
+                @input="(v)=>{changeContent(v,'')}"
             ></w-text-core>
 
         </w-shell-ellipse>

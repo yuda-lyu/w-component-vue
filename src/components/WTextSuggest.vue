@@ -1,5 +1,8 @@
 <template>
-    <div :changeParam="changeParam">
+    <div
+        :changeFocused="changeFocused"
+        :changeShowPanel="changeShowPanel"
+    >
 
         <w-shell-ellipse
             :paddingStyle="paddingStyle"
@@ -21,7 +24,7 @@
             :borderColorFocus="borderColorFocus"
             :editable="editable"
             :focused="focusedTrans"
-            @click-left="function(v){$emit('click-left', v)}"
+            @click-left="(v)=>{$emit('click-left', v)}"
         >
 
             <div style="margin-right:-5px;">
@@ -42,12 +45,12 @@
                     :distY="5"
                     :defItemHeight="defItemHeight"
                     :editable="editable"
+                    :focused="focusedTrans"
                     :showPanel="showPanelTrans"
-                    @update:focused="changeFocused"
-                    @update:showPanel="changeShowPanel"
-                    @input="function(v){$emit('input', v)}"
-                    @enter="function(v){$emit('enter', v)}"
-                    @blur="function(v){$emit('blur', v)}"
+                    @update:focused="(v)=>{updateFocused(v);$emit('blur', v)}"
+                    @update:showPanel="updateShowPanel"
+                    @input="(v)=>{$emit('input', v)}"
+                    @enter="(v)=>{$emit('enter', v)}"
                 >
                     <template v-slot="props">
 
@@ -264,13 +267,21 @@ export default {
     },
     computed: {
 
-        changeParam: function () {
-            //console.log('computed changeParam')
+        changeFocused: function () {
+            //console.log('computed changeFocused')
 
             let vo = this
 
             //focusedTrans
             vo.focusedTrans = vo.focused
+
+            return ''
+        },
+
+        changeShowPanel: function () {
+            //console.log('computed changeShowPanel')
+
+            let vo = this
 
             //showPanelTrans
             vo.showPanelTrans = vo.showPanel
@@ -310,8 +321,8 @@ export default {
 
         },
 
-        changeFocused: function(focused) {
-            //console.log('methods changeFocused', focused)
+        updateFocused: function(focused) {
+            //console.log('methods updateFocused', focused)
 
             let vo = this
 
@@ -328,8 +339,8 @@ export default {
 
         },
 
-        changeShowPanel: function(showPanel) {
-            //console.log('methods changeShowPanel', showPanel)
+        updateShowPanel: function(showPanel) {
+            //console.log('methods updateShowPanel', showPanel)
 
             let vo = this
 

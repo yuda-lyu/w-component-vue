@@ -5,10 +5,11 @@
         :maxWidth="maxWidth"
         :distY="distY"
         :editable="editable"
-        v-model="showPanelTrans"
-        @input="(v)=>{triggerShow(v,'WPopup')}"
-        :changeValue="changeValue"
-        :changeShow="changeShow"
+        :value="showPanelTrans"
+        @input="(v)=>{updateShowPanel(v,'WPopup')}"
+        :changeValueFromPopup="changeValueFromPopup"
+        :changeFocusedFromPopup="changeFocusedFromPopup"
+        :changeShowPanelFromPopup="changeShowPanelFromPopup"
     >
 
         <template v-slot:trigger>
@@ -32,10 +33,11 @@
                         :placeholder="placeholder"
                         :height="height"
                         :editable="editable"
+                        :focused="focusedTrans"
                         :value="valueTrans"
-                        @blur="triggerEvent('blur',value,null,'blur')"
+                        @update:focused="(v)=>{updateFocused(v,'update:focused');triggerEvent('blur',value,null,'blur')}"
                         @enter="triggerEvent('enter',value,null,'enter')"
-                        @input="changeValueTrans"
+                        @input="updateValue"
                         @select="selectText"
                         v-if="mode==='suggest'"
                     ></w-text-core>
@@ -82,8 +84,8 @@
                         <div
                             :style="`transition:all 0.2s; cursor:pointer; outline:none; background:${useItemBackgroundColor}; color:${useItemTextColor}; font-size:${itemFontSize}; ${useItemPadding}`"
                             tabindex="0"
-                            @keyup.enter="clickItem(props.row,props.irow)"
-                            @click="clickItem(props.row,props.irow)"
+                            @keyup.enter="clickItem(props.row,props.index)"
+                            @click="clickItem(props.row,props.index)"
                             @mouseenter="(e)=>{let es=e.target.style; es.backgroundColor=useItemBackgroundColorHover; es.color=useItemTextColorHover;}"
                             @mouseleave="(e)=>{let es=e.target.style; es.backgroundColor=useItemBackgroundColor; es.color=useItemTextColor;}"
                             @focus="(e)=>{let es=e.target.style; es.backgroundColor=useItemBackgroundColorHover; es.color=useItemTextColorHover;}"
@@ -92,7 +94,7 @@
 
                             <slot
                                 :item="props.row"
-                                :index="props.irow"
+                                :index="props.index"
                             >
                                 <div>{{getText(props.row)}}</div>
                             </slot>
@@ -112,6 +114,7 @@
 import get from 'lodash/get'
 import isNumber from 'lodash/isNumber'
 import isobj from 'wsemi/src/isobj.mjs'
+import isbol from 'wsemi/src/isbol.mjs'
 import color2hex from '../js/vuetifyColor.mjs'
 import WPopup from './WPopup.vue'
 import WTextCore from './WTextCore.vue'
@@ -131,15 +134,16 @@ import WDynamicList from './WDynamicList.vue'
  * @vue-prop {String} [itemBackgroundColorHover='light-blue lighten-5'] 輸入項目背景Hover顏色字串，預設'light-blue lighten-5'
  * @vue-prop {Object} [itemPaddingStyle={v:12,h:16}] 輸入內寬距離設定物件，可用鍵值為v、h、left、right、top、bottom，v代表同時設定top與bottom，h代表設定left與right，若有重複設定時後面鍵值會覆蓋前面，各鍵值為寬度數字，單位為px，預設{v:12,h:16}
  * @vue-prop {String} [iconColor='#999'] 輸入圖標顏色字串，預設'#999'
- * @vue-prop {Number} [maxHeight=200] 輸入顯示區最大高度，單位為px，預設200
+ * @vue-prop {Number} [maxHeight=200] 輸入顯示區最大高度數字，單位為px，預設200
  * @vue-prop {Number} [minWidth=null] 輸入最小寬度，單位為px，預設null
  * @vue-prop {Number} [maxWidth=null] 輸入最大寬度，單位為px，預設null
- * @vue-prop {Number} [distY=5] 輸入彈窗距離觸發元素底部的距離，單位為px，預設5
+ * @vue-prop {Number} [distY=5] 輸入彈窗距離觸發元素底部的距離數字，單位為px，預設5
  * @vue-prop {String} [textAlign='left'] 輸入文字左右對齊字串，預設'left'
  * @vue-prop {String} [placeholder=''] 輸入無文字時的替代字符字串，預設''
  * @vue-prop {String} [searchEmpty='Empty'] 輸入無過濾結果字串，預設'Empty'
  * @vue-prop {Number} [defItemHeight=43] 輸入按需顯示時各項目預設高度數字，給越準或給大部分項目的高度則渲染速度越快，單位為px，預設43
  * @vue-prop {Boolean} [editable=true] 輸入是否為編輯模式布林值，預設true
+ * @vue-prop {Boolean} [focused=false] 輸入是否為取得焦點狀態布林值，預設false
  * @vue-prop {Boolean} [showPanel=false] 輸入是否顯示清單布林值，預設false
  */
 export default {
@@ -238,6 +242,10 @@ export default {
             type: Boolean,
             default: true,
         },
+        focused: {
+            type: Boolean,
+            default: false,
+        },
         showPanel: {
             type: Boolean,
             default: false,
@@ -245,6 +253,7 @@ export default {
     },
     data: function() {
         return {
+            focusedTrans: false,
             showPanelTrans: false,
             valueTrans: null,
             ratio: 0,
@@ -252,8 +261,19 @@ export default {
     },
     computed: {
 
-        changeShow: function () {
-            //console.log('computed changeShow')
+        changeFocusedFromPopup: function () {
+            //console.log('computed changeFocusedFromPopup')
+
+            let vo = this
+
+            //focusedTrans
+            vo.focusedTrans = vo.focused
+
+            return ''
+        },
+
+        changeShowPanelFromPopup: function () {
+            //console.log('computed changeShowPanelFromPopup')
 
             let vo = this
 
@@ -263,8 +283,8 @@ export default {
             return ''
         },
 
-        changeValue: function () {
-            //console.log('computed changeValue')
+        changeValueFromPopup: function () {
+            //console.log('computed changeValueFromPopup')
 
             let vo = this
 
@@ -387,7 +407,7 @@ export default {
         },
 
         selectText: function() {
-            //console.log('methods selectText')
+            // console.log('methods selectText')
 
             let vo = this
 
@@ -399,15 +419,18 @@ export default {
             //check, 若由滑鼠進行範圍選擇, 離開時位於組件外時, 會被popup視為滑鼠點擊至內容區外側(於外面mousuup), 故會自動隱藏選單, 得重新顯示
             if (!vo.showPanelTrans) {
 
-                //showPanelTrans
-                vo.showPanelTrans = true
+                //triggerAll
+                vo.triggerAll({
+                    showPanel: true,
+                    focused: true,
+                }, 'selectText')
 
             }
 
         },
 
         focusText: function() {
-            //console.log('methods focusText')
+            // console.log('methods focusText')
 
             let vo = this
 
@@ -416,16 +439,21 @@ export default {
                 return
             }
 
-            //因由鍵盤觸發不會有點擊事件, 得直接變更showPanel
-            vo.showPanelTrans = true
+            //check, 顯示中不需要在再次觸發
+            if (vo.showPanelTrans) {
+                return
+            }
 
-            //triggerShow
-            vo.triggerShow(vo.showPanelTrans, 'focusText')
+            //triggerAll
+            vo.triggerAll({
+                showPanel: true,
+                focused: true,
+            }, 'focusText')
 
         },
 
-        changeValueTrans: function(value) {
-            //console.log('methods changeValueTrans')
+        updateFocused: function(focused, from) {
+            // console.log('methods updateFocused', focused, from)
 
             let vo = this
 
@@ -434,21 +462,16 @@ export default {
                 return
             }
 
-            //$nextTick
-            vo.$nextTick(() => {
-
-                //save
-                vo.valueTrans = value
-
-                //triggerEvent
-                vo.triggerEvent('input', value, null, 'changeValueTrans') //文字框查詢關鍵字
-
-            })
+            //triggerAll
+            vo.triggerAll({
+                // showPanel: false, //不能觸發隱藏, 會導致點擊項目時先被隱藏panel導致無法觸發click事件
+                focused, //失去焦點時還是需要觸發focused變更事件
+            }, 'updateFocused')
 
         },
 
-        triggerShow: function(showPanel, from) {
-            //console.log('methods triggerShow', showPanel, from)
+        updateShowPanel: function(showPanel, from) {
+            // console.log('methods updateShowPanel', showPanel, from)
 
             let vo = this
 
@@ -457,30 +480,40 @@ export default {
                 return
             }
 
-            // //showPanelTrans, 因WPopup會更新showPanel才觸發, 不需再次覆寫vo.showPanel避免事件多重觸發, 若div focus要呼叫得先變更showPanel=true才調用此函數
-            // vo.showPanelTrans = showPanel
+            //triggerAll
+            vo.triggerAll({
+                showPanel,
+                focused: showPanel,
+            }, 'updateShowPanel')
 
-            //因重新顯示時會因沒觸發高度或捲軸變化, 需自行調用WDynamicList的refreshAndTriggerEvent重新渲染
-            if (showPanel) {
+        },
 
-                //t
-                let t = get(vo, '$refs.wds.refreshAndTriggerEvent', null)
-                if (t) {
-                    t('showPanel')
-                }
+        updateValue: function(value) {
+            // console.log('methods updateValue', value)
 
+            let vo = this
+
+            //check, 不可編輯時跳出
+            if (!vo.editable) {
+                return
             }
 
-            //triggerEvent
-            vo.triggerEvent('update:focused', showPanel, null, 'triggerShow')
+            //triggerAll
+            vo.triggerAll({
+                showPanel: true,
+                focused: true,
+            }, 'updateValue')
+
+            //save
+            vo.valueTrans = value
 
             //triggerEvent
-            vo.triggerEvent('update:showPanel', showPanel, null, 'triggerShow')
+            vo.triggerEvent('input', value, null, 'updateValue') //文字框查詢關鍵字
 
         },
 
         clickItem: function(item, kitem) {
-            //console.log('methods clickItem', item, kitem)
+            // console.log('methods clickItem', item, kitem)
 
             let vo = this
 
@@ -489,11 +522,11 @@ export default {
                 return
             }
 
-            //hide
-            vo.showPanelTrans = false
-
-            //triggerShow, 因直接修改showPanel不會觸發WPopup的input事件, 得自己補觸發
-            vo.triggerShow(vo.showPanelTrans, 'clickItem')
+            //triggerAll
+            vo.triggerAll({
+                showPanel: false,
+                focused: false,
+            }, 'clickItem')
 
             //triggerEvent
             vo.triggerEvent('input', item, kitem, 'clickItem') //點擊選擇項目
@@ -517,6 +550,57 @@ export default {
                 vo.$emit(name, item, kitem)
 
             })
+
+        },
+
+        triggerAll: function(obj, from) {
+            // console.log('methods triggerAll', obj, from)
+
+            let vo = this
+
+            //check, 不可編輯時跳出
+            if (!vo.editable) {
+                return
+            }
+
+            //param
+            let showPanel = get(obj, 'showPanel', null)
+            let focused = get(obj, 'focused', null)
+
+            //因重新顯示時會因沒觸發高度或捲軸變化, 需自行調用WDynamicList的refreshAndTriggerEvent重新渲染
+            if (showPanel) {
+
+                //t
+                let t = get(vo, '$refs.wds.refreshAndTriggerEvent', null)
+                if (t) {
+                    t('showPanel')
+                }
+
+            }
+
+            //focused
+            if (isbol(focused) && vo.focusedTrans !== focused) {
+                // console.log('triggerAll focused', focused, 'from', from)
+
+                //save
+                vo.focusedTrans = focused
+
+                //triggerEvent
+                vo.triggerEvent('update:focused', focused, null, 'triggerAll')
+
+            }
+
+            //showPanel
+            if (isbol(showPanel) && vo.showPanelTrans !== showPanel) {
+                // console.log('triggerAll showPanel', showPanel, 'from', from)
+
+                //save
+                vo.showPanelTrans = showPanel
+
+                //triggerEvent
+                vo.triggerEvent('update:showPanel', showPanel, null, 'triggerAll')
+
+            }
 
         },
 

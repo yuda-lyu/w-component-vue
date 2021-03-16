@@ -20,7 +20,7 @@
             :borderColorFocus="borderColorFocus"
             :editable="editable"
             :focused="focusedTrans"
-            @click-left="function(v){$emit('click-left', v)}"
+            @click-left="(v)=>{$emit('click-left', v)}"
         >
 
             <div style="margin:0px -10px;">
@@ -37,7 +37,7 @@
                     :editable="editable"
                     :focused="focusedTrans"
                     @update:focused="changeFocused"
-                    @input="function(v){$emit('input', v)}"
+                    @input="(v)=>{$emit('input', v)}"
                 ></w-text-int-core>
 
             </div>

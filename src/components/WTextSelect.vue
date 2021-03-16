@@ -21,7 +21,7 @@
             :borderColorFocus="borderColorFocus"
             :editable="editable"
             :focused="focusedTrans"
-            @click-left="function(v){$emit('click-left', v)}"
+            @click-left="(v)=>{$emit('click-left', v)}"
         >
 
             <div style="margin-right:-5px;">
@@ -41,7 +41,7 @@
                     :defItemHeight="defItemHeight"
                     :editable="editable"
                     @update:focused="changeFocused"
-                    @input="function(v){$emit('input', v)}"
+                    @input="(v)=>{$emit('input', v)}"
                 >
                     <template v-slot="props">
 

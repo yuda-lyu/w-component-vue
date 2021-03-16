@@ -21,7 +21,7 @@
             :borderColorFocus="borderColorFocus"
             :editable="editable"
             :focused="focusedTrans"
-            @click-left="function(v){$emit('click-left', v)}"
+            @click-left="(v)=>{$emit('click-left', v)}"
         >
 
             <w-timeday-core
@@ -29,7 +29,7 @@
                 :value="value"
                 :editable="editable"
                 @update:focused="changeFocused"
-                @input="function(v){$emit('input', v)}"
+                @input="(v)=>{$emit('input', v)}"
             ></w-timeday-core>
 
         </w-shell-ellipse>
