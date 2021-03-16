@@ -1,6 +1,6 @@
 {
   "name": "w-component-vue",
-  "version": "2.0.32",
+  "version": "2.0.33",
   "author": "yuda-lyu(semisphere)",
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -16,7 +16,7 @@
     "vue-cli-plugin-vuetify": "^2.2.2",
     "vuetify": "^2.4.6",
     "vuetify-loader": "^1.7.2",
-    "wsemi": "^1.5.55"
+    "wsemi": "^1.5.57"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^4.5.11",

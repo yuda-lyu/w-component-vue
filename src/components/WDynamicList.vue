@@ -62,6 +62,7 @@ import iseobj from 'wsemi/src/iseobj.mjs'
 import isfun from 'wsemi/src/isfun.mjs'
 import isint from 'wsemi/src/isint.mjs'
 import isbol from 'wsemi/src/isbol.mjs'
+import arrfilter from 'wsemi/src/arrfilter.mjs'
 import o2j from 'wsemi/src/o2j.mjs'
 import debounce from 'wsemi/src/debounce.mjs'
 import pmThrottle from 'wsemi/src/pmThrottle.mjs'
@@ -725,12 +726,14 @@ export default {
             }
             else {
 
-                //kws
-                let kws = sep(vo.filterKeywords.toLowerCase(), ' ')
+                //fkws, 關鍵字轉小寫再查詢
+                let fkws = vo.filterKeywords.toLowerCase()
 
-                //預設不可見
-                for (let k = 0; k < n; k++) {
-                    let r = items[k].row
+                //產生目標字串陣列
+                let cs = map(items, (v) => {
+
+                    //r
+                    let r = v.row
 
                     //c
                     let c = ''
@@ -748,18 +751,17 @@ export default {
                     }
                     c = c.toLowerCase()
 
-                    //若值含有關建字
-                    let b = false
-                    for (let i = 0; i < size(kws); i++) {
-                        let kw = kws[i]
-                        if (c.indexOf(kw) >= 0) {
-                            b = true
-                            break
-                        }
-                    }
-                    items[k].filterShow = b
+                    return c
+                })
 
-                }
+                //arrfilter
+                let rs = arrfilter(cs, fkws)
+
+                //update filterShow
+                each(items, (v, k) => {
+                    let r = rs[k]
+                    items[k].filterShow = r.hasKeyword
+                })
 
             }
 
