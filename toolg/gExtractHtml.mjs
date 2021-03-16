@@ -46,6 +46,8 @@ let h = `
     <script src="https://cdn.jsdelivr.net/npm/w-demores@1.0.12/res/data/dataTemperature.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/w-demores@1.0.12/res/data/dataHousePriceArea.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/w-demores@1.0.12/res/data/dataFlare.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-demores@1.0.12/res/data/dataRain.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-demores@1.0.12/res/data/dataRainClip.js"></script>
     <script>
         //save in window
         window.dataAAPL=dataAAPL
@@ -53,6 +55,8 @@ let h = `
         window.dataTemperature=dataTemperature
         window.dataHousePriceArea=dataHousePriceArea
         window.dataFlare=dataFlare
+        window.dataRain=dataRain
+        window.dataRainClip=dataRainClip
     </script>
 
     <!-- @babel/polyfill -->

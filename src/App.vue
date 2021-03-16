@@ -288,6 +288,11 @@
             ></AppZoneWQuillVueDyn>
 
 
+            <AppZoneWLeafletVueDyn
+                v-if="useCmpName==='WLeafletVueDyn'"
+            ></AppZoneWLeafletVueDyn>
+
+
         </div>
 
 
@@ -339,6 +344,7 @@ import AppZoneWImageViewerDyn from './AppZoneWImageViewerDyn.vue'
 import AppZoneWCkeditorVueDyn from './AppZoneWCkeditorVueDyn.vue'
 import AppZoneWTinymceVueDyn from './AppZoneWTinymceVueDyn.vue'
 import AppZoneWQuillVueDyn from './AppZoneWQuillVueDyn.vue'
+import AppZoneWLeafletVueDyn from './AppZoneWLeafletVueDyn.vue'
 
 
 export default {
@@ -384,6 +390,7 @@ export default {
         AppZoneWCkeditorVueDyn,
         AppZoneWTinymceVueDyn,
         AppZoneWQuillVueDyn,
+        AppZoneWLeafletVueDyn,
     },
     data: function() {
         return {
@@ -485,6 +492,12 @@ export default {
                             name: 'table',
                             cmps: [
                                 { name: 'WAggridVueDyn' },
+                            ],
+                        },
+                        {
+                            name: 'map',
+                            cmps: [
+                                { name: 'WLeafletVueDyn' },
                             ],
                         },
                         {
