@@ -81,7 +81,7 @@
     <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.js"></script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.0.33/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.0.34/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -218,7 +218,29 @@
       return {};
     },
     computed: {},
-    methods: {}
+    methods: {
+      evUpdateFocused: function(item, kitem) {
+        console.log("evUpdateFocused", "item=", item, "kitem", kitem);
+      },
+      evUpdateShowPanel: function(item, kitem) {
+        console.log("evUpdateShowPanel", "item=", item, "kitem", kitem);
+      },
+      evBlur: function(item, kitem) {
+        console.log("evBlur", "item=", item, "kitem", kitem);
+      },
+      evInput: function(item, kitem) {
+        console.log("evInput", "item=", item, "kitem", kitem);
+      },
+      // evEnter: function(item, kitem) {
+      //     console.log('evEnter', 'item=', item, 'kitem', kitem)
+      // },
+      evClickItem: function(item, kitem) {
+        console.log("evClickItem", "item=", item, "kitem", kitem);
+      },
+      evClickLeft: function(item, kitem) {
+        console.log("evClickLeft", "item=", item, "kitem", kitem);
+      }
+    }
   });
     </script>
 </body>
