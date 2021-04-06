@@ -119,6 +119,21 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-text-select'"
+                    :casename="'itemPaddingStyle'"
+                ></demolink>
+
+                <w-text-select
+                    :icon="mdiCheckUnderlineCircle"
+                    :itemPaddingStyle="{v:5,h:8}"
+                    :items="WTextSelect.objItems"
+                    v-model="WTextSelect.objValue"
+                ></w-text-select>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-text-select'"
                     :casename="'keyText'"
                 ></demolink>
 
@@ -376,6 +391,26 @@
                     :backgroundColorFocus="'orange lighten-5'"
                     :icon="mdiCheckUnderlineCircle"
                     :borderRadius="5"
+                    :items="WTextSelect.objItems"
+                    v-model="WTextSelect.objValue"
+                ></w-text-select>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-text-select'"
+                    :casename="'border & itemPaddingStyle'"
+                ></demolink>
+
+                <w-text-select
+                    :shadow="false"
+                    :borderColor="'orange lighten-2'"
+                    :borderColorHover="'orange'"
+                    :borderColorFocus="'orange darken-2'"
+                    :backgroundColorFocus="'orange lighten-5'"
+                    :icon="mdiCheckUnderlineCircle"
+                    :itemPaddingStyle="{v:5,h:8}"
                     :items="WTextSelect.objItems"
                     v-model="WTextSelect.objValue"
                 ></w-text-select>
