@@ -80,6 +80,10 @@ import domResize from '../js/domResize.mjs'
 import WIconLoading from './WIconLoading.vue'
 
 
+//showViewer, 得要跨組件共用, 因彈出viewer會影響全部組件
+let showViewer = false
+
+
 function getFileName(str) {
     return str.split('\\').pop().split('/').pop()
 }
@@ -145,7 +149,6 @@ export default {
             dbc: debounce(),
 
             loading: true,
-            showViewer: false,
 
             widthPanel: 0,
             heightPanel: 0,
@@ -204,7 +207,7 @@ export default {
             let widthPanel = get(vo, '$el.offsetWidth', 0)
 
             //check, 因開啟viewer會改變視窗尺寸, 進而觸發resize, 會導致觸發changeImagesAndStyle並重算圖片, 故得使用showViewer判斷是否為開啟viewer狀態, 避免重算圖片
-            if (vo.showViewer) {
+            if (showViewer) {
                 return
             }
 
@@ -426,14 +429,14 @@ export default {
             let vo = this
 
             //showViewer
-            vo.showViewer = true
+            showViewer = true
 
             //domShowImagesDyn
             domShowImagesDyn(e.target, null, vo.opt, vo.pathItems)
                 .finally(() => {
 
                     //showViewer
-                    vo.showViewer = false
+                    showViewer = false
 
                 })
 
