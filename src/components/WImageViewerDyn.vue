@@ -3,22 +3,22 @@
 
         <WIconLoading v-if="loading"></WIconLoading>
 
-        <div ref="imgsGroup" v-else>
-            <template v-for="(image,k) in images">
-                <div
-                    style="display:inline-block; opacity:0; user-select:none; cursor:pointer; outline:none;"
-                    tabindex="0"
-                    :key="k"
-                    @keyup.enter="showImg"
-                    @click="showImg"
+        <div ref="wig" v-else>
+            <!-- 為了使用fade-in故opacity給0 -->
+            <div
+                ref="wiv"
+                style="display:inline-block; opacity:0; user-select:none; cursor:pointer; outline:none;"
+                tabindex="0"
+                :key="k"
+                @keyup.enter="showImg"
+                @click="showImg"
+                v-for="(image,k) in images"
+            >
+                <img
+                    :style="useImageStyle"
+                    :src="image"
                 >
-                    <img
-                        :class="imageClass"
-                        :style="useImageStyle"
-                        :src="image"
-                    >
-                </div>
-            </template>
+            </div>
         </div>
 
     </div>
@@ -26,6 +26,7 @@
 
 <script>
 import each from 'lodash/each'
+import get from 'lodash/get'
 import merge from 'lodash/merge'
 import importResources from 'wsemi/src/importResources.mjs'
 import domShowImagesDyn from 'wsemi/src/domShowImagesDyn.mjs'
@@ -33,17 +34,10 @@ import domFadeIn from 'wsemi/src/domFadeIn.mjs'
 import WIconLoading from './WIconLoading.vue'
 
 
-//defStyle
-let defStyle = {
-    'margin': '5px',
-}
-
-
 /**
  * @vue-prop {Array} [pathItems=['詳見原始碼']] 輸入viewerjs組件js與css檔案位置字串陣列，預設詳見原始碼處props->pathItems->default
- * @vue-prop {Array} [images=[]] 輸入
- * @vue-prop {String} [imageClass=''] 輸入
- * @vue-prop {Object} [imageStyle={}] 輸入
+ * @vue-prop {Array} [images=[]] 輸入圖片網址陣列，預設[]
+ * @vue-prop {Object} [imageStyle={}] 輸入圖片style物件，預設{}
  * @vue-prop {Object} [opt={}] 輸入viewerjs設定物件，預設使用optOne或optMuti，若img僅一個則使用optOne，反之使用optMuti
  * @vue-prop {Boolean} [multiple=false] 輸入
  */
@@ -62,10 +56,6 @@ export default {
         images: {
             type: Array,
             default: () => [],
-        },
-        imageClass: {
-            type: String,
-            default: '',
         },
         imageStyle: {
             type: Object,
@@ -100,7 +90,8 @@ export default {
 
                 //$nextTick
                 vo.$nextTick(() => {
-                    each(vo.$refs.imgsGroup.children, (img, k) => {
+                    let divs = get(vo, '$refs.wiv', []) //可能因切換組件導致元素消失
+                    each(divs, (img, k) => {
                         //domFadeIn
                         domFadeIn(img, { duration: 200, delay: k * 100 })
                     })
@@ -116,8 +107,13 @@ export default {
 
             let vo = this
 
+            //style
+            let style = {
+                'margin': '5px',
+            }
+
             //merge
-            let r = merge(defStyle, vo.imageStyle)
+            let r = merge(style, vo.imageStyle)
 
             return r
         },
@@ -133,7 +129,7 @@ export default {
             //eleGroup
             let eleGroup = null
             if (vo.multiple) {
-                eleGroup = vo.$refs.imgsGroup
+                eleGroup = vo.$refs.wig
             }
 
             //domShowImagesDyn

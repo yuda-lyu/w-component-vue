@@ -15,6 +15,7 @@
 
         <div style="padding:0px;">
 
+
             <div class="bk" style="display:block;">
                 <demolink
                     :kbname="'w-image-viewer-dyn'"
@@ -45,6 +46,7 @@
 
             </div>
 
+
         </div>
 
 
@@ -68,10 +70,10 @@ export default {
             'WImageViewerDyn': {
                 'opt1': {
                     images: [
-                        'https://cdn.jsdelivr.net/npm/w-demores@1.0.12/res/img/view/001.jpg',
-                        'https://cdn.jsdelivr.net/npm/w-demores@1.0.12/res/img/view/002.jpg',
-                        'https://cdn.jsdelivr.net/npm/w-demores@1.0.12/res/img/view/003.jpg',
-                        'https://cdn.jsdelivr.net/npm/w-demores@1.0.12/res/img/view/004.jpg',
+                        'https://cdn.jsdelivr.net/npm/w-demores@1.0.13/res/img/view/001.jpg',
+                        'https://cdn.jsdelivr.net/npm/w-demores@1.0.13/res/img/view/002.jpg',
+                        'https://cdn.jsdelivr.net/npm/w-demores@1.0.13/res/img/view/003.jpg',
+                        'https://cdn.jsdelivr.net/npm/w-demores@1.0.13/res/img/view/004.jpg',
                     ],
                     imageStyle: {
                         maxWidth: '300px',
@@ -81,10 +83,10 @@ export default {
                 },
                 'opt2': {
                     images: [
-                        'https://cdn.jsdelivr.net/npm/w-demores@1.0.12/res/img/view/005.jpg',
-                        'https://cdn.jsdelivr.net/npm/w-demores@1.0.12/res/img/view/006.jpg',
-                        'https://cdn.jsdelivr.net/npm/w-demores@1.0.12/res/img/view/007.jpg',
-                        'https://cdn.jsdelivr.net/npm/w-demores@1.0.12/res/img/view/008.jpg',
+                        'https://cdn.jsdelivr.net/npm/w-demores@1.0.13/res/img/view/005.jpg',
+                        'https://cdn.jsdelivr.net/npm/w-demores@1.0.13/res/img/view/006.jpg',
+                        'https://cdn.jsdelivr.net/npm/w-demores@1.0.13/res/img/view/007.jpg',
+                        'https://cdn.jsdelivr.net/npm/w-demores@1.0.13/res/img/view/008.jpg',
                     ],
                     imageStyle: {
                         maxWidth: '300px',

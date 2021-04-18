@@ -479,7 +479,8 @@ export default {
             let n = size(items)
 
             //check changeHeight
-            each(vo.$refs.wdsDiv, (v) => {
+            let wdsDiv = get(vo, '$refs.wdsDiv', []) //可能因切換組件導致元素消失
+            each(wdsDiv, (v) => {
                 if (v.getAttribute) {
                     let nowShow = v.getAttribute('nowShow')
                     if (nowShow) {

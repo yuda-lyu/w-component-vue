@@ -535,7 +535,8 @@ export default {
             }
 
             //check changeHeight
-            each(vo.$refs.wjvc, (cmp) => {
+            let wjvc = get(vo, 'n$refs.wjvc', []) //可能因切換組件導致元素消失
+            each(wjvc, (cmp) => {
                 let v = cmp.$el
                 if (v.getAttribute) {
                     let nowShow = v.getAttribute('nowShow')

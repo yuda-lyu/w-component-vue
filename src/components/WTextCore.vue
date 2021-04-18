@@ -3,7 +3,7 @@
         <input
             ref="inp"
             type="text"
-            :style="`transition:all 0.3s; outline: none; width:100%; color:${useTextColor}; height:${height}px; text-align:${textAlign}; opacity:${(valueTrans==='' && !focused)?0.6:1};`"
+            :style="`transition:all 0.3s; outline: none; width:100%; box-sizing:border-box; border-style:none; background:transparent; color:${useTextColor}; height:${height}px; text-align:${textAlign}; opacity:${(valueTrans==='' && !focused)?0.6:1};`"
             :readonly="!editable"
             :placeholder="placeholder"
             v-model="valueTrans"

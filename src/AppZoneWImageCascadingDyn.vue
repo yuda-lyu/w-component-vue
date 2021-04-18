@@ -1,0 +1,139 @@
+<template>
+    <div>
+
+
+        <div class="head1">w-image-cascading-dyn</div>
+
+
+        <div style="font-size:0.9rem; margin-bottom:10px;">
+            <span style="margin-right:10px;">Links:</span>
+            <a href="//github.com/fengyuanchen/fooderjs" target="_blank" rel="noreferrer noopener">Viewer.js</a>
+            <span style="margin:0px 10px">|</span>
+            <a href="//fengyuanchen.github.io/fooderjs/" target="_blank" rel="noreferrer noopener">Viewer.js examples</a>
+        </div>
+
+
+        <div style="padding:0px;">
+
+
+            <div class="bk" style="display:block;">
+                <demolink
+                    :kbname="'w-image-cascading-dyn'"
+                    :casename="'default(imageWidth=300)'"
+                ></demolink>
+
+                <w-image-cascading-dyn
+                    :images="WImageCascadingDyn.opt1.images"
+                    :imageStyle="WImageCascadingDyn.opt1.imageStyle"
+                    :opt="WImageCascadingDyn.opt1.opt"
+                ></w-image-cascading-dyn>
+
+            </div>
+
+
+            <div class="bk" style="display:block;">
+                <demolink
+                    :kbname="'w-image-cascading-dyn'"
+                    :casename="'imageWidth'"
+                ></demolink>
+
+                <div style="padding:5px 0px; font-size:0.9rem;">
+                    colNum=(645-3*15)/150=4
+                </div>
+
+                <w-image-cascading-dyn
+                    style="width:645px;"
+                    :imageWidth="150"
+                    :images="WImageCascadingDyn.opt1.images"
+                    :imageStyle="WImageCascadingDyn.opt1.imageStyle"
+                    :opt="WImageCascadingDyn.opt1.opt"
+                ></w-image-cascading-dyn>
+
+            </div>
+
+
+            <div class="bk" style="display:block;">
+                <demolink
+                    :kbname="'w-image-cascading-dyn'"
+                    :casename="'colNum'"
+                ></demolink>
+
+                <w-image-cascading-dyn
+                    style="width:1200px;"
+                    :colNum="8"
+                    :images="WImageCascadingDyn.opt1.images"
+                    :imageStyle="WImageCascadingDyn.opt1.imageStyle"
+                    :opt="WImageCascadingDyn.opt1.opt"
+                ></w-image-cascading-dyn>
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+</template>
+
+<script>
+import demolink from './components/demolink.vue'
+import WImageCascadingDyn from './components/WImageCascadingDyn.vue'
+
+
+export default {
+    components: {
+        demolink,
+        WImageCascadingDyn,
+    },
+    props: {
+    },
+    data: function() {
+        let images = [
+            'https://cdn.jsdelivr.net/npm/w-demores@1.0.13/res/img/food/001.jpg',
+            'https://cdn.jsdelivr.net/npm/w-demores@1.0.13/res/img/food/002.jpg',
+            'https://cdn.jsdelivr.net/npm/w-demores@1.0.13/res/img/food/003.jpg',
+            'https://cdn.jsdelivr.net/npm/w-demores@1.0.13/res/img/food/004.jpg',
+            'https://cdn.jsdelivr.net/npm/w-demores@1.0.13/res/img/food/005.jpg',
+            'https://cdn.jsdelivr.net/npm/w-demores@1.0.13/res/img/food/006.jpg',
+            'https://cdn.jsdelivr.net/npm/w-demores@1.0.13/res/img/food/007.jpg',
+            'https://cdn.jsdelivr.net/npm/w-demores@1.0.13/res/img/food/008.jpg',
+            'https://cdn.jsdelivr.net/npm/w-demores@1.0.13/res/img/food/009.jpg',
+            'https://cdn.jsdelivr.net/npm/w-demores@1.0.13/res/img/food/010.jpg',
+            'https://cdn.jsdelivr.net/npm/w-demores@1.0.13/res/img/food/011.jpg',
+            'https://cdn.jsdelivr.net/npm/w-demores@1.0.13/res/img/food/012.jpg',
+            'https://cdn.jsdelivr.net/npm/w-demores@1.0.13/res/img/food/013.jpg',
+            'https://cdn.jsdelivr.net/npm/w-demores@1.0.13/res/img/food/014.jpg',
+            'https://cdn.jsdelivr.net/npm/w-demores@1.0.13/res/img/food/015.jpg',
+            'https://cdn.jsdelivr.net/npm/w-demores@1.0.13/res/img/food/016.jpg',
+            'https://cdn.jsdelivr.net/npm/w-demores@1.0.13/res/img/food/017.jpg',
+            'https://cdn.jsdelivr.net/npm/w-demores@1.0.13/res/img/food/018.jpg',
+            'https://cdn.jsdelivr.net/npm/w-demores@1.0.13/res/img/food/019.jpg',
+            'https://cdn.jsdelivr.net/npm/w-demores@1.0.13/res/img/food/020.jpg',
+            'https://cdn.jsdelivr.net/npm/w-demores@1.0.13/res/img/food/021.jpg',
+            'https://cdn.jsdelivr.net/npm/w-demores@1.0.13/res/img/food/022.jpg',
+            'https://cdn.jsdelivr.net/npm/w-demores@1.0.13/res/img/food/023.jpg',
+            'https://cdn.jsdelivr.net/npm/w-demores@1.0.13/res/img/food/024.jpg',
+            'https://cdn.jsdelivr.net/npm/w-demores@1.0.13/res/img/food/025.jpg',
+            'https://cdn.jsdelivr.net/npm/w-demores@1.0.13/res/img/food/026.jpg',
+            'https://cdn.jsdelivr.net/npm/w-demores@1.0.13/res/img/food/027.jpg',
+            'https://cdn.jsdelivr.net/npm/w-demores@1.0.13/res/img/food/028.jpg',
+            'https://cdn.jsdelivr.net/npm/w-demores@1.0.13/res/img/food/029.jpg',
+            'https://cdn.jsdelivr.net/npm/w-demores@1.0.13/res/img/food/030.jpg',
+        ]
+        return {
+            'WImageCascadingDyn': {
+                'opt1': {
+                    images,
+                    imageStyle: { },
+                    opt: {},
+                },
+            },
+            'actions': [
+            ],
+        }
+    },
+}
+</script>
+
+<style scoped>
+</style>
