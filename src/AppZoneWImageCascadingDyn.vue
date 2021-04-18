@@ -59,8 +59,8 @@
                 ></demolink>
 
                 <w-image-cascading-dyn
-                    style="width:1200px;"
-                    :colNum="8"
+                    style="max-width:1200px;"
+                    :colNum="5"
                     :images="WImageCascadingDyn.opt1.images"
                     :imageStyle="WImageCascadingDyn.opt1.imageStyle"
                     :opt="WImageCascadingDyn.opt1.opt"
