@@ -81,11 +81,13 @@
     <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.js"></script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.0.40/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.0.41/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
-    display: block; /* fix for IE11 */
+    /* width與max-width fix for IE11, 其外不能使用padding或margin避免失效 */
+    width: 100vw;
+    max-width: 100vw;
     font-family: inherit;
     background-color: #fff;
   }
@@ -122,47 +124,50 @@
     </style>
 </head>
 <body
-    style="font-family:'Microsoft JhengHei','Avenir','Helvetica'; padding:20px;"
+    style="font-family:'Microsoft JhengHei','Avenir','Helvetica'; padding:0px; margin:0px;"
 >
     <v-app id="app" style="font-family:inherit;">
-        <div class="item">in scroll panel</div>
+        <!-- 外部會再自動添加v-application--wrap, padding需另外放 -->
+        <div style="padding:20px;">
+            <div class="item">in scroll panel</div>
 
-        <div class="head1">w-popup</div>
+            <div class="head1">w-popup</div>
 
-        <!-- 用:style才能支援IE11因vue會自動把overflow-y:auto轉為-ms-overflow-y:auto -->
-        <div
-            :style="'width:200px; height:300px; border:1px solid #ddd; overflow-y:auto;'"
-        >
-            <div style="height:600px;">
-                <!-- 內嵌br為避免self-closing於前端vue模板無法解析問題 -->
-                <div style="height:200px;">
-                    <span />
-                </div>
+            <!-- 用:style才能支援IE11因vue會自動把overflow-y:auto轉為-ms-overflow-y:auto -->
+            <div
+                :style="'width:200px; height:300px; border:1px solid #ddd; overflow-y:auto;'"
+            >
+                <div style="height:600px;">
+                    <!-- 內嵌br為避免self-closing於前端vue模板無法解析問題 -->
+                    <div style="height:200px;">
+                        <span />
+                    </div>
 
-                <w-popup v-model="WPopup.bShow10">
-                    <template v-slot:trigger>
-                        <v-btn
-                            depressed
-                            small
-                            elevation="2"
-                        >Show({{WPopup.bShow10}})</v-btn>
-                    </template>
+                    <w-popup v-model="WPopup.bShow10">
+                        <template v-slot:trigger>
+                            <v-btn
+                                depressed
+                                small
+                                elevation="2"
+                            >Show({{WPopup.bShow10}})</v-btn>
+                        </template>
 
-                    <template v-slot:content>
-                        <v-list style="background:transparent;">
-                            <v-list-item
-                                style="min-height:inherit; padding:5px 15px;"
-                                :key="kitem"
-                                @click="function(){}"
-                                v-for="(item,kitem) in WPopup.items"
-                            >Item {{item}}</v-list-item>
-                        </v-list>
-                    </template>
-                </w-popup>
+                        <template v-slot:content>
+                            <v-list style="background:transparent;">
+                                <v-list-item
+                                    style="min-height:inherit; padding:5px 15px;"
+                                    :key="kitem"
+                                    @click="function(){}"
+                                    v-for="(item,kitem) in WPopup.items"
+                                >Item {{item}}</v-list-item>
+                            </v-list>
+                        </template>
+                    </w-popup>
 
-                <!-- 內嵌br為避免self-closing於前端vue模板無法解析問題 -->
-                <div style="height:200px;">
-                    <span />
+                    <!-- 內嵌br為避免self-closing於前端vue模板無法解析問題 -->
+                    <div style="height:200px;">
+                        <span />
+                    </div>
                 </div>
             </div>
         </div>
