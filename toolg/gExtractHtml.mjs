@@ -74,7 +74,9 @@ let h = `
 
     <style>
         .v-application--wrap {
-            display: block; /* fix for IE11 */
+            /* width與max-width fix for IE11, 其外不能使用padding或margin避免失效 */
+            width: 100vw;
+            max-width: 100vw;
             font-family: inherit;
             background-color: #fff;
         }
@@ -109,11 +111,14 @@ let h = `
     </style>
 
 </head>
-<body style="font-family:'Microsoft JhengHei','Avenir','Helvetica'; padding:20px;">
+<body style="font-family:'Microsoft JhengHei','Avenir','Helvetica'; padding:0px; margin:0px;">
 
     <v-app id="app" style="font-family:inherit;">
 
-        {{tmp}}
+        <!-- 外部會再自動添加v-application--wrap, padding需另外放 -->
+        <div style="padding:20px;">
+            {{tmp}}
+        </div>
 
     </v-app>
 

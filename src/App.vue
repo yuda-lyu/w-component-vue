@@ -596,7 +596,9 @@ export default {
 
 <style>
 .v-application--wrap {
-    display: block; /* fix for IE11 */
+    /* width與max-width fix for IE11, 其外不能使用padding或margin避免失效 */
+    width: 100vw !important;
+    max-width: 100vw !important;
     font-family: inherit;
     background-color: #fff;
 }
