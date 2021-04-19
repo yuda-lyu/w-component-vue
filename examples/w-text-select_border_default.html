@@ -81,13 +81,23 @@
     <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.js"></script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.0.38/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.0.39/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
     display: block; /* fix for IE11 */
     font-family: inherit;
     background-color: #fff;
+  }
+  .item {
+    /* 因item位於demolink, 提取各範例html後會刪除demolink, 故得額外補上 */
+    border-left: 3px solid #ffba75;
+    margin: 5px 5px 8px 0px;
+    padding: 3px 3px 5px 10px;
+    font-size: 0.9rem;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
   }
   .head1 {
     margin: 0px;
@@ -115,6 +125,8 @@
     style="font-family:'Microsoft JhengHei','Avenir','Helvetica'; padding:20px;"
 >
     <v-app id="app" style="font-family:inherit;">
+        <div class="item">border & default</div>
+
         <div class="head1">w-text-select</div>
 
         <w-text-select
