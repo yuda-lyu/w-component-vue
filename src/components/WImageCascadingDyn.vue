@@ -1,6 +1,7 @@
 <template>
     <div
-        :changeImagesAndStyle="changeImagesAndStyle"
+        :changeImages="changeImages"
+        :changeStyle="changeStyle"
         v-domresize
         @domresize="resize"
     >
@@ -19,7 +20,7 @@
             >
 
                 <div
-                    class="fadeIn"
+                    :class="`${first?'':'fadeIn'}`"
                     :style="`margin:${kimg>0?space:0}px 0 0 0; width:${uesImageWidth}px; user-select:none; outline:none;`"
                     tabindex="0"
                     :key="`kimg-${kimg}`"
@@ -65,6 +66,7 @@ import each from 'lodash/each'
 import map from 'lodash/map'
 import get from 'lodash/get'
 import times from 'lodash/times'
+import size from 'lodash/size'
 import importResources from 'wsemi/src/importResources.mjs'
 import domShowImagesDyn from 'wsemi/src/domShowImagesDyn.mjs'
 import ispint from 'wsemi/src/ispint.mjs'
@@ -149,12 +151,15 @@ export default {
             dbc: debounce(),
 
             loading: true,
+            first: false,
 
             widthPanel: 0,
             heightPanel: 0,
             imageCols: [],
             useImageStyle: {},
             uesImageWidth: 0,
+
+            imagesRes: [],
 
         }
     },
@@ -176,21 +181,34 @@ export default {
     },
     computed: {
 
-        changeImagesAndStyle: function() {
-            // console.log('computed changeImagesAndStyle')
+        changeImages: function() {
+            // console.log('computed changeImages')
+
+            let vo = this
+
+            let images = vo.images
+
+            //refreshDebounce
+            vo.refreshDebounce({ images })
+
+            return ''
+        },
+
+
+        changeStyle: function() {
+            // console.log('computed changeStyle')
 
             let vo = this
 
             //for trigger
             let widthPanel = vo.widthPanel
-            let images = vo.images
             let imageWidth = vo.imageWidth
             let imageStyle = vo.imageStyle
             let colNum = vo.colNum
             let space = vo.space
 
             //refreshDebounce
-            vo.refreshDebounce({ widthPanel, images, imageWidth, imageStyle, colNum, space })
+            vo.refreshDebounce({ widthPanel, imageWidth, imageStyle, colNum, space })
 
             return ''
         },
@@ -206,7 +224,7 @@ export default {
             //widthPanel
             let widthPanel = get(vo, '$el.offsetWidth', 0)
 
-            //check, 因開啟viewer會改變視窗尺寸, 進而觸發resize, 會導致觸發changeImagesAndStyle並重算圖片, 故得使用showViewer判斷是否為開啟viewer狀態, 避免重算圖片
+            //check, 因開啟viewer會改變視窗尺寸, 進而觸發resize, 會導致觸發changeStyle並重算圖片, 故得使用showViewer判斷是否為開啟viewer狀態, 避免重算圖片
             if (showViewer) {
                 return
             }
@@ -288,14 +306,24 @@ export default {
             let pmq = pmQueue(vo.numParallel) //1次取得numParallel個圖片
 
             //getImgSize
+            vo.imagesRes = []
             each(vo.images, (src, ind) => {
                 pmq(vo.getImgSize, src, uesImageWidth)
                     .then((r) => {
-                        ev.emit('get', {
+
+                        //o
+                        let o = {
                             ...r,
                             name: getFileName(r.src),
                             ind,
-                        })
+                        }
+
+                        //save imagesRes
+                        vo.imagesRes[ind] = o
+
+                        //emit
+                        ev.emit('get', o)
+
                     })
                     .catch((err) => {
                         console.log(err)
@@ -391,12 +419,7 @@ export default {
                 return 0
             })
 
-            //getImgsSize
-            let ev = vo.getImgsSize(uesImageWidth)
-
-            //arrange
-            ev.on('get', (img) => {
-                // console.log('get', img)
+            function arrange(img) {
 
                 //check, 開發階段可能hot reload組件導致出現上一輪事件
                 if (!isarr(vo.imageCols)) {
@@ -419,7 +442,58 @@ export default {
                     console.log(err)
                 }
 
-            })
+            }
+
+            function build() {
+
+                //pm
+                let pm = genPm()
+
+                //num
+                let num = size(vo.images)
+
+                //getImgsSize
+                let ev = vo.getImgsSize(uesImageWidth)
+
+                //arrange
+                let n = 0
+                ev.on('get', (img) => {
+                    // console.log('get', img)
+
+                    //arrange
+                    arrange(img)
+
+                    //check
+                    n++
+                    if (n >= num) {
+
+                        //first
+                        vo.first = true
+
+                        //resolve
+                        pm.resolve()
+
+                    }
+
+                })
+
+                return pm
+            }
+
+            function layout() {
+                each(vo.imagesRes, (img) => {
+                    arrange(img)
+                })
+            }
+
+            if (!vo.first) {
+                // console.log('build')
+                build()
+            }
+            else {
+                // console.log('layout')
+                layout()
+            }
 
         },
 

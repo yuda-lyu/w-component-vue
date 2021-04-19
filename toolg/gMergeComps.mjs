@@ -16,11 +16,6 @@ function main() {
     _.pull(ltfs, fn_tar)
     _.pull(ltfs, 'demolink.vue')
 
-    // //filter
-    // ltfs = _.filter(ltfs, function(v) {
-    //     return !(v.indexOf('demolink') >= 0)
-    // })
-
     //c1, c2
     let c1 = []
     let c2 = []

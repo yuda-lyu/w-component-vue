@@ -81,13 +81,23 @@
     <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.js"></script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.0.38/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.0.39/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
     display: block; /* fix for IE11 */
     font-family: inherit;
     background-color: #fff;
+  }
+  .item {
+    /* 因item位於demolink, 提取各範例html後會刪除demolink, 故得額外補上 */
+    border-left: 3px solid #ffba75;
+    margin: 5px 5px 8px 0px;
+    padding: 3px 3px 5px 10px;
+    font-size: 0.9rem;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
   }
   .head1 {
     margin: 0px;
@@ -115,6 +125,8 @@
     style="font-family:'Microsoft JhengHei','Avenir','Helvetica'; padding:20px;"
 >
     <v-app id="app" style="font-family:inherit;">
+        <div class="item">borderRadius</div>
+
         <div class="head1">w-popup</div>
 
         <w-popup :border-radius="10" v-model="WPopup.bShow6">
@@ -171,37 +183,37 @@
           tableFun: function() {
             //註解會於編譯階段被清除無法用f2c
             /**
-                    <table style="width:100%; font-size:0.7rem; border-collapse:collapse;">
-                        <thead>
-                            <tr>
-                                <th style="padding:2px 8px; text-align:left;">Dessert</th>
-                                <th style="padding:2px 8px; text-align:left;">Calories</th>
-                                <th style="padding:2px 8px; text-align:left;">Fat</th>
-                                <th style="padding:2px 8px; text-align:left;">Carbs</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td style="padding:2px 8px; border-top:1px solid #ddd;">Frozen Yogurt</td>
-                                <td style="padding:2px 8px; border-top:1px solid #ddd;">159</td>
-                                <td style="padding:2px 8px; border-top:1px solid #ddd;">6</td>
-                                <td style="padding:2px 8px; border-top:1px solid #ddd;">24</td>
-                            </tr>
-                            <tr>
-                                <td style="padding:2px 8px; border-top:1px solid #ddd;">Ice cream sandwich</td>
-                                <td style="padding:2px 8px; border-top:1px solid #ddd;">237</td>
-                                <td style="padding:2px 8px; border-top:1px solid #ddd;">9</td>
-                                <td style="padding:2px 8px; border-top:1px solid #ddd;">37</td>
-                            </tr>
-                            <tr>
-                                <td style="padding:2px 8px; border-top:1px solid #ddd;">Eclair</td>
-                                <td style="padding:2px 8px; border-top:1px solid #ddd;">262</td>
-                                <td style="padding:2px 8px; border-top:1px solid #ddd;">16</td>
-                                <td style="padding:2px 8px; border-top:1px solid #ddd;">23</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                     */
+                            <table style="width:100%; font-size:0.7rem; border-collapse:collapse;">
+                                <thead>
+                                    <tr>
+                                        <th style="padding:2px 8px; text-align:left;">Dessert</th>
+                                        <th style="padding:2px 8px; text-align:left;">Calories</th>
+                                        <th style="padding:2px 8px; text-align:left;">Fat</th>
+                                        <th style="padding:2px 8px; text-align:left;">Carbs</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td style="padding:2px 8px; border-top:1px solid #ddd;">Frozen Yogurt</td>
+                                        <td style="padding:2px 8px; border-top:1px solid #ddd;">159</td>
+                                        <td style="padding:2px 8px; border-top:1px solid #ddd;">6</td>
+                                        <td style="padding:2px 8px; border-top:1px solid #ddd;">24</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding:2px 8px; border-top:1px solid #ddd;">Ice cream sandwich</td>
+                                        <td style="padding:2px 8px; border-top:1px solid #ddd;">237</td>
+                                        <td style="padding:2px 8px; border-top:1px solid #ddd;">9</td>
+                                        <td style="padding:2px 8px; border-top:1px solid #ddd;">37</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding:2px 8px; border-top:1px solid #ddd;">Eclair</td>
+                                        <td style="padding:2px 8px; border-top:1px solid #ddd;">262</td>
+                                        <td style="padding:2px 8px; border-top:1px solid #ddd;">16</td>
+                                        <td style="padding:2px 8px; border-top:1px solid #ddd;">23</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                             */
           },
           table:
             '\n<table style="width:100%; font-size:0.7rem; border-collapse:collapse;">\n                        <thead>\n                            <tr>\n                                <th style="padding:2px 8px; text-align:left;">Dessert</th>\n                                <th style="padding:2px 8px; text-align:left;">Calories</th>\n                                <th style="padding:2px 8px; text-align:left;">Fat</th>\n                                <th style="padding:2px 8px; text-align:left;">Carbs</th>\n                            </tr>\n                        </thead>\n                        <tbody>\n                            <tr>\n                                <td style="padding:2px 8px; border-top:1px solid #ddd;">Frozen Yogurt</td>\n                                <td style="padding:2px 8px; border-top:1px solid #ddd;">159</td>\n                                <td style="padding:2px 8px; border-top:1px solid #ddd;">6</td>\n                                <td style="padding:2px 8px; border-top:1px solid #ddd;">24</td>\n                            </tr>\n                            <tr>\n                                <td style="padding:2px 8px; border-top:1px solid #ddd;">Ice cream sandwich</td>\n                                <td style="padding:2px 8px; border-top:1px solid #ddd;">237</td>\n                                <td style="padding:2px 8px; border-top:1px solid #ddd;">9</td>\n                                <td style="padding:2px 8px; border-top:1px solid #ddd;">37</td>\n                            </tr>\n                            <tr>\n                                <td style="padding:2px 8px; border-top:1px solid #ddd;">Eclair</td>\n                                <td style="padding:2px 8px; border-top:1px solid #ddd;">262</td>\n                                <td style="padding:2px 8px; border-top:1px solid #ddd;">16</td>\n                                <td style="padding:2px 8px; border-top:1px solid #ddd;">23</td>\n                            </tr>\n                        </tbody>\n                    </table>\n',

@@ -47,5 +47,7 @@ module.exports = {
         'prefer-promise-reject-errors': 'off',
         'no-unused-vars': ['error', { 'args': 'none', 'ignoreRestSiblings': true, 'argsIgnorePattern': '^_' }],
         'node/no-callback-literal': 'off',
+        'prefer-regex-literals': 'off',
+        'array-callback-return': 'off',
     }
 };

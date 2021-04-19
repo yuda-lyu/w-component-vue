@@ -78,6 +78,15 @@ let h = `
             font-family: inherit;
             background-color: #fff;
         }
+        .item { /* 因item位於demolink, 提取各範例html後會刪除demolink, 故得額外補上 */
+            border-left: 3px solid #ffba75;
+            margin: 5px 5px 8px 0px;
+            padding: 3px 3px 5px 10px;
+            font-size: 0.9rem;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+        }
         .head1 {
             margin: 0px;
             padding: 0px 0px 20px 0px;
@@ -161,9 +170,11 @@ function writeHtml(v) {
     //t_tmp
     let $ = cheerio.load(v.tmp, $setting)
     $('demolink').remove() //移除demolink
-    $('div.bk').prepend(`<div class="item">${v.casename}</div>`) //添加基本casename
-    v.tmp = $.html() //覆蓋回temp
-    let t_tmp = `<div class="head1">${v.kbname}</div>\r\n` + v.tmp //添加組件kbname
+    // $('div.bk').prepend(`<div class="item">${v.casename}</div>`) //添加基本casename
+    let hc = `\r\n        <div class="item">${v.casename}</div>\r\n`
+    let hkb = `\r\n        <div class="head1">${v.kbname}</div>\r\n`
+    let ht = $.html()
+    let t_tmp = hc + hkb + ht //添加組件kbname
     t_tmp = kebabProps(t_tmp)
     t_tmp = w.replace(t_tmp, `=""`, '')
 
@@ -237,6 +248,12 @@ function extractAppZone(fn) {
     let ss = data.split('\r\n')
     ss = _.filter(ss, (s) => {
         return s.indexOf('            mdi') < 0 //去除@mdi/js icon
+    })
+    ss = _.map(ss, (v, k) => {
+        if (k === 0) {
+            return v
+        }
+        return `        ${v}`
     })
     data = ss.join('\r\n')
     //console.log('data', data)
