@@ -62,6 +62,7 @@
 </template>
 
 <script>
+import random from 'lodash/random'
 import each from 'lodash/each'
 import map from 'lodash/map'
 import get from 'lodash/get'
@@ -98,6 +99,7 @@ function getFileName(str) {
  * @vue-prop {Number} [colNum=null] 輸入組件寬度圖片欄位(水平向有幾張圖片)數量數字，預設null
  * @vue-prop {Number} [space=15] 輸入圖片間間距長度數字，單位為px，預設15
  * @vue-prop {Object} [imageStyle={}] 輸入圖片style物件，預設{}
+ * @vue-prop {Object} [arrangeWhenFinish=false] 輸入是否於圖片載入完畢時依照原本圖片順序排序布林值，預設false
  * @vue-prop {Number} [numParallel=5] 輸入同時載入圖片數量數字，預設5
  * @vue-prop {Object} [opt={}] 輸入viewerjs設定物件，預設使用optOne或optMuti，若img僅一個則使用optOne，反之使用optMuti
  * @vue-prop {Boolean} [multiple=false] 輸入
@@ -137,6 +139,10 @@ export default {
             type: Object,
             default: () => {},
         },
+        arrangeWhenFinish: {
+            type: Boolean,
+            default: false,
+        },
         numParallel: {
             type: Number,
             default: 5,
@@ -156,6 +162,7 @@ export default {
             widthPanel: 0,
             heightPanel: 0,
             imageCols: [],
+            imageLocs: [],
             useImageStyle: {},
             uesImageWidth: 0,
 
@@ -270,6 +277,16 @@ export default {
 
             //onload
             img.onload = function() {
+                // setTimeout(() => {
+                //     pm.resolve({
+                //         src,
+                //         id,
+                //         w: img.clientWidth,
+                //         h: img.clientHeight,
+                //         err: null,
+                //     })
+                //     domRemove(div)
+                // }, random(10, 2500))
                 pm.resolve({
                     src,
                     id,
@@ -294,8 +311,8 @@ export default {
             return pm
         },
 
-        getImgsSize: function(uesImageWidth) {
-            //console.log('methods getImgsSize', uesImageWidth)
+        getImgsSize: function(uesImageWidth, evKey) {
+            //console.log('methods getImgsSize', uesImageWidth, evKey)
 
             let vo = this
 
@@ -307,15 +324,24 @@ export default {
 
             //getImgSize
             vo.imagesRes = []
-            each(vo.images, (src, ind) => {
+            let j = -1
+            each(vo.images, (src, k) => {
                 pmq(vo.getImgSize, src, uesImageWidth)
                     .then((r) => {
+                        j++
+
+                        //ind
+                        let ind = j
+                        if (vo.arrangeWhenFinish) { //需依照原始順序排序
+                            ind = k
+                        }
 
                         //o
                         let o = {
                             ...r,
                             name: getFileName(r.src),
                             ind,
+                            evKey,
                         }
 
                         //save imagesRes
@@ -348,7 +374,7 @@ export default {
 
         },
 
-        refresh: function(from) {
+        refresh: function() {
             // console.log('methods refresh')
 
             let vo = this
@@ -398,9 +424,9 @@ export default {
             vo.useImageStyle = useImageStyle
 
             function getMinHeightCol() {
-                let hmin = imageLocs[0]
+                let hmin = vo.imageLocs[0]
                 let ihmin = 0
-                each(imageLocs, (v, i) => {
+                each(vo.imageLocs, (v, i) => {
                     if (hmin > v) {
                         hmin = v
                         ihmin = i
@@ -409,17 +435,16 @@ export default {
                 return ihmin
             }
 
-            //imageCols
-            vo.imageCols = map(times(colNum), () => {
-                return []
-            })
+            function resetImageColsAndLocs() {
+                vo.imageCols = map(times(colNum), () => {
+                    return []
+                })
+                vo.imageLocs = map(times(colNum), () => {
+                    return 0
+                })
+            }
 
-            //imageLocs
-            let imageLocs = map(times(colNum), () => {
-                return 0
-            })
-
-            function arrange(img) {
+            function pushImage(img) {
 
                 //check, 開發階段可能hot reload組件導致出現上一輪事件
                 if (!isarr(vo.imageCols)) {
@@ -435,12 +460,10 @@ export default {
                     vo.imageCols[i].push(img)
 
                     //update
-                    imageLocs[i] += img.h + vo.space
+                    vo.imageLocs[i] += img.h + vo.space + (29 + 24) //29是圖名區高度, 24是位址區高度
 
                 }
-                catch (err) {
-                    console.log(err)
-                }
+                catch (err) { }
 
             }
 
@@ -449,19 +472,30 @@ export default {
                 //pm
                 let pm = genPm()
 
+                //resetImageColsAndLocs
+                resetImageColsAndLocs()
+
+                //evKey
+                let evKey = genID()
+
                 //num
                 let num = size(vo.images)
 
                 //getImgsSize
-                let ev = vo.getImgsSize(uesImageWidth)
+                let ev = vo.getImgsSize(uesImageWidth, evKey)
 
-                //arrange
+                //pushImage
                 let n = 0
                 ev.on('get', (img) => {
                     // console.log('get', img)
 
-                    //arrange
-                    arrange(img)
+                    //check
+                    if (img.evKey !== evKey) {
+                        return
+                    }
+
+                    //pushImage
+                    pushImage(img)
 
                     //check
                     n++
@@ -469,6 +503,11 @@ export default {
 
                         //first
                         vo.first = true
+
+                        //arrange
+                        if (vo.arrangeWhenFinish) {
+                            arrange()
+                        }
 
                         //resolve
                         pm.resolve()
@@ -480,10 +519,16 @@ export default {
                 return pm
             }
 
-            function layout() {
+            function arrange() {
+
+                //resetImageColsAndLocs
+                resetImageColsAndLocs()
+
+                //pushImage
                 each(vo.imagesRes, (img) => {
-                    arrange(img)
+                    pushImage(img)
                 })
+
             }
 
             if (!vo.first) {
@@ -491,8 +536,8 @@ export default {
                 build()
             }
             else {
-                // console.log('layout')
-                layout()
+                // console.log('arrange')
+                arrange()
             }
 
         },

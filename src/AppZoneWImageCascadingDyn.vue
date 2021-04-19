@@ -69,6 +69,23 @@
             </div>
 
 
+            <div class="bk" style="display:block;">
+                <demolink
+                    :kbname="'w-image-cascading-dyn'"
+                    :casename="'arrangeWhenFinish'"
+                ></demolink>
+
+                <w-image-cascading-dyn
+                    style="max-width:1200px;"
+                    :arrangeWhenFinish="true"
+                    :images="WImageCascadingDyn.opt1.images"
+                    :imageStyle="WImageCascadingDyn.opt1.imageStyle"
+                    :opt="WImageCascadingDyn.opt1.opt"
+                ></w-image-cascading-dyn>
+
+            </div>
+
+
         </div>
 
 
@@ -107,21 +124,6 @@ export default {
                         'https://cdn.jsdelivr.net/npm/w-demores@1.0.13/res/img/food/013.jpg',
                         'https://cdn.jsdelivr.net/npm/w-demores@1.0.13/res/img/food/014.jpg',
                         'https://cdn.jsdelivr.net/npm/w-demores@1.0.13/res/img/food/015.jpg',
-                        'https://cdn.jsdelivr.net/npm/w-demores@1.0.13/res/img/food/016.jpg',
-                        'https://cdn.jsdelivr.net/npm/w-demores@1.0.13/res/img/food/017.jpg',
-                        'https://cdn.jsdelivr.net/npm/w-demores@1.0.13/res/img/food/018.jpg',
-                        'https://cdn.jsdelivr.net/npm/w-demores@1.0.13/res/img/food/019.jpg',
-                        'https://cdn.jsdelivr.net/npm/w-demores@1.0.13/res/img/food/020.jpg',
-                        'https://cdn.jsdelivr.net/npm/w-demores@1.0.13/res/img/food/021.jpg',
-                        'https://cdn.jsdelivr.net/npm/w-demores@1.0.13/res/img/food/022.jpg',
-                        'https://cdn.jsdelivr.net/npm/w-demores@1.0.13/res/img/food/023.jpg',
-                        'https://cdn.jsdelivr.net/npm/w-demores@1.0.13/res/img/food/024.jpg',
-                        'https://cdn.jsdelivr.net/npm/w-demores@1.0.13/res/img/food/025.jpg',
-                        'https://cdn.jsdelivr.net/npm/w-demores@1.0.13/res/img/food/026.jpg',
-                        'https://cdn.jsdelivr.net/npm/w-demores@1.0.13/res/img/food/027.jpg',
-                        'https://cdn.jsdelivr.net/npm/w-demores@1.0.13/res/img/food/028.jpg',
-                        'https://cdn.jsdelivr.net/npm/w-demores@1.0.13/res/img/food/029.jpg',
-                        'https://cdn.jsdelivr.net/npm/w-demores@1.0.13/res/img/food/030.jpg',
                     ],
                     imageStyle: { },
                     opt: {},

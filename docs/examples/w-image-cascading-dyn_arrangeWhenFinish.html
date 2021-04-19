@@ -7,7 +7,7 @@
         content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui"
     />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>example for w-group-radio: textColor & textColorHover</title>
+    <title>example for w-image-cascading-dyn: arrangeWhenFinish</title>
 
     <!-- fontawesome -->
     <link
@@ -125,15 +125,16 @@
     style="font-family:'Microsoft JhengHei','Avenir','Helvetica'; padding:20px;"
 >
     <v-app id="app" style="font-family:inherit;">
-        <div class="item">textColor & textColorHover</div>
+        <div class="item">arrangeWhenFinish</div>
 
-        <div class="head1">w-group-radio</div>
+        <div class="head1">w-image-cascading-dyn</div>
 
-        <w-group-radio
-            :items="WGroupRadio.object.items"
-            v-model="WGroupRadio.object.select"
-            :text-color="'grey darken-1'"
-            :text-color-hover="'orange darken-3'"
+        <w-image-cascading-dyn
+            style="max-width:1200px;"
+            :arrange-when-finish="true"
+            :images="WImageCascadingDyn.opt1.images"
+            :image-style="WImageCascadingDyn.opt1.imageStyle"
+            :opt="WImageCascadingDyn.opt1.opt"
         />
     </v-app>
 
@@ -147,119 +148,27 @@
     vuetify: new Vuetify(),
     data: function() {
       return {
-        WGroupRadio: {
-          string: {
-            items: [
-              "Dashboard",
-              "Schedule",
-              "Profile",
-              "History",
-              "Apple",
-              "橘子"
+        WImageCascadingDyn: {
+          opt1: {
+            images: [
+              "https://cdn.jsdelivr.net/npm/w-demores@1.0.13/res/img/food/001.jpg",
+              "https://cdn.jsdelivr.net/npm/w-demores@1.0.13/res/img/food/002.jpg",
+              "https://cdn.jsdelivr.net/npm/w-demores@1.0.13/res/img/food/003.jpg",
+              "https://cdn.jsdelivr.net/npm/w-demores@1.0.13/res/img/food/004.jpg",
+              "https://cdn.jsdelivr.net/npm/w-demores@1.0.13/res/img/food/005.jpg",
+              "https://cdn.jsdelivr.net/npm/w-demores@1.0.13/res/img/food/006.jpg",
+              "https://cdn.jsdelivr.net/npm/w-demores@1.0.13/res/img/food/007.jpg",
+              "https://cdn.jsdelivr.net/npm/w-demores@1.0.13/res/img/food/008.jpg",
+              "https://cdn.jsdelivr.net/npm/w-demores@1.0.13/res/img/food/009.jpg",
+              "https://cdn.jsdelivr.net/npm/w-demores@1.0.13/res/img/food/010.jpg",
+              "https://cdn.jsdelivr.net/npm/w-demores@1.0.13/res/img/food/011.jpg",
+              "https://cdn.jsdelivr.net/npm/w-demores@1.0.13/res/img/food/012.jpg",
+              "https://cdn.jsdelivr.net/npm/w-demores@1.0.13/res/img/food/013.jpg",
+              "https://cdn.jsdelivr.net/npm/w-demores@1.0.13/res/img/food/014.jpg",
+              "https://cdn.jsdelivr.net/npm/w-demores@1.0.13/res/img/food/015.jpg"
             ],
-            select: "Apple"
-          },
-          object: {
-            items: [
-              {
-                text: "Dashboard",
-                icon: "mdi-view-dashboard"
-              },
-              {
-                text: "Schedule",
-                icon: "mdi-clock-time-eight-outline"
-              },
-              {
-                text: "Profile",
-                icon: "mdi-blender-software"
-              },
-              {
-                text: "History",
-                icon: "mdi-spoon-sugar"
-              },
-              {
-                text: "蘋果",
-                icon: "mdi-apple"
-              }
-            ],
-            select: {
-              text: "Dashboard",
-              icon: "mdi-view-dashboard"
-            }
-          },
-          objectOne: {
-            items: [
-              {
-                text: "Dashboard",
-                icon: "mdi-view-dashboard"
-              }
-            ],
-            select: {
-              text: "Dashboard",
-              icon: "mdi-view-dashboard"
-            }
-          },
-          objectTP: {
-            items: [
-              {
-                text: "Dashboard",
-                icon: "mdi-view-dashboard",
-                tooltip: "tooltip for Dashboard"
-              },
-              {
-                text: "Schedule",
-                icon: "mdi-clock-time-eight-outline",
-                tooltip: "tooltip for Schedule"
-              },
-              {
-                text: "Profile",
-                icon: "mdi-blender-software",
-                tooltip: "tooltip for Profile"
-              },
-              {
-                text: "History",
-                icon: "mdi-spoon-sugar",
-                tooltip: "tooltip for History"
-              },
-              {
-                text: "蘋果",
-                icon: "mdi-apple",
-                tooltip: "tooltip for 蘋果"
-              }
-            ],
-            select: {
-              text: "Dashboard",
-              icon: "mdi-account-supervisor-circle",
-              tooltip: "tooltip for Dashboard"
-            }
-          },
-          objectFA: {
-            items: [
-              {
-                text: "Dashboard",
-                icon: "fa fa-address-book"
-              },
-              {
-                text: "Schedule",
-                icon: "fa fa-address-card"
-              },
-              {
-                text: "Profile",
-                icon: "fa fa-american-sign-language-interpreting"
-              },
-              {
-                text: "History",
-                icon: "fa fa-balance-scale"
-              },
-              {
-                text: "蘋果",
-                icon: "fa fa-heartbeat"
-              }
-            ],
-            select: {
-              text: "Dashboard",
-              icon: "fa fa-address-book"
-            }
+            imageStyle: {},
+            opt: {}
           }
         },
         actions: []
@@ -269,11 +178,7 @@
       return {};
     },
     computed: {},
-    methods: {
-      ckBtn: function(item) {
-        console.log(item);
-      }
-    }
+    methods: {}
   });
     </script>
 </body>
