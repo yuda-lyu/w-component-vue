@@ -1,7 +1,7 @@
 <template>
     <div
         ref="dropPanel"
-        :style="`border:${borderWidth}px solid ${useBorderColor}; border-radius:${borderRadius}px; background:${useBackgroundColor}; transition:${styleTransition};`"
+        :style="`border:${borderWidth}px solid ${useBorderColor}; border-radius:${borderRadius}px; background:${useBackgroundColor}; transition:all ${timeTransition}s linear;`"
         @mouseenter="bMouseIn=true"
         @mouseleave="bMouseIn=false"
     >
@@ -18,7 +18,7 @@ import domDropFiles from 'wsemi/src/domDropFiles.mjs'
  * @vue-prop {String} [backgroundColor='transparent'] 輸入背景顏色字串，預設'transparent'
  * @vue-prop {String} [backgroundColorDropIn='purple lighten-5'] 輸入滑鼠拖曳檔案移入時背景顏色字串，預設'purple lighten-5'
  * @vue-prop {String} [backgroundColorHover='grey lighten-5'] 輸入滑鼠移入時背景顏色字串，預設'grey lighten-5'
- * @vue-prop {String} [styleTransition='all 0.3s linear'] 輸入style的transition設定字串，預設'all 0.3s linear'
+ * @vue-prop {Number} [timeTransition=0.3] 輸入style的transition時間數字，單位s，預設0.3
  * @vue-prop {Number} [borderRadius=6] 輸入邊框圓角角度數字，單位為px，預設6
  * @vue-prop {Number} [borderWidth=1] 輸入邊框寬度數字，單位為px，預設1
  * @vue-prop {String} [borderColor='grey lighten-2'] 輸入邊框寬度數字，預設'grey lighten-2'
@@ -41,9 +41,9 @@ export default {
             type: String,
             default: 'grey lighten-5',
         },
-        styleTransition: {
-            type: String,
-            default: 'all 0.3s linear',
+        timeTransition: {
+            type: Number,
+            default: 0.3,
         },
         borderRadius: {
             type: Number,
@@ -91,6 +91,9 @@ export default {
         vo.ev.on('dropOut', () => {
             vo.bDropIn = false
             vo.$emit('drop-out')
+        })
+        vo.ev.on('error', function(err) {
+            vo.$emit('drop-error', err)
         })
 
     },

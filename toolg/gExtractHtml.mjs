@@ -6,6 +6,7 @@ import w from 'wsemi'
 import getFiles from 'w-package-tools/src/getFiles.mjs'
 import cleanFolder from 'w-package-tools/src/cleanFolder.mjs'
 import parseVueCode from 'w-package-tools/src/parseVueCode.mjs'
+import kebabPropsVueTemp from 'w-package-tools/src/kebabPropsVueTemp.mjs'
 import cvCasename from './cvCasename.mjs'
 
 
@@ -147,24 +148,6 @@ let h = `
 function writeHtml(v) {
     //name, kbname, casename, tmp, data, action, fn
 
-    //kebabProps
-    function kebabProps(t) {
-        let reg = new RegExp(/:[\w\W][^=:; ]*=/, 'g')
-        return _.replace(t, reg, function(v) {
-            let prop = v
-            prop = _.replace(prop, ':', '')
-            prop = _.replace(prop, '=', '')
-            let s = _.split(prop, '.')
-            prop = _.kebabCase(s[0])
-            let c = ''
-            if (s.length === 2) {
-                c = '.' + s[1]
-            }
-            prop = `:${prop}${c}=`
-            return prop
-        })
-    }
-
     //c
     let c = h
 
@@ -180,7 +163,7 @@ function writeHtml(v) {
     let hcn = `\r\n        <div class="item">${v.casename}</div>\r\n`
     let ht = $.html()
     let t_tmp = hkb + hcn + ht //添加組件kbname
-    t_tmp = kebabProps(t_tmp)
+    t_tmp = kebabPropsVueTemp(t_tmp)
     t_tmp = w.replace(t_tmp, `=""`, '')
 
     //replace tmp

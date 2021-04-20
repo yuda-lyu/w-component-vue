@@ -6,7 +6,7 @@
         v-if="path"
     >
         <svg
-            :style="`fill:${useIconColor}; transition:${styleTransition};`"
+            :style="`fill:${useIconColor}; transition:all ${timeTransition}s linear;`"
             :width="size"
             :height="size"
             :viewBox="`0 0 ${sizeOriginal} ${sizeOriginal}`"
@@ -33,7 +33,7 @@ import isarr from 'wsemi/src/isarr.mjs'
  * @vue-prop {Number} [sizeOriginal=24] 輸入svg原始尺寸浮點數，單位px，預設24
  * @vue-prop {Number} [size=24] 輸入圖標欲顯示的尺寸浮點數，單位px，預設24
  * @vue-prop {String|Array} [path=''] 輸入svg path字串，預設''
- * @vue-prop {String} [styleTransition='all 0.15s linear'] 輸入圖標style設定transition字串，預設'all 0.15s linear'
+ * @vue-prop {Number} [timeTransition=0.15] 輸入style的transition時間數字，單位s，預設0.15
  */
 export default {
     components: {
@@ -59,9 +59,9 @@ export default {
             type: [String, Array],
             default: '',
         },
-        styleTransition: {
-            type: String,
-            default: 'all 0.15s linear',
+        timeTransition: {
+            type: Number,
+            default: 0.15,
         },
     },
     data: function() {

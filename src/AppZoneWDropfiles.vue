@@ -16,6 +16,9 @@
 
                 <w-dropfiles
                     style="width:200px; height:200px; display:flex; justify-content:center; align-items:center;"
+                    @drop-in="dropIn"
+                    @drop-out="dropOut"
+                    @drop-error="dropError"
                     @get-files="function(msg){
                         WDropfiles.msg1='get files('+msg.files.length+')' + ', ' +
                         'filesTree('+msg.filesTree.length+')' + ', ' +
@@ -42,6 +45,9 @@
                     :backgroundColor="'rgba(240,230,255,0.3)'"
                     :backgroundColorDropIn="'rgba(240,230,255,0.9)'"
                     :backgroundColorHover="'rgba(240,230,255,0.6)'"
+                    @drop-in="dropIn"
+                    @drop-out="dropOut"
+                    @drop-error="dropError"
                     @get-files="function(msg){
                         WDropfiles.msg2='get files('+msg.files.length+')' + ', ' +
                         'filesTree('+msg.filesTree.length+')' + ', ' +
@@ -66,6 +72,9 @@
                 <w-dropfiles
                     style="width:200px; height:200px; display:flex; justify-content:center; align-items:center;"
                     :borderRadius="30"
+                    @drop-in="dropIn"
+                    @drop-out="dropOut"
+                    @drop-error="dropError"
                     @get-files="function(msg){
                         WDropfiles.msg3='get files('+msg.files.length+')' + ', ' +
                         'filesTree('+msg.filesTree.length+')' + ', ' +
@@ -90,6 +99,9 @@
                 <w-dropfiles
                     style="width:200px; height:200px; display:flex; justify-content:center; align-items:center;"
                     :borderWidth="5"
+                    @drop-in="dropIn"
+                    @drop-out="dropOut"
+                    @drop-error="dropError"
                     @get-files="function(msg){
                         WDropfiles.msg4='get files('+msg.files.length+')' + ', ' +
                         'filesTree('+msg.filesTree.length+')' + ', ' +
@@ -118,6 +130,9 @@
                     :borderColorHover="'orange lighten-4'"
                     :backgroundColorDropIn="'orange lighten-4'"
                     :backgroundColorHover="'orange lighten-5'"
+                    @drop-in="dropIn"
+                    @drop-out="dropOut"
+                    @drop-error="dropError"
                     @get-files="function(msg){
                         WDropfiles.msg5='get files('+msg.files.length+')' + ', ' +
                         'filesTree('+msg.filesTree.length+')' + ', ' +
@@ -136,12 +151,15 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-dropfiles'"
-                    :casename="'styleTransition'"
+                    :casename="'timeTransition'"
                 ></demolink>
 
                 <w-dropfiles
                     style="width:200px; height:200px; display:flex; justify-content:center; align-items:center;"
-                    :styleTransition="'all 0.1s ease'"
+                    :timeTransition="0.1"
+                    @drop-in="dropIn"
+                    @drop-out="dropOut"
+                    @drop-error="dropError"
                     @get-files="function(msg){
                         WDropfiles.msg6='get files('+msg.files.length+')' + ', ' +
                         'filesTree('+msg.filesTree.length+')' + ', ' +
@@ -188,6 +206,17 @@ export default {
             'actions': [
             ],
         }
+    },
+    methods: {
+        dropIn: function(msg) {
+            console.log('dropIn', msg)
+        },
+        dropOut: function(msg) {
+            console.log('dropOut', msg)
+        },
+        dropError: function(msg) {
+            console.log('dropError', msg)
+        },
     },
 }
 </script>

@@ -53,12 +53,12 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-icon-svg'"
-                    :casename="'path (mdi-account-badge-horizontal) & styleTransition'"
+                    :casename="'path (mdi-account-badge-horizontal) & timeTransition'"
                 ></demolink>
 
                 <w-icon-svg
                     :path="WIconSvg.mdiAccountBadgeHorizontal"
-                    :styleTransition="'all 0.2s ease'"
+                    :timeTransition="0.2"
                 ></w-icon-svg>
 
             </div>

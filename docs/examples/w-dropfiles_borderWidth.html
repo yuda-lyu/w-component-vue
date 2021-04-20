@@ -81,7 +81,7 @@
     <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.js"></script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.0.43/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.0.44/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -136,6 +136,9 @@
             <w-dropfiles
                 style="width:200px; height:200px; display:flex; justify-content:center; align-items:center;"
                 :border-width="5"
+                @drop-in="dropIn"
+                @drop-out="dropOut"
+                @drop-error="dropError"
                 @get-files="function(msg){
                         WDropfiles.msg4='get files('+msg.files.length+')' + ', ' +
                         'filesTree('+msg.filesTree.length+')' + ', ' +
@@ -177,7 +180,17 @@
       return {};
     },
     computed: {},
-    methods: {}
+    methods: {
+      dropIn: function(msg) {
+        console.log("dropIn", msg);
+      },
+      dropOut: function(msg) {
+        console.log("dropOut", msg);
+      },
+      dropError: function(msg) {
+        console.log("dropError", msg);
+      }
+    }
   });
     </script>
 </body>
