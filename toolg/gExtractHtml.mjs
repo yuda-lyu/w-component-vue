@@ -176,8 +176,8 @@ function writeHtml(v) {
     let $ = cheerio.load(v.tmp, $setting)
     $('demolink').remove() //移除demolink
     // $('div.bk').prepend(`<div class="item">${v.casename}</div>`) //添加基本casename
-    let hc = `\r\n        <div class="item">${v.casename}</div>\r\n`
     let hkb = `\r\n        <div class="head1">${v.kbname}</div>\r\n`
+    let hc = `\r\n        <div class="item">${v.casename}</div>\r\n`
     let ht = $.html()
     let t_tmp = hc + hkb + ht //添加組件kbname
     t_tmp = kebabProps(t_tmp)
