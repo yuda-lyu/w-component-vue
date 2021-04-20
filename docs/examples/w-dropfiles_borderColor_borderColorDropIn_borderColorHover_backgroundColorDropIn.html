@@ -81,7 +81,7 @@
     <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.js"></script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.0.41/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.0.42/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -142,7 +142,11 @@
                 :border-color-hover="'orange lighten-4'"
                 :background-color-drop-in="'orange lighten-4'"
                 :background-color-hover="'orange lighten-5'"
-                @get-files="function(files){WDropfiles.msg5='get number of files = ' + files.length}"
+                @get-files="function(msg){
+                        WDropfiles.msg5='get files('+msg.files.length+')' + ', ' +
+                        'filesTree('+msg.filesTree.length+')' + ', ' +
+                        'entries('+msg.entries.length+')'
+                    }"
             >
                 <div style="text-align:center;">
                     Drop files here

@@ -62,7 +62,6 @@
 </template>
 
 <script>
-import random from 'lodash/random'
 import each from 'lodash/each'
 import map from 'lodash/map'
 import get from 'lodash/get'

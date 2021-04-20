@@ -16,7 +16,11 @@
 
                 <w-dropfiles
                     style="width:200px; height:200px; display:flex; justify-content:center; align-items:center;"
-                    @get-files="function(files){WDropfiles.msg1='get number of files = ' + files.length}"
+                    @get-files="function(msg){
+                        WDropfiles.msg1='get files('+msg.files.length+')' + ', ' +
+                        'filesTree('+msg.filesTree.length+')' + ', ' +
+                        'entries('+msg.entries.length+')'
+                    }"
                 >
                     <div style="text-align:center;">
                         Drop files here
@@ -38,7 +42,11 @@
                     :backgroundColor="'rgba(240,230,255,0.3)'"
                     :backgroundColorDropIn="'rgba(240,230,255,0.9)'"
                     :backgroundColorHover="'rgba(240,230,255,0.6)'"
-                    @get-files="function(files){WDropfiles.msg2='get number of files = ' + files.length}"
+                    @get-files="function(msg){
+                        WDropfiles.msg2='get files('+msg.files.length+')' + ', ' +
+                        'filesTree('+msg.filesTree.length+')' + ', ' +
+                        'entries('+msg.entries.length+')'
+                    }"
                 >
                     <div style="text-align:center;">
                         Drop files here
@@ -58,7 +66,11 @@
                 <w-dropfiles
                     style="width:200px; height:200px; display:flex; justify-content:center; align-items:center;"
                     :borderRadius="30"
-                    @get-files="function(files){WDropfiles.msg3='get number of files = ' + files.length}"
+                    @get-files="function(msg){
+                        WDropfiles.msg3='get files('+msg.files.length+')' + ', ' +
+                        'filesTree('+msg.filesTree.length+')' + ', ' +
+                        'entries('+msg.entries.length+')'
+                    }"
                 >
                     <div style="text-align:center;">
                         Drop files here
@@ -78,7 +90,11 @@
                 <w-dropfiles
                     style="width:200px; height:200px; display:flex; justify-content:center; align-items:center;"
                     :borderWidth="5"
-                    @get-files="function(files){WDropfiles.msg4='get number of files = ' + files.length}"
+                    @get-files="function(msg){
+                        WDropfiles.msg4='get files('+msg.files.length+')' + ', ' +
+                        'filesTree('+msg.filesTree.length+')' + ', ' +
+                        'entries('+msg.entries.length+')'
+                    }"
                 >
                     <div style="text-align:center;">
                         Drop files here
@@ -102,7 +118,11 @@
                     :borderColorHover="'orange lighten-4'"
                     :backgroundColorDropIn="'orange lighten-4'"
                     :backgroundColorHover="'orange lighten-5'"
-                    @get-files="function(files){WDropfiles.msg5='get number of files = ' + files.length}"
+                    @get-files="function(msg){
+                        WDropfiles.msg5='get files('+msg.files.length+')' + ', ' +
+                        'filesTree('+msg.filesTree.length+')' + ', ' +
+                        'entries('+msg.entries.length+')'
+                    }"
                 >
                     <div style="text-align:center;">
                         Drop files here
@@ -122,7 +142,11 @@
                 <w-dropfiles
                     style="width:200px; height:200px; display:flex; justify-content:center; align-items:center;"
                     :styleTransition="'all 0.1s ease'"
-                    @get-files="function(files){WDropfiles.msg6='get number of files = ' + files.length}"
+                    @get-files="function(msg){
+                        WDropfiles.msg6='get files('+msg.files.length+')' + ', ' +
+                        'filesTree('+msg.filesTree.length+')' + ', ' +
+                        'entries('+msg.entries.length+')'
+                    }"
                 >
                     <div style="text-align:center;">
                         Drop files here

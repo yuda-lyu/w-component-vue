@@ -80,17 +80,17 @@ export default {
 
         //domDropFiles
         vo.ev = domDropFiles(vo.$refs.dropPanel)
-        vo.ev.on('getFiles', ({ files, cb }) => {
-            vo.$emit('get-files', files, vo.$refs.dropPanel)
+        vo.ev.on('getFiles', ({ files, filesTree, entries, cb }) => {
+            vo.$emit('get-files', { files, filesTree, entries })
             cb()
         })
         vo.ev.on('dropIn', () => {
             vo.bDropIn = true
-            vo.$emit('drop-in', vo.$refs.dropPanel)
+            vo.$emit('drop-in')
         })
         vo.ev.on('dropOut', () => {
             vo.bDropIn = false
-            vo.$emit('drop-out', vo.$refs.dropPanel)
+            vo.$emit('drop-out')
         })
 
     },
