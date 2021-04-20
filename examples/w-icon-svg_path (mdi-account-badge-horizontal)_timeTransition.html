@@ -7,7 +7,7 @@
         content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui"
     />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>example for w-icon-svg: path (mdi-account-badge-horizontal) & styleTransition</title>
+    <title>example for w-icon-svg: path (mdi-account-badge-horizontal) & timeTransition</title>
 
     <!-- fontawesome -->
     <link
@@ -81,7 +81,7 @@
     <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.js"></script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.0.43/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.0.44/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -133,11 +133,11 @@
 
             <div
                 class="item"
-            >path (mdi-account-badge-horizontal) & styleTransition</div>
+            >path (mdi-account-badge-horizontal) & timeTransition</div>
 
             <w-icon-svg
                 :path="WIconSvg.'mdi-account-badge-horizontal'"
-                :style-transition="'all 0.2s ease'"
+                :time-transition="0.2"
             />
         </div>
     </v-app>
