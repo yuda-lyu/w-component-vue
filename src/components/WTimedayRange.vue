@@ -1,6 +1,9 @@
 <template>
     <!-- 時間組件因v-date-picker有點擊區域的限制, 故得使用display:inline-block -->
-    <div style="display:inline-block; cursor:pointer;" :changeParam="changeParam">
+    <div
+        style="display:inline-block; cursor:pointer;"
+        :changeParam="changeParam"
+    >
 
         <w-shell-ellipse
             :paddingStyle="paddingStyle"
@@ -21,7 +24,7 @@
             :borderColorFocus="borderColorFocus"
             :editable="editable"
             :focused="focusedTrans"
-            @click-left="(v)=>{$emit('click-left', v)}"
+            @click-left="$emit('click-left')"
         >
 
             <w-timeday-range-core

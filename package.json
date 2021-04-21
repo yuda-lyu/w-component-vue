@@ -1,6 +1,6 @@
 {
   "name": "w-component-vue",
-  "version": "2.0.45",
+  "version": "2.0.46",
   "author": "yuda-lyu(semisphere)",
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -22,12 +22,11 @@
     "@vue/cli-plugin-babel": "^4.5.12",
     "@vue/cli-plugin-eslint": "^4.5.12",
     "@vue/cli-service": "^4.5.12",
-    "@starptech/prettyhtml": "^0.10.0",
     "cheerio": "^1.0.0-rc.6",
     "sass": "^1.32.8",
     "sass-loader": "^10.1.1",
     "vue": "^2.6.12",
-    "w-package-tools": "^1.0.41"
+    "w-package-tools": "^1.0.44"
   },
   "eslintConfig": {
     "root": true,

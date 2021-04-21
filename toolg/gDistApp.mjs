@@ -5,6 +5,12 @@ let opt = {
     title: `w-component-vue`,
     head: `
 
+    <!-- rollupVueToHtml已自動添加@babel/polyfill與vue -->
+
+    <!-- vuetify -->
+    <link href="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.js"></script>
+
     <!-- fontawesome -->
     <link href="https://use.fontawesome.com/releases/v5.14.0/css/all.css" rel="stylesheet">
 
@@ -33,13 +39,6 @@ let opt = {
         window.dataRain=dataRain
         window.dataRainClip=dataRainClip
     </script>
-
-    <!-- @babel/polyfill -->
-    <script nomodule src="https://cdn.jsdelivr.net/npm/@babel/polyfill/dist/polyfill.min.js"></script>
-
-    <!-- vuetify -->
-    <link href="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.js"></script>
 
     `,
     newVue: `vuetify: new Vuetify(),`,

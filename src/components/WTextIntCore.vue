@@ -166,16 +166,63 @@ export default {
         },
 
         changeContent: function(v, mode) {
-            //console.log('methods changeContent', v, mode)
+            // console.log('methods changeContent', v, mode)
 
             let vo = this
+            let r
 
+            //check
             if (vo.editable === false) {
                 return
             }
 
-            //modify
+            //mode為按下左右按鈕, 因w-text-core的focus會失去, 得重新補回去
+            if (mode !== '') {
+                vo.$refs.inp.setFocus()
+            }
+
+            //verifyValue
+            r = verifyValue(v, 'isp0int')
+
+            //check
+            if (r.err) {
+
+                //歸零
+                v = 0
+
+                //$nextTick
+                vo.$nextTick(() => {
+
+                    //check
+                    if (vo.valueTrans === 0) {
+                        //若原本valueTrans值就為0會導致無法變更, 因原本外部就是0, 得強制對w-text-core變更值
+
+                        //setValue
+                        vo.$refs.inp.setValue(v)
+
+                    }
+                    else {
+
+                        //save
+                        vo.valueTrans = v
+
+                        //emit, 更新外部值
+                        vo.$emit('input', v)
+
+                    }
+
+                    //emit
+                    vo.$emit('error', r.errmsg)
+
+                })
+
+                return
+            }
+
+            //cint
             v = cint(v)
+
+            //modify
             if (mode === 'minus') {
                 v -= 1
             }
@@ -190,24 +237,25 @@ export default {
                 }
             }
 
-            //verifyValue
-            let r = verifyValue(v, 'isp0int')
+            //check valueMin
+            let valueMin = 0
+            if (v < valueMin) {
+                v = valueMin
+            }
 
-            //value, errmsg
-            let value = r.value
-            let errmsg = r.errmsg
+            //check
+            if (vo.valueTrans === v) {
+                return
+            }
 
             //$nextTick
             vo.$nextTick(() => {
 
-                //reset for error
-                vo.valueTrans = value
+                //save
+                vo.valueTrans = v
 
                 //emit
-                vo.$emit('input', value)
-
-                //emit
-                vo.$emit('errmsg', errmsg)
+                vo.$emit('input', v)
 
             })
 

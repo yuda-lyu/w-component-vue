@@ -21,7 +21,7 @@
             :borderColorFocus="borderColorFocus"
             :editable="editable"
             :focused="focusedTrans"
-            @click-left="(v)=>{$emit('click-left', v)}"
+            @click-left="$emit('click-left')"
         >
 
             <div style="margin-right:-5px;">

@@ -1,5 +1,8 @@
 <template>
-    <div :changeItems="changeItems" :flatItems="flatItems">
+    <div
+        :changeItems="changeItems"
+        :flatItems="flatItems"
+    >
         <!-- 不讓position:relative露出至組件元素 -->
         <div style="position:relative; user-select:none;">
 

@@ -1,7 +1,12 @@
 <template>
-    <div style="display:inline-block;" :changeParam="changeParam">
+    <div
+        style="display:inline-block;"
+        :changeParam="changeParam"
+    >
 
+        <!-- 於w-text-int外側可能有width:100%設定, w-shell-ellipse中間區width:100%會無視外層display:inline-block屬性造成滿版, 但其內輸入區仍有指定寬度導致排版錯亂, 故得使用display:inline-block -->
         <w-shell-ellipse
+            style="display:inline-block;"
             :paddingStyle="paddingStyle"
             :borderRadius="borderRadius"
             :shadow="shadow"
@@ -20,7 +25,7 @@
             :borderColorFocus="borderColorFocus"
             :editable="editable"
             :focused="focusedTrans"
-            @click-left="(v)=>{$emit('click-left', v)}"
+            @click-left="$emit('click-left')"
         >
 
             <div style="margin:0px -10px;">
@@ -38,6 +43,7 @@
                     :focused="focusedTrans"
                     @update:focused="changeFocused"
                     @input="(v)=>{$emit('input', v)}"
+                    @error="(v)=>{$emit('error', v)}"
                 ></w-text-int-core>
 
             </div>

@@ -214,6 +214,26 @@
             </div>
 
 
+            <div class="bk">
+                <demolink
+                    :kbname="'w-text'"
+                    :casename="'events'"
+                ></demolink>
+
+                <w-text
+                    :leftIcon="mdiCheckUnderlineCircle"
+                    :rightIcon="mdiSend"
+                    v-model="WText.text"
+                    @click-left="clickLeft"
+                    @click-right="clickRight"
+                    @select="select"
+                    @blur="blur"
+                    @enter="enter"
+                    @input="input"
+                ></w-text>
+            </div>
+
+
             <div separate-line></div>
 
 
@@ -611,6 +631,38 @@
             </div>
 
 
+            <div class="bk">
+                <demolink
+                    :kbname="'w-text'"
+                    :casename="'border & events'"
+                ></demolink>
+
+                <w-text
+                    :shadow="false"
+                    :bottomLineBorderColor="'transparent'"
+                    :bottomLineBorderColorHover="'transparent'"
+                    :bottomLineBorderColorFocus="'transparent'"
+                    :paddingStyle="{h:15}"
+                    :iconShiftOuter="-10"
+                    :borderColor="'blue lighten-2'"
+                    :borderColorHover="'blue'"
+                    :borderColorFocus="'blue darken-2'"
+                    :backgroundColor="'white'"
+                    :backgroundColorHover="'rgba(237, 247, 255, 1)'"
+                    :backgroundColorFocus="'blue lighten-5'"
+                    :leftIcon="mdiCheckUnderlineCircle"
+                    :rightIcon="mdiSend"
+                    v-model="WText.text"
+                    @click-left="clickLeft"
+                    @click-right="clickRight"
+                    @select="select"
+                    @blur="blur"
+                    @enter="enter"
+                    @input="input"
+                ></w-text>
+            </div>
+
+
         </div>
 
 
@@ -656,6 +708,33 @@ export default {
                 },
             ],
         }
+    },
+    methods: {
+
+        clickLeft: function() {
+            console.log('clickLeft')
+        },
+
+        clickRight: function() {
+            console.log('clickRight')
+        },
+
+        select: function(ev) {
+            console.log('select', ev)
+        },
+
+        blur: function(value, err) {
+            console.log('blur', value, err)
+        },
+
+        enter: function(value, err) {
+            console.log('enter', value, err)
+        },
+
+        input: function(value, err) {
+            console.log('input', value, err)
+        },
+
     },
 }
 </script>

@@ -1,12 +1,12 @@
 import fs from 'fs'
 import cheerio from 'cheerio'
-import prettyhtml from '@starptech/prettyhtml'
 import _ from 'lodash'
 import w from 'wsemi'
 import getFiles from 'w-package-tools/src/getFiles.mjs'
 import cleanFolder from 'w-package-tools/src/cleanFolder.mjs'
 import parseVueCode from 'w-package-tools/src/parseVueCode.mjs'
 import kebabPropsVueTemp from 'w-package-tools/src/kebabPropsVueTemp.mjs'
+import extractHtml from 'w-package-tools/src/extractHtml.mjs'
 import cvCasename from './cvCasename.mjs'
 
 
@@ -22,195 +22,141 @@ let $setting = {
 }
 
 
-let h = `
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-tw">
-<head>
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>example for {{kbname}}: {{casename}}</title>
-
-    <!-- fontawesome -->
-    <link href="https://use.fontawesome.com/releases/v5.14.0/css/all.css" rel="stylesheet">
-
-    <!-- mdi, 各組件使用mdi/js會於轉單頁時改為mdi icon, 故需引用mdi/css -->
-    <link href="https://cdn.jsdelivr.net/npm/@mdi/font/css/materialdesignicons.min.css" rel="stylesheet">
-
-    <!-- google, 各組件使用mdi/js故不需引用 -->
-    <link _href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
-    <link _href="https://fonts.googleapis.com/css?family=Material+Icons" rel="stylesheet">
-
-    <!-- data -->
-    <script src="https://cdn.jsdelivr.net/npm/w-demores@1.0.13/res/data/dataAAPL.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/w-demores@1.0.13/res/data/dataUSD2EUR.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/w-demores@1.0.13/res/data/dataTemperature.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/w-demores@1.0.13/res/data/dataHousePriceArea.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/w-demores@1.0.13/res/data/dataFlare.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/w-demores@1.0.13/res/data/dataRain.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/w-demores@1.0.13/res/data/dataRainClip.js"></script>
-    <script>
-        //save in window
-        window.dataAAPL=dataAAPL
-        window.dataUSD2EUR=dataUSD2EUR
-        window.dataTemperature=dataTemperature
-        window.dataHousePriceArea=dataHousePriceArea
-        window.dataFlare=dataFlare
-        window.dataRain=dataRain
-        window.dataRainClip=dataRainClip
-    </script>
-
-    <!-- @babel/polyfill -->
-    <script nomodule src="https://cdn.jsdelivr.net/npm/@babel/polyfill/dist/polyfill.min.js"></script>
-
-    <!-- vue -->
-    <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.min.js"></script>
-
-    <!-- vuetify -->
-    <link href="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.js"></script>
-
-    <!-- w-component-vue -->
-    <script src="../dist/w-component-vue.umd.js"></script>
-
-    <style>
-        .v-application--wrap {
-            /* width與max-width fix for IE11, 其外不能使用padding或margin避免失效 */
-            width: 100vw;
-            max-width: 100vw;
-            font-family: inherit;
-            background-color: #fff;
-        }
-        .item { /* 因item位於demolink, 提取各範例html後會刪除demolink, 故得額外補上 */
-            border-left: 3px solid #ffba75;
-            margin: 5px 5px 8px 0px;
-            padding: 3px 3px 5px 10px;
-            font-size: 0.9rem;
-            display: flex;
-            justify-content: flex-start;
-            align-items: center;
-        }
-        .head1 {
-            margin: 0px;
-            padding: 0px 0px 20px 0px;
-            font-size: 2.5rem;
-        }
-        .bk {
-            vertical-align: top;
-            margin: 10px 0px 0px 0px;
-            padding: 0px 0px 60px 0px;
-        }
-        @media screen and (min-width:1000px){ /* 寬版 */
-            .bk {
-                display: inline-block;
-                margin: 0px 80px 0px 0px;
-            }
-            .dz {
-                width: 400px;
-            }
-        }
-    </style>
-
-</head>
-<body style="font-family:'Microsoft JhengHei','Avenir','Helvetica'; padding:0px; margin:0px;">
-
-    <v-app id="app" style="font-family:inherit;">
-
-        <!-- 外部會再自動添加v-application--wrap, padding需另外放 -->
-        <div style="padding:20px;">
-            {{tmp}}
-        </div>
-
-    </v-app>
-
-    <script>
-
-        //install WComponentVue
-        Vue.use(window['w-component-vue'])
-
-        //initialize
-        new Vue({
-            el: '#app',
-            vuetify: new Vuetify(),
-            data: {{data}},
-            mounted: {{mounted}},
-            computed: {{computed}},
-            methods: {{methods}},
-        })
-
-    </script>
-
-</body>
-</html>
-`
-
-
 function writeHtml(v) {
-    //name, kbname, casename, tmp, data, action, fn
 
-    //c
-    let c = h
+    function getAppTmp() {
 
-    //replace cmpname, casename
-    c = c.replace('{{kbname}}', v.kbname)
-    c = c.replace('{{casename}}', v.casename)
+        //產生範例tmp
+        let $ = cheerio.load(v.tmp, $setting)
+        $('demolink').remove() //移除demolink
 
-    //t_tmp
-    let $ = cheerio.load(v.tmp, $setting)
-    $('demolink').remove() //移除demolink
-    // $('div.bk').prepend(`<div class="item">${v.casename}</div>`) //添加基本casename
-    let hkb = `\r\n        <div class="head1">${v.kbname}</div>\r\n`
-    let hcn = `\r\n        <div class="item">${v.casename}</div>\r\n`
-    let ht = $.html()
-    let t_tmp = hkb + hcn + ht //添加組件kbname
-    t_tmp = kebabPropsVueTemp(t_tmp)
-    t_tmp = w.replace(t_tmp, `=""`, '')
+        $('div.bk').before(`<div class="head1">${v.kbname}</div>`) //於bk前插入, 添加組件kbname
+        $('div.bk').prepend(`<div class="item">${v.casename}</div>`) //於bk內插入, 添加範例casename
+        let h = $.html()
 
-    //replace tmp
-    c = c.replace('{{tmp}}', t_tmp)
+        h = kebabPropsVueTemp(h)
+        h = w.replace(h, `=""`, '')
 
-    //replace data
-    let t_data = v.data
-    c = c.replace('{{data}}', t_data)
-
-    //replace mounted
-    let t_mounted = v.mounted
-    c = c.replace('{{mounted}}', t_mounted)
-
-    //replace computed
-    let t_computed = v.computed
-    c = c.replace('{{computed}}', t_computed)
-
-    //replace methods
-    let t_methods = v.methods
-    c = c.replace('{{methods}}', t_methods)
-
-    //replace mdi-icon
-    let r = `mdi[A-Za-z]+` //有些是元素的attr有些是vue的data, 故不能包含雙引號查找
-    let reg = new RegExp(r, 'g')
-    let mdis = c.match(reg)
-    if (mdis) {
-        _.each(mdis, function(mdi) {
-            let t = mdi
-            t = _.kebabCase(t) //轉kebab
-            t = `'${t}'` //添加單引號成為字串
-            c = c.replace(mdi, t) //取代
-        })
+        return h
     }
 
-    //prettyhtml
-    c = prettyhtml(c, {
-        tabWidth: 4,
-    })
-    c = c.contents //取contents
-    //console.log('prettyhtml', c)
+    function procHtml(h) {
 
-    //write
-    //console.log(c)
-    fs.writeFileSync(fdTestHtml + `${v.fn}.html`, c, 'utf8')
+        //replace mdi-icon
+        let r = `mdi[A-Za-z]+` //有些mdi是放在元素attr內, 有些是放在vue data內, 故不能包含雙引號(限定attr)查找
+        let reg = new RegExp(r, 'g')
+        let mdis = h.match(reg)
+        if (mdis) {
+            _.each(mdis, (mdi) => {
+                let c = mdi
+                c = _.kebabCase(c) //轉kebab
+                c = `'${c}'` //添加單引號成為字串
+                h = h.replace(mdi, c) //取代
+            })
+        }
 
-    //write action
-    fs.writeFileSync(fdTestSrc + `${v.fn}.action.json`, v.action, 'utf8')
+        return h
+    }
+
+    //opt
+    let opt = {
+        title: `w-component-vue`,
+        head: `
+    
+        <!-- extractHtml已自動添加@babel/polyfill與vue -->
+    
+        <!-- vuetify -->
+        <link href="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.css" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.js"></script>
+    
+        <!-- fontawesome -->
+        <link href="https://use.fontawesome.com/releases/v5.14.0/css/all.css" rel="stylesheet">
+    
+        <!-- mdi, 各組件使用mdi/js會於轉單頁時改為mdi icon, 故需引用mdi/css -->
+        <link href="https://cdn.jsdelivr.net/npm/@mdi/font/css/materialdesignicons.min.css" rel="stylesheet">
+    
+        <!-- google, 各組件使用mdi/js故不需引用 -->
+        <link _href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+        <link _href="https://fonts.googleapis.com/css?family=Material+Icons" rel="stylesheet">
+    
+        <!-- data -->
+        <script src="https://cdn.jsdelivr.net/npm/w-demores@1.0.13/res/data/dataAAPL.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/w-demores@1.0.13/res/data/dataUSD2EUR.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/w-demores@1.0.13/res/data/dataTemperature.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/w-demores@1.0.13/res/data/dataHousePriceArea.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/w-demores@1.0.13/res/data/dataFlare.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/w-demores@1.0.13/res/data/dataRain.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/w-demores@1.0.13/res/data/dataRainClip.js"></script>
+        <script>
+            //save in window
+            window.dataAAPL=dataAAPL
+            window.dataUSD2EUR=dataUSD2EUR
+            window.dataTemperature=dataTemperature
+            window.dataHousePriceArea=dataHousePriceArea
+            window.dataFlare=dataFlare
+            window.dataRain=dataRain
+            window.dataRainClip=dataRainClip
+        </script>
+    
+        <!-- w-component-vue -->
+        <script src="../dist/w-component-vue.umd.js"></script>
+    
+        <style>
+            .v-application--wrap {
+                /* width與max-width fix for IE11, 其外不能使用padding或margin避免失效 */
+                width: 100vw;
+                max-width: 100vw;
+                font-family: inherit;
+                background-color: #fff;
+            }
+            .item { /* 因item位於demolink, 提取各範例html後會刪除demolink, 故得額外補上 */
+                border-left: 3px solid #ffba75;
+                margin: 5px 5px 8px 0px;
+                padding: 3px 3px 5px 10px;
+                font-size: 0.9rem;
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+            }
+            .head1 {
+                margin: 0px;
+                padding: 0px 0px 20px 0px;
+                font-size: 2.5rem;
+            }
+            .bk {
+                vertical-align: top;
+                margin: 10px 0px 0px 0px;
+                padding: 0px 0px 60px 0px;
+            }
+            @media screen and (min-width:1000px){ /* 寬版 */
+                .bk {
+                    display: inline-block;
+                    margin: 0px 80px 0px 0px;
+                }
+                .dz {
+                    width: 400px;
+                }
+            }
+        </style>
+    
+        `,
+        appTag: `v-app`,
+        appStyle: `font-family:inherit; padding:0px 30px;`,
+        appTmp: getAppTmp(),
+        installVue: `Vue.use(window['w-component-vue'])`,
+        newVue: `vuetify: new Vuetify()`,
+        data: v.data,
+        mounted: v.mounted,
+        computed: v.computed,
+        methods: v.methods,
+        action: v.action,
+        procHtml,
+        fpHtml: `${fdTestHtml}${v.fn}.html`,
+        fpAction: `${fdTestSrc}${v.fn}.action.json`,
+    }
+
+    //extractHtml
+    extractHtml(opt)
 
 }
 
@@ -246,29 +192,31 @@ function extractAppZone(fn) {
     data = ss.join('\r\n')
     //console.log('data', data)
 
-    function getAttr(me, name) {
+    function getAttr(h, name) {
+        let $ = cheerio.load(h, $setting)
         //let c = me('demolink').attr(':' + name)
-        let c = me.children('demolink').attr(':' + name)
+        let c = $('demolink').attr(':' + name)
         c = w.replace(c, `\'`, '')
         return c
     }
 
-    //取各個bk
-    $('div.bk').map(function(i, v) {
+    //取各個bk, 先於各bk外層添加shell在取html, 才能取到bk含自己的html
+    $('div.bk').wrap('<div class="shell"></div>')
+    $('div.shell').map((i, v) => {
         // console.log('v', v)
-        // let t = $(this).text()
-        // let me = cheerio.load(t, $setting)
+
+        //me
         let me = $(this)
         // console.log(i, 'me', me)
-
-        //ss
-        let kbname = getAttr(me, 'kbname')
-        let casename = getAttr(me, 'casename')
-        // console.log(i, 'kbname & casename', kbname, casename)
 
         //tmp
         let tmp = me.html()
         // console.log(i, 'tmp', tmp)
+
+        //ss
+        let kbname = getAttr(tmp, 'kbname')
+        let casename = getAttr(tmp, 'casename')
+        // console.log(i, kbname, ',', casename)
 
         //fn
         let fnc = `${casename}`
@@ -299,13 +247,13 @@ function main() {
     let ltfs = getFiles(fdSrc)
 
     //filter
-    ltfs = _.filter(ltfs, function(v) {
+    ltfs = _.filter(ltfs, (v) => {
         return v.indexOf('AppZone') >= 0
     })
     //console.log(ltfs)
 
     //extractAppZone
-    _.each(ltfs, function(v) {
+    _.each(ltfs, (v) => {
         let fn = fdSrc + v
         console.log('extracting: ' + fn)
         extractAppZone(fn)

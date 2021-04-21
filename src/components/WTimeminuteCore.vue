@@ -2,7 +2,10 @@
     <!-- 時間組件因v-date-picker有點擊區域的限制, 故得使用display:inline-block -->
     <div style="display:inline-block;">
         <!-- 盡量不要讓display:flex暴露至外層 -->
-        <div style="display:flex; align-items:center;" :changeParam="changeParam">
+        <div
+            style="display:flex; align-items:center;"
+            :changeParam="changeParam"
+        >
 
             <w-timeday-core
                 TimeminuteCore="day"

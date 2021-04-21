@@ -34,12 +34,11 @@
                 :borderColorFocus="borderColorFocus"
                 :editable="editable"
                 :focused="focusedTrans"
-                @click-left="(v)=>{$emit('click-left', v)}"
-                @click-right="(v)=>{$emit('click-right', v)}"
+                @click-left="$emit('click-left')"
+                @click-right="$emit('click-right')"
             >
 
                 <w-text-core
-                    ref="inp"
                     :type="type"
                     :textColor="textColor"
                     :textAlign="textAlign"
@@ -49,6 +48,7 @@
                     :value="value"
                     :focused="focusedTrans"
                     @update:focused="changeFocused"
+                    @select="(v)=>{$emit('select', v)}"
                     @blur="(v,err)=>{$emit('blur', v, err)}"
                     @enter="(v,err)=>{$emit('enter', v, err)}"
                     @input="(v,err)=>{$emit('input', v, err)}"

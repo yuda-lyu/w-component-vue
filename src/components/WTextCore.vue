@@ -10,8 +10,8 @@
             @input="updateContent('input');updateFocused(true)"
             @focus="updateFocused(true)"
             @blur="updateContent('blur');updateFocused(false)"
-            @keyup.enter="$emit('enter')"
-            @select="$emit('select')"
+            @keyup.enter="updateContent('enter')"
+            @select="(ev)=>{$emit('select',ev)}"
         >
     </div>
 </template>
@@ -96,6 +96,28 @@ export default {
     },
     methods: {
 
+        setValue: function (value) {
+            //console.log('methods setValue', value)
+            //供外部強制變更值且不觸發事件之用
+
+            let vo = this
+
+            //save
+            vo.valueTrans = value
+
+        },
+
+        setFocus: function () {
+            //console.log('methods setFocus')
+            //供外部強制使input成為焦點且不觸發事件之用
+
+            let vo = this
+
+            //focus
+            vo.$refs.inp.focus()
+
+        },
+
         updateFocused: function(focused) {
             //console.log('methods updateFocused', focused)
 
@@ -117,7 +139,7 @@ export default {
         },
 
         updateContent: function (evname) {
-            //console.log('methods updateContent', evname)
+            // console.log('methods updateContent', evname)
 
             let vo = this
 
@@ -138,7 +160,9 @@ export default {
                 vo.$emit('input', value, errmsg)
 
                 //emit
-                vo.$emit(evname, value, errmsg)
+                if (evname !== 'input') {
+                    vo.$emit(evname, value, errmsg)
+                }
 
             })
 
