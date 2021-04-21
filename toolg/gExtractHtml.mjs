@@ -165,10 +165,11 @@ function extractAppZone(fn) {
 
     //read
     let hh = fs.readFileSync(fn, 'utf8')
+    // console.log('hh', hh)
 
     //$
     let $ = cheerio.load(hh, $setting)
-    //console.log($('.bk'))
+    // console.log(`$('div.bk').html()`, $('div.bk').html())
 
     //name
     let name = fn.split('AppZone')
@@ -193,8 +194,8 @@ function extractAppZone(fn) {
     //console.log('data', data)
 
     function getAttr(h, name) {
+        // console.log('getAttr', h, name)
         let $ = cheerio.load(h, $setting)
-        //let c = me('demolink').attr(':' + name)
         let c = $('demolink').attr(':' + name)
         c = w.replace(c, `\'`, '')
         return c
@@ -206,7 +207,7 @@ function extractAppZone(fn) {
         // console.log('v', v)
 
         //me
-        let me = $(this)
+        let me = $(v)
         // console.log(i, 'me', me)
 
         //tmp
