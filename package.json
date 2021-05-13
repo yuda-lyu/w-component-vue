@@ -5,7 +5,7 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "test": "mocha --parallel --timeout 60000 --require @babel/register",
+    "test": "mocha --parallel --timeout 60000 --experimental-modules --es-module-specifier-resolution=node",
     "lint": "vue-cli-service lint",
     "deploy": "gh-pages -d docs"
   },
