@@ -133,7 +133,7 @@ import isestr from 'wsemi/src/isestr.mjs'
 import cdbl from 'wsemi/src/cdbl.mjs'
 import replace from 'wsemi/src/replace.mjs'
 import sep from 'wsemi/src/sep.mjs'
-import tinycolor from 'wsemi/src/tinycolor.mjs'
+import oc from 'wsemi/src/color.mjs'
 import color2hex from '../js/vuetifyColor.mjs'
 import WIcon from './WIcon.vue'
 
@@ -691,8 +691,9 @@ export default {
 
             function genShadow(c, alpha) {
                 let r = color2hex(c)
-                let t = tinycolor(r)
-                let s = t.setAlpha(alpha).toRgbString()
+                let rgba = oc.toRgba(r)
+                rgba.a = alpha
+                let s = oc.toRgbString(rgba)
                 return s
             }
 
