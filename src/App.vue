@@ -305,9 +305,13 @@
 </template>
 
 <script>
+import { mdiCheckCircle, mdiCheckboxBlankCircleOutline } from '@mdi/js'
 import get from 'lodash/get'
 import kebabCase from 'lodash/kebabCase'
-import { mdiCheckCircle, mdiCheckboxBlankCircleOutline } from '@mdi/js'
+import map from 'lodash/map'
+import find from 'lodash/find'
+import findIndex from 'lodash/findIndex'
+import urlParse from 'wsemi/src/urlParse.mjs'
 import AppZoneWBadge from './AppZoneWBadge.vue'
 import AppZoneWPanelStripe from './AppZoneWPanelStripe.vue'
 import AppZoneWPanelBulge from './AppZoneWPanelBulge.vue'
@@ -528,6 +532,65 @@ export default {
         }
     },
     mounted: function() {
+        let vo = this
+
+        let autoViewCmp = () => {
+
+            //http://localhost:8080/?level1=basic&level2=w-switch
+            //http://localhost:8080/?level1=dynamic&level2=editor&level3=w-quill-vue-dyn
+
+            //urlParse
+            let p = urlParse(location.href)
+            // console.log('p', p)
+
+            let kc = (s) => {
+                return map(s, (v) => {
+                    let t = JSON.parse(JSON.stringify(v))
+                    t.name = kebabCase(t.name)
+                    return t
+                })
+            }
+
+            vo.io1 = 0
+            vo.io2 = 0
+            vo.io3 = 0
+
+            let s1 = find(vo.sCmps, { name: p.level1 })
+            let i1 = findIndex(vo.sCmps, { name: p.level1 })
+            // console.log('s1', s1, 'i1', i1)
+
+            if (i1 < 0) {
+                return
+            }
+            vo.io1 = i1
+
+            s1 = kc(get(s1, 'cmps'))
+            // console.log('s1 b', s1)
+
+            let s2 = find(s1, { name: p.level2 })
+            let i2 = findIndex(s1, { name: p.level2 })
+            // console.log('s2', s2, 'i2', i2)
+
+            if (i2 < 0) {
+                return
+            }
+            vo.io2 = i2
+
+            s2 = kc(get(s2, 'cmps'))
+            // console.log('s2 b', s2)
+
+            // let s3 = find(s2, { name: p.level3 })
+            let i3 = findIndex(s2, { name: p.level3 })
+            // console.log('s3', s3, 'i3', i3)
+
+            if (i3 < 0) {
+                return
+            }
+            vo.io3 = i3
+
+        }
+        autoViewCmp()
+
     },
     computed: {
 
