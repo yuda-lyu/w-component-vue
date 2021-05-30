@@ -308,9 +308,7 @@
 import { mdiCheckCircle, mdiCheckboxBlankCircleOutline } from '@mdi/js'
 import get from 'lodash/get'
 import kebabCase from 'lodash/kebabCase'
-import map from 'lodash/map'
-import find from 'lodash/find'
-import findIndex from 'lodash/findIndex'
+import each from 'lodash/each'
 import urlParse from 'wsemi/src/urlParse.mjs'
 import AppZoneWBadge from './AppZoneWBadge.vue'
 import AppZoneWPanelStripe from './AppZoneWPanelStripe.vue'
@@ -534,59 +532,83 @@ export default {
     mounted: function() {
         let vo = this
 
+        let getCmpLoc = (cmpName) => {
+            // console.log('getCmpLoc', cmpName)
+            let mt = {
+                io1: 0,
+                io2: 0,
+                io3: 0,
+            }
+            let done = false
+            each(vo.sCmps, (v, k) => {
+                // console.log('l1', kebabCase(v.name), k)
+                if (cmpName === kebabCase(v.name)) {
+                    mt = {
+                        io1: k,
+                        io2: 0,
+                        io3: 0,
+                    }
+                    done = true
+                    return false
+                }
+                if (get(v, 'cmps')) {
+                    each(v.cmps, (vv, kk) => {
+                        // console.log('l2', kebabCase(vv.name), kk)
+                        if (cmpName === kebabCase(vv.name)) {
+                            mt = {
+                                io1: k,
+                                io2: kk,
+                                io3: 0,
+                            }
+                            done = true
+                            return false
+                        }
+                        if (get(vv, 'cmps')) {
+                            each(vv.cmps, (vvv, kkk) => {
+                                // console.log('l3', kebabCase(vvv.name), kkk)
+                                if (cmpName === kebabCase(vvv.name)) {
+                                    mt = {
+                                        io1: k,
+                                        io2: kk,
+                                        io3: kkk,
+                                    }
+                                    done = true
+                                    return false
+                                }
+                                // if (done) {
+                                //     return false
+                                // }
+                            })
+                        }
+                        if (done) {
+                            return false
+                        }
+                    })
+                }
+                if (done) {
+                    return false
+                }
+            })
+            return mt
+        }
+
         let autoViewCmp = () => {
 
-            //http://localhost:8080/?level1=basic&level2=w-switch
-            //http://localhost:8080/?level1=dynamic&level2=editor&level3=w-quill-vue-dyn
+            //https://yuda-lyu.github.io/w-component-vue/examples/app.html?level1=basic&level2=w-switch
+            //https://yuda-lyu.github.io/w-component-vue/examples/app.html?level1=dynamic&level2=editor&level3=w-quill-vue-dyn
+            //https://yuda-lyu.github.io/w-component-vue/examples/app.html?cmp=w-switch
+            //https://yuda-lyu.github.io/w-component-vue/examples/app.html?cmp=w-quill-vue-dyn
 
             //urlParse
             let p = urlParse(location.href)
             // console.log('p', p)
 
-            let kc = (s) => {
-                return map(s, (v) => {
-                    let t = JSON.parse(JSON.stringify(v))
-                    t.name = kebabCase(t.name)
-                    return t
-                })
-            }
+            let mt = getCmpLoc(p.cmp)
+            // console.log('mt', mt)
 
-            vo.io1 = 0
-            vo.io2 = 0
-            vo.io3 = 0
-
-            let s1 = find(vo.sCmps, { name: p.level1 })
-            let i1 = findIndex(vo.sCmps, { name: p.level1 })
-            // console.log('s1', s1, 'i1', i1)
-
-            if (i1 < 0) {
-                return
-            }
-            vo.io1 = i1
-
-            s1 = kc(get(s1, 'cmps'))
-            // console.log('s1 b', s1)
-
-            let s2 = find(s1, { name: p.level2 })
-            let i2 = findIndex(s1, { name: p.level2 })
-            // console.log('s2', s2, 'i2', i2)
-
-            if (i2 < 0) {
-                return
-            }
-            vo.io2 = i2
-
-            s2 = kc(get(s2, 'cmps'))
-            // console.log('s2 b', s2)
-
-            // let s3 = find(s2, { name: p.level3 })
-            let i3 = findIndex(s2, { name: p.level3 })
-            // console.log('s3', s3, 'i3', i3)
-
-            if (i3 < 0) {
-                return
-            }
-            vo.io3 = i3
+            vo.io1 = mt.io1
+            vo.io2 = mt.io2
+            vo.io3 = mt.io3
 
         }
         autoViewCmp()

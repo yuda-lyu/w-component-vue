@@ -2,7 +2,7 @@
     <div>
 
 
-        <div class="head1">w-json-view</div>
+        <div class="head1" style="cursor:pointer;" title="open for copy link to view component" onclick="window.open('https://yuda-lyu.github.io/w-component-vue/examples/app.html?cmp='+this.innerText,'_blank')">w-json-view</div>
 
 
         <div style="padding:0px;">
