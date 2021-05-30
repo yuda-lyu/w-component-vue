@@ -594,10 +594,10 @@ export default {
 
         let autoViewCmp = () => {
 
-            //https://yuda-lyu.github.io/w-component-vue/examples/app.html?level1=basic&level2=w-switch
-            //https://yuda-lyu.github.io/w-component-vue/examples/app.html?level1=dynamic&level2=editor&level3=w-quill-vue-dyn
-            //https://yuda-lyu.github.io/w-component-vue/examples/app.html?cmp=w-switch
-            //https://yuda-lyu.github.io/w-component-vue/examples/app.html?cmp=w-quill-vue-dyn
+            ////yuda-lyu.github.io/w-component-vue/examples/app.html?level1=basic&level2=w-switch
+            ////yuda-lyu.github.io/w-component-vue/examples/app.html?level1=dynamic&level2=editor&level3=w-quill-vue-dyn
+            ////yuda-lyu.github.io/w-component-vue/examples/app.html?cmp=w-switch
+            ////yuda-lyu.github.io/w-component-vue/examples/app.html?cmp=w-quill-vue-dyn
 
             //urlParse
             let p = urlParse(location.href)
@@ -651,8 +651,19 @@ export default {
     },
     methods: {
 
+        resetUrl: function() {
+            try {
+                //開發端是localhost無法刷history至不同網站(因此為正式網站位址)
+                window.history.replaceState({}, '', '//yuda-lyu.github.io/w-component-vue/examples/app.html')
+            }
+            catch (err) {
+                // console.log(err)
+            }
+        },
+
         clickMenu1: function (io1) {
             let vo = this
+            vo.resetUrl()
             vo.$nextTick(() => {
                 vo.io1 = io1
                 vo.io2 = 0
@@ -662,6 +673,7 @@ export default {
 
         clickMenu2: function (io2) {
             let vo = this
+            vo.resetUrl()
             vo.$nextTick(() => {
                 vo.io2 = io2
                 vo.io3 = 0
@@ -670,6 +682,7 @@ export default {
 
         clickMenu3: function (io3) {
             let vo = this
+            vo.resetUrl()
             vo.$nextTick(() => {
                 vo.io3 = io3
             })

@@ -16,7 +16,7 @@ To view documentation or get support, visit [docs](https://yuda-lyu.github.io/w-
 ## Example
 To view some examples for more understanding, visit examples:
 
-> **all components:** [web](https://yuda-lyu.github.io/w-component-vue/examples/app.html) [[source code](https://github.com/yuda-lyu/w-component-vue/blob/master/docs/examples/app.html)]
+> **all components:** [web](//yuda-lyu.github.io/w-component-vue/examples/app.html) [[source code](https://github.com/yuda-lyu/w-component-vue/blob/master/docs/examples/app.html)]
 
 ## Installation
 ### Using npm(ES6 module):
