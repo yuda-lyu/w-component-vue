@@ -75,6 +75,13 @@
                             @click="uploadData"
                         ></w-button-circle>
 
+                        <slot
+                            name="btns"
+                            :editable="editable"
+                        >
+
+                        </slot>
+
                     </div>
 
                 </template>
@@ -91,14 +98,28 @@
                             v-if="hasEffRows"
                         ></w-button-circle>
 
-                        <div :style="`display:inline-block; ${hasEffNameAndDesp?'margin-left:10px;':''}`">
-                            <div style="font-size:1.0rem;">
-                                {{nameTrans}}
+                        <slot
+                            name="btns"
+                            :editable="editable"
+                        >
+
+                        </slot>
+
+                        <slot
+                            name="infor"
+                            :infor="{name:nameTrans,description:descriptionTrans}"
+                        >
+
+                            <div :style="`display:inline-block; ${hasEffNameAndDesp?'margin-left:10px;':''}`">
+                                <div style="font-size:1.0rem;">
+                                    {{nameTrans}}
+                                </div>
+                                <div style="font-size:0.8rem; opacity:0.8;">
+                                    {{descriptionTrans}}
+                                </div>
                             </div>
-                            <div style="font-size:0.8rem; opacity:0.8;">
-                                {{descriptionTrans}}
-                            </div>
-                        </div>
+
+                        </slot>
 
                     </div>
 

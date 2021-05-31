@@ -110,6 +110,26 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-table-dyn'"
+                    :casename="'fixIds (fix id)'"
+                ></demolink>
+
+                <w-table-dyn
+                    style="width:600px; height:400px;"
+                    :name="WTableDyn.name"
+                    :description="WTableDyn.description"
+                    :opt="WTableDyn.opt2"
+                    :fixIds="'id'"
+                    _fixIds="['id','mappingId']"
+                    @success="evSuccess"
+                    @error="evError"
+                ></w-table-dyn>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-table-dyn'"
                     :casename="'removeIdsWhenDownload (remove id, mappingId, order, isActive)'"
                 ></demolink>
 
@@ -129,19 +149,55 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-table-dyn'"
-                    :casename="'fixIds (fix id)'"
+                    :casename="'slot infor (name & description)'"
                 ></demolink>
 
                 <w-table-dyn
                     style="width:600px; height:400px;"
                     :name="WTableDyn.name"
                     :description="WTableDyn.description"
-                    :opt="WTableDyn.opt2"
-                    :fixIds="'id'"
-                    _fixIds="['id','mappingId']"
+                    :opt="WTableDyn.opt1"
                     @success="evSuccess"
                     @error="evError"
-                ></w-table-dyn>
+                >
+                    <template v-slot:infor="{infor}">
+                        <div msg="外層有flex故添加一層div避免影響">
+                            <div style="display:flex; align-items:center;">
+                                <div style="color:#62f;">{{infor.name}}</div>
+                                <div style="margin-left:5px; padding:0px 7px; color:#fff; font-size:0.7rem; border-radius:30px; background:#f26;">Agent</div>
+                                <div style="margin-left:5px; padding:0px 7px; color:#fff; font-size:0.7rem; border-radius:30px; background:#fa6;">Dealer</div>
+                            </div>
+                            <div style="color:#888; font-size:0.7rem;">[{{infor.description}}]</div>
+                        </div>
+                    </template>
+                </w-table-dyn>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-table-dyn'"
+                    :casename="'slot btns'"
+                ></demolink>
+
+                <w-table-dyn
+                    style="width:600px; height:400px;"
+                    :name="WTableDyn.name"
+                    :description="WTableDyn.description"
+                    :opt="WTableDyn.opt1"
+                    @success="evSuccess"
+                    @error="evError"
+                >
+                    <template v-slot:btns="props">
+                        <select style="padding:0px 10px; background-color:rgba(255,255,255,0.1); color:#666; font-size:0.7rem; border:1px solid rgba(0,0,0,0.3); border-radius:30px; outline:none;">
+                            <option style="color:#666; font-size:0.7rem;" value="0">Select Item</option>
+                            <option style="color:#666; font-size:0.7rem;" value="1">Quisquam</option>
+                            <option style="color:#666; font-size:0.7rem;" value="2">Dolorem</option>
+                            <option :style="`${props.editable?'color:#666;':'color:#aaa;'} font-size:0.7rem;`" value="3" :disabled="!props.editable">Ipsum</option>
+                        </select>
+                    </template>
+                </w-table-dyn>
 
             </div>
 
@@ -293,6 +349,34 @@
                     @success="evSuccess"
                     @error="evError"
                 ></w-table-dyn>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-table-dyn'"
+                    :casename="'editable & slot btns'"
+                ></demolink>
+
+                <w-table-dyn
+                    style="width:600px; height:400px;"
+                    :name="WTableDyn.name"
+                    :description="WTableDyn.description"
+                    :opt="WTableDyn.opt1"
+                    :editable="true"
+                    @success="evSuccess"
+                    @error="evError"
+                >
+                    <template v-slot:btns="props">
+                        <select style="padding:0px 10px; background-color:rgba(255,255,255,0.1); color:#666; font-size:0.7rem; border:1px solid rgba(0,0,0,0.3); border-radius:30px; outline:none;">
+                            <option style="color:#666; font-size:0.7rem;" value="0">Select Item</option>
+                            <option style="color:#666; font-size:0.7rem;" value="1">Quisquam</option>
+                            <option style="color:#666; font-size:0.7rem;" value="2">Dolorem</option>
+                            <option :style="`${props.editable?'color:#666;':'color:#aaa;'} font-size:0.7rem;`" value="3" :disabled="!props.editable">Ipsum</option>
+                        </select>
+                    </template>
+                </w-table-dyn>
 
             </div>
 
