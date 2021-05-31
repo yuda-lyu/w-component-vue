@@ -85,7 +85,7 @@
     </script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.0.53/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.0.54/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -140,7 +140,7 @@
         <div class="bk">
             <div
                 class="item"
-            >editable & checkId & textAddRow & texDeleteSelectedRows & texDownloadExcelFile & texUploadExcelFile</div>
+            >editable & checkId & tooltipAddRow & tooltipDeleteSelectedRows & tooltipDownloadExcelFile & tooltipUploadExcelFile</div>
 
             <w-table-dyn
                 style="width:600px; height:400px;"
@@ -149,10 +149,10 @@
                 :opt="WTableDyn.opt2"
                 :editable="true"
                 :check-id="'id'"
-                :text-add-row="'新增數據'"
-                :tex-delete-selected-rows="'刪除選擇數據'"
-                :tex-download-excel-file="'下載 Excel(xlsx) 數據檔案'"
-                :tex-upload-excel-file="'上傳 Excel(xlsx) 數據檔案'"
+                :tooltip-add-row="'新增數據'"
+                :tooltip-delete-selected-rows="'刪除選擇數據'"
+                :tooltip-download-excel-file="'下載 Excel(xlsx) 數據檔案'"
+                :tooltip-upload-excel-file="'上傳 Excel(xlsx) 數據檔案'"
                 @success="evSuccess"
                 @error="evError"
             />
