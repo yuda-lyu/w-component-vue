@@ -668,6 +668,9 @@ export default {
                 })
             }
 
+            //backup
+            vo.rowsTemp = cloneDeep(rows)
+
             //useOpt
             let useOpt = {
                 rows,
@@ -713,9 +716,6 @@ export default {
                     }
                 })
             }
-
-            //backup
-            vo.rowsTemp = cloneDeep(useOpt.rows)
 
             //save
             vo.useOpt = useOpt
@@ -950,6 +950,7 @@ export default {
                     name,
                     description,
                     rows: cloneDeep(rows),
+                    rowsPrev: cloneDeep(vo.rowsTemp),
                 }
                 // console.log('res', res)
 
