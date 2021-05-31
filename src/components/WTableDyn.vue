@@ -546,7 +546,7 @@ export default {
             if (iseobj(vo.opt)) {
                 let optTemp = cloneDeep(vo.opt)
                 each(optTemp, (v, k) => {
-                    if (k !== 'keys' && k !== 'rows' && k !== 'kpHead') { //已於前面使用過就不複寫, 例如rows會被重排序一定不能被複寫回原數據
+                    if (k !== 'keys' && k !== 'rows' && k !== 'kpHead' && k !== 'editable') { //已於前面使用過就不複寫, 例如rows會被重排序一定不能被複寫回原數據
                         useOpt[k] = v
                     }
                 })
