@@ -3,6 +3,7 @@
 
         <!-- 避免class group所使用display:flex直接暴露至外部 -->
         <div
+            aaa
             :class="{'group':true,'shadow':shadow}"
             :style="[usePadding,useBackgroundColor,useBorder,{'border-radius':borderRadius+'px'},{'opacity':editable?1:0.6}]"
             @mouseenter="mouseenter"
@@ -71,9 +72,8 @@
 </template>
 
 <script>
-import isNumber from 'lodash/isNumber'
-import get from 'lodash/get'
 import color2hex from '../js/vuetifyColor.mjs'
+import parseSpace from '../js/parseSpace.mjs'
 import WIcon from './WIcon.vue'
 
 
@@ -316,38 +316,15 @@ export default {
 
             let vo = this
 
-            //四方向padding
-            let left = 0
-            let right = 0
-            let top = 0
-            let bottom = 0
-            if (isNumber(get(vo, 'paddingStyle.h'))) {
-                left = get(vo, 'paddingStyle.h')
-                right = left
-            }
-            if (isNumber(get(vo, 'paddingStyle.v'))) {
-                top = get(vo, 'paddingStyle.v')
-                bottom = top
-            }
-            if (isNumber(get(vo, 'paddingStyle.left'))) {
-                left = get(vo, 'paddingStyle.left')
-            }
-            if (isNumber(get(vo, 'paddingStyle.right'))) {
-                right = get(vo, 'paddingStyle.right')
-            }
-            if (isNumber(get(vo, 'paddingStyle.top'))) {
-                top = get(vo, 'paddingStyle.top')
-            }
-            if (isNumber(get(vo, 'paddingStyle.bottom'))) {
-                bottom = get(vo, 'paddingStyle.bottom')
+            //parseSpace
+            let cs = parseSpace(vo.paddingStyle, { semicolon: false })
+
+            //padding
+            let padding = {
+                padding: cs,
             }
 
-            //s
-            let s = {
-                padding: `${top}px ${right}px ${bottom}px ${left}px`
-            }
-
-            return s
+            return padding
         },
 
     },

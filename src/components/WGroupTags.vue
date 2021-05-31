@@ -166,7 +166,6 @@ import every from 'lodash/every'
 import pullAt from 'lodash/pullAt'
 import filter from 'lodash/filter'
 import isEqual from 'lodash/isEqual'
-import isNumber from 'lodash/isNumber'
 import size from 'lodash/size'
 import domDrag from 'wsemi/src/domDrag.mjs'
 import o2j from 'wsemi/src/o2j.mjs'
@@ -175,6 +174,7 @@ import genPm from 'wsemi/src/genPm.mjs'
 import waitFun from 'wsemi/src/waitFun.mjs'
 import WButtonChip from './WButtonChip.vue'
 import WText from './WText.vue'
+import parseSpace from '../js/parseSpace.mjs'
 
 
 /**
@@ -362,7 +362,8 @@ export default {
         },
         shadowStyle: {
             type: String,
-            //default: '0 12px 20px -10px {backgroundColorAlpha=0.28}, 0 4px 20px 0 rgba(0,0,0,.12), 0 7px 8px -5px {backgroundColorAlpha=0.2}',
+            // default: '0 12px 20px -10px {backgroundColorAlpha=0.28}, 0 4px 20px 0 rgba(0,0,0,.12), 0 7px 8px -5px {backgroundColorAlpha=0.2}',
+            //使用黑色短陰影比較符合chip(tag)形象
             default: '0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12)',
         },
         shadowActive: {
@@ -573,36 +574,15 @@ export default {
         },
 
         useMarginStyle: function() {
+            //console.log('computed useMarginStyle')
+
             let vo = this
 
-            //四方向margin
-            let left = 0
-            let right = 0
-            let top = 0
-            let bottom = 0
-            if (isNumber(get(vo, 'marginStyle.h'))) {
-                left = get(vo, 'marginStyle.h')
-                right = left
-            }
-            if (isNumber(get(vo, 'marginStyle.v'))) {
-                top = get(vo, 'marginStyle.v')
-                bottom = top
-            }
-            if (isNumber(get(vo, 'marginStyle.left'))) {
-                left = get(vo, 'marginStyle.left')
-            }
-            if (isNumber(get(vo, 'marginStyle.right'))) {
-                right = get(vo, 'marginStyle.right')
-            }
-            if (isNumber(get(vo, 'marginStyle.top'))) {
-                top = get(vo, 'marginStyle.top')
-            }
-            if (isNumber(get(vo, 'marginStyle.bottom'))) {
-                bottom = get(vo, 'marginStyle.bottom')
-            }
+            //parseSpace
+            let cs = parseSpace(vo.marginStyle)
 
             //margin
-            let margin = `margin-left:${left}px; margin-right:${right}px; margin-top:${top}px; margin-bottom:${bottom}px;`
+            let margin = `margin:${cs};`
 
             return margin
         },

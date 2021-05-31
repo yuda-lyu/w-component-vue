@@ -112,10 +112,10 @@
 
 <script>
 import get from 'lodash/get'
-import isNumber from 'lodash/isNumber'
 import isobj from 'wsemi/src/isobj.mjs'
 import isbol from 'wsemi/src/isbol.mjs'
 import color2hex from '../js/vuetifyColor.mjs'
+import parseSpace from '../js/parseSpace.mjs'
 import WPopup from './WPopup.vue'
 import WTextCore from './WTextCore.vue'
 import WDynamicList from './WDynamicList.vue'
@@ -336,38 +336,11 @@ export default {
 
             let vo = this
 
-            //四方向padding
-            let left = 0
-            let right = 0
-            let top = 0
-            let bottom = 0
-            if (isNumber(get(vo, 'itemPaddingStyle.h'))) {
-                left = get(vo, 'itemPaddingStyle.h')
-                right = left
-            }
-            if (isNumber(get(vo, 'itemPaddingStyle.v'))) {
-                top = get(vo, 'itemPaddingStyle.v')
-                bottom = top
-            }
-            if (isNumber(get(vo, 'itemPaddingStyle.left'))) {
-                left = get(vo, 'itemPaddingStyle.left')
-            }
-            if (isNumber(get(vo, 'itemPaddingStyle.right'))) {
-                right = get(vo, 'itemPaddingStyle.right')
-            }
-            if (isNumber(get(vo, 'itemPaddingStyle.top'))) {
-                top = get(vo, 'itemPaddingStyle.top')
-            }
-            if (isNumber(get(vo, 'itemPaddingStyle.bottom'))) {
-                bottom = get(vo, 'itemPaddingStyle.bottom')
-            }
-
-            // //shiftLeft, shiftRight
-            // left += vo.shiftLeft
-            // right += vo.shiftRight
+            //parseSpace
+            let cs = parseSpace(vo.itemPaddingStyle)
 
             //padding
-            let padding = `padding:${top}px ${right}px ${bottom}px ${left}px;`
+            let padding = `padding:${cs};`
 
             return padding
         },

@@ -19,6 +19,7 @@
 
 <script>
 
+
 /**
  * @vue-prop {String} [icon=''] 輸入圖標字串，可為mdi,md,fa代號或mdi/js路徑，預設''
  * @vue-prop {String} [color=''] 輸入圖標顏色字串，預設''

@@ -126,7 +126,6 @@ import { mdiCloseCircle } from '@mdi/js'
 import map from 'lodash/map'
 import join from 'lodash/join'
 import get from 'lodash/get'
-import isNumber from 'lodash/isNumber'
 import isnum from 'wsemi/src/isnum.mjs'
 import isbol from 'wsemi/src/isbol.mjs'
 import isestr from 'wsemi/src/isestr.mjs'
@@ -135,6 +134,7 @@ import replace from 'wsemi/src/replace.mjs'
 import sep from 'wsemi/src/sep.mjs'
 import oc from 'wsemi/src/color.mjs'
 import color2hex from '../js/vuetifyColor.mjs'
+import parseSpace from '../js/parseSpace.mjs'
 import WIcon from './WIcon.vue'
 
 
@@ -304,7 +304,8 @@ export default {
         },
         shadowStyle: {
             type: String,
-            //default: '0 12px 20px -10px {backgroundColorAlpha=0.28}, 0 4px 20px 0 rgba(0,0,0,.12), 0 7px 8px -5px {backgroundColorAlpha=0.2}',
+            // default: '0 12px 20px -10px {backgroundColorAlpha=0.28}, 0 4px 20px 0 rgba(0,0,0,.12), 0 7px 8px -5px {backgroundColorAlpha=0.2}',
+            //使用黑色短陰影比較符合chip(tag)形象
             default: '0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12)',
         },
         shadowActive: {
@@ -410,38 +411,11 @@ export default {
 
             let vo = this
 
-            //四方向padding
-            let left = 0
-            let right = 0
-            let top = 0
-            let bottom = 0
-            if (isNumber(get(vo, 'paddingStyle.h'))) {
-                left = get(vo, 'paddingStyle.h')
-                right = left
-            }
-            if (isNumber(get(vo, 'paddingStyle.v'))) {
-                top = get(vo, 'paddingStyle.v')
-                bottom = top
-            }
-            if (isNumber(get(vo, 'paddingStyle.left'))) {
-                left = get(vo, 'paddingStyle.left')
-            }
-            if (isNumber(get(vo, 'paddingStyle.right'))) {
-                right = get(vo, 'paddingStyle.right')
-            }
-            if (isNumber(get(vo, 'paddingStyle.top'))) {
-                top = get(vo, 'paddingStyle.top')
-            }
-            if (isNumber(get(vo, 'paddingStyle.bottom'))) {
-                bottom = get(vo, 'paddingStyle.bottom')
-            }
-
-            //shiftLeft, shiftRight
-            left += vo.shiftLeft
-            right += vo.shiftRight
+            //parseSpace
+            let cs = parseSpace(vo.paddingStyle, { ext: { left: vo.shiftLeft, right: vo.shiftRight } })
 
             //padding
-            let padding = `padding:${top}px ${right}px ${bottom}px ${left}px;`
+            let padding = `padding:${cs};`
 
             return padding
         },
@@ -593,26 +567,11 @@ export default {
 
             let vo = this
 
-            //四方向width
-            let left = 0
-            let right = 0
-            let top = 0
-            let bottom = 0
-            if (isNumber(get(vo, 'borderWidth.left'))) {
-                left = get(vo, 'borderWidth.left')
-            }
-            if (isNumber(get(vo, 'borderWidth.right'))) {
-                right = get(vo, 'borderWidth.right')
-            }
-            if (isNumber(get(vo, 'borderWidth.top'))) {
-                top = get(vo, 'borderWidth.top')
-            }
-            if (isNumber(get(vo, 'borderWidth.bottom'))) {
-                bottom = get(vo, 'borderWidth.bottom')
-            }
+            //parseSpace
+            let cs = parseSpace(vo.borderWidth)
 
             //borderWidth
-            let borderWidth = `border-left-width:${left}px; border-right-width:${right}px; border-top-width:${top}px; border-bottom-width:${bottom}px;`
+            let borderWidth = `border-width:${cs};`
 
             return borderWidth
         },
@@ -693,7 +652,7 @@ export default {
                 let r = color2hex(c)
                 let rgba = oc.toRgba(r)
                 rgba.a = alpha
-                let s = oc.toRgbString(rgba)
+                let s = oc.toRgbaString(rgba)
                 return s
             }
 

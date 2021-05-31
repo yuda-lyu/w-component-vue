@@ -60,10 +60,10 @@ import get from 'lodash/get'
 import map from 'lodash/map'
 import each from 'lodash/each'
 import isEqual from 'lodash/isEqual'
-import isNumber from 'lodash/isNumber'
 import cloneDeep from 'lodash/cloneDeep'
 import arrhas from 'wsemi/src/arrhas.mjs'
 import WButtonChip from './WButtonChip.vue'
+import parseSpace from '../js/parseSpace.mjs'
 
 
 /**
@@ -472,40 +472,15 @@ export default {
         },
 
         useMarginStyle: function() {
+            //console.log('computed useMarginStyle')
+
             let vo = this
 
-            //四方向margin
-            let left = 0
-            let right = 0
-            let top = 0
-            let bottom = 0
-
-            //group, 非群組化時才使用marginStyle
-            if (!vo.group) {
-                if (isNumber(get(vo, 'marginStyle.h'))) {
-                    left = get(vo, 'marginStyle.h')
-                    right = left
-                }
-                if (isNumber(get(vo, 'marginStyle.v'))) {
-                    top = get(vo, 'marginStyle.v')
-                    bottom = top
-                }
-                if (isNumber(get(vo, 'marginStyle.left'))) {
-                    left = get(vo, 'marginStyle.left')
-                }
-                if (isNumber(get(vo, 'marginStyle.right'))) {
-                    right = get(vo, 'marginStyle.right')
-                }
-                if (isNumber(get(vo, 'marginStyle.top'))) {
-                    top = get(vo, 'marginStyle.top')
-                }
-                if (isNumber(get(vo, 'marginStyle.bottom'))) {
-                    bottom = get(vo, 'marginStyle.bottom')
-                }
-            }
+            //parseSpace
+            let cs = parseSpace(vo.marginStyle, { parse: !vo.group }) //group, 非群組化時才使用marginStyle
 
             //margin
-            let margin = `margin-left:${left}px; margin-right:${right}px; margin-top:${top}px; margin-bottom:${bottom}px;`
+            let margin = `margin:${cs};`
 
             return margin
         },

@@ -93,7 +93,6 @@ import reverse from 'lodash/reverse'
 import remove from 'lodash/remove'
 import cloneDeep from 'lodash/cloneDeep'
 import isInteger from 'lodash/isInteger'
-import isNumber from 'lodash/isNumber'
 import dropRight from 'lodash/dropRight'
 import genID from 'wsemi/src/genID.mjs'
 import sep from 'wsemi/src/sep.mjs'
@@ -105,6 +104,7 @@ import waitFun from 'wsemi/src/waitFun.mjs'
 import debounce from 'wsemi/src/debounce.mjs'
 import flattenTreeObj from 'wsemi/src/flattenTreeObj'
 import globalMemory from '../js/globalMemory.mjs'
+import parseSpace from '../js/parseSpace.mjs'
 import WDynamicList from './WDynamicList.vue'
 import WTreeIconToggle from './WTreeIconToggle.vue'
 import WTreeIconCheckbox from './WTreeIconCheckbox.vue'
@@ -348,34 +348,11 @@ export default {
 
             let vo = this
 
-            //四方向padding
-            let left = 0
-            let right = 0
-            let top = 0
-            let bottom = 0
-            if (isNumber(get(vo, 'paddingStyle.h'))) {
-                left = get(vo, 'paddingStyle.h')
-                right = left
-            }
-            if (isNumber(get(vo, 'paddingStyle.v'))) {
-                top = get(vo, 'paddingStyle.v')
-                bottom = top
-            }
-            if (isNumber(get(vo, 'paddingStyle.left'))) {
-                left = get(vo, 'paddingStyle.left')
-            }
-            if (isNumber(get(vo, 'paddingStyle.right'))) {
-                right = get(vo, 'paddingStyle.right')
-            }
-            if (isNumber(get(vo, 'paddingStyle.top'))) {
-                top = get(vo, 'paddingStyle.top')
-            }
-            if (isNumber(get(vo, 'paddingStyle.bottom'))) {
-                bottom = get(vo, 'paddingStyle.bottom')
-            }
+            //parseSpace
+            let cs = parseSpace(vo.paddingStyle)
 
             //padding
-            let padding = `padding:${top}px ${right}px ${bottom}px ${left}px;`
+            let padding = `padding:${cs};`
 
             return padding
         },

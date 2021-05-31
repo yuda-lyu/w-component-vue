@@ -224,6 +224,29 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-table-dyn'"
+                    :casename="'editable & inforPaddingStyle & menuBackgroundColor'"
+                ></demolink>
+
+                <div style="background:#fafafa;">
+                    <w-table-dyn
+                        style="width:600px; height:400px;"
+                        :name="WTableDyn.name"
+                        :description="WTableDyn.description"
+                        :opt="WTableDyn.opt2"
+                        :editable="true"
+                        :inforPaddingStyle="{top:15,right:20,bottom:20,left:20}"
+                        :menuBackgroundColor="'#eaeaea'"
+                        @success="evSuccess"
+                        @error="evError"
+                    ></w-table-dyn>
+                </div>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-table-dyn'"
                     :casename="'editable & checkId'"
                 ></demolink>
 
@@ -305,7 +328,7 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-table-dyn'"
-                    :casename="'editable & checkId & textAddRow & texDeleteSelectedRows & texDownloadExcelFile & texUploadExcelFile'"
+                    :casename="'editable & checkId & tooltipAddRow & tooltipDeleteSelectedRows & tooltipDownloadExcelFile & tooltipUploadExcelFile'"
                 ></demolink>
 
                 <w-table-dyn
@@ -315,10 +338,10 @@
                     :opt="WTableDyn.opt2"
                     :editable="true"
                     :checkId="'id'"
-                    :textAddRow="'新增數據'"
-                    :texDeleteSelectedRows="'刪除選擇數據'"
-                    :texDownloadExcelFile="'下載 Excel(xlsx) 數據檔案'"
-                    :texUploadExcelFile="'上傳 Excel(xlsx) 數據檔案'"
+                    :tooltipAddRow="'新增數據'"
+                    :tooltipDeleteSelectedRows="'刪除選擇數據'"
+                    :tooltipDownloadExcelFile="'下載 Excel(xlsx) 數據檔案'"
+                    :tooltipUploadExcelFile="'上傳 Excel(xlsx) 數據檔案'"
                     @success="evSuccess"
                     @error="evError"
                 ></w-table-dyn>
@@ -342,8 +365,9 @@
                     :successMsgFromAddRow="'新增數據成功'"
                     :errorMsgFromAddRow="'無法新增數據'"
                     :errorMsgFromRemoveRow="'移除數據失敗'"
-                    :errorMsgFromUploadEmptyData="'上傳檔案中無有效數據'"
+                    :successMsgFromUploadData="'上傳數據成功'"
                     :errorMsgFromUploadData="'無法上傳數據'"
+                    :errorMsgFromUploadEmptyData="'上傳檔案中無有效數據'"
                     :successMsgFromDownloadData="'下載檔案成功'"
                     :errorMsgFromDownloadData="'無法下載檔案'"
                     @success="evSuccess"

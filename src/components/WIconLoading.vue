@@ -21,6 +21,7 @@
 
 <script>
 
+
 /**
  * @vue-prop {String} [name='cir1'] 輸入動畫名稱字串，預設'cir1'
  * @vue-prop {Number} [size=24] 輸入圖標欲顯示的尺寸浮點數，預設24
