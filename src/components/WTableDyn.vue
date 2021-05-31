@@ -202,10 +202,10 @@ import color2hex from '../js/vuetifyColor.mjs'
  * @vue-prop {String} [successMsgFromUploadData='upload data successfully'] 輸入上傳數據成功事件訊息字串，預設'upload data successfully'
  * @vue-prop {String} [errorMsgFromUploadData='can not upload data'] 輸入無法上傳數據事件訊息字串，預設'can not upload data'
  * @vue-prop {String} [errorMsgFromUploadEmptyData='no effective data'] 輸入上傳檔案中無有效數據事件訊息字串，預設'no effective data'
- * @vue-prop {String} [errorMsgFromNoName='no data name'] 輸入未輸入數據名稱事件訊息字串，預設'no data name'
- * @vue-prop {String} [errorMsgFromNoData='no data'] 輸入未給予有效數據事件訊息字串，預設'no data'
  * @vue-prop {String} [successMsgFromDownloadData='download data successfully'] 輸入下載檔案成功事件訊息字串，預設'download data successfully'
  * @vue-prop {String} [errorMsgFromDownloadData='can not download data'] 輸入無法下載檔案事件訊息字串，預設'can not download data'
+ * @vue-prop {String} [errorMsgFromNoName='no data name'] 輸入未輸入數據名稱事件訊息字串，預設'no data name'
+ * @vue-prop {String} [errorMsgFromNoData='no data'] 輸入未給予有效數據事件訊息字串，預設'no data'
  * @vue-event {Array} save 指調用組件的method，無輸入，會回傳當前的name、description、rows所構成的物件
  * @vue-prop {Object} [opt={}] 輸入w-aggrid-vue設定物件，預設{}
  * @vue-prop {Array} opt.keys 輸入資料各欄位keys
@@ -398,14 +398,6 @@ export default {
             type: String,
             default: 'no effective data', //上傳檔案中無有效數據
         },
-        errorMsgFromNoName: {
-            type: String,
-            default: 'no data name', //未輸入數據名稱
-        },
-        errorMsgFromNoData: {
-            type: String,
-            default: 'no data', //未給予有效數據
-        },
         successMsgFromDownloadData: {
             type: String,
             default: 'download data successfully', //下載檔案成功
@@ -413,6 +405,14 @@ export default {
         errorMsgFromDownloadData: {
             type: String,
             default: 'can not download data', //無法下載檔案
+        },
+        errorMsgFromNoName: {
+            type: String,
+            default: 'no data name', //未輸入數據名稱
+        },
+        errorMsgFromNoData: {
+            type: String,
+            default: 'no data', //未給予有效數據
         },
         opt: {
             type: Object,
