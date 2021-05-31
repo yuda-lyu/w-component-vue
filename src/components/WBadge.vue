@@ -28,8 +28,8 @@
 
 <script>
 import get from 'lodash/get'
-import color2hex from '../js/vuetifyColor.mjs'
 import replace from 'wsemi/src/replace.mjs'
+import color2hex from '../js/vuetifyColor.mjs'
 import domResize from '../js/domResize.mjs'
 
 

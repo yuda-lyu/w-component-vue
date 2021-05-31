@@ -37,6 +37,7 @@ import WShellBottomLine from './WShellBottomLine.vue'
 import WShellEllipse from './WShellEllipse.vue'
 import WShellMaterial from './WShellMaterial.vue'
 import WSwitch from './WSwitch.vue'
+import WTableDyn from './WTableDyn.vue'
 import WText from './WText.vue'
 import WTextarea from './WTextarea.vue'
 import WTextCore from './WTextCore.vue'
@@ -99,6 +100,7 @@ let WComponentVue = {
         Vue.component('w-shell-ellipse', WShellEllipse)
         Vue.component('w-shell-material', WShellMaterial)
         Vue.component('w-switch', WSwitch)
+        Vue.component('w-table-dyn', WTableDyn)
         Vue.component('w-text', WText)
         Vue.component('w-textarea', WTextarea)
         Vue.component('w-text-core', WTextCore)

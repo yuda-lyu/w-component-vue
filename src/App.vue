@@ -268,6 +268,11 @@
             ></AppZoneWAggridVueDyn>
 
 
+            <AppZoneWTableDyn
+                v-if="useCmpName==='WTableDyn'"
+            ></AppZoneWTableDyn>
+
+
             <AppZoneWImageViewerDyn
                 v-if="useCmpName==='WImageViewerDyn'"
             ></AppZoneWImageViewerDyn>
@@ -347,6 +352,7 @@ import AppZoneWHighchartsVueDyn from './AppZoneWHighchartsVueDyn.vue'
 import AppZoneWHighstockVueDyn from './AppZoneWHighstockVueDyn.vue'
 import AppZoneWEchartsVueDyn from './AppZoneWEchartsVueDyn.vue'
 import AppZoneWAggridVueDyn from './AppZoneWAggridVueDyn.vue'
+import AppZoneWTableDyn from './AppZoneWTableDyn.vue'
 import AppZoneWImageViewerDyn from './AppZoneWImageViewerDyn.vue'
 import AppZoneWImageCascadingDyn from './AppZoneWImageCascadingDyn.vue'
 import AppZoneWCkeditorVueDyn from './AppZoneWCkeditorVueDyn.vue'
@@ -394,6 +400,7 @@ export default {
         AppZoneWHighstockVueDyn,
         AppZoneWEchartsVueDyn,
         AppZoneWAggridVueDyn,
+        AppZoneWTableDyn,
         AppZoneWImageViewerDyn,
         AppZoneWImageCascadingDyn,
         AppZoneWCkeditorVueDyn,
@@ -501,6 +508,7 @@ export default {
                             name: 'table',
                             cmps: [
                                 { name: 'WAggridVueDyn' },
+                                { name: 'WTableDyn' },
                             ],
                         },
                         {
