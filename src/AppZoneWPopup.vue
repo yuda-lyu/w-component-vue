@@ -33,7 +33,32 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-popup'"
-                    :casename="'click item and delay hiding'"
+                    :casename="'isolated'"
+                ></demolink>
+
+                <w-popup
+                    :isolated="true"
+                >
+
+                    <template v-slot:trigger>
+                        <v-btn depressed small elevation="2">Show</v-btn>
+                    </template>
+
+                    <template v-slot:content="props">
+                        <v-list style="background:transparent;"><v-list-item style="min-height:inherit; padding:5px 15px;" :key="kitem" @click="function(){}" v-for="(item,kitem) in WPopup.items">Item {{item}}</v-list-item></v-list>
+                        <div style="padding:0px 5px 5px 5px;">
+                            <v-btn depressed small elevation="2" @click="props.funHide()">Hide in popup panel</v-btn>
+                        </div>
+                    </template>
+
+                </w-popup>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-popup'"
+                    :casename="'click item by latency hiding'"
                 ></demolink>
 
                 <w-popup

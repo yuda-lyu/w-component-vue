@@ -85,7 +85,7 @@
     </script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.1.3/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.1.4/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -138,22 +138,30 @@
             onclick="window.open('//yuda-lyu.github.io/w-component-vue/examples/app.html?cmp='+this.innerText,'_blank')"
         >w-popup</div>
         <div class="bk">
-            <div class="item">click item and delay hiding</div>
+            <div class="item">isolated</div>
 
-            <w-popup v-model="WPopup.bShow2">
+            <w-popup :isolated="true">
                 <template v-slot:trigger>
-                    <v-btn depressed small elevation="2">Show({{WPopup.bShow2}})</v-btn>
+                    <v-btn depressed small elevation="2">Show</v-btn>
                 </template>
 
-                <template v-slot:content>
+                <template v-slot:content="props">
                     <v-list style="background:transparent;">
                         <v-list-item
                             style="min-height:inherit; padding:5px 15px;"
                             :key="kitem"
-                            @click="clickHide"
+                            @click="function(){}"
                             v-for="(item,kitem) in WPopup.items"
                         >Item {{item}}</v-list-item>
                     </v-list>
+                    <div style="padding:0px 5px 5px 5px;">
+                        <v-btn
+                            depressed
+                            small
+                            elevation="2"
+                            @click="props.funHide()"
+                        >Hide in popup panel</v-btn>
+                    </div>
                 </template>
             </w-popup>
         </div>

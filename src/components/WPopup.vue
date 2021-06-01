@@ -8,7 +8,9 @@
             @keyup.enter="clickTrigger"
             @click.stop="clickTrigger"
         >
+
             <slot name="trigger"></slot>
+
         </div>
 
         <!-- 需外層使用position包覆隔離, 因popper會對外層產生影響(添加class) -->
@@ -24,7 +26,12 @@
                 v-domresize
                 @domresize="updatePopper"
             >
-                <slot name="content"></slot>
+
+                <slot
+                    name="content"
+                    :funHide="()=>{updateValue(false)}"
+                ></slot>
+
             </div>
         </div>
 
@@ -47,6 +54,7 @@ import hide from '@popperjs/core/lib/modifiers/hide.js'
 
 /**
  * @vue-prop {Boolean} [value=false] 輸入是否顯示布林值，預設false
+ * @vue-prop {Boolean} [isolated=false] 輸入是否為獨立顯引狀態布林值，也就是可不接收外部傳入value值，預設false
  * @vue-prop {Number} [minWidth=null] 輸入最小寬度，單位為px，預設null
  * @vue-prop {Number} [maxWidth=null] 輸入最大寬度，單位為px，預設null
  * @vue-prop {Number} [distY=5] 輸入彈窗距離觸發元素底部的距離，單位為px，預設5
@@ -62,6 +70,10 @@ export default {
     },
     props: {
         value: {
+            type: Boolean,
+            default: false,
+        },
+        isolated: {
             type: Boolean,
             default: false,
         },
@@ -193,16 +205,14 @@ export default {
 
             let vo = this
 
-            //check, 不可編輯時跳出
-            if (!vo.editable) {
-                return
+            //trigger
+            let value = vo.value
+            let isolated = vo.isolated
+
+            //updateValue
+            if (!isolated) {
+                vo.updateValue(value)
             }
-
-            //save
-            vo.valueTrans = vo.value
-
-            //display
-            vo.display()
 
             return ''
         },
@@ -272,6 +282,24 @@ export default {
     },
     methods: {
 
+        updateValue: function (value) {
+            //console.log('methods updateValue', value)
+
+            let vo = this
+
+            //check, 不可編輯時跳出
+            if (!vo.editable) {
+                return
+            }
+
+            //save
+            vo.valueTrans = value
+
+            //display
+            vo.display()
+
+        },
+
         display: function() {
             //console.log('methods display')
 
@@ -294,13 +322,23 @@ export default {
 
             let vo = this
 
-            //$nextTick
-            vo.$nextTick(() => {
+            if (vo.isolated) {
 
-                //emit
-                vo.$emit('input', value)
+                //updateValue
+                vo.updateValue(value)
 
-            })
+            }
+            else {
+
+                //$nextTick
+                vo.$nextTick(() => {
+
+                    //emit
+                    vo.$emit('input', value)
+
+                })
+
+            }
 
         },
 
