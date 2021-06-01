@@ -16,6 +16,8 @@
 
                 <w-popup
                     v-model="WPopup.bShow1"
+                    @show="evShow"
+                    @hide="evHide"
                 >
 
                     <template v-slot:trigger>
@@ -38,6 +40,8 @@
 
                 <w-popup
                     :isolated="true"
+                    @show="evShow"
+                    @hide="evHide"
                 >
 
                     <template v-slot:trigger>
@@ -63,6 +67,8 @@
 
                 <w-popup
                     v-model="WPopup.bShow2"
+                    @show="evShow"
+                    @hide="evHide"
                 >
 
                     <template v-slot:trigger>
@@ -86,6 +92,8 @@
                 <w-popup
                     :minWidth="200"
                     v-model="WPopup.bShow3"
+                    @show="evShow"
+                    @hide="evHide"
                 >
 
                     <template v-slot:trigger>
@@ -109,6 +117,8 @@
                 <w-popup
                     :maxWidth="500"
                     v-model="WPopup.bShow4"
+                    @show="evShow"
+                    @hide="evHide"
                 >
 
                     <template v-slot:trigger>
@@ -135,6 +145,8 @@
                 <w-popup
                     :distY="10"
                     v-model="WPopup.bShow5"
+                    @show="evShow"
+                    @hide="evHide"
                 >
 
                     <template v-slot:trigger>
@@ -158,6 +170,8 @@
                 <w-popup
                     :borderRadius="10"
                     v-model="WPopup.bShow6"
+                    @show="evShow"
+                    @hide="evHide"
                 >
 
                     <template v-slot:trigger>
@@ -181,6 +195,8 @@
                 <w-popup
                     :backgroundColor="'pink darken-2'"
                     v-model="WPopup.bShow7"
+                    @show="evShow"
+                    @hide="evHide"
                 >
 
                     <template v-slot:trigger>
@@ -205,6 +221,8 @@
                     :shadow="false"
                     :backgroundColor="'#e08956'"
                     v-model="WPopup.bShow8"
+                    @show="evShow"
+                    @hide="evHide"
                 >
 
                     <template v-slot:trigger>
@@ -228,6 +246,8 @@
                 <w-popup
                     :shadowStyle="'0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12)'"
                     v-model="WPopup.bShow9"
+                    @show="evShow"
+                    @hide="evHide"
                 >
 
                     <template v-slot:trigger>
@@ -257,6 +277,8 @@
 
                         <w-popup
                             v-model="WPopup.bShow10"
+                            @show="evShow"
+                            @hide="evHide"
                         >
 
                             <template v-slot:trigger>
@@ -294,6 +316,8 @@
 
                             <w-popup
                                 v-model="WPopup.bShow11"
+                                @show="evShow"
+                                @hide="evHide"
                             >
 
                                 <template v-slot:trigger>
@@ -324,6 +348,8 @@
 
                 <w-popup
                     v-model="WPopup.bShow12"
+                    @show="evShow"
+                    @hide="evHide"
                 >
 
                     <template v-slot:trigger>
@@ -337,6 +363,8 @@
 
                             <w-popup
                                 v-model="WPopup.bShow12a"
+                                @show="evShow"
+                                @hide="evHide"
                             >
 
                                 <template v-slot:trigger>
@@ -352,6 +380,8 @@
                                         <w-popup
                                             style="margin-bottom:20px;"
                                             v-model="WPopup.bShow12b"
+                                            @show="evShow"
+                                            @hide="evHide"
                                         >
 
                                             <template v-slot:trigger>
@@ -403,6 +433,8 @@
                             <w-popup
                                 style="margin-left:250px;"
                                 v-model="WPopup.bShow13a"
+                                @show="evShow"
+                                @hide="evHide"
                             >
 
                                 <template v-slot:trigger>
@@ -435,6 +467,8 @@
                 <w-popup
                     :maxWidth="400"
                     v-model="WPopup.bShow14"
+                    @show="evShow"
+                    @hide="evHide"
                 >
 
                     <template v-slot:trigger>
@@ -465,6 +499,8 @@
                 <w-popup
                     :editable="false"
                     v-model="WPopup.bShow15"
+                    @show="evShow"
+                    @hide="evHide"
                 >
 
                     <template v-slot:trigger>
@@ -571,6 +607,12 @@ export default {
         }
     },
     methods: {
+        evShow: function() {
+            console.log('evShow')
+        },
+        evHide: function() {
+            console.log('evHide')
+        },
         clickHide: function() {
             let vo = this
             setTimeout(function() {

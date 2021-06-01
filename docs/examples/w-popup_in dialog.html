@@ -85,7 +85,7 @@
     </script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.1.4/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.1.5/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -162,6 +162,8 @@
                         <w-popup
                             style="margin-left:250px;"
                             v-model="WPopup.bShow13a"
+                            @show="evShow"
+                            @hide="evHide"
                         >
                             <template v-slot:trigger>
                                 <v-btn
@@ -274,6 +276,12 @@
     },
     computed: {},
     methods: {
+      evShow: function() {
+        console.log("evShow");
+      },
+      evHide: function() {
+        console.log("evHide");
+      },
       clickHide: function() {
         let vo = this;
         setTimeout(function() {

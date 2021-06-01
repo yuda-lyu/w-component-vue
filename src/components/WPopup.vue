@@ -122,6 +122,7 @@ export default {
             windowMouseup: null,
 
             popperInstance: null,
+            popperShow: false,
 
         }
     },
@@ -307,12 +308,21 @@ export default {
 
             //showPopper or hidePopper
             vo.$nextTick(() => {
-                if (vo.editable && vo.valueTrans) { //顯示時valueTrans=true與可編輯時才顯示, 否則一律隱藏
+
+                //b
+                let b = vo.editable && vo.valueTrans //顯示時valueTrans=true與可編輯時才顯示, 否則一律隱藏
+
+                if (b && !vo.popperShow) {
                     vo.showPopper()
+                    vo.popperShow = true
+                    vo.$emit('show')
                 }
-                else {
+                else if (!b && vo.popperShow) {
                     vo.hidePopper()
+                    vo.popperShow = false
+                    vo.$emit('hide')
                 }
+
             })
 
         },
