@@ -85,7 +85,7 @@
     </script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.1.4/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.1.5/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -140,7 +140,12 @@
         <div class="bk">
             <div class="item">slot for table & maxWidth</div>
 
-            <w-popup :max-width="400" v-model="WPopup.bShow14">
+            <w-popup
+                :max-width="400"
+                v-model="WPopup.bShow14"
+                @show="evShow"
+                @hide="evHide"
+            >
                 <template v-slot:trigger>
                     <v-btn
                         depressed
@@ -247,6 +252,12 @@
     },
     computed: {},
     methods: {
+      evShow: function() {
+        console.log("evShow");
+      },
+      evHide: function() {
+        console.log("evHide");
+      },
       clickHide: function() {
         let vo = this;
         setTimeout(function() {
