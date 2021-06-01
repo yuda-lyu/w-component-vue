@@ -24,7 +24,15 @@
                         @focus="focusText"
                         v-if="mode==='select'"
                     >
-                        {{valueTrans}}
+
+                        <slot
+                            name="select"
+                            :item="value"
+                            :text="valueTrans"
+                        >
+                            {{valueTrans}}
+                        </slot>
+
                     </div>
 
                     <w-text-core
@@ -93,6 +101,7 @@
                         >
 
                             <slot
+                                name="item"
                                 :item="props.row"
                                 :index="props.index"
                             >

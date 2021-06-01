@@ -266,7 +266,7 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-text-suggest'"
-                    :casename="'slot'"
+                    :casename="'slot item'"
                 ></demolink>
 
                 <w-text-suggest
@@ -646,7 +646,7 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-text-suggest'"
-                    :casename="'border & slot'"
+                    :casename="'border & slot item'"
                 ></demolink>
 
                 <w-text-suggest

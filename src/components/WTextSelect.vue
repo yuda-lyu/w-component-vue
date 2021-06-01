@@ -47,7 +47,20 @@
                     @input="(item,kitem)=>{$emit('input',item,kitem)}"
                     @click-item="(item,kitem)=>{$emit('click-item',item,kitem)}"
                 >
-                    <template v-slot="props">
+
+                    <template v-slot:select="props">
+
+                        <slot
+                            name="select"
+                            :item="props.item"
+                            :text="props.text"
+                        >
+                            {{props.text}}
+                        </slot>
+
+                    </template>
+
+                    <template v-slot:item="props">
 
                         <slot
                             name="item"
@@ -58,6 +71,7 @@
                         </slot>
 
                     </template>
+
                 </w-text-suggest-core>
             </div>
 

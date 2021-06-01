@@ -212,7 +212,29 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-text-select'"
-                    :casename="'slot'"
+                    :casename="'slot select'"
+                ></demolink>
+
+                <w-text-select
+                    :icon="mdiCheckUnderlineCircle"
+                    :items="WTextSelect.objItems"
+                    v-model="WTextSelect.objValue"
+                >
+                    <template v-slot:select="props">
+                        {{
+                            props.item.key==='orange'?'🍊🍊🍊🍊🍊🍊':
+                            props.item.key==='banana'?'🍌🍌🍌🍌🍌🍌':
+                                                      '🍓🍓🍓🍓🍓🍓'
+                        }}
+                    </template>
+                </w-text-select>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-text-select'"
+                    :casename="'slot item'"
                 ></demolink>
 
                 <w-text-select
@@ -523,7 +545,34 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-text-select'"
-                    :casename="'border & slot'"
+                    :casename="'border & slot select'"
+                ></demolink>
+
+                <w-text-select
+                    :shadow="false"
+                    :borderColor="'orange lighten-2'"
+                    :borderColorHover="'orange'"
+                    :borderColorFocus="'orange darken-2'"
+                    :backgroundColorFocus="'orange lighten-5'"
+                    :icon="mdiCheckUnderlineCircle"
+                    :items="WTextSelect.objItems"
+                    v-model="WTextSelect.objValue"
+                >
+                    <template v-slot:select="props">
+                        {{
+                            props.item.key==='orange'?'🍊🍊🍊🍊🍊🍊':
+                            props.item.key==='banana'?'🍌🍌🍌🍌🍌🍌':
+                                                      '🍓🍓🍓🍓🍓🍓'
+                        }}
+                    </template>
+                </w-text-select>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-text-select'"
+                    :casename="'border & slot item'"
                 ></demolink>
 
                 <w-text-select
