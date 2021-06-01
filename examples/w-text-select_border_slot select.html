@@ -85,7 +85,7 @@
     </script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.1.2/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.1.3/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -138,18 +138,24 @@
             onclick="window.open('//yuda-lyu.github.io/w-component-vue/examples/app.html?cmp='+this.innerText,'_blank')"
         >w-text-select</div>
         <div class="bk">
-            <div class="item">slot</div>
+            <div class="item">border & slot select</div>
 
             <w-text-select
+                :shadow="false"
+                :border-color="'orange lighten-2'"
+                :border-color-hover="'orange'"
+                :border-color-focus="'orange darken-2'"
+                :background-color-focus="'orange lighten-5'"
                 :icon="'mdi-check-underline-circle'"
                 :items="WTextSelect.objItems"
                 v-model="WTextSelect.objValue"
             >
-                <template v-slot:item="props">
-                    <div
-                        style="color:#f26; font-size:0.7rem;"
-                    >{{props.item.key}}</div>
-                    <div>{{props.item.text}}</div>
+                <template v-slot:select="props">
+                    {{
+                    props.item.key==='orange'?'🍊🍊🍊🍊🍊🍊':
+                    props.item.key==='banana'?'🍌🍌🍌🍌🍌🍌':
+                    '🍓🍓🍓🍓🍓🍓'
+                    }}
                 </template>
             </w-text-select>
         </div>
