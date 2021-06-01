@@ -442,18 +442,23 @@ export default {
     computed: {
 
         changeParamsForInfor: function() {
-            //console.log('computed changeParamsForInfor')
+            // console.log('computed changeParamsForInfor')
 
             let vo = this
+
+            //for trigger
+            let name = vo.name
+            let description = vo.description
 
             //save
             vo.nameTrans = trim(vo.name)
             vo.descriptionTrans = trim(vo.description)
 
-            //backup, 不能使用vo.nameTrans儲存至backup, 會導致computed掛勾記憶體無法觸發事件變更
+            //backup, 不能使用vo.nameTrans與vo.descriptionTemp備份, 會導致computed掛勾記憶體無法觸發事件變更
             vo.nameTemp = trim(vo.name)
             vo.descriptionTemp = trim(vo.description)
 
+            vo.___changeParamsForInfor___ = { name, description }
             return ''
         },
 
@@ -462,7 +467,7 @@ export default {
 
             let vo = this
 
-            //for trigger
+            //for trigger, rows通常是undefined變更為有效數據, 此時會驅動
             let rows = get(vo, 'opt.rows')
             let hideIds = vo.hideIds
             let fixIds = vo.fixIds
@@ -472,8 +477,7 @@ export default {
             //genOpt
             vo.genOpt()
 
-            vo.___rows___ = rows
-            vo.___change___ = { hideIds, fixIds, checkId, editable }
+            vo.___changeParamsForTable___ = { rows, hideIds, fixIds, checkId, editable }
             return ''
         },
 
@@ -604,23 +608,24 @@ export default {
         },
 
         default: function() {
-            //console.log('methods default')
+            // console.log('methods default')
 
             let vo = this
 
             vo.tableHeight = 200
-            vo.nameTrans = ''
-            vo.descriptionTrans = ''
             vo.rowsSelect = []
             vo.useOpt = null
-            vo.nameTemp = ''
-            vo.descriptionTemp = ''
             vo.rowsTemp = []
+            //不能清空nameTrans與descriptionTrans, 因default可能會被genOpt觸發, 而若是name與description變更在前, opt.rows變更在後, nameTrans與descriptionTrans被清空就無法顯示, 故得獨立出來分開處理
+            // vo.nameTrans = ''
+            // vo.descriptionTrans = ''
+            // vo.nameTemp = ''
+            // vo.descriptionTemp = ''
 
         },
 
         genOpt: function() {
-            //console.log('methods genOpt')
+            // console.log('methods genOpt')
 
             let vo = this
 
@@ -948,7 +953,9 @@ export default {
                 //res
                 let res = {
                     name,
+                    nameTrans: vo.nameTrans,
                     description,
+                    descriptionTemp: vo.descriptionTemp,
                     rows: cloneDeep(rows),
                     rowsPrev: cloneDeep(vo.rowsTemp),
                 }
