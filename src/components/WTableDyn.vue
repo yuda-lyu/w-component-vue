@@ -953,11 +953,11 @@ export default {
                 //res
                 let res = {
                     name,
-                    nameTrans: vo.nameTrans,
+                    nameTemp: vo.nameTrans,
                     description,
                     descriptionTemp: vo.descriptionTemp,
                     rows: cloneDeep(rows),
-                    rowsPrev: cloneDeep(vo.rowsTemp),
+                    rowsTemp: cloneDeep(vo.rowsTemp),
                 }
                 // console.log('res', res)
 
