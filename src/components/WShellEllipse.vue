@@ -3,7 +3,6 @@
 
         <!-- 避免class group所使用display:flex直接暴露至外部 -->
         <div
-            aaa
             :class="{'group':true,'shadow':shadow}"
             :style="[usePadding,useBackgroundColor,useBorder,{'border-radius':borderRadius+'px'},{'opacity':editable?1:0.6}]"
             @mouseenter="mouseenter"
