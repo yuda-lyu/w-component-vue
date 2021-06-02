@@ -85,7 +85,7 @@
     </script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.1.5/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.1.6/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -151,6 +151,7 @@
                 :show.sync="WDialog.bShow18"
                 :title="WDialog.title"
                 :width-max="1200"
+                @resize="resizeEvent"
                 @click-save="clickEvent('click-save')"
                 @click-close="clickEvent('click-close')"
             >
@@ -174,6 +175,7 @@
                 :show.sync="WDialog.bShow18A"
                 :title="WDialog.title"
                 :width-max="900"
+                @resize="resizeEvent"
                 @click-save="clickEvent('click-save')"
                 @click-close="clickEvent('click-close')"
             >
@@ -197,6 +199,7 @@
                 :show.sync="WDialog.bShow18B"
                 :title="WDialog.title"
                 :width-max="600"
+                @resize="resizeEvent"
                 @click-save="clickEvent('click-save')"
                 @click-close="clickEvent('click-close')"
             >
@@ -276,8 +279,12 @@
     },
     computed: {},
     methods: {
+      resizeEvent: function(msg) {
+        console.log("resizeEvent", msg);
+      },
+
       clickEvent: function(data, msg) {
-        console.log(data, msg);
+        console.log("clickEvent", data, msg);
       }
     }
   });
