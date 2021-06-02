@@ -16,7 +16,7 @@
                 ref="tb"
                 :color="headerBackgroundColor"
                 v-domresize
-                @domresize="resize"
+                @domresize="resizeToolbar"
             >
 
                 <!-- v-toolbar於IE11會因為內容區高度不夠時, 因使用display:flex導致自己撐開, 得通過強制設定max-height處理 -->
@@ -81,6 +81,8 @@
 
             <v-card-text
                 :style="`padding:0px; color:${useContentTextColor}; background:${useContentBackgroundColor};`"
+                v-domresize
+                @domresize="resizePanel"
             >
                 <slot name="content"></slot>
             </v-card-text>
@@ -190,6 +192,10 @@ export default {
             mdiCheckerboard,
             showTrans: null,
             fullscreen: false,
+
+            panelWidth: 0,
+            panelHeight: 0,
+
         }
     },
     mounted: function() {
@@ -234,12 +240,12 @@ export default {
     },
     methods: {
 
-        resize: function(msg) {
-            //console.log('methods resize', msg)
+        resizeToolbar: function(msg) {
+            //console.log('methods resizeToolbar', msg)
 
             let vo = this
 
-            //設定最高高度, 因v-toolbar會於v-dialog全螢幕時自動撐開, 改flex又於IE11很多問題, 故直接於resize強制設定maxHeight
+            //設定toolbar最高高度, 因v-toolbar會於v-dialog全螢幕時自動撐開, 改flex又於IE11很多問題, 故直接於resize強制設定maxHeight
             let tb = get(vo, '$refs.tb.$el')
             if (tb) {
 
@@ -253,6 +259,30 @@ export default {
                 tb.style.maxHeight = `${ch}px`
 
             }
+
+        },
+
+        resizePanel: function(msg) {
+            // console.log('methods resizePanel', msg)
+
+            let vo = this
+
+            //check
+            if (msg.snew.offsetWidth === 0 || msg.snew.offsetHeight === 0) {
+                return
+            }
+
+            //check
+            if (vo.panelWidth === msg.snew.offsetWidth && vo.panelHeight === msg.snew.offsetHeight) {
+                return
+            }
+
+            //update
+            vo.panelWidth = msg.snew.offsetWidth
+            vo.panelHeight = msg.snew.offsetHeight
+
+            //emit
+            vo.$emit('resize', msg.snew)
 
         },
 

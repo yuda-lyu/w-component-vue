@@ -33,7 +33,7 @@ function domResize(opt = {}) {
             return el
         })
         de.on('resizeWithWindow', (s) => {
-        // console.log('resizeWithWindow', s)
+            // console.log('resizeWithWindow', s)
 
             //msg
             let winHeight = window.innerHeight
