@@ -26,6 +26,7 @@
             <!-- 內容區 -->
             <div
                 ref="divPanel"
+                class="clsPanel"
                 :style="`position:relative; overflow-x:hidden; overflow-y:auto; width:calc( 100% + ${nativeBarWidth+extWidth}px ); height:${panelHeight}px;`"
                 @scroll="scroll"
             >
@@ -745,5 +746,23 @@ export default {
 </script>
 
 <style scoped>
+
+/* 針對Chrome,Edge,Opera,Safari把捲軸顏色改透明, 避免有時渲染問題出現捲軸左側 */
+.clsPanel::-webkit-scrollbar {
+    width: 1em;
+}
+.clsPanel::-webkit-scrollbar-thumb {
+    background-color: transparent;
+}
+.clsPanel::-webkit-scrollbar-track {
+    box-shadow: transparent;
+}
+.clsPanel::-webkit-scrollbar-track-piece{
+    background: transparent;
+}
+.clsPanel::-webkit-scrollbar-button{
+    background: transparent;
+}
+
 </style>
 
