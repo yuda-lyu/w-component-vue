@@ -20,7 +20,7 @@
                     :show.sync="WDialog.bShow1"
                     :title="WDialog.title"
                     @resize="resizeEvent"
-                    @click-save="clickEvent('click-save')"
+                    @click-save="(v)=>{clickEvent('click-save',v)}"
                     @click-close="clickEvent('click-close')"
                 >
 
@@ -59,7 +59,7 @@
                     :title="WDialog.title"
                     :icon="'fas fa-cocktail'"
                     @resize="resizeEvent"
-                    @click-save="clickEvent('click-save')"
+                    @click-save="(v)=>{clickEvent('click-save',v)}"
                     @click-close="clickEvent('click-close')"
                 >
 
@@ -97,7 +97,7 @@
                     :show.sync="WDialog.bShow3"
                     :title="'彈窗組件'"
                     @resize="resizeEvent"
-                    @click-save="clickEvent('click-save')"
+                    @click-save="(v)=>{clickEvent('click-save',v)}"
                     @click-close="clickEvent('click-close')"
                 >
 
@@ -136,7 +136,7 @@
                     :title="WDialog.title"
                     :headerBackgroundColor="'pink darken-1'"
                     @resize="resizeEvent"
-                    @click-save="clickEvent('click-save')"
+                    @click-save="(v)=>{clickEvent('click-save',v)}"
                     @click-close="clickEvent('click-close')"
                 >
 
@@ -177,7 +177,7 @@
                     :headerTextColor="'amber darken-4'"
                     :headerBackgroundColor="'amber lighten-5'"
                     @resize="resizeEvent"
-                    @click-save="clickEvent('click-save')"
+                    @click-save="(v)=>{clickEvent('click-save',v)}"
                     @click-close="clickEvent('click-close')"
                 >
 
@@ -217,7 +217,7 @@
                     :headerBtns="WDialog.headerBtns"
                     @resize="resizeEvent"
                     @click-btns="(v)=>{clickEvent('click-btns',v)}"
-                    @click-save="clickEvent('click-save')"
+                    @click-save="(v)=>{clickEvent('click-save',v)}"
                     @click-close="clickEvent('click-close')"
                 >
 
@@ -255,7 +255,7 @@
                     :show.sync="WDialog.bShow7"
                     :title="WDialog.title"
                     @resize="resizeEvent"
-                    @click-save="clickEvent('click-save')"
+                    @click-save="(v)=>{clickEvent('click-save',v)}"
                     @click-close="clickEvent('click-close')"
                 >
 
@@ -312,7 +312,7 @@
                     :title="WDialog.title"
                     :saveBtnTooltip="'Save data'"
                     @resize="resizeEvent"
-                    @click-save="clickEvent('click-save')"
+                    @click-save="(v)=>{clickEvent('click-save',v)}"
                     @click-close="clickEvent('click-close')"
                 >
 
@@ -351,7 +351,7 @@
                     :title="WDialog.title"
                     :hasSaveBtn="false"
                     @resize="resizeEvent"
-                    @click-save="clickEvent('click-save')"
+                    @click-save="(v)=>{clickEvent('click-save',v)}"
                     @click-close="clickEvent('click-close')"
                 >
 
@@ -390,7 +390,7 @@
                     :title="WDialog.title"
                     :closeBtnTooltip="'Close dialog'"
                     @resize="resizeEvent"
-                    @click-save="clickEvent('click-save')"
+                    @click-save="(v)=>{clickEvent('click-save',v)}"
                     @click-close="clickEvent('click-close')"
                 >
 
@@ -430,7 +430,7 @@
                     :hasSaveBtn="false"
                     :hasCloseBtn="false"
                     @resize="resizeEvent"
-                    @click-save="clickEvent('click-save')"
+                    @click-save="(v)=>{clickEvent('click-save',v)}"
                     @click-close="clickEvent('click-close')"
                 >
 
@@ -470,7 +470,7 @@
                     :contentTextColor="'#fff'"
                     :contentBackgroundColor="'cyan darken-2'"
                     @resize="resizeEvent"
-                    @click-save="clickEvent('click-save')"
+                    @click-save="(v)=>{clickEvent('click-save',v)}"
                     @click-close="clickEvent('click-close')"
                 >
 
@@ -509,7 +509,7 @@
                     :title="WDialog.title"
                     :widthMax="500"
                     @resize="resizeEvent"
-                    @click-save="clickEvent('click-save')"
+                    @click-save="(v)=>{clickEvent('click-save',v)}"
                     @click-close="clickEvent('click-close')"
                 >
 
@@ -548,7 +548,7 @@
                     :title="WDialog.title"
                     :widthMax="0"
                     @resize="resizeEvent"
-                    @click-save="clickEvent('click-save')"
+                    @click-save="(v)=>{clickEvent('click-save',v)}"
                     @click-close="clickEvent('click-close')"
                 >
 
@@ -589,7 +589,7 @@
                     :show.sync="WDialog.bShow15"
                     :title="WDialog.title"
                     @resize="resizeEvent"
-                    @click-save="clickEvent('click-save')"
+                    @click-save="(v)=>{clickEvent('click-save',v)}"
                     @click-close="clickEvent('click-close')"
                 >
 
@@ -630,7 +630,7 @@
                     :show.sync="WDialog.bShow16"
                     :title="WDialog.title"
                     @resize="resizeEvent"
-                    @click-save="clickEvent('click-save')"
+                    @click-save="(v)=>{clickEvent('click-save',v)}"
                     @click-close="clickEvent('click-close')"
                 >
 
@@ -676,7 +676,7 @@
                     :title="WDialog.title"
                     :widthMax="500"
                     @resize="resizeEvent"
-                    @click-save="clickEvent('click-save')"
+                    @click-save="(v)=>{clickEvent('click-save',v)}"
                     @click-close="clickEvent('click-close')"
                 >
 
@@ -751,7 +751,7 @@
                     :title="WDialog.title"
                     :widthMax="1200"
                     @resize="resizeEvent"
-                    @click-save="clickEvent('click-save')"
+                    @click-save="(v)=>{clickEvent('click-save',v)}"
                     @click-close="clickEvent('click-close')"
                 >
 
@@ -776,7 +776,7 @@
                     :title="WDialog.title"
                     :widthMax="900"
                     @resize="resizeEvent"
-                    @click-save="clickEvent('click-save')"
+                    @click-save="(v)=>{clickEvent('click-save',v)}"
                     @click-close="clickEvent('click-close')"
                 >
 
@@ -801,7 +801,7 @@
                     :title="WDialog.title"
                     :widthMax="600"
                     @resize="resizeEvent"
-                    @click-save="clickEvent('click-save')"
+                    @click-save="(v)=>{clickEvent('click-save',v)}"
                     @click-close="clickEvent('click-close')"
                 >
 
@@ -897,8 +897,14 @@ export default {
             console.log('resizeEvent', msg)
         },
 
-        clickEvent: function (data, msg) {
-            console.log('clickEvent', data, msg)
+        clickEvent: function (evName, msg) {
+            console.log('clickEvent', evName, msg)
+            if (evName === 'click-save') {
+                setTimeout(function() {
+                    console.log('save finish')
+                    msg.pm.resolve()
+                }, 1000)
+            }
         },
 
     },

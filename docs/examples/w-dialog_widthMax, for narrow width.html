@@ -152,7 +152,7 @@
                 :title="WDialog.title"
                 :width-max="500"
                 @resize="resizeEvent"
-                @click-save="clickEvent('click-save')"
+                @click-save="(v)=>{clickEvent('click-save',v)}"
                 @click-close="clickEvent('click-close')"
             >
                 <template v-slot:content>
@@ -240,8 +240,14 @@
         console.log("resizeEvent", msg);
       },
 
-      clickEvent: function(data, msg) {
-        console.log("clickEvent", data, msg);
+      clickEvent: function(evName, msg) {
+        console.log("clickEvent", evName, msg);
+        if (evName === "click-save") {
+          setTimeout(function() {
+            console.log("save finish");
+            msg.pm.resolve();
+          }, 1000);
+        }
       }
     }
   });
