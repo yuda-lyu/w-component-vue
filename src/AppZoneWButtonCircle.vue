@@ -122,6 +122,21 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-button-circle'"
+                    :casename="'loading & iconColor'"
+                ></demolink>
+
+                <w-button-circle
+                    :icon="mdiCheckUnderlineCircle"
+                    :iconColor="'red accent-3'"
+                    :loading="true"
+                ></w-button-circle>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-button-circle'"
                     :casename="'not editable'"
                 ></demolink>
 

@@ -10,6 +10,8 @@
 
                 <v-btn
                     v-on="on"
+                    aaa
+                    :style="`color:${effIconColor}`"
                     fab
                     depressed
                     :class="{bx:shadow}"
@@ -21,7 +23,7 @@
                 >
                     <w-icon
                         :icon="icon"
-                        :color="iconColor"
+                        :color="effIconColor"
                     ></w-icon>
                 </v-btn>
 
@@ -35,6 +37,7 @@
 </template>
 
 <script>
+import color2hex from '../js/vuetifyColor.mjs'
 import WIcon from './WIcon.vue'
 
 
@@ -93,6 +96,12 @@ export default {
     mounted: function() {
     },
     computed: {
+
+        effIconColor: function() {
+            let vo = this
+            return color2hex(vo.iconColor)
+        },
+
     },
     methods: {
 

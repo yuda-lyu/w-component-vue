@@ -642,6 +642,23 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-button-chip'"
+                    :casename="'loading & loadingColor'"
+                ></demolink>
+
+                <w-button-chip
+                    :text="WButtonChip.text"
+                    :icon="mdiCheckUnderlineCircle"
+                    :loadingColor="'rgba(255,30,60,0.9)'"
+                    :loading="WButtonChip.loading"
+                    @click="ckBtnLoading"
+                ></w-button-chip>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-button-chip'"
                     :casename="'modify loading by callback in click'"
                 ></demolink>
 

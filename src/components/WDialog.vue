@@ -62,6 +62,7 @@
                         :shadow="false"
                         :iconColor="headerIconColor"
                         :tooltip="saveBtnTooltip"
+                        :loading="btnSaveLoad"
                         @click="clickSave()"
                     ></WButtonCircle>
                 </template>
@@ -97,6 +98,7 @@ import { mdiCheckCircle, mdiClose, mdiCheckerboard } from '@mdi/js'
 import get from 'lodash/get'
 import cloneDeep from 'lodash/cloneDeep'
 import cint from 'wsemi/src/cint.mjs'
+import genPm from 'wsemi/src/genPm.mjs'
 import color2hex from '../js/vuetifyColor.mjs'
 import domResize from '../js/domResize.mjs'
 import WButtonCircle from './WButtonCircle.vue'
@@ -192,6 +194,7 @@ export default {
             mdiCheckerboard,
             showTrans: null,
             fullscreen: false,
+            btnSaveLoad: false,
 
             panelWidth: 0,
             panelHeight: 0,
@@ -326,13 +329,29 @@ export default {
 
             let vo = this
 
+            //btnSaveLoad
+            vo.btnSaveLoad = true
+
+            //pm
+            let pm = genPm()
+
             //$nextTick
             vo.$nextTick(() => {
 
                 //emit
-                vo.$emit('click-save')
+                vo.$emit('click-save', { pm })
 
             })
+
+            //pm finally
+            pm
+                .catch()
+                .finally(() => {
+
+                    //btnSaveLoad
+                    vo.btnSaveLoad = false
+
+                })
 
         },
 
