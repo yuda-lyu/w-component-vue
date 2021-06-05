@@ -85,7 +85,7 @@
     </script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.1.7/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.1.8/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -138,22 +138,23 @@
             onclick="window.open('//yuda-lyu.github.io/w-component-vue/examples/app.html?cmp='+this.innerText,'_blank')"
         >w-dialog</div>
         <div class="bk">
-            <div class="item">closeBtnTooltip</div>
+            <div class="item">saveBtnTooltip & closeBtnTooltip</div>
 
             <v-btn
                 depressed
                 small
                 elevation="2"
-                @click="WDialog.bShow10=!WDialog.bShow10"
-            >Show({{WDialog.bShow10}})</v-btn>
+                @click="WDialog.bShow8=!WDialog.bShow8"
+            >Show({{WDialog.bShow8}})</v-btn>
 
             <w-dialog
-                :show.sync="WDialog.bShow10"
+                :show.sync="WDialog.bShow8"
                 :title="WDialog.title"
-                :close-btn-tooltip="'Close dialog'"
+                :save-btn-tooltip="'儲存'"
+                :close-btn-tooltip="'關閉'"
                 @resize="resizeEvent"
-                @click-save="(v)=>{clickEvent('click-save',v)}"
-                @click-close="clickEvent('click-close')"
+                @click-save="clickSave"
+                @click-close="clickClose"
             >
                 <template v-slot:content>
                     <div style="padding:20px;">
@@ -240,14 +241,27 @@
         console.log("resizeEvent", msg);
       },
 
-      clickEvent: function(evName, msg) {
-        console.log("clickEvent", evName, msg);
-        if (evName === "click-save") {
-          setTimeout(function() {
-            console.log("save finish");
-            msg.pm.resolve();
-          }, 1000);
-        }
+      clickBtns: function(msg) {
+        console.log("clickBtns", msg);
+      },
+
+      clickSave: function(msg) {
+        console.log("clickSave", msg);
+        setTimeout(function() {
+          console.log("save finish");
+          msg.pm.resolve();
+        }, 1000);
+      },
+
+      clickClose: function(msg) {
+        console.log("clickClose", msg);
+      },
+
+      clickClosePm: function(msg) {
+        console.log("clickClose", msg);
+        alert("pm.resolve() for close");
+        msg.pm.resolve();
+        //msg.pm.reject()
       }
     }
   });

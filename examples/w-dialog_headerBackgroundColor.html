@@ -85,7 +85,7 @@
     </script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.1.7/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.1.8/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -152,8 +152,8 @@
                 :title="WDialog.title"
                 :header-background-color="'pink darken-1'"
                 @resize="resizeEvent"
-                @click-save="(v)=>{clickEvent('click-save',v)}"
-                @click-close="clickEvent('click-close')"
+                @click-save="clickSave"
+                @click-close="clickClose"
             >
                 <template v-slot:content>
                     <div style="padding:20px;">
@@ -240,14 +240,27 @@
         console.log("resizeEvent", msg);
       },
 
-      clickEvent: function(evName, msg) {
-        console.log("clickEvent", evName, msg);
-        if (evName === "click-save") {
-          setTimeout(function() {
-            console.log("save finish");
-            msg.pm.resolve();
-          }, 1000);
-        }
+      clickBtns: function(msg) {
+        console.log("clickBtns", msg);
+      },
+
+      clickSave: function(msg) {
+        console.log("clickSave", msg);
+        setTimeout(function() {
+          console.log("save finish");
+          msg.pm.resolve();
+        }, 1000);
+      },
+
+      clickClose: function(msg) {
+        console.log("clickClose", msg);
+      },
+
+      clickClosePm: function(msg) {
+        console.log("clickClose", msg);
+        alert("pm.resolve() for close");
+        msg.pm.resolve();
+        //msg.pm.reject()
       }
     }
   });
