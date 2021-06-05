@@ -856,8 +856,8 @@ export default {
 
                     //pm
                     pm
-                        .then((msg) => { //確認關閉
-                            //console.log('pm then', msg)
+                        .then(() => { //確認關閉
+                            //console.log('pm then')
 
                             //useActive and isActive
                             if (vo.useActive && vo.isActive(item)) {

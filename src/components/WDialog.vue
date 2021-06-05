@@ -113,9 +113,10 @@ import WButtonCircle from './WButtonCircle.vue'
  * @vue-prop {String} [headerBackgroundColor='light-blue darken-3'] 輸入彈窗標題列背景顏色字串，預設'light-blue darken-3'
  * @vue-prop {Array} [headerBtns=[]] 輸入彈窗標題列自訂按鈕陣列，預設[]，各元素為物件，需有'icon'欄位值為字串、'tooltip'欄位值為字串、'evName'欄位值為字串，其中按鈕被click時會觸發彈窗的clickBtns事件(監聽@click-btns)，並回傳指定headerBtns內物件資訊供識別之用
  * @vue-prop {Boolean} [hasSaveBtn=true] 輸入是否顯示儲存按鈕，預設true
- * @vue-prop {String} [saveBtnTooltip='儲存'] 輸入儲存按鈕的提示文字字串，預設'儲存'
+ * @vue-prop {String} [saveBtnTooltip='Save'] 輸入儲存按鈕的提示文字字串，預設'Save'
  * @vue-prop {Boolean} [hasCloseBtn=true] 輸入是否顯示關閉按鈕，預設true
- * @vue-prop {String} [closeBtnTooltip='關閉'] 輸入關閉按鈕的提示文字字串，預設'關閉'
+ * @vue-prop {String} [closeBtnTooltip='Close'] 輸入關閉按鈕的提示文字字串，預設'Close'
+ * @vue-prop {Boolean} [closeWithInterceptor=false] 輸入是否通過攔截器來決定是否進行關閉，此處之攔截器係用promise來控制，當使用者點擊關閉時可先行確認或提示。當closeWithInterceptor=true時，於click-close事件所接收物件資訊中的pm，使用pm.resolve()則代表確定關閉，反之pm.reject()則取消關閉事件，預設false
  * @vue-prop {Number} [widthMax=1000] 輸入彈窗最大寬度，單位為px，預設1000，當裝置寬度小於彈窗最大寬度，則彈窗改為全螢幕顯示，若給予widthMax<=0則代表全螢幕
  * @vue-prop {String} [contentTextColor='black'] 輸入內容文字顏色字串，預設'black'
  * @vue-prop {String} [contentBackgroundColor='transparent'] 輸入內容背景顏色字串，預設'transparent'
@@ -162,7 +163,7 @@ export default {
         },
         saveBtnTooltip: {
             type: String,
-            default: '儲存',
+            default: 'Save',
         },
         hasCloseBtn: {
             type: Boolean,
@@ -170,7 +171,11 @@ export default {
         },
         closeBtnTooltip: {
             type: String,
-            default: '關閉',
+            default: 'Close',
+        },
+        closeWithInterceptor: {
+            type: Boolean,
+            default: false,
         },
         widthMax: {
             type: Number,
@@ -365,19 +370,60 @@ export default {
                 return
             }
 
-            //hide
-            vo.showTrans = false
+            //closeWithInterceptor
+            if (vo.closeWithInterceptor) {
 
-            //$nextTick
-            vo.$nextTick(() => {
+                //pm
+                let pm = genPm()
 
-                //emit
-                vo.$emit('update:show', vo.showTrans)
+                //$nextTick
+                vo.$nextTick(() => {
 
-                //emit
-                vo.$emit('click-close')
+                    //emit
+                    vo.$emit('click-close', { pm })
 
-            })
+                })
+
+                //pm
+                pm
+                    .then(() => { //確認關閉
+                        //console.log('pm then')
+
+                        //hide
+                        vo.showTrans = false
+
+                        //$nextTick
+                        vo.$nextTick(() => {
+
+                            //emit
+                            vo.$emit('update:show', vo.showTrans)
+
+                        })
+
+                    })
+                    .catch((msg) => { //取消關閉
+                        //console.log('pm catch', msg)
+                    })
+
+
+            }
+            else {
+
+                //hide
+                vo.showTrans = false
+
+                //$nextTick
+                vo.$nextTick(() => {
+
+                    //emit
+                    vo.$emit('update:show', vo.showTrans)
+
+                    //emit
+                    vo.$emit('click-close')
+
+                })
+
+            }
 
         },
 

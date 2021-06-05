@@ -20,8 +20,8 @@
                     :show.sync="WDialog.bShow1"
                     :title="WDialog.title"
                     @resize="resizeEvent"
-                    @click-save="(v)=>{clickEvent('click-save',v)}"
-                    @click-close="clickEvent('click-close')"
+                    @click-save="clickSave"
+                    @click-close="clickClose"
                 >
 
                     <template v-slot:content>
@@ -59,8 +59,8 @@
                     :title="WDialog.title"
                     :icon="'fas fa-cocktail'"
                     @resize="resizeEvent"
-                    @click-save="(v)=>{clickEvent('click-save',v)}"
-                    @click-close="clickEvent('click-close')"
+                    @click-save="clickSave"
+                    @click-close="clickClose"
                 >
 
                     <template v-slot:content>
@@ -97,8 +97,8 @@
                     :show.sync="WDialog.bShow3"
                     :title="'彈窗組件'"
                     @resize="resizeEvent"
-                    @click-save="(v)=>{clickEvent('click-save',v)}"
-                    @click-close="clickEvent('click-close')"
+                    @click-save="clickSave"
+                    @click-close="clickClose"
                 >
 
                     <template v-slot:content>
@@ -136,8 +136,8 @@
                     :title="WDialog.title"
                     :headerBackgroundColor="'pink darken-1'"
                     @resize="resizeEvent"
-                    @click-save="(v)=>{clickEvent('click-save',v)}"
-                    @click-close="clickEvent('click-close')"
+                    @click-save="clickSave"
+                    @click-close="clickClose"
                 >
 
                     <template v-slot:content>
@@ -177,8 +177,8 @@
                     :headerTextColor="'amber darken-4'"
                     :headerBackgroundColor="'amber lighten-5'"
                     @resize="resizeEvent"
-                    @click-save="(v)=>{clickEvent('click-save',v)}"
-                    @click-close="clickEvent('click-close')"
+                    @click-save="clickSave"
+                    @click-close="clickClose"
                 >
 
                     <template v-slot:content>
@@ -216,9 +216,9 @@
                     :title="WDialog.title"
                     :headerBtns="WDialog.headerBtns"
                     @resize="resizeEvent"
-                    @click-btns="(v)=>{clickEvent('click-btns',v)}"
-                    @click-save="(v)=>{clickEvent('click-save',v)}"
-                    @click-close="clickEvent('click-close')"
+                    @click-btns="clickBtns"
+                    @click-save="clickSave"
+                    @click-close="clickClose"
                 >
 
                     <template v-slot:content>
@@ -255,8 +255,8 @@
                     :show.sync="WDialog.bShow7"
                     :title="WDialog.title"
                     @resize="resizeEvent"
-                    @click-save="(v)=>{clickEvent('click-save',v)}"
-                    @click-close="clickEvent('click-close')"
+                    @click-save="clickSave"
+                    @click-close="clickClose"
                 >
 
                     <template v-slot:header-left>
@@ -302,7 +302,7 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-dialog'"
-                    :casename="'saveBtnTooltip'"
+                    :casename="'saveBtnTooltip & closeBtnTooltip'"
                 ></demolink>
 
                 <v-btn depressed small elevation="2" @click="WDialog.bShow8=!WDialog.bShow8">Show({{WDialog.bShow8}})</v-btn>
@@ -310,10 +310,11 @@
                 <w-dialog
                     :show.sync="WDialog.bShow8"
                     :title="WDialog.title"
-                    :saveBtnTooltip="'Save data'"
+                    :saveBtnTooltip="'儲存'"
+                    :closeBtnTooltip="'關閉'"
                     @resize="resizeEvent"
-                    @click-save="(v)=>{clickEvent('click-save',v)}"
-                    @click-close="clickEvent('click-close')"
+                    @click-save="clickSave"
+                    @click-close="clickClose"
                 >
 
                     <template v-slot:content>
@@ -351,47 +352,8 @@
                     :title="WDialog.title"
                     :hasSaveBtn="false"
                     @resize="resizeEvent"
-                    @click-save="(v)=>{clickEvent('click-save',v)}"
-                    @click-close="clickEvent('click-close')"
-                >
-
-                    <template v-slot:content>
-                        <div style="padding:20px;">
-                            <div style="font-size:2rem; margin:20px 0px 30px 0px;">
-                                {{WDialog.text1}}
-                            </div>
-                            <div style="margin:15px 0px;">
-                                {{WDialog.text2}}
-                            </div>
-                            <div style="margin:15px 0px;">
-                                {{WDialog.text3}}
-                            </div>
-                            <div style="margin:15px 0px;">
-                                {{WDialog.text4}}
-                            </div>
-                        </div>
-                    </template>
-
-                </w-dialog>
-
-            </div>
-
-
-            <div class="bk">
-                <demolink
-                    :kbname="'w-dialog'"
-                    :casename="'closeBtnTooltip'"
-                ></demolink>
-
-                <v-btn depressed small elevation="2" @click="WDialog.bShow10=!WDialog.bShow10">Show({{WDialog.bShow10}})</v-btn>
-
-                <w-dialog
-                    :show.sync="WDialog.bShow10"
-                    :title="WDialog.title"
-                    :closeBtnTooltip="'Close dialog'"
-                    @resize="resizeEvent"
-                    @click-save="(v)=>{clickEvent('click-save',v)}"
-                    @click-close="clickEvent('click-close')"
+                    @click-save="clickSave"
+                    @click-close="clickClose"
                 >
 
                     <template v-slot:content>
@@ -430,8 +392,47 @@
                     :hasSaveBtn="false"
                     :hasCloseBtn="false"
                     @resize="resizeEvent"
-                    @click-save="(v)=>{clickEvent('click-save',v)}"
-                    @click-close="clickEvent('click-close')"
+                    @click-save="clickSave"
+                    @click-close="clickClose"
+                >
+
+                    <template v-slot:content>
+                        <div style="padding:20px;">
+                            <div style="font-size:2rem; margin:20px 0px 30px 0px;">
+                                {{WDialog.text1}}
+                            </div>
+                            <div style="margin:15px 0px;">
+                                {{WDialog.text2}}
+                            </div>
+                            <div style="margin:15px 0px;">
+                                {{WDialog.text3}}
+                            </div>
+                            <div style="margin:15px 0px;">
+                                {{WDialog.text4}}
+                            </div>
+                        </div>
+                    </template>
+
+                </w-dialog>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-dialog'"
+                    :casename="'closeWithInterceptor'"
+                ></demolink>
+
+                <v-btn depressed small elevation="2" @click="WDialog.bShow10=!WDialog.bShow10">Show({{WDialog.bShow10}})</v-btn>
+
+                <w-dialog
+                    :show.sync="WDialog.bShow10"
+                    :title="WDialog.title"
+                    :closeWithInterceptor="true"
+                    @resize="resizeEvent"
+                    @click-save="clickSave"
+                    @click-close="clickClosePm"
                 >
 
                     <template v-slot:content>
@@ -470,8 +471,8 @@
                     :contentTextColor="'#fff'"
                     :contentBackgroundColor="'cyan darken-2'"
                     @resize="resizeEvent"
-                    @click-save="(v)=>{clickEvent('click-save',v)}"
-                    @click-close="clickEvent('click-close')"
+                    @click-save="clickSave"
+                    @click-close="clickClose"
                 >
 
                     <template v-slot:content>
@@ -509,8 +510,8 @@
                     :title="WDialog.title"
                     :widthMax="500"
                     @resize="resizeEvent"
-                    @click-save="(v)=>{clickEvent('click-save',v)}"
-                    @click-close="clickEvent('click-close')"
+                    @click-save="clickSave"
+                    @click-close="clickClose"
                 >
 
                     <template v-slot:content>
@@ -548,8 +549,8 @@
                     :title="WDialog.title"
                     :widthMax="0"
                     @resize="resizeEvent"
-                    @click-save="(v)=>{clickEvent('click-save',v)}"
-                    @click-close="clickEvent('click-close')"
+                    @click-save="clickSave"
+                    @click-close="clickClose"
                 >
 
                     <template v-slot:content>
@@ -589,8 +590,8 @@
                     :show.sync="WDialog.bShow15"
                     :title="WDialog.title"
                     @resize="resizeEvent"
-                    @click-save="(v)=>{clickEvent('click-save',v)}"
-                    @click-close="clickEvent('click-close')"
+                    @click-save="clickSave"
+                    @click-close="clickClose"
                 >
 
                     <template v-slot:content>
@@ -630,8 +631,8 @@
                     :show.sync="WDialog.bShow16"
                     :title="WDialog.title"
                     @resize="resizeEvent"
-                    @click-save="(v)=>{clickEvent('click-save',v)}"
-                    @click-close="clickEvent('click-close')"
+                    @click-save="clickSave"
+                    @click-close="clickClose"
                 >
 
                     <template v-slot:content>
@@ -676,8 +677,8 @@
                     :title="WDialog.title"
                     :widthMax="500"
                     @resize="resizeEvent"
-                    @click-save="(v)=>{clickEvent('click-save',v)}"
-                    @click-close="clickEvent('click-close')"
+                    @click-save="clickSave"
+                    @click-close="clickClose"
                 >
 
                     <template v-slot:content>
@@ -751,8 +752,8 @@
                     :title="WDialog.title"
                     :widthMax="1200"
                     @resize="resizeEvent"
-                    @click-save="(v)=>{clickEvent('click-save',v)}"
-                    @click-close="clickEvent('click-close')"
+                    @click-save="clickSave"
+                    @click-close="clickClose"
                 >
 
                     <template v-slot:content>
@@ -776,8 +777,8 @@
                     :title="WDialog.title"
                     :widthMax="900"
                     @resize="resizeEvent"
-                    @click-save="(v)=>{clickEvent('click-save',v)}"
-                    @click-close="clickEvent('click-close')"
+                    @click-save="clickSave"
+                    @click-close="clickClose"
                 >
 
                     <template v-slot:content>
@@ -801,8 +802,8 @@
                     :title="WDialog.title"
                     :widthMax="600"
                     @resize="resizeEvent"
-                    @click-save="(v)=>{clickEvent('click-save',v)}"
-                    @click-close="clickEvent('click-close')"
+                    @click-save="clickSave"
+                    @click-close="clickClose"
                 >
 
                     <template v-slot:content>
@@ -897,14 +898,27 @@ export default {
             console.log('resizeEvent', msg)
         },
 
-        clickEvent: function (evName, msg) {
-            console.log('clickEvent', evName, msg)
-            if (evName === 'click-save') {
-                setTimeout(function() {
-                    console.log('save finish')
-                    msg.pm.resolve()
-                }, 1000)
-            }
+        clickBtns: function(msg) {
+            console.log('clickBtns', msg)
+        },
+
+        clickSave: function(msg) {
+            console.log('clickSave', msg)
+            setTimeout(function() {
+                console.log('save finish')
+                msg.pm.resolve()
+            }, 1000)
+        },
+
+        clickClose: function(msg) {
+            console.log('clickClose', msg)
+        },
+
+        clickClosePm: function(msg) {
+            console.log('clickClose', msg)
+            alert('pm.resolve() for close')
+            msg.pm.resolve()
+            //msg.pm.reject()
         },
 
     },
