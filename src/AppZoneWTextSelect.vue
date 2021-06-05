@@ -267,6 +267,34 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-text-select'"
+                    :casename="'with popup'"
+                ></demolink>
+
+                <w-popup
+                    :isolated="true"
+                >
+
+                    <template v-slot:trigger>
+                        <v-btn depressed small elevation="2">Show popup</v-btn>
+                    </template>
+
+                    <template v-slot:content>
+                        <div style="padding:45px 25px;">
+                            <w-text-select
+                                :items="WTextSelect.objItems"
+                                v-model="WTextSelect.objValue"
+                            ></w-text-select>
+                        </div>
+                    </template>
+
+                </w-popup>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-text-select'"
                     :casename="'not editable'"
                 ></demolink>
 
@@ -277,6 +305,9 @@
                     v-model="WTextSelect.objValue"
                 ></w-text-select>
             </div>
+
+
+            <div></div>
 
 
             <div class="bk">
@@ -615,6 +646,39 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-text-select'"
+                    :casename="'border & with popup'"
+                ></demolink>
+
+                <w-popup
+                    :isolated="true"
+                >
+
+                    <template v-slot:trigger>
+                        <v-btn depressed small elevation="2">Show popup</v-btn>
+                    </template>
+
+                    <template v-slot:content>
+                        <div style="padding:45px 25px;">
+                            <w-text-select
+                                :shadow="false"
+                                :borderColor="'orange lighten-2'"
+                                :borderColorHover="'orange'"
+                                :borderColorFocus="'orange darken-2'"
+                                :backgroundColorFocus="'orange lighten-5'"
+                                :items="WTextSelect.objItems"
+                                v-model="WTextSelect.objValue"
+                            ></w-text-select>
+                        </div>
+                    </template>
+
+                </w-popup>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-text-select'"
                     :casename="'border & not editable'"
                 ></demolink>
 
@@ -642,12 +706,14 @@
 import { mdiCheckUnderlineCircle, mdiPaw } from '@mdi/js'
 import demolink from './components/demolink.vue'
 import WTextSelect from './components/WTextSelect.vue'
+import WPopup from './components/WPopup.vue'
 
 
 export default {
     components: {
         demolink,
         WTextSelect,
+        WPopup,
     },
     props: {
     },

@@ -298,6 +298,34 @@
 
             <div class="bk">
                 <demolink
+                    :kbname="'w-text-select'"
+                    :casename="'with popup'"
+                ></demolink>
+
+                <w-popup
+                    :isolated="true"
+                >
+
+                    <template v-slot:trigger>
+                        <v-btn depressed small elevation="2">Show popup</v-btn>
+                    </template>
+
+                    <template v-slot:content>
+                        <div style="padding:45px 25px;">
+                            <w-text-suggest
+                                :items="WTextSuggest.objItems"
+                                v-model="WTextSuggest.objValue"
+                            ></w-text-suggest>
+                        </div>
+                    </template>
+
+                </w-popup>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
                     :kbname="'w-text-suggest'"
                     :casename="'not editable'"
                 ></demolink>
@@ -309,6 +337,9 @@
                     v-model="WTextSuggest.objValue"
                 ></w-text-suggest>
             </div>
+
+
+            <div></div>
 
 
             <div class="bk">
@@ -689,6 +720,39 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-text-suggest'"
+                    :casename="'border & with popup'"
+                ></demolink>
+
+                <w-popup
+                    :isolated="true"
+                >
+
+                    <template v-slot:trigger>
+                        <v-btn depressed small elevation="2">Show popup</v-btn>
+                    </template>
+
+                    <template v-slot:content>
+                        <div style="padding:45px 25px;">
+                            <w-text-suggest
+                                :shadow="false"
+                                :borderColor="'orange lighten-2'"
+                                :borderColorHover="'orange'"
+                                :borderColorFocus="'orange darken-2'"
+                                :backgroundColorFocus="'orange lighten-5'"
+                                :items="WTextSuggest.objItems"
+                                v-model="WTextSuggest.objValue"
+                            ></w-text-suggest>
+                        </div>
+                    </template>
+
+                </w-popup>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-text-suggest'"
                     :casename="'border & not editable'"
                 ></demolink>
 
@@ -716,12 +780,14 @@
 import { mdiCheckUnderlineCircle, mdiPaw } from '@mdi/js'
 import demolink from './components/demolink.vue'
 import WTextSuggest from './components/WTextSuggest.vue'
+import WPopup from './components/WPopup.vue'
 
 
 export default {
     components: {
         demolink,
         WTextSuggest,
+        WPopup,
     },
     props: {
     },

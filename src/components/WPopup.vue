@@ -40,9 +40,13 @@
 
 <script>
 import get from 'lodash/get'
+import last from 'lodash/last'
+import pull from 'lodash/pull'
 import isNumber from 'lodash/isNumber'
+import genID from 'wsemi/src/genID.mjs'
 import replace from 'wsemi/src/replace.mjs'
 import domIsClientXYIn from 'wsemi/src/domIsClientXYIn.mjs'
+// import domCancelEvent from 'wsemi/src/domCancelEvent.mjs' //同樣都監聽window(非dom階層)故無法cancel
 import color2hex from '../js/vuetifyColor.mjs'
 import domResize from '../js/domResize.mjs'
 import { createPopper } from '@popperjs/core/lib/popper-lite.js' //不用安裝@popperjs/core, 因wsemi安裝tippy.js內有依賴@popperjs/core
@@ -50,6 +54,21 @@ import flip from '@popperjs/core/lib/modifiers/flip.js'
 import offset from '@popperjs/core/lib/modifiers/offset.js'
 import hide from '@popperjs/core/lib/modifiers/hide.js'
 //import computeStyles from '@popperjs/core/lib/modifiers/computeStyles'
+
+
+let respList = []
+function addTrigger(mmkey) {
+    respList.push(mmkey)
+}
+function checkTriggerEff(mmkey) {
+    return last(respList) === mmkey
+}
+function removeTrigger(mmkey) {
+    // console.log('removeTrigger 1', mmkey, last(respList))
+    // respList.pop()
+    pull(respList, mmkey)
+    // console.log('removeTrigger 2', respList)
+}
 
 
 /**
@@ -112,6 +131,7 @@ export default {
     },
     data: function() {
         return {
+            mmkey: null,
 
             valueTrans: false,
 
@@ -131,9 +151,12 @@ export default {
 
         let vo = this
 
+        //mmkey
+        vo.mmkey = genID(4)
+
         //windowMousedown
         vo.windowMousedown = (e) => {
-            //console.log('windowMousedown', e)
+            // console.log(vo.mmkey, 'windowMousedown', e)
 
             //divTrigger
             let divTrigger = get(vo, '$refs.divTrigger', null)
@@ -158,19 +181,24 @@ export default {
             }
 
         }
-        window.addEventListener('mousedown', vo.windowMousedown)
+        window.addEventListener('mousedown', vo.windowMousedown, false)
 
         //windowMouseup
         vo.windowMouseup = (e) => {
-            //console.log('windowMouseup', e)
+            // console.log(vo.mmkey, 'windowMouseup', e, checkTriggerEff(vo.mmkey))
+
+            //check
+            if (!checkTriggerEff(vo.mmkey)) {
+                return
+            }
 
             //console.log(vo.mmkey, 'windowMouseup', `clickOuter`, !vo.clickContentInner)
             //console.log(vo.mmkey, 'windowMouseup', `valueTrans`, vo.valueTrans)
             //當前為顯示時, 非點擊於觸發區與內容區, 才觸發隱藏事件
             if (vo.valueTrans && !vo.clickTriggerInner && !vo.clickContentInner) {
-                // console.log('vo.valueTrans', vo.valueTrans)
-                // console.log('vo.clickTriggerInner', vo.clickTriggerInner)
-                // console.log('vo.clickContentInner', vo.clickContentInner)
+                // console.log(vo.mmkey, 'vo.valueTrans', vo.valueTrans)
+                // console.log(vo.mmkey, 'vo.clickTriggerInner', vo.clickTriggerInner)
+                // console.log(vo.mmkey, 'vo.clickContentInner', vo.clickContentInner)
 
                 //triggerEvent for hide
                 vo.triggerEvent(false)
@@ -182,8 +210,9 @@ export default {
                 vo.clickContentInner = false
                 //console.log(vo.mmkey, '不隱藏')
             }
+
         }
-        window.addEventListener('mouseup', vo.windowMouseup)
+        window.addEventListener('mouseup', vo.windowMouseup, false)
 
     },
     beforeDestroy: function() {
@@ -192,8 +221,8 @@ export default {
         let vo = this
 
         //window remove mousedown mouseup
-        window.removeEventListener('mousedown', vo.windowMousedown)
-        window.removeEventListener('mouseup', vo.windowMouseup)
+        window.removeEventListener('mousedown', vo.windowMousedown, false)
+        window.removeEventListener('mouseup', vo.windowMouseup, false)
 
         //hidePopper
         vo.hidePopper()
@@ -353,7 +382,7 @@ export default {
         },
 
         showPopper: function() {
-            //console.log('methods showPopper')
+            // console.log(this.mmkey, 'methods showPopper')
 
             let vo = this
 
@@ -378,6 +407,9 @@ export default {
             if (divContent === null) {
                 return //console.log('無法找到顯示元素')
             }
+
+            //addTrigger, 採同步方式添加, popup顯示前就會mmkey就會進清單
+            addTrigger(vo.mmkey)
 
             //@popperjs/core 2.x
             let opt = {
@@ -420,15 +452,27 @@ export default {
         },
 
         hidePopper: function() {
-            //console.log('methods hidePopper')
+            // console.log(this.mmkey, 'methods hidePopper')
 
             let vo = this
 
-            //destroy
+            //check
             if (vo.popperInstance) {
+
+                //destroy
                 vo.popperInstance.destroy()
                 vo.popperInstance = null
+
             }
+
+            //非同步移除用nextTick會太快, 得使用setTimeout
+            //不管有沒有popperInstance都進行移除, 於開發階段避免熱更新問題
+            setTimeout(() => {
+
+                //removeTrigger, 需採非同步移除, 避免window事件結束後, 此時會繼續觸發前面popup內的window事件, 若採同步移除就無法讓前面popup判斷是否需屏蔽
+                removeTrigger(vo.mmkey)
+
+            }, 20)
 
         },
 
