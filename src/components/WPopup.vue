@@ -152,7 +152,7 @@ export default {
         let vo = this
 
         //mmkey
-        vo.mmkey = genID(4)
+        vo.mmkey = genID()
 
         //windowMousedown
         vo.windowMousedown = (e) => {
