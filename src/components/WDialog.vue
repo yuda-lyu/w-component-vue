@@ -96,6 +96,7 @@
 <script>
 import { mdiCheckCircle, mdiClose, mdiCheckerboard } from '@mdi/js'
 import get from 'lodash/get'
+import isEqual from 'lodash/isEqual'
 import cloneDeep from 'lodash/cloneDeep'
 import cint from 'wsemi/src/cint.mjs'
 import genPm from 'wsemi/src/genPm.mjs'
@@ -201,8 +202,12 @@ export default {
             fullscreen: false,
             btnSaveLoad: false,
 
+            toolbarHeight: 0,
             panelWidth: 0,
             panelHeight: 0,
+            panelHeightMax: 0,
+
+            resizeMsgTemp: null,
 
         }
     },
@@ -258,13 +263,24 @@ export default {
             if (tb) {
 
                 //取得vuetify給予toolbar的高度
-                let ch = tb.style.height
+                let toolbarHeight = tb.style.height
 
                 //取得高度數字
-                ch = cint(ch.replace('px', ''))
+                toolbarHeight = cint(toolbarHeight.replace('px', ''))
+
+                //check
+                if (vo.toolbarHeight === toolbarHeight) {
+                    return
+                }
 
                 //設定最高高度
-                tb.style.maxHeight = `${ch}px`
+                tb.style.maxHeight = `${toolbarHeight}px`
+
+                //toolbarHeight
+                vo.toolbarHeight = toolbarHeight
+
+                //triggerResize
+                vo.triggerResize('resizeToolbar')
 
             }
 
@@ -289,8 +305,11 @@ export default {
             vo.panelWidth = msg.snew.offsetWidth
             vo.panelHeight = msg.snew.offsetHeight
 
-            //emit
-            vo.$emit('resize', msg.snew)
+            //changeSize, 因dialog的resize為window resize, 通常不會被呼叫故無法計算panelHeightMax, 故需額外呼叫
+            vo.changeSize()
+
+            //triggerResize
+            vo.triggerResize('resizePanel')
 
         },
 
@@ -311,6 +330,68 @@ export default {
                     vo.fullscreen = false
                 }
             }
+
+            //panelHeightMax
+            let r = 0.9 //vuetify預設非全螢幕時最大dialog高度為90%
+            let panelHeightMax = 0
+            if (vo.fullscreen) {
+                panelHeightMax = window.innerHeight - vo.toolbarHeight
+            }
+            else {
+                panelHeightMax = r * window.innerHeight - vo.toolbarHeight
+            }
+
+            //check
+            if (vo.panelHeightMax === panelHeightMax) {
+                return
+            }
+
+            //update
+            vo.panelHeightMax = panelHeightMax
+
+            //triggerResize
+            vo.triggerResize('changeSize')
+
+        },
+
+        triggerResize: function(from) {
+            //console.log('methods triggerResize', from)
+
+            let vo = this
+
+            //check
+            if (!vo.showTrans) {
+                return
+            }
+
+            //check
+            if (vo.toolbarHeight === 0 || vo.panelWidth === 0 || vo.panelHeight === 0 || vo.panelHeightMax === 0) {
+                return
+            }
+
+            //msg
+            let msg = {
+                toolbarHeight: vo.toolbarHeight,
+                panelWidth: vo.panelWidth,
+                panelHeight: vo.panelHeight,
+                panelHeightMax: vo.panelHeightMax,
+            }
+
+            //check
+            if (isEqual(vo.resizeMsgTemp, msg)) {
+                return
+            }
+
+            //update
+            vo.resizeMsgTemp = msg
+
+            //$nextTick
+            vo.$nextTick(() => {
+
+                //emit
+                vo.$emit('resize', cloneDeep(msg))
+
+            })
 
         },
 
