@@ -630,7 +630,7 @@ export default {
         },
 
         genOpt: function() {
-            console.log('methods genOpt')
+            // console.log('methods genOpt')
 
             let vo = this
 
