@@ -269,13 +269,13 @@ export default {
                 //取得高度數字
                 toolbarHeight = cint(toolbarHeight.replace('px', ''))
 
+                //設定最高高度, 因可能dialog初始化與動畫階段沒辦法設定, 或是開發階段重新熱加載而使樣式重設, 故需放在檢核之前每次都要設定
+                tb.style.maxHeight = `${toolbarHeight}px`
+
                 //check
                 if (vo.toolbarHeight === toolbarHeight) {
                     return
                 }
-
-                //設定最高高度
-                tb.style.maxHeight = `${toolbarHeight}px`
 
                 //toolbarHeight
                 vo.toolbarHeight = toolbarHeight
