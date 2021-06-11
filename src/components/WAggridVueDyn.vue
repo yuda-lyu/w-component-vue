@@ -40,6 +40,7 @@ import getVue from '../js/getVue.mjs'
  * @vue-prop {Object} [opt.kpCellAlighH={}] 輸入key對應cell之左右對齊字串物件，預設各key值為defCellAlighH
  * @vue-prop {Boolean} [opt.defCellEditable=false] 輸入cell預設之是否可編輯布林值，預設為false
  * @vue-prop {Object} [opt.kpCellEditable={}] 輸入key對應cell之是否可編輯物件，預設各key值為defCellEditable
+ * @vue-prop {Object} [opt.kpConvertKeysWhenUploadData={}] 輸入上傳Excel檔案時，當key轉會成對應新key值物件，預設{}
  * @vue-prop {Function} [opt.rowClick=function(){}] 輸入row click之觸發事件，預設為function(){}
  * @vue-prop {Function} [opt.rowDbClick=function(){}] 輸入row double click之觸發事件，預設為function(){}
  * @vue-prop {Function} [opt.rowChange=function(){}] 輸入row change之觸發事件，預設為function(){}
@@ -63,9 +64,9 @@ import getVue from '../js/getVue.mjs'
  * @vue-event {Null} getInstance 指調用組件的method，無輸入，會回傳ag-grid表格實例物件
  * @vue-event {Null} fitColumns 指調用組件的method，無輸入與回傳，自動調整欄寬
  * @vue-event {String} pasteText 指調用組件的method，輸入text為欲貼上的文字，showRowIndNow為貼上的列指標整數，預設null，showColKeyNow為貼上的欄位key值字串，預設null
- * @vue-event {Array} downloadDisplayData 指調用組件的method，無輸入，下載目前表格所顯示之數據為Excel檔，亦會回傳目前表格所顯示之數據
- * @vue-event {Array} downloadData 指調用組件的method，無輸入，下載數據為Excel檔，亦會回傳數據
- * @vue-event {Array} uploadData 指調用組件的method，無輸入，會開啟選擇檔案視窗給使用者上傳Excel檔案，需為含有標題的Excel檔，標題需為各欄位key值而非head，回傳為Promise，resolve為成功上傳之數據，reject為失敗原因
+ * @vue-event {Null} downloadDisplayData 指調用組件的method，無輸入，下載目前表格所顯示之數據為Excel檔，亦會回傳目前表格所顯示之數據
+ * @vue-event {Null} downloadData 指調用組件的method，無輸入，下載數據為Excel檔，亦會回傳數據
+ * @vue-event {Object} uploadData 指調用組件的method，輸入設定物件，其中pathItems代表調用wsemi的getDataFromExcelFileU8ArrDyn所傳入的xlsx的來源網址陣列，beforeUpload代表上傳前的處理數據函數，parseSheetInd代表提取Excel檔案的第幾個sheet整數，預設為0。呼叫時會開啟選擇檔案視窗給使用者上傳Excel檔案，需為含有標題的Excel檔，標題需為各欄位key值而非head。回傳為Promise，resolve為成功上傳之數據，reject為失敗原因
  */
 export default {
     components: {
@@ -77,7 +78,7 @@ export default {
             default: () => [
                 'https://cdn.jsdelivr.net/npm/ag-grid-community@25.3.0/dist/ag-grid-community.min.noStyle.js',
                 'https://cdn.jsdelivr.net/npm/ag-grid-vue@25.3.0/dist/ag-grid-vue.umd.min.js', //於es5內載入時, AgGridVue會出現在window['ag-grid-vue'].AgGridVue
-                'https://cdn.jsdelivr.net/npm/w-aggrid-vue@2.0.19/dist/w-aggrid-vue.umd.js',
+                'https://cdn.jsdelivr.net/npm/w-aggrid-vue@2.0.20/dist/w-aggrid-vue.umd.js',
                 'https://cdn.jsdelivr.net/npm/xlsx@0.17.0/dist/xlsx.full.min.js', //download與upload會使用, 一併預載
             ],
         },

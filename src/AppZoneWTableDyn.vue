@@ -60,7 +60,7 @@
                     style="width:600px; height:400px;"
                     :name="WTableDyn.name"
                     :description="WTableDyn.description"
-                    :opt="WTableDyn.opt2a"
+                    :opt="WTableDyn.opt3"
                     @success="evSuccess"
                     @error="evError"
                 ></w-table-dyn>
@@ -274,7 +274,7 @@
                     style="width:600px; height:400px;"
                     :name="WTableDyn.name"
                     :description="WTableDyn.description"
-                    :opt="WTableDyn.opt2b"
+                    :opt="WTableDyn.opt4"
                     :editable="true"
                     @success="evSuccess"
                     @error="evError"
@@ -293,7 +293,26 @@
                     style="width:600px; height:400px;"
                     :name="WTableDyn.name"
                     :description="WTableDyn.description"
-                    :opt="WTableDyn.opt2c"
+                    :opt="WTableDyn.opt5"
+                    :editable="true"
+                    @success="evSuccess"
+                    @error="evError"
+                ></w-table-dyn>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-table-dyn'"
+                    :casename="'editable & opt.optForUploadData'"
+                ></demolink>
+
+                <w-table-dyn
+                    style="width:600px; height:400px;"
+                    :name="WTableDyn.name"
+                    :description="WTableDyn.description"
+                    :opt="WTableDyn.opt6"
                     :editable="true"
                     @success="evSuccess"
                     @error="evError"
@@ -418,7 +437,7 @@
                     style="width:600px; height:400px;"
                     :name="WTableDyn.name"
                     :description="WTableDyn.description"
-                    :opt="WTableDyn.opt3"
+                    :opt="WTableDyn.opt7"
                     :editable="true"
                     :errorMsgFromNoName="'未輸入數據名稱'"
                     :errorMsgFromNoData="'未給予有效數據'"
@@ -510,7 +529,7 @@ export default {
                     keys: keys2,
                     rows: rows2,
                 },
-                'opt2a': {
+                'opt3': {
                     keys: keys2,
                     rows: rows2,
                     kpHead: {
@@ -523,7 +542,7 @@ export default {
                         isActive: '有效',
                     },
                 },
-                'opt2b': {
+                'opt4': {
                     keys: keys2,
                     rows: rows2,
                     beforeAddRow: function(newRow) {
@@ -531,7 +550,7 @@ export default {
                         return newRow
                     },
                 },
-                'opt2c': {
+                'opt5': {
                     keys: keys2,
                     rows: rows2,
                     kpConvertKeysWhenUploadData: {
@@ -540,7 +559,16 @@ export default {
                         priceTemp: 'price',
                     },
                 },
-                'opt3': {
+                'opt6': {
+                    keys: keys2,
+                    rows: rows2,
+                    optForUploadData: { //input for uploadData in w-aggrid-vue, https://github.com/yuda-lyu/w-aggrid-vue
+                        pathItems: null,
+                        beforeUpload: null,
+                        parseSheetInd: 1, //取第2個sheet, 預設0(取第1個sheet)
+                    },
+                },
+                'opt7': {
                     keys: keys3,
                     rows: rows3,
                     modifyDataWhenSave: function(rows) {

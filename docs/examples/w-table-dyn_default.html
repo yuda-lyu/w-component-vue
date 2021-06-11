@@ -85,7 +85,7 @@
     </script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.1.12/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.1.13/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -430,7 +430,7 @@
             keys: keys2,
             rows: rows2
           },
-          opt2a: {
+          opt3: {
             keys: keys2,
             rows: rows2,
             kpHead: {
@@ -443,7 +443,7 @@
               isActive: "有效"
             }
           },
-          opt2b: {
+          opt4: {
             keys: keys2,
             rows: rows2,
             beforeAddRow: function(newRow) {
@@ -451,7 +451,7 @@
               return newRow;
             }
           },
-          opt2c: {
+          opt5: {
             keys: keys2,
             rows: rows2,
             kpConvertKeysWhenUploadData: {
@@ -460,7 +460,17 @@
               priceTemp: "price"
             }
           },
-          opt3: {
+          opt6: {
+            keys: keys2,
+            rows: rows2,
+            optForUploadData: {
+              //input for uploadData in w-aggrid-vue, https://github.com/yuda-lyu/w-aggrid-vue
+              pathItems: null,
+              beforeUpload: null,
+              parseSheetInd: 1 //取第2個sheet, 預設0(取第1個sheet)
+            }
+          },
+          opt7: {
             keys: keys3,
             rows: rows3,
             modifyDataWhenSave: function(rows) {
