@@ -85,7 +85,7 @@
     </script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.1.10/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.1.11/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -136,24 +136,36 @@
             style="cursor:pointer;"
             title="open for copy link to view component"
             onclick="window.open('//yuda-lyu.github.io/w-component-vue/examples/app.html?cmp='+this.innerText,'_blank')"
-        >w-confirm</div>
+        >w-dialog</div>
         <div class="bk">
-            <div class="item">scrollable, extensive text</div>
+            <div class="item">scrollable</div>
 
             <v-btn
                 depressed
                 small
                 elevation="2"
-                @click="WConfirm.bShow14=!WConfirm.bShow14"
-            >Show({{WConfirm.bShow14}})</v-btn>
+                @click="WDialog.bShow15=!WDialog.bShow15"
+            >Show({{WDialog.bShow15}})</v-btn>
 
-            <w-confirm
-                :show.sync="WConfirm.bShow14"
-                :title="WConfirm.title"
-                :content="WConfirm.contentExtensive"
-                @click-no="clickEvent('click-no')"
-                @click-yes="clickEvent('click-yes')"
-            />
+            <w-dialog
+                :show.sync="WDialog.bShow15"
+                :title="WDialog.title"
+                @resize="resizeEvent"
+                @click-save="clickSave"
+                @click-close="clickClose"
+            >
+                <template v-slot:content>
+                    <div style="padding:20px; width:2000px; height:2000px;">
+                        <div
+                            style="font-size:2rem; margin:20px 0px 30px 0px;"
+                        >{{WDialog.text1}}</div>
+                        <div style="margin:15px 0px;">{{WDialog.text2}}</div>
+                        <div style="margin:15px 0px;">{{WDialog.text3}}</div>
+                        <div style="margin:15px 0px;">{{WDialog.text4}}</div>
+                    </div>
+                    <div style="padding:20px;">{{WDialog.text5}}</div>
+                </template>
+            </w-dialog>
         </div>
     </v-app>
 
@@ -167,7 +179,7 @@
     vuetify: new Vuetify(),
     data: function() {
       return {
-        WConfirm: {
+        WDialog: {
           bShow1: false,
           bShow2: false,
           bShow3: false,
@@ -181,12 +193,40 @@
           bShow11: false,
           bShow12: false,
           bShow13: false,
-          bShow15: false,
           bShow14: false,
-          title: "Confirm",
-          content: "Do you agree to upload the information?",
-          contentExtensive:
-            "Est aliqua irure deserunt excepteur. Ullamco do blanditiis nobis aute exercitation. Possimus in optio quod at. Dolores dolorum dolores eu excepteur proident. Quas distinctio sunt dolor amet lorem nostrud deserunt. Dolor molestias exercitation deserunt ut est aute occaecat dolore. Quod ut laboris dolores mollitia vero non corrupti?"
+          bShow15: false,
+          bShow16: false,
+          bShow17: false,
+          bShow18: false,
+          bShow18A: false,
+          bShow18B: false,
+          headerBtns: [
+            {
+              icon: "fas fa-book-reader",
+              tooltip: "測試book-reader",
+              evName: "bookReader",
+              iconColor: "#f26",
+              backgroundColor: "rgba(255,255,255,0.7)"
+            },
+            {
+              icon: "fab fa-codepen",
+              tooltip: "測試codepen",
+              evName: "codepen"
+            },
+            {
+              icon: "fab fa-docker",
+              tooltip: "測試docker",
+              evName: "docker"
+            }
+          ],
+          title: "Popup Dialog",
+          text1: "Article Title",
+          text2: "Here is a article content, texts are from Vuetify.",
+          text3:
+            "Vuetify is a progressive framework that attempts to push web development to the next level. In order to best accomplish this task, some sacrifices had to be made in terms of support for older versions of Internet Explorer. This is not an exhaustive list of compatible browsers, but the main targeted ones.",
+          text4:
+            "There are three ways in which you can install Vuetify. The first (and recommended) way is to utilize the vuetify-loader or what we call automatic A-la-carte. This will ensure that your application only uses the features and styles from Vuetify that are needed, significantly reducing your application's compiled size. Keep in mind, when importing from vuetify/lib, the necessary styles are automatically imported for you.",
+          text5: "End."
         },
         actions: []
       };
@@ -196,8 +236,31 @@
     },
     computed: {},
     methods: {
-      clickEvent: function(data) {
-        console.log(data);
+      resizeEvent: function(msg) {
+        console.log("resizeEvent", msg);
+      },
+
+      clickBtns: function(msg) {
+        console.log("clickBtns", msg);
+      },
+
+      clickSave: function(msg) {
+        console.log("clickSave", msg);
+        setTimeout(function() {
+          console.log("save finish");
+          msg.pm.resolve();
+        }, 1000);
+      },
+
+      clickClose: function(msg) {
+        console.log("clickClose", msg);
+      },
+
+      clickClosePm: function(msg) {
+        console.log("clickClose", msg);
+        alert("pm.resolve() for close");
+        msg.pm.resolve();
+        //msg.pm.reject()
       }
     }
   });
