@@ -345,7 +345,7 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-confirm'"
-                    :casename="'scrollable, extensive text'"
+                    :casename="'scrollable'"
                 ></demolink>
 
                 <v-btn depressed small elevation="2" @click="WConfirm.bShow14=!WConfirm.bShow14">Show({{WConfirm.bShow14}})</v-btn>
@@ -364,7 +364,7 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-confirm'"
-                    :casename="'scrollable, extensive text (slot content)'"
+                    :casename="'scrollable (slot content)'"
                 ></demolink>
 
                 <v-btn depressed small elevation="2" @click="WConfirm.bShow15=!WConfirm.bShow15">Show({{WConfirm.bShow15}})</v-btn>

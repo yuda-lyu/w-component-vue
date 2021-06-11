@@ -203,6 +203,7 @@ export default {
             btnSaveLoad: false,
 
             toolbarHeight: 0,
+            panelScrollHSize: 0,
             panelWidth: 0,
             panelHeight: 0,
             panelHeightMax: 0,
@@ -304,6 +305,7 @@ export default {
             //update
             vo.panelWidth = msg.snew.offsetWidth
             vo.panelHeight = msg.snew.offsetHeight
+            vo.panelScrollHSize = msg.snew.offsetHeight - msg.snew.clientHeight
 
             //changeSize, 因dialog的resize為window resize, 通常不會被呼叫故無法計算panelHeightMax, 故需額外呼叫
             vo.changeSize()
@@ -340,6 +342,7 @@ export default {
             else {
                 panelHeightMax = r * window.innerHeight - vo.toolbarHeight
             }
+            panelHeightMax -= vo.panelScrollHSize //減去橫向捲軸高度
 
             //check
             if (vo.panelHeightMax === panelHeightMax) {
@@ -375,6 +378,7 @@ export default {
                 panelWidth: vo.panelWidth,
                 panelHeight: vo.panelHeight,
                 panelHeightMax: vo.panelHeightMax,
+                panelScrollHSize: vo.panelScrollHSize,
             }
 
             //check

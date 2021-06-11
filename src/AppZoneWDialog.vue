@@ -581,7 +581,7 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-dialog'"
-                    :casename="'scrollable, extensive text'"
+                    :casename="'scrollable'"
                 ></demolink>
 
                 <v-btn depressed small elevation="2" @click="WDialog.bShow15=!WDialog.bShow15">Show({{WDialog.bShow15}})</v-btn>
@@ -595,7 +595,7 @@
                 >
 
                     <template v-slot:content>
-                        <div style="padding:20px; height:2000px;">
+                        <div style="padding:20px; width:2000px; height:2000px;">
                             <div style="font-size:2rem; margin:20px 0px 30px 0px;">
                                 {{WDialog.text1}}
                             </div>
