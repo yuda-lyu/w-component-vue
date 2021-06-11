@@ -158,6 +158,7 @@ import pullAt from 'lodash/pullAt'
 import size from 'lodash/size'
 import every from 'lodash/every'
 import trim from 'lodash/trim'
+import isEqual from 'lodash/isEqual'
 import cloneDeep from 'lodash/cloneDeep'
 import isarr from 'wsemi/src/isarr.mjs'
 import isfun from 'wsemi/src/isfun.mjs'
@@ -418,6 +419,8 @@ export default {
 
             tableHeight: 1, //ag-grid需先給予最小高度供顯示, resize才會驅動
 
+            paramsTemp: null,
+
             nameTrans: '',
             descriptionTrans: '',
             rowsSelect: [],
@@ -464,10 +467,22 @@ export default {
             let checkId = vo.checkId
             let editable = vo.editable
 
-            //genOpt
-            vo.genOpt()
+            //paramsTemp
+            let paramsTemp = {
+                rows, hideIds, fixIds, checkId, editable
+            }
 
-            vo.___changeParamsForTable___ = { rows, hideIds, fixIds, checkId, editable }
+            //check, changeParamsForTable掛在dom上, 可能因為dom變更而被觸發, 或因數據為物件(例如rows)可能被修改, 於dom變更時被視為有變而觸發, 故需添加偵測外部數據是否有變才呼叫genOpt
+            if (!isEqual(vo.paramsTemp, paramsTemp)) {
+
+                //genOpt
+                vo.genOpt()
+
+                //save
+                vo.paramsTemp = cloneDeep(paramsTemp)
+
+            }
+
             return ''
         },
 
@@ -615,7 +630,7 @@ export default {
         },
 
         genOpt: function() {
-            // console.log('methods genOpt')
+            console.log('methods genOpt')
 
             let vo = this
 
@@ -771,7 +786,7 @@ export default {
         },
 
         removeRows: function() {
-            //console.log('methods removeRows')
+            console.log('methods removeRows')
 
             let vo = this
 
@@ -890,6 +905,9 @@ export default {
             fun(optForUploadData)
                 .then((rows) => {
                     // console.log('uploadData then', rows)
+
+                    // //save, w-aggrid-vue會自動更新vo.useOpt.rows, 需用cloneDeep斷開與外面記憶體共用問題
+                    // vo.useOpt.rows=rows
 
                     //check
                     if (size(rows) === 0) {
