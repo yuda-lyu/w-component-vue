@@ -138,13 +138,14 @@
             onclick="window.open('//yuda-lyu.github.io/w-component-vue/examples/app.html?cmp='+this.innerText,'_blank')"
         >w-table-dyn</div>
         <div class="bk">
-            <div class="item">name & description</div>
+            <div class="item">editable & opt.optForUploadData</div>
 
             <w-table-dyn
                 style="width:600px; height:400px;"
                 :name="WTableDyn.name"
                 :description="WTableDyn.description"
-                :opt="WTableDyn.opt1"
+                :opt="WTableDyn.opt6"
+                :editable="true"
                 @success="evSuccess"
                 @error="evError"
             />
