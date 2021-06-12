@@ -427,7 +427,7 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-table-dyn'"
-                    :casename="'editable & opt.modifyDataWhenSave & save(call cmp. method) & errorMsgFromNoName & errorMsgFromNoData'"
+                    :casename="'editable & checkId & opt.modifyDataWhenSave & save(call cmp. method) & errorMsgFromNoName & errorMsgFromNoData'"
                 ></demolink>
 
                 <v-btn depressed small elevation="2" @click="saveData">save data</v-btn>
@@ -439,6 +439,7 @@
                     :description="WTableDyn.description"
                     :opt="WTableDyn.opt7"
                     :editable="true"
+                    :checkId="'id'"
                     :errorMsgFromNoName="'未輸入數據名稱'"
                     :errorMsgFromNoData="'未給予有效數據'"
                     @success="evSuccess"

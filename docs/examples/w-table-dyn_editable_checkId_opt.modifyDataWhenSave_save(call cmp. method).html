@@ -85,7 +85,7 @@
     </script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.1.15/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.1.16/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -140,7 +140,7 @@
         <div class="bk">
             <div
                 class="item"
-            >editable & opt.modifyDataWhenSave & save(call cmp. method) & errorMsgFromNoName & errorMsgFromNoData</div>
+            >editable & checkId & opt.modifyDataWhenSave & save(call cmp. method) & errorMsgFromNoName & errorMsgFromNoData</div>
 
             <v-btn depressed small elevation="2" @click="saveData">save data</v-btn>
 
@@ -151,6 +151,7 @@
                 :description="WTableDyn.description"
                 :opt="WTableDyn.opt7"
                 :editable="true"
+                :check-id="'id'"
                 :error-msg-from-no-name="'未輸入數據名稱'"
                 :error-msg-from-no-data="'未給予有效數據'"
                 @success="evSuccess"

@@ -164,6 +164,7 @@ import isarr from 'wsemi/src/isarr.mjs'
 import isfun from 'wsemi/src/isfun.mjs'
 import isestr from 'wsemi/src/isestr.mjs'
 import isearr from 'wsemi/src/isearr.mjs'
+import isbol from 'wsemi/src/isbol.mjs'
 import isobj from 'wsemi/src/isobj.mjs'
 import iseobj from 'wsemi/src/iseobj.mjs'
 import arr2dt from 'wsemi/src/arr2dt.mjs'
@@ -189,6 +190,7 @@ import color2hex from '../js/vuetifyColor.mjs'
  * @vue-prop {String|Array} [fixIds=''] 輸入欲固定於左側欄位字串或陣列，可被opt.kpHeadFixLeft複寫，預設''
  * @vue-prop {String} [checkId=''] 輸入欲使用核選方塊欄位字串，可被opt.kpHeadCheckBox複寫，預設''
  * @vue-prop {String|Array} [removeIdsWhenDownload=''] 輸入當下載成Excel檔案時欲移除的欄位字串或陣列，預設''
+ * @vue-prop {Boolean} [checkNoDataWhenSave=false] 輸入於儲存時是否檢查無有效資料布林值，預設為false
  * @vue-prop {Boolean} [editable=false] 輸入是否可編輯布林值，可被opt.defCellEditable複寫，預設為false
  * @vue-prop {String} [textLabelDataName='Data name] 輸入數據名稱字串，預設'Data name'
  * @vue-prop {String} [textPlaceholderDataName='Please enter data name'] 輸入數據名稱placeholder字串，預設'Please enter data name'
@@ -250,8 +252,10 @@ import color2hex from '../js/vuetifyColor.mjs'
  * @vue-prop {Function} [opt.cellChange=function(){}] 輸入cell change之觸發事件，預設為function(){}
  * @vue-prop {Function} [opt.cellMouseEnter=function(){}] 輸入cell mouseenter之觸發事件，預設為function(){}
  * @vue-prop {Function} [opt.cellMouseLeave=function(){}] 輸入cell mouseleave之觸發事件，預設為function(){}
- * @vue-prop {Boolean} [opt.autoFitColumn=false] 輸入當表格尺寸變更時自動調整欄寬，預設false
+ * @vue-prop {Boolean} [opt.autoFitColumn=false] 輸入當表格尺寸變更時自動調整欄寬布林值，預設false
  * @vue-prop {Object} [opt.optForUploadData={}] 輸入呼叫組件uploadData上傳檔案時用的設定物件，物件可給予鍵值：pathItems代表調用wsemi的getDataFromExcelFileU8ArrDyn所傳入的xlsx的來源網址陣列，beforeUpload代表上傳前的處理數據函數，parseSheetInd代表提取Excel檔案的第幾個sheet整數(預設為0)，optForUploadData預設{}
+ * @vue-prop {Function} [opt.modifyDataWhenSave=undefined] 輸入當儲存時修改儲存數據事件，輸入rows，輸出rows，預設為undefined
+ * @vue-prop {Boolean} [opt.checkNoDataWhenSave=false] 輸入當儲存時是否檢核無數據布林值，預設false
  */
 export default {
     directives: {
@@ -947,11 +951,6 @@ export default {
                 //rows
                 let rows = get(vo, 'useOpt.rows', [])
 
-                //check
-                if (rows.length === 0) {
-                    return { err: vo.errorMsgFromNoData }
-                }
-
                 //ltdtmapping
                 rows = ltdtmapping(rows, vo.useKeys)
 
@@ -967,6 +966,15 @@ export default {
                 //         v.isActive = 'y'
                 //         return v
                 //     })
+                }
+
+                //check
+                let checkNoDataWhenSave = get(vo, 'opt.checkNoDataWhenSave')
+                if (!isbol(checkNoDataWhenSave)) {
+                    checkNoDataWhenSave = false
+                }
+                if (checkNoDataWhenSave && rows.length === 0) {
+                    return { err: vo.errorMsgFromNoData }
                 }
 
                 //res
