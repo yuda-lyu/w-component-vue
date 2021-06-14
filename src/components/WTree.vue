@@ -331,7 +331,7 @@ export default {
             //filterKeyWordsDebounce
             vo.filterKeyWordsDebounce()
 
-            vo.__filterKeywords__ = ft
+            vo.___filterKeywords___ = ft
             return ''
         },
 
