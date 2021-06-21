@@ -40,6 +40,21 @@
             <div class="bk dz">
                 <demolink
                     :kbname="'w-tree'"
+                    :casename="'defaultDisplayLevel'"
+                ></demolink>
+
+                <w-tree
+                    style="border:1px solid #ddd;"
+                    :defaultDisplayLevel="1"
+                    :data="WTree.option.items"
+                ></w-tree>
+
+            </div>
+
+
+            <div class="bk dz">
+                <demolink
+                    :kbname="'w-tree'"
                     :casename="'paddingStyle'"
                 ></demolink>
 

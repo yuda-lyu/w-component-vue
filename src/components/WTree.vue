@@ -89,6 +89,7 @@ import join from 'lodash/join'
 import find from 'lodash/find'
 import size from 'lodash/size'
 import isEqual from 'lodash/isEqual'
+import isNumber from 'lodash/isNumber'
 import reverse from 'lodash/reverse'
 import remove from 'lodash/remove'
 import cloneDeep from 'lodash/cloneDeep'
@@ -99,6 +100,7 @@ import sep from 'wsemi/src/sep.mjs'
 import isarr from 'wsemi/src/isarr.mjs'
 import isobj from 'wsemi/src/isobj.mjs'
 import isfun from 'wsemi/src/isfun.mjs'
+import cint from 'wsemi/src/cint.mjs'
 import haskey from 'wsemi/src/haskey.mjs'
 import waitFun from 'wsemi/src/waitFun.mjs'
 import debounce from 'wsemi/src/debounce.mjs'
@@ -117,6 +119,7 @@ let gm = globalMemory()
 /**
  * @vue-prop {Array|Object} [data=[]] 輸入資料陣列，預設[]，各元素配合slot顯示即可，slot內提供row與irow，對應原始rows內各元素與指標，另外各元素slot時不要用margin避免計算高度有誤差
  * @vue-prop {Number} [viewHeightMax=400] 輸入顯示區最大高度，單位為px，預設400
+ * @vue-prop {Number} [defaultDisplayLevel=null] 輸入初始展開層數數字，若輸入1就是預設展開至第1層，第2層(含)以下則都隱藏，若輸入null就是全展開，預設null
  * @vue-prop {Boolean} [selectable=false] 輸入是否具有勾選模式，預設false
  * @vue-prop {Array} [selections=[]] 輸入勾選項目陣列，當selectable=true時才可使用，預設[]
  * @vue-prop {String} [keyPrimary='id'] 輸入可選項目為物件時，主鍵之欄位字串，預設'id'
@@ -157,6 +160,10 @@ export default {
         viewHeightMax: {
             type: Number,
             default: 400,
+        },
+        defaultDisplayLevel: {
+            type: Number,
+            default: null,
         },
         selectable: {
             type: Boolean,
@@ -423,6 +430,9 @@ export default {
 
                 //setRows
                 await vo.$refs.wdl.setRows(rows)
+
+                //defaultToggleItems
+                vo.defaultToggleItems()
 
             }
 
@@ -691,7 +701,7 @@ export default {
         },
 
         toggleItemsCore: function(items, ind, unfolding) {
-            //console.log('methods toggleItemsCore', items, ind, unfolding)
+            // console.log('methods toggleItemsCore', items, ind, unfolding)
 
             let vo = this
 
@@ -789,6 +799,54 @@ export default {
 
         },
 
+        defaultToggleItems: function() {
+            // console.log('methods defaultToggleItems')
+
+            let vo = this
+
+            async function core() {
+
+                //check
+                if (!isNumber(vo.defaultDisplayLevel)) {
+                    return
+                }
+
+                //check
+                if (!vo.$refs.wdl) {
+                    return
+                }
+
+                //opt
+                let opt = {
+                    fun: function(items) {
+                        // console.log('items', cloneDeep(items))
+
+                        //l, 有指定預先展開層數
+                        let l = cint(vo.defaultDisplayLevel)
+
+                        // toggleItemsCore
+                        each(items, (v, k) => {
+                            if ((v.row.item.level + 1) > l && v.row.unfolding) {
+                                vo.toggleItemsCore(items, k, false) //非指定層數則隱藏
+                            }
+                        })
+
+                    }
+                }
+
+                //processItems
+                await vo.$refs.wdl.processItems(opt)
+
+            }
+
+            //core
+            core()
+                .catch((err) => {
+                    console.log(err)
+                })
+
+        },
+
         toggleItems: function(item) {
             //console.log('methods toggleItems', item)
 
@@ -804,7 +862,7 @@ export default {
                 //opt
                 let opt = {
                     fun: function(items) {
-                    //console.log('items', cloneDeep(items))
+                        //console.log('items', cloneDeep(items))
 
                         //ind
                         let ind = item.index
@@ -1116,7 +1174,9 @@ export default {
             let vo = this
 
             async function core() {
-                let selectionsTrans = cloneDeep(vo.selectionsTrans) //由內部selectionsTrans當初始值, cloneDeep後進行修改
+
+                //由內部selectionsTrans當初始值, cloneDeep後進行修改
+                let selectionsTrans = cloneDeep(vo.selectionsTrans)
 
                 //check
                 if (!vo.$refs.wdl) {
@@ -1126,7 +1186,7 @@ export default {
                 //opt
                 let opt = {
                     fun: function(items) {
-                    //console.log('items', cloneDeep(items))
+                        //console.log('items', cloneDeep(items))
 
                         //ind
                         let ind = item.index
