@@ -1,6 +1,6 @@
 <template>
     <div
-        style="display:inline-block; vertical-align:middle; user-select:none;"
+        style="display:inline-block; vertical-align:middle; outline:none; user-select:none;"
         :changeActive="changeActive"
         :changeProg="changeProg"
         :changeLoading="changeLoading"
@@ -17,9 +17,10 @@
 
                 <template v-slot:activator="{ on }">
 
+                    <!-- v-tooltip下第1層dom會無法拖曳, 點擊事件於這層觸發, 且組件內tabindex不能重複, 故本層設定為0 -->
                     <div
                         v-on="on"
-                        :style="`transition:all 0.3s; ${useBorderRadiusStyle} background:${useBackgroundColor}; cursor:pointer; outline:none; box-shadow:${useShadow};`"
+                        :style="`transition:all 0.3s; ${useBorderRadiusStyle} background:${useBackgroundColor}; cursor:pointer; outline:none; user-select:none; box-shadow:${useShadow};`"
                         v-ripple="editable?{ class: 'white--text' }:false"
                         tabindex="0"
                         @mouseenter="hoverTrans=true;$emit('mouseenter',$event)"
@@ -28,8 +29,10 @@
                         @click="clickBtn($event)"
                     >
 
+                        <!-- 為了讓transition-group能抓到可拖曳對象, 本層多設定tabindex, 本層設定為1 -->
                         <div
-                            :style="`transition:all 0.3s; ${usePadding} ${useBorderRadiusStyle} ${useBorderWidth} ${useBorderColor} border-style:solid;`"
+                            :style="`transition:all 0.3s; ${usePadding} ${useBorderRadiusStyle} ${useBorderWidth} ${useBorderColor} border-style:solid; outline:none; user-select:none;`"
+                            tabindex="1"
                         >
 
                             <div style="display:flex; align-items:center; white-space:nowrap;">
@@ -54,9 +57,10 @@
                                     <div :style="`${useTextFontSize}`">{{text}}</div>
                                 </div>
 
+                                <!-- 為了讓transition-group能抓到可拖曳對象, 且組件內tabindex不能重複, 故本層設定為2 -->
                                 <div
-                                    :style="`display:inline-block; cursor:pointer; outline:none;`"
-                                    tabindex="0"
+                                    :style="`display:inline-block; outline:none; user-select:none;`"
+                                    tabindex="2"
                                     @keyup.enter="clickClose($event)"
                                     @click="clickClose($event)"
                                     v-if="close"
@@ -805,6 +809,7 @@ export default {
 
             //emit
             vo.$emit('click', msg)
+            console.log(`$emit('click', msg)`, msg)
 
         },
 

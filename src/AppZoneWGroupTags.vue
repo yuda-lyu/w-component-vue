@@ -20,7 +20,7 @@
             </div>
 
 
-            <div class="bk" style="display:block;">
+            <div class="bk" v-if="false" style="display:block;">
                 <demolink
                     :kbname="'w-group-tags'"
                     :casename="'icon (material)'"
@@ -33,7 +33,7 @@
             </div>
 
 
-            <div class="bk" style="display:block;">
+            <div class="bk" v-if="false" style="display:block;">
                 <demolink
                     :kbname="'w-group-tags'"
                     :casename="'icon (fontawesome)'"
@@ -46,7 +46,7 @@
             </div>
 
 
-            <div class="bk" style="display:block;">
+            <div class="bk" v-if="false" style="display:block;">
                 <demolink
                     :kbname="'w-group-tags'"
                     :casename="'shiftLeft'"
@@ -60,7 +60,7 @@
             </div>
 
 
-            <div class="bk" style="display:block;">
+            <div class="bk" v-if="false" style="display:block;">
                 <demolink
                     :kbname="'w-group-tags'"
                     :casename="'marginStyle'"
@@ -75,7 +75,7 @@
             </div>
 
 
-            <div class="bk" style="display:block;">
+            <div class="bk" v-if="false" style="display:block;">
                 <demolink
                     :kbname="'w-group-tags'"
                     :casename="'inputTextButtonTooltip'"
@@ -88,7 +88,7 @@
             </div>
 
 
-            <div class="bk" style="display:block;">
+            <div class="bk" v-if="false" style="display:block;">
                 <demolink
                     :kbname="'w-group-tags'"
                     :casename="'inputTextColor & inputTextBorderColor & inputTextBorderColorHover & inputTextBorderColorFocus & inputTextButtonColor & inputTextButtonColorHover & inputTextButtonColorHover & inputTextBackgroundColor & inputTextBackgroundColorHover & inputTextBackgroundColorFocus'"
@@ -110,7 +110,7 @@
             </div>
 
 
-            <div class="bk" style="display:block;">
+            <div class="bk" v-if="false" style="display:block;">
                 <demolink
                     :kbname="'w-group-tags'"
                     :casename="'object items'"
@@ -125,7 +125,7 @@
             </div>
 
 
-            <div class="bk" style="display:block;">
+            <div class="bk" v-if="false" style="display:block;">
                 <demolink
                     :kbname="'w-group-tags'"
                     :casename="'object items & keyText'"
@@ -141,7 +141,7 @@
             </div>
 
 
-            <div class="bk" style="display:block;">
+            <div class="bk" v-if="false" style="display:block;">
                 <demolink
                     :kbname="'w-group-tags'"
                     :casename="'object items & keyIcon'"
@@ -157,7 +157,7 @@
             </div>
 
 
-            <div class="bk" style="display:block;">
+            <div class="bk" v-if="false" style="display:block;">
                 <demolink
                     :kbname="'w-group-tags'"
                     :casename="'object items & keyTooltip'"
@@ -173,7 +173,7 @@
             </div>
 
 
-            <div class="bk" style="display:block;">
+            <div class="bk" v-if="false" style="display:block;">
                 <demolink
                     :kbname="'w-group-tags'"
                     :casename="'object items & addButtonText & addButtonTooltip'"
@@ -190,7 +190,7 @@
             </div>
 
 
-            <div class="bk" style="display:block;">
+            <div class="bk" v-if="false" style="display:block;">
                 <demolink
                     :kbname="'w-group-tags'"
                     :casename="'object items & addButtonTextColor & addButtonTextColorHover & addButtonIconColor & addButtonIconColorHover & addButtonBackgroundColor &  addButtonBackgroundColorHover'"
@@ -211,7 +211,7 @@
             </div>
 
 
-            <div class="bk" style="display:block;">
+            <div class="bk" v-if="false" style="display:block;">
                 <demolink
                     :kbname="'w-group-tags'"
                     :casename="'slot item'"
@@ -256,7 +256,7 @@
             </div>
 
 
-            <div class="bk" style="display:block;">
+            <div class="bk" v-if="false" style="display:block;">
                 <demolink
                     :kbname="'w-group-tags'"
                     :casename="'object items & slot item'"
@@ -302,7 +302,7 @@
             </div>
 
 
-            <div class="bk" style="display:block;">
+            <div class="bk" v-if="false" style="display:block;">
                 <demolink
                     :kbname="'w-group-tags'"
                     :casename="'slot input'"
@@ -332,7 +332,7 @@
             </div>
 
 
-            <div class="bk" style="display:block;">
+            <div class="bk" v-if="false" style="display:block;">
                 <demolink
                     :kbname="'w-group-tags'"
                     :casename="'paddingStyle & icon & iconSize & textFontSize'"
@@ -350,7 +350,7 @@
             </div>
 
 
-            <div class="bk" style="display:block;">
+            <div class="bk" v-if="false" style="display:block;">
                 <demolink
                     :kbname="'w-group-tags'"
                     :casename="'textColor'"
@@ -365,7 +365,7 @@
             </div>
 
 
-            <div class="bk" style="display:block;">
+            <div class="bk" v-if="false" style="display:block;">
                 <demolink
                     :kbname="'w-group-tags'"
                     :casename="'textColor & textColorHover'"
@@ -381,7 +381,7 @@
             </div>
 
 
-            <div class="bk" style="display:block;">
+            <div class="bk" v-if="false" style="display:block;">
                 <demolink
                     :kbname="'w-group-tags'"
                     :casename="'icon & iconColor & iconColorHover'"
@@ -398,7 +398,7 @@
             </div>
 
 
-            <div class="bk" style="display:block;">
+            <div class="bk" v-if="false" style="display:block;">
                 <demolink
                     :kbname="'w-group-tags'"
                     :casename="'borderRadius'"
@@ -414,7 +414,7 @@
             </div>
 
 
-            <div class="bk" style="display:block;">
+            <div class="bk" v-if="false" style="display:block;">
                 <demolink
                     :kbname="'w-group-tags'"
                     :casename="'borderColor & borderColorHover'"
@@ -431,7 +431,7 @@
             </div>
 
 
-            <div class="bk" style="display:block;">
+            <div class="bk" v-if="false" style="display:block;">
                 <demolink
                     :kbname="'w-group-tags'"
                     :casename="'backgroundColor & backgroundColorHover'"
@@ -448,7 +448,7 @@
             </div>
 
 
-            <div class="bk" style="display:block;">
+            <div class="bk" v-if="false" style="display:block;">
                 <demolink
                     :kbname="'w-group-tags'"
                     :casename="'no shadow & borderColor & borderColorHover'"
@@ -465,7 +465,7 @@
             </div>
 
 
-            <div class="bk" style="display:block;">
+            <div class="bk" v-if="false" style="display:block;">
                 <demolink
                     :kbname="'w-group-tags'"
                     :casename="'shadowStyle'"
@@ -480,7 +480,7 @@
             </div>
 
 
-            <div class="bk" style="display:block;">
+            <div class="bk" v-if="false" style="display:block;">
                 <demolink
                     :kbname="'w-group-tags'"
                     :casename="'modify prog by callback in click'"
@@ -495,7 +495,7 @@
             </div>
 
 
-            <div class="bk" style="display:block;">
+            <div class="bk" v-if="false" style="display:block;">
                 <demolink
                     :kbname="'w-group-tags'"
                     :casename="'progColor & progBackgroundColor'"
@@ -512,7 +512,7 @@
             </div>
 
 
-            <div class="bk" style="display:block;">
+            <div class="bk" v-if="false" style="display:block;">
                 <demolink
                     :kbname="'w-group-tags'"
                     :casename="'modify loading by callback in click'"
@@ -527,7 +527,7 @@
             </div>
 
 
-            <div class="bk" style="display:block;">
+            <div class="bk" v-if="false" style="display:block;">
                 <demolink
                     :kbname="'w-group-tags'"
                     :casename="'modify loading & textColor & textColorHover'"
@@ -544,7 +544,7 @@
             </div>
 
 
-            <div class="bk" style="display:block;">
+            <div class="bk" v-if="false" style="display:block;">
                 <demolink
                     :kbname="'w-group-tags'"
                     :casename="'closeWithInterceptor'"
@@ -561,7 +561,7 @@
             </div>
 
 
-            <div class="bk" style="display:block;">
+            <div class="bk" v-if="false" style="display:block;">
                 <demolink
                     :kbname="'w-group-tags'"
                     :casename="'not draggable'"
@@ -577,7 +577,7 @@
             </div>
 
 
-            <div class="bk" style="display:block;">
+            <div class="bk" v-if="false" style="display:block;">
                 <demolink
                     :kbname="'w-group-tags'"
                     :casename="'not editable'"
@@ -593,7 +593,7 @@
             </div>
 
 
-            <div class="bk" style="display:block;">
+            <div class="bk" v-if="false" style="display:block;">
                 <demolink
                     :kbname="'w-group-tags'"
                     :casename="'editableClose(no close button)'"
@@ -609,7 +609,7 @@
             </div>
 
 
-            <div class="bk" style="display:block;">
+            <div class="bk" v-if="false" style="display:block;">
                 <demolink
                     :kbname="'w-group-tags'"
                     :casename="'editableInput(no slot input)'"
@@ -625,7 +625,7 @@
             </div>
 
 
-            <div class="bk" style="display:block;">
+            <div class="bk" v-if="false" style="display:block;">
                 <demolink
                     :kbname="'w-group-tags'"
                     :casename="'iconColor & iconColorHover & textColor & textColorHover & borderColor & borderColorHover & backgroundColor & backgroundColorHover & not draggable & no shadow & editableClose(no close button) & editableInput(no slot input)'"
@@ -652,7 +652,7 @@
             </div>
 
 
-            <div class="bk" style="display:block;">
+            <div class="bk" v-if="false" style="display:block;">
                 <demolink
                     :kbname="'w-group-tags'"
                     :casename="'not editable & nodata'"
@@ -668,7 +668,7 @@
             </div>
 
 
-            <div class="bk" style="display:block;">
+            <div class="bk" v-if="false" style="display:block;">
                 <demolink
                     :kbname="'w-group-tags'"
                     :casename="'useActive & valueActive'"
@@ -684,7 +684,7 @@
             </div>
 
 
-            <div class="bk" style="display:block;">
+            <div class="bk" v-if="false" style="display:block;">
                 <demolink
                     :kbname="'w-group-tags'"
                     :casename="'slot item & useActive & valueActive & paddingStyle & textColor & textColorHover & textColorActive & backgroundColor & backgroundColorActive & shadowActiveStyle'"
@@ -717,7 +717,7 @@
             </div>
 
 
-            <div class="bk" style="display:block;">
+            <div class="bk" v-if="false" style="display:block;">
                 <demolink
                     :kbname="'w-group-tags'"
                     :casename="'object items & slot item & editableInput(no slot input) & useActive & valueActive & paddingStyle & textColor & textColorHover & textColorActive & backgroundColor & backgroundColorActive & shadowActiveStyle'"
@@ -751,7 +751,7 @@
             </div>
 
 
-            <div class="bk" style="display:block;">
+            <div class="bk" v-if="false" style="display:block;">
                 <demolink
                     :kbname="'w-group-tags'"
                     :casename="'enableCloseEventOnly'"
@@ -765,7 +765,7 @@
             </div>
 
 
-            <div class="bk" style="display:block;">
+            <div class="bk" v-if="false" style="display:block;">
                 <demolink
                     :kbname="'w-group-tags'"
                     :casename="'object items & slot item & useColorsFromItem & editableInput(no slot input) & no shadow & no shadowActive & useActive & valueActive & paddingStyle'"

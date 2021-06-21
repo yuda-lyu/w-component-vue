@@ -4,7 +4,7 @@
         :changeDraggable="changeDraggable"
     >
 
-        <transition-group>
+        <transition-group name="list-complete">
             <template v-for="(item,kitem) in itemsTrans">
 
                 <div
@@ -528,12 +528,12 @@ export default {
 
             let vo = this
 
-            //dragInit
-            vo.dragInit(true)
-
             //save
             vo.itemsTrans = cloneDeep(vo.value)
             vo.itemActiveTrans = cloneDeep(vo.valueActive)
+
+            //dragInit
+            vo.dragInit()
 
             return ''
         },
@@ -620,8 +620,8 @@ export default {
             return isEqual(vo.itemActiveTrans, item)
         },
 
-        dragInit: function(restart = false) {
-            //console.log('methods dragInit', restart)
+        dragInit: function() {
+            // console.log('methods dragInit')
 
             let vo = this
 
@@ -634,12 +634,7 @@ export default {
 
                 //check
                 if (vo.drag !== null) {
-                    if (restart) {
-                        vo.dragClear()
-                    }
-                    else {
-                        return
-                    }
+                    vo.dragClear()
                 }
 
                 //domDrag
@@ -655,7 +650,7 @@ export default {
                     //console.log('onchange', msg)
                 })
                 drag.on('drop', ({ startInd, endInd }) => {
-                    //console.log('ondrop', startInd, endInd)
+                    // console.log('ondrop', startInd, endInd)
 
                     //check
                     if (startInd === endInd) {
@@ -688,8 +683,13 @@ export default {
 
                     }
 
-                    //emit
-                    vo.$emit('input', itemsNew)
+                    //$nextTick
+                    vo.$nextTick(() => {
+
+                        //emit
+                        vo.$emit('input', itemsNew)
+
+                    })
 
                 })
 
@@ -698,11 +698,12 @@ export default {
 
             }
 
-            //$nextTick, 因value變更時需驅動, clear需先行與同步觸發, domDrag需等value變更儲存至itemsTrans後才執行
+            //$nextTick, 因value變更時需驅動dom更新, 才能使domDrag抓到元素, 故需延遲執行
             vo.$nextTick(() => {
 
                 //core
                 core()
+                    .catch(() => {})
 
             })
 
@@ -917,5 +918,15 @@ export default {
 <style scoped>
 .WGroupTags-Trans { /* transition-group必須使用class */
     transition: all 0.5s;
+}
+.list-complete-item {
+    transition: all 0.5s;
+}
+.list-complete-enter, .list-complete-leave-to {
+    opacity: 0;
+    transform: translateY(30px);
+}
+.list-complete-leave-active {
+    position: absolute;
 }
 </style>
