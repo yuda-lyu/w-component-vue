@@ -55,6 +55,59 @@
             <div class="bk dz">
                 <demolink
                     :kbname="'w-tree'"
+                    :casename="'draggable'"
+                ></demolink>
+
+                <w-tree
+                    style="border:1px solid #ddd;"
+                    :draggable="true"
+                    :data.sync="WTree.option.items"
+                ></w-tree>
+
+            </div>
+
+
+            <div class="bk dz">
+                <demolink
+                    :kbname="'w-tree'"
+                    :casename="'draggable & dgInsertLineColor & dgInsertBackgroundColor & dgBelongBackgroundColor'"
+                ></demolink>
+
+                <w-tree
+                    style="border:1px solid #ddd;"
+                    :draggable="true"
+                    :data.sync="WTree.option.items"
+                    :dgInsertLineColor="'rgba(120,220,150,0.9)'"
+                    :dgInsertBackgroundColor="'rgba(50,220,100,0.1)'"
+                    :dgBelongBackgroundColor="'rgba(50,220,100,0.2)'"
+                ></w-tree>
+
+            </div>
+
+
+            <div class="bk dz">
+                <demolink
+                    :kbname="'w-tree'"
+                    :casename="'draggable & dgTextDisabled & dgTextDisabledColor & dgTextDisabledPaddingLeft & dgTextDisabledFontSize & dgTextDisabledBackgroundColor'"
+                ></demolink>
+
+                <w-tree
+                    style="border:1px solid #ddd;"
+                    :draggable="true"
+                    :data.sync="WTree.option.items"
+                    :dgTextDisabled="'禁止拖曳至自己子節點當中'"
+                    :dgTextDisabledColor="'pink accent-3'"
+                    :dgTextDisabledPaddingLeft="13"
+                    :dgTextDisabledFontSize="'0.8rem'"
+                    :dgTextDisabledBackgroundColor="'rgba(255,255,255,0.8)'"
+                ></w-tree>
+
+            </div>
+
+
+            <div class="bk dz">
+                <demolink
+                    :kbname="'w-tree'"
                     :casename="'paddingStyle'"
                 ></demolink>
 
@@ -150,7 +203,7 @@
             <div class="bk dz">
                 <demolink
                     :kbname="'w-tree'"
-                    :casename="'mouseenter & mouseleave & click & render'"
+                    :casename="'mouseenter & mouseleave & click & change-view-items'"
                 ></demolink>
 
                 <w-tree
@@ -159,7 +212,7 @@
                     @mouseenter="mouseenter"
                     @mouseleave="mouseleave"
                     @click="click"
-                    @render="render"
+                    @change-view-items="changeViewItems"
                 ></w-tree>
 
             </div>
@@ -245,6 +298,133 @@
                             :data="WTree.option.items"
                             :selectable="true"
                             :selections.sync="WTree.option.selections"
+                            @update:selections="changeSections"
+                        ></w-tree>
+                    </div>
+
+                    <div style="display:table-cell; vertical-align:top;">
+                        <!-- 用:style才能支援IE11因vue會自動把overflow-y:auto轉為-ms-overflow-y:auto -->
+                        <div :style="'padding:10px 20px; height:402px; overflow-y:auto; border:1px solid #ddd; border-left-width:0px;'">
+                            <div style="margin-bottom:5px;">selections: </div>
+                            <pre style="font-size:0.7rem;">{{JSON.stringify(showSelection(WTree.option.selections),null,4)}}</pre>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="bk" style="display:block; margin:0px 10px 0px 0px;">
+                <demolink
+                    :kbname="'w-tree'"
+                    :casename="'slot & selectable'"
+                ></demolink>
+
+                <!-- 用:style才能支援IE11因vue會自動把overflow-x:auto轉為-ms-overflow-x:auto -->
+                <div :style="'overflow-x:auto;'">
+
+                    <div style="display:table-cell; vertical-align:top;">
+                        <w-tree
+                            style="width:500px; border:1px solid #ddd;"
+                            :data="WTree.option.items"
+                            :selectable="true"
+                            :selections.sync="WTree.option.selections"
+                            @update:selections="changeSections"
+                        >
+                            <template v-slot:item="props">
+                                <div style="display:flex;">
+
+                                    <div style="display:flex; align-items:center; padding-right:5px;" v-if="props.data.avatar">
+                                        <img style="border-radius:50%; width:24px; height:24px;" :src="props.data.avatar" />
+                                    </div>
+
+                                    <div style="display:flex; align-items:center; padding-right:5px;" v-if="props.data.icon">
+                                        <v-icon size="18" color="deep-orange">{{props.data.icon}}</v-icon>
+                                    </div>
+
+                                    <div style="padding:5px 0px;">
+                                        <div style="display:flex; align-items:center;">
+                                            <div style="margin-right:7px;">
+                                                {{props.data.text}}
+                                                <div style="display:inline-block; color:#26f; font-size:0.7rem;">[id:{{props.data.id}}]</div>
+                                            </div>
+                                            <div style="padding:0px 9px; font-size:0.7rem; color:#fff; border-radius:30px; background:#f26;" v-if="props.data.key">{{props.data.key}}</div>
+                                        </div>
+                                        <div style="padding-right:20px;" v-if="props.data.msg">
+                                            <div style="font-size:0.7rem; color:#999; text-indent:1rem; padding:12px 18px; background:#fefafa;">{{props.data.msg}}</div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </template>
+                        </w-tree>
+                    </div>
+
+                    <div style="display:table-cell; vertical-align:top;">
+                        <!-- 用:style才能支援IE11因vue會自動把overflow-y:auto轉為-ms-overflow-y:auto -->
+                        <div :style="'padding:10px 20px; height:402px; overflow-y:auto; border:1px solid #ddd; border-left-width:0px;'">
+                            <div style="margin-bottom:5px;">selections: </div>
+                            <pre style="font-size:0.7rem;">{{JSON.stringify(showSelection(WTree.option.selections),null,4)}}</pre>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="bk" style="display:block; margin:0px 10px 0px 0px;">
+                <demolink
+                    :kbname="'w-tree'"
+                    :casename="'selectable & draggable'"
+                ></demolink>
+
+                <!-- 用:style才能支援IE11因vue會自動把overflow-x:auto轉為-ms-overflow-x:auto -->
+                <div :style="'overflow-x:auto;'">
+
+                    <div style="display:table-cell; vertical-align:top;">
+                        <w-tree
+                            style="width:500px; border:1px solid #ddd;"
+                            :draggable="true"
+                            :data.sync="WTree.option.items"
+                            :selectable="true"
+                            :selections.sync="WTree.option.selections"
+                            @update:selections="changeSections"
+                        ></w-tree>
+                    </div>
+
+                    <div style="display:table-cell; vertical-align:top;">
+                        <!-- 用:style才能支援IE11因vue會自動把overflow-y:auto轉為-ms-overflow-y:auto -->
+                        <div :style="'padding:10px 20px; height:402px; overflow-y:auto; border:1px solid #ddd; border-left-width:0px;'">
+                            <div style="margin-bottom:5px;">selections: </div>
+                            <pre style="font-size:0.7rem;">{{JSON.stringify(showSelection(WTree.option.selections),null,4)}}</pre>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="bk" style="display:block; margin:0px 10px 0px 0px;">
+                <demolink
+                    :kbname="'w-tree'"
+                    :casename="'slot & selectable & draggable'"
+                ></demolink>
+
+                <!-- 用:style才能支援IE11因vue會自動把overflow-x:auto轉為-ms-overflow-x:auto -->
+                <div :style="'overflow-x:auto;'">
+
+                    <div style="display:table-cell; vertical-align:top;">
+                        <w-tree
+                            style="width:500px; border:1px solid #ddd;"
+                            :draggable="true"
+                            :data.sync="WTree.option.items"
+                            :selectable="true"
+                            :selections.sync="WTree.option.selections"
+                            @update:selections="changeSections"
                         >
                             <template v-slot:item="props">
                                 <div style="display:flex;">
@@ -314,6 +494,7 @@
                             :selections.sync="WTree.option.selections"
                             :filterKeywords="WTree.option.keywords"
                             :searchEmpty="'There are no items to show...'"
+                            @update:selections="changeSections"
                         >
                             <template v-slot:item="props">
                                 <div style="display:flex;">
@@ -361,7 +542,7 @@
             <div class="bk" style="display:block; margin:0px 10px 0px 0px;">
                 <demolink
                     :kbname="'w-tree'"
-                    :casename="'locked & selectable'"
+                    :casename="'slot & locked & selectable'"
                 ></demolink>
 
                 <!-- 用:style才能支援IE11因vue會自動把overflow-x:auto轉為-ms-overflow-x:auto -->
@@ -374,6 +555,7 @@
                             :selectable="true"
                             :selections.sync="WTree.optionLocked.selections"
                             :locked="'locked'"
+                            @update:selections="changeSections"
                         >
                             <template v-slot:item="props">
                                 <div style="display:flex;">
@@ -421,7 +603,7 @@
             <div class="bk" style="display:block; margin:0px 10px 0px 0px;">
                 <demolink
                     :kbname="'w-tree'"
-                    :casename="'iconUncheckedColor & iconUncheckedDisabledColor & iconCheckedColor & iconCheckedDisabledColor & iconCheckedPartiallyColor & iconCheckedPartiallyDisabledColor & locked & selectable'"
+                    :casename="'slot & iconUncheckedColor & iconUncheckedDisabledColor & iconCheckedColor & iconCheckedDisabledColor & iconCheckedPartiallyColor & iconCheckedPartiallyDisabledColor & locked & selectable'"
                 ></demolink>
 
                 <!-- 用:style才能支援IE11因vue會自動把overflow-x:auto轉為-ms-overflow-x:auto -->
@@ -440,6 +622,7 @@
                             :iconCheckedDisabledColor="'orange lighten-4'"
                             :iconCheckedPartiallyColor="'orange lighten-2'"
                             :iconCheckedPartiallyDisabledColor="'orange lighten-4'"
+                            @update:selections="changeSections"
                         >
                             <template v-slot:item="props">
                                 <div style="display:flex;">
@@ -487,7 +670,7 @@
             <div class="bk" style="display:block; margin:0px 10px 0px 0px;">
                 <demolink
                     :kbname="'w-tree'"
-                    :casename="'large data (100,000 items)'"
+                    :casename="'selectable & large data (100,000 items)'"
                 ></demolink>
 
                 <!-- 用:style才能支援IE11因vue會自動把overflow-x:auto轉為-ms-overflow-x:auto -->
@@ -499,6 +682,7 @@
                             :data="WTree.optionLarge.items"
                             :selectable="true"
                             :selections.sync="WTree.optionLarge.selections"
+                            @update:selections="changeSections"
                         >
                             <template v-slot:item="props">
                                 <div style="height:100%; display:flex; align-items:center;">
@@ -941,8 +1125,11 @@ export default {
         click: function(msg) {
             console.log('click', msg)
         },
-        render: function(msg) {
-            console.log('render', msg)
+        changeSections: function(msg) {
+            console.log('changeSections', msg)
+        },
+        changeViewItems: function(msg) {
+            console.log('changeViewItems', msg)
         },
         mouseenter: function(msg) {
             console.log('mouseenter', msg)

@@ -669,7 +669,7 @@ export default {
         },
 
         triggerEvent: function(from) {
-            //console.log('methods triggerEvent', from)
+            // console.log('methods triggerEvent', from)
 
             let vo = this
 

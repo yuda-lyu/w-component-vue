@@ -56,7 +56,6 @@ import WTimeminuteRange from './WTimeminuteRange.vue'
 import WTimeminuteRangeCore from './WTimeminuteRangeCore.vue'
 import WTinymceVueDyn from './WTinymceVueDyn.vue'
 import WTree from './WTree.vue'
-import WTreeDraggable from './WTreeDraggable.vue'
 import WTreeIconCheckbox from './WTreeIconCheckbox.vue'
 import WTreeIconToggle from './WTreeIconToggle.vue'
 
@@ -119,7 +118,6 @@ let WComponentVue = {
         Vue.component('w-timeminute-range-core', WTimeminuteRangeCore)
         Vue.component('w-tinymce-vue-dyn', WTinymceVueDyn)
         Vue.component('w-tree', WTree)
-        Vue.component('w-tree-draggable', WTreeDraggable)
         Vue.component('w-tree-icon-checkbox', WTreeIconCheckbox)
         Vue.component('w-tree-icon-toggle', WTreeIconToggle)
     }

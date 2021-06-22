@@ -1,97 +1,136 @@
 <template>
-    <WDynamicList
-        ref="wdl"
-        :viewHeightMax="viewHeightMax"
-        :itemMinHeight="defItemHeight"
-        :itemsPreload="itemsPreload"
-        :searchEmpty="searchEmpty"
-        :separatorHeight="separatorHeight"
-        :separatorColor="separatorColor"
-        :show="show"
-        @render="(msg)=>{$emit('render',msg)}"
-        :changeSelection="changeSelection"
+    <div
+        style="position:relative;"
+        :changeDefaultDisplayLevel="changeDefaultDisplayLevel"
+        :changeDraggable="changeDraggable"
         :changeFilterKeyWords="changeFilterKeyWords"
     >
-        <template v-slot="props">
 
-            <!-- 記得要:key使各div都是可識別元素, 避免捲動時不同方向圖標因transition而會有微轉動問題 -->
-            <!-- wdl template內第1層元素高度需設定min-height不能用height, 因會偵測此元素高度來按需顯示, 用height會導致元素高度被寫死無法由slot撐開 -->
-            <div
-                :key="`wt-${props.index}`"
-                :style="`min-height:${iconHeight}px;`"
-                @mouseenter="(e)=>{$emit('mouseenter',getEmitData(e,props))}"
-                @mouseleave="(e)=>{$emit('mouseleave',getEmitData(e,props))}"
-                @click="(e)=>{$emit('click',getEmitData(e,props))}"
-            >
-                <div :style="`display:table; ${usePadding}`">
-                    <!-- 各元素需使用padding撐開寬度避免被壓縮 -->
+        <WDynamicList
+            ref="wdl"
+            :viewHeightMax="viewHeightMax"
+            :itemMinHeight="defItemHeight"
+            :itemsPreload="itemsPreload"
+            :searchEmpty="searchEmpty"
+            :separatorHeight="separatorHeight"
+            :separatorColor="separatorColor"
+            :show="show"
+            @change-view-items="changeViewItems"
+        >
+            <template v-slot="props">
 
-                    <div :style="`display:table-cell; vertical-align:top; padding-right:${getLevel(props.row)*useIndent}px;`"></div>
+                <!-- 記得要:key使各div都是可識別元素, 避免捲動時不同方向圖標因transition而會有微轉動問題 -->
+                <!-- wdl template內第1層元素高度需設定min-height不能用height, 因會偵測此元素高度來按需顯示, 用height會導致元素高度被寫死無法由slot撐開 -->
+                <div
+                    :key="`wt-${props.index}`"
+                    :style="`min-height:${iconHeight}px; ${draggable?'user-select:none;':''}`"
+                    dragtag
+                    :dragindex="props.index"
+                    @mouseenter="(e)=>{$emit('mouseenter',getEmitData(e,props))}"
+                    @mouseleave="(e)=>{$emit('mouseleave',getEmitData(e,props))}"
+                    @click="(e)=>{$emit('click',getEmitData(e,props))}"
+                >
+                    <div :style="`display:table; ${usePadding}`">
+                        <!-- 各元素需使用padding撐開寬度避免被壓縮 -->
 
-                    <div :style="`display:table-cell; vertical-align:top; padding-right:${separation}px;`"></div>
+                        <div :style="`display:table-cell; vertical-align:top; padding-right:${getLevel(props.row)*useIndent}px;`"></div>
 
-                    <div :style="`display:table-cell; vertical-align:top; padding:0px ${separation}px;`">
-                        <WTreeIconToggle
-                            :style="`width:24px; height:${iconHeight}px;`"
-                            :dir="`${props.row.unfolding?'bottom':'right'}`"
-                            :iconColor="iconToggleColor"
-                            :iconBackgroundColor="iconToggleBackgroundColor"
-                            :iconBackgroundColorHover="iconToggleBackgroundColorHover"
-                            @click.stop="toggleItems(props.row)"
-                             v-if="hasChildren(props.index)"
-                        ></WTreeIconToggle>
-                        <div style="padding-right:24px;" v-else></div>
+                        <div :style="`display:table-cell; vertical-align:top; padding-right:${separation}px;`"></div>
+
+                        <div :style="`display:table-cell; vertical-align:top; padding:0px ${separation}px;`">
+                            <WTreeIconToggle
+                                :style="`width:24px; height:${iconHeight}px;`"
+                                :dir="`${props.row.unfolding?'bottom':'right'}`"
+                                :iconColor="iconToggleColor"
+                                :iconBackgroundColor="iconToggleBackgroundColor"
+                                :iconBackgroundColorHover="iconToggleBackgroundColorHover"
+                                @click.stop="toggleItems(props.row)"
+                                v-if="hasChildren(props.index)"
+                            ></WTreeIconToggle>
+                            <div style="padding-right:24px;" v-else></div>
+                        </div>
+
+                        <!-- 因顯隱圖標比較小而勾選圖標比較大, 讓separation全灌到padding-right處使排版比較均勻 -->
+                        <div :style="`display:table-cell; vertical-align:top; padding:0px ${2*separation}px 0px 0px;`" v-if="selectable">
+                            <WTreeIconCheckbox
+                                :style="`height:${iconHeight}px;`"
+                                :mode="props.row.checked"
+                                :editable="getEditable(props.row.item)"
+                                :uncheckedColor="iconUncheckedColor"
+                                :uncheckedDisabledColor="iconUncheckedDisabledColor"
+                                :checkedColor="iconCheckedColor"
+                                :checkedDisabledColor="iconCheckedDisabledColor"
+                                :checkedPartiallyColor="iconCheckedPartiallyColor"
+                                :checkedPartiallyDisabledColor="iconCheckedPartiallyDisabledColor"
+                                @click="checkItems(props.row)"
+                            ></WTreeIconCheckbox>
+                        </div>
+
+                        <!-- 給予width:100%使slot區可自動展開寬度至組件寬 -->
+                        <div :style="`display:table-cell; vertical-align:top; height:${iconHeight}px; width:100%;`">
+
+                            <slot
+                                name="item"
+                                :data="props.row.item"
+                                :index="props.index"
+                            >
+                                <div :style="`height:${iconHeight}px; display:flex; align-items:center;`">
+                                    {{getText(props.row.item)}}
+                                </div>
+                            </slot>
+
+                        </div>
+
                     </div>
-
-                    <!-- 因顯隱圖標比較小而勾選圖標比較大, 讓separation全灌到padding-right處使排版比較均勻 -->
-                    <div :style="`display:table-cell; vertical-align:top; padding:0px ${2*separation}px 0px 0px;`" v-if="selectable">
-                        <WTreeIconCheckbox
-                            :style="`height:${iconHeight}px;`"
-                            :mode="props.row.checked"
-                            :editable="getEditable(props.row.item)"
-                            :uncheckedColor="iconUncheckedColor"
-                            :uncheckedDisabledColor="iconUncheckedDisabledColor"
-                            :checkedColor="iconCheckedColor"
-                            :checkedDisabledColor="iconCheckedDisabledColor"
-                            :checkedPartiallyColor="iconCheckedPartiallyColor"
-                            :checkedPartiallyDisabledColor="iconCheckedPartiallyDisabledColor"
-                            @click="checkItems(props.row)"
-                        ></WTreeIconCheckbox>
-                    </div>
-
-                    <!-- 給予width:100%使slot區可自動展開寬度至組件寬 -->
-                    <div :style="`display:table-cell; vertical-align:top; height:${iconHeight}px; width:100%;`">
-
-                        <slot
-                            name="item"
-                            :data="props.row.item"
-                            :index="props.index"
-                        >
-                            <div :style="`height:${iconHeight}px; display:flex; align-items:center;`">
-                                {{getText(props.row.item)}}
-                            </div>
-                        </slot>
-
-                    </div>
-
                 </div>
-            </div>
 
-        </template>
-    </WDynamicList>
+            </template>
+        </WDynamicList>
+
+        <div
+            :style="`position:absolute; z-index:9999; pointer-events:none; left:${dgTipLeft}px; top:${dgTipTop}px;`"
+            :msg="`需使用pointer-events:none;禁用事件, 避免拖曳時因接觸此元素時出現enter與leave`"
+            v-if="dgTipMode!==''"
+        >
+            <template v-if="dgTipMode==='lineTop'">
+                <div :style="`display:inline-block; width:${dgTipWidth}px; height:${dgTipHeight}px; background-color:${useDgInsertBackgroundColor}; border-top:1px solid ${useDgInsertLineColor};`"></div>
+            </template>
+            <template v-else-if="dgTipMode==='lineBottom'">
+                <div :style="`display:inline-block; width:${dgTipWidth}px; height:${dgTipHeight}px; background-color:${useDgInsertBackgroundColor}; border-bottom:1px solid ${useDgInsertLineColor};`"></div>
+            </template>
+            <template v-else-if="dgTipMode==='block'">
+                <div :style="`display:inline-block; width:${dgTipWidth}px; height:${dgTipHeight}px; background-color:${uesDgBelongBackgroundColor};`"></div>
+            </template>
+            <template v-else-if="dgTipMode==='disabled'">
+                <div :style="`display:inline-block; width:${dgTipWidth}px; height:${dgTipHeight}px; background-color:${useDgTextDisabledBackgroundColor};`">
+                    <div :style="`height:${dgTipHeight}px; display:flex; align-items:center;`">
+                        <div :style="`color:${useDgTextDisabledColor}; padding-left:${dgTextDisabledPaddingLeft}px; font-size:${dgTextDisabledFontSize};`">
+                            {{dgTextDisabled}}
+                        </div>
+                    </div>
+                </div>
+            </template>
+        </div>
+
+    </div>
 </template>
 
 <script>
 import each from 'lodash/each'
 import get from 'lodash/get'
+import set from 'lodash/set'
 import map from 'lodash/map'
 import join from 'lodash/join'
+import min from 'lodash/min'
+import take from 'lodash/take'
+import takeRight from 'lodash/takeRight'
 import find from 'lodash/find'
 import size from 'lodash/size'
 import isEqual from 'lodash/isEqual'
 import isNumber from 'lodash/isNumber'
 import reverse from 'lodash/reverse'
 import remove from 'lodash/remove'
+import pullAt from 'lodash/pullAt'
 import cloneDeep from 'lodash/cloneDeep'
 import isInteger from 'lodash/isInteger'
 import dropRight from 'lodash/dropRight'
@@ -101,12 +140,16 @@ import isarr from 'wsemi/src/isarr.mjs'
 import isobj from 'wsemi/src/isobj.mjs'
 import isfun from 'wsemi/src/isfun.mjs'
 import cint from 'wsemi/src/cint.mjs'
+import cdbl from 'wsemi/src/cdbl.mjs'
+import replace from 'wsemi/src/replace.mjs'
 import haskey from 'wsemi/src/haskey.mjs'
 import waitFun from 'wsemi/src/waitFun.mjs'
 import debounce from 'wsemi/src/debounce.mjs'
+import domDrag from 'wsemi/src/domDrag.mjs'
 import flattenTreeObj from 'wsemi/src/flattenTreeObj'
 import globalMemory from '../js/globalMemory.mjs'
 import parseSpace from '../js/parseSpace.mjs'
+import color2hex from '../js/vuetifyColor.mjs'
 import WDynamicList from './WDynamicList.vue'
 import WTreeIconToggle from './WTreeIconToggle.vue'
 import WTreeIconCheckbox from './WTreeIconCheckbox.vue'
@@ -125,7 +168,7 @@ let gm = globalMemory()
  * @vue-prop {String} [keyPrimary='id'] 輸入可選項目為物件時，主鍵之欄位字串，預設'id'
  * @vue-prop {String} [keyText='text'] 輸入可選項目為物件時，顯示文字之欄位字串，預設'text'
  * @vue-prop {String} [keyChildren='children'] 輸入可選項目為物件時，所屬子項目之欄位字串，預設'children'
- * @vue-prop {String} [keyLock='locked'] 輸入可選項目為物件時，禁止勾選之欄位字串，預設'locked'
+ * @vue-prop {String} [keyLock='locked'] 輸入可選項目為物件時，禁止勾選之欄位字串，物件給予此欄位需為布林值，預設'locked'
  * @vue-prop {Object} [paddingStyle={v:0,h:0}] 輸入內寬距離物件，可用鍵值為v、h、left、right、top、bottom，v代表同時設定top與bottom，h代表設定left與right，若有重複設定時後面鍵值會覆蓋前面，各鍵值為寬度數字，單位為px，預設{v:0,h:0}
  * @vue-prop {Number} [indent=1] 輸入縮排比率數字，若使用1就是1倍的圖標寬度(24px)+2*separation(3px)，預設1
  * @vue-prop {String} [iconToggleColor='grey'] 輸入顯隱icon按鈕顏色字串，預設'grey'
@@ -144,6 +187,15 @@ let gm = globalMemory()
  * @vue-prop {Number} [itemsPreload=5] 輸入上下方預先載入元素數量，預設5
  * @vue-prop {Number} [separatorHeight=1] 輸入分隔線高度數字，預設1
  * @vue-prop {String} [separatorColor='transparent'] 輸入分隔線顏色字串，預設'transparent'
+ * @vue-prop {Boolean} [draggable=false] 輸入是否為可拖曳編輯模式，若draggable設定true，此時defaultDisplayLevel強制設定為null，代表所有節點皆為展開顯示，且禁止顯隱節點功能，適用小規模數據。draggable預設false
+ * @vue-prop {String} [dgTextDisabled='Can not drop here'] 輸入禁止拖曳文字字串，預設'Can not drop here'
+ * @vue-prop {String} [dgTextDisabledColor='#812'] 輸入禁止拖曳文字顏色字串，預設'#812'
+ * @vue-prop {Number} [dgTextDisabledPaddingLeft=15] 輸入禁止拖曳padding-left數字，單位px，預設15
+ * @vue-prop {String} [dgTextDisabledFontSize='0.9rem'] 輸入禁止拖曳文字大小字串，預設'0.9rem'
+ * @vue-prop {String} [dgTextDisabledBackgroundColor='rgba(255,220,240,0.6)'] 輸入禁止拖曳文字區背景顏色字串，預設'rgba(255,220,240,0.6)'
+ * @vue-prop {String} [dgInsertLineColor='#29f'] 輸入拖曳時顯示插入區域線顏色字串，預設'#29f'
+ * @vue-prop {String} [dgInsertBackgroundColor='rgba(80,150,255,0.15)'] 輸入拖曳時顯示插入區域背景顏色字串，預設'rgba(80,150,255,0.15)'
+ * @vue-prop {String} [dgBelongBackgroundColor='rgba(80,150,255,0.3)'] 輸入拖曳時顯示插入區域(成為目標的子節點)背景顏色字串，預設'rgba(80,150,255,0.3)'
  * @vue-prop {Boolean} [show=true] 輸入是否為顯示模式，預設true，供組件嵌入popup時, 因先初始化但尚未顯示不需渲染, 可給予show=false避免無限偵測與重算高度問題
  */
 export default {
@@ -266,6 +318,42 @@ export default {
             type: String,
             default: 'transparent',
         },
+        draggable: {
+            type: Boolean,
+            default: false,
+        },
+        dgTextDisabled: {
+            type: String,
+            default: 'Can not drop here', //禁止拖曳至自己子節點當中
+        },
+        dgTextDisabledColor: {
+            type: String,
+            default: '#812',
+        },
+        dgTextDisabledPaddingLeft: {
+            type: Number,
+            default: 15,
+        },
+        dgTextDisabledFontSize: {
+            type: String,
+            default: '0.9rem',
+        },
+        dgTextDisabledBackgroundColor: {
+            type: String,
+            default: 'rgba(255,220,240,0.6)',
+        },
+        dgInsertLineColor: {
+            type: String,
+            default: '#29f',
+        },
+        dgInsertBackgroundColor: {
+            type: String,
+            default: 'rgba(80,150,255,0.15)',
+        },
+        dgBelongBackgroundColor: {
+            type: String,
+            default: 'rgba(80,150,255,0.3)',
+        },
         show: {
             type: Boolean,
             default: true,
@@ -275,11 +363,22 @@ export default {
         return {
             dbc: debounce(),
             mmkey: null,
+
             separation: 3,
             iconHeight: 34,
             selectionsTrans: [],
             filterKeywordsTemp: '', //上次過濾關鍵字
             filtering: false, //是否過濾中
+
+            defaultDisplayLevelTrans: null,
+
+            drag: null,
+            dgTipMode: '',
+            dgTipLeft: 0,
+            dgTipTop: 0,
+            dgTipWidth: 0,
+            dgTipHeight: 0,
+
         }
     },
     beforeDestroy: function() {
@@ -291,6 +390,9 @@ export default {
         if (vo.mmkey !== null) {
             gm.remove(vo.mmkey)
         }
+
+        //dragClear
+        vo.dragClear()
 
     },
     watch: {
@@ -312,18 +414,30 @@ export default {
     },
     computed: {
 
-        changeSelection: function() {
-            //console.log('computed changeSelection')
+        changeDefaultDisplayLevel: function() {
+            //console.log('computed changeDefaultDisplayLevel')
 
             let vo = this
 
-            //ss for trigger
-            let ss = vo.selections
+            //save
+            vo.defaultDisplayLevelTrans = vo.defaultDisplayLevel
 
-            //updateSelection
-            vo.updateSelection()
+            return ''
+        },
 
-            vo.___selections___ = ss
+        changeDraggable: function() {
+            //console.log('computed changeDraggable')
+
+            let vo = this
+
+            //trigger
+            let draggable = vo.draggable
+
+            //若draggable為true, 則defaultDisplayLevel只能強制為null
+            if (draggable) {
+                vo.defaultDisplayLevelTrans = null
+            }
+
             return ''
         },
 
@@ -364,6 +478,46 @@ export default {
             return padding
         },
 
+        useDgTextDisabledColor: function() {
+            //console.log('computed useDgTextDisabledColor')
+
+            let vo = this
+
+            return color2hex(vo.dgTextDisabledColor)
+        },
+
+        useDgTextDisabledBackgroundColor: function() {
+            //console.log('computed useDgTextDisabledBackgroundColor')
+
+            let vo = this
+
+            return color2hex(vo.dgTextDisabledBackgroundColor)
+        },
+
+        useDgInsertLineColor: function() {
+            //console.log('computed useDgInsertLineColor')
+
+            let vo = this
+
+            return color2hex(vo.dgInsertLineColor)
+        },
+
+        useDgInsertBackgroundColor: function() {
+            //console.log('computed useDgInsertBackgroundColor')
+
+            let vo = this
+
+            return color2hex(vo.dgInsertBackgroundColor)
+        },
+
+        uesDgBelongBackgroundColor: function() {
+            //console.log('computed uesDgBelongBackgroundColor')
+
+            let vo = this
+
+            return color2hex(vo.dgBelongBackgroundColor)
+        },
+
     },
     methods: {
 
@@ -375,8 +529,29 @@ export default {
             return { event: e, ele: e.currentTarget, row: props.row, item: props.row.item, index: props.index }
         },
 
+        getRowsFromData: function(data) {
+            //console.log('methods getRowsFromData', data)
+
+            let vo = this
+
+            //flattenTreeObj
+            let ts = flattenTreeObj(data, { bindKey: vo.keyPrimary, bindChildren: vo.keyChildren })
+
+            //rows, lodash使用new Array建構比for+push快
+            let rows = map(ts, (v, k) => {
+                return {
+                    index: k,
+                    unfolding: true, //bol, 是否展開顯示此節點
+                    checked: 'unchecked', //str, 節點勾選狀態, 'unchecked'代表未勾選, 'checked'代表已勾選, 'checkedPartially'代表部份勾選時(子節點任一有勾選但非全部勾選)
+                    item: v,
+                }
+            })
+
+            return rows
+        },
+
         setData: function(data) {
-            //console.log('methods setData', data)
+            // console.log('methods setData', data)
 
             let vo = this
 
@@ -406,18 +581,8 @@ export default {
                 //cloneDeep
                 data = cloneDeep(data)
 
-                //flattenTreeObj
-                let ts = flattenTreeObj(data, { bindKey: vo.keyPrimary, bindChildren: vo.keyChildren })
-
-                //rows, lodash使用new Array建構比for+push快
-                let rows = map(ts, (v, k) => {
-                    return {
-                        index: k,
-                        unfolding: true, //bol, 是否展開顯示此節點
-                        checked: 'unchecked', //str, 節點勾選狀態, 'unchecked'代表未勾選, 'checked'代表已勾選, 'checkedPartially'代表部份勾選時(子節點任一有勾選但非全部勾選)
-                        item: v,
-                    }
-                })
+                //getRowsFromData
+                let rows = vo.getRowsFromData(data)
 
                 //save
                 //vo.rows = rows
@@ -433,6 +598,9 @@ export default {
 
                 //defaultToggleItems
                 vo.defaultToggleItems()
+
+                //updateSelections
+                vo.updateSelections()
 
             }
 
@@ -456,28 +624,28 @@ export default {
             return !get(item, vo.keyLocked, false)
         },
 
-        updateSelection: function() {
-            //console.log('methods updateSelection')
+        updateSelections: function() {
+            // console.log('methods updateSelections')
 
             let vo = this
 
             async function core() {
                 let selectionsTrans = [] //由外部selections變更時, 直接由空的selectionsTrans進行重產
 
+                //check
+                if (!vo.selectable) {
+                    return
+                }
+
                 //wait wdl, 組件初始化時會先觸發computed才會有實體元素出現, 故得用waitFun等待
                 await waitFun(() => {
                     return vo.$refs.wdl !== undefined
                 }, { timeInterval: 20 })
 
-                //check
-                if (isEqual(vo.selectionsTrans, vo.selections)) {
-                    return
-                }
-
                 //opt
                 let opt = {
                     fun: function(items) {
-                        //console.log('items', cloneDeep(items))
+                        // console.log('items', cloneDeep(items))
 
                         //kpInd, 建立各item的速查表, 由keyPrimary直接取得項目位於items陣列內的指標
                         let kpInd = {}
@@ -488,7 +656,7 @@ export default {
 
                             //build kpInd
                             if (haskey(kpInd, pk)) {
-                                console.log(`Duplicate primary key[${vo.keyPrimary}] in items`, pk)
+                                throw new Error(`Duplicate primary key[${vo.keyPrimary}] in items`)
                             }
                             else {
                                 kpInd[pk] = ind
@@ -499,8 +667,11 @@ export default {
 
                         })
 
+                        //selections
+                        let selections = cloneDeep(vo.selections)
+
                         //each, 遍歷selections進行虛擬操作取得selectionsTrans
-                        each(cloneDeep(vo.selections), (v) => {
+                        each(selections, (v) => {
 
                             //pk
                             let pk = v[vo.keyPrimary]
@@ -539,7 +710,7 @@ export default {
                 vo.selectionsTrans = selectionsTrans
 
                 //emit, 要放在wdl更新後才觸發事件
-                vo.$emit('update:selections', cloneDeep(vo.selectionsTrans))
+                vo.$emit('update:selections', cloneDeep(selectionsTrans))
 
             }
 
@@ -807,7 +978,7 @@ export default {
             async function core() {
 
                 //check
-                if (!isNumber(vo.defaultDisplayLevel)) {
+                if (!isNumber(vo.defaultDisplayLevelTrans)) {
                     return
                 }
 
@@ -822,7 +993,7 @@ export default {
                         // console.log('items', cloneDeep(items))
 
                         //l, 有指定預先展開層數
-                        let l = cint(vo.defaultDisplayLevel)
+                        let l = cint(vo.defaultDisplayLevelTrans)
 
                         // toggleItemsCore
                         each(items, (v, k) => {
@@ -856,6 +1027,12 @@ export default {
 
                 //check
                 if (!vo.$refs.wdl) {
+                    return
+                }
+
+                //check
+                if (vo.draggable) {
+                    // console.log('禁止顯隱節點')
                     return
                 }
 
@@ -1222,7 +1399,7 @@ export default {
                 vo.selectionsTrans = selectionsTrans
 
                 //emit, 要放在wdl更新後才觸發事件
-                vo.$emit('update:selections', cloneDeep(vo.selectionsTrans))
+                vo.$emit('update:selections', cloneDeep(selectionsTrans))
 
             }
 
@@ -1277,7 +1454,7 @@ export default {
 
                         //預設取得項目文字供關鍵字過濾
                         let c = vo.getText(items[i].row.item)
-                        console.log('vo.getText', items[i].row.item, 'c=', c)
+                        // console.log('vo.getText', items[i].row.item, 'c=', c)
 
                         //toLowerCase
                         c = c.toLowerCase()
@@ -1390,6 +1567,355 @@ export default {
                 vo.filterKeyWords()
 
             })
+
+        },
+
+        changeViewItems: function(msg) {
+            // console.log('methods changeViewItems', msg)
+
+            let vo = this
+
+            //emit
+            vo.$emit('change-view-items', msg)
+
+            //draggable
+            if (vo.draggable) {
+
+                //$nextTick, 因WDynamicList為按需顯示, 為使domDrag能抓到元素, 需等WDynamicList內changeViewItems結束後dom才會更新, 故得延遲執行
+                vo.$nextTick(() => {
+
+                    //dragInit
+                    vo.dragInit()
+
+                })
+
+            }
+
+        },
+
+        dragInit: function() {
+            // console.log('methods dragInit')
+
+            let vo = this
+
+            function isBelong(arEnter, arSelf) {
+                function isArrayOverlap(ar1, ar2) {
+
+                    //n
+                    let n = min([size(ar1), size(ar2)])
+
+                    //先截成同長度陣列, 為共有父層資訊
+                    let tr1 = take(ar1, n)
+                    let tr2 = take(ar2, n)
+
+                    //isEqual
+                    let b = isEqual(tr1, tr2)
+
+                    return b
+                }
+                if (size(arEnter) >= size(arSelf)) { //若enter要為self的子節點, 其enter size會大於等於 self size
+                    return isArrayOverlap(arEnter, arSelf) //若有共同父層資訊, 就代表enter為self的子節點
+                }
+                return false
+            }
+
+            async function core() {
+
+                //check
+                if (!vo.draggable) {
+                    return
+                }
+
+                //wait $el
+                await waitFun(() => {
+                    return vo.$el !== undefined
+                })
+
+                //check
+                if (!vo.$refs.wdl) {
+                    return
+                }
+
+                //check
+                if (vo.drag !== null) {
+                    vo.dragClear()
+                }
+
+                //domDrag
+                let drag = domDrag(vo.$el, {
+                    attIndex: 'dragindex',
+                    attGroup: 'draggroup',
+                    selectors: '[dragtag]',
+                    // previewOpacity: 0.4,
+                    // previewBorderWidth: 2,
+                    // previewBorderColor: 'rgba(255,100,150,1)',
+                    // previewBackground: '#fff',
+                    previewOpacity: 1,
+                    previewBorderWidth: 0,
+                    previewBackground: 'transparent',
+                })
+                drag.on('change', (msg) => {
+                    // console.log('onchange', msg)
+                })
+                drag.on('move', (msg) => {
+                    // console.log('move', msg)
+
+                    //rows
+                    let rows = gm.get(vo.mmkey)
+                    // console.log('rows', JSON.parse(JSON.stringify(rows)))
+
+                    //itemSelf, itemEnter
+                    let itemSelf = rows[msg.startInd]
+                    let itemEnter = rows[msg.endInd]
+                    // console.log('itemSelf', itemSelf, msg.startInd, itemSelf.item.nk)
+                    // console.log('itemEnter', itemEnter, msg.endInd, itemEnter.item.nk)
+
+                    //belong
+                    let belong = isBelong(itemEnter.item.nk, itemSelf.item.nk)
+                    // console.log('belong', belong)
+
+                    //ele, 因WDynamicList會重新封裝按需顯示, 故顯示拖曳指標區為上2層的父節點, 取top才會正確
+                    let ele = get(msg, `endEle.parentNode.parentNode`)
+
+                    //location
+                    vo.dgTipTop = cdbl(replace(ele.style.top, 'px', ''))
+                    vo.dgTipLeft = cdbl(replace(ele.style.left, 'px', ''))
+                    vo.dgTipWidth = ele.offsetWidth
+                    vo.dgTipHeight = ele.offsetHeight
+
+                    //dgTipMode
+                    if (belong) {
+                        vo.dgTipMode = 'disabled'
+                    }
+                    else if (msg.ry <= 0.3) {
+                        vo.dgTipMode = 'lineTop'
+                    }
+                    else if (msg.ry >= 0.7) {
+                        vo.dgTipMode = 'lineBottom'
+                    }
+                    else if (msg.ry > 0.3 && msg.ry < 0.7) {
+                        vo.dgTipMode = 'block'
+                    }
+                    else {
+                        //不會有此狀況
+                        vo.dgTipMode = ''
+                    }
+
+                })
+                drag.on('enter', (msg) => {
+                    //console.log('enter', msg)
+                })
+                drag.on('leave', (msg) => {
+                    //console.log('leave', msg)
+                    vo.dgTipMode = ''
+                })
+                drag.on('drop', (msg) => {
+                    // console.log('ondrop', msg.startInd, msg.endInd)
+
+                    function deleteItem(data, nk) {
+                        //console.log('deleteItem', data, nk)
+                        //刪除節點, 因會使用nk操作, 故需確保節點順序問題
+
+
+                        if (size(nk) === 0) {
+                            throw new Error('invalid nk')
+                        }
+                        else if (size(nk) === 1) {
+
+                            //pullAt, 若節點為頂層(size(nk)===1)就不取父節點, data就是父節點
+                            pullAt(data, nk)
+
+                        }
+                        else {
+
+                            //ks, 當前節點的父節點的keys
+                            let ks = dropRight(nk)
+
+                            //ind, 當前節點位於父節點的指標
+                            let ind = takeRight(nk)
+
+                            //tar, 節點的父節點
+                            let tar = get(data, ks, [])
+
+                            //pullAt
+                            pullAt(tar, [ind])
+
+                        }
+
+                    }
+
+                    async function dropCore() {
+
+                        //check, 拖曳至原始拖曳項目上, 無有效拖曳模式
+                        if (msg.startInd === msg.endInd) {
+                            vo.dgTipMode = ''
+                            return
+                        }
+
+                        //modeDir
+                        let modeDir
+                        if (msg.startInd < msg.endInd) {
+                            modeDir = 'backward'
+                        }
+                        else if (msg.startInd > msg.endInd) {
+                            modeDir = 'forward'
+                        }
+                        else {
+                            throw new Error('invalid modeDir')
+                        }
+                        // console.log('modeDir', modeDir)
+
+                        //modeInsert
+                        let modeInsert
+                        if (vo.dgTipMode === 'disabled') {
+                            vo.dgTipMode = ''
+                        }
+                        else if (vo.dgTipMode === 'lineTop') {
+                            modeInsert = 'before'
+                        }
+                        else if (vo.dgTipMode === 'lineBottom') {
+                            modeInsert = 'after'
+                        }
+                        else if (vo.dgTipMode === 'block') {
+                            modeInsert = 'belongto'
+                        }
+                        else {
+                            throw new Error('invalid dgTipMode')
+                        }
+                        // console.log('modeInsert', modeInsert)
+
+                        //check, 純點擊時無move, 或拖曳至禁止對象內(通常是拖入自己子節點內)
+                        if (vo.dgTipMode === '') {
+                            return
+                        }
+
+                        //clear, 已由dgTipMode換算出modeInsert, 拖曳完需清除dgTipMode使拖曳時指示對象隱藏
+                        vo.dgTipMode = ''
+
+                        //rows
+                        let rows = gm.get(vo.mmkey)
+                        // console.log('rows', JSON.parse(JSON.stringify(rows)))
+
+                        //data
+                        let data = cloneDeep(vo.data)
+                        // console.log('data1', JSON.parse(JSON.stringify(data)))
+
+                        //itemSelf, itemEnter
+                        let itemSelf = rows[msg.startInd]
+                        let itemEnter = rows[msg.endInd]
+                        // console.log('itemSelf', msg.startInd, itemSelf)
+                        // console.log('itemEnter', msg.endInd, itemEnter)
+
+                        //src, 來源節點
+                        let nkSelf = itemSelf.item.nk
+                        let nkEnter = itemEnter.item.nk
+                        let dataSelf = get(data, itemSelf.item.nk)
+                        // let dataEnter = get(data, itemEnter.item.nk)
+                        // console.log('dataSelf', nkSelf, dataSelf)
+                        // console.log('dataEnter', nkEnter, dataEnter)
+
+                        //modeDir
+                        if (modeDir === 'forward') {
+                            //若為由後往前移動, 則需先刪除來源節點
+                            deleteItem(data, nkSelf)
+                            // console.log('data2', JSON.parse(JSON.stringify(data)))
+                        }
+
+                        if (modeInsert === 'before' || modeInsert === 'after') {
+
+                            //ind, 依照mode決定ind, before是直接splice對目標節點ind位置塞入, 就能把目標往後移動, after就需+1
+                            let ind = takeRight(nkEnter)[0]
+
+                            //tar, 目標的父節點, 待移入對象
+                            let tar
+                            if (size(nkEnter) === 1) {
+                                tar = data //因目標是第1層內元素, 故要取得的父節點就是原本數據
+                            }
+                            else {
+                                let ks = dropRight(nkEnter) //目標父節點的keys, dropRight後就是其上的keyChildren
+                                tar = get(data, ks, []) //取得要移入的父節點
+                            }
+
+                            if (modeInsert === 'before') {
+                                // ind = ind
+                            }
+                            else if (modeInsert === 'after') {
+                                ind += 1
+                            }
+
+                            //array insert
+                            tar.splice(ind, 0, dataSelf)
+
+                        }
+                        else if (modeInsert === 'belongto') {
+
+                            //ks, 所屬儲存子節點欄位, 也就是keyChildren
+                            let ks = [...nkEnter, vo.keyChildren]
+
+                            //tar, 取得子節點, 若無則預設空陣列[]
+                            let tar = get(data, ks, [])
+
+                            //push
+                            tar.push(dataSelf)
+
+                            //set
+                            set(data, ks, tar)
+
+                        }
+                        else {
+                            throw new Error('invalid modeInsert')
+                        }
+                        // console.log('data3', JSON.parse(JSON.stringify(data)))
+
+                        //modeDir
+                        if (modeDir === 'backward') {
+                            //若為由前往後移動, 則需於來源節點複製進目標節點處後, 才能刪除來源節點
+                            deleteItem(data, nkSelf)
+                            // console.log('data4', JSON.parse(JSON.stringify(data)))
+                        }
+
+                        //$nextTick
+                        vo.$nextTick(() => {
+
+                            //emit
+                            vo.$emit('update:data', cloneDeep(data))
+
+                        })
+
+                    }
+
+                    //dropCore
+                    dropCore()
+                        .catch(() => {})
+
+                })
+
+                //save
+                vo.drag = drag
+
+            }
+
+            //$nextTick, 因value變更時需驅動dom更新, 才能使domDrag抓到元素, 故需延遲執行
+            vo.$nextTick(() => {
+
+                //core
+                core()
+                    .catch(() => {})
+
+            })
+
+        },
+
+        dragClear: function() {
+            //console.log('methods dragClear')
+
+            let vo = this
+
+            //clear
+            if (vo.drag) {
+                vo.drag.clear()
+                vo.drag = null
+            }
 
         },
 

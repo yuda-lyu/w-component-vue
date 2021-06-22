@@ -85,7 +85,7 @@
     </script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.1.18/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.1.19/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -562,8 +562,11 @@
       click: function(msg) {
         console.log("click", msg);
       },
-      render: function(msg) {
-        console.log("render", msg);
+      changeSections: function(msg) {
+        console.log("changeSections", msg);
+      },
+      changeViewItems: function(msg) {
+        console.log("changeViewItems", msg);
       },
       mouseenter: function(msg) {
         console.log("mouseenter", msg);

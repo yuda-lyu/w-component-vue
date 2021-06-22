@@ -85,7 +85,7 @@
     </script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.1.18/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.1.19/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -138,15 +138,17 @@
             onclick="window.open('//yuda-lyu.github.io/w-component-vue/examples/app.html?cmp='+this.innerText,'_blank')"
         >w-tree</div>
         <div class="bk dz">
-            <div class="item">mouseenter & mouseleave & click & render</div>
+            <div
+                class="item"
+            >draggable & dgInsertLineColor & dgInsertBackgroundColor & dgBelongBackgroundColor</div>
 
             <w-tree
                 style="border:1px solid #ddd;"
-                :data="WTree.option.items"
-                @mouseenter="mouseenter"
-                @mouseleave="mouseleave"
-                @click="click"
-                @render="render"
+                :draggable="true"
+                :data.sync="WTree.option.items"
+                :dg-insert-line-color="'rgba(120,220,150,0.9)'"
+                :dg-insert-background-color="'rgba(50,220,100,0.1)'"
+                :dg-belong-background-color="'rgba(50,220,100,0.2)'"
             />
         </div>
     </v-app>
@@ -569,8 +571,11 @@
       click: function(msg) {
         console.log("click", msg);
       },
-      render: function(msg) {
-        console.log("render", msg);
+      changeSections: function(msg) {
+        console.log("changeSections", msg);
+      },
+      changeViewItems: function(msg) {
+        console.log("changeViewItems", msg);
       },
       mouseenter: function(msg) {
         console.log("mouseenter", msg);

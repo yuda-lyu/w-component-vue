@@ -47,6 +47,7 @@ import get from 'lodash/get'
 import map from 'lodash/map'
 import join from 'lodash/join'
 import values from 'lodash/values'
+import isEqual from 'lodash/isEqual'
 import size from 'lodash/size'
 import toString from 'lodash/toString'
 import cloneDeep from 'lodash/cloneDeep'
@@ -142,6 +143,8 @@ export default {
             filterKeywordsTemp: '', //上次過濾關鍵字
             itemsHeight: 0, //全部節點高度
             useItems: [], //實際需顯示節點陣列
+            emItemsTemp: [], //實際需顯示節點之指標陣列
+            iNochangeScrollInfor: 0, //觸發changeScrollInfor時但所到scrollInfor為同值之次數
         }
     },
     mounted: function() {
@@ -286,7 +289,7 @@ export default {
         },
 
         refreshCore: async function(from) {
-            //console.log('methods refreshCore', from)
+            // console.log('methods refreshCore', from)
 
             let vo = this
 
@@ -307,7 +310,7 @@ export default {
 
                 //check, 取得元素高度因文字換行會有來回變動問題, 需有強制跳出機制
                 if (n > limit) {
-                    console.log(`已重複refresh ${limit} 次, 強制跳出`)
+                    // console.log(`forced termination: call refreshCore ${limit} [from: ${from}]`)
                     pm.resolve(false)
                     return pm
                 }
@@ -454,8 +457,23 @@ export default {
             //偵測是否已有wdsDiv
             if (vo.$refs.wdsDiv) {
 
+                //emRows, emItems
+                let emRows = map(useItems, 'row')
+                let emItems = map(useItems, 'row.item')
+
                 //emit render
-                vo.$emit('render', { eles: vo.$refs.wdsDiv, rows: map(useItems, 'row'), items: map(useItems, 'row.item') })
+                vo.$emit('render', { eles: vo.$refs.wdsDiv, rows: emRows, items: emItems })
+
+                //check
+                if (!isEqual(vo.emItemsTemp, emItems)) {
+
+                    //emit change-view-items
+                    vo.$emit('change-view-items', { eles: vo.$refs.wdsDiv, rows: emRows, items: emItems })
+
+                    //save
+                    vo.emItemsTemp = emItems
+
+                }
 
             }
 
@@ -558,10 +576,19 @@ export default {
                 return
             }
 
-            // //check, 不能判斷scrollInfor是否相等, 因wsp會有resize觸發此事件, 會給出內部的scrollInfor與上次相同故為原值, 若檢查相同則離開將無法重算各動態項目高度
-            // if (isEqual(vo.scrollInfor, e)) {
-            //     return
-            // }
+            //check
+            //不能直接使用偵測scrollInfor是否相等, 因wsp會有resize觸發此事件, 會給出內部的scrollInfor與上次相同故為原值, 若檢查相同則離開將無法重算各動態項目高度
+            //仍有非預期行為會持續觸發changeScrollInfor, 且提供的scrollInfor相同, 故改採最大觸發限制
+            if (isEqual(vo.scrollInfor, e)) {
+                // console.log('isEqual(vo.scrollInfor, e)', e)
+                let limit = 3
+                vo.iNochangeScrollInfor += 1
+                if (vo.iNochangeScrollInfor >= limit) {
+                    // console.log(`forced termination: call changeScrollInfor ${limit}`)
+                    vo.iNochangeScrollInfor = 0
+                    return
+                }
+            }
 
             //check, 有上鎖時不能執行
             if (vo.processing) {
@@ -668,16 +695,16 @@ export default {
 
                 }
 
-                //refresh
+                //refreshCore
                 //要先變更changeDisplay才能呼叫refresh, 使內部能重算各顯示元素高度
-                //需先refresh才能呼叫resumeScrollRatio, 因需由前次scrollInforTemp重算最新的scrollInfor, 使點擊節點於顯隱節點後不會改變位置
+                //需先refreshCore才能呼叫resumeScrollRatio, 因需由前次scrollInforTemp重算最新的scrollInfor, 使點擊節點於顯隱節點後不會改變位置
                 await vo.refreshCore('processItems')
 
                 //resumeScrollRatio
                 vo.resumeScrollRatio()
 
                 //triggerEvent
-                vo.triggerEvent(null)
+                vo.triggerEvent('processItems')
 
                 //unluck
                 vo.processing = false

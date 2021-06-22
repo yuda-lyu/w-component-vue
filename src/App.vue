@@ -228,11 +228,6 @@
             ></AppZoneWTimeminuteRange>
 
 
-            <AppZoneWTreeDraggable
-                v-if="useCmpName==='WTreeDraggable'"
-            ></AppZoneWTreeDraggable>
-
-
             <AppZoneWDynamicList
                 v-if="useCmpName==='WDynamicList'"
             ></AppZoneWDynamicList>
@@ -344,7 +339,6 @@ import AppZoneWTimeday from './AppZoneWTimeday.vue'
 import AppZoneWTimeminute from './AppZoneWTimeminute.vue'
 import AppZoneWTimedayRange from './AppZoneWTimedayRange.vue'
 import AppZoneWTimeminuteRange from './AppZoneWTimeminuteRange.vue'
-import AppZoneWTreeDraggable from './AppZoneWTreeDraggable.vue'
 import AppZoneWDynamicList from './AppZoneWDynamicList.vue'
 import AppZoneWJsonView from './AppZoneWJsonView.vue'
 import AppZoneWTree from './AppZoneWTree.vue'
@@ -392,7 +386,6 @@ export default {
         AppZoneWTimeminute,
         AppZoneWTimedayRange,
         AppZoneWTimeminuteRange,
-        AppZoneWTreeDraggable,
         AppZoneWDynamicList,
         AppZoneWJsonView,
         AppZoneWTree,
@@ -480,7 +473,6 @@ export default {
                     cmps: [
                         { name: 'WJsonView' },
                         { name: 'WTree' },
-                        { name: 'WTreeDraggable' },
 
                     ]
                 },

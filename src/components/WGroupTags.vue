@@ -4,7 +4,7 @@
         :changeDraggable="changeDraggable"
     >
 
-        <transition-group name="list-complete">
+        <transition-group>
             <template v-for="(item,kitem) in itemsTrans">
 
                 <div
@@ -918,15 +918,5 @@ export default {
 <style scoped>
 .WGroupTags-Trans { /* transition-group必須使用class */
     transition: all 0.5s;
-}
-.list-complete-item {
-    transition: all 0.5s;
-}
-.list-complete-enter, .list-complete-leave-to {
-    opacity: 0;
-    transform: translateY(30px);
-}
-.list-complete-leave-active {
-    position: absolute;
 }
 </style>
