@@ -138,12 +138,18 @@
             onclick="window.open('//yuda-lyu.github.io/w-component-vue/examples/app.html?cmp='+this.innerText,'_blank')"
         >w-tree</div>
         <div class="bk dz">
-            <div class="item">paddingStyle</div>
+            <div
+                class="item"
+            >draggable & dgPreviewOpacity & dgPreviewBorderWidth & dgBelongBackgroundColor</div>
 
             <w-tree
                 style="border:1px solid #ddd;"
-                :padding-style="{v:5,h:5}"
-                :data="WTree.option.items"
+                :draggable="true"
+                :data.sync="WTree.option.items"
+                :dg-preview-opacity="0.9"
+                :dg-preview-border-width="3"
+                :dg-preview-border-color="'rgba(255,100,200,1)'"
+                :dg-preview-background="'rgba(255,100,200,0.2)'"
             />
         </div>
     </v-app>
