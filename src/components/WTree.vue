@@ -196,6 +196,10 @@ let gm = globalMemory()
  * @vue-prop {String} [dgInsertLineColor='#29f'] 輸入拖曳時顯示插入區域線顏色字串，預設'#29f'
  * @vue-prop {String} [dgInsertBackgroundColor='rgba(80,150,255,0.15)'] 輸入拖曳時顯示插入區域背景顏色字串，預設'rgba(80,150,255,0.15)'
  * @vue-prop {String} [dgBelongBackgroundColor='rgba(80,150,255,0.3)'] 輸入拖曳時顯示插入區域(成為目標的子節點)背景顏色字串，預設'rgba(80,150,255,0.3)'
+ * @vue-prop {Number} [dgPreviewOpacity=1] 輸入拖曳時顯示標記元素透明度數字，預設1
+ * @vue-prop {Number} [dgPreviewBorderWidth=0] 輸入拖曳時顯示標記元素邊框寬度數字，預設0
+ * @vue-prop {String} [dgPreviewBorderColor='#f26'] 輸入拖曳時顯示標記元素邊框顏色字串，預設'#f26'
+ * @vue-prop {String} [dgPreviewBackground='transparent'] 輸入拖曳時顯示標記元素背景顏色字串，預設'transparent'
  * @vue-prop {Boolean} [show=true] 輸入是否為顯示模式，預設true，供組件嵌入popup時, 因先初始化但尚未顯示不需渲染, 可給予show=false避免無限偵測與重算高度問題
  */
 export default {
@@ -353,6 +357,22 @@ export default {
         dgBelongBackgroundColor: {
             type: String,
             default: 'rgba(80,150,255,0.3)',
+        },
+        dgPreviewOpacity: {
+            type: Number,
+            default: 1,
+        },
+        dgPreviewBorderWidth: {
+            type: Number,
+            default: 0,
+        },
+        dgPreviewBorderColor: {
+            type: String,
+            default: '#f26',
+        },
+        dgPreviewBackground: {
+            type: String,
+            default: 'transparent',
         },
         show: {
             type: Boolean,
@@ -1647,12 +1667,13 @@ export default {
                     attGroup: 'draggroup',
                     selectors: '[dragtag]',
                     // previewOpacity: 0.4,
-                    // previewBorderWidth: 2,
-                    // previewBorderColor: 'rgba(255,100,150,1)',
+                    // previewBorderWidth: 1,
+                    // previewBorderColor: '#f26',
                     // previewBackground: '#fff',
-                    previewOpacity: 1,
-                    previewBorderWidth: 0,
-                    previewBackground: 'transparent',
+                    previewOpacity: vo.dgPreviewOpacity,
+                    previewBorderWidth: vo.dgPreviewBorderWidth,
+                    previewBorderColor: vo.dgPreviewBorderColor,
+                    previewBackground: vo.dgPreviewBackground,
                 })
                 drag.on('change', (msg) => {
                     // console.log('onchange', msg)

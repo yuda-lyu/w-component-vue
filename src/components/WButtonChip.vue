@@ -809,7 +809,6 @@ export default {
 
             //emit
             vo.$emit('click', msg)
-            console.log(`$emit('click', msg)`, msg)
 
         },
 

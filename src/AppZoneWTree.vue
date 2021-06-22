@@ -70,6 +70,25 @@
             <div class="bk dz">
                 <demolink
                     :kbname="'w-tree'"
+                    :casename="'draggable & dgPreviewOpacity & dgPreviewBorderWidth & dgBelongBackgroundColor'"
+                ></demolink>
+
+                <w-tree
+                    style="border:1px solid #ddd;"
+                    :draggable="true"
+                    :data.sync="WTree.option.items"
+                    :dgPreviewOpacity="0.9"
+                    :dgPreviewBorderWidth="3"
+                    :dgPreviewBorderColor="'rgba(255,100,200,1)'"
+                    :dgPreviewBackground="'rgba(255,100,200,0.2)'"
+                ></w-tree>
+
+            </div>
+
+
+            <div class="bk dz">
+                <demolink
+                    :kbname="'w-tree'"
                     :casename="'draggable & dgInsertLineColor & dgInsertBackgroundColor & dgBelongBackgroundColor'"
                 ></demolink>
 
