@@ -6,11 +6,16 @@
             :borderWidth="constBorderWidth"
             :borderRadius="borderRadius"
             :shadow="shadow"
-            :leftIcon="icon"
-            :leftIconColor="iconColor"
-            :leftIconColorHover="iconColorHover"
-            :leftIconColorFocus="iconColorFocus"
-            :leftIconTooltip="iconTooltip"
+            :leftIcon="leftIcon"
+            :leftIconColor="leftIconColor"
+            :leftIconColorHover="leftIconColorHover"
+            :leftIconColorFocus="leftIconColorFocus"
+            :leftIconTooltip="leftIconTooltip"
+            :rightIcon="rightIcon"
+            :rightIconColor="rightIconColor"
+            :rightIconColorHover="rightIconColorHover"
+            :rightIconColorFocus="rightIconColorFocus"
+            :rightIconTooltip="rightIconTooltip"
             :iconShiftOuter="iconShiftOuter"
             :iconShiftInner="iconShiftInner"
             :backgroundColor="backgroundColor"
@@ -22,6 +27,7 @@
             :editable="editable"
             :focused="focusedTrans"
             @click-left="$emit('click-left')"
+            @click-right="$emit('click-right')"
         >
 
             <div style="margin-right:-5px;">
@@ -37,6 +43,7 @@
                     :itemBackgroundColor="itemBackgroundColor"
                     :itemBackgroundColorHover="itemBackgroundColorHover"
                     :itemPaddingStyle="itemPaddingStyle"
+                    :rightIcon="showRotateIcon?undefined:''"
                     :distY="5"
                     :defItemHeight="defItemHeight"
                     :editable="editable"
@@ -100,11 +107,16 @@ import WTextSuggestCore from './WTextSuggestCore.vue'
  * @vue-prop {String} [itemBackgroundColor='white'] 輸入項目背景顏色字串，預設'white'
  * @vue-prop {String} [itemBackgroundColorHover='light-blue lighten-5'] 輸入項目背景Hover顏色字串，預設'light-blue lighten-5'
  * @vue-prop {Object} [itemPaddingStyle={v:12,h:16}] 輸入內寬距離設定物件，可用鍵值為v、h、left、right、top、bottom，v代表同時設定top與bottom，h代表設定left與right，若有重複設定時後面鍵值會覆蓋前面，各鍵值為寬度數字，單位為px，預設{v:12,h:16}
- * @vue-prop {String} [icon=''] 輸入框外左側圖標字串，可為mdi,md,fa代號或mdi/js路徑，預設''
- * @vue-prop {String} [iconColor='deep-orange lighten-2'] 輸入框外左側圖標顏色字串，預設'deep-orange lighten-2'
- * @vue-prop {String} [iconColorHover='deep-orange lighten-1'] 輸入滑鼠移入時框外左側圖標顏色字串，預設'deep-orange lighten-1'
- * @vue-prop {String} [iconColorFocus='deep-orange lighten-1'] 輸入取得焦點時框外左側圖標顏色字串，預設'deep-orange lighten-1'
- * @vue-prop {String} [iconTooltip=''] 輸入框外左側圖標提示文字字串，預設''
+ * @vue-prop {String} [leftIcon=''] 輸入左側圖標字串，可為mdi,md,fa代號或mdi/js路徑，預設''
+ * @vue-prop {String} [leftIconColor='deep-orange lighten-2'] 輸入左側圖標顏色字串，預設'deep-orange lighten-2'
+ * @vue-prop {String} [leftIconColorHover='deep-orange lighten-1'] 輸入滑鼠移入時左側圖標顏色字串，預設'deep-orange lighten-1'
+ * @vue-prop {String} [leftIconColorFocus='deep-orange lighten-1'] 輸入取得焦點時左側圖標顏色字串，預設'deep-orange lighten-1'
+ * @vue-prop {String} [leftIconTooltip=''] 輸入左側圖標提示文字字串，預設''
+ * @vue-prop {String} [rightIcon=''] 輸入右側圖標字串，可為mdi,md,fa代號或mdi/js路徑，預設''
+ * @vue-prop {String} [rightIconColor='deep-orange lighten-2'] 輸入右側圖標顏色字串，預設'deep-orange lighten-2'
+ * @vue-prop {String} [rightIconColorHover='deep-orange lighten-1'] 輸入滑鼠移入時右側圖標顏色字串，預設'deep-orange lighten-1'
+ * @vue-prop {String} [rightIconColorFocus='deep-orange lighten-1'] 輸入取得焦點時右側圖標顏色字串，預設'deep-orange lighten-1'
+ * @vue-prop {String} [rightIconTooltip=''] 輸入右側圖標提示文字字串，預設''
  * @vue-prop {Number} [iconShiftOuter=-10] 輸入左右側圖標與外框距離數字，單位為px，預設-10
  * @vue-prop {Number} [iconShiftInner=5] 輸入左右側圖標與內插槽區距離數字，單位為px，預設5
  * @vue-prop {String} [backgroundColor='white'] 輸入背景顏色字串，預設'white'
@@ -113,6 +125,7 @@ import WTextSuggestCore from './WTextSuggestCore.vue'
  * @vue-prop {String} [borderColor='white'] 輸入邊框顏色字串，預設'white'
  * @vue-prop {String} [borderColorHover='white'] 輸入滑鼠移入時邊框顏色字串，預設'white'
  * @vue-prop {String} [borderColorFocus='white'] 輸入取得焦點時邊框顏色字串，預設'white'
+ * @vue-prop {Boolean} [showRotateIcon=true] 輸入是否顯示時顯示旋轉按鈕布林值，預設true
  * @vue-prop {Number} [defItemHeight=43] 輸入按需顯示時各項目預設高度值數字，給越準或給大部分項目的高度則渲染速度越快，單位為px，預設43
  * @vue-prop {Boolean} [editable=true] 輸入是否為編輯模式布林值，預設true
  * @vue-prop {Boolean} [focused=false] 輸入是否為取得焦點狀態布林值，預設false
@@ -185,23 +198,43 @@ export default {
                 }
             },
         },
-        icon: {
+        leftIcon: {
             type: String,
             default: '',
         },
-        iconColor: {
+        leftIconColor: {
             type: String,
             default: 'deep-orange lighten-2',
         },
-        iconColorHover: {
+        leftIconColorHover: {
             type: String,
             default: 'deep-orange lighten-1',
         },
-        iconColorFocus: {
+        leftIconColorFocus: {
             type: String,
             default: 'deep-orange lighten-1',
         },
-        iconTooltip: {
+        leftIconTooltip: {
+            type: String,
+            default: '',
+        },
+        rightIcon: {
+            type: String,
+            default: '',
+        },
+        rightIconColor: {
+            type: String,
+            default: 'deep-orange lighten-2',
+        },
+        rightIconColorHover: {
+            type: String,
+            default: 'deep-orange lighten-1',
+        },
+        rightIconColorFocus: {
+            type: String,
+            default: 'deep-orange lighten-1',
+        },
+        rightIconTooltip: {
             type: String,
             default: '',
         },
@@ -236,6 +269,10 @@ export default {
         borderColorFocus: {
             type: String,
             default: 'white',
+        },
+        showRotateIcon: {
+            type: Boolean,
+            default: true,
         },
         defItemHeight: {
             type: Number,

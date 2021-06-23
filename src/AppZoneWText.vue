@@ -2,7 +2,7 @@
     <div>
 
 
-        <div class="head1" style="cursor:pointer;" title="open for copy link to view component" onclick="window.open('//yuda-lyu.github.io/w-component-vue/examples/app.html?cmp='+this.innerText,'_blank')">w-text</div>
+        <div class="head1"><span style="cursor:pointer;" title="open for copy link to view component" onclick="window.open('//yuda-lyu.github.io/w-component-vue/examples/app.html?cmp='+this.innerText,'_blank')">w-text</span></div>
 
 
         <div style="padding:0px;">
@@ -481,7 +481,35 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-text'"
-                    :casename="'border & leftIcon & backgroundColor & backgroundColorHover & backgroundColorFocus'"
+                    :casename="'border & rightIcon & rightIconColorHover & rightIconColorFocus & rightIconTooltip'"
+                ></demolink>
+
+                <w-text
+                    :shadow="false"
+                    :bottomLineBorderColor="'transparent'"
+                    :bottomLineBorderColorHover="'transparent'"
+                    :bottomLineBorderColorFocus="'transparent'"
+                    :paddingStyle="{h:15}"
+                    :iconShiftOuter="-10"
+                    :borderColor="'blue lighten-2'"
+                    :borderColorHover="'blue'"
+                    :borderColorFocus="'blue darken-2'"
+                    :backgroundColor="'white'"
+                    :backgroundColorHover="'rgba(237, 247, 255, 1)'"
+                    :backgroundColorFocus="'blue lighten-5'"
+                    :rightIcon="mdiSend"
+                    :rightIconColorHover="''"
+                    :rightIconColorFocus="'blue darken-3'"
+                    :rightIconTooltip="'Send'"
+                    v-model="WText.text"
+                ></w-text>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-text'"
+                    :casename="'border & backgroundColor & backgroundColorHover & backgroundColorFocus'"
                 ></demolink>
 
                 <w-text
@@ -497,84 +525,6 @@
                     :backgroundColor="'rgba(30, 136, 229, 0.05)'"
                     :backgroundColorHover="'rgba(30, 136, 229, 0.1)'"
                     :backgroundColorFocus="'rgba(30, 136, 229, 0.2)'"
-                    :leftIcon="mdiCheckUnderlineCircle"
-                    v-model="WText.text"
-                ></w-text>
-            </div>
-
-
-            <div class="bk">
-                <demolink
-                    :kbname="'w-text'"
-                    :casename="'border & rightIcon'"
-                ></demolink>
-
-                <w-text
-                    :shadow="false"
-                    :bottomLineBorderColor="'transparent'"
-                    :bottomLineBorderColorHover="'transparent'"
-                    :bottomLineBorderColorFocus="'transparent'"
-                    :paddingStyle="{h:15}"
-                    :iconShiftOuter="-10"
-                    :borderColor="'blue lighten-2'"
-                    :borderColorHover="'blue'"
-                    :borderColorFocus="'blue darken-2'"
-                    :backgroundColor="'white'"
-                    :backgroundColorHover="'rgba(237, 247, 255, 1)'"
-                    :backgroundColorFocus="'blue lighten-5'"
-                    :rightIcon="mdiAvTimer"
-                    v-model="WText.text"
-                ></w-text>
-            </div>
-
-
-            <div class="bk">
-                <demolink
-                    :kbname="'w-text'"
-                    :casename="'border & rightIcon & rightIconColorFocus'"
-                ></demolink>
-
-                <w-text
-                    :shadow="false"
-                    :bottomLineBorderColor="'transparent'"
-                    :bottomLineBorderColorHover="'transparent'"
-                    :bottomLineBorderColorFocus="'transparent'"
-                    :paddingStyle="{h:15}"
-                    :iconShiftOuter="-10"
-                    :borderColor="'blue lighten-2'"
-                    :borderColorHover="'blue'"
-                    :borderColorFocus="'blue darken-2'"
-                    :backgroundColor="'white'"
-                    :backgroundColorHover="'rgba(237, 247, 255, 1)'"
-                    :backgroundColorFocus="'blue lighten-5'"
-                    :rightIcon="mdiSend"
-                    :rightIconColorFocus="'blue darken-3'"
-                    v-model="WText.text"
-                ></w-text>
-            </div>
-
-
-            <div class="bk">
-                <demolink
-                    :kbname="'w-text'"
-                    :casename="'border & rightIcon & rightIconTooltip'"
-                ></demolink>
-
-                <w-text
-                    :shadow="false"
-                    :bottomLineBorderColor="'transparent'"
-                    :bottomLineBorderColorHover="'transparent'"
-                    :bottomLineBorderColorFocus="'transparent'"
-                    :paddingStyle="{h:15}"
-                    :iconShiftOuter="-10"
-                    :borderColor="'blue lighten-2'"
-                    :borderColorHover="'blue'"
-                    :borderColorFocus="'blue darken-2'"
-                    :backgroundColor="'white'"
-                    :backgroundColorHover="'rgba(237, 247, 255, 1)'"
-                    :backgroundColorFocus="'blue lighten-5'"
-                    :rightIcon="mdiSend"
-                    :rightIconTooltip="'Send'"
                     v-model="WText.text"
                 ></w-text>
             </div>

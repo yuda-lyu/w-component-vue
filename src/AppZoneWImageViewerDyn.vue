@@ -2,7 +2,7 @@
     <div>
 
 
-        <div class="head1" style="cursor:pointer;" title="open for copy link to view component" onclick="window.open('//yuda-lyu.github.io/w-component-vue/examples/app.html?cmp='+this.innerText,'_blank')">w-image-viewer-dyn</div>
+        <div class="head1"><span style="cursor:pointer;" title="open for copy link to view component" onclick="window.open('//yuda-lyu.github.io/w-component-vue/examples/app.html?cmp='+this.innerText,'_blank')">w-image-viewer-dyn</span></div>
 
 
         <div style="font-size:0.9rem; margin-bottom:10px;">

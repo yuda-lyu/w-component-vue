@@ -223,8 +223,8 @@ import parseSpace from '../js/parseSpace.mjs'
  * @vue-prop {String} [inputTextButtonColorFocus='grey'] 輸入取得焦點時輸入框按鈕顏色字串，預設'grey'
  * @vue-prop {String} [inputTextButtonTooltip='Add'] 輸入輸入框右側按鈕提示文字字串，預設'Add'
  * @vue-prop {String} [addButtonText='Add'] 輸入新增按鈕文字字串，預設'Add'
- * @vue-prop {String} [addButtonTextColor='grey'] 輸入新增按鈕文字顏色字串，預設'grey'
- * @vue-prop {String} [addButtonTextColorHover='grey'] 輸入滑鼠移入時新增按鈕文字顏色字串，預設'grey'
+ * @vue-prop {String} [addButtonTextColor='black'] 輸入新增按鈕文字顏色字串，預設'black'
+ * @vue-prop {String} [addButtonTextColorHover='black'] 輸入滑鼠移入時新增按鈕文字顏色字串，預設'black'
  * @vue-prop {String} [addButtonIconColor='pink darken-1'] 輸入新增按鈕圖標顏色字串，預設'pink darken-1'
  * @vue-prop {String} [addButtonIconColorHover='pink darken-1'] 輸入滑鼠移入時新增按鈕圖標顏色字串，預設'pink darken-1'
  * @vue-prop {String} [addButtonBackgroundColor='white'] 輸入新增按鈕背景顏色字串，預設'white'
@@ -441,11 +441,11 @@ export default {
         },
         addButtonTextColor: {
             type: String,
-            default: 'grey',
+            default: 'black',
         },
         addButtonTextColorHover: {
             type: String,
-            default: 'grey',
+            default: 'black',
         },
         addButtonIconColor: {
             type: String,

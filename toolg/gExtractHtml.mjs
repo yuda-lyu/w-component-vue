@@ -30,7 +30,8 @@ function writeHtml(v) {
         let $ = cheerio.load(v.tmp, $setting)
         $('demolink').remove() //移除demolink
 
-        $('div.bk').before(`<div class="head1" style="cursor:pointer;" title="open for copy link to view component" onclick="window.open('//yuda-lyu.github.io/w-component-vue/examples/app.html?cmp='+this.innerText,'_blank')">${v.kbname}</div>`) //於bk前插入, 添加組件kbname
+        $('div.bk').before(`<div class="head1"><span style="cursor:pointer;" title="open for copy link to view component" onclick="window.open('//yuda-lyu.github.io/w-component-vue/examples/app.html?cmp='+this.innerText,'_blank')">${v.kbname}</span></div>`) //於bk前插入, 添加組件kbname
+
         $('div.bk').prepend(`<div class="item">${v.casename}</div>`) //於bk內插入, 添加範例casename
         let h = $.html()
 

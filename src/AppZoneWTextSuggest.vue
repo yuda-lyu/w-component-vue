@@ -2,7 +2,7 @@
     <div>
 
 
-        <div class="head1" style="cursor:pointer;" title="open for copy link to view component" onclick="window.open('//yuda-lyu.github.io/w-component-vue/examples/app.html?cmp='+this.innerText,'_blank')">w-text-suggest</div>
+        <div class="head1"><span style="cursor:pointer;" title="open for copy link to view component" onclick="window.open('//yuda-lyu.github.io/w-component-vue/examples/app.html?cmp='+this.innerText,'_blank')">w-text-suggest</span></div>
 
 
         <div style="padding:0px;">
@@ -24,26 +24,6 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-text-suggest'"
-                    :casename="'events'"
-                ></demolink>
-
-                <w-text-suggest
-                    :items="WTextSuggest.objItems"
-                    v-model="WTextSuggest.objValue"
-                    @update:focused="evUpdateFocused"
-                    @update:showPanel="evUpdateShowPanel"
-                    @blur="evBlur"
-                    @input="evInput"
-                    @enter="evEnter"
-                    @click-item="evClickItem"
-                    @click-left="evClickLeft"
-                ></w-text-suggest>
-            </div>
-
-
-            <div class="bk">
-                <demolink
-                    :kbname="'w-text-suggest'"
                     :casename="'searchEmpty'"
                 ></demolink>
 
@@ -58,11 +38,11 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-text-suggest'"
-                    :casename="'icon (material)'"
+                    :casename="'leftIcon (material)'"
                 ></demolink>
 
                 <w-text-suggest
-                    :icon="mdiCheckUnderlineCircle"
+                    :leftIcon="mdiCheckUnderlineCircle"
                     :items="WTextSuggest.objItems"
                     v-model="WTextSuggest.objValue"
                 ></w-text-suggest>
@@ -72,11 +52,11 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-text-suggest'"
-                    :casename="'icon (fontawesome)'"
+                    :casename="'leftIcon (fontawesome)'"
                 ></demolink>
 
                 <w-text-suggest
-                    :icon="'fas fa-clipboard-check'"
+                    :leftIcon="'fas fa-clipboard-check'"
                     :items="WTextSuggest.objItems"
                     v-model="WTextSuggest.objValue"
                 ></w-text-suggest>
@@ -86,14 +66,15 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-text-suggest'"
-                    :casename="'icon & iconColor & iconColorHover & iconColorFoucs'"
+                    :casename="'leftIcon & leftIconColor & leftIconColorHover & leftIconColorFoucs & leftIconTooltip'"
                 ></demolink>
 
                 <w-text-suggest
-                    :icon="mdiCheckUnderlineCircle"
-                    :iconColor="'orange lighten-1'"
-                    :iconColorHover="'orange accent-3'"
-                    :iconColorFocus="'orange darken-2'"
+                    :leftIcon="mdiCheckUnderlineCircle"
+                    :leftIconColor="'orange lighten-1'"
+                    :leftIconColorHover="'orange accent-3'"
+                    :leftIconColorFocus="'orange darken-2'"
+                    :leftIconTooltip="'show tooltip'"
                     :items="WTextSuggest.objItems"
                     v-model="WTextSuggest.objValue"
                 ></w-text-suggest>
@@ -103,12 +84,15 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-text-suggest'"
-                    :casename="'iconTooltip'"
+                    :casename="'rightIcon & rightIconColor & rightIconColorHover & rightIconColorFoucs & rightIconTooltip'"
                 ></demolink>
 
                 <w-text-suggest
-                    :icon="mdiCheckUnderlineCircle"
-                    :iconTooltip="'show tooltip'"
+                    :rightIcon="mdiCheckUnderlineCircle"
+                    :rightIconColor="'orange lighten-1'"
+                    :rightIconColorHover="'orange accent-3'"
+                    :rightIconColorFocus="'orange darken-2'"
+                    :rightIconTooltip="'show tooltip'"
                     :items="WTextSuggest.objItems"
                     v-model="WTextSuggest.objValue"
                 ></w-text-suggest>
@@ -122,7 +106,7 @@
                 ></demolink>
 
                 <w-text-suggest
-                    :icon="mdiCheckUnderlineCircle"
+                    :leftIcon="mdiCheckUnderlineCircle"
                     :placeholder="'keywords'"
                     :items="WTextSuggest.objItems"
                     v-model="WTextSuggest.objValue"
@@ -137,7 +121,7 @@
                 ></demolink>
 
                 <w-text-suggest
-                    :icon="mdiCheckUnderlineCircle"
+                    :leftIcon="mdiCheckUnderlineCircle"
                     :borderRadius="5"
                     :items="WTextSuggest.objItems"
                     v-model="WTextSuggest.objValue"
@@ -152,7 +136,7 @@
                 ></demolink>
 
                 <w-text-suggest
-                    :icon="mdiCheckUnderlineCircle"
+                    :leftIcon="mdiCheckUnderlineCircle"
                     :itemPaddingStyle="{v:5,h:8}"
                     :items="WTextSuggest.objItems"
                     v-model="WTextSuggest.objValue"
@@ -167,7 +151,7 @@
                 ></demolink>
 
                 <w-text-suggest
-                    :icon="mdiCheckUnderlineCircle"
+                    :leftIcon="mdiCheckUnderlineCircle"
                     :items="WTextSuggest.objItemsKeyText"
                     :keyText="'name'"
                     :searchEmpty="'無有效項目'"
@@ -183,7 +167,7 @@
                 ></demolink>
 
                 <w-text-suggest
-                    :icon="mdiCheckUnderlineCircle"
+                    :leftIcon="mdiCheckUnderlineCircle"
                     :defItemHeight="48"
                     :itemFontSize="'1rem'"
                     :items="WTextSuggest.objItems"
@@ -199,7 +183,7 @@
                 ></demolink>
 
                 <w-text-suggest
-                    :icon="mdiCheckUnderlineCircle"
+                    :leftIcon="mdiCheckUnderlineCircle"
                     :itemTextColor="'orange darken-3'"
                     :itemTextColorHover="'white'"
                     :itemBackgroundColor="'white'"
@@ -217,7 +201,7 @@
                 ></demolink>
 
                 <w-text-suggest
-                    :icon="mdiCheckUnderlineCircle"
+                    :leftIcon="mdiCheckUnderlineCircle"
                     :items="WTextSuggest.objItemsLarge"
                     :searchEmpty="'無有效項目'"
                     v-model="WTextSuggest.objValueLarge"
@@ -232,7 +216,7 @@
                 ></demolink>
 
                 <w-text-suggest
-                    :icon="mdiCheckUnderlineCircle"
+                    :leftIcon="mdiCheckUnderlineCircle"
                     :items="WTextSuggest.strItems"
                     v-model="WTextSuggest.strValue"
                 ></w-text-suggest>
@@ -270,7 +254,7 @@
                 ></demolink>
 
                 <w-text-suggest
-                    :icon="mdiCheckUnderlineCircle"
+                    :leftIcon="mdiCheckUnderlineCircle"
                     :items="WTextSuggest.objItems"
                     v-model="WTextSuggest.objValue"
                 >
@@ -289,7 +273,7 @@
                 ></demolink>
 
                 <w-text-suggest
-                    :icon="mdiCheckUnderlineCircle"
+                    :leftIcon="mdiCheckUnderlineCircle"
                     :items="WTextSuggest.objItems"
                     v-model="WTextSuggest.objValue"
                 ></w-text-suggest>
@@ -327,11 +311,34 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-text-suggest'"
+                    :casename="'events'"
+                ></demolink>
+
+                <w-text-suggest
+                    :leftIcon="mdiCheckUnderlineCircle"
+                    :rightIcon="mdiCheckUnderlineCircle"
+                    :items="WTextSuggest.objItems"
+                    v-model="WTextSuggest.objValue"
+                    @update:focused="evUpdateFocused"
+                    @update:showPanel="evUpdateShowPanel"
+                    @blur="evBlur"
+                    @input="evInput"
+                    @enter="evEnter"
+                    @click-item="evClickItem"
+                    @click-left="evClickLeft"
+                    @click-right="evClickRight"
+                ></w-text-suggest>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-text-suggest'"
                     :casename="'not editable'"
                 ></demolink>
 
                 <w-text-suggest
-                    :icon="mdiCheckUnderlineCircle"
+                    :leftIcon="mdiCheckUnderlineCircle"
                     :editable="false"
                     :items="WTextSuggest.objItems"
                     v-model="WTextSuggest.objValue"
@@ -382,7 +389,7 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-text-suggest'"
-                    :casename="'border & icon (material)'"
+                    :casename="'border & leftIcon (material)'"
                 ></demolink>
 
                 <w-text-suggest
@@ -391,7 +398,7 @@
                     :borderColorHover="'orange'"
                     :borderColorFocus="'orange darken-2'"
                     :backgroundColorFocus="'orange lighten-5'"
-                    :icon="mdiCheckUnderlineCircle"
+                    :leftIcon="mdiCheckUnderlineCircle"
                     :items="WTextSuggest.objItems"
                     v-model="WTextSuggest.objValue"
                 ></w-text-suggest>
@@ -401,7 +408,7 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-text-suggest'"
-                    :casename="'border & icon (fontawesome)'"
+                    :casename="'border & leftIcon (fontawesome)'"
                 ></demolink>
 
                 <w-text-suggest
@@ -410,7 +417,7 @@
                     :borderColorHover="'orange'"
                     :borderColorFocus="'orange darken-2'"
                     :backgroundColorFocus="'orange lighten-5'"
-                    :icon="'fas fa-clipboard-check'"
+                    :leftIcon="'fas fa-clipboard-check'"
                     :items="WTextSuggest.objItems"
                     v-model="WTextSuggest.objValue"
                 ></w-text-suggest>
@@ -420,7 +427,7 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-text-suggest'"
-                    :casename="'border & iconColor & iconColorHover & iconColorFoucs'"
+                    :casename="'border & leftIconColor & leftIconColorHover & leftIconColorFoucs & leftIconTooltip'"
                 ></demolink>
 
                 <w-text-suggest
@@ -429,10 +436,34 @@
                     :borderColorHover="'orange'"
                     :borderColorFocus="'orange darken-2'"
                     :backgroundColorFocus="'orange lighten-5'"
-                    :icon="mdiCheckUnderlineCircle"
-                    :iconColor="'orange lighten-1'"
-                    :iconColorHover="'orange accent-3'"
-                    :iconColorFocus="'orange darken-2'"
+                    :leftIcon="mdiCheckUnderlineCircle"
+                    :leftIconColor="'orange lighten-1'"
+                    :leftIconColorHover="'orange accent-3'"
+                    :leftIconColorFocus="'orange darken-2'"
+                    :leftIconTooltip="'show tooltip'"
+                    :items="WTextSuggest.objItems"
+                    v-model="WTextSuggest.objValue"
+                ></w-text-suggest>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-text-suggest'"
+                    :casename="'border & rightIconColor & rightIconColorHover & rightIconColorFoucs & rightIconTooltip'"
+                ></demolink>
+
+                <w-text-suggest
+                    :shadow="false"
+                    :borderColor="'orange lighten-2'"
+                    :borderColorHover="'orange'"
+                    :borderColorFocus="'orange darken-2'"
+                    :backgroundColorFocus="'orange lighten-5'"
+                    :rightIcon="mdiCheckUnderlineCircle"
+                    :rightIconColor="'orange lighten-1'"
+                    :rightIconColorHover="'orange accent-3'"
+                    :rightIconColorFocus="'orange darken-2'"
+                    :rightIconTooltip="'show tooltip'"
                     :items="WTextSuggest.objItems"
                     v-model="WTextSuggest.objValue"
                 ></w-text-suggest>
@@ -451,30 +482,10 @@
                     :borderColorHover="'orange'"
                     :borderColorFocus="'orange darken-2'"
                     _backgroundColorFocus="'orange lighten-5'"
-                    :icon="mdiCheckUnderlineCircle"
+                    :leftIcon="mdiCheckUnderlineCircle"
                     :backgroundColor="'rgba(255, 171, 64, 0.05)'"
                     :backgroundColorHover="'rgba(255, 171, 64, 0.1)'"
                     :backgroundColorFocus="'rgba(255, 171, 64, 0.2)'"
-                    :items="WTextSuggest.objItems"
-                    v-model="WTextSuggest.objValue"
-                ></w-text-suggest>
-            </div>
-
-
-            <div class="bk">
-                <demolink
-                    :kbname="'w-text-suggest'"
-                    :casename="'border & iconTooltip'"
-                ></demolink>
-
-                <w-text-suggest
-                    :shadow="false"
-                    :borderColor="'orange lighten-2'"
-                    :borderColorHover="'orange'"
-                    :borderColorFocus="'orange darken-2'"
-                    :backgroundColorFocus="'orange lighten-5'"
-                    :icon="mdiCheckUnderlineCircle"
-                    :iconTooltip="'show tooltip'"
                     :items="WTextSuggest.objItems"
                     v-model="WTextSuggest.objValue"
                 ></w-text-suggest>
@@ -493,7 +504,7 @@
                     :borderColorHover="'orange'"
                     :borderColorFocus="'orange darken-2'"
                     :backgroundColorFocus="'orange lighten-5'"
-                    :icon="mdiCheckUnderlineCircle"
+                    :leftIcon="mdiCheckUnderlineCircle"
                     :placeholder="'keywords'"
                     :items="WTextSuggest.objItems"
                     v-model="WTextSuggest.objValue"
@@ -513,7 +524,7 @@
                     :borderColorHover="'orange'"
                     :borderColorFocus="'orange darken-2'"
                     :backgroundColorFocus="'orange lighten-5'"
-                    :icon="mdiCheckUnderlineCircle"
+                    :leftIcon="mdiCheckUnderlineCircle"
                     :borderRadius="5"
                     :items="WTextSuggest.objItems"
                     v-model="WTextSuggest.objValue"
@@ -533,7 +544,7 @@
                     :borderColorHover="'orange'"
                     :borderColorFocus="'orange darken-2'"
                     :backgroundColorFocus="'orange lighten-5'"
-                    :icon="mdiCheckUnderlineCircle"
+                    :leftIcon="mdiCheckUnderlineCircle"
                     :itemPaddingStyle="{v:5,h:8}"
                     :items="WTextSuggest.objItems"
                     v-model="WTextSuggest.objValue"
@@ -553,7 +564,7 @@
                     :borderColorHover="'orange'"
                     :borderColorFocus="'orange darken-2'"
                     :backgroundColorFocus="'orange lighten-5'"
-                    :icon="mdiCheckUnderlineCircle"
+                    :leftIcon="mdiCheckUnderlineCircle"
                     :items="WTextSuggest.objItemsKeyText"
                     :keyText="'name'"
                     :searchEmpty="'無有效項目'"
@@ -574,7 +585,7 @@
                     :borderColorHover="'orange'"
                     :borderColorFocus="'orange darken-2'"
                     :backgroundColorFocus="'orange lighten-5'"
-                    :icon="mdiCheckUnderlineCircle"
+                    :leftIcon="mdiCheckUnderlineCircle"
                     :defItemHeight="48"
                     :itemFontSize="'1rem'"
                     :items="WTextSuggest.objItems"
@@ -595,7 +606,7 @@
                     :borderColorHover="'orange'"
                     :borderColorFocus="'orange darken-2'"
                     :backgroundColorFocus="'orange lighten-5'"
-                    :icon="mdiCheckUnderlineCircle"
+                    :leftIcon="mdiCheckUnderlineCircle"
                     :itemTextColor="'orange darken-3'"
                     :itemTextColorHover="'white'"
                     :itemBackgroundColor="'white'"
@@ -618,7 +629,7 @@
                     :borderColorHover="'orange'"
                     :borderColorFocus="'orange darken-2'"
                     :backgroundColorFocus="'orange lighten-5'"
-                    :icon="mdiCheckUnderlineCircle"
+                    :leftIcon="mdiCheckUnderlineCircle"
                     :items="WTextSuggest.objItemsLarge"
                     :searchEmpty="'無有效項目'"
                     v-model="WTextSuggest.objValueLarge"
@@ -638,7 +649,7 @@
                     :borderColorHover="'orange'"
                     :borderColorFocus="'orange darken-2'"
                     :backgroundColorFocus="'orange lighten-5'"
-                    :icon="mdiCheckUnderlineCircle"
+                    :leftIcon="mdiCheckUnderlineCircle"
                     :items="WTextSuggest.strItems"
                     v-model="WTextSuggest.strValue"
                 ></w-text-suggest>
@@ -686,7 +697,7 @@
                     :borderColorHover="'orange'"
                     :borderColorFocus="'orange darken-2'"
                     :backgroundColorFocus="'orange lighten-5'"
-                    :icon="mdiCheckUnderlineCircle"
+                    :leftIcon="mdiCheckUnderlineCircle"
                     :items="WTextSuggest.objItems"
                     v-model="WTextSuggest.objValue"
                 >
@@ -710,7 +721,7 @@
                     :borderColorHover="'orange'"
                     :borderColorFocus="'orange darken-2'"
                     :backgroundColorFocus="'orange lighten-5'"
-                    :icon="mdiCheckUnderlineCircle"
+                    :leftIcon="mdiCheckUnderlineCircle"
                     :items="WTextSuggest.objItems"
                     v-model="WTextSuggest.objValue"
                 ></w-text-suggest>
@@ -753,6 +764,34 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-text-suggest'"
+                    :casename="'border & events'"
+                ></demolink>
+
+                <w-text-suggest
+                    :shadow="false"
+                    :borderColor="'orange lighten-2'"
+                    :borderColorHover="'orange'"
+                    :borderColorFocus="'orange darken-2'"
+                    :backgroundColorFocus="'orange lighten-5'"
+                    :leftIcon="mdiCheckUnderlineCircle"
+                    :rightIcon="mdiCheckUnderlineCircle"
+                    :items="WTextSuggest.objItems"
+                    v-model="WTextSuggest.objValue"
+                    @update:focused="evUpdateFocused"
+                    @update:showPanel="evUpdateShowPanel"
+                    @blur="evBlur"
+                    @input="evInput"
+                    @enter="evEnter"
+                    @click-item="evClickItem"
+                    @click-left="evClickLeft"
+                    @click-right="evClickRight"
+                ></w-text-suggest>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-text-suggest'"
                     :casename="'border & not editable'"
                 ></demolink>
 
@@ -762,7 +801,7 @@
                     :borderColorHover="'orange'"
                     :borderColorFocus="'orange darken-2'"
                     :backgroundColorFocus="'orange lighten-5'"
-                    :icon="mdiCheckUnderlineCircle"
+                    :leftIcon="mdiCheckUnderlineCircle"
                     :editable="false"
                     :items="WTextSuggest.objItems"
                     v-model="WTextSuggest.objValue"
@@ -900,8 +939,11 @@ export default {
         evClickItem: function(item, kitem) {
             console.log('evClickItem', 'item=', item, 'kitem', kitem)
         },
-        evClickLeft: function(item, kitem) {
-            console.log('evClickLeft', 'item=', item, 'kitem', kitem)
+        evClickLeft: function() {
+            console.log('evClickLeft')
+        },
+        evClickRight: function() {
+            console.log('evClickRight')
         },
         hidePanelWhenEnter: function() {
             // console.log('hidePanelWhenEnter')

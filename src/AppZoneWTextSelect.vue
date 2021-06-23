@@ -2,7 +2,7 @@
     <div>
 
 
-        <div class="head1" style="cursor:pointer;" title="open for copy link to view component" onclick="window.open('//yuda-lyu.github.io/w-component-vue/examples/app.html?cmp='+this.innerText,'_blank')">w-text-select</div>
+        <div class="head1"><span style="cursor:pointer;" title="open for copy link to view component" onclick="window.open('//yuda-lyu.github.io/w-component-vue/examples/app.html?cmp='+this.innerText,'_blank')">w-text-select</span></div>
 
 
         <div style="padding:0px;">
@@ -24,31 +24,11 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-text-select'"
-                    :casename="'events'"
+                    :casename="'leftIcon (material)'"
                 ></demolink>
 
                 <w-text-select
-                    :items="WTextSelect.objItems"
-                    v-model="WTextSelect.objValue"
-                    @update:focused="evUpdateFocused"
-                    @update:showPanel="evUpdateShowPanel"
-                    @blur="evBlur"
-                    @input="evInput"
-                    _enter="evEnter"
-                    @click-item="evClickItem"
-                    @click-left="evClickLeft"
-                ></w-text-select>
-            </div>
-
-
-            <div class="bk">
-                <demolink
-                    :kbname="'w-text-select'"
-                    :casename="'icon (material)'"
-                ></demolink>
-
-                <w-text-select
-                    :icon="mdiCheckUnderlineCircle"
+                    :leftIcon="mdiCheckUnderlineCircle"
                     :items="WTextSelect.objItems"
                     v-model="WTextSelect.objValue"
                 ></w-text-select>
@@ -58,11 +38,11 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-text-select'"
-                    :casename="'icon (fontawesome)'"
+                    :casename="'leftIcon (fontawesome)'"
                 ></demolink>
 
                 <w-text-select
-                    :icon="'fas fa-clipboard-check'"
+                    :leftIcon="'fas fa-clipboard-check'"
                     :items="WTextSelect.objItems"
                     v-model="WTextSelect.objValue"
                 ></w-text-select>
@@ -72,14 +52,15 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-text-select'"
-                    :casename="'icon & iconColor & iconColorHover & iconColorFoucs'"
+                    :casename="'leftIcon & leftIconColor & leftIconColorHover & leftIconColorFoucs & leftIconTooltip'"
                 ></demolink>
 
                 <w-text-select
-                    :icon="mdiCheckUnderlineCircle"
-                    :iconColor="'orange lighten-1'"
-                    :iconColorHover="'orange accent-3'"
-                    :iconColorFocus="'orange darken-2'"
+                    :leftIcon="mdiCheckUnderlineCircle"
+                    :leftIconColor="'orange lighten-1'"
+                    :leftIconColorHover="'orange accent-3'"
+                    :leftIconColorFocus="'orange darken-2'"
+                    :leftIconTooltip="'show tooltip'"
                     :items="WTextSelect.objItems"
                     v-model="WTextSelect.objValue"
                 ></w-text-select>
@@ -89,12 +70,15 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-text-select'"
-                    :casename="'iconTooltip'"
+                    :casename="'rightIcon & rightIconColor & rightIconColorHover & rightIconColorFoucs & rightIconTooltip'"
                 ></demolink>
 
                 <w-text-select
-                    :icon="mdiCheckUnderlineCircle"
-                    :iconTooltip="'show tooltip'"
+                    :rightIcon="mdiCheckUnderlineCircle"
+                    :rightIconColor="'orange lighten-1'"
+                    :rightIconColorHover="'orange accent-3'"
+                    :rightIconColorFocus="'orange darken-2'"
+                    :rightIconTooltip="'show tooltip'"
                     :items="WTextSelect.objItems"
                     v-model="WTextSelect.objValue"
                 ></w-text-select>
@@ -108,7 +92,7 @@
                 ></demolink>
 
                 <w-text-select
-                    :icon="mdiCheckUnderlineCircle"
+                    :leftIcon="mdiCheckUnderlineCircle"
                     :borderRadius="5"
                     :items="WTextSelect.objItems"
                     v-model="WTextSelect.objValue"
@@ -123,7 +107,7 @@
                 ></demolink>
 
                 <w-text-select
-                    :icon="mdiCheckUnderlineCircle"
+                    :leftIcon="mdiCheckUnderlineCircle"
                     :itemPaddingStyle="{v:5,h:8}"
                     :items="WTextSelect.objItems"
                     v-model="WTextSelect.objValue"
@@ -138,7 +122,7 @@
                 ></demolink>
 
                 <w-text-select
-                    :icon="mdiCheckUnderlineCircle"
+                    :leftIcon="mdiCheckUnderlineCircle"
                     :items="WTextSelect.objItemsKeyText"
                     :keyText="'name'"
                     v-model="WTextSelect.objValueKeyText"
@@ -154,7 +138,7 @@
 
                 <w-text-select
                     style="width:250px;"
-                    :icon="mdiCheckUnderlineCircle"
+                    :leftIcon="mdiCheckUnderlineCircle"
                     :defItemHeight="48"
                     :itemFontSize="'1rem'"
                     :items="WTextSelect.objItems"
@@ -170,7 +154,7 @@
                 ></demolink>
 
                 <w-text-select
-                    :icon="mdiCheckUnderlineCircle"
+                    :leftIcon="mdiCheckUnderlineCircle"
                     :itemTextColor="'orange darken-3'"
                     :itemTextColorHover="'white'"
                     :itemBackgroundColor="'white'"
@@ -188,7 +172,7 @@
                 ></demolink>
 
                 <w-text-select
-                    :icon="mdiCheckUnderlineCircle"
+                    :leftIcon="mdiCheckUnderlineCircle"
                     :items="WTextSelect.objItemsLarge"
                     v-model="WTextSelect.objValueLarge"
                 ></w-text-select>
@@ -202,7 +186,7 @@
                 ></demolink>
 
                 <w-text-select
-                    :icon="mdiCheckUnderlineCircle"
+                    :leftIcon="mdiCheckUnderlineCircle"
                     :items="WTextSelect.strItems"
                     v-model="WTextSelect.strValue"
                 ></w-text-select>
@@ -216,7 +200,7 @@
                 ></demolink>
 
                 <w-text-select
-                    :icon="mdiCheckUnderlineCircle"
+                    :leftIcon="mdiCheckUnderlineCircle"
                     :items="WTextSelect.objItems"
                     v-model="WTextSelect.objValue"
                 >
@@ -238,7 +222,7 @@
                 ></demolink>
 
                 <w-text-select
-                    :icon="mdiCheckUnderlineCircle"
+                    :leftIcon="mdiCheckUnderlineCircle"
                     :items="WTextSelect.objItems"
                     v-model="WTextSelect.objValue"
                 >
@@ -257,7 +241,7 @@
                 ></demolink>
 
                 <w-text-select
-                    :icon="mdiCheckUnderlineCircle"
+                    :leftIcon="mdiCheckUnderlineCircle"
                     :items="WTextSelect.objItems"
                     v-model="WTextSelect.objValue"
                 ></w-text-select>
@@ -295,11 +279,34 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-text-select'"
+                    :casename="'events'"
+                ></demolink>
+
+                <w-text-select
+                    :leftIcon="mdiCheckUnderlineCircle"
+                    :rightIcon="mdiCheckUnderlineCircle"
+                    :items="WTextSelect.objItems"
+                    v-model="WTextSelect.objValue"
+                    @update:focused="evUpdateFocused"
+                    @update:showPanel="evUpdateShowPanel"
+                    @blur="evBlur"
+                    @input="evInput"
+                    _enter="evEnter"
+                    @click-item="evClickItem"
+                    @click-left="evClickLeft"
+                    @click-right="evClickRight"
+                ></w-text-select>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-text-select'"
                     :casename="'not editable'"
                 ></demolink>
 
                 <w-text-select
-                    :icon="mdiCheckUnderlineCircle"
+                    :leftIcon="mdiCheckUnderlineCircle"
                     :editable="false"
                     :items="WTextSelect.objItems"
                     v-model="WTextSelect.objValue"
@@ -331,7 +338,7 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-text-select'"
-                    :casename="'border & icon (material)'"
+                    :casename="'border & leftIcon (material)'"
                 ></demolink>
 
                 <w-text-select
@@ -340,7 +347,7 @@
                     :borderColorHover="'orange'"
                     :borderColorFocus="'orange darken-2'"
                     :backgroundColorFocus="'orange lighten-5'"
-                    :icon="mdiCheckUnderlineCircle"
+                    :leftIcon="mdiCheckUnderlineCircle"
                     :items="WTextSelect.objItems"
                     v-model="WTextSelect.objValue"
                 ></w-text-select>
@@ -350,7 +357,7 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-text-select'"
-                    :casename="'border & icon (fontawesome)'"
+                    :casename="'border & leftIcon (fontawesome)'"
                 ></demolink>
 
                 <w-text-select
@@ -359,7 +366,7 @@
                     :borderColorHover="'orange'"
                     :borderColorFocus="'orange darken-2'"
                     :backgroundColorFocus="'orange lighten-5'"
-                    :icon="'fas fa-clipboard-check'"
+                    :leftIcon="'fas fa-clipboard-check'"
                     :items="WTextSelect.objItems"
                     v-model="WTextSelect.objValue"
                 ></w-text-select>
@@ -369,7 +376,7 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-text-select'"
-                    :casename="'border & iconColor & iconColorHover & iconColorFoucs'"
+                    :casename="'border & leftIconColor & leftIconColorHover & leftIconColorFoucs & leftIconTooltip'"
                 ></demolink>
 
                 <w-text-select
@@ -378,10 +385,34 @@
                     :borderColorHover="'orange'"
                     :borderColorFocus="'orange darken-2'"
                     :backgroundColorFocus="'orange lighten-5'"
-                    :icon="mdiCheckUnderlineCircle"
-                    :iconColor="'orange lighten-1'"
-                    :iconColorHover="'orange accent-3'"
-                    :iconColorFocus="'orange darken-2'"
+                    :leftIcon="mdiCheckUnderlineCircle"
+                    :leftIconColor="'orange lighten-1'"
+                    :leftIconColorHover="'orange accent-3'"
+                    :leftIconColorFocus="'orange darken-2'"
+                    :leftIconTooltip="'show tooltip'"
+                    :items="WTextSelect.objItems"
+                    v-model="WTextSelect.objValue"
+                ></w-text-select>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-text-select'"
+                    :casename="'border & rightIconColor & rightIconColorHover & rightIconColorFoucs & rightIconTooltip'"
+                ></demolink>
+
+                <w-text-select
+                    :shadow="false"
+                    :borderColor="'orange lighten-2'"
+                    :borderColorHover="'orange'"
+                    :borderColorFocus="'orange darken-2'"
+                    :backgroundColorFocus="'orange lighten-5'"
+                    :rightIcon="mdiCheckUnderlineCircle"
+                    :rightIconColor="'orange lighten-1'"
+                    :rightIconColorHover="'orange accent-3'"
+                    :rightIconColorFocus="'orange darken-2'"
+                    :rightIconTooltip="'show tooltip'"
                     :items="WTextSelect.objItems"
                     v-model="WTextSelect.objValue"
                 ></w-text-select>
@@ -400,30 +431,10 @@
                     :borderColorHover="'orange'"
                     :borderColorFocus="'orange darken-2'"
                     _backgroundColorFocus="'orange lighten-5'"
-                    :icon="mdiCheckUnderlineCircle"
+                    :leftIcon="mdiCheckUnderlineCircle"
                     :backgroundColor="'rgba(255, 171, 64, 0.05)'"
                     :backgroundColorHover="'rgba(255, 171, 64, 0.1)'"
                     :backgroundColorFocus="'rgba(255, 171, 64, 0.2)'"
-                    :items="WTextSelect.objItems"
-                    v-model="WTextSelect.objValue"
-                ></w-text-select>
-            </div>
-
-
-            <div class="bk">
-                <demolink
-                    :kbname="'w-text-select'"
-                    :casename="'border & iconTooltip'"
-                ></demolink>
-
-                <w-text-select
-                    :shadow="false"
-                    :borderColor="'orange lighten-2'"
-                    :borderColorHover="'orange'"
-                    :borderColorFocus="'orange darken-2'"
-                    :backgroundColorFocus="'orange lighten-5'"
-                    :icon="mdiCheckUnderlineCircle"
-                    :iconTooltip="'show tooltip'"
                     :items="WTextSelect.objItems"
                     v-model="WTextSelect.objValue"
                 ></w-text-select>
@@ -442,7 +453,7 @@
                     :borderColorHover="'orange'"
                     :borderColorFocus="'orange darken-2'"
                     :backgroundColorFocus="'orange lighten-5'"
-                    :icon="mdiCheckUnderlineCircle"
+                    :leftIcon="mdiCheckUnderlineCircle"
                     :borderRadius="5"
                     :items="WTextSelect.objItems"
                     v-model="WTextSelect.objValue"
@@ -462,7 +473,7 @@
                     :borderColorHover="'orange'"
                     :borderColorFocus="'orange darken-2'"
                     :backgroundColorFocus="'orange lighten-5'"
-                    :icon="mdiCheckUnderlineCircle"
+                    :leftIcon="mdiCheckUnderlineCircle"
                     :itemPaddingStyle="{v:5,h:8}"
                     :items="WTextSelect.objItems"
                     v-model="WTextSelect.objValue"
@@ -482,7 +493,7 @@
                     :borderColorHover="'orange'"
                     :borderColorFocus="'orange darken-2'"
                     :backgroundColorFocus="'orange lighten-5'"
-                    :icon="mdiCheckUnderlineCircle"
+                    :leftIcon="mdiCheckUnderlineCircle"
                     :items="WTextSelect.objItemsKeyText"
                     :keyText="'name'"
                     v-model="WTextSelect.objValueKeyText"
@@ -503,7 +514,7 @@
                     :borderColorHover="'orange'"
                     :borderColorFocus="'orange darken-2'"
                     :backgroundColorFocus="'orange lighten-5'"
-                    :icon="mdiCheckUnderlineCircle"
+                    :leftIcon="mdiCheckUnderlineCircle"
                     :defItemHeight="48"
                     :itemFontSize="'1rem'"
                     :items="WTextSelect.objItems"
@@ -524,7 +535,7 @@
                     :borderColorHover="'orange'"
                     :borderColorFocus="'orange darken-2'"
                     :backgroundColorFocus="'orange lighten-5'"
-                    :icon="mdiCheckUnderlineCircle"
+                    :leftIcon="mdiCheckUnderlineCircle"
                     :itemTextColor="'orange darken-3'"
                     :itemTextColorHover="'white'"
                     :itemBackgroundColor="'white'"
@@ -547,7 +558,7 @@
                     :borderColorHover="'orange'"
                     :borderColorFocus="'orange darken-2'"
                     :backgroundColorFocus="'orange lighten-5'"
-                    :icon="mdiCheckUnderlineCircle"
+                    :leftIcon="mdiCheckUnderlineCircle"
                     :items="WTextSelect.objItemsLarge"
                     v-model="WTextSelect.objValueLarge"
                 ></w-text-select>
@@ -566,7 +577,7 @@
                     :borderColorHover="'orange'"
                     :borderColorFocus="'orange darken-2'"
                     :backgroundColorFocus="'orange lighten-5'"
-                    :icon="mdiCheckUnderlineCircle"
+                    :leftIcon="mdiCheckUnderlineCircle"
                     :items="WTextSelect.strItems"
                     v-model="WTextSelect.strValue"
                 ></w-text-select>
@@ -585,7 +596,7 @@
                     :borderColorHover="'orange'"
                     :borderColorFocus="'orange darken-2'"
                     :backgroundColorFocus="'orange lighten-5'"
-                    :icon="mdiCheckUnderlineCircle"
+                    :leftIcon="mdiCheckUnderlineCircle"
                     :items="WTextSelect.objItems"
                     v-model="WTextSelect.objValue"
                 >
@@ -612,7 +623,7 @@
                     :borderColorHover="'orange'"
                     :borderColorFocus="'orange darken-2'"
                     :backgroundColorFocus="'orange lighten-5'"
-                    :icon="mdiCheckUnderlineCircle"
+                    :leftIcon="mdiCheckUnderlineCircle"
                     :items="WTextSelect.objItems"
                     v-model="WTextSelect.objValue"
                 >
@@ -636,7 +647,7 @@
                     :borderColorHover="'orange'"
                     :borderColorFocus="'orange darken-2'"
                     :backgroundColorFocus="'orange lighten-5'"
-                    :icon="mdiCheckUnderlineCircle"
+                    :leftIcon="mdiCheckUnderlineCircle"
                     :items="WTextSelect.objItems"
                     v-model="WTextSelect.objValue"
                 ></w-text-select>
@@ -679,6 +690,34 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-text-select'"
+                    :casename="'border & events'"
+                ></demolink>
+
+                <w-text-select
+                    :shadow="false"
+                    :borderColor="'orange lighten-2'"
+                    :borderColorHover="'orange'"
+                    :borderColorFocus="'orange darken-2'"
+                    :backgroundColorFocus="'orange lighten-5'"
+                    :leftIcon="mdiCheckUnderlineCircle"
+                    :rightIcon="mdiCheckUnderlineCircle"
+                    :items="WTextSelect.objItems"
+                    v-model="WTextSelect.objValue"
+                    @update:focused="evUpdateFocused"
+                    @update:showPanel="evUpdateShowPanel"
+                    @blur="evBlur"
+                    @input="evInput"
+                    _enter="evEnter"
+                    @click-item="evClickItem"
+                    @click-left="evClickLeft"
+                    @click-right="evClickRight"
+                ></w-text-select>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-text-select'"
                     :casename="'border & not editable'"
                 ></demolink>
 
@@ -688,7 +727,7 @@
                     :borderColorHover="'orange'"
                     :borderColorFocus="'orange darken-2'"
                     :backgroundColorFocus="'orange lighten-5'"
-                    :icon="mdiCheckUnderlineCircle"
+                    :leftIcon="mdiCheckUnderlineCircle"
                     :editable="false"
                     :items="WTextSelect.objItems"
                     v-model="WTextSelect.objValue"
@@ -815,8 +854,11 @@ export default {
         evClickItem: function(item, kitem) {
             console.log('evClickItem', 'item=', item, 'kitem', kitem)
         },
-        evClickLeft: function(item, kitem) {
-            console.log('evClickLeft', 'item=', item, 'kitem', kitem)
+        evClickLeft: function() {
+            console.log('evClickLeft')
+        },
+        evClickRight: function() {
+            console.log('evClickRight')
         },
     },
 }

@@ -50,22 +50,13 @@
                         v-if="mode==='suggest'"
                     ></w-text-core>
 
-                    <div :style="`padding:0px 5px; transform:rotate(${getRotateDeg}deg); transition:all 0.2s; cursor:pointer;`">
-                        <div style="transform:rotate(90deg) scaleX(0.7);"> <!-- 調整svg角度與寬度 -->
-                            <div :style="`display:flex; align-items:center; height:${height}px;`"> <!-- 使svg垂直置中 -->
-                                <div style="display:flex; align-items:center; width:11px; height:11px;"> <!-- 使svg貼合div -->
-                                    <svg
-                                        width="11px"
-                                        height="11px"
-                                        x="0px"
-                                        y="0px"
-                                        viewBox="0 0 415.346 415.346"
-                                        :fill="useIconColor"
-                                    >
-                                        <g><path d="M41.712,415.346c-11.763,0-21.3-9.537-21.3-21.3V21.299C20.412,9.536,29.949,0,41.712,0l346.122,191.697 c0,0,15.975,15.975,0,31.951C371.859,239.622,41.712,415.346,41.712,415.346z"/></g>
-                                    </svg>
-                                </div>
-                            </div>
+                    <div style="padding:0px 0px 0px 5px;">
+                        <div :style="`transform:rotate(${getRotateDeg+90}deg); transition:all 0.25s; cursor:pointer;`">
+                            <w-icon
+                                :icon="rightIcon"
+                                :color="useRightIconColor"
+                                :size="20"
+                            ></w-icon>
                         </div>
                     </div>
 
@@ -120,6 +111,7 @@
 </template>
 
 <script>
+import { mdiPlay } from '@mdi/js'
 import get from 'lodash/get'
 import isobj from 'wsemi/src/isobj.mjs'
 import isbol from 'wsemi/src/isbol.mjs'
@@ -128,6 +120,7 @@ import parseSpace from '../js/parseSpace.mjs'
 import WPopup from './WPopup.vue'
 import WTextCore from './WTextCore.vue'
 import WDynamicList from './WDynamicList.vue'
+import WIcon from './WIcon.vue'
 
 
 /**
@@ -142,7 +135,8 @@ import WDynamicList from './WDynamicList.vue'
  * @vue-prop {String} [itemBackgroundColor='white'] 輸入項目背景顏色字串，預設'white'
  * @vue-prop {String} [itemBackgroundColorHover='light-blue lighten-5'] 輸入項目背景Hover顏色字串，預設'light-blue lighten-5'
  * @vue-prop {Object} [itemPaddingStyle={v:12,h:16}] 輸入內寬距離設定物件，可用鍵值為v、h、left、right、top、bottom，v代表同時設定top與bottom，h代表設定left與right，若有重複設定時後面鍵值會覆蓋前面，各鍵值為寬度數字，單位為px，預設{v:12,h:16}
- * @vue-prop {String} [iconColor='#999'] 輸入圖標顏色字串，預設'#999'
+ * @vue-prop {String} [rightIcon=mdiPlay] 輸入右側圖標字串，可為mdi,md,fa代號或mdi/js路徑，預設使用mdi的圖標(mdiPlay)
+ * @vue-prop {String} [rightIconColor='grey'] 輸入右側圖標顏色字串，預設'grey'
  * @vue-prop {Number} [maxHeight=200] 輸入顯示區最大高度數字，單位為px，預設200
  * @vue-prop {Number} [minWidth=null] 輸入最小寬度，單位為px，預設null
  * @vue-prop {Number} [maxWidth=null] 輸入最大寬度，單位為px，預設null
@@ -160,6 +154,7 @@ export default {
         WPopup,
         WTextCore,
         WDynamicList,
+        WIcon,
     },
     props: {
         mode: {
@@ -211,7 +206,11 @@ export default {
                 }
             },
         },
-        iconColor: {
+        rightIcon: {
+            type: String,
+            default: mdiPlay,
+        },
+        rightIconColor: {
             type: String,
             default: 'grey',
         },
@@ -354,12 +353,12 @@ export default {
             return padding
         },
 
-        useIconColor: function() {
-            //console.log('computed useIconColor')
+        useRightIconColor: function() {
+            //console.log('computed useRightIconColor')
 
             let vo = this
 
-            return color2hex(vo.iconColor)
+            return color2hex(vo.rightIconColor)
         },
 
         getRotateDeg: function() {
