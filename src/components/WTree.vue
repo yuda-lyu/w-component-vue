@@ -1,6 +1,7 @@
 <template>
+    <!-- 拖曳區可能超過組件區域外, 故得使用overflow:hidden -->
     <div
-        style="position:relative;"
+        style="position:relative; overflow:hidden;"
         :changeDefaultDisplayLevel="changeDefaultDisplayLevel"
         :changeDraggable="changeDraggable"
         :changeFilterKeyWords="changeFilterKeyWords"
@@ -88,7 +89,7 @@
         </WDynamicList>
 
         <div
-            :style="`position:absolute; z-index:9999; pointer-events:none; left:${dgTipLeft}px; top:${dgTipTop}px;`"
+            :style="`position:absolute; z-index:1; pointer-events:none; left:${dgTipLeft}px; top:${dgTipTop}px; _width:calc( 100% - 8px ); _overflow-x:hidden;`"
             :msg="`需使用pointer-events:none;禁用事件, 避免拖曳時因接觸此元素時出現enter與leave`"
             v-if="dgTipMode!==''"
         >
@@ -187,7 +188,7 @@ let gm = globalMemory()
  * @vue-prop {Number} [itemsPreload=5] 輸入上下方預先載入元素數量，預設5
  * @vue-prop {Number} [separatorHeight=1] 輸入分隔線高度數字，預設1
  * @vue-prop {String} [separatorColor='transparent'] 輸入分隔線顏色字串，預設'transparent'
- * @vue-prop {Boolean} [draggable=false] 輸入是否為可拖曳編輯模式，若draggable設定true，此時defaultDisplayLevel強制設定為null，代表所有節點皆為展開顯示，且禁止顯隱節點功能，適用小規模數據。draggable預設false
+ * @vue-prop {Boolean} [draggable=false] 輸入是否為可拖曳編輯模式，若draggable設定true，此時所有節點皆為展開顯示，以及禁止顯隱節點功能，也就是defaultDisplayLevel強制設定為null，此外也不提供過濾功能，也就是filterKeywords強制清空。開啟draggable僅適用小規模數據。draggable預設false
  * @vue-prop {String} [dgTextDisabled='Can not drop here'] 輸入禁止拖曳文字字串，預設'Can not drop here'
  * @vue-prop {String} [dgTextDisabledColor='#812'] 輸入禁止拖曳文字顏色字串，預設'#812'
  * @vue-prop {Number} [dgTextDisabledPaddingLeft=15] 輸入禁止拖曳padding-left數字，單位px，預設15
@@ -387,7 +388,9 @@ export default {
             separation: 3,
             iconHeight: 34,
             selectionsTrans: [],
-            filterKeywordsTemp: '', //上次過濾關鍵字
+
+            filterKeywordsTrans: '',
+            filterKeywordsTransTemp: '', //上次過濾關鍵字
             filtering: false, //是否過濾中
 
             defaultDisplayLevelTrans: null,
@@ -453,9 +456,10 @@ export default {
             //trigger
             let draggable = vo.draggable
 
-            //若draggable為true, 則defaultDisplayLevel只能強制為null
+            //若draggable為true, 則defaultDisplayLevel強制為null, filterKeywords強制清空
             if (draggable) {
                 vo.defaultDisplayLevelTrans = null
+                vo.filterKeywordsTrans = ''
             }
 
             return ''
@@ -466,13 +470,12 @@ export default {
 
             let vo = this
 
-            //ft for trigger
-            let ft = vo.filterKeywords
+            //save
+            vo.filterKeywordsTrans = vo.filterKeywords
 
             //filterKeyWordsDebounce
             vo.filterKeyWordsDebounce()
 
-            vo.___filterKeywords___ = ft
             return ''
         },
 
@@ -1436,14 +1439,19 @@ export default {
 
             let vo = this
 
-            //check filterKeywordsTemp
-            if (vo.filterKeywordsTemp === vo.filterKeywords) {
+            //check draggable
+            if (vo.draggable) {
                 return
             }
-            vo.filterKeywordsTemp = vo.filterKeywords //因為函數為同步故可以先覆寫至temp
+
+            //check filterKeywordsTransTemp
+            if (vo.filterKeywordsTransTemp === vo.filterKeywordsTrans) {
+                return
+            }
+            vo.filterKeywordsTransTemp = vo.filterKeywordsTrans //因為函數為同步故可以先覆寫至temp
 
             //check
-            if (size(vo.filterKeywords) === 0) {
+            if (size(vo.filterKeywordsTrans) === 0) {
 
                 //預設可見
                 for (let i = 0; i < items.length; i++) {
@@ -1454,7 +1462,7 @@ export default {
             else {
 
                 //kws
-                let kws = sep(vo.filterKeywords.toLowerCase(), ' ')
+                let kws = sep(vo.filterKeywordsTrans.toLowerCase(), ' ')
 
                 //針對各項目偵測過濾
                 let pathHasShow = {} //儲存已經強制顯示的父層鏈
