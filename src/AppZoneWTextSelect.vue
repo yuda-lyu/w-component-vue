@@ -24,6 +24,21 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-text-select'"
+                    :casename="'textColor & expansionIconColor'"
+                ></demolink>
+
+                <w-text-select
+                    :textColor="'orange darken-2'"
+                    :expansionIconColor="'orange'"
+                    :items="WTextSelect.objItems"
+                    v-model="WTextSelect.objValue"
+                ></w-text-select>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-text-select'"
                     :casename="'leftIcon (material)'"
                 ></demolink>
 
@@ -79,6 +94,21 @@
                     :rightIconColorHover="'orange accent-3'"
                     :rightIconColorFocus="'orange darken-2'"
                     :rightIconTooltip="'show tooltip'"
+                    :items="WTextSelect.objItems"
+                    v-model="WTextSelect.objValue"
+                ></w-text-select>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-text-select'"
+                    :casename="'showExpansionIcon'"
+                ></demolink>
+
+                <w-text-select
+                    :leftIcon="mdiCheckUnderlineCircle"
+                    :showExpansionIcon="false"
                     :items="WTextSelect.objItems"
                     v-model="WTextSelect.objValue"
                 ></w-text-select>
@@ -338,6 +368,26 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-text-select'"
+                    :casename="'border & textColor & expansionIconColor'"
+                ></demolink>
+
+                <w-text-select
+                    :shadow="false"
+                    :borderColor="'orange lighten-2'"
+                    :borderColorHover="'orange'"
+                    :borderColorFocus="'orange darken-2'"
+                    :backgroundColorFocus="'orange lighten-5'"
+                    :textColor="'orange darken-2'"
+                    :expansionIconColor="'orange'"
+                    :items="WTextSelect.objItems"
+                    v-model="WTextSelect.objValue"
+                ></w-text-select>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-text-select'"
                     :casename="'border & leftIcon (material)'"
                 ></demolink>
 
@@ -435,6 +485,26 @@
                     :backgroundColor="'rgba(255, 171, 64, 0.05)'"
                     :backgroundColorHover="'rgba(255, 171, 64, 0.1)'"
                     :backgroundColorFocus="'rgba(255, 171, 64, 0.2)'"
+                    :items="WTextSelect.objItems"
+                    v-model="WTextSelect.objValue"
+                ></w-text-select>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-text-select'"
+                    :casename="'border & showExpansionIcon'"
+                ></demolink>
+
+                <w-text-select
+                    :shadow="false"
+                    :borderColor="'orange lighten-2'"
+                    :borderColorHover="'orange'"
+                    :borderColorFocus="'orange darken-2'"
+                    :backgroundColorFocus="'orange lighten-5'"
+                    :leftIcon="mdiCheckUnderlineCircle"
+                    :showExpansionIcon="false"
                     :items="WTextSelect.objItems"
                     v-model="WTextSelect.objValue"
                 ></w-text-select>

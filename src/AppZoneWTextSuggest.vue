@@ -24,6 +24,21 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-text-suggest'"
+                    :casename="'textColor & expansionIconColor'"
+                ></demolink>
+
+                <w-text-suggest
+                    :textColor="'orange darken-2'"
+                    :expansionIconColor="'orange'"
+                    :items="WTextSuggest.objItems"
+                    v-model="WTextSuggest.objValue"
+                ></w-text-suggest>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-text-suggest'"
                     :casename="'searchEmpty'"
                 ></demolink>
 
@@ -93,6 +108,21 @@
                     :rightIconColorHover="'orange accent-3'"
                     :rightIconColorFocus="'orange darken-2'"
                     :rightIconTooltip="'show tooltip'"
+                    :items="WTextSuggest.objItems"
+                    v-model="WTextSuggest.objValue"
+                ></w-text-suggest>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-text-suggest'"
+                    :casename="'showExpansionIcon'"
+                ></demolink>
+
+                <w-text-suggest
+                    :leftIcon="mdiCheckUnderlineCircle"
+                    :showExpansionIcon="false"
                     :items="WTextSuggest.objItems"
                     v-model="WTextSuggest.objValue"
                 ></w-text-suggest>
@@ -370,6 +400,26 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-text-suggest'"
+                    :casename="'border & textColor & expansionIconColor'"
+                ></demolink>
+
+                <w-text-suggest
+                    :shadow="false"
+                    :borderColor="'orange lighten-2'"
+                    :borderColorHover="'orange'"
+                    :borderColorFocus="'orange darken-2'"
+                    :backgroundColorFocus="'orange lighten-5'"
+                    :textColor="'orange darken-2'"
+                    :expansionIconColor="'orange'"
+                    :items="WTextSuggest.objItems"
+                    v-model="WTextSuggest.objValue"
+                ></w-text-suggest>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-text-suggest'"
                     :casename="'border & searchEmpty'"
                 ></demolink>
 
@@ -486,6 +536,26 @@
                     :backgroundColor="'rgba(255, 171, 64, 0.05)'"
                     :backgroundColorHover="'rgba(255, 171, 64, 0.1)'"
                     :backgroundColorFocus="'rgba(255, 171, 64, 0.2)'"
+                    :items="WTextSuggest.objItems"
+                    v-model="WTextSuggest.objValue"
+                ></w-text-suggest>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-text-suggest'"
+                    :casename="'border & showExpansionIcon'"
+                ></demolink>
+
+                <w-text-suggest
+                    :shadow="false"
+                    :borderColor="'orange lighten-2'"
+                    :borderColorHover="'orange'"
+                    :borderColorFocus="'orange darken-2'"
+                    :backgroundColorFocus="'orange lighten-5'"
+                    :leftIcon="mdiCheckUnderlineCircle"
+                    :showExpansionIcon="false"
                     :items="WTextSuggest.objItems"
                     v-model="WTextSuggest.objValue"
                 ></w-text-suggest>

@@ -19,7 +19,7 @@
                 <div style="display:flex; align-items:center;">
 
                     <div
-                        :style="`width:100%; height:${height}px; line-height:${height}px; vertical-align:middle; white-space:nowrap; text-overflow:ellipsis; cursor:pointer; outline:none;`"
+                        :style="`width:100%; height:${height}px; line-height:${height}px; color:${useTextColor}; vertical-align:middle; white-space:nowrap; text-overflow:ellipsis; cursor:pointer; outline:none;`"
                         tabindex="0"
                         @focus="focusText"
                         v-if="mode==='select'"
@@ -37,6 +37,7 @@
 
                     <w-text-core
                         style="width:100%;"
+                        :textColor="useTextColor"
                         :textAlign="textAlign"
                         :placeholder="placeholder"
                         :height="height"
@@ -53,8 +54,8 @@
                     <div style="padding:0px 0px 0px 5px;">
                         <div :style="`transform:rotate(${getRotateDeg+90}deg); transition:all 0.25s; cursor:pointer;`">
                             <w-icon
-                                :icon="rightIcon"
-                                :color="useRightIconColor"
+                                :icon="expansionIcon"
+                                :color="uesExpansionIconColor"
                                 :size="20"
                             ></w-icon>
                         </div>
@@ -113,6 +114,7 @@
 <script>
 import { mdiPlay } from '@mdi/js'
 import get from 'lodash/get'
+import size from 'lodash/size'
 import isobj from 'wsemi/src/isobj.mjs'
 import isbol from 'wsemi/src/isbol.mjs'
 import color2hex from '../js/vuetifyColor.mjs'
@@ -135,12 +137,13 @@ import WIcon from './WIcon.vue'
  * @vue-prop {String} [itemBackgroundColor='white'] 輸入項目背景顏色字串，預設'white'
  * @vue-prop {String} [itemBackgroundColorHover='light-blue lighten-5'] 輸入項目背景Hover顏色字串，預設'light-blue lighten-5'
  * @vue-prop {Object} [itemPaddingStyle={v:12,h:16}] 輸入內寬距離設定物件，可用鍵值為v、h、left、right、top、bottom，v代表同時設定top與bottom，h代表設定left與right，若有重複設定時後面鍵值會覆蓋前面，各鍵值為寬度數字，單位為px，預設{v:12,h:16}
- * @vue-prop {String} [rightIcon=mdiPlay] 輸入右側圖標字串，可為mdi,md,fa代號或mdi/js路徑，預設使用mdi的圖標(mdiPlay)
- * @vue-prop {String} [rightIconColor='grey'] 輸入右側圖標顏色字串，預設'grey'
+ * @vue-prop {String} [expansionIcon=mdiPlay] 輸入右側圖標字串，可為mdi,md,fa代號或mdi/js路徑，預設使用mdi的圖標(mdiPlay)
+ * @vue-prop {String} [expansionIconColor='grey'] 輸入右側圖標顏色字串，預設'grey'
  * @vue-prop {Number} [maxHeight=200] 輸入顯示區最大高度數字，單位為px，預設200
  * @vue-prop {Number} [minWidth=null] 輸入最小寬度，單位為px，預設null
  * @vue-prop {Number} [maxWidth=null] 輸入最大寬度，單位為px，預設null
  * @vue-prop {Number} [distY=5] 輸入彈窗距離觸發元素底部的距離數字，單位為px，預設5
+ * @vue-prop {String} [textColor='black'] 輸入文字顏色字串，預設'black'
  * @vue-prop {String} [textAlign='left'] 輸入文字左右對齊字串，預設'left'
  * @vue-prop {String} [placeholder=''] 輸入無文字時的替代字符字串，預設''
  * @vue-prop {String} [searchEmpty='Empty'] 輸入無過濾結果字串，預設'Empty'
@@ -206,11 +209,11 @@ export default {
                 }
             },
         },
-        rightIcon: {
+        expansionIcon: {
             type: String,
             default: mdiPlay,
         },
-        rightIconColor: {
+        expansionIconColor: {
             type: String,
             default: 'grey',
         },
@@ -229,6 +232,10 @@ export default {
         distY: {
             type: Number,
             default: 5,
+        },
+        textColor: {
+            type: String,
+            default: 'black',
         },
         textAlign: {
             type: String,
@@ -286,7 +293,12 @@ export default {
             let vo = this
 
             //showPanelTrans
-            vo.showPanelTrans = vo.showPanel
+            if (size(vo.items) > 0) {
+                vo.showPanelTrans = vo.showPanel
+            }
+            else {
+                vo.showPanelTrans = false
+            }
 
             return ''
         },
@@ -305,6 +317,14 @@ export default {
             }
 
             return ''
+        },
+
+        useTextColor: function() {
+            //console.log('computed useTextColor')
+
+            let vo = this
+
+            return color2hex(vo.textColor)
         },
 
         useItemBackgroundColor: function() {
@@ -353,12 +373,12 @@ export default {
             return padding
         },
 
-        useRightIconColor: function() {
-            //console.log('computed useRightIconColor')
+        uesExpansionIconColor: function() {
+            //console.log('computed uesExpansionIconColor')
 
             let vo = this
 
-            return color2hex(vo.rightIconColor)
+            return color2hex(vo.expansionIconColor)
         },
 
         getRotateDeg: function() {
@@ -579,7 +599,12 @@ export default {
                 // console.log('triggerAll showPanel', showPanel, 'from', from)
 
                 //save
-                vo.showPanelTrans = showPanel
+                if (size(vo.items) > 0) {
+                    vo.showPanelTrans = showPanel
+                }
+                else {
+                    vo.showPanelTrans = false
+                }
 
                 //triggerEvent
                 vo.triggerEvent('update:showPanel', showPanel, null, 'triggerAll')

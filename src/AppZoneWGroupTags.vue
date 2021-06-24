@@ -91,6 +91,80 @@
             <div class="bk" style="display:block;">
                 <demolink
                     :kbname="'w-group-tags'"
+                    :casename="'inputTextWidth'"
+                ></demolink>
+
+                <w-group-tags
+                    v-model="WGroupTags.strings"
+                    :inputTextWidth="250"
+                ></w-group-tags>
+            </div>
+
+
+            <div class="bk" style="display:block;">
+                <demolink
+                    :kbname="'w-group-tags'"
+                    :casename="'suggests'"
+                ></demolink>
+
+                <w-group-tags
+                    v-model="WGroupTags.strings"
+                    :suggests="WGroupTags.suggests"
+                ></w-group-tags>
+            </div>
+
+
+            <div class="bk" style="display:block;">
+                <demolink
+                    :kbname="'w-group-tags'"
+                    :casename="'suggests & placeholder & searchEmpty'"
+                ></demolink>
+
+                <w-group-tags
+                    v-model="WGroupTags.strings"
+                    :suggests="WGroupTags.suggests"
+                    :placeholder="'請輸入關鍵字'"
+                    :searchEmpty="'無符合項目'"
+                ></w-group-tags>
+            </div>
+
+
+            <div class="bk" style="display:block;">
+                <demolink
+                    :kbname="'w-group-tags'"
+                    :casename="'suggests & inputTextColor & inputExpansionIconColor'"
+                ></demolink>
+
+                <w-group-tags
+                    v-model="WGroupTags.strings"
+                    :suggests="WGroupTags.suggests"
+                    :inputTextColor="'orange darken-2'"
+                    :inputExpansionIconColor="'orange'"
+                ></w-group-tags>
+            </div>
+
+
+            <div class="bk" style="display:block;">
+                <demolink
+                    :kbname="'w-group-tags'"
+                    :casename="'suggests & suggectItemFontSize & suggectItemTextColor & suggectItemTextColorHover & suggectItemBackgroundColor & suggectItemBackgroundColorHover'"
+                ></demolink>
+
+                <w-group-tags
+                    v-model="WGroupTags.strings"
+                    :suggests="WGroupTags.suggests"
+                    :suggectItemFontSize="'0.8rem'"
+                    :suggectItemTextColor="'orange darken-2'"
+                    :suggectItemTextColorHover="'white'"
+                    :suggectItemBackgroundColor="'white'"
+                    :suggectItemBackgroundColorHover="'orange darken-3'"
+                ></w-group-tags>
+            </div>
+
+
+            <div class="bk" style="display:block;">
+                <demolink
+                    :kbname="'w-group-tags'"
                     :casename="'inputTextColor & inputTextBorderColor & inputTextBorderColorHover & inputTextBorderColorFocus & inputTextButtonColor & inputTextButtonColorHover & inputTextButtonColorHover & inputTextBackgroundColor & inputTextBackgroundColorHover & inputTextBackgroundColorFocus'"
                 ></demolink>
 
@@ -1107,6 +1181,7 @@ export default {
                     backgroundColorHover: 'white',
                     backgroundColorActive: 'pink accent-3',
                 },
+                'suggests': ['apple', 'orange', 'banana'],
                 'empty': [],
             },
             'actions': [

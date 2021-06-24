@@ -14,7 +14,7 @@
                     dragtag
                     :dragindex="kitem"
                 >
-                    <WButtonChip
+                    <w-buttonChip
                         :style="`${useMarginStyle}`"
                         :text="isObjValue?get(item,`${keyText}`):item"
                         :tooltip="isObjValue?get(item,`${keyTooltip}`):null"
@@ -55,7 +55,7 @@
                             :kitem="kitem"
                             :active="isActive(item)"
                         ></slot>
-                    </WButtonChip>
+                    </w-buttonChip>
                 </div>
 
             </template>
@@ -63,7 +63,7 @@
 
         <template v-if="itemsTrans.length===0">
 
-            <WButtonChip
+            <w-buttonChip
                 style="margin:10px 10px 10px 0px;"
                 _key=""
                 :text="nodata"
@@ -102,15 +102,15 @@
                     :kitem="null"
                     :active="false"
                 ></slot>
-            </WButtonChip>
+            </w-buttonChip>
 
         </template>
 
-        <div style="display:inline-block; width:150px; vertical-align:middle;" v-if="editable && editableInput">
+        <div :style="`display:inline-block; vertical-align:middle;`" v-if="editable && editableInput">
             <slot name="input">
 
                 <template v-if="isObjValue">
-                    <WButtonChip
+                    <w-buttonChip
                         :icon="mdiPlusCircle"
                         :iconColor="addButtonIconColor"
                         :iconColorHover="addButtonIconColorHover"
@@ -120,34 +120,40 @@
                         :backgroundColor="addButtonBackgroundColor"
                         :backgroundColorHover="addButtonBackgroundColorHover"
                         :tooltip="addButtonTooltip"
-                        @click="$emit('click-add')"
-                    ></WButtonChip>
+                        @click="clickAddBtn"
+                    ></w-buttonChip>
                 </template>
 
                 <template v-else>
-                    <WText
-                        :shadow="false"
-                        :bottomLineBorderColor="'transparent'"
-                        :bottomLineBorderColorHover="'transparent'"
-                        :bottomLineBorderColorFocus="'transparent'"
-                        :paddingStyle="{h:15}"
-                        :iconShiftOuter="-10"
+                    <w-text-suggest
+                        :style="`width:${inputTextWidth}px;`"
                         :textColor="inputTextColor"
+                        :expansionIconColor="inputExpansionIconColor"
+                        :itemTextColor="suggectItemTextColor"
+                        :itemTextColorHover="suggectItemTextColorHover"
+                        :itemFontSize="suggectItemFontSize"
+                        :itemBackgroundColor="suggectItemBackgroundColor"
+                        :itemBackgroundColorHover="suggectItemBackgroundColorHover"
+                        :shadow="false"
+                        :borderColor="inputTextBorderColor"
+                        :borderColorHover="inputTextBorderColorHover"
+                        :borderColorFocus="inputTextBorderColorFocus"
+                        :backgroundColor="inputTextBackgroundColor"
+                        :backgroundColorHover="inputTextBackgroundColorHover"
+                        :backgroundColorFocus="inputTextBackgroundColorFocus"
+                        :showExpansionIcon="false"
                         :rightIcon="mdiPlusCircle"
                         :rightIconColor="inputTextButtonColor"
                         :rightIconColorHover="inputTextButtonColorHover"
                         :rightIconColorFocus="inputTextButtonColorFocus"
                         :rightIconTooltip="inputTextButtonTooltip"
-                        :backgroundColor="inputTextBackgroundColor"
-                        :backgroundColorHover="inputTextBackgroundColorHover"
-                        :backgroundColorFocus="inputTextBackgroundColorFocus"
-                        :borderColor="inputTextBorderColor"
-                        :borderColorHover="inputTextBorderColorHover"
-                        :borderColorFocus="inputTextBorderColorFocus"
-                        @click-right="clickAddBtn"
-                        @enter="clickAddBtn"
+                        :items="suggests"
+                        :placeholder="placeholder"
+                        :searchEmpty="searchEmpty"
                         v-model="userinput"
-                    ></WText>
+                        @enter="clickAddBtn"
+                        @click-right="clickAddBtn"
+                    ></w-text-suggest>
                 </template>
 
             </slot>
@@ -173,7 +179,7 @@ import isobj from 'wsemi/src/isobj.mjs'
 import genPm from 'wsemi/src/genPm.mjs'
 import waitFun from 'wsemi/src/waitFun.mjs'
 import WButtonChip from './WButtonChip.vue'
-import WText from './WText.vue'
+import WTextSuggest from './WTextSuggest.vue'
 import parseSpace from '../js/parseSpace.mjs'
 
 
@@ -211,6 +217,10 @@ import parseSpace from '../js/parseSpace.mjs'
  * @vue-prop {Object} [paddingStyle={v:3,h:15}] 輸入內寬距離物件，可用鍵值為v、h、left、right、top、bottom，v代表同時設定top與bottom，h代表設定left與right，若有重複設定時後面鍵值會覆蓋前面，各鍵值為寬度數字，單位為px，預設{v:3,h:15}
  * @vue-prop {Number} [shiftLeft=0] 輸入左側內寬平移距離數字，會對paddingStyle設定再添加，可調整例如圖標與左側邊框距離，單位px，預設0
  * @vue-prop {Number} [shiftRight=0] 輸入右側內寬平移距離數字，會對paddingStyle設定再添加，可調整例如關閉圖標與右側邊框距離，單位px，預設0
+ * @vue-prop {Array} [suggests=[]] 輸入可選(建議)項目陣列，預設[]
+ * @vue-prop {String} [placeholder=''] 輸入無文字時的替代字符字串，預設''
+ * @vue-prop {String} [searchEmpty='Empty'] 輸入無過濾結果字串，預設'Empty'
+ * @vue-prop {Number} [inputTextWidth=150] 輸入新增按鈕或輸入框區寬度數字，單位px，預設150
  * @vue-prop {String} [inputTextColor='black'] 輸入文字顏色字串，預設'black'
  * @vue-prop {String} [inputTextBackgroundColor='white'] 輸入輸入框背景顏色字串，預設'white'
  * @vue-prop {String} [inputTextBackgroundColorHover='white'] 輸入滑鼠移入時輸入框背景顏色字串，預設'white'
@@ -222,6 +232,12 @@ import parseSpace from '../js/parseSpace.mjs'
  * @vue-prop {String} [inputTextButtonColorHover='grey'] 輸入滑鼠移入時輸入框按鈕顏色字串，預設'grey'
  * @vue-prop {String} [inputTextButtonColorFocus='grey'] 輸入取得焦點時輸入框按鈕顏色字串，預設'grey'
  * @vue-prop {String} [inputTextButtonTooltip='Add'] 輸入輸入框右側按鈕提示文字字串，預設'Add'
+ * @vue-prop {String} [inputExpansionIconColor='grey'] 輸入輸入框右側圖標顏色字串，預設'grey'
+ * @vue-prop {String} [suggectItemTextColor='grey darken-3'] 輸入輸入框下拉選單項目文字顏色字串，預設'grey darken-3'
+ * @vue-prop {String} [suggectItemTextColorHover='light-blue darken-2'] 輸入輸入框下拉選單項目文字Hover顏色字串，預設'light-blue darken-2'
+ * @vue-prop {String} [suggectItemFontSize='0.9rem'] 輸入輸入框下拉選單項目顯示文字大小字串，預設'0.9rem'
+ * @vue-prop {String} [suggectItemBackgroundColor='white'] 輸入輸入框下拉選單項目背景顏色字串，預設'white'
+ * @vue-prop {String} [suggectItemBackgroundColorHover='light-blue lighten-5'] 輸入輸入框下拉選單項目背景Hover顏色字串，預設'light-blue lighten-5'
  * @vue-prop {String} [addButtonText='Add'] 輸入新增按鈕文字字串，預設'Add'
  * @vue-prop {String} [addButtonTextColor='black'] 輸入新增按鈕文字顏色字串，預設'black'
  * @vue-prop {String} [addButtonTextColorHover='black'] 輸入滑鼠移入時新增按鈕文字顏色字串，預設'black'
@@ -241,7 +257,7 @@ import parseSpace from '../js/parseSpace.mjs'
 export default {
     components: {
         WButtonChip,
-        WText,
+        WTextSuggest,
     },
     props: {
         value: {
@@ -391,6 +407,22 @@ export default {
             type: Number,
             default: 0,
         },
+        suggests: {
+            type: Array,
+            default: () => [],
+        },
+        placeholder: {
+            type: String,
+            default: '',
+        },
+        searchEmpty: {
+            type: String,
+            default: 'Empty',
+        },
+        inputTextWidth: {
+            type: Number,
+            default: 150,
+        },
         inputTextColor: {
             type: String,
             default: 'black',
@@ -434,6 +466,30 @@ export default {
         inputTextButtonTooltip: {
             type: String,
             default: 'Add',
+        },
+        inputExpansionIconColor: {
+            type: String,
+            default: 'grey',
+        },
+        suggectItemTextColor: {
+            type: String,
+            default: 'grey darken-3',
+        },
+        suggectItemTextColorHover: {
+            type: String,
+            default: 'light-blue darken-2',
+        },
+        suggectItemFontSize: {
+            type: String,
+            default: '0.8rem',
+        },
+        suggectItemBackgroundColor: {
+            type: String,
+            default: 'white',
+        },
+        suggectItemBackgroundColorHover: {
+            type: String,
+            default: 'light-blue lighten-5',
         },
         addButtonText: {
             type: String,

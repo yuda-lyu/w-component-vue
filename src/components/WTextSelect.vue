@@ -36,6 +36,7 @@
                     :items="items"
                     :value="value"
                     :keyText="keyText"
+                    :textColor="textColor"
                     :height="useHeight"
                     :itemTextColor="itemTextColor"
                     :itemTextColorHover="itemTextColorHover"
@@ -43,7 +44,8 @@
                     :itemBackgroundColor="itemBackgroundColor"
                     :itemBackgroundColorHover="itemBackgroundColorHover"
                     :itemPaddingStyle="itemPaddingStyle"
-                    :rightIcon="showRotateIcon?undefined:''"
+                    :expansionIcon="showExpansionIcon?undefined:''"
+                    :expansionIconColor="expansionIconColor"
                     :distY="5"
                     :defItemHeight="defItemHeight"
                     :editable="editable"
@@ -97,10 +99,11 @@ import WTextSuggestCore from './WTextSuggestCore.vue'
  * @vue-prop {Object} [paddingStyle={v:0,h:15}] 輸入內寬距離物件，可用鍵值為v、h、left、right、top、bottom，v代表同時設定top與bottom，h代表設定left與right，若有重複設定時後面鍵值會覆蓋前面，各鍵值為寬度數字，單位為px，預設{v:0,h:15}
  * @vue-prop {Number} [borderRadius=30] 輸入框圓角度數字，單位為px，預設30
  * @vue-prop {Boolean} [shadow=true] 輸入是否為陰影模式布林值，預設true
+ * @vue-prop {Number} [height=30] 輸入項目高度數字，單位為px，預設30
  * @vue-prop {Array} [items=[]] 輸入可選項目陣列，預設[]
  * @vue-prop {Object|String|Number} [value=null] 輸入目前選擇項目，可為物件、字串、數字，預設null
  * @vue-prop {String} [keyText='text'] 輸入取項目物件內之顯示用文字鍵值字串，預設'text'
- * @vue-prop {Number} [height=30] 輸入項目高度數字，單位為px，預設30
+ * @vue-prop {String} [textColor='black'] 輸入文字顏色字串，預設'black'
  * @vue-prop {String} [itemTextColor='grey darken-3'] 輸入項目文字顏色字串，預設'grey darken-3'
  * @vue-prop {String} [itemTextColorHover='light-blue darken-2'] 輸入項目文字Hover顏色字串，預設'light-blue darken-2'
  * @vue-prop {String} [itemFontSize='0.9rem'] 輸入項目顯示文字大小字串，預設'0.9rem'
@@ -125,7 +128,8 @@ import WTextSuggestCore from './WTextSuggestCore.vue'
  * @vue-prop {String} [borderColor='white'] 輸入邊框顏色字串，預設'white'
  * @vue-prop {String} [borderColorHover='white'] 輸入滑鼠移入時邊框顏色字串，預設'white'
  * @vue-prop {String} [borderColorFocus='white'] 輸入取得焦點時邊框顏色字串，預設'white'
- * @vue-prop {Boolean} [showRotateIcon=true] 輸入是否顯示時顯示旋轉按鈕布林值，預設true
+ * @vue-prop {Boolean} [showExpansionIcon=true] 輸入是否顯示時顯示旋轉按鈕布林值，預設true
+ * @vue-prop {String} [expansionIconColor='grey'] 輸入右側圖標顏色字串，預設'grey'
  * @vue-prop {Number} [defItemHeight=43] 輸入按需顯示時各項目預設高度值數字，給越準或給大部分項目的高度則渲染速度越快，單位為px，預設43
  * @vue-prop {Boolean} [editable=true] 輸入是否為編輯模式布林值，預設true
  * @vue-prop {Boolean} [focused=false] 輸入是否為取得焦點狀態布林值，預設false
@@ -153,6 +157,10 @@ export default {
             type: Boolean,
             default: true,
         },
+        height: {
+            type: Number,
+            default: 30,
+        },
         items: {
             type: Array,
             default: () => [],
@@ -161,13 +169,13 @@ export default {
             type: [Object, String, Number],
             default: null,
         },
-        height: {
-            type: Number,
-            default: 30,
-        },
         keyText: {
             type: String,
             default: 'text',
+        },
+        textColor: {
+            type: String,
+            default: 'black',
         },
         itemTextColor: {
             type: String,
@@ -270,9 +278,13 @@ export default {
             type: String,
             default: 'white',
         },
-        showRotateIcon: {
+        showExpansionIcon: {
             type: Boolean,
             default: true,
+        },
+        expansionIconColor: {
+            type: String,
+            default: 'grey',
         },
         defItemHeight: {
             type: Number,
