@@ -85,7 +85,7 @@
     </script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.1.23/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.1.24/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -139,9 +139,12 @@
             >w-button-circle</span>
         </div>
         <div class="bk">
-            <div class="item">not small (large)</div>
+            <div class="item">rippleColor</div>
 
-            <w-button-circle :icon="'mdi-face'" :small="false" />
+            <w-button-circle
+                :icon="'mdi-check-underline-circle'"
+                :ripple-color="'rgba(0,20,255,0.3)'"
+            />
         </div>
     </v-app>
 

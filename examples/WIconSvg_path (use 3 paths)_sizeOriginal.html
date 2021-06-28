@@ -85,7 +85,7 @@
     </script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.1.23/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.1.24/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -136,16 +136,12 @@
                 style="cursor:pointer;"
                 title="open for copy link to view component"
                 onclick="window.open('//yuda-lyu.github.io/w-component-vue/examples/app.html?cmp='+this.innerText,'_blank')"
-            >w-icon-svg</span>
+            >WIconSvg</span>
         </div>
         <div class="bk">
-            <div class="item">path (mdi-graph-outline) & color & colorHover</div>
+            <div class="item">path (use 3 paths) & sizeOriginal</div>
 
-            <w-icon-svg
-                :path="WIconSvg.'mdi-graph-outline'"
-                :color="'orange darken-3'"
-                :color-hover="'orange lighten-1'"
-            />
+            <WIconSvg :path="WIconSvg.custom2" :size-original="60" />
         </div>
     </v-app>
 
