@@ -85,7 +85,7 @@
     </script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.1.25/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.1.26/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -192,10 +192,18 @@
             toolbox: {
               feature: {
                 dataZoom: {
-                  yAxisIndex: "none"
+                  yAxisIndex: "none",
+                  title: {
+                    zoom: "Zoom",
+                    back: "Zoom Reset"
+                  }
                 },
-                restore: {},
-                saveAsImage: {}
+                restore: {
+                  title: "Restore"
+                },
+                saveAsImage: {
+                  title: "Download"
+                }
               }
             },
             xAxis: {
@@ -253,10 +261,18 @@
             toolbox: {
               feature: {
                 dataZoom: {
-                  yAxisIndex: "none"
+                  yAxisIndex: "none",
+                  title: {
+                    zoom: "Zoom",
+                    back: "Zoom Reset"
+                  }
                 },
-                restore: {},
-                saveAsImage: {}
+                restore: {
+                  title: "Restore"
+                },
+                saveAsImage: {
+                  title: "Download"
+                }
               }
             },
             xAxis: {
@@ -341,11 +357,6 @@
               y: 30,
               data: ["邮件营销", "联盟广告", "视频广告", "直接访问", "搜索引擎"]
             },
-            // toolbox: {
-            //     feature: {
-            //         saveAsImage: {}
-            //     }
-            // },
             grid: {
               left: "3%",
               right: "4%",
@@ -851,8 +862,12 @@
             },
             toolbox: {
               feature: {
-                restore: { show: true },
-                saveAsImage: { show: true }
+                restore: {
+                  title: "Restore"
+                },
+                saveAsImage: {
+                  title: "Download"
+                }
               }
             },
             series: [
@@ -906,8 +921,12 @@
             },
             toolbox: {
               feature: {
-                restore: { show: true },
-                saveAsImage: { show: true }
+                restore: {
+                  title: "Restore"
+                },
+                saveAsImage: {
+                  title: "Download"
+                }
               }
             },
             series: [
