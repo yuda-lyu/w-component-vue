@@ -85,7 +85,7 @@
     </script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.1.24/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.1.25/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -243,6 +243,13 @@
         msg.setLoading(true);
         setTimeout(function() {
           msg.setLoading(false);
+        }, 2000);
+      },
+      ckBtnPmUnlock: function(msg) {
+        console.log("ckBtnPmUnlock", msg);
+        setTimeout(function() {
+          console.log("finish");
+          msg.pm.resolve();
         }, 2000);
       }
     }

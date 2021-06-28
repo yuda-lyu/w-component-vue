@@ -110,12 +110,11 @@
                 v-if="!isProging && loadingTrans"
             >
                 <div style="display:flex; align-items:center; justify-content:center; height:100%;">
-                    <v-progress-circular
-                        indeterminate
-                        width="2"
-                        :size="iconSize"
+                    <WIconLoading
+                        :name="'cir-rotate'"
                         :color="effLoadingColor"
-                    ></v-progress-circular>
+                        :size="iconSize"
+                    ></WIconLoading>
                 </div>
             </div>
 
@@ -135,11 +134,13 @@ import isestr from 'wsemi/src/isestr.mjs'
 import cdbl from 'wsemi/src/cdbl.mjs'
 import replace from 'wsemi/src/replace.mjs'
 import sep from 'wsemi/src/sep.mjs'
+import genPm from 'wsemi/src/genPm.mjs'
 import oc from 'wsemi/src/color.mjs'
 import domRipple from 'wsemi/src/domRipple.mjs'
 import color2hex from '../js/vuetifyColor.mjs'
 import parseSpace from '../js/parseSpace.mjs'
 import WIcon from './WIcon.vue'
+import WIconLoading from './WIconLoading.vue'
 
 
 /**
@@ -178,13 +179,14 @@ import WIcon from './WIcon.vue'
  * @vue-prop {Boolean} [active=false] 輸入是否為主動模式，預設false
  * @vue-prop {Boolean} [close=false] 輸入是否具有關閉按鈕模式，預設false
  * @vue-prop {Boolean} [loading=false] 輸入是否為載入模式，預設false
- * @vue-prop {String} [loadingColor='black'] 輸入載入圖標顏色字串，預設'black'
+ * @vue-prop {String} [loadingColor='grey darken-2'] 輸入載入圖標顏色字串，預設'grey darken-2'
  * @vue-prop {Boolean} [editable=true] 輸入是否為編輯模式，預設true
  * @vue-prop {String} [disabledColor='rgba(255,255,255,0.5)'] 輸入非編輯模式時遮罩顏色字串，預設'rgba(255,255,255,0.5)'
  */
 export default {
     components: {
         WIcon,
+        WIconLoading,
     },
     props: {
         text: {
@@ -310,7 +312,7 @@ export default {
         shadowStyle: {
             type: String,
             // default: '0 12px 20px -10px {backgroundColorAlpha=0.28}, 0 4px 20px 0 rgba(0,0,0,.12), 0 7px 8px -5px {backgroundColorAlpha=0.2}',
-            //使用黑色短陰影比較符合chip(tag)形象
+            //使用黑色短陰影比較符合button形象
             default: '0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12)',
         },
         shadowActive: {
@@ -356,7 +358,11 @@ export default {
         },
         loadingColor: {
             type: String,
-            default: 'black',
+            default: 'grey darken-2',
+        },
+        promiseUnlock: {
+            type: Boolean,
+            default: false,
         },
         editable: {
             type: Boolean,
@@ -456,7 +462,11 @@ export default {
 
         useIconColor: function() {
             let vo = this
-            let r = vo.activeTrans ? vo.effIconColorActive : vo.hoverTrans ? vo.effIconColorHover : vo.effIconColor
+            let r
+            if (vo.loadingTrans || vo.isProging) {
+                return vo.effIconColor
+            }
+            r = vo.activeTrans ? vo.effIconColorActive : vo.hoverTrans ? vo.effIconColorHover : vo.effIconColor
             if (!vo.editable) {
                 r = vo.activeTrans ? vo.effIconColorActive : vo.effIconColor
             }
@@ -495,7 +505,11 @@ export default {
 
         useTextColor: function() {
             let vo = this
-            let r = vo.activeTrans ? vo.effTextColorActive : vo.hoverTrans ? vo.effTextColorHover : vo.effTextColor
+            let r
+            if (vo.loadingTrans || vo.isProging) {
+                return vo.effTextColor
+            }
+            r = vo.activeTrans ? vo.effTextColorActive : vo.hoverTrans ? vo.effTextColorHover : vo.effTextColor
             if (!vo.editable) {
                 r = vo.activeTrans ? vo.effTextColorActive : vo.effTextColor
             }
@@ -528,7 +542,11 @@ export default {
             let vo = this
 
             //r
-            let r = vo.activeTrans ? vo.effBorderColorActive : vo.hoverTrans ? vo.effBorderColorHover : vo.effBorderColor
+            let r
+            if (vo.loadingTrans || vo.isProging) {
+                r = vo.effBorderColor //不能直接return, 得由後面join產生border樣式字串
+            }
+            r = vo.activeTrans ? vo.effBorderColorActive : vo.hoverTrans ? vo.effBorderColorHover : vo.effBorderColor
             if (!vo.editable) {
                 r = vo.activeTrans ? vo.effBorderColorActive : vo.effBorderColor
             }
@@ -652,7 +670,11 @@ export default {
 
         useBackgroundColor: function() {
             let vo = this
-            let r = vo.activeTrans ? vo.effBackgroundColorActive : vo.hoverTrans ? vo.effBackgroundColorHover : vo.effBackgroundColor
+            let r
+            if (vo.loadingTrans || vo.isProging) {
+                return vo.effBackgroundColor
+            }
+            r = vo.activeTrans ? vo.effBackgroundColorActive : vo.hoverTrans ? vo.effBackgroundColorHover : vo.effBackgroundColor
             if (!vo.editable) {
                 r = vo.activeTrans ? vo.effBackgroundColorActive : vo.effBackgroundColor
             }
@@ -744,7 +766,10 @@ export default {
             if (!vo.editable) {
                 return
             }
-            if (vo.loading) {
+            if (vo.loadingTrans) {
+                return
+            }
+            if (vo.isProging) {
                 return
             }
 
@@ -835,8 +860,53 @@ export default {
                 },
             }
 
-            //emit
-            vo.$emit('click', msg)
+            //promiseUnlock
+            if (vo.promiseUnlock) {
+
+                //loadingTrans
+                vo.loadingTrans = true
+
+                //$nextTick
+                vo.$nextTick(() => {
+
+                    //emit
+                    vo.$emit('update:loading', vo.loadingTrans)
+
+                })
+
+                //pm
+                let pm = genPm()
+
+                //add msg
+                msg.pm = pm
+
+                //pm finally
+                pm
+                    .catch()
+                    .finally(() => {
+
+                        //loadingTrans
+                        vo.loadingTrans = false
+
+                        //$nextTick
+                        vo.$nextTick(() => {
+
+                            //emit
+                            vo.$emit('update:loading', vo.loadingTrans)
+
+                        })
+
+                    })
+
+            }
+
+            //$nextTick
+            vo.$nextTick(() => {
+
+                //emit
+                vo.$emit('click', msg)
+
+            })
 
         },
 

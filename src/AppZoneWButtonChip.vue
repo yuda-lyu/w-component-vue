@@ -640,13 +640,14 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-button-chip'"
-                    :casename="'loading & textColor'"
+                    :casename="'loading & textColor & textColorHover'"
                 ></demolink>
 
                 <w-button-chip
                     :text="WButtonChip.text"
                     :icon="mdiCheckUnderlineCircle"
                     :textColor="'rgba(255,30,60,0.9)'"
+                    :textColorHover="'rgba(255,30,60,0.8)'"
                     :loading="WButtonChip.loading"
                     @click="ckBtnLoading"
                 ></w-button-chip>
@@ -682,6 +683,22 @@
                     :icon="mdiCheckUnderlineCircle"
                     :loading.sync="WButtonChip.loading"
                     @click="ckBtnModLoading"
+                ></w-button-chip>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-button-chip'"
+                    :casename="'promiseUnlock'"
+                ></demolink>
+
+                <w-button-chip
+                    :text="WButtonChip.text"
+                    :icon="mdiCheckUnderlineCircle"
+                    :promiseUnlock="true"
+                    @click="ckBtnPmUnlock"
                 ></w-button-chip>
 
             </div>
@@ -838,6 +855,13 @@ export default {
             msg.setLoading(true)
             setTimeout(function() {
                 msg.setLoading(false)
+            }, 2000)
+        },
+        ckBtnPmUnlock: function(msg) {
+            console.log('ckBtnPmUnlock', msg)
+            setTimeout(function() {
+                console.log('finish')
+                msg.pm.resolve()
             }, 2000)
         },
     },

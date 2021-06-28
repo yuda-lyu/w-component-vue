@@ -168,15 +168,28 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-button-circle'"
-                    :casename="'loading & iconColor'"
+                    :casename="'loading & loadingColor'"
                 ></demolink>
 
                 <w-button-circle
                     :icon="mdiCheckUnderlineCircle"
-                    :iconColor="'red accent-3'"
-                    :iconColorHover="'red accent-3'"
-                    :iconColorFocus="'red accent-3'"
+                    :loadingColor="'red accent-3'"
                     :loading="true"
+                ></w-button-circle>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-button-circle'"
+                    :casename="'promiseUnlock'"
+                ></demolink>
+
+                <w-button-circle
+                    :icon="mdiCheckUnderlineCircle"
+                    :promiseUnlock="true"
+                    @click="ckBtnPmUnlock"
                 ></w-button-circle>
 
             </div>
@@ -244,6 +257,15 @@ export default {
                 }
             ],
         }
+    },
+    methods: {
+        ckBtnPmUnlock: function(msg) {
+            console.log('ckBtnPmUnlock', msg)
+            setTimeout(function() {
+                console.log('finish')
+                msg.pm.resolve()
+            }, 2000)
+        },
     },
 }
 </script>

@@ -2,6 +2,7 @@
     <div
         style="display:inline-block; vertical-align:middle; outline:none; user-select:none;"
         role="button"
+        :changeLoading="changeLoading"
     >
 
         <v-tooltip
@@ -31,14 +32,14 @@
                             :icon="icon"
                             :color="useIconColor"
                             :size="iconSize"
-                            v-if="!loading"
+                            v-if="!loadingTrans"
                         ></WIcon>
 
                         <WIconLoading
                             :name="'cir-rotate'"
-                            :color="useIconColor"
+                            :color="effLoadingColor"
                             :size="iconSize"
-                            v-if="loading"
+                            v-if="loadingTrans"
                         ></WIconLoading>
 
                     </div>
@@ -72,6 +73,7 @@ import isestr from 'wsemi/src/isestr.mjs'
 import cdbl from 'wsemi/src/cdbl.mjs'
 import replace from 'wsemi/src/replace.mjs'
 import sep from 'wsemi/src/sep.mjs'
+import genPm from 'wsemi/src/genPm.mjs'
 import domRipple from 'wsemi/src/domRipple.mjs'
 import oc from 'wsemi/src/color.mjs'
 import color2hex from '../js/vuetifyColor.mjs'
@@ -95,6 +97,8 @@ import WIconLoading from './WIconLoading.vue'
  * @vue-prop {Boolean} [shadow=true] 輸入是否為陰影模式，預設true
  * @vue-prop {String} [shadowStyle=''] 輸入陰影顏色字串，預設值詳見props
  * @vue-prop {Boolean} [loading=false] 輸入是否為載入模式，預設false
+ * @vue-prop {String} [loadingColor='grey darken-2'] 輸入載入圖標顏色字串，預設'grey darken-2'
+ * @vue-prop {Boolean} [promiseUnlock=false] 輸入是否點擊後自動設定為loading為true並需使用promise解鎖布林值，預設false
  * @vue-prop {Boolean} [editable=true] 輸入是否為編輯模式，預設true
  * @vue-prop {String} [disabledColor='rgba(255,255,255,0.5)'] 輸入非編輯模式時遮罩顏色字串，預設'rgba(255,255,255,0.5)'
  */
@@ -147,7 +151,7 @@ export default {
         shadowStyle: {
             type: String,
             // default: '0 12px 20px -10px {backgroundColorAlpha=0.28}, 0 4px 20px 0 rgba(0,0,0,.12), 0 7px 8px -5px {backgroundColorAlpha=0.2}',
-            //使用黑色短陰影比較符合chip(tag)形象
+            //使用黑色短陰影比較符合button形象
             default: '0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12)',
         },
         rippleColor: {
@@ -167,6 +171,14 @@ export default {
             type: Boolean,
             default: false,
         },
+        loadingColor: {
+            type: String,
+            default: 'grey darken-2',
+        },
+        promiseUnlock: {
+            type: Boolean,
+            default: false,
+        },
         editable: {
             type: Boolean,
             default: true,
@@ -178,6 +190,7 @@ export default {
     },
     data: function() {
         return {
+            loadingTrans: false,
             hoverTrans: false,
             focusTrans: false,
         }
@@ -185,6 +198,17 @@ export default {
     mounted: function() {
     },
     computed: {
+
+        changeLoading: function() {
+            //console.log('computed changeLoading')
+
+            let vo = this
+
+            //save
+            vo.loadingTrans = vo.loading
+
+            return ''
+        },
 
         effIconColor: function() {
             let vo = this
@@ -203,7 +227,11 @@ export default {
 
         useIconColor: function() {
             let vo = this
-            let r = vo.focusTrans ? vo.effIconColorFocus : vo.hoverTrans ? vo.effIconColorHover : vo.effIconColor
+            let r
+            if (vo.loadingTrans) {
+                return vo.effIconColor
+            }
+            r = vo.focusTrans ? vo.effIconColorFocus : vo.hoverTrans ? vo.effIconColorHover : vo.effIconColor
             if (!vo.editable) {
                 // r = vo.focusTrans ? vo.effIconColorFocus : vo.effIconColor
                 r = vo.effIconColor
@@ -228,21 +256,30 @@ export default {
 
         useBackgroundColor: function() {
             let vo = this
-            let r = vo.focusTrans ? vo.effBackgroundColorFocus : vo.hoverTrans ? vo.effBackgroundColorHover : vo.effBackgroundColor
+            let r
+            if (vo.loadingTrans) {
+                return vo.effBackgroundColor
+            }
+            r = vo.focusTrans ? vo.effBackgroundColorFocus : vo.hoverTrans ? vo.effBackgroundColorHover : vo.effBackgroundColor
             if (!vo.editable) {
                 r = vo.focusTrans ? vo.effBackgroundColorFocus : vo.effBackgroundColor
             }
             return r
         },
 
-        effDisabledColor: function() {
-            let vo = this
-            return color2hex(vo.disabledColor)
-        },
-
         effRippleColor: function() {
             let vo = this
             return color2hex(vo.rippleColor)
+        },
+
+        effLoadingColor: function() {
+            let vo = this
+            return color2hex(vo.loadingColor)
+        },
+
+        effDisabledColor: function() {
+            let vo = this
+            return color2hex(vo.disabledColor)
         },
 
         usePadding: function() {
@@ -321,7 +358,7 @@ export default {
             if (!vo.editable) {
                 return
             }
-            if (vo.loading) {
+            if (vo.loadingTrans) {
                 return
             }
 
@@ -350,17 +387,65 @@ export default {
             if (!vo.editable) {
                 return
             }
-            if (vo.loading) {
+            if (vo.loadingTrans) {
                 return
             }
 
-            //$nextTick
-            vo.$nextTick(() => {
+            //promiseUnlock
+            if (!vo.promiseUnlock) {
 
-                //emit
-                vo.$emit('click')
+                //$nextTick
+                vo.$nextTick(() => {
 
-            })
+                    //emit
+                    vo.$emit('click')
+
+                })
+
+            }
+            else {
+
+                //loadingTrans
+                vo.loadingTrans = true
+
+                //$nextTick
+                vo.$nextTick(() => {
+
+                    //emit
+                    vo.$emit('update:loading', vo.loadingTrans)
+
+                })
+
+                //pm
+                let pm = genPm()
+
+                //$nextTick
+                vo.$nextTick(() => {
+
+                    //emit
+                    vo.$emit('click', { pm })
+
+                })
+
+                //pm finally
+                pm
+                    .catch()
+                    .finally(() => {
+
+                        //loadingTrans
+                        vo.loadingTrans = false
+
+                        //$nextTick
+                        vo.$nextTick(() => {
+
+                            //emit
+                            vo.$emit('update:loading', vo.loadingTrans)
+
+                        })
+
+                    })
+
+            }
 
         },
 

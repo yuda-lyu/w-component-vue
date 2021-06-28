@@ -48,6 +48,7 @@
                         :icon="get(btn,'icon')"
                         :shadow="false"
                         :paddingStyle="{v:9,h:9}"
+                        :loadingColor="get(btn,'iconColor') || headerIconColor"
                         :iconColor="get(btn,'iconColor') || headerIconColor"
                         :iconColorHover="get(btn,'iconColor') || headerIconColor"
                         :iconColorFocus="get(btn,'iconColor') || headerIconColor"
@@ -67,6 +68,7 @@
                         :icon="mdiCheckCircle"
                         :shadow="false"
                         :paddingStyle="{v:9,h:9}"
+                        :loadingColor="headerIconColor"
                         :iconColor="headerIconColor"
                         :iconColorHover="headerIconColor"
                         :iconColorFocus="headerIconColor"
@@ -75,8 +77,8 @@
                         :backgroundColorFocus="'rgba(255, 255, 255, 0.3)'"
                         :rippleColor="'rgba(255, 255, 255, 0.4)'"
                         :tooltip="saveBtnTooltip"
-                        :loading="btnSaveLoad"
-                        @click="clickSave()"
+                        :promiseUnlock="true"
+                        @click="clickSave"
                     ></WButtonCircle>
                 </template>
 
@@ -86,6 +88,7 @@
                         :icon="mdiClose"
                         :shadow="false"
                         :paddingStyle="{v:9,h:9}"
+                        :loadingColor="headerIconColor"
                         :iconColor="headerIconColor"
                         :iconColorHover="headerIconColor"
                         :iconColorFocus="headerIconColor"
@@ -220,7 +223,6 @@ export default {
             mdiCheckerboard,
             showTrans: null,
             fullscreen: false,
-            btnSaveLoad: false,
 
             toolbarHeight: 0,
             panelScrollHSize: 0,
@@ -434,34 +436,18 @@ export default {
 
         },
 
-        clickSave: function() {
-            //console.log('methods clickSave')
+        clickSave: function(msg) {
+            //console.log('methods clickSave', msg)
 
             let vo = this
-
-            //btnSaveLoad
-            vo.btnSaveLoad = true
-
-            //pm
-            let pm = genPm()
 
             //$nextTick
             vo.$nextTick(() => {
 
                 //emit
-                vo.$emit('click-save', { pm })
+                vo.$emit('click-save', msg)
 
             })
-
-            //pm finally
-            pm
-                .catch()
-                .finally(() => {
-
-                    //btnSaveLoad
-                    vo.btnSaveLoad = false
-
-                })
 
         },
 
