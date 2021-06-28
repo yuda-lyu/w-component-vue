@@ -283,10 +283,18 @@ export default {
                     toolbox: {
                         feature: {
                             dataZoom: {
-                                yAxisIndex: 'none'
+                                yAxisIndex: 'none',
+                                title: {
+                                    zoom: 'Zoom',
+                                    back: 'Zoom Reset'
+                                }
                             },
-                            restore: {},
-                            saveAsImage: {}
+                            restore: {
+                                title: 'Restore',
+                            },
+                            saveAsImage: {
+                                title: 'Download',
+                            }
                         }
                     },
                     xAxis: {
@@ -340,10 +348,18 @@ export default {
                     toolbox: {
                         feature: {
                             dataZoom: {
-                                yAxisIndex: 'none'
+                                yAxisIndex: 'none',
+                                title: {
+                                    zoom: 'Zoom',
+                                    back: 'Zoom Reset'
+                                }
                             },
-                            restore: {},
-                            saveAsImage: {}
+                            restore: {
+                                title: 'Restore',
+                            },
+                            saveAsImage: {
+                                title: 'Download',
+                            }
                         }
                     },
                     xAxis: {
@@ -421,11 +437,6 @@ export default {
                         y: 30,
                         data: ['邮件营销', '联盟广告', '视频广告', '直接访问', '搜索引擎']
                     },
-                    // toolbox: {
-                    //     feature: {
-                    //         saveAsImage: {}
-                    //     }
-                    // },
                     grid: {
                         left: '3%',
                         right: '4%',
@@ -719,9 +730,13 @@ export default {
                     },
                     toolbox: {
                         feature: {
-                            restore: { show: true },
-                            saveAsImage: { show: true }
-                        }
+                            restore: {
+                                title: 'Restore',
+                            },
+                            saveAsImage: {
+                                title: 'Download',
+                            },
+                        },
                     },
                     series: [
                         {
@@ -774,9 +789,13 @@ export default {
                     },
                     toolbox: {
                         feature: {
-                            restore: { show: true },
-                            saveAsImage: { show: true }
-                        }
+                            restore: {
+                                title: 'Restore',
+                            },
+                            saveAsImage: {
+                                title: 'Download',
+                            },
+                        },
                     },
                     series: [
                         {

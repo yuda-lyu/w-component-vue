@@ -22,8 +22,12 @@ export default {
         pathItems: {
             type: Array,
             default: () => [
-                'https://cdn.jsdelivr.net/npm/echarts@4.9.0/dist/echarts-en.min.js',
-                'https://cdn.jsdelivr.net/npm/echarts-gl@1.1.1/dist/echarts-gl.min.js',
+                // 'https://cdn.jsdelivr.net/npm/echarts@4.9.0/dist/echarts-en.min.js',
+                // 'https://cdn.jsdelivr.net/npm/echarts-gl@1.1.1/dist/echarts-gl.min.js',
+                // 'https://cdn.jsdelivr.net/npm/vue-echarts@4.1.0/dist/vue-echarts.min.js',
+                'https://cdn.jsdelivr.net/npm/echarts@5.1.2/dist/echarts.min.js',
+                'https://cdn.jsdelivr.net/npm/echarts@5.1.2/i18n/langEN.js',
+                'https://cdn.jsdelivr.net/npm/echarts-gl@2.0.5/dist/echarts-gl.min.js',
                 'https://cdn.jsdelivr.net/npm/vue-echarts@4.1.0/dist/vue-echarts.min.js',
             ],
         },
