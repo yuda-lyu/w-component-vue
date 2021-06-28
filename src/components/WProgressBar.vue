@@ -17,12 +17,12 @@
             </div>
 
             <div style="padding-left:5px;">
-                <w-icon
+                <WIcon
                     :icon="status==='waiting'?iconWaiting:iconFinish"
                     :color="status==='waiting'?useIconWaitingColor:useIconFinishColor"
                     :size="iconSize"
                     v-if="(enableIconWaiting && status==='waiting') || (enableIconFinish && status==='finish')"
-                ></w-icon>
+                ></WIcon>
                 <div
                     :style="`color:${useValueTextColor}; ${useValueTextFontSize};`"
                     v-else

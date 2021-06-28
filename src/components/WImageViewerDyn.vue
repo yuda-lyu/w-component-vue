@@ -133,7 +133,7 @@ export default {
             }
 
             //domShowImagesDyn
-            domShowImagesDyn(e.target, eleGroup, vo.opt, vo.pathItems)
+            domShowImagesDyn(e.currentTarget, eleGroup, vo.opt, vo.pathItems)
                 .catch((err) => {
                     console.log(err)
                 })

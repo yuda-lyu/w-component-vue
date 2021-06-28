@@ -21,10 +21,10 @@
 
                     <template v-slot:activator="{ on: ttShellEllipseLeft }">
                         <div ShellEllipse="leftIcon" v-on="{...ttShellEllipseLeft}">
-                            <w-icon
+                            <WIcon
                                 :icon="leftIcon"
                                 :color="useLeftIconColor"
-                            ></w-icon>
+                            ></WIcon>
                         </div>
                     </template>
 
@@ -52,10 +52,10 @@
 
                     <template v-slot:activator="{ on: ttShellEllipseRight }">
                         <div ShellEllipse="rightIcon" v-on="{...ttShellEllipseRight}">
-                            <w-icon
+                            <WIcon
                                 :icon="rightIcon"
                                 :color="useRightIconColor"
-                            ></w-icon>
+                            ></WIcon>
                         </div>
                     </template>
 

@@ -118,7 +118,7 @@ export default {
 
             let vo = this
 
-            e.target.style.background = vo.useIconBackgroundColorHover
+            e.currentTarget.style.background = vo.useIconBackgroundColorHover
 
         },
 
@@ -127,7 +127,7 @@ export default {
 
             let vo = this
 
-            e.target.style.background = vo.useIconBackgroundColor
+            e.currentTarget.style.background = vo.useIconBackgroundColor
 
         },
 

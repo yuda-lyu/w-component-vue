@@ -293,6 +293,21 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-button-chip'"
+                    :casename="'rippleColor'"
+                ></demolink>
+
+                <w-button-chip
+                    :text="WButtonChip.text"
+                    :icon="mdiCheckUnderlineCircle"
+                    :rippleColor="'rgba(255,120,255,0.3)'"
+                ></w-button-chip>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-button-chip'"
                     :casename="'borderRadius'"
                 ></demolink>
 
@@ -685,6 +700,26 @@
                     _iconColor="'#fff'"
                     _backgroundColor="'#000'"
                     :editable="false"
+                    @click="ckBtn"
+                ></w-button-chip>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-button-chip'"
+                    :casename="'not editable & disabledColor'"
+                ></demolink>
+
+                <w-button-chip
+                    :text="WButtonChip.text"
+                    :icon="mdiCheckUnderlineCircle"
+                    _textColor="'#fff'"
+                    _iconColor="'#fff'"
+                    _backgroundColor="'#000'"
+                    :editable="false"
+                    :disabledColor="'rgba(255,200,220,0.7)'"
                     @click="ckBtn"
                 ></w-button-chip>
 

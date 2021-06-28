@@ -53,11 +53,11 @@
 
                     <div style="padding:0px 0px 0px 5px;">
                         <div :style="`transform:rotate(${getRotateDeg+90}deg); transition:all 0.25s; cursor:pointer;`">
-                            <w-icon
+                            <WIcon
                                 :icon="expansionIcon"
                                 :color="uesExpansionIconColor"
                                 :size="20"
-                            ></w-icon>
+                            ></WIcon>
                         </div>
                     </div>
 
@@ -86,10 +86,10 @@
                             tabindex="0"
                             @keyup.enter="clickItem(props.row,props.index)"
                             @click="clickItem(props.row,props.index)"
-                            @mouseenter="(e)=>{let es=e.target.style; es.backgroundColor=useItemBackgroundColorHover; es.color=useItemTextColorHover;}"
-                            @mouseleave="(e)=>{let es=e.target.style; es.backgroundColor=useItemBackgroundColor; es.color=useItemTextColor;}"
-                            @focus="(e)=>{let es=e.target.style; es.backgroundColor=useItemBackgroundColorHover; es.color=useItemTextColorHover;}"
-                            @blur="(e)=>{let es=e.target.style; es.backgroundColor=useItemBackgroundColor; es.color=useItemTextColor;}"
+                            @mouseenter="(e)=>{let es=e.currentTarget.style; es.backgroundColor=useItemBackgroundColorHover; es.color=useItemTextColorHover;}"
+                            @mouseleave="(e)=>{let es=e.currentTarget.style; es.backgroundColor=useItemBackgroundColor; es.color=useItemTextColor;}"
+                            @focus="(e)=>{let es=e.currentTarget.style; es.backgroundColor=useItemBackgroundColorHover; es.color=useItemTextColorHover;}"
+                            @blur="(e)=>{let es=e.currentTarget.style; es.backgroundColor=useItemBackgroundColor; es.color=useItemTextColor;}"
                         >
 
                             <slot

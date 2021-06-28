@@ -2,7 +2,7 @@
     <div>
 
 
-        <div class="head1"><span style="cursor:pointer;" title="open for copy link to view component" onclick="window.open('//yuda-lyu.github.io/w-component-vue/examples/app.html?cmp='+this.innerText,'_blank')">w-icon-svg</span></div>
+        <div class="head1"><span style="cursor:pointer;" title="open for copy link to view component" onclick="window.open('//yuda-lyu.github.io/w-component-vue/examples/app.html?cmp='+this.innerText,'_blank')">WIconSvg</span></div>
 
 
         <div style="padding:0px;">
@@ -10,84 +10,84 @@
 
             <div class="bk">
                 <demolink
-                    :kbname="'w-icon-svg'"
+                    :kbname="'WIconSvg'"
                     :casename="'path (mdi-fruit-cherries)'"
                 ></demolink>
 
-                <w-icon-svg
+                <WIconSvg
                     :path="WIconSvg.mdiFruitCherries"
-                ></w-icon-svg>
+                ></WIconSvg>
 
             </div>
 
 
             <div class="bk">
                 <demolink
-                    :kbname="'w-icon-svg'"
+                    :kbname="'WIconSvg'"
                     :casename="'path (mdi-graph-outline) & color & colorHover'"
                 ></demolink>
 
-                <w-icon-svg
+                <WIconSvg
                     :path="WIconSvg.mdiGraphOutline"
                     :color="'orange darken-3'"
                     :colorHover="'orange lighten-1'"
-                ></w-icon-svg>
+                ></WIconSvg>
 
             </div>
 
 
             <div class="bk">
                 <demolink
-                    :kbname="'w-icon-svg'"
+                    :kbname="'WIconSvg'"
                     :casename="'path (mdi-access-point) & size'"
                 ></demolink>
 
-                <w-icon-svg
+                <WIconSvg
                     :path="WIconSvg.mdiAccessPoint"
                     :size="64"
-                ></w-icon-svg>
+                ></WIconSvg>
 
             </div>
 
 
             <div class="bk">
                 <demolink
-                    :kbname="'w-icon-svg'"
+                    :kbname="'WIconSvg'"
                     :casename="'path (mdi-account-badge-horizontal) & timeTransition'"
                 ></demolink>
 
-                <w-icon-svg
+                <WIconSvg
                     :path="WIconSvg.mdiAccountBadgeHorizontal"
                     :timeTransition="0.2"
-                ></w-icon-svg>
+                ></WIconSvg>
 
             </div>
 
 
             <div class="bk">
                 <demolink
-                    :kbname="'w-icon-svg'"
+                    :kbname="'WIconSvg'"
                     :casename="'path & sizeOriginal'"
                 ></demolink>
 
-                <w-icon-svg
+                <WIconSvg
                     :path="WIconSvg.custom1"
                     :sizeOriginal="64"
-                ></w-icon-svg>
+                ></WIconSvg>
 
             </div>
 
 
             <div class="bk">
                 <demolink
-                    :kbname="'w-icon-svg'"
+                    :kbname="'WIconSvg'"
                     :casename="'path (use 3 paths) & sizeOriginal'"
                 ></demolink>
 
-                <w-icon-svg
+                <WIconSvg
                     :path="WIconSvg.custom2"
                     :sizeOriginal="60"
-                ></w-icon-svg>
+                ></WIconSvg>
 
             </div>
 

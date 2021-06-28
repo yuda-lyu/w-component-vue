@@ -85,7 +85,7 @@
     </script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.1.23/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.1.24/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -139,12 +139,13 @@
             >w-button-circle</span>
         </div>
         <div class="bk">
-            <div class="item">backgroundColor & iconColor</div>
+            <div class="item">iconColor & iconColorHover & iconColorFocus</div>
 
             <w-button-circle
                 :icon="'mdi-check-underline-circle'"
-                :background-color="'orange lighten-4'"
-                :icon-color="'deep-orange darken-1'"
+                :icon-color="'rgba(244, 81, 30, 0.7)'"
+                :icon-color-hover="'rgba(244, 81, 30, 0.8)'"
+                :icon-color-focus="'rgba(244, 81, 30, 1)'"
             />
         </div>
     </v-app>

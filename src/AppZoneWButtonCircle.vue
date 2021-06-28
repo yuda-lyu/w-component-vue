@@ -37,20 +37,6 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-button-circle'"
-                    :casename="'no shadow'"
-                ></demolink>
-
-                <w-button-circle
-                    :icon="mdiWalletGiftcard"
-                    :shadow="false"
-                ></w-button-circle>
-
-            </div>
-
-
-            <div class="bk">
-                <demolink
-                    :kbname="'w-button-circle'"
                     :casename="'tooltip'"
                 ></demolink>
 
@@ -65,12 +51,14 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-button-circle'"
-                    :casename="'not small (large)'"
+                    :casename="'iconColor & iconColorHover & iconColorFocus'"
                 ></demolink>
 
                 <w-button-circle
-                    :icon="mdiFace"
-                    :small="false"
+                    :icon="mdiCheckUnderlineCircle"
+                    :iconColor="'rgba(244, 81, 30, 0.7)'"
+                    :iconColorHover="'rgba(244, 81, 30, 0.8)'"
+                    :iconColorFocus="'rgba(244, 81, 30, 1)'"
                 ></w-button-circle>
 
             </div>
@@ -79,12 +67,14 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-button-circle'"
-                    :casename="'backgroundColor'"
+                    :casename="'backgroundColor & backgroundColorHover & backgroundColorFocus'"
                 ></demolink>
 
                 <w-button-circle
                     :icon="mdiCheckUnderlineCircle"
-                    :backgroundColor="'purple lighten-4'"
+                    :backgroundColor="'rgba(225, 190, 231, 0.5)'"
+                    :backgroundColorHover="'rgba(225, 190, 231, 0.75)'"
+                    :backgroundColorFocus="'rgba(225, 190, 231, 1)'"
                 ></w-button-circle>
 
             </div>
@@ -93,13 +83,69 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-button-circle'"
-                    :casename="'backgroundColor & iconColor'"
+                    :casename="'rippleColor'"
                 ></demolink>
 
                 <w-button-circle
                     :icon="mdiCheckUnderlineCircle"
-                    :backgroundColor="'orange lighten-4'"
-                    :iconColor="'deep-orange darken-1'"
+                    :rippleColor="'rgba(0,20,255,0.3)'"
+                ></w-button-circle>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-button-circle'"
+                    :casename="'paddingStyle'"
+                ></demolink>
+
+                <w-button-circle
+                    :icon="mdiCheckUnderlineCircle"
+                    :paddingStyle="{v:0,h:0}"
+                ></w-button-circle>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-button-circle'"
+                    :casename="'paddingStyle & iconSize'"
+                ></demolink>
+
+                <w-button-circle
+                    :icon="mdiCheckUnderlineCircle"
+                    :paddingStyle="{v:8,h:8}"
+                    :iconSize="30"
+                ></w-button-circle>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-button-circle'"
+                    :casename="'no shadow'"
+                ></demolink>
+
+                <w-button-circle
+                    :icon="mdiWalletGiftcard"
+                    :shadow="false"
+                ></w-button-circle>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-button-circle'"
+                    :casename="'shadowStyle'"
+                ></demolink>
+
+                <w-button-circle
+                    :icon="mdiWalletGiftcard"
+                    :shadowStyle="'0 3px 5px -1px rgba(0,0,0,.2),0 5px 8px 0 rgba(0,0,0,.14),0 1px 14px 0 rgba(0,0,0,.12)'"
                 ></w-button-circle>
 
             </div>
@@ -128,6 +174,8 @@
                 <w-button-circle
                     :icon="mdiCheckUnderlineCircle"
                     :iconColor="'red accent-3'"
+                    :iconColorHover="'red accent-3'"
+                    :iconColorFocus="'red accent-3'"
                     :loading="true"
                 ></w-button-circle>
 
@@ -143,6 +191,21 @@
                 <w-button-circle
                     :icon="mdiCheckUnderlineCircle"
                     :editable="false"
+                ></w-button-circle>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-button-circle'"
+                    :casename="'not editable & disabledColor'"
+                ></demolink>
+
+                <w-button-circle
+                    :icon="mdiCheckUnderlineCircle"
+                    :editable="false"
+                    :disabledColor="'rgba(255,200,220,0.7)'"
                 ></w-button-circle>
 
             </div>

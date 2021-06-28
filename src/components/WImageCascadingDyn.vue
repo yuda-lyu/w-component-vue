@@ -550,7 +550,7 @@ export default {
             showViewer = true
 
             //domShowImagesDyn
-            domShowImagesDyn(e.target, null, vo.opt, vo.pathItems)
+            domShowImagesDyn(e.currentTarget, null, vo.opt, vo.pathItems)
                 .finally(() => {
 
                     //showViewer
