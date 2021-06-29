@@ -17,8 +17,9 @@ let fdTestSrc = './test-action/'
 
 let $setting = {
     //ignoreWhitespace: true,
-    xmlMode: true,
+    xmlMode: false, //不能設定true, 否則會導致vue組件名稱變成self-closing, 此於瀏覽器指定html5規範下無法解析
     decodeEntities: false,
+    // recognizeSelfClosing: false, //若xmlMode為true則recognizeSelfClosing必定為true
 }
 
 
@@ -26,17 +27,25 @@ function writeHtml(v) {
 
     function getAppTmp() {
 
-        //產生範例tmp
-        let $ = cheerio.load(v.tmp, $setting)
-        $('demolink').remove() //移除demolink
+        //h
+        let h = v.tmp
+        // console.log('h', w.strleft(h, 100) + '...')
 
-        $('div.bk').before(`<div class="head1"><span style="cursor:pointer;" title="open for copy link to view component" onclick="window.open('//yuda-lyu.github.io/w-component-vue/examples/app.html?cmp='+this.innerText,'_blank')">${v.kbname}</span></div>`) //於bk前插入, 添加組件kbname
+        //$
+        let $ = cheerio.load(h, $setting)
 
-        $('div.bk').prepend(`<div class="item">${v.casename}</div>`) //於bk內插入, 添加範例casename
-        let h = $.html()
+        //移除demolink
+        $('demolink').remove()
 
-        h = kebabPropsVueTemp(h)
-        h = w.replace(h, `=""`, '')
+        //於bk前插入, 添加組件kbname
+        $('div.bk').before(`<div class="head1"><span style="cursor:pointer;" title="open for copy link to view component" onclick="window.open('//yuda-lyu.github.io/w-component-vue/examples/app.html?cmp='+this.innerText,'_blank')">${v.kbname}</span></div>`)
+
+        //於bk內插入, 添加範例casename
+        $('div.bk').prepend(`<div class="item">${v.casename}</div>`)
+
+        //to html
+        h = $('body').html()
+        // console.log('getAppTmp', w.strleft(h, 100) + '...')
 
         return h
     }
@@ -67,8 +76,8 @@ function writeHtml(v) {
         <!-- extractHtml已自動添加@babel/polyfill與vue -->
     
         <!-- vuetify -->
-        <link href="https://cdn.jsdelivr.net/npm/vuetify@2.4.9/dist/vuetify.min.css" rel="stylesheet">
-        <script src="https://cdn.jsdelivr.net/npm/vuetify@2.4.9/dist/vuetify.min.js"></script>
+        <link href="https://cdn.jsdelivr.net/npm/vuetify@2.5.1/dist/vuetify.min.css" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/vuetify@2.5.1/dist/vuetify.min.js"></script>
     
         <!-- fontawesome -->
         <link href="https://use.fontawesome.com/releases/v5.14.0/css/all.css" rel="stylesheet">
@@ -168,17 +177,22 @@ function extractAppZone(fn) {
     let hh = fs.readFileSync(fn, 'utf8')
     // console.log('hh', hh)
 
+    //parseVueCode
+    let { tmp, data, mounted, computed, methods, action } = parseVueCode(hh)
+
+    //vue屬性轉kebab, 記得要在cheerio處理前, 否則attr都會被改成小寫
+    tmp = kebabPropsVueTemp(tmp)
+    tmp = w.replace(tmp, `=""`, '')
+    // console.log('tmp', w.strleft(tmp, 100) + '...')
+
     //$
-    let $ = cheerio.load(hh, $setting)
-    // console.log(`$('div.bk').html()`, $('div.bk').html())
+    let $ = cheerio.load(tmp, $setting)
+    // console.log(`$('div.bk').html()`, w.strleft($('div.bk').html(), 100) + '...')
 
     //name
     let name = fn.split('AppZone')
     name = name[1]
     name = name.replace('.vue', '')
-
-    //parseVueCode
-    let { tmp, data, mounted, computed, methods, action } = parseVueCode(hh)
 
     //clear data
     let ss = data.split('\r\n')
@@ -258,7 +272,10 @@ function main() {
     _.each(ltfs, (v) => {
         let fn = fdSrc + v
         console.log('extracting: ' + fn)
-        extractAppZone(fn)
+        // extractAppZone(fn)
+        if (fn === './src/AppZoneWPanelScale.vue') {
+            extractAppZone(fn)
+        }
     })
 
 }

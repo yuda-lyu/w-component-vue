@@ -26,6 +26,7 @@ import WLeafletVueDyn from './WLeafletVueDyn.vue'
 import WPanelBulge from './WPanelBulge.vue'
 import WPanelDivideHorizontal from './WPanelDivideHorizontal.vue'
 import WPanelDivideVertical from './WPanelDivideVertical.vue'
+import WPanelScale from './WPanelScale.vue'
 import WPanelScrolly from './WPanelScrolly.vue'
 import WPanelScrollyCore from './WPanelScrollyCore.vue'
 import WPanelStripe from './WPanelStripe.vue'
@@ -88,6 +89,7 @@ let WComponentVue = {
         Vue.component('w-panel-bulge', WPanelBulge)
         Vue.component('w-panel-divide-horizontal', WPanelDivideHorizontal)
         Vue.component('w-panel-divide-vertical', WPanelDivideVertical)
+        Vue.component('w-panel-scale', WPanelScale)
         Vue.component('w-panel-scrolly', WPanelScrolly)
         Vue.component('w-panel-scrolly-core', WPanelScrollyCore)
         Vue.component('w-panel-stripe', WPanelStripe)

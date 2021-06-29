@@ -15,8 +15,8 @@
 
         <!-- 需外層使用position包覆隔離, 因popper會對外層產生影響(添加class) -->
         <div style="position:fixed; left:0; top:0; z-index:99999;">
-            <!-- 不用v-if因註冊監聽divContent僅mounted一次, 若用v-if顯隱則需每次都重新監聽較為複雜 -->
-            <!-- style不需使用position, 因會被popper洗掉 -->
+            <!-- 用v-show而不用v-if係因註冊監聽divContent僅mounted一次, 若用v-if顯隱則需每次都重新監聽較為複雜 -->
+            <!-- style不給予position因會被popper洗掉改用translate定位 -->
             <div
                 divContent
                 ref="divContent"
@@ -53,6 +53,7 @@ import { createPopper } from '@popperjs/core/lib/popper-lite.js' //不用安裝@
 import flip from '@popperjs/core/lib/modifiers/flip.js'
 import offset from '@popperjs/core/lib/modifiers/offset.js'
 import hide from '@popperjs/core/lib/modifiers/hide.js'
+//import preventOverflow from '@popperjs/core/lib/modifiers/preventOverflow.js'
 //import computeStyles from '@popperjs/core/lib/modifiers/computeStyles'
 
 
@@ -416,8 +417,7 @@ export default {
                 strategy: 'fixed', //需使用fixed, 否則popup彈窗會盡量基於trigger寬度而盡量窄化
                 placement: 'bottom-start',
                 modifiers: [
-                    flip,
-                    hide,
+                    // preventOverflow,
                     // computeStyles,
                     // {
                     //     name: 'computeStyles',
@@ -425,14 +425,17 @@ export default {
                     //         gpuAcceleration: false, //預設true, 可關閉GPU加速
                     //     },
                     // },
+                    flip,
+                    hide,
                     offset,
                     {
                         name: 'offset',
                         options: {
                             //offset: [0, 5], //因popperjs會自動調位置, 故得通過callback函數處理指定位置時的偏移量
                             offset: ({ placement, reference, popper }) => {
-                                //console.log('offset', placement, reference, popper)
+                                // console.log('offset', placement, reference, popper, vo.distY)
                                 if (placement === 'bottom-start' || placement === 'bottom-end') {
+                                    // console.log('placement', placement, 'reference', reference, 'popper', popper, 'distY', vo.distY)
                                     return [0, vo.distY]
                                 }
                                 else if (placement === 'top-start' || placement === 'top-end') {

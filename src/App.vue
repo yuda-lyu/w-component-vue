@@ -113,6 +113,11 @@
             ></AppZoneWPanelDivideVertical>
 
 
+            <AppZoneWPanelScale
+                v-if="useCmpName==='WPanelScale'"
+            ></AppZoneWPanelScale>
+
+
             <AppZoneWIconSvg
                 v-if="useCmpName==='WIconSvg'"
             ></AppZoneWIconSvg>
@@ -316,6 +321,7 @@ import AppZoneWPanelBulge from './AppZoneWPanelBulge.vue'
 import AppZoneWPanelScrolly from './AppZoneWPanelScrolly.vue'
 import AppZoneWPanelDivideHorizontal from './AppZoneWPanelDivideHorizontal.vue'
 import AppZoneWPanelDivideVertical from './AppZoneWPanelDivideVertical.vue'
+import AppZoneWPanelScale from './AppZoneWPanelScale.vue'
 import AppZoneWIconSvg from './AppZoneWIconSvg.vue'
 import AppZoneWDropfiles from './AppZoneWDropfiles.vue'
 import AppZoneWDialog from './AppZoneWDialog.vue'
@@ -363,6 +369,7 @@ export default {
         AppZoneWPanelScrolly,
         AppZoneWPanelDivideHorizontal,
         AppZoneWPanelDivideVertical,
+        AppZoneWPanelScale,
         AppZoneWIconSvg,
         AppZoneWDropfiles,
         AppZoneWDialog,
@@ -432,6 +439,7 @@ export default {
                         { name: 'WDynamicList' },
                         { name: 'WPanelDivideHorizontal' },
                         { name: 'WPanelDivideVertical' },
+                        { name: 'WPanelScale' },
                     ]
                 },
                 {

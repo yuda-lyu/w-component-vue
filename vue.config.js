@@ -5,13 +5,13 @@ module.exports = {
             '/api': {
                 target: 'http://localhost:9000',
                 pathRewrite: {
-                    '^/api': '/api' 
+                    '^/api': '/api'
                 },
             },
             '/swdoc': {
                 target: 'http://localhost:9000',
                 pathRewrite: {
-                    '^/swdoc': '/swdoc' 
+                    '^/swdoc': '/swdoc'
                 },
             },
         }
