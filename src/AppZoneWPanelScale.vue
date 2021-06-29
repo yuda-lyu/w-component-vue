@@ -39,7 +39,7 @@
                     * div使用display:inline-block且與其他元素有空白時, 照規範渲染時會出現textNode造成空隙問題
                 </div>
 
-                <div style="display:inline-block; padding:10px; border:1px solid #ddd;">
+                <div style="display:inline-block; padding:10px; border:1px dashed #999;">
                     <w-panel-scale
                         :scale="WPanelScale.scale"
                     >
@@ -51,7 +51,7 @@
 
                 <br>
 
-                <div style="display:inline-block; padding:10px; border:1px solid #ddd;">
+                <div style="display:inline-block; padding:10px; border:1px dashed #999;">
                     <w-panel-scale
                         :scale="WPanelScale.scale"
                     >
@@ -80,7 +80,7 @@
                     v-if="!useGlobalSlider"
                 ></v-slider>
 
-                <div style="display:inline-block; padding:10px; border:1px solid #ddd;">
+                <div style="display:inline-block; padding:10px; border:1px dashed #999;">
                     <w-panel-scale
                         :scale="WPanelScale.scale"
                     >
@@ -113,7 +113,7 @@
                     v-if="!useGlobalSlider"
                 ></v-slider>
 
-                <div style="display:inline-block; padding:10px; border:1px solid #ddd;">
+                <div style="display:inline-block; padding:10px; border:1px dashed #999;">
                     <w-panel-scale
                         :scale="WPanelScale.scale"
                     >
@@ -151,7 +151,7 @@
                     * transform scale縮放會造成popupjs定位偏移
                 </div>
 
-                <div style="display:inline-block; padding:10px; border:1px solid #ddd;">
+                <div style="display:inline-block; padding:10px; border:1px dashed #999;">
                     <w-panel-scale
                         :scale="WPanelScale.scale"
                     >
@@ -189,7 +189,7 @@
                     v-if="!useGlobalSlider"
                 ></v-slider>
 
-                <div style="display:inline-block; padding:10px; border:1px solid #ddd;">
+                <div style="display:inline-block; padding:10px; border:1px dashed #999;">
                     <w-panel-scale
                         :scale="WPanelScale.scale"
                     >

@@ -272,10 +272,7 @@ function main() {
     _.each(ltfs, (v) => {
         let fn = fdSrc + v
         console.log('extracting: ' + fn)
-        // extractAppZone(fn)
-        if (fn === './src/AppZoneWPanelScale.vue') {
-            extractAppZone(fn)
-        }
+        extractAppZone(fn)
     })
 
 }
