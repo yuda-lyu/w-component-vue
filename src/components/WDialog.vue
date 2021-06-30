@@ -3,7 +3,7 @@
         :changeParam="changeParam"
         scrollable
         :persistent="hasCloseBtn"
-        :max-width="widthMax"
+        :max-width="maxWidth"
         :fullscreen="fullscreen"
         :hide-overlay="fullscreen"
         v-resize="changeSize"
@@ -141,7 +141,7 @@ import WButtonCircle from './WButtonCircle.vue'
  * @vue-prop {Boolean} [hasCloseBtn=true] 輸入是否顯示關閉按鈕，預設true
  * @vue-prop {String} [closeBtnTooltip='Close'] 輸入關閉按鈕的提示文字字串，預設'Close'
  * @vue-prop {Boolean} [closeWithInterceptor=false] 輸入是否通過攔截器來決定是否進行關閉，此處之攔截器係用promise來控制，當使用者點擊關閉時可先行確認或提示。當closeWithInterceptor=true時，於click-close事件所接收物件資訊中的pm，使用pm.resolve()則代表確定關閉，反之pm.reject()則取消關閉事件，預設false
- * @vue-prop {Number} [widthMax=1000] 輸入彈窗最大寬度，單位為px，預設1000，當裝置寬度小於彈窗最大寬度，則彈窗改為全螢幕顯示，若給予widthMax<=0則代表全螢幕
+ * @vue-prop {Number} [maxWidth=1000] 輸入彈窗最大寬度，單位為px，預設1000，當裝置寬度小於彈窗最大寬度，則彈窗改為全螢幕顯示，若給予maxWidth<=0則代表全螢幕
  * @vue-prop {String} [contentTextColor='black'] 輸入內容文字顏色字串，預設'black'
  * @vue-prop {String} [contentBackgroundColor='transparent'] 輸入內容背景顏色字串，預設'transparent'
  */
@@ -201,7 +201,7 @@ export default {
             type: Boolean,
             default: false,
         },
-        widthMax: {
+        maxWidth: {
             type: Number,
             default: 1000,
         },
@@ -343,11 +343,11 @@ export default {
             let vo = this
 
             //fullscreen
-            if (vo.widthMax <= 0) {
+            if (vo.maxWidth <= 0) {
                 vo.fullscreen = true
             }
             else {
-                if (vo.widthMax > window.innerWidth) {
+                if (vo.maxWidth > window.innerWidth) {
                     vo.fullscreen = true
                 }
                 else {

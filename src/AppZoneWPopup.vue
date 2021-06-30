@@ -421,7 +421,7 @@
                 <w-dialog
                     :show.sync="WPopup.bShow13"
                     :title="'in dialog'"
-                    :widthMax="500"
+                    :maxWidth="500"
                 >
 
                     <template v-slot:content>

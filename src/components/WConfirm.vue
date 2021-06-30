@@ -3,7 +3,7 @@
         :changeParam="changeParam"
         scrollable
         persistent
-        :max-width="widthMax"
+        :max-width="maxWidth"
         v-model="showTrans"
     >
 
@@ -111,7 +111,7 @@ import WButtonChip from './WButtonChip.vue'
  * @vue-prop {String} [headerBackgroundColor='grey lighten-5'] 輸入上方區塊背景顏色字串，預設'grey lighten-5'
  * @vue-prop {String} [contentBackgroundColor='white'] 輸入內容區塊背景顏色字串，預設'white'
  * @vue-prop {String} [footerBackgroundColor='grey lighten-5'] 輸入下方區塊背景顏色字串，預設'grey lighten-5'
- * @vue-prop {Number} [widthMax=500] 輸入彈窗最大寬度，單位為px，預設500
+ * @vue-prop {Number} [maxWidth=500] 輸入彈窗最大寬度，單位為px，預設500
  */
 export default {
     components: {
@@ -206,7 +206,7 @@ export default {
             type: String,
             default: 'grey lighten-5',
         },
-        widthMax: {
+        maxWidth: {
             type: Number,
             default: 500,
         },

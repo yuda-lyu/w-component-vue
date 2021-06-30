@@ -148,7 +148,7 @@
                 ></v-slider>
 
                 <div style="color:#f26; font-size:0.8rem;">
-                    * transform scale縮放會造成popupjs定位偏移
+                    * transform scale縮放會造成popupjs定位偏移問題
                 </div>
 
                 <div style="display:inline-block; padding:10px; border:1px dashed #999;">

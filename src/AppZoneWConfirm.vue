@@ -202,7 +202,7 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-confirm'"
-                    :casename="'widthMax'"
+                    :casename="'maxWidth'"
                 ></demolink>
 
                 <v-btn depressed small elevation="2" @click="WConfirm.bShow10=!WConfirm.bShow10">Show({{WConfirm.bShow10}})</v-btn>
@@ -211,7 +211,7 @@
                     :show.sync="WConfirm.bShow10"
                     :title="WConfirm.title"
                     :content="WConfirm.content"
-                    :widthMax="350"
+                    :maxWidth="350"
                     @click-no="clickEvent('click-no')"
                     @click-yes="clickEvent('click-yes')"
                 ></w-confirm>

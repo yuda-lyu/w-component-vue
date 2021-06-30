@@ -500,7 +500,7 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-dialog'"
-                    :casename="'widthMax, for narrow width'"
+                    :casename="'maxWidth, for narrow width'"
                 ></demolink>
 
                 <v-btn depressed small elevation="2" @click="WDialog.bShow13=!WDialog.bShow13">Show({{WDialog.bShow13}})</v-btn>
@@ -508,7 +508,7 @@
                 <w-dialog
                     :show.sync="WDialog.bShow13"
                     :title="WDialog.title"
-                    :widthMax="500"
+                    :maxWidth="500"
                     @resize="resizeEvent"
                     @click-save="clickSave"
                     @click-close="clickClose"
@@ -547,7 +547,7 @@
                 <w-dialog
                     :show.sync="WDialog.bShow14"
                     :title="WDialog.title"
-                    :widthMax="0"
+                    :maxWidth="0"
                     @resize="resizeEvent"
                     @click-save="clickSave"
                     @click-close="clickClose"
@@ -675,7 +675,7 @@
                 <w-dialog
                     :show.sync="WDialog.bShow17"
                     :title="WDialog.title"
-                    :widthMax="500"
+                    :maxWidth="500"
                     @resize="resizeEvent"
                     @click-save="clickSave"
                     @click-close="clickClose"
@@ -750,7 +750,7 @@
                 <w-dialog
                     :show.sync="WDialog.bShow18"
                     :title="WDialog.title"
-                    :widthMax="1200"
+                    :maxWidth="1200"
                     @resize="resizeEvent"
                     @click-save="clickSave"
                     @click-close="clickClose"
@@ -775,7 +775,7 @@
                 <w-dialog
                     :show.sync="WDialog.bShow18A"
                     :title="WDialog.title"
-                    :widthMax="900"
+                    :maxWidth="900"
                     @resize="resizeEvent"
                     @click-save="clickSave"
                     @click-close="clickClose"
@@ -800,7 +800,7 @@
                 <w-dialog
                     :show.sync="WDialog.bShow18B"
                     :title="WDialog.title"
-                    :widthMax="600"
+                    :maxWidth="600"
                     @resize="resizeEvent"
                     @click-save="clickSave"
                     @click-close="clickClose"

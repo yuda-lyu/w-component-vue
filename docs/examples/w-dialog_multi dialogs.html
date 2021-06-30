@@ -85,7 +85,7 @@
     </script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.1.27/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.1.28/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -151,7 +151,7 @@
             <w-dialog
                 :show.sync="WDialog.bShow18"
                 :title="WDialog.title"
-                :width-max="1200"
+                :max-width="1200"
                 @resize="resizeEvent"
                 @click-save="clickSave"
                 @click-close="clickClose"
@@ -175,7 +175,7 @@
             <w-dialog
                 :show.sync="WDialog.bShow18A"
                 :title="WDialog.title"
-                :width-max="900"
+                :max-width="900"
                 @resize="resizeEvent"
                 @click-save="clickSave"
                 @click-close="clickClose"
@@ -199,7 +199,7 @@
             <w-dialog
                 :show.sync="WDialog.bShow18B"
                 :title="WDialog.title"
-                :width-max="600"
+                :max-width="600"
                 @resize="resizeEvent"
                 @click-save="clickSave"
                 @click-close="clickClose"

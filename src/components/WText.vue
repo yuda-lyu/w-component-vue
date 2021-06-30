@@ -92,6 +92,12 @@ import WTextCore from './WTextCore.vue'
  * @vue-prop {String} [borderColor='transparent'] 輸入邊框顏色字串，預設'transparent'
  * @vue-prop {String} [borderColorHover='transparent'] 輸入滑鼠移入時邊框顏色字串，預設'transparent'
  * @vue-prop {String} [borderColorFocus='transparent'] 輸入取得焦點時邊框顏色字串，預設'transparent'
+ * @vue-prop {String} [bottomLineBorderColor='grey lighten-1'] 輸入底部線顏色字串，預設'grey lighten-1'
+ * @vue-prop {String} [bottomLineBorderColorHover='grey'] 輸入滑鼠移入時底部線顏色字串，預設'grey'
+ * @vue-prop {String} [bottomLineBorderColorFocus='blue darken-1'] 輸入取得焦點時底部線顏色字串，預設'blue darken-1'
+ * @vue-prop {Number} [bottomLineBorderWidth=1] 輸入底部線寬度數字，單位為px，預設1
+ * @vue-prop {Number} [bottomLineBorderWidthHover=1] 輸入滑鼠移入時底部線寬度數字，單位為px，預設1
+ * @vue-prop {Number} [bottomLineBorderWidthFocus=2] 輸入取得焦點時底部線寬度數字，單位為px，預設2
  * @vue-prop {String} [placeholder=''] 輸入無文字時的替代字符字串，預設''
  * @vue-prop {Number} [height=28] 輸入高度數字，單位為px，預設28
  * @vue-prop {Boolean} [editable=true] 輸入是否為編輯模式，預設true
