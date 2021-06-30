@@ -345,7 +345,7 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-table-dyn'"
-                    :casename="'editable & checkId & tooltipAddRow & tooltipDeleteSelectedRows & tooltipDownloadExcelFile & tooltipUploadExcelFile'"
+                    :casename="'editable & checkId & tooltipAddRow & tooltipDeleteSelectedRows & tooltipDownloadExcelFile & tooltipUploadExcelFile & uploadModeTitle & uploadModeTextForReplace & uploadModeTextForAppend'"
                 ></demolink>
 
                 <w-table-dyn
@@ -359,6 +359,9 @@
                     :tooltipDeleteSelectedRows="'刪除選擇數據'"
                     :tooltipDownloadExcelFile="'下載 Excel(xlsx) 數據檔案'"
                     :tooltipUploadExcelFile="'上傳 Excel(xlsx) 數據檔案'"
+                    :uploadModeTitle="'請選擇上傳模式：'"
+                    :uploadModeTextForReplace="'取代'"
+                    :uploadModeTextForAppend="'於最後加入'"
                     @success="evSuccess"
                     @error="evError"
                 ></w-table-dyn>

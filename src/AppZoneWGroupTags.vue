@@ -298,7 +298,7 @@
                 >
                     <template v-slot:items="props">
                         <div style="display:flex; align-items:center;">
-                            <div style="display:flex; margin-right:5px;" msg="inline-block元素會無法被垂直置中故使用flex">
+                            <div style="display:flex; margin-right:5px;">
                                 <w-button-chip
                                     :text="props.item"
                                     :textFontSize="'0.75rem'"
@@ -310,7 +310,7 @@
                                     @click="ckBtnItem1(props)"
                                 ></w-button-chip>
                             </div>
-                            <div style="display:flex;" msg="inline-block元素會無法被垂直置中故使用flex">
+                            <div style="display:flex;">
                                 <w-button-chip
                                     :text="'View'"
                                     :textFontSize="'0.75rem'"
@@ -344,7 +344,7 @@
                 >
                     <template v-slot:items="props">
                         <div style="display:flex; align-items:center;">
-                            <div style="display:flex; margin-right:5px;" msg="inline-block元素會無法被垂直置中故使用flex">
+                            <div style="margin-left:-9px; margin-right:5px; display:flex;">
                                 <w-button-chip
                                     :text="props.item.slotTextKind"
                                     :textFontSize="'0.75rem'"
@@ -356,7 +356,7 @@
                                     @click="ckBtnItem1(props)"
                                 ></w-button-chip>
                             </div>
-                            <div style="display:flex;" msg="inline-block元素會無法被垂直置中故使用flex">
+                            <div style="display:flex;">
                                 <w-button-chip
                                     :text="props.item.slotTextLevel"
                                     :textFontSize="'0.75rem'"
@@ -779,8 +779,12 @@
                     <template v-slot:items="props">
                         <div style="display:flex; align-items:center;">
 
-                            <div :style="'display:inline-block; border-radius:10px; font-size:0.85rem; user-select:none; '.concat(props.active ? 'padding:0px 12px; color:#263238; background:rgba(255,255,255,0.7);' : 'padding:0px 12px; color:#9E9E9E; background:rgba(100,100,100,0.1);')">
+                            <div :style="'margin-left:-9px; display:inline-block; border-radius:10px; font-size:0.85rem; user-select:none; padding:0px 12px; '.concat(props.active ? 'color:#263238; background:rgba(255,255,255,0.7);' : 'color:#888; background:rgba(100,100,100,0.1);')">
                                 Menu
+                            </div>
+
+                            <div :style="'display:inline-block; font-size:0.85rem; user-select:none; padding:0px 6px; '.concat(props.active ? 'color:#fff;' : 'color:#444;')">
+                                {{props.item}}
                             </div>
 
                         </div>
@@ -813,8 +817,12 @@
                     <template v-slot:items="props">
                         <div style="display:flex; align-items:center;">
 
-                            <div :style="'display:inline-block; border-radius:10px; font-size:0.85rem; user-select:none; '.concat(props.active ? 'padding:0px 12px; color:#263238; background:rgba(255,255,255,0.7);' : 'padding:0px 12px; color:#9E9E9E; background:rgba(100,100,100,0.1);')">
+                            <div :style="'margin-left:-9px; display:inline-block; border-radius:10px; font-size:0.85rem; user-select:none; padding:0px 12px; '.concat(props.active ? 'color:#263238; background:rgba(255,255,255,0.7);' : 'color:#888; background:rgba(100,100,100,0.1);')">
                                 {{props.item.slotTextKind}}
+                            </div>
+
+                            <div :style="'display:inline-block; font-size:0.85rem; user-select:none; padding:0px 6px; '.concat(props.active ? 'color:#fff;' : 'color:#444;')">
+                                {{props.item.text}}
                             </div>
 
                         </div>
@@ -858,8 +866,12 @@
                     <template v-slot:items="props">
                         <div style="display:flex; align-items:center;">
 
-                            <div :style="'display:inline-block; border-radius:10px; font-size:0.85rem; user-select:none; '.concat(props.active ? 'padding:0px 12px; color:#263238; background:rgba(255,255,255,0.7);' : 'padding:0px 12px; color:#666; background:#fff;')">
+                            <div :style="'margin-left:-9px; display:inline-block; border-radius:10px; font-size:0.85rem; user-select:none; padding:0px 12px; '.concat(props.active ? 'color:#263238; background:rgba(255,255,255,0.7);' : 'color:#888; background:rgba(100,100,100,0.1);')">
                                 Menu
+                            </div>
+
+                            <div :style="'display:inline-block; font-size:0.85rem; user-select:none; padding:0px 6px; '.concat(props.active ? 'color:#fff;' : 'color:#444;')">
+                                {{props.item.text}}
                             </div>
 
                         </div>

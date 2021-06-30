@@ -34,38 +34,37 @@
                             tabindex="1"
                         >
 
-                            <div style="display:flex; align-items:center; white-space:nowrap;">
+                            <div style="display:flex; align-items:center;">
 
-                                <div style="margin:0px 10px 0px -10px;">
-                                    <slot></slot>
-                                </div>
+                                <div>
+                                    <slot>
+                                        <div style="display:flex; align-items:center; white-space:nowrap;">
 
-                                <div :style="`display:inline-block;`">
-                                    <w-icon
-                                        :style="`margin:0px 5px 0px -6px;`"
-                                        :icon="icon"
-                                        :color="useIconColor"
-                                        :size="iconSize"
-                                        v-if="hasIcon"
-                                    ></w-icon>
-                                </div>
+                                            <w-icon
+                                                style="margin:0px 5px 0px -6px;"
+                                                :icon="icon"
+                                                :color="useIconColor"
+                                                :size="iconSize"
+                                                v-if="hasIcon"
+                                            ></w-icon>
 
-                                <div
-                                    :style="`margin-right:${text?0:-10}px; transition:all 0.3s; text-transform:none; color:${useTextColor}; ${hasIcon?'min-height:'+iconSize+'px':''}; display:flex; align-items:center;`"
-                                >
-                                    <div :style="`${useTextFontSize}`">{{text}}</div>
+                                            <div :style="`transition:all 0.3s; text-transform:none; color:${useTextColor}; ${hasIcon?'min-height:'+iconSize+'px':''}; display:flex; align-items:center;`">
+                                                <div :style="`${useTextFontSize}`">{{text}}</div>
+                                            </div>
+
+                                        </div>
+                                    </slot>
                                 </div>
 
                                 <!-- 為了讓transition-group能抓到可拖曳對象, 且組件內tabindex不能重複, 故本層設定為2 -->
                                 <div
-                                    :style="`display:inline-block; outline:none; user-select:none;`"
+                                    :style="`margin:0px -9px 0px 5px; display:inline-block; outline:none; user-select:none;`"
                                     tabindex="2"
                                     @keyup.enter="clickClose($event)"
                                     @click="clickClose($event)"
                                     v-if="close"
                                 >
                                     <WIcon
-                                        :style="`margin:0px -9px 0px 5px;`"
                                         :icon="mdiCloseCircle"
                                         :color="useIconColor"
                                         :size="iconSize"

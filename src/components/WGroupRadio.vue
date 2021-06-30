@@ -1,9 +1,15 @@
 <template>
     <WGroupCheck
-        :multiCheck="false"
-        v-bind="$props"
+        v-bind="{...$props,multiCheck:false}"
         v-on="$listeners"
-    ></WGroupCheck>
+    >
+        <template v-slot="props">
+            <slot
+                :item="props.item"
+                :kitem="props.kitem"
+            ></slot>
+        </template>
+    </WGroupCheck>
 </template>
 
 <script>

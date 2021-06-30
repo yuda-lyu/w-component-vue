@@ -85,7 +85,7 @@
     </script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.1.30/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.1.31/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -141,7 +141,7 @@
         <div class="bk">
             <div
                 class="item"
-            >editable &amp; checkId &amp; tooltipAddRow &amp; tooltipDeleteSelectedRows &amp; tooltipDownloadExcelFile &amp; tooltipUploadExcelFile</div>
+            >editable &amp; checkId &amp; tooltipAddRow &amp; tooltipDeleteSelectedRows &amp; tooltipDownloadExcelFile &amp; tooltipUploadExcelFile &amp; uploadModeTitle &amp; uploadModeTextForReplace &amp; uploadModeTextForAppend</div>
 
             <w-table-dyn
                 style="width:600px; height:400px;"
@@ -154,6 +154,9 @@
                 :tooltip-delete-selected-rows="'刪除選擇數據'"
                 :tooltip-download-excel-file="'下載 Excel(xlsx) 數據檔案'"
                 :tooltip-upload-excel-file="'上傳 Excel(xlsx) 數據檔案'"
+                :upload-mode-title="'請選擇上傳模式：'"
+                :upload-mode-text-for-replace="'取代'"
+                :upload-mode-text-for-append="'於最後加入'"
                 @success="evSuccess"
                 @error="evError"
             ></w-table-dyn>

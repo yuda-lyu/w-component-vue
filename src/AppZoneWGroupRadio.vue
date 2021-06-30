@@ -513,12 +513,15 @@
                 >
                     <template v-slot="props">
                         <div style="display:flex; align-items:center;">
-                            <div
-                                style="margin:2px 5px 2px 2px; user-select:none; padding:2px 12px; font-size:0.75rem; color:#fff; background:#aa00ff; border-radius:12px; box-shadow:0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12);"
-                            >{{props.item.data}}</div>
-                            <div
-                                style="margin:2px; user-select:none; padding:2px 12px; font-size:0.75rem; color:#fff; background:#00acc1; border-radius:12px; box-shadow:0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12);"
-                            >View</div>
+
+                            <div style="margin-left:-9px; margin-right:5px; user-select:none; padding:2px 12px; font-size:0.75rem; color:#fff; background:#aa00ff; border-radius:12px; box-shadow:0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12);">
+                                View
+                            </div>
+
+                            <div :style="'margin-right:-9px; display:inline-block; border-radius:10px; font-size:0.85rem; user-select:none; padding:0px 12px; '.concat(props.item.active ? 'color:#000; background:rgba(255,255,255,0.7);' : 'color:#888; background:transparent;')">
+                                {{props.item.data}}
+                            </div>
+
                         </div>
                     </template>
                 </w-group-radio>

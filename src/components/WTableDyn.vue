@@ -44,39 +44,73 @@
                         <div style="display:flex; align-items:center;">
 
                             <WButtonCircle
-                                style="margin-right:5px;"
+                                style="margin:5px;"
                                 :icon="mdiTextBoxPlusOutline"
-                                :shadow="false"
+                                :backgroundColor="'white'"
+                                :backgroundColorHover="'white'"
                                 :tooltip="tooltipAddRow"
                                 @click="addRow"
                             ></WButtonCircle>
 
                             <WButtonCircle
-                                style="margin-right:5px;"
+                                style="margin:5px;"
                                 :icon="mdiDeleteForever"
                                 :iconColor="'#f26'"
-                                :shadow="false"
+                                :backgroundColor="'white'"
+                                :backgroundColorHover="'white'"
                                 :tooltip="tooltipDeleteSelectedRows"
                                 @click="removeRows"
                                 v-if="rowsSelect.length>0"
                             ></WButtonCircle>
 
                             <WButtonCircle
-                                style="margin-right:5px;"
+                                style="margin:5px;"
                                 :icon="mdiDownload"
-                                :shadow="false"
+                                :backgroundColor="'white'"
+                                :backgroundColorHover="'white'"
                                 :tooltip="tooltipDownloadExcelFile"
                                 @click="downloadData"
                                 v-if="hasEffRows"
                             ></WButtonCircle>
 
-                            <WButtonCircle
-                                style="margin-right:5px;"
-                                :icon="mdiUpload"
-                                :shadow="false"
-                                :tooltip="tooltipUploadExcelFile"
-                                @click="uploadData"
-                            ></WButtonCircle>
+                            <WPopup
+                                v-model="showPickUploadMode"
+                            >
+
+                                <template v-slot:trigger>
+                                    <WButtonCircle
+                                        style="margin:5px;"
+                                        :icon="mdiUpload"
+                                        :backgroundColor="'white'"
+                                        :backgroundColorHover="'white'"
+                                        :tooltip="tooltipUploadExcelFile"
+                                        @click="showPickUploadMode=true"
+                                    ></WButtonCircle>
+                                </template>
+
+                                <template v-slot:content>
+
+                                    <div style="padding:10px; font-size:0.8rem; color:#666; background:#eee;">
+                                        {{uploadModeTitle}}
+                                    </div>
+
+                                    <div style="padding:5px 10px;">
+                                        <WGroupRadio
+                                            :items="uploadModeItems"
+                                            v-model="uploadModeSelect"
+                                            @click="showPickUploadMode=false;uploadData()"
+                                        >
+                                            <template v-slot="props">
+                                                <div :style="`font-size:0.8rem; ${props.item.active?'color:#fff':'color:#666'};`">
+                                                    {{kpUploadModeItems[props.item.data]}}
+                                                </div>
+                                            </template>
+                                        </WGroupRadio>
+                                    </div>
+
+                                </template>
+
+                            </WPopup>
 
                             <slot
                                 name="btns"
@@ -96,9 +130,11 @@
                             <div style="display:flex; align-items:center;">
 
                                 <WButtonCircle
+                                    style="margin:5px;"
                                     :icon="mdiDownload"
-                                    :shadow="false"
                                     :tooltip="tooltipDownloadExcelFile"
+                                    :backgroundColor="'white'"
+                                    :backgroundColorHover="'white'"
                                     @click="downloadData"
                                     v-if="hasEffRows"
                                 ></WButtonCircle>
@@ -171,7 +207,9 @@ import arr2dt from 'wsemi/src/arr2dt.mjs'
 import ltdtmapping from 'wsemi/src/ltdtmapping.mjs'
 import genID from 'wsemi/src/genID.mjs'
 import WButtonCircle from './WButtonCircle.vue'
+import WPopup from './WPopup.vue'
 import WText from './WText.vue'
+import WGroupRadio from './WGroupRadio.vue'
 import WAggridVueDyn from './WAggridVueDyn.vue'
 import domResize from '../js/domResize.mjs'
 import parseSpace from '../js/parseSpace.mjs'
@@ -210,6 +248,9 @@ import color2hex from '../js/vuetifyColor.mjs'
  * @vue-prop {String} [errorMsgFromDownloadData='can not download data'] 輸入無法下載檔案事件訊息字串，預設'can not download data'
  * @vue-prop {String} [errorMsgFromNoName='no data name'] 輸入未輸入數據名稱事件訊息字串，預設'no data name'
  * @vue-prop {String} [errorMsgFromNoData='no data'] 輸入未給予有效數據事件訊息字串，預設'no data'
+ * @vue-prop {String} [uploadModeTitle='Choose mode of upload:'] 輸入選擇上傳模式彈窗標題字串，預設'Choose mode of upload:'
+ * @vue-prop {String} [uploadModeTextForReplace='Replace'] 輸入取代上傳模式文字字串，預設'Replace'
+ * @vue-prop {String} [uploadModeTextForAppend='Append'] 輸入插入於最後上傳模式文字字串，預設'Append'
  * @vue-event {Array} save 指調用組件的method，無輸入，會回傳當前的name、description、rows所構成的物件
  * @vue-prop {Object} [opt={}] 輸入w-aggrid-vue設定物件，預設{}
  * @vue-prop {Array} opt.keys 輸入資料各欄位keys
@@ -263,7 +304,9 @@ export default {
     },
     components: {
         WButtonCircle,
+        WPopup,
         WText,
+        WGroupRadio,
         WAggridVueDyn,
     },
     props: {
@@ -409,6 +452,18 @@ export default {
             type: String,
             default: 'no data', //未給予有效數據
         },
+        uploadModeTitle: {
+            type: String,
+            default: 'Choose mode of upload:',
+        },
+        uploadModeTextForReplace: {
+            type: String,
+            default: 'Replace',
+        },
+        uploadModeTextForAppend: {
+            type: String,
+            default: 'Append',
+        },
         opt: {
             type: Object,
             default: null,
@@ -422,6 +477,10 @@ export default {
             mdiTextBoxPlusOutline,
 
             tableHeight: 1, //ag-grid需先給予最小高度供顯示, resize才會驅動
+
+            showPickUploadMode: false,
+            uploadModeItems: ['replace', 'append'],
+            uploadModeSelect: 'replace',
 
             paramsTemp: null,
 
@@ -488,6 +547,20 @@ export default {
             }
 
             return ''
+        },
+
+        kpUploadModeItems: function() {
+            //console.log('computed kpUploadModeItems')
+
+            let vo = this
+
+            //kp
+            let kp = {
+                replace: vo.uploadModeTextForReplace,
+                append: vo.uploadModeTextForAppend,
+            }
+
+            return kp
         },
 
         useKeys: function() {
@@ -764,7 +837,8 @@ export default {
                 //push
                 vo.useOpt.rows.push(newRow)
 
-                vo.$nextTick(() => { //變更數據後頁面會先渲染, delay後才能調捲軸, 否則太快執行會被頁面渲染蓋掉
+                //nextTick, 變更數據後頁面會先渲染, nextTick後才能調捲軸, 否則太快執行會被頁面渲染蓋掉
+                vo.$nextTick(() => {
 
                     //getInstance
                     let getInstance = get(vo, `$refs.cmp.$refs.$self.getInstance`)
@@ -790,7 +864,7 @@ export default {
         },
 
         removeRows: function() {
-            console.log('methods removeRows')
+            // console.log('methods removeRows')
 
             let vo = this
 
@@ -880,6 +954,12 @@ export default {
             let optForUploadData = get(vo, 'opt.optForUploadData')
             if (!isobj(optForUploadData)) {
                 optForUploadData = {}
+            }
+
+            //uploadMode, 選擇上傳模式
+            let uploadMode = get(optForUploadData, 'uploadMode')
+            if (!isestr(uploadMode)) {
+                optForUploadData.uploadMode = vo.uploadModeSelect
             }
 
             //beforeUpload, 自動去除無效數據
