@@ -1,7 +1,8 @@
 <template>
+    <!-- popup的minWidth是內容有超長文字可自動撐開才適用, 編輯區內沒有此種條件元素故設定minWidth會失效 -->
     <w-popup
         :isolated="true"
-        :minWidth="minWidthForPopup"
+        _minWidth="minWidthForPopup"
         @show="evShow"
         @hide="evHide"
     >
@@ -13,10 +14,12 @@
         </template>
 
         <template v-slot:content="props">
-            <div :style="`text-align:left; border-radius:5px; overflow:hidden;`">
+
+            <!-- 無法使用w-popup的minWidth, 得於slot區自己撐開 -->
+            <div :style="`min-width:${minWidthForPopup}px; text-align:left; border-radius:5px; overflow:hidden;`">
 
                 <div v-if="title!==''">
-                    <div :style="`padding:10px; color:${useTitleColor}; ${useTitleFontSize}; background:${useHeaderBackgroundColor};`">
+                    <div :style="` padding:10px; color:${useTitleColor}; ${useTitleFontSize}; background:${useHeaderBackgroundColor};`">
                         {{title}}
                     </div>
                 </div>
