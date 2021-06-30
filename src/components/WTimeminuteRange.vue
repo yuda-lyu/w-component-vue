@@ -5,7 +5,7 @@
         :changeParam="changeParam"
     >
 
-        <w-shell-ellipse
+        <WShellEllipse
             :paddingStyle="paddingStyle"
             :borderRadius="borderRadius"
             :shadow="shadow"
@@ -27,7 +27,7 @@
             @click-left="$emit('click-left')"
         >
 
-            <w-timeminute-range-core
+            <WTimeminuteRangeCore
                 :pickColor="pickColor"
                 :hourMin="hourMin"
                 :hourMax="hourMax"
@@ -40,9 +40,9 @@
                 @update:focused="changeFocused"
                 @update:minuteEnd="(v)=>{$emit('update:minuteEnd', v)}"
                 @update:minuteStart="(v)=>{$emit('update:minuteStart', v)}"
-            ></w-timeminute-range-core>
+            ></WTimeminuteRangeCore>
 
-        </w-shell-ellipse>
+        </WShellEllipse>
 
     </div>
 </template>

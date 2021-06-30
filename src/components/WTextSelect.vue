@@ -1,7 +1,7 @@
 <template>
     <div :changeParam="changeParam">
 
-        <w-shell-ellipse
+        <WShellEllipse
             :paddingStyle="paddingStyle"
             :borderWidth="constBorderWidth"
             :borderRadius="borderRadius"
@@ -31,7 +31,7 @@
         >
 
             <div style="margin-right:-5px;">
-                <w-text-suggest-core
+                <WTextSuggestCore
                     :mode="'select'"
                     :items="items"
                     :value="value"
@@ -81,10 +81,10 @@
 
                     </template>
 
-                </w-text-suggest-core>
+                </WTextSuggestCore>
             </div>
 
-        </w-shell-ellipse>
+        </WShellEllipse>
 
     </div>
 </template>

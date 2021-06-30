@@ -14,7 +14,7 @@
                     dragtag
                     :dragindex="kitem"
                 >
-                    <w-buttonChip
+                    <WButtonChip
                         :style="`${useMarginStyle}`"
                         :text="isObjValue?get(item,`${keyText}`):item"
                         :tooltip="isObjValue?get(item,`${keyTooltip}`):null"
@@ -55,7 +55,7 @@
                             :kitem="kitem"
                             :active="isActive(item)"
                         ></slot>
-                    </w-buttonChip>
+                    </WButtonChip>
                 </div>
 
             </template>
@@ -63,7 +63,7 @@
 
         <template v-if="itemsTrans.length===0">
 
-            <w-buttonChip
+            <WButtonChip
                 style="margin:10px 10px 10px 0px;"
                 _key=""
                 :text="nodata"
@@ -102,7 +102,7 @@
                     :kitem="null"
                     :active="false"
                 ></slot>
-            </w-buttonChip>
+            </WButtonChip>
 
         </template>
 
@@ -110,7 +110,7 @@
             <slot name="input">
 
                 <template v-if="isObjValue">
-                    <w-buttonChip
+                    <WButtonChip
                         :icon="mdiPlusCircle"
                         :iconColor="addButtonIconColor"
                         :iconColorHover="addButtonIconColorHover"
@@ -121,11 +121,11 @@
                         :backgroundColorHover="addButtonBackgroundColorHover"
                         :tooltip="addButtonTooltip"
                         @click="clickAddBtn"
-                    ></w-buttonChip>
+                    ></WButtonChip>
                 </template>
 
                 <template v-else>
-                    <w-text-suggest
+                    <WTextSuggest
                         :style="`width:${inputTextWidth}px;`"
                         :textColor="inputTextColor"
                         :expansionIconColor="inputExpansionIconColor"
@@ -153,7 +153,7 @@
                         v-model="userinput"
                         @enter="clickAddBtn"
                         @click-right="clickAddBtn"
-                    ></w-text-suggest>
+                    ></WTextSuggest>
                 </template>
 
             </slot>

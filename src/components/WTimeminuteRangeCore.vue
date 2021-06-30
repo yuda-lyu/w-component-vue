@@ -4,7 +4,7 @@
         <!-- 盡量不要讓display:flex暴露至外層 -->
         <div style="display:flex; align-items:center;">
 
-            <w-timeminute-core
+            <WTimeminuteCore
                 TimeminuteRangeCore="dayminuFrom"
                 :hourMin="hourMin"
                 :hourMax="hourMax"
@@ -16,13 +16,13 @@
                 :value="minuteStart"
                 @update:focused="(v)=>{focused_start=v;changeFocused()}"
                 @input="(v)=>{$emit('update:minuteStart', v)}"
-            ></w-timeminute-core>
+            ></WTimeminuteCore>
 
             <div :style="`display:inline-block; padding-left:9px; padding-right:13px; height:${height}px; line-height:${height}px; vertical-align:middle;`">
                 {{minuteBetween}}
             </div>
 
-            <w-timeminute-core
+            <WTimeminuteCore
                 TimeminuteRangeCore="dayminuTo"
                 :hourMin="hourMin"
                 :hourMax="hourMax"
@@ -34,7 +34,7 @@
                 :value="minuteEnd"
                 @update:focused="(v)=>{focused_end=v;changeFocused()}"
                 @input="(v)=>{$emit('update:minuteEnd', v)}"
-            ></w-timeminute-core>
+            ></WTimeminuteCore>
 
         </div>
     </div>

@@ -5,7 +5,7 @@
         :changeParam="changeParam"
     >
 
-        <w-shell-ellipse
+        <WShellEllipse
             :paddingStyle="paddingStyle"
             :borderRadius="borderRadius"
             :shadow="shadow"
@@ -27,15 +27,15 @@
             @click-left="$emit('click-left')"
         >
 
-            <w-timeday-core
+            <WTimedayCore
                 :pickColor="pickColor"
                 :value="value"
                 :editable="editable"
                 @update:focused="changeFocused"
                 @input="(v)=>{$emit('input', v)}"
-            ></w-timeday-core>
+            ></WTimedayCore>
 
-        </w-shell-ellipse>
+        </WShellEllipse>
 
     </div>
 </template>

@@ -1,7 +1,7 @@
 <template>
     <div :changeParam="changeParam">
 
-        <w-shell-bottom-line
+        <WShellBottomLine
             :borderColor="bottomLineBorderColor"
             :borderColorHover="bottomLineBorderColorHover"
             :borderColorFocus="bottomLineBorderColorFocus"
@@ -10,7 +10,7 @@
             :borderWidthFocus="bottomLineBorderWidthFocus"
             :focused="focusedTrans"
         >
-            <w-shell-ellipse
+            <WShellEllipse
                 :paddingStyle="paddingStyle"
                 :borderRadius="borderRadius"
                 :shadow="shadow"
@@ -38,7 +38,7 @@
                 @click-right="$emit('click-right')"
             >
 
-                <w-text-core
+                <WTextCore
                     :type="type"
                     :textColor="textColor"
                     :textAlign="textAlign"
@@ -52,10 +52,10 @@
                     @blur="(v,err)=>{$emit('blur', v, err)}"
                     @enter="(v,err)=>{$emit('enter', v, err)}"
                     @input="(v,err)=>{$emit('input', v, err)}"
-                ></w-text-core>
+                ></WTextCore>
 
-            </w-shell-ellipse>
-        </w-shell-bottom-line>
+            </WShellEllipse>
+        </WShellBottomLine>
 
     </div>
 </template>

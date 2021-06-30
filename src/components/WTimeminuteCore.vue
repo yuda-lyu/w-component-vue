@@ -7,7 +7,7 @@
             :changeParam="changeParam"
         >
 
-            <w-timeday-core
+            <WTimedayCore
                 TimeminuteCore="day"
                 style="margin-right:5px;"
                 :pickColor="pickColor"
@@ -16,10 +16,10 @@
                 :value="value_day"
                 @update:focused="(v)=>{focused_day=v;changeFocused()}"
                 @input="ch_day"
-            ></w-timeday-core>
+            ></WTimedayCore>
 
             <div style="margin-right:-3px;">
-                <w-text-suggest-core
+                <WTextSuggestCore
                     TimeminuteCore="minute"
                     :mode="'select'"
                     :minWidth="70"
@@ -29,7 +29,7 @@
                     :value="value_time"
                     @update:focused="(v)=>{focused_time=v;changeFocused()}"
                     @input="ch_time"
-                ></w-text-suggest-core>
+                ></WTextSuggestCore>
             </div>
 
         </div>

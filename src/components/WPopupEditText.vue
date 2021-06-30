@@ -33,7 +33,7 @@
                     </div>
 
                     <div style="width:100%;">
-                        <w-text
+                        <WText
                             :textColor="inputTextColor"
                             :bottomLineBorderColor="inputTextBottomLineBorderColor"
                             :bottomLineBorderColorHover="inputTextBottomLineBorderColorHover"
@@ -41,14 +41,14 @@
                             v-model="valueTemp"
                             @enter="ckSave(props)"
                             v-if="showEdit"
-                        ></w-text>
+                        ></WText>
                     </div>
 
                 </div>
 
                 <div :style="`padding:10px; background:${useFooterBackgroundColor}; text-align:right;`">
 
-                    <w-button-chip
+                    <WButtonChip
                         :shiftLeft="-5"
                         :icon="saveBtnIcon"
                         :iconColor="saveBtnIconColor"
@@ -59,7 +59,7 @@
                         :backgroundColor="saveBtnBackgroundColor"
                         :backgroundColorHover="saveBtnBackgroundColorHover"
                         @click="ckSave(props)"
-                    ></w-button-chip>
+                    ></WButtonChip>
 
                 </div>
 

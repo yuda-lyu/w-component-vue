@@ -41,13 +41,13 @@
                                 </div>
 
                                 <div :style="`display:inline-block;`">
-                                    <WIcon
+                                    <w-icon
                                         :style="`margin:0px 5px 0px -6px;`"
                                         :icon="icon"
                                         :color="useIconColor"
                                         :size="iconSize"
                                         v-if="hasIcon"
-                                    ></WIcon>
+                                    ></w-icon>
                                 </div>
 
                                 <div

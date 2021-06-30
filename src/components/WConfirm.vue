@@ -44,7 +44,7 @@
                 <slot name="footer">
                     <div :style="useFooterStyle">
 
-                        <w-button-chip
+                        <WButtonChip
                             style="margin-left:20px;"
                             :shiftLeft="-5"
                             :icon="mdiCloseCircle"
@@ -57,9 +57,9 @@
                             :backgroundColorHover="noBtnBackgroundColorHover"
                             @click="clickBtns(false)"
                             v-if="hasNoBtn"
-                        ></w-button-chip>
+                        ></WButtonChip>
 
-                        <w-button-chip
+                        <WButtonChip
                             style="margin-left:20px;"
                             :shiftLeft="-5"
                             :icon="mdiCheckboxMarkedCircle"
@@ -71,7 +71,7 @@
                             :backgroundColor="yesBtnBackgroundColor"
                             :backgroundColorHover="yesBtnBackgroundColorHover"
                             @click="clickBtns(true)"
-                        ></w-button-chip>
+                        ></WButtonChip>
 
                     </div>
                 </slot>

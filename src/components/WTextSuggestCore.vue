@@ -35,7 +35,7 @@
 
                     </div>
 
-                    <w-text-core
+                    <WTextCore
                         style="width:100%;"
                         :textColor="useTextColor"
                         :textAlign="textAlign"
@@ -49,7 +49,7 @@
                         @input="updateValue"
                         @select="selectText"
                         v-if="mode==='suggest'"
-                    ></w-text-core>
+                    ></WTextCore>
 
                     <div style="padding:0px 0px 0px 5px;">
                         <div :style="`transform:rotate(${getRotateDeg+90}deg); transition:all 0.25s; cursor:pointer;`">

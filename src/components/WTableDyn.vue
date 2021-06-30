@@ -43,15 +43,15 @@
                     <div :style="`${useMenuPaddingStyle} background:${useMenuBackgroundColor};`">
                         <div style="display:flex; align-items:center;">
 
-                            <w-button-circle
+                            <WButtonCircle
                                 style="margin-right:5px;"
                                 :icon="mdiTextBoxPlusOutline"
                                 :shadow="false"
                                 :tooltip="tooltipAddRow"
                                 @click="addRow"
-                            ></w-button-circle>
+                            ></WButtonCircle>
 
-                            <w-button-circle
+                            <WButtonCircle
                                 style="margin-right:5px;"
                                 :icon="mdiDeleteForever"
                                 :iconColor="'#f26'"
@@ -59,24 +59,24 @@
                                 :tooltip="tooltipDeleteSelectedRows"
                                 @click="removeRows"
                                 v-if="rowsSelect.length>0"
-                            ></w-button-circle>
+                            ></WButtonCircle>
 
-                            <w-button-circle
+                            <WButtonCircle
                                 style="margin-right:5px;"
                                 :icon="mdiDownload"
                                 :shadow="false"
                                 :tooltip="tooltipDownloadExcelFile"
                                 @click="downloadData"
                                 v-if="hasEffRows"
-                            ></w-button-circle>
+                            ></WButtonCircle>
 
-                            <w-button-circle
+                            <WButtonCircle
                                 style="margin-right:5px;"
                                 :icon="mdiUpload"
                                 :shadow="false"
                                 :tooltip="tooltipUploadExcelFile"
                                 @click="uploadData"
-                            ></w-button-circle>
+                            ></WButtonCircle>
 
                             <slot
                                 name="btns"
@@ -95,13 +95,13 @@
                         <div :style="`${useMenuPaddingStyle} background:${useMenuBackgroundColor};`">
                             <div style="display:flex; align-items:center;">
 
-                                <w-button-circle
+                                <WButtonCircle
                                     :icon="mdiDownload"
                                     :shadow="false"
                                     :tooltip="tooltipDownloadExcelFile"
                                     @click="downloadData"
                                     v-if="hasEffRows"
-                                ></w-button-circle>
+                                ></WButtonCircle>
 
                                 <slot
                                     name="btns"
@@ -135,12 +135,12 @@
 
             </div>
 
-            <w-aggrid-vue-dyn
+            <WAggridVueDyn
                 ref="cmp"
                 :pathItems="pathItems"
                 :height="tableHeight"
                 :opt="useOpt"
-            ></w-aggrid-vue-dyn>
+            ></WAggridVueDyn>
 
         </template>
     </div>

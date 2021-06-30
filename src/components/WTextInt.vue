@@ -5,7 +5,7 @@
     >
 
         <!-- 於w-text-int外側可能有width:100%設定, w-shell-ellipse中間區width:100%會無視外層display:inline-block屬性造成滿版, 但其內輸入區仍有指定寬度導致排版錯亂, 故得使用display:inline-block -->
-        <w-shell-ellipse
+        <WShellEllipse
             style="display:inline-block;"
             :paddingStyle="paddingStyle"
             :borderRadius="borderRadius"
@@ -30,7 +30,7 @@
 
             <div style="margin:0px -10px;">
 
-                <w-text-int-core
+                <WTextIntCore
                     :width="width"
                     :leftIconTooltip="leftIconTooltip"
                     :rightIconTooltip="rightIconTooltip"
@@ -44,11 +44,11 @@
                     @update:focused="changeFocused"
                     @input="(v)=>{$emit('input', v)}"
                     @error="(v)=>{$emit('error', v)}"
-                ></w-text-int-core>
+                ></WTextIntCore>
 
             </div>
 
-        </w-shell-ellipse>
+        </WShellEllipse>
 
     </div>
 </template>

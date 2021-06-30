@@ -4,7 +4,7 @@
         <!-- 盡量不要讓display:flex暴露至外層 -->
         <div style="display:flex; align-items:center;">
 
-            <w-timeday-core
+            <WTimedayCore
                 TimedayRangeCore="dayFrom"
                 :pickColor="pickColor"
                 :height="height"
@@ -12,13 +12,13 @@
                 :value="dayStart"
                 @update:focused="(v)=>{focused_start=v;changeFocused()}"
                 @input="(v)=>{$emit('update:dayStart', v)}"
-            ></w-timeday-core>
+            ></WTimedayCore>
 
             <div :style="`display:inline-block; padding-left:5px; padding-right:9px; height:${height}px; line-height:${height}px; vertical-align:middle;`">
                 {{dayBetween}}
             </div>
 
-            <w-timeday-core
+            <WTimedayCore
                 TimedayRangeCore="dayTo"
                 :pickColor="pickColor"
                 :height="height"
@@ -26,7 +26,7 @@
                 :value="dayEnd"
                 @update:focused="(v)=>{focused_end=v;changeFocused()}"
                 @input="(v)=>{$emit('update:dayEnd', v)}"
-            ></w-timeday-core>
+            ></WTimedayCore>
 
         </div>
     </div>

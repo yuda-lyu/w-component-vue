@@ -2,7 +2,7 @@
     <div :changeParam="changeParam">
 
         <!-- 此處w-shell-ellipse僅提供左右按鈕而由w-text-int提供邊框, 故borderWidth需為0 -->
-        <w-shell-ellipse
+        <WShellEllipse
             :shadow="false"
             :paddingStyle="{v:0,h:0}"
             :backgroundColor="'transparent'"
@@ -29,7 +29,7 @@
             @click-right="changeContent(valueTrans,'add')"
         >
 
-            <w-text-core
+            <WTextCore
                 ref="inp"
                 :style="{'width':width+'px'}"
                 :textAlign="'center'"
@@ -39,9 +39,9 @@
                 :focused="focusedTrans"
                 @update:focused="changeFocused"
                 @input="(v)=>{changeContent(v,'')}"
-            ></w-text-core>
+            ></WTextCore>
 
-        </w-shell-ellipse>
+        </WShellEllipse>
 
     </div>
 </template>

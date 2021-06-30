@@ -5,7 +5,7 @@
         :changeParam="changeParam"
     >
 
-        <w-shell-ellipse
+        <WShellEllipse
             :paddingStyle="paddingStyle"
             :borderRadius="borderRadius"
             :shadow="shadow"
@@ -27,7 +27,7 @@
             @click-left="$emit('click-left')"
         >
 
-            <w-timeday-range-core
+            <WTimedayRangeCore
                 :pickColor="pickColor"
                 :dayBetween="dayBetween"
                 :dayStart="dayStart"
@@ -36,9 +36,9 @@
                 @update:focused="changeFocused"
                 @update:dayStart="(v)=>{$emit('update:dayStart', v)}"
                 @update:dayEnd="(v)=>{$emit('update:dayEnd', v)}"
-            ></w-timeday-range-core>
+            ></WTimedayRangeCore>
 
-        </w-shell-ellipse>
+        </WShellEllipse>
 
     </div>
 </template>
