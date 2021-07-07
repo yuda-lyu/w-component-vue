@@ -85,7 +85,7 @@
     </script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.1.31/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.1.32/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -147,10 +147,7 @@
                     :style="'display:inline-block; width:200px; height:300px; border:1px solid #ddd; overflow-y:auto;'"
                 >
                     <div style="text-align:left; height:600px;">
-                        <!-- 內嵌span為避免self-closing於前端vue模板無法解析問題 -->
-                        <div style="height:200px;">
-                            <span></span>
-                        </div>
+                        <div style="height:200px;"></div>
 
                         <w-popup
                             v-model="WPopup.bShow11"
@@ -178,10 +175,7 @@
                             </template>
                         </w-popup>
 
-                        <!-- 內嵌span為避免self-closing於前端vue模板無法解析問題 -->
-                        <div style="height:200px;">
-                            <span></span>
-                        </div>
+                        <div style="height:200px;"></div>
                     </div>
                 </div>
             </div>
