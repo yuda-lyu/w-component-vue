@@ -1,11 +1,9 @@
 
-import get from 'lodash/get'
 import domDetect from 'wsemi/src/domDetect.mjs'
 import genID from 'wsemi/src/genID.mjs'
-import isfun from 'wsemi/src/isfun.mjs'
 
 
-function domResize(opt = {}) {
+function domResize() {
     let kpDe = {}
 
     function emit(vnode, name, data) {
@@ -17,12 +15,6 @@ function domResize(opt = {}) {
 
     function bind(el, binding, vnode) {
         //console.log('bind', 'el', el, 'binding', binding, 'vnode', vnode)
-
-        //beforeBind
-        let beforeBind = get(opt, 'beforeBind')
-        if (isfun(beforeBind)) {
-            beforeBind({ el, binding, vnode })
-        }
 
         //id
         let id = `r${genID()}`
@@ -42,12 +34,6 @@ function domResize(opt = {}) {
                 winHeight,
             }
 
-            //beforeEmit
-            let beforeEmit = get(opt, 'beforeEmit')
-            if (isfun(beforeEmit)) {
-                msg = beforeEmit(msg)
-            }
-
             //emit
             emit(vnode, 'domresize', msg)
 
@@ -61,14 +47,10 @@ function domResize(opt = {}) {
     function unbind(el) {
         //console.log('unbind', 'el', el)
 
-        //beforeUnbind
-        let beforeUnbind = get(opt, 'beforeUnbind')
-        if (isfun(beforeUnbind)) {
-            beforeUnbind({ el })
-        }
-
         //id
         let id = el.getAttribute('ev-resize')
+
+        //remove attr
         el.setAttribute('ev-resize', null)
 
         //clear

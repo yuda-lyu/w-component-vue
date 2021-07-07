@@ -85,7 +85,7 @@
     </script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.1.31/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.1.32/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -136,27 +136,18 @@
                 style="cursor:pointer;"
                 title="open for copy link to view component"
                 onclick="window.open('//yuda-lyu.github.io/w-component-vue/examples/app.html?cmp='+this.innerText,'_blank')"
-            >w-text-select</span>
+            >w-list-vertical</span>
         </div>
         <div class="bk">
-            <div
-                class="item"
-            >border &amp; rightIconColor &amp; rightIconColorHover &amp; rightIconColorFoucs &amp; rightIconTooltip</div>
+            <div class="item">useActive (no active)</div>
 
-            <w-text-select
-                :shadow="false"
-                :border-color="'orange lighten-2'"
-                :border-color-hover="'orange'"
-                :border-color-focus="'orange darken-2'"
-                :background-color-focus="'orange lighten-5'"
-                :right-icon="'mdi-check-underline-circle'"
-                :right-icon-color="'orange lighten-1'"
-                :right-icon-color-hover="'orange accent-3'"
-                :right-icon-color-focus="'orange darken-2'"
-                :right-icon-tooltip="'show tooltip'"
-                :items="WTextSelect.objItems"
-                v-model="WTextSelect.objValue"
-            ></w-text-select>
+            <div style="display:inline-block; border:1px dashed #ddd;">
+                <w-list-vertical
+                    style="height:400px; width:250px;"
+                    :items="WListVertical.itemsObj"
+                    :use-active="false"
+                ></w-list-vertical>
+            </div>
         </div>
     </v-app>
 
@@ -170,111 +161,136 @@
     vuetify: new Vuetify(),
     data: function() {
       return {
-        WTextSelect: {
-          objItems: [
+        WListVertical: {
+          itemsString: [
+            "Real-Time",
+            "Audience",
+            "Conversions",
+            "Management",
+            "Settings",
+            "Actions"
+          ],
+          itemsObj: [
             {
-              key: "orange",
-              text: "橘子(orange)"
+              text: "Real-Time",
+              icon: "mdi-stack-overflow",
+              type: "Default"
             },
             {
-              key: "banana",
-              text: "香蕉(banana)"
+              text: "Audience",
+              icon: "mdi-book-music-outline",
+              type: "Default"
             },
             {
-              key: "strawberry",
-              text: "草莓(strawberry)"
+              text: "Conversions",
+              icon: "mdi-charity",
+              type: "Default"
+            },
+            {
+              text: "Management",
+              icon: "mdi-lightbulb-group-outline",
+              type: "Default"
+            },
+            {
+              text: "Settings",
+              icon: "mdi-message-cog-outline",
+              type: "Primary"
+            },
+            {
+              text: "Actions",
+              icon: "mdi-gesture-double-tap",
+              type: "Primary"
             }
           ],
-          objValue: {
-            key: "banana",
-            text: "香蕉(banana)"
-          },
-          objItemsKeyText: [
+          itemsObjLarge: [
             {
-              key: "orange",
-              name: "橘子(orange)"
+              text: "Real-Time-1",
+              icon: "mdi-stack-overflow"
             },
             {
-              key: "banana",
-              name: "香蕉(banana)"
+              text: "Audience-1",
+              icon: "mdi-book-music-outline"
             },
             {
-              key: "strawberry",
-              name: "草莓(strawberry)"
+              text: "Conversions-1",
+              icon: "mdi-charity"
+            },
+            {
+              text: "Management-1",
+              icon: "mdi-lightbulb-group-outline"
+            },
+            {
+              text: "Settings-1",
+              icon: "mdi-message-cog-outline"
+            },
+            {
+              text: "Actions-1",
+              icon: "mdi-gesture-double-tap"
+            },
+            {
+              text: "Real-Time-2",
+              icon: "mdi-stack-overflow"
+            },
+            {
+              text: "Audience-2",
+              icon: "mdi-book-music-outline"
+            },
+            {
+              text: "Conversions-2",
+              icon: "mdi-charity"
+            },
+            {
+              text: "Management-2",
+              icon: "mdi-lightbulb-group-outline"
+            },
+            {
+              text: "Settings-2",
+              icon: "mdi-message-cog-outline"
+            },
+            {
+              text: "Actions-2",
+              icon: "mdi-gesture-double-tap"
             }
           ],
-          objValueKeyText: {
-            key: "banana",
-            name: "香蕉(banana)"
-          },
-          objItemsLarge: (function() {
-            let vs = [];
-            vs.push({
-              key: "banana:1",
-              text: "香蕉(banana:1)"
-            });
-            for (let i = 2; i <= 10000; i++) {
-              vs.push({
-                key: "banana:" + i,
-                text: "香蕉(banana:" + i + ")"
-              });
+          itemsObjForKey: [
+            {
+              name: "Real-Time",
+              path: "mdi-stack-overflow"
+            },
+            {
+              name: "Audience",
+              path: "mdi-book-music-outline"
+            },
+            {
+              name: "Conversions",
+              path: "mdi-charity"
+            },
+            {
+              name: "Management",
+              path: "mdi-lightbulb-group-outline"
+            },
+            {
+              name: "Settings",
+              path: "mdi-message-cog-outline"
+            },
+            {
+              name: "Actions",
+              path: "mdi-gesture-double-tap"
             }
-            return vs;
-          })(),
-          objValueLarge: {
-            key: "banana:1",
-            text: "香蕉(banana:1)"
-          },
-          strItems: ["orange(橘子)", "banana(香蕉)", "strawberry(草莓)"],
-          strValue: "strawberry(草莓)"
-        },
-        actions: [
-          {
-            mode: "eleclick",
-            selector: 'input[type="text"]'
-          },
-          {
-            mode: "eleclick",
-            selector: 'div[tabindex="0"]',
-            nth: 2
-          },
-          {
-            mode: "keypress",
-            key: "Tab"
+          ],
+          itemActive: {
+            text: "Audience",
+            icon: "mdi-book-music-outline"
           }
-        ]
+        },
+        actions: []
       };
     },
     mounted: function() {
       return {};
     },
     computed: {},
-    methods: {
-      evUpdateFocused: function(item, kitem) {
-        console.log("evUpdateFocused", "item=", item, "kitem", kitem);
-      },
-      evUpdateShowPanel: function(item, kitem) {
-        console.log("evUpdateShowPanel", "item=", item, "kitem", kitem);
-      },
-      evBlur: function(item, kitem) {
-        console.log("evBlur", "item=", item, "kitem", kitem);
-      },
-      evInput: function(item, kitem) {
-        console.log("evInput", "item=", item, "kitem", kitem);
-      },
-      // evEnter: function(item, kitem) {
-      //     console.log('evEnter', 'item=', item, 'kitem', kitem)
-      // },
-      evClickItem: function(item, kitem) {
-        console.log("evClickItem", "item=", item, "kitem", kitem);
-      },
-      evClickLeft: function() {
-        console.log("evClickLeft");
-      },
-      evClickRight: function() {
-        console.log("evClickRight");
-      }
-    }
+    methods: {}
   });
     </script>
 </body>

@@ -1,9 +1,7 @@
-import get from 'lodash/get'
 import genID from 'wsemi/src/genID.mjs'
-import isfun from 'wsemi/src/isfun.mjs'
 
 
-function domMutation(opt = {}) {
+function domMutation() {
     let kpOb = {}
 
     function emit(vnode, name, data) {
@@ -15,12 +13,6 @@ function domMutation(opt = {}) {
 
     function bind(el, binding, vnode) {
         //console.log('bind', 'el', el, 'binding', binding, 'vnode', vnode)
-
-        //beforeBind
-        let beforeBind = get(opt, 'beforeBind')
-        if (isfun(beforeBind)) {
-            beforeBind({ el, binding, vnode })
-        }
 
         //id
         let id = `r${genID()}`
@@ -34,12 +26,6 @@ function domMutation(opt = {}) {
             let msg = {
                 ele: el,
                 mutations,
-            }
-
-            //beforeEmit
-            let beforeEmit = get(opt, 'beforeEmit')
-            if (isfun(beforeEmit)) {
-                msg = beforeEmit(msg)
             }
 
             //emit
@@ -66,14 +52,10 @@ function domMutation(opt = {}) {
     function unbind(el) {
         //console.log('unbind', 'el', el)
 
-        //beforeUnbind
-        let beforeUnbind = get(opt, 'beforeUnbind')
-        if (isfun(beforeUnbind)) {
-            beforeUnbind({ el })
-        }
-
         //id
         let id = el.getAttribute('ev-mutation')
+
+        //remove attr
         el.setAttribute('ev-mutation', null)
 
         //clear

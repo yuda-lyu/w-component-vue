@@ -22,10 +22,11 @@
                         v-on="on"
                         :style="`transition:all 0.3s; ${useBorderRadiusStyle} background:${useBackgroundColor}; cursor:pointer; outline:none; user-select:none; box-shadow:${useShadow};`"
                         tabindex="0"
+                        v-domripple="useRipple"
                         @mouseenter="hoverTrans=true;$emit('mouseenter',$event)"
                         @mouseleave="hoverTrans=false;$emit('mouseleave',$event)"
                         @keyup.enter="clickBtn($event)"
-                        @click="ripple($event);clickBtn($event)"
+                        @click="clickBtn($event)"
                     >
 
                         <!-- 為了讓transition-group能抓到可拖曳對象, 本層多設定tabindex, 本層設定為1 -->
@@ -40,16 +41,19 @@
                                     <slot>
                                         <div style="display:flex; align-items:center; white-space:nowrap;">
 
-                                            <w-icon
-                                                style="margin:0px 5px 0px -6px;"
+                                            <WIcon
+                                                :style="`margin-left:-6px; margin-right:${hasText?5:-6}px;`"
                                                 :icon="icon"
                                                 :color="useIconColor"
                                                 :size="iconSize"
                                                 v-if="hasIcon"
-                                            ></w-icon>
+                                            ></WIcon>
 
-                                            <div :style="`transition:all 0.3s; text-transform:none; color:${useTextColor}; ${hasIcon?'min-height:'+iconSize+'px':''}; display:flex; align-items:center;`">
-                                                <div :style="`${useTextFontSize}`">{{text}}</div>
+                                            <div
+                                                :style="`transition:all 0.3s; text-transform:none; color:${useTextColor}; ${useTextFontSize} ${hasIcon?'min-height:'+iconSize+'px':''}; display:flex; align-items:center;`"
+                                                v-if="hasText"
+                                            >
+                                                {{text}}
                                             </div>
 
                                         </div>
@@ -135,9 +139,10 @@ import replace from 'wsemi/src/replace.mjs'
 import sep from 'wsemi/src/sep.mjs'
 import genPm from 'wsemi/src/genPm.mjs'
 import oc from 'wsemi/src/color.mjs'
-import domRipple from 'wsemi/src/domRipple.mjs'
+// import domRipple from 'wsemi/src/domRipple.mjs'
 import color2hex from '../js/vuetifyColor.mjs'
 import parseSpace from '../js/parseSpace.mjs'
+import domRipple from '../js/domRipple.mjs'
 import WIcon from './WIcon.vue'
 import WIconLoading from './WIconLoading.vue'
 
@@ -171,7 +176,7 @@ import WIconLoading from './WIconLoading.vue'
  * @vue-prop {String} [shadowStyle=''] 輸入陰影顏色字串，預設值詳見props
  * @vue-prop {Boolean} [shadowActive=true] 輸入主動模式時是否顯示陰影，預設true
  * @vue-prop {String} [shadowActiveStyle=''] 輸入主動模式時陰影顏色字串，預設值詳見props
- * @vue-prop {String} [rippleColor='rgba(255, 255, 255, 0.5)'] 輸入ripple效果顏色字串，預設'rgba(255, 255, 255, 0.5)'
+ * @vue-prop {String} [rippleColor='rgba(255,255,255,0.4)'] 輸入ripple效果顏色字串，預設'rgba(255,255,255,0.4)'
  * @vue-prop {Object} [paddingStyle={v:3,h:15}] 輸入內寬距離設定物件，可用鍵值為v、h、left、right、top、bottom，v代表同時設定top與bottom，h代表設定left與right，若有重複設定時後面鍵值會覆蓋前面，各鍵值為寬度數字，單位為px，預設{v:3,h:15}
  * @vue-prop {Number} [shiftLeft=0] 輸入左側內寬平移距離數字，會對paddingStyle設定再添加，可調整例如圖標與左側邊框距離，單位px，預設0
  * @vue-prop {Number} [shiftRight=0] 輸入右側內寬平移距離數字，會對paddingStyle設定再添加，可調整例如關閉圖標與右側邊框距離，單位px，預設0
@@ -183,6 +188,9 @@ import WIconLoading from './WIconLoading.vue'
  * @vue-prop {String} [disabledColor='rgba(255,255,255,0.5)'] 輸入非編輯模式時遮罩顏色字串，預設'rgba(255,255,255,0.5)'
  */
 export default {
+    directives: {
+        domripple: domRipple(),
+    },
     components: {
         WIcon,
         WIconLoading,
@@ -324,7 +332,7 @@ export default {
         },
         rippleColor: {
             type: String,
-            default: 'rgba(255, 255, 255, 0.5)',
+            default: 'rgba(255,255,255,0.4)',
         },
         paddingStyle: {
             type: Object,
@@ -420,11 +428,6 @@ export default {
             return ''
         },
 
-        effRippleColor: function() {
-            let vo = this
-            return color2hex(vo.rippleColor)
-        },
-
         usePadding: function() {
             //console.log('computed usePadding')
 
@@ -457,6 +460,11 @@ export default {
         hasIcon: function() {
             let vo = this
             return vo.icon !== ''
+        },
+
+        hasText: function() {
+            let vo = this
+            return vo.text !== ''
         },
 
         useIconColor: function() {
@@ -753,12 +761,7 @@ export default {
             return color2hex(vo.loadingColor)
         },
 
-    },
-    methods: {
-
-        ripple: function(e) {
-            // console.log('methods ripple', e)
-
+        useRipple: function() {
             let vo = this
 
             //check
@@ -772,10 +775,11 @@ export default {
                 return
             }
 
-            //domRipple
-            domRipple(e.currentTarget, e, { color: vo.effRippleColor })
-
+            return { color: vo.rippleColor, timeDuration: 700 }
         },
+
+    },
+    methods: {
 
         clickBtn: function (ev) {
             //console.log('methods clickBtn', ev)

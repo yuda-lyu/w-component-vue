@@ -153,7 +153,6 @@
                 >
                     <template v-slot:header>
 
-                        <!-- 內嵌span為避免self-closing於前端vue模板無法解析問題 -->
                         <w-group-radio
                             style="margin:0px 10px;"
                             :items="WPanelBulge.menu.items"
@@ -170,7 +169,7 @@
                             :backgroundColorHover="'rgba(255,255,255,0)'"
                             :backgroundColorActive="'rgba(255,255,255,0.15)'"
                             :shadowActive="false"
-                        ><span></span></w-group-radio>
+                        ></w-group-radio>
 
                     </template>
 

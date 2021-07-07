@@ -474,8 +474,7 @@
                             <span>A panel subtitle</span>
                         </div>
 
-                        <!-- 內嵌span為避免self-closing於前端vue模板無法解析問題 -->
-                        <div style="border-top:1px solid #ddd;"><span></span></div>
+                        <div style="border-top:1px solid #ddd;"></div>
 
                         <div style="padding:20px; font-size:0.85rem;">
                             {{WPanelStripe.content}}

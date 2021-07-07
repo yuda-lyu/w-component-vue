@@ -183,6 +183,11 @@
             ></AppZoneWGroupTags>
 
 
+            <AppZoneWListVertical
+                v-if="useCmpName==='WListVertical'"
+            ></AppZoneWListVertical>
+
+
             <AppZoneWGroupCheck
                 v-if="useCmpName==='WGroupCheck'"
             ></AppZoneWGroupCheck>
@@ -340,6 +345,7 @@ import AppZoneWProgressCircle from './AppZoneWProgressCircle.vue'
 import AppZoneWSwitch from './AppZoneWSwitch.vue'
 import AppZoneWAlert from './AppZoneWAlert.vue'
 import AppZoneWGroupTags from './AppZoneWGroupTags.vue'
+import AppZoneWListVertical from './AppZoneWListVertical.vue'
 import AppZoneWGroupCheck from './AppZoneWGroupCheck.vue'
 import AppZoneWGroupRadio from './AppZoneWGroupRadio.vue'
 import AppZoneWText from './AppZoneWText.vue'
@@ -389,6 +395,7 @@ export default {
         AppZoneWSwitch,
         AppZoneWAlert,
         AppZoneWGroupTags,
+        AppZoneWListVertical,
         AppZoneWGroupCheck,
         AppZoneWGroupRadio,
         AppZoneWText,
@@ -462,6 +469,12 @@ export default {
                         { name: 'WGroupCheck' },
                         { name: 'WGroupRadio' },
                         { name: 'WGroupTags' },
+                    ]
+                },
+                {
+                    name: 'list',
+                    cmps: [
+                        { name: 'WListVertical' },
                     ]
                 },
                 {

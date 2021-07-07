@@ -272,8 +272,7 @@
                 <div :style="'width:200px; height:300px; border:1px solid #ddd; overflow-y:auto;'">
                     <div style="height:600px;">
 
-                        <!-- 內嵌br為避免self-closing於前端vue模板無法解析問題 -->
-                        <div style="height:200px;"><span></span></div>
+                        <div style="height:200px;"></div>
 
                         <w-popup
                             v-model="WPopup.bShow10"
@@ -291,8 +290,7 @@
 
                         </w-popup>
 
-                        <!-- 內嵌br為避免self-closing於前端vue模板無法解析問題 -->
-                        <div style="height:200px;"><span></span></div>
+                        <div style="height:200px;"></div>
 
                     </div>
                 </div>
@@ -311,8 +309,7 @@
                     <div :style="'display:inline-block; width:200px; height:300px; border:1px solid #ddd; overflow-y:auto;'">
                         <div style="text-align:left; height:600px;">
 
-                            <!-- 內嵌span為避免self-closing於前端vue模板無法解析問題 -->
-                            <div style="height:200px;"><span></span></div>
+                            <div style="height:200px;"></div>
 
                             <w-popup
                                 v-model="WPopup.bShow11"
@@ -330,8 +327,7 @@
 
                             </w-popup>
 
-                            <!-- 內嵌span為避免self-closing於前端vue模板無法解析問題 -->
-                            <div style="height:200px;"><span></span></div>
+                            <div style="height:200px;"></div>
 
                         </div>
                     </div>
@@ -427,8 +423,7 @@
                     <template v-slot:content>
                         <div style="padding:20px; height:400px;">
 
-                            <!-- 內嵌span為避免self-closing於前端vue模板無法解析問題 -->
-                            <div style="height:300px;"><span></span></div>
+                            <div style="height:300px;"></div>
 
                             <w-popup
                                 style="margin-left:250px;"
@@ -447,8 +442,7 @@
 
                             </w-popup>
 
-                            <!-- 內嵌span為避免self-closing於前端vue模板無法解析問題 -->
-                            <div style="height:500px;"><span></span></div>
+                            <div style="height:500px;"></div>
 
                         </div>
                     </template>
@@ -480,8 +474,7 @@
                             <div style="padding:10px 20px; background:#666;">
                                 <span style="color:#fff;">A data table</span>
                             </div>
-                            <!-- 內嵌span為避免self-closing於前端vue模板無法解析問題 -->
-                            <div style="padding:10px;" v-html="WPopup.table"><span></span></div>
+                            <div style="padding:10px;" v-html="WPopup.table"></div>
                             <div style="padding:0px 20px 10px 20px; font-size:0.8rem;">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis praesentium cumque magnam odio iure quidem, quod illum numquam possimus obcaecati commodi minima assumenda consectetur culpa fuga nulla ullam. In, libero.</div>
                         </div>
                     </template>

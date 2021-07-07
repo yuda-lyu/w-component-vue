@@ -22,16 +22,14 @@
                             <!-- 用:style才能支援IE11因vue會自動把overflow-y:auto轉為-ms-overflow-y:auto -->
                             <div :style="'overflow-y:auto; height:'.concat(props.height, 'px;')">
                                 <div style="padding:0px 5px; font-size:0.6rem; background:#eef; user-select:none; user-drag:none;">{{props.ratio}}</div>
-                                <!-- 內嵌span為避免self-closing於前端vue模板無法解析問題 -->
-                                <div v-html="WPanelDivideVertical.htmlTop"><span></span></div>
+                                <div v-html="WPanelDivideVertical.htmlTop"></div>
                             </div>
                         </template>
                         <template v-slot:bottom="props">
                             <!-- 用:style才能支援IE11因vue會自動把overflow-y:auto轉為-ms-overflow-y:auto -->
                             <div :style="'overflow-y:auto; height:'.concat(props.height, 'px;')">
                                 <div style="padding:0px 5px; font-size:0.6rem; background:#eef; user-select:none; user-drag:none;">{{props.ratio}}</div>
-                                <!-- 內嵌span為避免self-closing於前端vue模板無法解析問題 -->
-                                <div v-html="WPanelDivideVertical.htmlBottom"><span></span></div>
+                                <div v-html="WPanelDivideVertical.htmlBottom"></div>
                             </div>
                         </template>
                     </w-panel-divide-vertical>
@@ -55,16 +53,14 @@
                             <!-- 用:style才能支援IE11因vue會自動把overflow-y:auto轉為-ms-overflow-y:auto -->
                             <div :style="'overflow-y:auto; height:'.concat(props.height, 'px;')">
                                 <div style="padding:0px 5px; font-size:0.6rem; background:#eef; user-select:none; user-drag:none;">{{props.ratio}}</div>
-                                <!-- 內嵌span為避免self-closing於前端vue模板無法解析問題 -->
-                                <div v-html="WPanelDivideVertical.htmlTop"><span></span></div>
+                                <div v-html="WPanelDivideVertical.htmlTop"></div>
                             </div>
                         </template>
                         <template v-slot:bottom="props">
                             <!-- 用:style才能支援IE11因vue會自動把overflow-y:auto轉為-ms-overflow-y:auto -->
                             <div :style="'overflow-y:auto; height:'.concat(props.height, 'px;')">
                                 <div style="padding:0px 5px; font-size:0.6rem; background:#eef; user-select:none; user-drag:none;">{{props.ratio}}</div>
-                                <!-- 內嵌span為避免self-closing於前端vue模板無法解析問題 -->
-                                <div v-html="WPanelDivideVertical.htmlBottom"><span></span></div>
+                                <div v-html="WPanelDivideVertical.htmlBottom"></div>
                             </div>
                         </template>
                     </w-panel-divide-vertical>
@@ -89,16 +85,14 @@
                             <!-- 用:style才能支援IE11因vue會自動把overflow-y:auto轉為-ms-overflow-y:auto -->
                             <div :style="'overflow-y:auto; height:'.concat(props.height, 'px;')">
                                 <div style="padding:0px 5px; font-size:0.6rem; background:#eef; user-select:none; user-drag:none;">{{props.ratio}}</div>
-                                <!-- 內嵌span為避免self-closing於前端vue模板無法解析問題 -->
-                                <div v-html="WPanelDivideVertical.htmlTop"><span></span></div>
+                                <div v-html="WPanelDivideVertical.htmlTop"></div>
                             </div>
                         </template>
                         <template v-slot:bottom="props">
                             <!-- 用:style才能支援IE11因vue會自動把overflow-y:auto轉為-ms-overflow-y:auto -->
                             <div :style="'overflow-y:auto; height:'.concat(props.height, 'px;')">
                                 <div style="padding:0px 5px; font-size:0.6rem; background:#eef; user-select:none; user-drag:none;">{{props.ratio}}</div>
-                                <!-- 內嵌span為避免self-closing於前端vue模板無法解析問題 -->
-                                <div v-html="WPanelDivideVertical.htmlBottom"><span></span></div>
+                                <div v-html="WPanelDivideVertical.htmlBottom"></div>
                             </div>
                         </template>
                     </w-panel-divide-vertical>
@@ -122,16 +116,14 @@
                             <!-- 用:style才能支援IE11因vue會自動把overflow-y:auto轉為-ms-overflow-y:auto -->
                             <div :style="'overflow-y:auto; height:'.concat(props.height, 'px;')">
                                 <div style="padding:0px 5px; font-size:0.6rem; background:#eef; user-select:none; user-drag:none;">{{props.ratio}}</div>
-                                <!-- 內嵌span為避免self-closing於前端vue模板無法解析問題 -->
-                                <div v-html="WPanelDivideVertical.htmlTop"><span></span></div>
+                                <div v-html="WPanelDivideVertical.htmlTop"></div>
                             </div>
                         </template>
                         <template v-slot:bottom="props">
                             <!-- 用:style才能支援IE11因vue會自動把overflow-y:auto轉為-ms-overflow-y:auto -->
                             <div :style="'overflow-y:auto; height:'.concat(props.height, 'px;')">
                                 <div style="padding:0px 5px; font-size:0.6rem; background:#eef; user-select:none; user-drag:none;">{{props.ratio}}</div>
-                                <!-- 內嵌span為避免self-closing於前端vue模板無法解析問題 -->
-                                <div v-html="WPanelDivideVertical.htmlBottom"><span></span></div>
+                                <div v-html="WPanelDivideVertical.htmlBottom"></div>
                             </div>
                         </template>
                     </w-panel-divide-vertical>

@@ -10,84 +10,84 @@
 
             <div class="bk">
                 <demolink
-                    :kbname="'WIconSvg'"
+                    :kbname="'w-icon-svg'"
                     :casename="'path (mdi-fruit-cherries)'"
                 ></demolink>
 
-                <WIconSvg
+                <w-icon-svg
                     :path="WIconSvg.mdiFruitCherries"
-                ></WIconSvg>
+                ></w-icon-svg>
 
             </div>
 
 
             <div class="bk">
                 <demolink
-                    :kbname="'WIconSvg'"
+                    :kbname="'w-icon-svg'"
                     :casename="'path (mdi-graph-outline) & color & colorHover'"
                 ></demolink>
 
-                <WIconSvg
+                <w-icon-svg
                     :path="WIconSvg.mdiGraphOutline"
                     :color="'orange darken-3'"
                     :colorHover="'orange lighten-1'"
-                ></WIconSvg>
+                ></w-icon-svg>
 
             </div>
 
 
             <div class="bk">
                 <demolink
-                    :kbname="'WIconSvg'"
+                    :kbname="'w-icon-svg'"
                     :casename="'path (mdi-access-point) & size'"
                 ></demolink>
 
-                <WIconSvg
+                <w-icon-svg
                     :path="WIconSvg.mdiAccessPoint"
                     :size="64"
-                ></WIconSvg>
+                ></w-icon-svg>
 
             </div>
 
 
             <div class="bk">
                 <demolink
-                    :kbname="'WIconSvg'"
+                    :kbname="'w-icon-svg'"
                     :casename="'path (mdi-account-badge-horizontal) & timeTransition'"
                 ></demolink>
 
-                <WIconSvg
+                <w-icon-svg
                     :path="WIconSvg.mdiAccountBadgeHorizontal"
                     :timeTransition="0.2"
-                ></WIconSvg>
+                ></w-icon-svg>
 
             </div>
 
 
             <div class="bk">
                 <demolink
-                    :kbname="'WIconSvg'"
+                    :kbname="'w-icon-svg'"
                     :casename="'path & sizeOriginal'"
                 ></demolink>
 
-                <WIconSvg
+                <w-icon-svg
                     :path="WIconSvg.custom1"
                     :sizeOriginal="64"
-                ></WIconSvg>
+                ></w-icon-svg>
 
             </div>
 
 
             <div class="bk">
                 <demolink
-                    :kbname="'WIconSvg'"
+                    :kbname="'w-icon-svg'"
                     :casename="'path (use 3 paths) & sizeOriginal'"
                 ></demolink>
 
-                <WIconSvg
+                <w-icon-svg
                     :path="WIconSvg.custom2"
                     :sizeOriginal="60"
-                ></WIconSvg>
+                ></w-icon-svg>
 
             </div>
 

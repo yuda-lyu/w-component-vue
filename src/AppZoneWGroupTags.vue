@@ -298,7 +298,7 @@
                 >
                     <template v-slot:items="props">
                         <div style="display:flex; align-items:center;">
-                            <div style="display:flex; margin-right:5px;">
+                            <div style="margin-left:-9px; margin-right:5px; display:flex;">
                                 <w-button-chip
                                     :text="props.item"
                                     :textFontSize="'0.75rem'"

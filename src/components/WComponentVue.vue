@@ -23,6 +23,8 @@ import WImageViewerDyn from './WImageViewerDyn.vue'
 import WJsonView from './WJsonView.vue'
 import WJsonViewCore from './WJsonViewCore.vue'
 import WLeafletVueDyn from './WLeafletVueDyn.vue'
+import WListVertical from './WListVertical.vue'
+import WListVerticalItem from './WListVerticalItem.vue'
 import WPanelBulge from './WPanelBulge.vue'
 import WPanelDivideHorizontal from './WPanelDivideHorizontal.vue'
 import WPanelDivideVertical from './WPanelDivideVertical.vue'
@@ -87,6 +89,8 @@ let WComponentVue = {
         Vue.component('w-json-view', WJsonView)
         Vue.component('w-json-view-core', WJsonViewCore)
         Vue.component('w-leaflet-vue-dyn', WLeafletVueDyn)
+        Vue.component('w-list-vertical', WListVertical)
+        Vue.component('w-list-vertical-item', WListVerticalItem)
         Vue.component('w-panel-bulge', WPanelBulge)
         Vue.component('w-panel-divide-horizontal', WPanelDivideHorizontal)
         Vue.component('w-panel-divide-vertical', WPanelDivideVertical)

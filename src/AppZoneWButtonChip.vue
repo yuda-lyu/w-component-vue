@@ -166,7 +166,7 @@
                     @click-close="ckBtnClose"
                 >
                     <div style="display:flex; align-items:center;">
-                        <div style="display:flex; margin-right:5px;">
+                        <div style="margin-left:-9px; margin-right:5px; display:flex;">
                             <w-button-chip
                                 :text="'Download'"
                                 :textFontSize="'0.75rem'"
@@ -408,7 +408,6 @@
                     :casename="'borderRadiusStyle & borderWidth & borderColor & borderColorHover & no shadow'"
                 ></demolink>
 
-                <!-- 用display:flex避免編譯後因換行符號導致按鈕組件間出現間格 -->
                 <div style="display:flex;">
 
                     <w-button-chip

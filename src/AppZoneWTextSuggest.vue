@@ -81,7 +81,7 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-text-suggest'"
-                    :casename="'leftIcon & leftIconColor & leftIconColorHover & leftIconColorFoucs & leftIconTooltip'"
+                    :casename="'leftIcon & leftIconColor & leftIconColorHover & leftIconColorFocus & leftIconTooltip'"
                 ></demolink>
 
                 <w-text-suggest
@@ -99,7 +99,7 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-text-suggest'"
-                    :casename="'rightIcon & rightIconColor & rightIconColorHover & rightIconColorFoucs & rightIconTooltip'"
+                    :casename="'rightIcon & rightIconColor & rightIconColorHover & rightIconColorFocus & rightIconTooltip'"
                 ></demolink>
 
                 <w-text-suggest
@@ -477,7 +477,7 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-text-suggest'"
-                    :casename="'border & leftIconColor & leftIconColorHover & leftIconColorFoucs & leftIconTooltip'"
+                    :casename="'border & leftIconColor & leftIconColorHover & leftIconColorFocus & leftIconTooltip'"
                 ></demolink>
 
                 <w-text-suggest
@@ -500,7 +500,7 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-text-suggest'"
-                    :casename="'border & rightIconColor & rightIconColorHover & rightIconColorFoucs & rightIconTooltip'"
+                    :casename="'border & rightIconColor & rightIconColorHover & rightIconColorFocus & rightIconTooltip'"
                 ></demolink>
 
                 <w-text-suggest
