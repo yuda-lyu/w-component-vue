@@ -25,6 +25,7 @@
                     <WListVerticalItem
                         :icon="getIcon(item)"
                         :text="getText(item)"
+                        :textFontSize="itemTextFontSize"
                         :active="getActive(item)"
                         :paddingStyle="paddingStyle"
                         :backgroundColor="itemBackgroundColor"
@@ -82,6 +83,7 @@ import domResize from '../js/domResize.mjs'
  * @vue-prop {Array} [items=[]] 輸入項目的字串陣列或物件陣列，預設[]
  * @vue-prop {Boolean} [useActive=false] 輸入項目是否使用點擊成為活耀狀態，預設false
  * @vue-prop {Object} [itemActive=null] 輸入活耀項目物件，預設null
+ * @vue-prop {String} [itemTextFontSize='1rem'] 輸入文字字型大小字串，預設'1rem'
  * @vue-prop {String} [keyText='text'] 輸入項目為物件時，存放顯示文字之欄位字串，預設'text'
  * @vue-prop {String} [keyIcon='icon'] 輸入項目為物件時，存放圖標之欄位字串，預設'icon'
  * @vue-prop {Object} [paddingStyle={v:10,h:12}] 輸入內寬距離設定物件，可用鍵值為v、h、left、right、top、bottom，v代表同時設定top與bottom，h代表設定left與right，若有重複設定時後面鍵值會覆蓋前面，各鍵值為寬度數字，單位為px，預設{v:10,h:12}
@@ -117,6 +119,10 @@ export default {
         itemActive: {
             type: [String, Object],
             default: null,
+        },
+        itemTextFontSize: {
+            type: String,
+            default: '1rem',
         },
         keyText: {
             type: String,

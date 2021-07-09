@@ -435,7 +435,7 @@ export default {
         },
 
         updateItemsHeight: function() {
-            //console.log('methods updateItemsHeight')
+            // console.log('methods updateItemsHeight')
 
             let vo = this
 
@@ -535,7 +535,7 @@ export default {
             }
 
             //check changeHeight
-            let wjvc = get(vo, 'n$refs.wjvc', []) //可能因切換組件導致元素消失
+            let wjvc = get(vo, '$refs.wjvc', []) //可能因切換組件導致元素消失
             each(wjvc, (cmp) => {
                 let v = cmp.$el
                 if (v.getAttribute) {

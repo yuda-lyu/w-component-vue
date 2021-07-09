@@ -6,7 +6,7 @@
         @mouseleave="mouseEnter=false"
         @click="$emit('click',{icon,text})"
     >
-        <div style="display:flex; align-items:center;">
+        <div style="display:flex; align-items:center; white-space:nowrap;">
 
             <slot
                 :mouseEnter="mouseEnter"
@@ -21,7 +21,7 @@
                     v-if="hasIcon"
                 ></WIcon>
 
-                <div :style="`color:${useTextColor};`">
+                <div :style="`color:${useTextColor}; ${useTextFontSize}`">
                     {{text}}
                 </div>
 
@@ -33,6 +33,7 @@
 
 <script>
 import get from 'lodash/get'
+import replace from 'wsemi/src/replace.mjs'
 import domRipple from '../js/domRipple.mjs'
 import WIcon from './WIcon.vue'
 import color2hex from '../js/vuetifyColor.mjs'
@@ -41,6 +42,7 @@ import parseSpace from '../js/parseSpace.mjs'
 
 /**
  * @vue-prop {String} [text=''] 輸入文字字串，預設''
+ * @vue-prop {String} [textFontSize='1rem'] 輸入文字字型大小字串，預設'1rem'
  * @vue-prop {Boolean} [active=false] 輸入是否為主動模式，預設false
  * @vue-prop {Object} [paddingStyle={v:10,h:12}] 輸入內寬距離設定物件，可用鍵值為v、h、left、right、top、bottom，v代表同時設定top與bottom，h代表設定left與right，若有重複設定時後面鍵值會覆蓋前面，各鍵值為寬度數字，單位為px，預設{v:10,h:12}
  * @vue-prop {String} [backgroundColor='white'] 輸入背景顏色字串，預設'white'
@@ -67,6 +69,10 @@ export default {
         text: {
             type: String,
             default: '',
+        },
+        textFontSize: {
+            type: String,
+            default: '1rem',
         },
         active: {
             type: Boolean,
@@ -137,6 +143,13 @@ export default {
         }
     },
     computed: {
+
+        useTextFontSize: function() {
+            let vo = this
+            let s = vo.textFontSize
+            s = replace(s, ';', '')
+            return `font-size:${s};`
+        },
 
         hasIcon: function() {
             let vo = this

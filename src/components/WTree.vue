@@ -20,7 +20,7 @@
         >
             <template v-slot="props">
 
-                <!-- 記得要:key使各div都是可識別元素, 避免捲動時不同方向圖標因transition而會有微轉動問題 -->
+                <!-- 記得要:key, 使DOM可被唯一標記識別, 此為避免捲動按需顯示時, 因圖標有顯隱(2方向), 瞬間被Vue切換導致transition轉動問題 -->
                 <!-- wdl template內第1層元素高度需設定min-height不能用height, 因會偵測此元素高度來按需顯示, 用height會導致元素高度被寫死無法由slot撐開 -->
                 <div
                     :key="`wt-${props.index}`"
@@ -31,8 +31,51 @@
                     @mouseleave="(e)=>{$emit('mouseleave',getEmitData(e,props))}"
                     @click="(e)=>{$emit('click',getEmitData(e,props))}"
                 >
-                    <div :style="`display:table; ${usePadding}`">
-                        <!-- 各元素需使用padding撐開寬度避免被壓縮 -->
+                    <div :style="`position:relative; display:table; ${usePadding}`">
+
+                        <div style="position:absolute; top:2px; right:8px;" v-if="useOperate">
+
+                            <WPopup
+                                :isolated="true"
+                            >
+
+                                <template v-slot:trigger>
+                                    <WButtonCircle
+                                        :icon="mdiDotsVertical"
+                                        :backgroundColor="'transparent'"
+                                        :backgroundColorHover="'rgba(150,150,150,0.2)'"
+                                        :backgroundColorFocus="'rgba(150,150,150,0.2)'"
+                                        :shadow="false"
+                                        :tooltip="operateTooltip"
+                                    ></WButtonCircle>
+                                </template>
+
+                                <template v-slot:content="propsOperate">
+                                    <!-- 因位於WDynamicList內位置太複雜popup.js無法順利計算寬高, 得由外部指定寬高 -->
+                                    <WListVertical
+                                        :style="`height:${operatePanelHeight}px; width:${operatePanelWidth}px;`"
+                                        :items="useOperateItems"
+                                        :itemTextFontSize="'0.8rem'"
+                                        :useActive="false"
+                                        :paddingStyle="operateItemPaddingStyle"
+                                        :itemBackgroundColor="operateItemBackgroundColor"
+                                        :itemBackgroundColorHover="operateItemBackgroundColorHover"
+                                        :itemTextColor="operateItemTextColor"
+                                        :itemTextColorHover="operateItemTextColorHover"
+                                        :itemIconSize="operateItemIconSize"
+                                        :itemIconColor="operateItemIconColor"
+                                        :itemIconColorHover="operateItemIconColorHover"
+                                        :itemRippleColor="operateItemRippleColor"
+                                        @click="(item)=>{propsOperate.funHide();clickOperateIitem({operateItem:item,rowItem:props})}"
+                                    ></WListVertical>
+                                </template>
+
+                            </WPopup>
+
+
+                        </div>
+
+                        <!-- display:table內各元素需使用padding撐開寬度避免被壓縮 -->
 
                         <div :style="`display:table-cell; vertical-align:top; padding-right:${getLevel(props.row)*useIndent}px;`"></div>
 
@@ -117,6 +160,7 @@
 </template>
 
 <script>
+import { mdiDotsVertical, mdiFormatVerticalAlignTop, mdiFormatHorizontalAlignRight, mdiFormatVerticalAlignBottom, mdiClose } from '@mdi/js/mdi.js'
 import each from 'lodash/each'
 import get from 'lodash/get'
 import set from 'lodash/set'
@@ -152,6 +196,9 @@ import globalMemory from '../js/globalMemory.mjs'
 import parseSpace from '../js/parseSpace.mjs'
 import color2hex from '../js/vuetifyColor.mjs'
 import WDynamicList from './WDynamicList.vue'
+import WButtonCircle from './WButtonCircle.vue'
+import WPopup from './WPopup.vue'
+import WListVertical from './WListVertical.vue'
 import WTreeIconToggle from './WTreeIconToggle.vue'
 import WTreeIconCheckbox from './WTreeIconCheckbox.vue'
 
@@ -206,6 +253,9 @@ let gm = globalMemory()
 export default {
     components: {
         WDynamicList,
+        WButtonCircle,
+        WPopup,
+        WListVertical,
         WTreeIconToggle,
         WTreeIconCheckbox,
     },
@@ -375,6 +425,79 @@ export default {
             type: String,
             default: 'transparent',
         },
+        useOperate: {
+            type: Boolean,
+            default: false,
+        },
+        operateItemTextForInsertBefore: {
+            type: String,
+            default: 'Insert before',
+        },
+        operateItemTextForInsertChild: {
+            type: String,
+            default: 'Insert child',
+        },
+        operateItemTextForInsertAfter: {
+            type: String,
+            default: 'Insert after',
+        },
+        operateItemTextForInsertDelete: {
+            type: String,
+            default: 'Delete',
+        },
+        operatePanelWidth: {
+            type: Number,
+            default: 150,
+        },
+        operatePanelHeight: {
+            type: Number,
+            default: 42 * 4,
+        },
+        operateItemPaddingStyle: {
+            type: Object,
+            default: () => {
+                return {
+                    v: 10,
+                    h: 12,
+                }
+            },
+        },
+        operateTooltip: {
+            type: String,
+            default: 'Operations',
+        },
+        operateItemBackgroundColor: {
+            type: String,
+            default: 'white',
+        },
+        operateItemBackgroundColorHover: {
+            type: String,
+            default: 'rgba(200,200,200,0.2)',
+        },
+        operateItemTextColor: {
+            type: String,
+            default: '#444',
+        },
+        operateItemTextColorHover: {
+            type: String,
+            default: '#222',
+        },
+        operateItemIconSize: {
+            type: Number,
+            default: 22,
+        },
+        operateItemIconColor: {
+            type: String,
+            default: '#444',
+        },
+        operateItemIconColorHover: {
+            type: String,
+            default: '#222',
+        },
+        operateItemRippleColor: {
+            type: String,
+            default: 'rgba(255,255,255,0.4)',
+        },
         show: {
             type: Boolean,
             default: true,
@@ -382,6 +505,8 @@ export default {
     },
     data: function() {
         return {
+            mdiDotsVertical,
+
             dbc: debounce(),
             mmkey: null,
 
@@ -539,6 +664,38 @@ export default {
             let vo = this
 
             return color2hex(vo.dgBelongBackgroundColor)
+        },
+
+        useOperateItems: function() {
+            //console.log('computed useOperateItems')
+
+            let vo = this
+
+            //operateItems
+            let operateItems = [
+                {
+                    key: 'InsertBefore',
+                    text: vo.operateItemTextForInsertBefore,
+                    icon: mdiFormatVerticalAlignTop,
+                },
+                {
+                    key: 'InsertChild',
+                    text: vo.operateItemTextForInsertChild,
+                    icon: mdiFormatHorizontalAlignRight,
+                },
+                {
+                    key: 'InsertAfter',
+                    text: vo.operateItemTextForInsertAfter,
+                    icon: mdiFormatVerticalAlignBottom,
+                },
+                {
+                    key: 'Delete',
+                    text: vo.operateItemTextForInsertDelete,
+                    icon: mdiClose,
+                },
+            ]
+
+            return operateItems
         },
 
     },
@@ -1621,6 +1778,259 @@ export default {
 
         },
 
+        deleteItem: function (data, nk) {
+            //console.log('methods deleteItem', data, nk)
+            //刪除節點, 因會使用nk操作, 故需確保節點順序問題
+
+            if (size(nk) === 0) {
+                throw new Error('invalid nk')
+            }
+            else if (size(nk) === 1) {
+
+                //pullAt, 若節點為頂層(size(nk)===1)就不取父節點, data就是父節點
+                pullAt(data, nk)
+
+            }
+            else {
+
+                //ks, 當前節點的父節點的keys
+                let ks = dropRight(nk)
+
+                //ind, 當前節點位於父節點的指標
+                let ind = takeRight(nk)
+
+                //tar, 節點的父節點
+                let tar = get(data, ks, [])
+
+                //pullAt
+                pullAt(tar, [ind])
+
+            }
+
+        },
+
+        dragItem: function(startInd, endInd, modeDir, modeInsert) {
+            //console.log('methods dragItem', startInd, endInd, modeDir, modeInsert)
+
+            let vo = this
+
+            //rows
+            let rows = gm.get(vo.mmkey)
+            // console.log('rows', JSON.parse(JSON.stringify(rows)))
+
+            //data
+            let data = cloneDeep(vo.data)
+            // console.log('data1', JSON.parse(JSON.stringify(data)))
+
+            //itemSelf, itemEnter
+            let itemSelf = rows[startInd]
+            let itemEnter = rows[endInd]
+            // console.log('itemSelf', startInd, itemSelf)
+            // console.log('itemEnter', endInd, itemEnter)
+
+            //src, 來源節點
+            let nkSelf = itemSelf.item.nk
+            let nkEnter = itemEnter.item.nk
+            let dataSelf = get(data, itemSelf.item.nk)
+            // let dataEnter = get(data, itemEnter.item.nk)
+            // console.log('dataSelf', nkSelf, dataSelf)
+            // console.log('dataEnter', nkEnter, dataEnter)
+
+            //modeDir
+            if (modeDir === 'forward') {
+                //若為由後往前移動, 則需先刪除來源節點
+                vo.deleteItem(data, nkSelf)
+                // console.log('data2', JSON.parse(JSON.stringify(data)))
+            }
+
+            if (modeInsert === 'before' || modeInsert === 'after') {
+
+                //ind, 依照mode決定ind, before是直接splice對目標節點ind位置塞入, 就能把目標往後移動, after就需+1
+                let ind = takeRight(nkEnter)[0]
+
+                //tar, 目標的父節點, 待移入對象
+                let tar
+                if (size(nkEnter) === 1) {
+                    tar = data //因目標是第1層內元素, 故要取得的父節點就是原本數據
+                }
+                else {
+                    let ks = dropRight(nkEnter) //目標父節點的keys, dropRight後就是其上的keyChildren
+                    tar = get(data, ks, []) //取得要移入的父節點
+                }
+
+                if (modeInsert === 'before') {
+                    // ind = ind
+                }
+                else if (modeInsert === 'after') {
+                    ind += 1
+                }
+
+                //array insert
+                tar.splice(ind, 0, dataSelf)
+
+            }
+            else if (modeInsert === 'belongto') {
+
+                //ks, 所屬儲存子節點欄位, 也就是keyChildren
+                let ks = [...nkEnter, vo.keyChildren]
+
+                //tar, 取得子節點, 若無則預設空陣列[]
+                let tar = get(data, ks, [])
+
+                //push
+                tar.push(dataSelf)
+
+                //set
+                set(data, ks, tar)
+
+            }
+            // console.log('data3', JSON.parse(JSON.stringify(data)))
+
+            //modeDir
+            if (modeDir === 'backward') {
+                //若為由前往後移動, 則需於來源節點複製進目標節點處後, 才能刪除來源節點
+                vo.deleteItem(data, nkSelf)
+                // console.log('data4', JSON.parse(JSON.stringify(data)))
+            }
+
+            //$nextTick
+            vo.$nextTick(() => {
+
+                //emit
+                vo.$emit('update:data', cloneDeep(data))
+
+            })
+
+        },
+
+        operateItem: function(targetInd, mode, fun) {
+            //console.log('methods operateItem', targetInd, mode, fun)
+
+            let vo = this
+
+            async function core() {
+
+                //rows
+                let rows = gm.get(vo.mmkey)
+                // console.log('rows', JSON.parse(JSON.stringify(rows)))
+
+                //data
+                let data = cloneDeep(vo.data)
+                // console.log('data1', JSON.parse(JSON.stringify(data)))
+
+                //itemTarget
+                let itemTarget = rows[targetInd]
+                // console.log('itemTarget', targetInd, itemTarget)
+
+                //src, 來源節點
+                let nkTarget = itemTarget.item.nk
+                // console.log('dataEnter', nkTarget, itemTarget.item)
+
+                //mode for Delete
+                if (mode === 'Delete') {
+
+                    //deleteItem
+                    vo.deleteItem(data, nkTarget)
+
+                    return data
+                }
+
+                //check
+                if (!isfun(fun)) {
+                    throw new Error('invalid fun')
+                }
+
+                //dataNew
+                let dataNew = await fun()
+                // console.log('dataNew', dataNew)
+
+                //modeInsert and convert for InsertBefore, InsertAfter, InsertChild
+                let modeInsert = mode
+                if (modeInsert === 'InsertBefore') {
+                    modeInsert = 'before'
+                }
+                else if (modeInsert === 'InsertAfter') {
+                    modeInsert = 'after'
+                }
+                else if (modeInsert === 'InsertChild') {
+                    modeInsert = 'belongto'
+                }
+
+                if (modeInsert === 'before' || modeInsert === 'after') {
+
+                    //ind, 依照mode決定ind, before是直接splice對目標節點ind位置塞入, 就能把目標往後移動, after就需+1
+                    let ind = takeRight(nkTarget)[0]
+
+                    //tar, 目標的父節點, 待移入對象
+                    let tar
+                    if (size(nkTarget) === 1) {
+                        tar = data //因目標是第1層內元素, 故要取得的父節點就是原本數據
+                    }
+                    else {
+                        let ks = dropRight(nkTarget) //目標父節點的keys, dropRight後就是其上的keyChildren
+                        tar = get(data, ks, []) //取得要移入的父節點
+                    }
+
+                    if (modeInsert === 'before') {
+                    // ind = ind
+                    }
+                    else if (modeInsert === 'after') {
+                        ind += 1
+                    }
+
+                    //array insert
+                    tar.splice(ind, 0, dataNew)
+
+                }
+                else if (modeInsert === 'belongto') {
+
+                    //ks, 所屬儲存子節點欄位, 也就是keyChildren
+                    let ks = [...nkTarget, vo.keyChildren]
+
+                    //tar, 取得子節點, 若無則預設空陣列[]
+                    let tar = get(data, ks, [])
+
+                    //push
+                    tar.push(dataNew)
+
+                    //set
+                    set(data, ks, tar)
+
+                }
+                else {
+                    throw new Error('invalid modeInsert')
+                }
+                // console.log('data3', JSON.parse(JSON.stringify(data)))
+
+                return data
+            }
+
+            //core
+            core()
+                .then((data) => {
+
+                    //$nextTick
+                    vo.$nextTick(() => {
+
+                        //emit
+                        vo.$emit('update:data', cloneDeep(data))
+
+                    })
+
+                    // setTimeout(() => {
+
+                    //     //processItems
+                    //     vo.$refs.wdl.processItems({})
+
+                    // }, 500)
+
+                })
+                .catch((err) => {
+                    console.log(err)
+                })
+
+        },
+
         dragInit: function() {
             // console.log('methods dragInit')
 
@@ -1741,181 +2151,54 @@ export default {
                 drag.on('drop', (msg) => {
                     // console.log('ondrop', msg.startInd, msg.endInd)
 
-                    function deleteItem(data, nk) {
-                        //console.log('deleteItem', data, nk)
-                        //刪除節點, 因會使用nk操作, 故需確保節點順序問題
-
-
-                        if (size(nk) === 0) {
-                            throw new Error('invalid nk')
-                        }
-                        else if (size(nk) === 1) {
-
-                            //pullAt, 若節點為頂層(size(nk)===1)就不取父節點, data就是父節點
-                            pullAt(data, nk)
-
-                        }
-                        else {
-
-                            //ks, 當前節點的父節點的keys
-                            let ks = dropRight(nk)
-
-                            //ind, 當前節點位於父節點的指標
-                            let ind = takeRight(nk)
-
-                            //tar, 節點的父節點
-                            let tar = get(data, ks, [])
-
-                            //pullAt
-                            pullAt(tar, [ind])
-
-                        }
-
-                    }
-
-                    async function dropCore() {
-
-                        //check, 拖曳至原始拖曳項目上, 無有效拖曳模式
-                        if (msg.startInd === msg.endInd) {
-                            vo.dgTipMode = ''
-                            return
-                        }
-
-                        //modeDir
-                        let modeDir
-                        if (msg.startInd < msg.endInd) {
-                            modeDir = 'backward'
-                        }
-                        else if (msg.startInd > msg.endInd) {
-                            modeDir = 'forward'
-                        }
-                        else {
-                            throw new Error('invalid modeDir')
-                        }
-                        // console.log('modeDir', modeDir)
-
-                        //modeInsert
-                        let modeInsert
-                        if (vo.dgTipMode === 'disabled') {
-                            vo.dgTipMode = ''
-                        }
-                        else if (vo.dgTipMode === 'lineTop') {
-                            modeInsert = 'before'
-                        }
-                        else if (vo.dgTipMode === 'lineBottom') {
-                            modeInsert = 'after'
-                        }
-                        else if (vo.dgTipMode === 'block') {
-                            modeInsert = 'belongto'
-                        }
-                        else {
-                            throw new Error('invalid dgTipMode')
-                        }
-                        // console.log('modeInsert', modeInsert)
-
-                        //check, 純點擊時無move, 或拖曳至禁止對象內(通常是拖入自己子節點內)
-                        if (vo.dgTipMode === '') {
-                            return
-                        }
-
-                        //clear, 已由dgTipMode換算出modeInsert, 拖曳完需清除dgTipMode使拖曳時指示對象隱藏
+                    //check, 拖曳至原始拖曳項目上, 無有效拖曳模式
+                    if (msg.startInd === msg.endInd) {
                         vo.dgTipMode = ''
-
-                        //rows
-                        let rows = gm.get(vo.mmkey)
-                        // console.log('rows', JSON.parse(JSON.stringify(rows)))
-
-                        //data
-                        let data = cloneDeep(vo.data)
-                        // console.log('data1', JSON.parse(JSON.stringify(data)))
-
-                        //itemSelf, itemEnter
-                        let itemSelf = rows[msg.startInd]
-                        let itemEnter = rows[msg.endInd]
-                        // console.log('itemSelf', msg.startInd, itemSelf)
-                        // console.log('itemEnter', msg.endInd, itemEnter)
-
-                        //src, 來源節點
-                        let nkSelf = itemSelf.item.nk
-                        let nkEnter = itemEnter.item.nk
-                        let dataSelf = get(data, itemSelf.item.nk)
-                        // let dataEnter = get(data, itemEnter.item.nk)
-                        // console.log('dataSelf', nkSelf, dataSelf)
-                        // console.log('dataEnter', nkEnter, dataEnter)
-
-                        //modeDir
-                        if (modeDir === 'forward') {
-                            //若為由後往前移動, 則需先刪除來源節點
-                            deleteItem(data, nkSelf)
-                            // console.log('data2', JSON.parse(JSON.stringify(data)))
-                        }
-
-                        if (modeInsert === 'before' || modeInsert === 'after') {
-
-                            //ind, 依照mode決定ind, before是直接splice對目標節點ind位置塞入, 就能把目標往後移動, after就需+1
-                            let ind = takeRight(nkEnter)[0]
-
-                            //tar, 目標的父節點, 待移入對象
-                            let tar
-                            if (size(nkEnter) === 1) {
-                                tar = data //因目標是第1層內元素, 故要取得的父節點就是原本數據
-                            }
-                            else {
-                                let ks = dropRight(nkEnter) //目標父節點的keys, dropRight後就是其上的keyChildren
-                                tar = get(data, ks, []) //取得要移入的父節點
-                            }
-
-                            if (modeInsert === 'before') {
-                                // ind = ind
-                            }
-                            else if (modeInsert === 'after') {
-                                ind += 1
-                            }
-
-                            //array insert
-                            tar.splice(ind, 0, dataSelf)
-
-                        }
-                        else if (modeInsert === 'belongto') {
-
-                            //ks, 所屬儲存子節點欄位, 也就是keyChildren
-                            let ks = [...nkEnter, vo.keyChildren]
-
-                            //tar, 取得子節點, 若無則預設空陣列[]
-                            let tar = get(data, ks, [])
-
-                            //push
-                            tar.push(dataSelf)
-
-                            //set
-                            set(data, ks, tar)
-
-                        }
-                        else {
-                            throw new Error('invalid modeInsert')
-                        }
-                        // console.log('data3', JSON.parse(JSON.stringify(data)))
-
-                        //modeDir
-                        if (modeDir === 'backward') {
-                            //若為由前往後移動, 則需於來源節點複製進目標節點處後, 才能刪除來源節點
-                            deleteItem(data, nkSelf)
-                            // console.log('data4', JSON.parse(JSON.stringify(data)))
-                        }
-
-                        //$nextTick
-                        vo.$nextTick(() => {
-
-                            //emit
-                            vo.$emit('update:data', cloneDeep(data))
-
-                        })
-
+                        return
                     }
 
-                    //dropCore
-                    dropCore()
-                        .catch(() => {})
+                    //modeDir
+                    let modeDir
+                    if (msg.startInd < msg.endInd) {
+                        modeDir = 'backward'
+                    }
+                    else if (msg.startInd > msg.endInd) {
+                        modeDir = 'forward'
+                    }
+                    else {
+                        throw new Error('invalid modeDir')
+                    }
+                    // console.log('modeDir', modeDir)
+
+                    //modeInsert
+                    let modeInsert
+                    if (vo.dgTipMode === 'disabled') {
+                        vo.dgTipMode = ''
+                    }
+                    else if (vo.dgTipMode === 'lineTop') {
+                        modeInsert = 'before'
+                    }
+                    else if (vo.dgTipMode === 'lineBottom') {
+                        modeInsert = 'after'
+                    }
+                    else if (vo.dgTipMode === 'block') {
+                        modeInsert = 'belongto'
+                    }
+                    else {
+                        throw new Error('invalid dgTipMode')
+                    }
+                    // console.log('modeInsert', modeInsert)
+
+                    //check, 純點擊時無move, 或拖曳至禁止對象內(通常是拖入自己子節點內)
+                    if (vo.dgTipMode === '') {
+                        return
+                    }
+
+                    //clear, 已由dgTipMode換算出modeInsert, 拖曳完需清除dgTipMode使拖曳時指示對象隱藏
+                    vo.dgTipMode = ''
+
+                    //dragItem
+                    vo.dragItem(msg.startInd, msg.endInd, modeDir, modeInsert)
 
                 })
 
@@ -1945,6 +2228,16 @@ export default {
                 vo.drag.clear()
                 vo.drag = null
             }
+
+        },
+
+        clickOperateIitem: function(msg) {
+            // console.log('clickOperateIitem', msg)
+
+            let vo = this
+
+            //emit
+            vo.$emit('click-operate-item', msg)
 
         },
 

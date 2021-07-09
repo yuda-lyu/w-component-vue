@@ -8,7 +8,7 @@
         <div style="padding:0px;">
 
 
-            <div class="bk dz">
+            <div v-if="false" class="bk dz">
                 <demolink
                     :kbname="'w-tree'"
                     :casename="'default'"
@@ -22,7 +22,7 @@
             </div>
 
 
-            <div class="bk dz">
+            <div v-if="false" class="bk dz">
                 <demolink
                     :kbname="'w-tree'"
                     :casename="'viewHeightMax'"
@@ -37,7 +37,7 @@
             </div>
 
 
-            <div class="bk dz">
+            <div v-if="false" class="bk dz">
                 <demolink
                     :kbname="'w-tree'"
                     :casename="'defaultDisplayLevel'"
@@ -52,7 +52,7 @@
             </div>
 
 
-            <div class="bk dz">
+            <div v-if="false" class="bk dz">
                 <demolink
                     :kbname="'w-tree'"
                     :casename="'draggable'"
@@ -67,7 +67,7 @@
             </div>
 
 
-            <div class="bk dz">
+            <div v-if="false" class="bk dz">
                 <demolink
                     :kbname="'w-tree'"
                     :casename="'draggable & dgPreviewOpacity & dgPreviewBorderWidth & dgBelongBackgroundColor'"
@@ -86,7 +86,7 @@
             </div>
 
 
-            <div class="bk dz">
+            <div v-if="false" class="bk dz">
                 <demolink
                     :kbname="'w-tree'"
                     :casename="'draggable & dgInsertLineColor & dgInsertBackgroundColor & dgBelongBackgroundColor'"
@@ -104,7 +104,7 @@
             </div>
 
 
-            <div class="bk dz">
+            <div v-if="false" class="bk dz">
                 <demolink
                     :kbname="'w-tree'"
                     :casename="'draggable & dgTextDisabled & dgTextDisabledColor & dgTextDisabledPaddingLeft & dgTextDisabledFontSize & dgTextDisabledBackgroundColor'"
@@ -127,6 +127,24 @@
             <div class="bk dz">
                 <demolink
                     :kbname="'w-tree'"
+                    :casename="'draggable & useOperate'"
+                ></demolink>
+
+                <w-tree
+                    ref="op"
+                    style="border:1px solid #ddd;"
+                    :data.sync="WTree.option.items"
+                    :draggable="true"
+                    :useOperate="true"
+                    @click-operate-item="clickOperateIitem"
+                ></w-tree>
+
+            </div>
+
+
+            <div v-if="false" class="bk dz">
+                <demolink
+                    :kbname="'w-tree'"
                     :casename="'paddingStyle'"
                 ></demolink>
 
@@ -139,7 +157,7 @@
             </div>
 
 
-            <div class="bk dz">
+            <div v-if="false" class="bk dz">
                 <demolink
                     :kbname="'w-tree'"
                     :casename="'indent'"
@@ -154,7 +172,7 @@
             </div>
 
 
-            <div class="bk dz">
+            <div v-if="false" class="bk dz">
                 <demolink
                     :kbname="'w-tree'"
                     :casename="'separatorColor'"
@@ -169,7 +187,7 @@
             </div>
 
 
-            <div class="bk dz">
+            <div v-if="false" class="bk dz">
                 <demolink
                     :kbname="'w-tree'"
                     :casename="'separatorColor & separatorHeight'"
@@ -185,7 +203,7 @@
             </div>
 
 
-            <div class="bk dz">
+            <div v-if="false" class="bk dz">
                 <demolink
                     :kbname="'w-tree'"
                     :casename="'iconToggleColor & iconToggleBackgroundColor & iconToggleBackgroundColorHover'"
@@ -202,7 +220,7 @@
             </div>
 
 
-            <div class="bk dz">
+            <div v-if="false" class="bk dz">
                 <demolink
                     :kbname="'w-tree'"
                     :casename="'keyPrimary & keyText & keyChildren'"
@@ -219,7 +237,7 @@
             </div>
 
 
-            <div class="bk dz">
+            <div v-if="false" class="bk dz">
                 <demolink
                     :kbname="'w-tree'"
                     :casename="'mouseenter & mouseleave & click & change-view-items'"
@@ -237,7 +255,7 @@
             </div>
 
 
-            <div class="bk dz">
+            <div v-if="false" class="bk dz">
                 <demolink
                     :kbname="'w-tree'"
                     :casename="'slot'"
@@ -275,7 +293,7 @@
             </div>
 
 
-            <div class="bk dz">
+            <div v-if="false" class="bk dz">
                 <demolink
                     :kbname="'w-tree'"
                     :casename="'slot & defItemHeight'"
@@ -302,7 +320,7 @@
             </div>
 
 
-            <div class="bk" style="display:block; margin:0px 10px 0px 0px;">
+            <div v-if="false" class="bk" style="display:block; margin:0px 10px 0px 0px;">
                 <demolink
                     :kbname="'w-tree'"
                     :casename="'selectable'"
@@ -334,7 +352,7 @@
             </div>
 
 
-            <div class="bk" style="display:block; margin:0px 10px 0px 0px;">
+            <div v-if="false" class="bk" style="display:block; margin:0px 10px 0px 0px;">
                 <demolink
                     :kbname="'w-tree'"
                     :casename="'slot & selectable'"
@@ -394,7 +412,7 @@
             </div>
 
 
-            <div class="bk" style="display:block; margin:0px 10px 0px 0px;">
+            <div v-if="false" class="bk" style="display:block; margin:0px 10px 0px 0px;">
                 <demolink
                     :kbname="'w-tree'"
                     :casename="'selectable & draggable'"
@@ -427,7 +445,7 @@
             </div>
 
 
-            <div class="bk" style="display:block; margin:0px 10px 0px 0px;">
+            <div v-if="false" class="bk" style="display:block; margin:0px 10px 0px 0px;">
                 <demolink
                     :kbname="'w-tree'"
                     :casename="'slot & selectable & draggable'"
@@ -488,7 +506,7 @@
             </div>
 
 
-            <div class="bk" style="display:block; margin:0px 10px 0px 0px;">
+            <div v-if="false" class="bk" style="display:block; margin:0px 10px 0px 0px;">
                 <demolink
                     :kbname="'w-tree'"
                     :casename="'filterKeywords & searchEmpty & selectable'"
@@ -558,7 +576,7 @@
             </div>
 
 
-            <div class="bk" style="display:block; margin:0px 10px 0px 0px;">
+            <div v-if="false" class="bk" style="display:block; margin:0px 10px 0px 0px;">
                 <demolink
                     :kbname="'w-tree'"
                     :casename="'slot & locked & selectable'"
@@ -619,7 +637,7 @@
             </div>
 
 
-            <div class="bk" style="display:block; margin:0px 10px 0px 0px;">
+            <div v-if="false" class="bk" style="display:block; margin:0px 10px 0px 0px;">
                 <demolink
                     :kbname="'w-tree'"
                     :casename="'slot & iconUncheckedColor & iconUncheckedDisabledColor & iconCheckedColor & iconCheckedDisabledColor & iconCheckedPartiallyColor & iconCheckedPartiallyDisabledColor & locked & selectable'"
@@ -686,7 +704,7 @@
             </div>
 
 
-            <div class="bk" style="display:block; margin:0px 10px 0px 0px;">
+            <div v-if="false" class="bk" style="display:block; margin:0px 10px 0px 0px;">
                 <demolink
                     :kbname="'w-tree'"
                     :casename="'selectable & large data (100,000 items)'"
@@ -793,7 +811,8 @@ export default {
                                     children: [
                                         {
                                             id: 3,
-                                            text: 'Quality ingredients',
+                                            // text: 'Quality ingredients',
+                                            text: 'Quality ingredients Quality ingredients Quality ingredients Quality',
                                             children: [
                                                 {
                                                     id: 4,
@@ -1160,6 +1179,31 @@ export default {
             console.log('mouseleave', msg)
             msg.ele.style.background = 'rgba(255, 255, 255, 0)'
             //msg.ele.style.color = 'black'
+        },
+        clickOperateIitem: function(msg) {
+            console.log('clickOperateIitem', msg)
+
+            let vo = this
+
+            //fun
+            let fun = function() {
+                return new Promise(function(resolve, reject) {
+                    let id = Math.floor(Math.random() * 1000)
+                    let text = msg.rowItem.row.item.text + '-' + msg.operateItem.key
+                    let dataNew = {
+                        id: id,
+                        text: text,
+                    }
+                    resolve(dataNew)
+                })
+            }
+
+            //targetInd
+            let targetInd = msg.rowItem.index
+
+            //operateItem
+            vo.$refs.op.operateItem(targetInd, msg.operateItem.key, fun)
+
         },
     },
 }

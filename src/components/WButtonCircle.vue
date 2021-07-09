@@ -380,9 +380,6 @@ export default {
 
             let vo = this
 
-            //stopPropagation, 避免按鈕中使用slot加入按鈕, 會因冒泡被觸發
-            ev.stopPropagation()
-
             //check
             if (!vo.editable) {
                 return
