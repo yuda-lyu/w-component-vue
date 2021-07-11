@@ -73,7 +73,7 @@
 </template>
 
 <script>
-import { mdiCommentEditOutline, mdiCheckboxMarkedCircle } from '@mdi/js'
+import { mdiSquareEditOutline, mdiCheckboxMarkedCircle } from '@mdi/js'
 import replace from 'wsemi/src/replace.mjs'
 import color2hex from '../js/vuetifyColor.mjs'
 import WPopup from './WPopup.vue'
@@ -86,7 +86,7 @@ import WButtonChip from './WButtonChip.vue'
  * @vue-prop {String} [title=''] 輸入上方區數據標題字串，預設''
  * @vue-prop {String} [titleColor='grey darken-3'] 輸入上方區數據標題顏色字串，預設'grey darken-3'
  * @vue-prop {String} [titleFontSize='0.8rem'] 輸入上方區數據標題字型大小字串，預設'0.8rem'
- * @vue-prop {String} [contentIcon=mdiCommentEditOutline] 輸入內容區圖標字串，可為mdi,md,fa代號或mdi/js路徑，預設mdiCommentEditOutline
+ * @vue-prop {String} [contentIcon=mdiSquareEditOutline] 輸入內容區圖標字串，可為mdi,md,fa代號或mdi/js路徑，預設mdiCommentEditOutline
  * @vue-prop {String} [contentIconColor='orange'] 輸入內容區圖標顏色字串，預設'orange'
  * @vue-prop {Number} [contentIconSize=36] 輸入內容區圖標大小，單位為px，預設36
  * @vue-prop {String} [inputTextColor='grey darken-3'] 輸入輸入文字顏色字串，預設'grey darken-3'
@@ -122,7 +122,7 @@ export default {
         },
         title: {
             type: String,
-            default: 'Title',
+            default: 'Editor',
         },
         titleColor: {
             type: String,
@@ -134,7 +134,7 @@ export default {
         },
         contentIcon: {
             type: String,
-            default: mdiCommentEditOutline,
+            default: mdiSquareEditOutline,
         },
         contentIconColor: {
             type: String,
@@ -142,7 +142,7 @@ export default {
         },
         contentIconSize: {
             type: Number,
-            default: 36,
+            default: 28,
         },
         inputTextColor: {
             type: String,

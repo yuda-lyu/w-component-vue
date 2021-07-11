@@ -472,7 +472,7 @@ export default {
         },
 
         resumeRatio: function(si = null) {
-            //console.log('resumeRatio', si)
+            // console.log('resumeRatio', si)
 
             let vo = this
 

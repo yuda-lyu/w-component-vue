@@ -3,7 +3,7 @@
     <div
         style="position:relative; overflow:hidden;"
         :changeDefaultDisplayLevel="changeDefaultDisplayLevel"
-        :changeDraggable="changeDraggable"
+        :changeDraggableAndOperatable="changeDraggableAndOperatable"
         :changeFilterKeyWords="changeFilterKeyWords"
     >
 
@@ -22,18 +22,20 @@
 
                 <!-- 記得要:key, 使DOM可被唯一標記識別, 此為避免捲動按需顯示時, 因圖標有顯隱(2方向), 瞬間被Vue切換導致transition轉動問題 -->
                 <!-- wdl template內第1層元素高度需設定min-height不能用height, 因會偵測此元素高度來按需顯示, 用height會導致元素高度被寫死無法由slot撐開 -->
+                <!-- 要把原生拖曳功能關閉draggable=false -->
                 <div
                     :key="`wt-${props.index}`"
                     :style="`min-height:${iconHeight}px; ${draggable?'user-select:none;':''}`"
                     dragtag
                     :dragindex="props.index"
+                    draggable="false"
                     @mouseenter="(e)=>{$emit('mouseenter',getEmitData(e,props))}"
                     @mouseleave="(e)=>{$emit('mouseleave',getEmitData(e,props))}"
                     @click="(e)=>{$emit('click',getEmitData(e,props))}"
                 >
                     <div :style="`position:relative; display:table; ${usePadding}`">
 
-                        <div style="position:absolute; top:2px; right:8px;" v-if="useOperate">
+                        <div style="position:absolute; top:2px; right:8px;" v-if="operatable">
 
                             <WPopup
                                 :isolated="true"
@@ -42,11 +44,11 @@
                                 <template v-slot:trigger>
                                     <WButtonCircle
                                         :icon="mdiDotsVertical"
-                                        :backgroundColor="'transparent'"
-                                        :backgroundColorHover="'rgba(150,150,150,0.2)'"
-                                        :backgroundColorFocus="'rgba(150,150,150,0.2)'"
+                                        :backgroundColor="operateBtnBackgroundColor"
+                                        :backgroundColorHover="operateBtnBackgroundColorHover"
+                                        :backgroundColorFocus="operateBtnBackgroundColorFocus"
                                         :shadow="false"
-                                        :tooltip="operateTooltip"
+                                        :tooltip="operateBtnTooltip"
                                     ></WButtonCircle>
                                 </template>
 
@@ -65,8 +67,7 @@
                                         :itemIconSize="operateItemIconSize"
                                         :itemIconColor="operateItemIconColor"
                                         :itemIconColorHover="operateItemIconColorHover"
-                                        :itemRippleColor="operateItemRippleColor"
-                                        @click="(item)=>{propsOperate.funHide();clickOperateIitem({operateItem:item,rowItem:props})}"
+                                        @click="(item)=>{propsOperate.funHide();clickOperateItem({opItem:item,rowItem:props})}"
                                     ></WListVertical>
                                 </template>
 
@@ -115,10 +116,16 @@
 
                             <slot
                                 name="item"
-                                :data="props.row.item"
                                 :index="props.index"
+                                :data="props.row.item"
+                                :row="props.row"
+                                :keyPrimary="keyPrimary"
+                                :keyText="keyText"
+                                :keyChildren="keyChildren"
+                                :setDataByPathAndValue="setDataByPathAndValue"
                             >
-                                <div :style="`height:${iconHeight}px; display:flex; align-items:center;`">
+                                <!-- 得使用min-height否則無法撐開高度 -->
+                                <div :style="`min-height:${iconHeight}px; display:flex; align-items:center;`">
                                     {{getText(props.row.item)}}
                                 </div>
                             </slot>
@@ -248,6 +255,25 @@ let gm = globalMemory()
  * @vue-prop {Number} [dgPreviewBorderWidth=0] 輸入拖曳時顯示標記元素邊框寬度數字，預設0
  * @vue-prop {String} [dgPreviewBorderColor='#f26'] 輸入拖曳時顯示標記元素邊框顏色字串，預設'#f26'
  * @vue-prop {String} [dgPreviewBackground='transparent'] 輸入拖曳時顯示標記元素背景顏色字串，預設'transparent'
+ * @vue-prop {Boolean} [operatable=false] 輸入是否使用控制節點模式，若operatable設定true，將於各項目右側顯示控制按鈕，點擊可彈出選單進行插入與刪除等項目，此時會觸發事件click-operate-item，而處理相應數據則需呼叫事件提供物件內operateItem函數，詳情請見範例。此時所有節點皆為展開顯示並且禁止顯隱節點功能，也就是defaultDisplayLevel強制設定為null，此外也不提供過濾功能，也就是filterKeywords強制清空。開啟operatable僅適用小規模數據。operatable預設false
+ * @vue-prop {String} [operateItemTextForInsertBefore='Insert before'] 輸入控制選項插入前項目之文字字串，預設'Insert before'
+ * @vue-prop {String} [operateItemTextForInsertChild='Insert child'] 輸入控制選項插入子項目之文字字串，預設'Insert child'
+ * @vue-prop {String} [operateItemTextForInsertAfter='Insert after'] 輸入控制選項插入後項目之文字字串，預設'Insert after'
+ * @vue-prop {String} [operateItemTextForInsertDelete='Delete'] 輸入控制選項刪除項目之文字字串，預設'Delete'
+ * @vue-prop {Object} [operateItemPaddingStyle={v:10,h:12}] 輸入控制選項內寬距離設定物件，可用鍵值為v、h、left、right、top、bottom，v代表同時設定top與bottom，h代表設定left與right，若有重複設定時後面鍵值會覆蓋前面，各鍵值為寬度數字，單位為px，預設{v:10,h:12}
+ * @vue-prop {Number} [operatePanelWidth=150] 輸入控制選項寬度數字，預設150
+ * @vue-prop {Number} [operatePanelHeight=168] 輸入控制選項高度數字，預設168
+ * @vue-prop {String} [operateBtnTooltip='Operations'] 輸入控制按鈕之提示文字字串，預設'Operations'
+ * @vue-prop {String} [operateBtnBackgroundColor='transparent'] 輸入控制按鈕背景顏色字串，預設'transparent'
+ * @vue-prop {String} [operateBtnBackgroundColorHover='rgba(230,230,230,0.7)'] 輸入滑鼠移入時控制按鈕背景顏色字串，預設'rgba(230,230,230,0.7)'
+ * @vue-prop {String} [operateBtnBackgroundColorFocus='rgba(230,230,230,0.9)'] 輸入取得焦點時控制按鈕背景顏色字串，預設'rgba(230,230,230,0.9)'
+ * @vue-prop {String} [operateItemBackgroundColor='transparent'] 輸入控制項目背景顏色字串，預設'transparent'
+ * @vue-prop {String} [operateItemBackgroundColorHover='rgba(200,200,200,0.2)'] 輸入滑鼠移入時控制項目背景顏色字串，預設'rgba(200,200,200,0.2)'
+ * @vue-prop {String} [operateItemTextColor='#444'] 輸入控制項目文字顏色字串，預設'#444'
+ * @vue-prop {String} [operateItemTextColorHover='#222'] 輸入滑鼠移入時控制項目文字顏色字串，預設'#222'
+ * @vue-prop {Number} [operateItemIconSize=22] 輸入控制項目圖標尺寸數字，預設22
+ * @vue-prop {String} [operateItemIconColor='#444'] 輸入控制項目圖標顏色字串，預設'#444'
+ * @vue-prop {String} [operateItemIconColorHover='#222'] 輸入滑鼠移入時控制項目圖標顏色字串，預設'#222'
  * @vue-prop {Boolean} [show=true] 輸入是否為顯示模式，預設true，供組件嵌入popup時, 因先初始化但尚未顯示不需渲染, 可給予show=false避免無限偵測與重算高度問題
  */
 export default {
@@ -425,7 +451,7 @@ export default {
             type: String,
             default: 'transparent',
         },
-        useOperate: {
+        operatable: {
             type: Boolean,
             default: false,
         },
@@ -445,14 +471,6 @@ export default {
             type: String,
             default: 'Delete',
         },
-        operatePanelWidth: {
-            type: Number,
-            default: 150,
-        },
-        operatePanelHeight: {
-            type: Number,
-            default: 42 * 4,
-        },
         operateItemPaddingStyle: {
             type: Object,
             default: () => {
@@ -462,13 +480,33 @@ export default {
                 }
             },
         },
-        operateTooltip: {
+        operatePanelWidth: {
+            type: Number,
+            default: 150,
+        },
+        operatePanelHeight: {
+            type: Number,
+            default: 42 * 4,
+        },
+        operateBtnTooltip: {
             type: String,
             default: 'Operations',
         },
+        operateBtnBackgroundColor: {
+            type: String,
+            default: 'transparent', //'rgba(225,225,225,0.5)',
+        },
+        operateBtnBackgroundColorHover: {
+            type: String,
+            default: 'rgba(230,230,230,0.7)',
+        },
+        operateBtnBackgroundColorFocus: {
+            type: String,
+            default: 'rgba(230,230,230,0.9)',
+        },
         operateItemBackgroundColor: {
             type: String,
-            default: 'white',
+            default: 'transparent',
         },
         operateItemBackgroundColorHover: {
             type: String,
@@ -493,10 +531,6 @@ export default {
         operateItemIconColorHover: {
             type: String,
             default: '#222',
-        },
-        operateItemRippleColor: {
-            type: String,
-            default: 'rgba(255,255,255,0.4)',
         },
         show: {
             type: Boolean,
@@ -573,16 +607,17 @@ export default {
             return ''
         },
 
-        changeDraggable: function() {
-            //console.log('computed changeDraggable')
+        changeDraggableAndOperatable: function() {
+            //console.log('computed changeDraggableAndOperatable')
 
             let vo = this
 
             //trigger
             let draggable = vo.draggable
+            let operatable = vo.operatable
 
-            //若draggable為true, 則defaultDisplayLevel強制為null, filterKeywords強制清空
-            if (draggable) {
+            //若draggable或operatable為true, 則defaultDisplayLevel強制為null, filterKeywords強制清空
+            if (draggable || operatable) {
                 vo.defaultDisplayLevelTrans = null
                 vo.filterKeywordsTrans = ''
             }
@@ -1210,8 +1245,8 @@ export default {
                     return
                 }
 
-                //check
-                if (vo.draggable) {
+                //check draggable and operatable
+                if (vo.draggable || vo.operatable) {
                     // console.log('禁止顯隱節點')
                     return
                 }
@@ -1596,8 +1631,8 @@ export default {
 
             let vo = this
 
-            //check draggable
-            if (vo.draggable) {
+            //check draggable and operatable
+            if (vo.draggable || vo.operatable) {
                 return
             }
 
@@ -1766,7 +1801,7 @@ export default {
             //draggable
             if (vo.draggable) {
 
-                //$nextTick, 因WDynamicList為按需顯示, 為使domDrag能抓到元素, 需等WDynamicList內changeViewItems結束後dom才會更新, 故得延遲執行
+                //$nextTick, 因WDynamicList為按需顯示, 為使domDrag能抓到元素, 需等WDynamicList內觸發change-view-items結束後dom才會更新, 故得延遲執行
                 vo.$nextTick(() => {
 
                     //dragInit
@@ -2017,13 +2052,6 @@ export default {
 
                     })
 
-                    // setTimeout(() => {
-
-                    //     //processItems
-                    //     vo.$refs.wdl.processItems({})
-
-                    // }, 500)
-
                 })
                 .catch((err) => {
                     console.log(err)
@@ -2157,6 +2185,11 @@ export default {
                         return
                     }
 
+                    //check, 多層組件觸發時可能會因leave觸發導致dgTipMode=''
+                    if (vo.dgTipMode === '') {
+                        return
+                    }
+
                     //modeDir
                     let modeDir
                     if (msg.startInd < msg.endInd) {
@@ -2185,6 +2218,7 @@ export default {
                         modeInsert = 'belongto'
                     }
                     else {
+                        console.log('dgTipMode', vo.dgTipMode)
                         throw new Error('invalid dgTipMode')
                     }
                     // console.log('modeInsert', modeInsert)
@@ -2231,13 +2265,29 @@ export default {
 
         },
 
-        clickOperateIitem: function(msg) {
-            // console.log('clickOperateIitem', msg)
+        clickOperateItem: function(msg) {
+            // console.log('clickOperateItem', msg)
 
             let vo = this
 
+            //add operateItem function and set from lodash
+            msg.operateItem = vo.operateItem
+
             //emit
             vo.$emit('click-operate-item', msg)
+
+        },
+
+        setDataByPathAndValue: function(data, path, value) {
+            // console.log('setDataByPathAndValue', data, path, value)
+
+            let vo = this
+
+            //set
+            set(data, path, value)
+
+            //setData
+            vo.setData(data)
 
         },
 

@@ -7,12 +7,14 @@
         <transition-group>
             <template v-for="(item,kitem) in itemsTrans">
 
+                <!-- 要把原生拖曳功能關閉draggable=false -->
                 <div
                     class="WGroupTags-Trans"
                     style="display:inline-block;"
                     :key="`${isObjValue?o2j(item):item}`"
                     dragtag
                     :dragindex="kitem"
+                    draggable="false"
                 >
                     <WButtonChip
                         :style="`${useMarginStyle}`"

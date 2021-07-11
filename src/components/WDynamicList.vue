@@ -137,7 +137,8 @@ export default {
             changeHeight: true, //是否有變更高度, 初始化給true使第一次顯示能自動重算節點高度
             changeDisplay: false, //是否有變更節點顯隱狀態
             changeFilter: false, //是否有變更過濾關鍵字
-            processing: false, //上鎖changeRows, 使能由外部強制變更內部數據而不會重產items
+            lockFromProcess: false, //上鎖, 使能由外部強制變更內部數據items而不會重產items
+            lockFromSetRows: false, //上鎖
             scrollRatio: 0, //捲動比例
             scrollInfor: null, //目前捲軸資訊
             filterKeywordsTemp: '', //上次過濾關鍵字
@@ -145,6 +146,7 @@ export default {
             useItems: [], //實際需顯示節點陣列
             emItemsTemp: [], //實際需顯示節點之指標陣列
             iNochangeScrollInfor: 0, //觸發changeScrollInfor時但所到scrollInfor為同值之次數
+            tNochangeScrollInfor: 0, //增加scrollInfor同值次數時之時間
         }
     },
     mounted: function() {
@@ -219,16 +221,20 @@ export default {
             return kitem > 0 ? vo.separatorHeight : 0
         },
 
-        setRows: function(rows) {
-            //console.log('methods setRows', rows)
+        setRowsCore: function(rows) {
+            // console.log('methods setRowsCore', rows)
 
             let vo = this
 
             //check
-            if (vo.processing) {
-                let msg = 'disabling call when processing'
+            if (vo.lockFromProcess) {
+                let msg = 'disabling call when lockFromProcess'
                 return msg
             }
+            // if (vo.lockFromSetRows) { //setRows內需呼叫setRowsCore故不能上鎖
+            //     let msg = 'disabling call when lockFromSetRows'
+            //     return msg
+            // }
 
             //check
             if (!isarr(rows)) {
@@ -272,12 +278,53 @@ export default {
             //vo.items = items
             gm.set(vo.mmkey, items)
 
-            //refresh
-            vo.refresh('setRows')
+            //changeDisplay, 若由外部強制變更rows或呼叫setRows變更rows, 則需重設changeDisplay使能重算全部節點高度
+            vo.changeDisplay = true
+
+            // //refresh
+            // vo.refresh('setRowsCore')
 
         },
 
-        refresh: async function(from) {
+        setRows: function(rows) {
+            // console.log('methods setRows', rows)
+
+            let vo = this
+
+            async function core() {
+
+                //lock
+                vo.lockFromSetRows = true
+
+                //先儲存scrollInfor一份至scrollInforTemp, 供顯隱後重算scrollInfor
+                vo.scrollInforTemp = cloneDeep(vo.scrollInfor)
+
+                //setRowsCore
+                vo.setRowsCore(rows)
+
+                //refreshCore
+                await vo.refreshCore('setRows')
+
+                //resumeScrollRatio
+                vo.resumeScrollRatio()
+
+                //triggerEvent
+                vo.triggerEvent('setRows')
+
+                //unlock
+                vo.lockFromSetRows = false
+
+            }
+
+            //core
+            core()
+                .catch((err) => {
+                    console.log(err)
+                })
+
+        },
+
+        refresh: function(from) {
             //console.log('methods refresh', from)
 
             let vo = this
@@ -480,7 +527,7 @@ export default {
         },
 
         updateItemsHeight: function() {
-            //console.log('methods updateItemsHeight')
+            // console.log('methods updateItemsHeight')
 
             let vo = this
 
@@ -496,7 +543,7 @@ export default {
             //n
             let n = size(items)
 
-            //check changeHeight
+            //check changeHeight, 只偵測已顯示dom的高度是否有變化, 若是變更未顯示節點例如於最末新增節點, 就無法得知有變
             let wdsDiv = get(vo, '$refs.wdsDiv', []) //可能因切換組件導致元素消失
             each(wdsDiv, (v) => {
                 if (v.getAttribute) {
@@ -520,7 +567,7 @@ export default {
             }
 
             //check
-            let b = vo.changeHeight || vo.changeDisplay || vo.changeFilter //changeHeight預設為true, 故第1次一定會重算itemsHeight
+            let b = vo.changeHeight || vo.changeDisplay || vo.changeFilter
             if (b) {
 
                 //update y
@@ -567,7 +614,7 @@ export default {
         },
 
         changeScrollInfor: async function(e) {
-            //console.log('methods changeScrollInfor', e)
+            // console.log('methods changeScrollInfor', e)
 
             let vo = this
 
@@ -579,19 +626,37 @@ export default {
             //check
             //不能直接使用偵測scrollInfor是否相等, 因wsp會有resize觸發此事件, 會給出內部的scrollInfor與上次相同故為原值, 若檢查相同則離開將無法重算各動態項目高度
             //仍有非預期行為會持續觸發changeScrollInfor, 且提供的scrollInfor相同, 故改採最大觸發限制
+            //因外部不同操作行為會累計次數, 故需要給予指定時間內判斷最大觸發限制
+            // console.log('isEqual(vo.scrollInfor, e)', e)
             if (isEqual(vo.scrollInfor, e)) {
-                // console.log('isEqual(vo.scrollInfor, e)', e)
-                let limit = 3
+                let limitNum = 3 //指定時間內最大相同scrollInfor次數
+                let limitTime = 200 //指定時間
+
+                //check
+                let t = Date.now()
+                if (t - vo.tNochangeScrollInfor > limitTime) {
+                    vo.iNochangeScrollInfor = 0
+                    vo.tNochangeScrollInfor = 0
+                }
+
+                //update
                 vo.iNochangeScrollInfor += 1
-                if (vo.iNochangeScrollInfor >= limit) {
+                vo.tNochangeScrollInfor = Date.now()
+
+                //check
+                if (vo.iNochangeScrollInfor >= limitNum) {
                     // console.log(`forced termination: call changeScrollInfor ${limit}`)
                     vo.iNochangeScrollInfor = 0
                     return
                 }
+
             }
 
             //check, 有上鎖時不能執行
-            if (vo.processing) {
+            if (vo.lockFromProcess) {
+                return
+            }
+            if (vo.lockFromSetRows) {
                 return
             }
 
@@ -630,7 +695,7 @@ export default {
                 }
 
                 //lock
-                vo.processing = true
+                vo.lockFromProcess = true
 
                 //先儲存scrollInfor一份至scrollInforTemp, 供顯隱後重算scrollInfor
                 vo.scrollInforTemp = cloneDeep(vo.scrollInfor)
@@ -707,7 +772,7 @@ export default {
                 vo.triggerEvent('processItems')
 
                 //unluck
-                vo.processing = false
+                vo.lockFromProcess = false
 
             }
 

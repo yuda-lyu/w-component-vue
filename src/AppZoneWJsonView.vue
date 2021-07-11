@@ -22,7 +22,7 @@
             </div>
 
 
-            <div v-if="false" class="bk dz">
+            <div class="bk dz">
                 <demolink
                     :kbname="'w-json-view'"
                     :casename="'viewHeightMax'"
@@ -37,7 +37,7 @@
             </div>
 
 
-            <div v-if="false" class="bk dz">
+            <div class="bk dz">
                 <demolink
                     :kbname="'w-json-view'"
                     :casename="'filterKeywords & searchEmpty'"
@@ -61,7 +61,7 @@
             </div>
 
 
-            <div v-if="false" class="bk dz">
+            <div class="bk dz">
                 <demolink
                     :kbname="'w-json-view'"
                     :casename="'iconColor & keyColor & keyNumbersColor & numColor & strColor & bolColor & funColor'"
@@ -82,7 +82,7 @@
             </div>
 
 
-            <div v-if="false" class="bk" style="display:block; margin:0px 10px 0px 0px;">
+            <div class="bk" style="display:block; margin:0px 10px 0px 0px;">
                 <demolink
                     :kbname="'w-json-view'"
                     :casename="'large data (100,000 lines)'"
