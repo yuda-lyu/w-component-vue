@@ -417,7 +417,7 @@
 
                             <w-popup-edit-text
                                 :value="props.data.text"
-                                @input="function(v){modifyText({value:v,props:props})}"
+                                @input="function(v){modifyText({data:WTree.option.items,value:v,props:props})}"
                             ></w-popup-edit-text>
 
                         </div>
@@ -1315,8 +1315,6 @@ export default {
         modifyText: function(msg) {
             console.log('modifyText', msg)
 
-            let vo = this
-
             //setDataByPathAndValue
             let setDataByPathAndValue = msg.props.setDataByPathAndValue
 
@@ -1327,8 +1325,11 @@ export default {
             //value
             let value = msg.value
 
+            //data
+            let data = msg.data
+
             //setDataByPathAndValue
-            setDataByPathAndValue(vo.WTree.option.items, path, value)
+            setDataByPathAndValue(data, path, value)
 
         },
     },

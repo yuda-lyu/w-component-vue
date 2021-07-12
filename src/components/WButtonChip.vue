@@ -140,6 +140,7 @@ import sep from 'wsemi/src/sep.mjs'
 import genPm from 'wsemi/src/genPm.mjs'
 import oc from 'wsemi/src/color.mjs'
 // import domRipple from 'wsemi/src/domRipple.mjs'
+import domCancelEvent from 'wsemi/src/domCancelEvent.mjs'
 import color2hex from '../js/vuetifyColor.mjs'
 import parseSpace from '../js/parseSpace.mjs'
 import domRipple from '../js/domRipple.mjs'
@@ -914,6 +915,9 @@ export default {
             //console.log('methods clickClose', ev)
 
             let vo = this
+
+            //domCancelEvent
+            domCancelEvent(ev)
 
             //check
             if (!vo.editable) {
