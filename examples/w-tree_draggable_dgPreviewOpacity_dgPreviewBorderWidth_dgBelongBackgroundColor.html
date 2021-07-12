@@ -85,7 +85,7 @@
     </script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.1.33/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.1.34/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -616,8 +616,6 @@
       modifyText: function(msg) {
         console.log("modifyText", msg);
 
-        let vo = this;
-
         //setDataByPathAndValue
         let setDataByPathAndValue = msg.props.setDataByPathAndValue;
 
@@ -628,8 +626,11 @@
         //value
         let value = msg.value;
 
+        //data
+        let data = msg.data;
+
         //setDataByPathAndValue
-        setDataByPathAndValue(vo.WTree.option.items, path, value);
+        setDataByPathAndValue(data, path, value);
       }
     }
   });
