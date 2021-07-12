@@ -19,7 +19,7 @@
                 <div style="display:flex; align-items:center;">
 
                     <div
-                        :style="`width:100%; height:${height}px; line-height:${height}px; color:${useTextColor}; vertical-align:middle; white-space:nowrap; text-overflow:ellipsis; cursor:pointer; outline:none;`"
+                        :style="`width:100%; height:${height}px; line-height:${height}px; color:${useTextColor}; ${useTextFontSize} vertical-align:middle; white-space:nowrap; text-overflow:ellipsis; cursor:pointer; outline:none;`"
                         tabindex="0"
                         @focus="focusText"
                         v-if="mode==='select'"
@@ -37,6 +37,7 @@
 
                     <WTextCore
                         style="width:100%;"
+                        :textFontSize="textFontSize"
                         :textColor="useTextColor"
                         :textAlign="textAlign"
                         :placeholder="placeholder"
@@ -82,7 +83,7 @@
                     <template v-slot="props">
 
                         <div
-                            :style="`transition:all 0.2s; cursor:pointer; outline:none; background:${useItemBackgroundColor}; color:${useItemTextColor}; font-size:${itemFontSize}; ${useItemPadding}`"
+                            :style="`transition:all 0.2s; cursor:pointer; outline:none; background:${useItemBackgroundColor}; color:${useItemTextColor}; ${useItemTextFontSize} ${useItemPadding}`"
                             tabindex="0"
                             @keyup.enter="clickItem(props.row,props.index)"
                             @click="clickItem(props.row,props.index)"
@@ -117,6 +118,7 @@ import get from 'lodash/get'
 import size from 'lodash/size'
 import isobj from 'wsemi/src/isobj.mjs'
 import isbol from 'wsemi/src/isbol.mjs'
+import replace from 'wsemi/src/replace.mjs'
 import color2hex from '../js/vuetifyColor.mjs'
 import parseSpace from '../js/parseSpace.mjs'
 import WPopup from './WPopup.vue'
@@ -131,9 +133,12 @@ import WIcon from './WIcon.vue'
  * @vue-prop {Array} [items=[]] 輸入項目陣列，預設[]
  * @vue-prop {Number} [height=28] 輸入項目高度數字，單位為px，預設28
  * @vue-prop {String} [keyText='text'] 輸入取項目物件內之顯示用文字鍵值字串，預設'text'
+ * @vue-prop {String} [textFontSize='0.9rem'] 輸入文字大小字串，預設'0.9rem'
+ * @vue-prop {String} [textColor='black'] 輸入文字顏色字串，預設'black'
+ * @vue-prop {String} [textAlign='left'] 輸入文字左右對齊字串，預設'left'
+ * @vue-prop {String} [itemTextFontSize='0.8rem'] 輸入項目顯示文字大小字串，預設'0.8rem'
  * @vue-prop {String} [itemTextColor='grey darken-3'] 輸入項目文字顏色字串，預設'grey darken-3'
  * @vue-prop {String} [itemTextColorHover='light-blue darken-2'] 輸入項目文字Hover顏色字串，預設'light-blue darken-2'
- * @vue-prop {String} [itemFontSize='0.9rem'] 輸入項目顯示文字大小字串，預設'0.9rem'
  * @vue-prop {String} [itemBackgroundColor='white'] 輸入項目背景顏色字串，預設'white'
  * @vue-prop {String} [itemBackgroundColorHover='light-blue lighten-5'] 輸入項目背景Hover顏色字串，預設'light-blue lighten-5'
  * @vue-prop {Object} [itemPaddingStyle={v:12,h:16}] 輸入內寬距離設定物件，可用鍵值為v、h、left、right、top、bottom，v代表同時設定top與bottom，h代表設定left與right，若有重複設定時後面鍵值會覆蓋前面，各鍵值為寬度數字，單位為px，預設{v:12,h:16}
@@ -143,8 +148,6 @@ import WIcon from './WIcon.vue'
  * @vue-prop {Number} [minWidth=null] 輸入最小寬度，單位為px，預設null
  * @vue-prop {Number} [maxWidth=null] 輸入最大寬度，單位為px，預設null
  * @vue-prop {Number} [distY=5] 輸入彈窗距離觸發元素底部的距離數字，單位為px，預設5
- * @vue-prop {String} [textColor='black'] 輸入文字顏色字串，預設'black'
- * @vue-prop {String} [textAlign='left'] 輸入文字左右對齊字串，預設'left'
  * @vue-prop {String} [placeholder=''] 輸入無文字時的替代字符字串，預設''
  * @vue-prop {String} [searchEmpty='Empty'] 輸入無過濾結果字串，預設'Empty'
  * @vue-prop {Number} [defItemHeight=43] 輸入按需顯示時各項目預設高度數字，給越準或給大部分項目的高度則渲染速度越快，單位為px，預設43
@@ -180,6 +183,22 @@ export default {
             type: String,
             default: 'text',
         },
+        textFontSize: {
+            type: String,
+            default: '0.9rem',
+        },
+        textColor: {
+            type: String,
+            default: 'black',
+        },
+        textAlign: {
+            type: String,
+            default: 'left',
+        },
+        itemTextFontSize: {
+            type: String,
+            default: '0.8rem',
+        },
         itemTextColor: {
             type: String,
             default: 'grey darken-3',
@@ -187,10 +206,6 @@ export default {
         itemTextColorHover: {
             type: String,
             default: 'light-blue darken-2',
-        },
-        itemFontSize: {
-            type: String,
-            default: '0.8rem',
         },
         itemBackgroundColor: {
             type: String,
@@ -232,14 +247,6 @@ export default {
         distY: {
             type: Number,
             default: 5,
-        },
-        textColor: {
-            type: String,
-            default: 'black',
-        },
-        textAlign: {
-            type: String,
-            default: 'left',
         },
         placeholder: {
             type: String,
@@ -319,6 +326,13 @@ export default {
             return ''
         },
 
+        useTextFontSize: function() {
+            let vo = this
+            let s = vo.textFontSize
+            s = replace(s, ';', '')
+            return `font-size:${s};`
+        },
+
         useTextColor: function() {
             //console.log('computed useTextColor')
 
@@ -341,6 +355,13 @@ export default {
             let vo = this
 
             return color2hex(vo.itemBackgroundColorHover)
+        },
+
+        useItemTextFontSize: function() {
+            let vo = this
+            let s = vo.itemTextFontSize
+            s = replace(s, ';', '')
+            return `font-size:${s};`
         },
 
         useItemTextColor: function() {

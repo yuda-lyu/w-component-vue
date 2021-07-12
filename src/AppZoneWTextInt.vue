@@ -21,6 +21,32 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-text-int'"
+                    :casename="'textFontSize'"
+                ></demolink>
+
+                <w-text-int
+                    :textFontSize="'0.85rem'"
+                    v-model="WTextInt.int"
+                ></w-text-int>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-text-int'"
+                    :casename="'textColor'"
+                ></demolink>
+
+                <w-text-int
+                    :textColor="'#f26'"
+                    v-model="WTextInt.int"
+                ></w-text-int>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-text-int'"
                     :casename="'buttonColor & buttonColorHover & buttonColorFocus'"
                 ></demolink>
 

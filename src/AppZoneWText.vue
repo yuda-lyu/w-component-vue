@@ -23,6 +23,19 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-text'"
+                    :casename="'textFontSize'"
+                ></demolink>
+
+                <w-text
+                    :textFontSize="'0.85rem'"
+                    v-model="WText.text"
+                ></w-text>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-text'"
                     :casename="'textColor'"
                 ></demolink>
 

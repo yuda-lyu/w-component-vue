@@ -39,6 +39,8 @@
                     :buttonColorFocus="buttonColorFocus"
                     :valueMax="valueMax"
                     :value="value"
+                    :textFontSize="textFontSize"
+                    :textColor="textColor"
                     :editable="editable"
                     :focused="focusedTrans"
                     @update:focused="changeFocused"
@@ -65,6 +67,8 @@ import WTextIntCore from './WTextIntCore.vue'
  * @vue-prop {Boolean} [shadow=true] 輸入是否為陰影模式，預設true
  * @vue-prop {Number} [value=0] 輸入整數值數字，預設0
  * @vue-prop {Number} [valueMax=null] 輸入最大整數值數字，預設null
+ * @vue-prop {String} [textFontSize='1rem'] 輸入文字大小字串，預設'1rem'
+ * @vue-prop {String} [textColor='black'] 輸入文字顏色字串，預設'black'
  * @vue-prop {String} [icon=''] 輸入框外左側圖標字串，可為mdi,md,fa代號或mdi/js路徑，預設''
  * @vue-prop {String} [iconColor='deep-orange lighten-2'] 輸入框外左側圖標顏色字串，預設'deep-orange lighten-2'
  * @vue-prop {String} [iconColorHover='deep-orange lighten-1'] 輸入滑鼠移入時框外左側圖標顏色字串，預設'deep-orange lighten-1'
@@ -120,6 +124,14 @@ export default {
         valueMax: {
             type: Number,
             default: null,
+        },
+        textFontSize: {
+            type: String,
+            default: '1rem',
+        },
+        textColor: {
+            type: String,
+            default: 'black',
         },
         icon: {
             type: String,

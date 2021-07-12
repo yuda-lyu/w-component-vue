@@ -85,7 +85,7 @@
     </script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.1.34/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.1.35/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -136,18 +136,12 @@
                 style="cursor:pointer;"
                 title="open for copy link to view component"
                 onclick="window.open('//yuda-lyu.github.io/w-component-vue/examples/app.html?cmp='+this.innerText,'_blank')"
-            >w-text-suggest</span>
+            >w-text</span>
         </div>
         <div class="bk">
-            <div class="item">itemFontSize &amp; defItemHeight</div>
+            <div class="item">textFontSize</div>
 
-            <w-text-suggest
-                :left-icon="'mdi-check-underline-circle'"
-                :def-item-height="48"
-                :item-font-size="'1rem'"
-                :items="WTextSuggest.objItems"
-                v-model="WTextSuggest.objValue"
-            ></w-text-suggest>
+            <w-text :text-font-size="'0.85rem'" v-model="WText.text"></w-text>
         </div>
     </v-app>
 
@@ -161,88 +155,20 @@
     vuetify: new Vuetify(),
     data: function() {
       return {
-        WTextSuggest: {
-          focused: false,
-          showPanel: false,
-          objItems: [
-            {
-              key: "orange",
-              text: "橘子(orange)"
-            },
-            {
-              key: "banana",
-              text: "香蕉(banana)"
-            },
-            {
-              key: "strawberry",
-              text: "草莓(strawberry)"
-            }
-          ],
-          objValue: {
-            key: "banana",
-            text: "香蕉(banana)"
-          },
-          objItemsKeyText: [
-            {
-              key: "orange",
-              name: "橘子(orange)"
-            },
-            {
-              key: "banana",
-              name: "香蕉(banana)"
-            },
-            {
-              key: "strawberry",
-              name: "草莓(strawberry)"
-            }
-          ],
-          objValueKeyText: {
-            key: "banana",
-            name: "香蕉(banana)"
-          },
-          objItemsLarge: (function() {
-            let vs = [];
-            vs.push({
-              key: "banana:1",
-              text: "香蕉(banana:1)"
-            });
-            for (let i = 2; i <= 10000; i++) {
-              vs.push({
-                key: "banana:" + i,
-                text: "香蕉(banana:" + i + ")"
-              });
-            }
-            return vs;
-          })(),
-          objValueLarge: {
-            key: "banana:1",
-            text: "香蕉(banana:1)"
-          },
-          strItems: ["orange(橘子)", "banana(香蕉)", "strawberry(草莓)"],
-          strValue: "strawberry(草莓)"
+        WText: {
+          text: "aBc數字123",
+          emptytext: ""
         },
         actions: [
           {
-            mode: "eleclick",
-            selector: 'input[type="text"]'
+            mode: "eletype",
+            selector: "input.basic",
+            str: "新增文字",
+            noEnter: true
           },
           {
-            mode: "keypress",
-            key: "End"
-          },
-          {
-            mode: "keypress",
-            key: "Backspace",
-            count: 15
-          },
-          {
-            mode: "eleclick",
-            selector: 'li[role="option"]',
-            nth: 2
-          },
-          {
-            mode: "eleclick",
-            selector: "div.bk"
+            mode: "elemove",
+            selector: 'div[ShellEllipse="rightIcon"]'
           }
         ]
       };
@@ -252,43 +178,28 @@
     },
     computed: {},
     methods: {
-      evUpdateFocused: function(item, kitem) {
-        console.log("evUpdateFocused", "item=", item, "kitem", kitem);
+      clickLeft: function() {
+        console.log("clickLeft");
       },
-      evUpdateShowPanel: function(item, kitem) {
-        console.log("evUpdateShowPanel", "item=", item, "kitem", kitem);
-      },
-      evBlur: function(item, kitem) {
-        console.log("evBlur", "item=", item, "kitem", kitem);
-      },
-      evInput: function(item, kitem) {
-        console.log("evInput", "item=", item, "kitem", kitem);
-      },
-      evEnter: function(item, kitem) {
-        console.log("evEnter", "item=", item, "kitem", kitem);
-      },
-      evClickItem: function(item, kitem) {
-        console.log("evClickItem", "item=", item, "kitem", kitem);
-      },
-      evClickLeft: function() {
-        console.log("evClickLeft");
-      },
-      evClickRight: function() {
-        console.log("evClickRight");
-      },
-      hidePanelWhenEnter: function() {
-        // console.log('hidePanelWhenEnter')
 
-        let vo = this;
+      clickRight: function() {
+        console.log("clickRight");
+      },
 
-        //blur, 要先將text的焦點取消, 先觸發掉focused變更事件(此會再觸發changeContent內容變更事件, 故會觸發顯示panel)
-        document.activeElement.blur();
+      select: function(ev) {
+        console.log("select", ev);
+      },
 
-        //delay hide, 因enter觸發blur後會觸發changeContent內容變更事件, 故得等顯示事件完成才給予showPanel=false, 100ms是經驗值, 使其完整觸發隱藏panel流程
-        setTimeout(function() {
-          //hide
-          vo.WTextSuggest.showPanel = false;
-        }, 100);
+      blur: function(value, err) {
+        console.log("blur", value, err);
+      },
+
+      enter: function(value, err) {
+        console.log("enter", value, err);
+      },
+
+      input: function(value, err) {
+        console.log("input", value, err);
       }
     }
   });

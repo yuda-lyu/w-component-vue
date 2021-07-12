@@ -85,7 +85,7 @@
     </script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.1.34/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.1.35/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -139,7 +139,7 @@
             >w-text-suggest</span>
         </div>
         <div class="bk">
-            <div class="item">border &amp; itemFontSize &amp; defItemHeight</div>
+            <div class="item">border &amp; itemTextFontSize &amp; defItemHeight</div>
 
             <w-text-suggest
                 :shadow="false"
@@ -149,7 +149,7 @@
                 :background-color-focus="'orange lighten-5'"
                 :left-icon="'mdi-check-underline-circle'"
                 :def-item-height="48"
-                :item-font-size="'1rem'"
+                :item-text-font-size="'1rem'"
                 :items="WTextSuggest.objItems"
                 v-model="WTextSuggest.objValue"
             ></w-text-suggest>

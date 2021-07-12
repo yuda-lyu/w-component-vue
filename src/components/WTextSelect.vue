@@ -36,11 +36,12 @@
                     :items="items"
                     :value="value"
                     :keyText="keyText"
+                    :textFontSize="textFontSize"
                     :textColor="textColor"
                     :height="useHeight"
+                    :itemTextFontSize="itemTextFontSize"
                     :itemTextColor="itemTextColor"
                     :itemTextColorHover="itemTextColorHover"
-                    :itemFontSize="itemFontSize"
                     :itemBackgroundColor="itemBackgroundColor"
                     :itemBackgroundColorHover="itemBackgroundColorHover"
                     :itemPaddingStyle="itemPaddingStyle"
@@ -103,10 +104,11 @@ import WTextSuggestCore from './WTextSuggestCore.vue'
  * @vue-prop {Array} [items=[]] 輸入可選項目陣列，預設[]
  * @vue-prop {Object|String|Number} [value=null] 輸入目前選擇項目，可為物件、字串、數字，預設null
  * @vue-prop {String} [keyText='text'] 輸入取項目物件內之顯示用文字鍵值字串，預設'text'
+ * @vue-prop {String} [textFontSize='0.9rem'] 輸入文字大小字串，預設'0.9rem'
  * @vue-prop {String} [textColor='black'] 輸入文字顏色字串，預設'black'
+ * @vue-prop {String} [itemTextFontSize='0.8rem'] 輸入項目顯示文字大小字串，預設'0.8rem'
  * @vue-prop {String} [itemTextColor='grey darken-3'] 輸入項目文字顏色字串，預設'grey darken-3'
  * @vue-prop {String} [itemTextColorHover='light-blue darken-2'] 輸入項目文字Hover顏色字串，預設'light-blue darken-2'
- * @vue-prop {String} [itemFontSize='0.9rem'] 輸入項目顯示文字大小字串，預設'0.9rem'
  * @vue-prop {String} [itemBackgroundColor='white'] 輸入項目背景顏色字串，預設'white'
  * @vue-prop {String} [itemBackgroundColorHover='light-blue lighten-5'] 輸入項目背景Hover顏色字串，預設'light-blue lighten-5'
  * @vue-prop {Object} [itemPaddingStyle={v:12,h:16}] 輸入內寬距離設定物件，可用鍵值為v、h、left、right、top、bottom，v代表同時設定top與bottom，h代表設定left與right，若有重複設定時後面鍵值會覆蓋前面，各鍵值為寬度數字，單位為px，預設{v:12,h:16}
@@ -173,9 +175,17 @@ export default {
             type: String,
             default: 'text',
         },
+        textFontSize: {
+            type: String,
+            default: '0.9rem',
+        },
         textColor: {
             type: String,
             default: 'black',
+        },
+        itemTextFontSize: {
+            type: String,
+            default: '0.8rem',
         },
         itemTextColor: {
             type: String,
@@ -184,10 +194,6 @@ export default {
         itemTextColorHover: {
             type: String,
             default: 'light-blue darken-2',
-        },
-        itemFontSize: {
-            type: String,
-            default: '0.8rem',
         },
         itemBackgroundColor: {
             type: String,

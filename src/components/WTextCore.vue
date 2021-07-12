@@ -3,7 +3,7 @@
         <input
             ref="inp"
             type="text"
-            :style="`transition:all 0.3s; outline: none; width:100%; box-sizing:border-box; border-style:none; background:transparent; color:${useTextColor}; height:${height}px; text-align:${textAlign}; opacity:${(valueTrans==='' && !focused)?0.6:1};`"
+            :style="`transition:all 0.3s; outline: none; width:100%; box-sizing:border-box; border-style:none; background:transparent; color:${useTextColor}; height:${height}px; text-align:${textAlign}; ${useTextFontSize} opacity:${(valueTrans==='' && !focused)?0.6:1};`"
             :readonly="!editable"
             :placeholder="placeholder"
             v-model="valueTrans"
@@ -18,12 +18,14 @@
 
 <script>
 import verifyValue from 'wsemi/src/verifyValue.mjs'
+import replace from 'wsemi/src/replace.mjs'
 import color2hex from '../js/vuetifyColor.mjs'
 
 
 /**
  * @vue-prop {String} [type='any'] 輸入文字框類型字串，預設'any'
  * @vue-prop {String|Number} value 輸入文字框值
+ * @vue-prop {String} [textFontSize='1rem'] 輸入文字大小字串，預設'1rem'
  * @vue-prop {String} [textColor='black'] 輸入文字顏色字串，預設'black'
  * @vue-prop {String} [textAlign='left'] 輸入文字左右對齊字串，預設'left'
  * @vue-prop {String} [placeholder=''] 輸入無文字時的替代字符字串，預設''
@@ -39,6 +41,10 @@ export default {
         },
         value: {
             type: [String, Number],
+        },
+        textFontSize: {
+            type: String,
+            default: '1rem',
         },
         textColor: {
             type: String,
@@ -83,6 +89,13 @@ export default {
             vo.valueTrans = vo.value
 
             return ''
+        },
+
+        useTextFontSize: function() {
+            let vo = this
+            let s = vo.textFontSize
+            s = replace(s, ';', '')
+            return `font-size:${s};`
         },
 
         useTextColor: function() {

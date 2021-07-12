@@ -40,6 +40,7 @@
 
                 <WTextCore
                     :type="type"
+                    :textFontSize="textFontSize"
                     :textColor="textColor"
                     :textAlign="textAlign"
                     :placeholder="placeholder"
@@ -72,6 +73,7 @@ import WTextCore from './WTextCore.vue'
  * @vue-prop {Boolean} [shadow=false] 輸入是否為陰影模式，預設false
  * @vue-prop {String} [type='any'] 輸入文字框類型字串，預設'any'
  * @vue-prop {String|Number} value 輸入文字框值
+ * @vue-prop {String} [textFontSize='1rem'] 輸入文字大小字串，預設'1rem'
  * @vue-prop {String} [textColor='black'] 輸入文字顏色字串，預設'black'
  * @vue-prop {String} [textAlign='left'] 輸入文字左右對齊字串，預設'left'
  * @vue-prop {String} [leftIcon=''] 輸入左側圖標字串，可為mdi,md,fa代號或mdi/js路徑，預設''
@@ -133,6 +135,10 @@ export default {
         },
         value: {
             type: [String, Number],
+        },
+        textFontSize: {
+            type: String,
+            default: '1rem',
         },
         textColor: {
             type: String,

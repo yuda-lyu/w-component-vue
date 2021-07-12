@@ -32,6 +32,8 @@
             <WTextCore
                 ref="inp"
                 :style="{'width':width+'px'}"
+                :textFontSize="textFontSize"
+                :textColor="textColor"
                 :textAlign="'center'"
                 :height="height"
                 :editable="editable"
@@ -58,6 +60,8 @@ import WTextCore from './WTextCore.vue'
  * @vue-prop {Number} [width=70] 輸入框寬度，單位為px，預設70
  * @vue-prop {Number} [value=0] 輸入整數值數字，預設0
  * @vue-prop {Number} [valueMax=null] 輸入最大整數值數字，預設null
+ * @vue-prop {String} [textFontSize='1rem'] 輸入文字大小字串，預設'1rem'
+ * @vue-prop {String} [textColor='black'] 輸入文字顏色字串，預設'black'
  * @vue-prop {String} [leftIconTooltip='減少'] 輸入框內左側圖標提示文字字串，預設'減少'
  * @vue-prop {String} [rightIconTooltip='增加'] 輸入框內右側圖標提示文字字串，預設'增加'
  * @vue-prop {String} [buttonColor='deep-orange lighten-2'] 輸入框內圖標按鈕顏色字串，預設'deep-orange lighten-2'
@@ -84,6 +88,14 @@ export default {
         valueMax: {
             type: Number,
             default: null,
+        },
+        textFontSize: {
+            type: String,
+            default: '1rem',
+        },
+        textColor: {
+            type: String,
+            default: 'black',
         },
         leftIconTooltip: {
             type: String,

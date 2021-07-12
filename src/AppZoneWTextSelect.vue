@@ -24,6 +24,20 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-text-select'"
+                    :casename="'textFontSize'"
+                ></demolink>
+
+                <w-text-select
+                    :textFontSize="'0.8rem'"
+                    :items="WTextSelect.objItems"
+                    v-model="WTextSelect.objValue"
+                ></w-text-select>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-text-select'"
                     :casename="'textColor & expansionIconColor'"
                 ></demolink>
 
@@ -163,14 +177,14 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-text-select'"
-                    :casename="'itemFontSize & defItemHeight & width'"
+                    :casename="'itemTextFontSize & defItemHeight & width'"
                 ></demolink>
 
                 <w-text-select
                     style="width:250px;"
                     :leftIcon="mdiCheckUnderlineCircle"
                     :defItemHeight="48"
-                    :itemFontSize="'1rem'"
+                    :itemTextFontSize="'1rem'"
                     :items="WTextSelect.objItems"
                     v-model="WTextSelect.objValue"
                 ></w-text-select>
@@ -574,7 +588,7 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-text-select'"
-                    :casename="'border & itemFontSize & defItemHeight & width'"
+                    :casename="'border & itemTextFontSize & defItemHeight & width'"
                 ></demolink>
 
                 <w-text-select
@@ -586,7 +600,7 @@
                     :backgroundColorFocus="'orange lighten-5'"
                     :leftIcon="mdiCheckUnderlineCircle"
                     :defItemHeight="48"
-                    :itemFontSize="'1rem'"
+                    :itemTextFontSize="'1rem'"
                     :items="WTextSelect.objItems"
                     v-model="WTextSelect.objValue"
                 ></w-text-select>

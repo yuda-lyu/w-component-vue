@@ -24,6 +24,20 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-text-suggest'"
+                    :casename="'textFontSize'"
+                ></demolink>
+
+                <w-text-suggest
+                    :textFontSize="'0.8rem'"
+                    :items="WTextSuggest.objItems"
+                    v-model="WTextSuggest.objValue"
+                ></w-text-suggest>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-text-suggest'"
                     :casename="'textColor & expansionIconColor'"
                 ></demolink>
 
@@ -193,13 +207,13 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-text-suggest'"
-                    :casename="'itemFontSize & defItemHeight'"
+                    :casename="'itemTextFontSize & defItemHeight'"
                 ></demolink>
 
                 <w-text-suggest
                     :leftIcon="mdiCheckUnderlineCircle"
                     :defItemHeight="48"
-                    :itemFontSize="'1rem'"
+                    :itemTextFontSize="'1rem'"
                     :items="WTextSuggest.objItems"
                     v-model="WTextSuggest.objValue"
                 ></w-text-suggest>
@@ -646,7 +660,7 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-text-suggest'"
-                    :casename="'border & itemFontSize & defItemHeight'"
+                    :casename="'border & itemTextFontSize & defItemHeight'"
                 ></demolink>
 
                 <w-text-suggest
@@ -657,7 +671,7 @@
                     :backgroundColorFocus="'orange lighten-5'"
                     :leftIcon="mdiCheckUnderlineCircle"
                     :defItemHeight="48"
-                    :itemFontSize="'1rem'"
+                    :itemTextFontSize="'1rem'"
                     :items="WTextSuggest.objItems"
                     v-model="WTextSuggest.objValue"
                 ></w-text-suggest>
