@@ -85,7 +85,7 @@
     </script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.1.35/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.1.36/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -136,16 +136,17 @@
                 style="cursor:pointer;"
                 title="open for copy link to view component"
                 onclick="window.open('//yuda-lyu.github.io/w-component-vue/examples/app.html?cmp='+this.innerText,'_blank')"
-            >w-timeday-range</span>
+            >w-text-select</span>
         </div>
         <div class="bk">
-            <div class="item">dayBetween</div>
+            <div class="item">leftIcon &amp; leftIconSize</div>
 
-            <w-timeday-range
-                :day-between="'to'"
-                :day-start.sync="WTimedayRange.dayStart"
-                :day-end.sync="WTimedayRange.dayEnd"
-            ></w-timeday-range>
+            <w-text-select
+                :left-icon="'mdi-check-underline-circle'"
+                :left-icon-size="20"
+                :items="WTextSelect.objItems"
+                v-model="WTextSelect.objValue"
+            ></w-text-select>
         </div>
     </v-app>
 
@@ -159,41 +160,77 @@
     vuetify: new Vuetify(),
     data: function() {
       return {
-        WTimedayRange: {
-          dayStart: "2019-01-01",
-          dayEnd: "2019-02-01"
+        WTextSelect: {
+          objItems: [
+            {
+              key: "orange",
+              text: "橘子(orange)"
+            },
+            {
+              key: "banana",
+              text: "香蕉(banana)"
+            },
+            {
+              key: "strawberry",
+              text: "草莓(strawberry)"
+            }
+          ],
+          objValue: {
+            key: "banana",
+            text: "香蕉(banana)"
+          },
+          objItemsKeyText: [
+            {
+              key: "orange",
+              name: "橘子(orange)"
+            },
+            {
+              key: "banana",
+              name: "香蕉(banana)"
+            },
+            {
+              key: "strawberry",
+              name: "草莓(strawberry)"
+            }
+          ],
+          objValueKeyText: {
+            key: "banana",
+            name: "香蕉(banana)"
+          },
+          objItemsLarge: (function() {
+            let vs = [];
+            vs.push({
+              key: "banana:1",
+              text: "香蕉(banana:1)"
+            });
+            for (let i = 2; i <= 10000; i++) {
+              vs.push({
+                key: "banana:" + i,
+                text: "香蕉(banana:" + i + ")"
+              });
+            }
+            return vs;
+          })(),
+          objValueLarge: {
+            key: "banana:1",
+            text: "香蕉(banana:1)"
+          },
+          strItems: ["orange(橘子)", "banana(香蕉)", "strawberry(草莓)"],
+          strValue: "strawberry(草莓)"
         },
         actions: [
-          //pickColor測試不到
-
-          //起始時間
           {
             mode: "eleclick",
-            selector: 'div[TimedayCore="day"]',
-            nth: 0
+            selector: 'input[type="text"]'
           },
           {
             mode: "eleclick",
-            selector: 'button[type="button"]',
-            nth: 11
-          },
-
-          //結束時間
-          {
-            mode: "eleclick",
-            selector: 'div[TimedayCore="day"]',
-            nth: 1
+            selector: 'div[tabindex="0"]',
+            nth: 2
           },
           {
-            mode: "eleclick",
-            selector: 'button[type="button"]',
-            nth: 14
-          },
-
-          {
-            mode: "elemove",
-            selector: 'div[ShellEllipse="leftIcon"]',
-            nth: -1
+            mode: "keypress",
+            key: "Tab"
           }
         ]
       };
@@ -202,7 +239,32 @@
       return {};
     },
     computed: {},
-    methods: {}
+    methods: {
+      evUpdateFocused: function(item, kitem) {
+        console.log("evUpdateFocused", "item=", item, "kitem", kitem);
+      },
+      evUpdateShowPanel: function(item, kitem) {
+        console.log("evUpdateShowPanel", "item=", item, "kitem", kitem);
+      },
+      evBlur: function(item, kitem) {
+        console.log("evBlur", "item=", item, "kitem", kitem);
+      },
+      evInput: function(item, kitem) {
+        console.log("evInput", "item=", item, "kitem", kitem);
+      },
+      // evEnter: function(item, kitem) {
+      //     console.log('evEnter', 'item=', item, 'kitem', kitem)
+      // },
+      evClickItem: function(item, kitem) {
+        console.log("evClickItem", "item=", item, "kitem", kitem);
+      },
+      evClickLeft: function() {
+        console.log("evClickLeft");
+      },
+      evClickRight: function() {
+        console.log("evClickRight");
+      }
+    }
   });
     </script>
 </body>

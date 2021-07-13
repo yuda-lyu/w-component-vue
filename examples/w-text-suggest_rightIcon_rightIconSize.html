@@ -85,7 +85,7 @@
     </script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.1.35/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.1.36/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -136,16 +136,17 @@
                 style="cursor:pointer;"
                 title="open for copy link to view component"
                 onclick="window.open('//yuda-lyu.github.io/w-component-vue/examples/app.html?cmp='+this.innerText,'_blank')"
-            >w-timeminute-range</span>
+            >w-text-suggest</span>
         </div>
         <div class="bk">
-            <div class="item">minuteBetween</div>
+            <div class="item">rightIcon &amp; rightIconSize</div>
 
-            <w-timeminute-range
-                :minute-between="'to'"
-                :minute-start.sync="WTimeminuteRange.minuteStart"
-                :minute-end.sync="WTimeminuteRange.minuteEnd"
-            ></w-timeminute-range>
+            <w-text-suggest
+                :right-icon="'mdi-check-underline-circle'"
+                :right-icon-size="20"
+                :items="WTextSuggest.objItems"
+                v-model="WTextSuggest.objValue"
+            ></w-text-suggest>
         </div>
     </v-app>
 
@@ -159,65 +160,88 @@
     vuetify: new Vuetify(),
     data: function() {
       return {
-        WTimeminuteRange: {
-          minuteStart: "2019-01-01T10:00:00",
-          minuteEnd: "2019-02-01T12:00:00"
+        WTextSuggest: {
+          focused: false,
+          showPanel: false,
+          objItems: [
+            {
+              key: "orange",
+              text: "橘子(orange)"
+            },
+            {
+              key: "banana",
+              text: "香蕉(banana)"
+            },
+            {
+              key: "strawberry",
+              text: "草莓(strawberry)"
+            }
+          ],
+          objValue: {
+            key: "banana",
+            text: "香蕉(banana)"
+          },
+          objItemsKeyText: [
+            {
+              key: "orange",
+              name: "橘子(orange)"
+            },
+            {
+              key: "banana",
+              name: "香蕉(banana)"
+            },
+            {
+              key: "strawberry",
+              name: "草莓(strawberry)"
+            }
+          ],
+          objValueKeyText: {
+            key: "banana",
+            name: "香蕉(banana)"
+          },
+          objItemsLarge: (function() {
+            let vs = [];
+            vs.push({
+              key: "banana:1",
+              text: "香蕉(banana:1)"
+            });
+            for (let i = 2; i <= 10000; i++) {
+              vs.push({
+                key: "banana:" + i,
+                text: "香蕉(banana:" + i + ")"
+              });
+            }
+            return vs;
+          })(),
+          objValueLarge: {
+            key: "banana:1",
+            text: "香蕉(banana:1)"
+          },
+          strItems: ["orange(橘子)", "banana(香蕉)", "strawberry(草莓)"],
+          strValue: "strawberry(草莓)"
         },
         actions: [
-          //pickColor測試不到
-
-          //起始時間
           {
             mode: "eleclick",
-            selector: 'div[TimedayCore="day"]',
-            nth: 0
+            selector: 'input[type="text"]'
           },
-          {
-            mode: "eleclick",
-            selector: 'button[type="button"]',
-            nth: 11
-          },
-          {
-            mode: "eleclick",
-            selector: 'input[type="text"]',
-            nth: 0
-          },
-          {
-            mode: "eleclick",
-            selector: "div.v-list-item__title",
-            nth: 1
-          },
-
-          //結束時間
-          {
-            mode: "eleclick",
-            selector: 'div[TimedayCore="day"]',
-            nth: 1
-          },
-          {
-            mode: "eleclick",
-            selector: 'button[type="button"]',
-            nth: 14
-          },
-          {
-            mode: "eleclick",
-            selector: 'input[type="text"]',
-            nth: 1
-          },
-          {
-            mode: "eleclick",
-            selector: "div.v-list-item__title",
-            nth: 1
-          },
-
           {
             mode: "keypress",
-            key: "Tab"
+            key: "End"
           },
           {
-            mode: "elemove",
-            selector: 'div[ShellEllipse="leftIcon"]',
-            nth: -1
+            mode: "keypress",
+            key: "Backspace",
+            count: 15
+          },
+          {
+            mode: "eleclick",
+            selector: 'li[role="option"]',
+            nth: 2
+          },
+          {
+            mode: "eleclick",
+            selector: "div.bk"
           }
         ]
       };
@@ -226,7 +250,46 @@
       return {};
     },
     computed: {},
-    methods: {}
+    methods: {
+      evUpdateFocused: function(item, kitem) {
+        console.log("evUpdateFocused", "item=", item, "kitem", kitem);
+      },
+      evUpdateShowPanel: function(item, kitem) {
+        console.log("evUpdateShowPanel", "item=", item, "kitem", kitem);
+      },
+      evBlur: function(item, kitem) {
+        console.log("evBlur", "item=", item, "kitem", kitem);
+      },
+      evInput: function(item, kitem) {
+        console.log("evInput", "item=", item, "kitem", kitem);
+      },
+      evEnter: function(item, kitem) {
+        console.log("evEnter", "item=", item, "kitem", kitem);
+      },
+      evClickItem: function(item, kitem) {
+        console.log("evClickItem", "item=", item, "kitem", kitem);
+      },
+      evClickLeft: function() {
+        console.log("evClickLeft");
+      },
+      evClickRight: function() {
+        console.log("evClickRight");
+      },
+      hidePanelWhenEnter: function() {
+        // console.log('hidePanelWhenEnter')
+
+        let vo = this;
+
+        //blur, 要先將text的焦點取消, 先觸發掉focused變更事件(此會再觸發changeContent內容變更事件, 故會觸發顯示panel)
+        document.activeElement.blur();
+
+        //delay hide, 因enter觸發blur後會觸發changeContent內容變更事件, 故得等顯示事件完成才給予showPanel=false, 100ms是經驗值, 使其完整觸發隱藏panel流程
+        setTimeout(function() {
+          //hide
+          vo.WTextSuggest.showPanel = false;
+        }, 100);
+      }
+    }
   });
     </script>
 </body>
