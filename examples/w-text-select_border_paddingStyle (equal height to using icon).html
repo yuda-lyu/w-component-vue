@@ -85,7 +85,7 @@
     </script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.1.36/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.1.37/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -141,7 +141,7 @@
         <div class="bk">
             <div
                 class="item"
-            >border &amp; rightIconColor &amp; rightIconColorHover &amp; rightIconColorFocus &amp; rightIconTooltip</div>
+            >border &amp; paddingStyle (equal height to using icon)</div>
 
             <w-text-select
                 :shadow="false"
@@ -149,11 +149,7 @@
                 :border-color-hover="'orange'"
                 :border-color-focus="'orange darken-2'"
                 :background-color-focus="'orange lighten-5'"
-                :right-icon="'mdi-check-underline-circle'"
-                :right-icon-color="'orange lighten-1'"
-                :right-icon-color-hover="'orange accent-3'"
-                :right-icon-color-focus="'orange darken-2'"
-                :right-icon-tooltip="'show tooltip'"
+                :padding-style="{v:4,h:15}"
                 :items="WTextSelect.objItems"
                 v-model="WTextSelect.objValue"
             ></w-text-select>
