@@ -10,6 +10,7 @@
             :borderRadius="borderRadius"
             :shadow="shadow"
             :leftIcon="icon"
+            :leftIconSize="iconSize"
             :leftIconColor="iconColor"
             :leftIconColorHover="iconColorHover"
             :leftIconColorFocus="iconColorFocus"
@@ -29,7 +30,7 @@
 
             <WTimedayRangeCore
                 :pickColor="pickColor"
-                :dayBetween="dayBetween"
+                :between="between"
                 :dayStart="dayStart"
                 :dayEnd="dayEnd"
                 :editable="editable"
@@ -55,8 +56,9 @@ import WTimedayRangeCore from './WTimedayRangeCore.vue'
  * @vue-prop {Boolean} [shadow=true] 輸入是否為陰影模式，預設true
  * @vue-prop {String} [dayStart=''] 輸入起始日期字串，預設''
  * @vue-prop {String} [dayEnd=''] 輸入結束日期字串，預設''
- * @vue-prop {String} [dayBetween='至'] 輸入兩日期連接文字字串，預設'至'
+ * @vue-prop {String} [between='to'] 輸入兩日期連接文字字串，預設'to'
  * @vue-prop {String} [icon=mdiClockOutline] 輸入圖標字串，可為mdi,md,fa代號或mdi/js路徑，預設mdiClockOutline
+ * @vue-prop {Number} [iconSize=24] 輸入左側圖標大小，單位為px，預設24
  * @vue-prop {String} [iconColor='deep-orange lighten-2'] 輸入框外左側圖標顏色字串，預設'deep-orange lighten-2'
  * @vue-prop {String} [iconColorHover='deep-orange lighten-1'] 輸入滑鼠移入時框外左側圖標顏色字串，預設'deep-orange lighten-1'
  * @vue-prop {String} [iconColorFocus='deep-orange lighten-1'] 輸入取得焦點時框外左側圖標顏色字串，預設'deep-orange lighten-1'
@@ -104,13 +106,17 @@ export default {
             type: String,
             default: '',
         },
-        dayBetween: {
+        between: {
             type: String,
-            default: '至'
+            default: 'to'
         },
         icon: {
             type: String,
             default: mdiClockOutline,
+        },
+        iconSize: {
+            type: Number,
+            default: 24,
         },
         iconColor: {
             type: String,

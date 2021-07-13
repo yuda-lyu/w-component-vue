@@ -10,6 +10,7 @@
             :borderRadius="borderRadius"
             :shadow="shadow"
             :leftIcon="icon"
+            :leftIconSize="iconSize"
             :leftIconColor="iconColor"
             :leftIconColorHover="iconColorHover"
             :leftIconColorFocus="iconColorFocus"
@@ -60,6 +61,7 @@ import WTimeminuteCore from './WTimeminuteCore.vue'
  * @vue-prop {Number} [minuteInter=15] 輸入每小時的切分區間，單位為分鐘，預設15
  * @vue-prop {Array} [minutesCustom=null] 輸入自訂可選的時分點字串陣列，單位為時分(00:00)，若給予，則上述hourMin,hourMax,minuteInter自動失效，預設null
  * @vue-prop {String} [icon=mdiClockOutline] 輸入圖標字串，可為mdi,md,fa代號或mdi/js路徑，預設mdiClockOutline
+ * @vue-prop {Number} [iconSize=24] 輸入左側圖標大小，單位為px，預設24
  * @vue-prop {String} [iconColor='deep-orange lighten-2'] 輸入框外左側圖標顏色字串，預設'deep-orange lighten-2'
  * @vue-prop {String} [iconColorHover='deep-orange lighten-1'] 輸入滑鼠移入時框外左側圖標顏色字串，預設'deep-orange lighten-1'
  * @vue-prop {String} [iconColorFocus='deep-orange lighten-1'] 輸入取得焦點時框外左側圖標顏色字串，預設'deep-orange lighten-1'
@@ -122,6 +124,10 @@ export default {
         icon: {
             type: String,
             default: mdiClockOutline,
+        },
+        iconSize: {
+            type: Number,
+            default: 24,
         },
         iconColor: {
             type: String,

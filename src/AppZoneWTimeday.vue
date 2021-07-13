@@ -57,6 +57,20 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-timeday'"
+                    :casename="'icon & iconSize'"
+                ></demolink>
+
+                <w-timeday
+                    :icon="mdiCheckUnderlineCircle"
+                    :iconSize="20"
+                    v-model="WTimeday.day"
+                ></w-timeday>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-timeday'"
                     :casename="'iconColor & iconColorFoucs'"
                 ></demolink>
 

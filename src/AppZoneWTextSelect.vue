@@ -24,6 +24,34 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-text-select'"
+                    :casename="'paddingStyle (thin style)'"
+                ></demolink>
+
+                <w-text-select
+                    :paddingStyle="{v:0,h:10}"
+                    :items="WTextSelect.objItems"
+                    v-model="WTextSelect.objValue"
+                ></w-text-select>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-text-select'"
+                    :casename="'paddingStyle (equal height to using icon)'"
+                ></demolink>
+
+                <w-text-select
+                    :paddingStyle="{v:4,h:15}"
+                    :items="WTextSelect.objItems"
+                    v-model="WTextSelect.objValue"
+                ></w-text-select>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-text-select'"
                     :casename="'textFontSize'"
                 ></demolink>
 
@@ -81,6 +109,21 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-text-select'"
+                    :casename="'leftIcon & leftIconSize'"
+                ></demolink>
+
+                <w-text-select
+                    :leftIcon="mdiCheckUnderlineCircle"
+                    :leftIconSize="20"
+                    :items="WTextSelect.objItems"
+                    v-model="WTextSelect.objValue"
+                ></w-text-select>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-text-select'"
                     :casename="'leftIcon & leftIconColor & leftIconColorHover & leftIconColorFocus & leftIconTooltip'"
                 ></demolink>
 
@@ -90,6 +133,21 @@
                     :leftIconColorHover="'orange accent-3'"
                     :leftIconColorFocus="'orange darken-2'"
                     :leftIconTooltip="'show tooltip'"
+                    :items="WTextSelect.objItems"
+                    v-model="WTextSelect.objValue"
+                ></w-text-select>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-text-select'"
+                    :casename="'rightIcon & rightIconSize'"
+                ></demolink>
+
+                <w-text-select
+                    :rightIcon="mdiCheckUnderlineCircle"
+                    :rightIconSize="20"
                     :items="WTextSelect.objItems"
                     v-model="WTextSelect.objValue"
                 ></w-text-select>

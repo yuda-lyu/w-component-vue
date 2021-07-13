@@ -38,11 +38,11 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-timeday-range'"
-                    :casename="'dayBetween'"
+                    :casename="'between'"
                 ></demolink>
 
                 <w-timeday-range
-                    :dayBetween="'to'"
+                    :between="'至'"
                     :dayStart.sync="WTimedayRange.dayStart"
                     :dayEnd.sync="WTimedayRange.dayEnd"
                 ></w-timeday-range>
@@ -71,6 +71,21 @@
 
                 <w-timeday-range
                     :icon="'fas fa-clipboard-check'"
+                    :dayStart.sync="WTimedayRange.dayStart"
+                    :dayEnd.sync="WTimedayRange.dayEnd"
+                ></w-timeday-range>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-timeday-range'"
+                    :casename="'icon & iconSize'"
+                ></demolink>
+
+                <w-timeday-range
+                    :icon="mdiCheckUnderlineCircle"
+                    :iconSize="20"
                     :dayStart.sync="WTimedayRange.dayStart"
                     :dayEnd.sync="WTimedayRange.dayEnd"
                 ></w-timeday-range>
@@ -174,7 +189,7 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-timeday-range'"
-                    :casename="'border & dayBetween'"
+                    :casename="'border & between'"
                 ></demolink>
 
                 <w-timeday-range
@@ -183,7 +198,7 @@
                     :borderColorHover="'orange'"
                     :borderColorFocus="'orange darken-2'"
                     :backgroundColorFocus="'orange lighten-5'"
-                    :dayBetween="'to'"
+                    :between="'至'"
                     :dayStart.sync="WTimedayRange.dayStart"
                     :dayEnd.sync="WTimedayRange.dayEnd"
                 ></w-timeday-range>

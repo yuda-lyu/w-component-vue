@@ -19,7 +19,7 @@
                 <div style="display:flex; align-items:center;">
 
                     <div
-                        :style="`width:100%; height:${height}px; line-height:${height}px; color:${useTextColor}; ${useTextFontSize} vertical-align:middle; white-space:nowrap; text-overflow:ellipsis; cursor:pointer; outline:none;`"
+                        :style="`width:100%; _height:${height}px; _line-height:${height}px; color:${useTextColor}; ${useTextFontSize} vertical-align:middle; white-space:nowrap; text-overflow:ellipsis; cursor:pointer; outline:none;`"
                         tabindex="0"
                         @focus="focusText"
                         v-if="mode==='select'"
@@ -52,12 +52,12 @@
                         v-if="mode==='suggest'"
                     ></WTextCore>
 
-                    <div style="padding:0px 0px 0px 5px;">
+                    <div style="">
                         <div :style="`transform:rotate(${getRotateDeg+90}deg); transition:all 0.25s; cursor:pointer;`">
                             <WIcon
                                 :icon="expansionIcon"
                                 :color="uesExpansionIconColor"
-                                :size="20"
+                                :size="expansionIconSize"
                             ></WIcon>
                         </div>
                     </div>
@@ -131,9 +131,9 @@ import WIcon from './WIcon.vue'
  * @vue-prop {String} [mode='suggest'] 輸入模式字串，可有'suggest'與'select'，suggest代表可查詢並不綁定選項的下拉選單，select代表只能選擇的下拉選單，預設'suggest'
  * @vue-prop {Object|String|Number} value 輸入初始項目物件
  * @vue-prop {Array} [items=[]] 輸入項目陣列，預設[]
- * @vue-prop {Number} [height=28] 輸入項目高度數字，單位為px，預設28
+ * @vue-prop {Number|String} [height=''] 輸入項目高度數字或字串，數字單位為px，預設''
  * @vue-prop {String} [keyText='text'] 輸入取項目物件內之顯示用文字鍵值字串，預設'text'
- * @vue-prop {String} [textFontSize='0.9rem'] 輸入文字大小字串，預設'0.9rem'
+ * @vue-prop {String} [textFontSize='0.85rem'] 輸入文字大小字串，預設'0.85rem'
  * @vue-prop {String} [textColor='black'] 輸入文字顏色字串，預設'black'
  * @vue-prop {String} [textAlign='left'] 輸入文字左右對齊字串，預設'left'
  * @vue-prop {String} [itemTextFontSize='0.8rem'] 輸入項目顯示文字大小字串，預設'0.8rem'
@@ -144,6 +144,7 @@ import WIcon from './WIcon.vue'
  * @vue-prop {Object} [itemPaddingStyle={v:12,h:16}] 輸入內寬距離設定物件，可用鍵值為v、h、left、right、top、bottom，v代表同時設定top與bottom，h代表設定left與right，若有重複設定時後面鍵值會覆蓋前面，各鍵值為寬度數字，單位為px，預設{v:12,h:16}
  * @vue-prop {String} [expansionIcon=mdiPlay] 輸入右側圖標字串，可為mdi,md,fa代號或mdi/js路徑，預設使用mdi的圖標(mdiPlay)
  * @vue-prop {String} [expansionIconColor='grey'] 輸入右側圖標顏色字串，預設'grey'
+ * @vue-prop {Number} [expansionIconSize=18] 輸入右側圖標尺寸數字，單位為px，預設18
  * @vue-prop {Number} [maxHeight=200] 輸入顯示區最大高度數字，單位為px，預設200
  * @vue-prop {Number} [minWidth=null] 輸入最小寬度，單位為px，預設null
  * @vue-prop {Number} [maxWidth=null] 輸入最大寬度，單位為px，預設null
@@ -176,8 +177,8 @@ export default {
             default: () => [],
         },
         height: {
-            type: Number,
-            default: 28,
+            type: [Number, String],
+            default: '',
         },
         keyText: {
             type: String,
@@ -185,7 +186,7 @@ export default {
         },
         textFontSize: {
             type: String,
-            default: '0.9rem',
+            default: '0.85rem',
         },
         textColor: {
             type: String,
@@ -231,6 +232,10 @@ export default {
         expansionIconColor: {
             type: String,
             default: 'grey',
+        },
+        expansionIconSize: {
+            type: Number,
+            default: 18,
         },
         maxHeight: {
             type: Number,

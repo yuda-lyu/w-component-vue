@@ -14,11 +14,13 @@
             :borderColorFocus="'transparent'"
             :iconShiftOuter="0"
             :leftIcon="mdiMinusCircle"
+            :leftIconSize="buttonIconSize"
             :leftIconColor="buttonColor"
             :leftIconColorHover="buttonColorHover"
             :leftIconColorFocus="buttonColorFocus"
             :leftIconTooltip="leftIconTooltip"
             :rightIcon="mdiPlusCircle"
+            :rightIconSize="buttonIconSize"
             :rightIconColor="buttonColor"
             :rightIconColorHover="buttonColorHover"
             :rightIconColorFocus="buttonColorFocus"
@@ -64,6 +66,7 @@ import WTextCore from './WTextCore.vue'
  * @vue-prop {String} [textColor='black'] 輸入文字顏色字串，預設'black'
  * @vue-prop {String} [leftIconTooltip='減少'] 輸入框內左側圖標提示文字字串，預設'減少'
  * @vue-prop {String} [rightIconTooltip='增加'] 輸入框內右側圖標提示文字字串，預設'增加'
+ * @vue-prop {Number} [buttonIconSize=24] 輸入框內圖標大小，單位為px，預設24
  * @vue-prop {String} [buttonColor='deep-orange lighten-2'] 輸入框內圖標按鈕顏色字串，預設'deep-orange lighten-2'
  * @vue-prop {String} [buttonColorHover='deep-orange lighten-1'] 輸入滑鼠移入時框內圖標按鈕顏色字串，預設'deep-orange lighten-1'
  * @vue-prop {String} [buttonColorFocus='deep-orange lighten-1'] 輸入取得焦點時框內圖標按鈕Focus顏色字串，預設'deep-orange lighten-1'
@@ -104,6 +107,10 @@ export default {
         rightIconTooltip: {
             type: String,
             default: '增加',
+        },
+        buttonIconSize: {
+            type: Number,
+            default: 24,
         },
         buttonColor: {
             type: String,

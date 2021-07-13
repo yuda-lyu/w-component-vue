@@ -23,6 +23,7 @@
                         <div ShellEllipse="leftIcon" v-on="{...ttShellEllipseLeft}">
                             <WIcon
                                 :icon="leftIcon"
+                                :size="leftIconSize"
                                 :color="useLeftIconColor"
                             ></WIcon>
                         </div>
@@ -54,6 +55,7 @@
                         <div ShellEllipse="rightIcon" v-on="{...ttShellEllipseRight}">
                             <WIcon
                                 :icon="rightIcon"
+                                :size="rightIconSize"
                                 :color="useRightIconColor"
                             ></WIcon>
                         </div>
@@ -88,11 +90,13 @@ import WIcon from './WIcon.vue'
  * @vue-prop {String} [borderColorFocus='transparent'] 輸入取得焦點時邊框顏色字串，預設'transparent'
  * @vue-prop {Boolean} [shadow=true] 輸入是否為陰影模式，預設true
  * @vue-prop {String} [leftIcon=''] 輸入左側圖標字串，可為mdi,md,fa代號或mdi/js路徑，預設''
+ * @vue-prop {Number} [leftIconSize=24] 輸入左側圖標大小，單位為px，預設24
  * @vue-prop {String} [leftIconColor='deep-orange lighten-2'] 輸入左側圖標顏色字串，預設'deep-orange lighten-2'
  * @vue-prop {String} [leftIconColorHover='deep-orange lighten-1'] 輸入滑鼠移入時左側圖標顏色字串，預設'deep-orange lighten-1'
  * @vue-prop {String} [leftIconColorFocus='deep-orange lighten-1'] 輸入取得焦點時左側圖標顏色字串，預設'deep-orange lighten-1'
  * @vue-prop {String} [leftIconTooltip=''] 輸入左側圖標提示文字字串，預設''
  * @vue-prop {String} [rightIcon=''] 輸入右側圖標字串，可為mdi,md,fa代號或mdi/js路徑，預設''
+ * @vue-prop {Number} [rightIconSize=24] 輸入右側圖標大小，單位為px，預設24
  * @vue-prop {String} [rightIconColor='deep-orange lighten-2'] 輸入右側圖標顏色字串，預設'deep-orange lighten-2'
  * @vue-prop {String} [rightIconColorHover='deep-orange lighten-1'] 輸入滑鼠移入時右側圖標顏色字串，預設'deep-orange lighten-1'
  * @vue-prop {String} [rightIconColorFocus='deep-orange lighten-1'] 輸入取得焦點時右側圖標顏色字串，預設'deep-orange lighten-1'
@@ -157,6 +161,10 @@ export default {
             type: String,
             default: '',
         },
+        leftIconSize: {
+            type: Number,
+            default: 24,
+        },
         leftIconColor: {
             type: String,
             default: 'deep-orange lighten-2',
@@ -176,6 +184,10 @@ export default {
         rightIcon: {
             type: String,
             default: '',
+        },
+        rightIconSize: {
+            type: Number,
+            default: 24,
         },
         rightIconColor: {
             type: String,

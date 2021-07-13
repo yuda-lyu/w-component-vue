@@ -15,11 +15,13 @@
                 :borderRadius="borderRadius"
                 :shadow="shadow"
                 :leftIcon="leftIcon"
+                :leftIconSize="leftIconSize"
                 :leftIconColor="leftIconColor"
                 :leftIconColorHover="leftIconColorHover"
                 :leftIconColorFocus="leftIconColorFocus"
                 :leftIconTooltip="leftIconTooltip"
                 :rightIcon="rightIcon"
+                :rightIconSize="rightIconSize"
                 :rightIconColor="rightIconColor"
                 :rightIconColorHover="rightIconColorHover"
                 :rightIconColorFocus="rightIconColorFocus"
@@ -77,11 +79,13 @@ import WTextCore from './WTextCore.vue'
  * @vue-prop {String} [textColor='black'] 輸入文字顏色字串，預設'black'
  * @vue-prop {String} [textAlign='left'] 輸入文字左右對齊字串，預設'left'
  * @vue-prop {String} [leftIcon=''] 輸入左側圖標字串，可為mdi,md,fa代號或mdi/js路徑，預設''
+ * @vue-prop {Number} [leftIconSize=24] 輸入左側圖標大小，單位為px，預設24
  * @vue-prop {String} [leftIconColor='blue'] 輸入左側圖標顏色字串，預設'blue'
  * @vue-prop {String} [leftIconColorHover='blue darken-1'] 輸入滑鼠移入時左側圖標顏色字串，預設'blue darken-1'
  * @vue-prop {String} [leftIconColorFocus='blue darken-1'] 輸入取得焦點時左側圖標顏色字串，預設'blue darken-1'
  * @vue-prop {String} [leftIconTooltip=''] 輸入左側圖標提示文字字串，預設''
  * @vue-prop {String} [rightIcon=''] 輸入右側圖標字串，可為mdi,md,fa代號或mdi/js路徑，預設''
+ * @vue-prop {Number} [rightIconSize=24] 輸入右側圖標大小，單位為px，預設24
  * @vue-prop {String} [rightIconColor='blue'] 輸入右側圖標顏色字串，預設'blue'
  * @vue-prop {String} [rightIconColorHover='blue darken-1'] 輸入滑鼠移入時右側圖標顏色字串，預設'blue darken-1'
  * @vue-prop {String} [rightIconColorFocus='blue darken-1'] 輸入取得焦點時右側圖標顏色字串，預設'blue darken-1'
@@ -152,6 +156,10 @@ export default {
             type: String,
             default: '',
         },
+        leftIconSize: {
+            type: Number,
+            default: 24,
+        },
         leftIconColor: {
             type: String,
             default: 'blue',
@@ -171,6 +179,10 @@ export default {
         rightIcon: {
             type: String,
             default: '',
+        },
+        rightIconSize: {
+            type: Number,
+            default: 24,
         },
         rightIconColor: {
             type: String,

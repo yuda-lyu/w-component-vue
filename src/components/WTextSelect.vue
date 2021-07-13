@@ -7,11 +7,13 @@
             :borderRadius="borderRadius"
             :shadow="shadow"
             :leftIcon="leftIcon"
+            :leftIconSize="leftIconSize"
             :leftIconColor="leftIconColor"
             :leftIconColorHover="leftIconColorHover"
             :leftIconColorFocus="leftIconColorFocus"
             :leftIconTooltip="leftIconTooltip"
             :rightIcon="rightIcon"
+            :rightIconSize="rightIconSize"
             :rightIconColor="rightIconColor"
             :rightIconColorHover="rightIconColorHover"
             :rightIconColorFocus="rightIconColorFocus"
@@ -38,7 +40,6 @@
                     :keyText="keyText"
                     :textFontSize="textFontSize"
                     :textColor="textColor"
-                    :height="useHeight"
                     :itemTextFontSize="itemTextFontSize"
                     :itemTextColor="itemTextColor"
                     :itemTextColorHover="itemTextColorHover"
@@ -97,14 +98,13 @@ import WTextSuggestCore from './WTextSuggestCore.vue'
 
 
 /**
- * @vue-prop {Object} [paddingStyle={v:0,h:15}] 輸入內寬距離物件，可用鍵值為v、h、left、right、top、bottom，v代表同時設定top與bottom，h代表設定left與right，若有重複設定時後面鍵值會覆蓋前面，各鍵值為寬度數字，單位為px，預設{v:0,h:15}
+ * @vue-prop {Object} [paddingStyle={v:2,h:15}] 輸入內寬距離物件，可用鍵值為v、h、left、right、top、bottom，v代表同時設定top與bottom，h代表設定left與right，若有重複設定時後面鍵值會覆蓋前面，各鍵值為寬度數字，單位為px，預設{v:2,h:15}
  * @vue-prop {Number} [borderRadius=30] 輸入框圓角度數字，單位為px，預設30
  * @vue-prop {Boolean} [shadow=true] 輸入是否為陰影模式布林值，預設true
- * @vue-prop {Number} [height=30] 輸入項目高度數字，單位為px，預設30
  * @vue-prop {Array} [items=[]] 輸入可選項目陣列，預設[]
  * @vue-prop {Object|String|Number} [value=null] 輸入目前選擇項目，可為物件、字串、數字，預設null
  * @vue-prop {String} [keyText='text'] 輸入取項目物件內之顯示用文字鍵值字串，預設'text'
- * @vue-prop {String} [textFontSize='0.9rem'] 輸入文字大小字串，預設'0.9rem'
+ * @vue-prop {String} [textFontSize='0.85rem'] 輸入文字大小字串，預設'0.85rem'
  * @vue-prop {String} [textColor='black'] 輸入文字顏色字串，預設'black'
  * @vue-prop {String} [itemTextFontSize='0.8rem'] 輸入項目顯示文字大小字串，預設'0.8rem'
  * @vue-prop {String} [itemTextColor='grey darken-3'] 輸入項目文字顏色字串，預設'grey darken-3'
@@ -113,11 +113,13 @@ import WTextSuggestCore from './WTextSuggestCore.vue'
  * @vue-prop {String} [itemBackgroundColorHover='light-blue lighten-5'] 輸入項目背景Hover顏色字串，預設'light-blue lighten-5'
  * @vue-prop {Object} [itemPaddingStyle={v:12,h:16}] 輸入內寬距離設定物件，可用鍵值為v、h、left、right、top、bottom，v代表同時設定top與bottom，h代表設定left與right，若有重複設定時後面鍵值會覆蓋前面，各鍵值為寬度數字，單位為px，預設{v:12,h:16}
  * @vue-prop {String} [leftIcon=''] 輸入左側圖標字串，可為mdi,md,fa代號或mdi/js路徑，預設''
+ * @vue-prop {Number} [leftIconSize=24] 輸入左側圖標大小，單位為px，預設24
  * @vue-prop {String} [leftIconColor='deep-orange lighten-2'] 輸入左側圖標顏色字串，預設'deep-orange lighten-2'
  * @vue-prop {String} [leftIconColorHover='deep-orange lighten-1'] 輸入滑鼠移入時左側圖標顏色字串，預設'deep-orange lighten-1'
  * @vue-prop {String} [leftIconColorFocus='deep-orange lighten-1'] 輸入取得焦點時左側圖標顏色字串，預設'deep-orange lighten-1'
  * @vue-prop {String} [leftIconTooltip=''] 輸入左側圖標提示文字字串，預設''
  * @vue-prop {String} [rightIcon=''] 輸入右側圖標字串，可為mdi,md,fa代號或mdi/js路徑，預設''
+ * @vue-prop {Number} [rightIconSize=24] 輸入右側圖標大小，單位為px，預設24
  * @vue-prop {String} [rightIconColor='deep-orange lighten-2'] 輸入右側圖標顏色字串，預設'deep-orange lighten-2'
  * @vue-prop {String} [rightIconColorHover='deep-orange lighten-1'] 輸入滑鼠移入時右側圖標顏色字串，預設'deep-orange lighten-1'
  * @vue-prop {String} [rightIconColorFocus='deep-orange lighten-1'] 輸入取得焦點時右側圖標顏色字串，預設'deep-orange lighten-1'
@@ -146,7 +148,7 @@ export default {
             type: Object,
             default: () => {
                 return {
-                    v: 0,
+                    v: 2,
                     h: 15,
                 }
             },
@@ -158,10 +160,6 @@ export default {
         shadow: {
             type: Boolean,
             default: true,
-        },
-        height: {
-            type: Number,
-            default: 30,
         },
         items: {
             type: Array,
@@ -177,7 +175,7 @@ export default {
         },
         textFontSize: {
             type: String,
-            default: '0.9rem',
+            default: '0.85rem',
         },
         textColor: {
             type: String,
@@ -216,6 +214,10 @@ export default {
             type: String,
             default: '',
         },
+        leftIconSize: {
+            type: Number,
+            default: 24,
+        },
         leftIconColor: {
             type: String,
             default: 'deep-orange lighten-2',
@@ -235,6 +237,10 @@ export default {
         rightIcon: {
             type: String,
             default: '',
+        },
+        rightIconSize: {
+            type: Number,
+            default: 24,
         },
         rightIconColor: {
             type: String,
@@ -329,20 +335,6 @@ export default {
             vo.focusedTrans = vo.focused
 
             return ''
-        },
-
-        useHeight: function () {
-            //console.log('computed useHeight')
-
-            let vo = this
-
-            //height
-            let height = vo.height - 2 * vo.constBorderWidth
-
-            //max
-            height = Math.max(height, 0)
-
-            return height
         },
 
     },

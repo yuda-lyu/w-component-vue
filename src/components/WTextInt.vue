@@ -11,6 +11,7 @@
             :borderRadius="borderRadius"
             :shadow="shadow"
             :leftIcon="icon"
+            :leftIconSize="iconSize"
             :leftIconColor="iconColor"
             :leftIconColorHover="iconColorHover"
             :leftIconColorFocus="iconColorFocus"
@@ -34,6 +35,7 @@
                     :width="width"
                     :leftIconTooltip="leftIconTooltip"
                     :rightIconTooltip="rightIconTooltip"
+                    :buttonIconSize="buttonIconSize"
                     :buttonColor="buttonColor"
                     :buttonColorHover="buttonColorHover"
                     :buttonColorFocus="buttonColorFocus"
@@ -70,6 +72,7 @@ import WTextIntCore from './WTextIntCore.vue'
  * @vue-prop {String} [textFontSize='1rem'] 輸入文字大小字串，預設'1rem'
  * @vue-prop {String} [textColor='black'] 輸入文字顏色字串，預設'black'
  * @vue-prop {String} [icon=''] 輸入框外左側圖標字串，可為mdi,md,fa代號或mdi/js路徑，預設''
+ * @vue-prop {Number} [iconSize=24] 輸入左側圖標大小，單位為px，預設24
  * @vue-prop {String} [iconColor='deep-orange lighten-2'] 輸入框外左側圖標顏色字串，預設'deep-orange lighten-2'
  * @vue-prop {String} [iconColorHover='deep-orange lighten-1'] 輸入滑鼠移入時框外左側圖標顏色字串，預設'deep-orange lighten-1'
  * @vue-prop {String} [iconColorFocus='deep-orange lighten-1'] 輸入取得焦點時框外左側圖標顏色字串，預設'deep-orange lighten-1'
@@ -81,6 +84,7 @@ import WTextIntCore from './WTextIntCore.vue'
  * @vue-prop {String} [backgroundColor='white'] 輸入背景顏色字串，預設'white'
  * @vue-prop {String} [backgroundColorHover='white'] 輸入滑鼠移入時背景顏色字串，預設'white'
  * @vue-prop {String} [backgroundColorFocus='white'] 輸入取得焦點時背景顏色字串，預設'white'
+ * @vue-prop {Number} [buttonIconSize=24] 輸入框內圖標大小，單位為px，預設24
  * @vue-prop {String} [borderColor='white'] 輸入邊框顏色字串，預設'white'
  * @vue-prop {String} [borderColorHover='white'] 輸入滑鼠移入時邊框顏色字串，預設'white'
  * @vue-prop {String} [borderColorFocus='white'] 輸入取得焦點時邊框顏色字串，預設'white'
@@ -137,6 +141,10 @@ export default {
             type: String,
             default: '',
         },
+        iconSize: {
+            type: Number,
+            default: 24,
+        },
         iconColor: {
             type: String,
             default: 'deep-orange lighten-2',
@@ -180,6 +188,10 @@ export default {
         backgroundColorFocus: {
             type: String,
             default: 'white',
+        },
+        buttonIconSize: {
+            type: Number,
+            default: 24,
         },
         borderColor: {
             type: String,

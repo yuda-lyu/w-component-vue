@@ -1,15 +1,17 @@
 <template>
     <!-- 時間組件因v-date-picker有點擊區域的限制, 故得使用display:inline-block -->
-    <div style="display:inline-block;">
+    <div
+        style="display:inline-block;"
+        :changeParam="changeParam"
+    >
         <!-- 盡量不要讓display:flex暴露至外層 -->
-        <div
-            style="display:flex; align-items:center;"
-            :changeParam="changeParam"
-        >
+        <div style="display:flex; align-items:center;">
 
             <WTimedayCore
                 TimeminuteCore="day"
                 style="margin-right:5px;"
+                :textFontSize="textFontSize"
+                :textColor="textColor"
                 :pickColor="pickColor"
                 :height="height"
                 :editable="editable"
@@ -22,6 +24,8 @@
                 <WTextSuggestCore
                     TimeminuteCore="minute"
                     :mode="'select'"
+                    :textFontSize="textFontSize"
+                    :textColor="textColor"
                     :minWidth="70"
                     :height="height"
                     :editable="editable"
@@ -57,6 +61,8 @@ import WTextSuggestCore from './WTextSuggestCore.vue'
  * @vue-prop {Number} [hourMax=8] 輸入可選最大小時，單位為小時，預設8
  * @vue-prop {Number} [minuteInter=15] 輸入每小時的切分區間，單位為分鐘，預設15
  * @vue-prop {Array} [minutesCustom=null] 輸入自訂可選的時分點字串陣列，單位為時分(00:00)，若給予，則上述hourMin,hourMax,minuteInter自動失效，預設null
+ * @vue-prop {String} [textFontSize='0.9rem'] 輸入文字大小字串，預設'0.9rem'
+ * @vue-prop {String} [textColor='black'] 輸入文字顏色字串，預設'black'
  * @vue-prop {String} [pickColor='deep-orange darken-1'] 輸入日期彈窗中選擇指定日期之顏色字串，預設'deep-orange darken-1'
  * @vue-prop {Number} [height=28] 輸入高度數字，單位為px，預設28
  * @vue-prop {Boolean} [editable=true] 輸入是否為編輯模式，預設true
@@ -86,6 +92,14 @@ export default {
         minutesCustom: {
             type: Array,
             default: null,
+        },
+        textFontSize: {
+            type: String,
+            default: '0.9rem',
+        },
+        textColor: {
+            type: String,
+            default: 'black',
         },
         pickColor: {
             type: String,

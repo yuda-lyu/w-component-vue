@@ -10,6 +10,7 @@
             :borderRadius="borderRadius"
             :shadow="shadow"
             :leftIcon="icon"
+            :leftIconSize="iconSize"
             :leftIconColor="iconColor"
             :leftIconColorHover="iconColorHover"
             :leftIconColorFocus="iconColorFocus"
@@ -28,6 +29,8 @@
         >
 
             <WTimedayCore
+                :textFontSize="textFontSize"
+                :textColor="textColor"
                 :pickColor="pickColor"
                 :value="value"
                 :editable="editable"
@@ -47,11 +50,14 @@ import WTimedayCore from './WTimedayCore.vue'
 
 
 /**
+ * @vue-prop {String} [textFontSize='0.9rem'] 輸入文字大小字串，預設'0.9rem'
+ * @vue-prop {String} [textColor='black'] 輸入文字顏色字串，預設'black'
  * @vue-prop {Object} [paddingStyle={v:0,h:15}] 輸入內寬距離物件，可用鍵值為v、h、left、right、top、bottom，v代表同時設定top與bottom，h代表設定left與right，若有重複設定時後面鍵值會覆蓋前面，各鍵值為寬度數字，單位為px，預設{v:0,h:15}
  * @vue-prop {Number} [borderRadius=30] 輸入框圓角度數字，單位為px，預設30
  * @vue-prop {Boolean} [shadow=true] 輸入是否為陰影模式，預設true
  * @vue-prop {String} [value=''] 輸入日期字串，預設''
  * @vue-prop {String} [icon=mdiClockOutline] 輸入圖標字串，可為mdi,md,fa代號或mdi/js路徑，預設mdiClockOutline
+ * @vue-prop {Number} [iconSize=24] 輸入左側圖標大小，單位為px，預設24
  * @vue-prop {String} [iconColor='deep-orange lighten-2'] 輸入框外左側圖標顏色字串，預設'deep-orange lighten-2'
  * @vue-prop {String} [iconColorHover='deep-orange lighten-1'] 輸入滑鼠移入時框外左側圖標顏色字串，預設'deep-orange lighten-1'
  * @vue-prop {String} [iconColorFocus='deep-orange lighten-1'] 輸入取得焦點時框外左側圖標顏色字串，預設'deep-orange lighten-1'
@@ -74,6 +80,14 @@ export default {
         WTimedayCore,
     },
     props: {
+        textFontSize: {
+            type: String,
+            default: '0.9rem',
+        },
+        textColor: {
+            type: String,
+            default: 'black',
+        },
         paddingStyle: {
             type: Object,
             default: () => {
@@ -98,6 +112,10 @@ export default {
         icon: {
             type: String,
             default: mdiClockOutline,
+        },
+        iconSize: {
+            type: Number,
+            default: 24,
         },
         iconColor: {
             type: String,

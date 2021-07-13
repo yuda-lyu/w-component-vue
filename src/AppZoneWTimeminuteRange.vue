@@ -38,11 +38,11 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-timeminute-range'"
-                    :casename="'minuteBetween'"
+                    :casename="'between'"
                 ></demolink>
 
                 <w-timeminute-range
-                    :minuteBetween="'to'"
+                    :between="'至'"
                     :minuteStart.sync="WTimeminuteRange.minuteStart"
                     :minuteEnd.sync="WTimeminuteRange.minuteEnd"
                 ></w-timeminute-range>
@@ -71,6 +71,21 @@
 
                 <w-timeminute-range
                     :icon="'fas fa-clipboard-check'"
+                    :minuteStart.sync="WTimeminuteRange.minuteStart"
+                    :minuteEnd.sync="WTimeminuteRange.minuteEnd"
+                ></w-timeminute-range>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-timeminute-range'"
+                    :casename="'icon & iconSize'"
+                ></demolink>
+
+                <w-timeminute-range
+                    :icon="mdiCheckUnderlineCircle"
+                    :iconSize="20"
                     :minuteStart.sync="WTimeminuteRange.minuteStart"
                     :minuteEnd.sync="WTimeminuteRange.minuteEnd"
                 ></w-timeminute-range>
@@ -217,7 +232,7 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-timeminute-range'"
-                    :casename="'border & minuteBetween'"
+                    :casename="'border & between'"
                 ></demolink>
 
                 <w-timeminute-range
@@ -226,7 +241,7 @@
                     :borderColorHover="'orange'"
                     :borderColorFocus="'orange darken-2'"
                     :backgroundColorFocus="'orange lighten-5'"
-                    :minuteBetween="'to'"
+                    :between="'至'"
                     :minuteStart.sync="WTimeminuteRange.minuteStart"
                     :minuteEnd.sync="WTimeminuteRange.minuteEnd"
                 ></w-timeminute-range>

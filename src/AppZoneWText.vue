@@ -132,6 +132,20 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-text'"
+                    :casename="'leftIcon & leftIconSize'"
+                ></demolink>
+
+                <w-text
+                    :leftIcon="mdiCheckUnderlineCircle"
+                    :leftIconSize="20"
+                    v-model="WText.text"
+                ></w-text>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-text'"
                     :casename="'leftIcon & leftIconColor & leftIconColorFocus'"
                 ></demolink>
 
@@ -166,6 +180,20 @@
 
                 <w-text
                     :rightIcon="mdiAvTimer"
+                    v-model="WText.text"
+                ></w-text>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-text'"
+                    :casename="'rightIcon & rightIconSize'"
+                ></demolink>
+
+                <w-text
+                    :rightIcon="mdiAvTimer"
+                    :rightIconSize="20"
                     v-model="WText.text"
                 ></w-text>
             </div>

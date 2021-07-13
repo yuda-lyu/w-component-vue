@@ -47,6 +47,19 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-text-int'"
+                    :casename="'buttonIconSize'"
+                ></demolink>
+
+                <w-text-int
+                    :buttonIconSize="20"
+                    v-model="WTextInt.int"
+                ></w-text-int>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-text-int'"
                     :casename="'buttonColor & buttonColorHover & buttonColorFocus'"
                 ></demolink>
 

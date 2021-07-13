@@ -24,6 +24,34 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-text-suggest'"
+                    :casename="'paddingStyle (thin style)'"
+                ></demolink>
+
+                <w-text-suggest
+                    :paddingStyle="{v:0,h:10}"
+                    :items="WTextSuggest.objItems"
+                    v-model="WTextSuggest.objValue"
+                ></w-text-suggest>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-text-suggest'"
+                    :casename="'paddingStyle (equal height to using icon)'"
+                ></demolink>
+
+                <w-text-suggest
+                    :paddingStyle="{v:4,h:15}"
+                    :items="WTextSuggest.objItems"
+                    v-model="WTextSuggest.objValue"
+                ></w-text-suggest>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-text-suggest'"
                     :casename="'textFontSize'"
                 ></demolink>
 
@@ -95,6 +123,21 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-text-suggest'"
+                    :casename="'leftIcon & leftIconSize'"
+                ></demolink>
+
+                <w-text-suggest
+                    :leftIcon="mdiCheckUnderlineCircle"
+                    :leftIconSize="20"
+                    :items="WTextSuggest.objItems"
+                    v-model="WTextSuggest.objValue"
+                ></w-text-suggest>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-text-suggest'"
                     :casename="'leftIcon & leftIconColor & leftIconColorHover & leftIconColorFocus & leftIconTooltip'"
                 ></demolink>
 
@@ -104,6 +147,21 @@
                     :leftIconColorHover="'orange accent-3'"
                     :leftIconColorFocus="'orange darken-2'"
                     :leftIconTooltip="'show tooltip'"
+                    :items="WTextSuggest.objItems"
+                    v-model="WTextSuggest.objValue"
+                ></w-text-suggest>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-text-suggest'"
+                    :casename="'rightIcon & rightIconSize'"
+                ></demolink>
+
+                <w-text-suggest
+                    :rightIcon="mdiCheckUnderlineCircle"
+                    :rightIconSize="20"
                     :items="WTextSuggest.objItems"
                     v-model="WTextSuggest.objValue"
                 ></w-text-suggest>

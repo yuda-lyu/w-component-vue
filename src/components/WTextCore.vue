@@ -1,9 +1,10 @@
 <template>
     <div :changeValue="changeValue">
+        <!-- 要設定display:block否則input會有最小高度 -->
         <input
             ref="inp"
             type="text"
-            :style="`transition:all 0.3s; outline: none; width:100%; box-sizing:border-box; border-style:none; background:transparent; color:${useTextColor}; height:${height}px; text-align:${textAlign}; ${useTextFontSize} opacity:${(valueTrans==='' && !focused)?0.6:1};`"
+            :style="`transition:all 0.3s; display:block; outline:none; width:100%; box-sizing:border-box; border-style:none; background:transparent; color:${useTextColor}; ${useHeight} text-align:${textAlign}; ${useTextFontSize} opacity:${(valueTrans==='' && !focused)?0.6:1};`"
             :readonly="!editable"
             :placeholder="placeholder"
             v-model="valueTrans"
@@ -17,6 +18,7 @@
 </template>
 
 <script>
+import isnum from 'wsemi/src/isnum.mjs'
 import verifyValue from 'wsemi/src/verifyValue.mjs'
 import replace from 'wsemi/src/replace.mjs'
 import color2hex from '../js/vuetifyColor.mjs'
@@ -29,7 +31,7 @@ import color2hex from '../js/vuetifyColor.mjs'
  * @vue-prop {String} [textColor='black'] 輸入文字顏色字串，預設'black'
  * @vue-prop {String} [textAlign='left'] 輸入文字左右對齊字串，預設'left'
  * @vue-prop {String} [placeholder=''] 輸入無文字時的替代字符字串，預設''
- * @vue-prop {Number} [height=28] 輸入高度數字，單位為px，預設28
+ * @vue-prop {Number|String} [height=''] 輸入高度數字或字串，數字單位為px，預設''
  * @vue-prop {Boolean} [editable=true] 輸入是否為編輯模式，預設true
  * @vue-prop {Boolean} [focused=false] 輸入是否為取得焦點狀態，預設false
  */
@@ -59,8 +61,8 @@ export default {
             default: '',
         },
         height: {
-            type: Number,
-            default: 28,
+            type: [Number, String],
+            default: '',
         },
         editable: {
             type: Boolean,
@@ -91,8 +93,24 @@ export default {
             return ''
         },
 
-        useTextFontSize: function() {
+        useHeight: function () {
+            //console.log('computed useHeight')
+
             let vo = this
+
+            let h = ''
+            if (isnum(vo.height)) {
+                h = `height:${vo.height}px; line-height:${vo.height}px;`
+            }
+
+            return h
+        },
+
+        useTextFontSize: function() {
+            //console.log('computed useTextFontSize')
+
+            let vo = this
+
             let s = vo.textFontSize
             s = replace(s, ';', '')
             return `font-size:${s};`

@@ -60,6 +60,20 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-timeminute'"
+                    :casename="'icon & iconSize'"
+                ></demolink>
+
+                <w-timeminute
+                    :icon="mdiCheckUnderlineCircle"
+                    :iconSize="20"
+                    v-model="WTimeminute.value"
+                ></w-timeminute>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-timeminute'"
                     :casename="'iconColor & iconColorFoucs'"
                 ></demolink>
 
