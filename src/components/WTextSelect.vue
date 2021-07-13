@@ -47,6 +47,7 @@
                     :itemBackgroundColorHover="itemBackgroundColorHover"
                     :itemPaddingStyle="itemPaddingStyle"
                     :expansionIcon="showExpansionIcon?undefined:''"
+                    :expansionIconSize="expansionIconSize"
                     :expansionIconColor="expansionIconColor"
                     :distY="5"
                     :defItemHeight="defItemHeight"
@@ -133,6 +134,7 @@ import WTextSuggestCore from './WTextSuggestCore.vue'
  * @vue-prop {String} [borderColorHover='white'] 輸入滑鼠移入時邊框顏色字串，預設'white'
  * @vue-prop {String} [borderColorFocus='white'] 輸入取得焦點時邊框顏色字串，預設'white'
  * @vue-prop {Boolean} [showExpansionIcon=true] 輸入是否顯示時顯示旋轉按鈕布林值，預設true
+ * @vue-prop {Number} [expansionIconSize=18] 輸入右側圖標尺寸數字，單位為px，預設18
  * @vue-prop {String} [expansionIconColor='grey'] 輸入右側圖標顏色字串，預設'grey'
  * @vue-prop {Number} [defItemHeight=43] 輸入按需顯示時各項目預設高度值數字，給越準或給大部分項目的高度則渲染速度越快，單位為px，預設43
  * @vue-prop {Boolean} [editable=true] 輸入是否為編輯模式布林值，預設true
@@ -293,6 +295,10 @@ export default {
         showExpansionIcon: {
             type: Boolean,
             default: true,
+        },
+        expansionIconSize: {
+            type: Number,
+            default: 18,
         },
         expansionIconColor: {
             type: String,

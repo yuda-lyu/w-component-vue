@@ -81,6 +81,20 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-text-suggest'"
+                    :casename="'expansionIconSize'"
+                ></demolink>
+
+                <w-text-suggest
+                    :expansionIconSize="14"
+                    :items="WTextSuggest.objItems"
+                    v-model="WTextSuggest.objValue"
+                ></w-text-suggest>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-text-suggest'"
                     :casename="'searchEmpty'"
                 ></demolink>
 
@@ -472,6 +486,63 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-text-suggest'"
+                    :casename="'border & paddingStyle (thin style)'"
+                ></demolink>
+
+                <w-text-suggest
+                    :shadow="false"
+                    :borderColor="'orange lighten-2'"
+                    :borderColorHover="'orange'"
+                    :borderColorFocus="'orange darken-2'"
+                    :backgroundColorFocus="'orange lighten-5'"
+                    :paddingStyle="{v:0,h:10}"
+                    :items="WTextSuggest.objItems"
+                    v-model="WTextSuggest.objValue"
+                ></w-text-suggest>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-text-suggest'"
+                    :casename="'border & paddingStyle (equal height to using icon)'"
+                ></demolink>
+
+                <w-text-suggest
+                    :shadow="false"
+                    :borderColor="'orange lighten-2'"
+                    :borderColorHover="'orange'"
+                    :borderColorFocus="'orange darken-2'"
+                    :backgroundColorFocus="'orange lighten-5'"
+                    :paddingStyle="{v:4,h:15}"
+                    :items="WTextSuggest.objItems"
+                    v-model="WTextSuggest.objValue"
+                ></w-text-suggest>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-text-suggest'"
+                    :casename="'border & textFontSize'"
+                ></demolink>
+
+                <w-text-suggest
+                    :shadow="false"
+                    :borderColor="'orange lighten-2'"
+                    :borderColorHover="'orange'"
+                    :borderColorFocus="'orange darken-2'"
+                    :backgroundColorFocus="'orange lighten-5'"
+                    :textFontSize="'0.8rem'"
+                    :items="WTextSuggest.objItems"
+                    v-model="WTextSuggest.objValue"
+                ></w-text-suggest>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-text-suggest'"
                     :casename="'border & textColor & expansionIconColor'"
                 ></demolink>
 
@@ -483,6 +554,25 @@
                     :backgroundColorFocus="'orange lighten-5'"
                     :textColor="'orange darken-2'"
                     :expansionIconColor="'orange'"
+                    :items="WTextSuggest.objItems"
+                    v-model="WTextSuggest.objValue"
+                ></w-text-suggest>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-text-suggest'"
+                    :casename="'border & expansionIconSize'"
+                ></demolink>
+
+                <w-text-suggest
+                    :shadow="false"
+                    :borderColor="'orange lighten-2'"
+                    :borderColorHover="'orange'"
+                    :borderColorFocus="'orange darken-2'"
+                    :backgroundColorFocus="'orange lighten-5'"
+                    :expansionIconSize="14"
                     :items="WTextSuggest.objItems"
                     v-model="WTextSuggest.objValue"
                 ></w-text-suggest>
@@ -549,7 +639,27 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-text-suggest'"
-                    :casename="'border & leftIconColor & leftIconColorHover & leftIconColorFocus & leftIconTooltip'"
+                    :casename="'border & leftIcon & leftIconSize'"
+                ></demolink>
+
+                <w-text-suggest
+                    :shadow="false"
+                    :borderColor="'orange lighten-2'"
+                    :borderColorHover="'orange'"
+                    :borderColorFocus="'orange darken-2'"
+                    :backgroundColorFocus="'orange lighten-5'"
+                    :leftIcon="mdiCheckUnderlineCircle"
+                    :leftIconSize="20"
+                    :items="WTextSuggest.objItems"
+                    v-model="WTextSuggest.objValue"
+                ></w-text-suggest>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-text-suggest'"
+                    :casename="'border & leftIcon & leftIconColor & leftIconColorHover & leftIconColorFocus & leftIconTooltip'"
                 ></demolink>
 
                 <w-text-suggest
@@ -572,7 +682,27 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-text-suggest'"
-                    :casename="'border & rightIconColor & rightIconColorHover & rightIconColorFocus & rightIconTooltip'"
+                    :casename="'border & rightIcon & rightIconSize'"
+                ></demolink>
+
+                <w-text-suggest
+                    :shadow="false"
+                    :borderColor="'orange lighten-2'"
+                    :borderColorHover="'orange'"
+                    :borderColorFocus="'orange darken-2'"
+                    :backgroundColorFocus="'orange lighten-5'"
+                    :rightIcon="mdiCheckUnderlineCircle"
+                    :rightIconSize="20"
+                    :items="WTextSuggest.objItems"
+                    v-model="WTextSuggest.objValue"
+                ></w-text-suggest>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-text-suggest'"
+                    :casename="'border & rightIcon & rightIconColor & rightIconColorHover & rightIconColorFocus & rightIconTooltip'"
                 ></demolink>
 
                 <w-text-suggest

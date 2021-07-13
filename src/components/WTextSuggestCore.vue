@@ -143,8 +143,8 @@ import WIcon from './WIcon.vue'
  * @vue-prop {String} [itemBackgroundColorHover='light-blue lighten-5'] 輸入項目背景Hover顏色字串，預設'light-blue lighten-5'
  * @vue-prop {Object} [itemPaddingStyle={v:12,h:16}] 輸入內寬距離設定物件，可用鍵值為v、h、left、right、top、bottom，v代表同時設定top與bottom，h代表設定left與right，若有重複設定時後面鍵值會覆蓋前面，各鍵值為寬度數字，單位為px，預設{v:12,h:16}
  * @vue-prop {String} [expansionIcon=mdiPlay] 輸入右側圖標字串，可為mdi,md,fa代號或mdi/js路徑，預設使用mdi的圖標(mdiPlay)
- * @vue-prop {String} [expansionIconColor='grey'] 輸入右側圖標顏色字串，預設'grey'
  * @vue-prop {Number} [expansionIconSize=18] 輸入右側圖標尺寸數字，單位為px，預設18
+ * @vue-prop {String} [expansionIconColor='grey'] 輸入右側圖標顏色字串，預設'grey'
  * @vue-prop {Number} [maxHeight=200] 輸入顯示區最大高度數字，單位為px，預設200
  * @vue-prop {Number} [minWidth=null] 輸入最小寬度，單位為px，預設null
  * @vue-prop {Number} [maxWidth=null] 輸入最大寬度，單位為px，預設null
@@ -229,13 +229,13 @@ export default {
             type: String,
             default: mdiPlay,
         },
-        expansionIconColor: {
-            type: String,
-            default: 'grey',
-        },
         expansionIconSize: {
             type: Number,
             default: 18,
+        },
+        expansionIconColor: {
+            type: String,
+            default: 'grey',
         },
         maxHeight: {
             type: Number,

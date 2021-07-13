@@ -81,6 +81,20 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-text-select'"
+                    :casename="'expansionIconSize'"
+                ></demolink>
+
+                <w-text-select
+                    :expansionIconSize="14"
+                    :items="WTextSelect.objItems"
+                    v-model="WTextSelect.objValue"
+                ></w-text-select>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-text-select'"
                     :casename="'leftIcon (material)'"
                 ></demolink>
 
@@ -440,6 +454,63 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-text-select'"
+                    :casename="'border & paddingStyle (thin style)'"
+                ></demolink>
+
+                <w-text-select
+                    :shadow="false"
+                    :borderColor="'orange lighten-2'"
+                    :borderColorHover="'orange'"
+                    :borderColorFocus="'orange darken-2'"
+                    :backgroundColorFocus="'orange lighten-5'"
+                    :paddingStyle="{v:0,h:10}"
+                    :items="WTextSelect.objItems"
+                    v-model="WTextSelect.objValue"
+                ></w-text-select>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-text-select'"
+                    :casename="'border & paddingStyle (equal height to using icon)'"
+                ></demolink>
+
+                <w-text-select
+                    :shadow="false"
+                    :borderColor="'orange lighten-2'"
+                    :borderColorHover="'orange'"
+                    :borderColorFocus="'orange darken-2'"
+                    :backgroundColorFocus="'orange lighten-5'"
+                    :paddingStyle="{v:4,h:15}"
+                    :items="WTextSelect.objItems"
+                    v-model="WTextSelect.objValue"
+                ></w-text-select>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-text-select'"
+                    :casename="'border & textFontSize'"
+                ></demolink>
+
+                <w-text-select
+                    :shadow="false"
+                    :borderColor="'orange lighten-2'"
+                    :borderColorHover="'orange'"
+                    :borderColorFocus="'orange darken-2'"
+                    :backgroundColorFocus="'orange lighten-5'"
+                    :textFontSize="'0.8rem'"
+                    :items="WTextSelect.objItems"
+                    v-model="WTextSelect.objValue"
+                ></w-text-select>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-text-select'"
                     :casename="'border & textColor & expansionIconColor'"
                 ></demolink>
 
@@ -451,6 +522,25 @@
                     :backgroundColorFocus="'orange lighten-5'"
                     :textColor="'orange darken-2'"
                     :expansionIconColor="'orange'"
+                    :items="WTextSelect.objItems"
+                    v-model="WTextSelect.objValue"
+                ></w-text-select>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-text-select'"
+                    :casename="'border & expansionIconSize'"
+                ></demolink>
+
+                <w-text-select
+                    :shadow="false"
+                    :borderColor="'orange lighten-2'"
+                    :borderColorHover="'orange'"
+                    :borderColorFocus="'orange darken-2'"
+                    :backgroundColorFocus="'orange lighten-5'"
+                    :expansionIconSize="14"
                     :items="WTextSelect.objItems"
                     v-model="WTextSelect.objValue"
                 ></w-text-select>
@@ -498,7 +588,27 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-text-select'"
-                    :casename="'border & leftIconColor & leftIconColorHover & leftIconColorFocus & leftIconTooltip'"
+                    :casename="'border & leftIcon & leftIconSize'"
+                ></demolink>
+
+                <w-text-select
+                    :shadow="false"
+                    :borderColor="'orange lighten-2'"
+                    :borderColorHover="'orange'"
+                    :borderColorFocus="'orange darken-2'"
+                    :backgroundColorFocus="'orange lighten-5'"
+                    :leftIcon="mdiCheckUnderlineCircle"
+                    :leftIconSize="20"
+                    :items="WTextSelect.objItems"
+                    v-model="WTextSelect.objValue"
+                ></w-text-select>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-text-select'"
+                    :casename="'border & leftIcon & leftIconColor & leftIconColorHover & leftIconColorFocus & leftIconTooltip'"
                 ></demolink>
 
                 <w-text-select
@@ -521,7 +631,27 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-text-select'"
-                    :casename="'border & rightIconColor & rightIconColorHover & rightIconColorFocus & rightIconTooltip'"
+                    :casename="'border & rightIcon & rightIconSize'"
+                ></demolink>
+
+                <w-text-select
+                    :shadow="false"
+                    :borderColor="'orange lighten-2'"
+                    :borderColorHover="'orange'"
+                    :borderColorFocus="'orange darken-2'"
+                    :backgroundColorFocus="'orange lighten-5'"
+                    :rightIcon="mdiCheckUnderlineCircle"
+                    :rightIconSize="20"
+                    :items="WTextSelect.objItems"
+                    v-model="WTextSelect.objValue"
+                ></w-text-select>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-text-select'"
+                    :casename="'border & rightIcon & rightIconColor & rightIconColorHover & rightIconColorFocus & rightIconTooltip'"
                 ></demolink>
 
                 <w-text-select
