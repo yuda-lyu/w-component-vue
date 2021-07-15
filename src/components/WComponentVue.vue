@@ -26,6 +26,7 @@ import WLeafletVueDyn from './WLeafletVueDyn.vue'
 import WListVertical from './WListVertical.vue'
 import WListVerticalItem from './WListVerticalItem.vue'
 import WPanelBulge from './WPanelBulge.vue'
+import WPanelChart from './WPanelChart.vue'
 import WPanelDivideHorizontal from './WPanelDivideHorizontal.vue'
 import WPanelDivideVertical from './WPanelDivideVertical.vue'
 import WPanelScale from './WPanelScale.vue'
@@ -92,6 +93,7 @@ let WComponentVue = {
         Vue.component('w-list-vertical', WListVertical)
         Vue.component('w-list-vertical-item', WListVerticalItem)
         Vue.component('w-panel-bulge', WPanelBulge)
+        Vue.component('w-panel-chart', WPanelChart)
         Vue.component('w-panel-divide-horizontal', WPanelDivideHorizontal)
         Vue.component('w-panel-divide-vertical', WPanelDivideVertical)
         Vue.component('w-panel-scale', WPanelScale)

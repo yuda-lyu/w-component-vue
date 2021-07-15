@@ -1,6 +1,6 @@
 <template>
-    <component ref="$self" :is="cmpName" :options="options"></component>
     <!-- ref=$self為供外部存取組件之用 -->
+    <component ref="$self" :is="cmpName" :options="options"></component>
 </template>
 
 <script>

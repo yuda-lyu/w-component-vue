@@ -273,6 +273,11 @@
             ></AppZoneWEchartsVueDyn>
 
 
+            <AppZoneWPanelChart
+                v-if="useCmpName==='WPanelChart'"
+            ></AppZoneWPanelChart>
+
+
             <AppZoneWAggridVueDyn
                 v-if="useCmpName==='WAggridVueDyn'"
             ></AppZoneWAggridVueDyn>
@@ -363,6 +368,7 @@ import AppZoneWTree from './AppZoneWTree.vue'
 import AppZoneWHighchartsVueDyn from './AppZoneWHighchartsVueDyn.vue'
 import AppZoneWHighstockVueDyn from './AppZoneWHighstockVueDyn.vue'
 import AppZoneWEchartsVueDyn from './AppZoneWEchartsVueDyn.vue'
+import AppZoneWPanelChart from './AppZoneWPanelChart.vue'
 import AppZoneWAggridVueDyn from './AppZoneWAggridVueDyn.vue'
 import AppZoneWTableDyn from './AppZoneWTableDyn.vue'
 import AppZoneWImageViewerDyn from './AppZoneWImageViewerDyn.vue'
@@ -413,6 +419,7 @@ export default {
         AppZoneWHighchartsVueDyn,
         AppZoneWHighstockVueDyn,
         AppZoneWEchartsVueDyn,
+        AppZoneWPanelChart,
         AppZoneWAggridVueDyn,
         AppZoneWTableDyn,
         AppZoneWImageViewerDyn,
@@ -523,6 +530,7 @@ export default {
                                 { name: 'WHighchartsVueDyn' },
                                 { name: 'WHighstockVueDyn' },
                                 { name: 'WEchartsVueDyn' },
+                                { name: 'WPanelChart' },
                             ],
                         },
                         {
