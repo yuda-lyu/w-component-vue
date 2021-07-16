@@ -196,6 +196,7 @@ export default {
 
         data: {
             immediate: true,
+            deep: true,
             handler(value) {
                 //console.log('watch data', value)
 

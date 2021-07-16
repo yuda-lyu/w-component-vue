@@ -136,15 +136,28 @@
                 style="cursor:pointer;"
                 title="open for copy link to view component"
                 onclick="window.open('//yuda-lyu.github.io/w-component-vue/examples/app.html?cmp='+this.innerText,'_blank')"
-            >w-highcharts-vue-dyn</span>
+            >w-highcharts-bitmap-dyn</span>
         </div>
         <div class="bk">
-            <div class="item">area</div>
+            <div class="item">change options</div>
 
-            <w-highcharts-vue-dyn
-                style="width:620px;"
-                :options="WHighchartsVueDyn.options2"
-            ></w-highcharts-vue-dyn>
+            <div>
+                <v-btn
+                    style="margin-right:10px;"
+                    small
+                    @click="WHighchartsBitmapDyn.optionsChange=WHighchartsBitmapDyn.options1"
+                >line</v-btn>
+                <v-btn
+                    style="margin-right:10px;"
+                    small
+                    @click="WHighchartsBitmapDyn.optionsChange=WHighchartsBitmapDyn.options2"
+                >area</v-btn>
+            </div>
+
+            <w-highcharts-bitmap-dyn
+                style="width:600px; height:400px;"
+                :options="WHighchartsBitmapDyn.optionsChange"
+            ></w-highcharts-bitmap-dyn>
         </div>
     </v-app>
 
@@ -158,8 +171,16 @@
     vuetify: new Vuetify(),
     data: function() {
       return {
-        WHighchartsVueDyn: {
+        WHighchartsBitmapDyn: {
           options1: {
+            chart: {
+              animation: false //關閉動畫
+            },
+            plotOptions: {
+              series: {
+                animation: false //關閉動畫
+              }
+            },
             title: {
               text: "AAPL Stock Price"
             },
@@ -188,6 +209,7 @@
           },
           options2: {
             chart: {
+              animation: false, //關閉動畫
               zoomType: "x"
             },
             title: {
@@ -205,6 +227,9 @@
               }
             },
             plotOptions: {
+              series: {
+                animation: false //關閉動畫
+              },
               area: {
                 color: "rgba(255,175,150,1)",
                 fillColor: {
@@ -241,6 +266,7 @@
           },
           options3: {
             chart: {
+              animation: false, //關閉動畫
               type: "bar"
             },
             title: {
@@ -354,6 +380,7 @@
             },
             plotOptions: {
               series: {
+                animation: false, //關閉動畫
                 stacking: "normal"
               }
             },
@@ -430,6 +457,7 @@
           },
           options4: {
             chart: {
+              animation: false, //關閉動畫
               plotBackgroundColor: null,
               plotBorderWidth: null,
               plotShadow: false,
@@ -447,6 +475,9 @@
               }
             },
             plotOptions: {
+              series: {
+                animation: false //關閉動畫
+              },
               pie: {
                 allowPointSelect: true,
                 cursor: "pointer",
@@ -505,10 +536,16 @@
           },
           options5: {
             chart: {
+              animation: false, //關閉動畫
               type: "heatmap",
               marginTop: 40,
               marginBottom: 80,
               plotBorderWidth: 1
+            },
+            plotOptions: {
+              series: {
+                animation: false //關閉動畫
+              }
             },
             title: {
               text: "Sales per employee per weekday"
@@ -648,8 +685,14 @@
           },
           options6: {
             chart: {
+              animation: false, //關閉動畫
               type: "heatmap",
               margin: [60, 10, 80, 50]
+            },
+            plotOptions: {
+              series: {
+                animation: false //關閉動畫
+              }
             },
             boost: {
               useGPUTranslations: true
@@ -724,7 +767,8 @@
                 turboThreshold: Number.MAX_VALUE // #3404, remove after 4.0.5 release
               }
             ]
-          }
+          },
+          optionsChange: null
         },
         actions: []
       };

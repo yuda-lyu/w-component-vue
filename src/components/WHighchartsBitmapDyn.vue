@@ -1,10 +1,15 @@
 <template>
     <div>
-        <WIconLoading></WIconLoading>
+        <WIconLoading v-if="isEff && !isGenDone"></WIconLoading>
+        <img ref="pic" :style="`width:${picw}px; height:${pich}px;`" :src="b64" v-if="isGenDone">
     </div>
 </template>
 
 <script>
+import get from 'lodash/get'
+import isNumber from 'lodash/isNumber'
+import waitFun from 'wsemi/src/waitFun.mjs'
+import iseobj from 'wsemi/src/iseobj.mjs'
 import html2picDyn from 'wsemi/src/html2picDyn.mjs'
 import importResources from 'wsemi/src/importResources.mjs'
 import domVirtualCreateQueue from 'wsemi/src/domVirtualCreateQueue.mjs'
@@ -43,6 +48,11 @@ export default {
     },
     data: function() {
         return {
+
+            picw: 0,
+            pich: 0,
+            b64: '',
+
         }
     },
     mounted: function() {
@@ -63,11 +73,42 @@ export default {
                     Highcharts.setOptions(getHCGlobal())
 
                 }
-                vo.render()
+
             })
 
     },
+    watch: {
+
+        options: {
+            immediate: true,
+            deep: true,
+            handler(value) {
+                // console.log('watch options', value)
+
+                let vo = this
+
+                //default
+                vo.picw = 0
+                vo.pich = 0
+                vo.b64 = ''
+
+                //render
+                vo.render()
+
+            }
+        }
+
+    },
     computed: {
+
+        isEff: function() {
+            return iseobj(this.options)
+        },
+
+        isGenDone: function() {
+            return this.b64 !== ''
+        },
+
     },
     methods: {
 
@@ -77,6 +118,29 @@ export default {
             let vo = this
 
             async function core() {
+
+                //wait $el
+                await waitFun(() => {
+                    return vo.$el !== undefined
+                })
+
+                //check
+                if (!vo.isEff) {
+                    return
+                }
+                if (vo.isGenDone) {
+                    return
+                }
+
+                //w, h
+                let w = get(vo, '$el.offsetWidth')
+                let h = get(vo, '$el.offsetHeight')
+                // console.log('w', w, 'h', h)
+
+                //check
+                if (!isNumber(w) || !isNumber(h)) {
+                    return
+                }
 
                 //dpq, 先給予圖片寬高與產製函數, 內部通過佇列逐次運行產圖與回傳base64
                 let fun = async (ele) => {
@@ -92,11 +156,13 @@ export default {
 
                     return b64
                 }
-                let b64 = await dpq(vo.$el.offsetWidth, vo.$el.offsetHeight, fun)
+                let b64 = await dpq(w, h, fun)
                 // console.log('b64', b64)
 
                 //save
-                vo.$el.innerHTML = `<img style="width:${vo.$el.offsetWidth}px; height:${vo.$el.offsetHeight}px;" src="${b64}">`
+                vo.picw = w
+                vo.pich = h
+                vo.b64 = b64
 
             }
 

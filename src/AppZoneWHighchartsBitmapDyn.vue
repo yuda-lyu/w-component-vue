@@ -102,6 +102,25 @@
             </div>
 
 
+            <div class="bk">
+                <demolink
+                    :kbname="'w-highcharts-bitmap-dyn'"
+                    :casename="'change options'"
+                ></demolink>
+
+                <div>
+                    <v-btn style="margin-right:10px;" small @click="WHighchartsBitmapDyn.optionsChange=WHighchartsBitmapDyn.options1">line</v-btn>
+                    <v-btn style="margin-right:10px;" small @click="WHighchartsBitmapDyn.optionsChange=WHighchartsBitmapDyn.options2">area</v-btn>
+                </div>
+
+                <w-highcharts-bitmap-dyn
+                    style="width:600px; height:400px;"
+                    :options="WHighchartsBitmapDyn.optionsChange"
+                ></w-highcharts-bitmap-dyn>
+
+            </div>
+
+
         </div>
 
 
@@ -535,6 +554,7 @@ export default {
                         turboThreshold: Number.MAX_VALUE // #3404, remove after 4.0.5 release
                     }]
                 },
+                'optionsChange': null,
             },
             'actions': [
             ],
