@@ -5,13 +5,19 @@
         <div class="head1"><span style="cursor:pointer;" title="open for copy link to view component" onclick="window.open('//yuda-lyu.github.io/w-component-vue/examples/app.html?cmp='+this.innerText,'_blank')">w-highcharts-bitmap-dyn</span></div>
 
 
-        <div style="font-size:0.9rem; margin-bottom:10px;">
-            <span style="margin-right:10px;">Links:</span>
-            <a href="//www.highcharts.com/" target="_blank" rel="noreferrer noopener">highcharts</a>
-            <span style="margin:0px 10px">|</span>
-            <a href="//www.highcharts.com/demo" target="_blank" rel="noreferrer noopener">highcharts examples</a>
-            <span style="margin:0px 10px">|</span>
-            <a href="//github.com/weizhenye/vue-highcharts" target="_blank" rel="noreferrer noopener">vue-highcharts</a>
+        <div style="padding:10px; border:1px dashed #ddd; margin-bottom:10px;">
+            <div style="font-size:0.8rem; color:#f26; margin-bottom:5px;">* Need to disable animation in highcharts options</div>
+            <pre style="font-size:0.8rem;">
+let options = {
+    chart: {
+        animation: false,
+    },
+    plotOptions: {
+        series: {
+            animation: false,
+        },
+    },
+}</pre>
         </div>
 
 
