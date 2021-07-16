@@ -263,6 +263,11 @@
             ></AppZoneWHighchartsVueDyn>
 
 
+            <AppZoneWHighchartsBitmapDyn
+                v-if="useCmpName==='WHighchartsBitmapDyn'"
+            ></AppZoneWHighchartsBitmapDyn>
+
+
             <AppZoneWHighstockVueDyn
                 v-if="useCmpName==='WHighstockVueDyn'"
             ></AppZoneWHighstockVueDyn>
@@ -366,6 +371,7 @@ import AppZoneWDynamicList from './AppZoneWDynamicList.vue'
 import AppZoneWJsonView from './AppZoneWJsonView.vue'
 import AppZoneWTree from './AppZoneWTree.vue'
 import AppZoneWHighchartsVueDyn from './AppZoneWHighchartsVueDyn.vue'
+import AppZoneWHighchartsBitmapDyn from './AppZoneWHighchartsBitmapDyn.vue'
 import AppZoneWHighstockVueDyn from './AppZoneWHighstockVueDyn.vue'
 import AppZoneWEchartsVueDyn from './AppZoneWEchartsVueDyn.vue'
 import AppZoneWPanelChart from './AppZoneWPanelChart.vue'
@@ -417,6 +423,7 @@ export default {
         AppZoneWJsonView,
         AppZoneWTree,
         AppZoneWHighchartsVueDyn,
+        AppZoneWHighchartsBitmapDyn,
         AppZoneWHighstockVueDyn,
         AppZoneWEchartsVueDyn,
         AppZoneWPanelChart,
@@ -528,6 +535,7 @@ export default {
                             name: 'plot',
                             cmps: [
                                 { name: 'WHighchartsVueDyn' },
+                                { name: 'WHighchartsBitmapDyn' },
                                 { name: 'WHighstockVueDyn' },
                                 { name: 'WEchartsVueDyn' },
                                 { name: 'WPanelChart' },

@@ -85,7 +85,7 @@
     </script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.1.38/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.1.39/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -175,6 +175,14 @@
       return {
         WPanelChart: {
           options1: {
+            chart: {
+              animation: false //關閉動畫
+            },
+            plotOptions: {
+              series: {
+                animation: false //關閉動畫
+              }
+            },
             title: {
               text: "AAPL Stock Price"
             },

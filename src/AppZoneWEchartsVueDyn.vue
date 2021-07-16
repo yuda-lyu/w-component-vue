@@ -590,7 +590,6 @@ export default {
                     tooltip: {
                         position: 'top'
                     },
-                    animation: false,
                     grid: {
                         height: '70%',
                         top: '2%'

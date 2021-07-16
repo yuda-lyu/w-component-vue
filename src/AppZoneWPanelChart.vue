@@ -52,6 +52,20 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-panel-chart'"
+                    :casename="'cmpName (WHighchartsBitmapDyn)'"
+                ></demolink>
+
+                <w-panel-chart
+                    :cmpName="'WHighchartsBitmapDyn'"
+                    :options="WPanelChart.options1"
+                ></w-panel-chart>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-panel-chart'"
                     :casename="'width & height'"
                 ></demolink>
 
@@ -78,6 +92,55 @@
             </div>
 
 
+            <div class="bk">
+                <demolink
+                    :kbname="'w-panel-chart'"
+                    :casename="'downloadPicture'"
+                ></demolink>
+
+                <w-panel-chart
+                    :downloadPicture="true"
+                    :options="WPanelChart.options1"
+                ></w-panel-chart>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-panel-chart'"
+                    :casename="'downloadPicture & downloadPictureBtnIcon'"
+                ></demolink>
+
+                <w-panel-chart
+                    :downloadPicture="true"
+                    :downloadPictureBtnIcon="mdiArrowDownBoldHexagonOutline"
+                    :options="WPanelChart.options1"
+                ></w-panel-chart>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-panel-chart'"
+                    :casename="'downloadPicture & downloadPictureBtnIconColor & downloadPictureBtnIconColorHover & downloadPictureBtnIconColorFocus & downloadPictureBtnBackgroundColor & downloadPictureBtnBackgroundColorHover & downloadPictureBtnBackgroundColorFocus'"
+                ></demolink>
+
+                <w-panel-chart
+                    :downloadPicture="true"
+                    :downloadPictureBtnIconColor="'#f48'"
+                    :downloadPictureBtnIconColorHover="'#f26'"
+                    :downloadPictureBtnIconColorFocus="'#f26'"
+                    :downloadPictureBtnBackgroundColor="'rgba(255,200,200,0.3)'"
+                    :downloadPictureBtnBackgroundColorHover="'rgba(255,200,200,0.5)'"
+                    :downloadPictureBtnBackgroundColorFocus="'rgba(255,200,200,0.5)'"
+                    :options="WPanelChart.options1"
+                ></w-panel-chart>
+
+            </div>
+
+
         </div>
 
 
@@ -85,6 +148,7 @@
 </template>
 
 <script>
+import { mdiArrowDownBoldHexagonOutline } from '@mdi/js'
 import demolink from './components/demolink.vue'
 import WPanelChart from './components/WPanelChart.vue'
 
@@ -114,8 +178,17 @@ export default {
         }
         let rDataAAPL = df(window.dataAAPL)
         return {
+            mdiArrowDownBoldHexagonOutline,
             'WPanelChart': {
                 'options1': {
+                    chart: {
+                        animation: false, //關閉動畫
+                    },
+                    plotOptions: {
+                        series: {
+                            animation: false, //關閉動畫
+                        },
+                    },
                     title: {
                         text: 'AAPL Stock Price'
                     },

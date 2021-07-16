@@ -94,18 +94,24 @@
                                         {{uploadModeTitle}}
                                     </div>
 
-                                    <div style="padding:5px 10px;">
-                                        <WGroupRadio
-                                            :items="uploadModeItems"
-                                            v-model="uploadModeSelect"
-                                            @click="showPickUploadMode=false;uploadData()"
-                                        >
-                                            <template v-slot="props">
-                                                <div :style="`font-size:0.8rem; ${props.item.active?'color:#fff':'color:#666'};`">
-                                                    {{kpUploadModeItems[props.item.data]}}
-                                                </div>
-                                            </template>
-                                        </WGroupRadio>
+                                    <div style="padding:15px;">
+
+                                        <WButtonChip
+                                            style="margin-right:15px;"
+                                            :text="kpUploadModeItems['replace']"
+                                            :backgroundColor="'white'"
+                                            :backgroundColorHover="'#f6f6f6'"
+                                            @click="showPickUploadMode=false;uploadData('replace')"
+                                        ></WButtonChip>
+
+                                        <WButtonChip
+                                            _style="margin:5px;"
+                                            :text="kpUploadModeItems['append']"
+                                            :backgroundColor="'white'"
+                                            :backgroundColorHover="'#f6f6f6'"
+                                            @click="showPickUploadMode=false;uploadData('append')"
+                                        ></WButtonChip>
+
                                     </div>
 
                                 </template>
@@ -209,7 +215,7 @@ import genID from 'wsemi/src/genID.mjs'
 import WButtonCircle from './WButtonCircle.vue'
 import WPopup from './WPopup.vue'
 import WText from './WText.vue'
-import WGroupRadio from './WGroupRadio.vue'
+import WButtonChip from './WButtonChip.vue'
 import WAggridVueDyn from './WAggridVueDyn.vue'
 import domResize from '../js/domResize.mjs'
 import parseSpace from '../js/parseSpace.mjs'
@@ -306,7 +312,7 @@ export default {
         WButtonCircle,
         WPopup,
         WText,
-        WGroupRadio,
+        WButtonChip,
         WAggridVueDyn,
     },
     props: {
@@ -479,8 +485,6 @@ export default {
             tableHeight: 1, //ag-grid需先給予最小高度供顯示, resize才會驅動
 
             showPickUploadMode: false,
-            uploadModeItems: ['replace', 'append'],
-            uploadModeSelect: 'replace',
 
             paramsTemp: null,
 
@@ -937,8 +941,8 @@ export default {
 
         },
 
-        uploadData: function() {
-            //console.log('methods uploadData')
+        uploadData: function(uploadModeSelect) {
+            //console.log('methods uploadData', uploadModeSelect)
 
             let vo = this
 
@@ -959,7 +963,7 @@ export default {
             //uploadMode, 選擇上傳模式
             let uploadMode = get(optForUploadData, 'uploadMode')
             if (!isestr(uploadMode)) {
-                optForUploadData.uploadMode = vo.uploadModeSelect
+                optForUploadData.uploadMode = uploadModeSelect
             }
 
             //beforeUpload, 自動去除無效數據
@@ -985,10 +989,10 @@ export default {
             }
             // console.log('optForUploadData', optForUploadData)
 
-            //uploadData
+            //upload
             fun(optForUploadData)
                 .then((rows) => {
-                    // console.log('uploadData then', rows)
+                    // console.log('upload then', rows)
 
                     // //save, w-aggrid-vue會自動更新vo.useOpt.rows, 需用cloneDeep斷開與外面記憶體共用問題
                     // vo.useOpt.rows=rows
