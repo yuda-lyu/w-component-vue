@@ -85,7 +85,7 @@
     </script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.1.41/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.1.42/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -768,7 +768,26 @@
               }
             ]
           },
-          optionsChange: null
+          optionsChange: null,
+          render: async function(width, height, scale, opt) {
+            console.log("call render service");
+            let settings = {
+              method: "POST",
+              headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json"
+              },
+              body: JSON.stringify({ width, height, scale, opt })
+            };
+            let fetchResponse = await fetch(
+              `http://localhost:9020/api`,
+              settings
+            );
+            let data = await fetchResponse.json();
+            data = data.b64;
+            console.log("b64", data.length);
+            return data;
+          }
         },
         actions: []
       };
