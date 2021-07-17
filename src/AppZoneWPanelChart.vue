@@ -109,6 +109,36 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-panel-chart'"
+                    :casename="'downloadPicture & downloadPictureBtnTooltip'"
+                ></demolink>
+
+                <w-panel-chart
+                    :downloadPicture="true"
+                    :downloadPictureBtnTooltip="'下載圖片'"
+                    :options="WPanelChart.options1"
+                ></w-panel-chart>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-panel-chart'"
+                    :casename="'downloadPicture & downloadPictureFilenmae'"
+                ></demolink>
+
+                <w-panel-chart
+                    :downloadPicture="true"
+                    :downloadPictureFilenmae="'圖片名稱'"
+                    :options="WPanelChart.options1"
+                ></w-panel-chart>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-panel-chart'"
                     :casename="'downloadPicture & downloadPictureBtnIcon'"
                 ></demolink>
 

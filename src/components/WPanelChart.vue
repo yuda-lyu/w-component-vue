@@ -8,6 +8,7 @@
         >
 
             <div :style="`position:absolute; left:0; top:0; transform-origin:top left; transform:scale(${scale});`">
+
                 <component
                     :is="cmpName"
                     :style="`width:${useWidth}px; min-width:${useWidth}px; height:${useHeight}px; min-height:${useHeight}px;`"
@@ -46,6 +47,7 @@
 import { mdiDownloadCircleOutline } from '@mdi/js/mdi.js'
 import get from 'lodash/get'
 import iseobj from 'wsemi/src/iseobj.mjs'
+import isestr from 'wsemi/src/isestr.mjs'
 import isEle from 'wsemi/src/isEle.mjs'
 import html2picDyn from 'wsemi/src/html2picDyn.mjs'
 import downloadFileFromB64 from 'wsemi/src/downloadFileFromB64.mjs'
@@ -185,6 +187,12 @@ export default {
 
                 //b64
                 let b64 = await html2picDyn(ele, { scale: vo.downloadPictureScale })
+
+                //fn
+                let fn = vo.downloadPictureFilenmae
+                if (!isestr(fn)) {
+                    fn = 'pic'
+                }
 
                 //downloadFileFromB64
                 downloadFileFromB64(`${vo.downloadPictureFilenmae}.png`, b64)
