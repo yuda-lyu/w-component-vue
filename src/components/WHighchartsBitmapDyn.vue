@@ -10,6 +10,7 @@ import get from 'lodash/get'
 import isNumber from 'lodash/isNumber'
 import waitFun from 'wsemi/src/waitFun.mjs'
 import iseobj from 'wsemi/src/iseobj.mjs'
+import isfun from 'wsemi/src/isfun.mjs'
 import html2picDyn from 'wsemi/src/html2picDyn.mjs'
 import importResources from 'wsemi/src/importResources.mjs'
 import domVirtualCreateQueue from 'wsemi/src/domVirtualCreateQueue.mjs'
@@ -44,6 +45,14 @@ export default {
         options: {
             type: Object,
             default: () => {},
+        },
+        scale: {
+            type: Number,
+            default: 3,
+        },
+        render: {
+            type: Function, //need async function, input(w, h, scale, highchartsOpt)
+            default: null,
         },
     },
     data: function() {
@@ -92,8 +101,8 @@ export default {
                 vo.pich = 0
                 vo.b64 = ''
 
-                //render
-                vo.render()
+                //plot
+                vo.plot()
 
             }
         }
@@ -112,8 +121,31 @@ export default {
     },
     methods: {
 
-        render: function() {
-            // console.log('methods render')
+        defRender: async function(w, h, scale, highchartsOpt) {
+            // console.log('methods defRender', w, h, scale, highchartsOpt)
+
+            //dpq, 先給予圖片寬高與產製函數, 內部通過佇列逐次運行產圖與回傳base64
+            let fun = async (ele) => {
+
+                //html2canvasOpt
+                let html2canvasOpt = { scale }
+
+                //chart
+                window.Highcharts.chart(ele, highchartsOpt)
+
+                //html2picDyn, 預設轉出base64
+                b64 = await html2picDyn(ele, html2canvasOpt)
+
+                return b64
+            }
+            let b64 = await dpq(w, h, fun)
+            // console.log('b64', b64)
+
+            return b64
+        },
+
+        plot: function() {
+            // console.log('methods plot')
 
             let vo = this
 
@@ -142,22 +174,15 @@ export default {
                     return
                 }
 
-                //dpq, 先給予圖片寬高與產製函數, 內部通過佇列逐次運行產圖與回傳base64
-                let fun = async (ele) => {
-
-                    let highchartsOpt = vo.options
-                    let html2canvasOpt = { scale: 3 }
-
-                    //chart
-                    window.Highcharts.chart(ele, highchartsOpt)
-
-                    //html2picDyn, 預設轉出base64
-                    b64 = await html2picDyn(ele, html2canvasOpt)
-
-                    return b64
+                //defRender
+                let fun = null
+                if (isfun(vo.render)) {
+                    fun = vo.render
                 }
-                let b64 = await dpq(w, h, fun)
-                // console.log('b64', b64)
+                else {
+                    fun = vo.defRender
+                }
+                let b64 = await fun(w, h, vo.scale, vo.options)
 
                 //save
                 vo.picw = w

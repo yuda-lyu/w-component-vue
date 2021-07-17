@@ -41,6 +41,38 @@ let options = {
             <div class="bk">
                 <demolink
                     :kbname="'w-highcharts-bitmap-dyn'"
+                    :casename="'scale (line)'"
+                ></demolink>
+
+                <w-highcharts-bitmap-dyn
+                    style="width:600px; height:400px;"
+                    :options="WHighchartsBitmapDyn.options1"
+                    :scale="1"
+                ></w-highcharts-bitmap-dyn>
+
+            </div>
+
+
+            <template v-if="false && 1===0" msg="run w-hc2png for test">
+                <div class="bk">
+                    <demolink
+                        :kbname="'w-highcharts-bitmap-dyn'"
+                        :casename="'render (line)'"
+                    ></demolink>
+
+                    <w-highcharts-bitmap-dyn
+                        style="width:600px; height:400px;"
+                        :options="WHighchartsBitmapDyn.options1"
+                        :render="WHighchartsBitmapDyn.render"
+                    ></w-highcharts-bitmap-dyn>
+
+                </div>
+            </template>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-highcharts-bitmap-dyn'"
                     :casename="'area'"
                 ></demolink>
 
@@ -561,6 +593,22 @@ export default {
                     }]
                 },
                 'optionsChange': null,
+                'render': async function (width, height, scale, opt) {
+                    console.log('call render service')
+                    let settings = {
+                        method: 'POST',
+                        headers: {
+                            'Accept': 'application/json',
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({ width, height, scale, opt }),
+                    }
+                    let fetchResponse = await fetch(`http://localhost:9020/api`, settings)
+                    let data = await fetchResponse.json()
+                    data = data.b64
+                    console.log('b64', data.length)
+                    return data
+                },
             },
             'actions': [
             ],
