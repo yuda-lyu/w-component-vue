@@ -604,8 +604,14 @@ export default {
                         body: JSON.stringify({ width, height, scale, opt }),
                     }
 
+                    //url
+                    let port = 9020
+                    let path = 'api'
+                    let url = window.location.protocol + '//' + window.location.hostname + ':' + port + window.location.pathname + path
+                    // console.log('url', url)
+
                     //fetch
-                    let fetchResponse = await fetch('http://localhost:9020/api', settings)
+                    let fetchResponse = await fetch(url, settings)
                     let data = await fetchResponse.json()
 
                     //check
@@ -613,7 +619,7 @@ export default {
                         console.log('error', data.err)
                         return ''
                     }
-                    console.log('b64', data.b64.length)
+                    // console.log('b64', data.b64.length)
 
                     return data.b64
                 },
