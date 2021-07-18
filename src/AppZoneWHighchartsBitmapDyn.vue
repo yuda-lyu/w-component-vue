@@ -53,21 +53,19 @@ let options = {
             </div>
 
 
-            <template v-if="false && 1===0" msg="run w-hc2png for test">
-                <div class="bk">
-                    <demolink
-                        :kbname="'w-highcharts-bitmap-dyn'"
-                        :casename="'render (line)'"
-                    ></demolink>
+            <div class="bk">
+                <demolink
+                    :kbname="'w-highcharts-bitmap-dyn'"
+                    :casename="'render (need w-hc2png-server) (line)'"
+                ></demolink>
 
-                    <w-highcharts-bitmap-dyn
-                        style="width:600px; height:400px;"
-                        :options="WHighchartsBitmapDyn.options1"
-                        :render="WHighchartsBitmapDyn.render"
-                    ></w-highcharts-bitmap-dyn>
+                <w-highcharts-bitmap-dyn
+                    style="width:600px; height:400px;"
+                    :options="WHighchartsBitmapDyn.options1"
+                    :render="WHighchartsBitmapDyn.render"
+                ></w-highcharts-bitmap-dyn>
 
-                </div>
-            </template>
+            </div>
 
 
             <div class="bk">
@@ -594,7 +592,9 @@ export default {
                 },
                 'optionsChange': null,
                 'render': async function (width, height, scale, opt) {
-                    console.log('call render service')
+                    console.log('render')
+
+                    //settings
                     let settings = {
                         method: 'POST',
                         headers: {
@@ -603,11 +603,19 @@ export default {
                         },
                         body: JSON.stringify({ width, height, scale, opt }),
                     }
-                    let fetchResponse = await fetch(`http://localhost:9020/api`, settings)
+
+                    //fetch
+                    let fetchResponse = await fetch('http://localhost:9020/api', settings)
                     let data = await fetchResponse.json()
-                    data = data.b64
-                    console.log('b64', data.length)
-                    return data
+
+                    //check
+                    if (data.err) {
+                        console.log('error', data.err)
+                        return ''
+                    }
+                    console.log('b64', data.b64.length)
+
+                    return data.b64
                 },
             },
             'actions': [

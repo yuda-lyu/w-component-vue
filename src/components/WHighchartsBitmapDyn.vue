@@ -37,6 +37,7 @@ export default {
             default: () => [
                 'https://cdn.jsdelivr.net/npm/highcharts@9.1.2/highcharts.js',
                 'https://cdn.jsdelivr.net/npm/highcharts@9.1.2/modules/stock.js', //因vue-highcharts初始化若無stock會無法註冊全域組件, 故若還會使用highstock vue組件, 得先於highcharts vue組件事先載入
+                'https://cdn.jsdelivr.net/npm/highcharts@9.1.2/modules/annotations.js',
                 'https://cdn.jsdelivr.net/npm/highcharts@9.1.2/modules/heatmap.js',
                 'https://cdn.jsdelivr.net/npm/highcharts@9.1.2/modules/boost.js',
                 'https://cdn.jsdelivr.net/npm/highcharts@9.1.2/modules/boost-canvas.js',
@@ -171,6 +172,11 @@ export default {
 
                 //check
                 if (!isNumber(w) || !isNumber(h)) {
+                    return
+                }
+
+                //check
+                if (w <= 0 || h <= 0 || vo.scale <= 0) {
                     return
                 }
 
