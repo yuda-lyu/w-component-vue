@@ -85,7 +85,7 @@
     </script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.1.44/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.1.45/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -136,12 +136,12 @@
                 style="cursor:pointer;"
                 title="open for copy link to view component"
                 onclick="window.open('//yuda-lyu.github.io/w-component-vue/examples/app.html?cmp='+this.innerText,'_blank')"
-            >w-switch</span>
+            >w-checkbox</span>
         </div>
         <div class="bk">
-            <div class="item">boolean</div>
+            <div class="item">iconSize</div>
 
-            <w-switch v-model="WSwitch.valueBol"></w-switch>
+            <w-checkbox :icon-size="18" v-model="WCheckbox.valueBol"></w-checkbox>
         </div>
     </v-app>
 
@@ -155,24 +155,11 @@
     vuetify: new Vuetify(),
     data: function() {
       return {
-        WSwitch: {
-          text: "開啟",
-          valueYes: "yes",
-          valueNo1: "no",
-          valueNo2: "no",
-          valueBol: false
+        WCheckbox: {
+          valueBol: true,
+          valueYN: "y"
         },
-        actions: [
-          {
-            mode: "eleclick",
-            selector: 'input[type="checkbox"]'
-          },
-          {
-            mode: "move",
-            x1: 0,
-            y1: 0
-          }
-        ]
+        actions: []
       };
     },
     mounted: function() {

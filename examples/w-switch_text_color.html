@@ -85,7 +85,7 @@
     </script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.1.44/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.1.45/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -144,7 +144,7 @@
             <w-switch
                 :text="'是否開啟分享'"
                 :color="'teal accent-3'"
-                v-model="WSwitch.valueYes"
+                v-model="WSwitch.valueBol"
             ></w-switch>
         </div>
     </v-app>
@@ -160,23 +160,10 @@
     data: function() {
       return {
         WSwitch: {
-          text: "開啟",
-          valueYes: "yes",
-          valueNo1: "no",
-          valueNo2: "no",
-          valueBol: false
+          valueBol: true,
+          valueYN: "y"
         },
-        actions: [
-          {
-            mode: "eleclick",
-            selector: 'input[type="checkbox"]'
-          },
-          {
-            mode: "move",
-            x1: 0,
-            y1: 0
-          }
-        ]
+        actions: []
       };
     },
     mounted: function() {
