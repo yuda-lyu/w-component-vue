@@ -19,6 +19,9 @@
                 @domresize="resizeToolbar"
             >
 
+                <!-- v-dialog會自動取第1個元素setFocus, 開啟時會讓icon的tooltip被觸發, 但dialog尺寸又繼續變更時, 會導致tooltip無法跟隨而卡在中央, 故提供隱藏input元素供設定為焦點 -->
+                <input type="text" style="width:0px; height:0px">
+
                 <!-- v-toolbar於IE11會因為內容區高度不夠時, 因使用display:flex導致自己撐開, 得通過強制設定max-height處理 -->
 
                 <div style="margin-right:10px;">
