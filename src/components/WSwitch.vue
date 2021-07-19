@@ -1,5 +1,8 @@
 <template>
-    <div style="display:inline-block;" :changeParam="changeParam">
+    <div
+        style="display:inline-block;"
+        :changeParam="changeParam"
+    >
 
         <v-switch
             style="margin:0px; padding:0px;"
@@ -8,7 +11,7 @@
             :color="color"
             :disabled="!editable"
             v-model="b"
-            @change="ch_boolean"
+            @change="toogleValue"
         ></v-switch>
 
     </div>
@@ -20,7 +23,7 @@ import isbol from 'wsemi/src/isbol.mjs'
 
 /**
  * @vue-prop {String} [text=''] 輸入文字字串，預設''
- * @vue-prop {String|Boolean} [value='no'] 輸入是否狀態的字串或布林值，可接受'yes'或'no'，或是true或false，預設'no'
+ * @vue-prop {Boolean|String} [value=false] 輸入是否狀態的布林值或字串，可接受true或false，或是'y'或'n'，預設false
  * @vue-prop {String} [color='pink accent-3'] 輸入切換開關開啟狀態(yes或true)的顏色字串，預設'pink accent-3'
  * @vue-prop {Boolean} [editable=true] 輸入是否為編輯模式，預設true
  */
@@ -31,8 +34,8 @@ export default {
             default: '',
         },
         value: {
-            type: [String, Boolean],
-            default: 'no',
+            type: [Boolean, String],
+            default: false,
         },
         color: {
             type: String,
@@ -45,7 +48,7 @@ export default {
     },
     data: function() {
         return {
-            b: null,
+            b: false,
         }
     },
     mounted: function() {
@@ -65,7 +68,7 @@ export default {
                 vo.b = value
             }
             else {
-                vo.b = (value === 'yes')
+                vo.b = (value === 'y')
             }
 
             return ''
@@ -74,8 +77,8 @@ export default {
     },
     methods: {
 
-        ch_boolean: function (b) {
-            //console.log('methods ch_boolean', b)
+        toogleValue: function (b) {
+            //console.log('methods toogleValue', b)
 
             let vo = this
 
@@ -83,14 +86,14 @@ export default {
             let value = null
             if (isbol(vo.value)) {
                 value = false
-                if (b) { //傳入為true與null
+                if (b) {
                     value = true
                 }
             }
             else {
-                value = 'no'
-                if (b) { //傳入為true與null
-                    value = 'yes'
+                value = 'n'
+                if (b) {
+                    value = 'y'
                 }
             }
 

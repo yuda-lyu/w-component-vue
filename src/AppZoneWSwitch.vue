@@ -14,26 +14,19 @@
                     :casename="'default'"
                 ></demolink>
 
-                <w-switch v-model="WSwitch.valueNo1"></w-switch>
-            </div>
-
-            <div class="bk">
-                <demolink
-                    :kbname="'w-switch'"
-                    :casename="'boolean'"
-                ></demolink>
-
                 <w-switch v-model="WSwitch.valueBol"></w-switch>
             </div>
 
+
             <div class="bk">
                 <demolink
                     :kbname="'w-switch'"
-                    :casename="'text'"
+                    :casename="'use string (y or n)'"
                 ></demolink>
 
-                <w-switch :text="WSwitch.text" v-model="WSwitch.valueNo2"></w-switch>
+                <w-switch v-model="WSwitch.valueYN"></w-switch>
             </div>
+
 
             <div class="bk">
                 <demolink
@@ -44,9 +37,10 @@
                 <w-switch
                     :text="'是否開啟分享'"
                     :color="'teal accent-3'"
-                    v-model="WSwitch.valueYes"
+                    v-model="WSwitch.valueBol"
                 ></w-switch>
             </div>
+
 
             <div class="bk">
                 <demolink
@@ -54,7 +48,7 @@
                     :casename="'not editable'"
                 ></demolink>
 
-                <w-switch :editable="false" v-model="WSwitch.valueYes"></w-switch>
+                <w-switch :editable="false" v-model="WSwitch.valueBol"></w-switch>
             </div>
 
 
@@ -65,7 +59,6 @@
 </template>
 
 <script>
-import { mdiAlert, mdiCached, mdiAccountVoice } from '@mdi/js'
 import demolink from './components/demolink.vue'
 import WSwitch from './components/WSwitch.vue'
 
@@ -79,26 +72,11 @@ export default {
     },
     data: function() {
         return {
-            mdiAlert,
-            mdiCached,
-            mdiAccountVoice,
             'WSwitch': {
-                'text': '開啟',
-                'valueYes': 'yes',
-                'valueNo1': 'no',
-                'valueNo2': 'no',
-                'valueBol': false,
+                'valueBol': true,
+                'valueYN': 'y',
             },
             'actions': [
-                {
-                    'mode': 'eleclick',
-                    'selector': 'input[type="checkbox"]'
-                },
-                {
-                    'mode': 'move',
-                    'x1': 0,
-                    'y1': 0,
-                },
             ],
         }
     },

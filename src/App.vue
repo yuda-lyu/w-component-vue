@@ -153,6 +153,11 @@
             ></AppZoneWSwitch>
 
 
+            <AppZoneWCheckbox
+                v-if="useCmpName==='WCheckbox'"
+            ></AppZoneWCheckbox>
+
+
             <AppZoneWAlert
                 v-if="useCmpName==='WAlert'"
             ></AppZoneWAlert>
@@ -353,6 +358,7 @@ import AppZoneWButtonCircle from './AppZoneWButtonCircle.vue'
 import AppZoneWProgressBar from './AppZoneWProgressBar.vue'
 import AppZoneWProgressCircle from './AppZoneWProgressCircle.vue'
 import AppZoneWSwitch from './AppZoneWSwitch.vue'
+import AppZoneWCheckbox from './AppZoneWCheckbox.vue'
 import AppZoneWAlert from './AppZoneWAlert.vue'
 import AppZoneWGroupTags from './AppZoneWGroupTags.vue'
 import AppZoneWListVertical from './AppZoneWListVertical.vue'
@@ -405,6 +411,7 @@ export default {
         AppZoneWProgressBar,
         AppZoneWProgressCircle,
         AppZoneWSwitch,
+        AppZoneWCheckbox,
         AppZoneWAlert,
         AppZoneWGroupTags,
         AppZoneWListVertical,
@@ -452,6 +459,7 @@ export default {
                     cmps: [
                         { name: 'WBadge' },
                         { name: 'WSwitch' },
+                        { name: 'WCheckbox' },
                         { name: 'WIconSvg' },
                         { name: 'WDropfiles' },
                         { name: 'WProgressBar' },
