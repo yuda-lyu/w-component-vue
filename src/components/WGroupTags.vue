@@ -66,7 +66,7 @@
         <template v-if="itemsTrans.length===0">
 
             <WButtonChip
-                style="margin:10px 10px 10px 0px;"
+                :style="`${useMarginStyle}`"
                 _key=""
                 :text="nodata"
                 :tooltip="nodata"
@@ -113,6 +113,7 @@
 
                 <template v-if="isObjValue">
                     <WButtonChip
+                        :style="`${useMarginStyle}`"
                         :icon="mdiPlusCircle"
                         :iconColor="addButtonIconColor"
                         :iconColorHover="addButtonIconColorHover"
@@ -128,7 +129,7 @@
 
                 <template v-else>
                     <WTextSuggest
-                        :style="`width:${inputTextWidth}px;`"
+                        :style="`${useMarginStyle} width:${inputTextWidth}px;`"
                         :textColor="inputTextColor"
                         :expansionIconColor="inputExpansionIconColor"
                         :itemTextColor="suggectItemTextColor"
