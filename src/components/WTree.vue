@@ -817,6 +817,10 @@ export default {
                 //updateSelections
                 vo.updateSelections()
 
+                //filterKeywordsTransTemp
+                vo.filterKeywordsTransTemp = '' //需清空之前暫存關鍵字才能重新搜尋
+                vo.filterKeyWords()
+
             }
 
             //core
@@ -1640,6 +1644,8 @@ export default {
             if (vo.filterKeywordsTransTemp === vo.filterKeywordsTrans) {
                 return
             }
+
+            //filterKeywordsTransTemp
             vo.filterKeywordsTransTemp = vo.filterKeywordsTrans //因為函數為同步故可以先覆寫至temp
 
             //check
@@ -1747,6 +1753,9 @@ export default {
                 if (vo.filtering) {
                     return
                 }
+
+                //filtering
+                vo.filtering = true
 
                 //opt
                 let opt = {
