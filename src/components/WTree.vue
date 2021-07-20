@@ -26,8 +26,9 @@
                 <div
                     :key="`wt-${props.index}`"
                     :style="`min-height:${iconHeight}px; ${draggable?'user-select:none;':''}`"
-                    dragtag
                     :dragindex="props.index"
+                    v-domdragdrop="isDraggable?getDgOpt():null"
+                    @domdragdrop="dragdrop"
                     draggable="false"
                     @mouseenter="(e)=>{$emit('mouseenter',getEmitData(e,props))}"
                     @mouseleave="(e)=>{$emit('mouseleave',getEmitData(e,props))}"
@@ -197,11 +198,11 @@ import replace from 'wsemi/src/replace.mjs'
 import haskey from 'wsemi/src/haskey.mjs'
 import waitFun from 'wsemi/src/waitFun.mjs'
 import debounce from 'wsemi/src/debounce.mjs'
-import domDrag from 'wsemi/src/domDrag.mjs'
 import flattenTreeObj from 'wsemi/src/flattenTreeObj'
 import globalMemory from '../js/globalMemory.mjs'
 import parseSpace from '../js/parseSpace.mjs'
 import color2hex from '../js/vuetifyColor.mjs'
+import domDragDrop from '../js/domDragDrop.mjs'
 import WDynamicList from './WDynamicList.vue'
 import WButtonCircle from './WButtonCircle.vue'
 import WPopup from './WPopup.vue'
@@ -251,10 +252,11 @@ let gm = globalMemory()
  * @vue-prop {String} [dgInsertLineColor='#29f'] 輸入拖曳時顯示插入區域線顏色字串，預設'#29f'
  * @vue-prop {String} [dgInsertBackgroundColor='rgba(80,150,255,0.15)'] 輸入拖曳時顯示插入區域背景顏色字串，預設'rgba(80,150,255,0.15)'
  * @vue-prop {String} [dgBelongBackgroundColor='rgba(80,150,255,0.3)'] 輸入拖曳時顯示插入區域(成為目標的子節點)背景顏色字串，預設'rgba(80,150,255,0.3)'
- * @vue-prop {Number} [dgPreviewOpacity=1] 輸入拖曳時顯示標記元素透明度數字，預設1
- * @vue-prop {Number} [dgPreviewBorderWidth=0] 輸入拖曳時顯示標記元素邊框寬度數字，預設0
- * @vue-prop {String} [dgPreviewBorderColor='#f26'] 輸入拖曳時顯示標記元素邊框顏色字串，預設'#f26'
- * @vue-prop {String} [dgPreviewBackground='transparent'] 輸入拖曳時顯示標記元素背景顏色字串，預設'transparent'
+ * @vue-prop {Number} [dgPreviewOpacity=1] 輸入拖曳時預覽元素透明度數字，預設1
+ * @vue-prop {Number} [dgPreviewDisabledOpacity=1] 輸入無效時(位於非可拖曳元素內)拖曳時預覽元素透明度數字，預設1
+ * @vue-prop {Number} [dgPreviewBorderWidth=0] 輸入拖曳時預覽元素邊框寬度數字，預設0
+ * @vue-prop {String} [dgPreviewBorderColor='#f26'] 輸入拖曳時預覽元素邊框顏色字串，預設'#f26'
+ * @vue-prop {String} [dgPreviewBackground='transparent'] 輸入拖曳時預覽元素背景顏色字串，預設'transparent'
  * @vue-prop {Boolean} [operatable=false] 輸入是否使用控制節點模式，若operatable設定true，將於各項目右側顯示控制按鈕，點擊可彈出選單進行插入與刪除等項目，此時會觸發事件click-operate-item，而處理相應數據則需呼叫事件提供物件內operateItem函數，詳情請見範例。此時所有節點皆為展開顯示並且禁止顯隱節點功能，也就是defaultDisplayLevel強制設定為null，此外也不提供過濾功能，也就是filterKeywords強制清空。開啟operatable僅適用小規模數據。operatable預設false
  * @vue-prop {String} [operateItemTextForInsertBefore='Insert before'] 輸入控制選項插入前項目之文字字串，預設'Insert before'
  * @vue-prop {String} [operateItemTextForInsertChild='Insert child'] 輸入控制選項插入子項目之文字字串，預設'Insert child'
@@ -277,6 +279,9 @@ let gm = globalMemory()
  * @vue-prop {Boolean} [show=true] 輸入是否為顯示模式，預設true，供組件嵌入popup時, 因先初始化但尚未顯示不需渲染, 可給予show=false避免無限偵測與重算高度問題
  */
 export default {
+    directives: {
+        domdragdrop: domDragDrop(),
+    },
     components: {
         WDynamicList,
         WButtonCircle,
@@ -439,6 +444,10 @@ export default {
             type: Number,
             default: 1,
         },
+        dgPreviewDisabledOpacity: {
+            type: Number,
+            default: 1,
+        },
         dgPreviewBorderWidth: {
             type: Number,
             default: 0,
@@ -554,7 +563,8 @@ export default {
 
             defaultDisplayLevelTrans: null,
 
-            drag: null,
+            dgGroupKey: null,
+            // drag: null,
             dgTipMode: '',
             dgTipLeft: 0,
             dgTipTop: 0,
@@ -573,8 +583,8 @@ export default {
             gm.remove(vo.mmkey)
         }
 
-        //dragClear
-        vo.dragClear()
+        // //dragClear
+        // vo.dragClear()
 
     },
     watch: {
@@ -731,6 +741,14 @@ export default {
             ]
 
             return operateItems
+        },
+
+        isDraggable: function() {
+            //console.log('computed isDraggable')
+
+            let vo = this
+
+            return vo.draggable // && vo.editable
         },
 
     },
@@ -1807,18 +1825,18 @@ export default {
             //emit
             vo.$emit('change-view-items', msg)
 
-            //draggable
-            if (vo.draggable) {
+            // //draggable
+            // if (vo.draggable) {
 
-                //$nextTick, 因WDynamicList為按需顯示, 為使domDrag能抓到元素, 需等WDynamicList內觸發change-view-items結束後dom才會更新, 故得延遲執行
-                vo.$nextTick(() => {
+            //     //$nextTick, 因WDynamicList為按需顯示, 為使domDrag能抓到元素, 需等WDynamicList內觸發change-view-items結束後dom才會更新, 故得延遲執行
+            //     vo.$nextTick(() => {
 
-                    //dragInit
-                    vo.dragInit()
+            //         //dragInit
+            //         vo.dragInit()
 
-                })
+            //     })
 
-            }
+            // }
 
         },
 
@@ -2068,211 +2086,380 @@ export default {
 
         },
 
-        dragInit: function() {
-            // console.log('methods dragInit')
+        getDgGroupKey: function() {
+            //console.log('methods getDgGroupKey')
 
             let vo = this
 
-            function isBelong(arEnter, arSelf) {
-                function isArrayOverlap(ar1, ar2) {
-
-                    //n
-                    let n = min([size(ar1), size(ar2)])
-
-                    //先截成同長度陣列, 為共有父層資訊
-                    let tr1 = take(ar1, n)
-                    let tr2 = take(ar2, n)
-
-                    //isEqual
-                    let b = isEqual(tr1, tr2)
-
-                    return b
-                }
-                if (size(arEnter) >= size(arSelf)) { //若enter要為self的子節點, 其enter size會大於等於 self size
-                    return isArrayOverlap(arEnter, arSelf) //若有共同父層資訊, 就代表enter為self的子節點
-                }
-                return false
+            //dgGroupKey
+            if (vo.dgGroupKey === null) {
+                vo.dgGroupKey = `r${genID()}`
             }
 
-            async function core() {
-
-                //check
-                if (!vo.draggable) {
-                    return
-                }
-
-                //wait $el
-                await waitFun(() => {
-                    return vo.$el !== undefined
-                })
-
-                //check
-                if (!vo.$refs.wdl) {
-                    return
-                }
-
-                //check
-                if (vo.drag !== null) {
-                    vo.dragClear()
-                }
-
-                //domDrag
-                let drag = domDrag(vo.$el, {
-                    attIndex: 'dragindex',
-                    attGroup: 'draggroup',
-                    selectors: '[dragtag]',
-                    // previewOpacity: 0.4,
-                    // previewBorderWidth: 1,
-                    // previewBorderColor: '#f26',
-                    // previewBackground: '#fff',
-                    previewOpacity: vo.dgPreviewOpacity,
-                    previewBorderWidth: vo.dgPreviewBorderWidth,
-                    previewBorderColor: vo.dgPreviewBorderColor,
-                    previewBackground: vo.dgPreviewBackground,
-                })
-                drag.on('change', (msg) => {
-                    // console.log('onchange', msg)
-                })
-                drag.on('move', (msg) => {
-                    // console.log('move', msg)
-
-                    //rows
-                    let rows = gm.get(vo.mmkey)
-                    // console.log('rows', JSON.parse(JSON.stringify(rows)))
-
-                    //itemSelf, itemEnter
-                    let itemSelf = rows[msg.startInd]
-                    let itemEnter = rows[msg.endInd]
-                    // console.log('itemSelf', itemSelf, msg.startInd, itemSelf.item.nk)
-                    // console.log('itemEnter', itemEnter, msg.endInd, itemEnter.item.nk)
-
-                    //belong
-                    let belong = isBelong(itemEnter.item.nk, itemSelf.item.nk)
-                    // console.log('belong', belong)
-
-                    //ele, 因WDynamicList會重新封裝按需顯示, 故顯示拖曳指標區為上2層的父節點, 取top才會正確
-                    let ele = get(msg, `endEle.parentNode.parentNode`)
-
-                    //location
-                    vo.dgTipTop = cdbl(replace(ele.style.top, 'px', ''))
-                    vo.dgTipLeft = cdbl(replace(ele.style.left, 'px', ''))
-                    vo.dgTipWidth = ele.offsetWidth
-                    vo.dgTipHeight = ele.offsetHeight
-
-                    //dgTipMode
-                    if (belong) {
-                        vo.dgTipMode = 'disabled'
-                    }
-                    else if (msg.ry <= 0.3) {
-                        vo.dgTipMode = 'lineTop'
-                    }
-                    else if (msg.ry >= 0.7) {
-                        vo.dgTipMode = 'lineBottom'
-                    }
-                    else if (msg.ry > 0.3 && msg.ry < 0.7) {
-                        vo.dgTipMode = 'block'
-                    }
-                    else {
-                        //不會有此狀況
-                        vo.dgTipMode = ''
-                    }
-
-                })
-                drag.on('enter', (msg) => {
-                    //console.log('enter', msg)
-                })
-                drag.on('leave', (msg) => {
-                    //console.log('leave', msg)
-                    vo.dgTipMode = ''
-                })
-                drag.on('drop', (msg) => {
-                    // console.log('ondrop', msg.startInd, msg.endInd)
-
-                    //check, 拖曳至原始拖曳項目上, 無有效拖曳模式
-                    if (msg.startInd === msg.endInd) {
-                        vo.dgTipMode = ''
-                        return
-                    }
-
-                    //check, 多層組件觸發時可能會因leave觸發導致dgTipMode=''
-                    if (vo.dgTipMode === '') {
-                        return
-                    }
-
-                    //modeDir
-                    let modeDir
-                    if (msg.startInd < msg.endInd) {
-                        modeDir = 'backward'
-                    }
-                    else if (msg.startInd > msg.endInd) {
-                        modeDir = 'forward'
-                    }
-                    else {
-                        throw new Error('invalid modeDir')
-                    }
-                    // console.log('modeDir', modeDir)
-
-                    //modeInsert
-                    let modeInsert
-                    if (vo.dgTipMode === 'disabled') {
-                        vo.dgTipMode = ''
-                    }
-                    else if (vo.dgTipMode === 'lineTop') {
-                        modeInsert = 'before'
-                    }
-                    else if (vo.dgTipMode === 'lineBottom') {
-                        modeInsert = 'after'
-                    }
-                    else if (vo.dgTipMode === 'block') {
-                        modeInsert = 'belongto'
-                    }
-                    else {
-                        console.log('dgTipMode', vo.dgTipMode)
-                        throw new Error('invalid dgTipMode')
-                    }
-                    // console.log('modeInsert', modeInsert)
-
-                    //check, 純點擊時無move, 或拖曳至禁止對象內(通常是拖入自己子節點內)
-                    if (vo.dgTipMode === '') {
-                        return
-                    }
-
-                    //clear, 已由dgTipMode換算出modeInsert, 拖曳完需清除dgTipMode使拖曳時指示對象隱藏
-                    vo.dgTipMode = ''
-
-                    //dragItem
-                    vo.dragItem(msg.startInd, msg.endInd, modeDir, modeInsert)
-
-                })
-
-                //save
-                vo.drag = drag
-
-            }
-
-            //$nextTick, 因value變更時需驅動dom更新, 才能使domDrag抓到元素, 故需延遲執行
-            vo.$nextTick(() => {
-
-                //core
-                core()
-                    .catch(() => {})
-
-            })
-
+            return vo.dgGroupKey
         },
 
-        dragClear: function() {
-            //console.log('methods dragClear')
+        getDgOpt: function() {
+            //console.log('methods getDgOpt')
 
             let vo = this
 
-            //clear
-            if (vo.drag) {
-                vo.drag.clear()
-                vo.drag = null
+            //opt, 使用vue directive初始化時於mounted之前就需要group值, 此代表此組件內可互相拖曳之DOM群組識別碼, 故通過function自動取得group
+            let opt = {
+                group: vo.getDgGroupKey(),
+                //attIdentify
+                attIndex: 'dragindex',
+                attGroup: 'draggroup',
+                previewOpacity: vo.dgPreviewOpacity,
+                previewDisabledOpacity: vo.dgPreviewDisabledOpacity,
+                previewBorderWidth: vo.dgPreviewBorderWidth,
+                previewBorderColor: vo.dgPreviewBorderColor,
+                previewBackground: vo.dgPreviewBackground,
+                timeDragStartDelay: 1,
+            }
+
+            return opt
+        },
+
+        isBelong: function(arEnter, arSelf) {
+            function isArrayOverlap(ar1, ar2) {
+
+                //n
+                let n = min([size(ar1), size(ar2)])
+
+                //先截成同長度陣列, 為共有父層資訊
+                let tr1 = take(ar1, n)
+                let tr2 = take(ar2, n)
+
+                //isEqual
+                let b = isEqual(tr1, tr2)
+
+                return b
+            }
+            if (size(arEnter) >= size(arSelf)) { //若enter要為self的子節點, 其enter size會大於等於 self size
+                return isArrayOverlap(arEnter, arSelf) //若有共同父層資訊, 就代表enter為self的子節點
+            }
+            return false
+        },
+
+        dragdrop: function(msg) {
+            // console.log('methods dragdrop', msg)
+
+            let vo = this
+
+            if (msg.evName === 'move') {
+
+                //rows
+                let rows = gm.get(vo.mmkey)
+                // console.log('rows', JSON.parse(JSON.stringify(rows)))
+
+                //itemSelf, itemEnter
+                let itemSelf = rows[msg.startInd]
+                let itemEnter = rows[msg.endInd]
+                // console.log('itemSelf', itemSelf, msg.startInd, itemSelf.item.nk)
+                // console.log('itemEnter', itemEnter, msg.endInd, itemEnter.item.nk)
+
+                //belong
+                let belong = vo.isBelong(itemEnter.item.nk, itemSelf.item.nk)
+                // console.log('belong', belong)
+
+                //ele, 因WDynamicList會重新封裝按需顯示, 故顯示拖曳指標區為上2層的父節點, 取top才會正確
+                let ele = get(msg, `endEle.parentNode.parentNode`)
+
+                //location
+                vo.dgTipTop = cdbl(replace(ele.style.top, 'px', ''))
+                vo.dgTipLeft = cdbl(replace(ele.style.left, 'px', ''))
+                vo.dgTipWidth = ele.offsetWidth
+                vo.dgTipHeight = ele.offsetHeight
+
+                //dgTipMode
+                if (belong) {
+                    vo.dgTipMode = 'disabled'
+                }
+                else if (msg.ry <= 0.3) {
+                    vo.dgTipMode = 'lineTop'
+                }
+                else if (msg.ry >= 0.7) {
+                    vo.dgTipMode = 'lineBottom'
+                }
+                else if (msg.ry > 0.3 && msg.ry < 0.7) {
+                    vo.dgTipMode = 'block'
+                }
+                else {
+                    //不會有此狀況
+                    vo.dgTipMode = ''
+                }
+
+            }
+            else if (msg.evName === 'leave') {
+                vo.dgTipMode = ''
+            }
+            else if (msg.evName === 'drop') {
+
+                //check, 拖曳至原始拖曳項目上, 無有效拖曳模式
+                if (msg.startInd === msg.endInd) {
+                    vo.dgTipMode = ''
+                    return
+                }
+
+                //check, 多層組件觸發時可能會因leave觸發導致dgTipMode=''
+                if (vo.dgTipMode === '') {
+                    return
+                }
+
+                //modeDir
+                let modeDir
+                if (msg.startInd < msg.endInd) {
+                    modeDir = 'backward'
+                }
+                else if (msg.startInd > msg.endInd) {
+                    modeDir = 'forward'
+                }
+                else {
+                    throw new Error('invalid modeDir')
+                }
+                // console.log('modeDir', modeDir)
+
+                //modeInsert
+                let modeInsert
+                if (vo.dgTipMode === 'disabled') {
+                    vo.dgTipMode = ''
+                }
+                else if (vo.dgTipMode === 'lineTop') {
+                    modeInsert = 'before'
+                }
+                else if (vo.dgTipMode === 'lineBottom') {
+                    modeInsert = 'after'
+                }
+                else if (vo.dgTipMode === 'block') {
+                    modeInsert = 'belongto'
+                }
+                else {
+                    console.log('dgTipMode', vo.dgTipMode)
+                    throw new Error('invalid dgTipMode')
+                }
+                // console.log('modeInsert', modeInsert)
+
+                //check, 純點擊時無move, 或拖曳至禁止對象內(通常是拖入自己子節點內)
+                if (vo.dgTipMode === '') {
+                    return
+                }
+
+                //clear, 已由dgTipMode換算出modeInsert, 拖曳完需清除dgTipMode使拖曳時指示對象隱藏
+                vo.dgTipMode = ''
+
+                //dragItem
+                vo.dragItem(msg.startInd, msg.endInd, modeDir, modeInsert)
+
             }
 
         },
+
+        // dragInit: function() {
+        //     // console.log('methods dragInit')
+
+        //     let vo = this
+
+        //     function isBelong(arEnter, arSelf) {
+        //         function isArrayOverlap(ar1, ar2) {
+
+        //             //n
+        //             let n = min([size(ar1), size(ar2)])
+
+        //             //先截成同長度陣列, 為共有父層資訊
+        //             let tr1 = take(ar1, n)
+        //             let tr2 = take(ar2, n)
+
+        //             //isEqual
+        //             let b = isEqual(tr1, tr2)
+
+        //             return b
+        //         }
+        //         if (size(arEnter) >= size(arSelf)) { //若enter要為self的子節點, 其enter size會大於等於 self size
+        //             return isArrayOverlap(arEnter, arSelf) //若有共同父層資訊, 就代表enter為self的子節點
+        //         }
+        //         return false
+        //     }
+
+        //     async function core() {
+
+        //         //check
+        //         if (!vo.draggable) {
+        //             return
+        //         }
+
+        //         //wait $el
+        //         await waitFun(() => {
+        //             return vo.$el !== undefined
+        //         })
+
+        //         //check
+        //         if (!vo.$refs.wdl) {
+        //             return
+        //         }
+
+        //         //check
+        //         if (vo.drag !== null) {
+        //             vo.dragClear()
+        //         }
+
+        //         //domDrag
+        //         let drag = domDrag(vo.$el, {
+        //             attIndex: 'dragindex',
+        //             attGroup: 'draggroup',
+        //             selectors: '[dragtag]',
+        //             // previewOpacity: 0.4,
+        //             // previewBorderWidth: 1,
+        //             // previewBorderColor: '#f26',
+        //             // previewBackground: '#fff',
+        //             previewOpacity: vo.dgPreviewOpacity,
+        //             previewBorderWidth: vo.dgPreviewBorderWidth,
+        //             previewBorderColor: vo.dgPreviewBorderColor,
+        //             previewBackground: vo.dgPreviewBackground,
+        //         })
+        //         drag.on('change', (msg) => {
+        //             // console.log('onchange', msg)
+        //         })
+        //         drag.on('move', (msg) => {
+        //             // console.log('move', msg)
+
+        //             //rows
+        //             let rows = gm.get(vo.mmkey)
+        //             // console.log('rows', JSON.parse(JSON.stringify(rows)))
+
+        //             //itemSelf, itemEnter
+        //             let itemSelf = rows[msg.startInd]
+        //             let itemEnter = rows[msg.endInd]
+        //             // console.log('itemSelf', itemSelf, msg.startInd, itemSelf.item.nk)
+        //             // console.log('itemEnter', itemEnter, msg.endInd, itemEnter.item.nk)
+
+        //             //belong
+        //             let belong = isBelong(itemEnter.item.nk, itemSelf.item.nk)
+        //             // console.log('belong', belong)
+
+        //             //ele, 因WDynamicList會重新封裝按需顯示, 故顯示拖曳指標區為上2層的父節點, 取top才會正確
+        //             let ele = get(msg, `endEle.parentNode.parentNode`)
+
+        //             //location
+        //             vo.dgTipTop = cdbl(replace(ele.style.top, 'px', ''))
+        //             vo.dgTipLeft = cdbl(replace(ele.style.left, 'px', ''))
+        //             vo.dgTipWidth = ele.offsetWidth
+        //             vo.dgTipHeight = ele.offsetHeight
+
+        //             //dgTipMode
+        //             if (belong) {
+        //                 vo.dgTipMode = 'disabled'
+        //             }
+        //             else if (msg.ry <= 0.3) {
+        //                 vo.dgTipMode = 'lineTop'
+        //             }
+        //             else if (msg.ry >= 0.7) {
+        //                 vo.dgTipMode = 'lineBottom'
+        //             }
+        //             else if (msg.ry > 0.3 && msg.ry < 0.7) {
+        //                 vo.dgTipMode = 'block'
+        //             }
+        //             else {
+        //                 //不會有此狀況
+        //                 vo.dgTipMode = ''
+        //             }
+
+        //         })
+        //         drag.on('enter', (msg) => {
+        //             //console.log('enter', msg)
+        //         })
+        //         drag.on('leave', (msg) => {
+        //             //console.log('leave', msg)
+        //             vo.dgTipMode = ''
+        //         })
+        //         drag.on('drop', (msg) => {
+        //             // console.log('ondrop', msg.startInd, msg.endInd)
+
+        //             //check, 拖曳至原始拖曳項目上, 無有效拖曳模式
+        //             if (msg.startInd === msg.endInd) {
+        //                 vo.dgTipMode = ''
+        //                 return
+        //             }
+
+        //             //check, 多層組件觸發時可能會因leave觸發導致dgTipMode=''
+        //             if (vo.dgTipMode === '') {
+        //                 return
+        //             }
+
+        //             //modeDir
+        //             let modeDir
+        //             if (msg.startInd < msg.endInd) {
+        //                 modeDir = 'backward'
+        //             }
+        //             else if (msg.startInd > msg.endInd) {
+        //                 modeDir = 'forward'
+        //             }
+        //             else {
+        //                 throw new Error('invalid modeDir')
+        //             }
+        //             // console.log('modeDir', modeDir)
+
+        //             //modeInsert
+        //             let modeInsert
+        //             if (vo.dgTipMode === 'disabled') {
+        //                 vo.dgTipMode = ''
+        //             }
+        //             else if (vo.dgTipMode === 'lineTop') {
+        //                 modeInsert = 'before'
+        //             }
+        //             else if (vo.dgTipMode === 'lineBottom') {
+        //                 modeInsert = 'after'
+        //             }
+        //             else if (vo.dgTipMode === 'block') {
+        //                 modeInsert = 'belongto'
+        //             }
+        //             else {
+        //                 console.log('dgTipMode', vo.dgTipMode)
+        //                 throw new Error('invalid dgTipMode')
+        //             }
+        //             // console.log('modeInsert', modeInsert)
+
+        //             //check, 純點擊時無move, 或拖曳至禁止對象內(通常是拖入自己子節點內)
+        //             if (vo.dgTipMode === '') {
+        //                 return
+        //             }
+
+        //             //clear, 已由dgTipMode換算出modeInsert, 拖曳完需清除dgTipMode使拖曳時指示對象隱藏
+        //             vo.dgTipMode = ''
+
+        //             //dragItem
+        //             vo.dragItem(msg.startInd, msg.endInd, modeDir, modeInsert)
+
+        //         })
+
+        //         //save
+        //         vo.drag = drag
+
+        //     }
+
+        //     //$nextTick, 因value變更時需驅動dom更新, 才能使domDrag抓到元素, 故需延遲執行
+        //     vo.$nextTick(() => {
+
+        //         //core
+        //         core()
+        //             .catch(() => {})
+
+        //     })
+
+        // },
+
+        // dragClear: function() {
+        //     //console.log('methods dragClear')
+
+        //     let vo = this
+
+        //     //clear
+        //     if (vo.drag) {
+        //         vo.drag.clear()
+        //         vo.drag = null
+        //     }
+
+        // },
 
         clickOperateItem: function(msg) {
             // console.log('clickOperateItem', msg)

@@ -58,6 +58,8 @@
                     :casename="'draggable'"
                 ></demolink>
 
+                <div style="margin-bottom:5px; color:#f26; font-size:0.8rem;">* Disable show and hide nodes when using draggable</div>
+
                 <w-tree
                     style="border:1px solid #ddd;"
                     :draggable="true"
@@ -72,6 +74,8 @@
                     :kbname="'w-tree'"
                     :casename="'draggable & dgPreviewOpacity & dgPreviewBorderWidth & dgBelongBackgroundColor'"
                 ></demolink>
+
+                <div style="margin-bottom:5px; color:#f26; font-size:0.8rem;">* Disable show and hide nodes when using draggable</div>
 
                 <w-tree
                     style="border:1px solid #ddd;"
@@ -92,6 +96,8 @@
                     :casename="'draggable & dgInsertLineColor & dgInsertBackgroundColor & dgBelongBackgroundColor'"
                 ></demolink>
 
+                <div style="margin-bottom:5px; color:#f26; font-size:0.8rem;">* Disable show and hide nodes when using draggable</div>
+
                 <w-tree
                     style="border:1px solid #ddd;"
                     :draggable="true"
@@ -109,6 +115,8 @@
                     :kbname="'w-tree'"
                     :casename="'draggable & dgTextDisabled & dgTextDisabledColor & dgTextDisabledPaddingLeft & dgTextDisabledFontSize & dgTextDisabledBackgroundColor'"
                 ></demolink>
+
+                <div style="margin-bottom:5px; color:#f26; font-size:0.8rem;">* Disable show and hide nodes when using draggable</div>
 
                 <w-tree
                     style="border:1px solid #ddd;"
@@ -130,6 +138,8 @@
                     :casename="'operatable'"
                 ></demolink>
 
+                <div style="margin-bottom:5px; color:#f26; font-size:0.8rem;">* Disable show and hide nodes when using operatable</div>
+
                 <w-tree
                     style="border:1px solid #ddd;"
                     :data.sync="WTree.option.items"
@@ -145,6 +155,8 @@
                     :kbname="'w-tree'"
                     :casename="'operatable & operateBtnTooltip & operateItemTextForInsertBefore & perateItemTextForInsertChild & operateItemTextForInsertAfter & operateItemTextForInsertDelete'"
                 ></demolink>
+
+                <div style="margin-bottom:5px; color:#f26; font-size:0.8rem;">* Disable show and hide nodes when using operatable</div>
 
                 <w-tree
                     style="border:1px solid #ddd;"
@@ -167,6 +179,8 @@
                     :casename="'operatable & operateItemIconSize & operateItemPaddingStyle & operatePanelWidth & operatePanelHeight'"
                 ></demolink>
 
+                <div style="margin-bottom:5px; color:#f26; font-size:0.8rem;">* Disable show and hide nodes when using operatable</div>
+
                 <w-tree
                     style="border:1px solid #ddd;"
                     :data.sync="WTree.option.items"
@@ -187,6 +201,8 @@
                     :casename="'operatable & operateBtnBackgroundColor & operateBtnBackgroundColorHover & operateBtnBackgroundColorFocus'"
                 ></demolink>
 
+                <div style="margin-bottom:5px; color:#f26; font-size:0.8rem;">* Disable show and hide nodes when using operatable</div>
+
                 <w-tree
                     style="border:1px solid #ddd;"
                     :data.sync="WTree.option.items"
@@ -205,6 +221,8 @@
                     :kbname="'w-tree'"
                     :casename="'operatable & operateItemBackgroundColor & operateItemBackgroundColorHover & operateItemTextColor & operateItemTextColorHover & operateItemIconColor & operateItemIconColorHover'"
                 ></demolink>
+
+                <div style="margin-bottom:5px; color:#f26; font-size:0.8rem;">* Disable show and hide nodes when using operatable</div>
 
                 <w-tree
                     style="border:1px solid #ddd;"
@@ -406,6 +424,8 @@
                     :casename="'slot & operatable'"
                 ></demolink>
 
+                <div style="margin-bottom:5px; color:#f26; font-size:0.8rem;">* Disable show and hide nodes when using operatable</div>
+
                 <w-tree
                     style="border:1px solid #ddd;"
                     :data.sync="WTree.option.items"
@@ -525,6 +545,8 @@
                     :casename="'selectable & draggable'"
                 ></demolink>
 
+                <div style="margin-bottom:5px; color:#f26; font-size:0.8rem;">* Disable show and hide nodes when using draggable</div>
+
                 <!-- 用:style才能支援IE11因vue會自動把overflow-x:auto轉為-ms-overflow-x:auto -->
                 <div :style="'overflow-x:auto;'">
 
@@ -557,6 +579,8 @@
                     :kbname="'w-tree'"
                     :casename="'slot & selectable & draggable'"
                 ></demolink>
+
+                <div style="margin-bottom:5px; color:#f26; font-size:0.8rem;">* Disable show and hide nodes when using draggable</div>
 
                 <!-- 用:style才能支援IE11因vue會自動把overflow-x:auto轉為-ms-overflow-x:auto -->
                 <div :style="'overflow-x:auto;'">

@@ -1,7 +1,6 @@
 <template>
     <div
         :changeValue="changeValue"
-        :changeDraggable="changeDraggable"
     >
 
         <transition-group>
@@ -12,8 +11,9 @@
                     class="WGroupTags-Trans"
                     style="display:inline-block;"
                     :key="`${isObjValue?o2j(item):item}`"
-                    dragtag
                     :dragindex="kitem"
+                    v-domdragdrop="isDraggable?getDgOpt():null"
+                    @domdragdrop="dragdrop"
                     draggable="false"
                 >
                     <WButtonChip
@@ -176,14 +176,14 @@ import pullAt from 'lodash/pullAt'
 import filter from 'lodash/filter'
 import isEqual from 'lodash/isEqual'
 import size from 'lodash/size'
-import domDrag from 'wsemi/src/domDrag.mjs'
+import genID from 'wsemi/src/genID.mjs'
 import o2j from 'wsemi/src/o2j.mjs'
 import isobj from 'wsemi/src/isobj.mjs'
 import genPm from 'wsemi/src/genPm.mjs'
-import waitFun from 'wsemi/src/waitFun.mjs'
 import WButtonChip from './WButtonChip.vue'
 import WTextSuggest from './WTextSuggest.vue'
 import parseSpace from '../js/parseSpace.mjs'
+import domDragDrop from '../js/domDragDrop.mjs'
 
 
 /**
@@ -258,6 +258,9 @@ import parseSpace from '../js/parseSpace.mjs'
  * @vue-prop {String} [nodata='無'] 輸入無任何字串陣列時的預設文字字串，預設'無'
  */
 export default {
+    directives: {
+        domdragdrop: domDragDrop(),
+    },
     components: {
         WButtonChip,
         WTextSuggest,
@@ -562,23 +565,13 @@ export default {
 
             mdiPlusCircle,
 
-            drag: null,
+            dgGroupKey: null,
+
             itemsTrans: [],
             itemActiveTrans: null,
             userinput: '',
 
         }
-    },
-    mounted: function() {
-    },
-    beforeDestroy: function() {
-        //console.log('beforeDestroy')
-
-        let vo = this
-
-        //dragClear
-        vo.dragClear()
-
     },
     computed: {
 
@@ -590,30 +583,6 @@ export default {
             //save
             vo.itemsTrans = cloneDeep(vo.value)
             vo.itemActiveTrans = cloneDeep(vo.valueActive)
-
-            //dragInit
-            vo.dragInit()
-
-            return ''
-        },
-
-        changeDraggable: function () {
-            //console.log('computed changeDraggable')
-
-            let vo = this
-
-            //draggable for trigger
-            let draggable = vo.draggable
-
-            //dragInit or dragClear
-            if (draggable) {
-                if (vo.drag === null) {
-                    vo.dragInit()
-                }
-            }
-            else {
-                vo.dragClear()
-            }
 
             return ''
         },
@@ -632,6 +601,14 @@ export default {
             })
         },
 
+        isDraggable: function() {
+            //console.log('computed isDraggable')
+
+            let vo = this
+
+            return vo.draggable && vo.editable
+        },
+
         useMarginStyle: function() {
             //console.log('computed useMarginStyle')
 
@@ -648,6 +625,41 @@ export default {
 
     },
     methods: {
+
+        getDgGroupKey: function() {
+            //console.log('methods getDgGroupKey')
+
+            let vo = this
+
+            //dgGroupKey
+            if (vo.dgGroupKey === null) {
+                vo.dgGroupKey = `r${genID()}`
+            }
+
+            return vo.dgGroupKey
+        },
+
+        getDgOpt: function() {
+            //console.log('methods getDgOpt')
+
+            let vo = this
+
+            //opt, 使用vue directive初始化時於mounted之前就需要group值, 此代表此組件內可互相拖曳之DOM群組識別碼, 故通過function自動取得group
+            let opt = {
+                group: vo.getDgGroupKey(),
+                //attIdentify
+                attIndex: 'dragindex',
+                attGroup: 'draggroup',
+                previewOpacity: 1,
+                previewDisabledOpacity: 0.5,
+                previewBorderWidth: 0,
+                //previewBorderColor
+                previewBackground: 'transparent',
+                timeDragStartDelay: 1,
+            }
+
+            return opt
+        },
 
         getColor: function(item, keyColor) {
             //console.log('methods getColor', item, keyColor)
@@ -679,104 +691,55 @@ export default {
             return isEqual(vo.itemActiveTrans, item)
         },
 
-        dragInit: function() {
-            // console.log('methods dragInit')
+        dragdrop: function(msg) {
+            // console.log('methods dragdrop', msg)
 
             let vo = this
 
-            async function core() {
+            if (msg.evName === 'drop') {
 
-                //wait $el
-                await waitFun(() => {
-                    return vo.$el !== undefined
-                })
+                //startInd, endInd
+                let { startInd, endInd } = msg
 
                 //check
-                if (vo.drag !== null) {
-                    vo.dragClear()
+                if (startInd === endInd) {
+                    return
                 }
 
-                //domDrag
-                let drag = domDrag(vo.$el, {
-                    attIndex: 'dragindex',
-                    attGroup: 'draggroup',
-                    selectors: '[dragtag]',
-                    previewOpacity: 1,
-                    previewBorderWidth: 0,
-                    previewBackground: 'transparent',
-                })
-                drag.on('change', (msg) => {
-                    //console.log('onchange', msg)
-                })
-                drag.on('drop', ({ startInd, endInd }) => {
-                    // console.log('ondrop', startInd, endInd)
+                //cloneDeep
+                let itemsNew = cloneDeep(vo.itemsTrans)
 
-                    //check
-                    if (startInd === endInd) {
-                        return
-                    }
+                //move
+                if (startInd > endInd) { //往前拖曳, 先移除原始拖曳項目, 再於放下位置插入該拖曳項目
+
+                    //pullAt
+                    let src = pullAt(itemsNew, startInd)[0]
+
+                    //array insert
+                    itemsNew.splice(endInd, 0, src) //拖曳項目是要放在目標項目之前, 故不能+1
+
+                }
+                else { //往後拖曳, 先複製原始拖曳項目, 並於放下位置插入, 再刪除原始拖曳項目
 
                     //cloneDeep
-                    let itemsNew = cloneDeep(vo.itemsTrans)
+                    let src = cloneDeep(itemsNew[startInd])
 
-                    //move
-                    if (startInd > endInd) { //往前拖曳, 先移除原始拖曳項目, 再於放下位置插入該拖曳項目
+                    //array insert
+                    itemsNew.splice(endInd + 1, 0, src) //拖曳項目是要放在目標項目之後, 故需要+1
 
-                        //pullAt
-                        let src = pullAt(itemsNew, startInd)[0]
+                    //pullAt
+                    pullAt(itemsNew, startInd)
 
-                        //array insert
-                        itemsNew.splice(endInd, 0, src) //拖曳項目是要放在目標項目之前, 故不能+1
+                }
 
-                    }
-                    else { //往後拖曳, 先複製原始拖曳項目, 並於放下位置插入, 再刪除原始拖曳項目
+                //$nextTick
+                vo.$nextTick(() => {
 
-                        //cloneDeep
-                        let src = cloneDeep(itemsNew[startInd])
-
-                        //array insert
-                        itemsNew.splice(endInd + 1, 0, src) //拖曳項目是要放在目標項目之後, 故需要+1
-
-                        //pullAt
-                        pullAt(itemsNew, startInd)
-
-                    }
-
-                    //$nextTick
-                    vo.$nextTick(() => {
-
-                        //emit
-                        vo.$emit('input', itemsNew)
-
-                    })
+                    //emit
+                    vo.$emit('input', itemsNew)
 
                 })
 
-                //save
-                vo.drag = drag
-
-            }
-
-            //$nextTick, 因value變更時需驅動dom更新, 才能使domDrag抓到元素, 故需延遲執行
-            vo.$nextTick(() => {
-
-                //core
-                core()
-                    .catch(() => {})
-
-            })
-
-        },
-
-        dragClear: function() {
-            //console.log('methods dragClear')
-
-            let vo = this
-
-            //clear
-            if (vo.drag) {
-                vo.drag.clear()
-                vo.drag = null
             }
 
         },

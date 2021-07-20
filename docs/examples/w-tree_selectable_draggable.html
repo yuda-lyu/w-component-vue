@@ -85,7 +85,7 @@
     </script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.1.47/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.1.48/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -140,6 +140,10 @@
         </div>
         <div class="bk" style="display:block; margin:0px 10px 0px 0px;">
             <div class="item">selectable &amp; draggable</div>
+
+            <div
+                style="margin-bottom:5px; color:#f26; font-size:0.8rem;"
+            >* Disable show and hide nodes when using draggable</div>
 
             <!-- 用:style才能支援IE11因vue會自動把overflow-x:auto轉為-ms-overflow-x:auto -->
             <div :style="'overflow-x:auto;'">
