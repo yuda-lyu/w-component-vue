@@ -5,7 +5,7 @@
                 <div
                     class="WGroupDragdrop-Trans"
                     :style="`display:${itemStyleInline?'inline-block':'block'}; user-select:none;`"
-                    :key="`${isObjValue?o2j(item):item}`"
+                    :key="getForKey(item)"
                     :dragindex="kitem"
                     v-domdragdrop="draggable?getDgOpt():null"
                     @domdragdrop="dragdrop"
@@ -24,34 +24,22 @@
 </template>
 
 <script>
-import get from 'lodash/get'
-import each from 'lodash/each'
 import cloneDeep from 'lodash/cloneDeep'
-import trim from 'lodash/trim'
 import every from 'lodash/every'
 import pullAt from 'lodash/pullAt'
-import filter from 'lodash/filter'
-import isEqual from 'lodash/isEqual'
 import size from 'lodash/size'
 import genID from 'wsemi/src/genID.mjs'
 import o2j from 'wsemi/src/o2j.mjs'
 import isobj from 'wsemi/src/isobj.mjs'
-import genPm from 'wsemi/src/genPm.mjs'
-import WButtonChip from './WButtonChip.vue'
-import WTextSuggest from './WTextSuggest.vue'
-import parseSpace from '../js/parseSpace.mjs'
+import isfun from 'wsemi/src/isfun.mjs'
 import domDragDrop from '../js/domDragDrop.mjs'
 
 
 /**
- * @vue-prop {String} [text=''] 輸入文字字串，預設''
- * @vue-prop {String} [badgeAlign='center'] 輸入標記對齊位置字串，預設'center'
- * @vue-prop {String} [textFontSize='0.7rem'] 輸入文字字型大小字串，預設'0.7rem'
- * @vue-prop {String} [textColor='white'] 輸入文字顏色字串，預設'white'
- * @vue-prop {String} [backgroundColor='red'] 輸入背景顏色字串，預設'red'
- * @vue-prop {Number} [borderRadius=10] 輸入框圓角度數字，單位為px，預設10
- * @vue-prop {String} [borderColor='transparent'] 輸入邊框顏色字串，預設'transparent'
- * @vue-prop {Number} [borderWidth=1] 輸入框寬度數字，單位為px，預設1
+ * @vue-prop {Array} [value=[]] 輸入項目的字串陣列或物件陣列，預設[]
+ * @vue-prop {Boolean} [itemStyleInline=true] 輸入項目之display樣式是否使用行內樣式，true為'inline-block'而false為'block'，預設true
+ * @vue-prop {Function} [keyBinder=null] 輸入由項目取得唯一識別碼(key)函數，預設項目為物件就序列化成為字串再作為key，反之就是用項目值作為key。函數會輸入項目物件或值，回傳需為字串。keyBinder預設null
+ * @vue-prop {Boolean} [draggable=true] 輸入是否可拖曳布林值，預設true
  */
 export default {
     directives: {
@@ -66,6 +54,10 @@ export default {
             type: Boolean,
             default: true,
         },
+        keyBinder: {
+            type: Function,
+            default: null,
+        },
         draggable: {
             type: Boolean,
             default: true,
@@ -73,7 +65,6 @@ export default {
     },
     data: function() {
         return {
-            o2j,
 
             itemsTrans: [],
             dgGroupKey: null,
@@ -108,6 +99,22 @@ export default {
 
     },
     methods: {
+
+        getForKey: function(item) {
+            //console.log('methods getForKey', item)
+
+            let vo = this
+
+            let k = null
+            if (isfun(vo.keyBinder)) {
+                k = vo.keyBinder(item)
+            }
+            else {
+                k = vo.isObjValue ? o2j(item) : item
+            }
+
+            return k
+        },
 
         getDgGroupKey: function() {
             //console.log('methods getDgGroupKey')

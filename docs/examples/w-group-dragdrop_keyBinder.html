@@ -136,26 +136,34 @@
                 style="cursor:pointer;"
                 title="open for copy link to view component"
                 onclick="window.open('//yuda-lyu.github.io/w-component-vue/examples/app.html?cmp='+this.innerText,'_blank')"
-            >w-text-select</span>
+            >w-group-dragdrop</span>
         </div>
         <div class="bk">
-            <div
-                class="item"
-            >border &amp; itemTextFontSize &amp; defItemHeight &amp; width</div>
+            <div class="item">keyBinder</div>
 
-            <w-text-select
-                style="width:250px;"
-                :shadow="false"
-                :border-color="'orange lighten-2'"
-                :border-color-hover="'orange'"
-                :border-color-focus="'orange darken-2'"
-                :background-color-focus="'orange lighten-5'"
-                :left-icon="'mdi-check-underline-circle'"
-                :def-item-height="48"
-                :item-text-font-size="'1rem'"
-                :items="WTextSelect.objItems"
-                v-model="WTextSelect.objValue"
-            ></w-text-select>
+            <w-group-dragdrop
+                :key-binder="(v)=>{return v.id}"
+                :value="WGroupDragdrop.itemsObjWhidRandomProp"
+                @input="randomProp"
+            >
+                <template v-slot="props">
+                    <div style="padding:0px 10px 10px 0px;">
+                        <div
+                            style="display:flex; align-items:center; padding:3px 8px; border-radius:30px; border:1px solid #ddd;"
+                        >
+                            <div
+                                style="padding:0px 5px 0px 7px; border-top-left-radius:30px; border-bottom-left-radius:30px; background:#f26; color:#fff; font-size:0.8rem;"
+                            >{{props.item.id}}</div>
+
+                            <div
+                                style="padding:0px 7px 0px 5px; border-top-right-radius:30px; border-bottom-right-radius:30px; background:#62f; color:#fff; font-size:0.8rem;"
+                            >{{props.item.rnd}}</div>
+
+                            <div style="margin-left:5px;">{{props.item.name}}</div>
+                        </div>
+                    </div>
+                </template>
+            </w-group-dragdrop>
         </div>
     </v-app>
 
@@ -169,79 +177,50 @@
     vuetify: new Vuetify(),
     data: function() {
       return {
-        WTextSelect: {
-          objItems: [
+        WGroupDragdrop: {
+          itemsStr: ["Lorem", "Ipsum", "Dolor", "Sitamet"],
+          itemsObj: [
             {
-              key: "orange",
-              text: "橘子(orange)"
+              name: "Lorem",
+              id: "A0"
             },
             {
-              key: "banana",
-              text: "香蕉(banana)"
+              name: "Ipsum",
+              id: "A2"
             },
             {
-              key: "strawberry",
-              text: "草莓(strawberry)"
+              name: "Dolor",
+              id: "A1"
+            },
+            {
+              name: "Sitamet",
+              id: "A3"
             }
           ],
-          objValue: {
-            key: "banana",
-            text: "香蕉(banana)"
-          },
-          objItemsKeyText: [
+          itemsObjWhidRandomProp: [
             {
-              key: "orange",
-              name: "橘子(orange)"
+              name: "Lorem",
+              id: "A0",
+              rnd: 0
             },
             {
-              key: "banana",
-              name: "香蕉(banana)"
+              name: "Ipsum",
+              id: "A2",
+              rnd: 0
             },
             {
-              key: "strawberry",
-              name: "草莓(strawberry)"
+              name: "Dolor",
+              id: "A1",
+              rnd: 0
+            },
+            {
+              name: "Sitamet",
+              id: "A3",
+              rnd: 0
             }
-          ],
-          objValueKeyText: {
-            key: "banana",
-            name: "香蕉(banana)"
-          },
-          objItemsLarge: (function() {
-            let vs = [];
-            vs.push({
-              key: "banana:1",
-              text: "香蕉(banana:1)"
-            });
-            for (let i = 2; i <= 10000; i++) {
-              vs.push({
-                key: "banana:" + i,
-                text: "香蕉(banana:" + i + ")"
-              });
-            }
-            return vs;
-          })(),
-          objValueLarge: {
-            key: "banana:1",
-            text: "香蕉(banana:1)"
-          },
-          strItems: ["orange(橘子)", "banana(香蕉)", "strawberry(草莓)"],
-          strValue: "strawberry(草莓)"
+          ]
         },
-        actions: [
-          {
-            mode: "eleclick",
-            selector: 'input[type="text"]'
-          },
-          {
-            mode: "eleclick",
-            selector: 'div[tabindex="0"]',
-            nth: 2
-          },
-          {
-            mode: "keypress",
-            key: "Tab"
-          }
-        ]
+        actions: []
       };
     },
     mounted: function() {
@@ -249,29 +228,16 @@
     },
     computed: {},
     methods: {
-      evUpdateFocused: function(item, kitem) {
-        console.log("evUpdateFocused", "item=", item, "kitem", kitem);
+      dragdrop: function(msg) {
+        console.log("dragdrop", msg);
       },
-      evUpdateShowPanel: function(item, kitem) {
-        console.log("evUpdateShowPanel", "item=", item, "kitem", kitem);
-      },
-      evBlur: function(item, kitem) {
-        console.log("evBlur", "item=", item, "kitem", kitem);
-      },
-      evInput: function(item, kitem) {
-        console.log("evInput", "item=", item, "kitem", kitem);
-      },
-      // evEnter: function(item, kitem) {
-      //     console.log('evEnter', 'item=', item, 'kitem', kitem)
-      // },
-      evClickItem: function(item, kitem) {
-        console.log("evClickItem", "item=", item, "kitem", kitem);
-      },
-      evClickLeft: function() {
-        console.log("evClickLeft");
-      },
-      evClickRight: function() {
-        console.log("evClickRight");
+      randomProp: function(items) {
+        console.log("randomProp", items);
+        items = JSON.parse(JSON.stringify(items));
+        for (let i = 0; i < items.length; i++) {
+          items[i].rnd = Math.floor(Math.random() * 100);
+        }
+        this.WGroupDragdrop.itemsObjWhidRandomProp = items;
       }
     }
   });
