@@ -188,6 +188,11 @@
             ></AppZoneWGroupTags>
 
 
+            <AppZoneWGroupDragdrop
+                v-if="useCmpName==='WGroupDragdrop'"
+            ></AppZoneWGroupDragdrop>
+
+
             <AppZoneWListVertical
                 v-if="useCmpName==='WListVertical'"
             ></AppZoneWListVertical>
@@ -361,6 +366,7 @@ import AppZoneWSwitch from './AppZoneWSwitch.vue'
 import AppZoneWCheckbox from './AppZoneWCheckbox.vue'
 import AppZoneWAlert from './AppZoneWAlert.vue'
 import AppZoneWGroupTags from './AppZoneWGroupTags.vue'
+import AppZoneWGroupDragdrop from './AppZoneWGroupDragdrop.vue'
 import AppZoneWListVertical from './AppZoneWListVertical.vue'
 import AppZoneWGroupCheck from './AppZoneWGroupCheck.vue'
 import AppZoneWGroupRadio from './AppZoneWGroupRadio.vue'
@@ -414,6 +420,7 @@ export default {
         AppZoneWCheckbox,
         AppZoneWAlert,
         AppZoneWGroupTags,
+        AppZoneWGroupDragdrop,
         AppZoneWListVertical,
         AppZoneWGroupCheck,
         AppZoneWGroupRadio,
@@ -491,6 +498,7 @@ export default {
                         { name: 'WGroupCheck' },
                         { name: 'WGroupRadio' },
                         { name: 'WGroupTags' },
+                        { name: 'WGroupDragdrop' },
                     ]
                 },
                 {

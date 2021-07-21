@@ -131,9 +131,6 @@ function domDragDrop() {
         //id
         let id = el.getAttribute('ev-dragdrop')
 
-        //remove attr
-        el.setAttribute('ev-dragdrop', null)
-
         if (kbEv[id]) {
 
             //unbind
