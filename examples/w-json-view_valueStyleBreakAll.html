@@ -138,10 +138,14 @@
                 onclick="window.open('//yuda-lyu.github.io/w-component-vue/examples/app.html?cmp='+this.innerText,'_blank')"
             >w-json-view</span>
         </div>
-        <div class="bk" style="display:block; margin:0px 10px 0px 0px;">
-            <div class="item">large data (100,000 lines)</div>
+        <div class="bk dz">
+            <div class="item">valueStyleBreakAll</div>
 
-            <w-json-view style="border:1px solid #ddd;" :data="WJsonView.data4"></w-json-view>
+            <w-json-view
+                style="border:1px solid #ddd;"
+                :value-style-break-all="true"
+                :data="WJsonView.data2"
+            ></w-json-view>
         </div>
     </v-app>
 
