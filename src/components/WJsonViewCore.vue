@@ -7,9 +7,9 @@
         v-if="item.show && item.filterShow"
     >
 
-        <div :style="`${styleCell}; ${styleLineNumber}; width:${lineNumberWidth}px;`">{{item.index+1}}</div>
+        <div :style="`${styleCell} ${styleVerticalAlignTop} ${styleLineNumber}; width:${lineNumberWidth}px;`">{{item.index+1}}</div>
 
-        <div :style="`${styleCell}; padding-left:${item.paddingLeft}px;`">
+        <div :style="`${styleCell} ${styleVerticalAlignTop} padding-left:${item.paddingLeft}px;`">
 
             <div style="position:relative;">
 
@@ -28,7 +28,7 @@
 
                 <div style="">
 
-                    <div :style="`${styleCell}; white-space:pre; color:${useKeyColor};`" v-if="item.key">
+                    <div :style="`${styleCell} ${styleVerticalAlignTop} white-space:pre; color:${useKeyColor};`" v-if="item.key">
 
                         <span>{{item.key}}</span>
 
@@ -43,9 +43,9 @@
 
                     <template v-if="item.value">
 
-                        <div :style="`${styleCell}; color:${item.valueColor}`">{{item.value}}</div>
+                        <div :style="`${styleCell} ${styleVerticalAlignTop} color:${item.valueColor}; ${useStyleWord}`">{{item.value}}</div>
 
-                        <div :style="`${styleCell}; color:${item.keyColor}`" v-if="item.valueComma">,</div>
+                        <div :style="`${styleCell} ${styleVerticalAlignBottom} color:${item.keyColor};`" v-if="item.valueComma">,</div>
 
                     </template>
 
@@ -69,6 +69,7 @@ import color2hex from '../js/vuetifyColor.mjs'
  * @vue-prop {String} [iconColor='grey'] 輸入顯隱icon按鈕顏色字串，預設'grey'
  * @vue-prop {String} [keyColor='grey darken-2'] 輸入鍵值顏色字串，預設'grey darken-2'
  * @vue-prop {String} [keyNumbersColor='grey lighten-1'] 輸入鍵值內含子節點數量顏色字串，預設'grey lighten-1'
+ * @vue-prop {Boolean} [valueStyleBreakAll=false] 輸入值顯示樣式是否使用強迫斷字換行，主要用於超長連續文字可避免暴版，預設false
  */
 export default {
     components: {
@@ -95,12 +96,18 @@ export default {
             type: String,
             default: 'grey lighten-1',
         },
+        valueStyleBreakAll: {
+            type: Boolean,
+            default: false,
+        },
     },
     data: function() {
         return {
             //line-height = ( 1 / 0.8(font-size) )^2
             styleLineNumber: `padding-right:10px; text-align:right; font-size:0.8rem; line-height:1.5625rem; color:#f26; user-select:none;`,
-            styleCell: `display:table-cell; vertical-align:top;`,
+            styleCell: 'display:table-cell;',
+            styleVerticalAlignTop: 'vertical-align:top;',
+            styleVerticalAlignBottom: 'vertical-align:bottom;',
         }
     },
     mounted: function() {
@@ -121,6 +128,17 @@ export default {
             let vo = this
 
             return color2hex(vo.keyNumbersColor)
+        },
+
+        useStyleWord: function() {
+            //console.log('computed useStyleWord')
+
+            let vo = this
+
+            if (vo.valueStyleBreakAll) {
+                return 'word-break:break-all;'
+            }
+            return ''
         },
 
     },

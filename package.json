@@ -1,6 +1,6 @@
 {
   "name": "w-component-vue",
-  "version": "2.1.50",
+  "version": "2.1.51",
   "author": "yuda-lyu(semisphere)",
   "scripts": {
     "serve": "vue-cli-service serve",

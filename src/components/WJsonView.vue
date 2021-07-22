@@ -19,6 +19,7 @@
                 :iconColor="iconColor"
                 :keyColor="keyColor"
                 :keyNumbersColor="keyNumbersColor"
+                :valueStyleBreakAll="valueStyleBreakAll"
                 @toggle-items="toggleItems"
             ></WJsonViewCore>
         </template>
@@ -78,6 +79,7 @@ let gm = globalMemory()
  * @vue-prop {String} [defaultColor='grey darken-4'] 輸入值為其他類型時的顏色字串，預設'grey darken-4'
  * @vue-prop {Boolean} [defDisplayChildren=true] 輸入是否預先展開全部節點，預設true
  * @vue-prop {String} [searchEmpty='Empty'] 輸入無過濾結果字串，預設'Empty'
+ * @vue-prop {Boolean} [valueStyleBreakAll=false] 輸入值顯示樣式是否使用強迫斷字換行，主要用於超長連續文字可避免暴版，預設false
  * @vue-prop {Boolean} [show=true] 輸入是否為顯示模式，預設true，供組件嵌入popup時, 因先初始化但尚未顯示不需渲染, 可給予show=false避免無限偵測與重算高度問題
  */
 export default {
@@ -145,6 +147,10 @@ export default {
         searchEmpty: {
             type: String,
             default: 'Empty',
+        },
+        valueStyleBreakAll: {
+            type: Boolean,
+            default: false,
         },
         show: {
             type: Boolean,
