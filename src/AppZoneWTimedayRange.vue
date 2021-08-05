@@ -110,6 +110,20 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-timeday-range'"
+                    :casename="'textColor'"
+                ></demolink>
+
+                <w-timeday-range
+                    :textColor="'orange darken-2'"
+                    :dayStart.sync="WTimedayRange.dayStart"
+                    :dayEnd.sync="WTimedayRange.dayEnd"
+                ></w-timeday-range>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-timeday-range'"
                     :casename="'pickColor'"
                 ></demolink>
 
@@ -256,6 +270,25 @@
                     :backgroundColorFocus="'cyan lighten-5'"
                     :iconColor="'cyan lighten-2'"
                     :iconColorFocus="'cyan darken-1'"
+                    :dayStart.sync="WTimedayRange.dayStart"
+                    :dayEnd.sync="WTimedayRange.dayEnd"
+                ></w-timeday-range>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-timeday-range'"
+                    :casename="'border & textColor'"
+                ></demolink>
+
+                <w-timeday-range
+                    :shadow="false"
+                    :borderColor="'orange lighten-2'"
+                    :borderColorHover="'orange'"
+                    :borderColorFocus="'orange darken-2'"
+                    :backgroundColorFocus="'orange lighten-5'"
+                    :textColor="'orange darken-2'"
                     :dayStart.sync="WTimedayRange.dayStart"
                     :dayEnd.sync="WTimedayRange.dayEnd"
                 ></w-timeday-range>

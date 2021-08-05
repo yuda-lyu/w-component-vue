@@ -88,6 +88,20 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-timeminute'"
+                    :casename="'textColor & expansionIconColor'"
+                ></demolink>
+
+                <w-timeminute
+                    :textColor="'orange darken-2'"
+                    :expansionIconColor="'orange lighten-1'"
+                    v-model="WTimeminute.value"
+                ></w-timeminute>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-timeminute'"
                     :casename="'pickColor'"
                 ></demolink>
 
@@ -249,6 +263,25 @@
                     :backgroundColorFocus="'cyan lighten-5'"
                     :iconColor="'cyan lighten-2'"
                     :iconColorFocus="'cyan darken-1'"
+                    v-model="WTimeminute.value"
+                ></w-timeminute>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-timeminute'"
+                    :casename="'border & textColor & expansionIconColor'"
+                ></demolink>
+
+                <w-timeminute
+                    :shadow="false"
+                    :borderColor="'orange lighten-2'"
+                    :borderColorHover="'orange'"
+                    :borderColorFocus="'orange darken-2'"
+                    :backgroundColorFocus="'orange lighten-5'"
+                    :textColor="'orange darken-2'"
+                    :expansionIconColor="'orange lighten-1'"
                     v-model="WTimeminute.value"
                 ></w-timeminute>
             </div>

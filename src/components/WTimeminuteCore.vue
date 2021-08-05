@@ -27,6 +27,9 @@
                     :textFontSize="textFontSize"
                     :textColor="textColor"
                     :minWidth="70"
+                    :expansionIcon="expansionIcon"
+                    :expansionIconSize="expansionIconSize"
+                    :expansionIconColor="expansionIconColor"
                     :height="height"
                     :editable="editable"
                     :items="getUseMinutes"
@@ -41,6 +44,7 @@
 </template>
 
 <script>
+import { mdiPlay } from '@mdi/js'
 import split from 'lodash/split'
 import get from 'lodash/get'
 import map from 'lodash/map'
@@ -64,6 +68,9 @@ import WTextSuggestCore from './WTextSuggestCore.vue'
  * @vue-prop {String} [textFontSize='0.9rem'] 輸入文字大小字串，預設'0.9rem'
  * @vue-prop {String} [textColor='black'] 輸入文字顏色字串，預設'black'
  * @vue-prop {String} [pickColor='deep-orange darken-1'] 輸入日期彈窗中選擇指定日期之顏色字串，預設'deep-orange darken-1'
+ * @vue-prop {String} [expansionIcon=mdiPlay] 輸入右側圖標字串，可為mdi,md,fa代號或mdi/js路徑，預設使用mdi的圖標(mdiPlay)
+ * @vue-prop {Number} [expansionIconSize=18] 輸入右側圖標尺寸數字，單位為px，預設18
+ * @vue-prop {String} [expansionIconColor='grey'] 輸入右側圖標顏色字串，預設'grey'
  * @vue-prop {Number} [height=28] 輸入高度數字，單位為px，預設28
  * @vue-prop {Boolean} [editable=true] 輸入是否為編輯模式，預設true
  */
@@ -104,6 +111,18 @@ export default {
         pickColor: {
             type: String,
             default: 'deep-orange darken-1',
+        },
+        expansionIcon: {
+            type: String,
+            default: mdiPlay,
+        },
+        expansionIconSize: {
+            type: Number,
+            default: 18,
+        },
+        expansionIconColor: {
+            type: String,
+            default: 'grey',
         },
         height: {
             type: Number,

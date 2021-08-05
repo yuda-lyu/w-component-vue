@@ -110,6 +110,21 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-timeminute-range'"
+                    :casename="'textColor & expansionIconColor'"
+                ></demolink>
+
+                <w-timeminute-range
+                    :textColor="'orange darken-2'"
+                    :expansionIconColor="'orange lighten-1'"
+                    :minuteStart.sync="WTimeminuteRange.minuteStart"
+                    :minuteEnd.sync="WTimeminuteRange.minuteEnd"
+                ></w-timeminute-range>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-timeminute-range'"
                     :casename="'pickColor'"
                 ></demolink>
 
@@ -299,6 +314,26 @@
                     :backgroundColorFocus="'cyan lighten-5'"
                     :iconColor="'cyan lighten-2'"
                     :iconColorFocus="'cyan darken-1'"
+                    :minuteStart.sync="WTimeminuteRange.minuteStart"
+                    :minuteEnd.sync="WTimeminuteRange.minuteEnd"
+                ></w-timeminute-range>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-timeminute-range'"
+                    :casename="'border & textColor & expansionIconColor'"
+                ></demolink>
+
+                <w-timeminute-range
+                    :shadow="false"
+                    :borderColor="'orange lighten-2'"
+                    :borderColorHover="'orange'"
+                    :borderColorFocus="'orange darken-2'"
+                    :backgroundColorFocus="'orange lighten-5'"
+                    :textColor="'orange darken-2'"
+                    :expansionIconColor="'orange lighten-1'"
                     :minuteStart.sync="WTimeminuteRange.minuteStart"
                     :minuteEnd.sync="WTimeminuteRange.minuteEnd"
                 ></w-timeminute-range>

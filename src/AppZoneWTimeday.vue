@@ -85,10 +85,26 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-timeday'"
+                    :casename="'textColor'"
+                ></demolink>
+
+                <w-timeday
+                    :textColor="'orange darken-2'"
+                    v-model="WTimeday.day"
+                ></w-timeday>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-timeday'"
                     :casename="'pickColor'"
                 ></demolink>
 
-                <w-timeday :pickColor="'brown'" v-model="WTimeday.day"></w-timeday>
+                <w-timeday
+                    :pickColor="'brown'"
+                    v-model="WTimeday.day"
+                ></w-timeday>
             </div>
 
 
@@ -200,6 +216,24 @@
                     :backgroundColorFocus="'cyan lighten-5'"
                     :iconColor="'cyan lighten-2'"
                     :iconColorFocus="'cyan darken-1'"
+                    v-model="WTimeday.day"
+                ></w-timeday>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-timeday'"
+                    :casename="'border & textColor'"
+                ></demolink>
+
+                <w-timeday
+                    :shadow="false"
+                    :borderColor="'orange lighten-2'"
+                    :borderColorHover="'orange'"
+                    :borderColorFocus="'orange darken-2'"
+                    :backgroundColorFocus="'orange lighten-5'"
+                    :textColor="'orange darken-2'"
                     v-model="WTimeday.day"
                 ></w-timeday>
             </div>

@@ -30,6 +30,7 @@
 
             <WTimedayRangeCore
                 :pickColor="pickColor"
+                :textColor="textColor"
                 :between="between"
                 :dayStart="dayStart"
                 :dayEnd="dayEnd"
@@ -71,6 +72,7 @@ import WTimedayRangeCore from './WTimedayRangeCore.vue'
  * @vue-prop {String} [borderColor='white'] 輸入邊框顏色字串，預設'white'
  * @vue-prop {String} [borderColorHover='white'] 輸入滑鼠移入時邊框顏色字串，預設'white'
  * @vue-prop {String} [borderColorFocus='white'] 輸入取得焦點時邊框顏色字串，預設'white'
+ * @vue-prop {String} [textColor='black'] 輸入文字顏色字串，預設'black'
  * @vue-prop {String} [pickColor='deep-orange darken-1'] 輸入日期彈窗中選擇指定日期之顏色字串，預設'deep-orange darken-1'
  * @vue-prop {Boolean} [editable=true] 輸入是否為編輯模式，預設true
  * @vue-prop {Boolean} [focused=false] 輸入是否為取得焦點狀態，預設false
@@ -165,6 +167,10 @@ export default {
         borderColorFocus: {
             type: String,
             default: 'white',
+        },
+        textColor: {
+            type: String,
+            default: 'black',
         },
         pickColor: {
             type: String,
