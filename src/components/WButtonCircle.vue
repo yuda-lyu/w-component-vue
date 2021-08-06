@@ -1,7 +1,7 @@
 <template>
     <div
         style="display:inline-block; vertical-align:middle; outline:none; user-select:none;"
-        role="button"
+        :role="editable?role:''"
         :changeLoading="changeLoading"
     >
 
@@ -16,7 +16,7 @@
                 <!-- v-tooltip下第1層dom會無法拖曳, 點擊事件於這層觸發, 且組件內tabindex不能重複, 故本層設定為0 -->
                 <div
                     v-on="on"
-                    :style="`position:relative; transition:all 0.3s; border-radius:50%; ${usePadding} background:${useBackgroundColor}; cursor:pointer; outline:none; user-select:none; box-shadow:${useShadow};`"
+                    :style="`position:relative; transition:all 0.3s; border-radius:50%; ${usePadding} background:${useBackgroundColor}; ${editable?'cursor:pointer;':''} outline:none; user-select:none; box-shadow:${useShadow};`"
                     tabindex="0"
                     @mouseenter="hoverTrans=true;$emit('mouseenter',$event)"
                     @mouseleave="hoverTrans=false;$emit('mouseleave',$event)"
@@ -99,6 +99,7 @@ import WIconLoading from './WIconLoading.vue'
  * @vue-prop {Boolean} [loading=false] 輸入是否為載入模式，預設false
  * @vue-prop {String} [loadingColor='grey darken-2'] 輸入載入圖標顏色字串，預設'grey darken-2'
  * @vue-prop {Boolean} [promiseUnlock=false] 輸入是否點擊後自動設定為loading為true並需使用promise解鎖布林值，預設false
+ * @vue-prop {String} [role='button'] 輸入角色字串，預設'button'
  * @vue-prop {Boolean} [editable=true] 輸入是否為編輯模式，預設true
  * @vue-prop {String} [disabledColor='rgba(255,255,255,0.5)'] 輸入非編輯模式時遮罩顏色字串，預設'rgba(255,255,255,0.5)'
  */
@@ -178,6 +179,10 @@ export default {
         promiseUnlock: {
             type: Boolean,
             default: false,
+        },
+        role: {
+            type: String,
+            default: 'button',
         },
         editable: {
             type: Boolean,
