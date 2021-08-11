@@ -196,6 +196,7 @@ import cint from 'wsemi/src/cint.mjs'
 import cdbl from 'wsemi/src/cdbl.mjs'
 import replace from 'wsemi/src/replace.mjs'
 import haskey from 'wsemi/src/haskey.mjs'
+import genPm from 'wsemi/src/genPm.mjs'
 import waitFun from 'wsemi/src/waitFun.mjs'
 import debounce from 'wsemi/src/debounce.mjs'
 import flattenTreeObj from 'wsemi/src/flattenTreeObj'
@@ -2067,6 +2068,9 @@ export default {
                 return data
             }
 
+            //pm, 提供外部呼叫時能知道已觸發data變更
+            let pm = genPm()
+
             //core
             core()
                 .then((data) => {
@@ -2077,6 +2081,9 @@ export default {
                         //emit
                         vo.$emit('update:data', cloneDeep(data))
 
+                        //resolve
+                        pm.resolve()
+
                     })
 
                 })
@@ -2084,6 +2091,7 @@ export default {
                     console.log(err)
                 })
 
+            return pm
         },
 
         getDgGroupKey: function() {
