@@ -271,6 +271,7 @@
                     @blur="blur"
                     @enter="enter"
                     @input="input"
+                    @change="change"
                 ></w-text>
             </div>
 
@@ -650,6 +651,7 @@
                     @blur="blur"
                     @enter="enter"
                     @input="input"
+                    @change="change"
                 ></w-text>
             </div>
 
@@ -710,20 +712,24 @@ export default {
             console.log('clickRight')
         },
 
-        select: function(ev) {
-            console.log('select', ev)
+        select: function(value, err, ev) {
+            console.log('select', value, err, ev)
         },
 
-        blur: function(value, err) {
-            console.log('blur', value, err)
+        blur: function(value, err, ev) {
+            console.log('blur', value, err, ev)
         },
 
-        enter: function(value, err) {
-            console.log('enter', value, err)
+        enter: function(value, err, ev) {
+            console.log('enter', value, err, ev)
         },
 
-        input: function(value, err) {
-            console.log('input', value, err)
+        input: function(value, err, ev) {
+            console.log('input', value, err, ev)
+        },
+
+        change: function(value, err, ev) {
+            console.log('change', value, err, ev)
         },
 
     },

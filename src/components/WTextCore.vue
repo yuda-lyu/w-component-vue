@@ -8,17 +8,19 @@
             :readonly="!editable"
             :placeholder="placeholder"
             v-model="valueTrans"
-            @input="updateContent('input');updateFocused(true)"
+            @input="(ev)=>{updateValue(ev);trigger('input',ev);updateFocused(true)}"
+            @change="(ev)=>{trigger('change',ev)}"
             @focus="updateFocused(true)"
-            @blur="updateContent('blur');updateFocused(false)"
-            @keyup.enter="updateContent('enter')"
-            @select="(ev)=>{$emit('select',ev)}"
+            @blur="(ev)=>{trigger('blur',ev);updateFocused(false)}"
+            @keyup.enter="(ev)=>{trigger('enter',ev)}"
+            @select="(ev)=>{trigger('select',ev)}"
         >
     </div>
 </template>
 
 <script>
 import isnum from 'wsemi/src/isnum.mjs'
+// import isestr from 'wsemi/src/isestr.mjs'
 import verifyValue from 'wsemi/src/verifyValue.mjs'
 import replace from 'wsemi/src/replace.mjs'
 import color2hex from '../js/vuetifyColor.mjs'
@@ -76,6 +78,7 @@ export default {
     data: function() {
         return {
             valueTrans: '',
+            errmsg: '',
         }
     },
     mounted: function() {
@@ -133,8 +136,21 @@ export default {
 
             let vo = this
 
+            // //detect
+            // let b = vo.valueTrans !== value
+
             //save
             vo.valueTrans = value
+
+            // //$nextTick
+            // vo.$nextTick(() => {
+
+            //     //emit change
+            //     if (b) {
+            //         vo.$emit('change', value, null)
+            //     }
+
+            // })
 
         },
 
@@ -169,31 +185,35 @@ export default {
 
         },
 
-        updateContent: function (evname) {
-            // console.log('methods updateContent', evname)
+        updateValue: function (ev) {
+            // console.log('methods updateValue', ev)
 
             let vo = this
 
-            //verifyValue
+            //verifyValue, 因為input觸發是得到新輸入的字串(ev.data), 故要完整檢核得拿v-model變更後vo.valueTrans
             let r = verifyValue(vo.valueTrans, vo.type)
 
-            //value, errmsg
-            let value = r.value
-            let errmsg = r.errmsg
+            //save
+            vo.valueTrans = r.value
+            vo.errmsg = r.errmsg
+
+            // //trigger
+            // if (isestr(ev.data)) {
+            //     vo.trigger('change', ev)
+            // }
+
+        },
+
+        trigger: function (name, ev) {
+            // console.log('methods trigger', name, ev)
+
+            let vo = this
 
             //$nextTick
             vo.$nextTick(() => {
 
-                //save
-                vo.valueTrans = value
-
                 //emit
-                vo.$emit('input', value, errmsg)
-
-                //emit
-                if (evname !== 'input') {
-                    vo.$emit(evname, value, errmsg)
-                }
+                vo.$emit(name, vo.valueTrans, vo.errmsg, ev)
 
             })
 

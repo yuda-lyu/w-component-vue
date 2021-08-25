@@ -51,10 +51,11 @@
                     :value="value"
                     :focused="focusedTrans"
                     @update:focused="changeFocused"
-                    @select="(v)=>{$emit('select', v)}"
-                    @blur="(v,err)=>{$emit('blur', v, err)}"
-                    @enter="(v,err)=>{$emit('enter', v, err)}"
-                    @input="(v,err)=>{$emit('input', v, err)}"
+                    @select="(v,err,ev)=>{$emit('select',v,err,ev)}"
+                    @blur="(v,err,ev)=>{$emit('blur',v,err,ev)}"
+                    @enter="(v,err,ev)=>{$emit('enter',v,err,ev)}"
+                    @input="(v,err,ev)=>{$emit('input',v,err,ev)}"
+                    @change="(v,err,ev)=>{$emit('change',v,err,ev)}"
                 ></WTextCore>
 
             </WShellEllipse>
