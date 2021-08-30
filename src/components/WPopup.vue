@@ -15,7 +15,6 @@
 
         <!-- 需外層使用position包覆隔離, 因popper會對外層產生影響(添加class) -->
         <div style="position:fixed; left:0; top:0; z-index:99999;">
-            <!-- 用v-show而不用v-if係因註冊監聽divContent僅mounted一次, 若用v-if顯隱則需每次都重新監聽較為複雜 -->
             <!-- style不給予position因會被popper洗掉改用translate定位 -->
             <!-- 若使用minWidth, 會使popupjs重算給予minWidth用以自動撐開彈窗寬度失效, 若於其內slot外添加div給予minWidth, 亦會使popupjs給予minWidth機制失效, 待研究 -->
             <div
@@ -27,10 +26,12 @@
                 v-domresize
                 @domresize="updatePopper"
             >
-                <slot
-                    name="content"
-                    :funHide="()=>{updateValue(false)}"
-                ></slot>
+                <template v-if="valueTrans">
+                    <slot
+                        name="content"
+                        :funHide="()=>{updateValue(false)}"
+                    ></slot>
+                </template>
             </div>
         </div>
 

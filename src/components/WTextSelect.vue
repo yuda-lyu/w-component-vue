@@ -1,5 +1,9 @@
 <template>
-    <div :changeParam="changeParam">
+    <div
+        :changeParam="changeParam"
+        v-domresize
+        @domresize="resize"
+    >
 
         <WShellEllipse
             :paddingStyle="paddingStyle"
@@ -49,7 +53,7 @@
                     :expansionIcon="showExpansionIcon?undefined:''"
                     :expansionIconSize="expansionIconSize"
                     :expansionIconColor="expansionIconColor"
-                    :distY="5"
+                    :distY="useDistY"
                     :defItemHeight="defItemHeight"
                     :editable="editable"
                     :focused="focusedTrans"
@@ -93,7 +97,10 @@
 </template>
 
 <script>
+import get from 'lodash/get'
 import isobj from 'wsemi/src/isobj.mjs'
+import parseSpace from '../js/parseSpace.mjs'
+import domResize from '../js/domResize.mjs'
 import WShellEllipse from './WShellEllipse.vue'
 import WTextSuggestCore from './WTextSuggestCore.vue'
 
@@ -141,6 +148,9 @@ import WTextSuggestCore from './WTextSuggestCore.vue'
  * @vue-prop {Boolean} [focused=false] 輸入是否為取得焦點狀態布林值，預設false
  */
 export default {
+    directives: {
+        domresize: domResize(),
+    },
     components: {
         WShellEllipse,
         WTextSuggestCore,
@@ -326,6 +336,7 @@ export default {
             constBorderWidth: 1,
             focusedTrans: false,
             showPanelTrans: false,
+            useDistY: 0,
         }
     },
     mounted: function() {
@@ -345,6 +356,32 @@ export default {
 
     },
     methods: {
+
+        resize: function(msg) {
+            // console.log('methods resize', msg)
+
+            let vo = this
+
+            //parseSpace
+            let cs = parseSpace(vo.paddingStyle, { returnObj: true })
+            let defv = 2 //原本paddingStyle.v=2
+
+            //ypb
+            let ypb = cs.bottom - defv
+
+            //h
+            let h = get(vo, '$el.offsetHeight', 0)
+
+            //ych
+            let ych = (h - 26) - ypb * 2 //要扣掉padding-top與padding-bottom的影響, 故需減ypb*2
+            ych /= 2 //底部高度差故得要/2
+
+            //useDistY
+            let def = 5
+            vo.useDistY = ypb + ych + def
+            // console.log('ypb', ypb, 'ych', ych, 'vo.useDistY ', vo.useDistY)
+
+        },
 
         getText: function(value) {
             //console.log('methods getText', value)
