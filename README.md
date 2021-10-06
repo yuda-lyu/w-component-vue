@@ -4,7 +4,6 @@ A combination for vue component.
 ![language](https://img.shields.io/badge/language-JavaScript-orange.svg) 
 [![language](https://img.shields.io/badge/vue-2.x-brightgreen.svg)](https://github.com/vuejs/vue) 
 [![npm version](http://img.shields.io/npm/v/w-component-vue.svg?style=flat)](https://npmjs.org/package/w-component-vue) 
-[![Build Status](https://travis-ci.org/yuda-lyu/w-component-vue.svg?branch=master)](https://travis-ci.org/yuda-lyu/w-component-vue) 
 [![license](https://img.shields.io/npm/l/w-component-vue.svg?style=flat)](https://npmjs.org/package/w-component-vue) 
 [![gzip file size](http://img.badgesize.io/yuda-lyu/w-component-vue/master/dist/w-component-vue.umd.js.svg?compression=gzip)](https://github.com/yuda-lyu/w-component-vue)
 [![npm download](https://img.shields.io/npm/dt/w-component-vue.svg)](https://npmjs.org/package/w-component-vue) 
