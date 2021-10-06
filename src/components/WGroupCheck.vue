@@ -61,7 +61,7 @@ import map from 'lodash/map'
 import each from 'lodash/each'
 import isEqual from 'lodash/isEqual'
 import cloneDeep from 'lodash/cloneDeep'
-import arrhas from 'wsemi/src/arrhas.mjs'
+import arrHas from 'wsemi/src/arrHas.mjs'
 import WButtonChip from './WButtonChip.vue'
 import parseSpace from '../js/parseSpace.mjs'
 
@@ -319,7 +319,7 @@ export default {
             function getActive(v) {
                 let active
                 if (vo.multiCheck) {
-                    active = arrhas(vo.value, v)
+                    active = arrHas(vo.value, v)
                 }
                 else {
                     active = isEqual(v, vo.value)

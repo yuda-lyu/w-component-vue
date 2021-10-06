@@ -62,7 +62,7 @@ import iseobj from 'wsemi/src/iseobj.mjs'
 import isfun from 'wsemi/src/isfun.mjs'
 import isint from 'wsemi/src/isint.mjs'
 import isbol from 'wsemi/src/isbol.mjs'
-import arrfilter from 'wsemi/src/arrfilter.mjs'
+import arrFilter from 'wsemi/src/arrFilter.mjs'
 import o2j from 'wsemi/src/o2j.mjs'
 import debounce from 'wsemi/src/debounce.mjs'
 import pmThrottle from 'wsemi/src/pmThrottle.mjs'
@@ -846,8 +846,8 @@ export default {
                     return c
                 })
 
-                //arrfilter
-                let rs = arrfilter(cs, fkws)
+                //arrFilter
+                let rs = arrFilter(cs, fkws)
 
                 //update filterShow
                 each(items, (v, k) => {
