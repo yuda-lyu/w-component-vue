@@ -55,8 +55,16 @@ function domResize() {
 
         //clear
         if (kpDe[id]) {
+
+            //clear
             kpDe[id].clear()
+
+            //set null
+            kpDe[id] = null
+
+            //delete
             delete kpDe[id]
+
         }
 
     }

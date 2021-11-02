@@ -136,6 +136,9 @@ function domDragDrop() {
             //unbind
             kbEv[id].unbind()
 
+            //set null
+            kbEv[id] = null
+
             //delete
             delete kbEv[id]
 
