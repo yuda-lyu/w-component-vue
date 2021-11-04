@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>WTextCore - Documentation</title>
+    <title>WPanelChart - Documentation</title>
     
     
     <script src="scripts/prettify/prettify.js"></script>
@@ -32,7 +32,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">WTextCore</h1>
+    <h1 class="page-title">WPanelChart</h1>
     
 
     
@@ -70,59 +70,107 @@
     </tr>
     </thead>
     <tbody><tr>
-        <td><code>type</code></td>
+        <td><code>cmpName</code></td>
         <td>String</td>
-        <td><code>'any'</code></td>
+        <td><code>'WHighchartsVueDyn'</code></td>
         <td>No</td>
-        <td>輸入文字框類型字串，預設'any'</td>
+        <td>輸入繪圖組件名稱字串，預設'WHighchartsVueDyn'</td>
     </tr><tr>
-        <td><code>value</code></td>
-        <td>String|Number</td>
-        <td>-</td>
-        <td><b>Yes</b></td>
-        <td>輸入文字框值</td>
-    </tr><tr>
-        <td><code>textFontSize</code></td>
-        <td>String</td>
-        <td><code>'1rem'</code></td>
+        <td><code>options</code></td>
+        <td>Object</td>
+        <td><code>{}</code></td>
         <td>No</td>
-        <td>輸入文字大小字串，預設'1rem'</td>
+        <td>輸入highcharts設定物件，預設{}</td>
     </tr><tr>
-        <td><code>textColor</code></td>
-        <td>String</td>
-        <td><code>'black'</code></td>
+        <td><code>width</code></td>
+        <td>Number</td>
+        <td><code>600</code></td>
         <td>No</td>
-        <td>輸入文字顏色字串，預設'black'</td>
-    </tr><tr>
-        <td><code>textAlign</code></td>
-        <td>String</td>
-        <td><code>'left'</code></td>
-        <td>No</td>
-        <td>輸入文字左右對齊字串，預設'left'</td>
-    </tr><tr>
-        <td><code>placeholder</code></td>
-        <td>String</td>
-        <td><code>''</code></td>
-        <td>No</td>
-        <td>輸入無文字時的替代字符字串，預設''</td>
+        <td>輸入圖片寬度數字，預設600</td>
     </tr><tr>
         <td><code>height</code></td>
-        <td>Number|String</td>
-        <td><code>''</code></td>
+        <td>Number</td>
+        <td><code>400</code></td>
         <td>No</td>
-        <td>輸入高度數字或字串，數字單位為px，預設''</td>
+        <td>輸入圖片高度數字，預設400</td>
     </tr><tr>
-        <td><code>editable</code></td>
-        <td>Boolean</td>
-        <td><code>true</code></td>
+        <td><code>scale</code></td>
+        <td>Number</td>
+        <td><code>1</code></td>
         <td>No</td>
-        <td>輸入是否為編輯模式，預設true</td>
+        <td>輸入圖片放大率數字，預設1</td>
     </tr><tr>
-        <td><code>focused</code></td>
+        <td><code>converter</code></td>
+        <td>String</td>
+        <td><code>'html2picDyn'</code></td>
+        <td>No</td>
+        <td>輸入預設渲染器defRender內將dom轉成base64圖片所使用的函數名稱字串，可使用'html2picDyn'或'domConvertToPicDyn'，前者可支援IE11但效能較差且記憶體使用較多，後者僅支援HTML5瀏覽器但效能佳且記憶體使用較少。預設'html2picDyn'</td>
+    </tr><tr>
+        <td><code>downloadPicture</code></td>
         <td>Boolean</td>
         <td><code>false</code></td>
         <td>No</td>
-        <td>輸入是否為取得焦點狀態，預設false</td>
+        <td>輸入是否可使用下載圖片按鈕布林值，預設false</td>
+    </tr><tr>
+        <td><code>downloadPictureBtnTooltip</code></td>
+        <td>String</td>
+        <td><code>'download'</code></td>
+        <td>No</td>
+        <td>輸入下載圖片按鈕的提示文字字串，預設'download'</td>
+    </tr><tr>
+        <td><code>downloadPictureScale</code></td>
+        <td>Number</td>
+        <td><code>3</code></td>
+        <td>No</td>
+        <td>輸入轉出base64圖片時的放大率數字，預設3</td>
+    </tr><tr>
+        <td><code>downloadPictureFilenmae</code></td>
+        <td>String</td>
+        <td><code>'pic'</code></td>
+        <td>No</td>
+        <td>輸入下載圖片之檔案名稱字串，預設'pic'</td>
+    </tr><tr>
+        <td><code>downloadPictureBtnBackgroundColor</code></td>
+        <td>String</td>
+        <td><code>'transparent'</code></td>
+        <td>No</td>
+        <td>輸入下載圖片按鈕的背景顏色字串，預設'transparent'</td>
+    </tr><tr>
+        <td><code>downloadPictureBtnBackgroundColorHover</code></td>
+        <td>String</td>
+        <td><code>'rgba(200,200,200,0.3)'</code></td>
+        <td>No</td>
+        <td>輸入滑鼠移入時下載圖片按鈕的背景顏色字串，預設'rgba(200,200,200,0.3)'</td>
+    </tr><tr>
+        <td><code>downloadPictureBtnBackgroundColorFocus</code></td>
+        <td>String</td>
+        <td><code>'rgba(200,200,200,0.3)'</code></td>
+        <td>No</td>
+        <td>輸入取得焦點時下載圖片按鈕的背景顏色字串，預設'rgba(200,200,200,0.3)'</td>
+    </tr><tr>
+        <td><code>downloadPictureBtnIcon</code></td>
+        <td>String</td>
+        <td><code>mdiDownloadCircleOutline</code></td>
+        <td>No</td>
+        <td>輸入下載圖片按鈕的圖標字串，預設mdiDownloadCircleOutline</td>
+    </tr><tr>
+        <td><code>downloadPictureBtnIconColor</code></td>
+        <td>String</td>
+        <td><code>'#888'</code></td>
+        <td>No</td>
+        <td>輸入下載圖片按鈕的圖標顏色字串，預設'#888'</td>
+    </tr><tr>
+        <td><code>downloadPictureBtnIconColorHover</code></td>
+        <td>String</td>
+        <td><code>'#444'</code></td>
+        <td>No</td>
+        <td>輸入滑鼠移入時下載圖片按鈕的圖標顏色字串，預設'#444'</td>
+    </tr><tr>
+        <td><code>downloadPictureBtnIconColorFocus</code></td>
+        <td>String</td>
+        <td><code>'#444'</code></td>
+        <td>No</td>
+        <td>輸入取得焦點時下載圖片按鈕的圖標顏色字串，預設'#444'</td>
     </tr></tbody>
 </table>
 
