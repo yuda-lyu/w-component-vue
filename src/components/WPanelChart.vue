@@ -50,6 +50,7 @@ import iseobj from 'wsemi/src/iseobj.mjs'
 import isestr from 'wsemi/src/isestr.mjs'
 import isEle from 'wsemi/src/isEle.mjs'
 import html2picDyn from 'wsemi/src/html2picDyn.mjs'
+import domConvertToPicDyn from 'wsemi/src/domConvertToPicDyn.mjs'
 import downloadFileFromB64 from 'wsemi/src/downloadFileFromB64.mjs'
 import WButtonCircle from './WButtonCircle.vue'
 import WHighchartsBitmapDyn from './WHighchartsBitmapDyn.vue'
@@ -58,6 +59,25 @@ import WHighstockVueDyn from './WHighstockVueDyn.vue'
 import WEchartsVueDyn from './WEchartsVueDyn.vue'
 
 
+/**
+ * @vue-prop {String} [cmpName='WHighchartsVueDyn'] 輸入繪圖組件名稱字串，預設'WHighchartsVueDyn'
+ * @vue-prop {Object} [options={}] 輸入highcharts設定物件，預設{}
+ * @vue-prop {Number} [width=600] 輸入圖片寬度數字，預設600
+ * @vue-prop {Number} [height=400] 輸入圖片高度數字，預設400
+ * @vue-prop {Number} [scale=1] 輸入圖片放大率數字，預設1
+ * @vue-prop {String} [converter='html2picDyn'] 輸入預設渲染器defRender內將dom轉成base64圖片所使用的函數名稱字串，可使用'html2picDyn'或'domConvertToPicDyn'，前者可支援IE11但效能較差且記憶體使用較多，後者僅支援HTML5瀏覽器但效能佳且記憶體使用較少。預設'html2picDyn'
+ * @vue-prop {Boolean} [downloadPicture=false] 輸入是否可使用下載圖片按鈕布林值，預設false
+ * @vue-prop {String} [downloadPictureBtnTooltip='download'] 輸入下載圖片按鈕的提示文字字串，預設'download'
+ * @vue-prop {Number} [downloadPictureScale=3] 輸入轉出base64圖片時的放大率數字，預設3
+ * @vue-prop {String} [downloadPictureFilenmae='pic'] 輸入下載圖片之檔案名稱字串，預設'pic'
+ * @vue-prop {String} [downloadPictureBtnBackgroundColor='transparent'] 輸入下載圖片按鈕的背景顏色字串，預設'transparent'
+ * @vue-prop {String} [downloadPictureBtnBackgroundColorHover='rgba(200,200,200,0.3)'] 輸入滑鼠移入時下載圖片按鈕的背景顏色字串，預設'rgba(200,200,200,0.3)'
+ * @vue-prop {String} [downloadPictureBtnBackgroundColorFocus='rgba(200,200,200,0.3)'] 輸入取得焦點時下載圖片按鈕的背景顏色字串，預設'rgba(200,200,200,0.3)'
+ * @vue-prop {String} [downloadPictureBtnIcon=mdiDownloadCircleOutline] 輸入下載圖片按鈕的圖標字串，預設mdiDownloadCircleOutline
+ * @vue-prop {String} [downloadPictureBtnIconColor='#888'] 輸入下載圖片按鈕的圖標顏色字串，預設'#888'
+ * @vue-prop {String} [downloadPictureBtnIconColorHover='#444'] 輸入滑鼠移入時下載圖片按鈕的圖標顏色字串，預設'#444'
+ * @vue-prop {String} [downloadPictureBtnIconColorFocus='#444'] 輸入取得焦點時下載圖片按鈕的圖標顏色字串，預設'#444'
+ */
 export default {
     components: {
         WButtonCircle,
@@ -87,6 +107,10 @@ export default {
         scale: {
             type: Number,
             default: 1,
+        },
+        converter: {
+            type: String,
+            default: 'html2picDyn', //domConvertToPicDyn
         },
         downloadPicture: {
             type: Boolean,
@@ -185,8 +209,17 @@ export default {
                     return Promise.reject('can not find element')
                 }
 
-                //b64
-                let b64 = await html2picDyn(ele, { scale: vo.downloadPictureScale })
+                //converterOpt
+                let converterOpt = { scale: vo.downloadPictureScale }
+
+                //convert
+                let b64 = ''
+                if (vo.converter === 'domConvertToPicDyn') {
+                    b64 = await domConvertToPicDyn(ele, converterOpt)
+                }
+                else {
+                    b64 = await html2picDyn(ele, converterOpt)
+                }
 
                 //fn
                 let fn = vo.downloadPictureFilenmae

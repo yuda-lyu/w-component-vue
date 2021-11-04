@@ -12,6 +12,7 @@ import waitFun from 'wsemi/src/waitFun.mjs'
 import iseobj from 'wsemi/src/iseobj.mjs'
 import isfun from 'wsemi/src/isfun.mjs'
 import html2picDyn from 'wsemi/src/html2picDyn.mjs'
+import domConvertToPicDyn from 'wsemi/src/domConvertToPicDyn.mjs'
 import importResources from 'wsemi/src/importResources.mjs'
 import domVirtualCreateQueue from 'wsemi/src/domVirtualCreateQueue.mjs'
 import WIconLoading from './WIconLoading.vue'
@@ -25,8 +26,10 @@ let dpq = domVirtualCreateQueue()
 /**
  * @vue-prop {Array} [pathItems=['詳見原始碼']] 輸入highcharts組件js檔案位置字串陣列，預設詳見原始碼處props->pathItems->default
  * @vue-prop {Object} [options={}] 輸入highcharts設定物件，預設{}
+ * @vue-prop {Number} [scale=3] 輸入轉出base64圖片時的放大率數字，預設3
+ * @vue-prop {Function} [render=null] 輸入外部提供轉出base64圖片時的渲染器函數，若給null則代表使用預設渲染器defRender，預設null
+ * @vue-prop {String} [converter='html2picDyn'] 輸入預設渲染器defRender內將dom轉成base64圖片所使用的函數名稱字串，可使用'html2picDyn'或'domConvertToPicDyn'，前者可支援IE11但效能較差且記憶體使用較多，後者僅支援HTML5瀏覽器但效能佳且記憶體使用較少。預設'html2picDyn'
  */
-//export default {
 export default {
     components: {
         WIconLoading,
@@ -54,6 +57,10 @@ export default {
         render: {
             type: Function, //need async function, input(w, h, scale, highchartsOpt)
             default: null,
+        },
+        converter: {
+            type: String,
+            default: 'html2picDyn',
         },
     },
     data: function() {
@@ -125,17 +132,25 @@ export default {
         defRender: async function(w, h, scale, highchartsOpt) {
             // console.log('methods defRender', w, h, scale, highchartsOpt)
 
+            let vo = this
+
             //dpq, 先給予圖片寬高與產製函數, 內部通過佇列逐次運行產圖與回傳base64
             let fun = async (ele) => {
 
-                //html2canvasOpt
-                let html2canvasOpt = { scale }
+                //converterOpt
+                let converterOpt = { scale }
 
                 //chart
                 window.Highcharts.chart(ele, highchartsOpt)
 
-                //html2picDyn, 預設轉出base64
-                b64 = await html2picDyn(ele, html2canvasOpt)
+                //convert
+                let b64 = ''
+                if (vo.converter === 'domConvertToPicDyn') {
+                    b64 = await domConvertToPicDyn(ele, converterOpt)
+                }
+                else {
+                    b64 = await html2picDyn(ele, converterOpt)
+                }
 
                 return b64
             }
