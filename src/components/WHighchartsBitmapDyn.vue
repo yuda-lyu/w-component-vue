@@ -141,7 +141,7 @@ export default {
                 let converterOpt = { scale }
 
                 //chart
-                window.Highcharts.chart(ele, highchartsOpt)
+                let chart = new window.Highcharts.Chart(ele, highchartsOpt)
 
                 //convert
                 let b64 = ''
@@ -151,6 +151,10 @@ export default {
                 else {
                     b64 = await html2picDyn(ele, converterOpt)
                 }
+
+                //destroy
+                chart.destroy()
+                chart = null
 
                 return b64
             }
