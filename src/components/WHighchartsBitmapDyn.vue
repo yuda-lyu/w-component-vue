@@ -16,7 +16,7 @@ import domConvertToPicDyn from 'wsemi/src/domConvertToPicDyn.mjs'
 import importResources from 'wsemi/src/importResources.mjs'
 import domVirtualCreateQueue from 'wsemi/src/domVirtualCreateQueue.mjs'
 import WIconLoading from './WIconLoading.vue'
-import { getHCGlobal } from '../js/highchartsSetting.mjs'
+import { iniHCMarkers, getHCGlobal } from '../js/highchartsSetting.mjs'
 
 
 //dpq
@@ -85,6 +85,9 @@ export default {
 
                     //Highcharts
                     let Highcharts = window['Highcharts']
+
+                    //iniHCMarkers
+                    iniHCMarkers(Highcharts)
 
                     //setOptions
                     Highcharts.setOptions(getHCGlobal())

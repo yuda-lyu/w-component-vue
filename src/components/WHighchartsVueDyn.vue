@@ -7,7 +7,7 @@
 import importResources from 'wsemi/src/importResources.mjs'
 import WIconLoading from './WIconLoading.vue'
 import getVue from '../js/getVue.mjs'
-import { getHCGlobal } from '../js/highchartsSetting.mjs'
+import { iniHCMarkers, getHCGlobal } from '../js/highchartsSetting.mjs'
 
 
 /**
@@ -56,6 +56,9 @@ export default {
 
                     //Highcharts
                     let Highcharts = window['Highcharts']
+
+                    //iniHCMarkers
+                    iniHCMarkers(Highcharts)
 
                     //setOptions
                     Highcharts.setOptions(getHCGlobal())
