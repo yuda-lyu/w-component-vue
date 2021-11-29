@@ -26,6 +26,7 @@ export default {
             default: () => [
                 'https://cdn.jsdelivr.net/npm/w-ckeditor-vue@1.0.24/dist/ckeditor.js',
                 'https://cdn.jsdelivr.net/npm/w-ckeditor-vue@1.0.24/dist/w-ckeditor-vue.umd.js',
+                // 'https://cdn.jsdelivr.net/npm/w-ckeditor-vue@2.0.1/dist/w-ckeditor-vue.umd.js', //因依賴問題暫時不使用2.0.1
             ],
         },
         value: {
