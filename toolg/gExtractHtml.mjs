@@ -80,10 +80,10 @@ function writeHtml(v) {
         <script src="https://cdn.jsdelivr.net/npm/vuetify@2.5.1/dist/vuetify.min.js"></script>
     
         <!-- fontawesome -->
-        <link href="https://use.fontawesome.com/releases/v5.14.0/css/all.css" rel="stylesheet">
+        <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" rel="stylesheet">
     
         <!-- mdi, 各組件使用mdi/js會於轉單頁時改為mdi icon, 故需引用mdi/css -->
-        <link href="https://cdn.jsdelivr.net/npm/@mdi/font/css/materialdesignicons.min.css" rel="stylesheet">
+        <link href="https://cdn.jsdelivr.net/npm/@mdi/font@5.9.55/css/materialdesignicons.min.css" rel="stylesheet">
     
         <!-- google, 各組件使用mdi/js故不需引用 -->
         <link _href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">

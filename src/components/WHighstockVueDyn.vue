@@ -22,9 +22,9 @@ export default {
         pathItems: {
             type: Array,
             default: () => [
-                'https://cdn.jsdelivr.net/npm/highcharts@9.1.2/highcharts.js',
-                'https://cdn.jsdelivr.net/npm/highcharts@9.1.2/modules/stock.js',
-                'https://cdn.jsdelivr.net/npm/highcharts@9.1.2/modules/annotations.js',
+                'https://cdn.jsdelivr.net/npm/highcharts@9.3.2/highcharts.js',
+                'https://cdn.jsdelivr.net/npm/highcharts@9.3.2/modules/stock.js',
+                'https://cdn.jsdelivr.net/npm/highcharts@9.3.2/modules/annotations.js',
                 'https://cdn.jsdelivr.net/npm/vue-highcharts@0.1.0/dist/vue-highcharts.min.js', //for vue2
                 //'https://cdn.jsdelivr.net/npm/vue-highcharts@0.2.0/dist/vue-highcharts.min.js',
             ],

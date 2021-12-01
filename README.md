@@ -73,17 +73,17 @@ export default {
 ```
 [Optional] Add link for icon.
 ```alias
-<link href="https://cdn.jsdelivr.net/npm/@mdi/font/css/materialdesignicons.min.css" rel="stylesheet">
-<link href="https://use.fontawesome.com/releases/v5.14.0/css/all.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/@mdi/font@5.9.55/css/materialdesignicons.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" rel="stylesheet">
 ```
 [Necessary] Add script and link for vuetify.
 ```alias
-<link href="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.css" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/vuetify@2.5.1/dist/vuetify.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/vuetify@2.5.1/dist/vuetify.min.js"></script>
 ```
 [Necessary] Add script for w-component-vue.
 ```alias
-<script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.1.64/dist/w-component-vue.umd.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.1.65/dist/w-component-vue.umd.js"></script>
 ```
 Directly use:
 ```alias

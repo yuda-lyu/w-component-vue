@@ -38,12 +38,12 @@ export default {
         pathItems: {
             type: Array,
             default: () => [
-                'https://cdn.jsdelivr.net/npm/highcharts@9.1.2/highcharts.js',
-                'https://cdn.jsdelivr.net/npm/highcharts@9.1.2/modules/stock.js', //因vue-highcharts初始化若無stock會無法註冊全域組件, 故若還會使用highstock vue組件, 得先於highcharts vue組件事先載入
-                'https://cdn.jsdelivr.net/npm/highcharts@9.1.2/modules/annotations.js',
-                'https://cdn.jsdelivr.net/npm/highcharts@9.1.2/modules/heatmap.js',
-                'https://cdn.jsdelivr.net/npm/highcharts@9.1.2/modules/boost.js',
-                'https://cdn.jsdelivr.net/npm/highcharts@9.1.2/modules/boost-canvas.js',
+                'https://cdn.jsdelivr.net/npm/highcharts@9.3.2/highcharts.js',
+                'https://cdn.jsdelivr.net/npm/highcharts@9.3.2/modules/stock.js', //因vue-highcharts初始化若無stock會無法註冊全域組件, 故若還會使用highstock vue組件, 得先於highcharts vue組件事先載入
+                'https://cdn.jsdelivr.net/npm/highcharts@9.3.2/modules/annotations.js',
+                'https://cdn.jsdelivr.net/npm/highcharts@9.3.2/modules/heatmap.js',
+                'https://cdn.jsdelivr.net/npm/highcharts@9.3.2/modules/boost.js',
+                'https://cdn.jsdelivr.net/npm/highcharts@9.3.2/modules/boost-canvas.js',
             ],
         },
         options: {
