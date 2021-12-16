@@ -97,7 +97,7 @@ export default {
         pathItems: {
             type: Array,
             default: () => [
-                'https://cdn.jsdelivr.net/npm/w-leaflet-vue@1.0.5/dist/w-leaflet-vue.umd.js',
+                'https://cdn.jsdelivr.net/npm/w-leaflet-vue@1.0.7/dist/w-leaflet-vue.umd.js',
             ],
         },
         opt: {

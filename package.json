@@ -1,6 +1,6 @@
 {
   "name": "w-component-vue",
-  "version": "2.1.65",
+  "version": "2.1.66",
   "author": "yuda-lyu(semisphere)",
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -11,7 +11,7 @@
   },
   "main": "dist/w-component-vue.umd.js",
   "dependencies": {
-    "@mdi/js": "^5.9.55",
+    "@mdi/js": "^6.5.95",
     "lodash": "^4.17.21",
     "vue-cli-plugin-vuetify": "^2.4.0",
     "vuetify": "^2.5.1",
