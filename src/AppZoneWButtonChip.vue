@@ -113,7 +113,7 @@
 
                 <w-button-chip
                     :text="WButtonChip.text"
-                    :icon="mdiFace"
+                    :icon="mdiFaceMan"
                     :tooltip="'測試中文tooltip'"
                 ></w-button-chip>
 
@@ -749,7 +749,7 @@
 </template>
 
 <script>
-import { mdiWalletGiftcard, mdiFace, mdiOrbit, mdiCheckUnderlineCircle, mdiYoutubeTv, mdiCodepen, mdiShakerOutline, mdiFlaskRoundBottom, mdiShoePrint } from '@mdi/js'
+import { mdiWalletGiftcard, mdiFaceMan, mdiOrbit, mdiCheckUnderlineCircle, mdiYoutubeTv, mdiCodepen, mdiShakerOutline, mdiFlaskRoundBottom, mdiShoePrint } from '@mdi/js'
 import demolink from './components/demolink.vue'
 import WButtonChip from './components/WButtonChip.vue'
 
@@ -764,7 +764,7 @@ export default {
     data: function() {
         return {
             mdiWalletGiftcard,
-            mdiFace,
+            mdiFaceMan,
             mdiOrbit,
             mdiCheckUnderlineCircle,
             mdiYoutubeTv,

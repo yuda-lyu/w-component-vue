@@ -41,7 +41,7 @@
                 ></demolink>
 
                 <w-button-circle
-                    :icon="mdiFace"
+                    :icon="mdiFaceMan"
                     :tooltip="'測試中文tooltip'"
                 ></w-button-circle>
 
@@ -231,7 +231,7 @@
 </template>
 
 <script>
-import { mdiWalletGiftcard, mdiFace, mdiCheckUnderlineCircle } from '@mdi/js'
+import { mdiWalletGiftcard, mdiFaceMan, mdiCheckUnderlineCircle } from '@mdi/js'
 import demolink from './components/demolink.vue'
 import WButtonCircle from './components/WButtonCircle.vue'
 
@@ -246,7 +246,7 @@ export default {
     data: function() {
         return {
             mdiWalletGiftcard,
-            mdiFace,
+            mdiFaceMan,
             mdiCheckUnderlineCircle,
             'WButtonCircle': {
             },
