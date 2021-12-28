@@ -68,6 +68,7 @@
 <script>
 import map from 'lodash/map'
 import join from 'lodash/join'
+import split from 'lodash/split'
 import isnum from 'wsemi/src/isnum.mjs'
 import isestr from 'wsemi/src/isestr.mjs'
 import cdbl from 'wsemi/src/cdbl.mjs'
@@ -314,7 +315,7 @@ export default {
 
             function repColor(tmp, tar, color) {
                 tmp = replace(tmp, '}', '{')
-                let s = sep(tmp, '{')
+                let s = split(tmp, '{') //需用slit, 用sep會把前後字串的雙側空白trim掉, 導致組裝回去樣式失效
                 s = map(s, (v) => {
                     if (v.indexOf(tar) >= 0) {
                         let ss = sep(v, '=')
