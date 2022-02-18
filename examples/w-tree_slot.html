@@ -85,7 +85,7 @@
     </script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.1.69/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.1.70/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -143,47 +143,13 @@
 
             <w-tree style="border:1px solid #ddd;" :data="WTree.option.items">
                 <template v-slot:item="props">
-                    <div style="display:flex;">
-                        <div
-                            style="display:flex; align-items:center; padding-right:5px;"
-                            v-if="props.data.avatar"
-                        >
-                            <img
-                                style="border-radius:50%; width:24px; height:24px;"
-                                :src="props.data.avatar"
-                            />
-                        </div>
+                    <div
+                        style="display:flex; align-items:center; min-height:34px;"
+                    >{{props.data.text}}</div>
 
-                        <div
-                            style="display:flex; align-items:center; padding-right:5px;"
-                            v-if="props.data.icon"
-                        >
-                            <v-icon
-                                size="18"
-                                color="deep-orange"
-                            >{{props.data.icon}}</v-icon>
-                        </div>
-
-                        <div style="padding:5px 0px;">
-                            <div style="display:flex; align-items:center;">
-                                <div
-                                    style="margin-right:7px;"
-                                >{{props.data.text}}</div>
-                                <div
-                                    style="padding:0px 9px; font-size:0.7rem; color:#fff; border-radius:30px; background:#f26;"
-                                    v-if="props.data.key"
-                                >{{props.data.key}}</div>
-                            </div>
-                            <div
-                                style="padding-right:20px;"
-                                v-if="props.data.msg"
-                            >
-                                <div
-                                    style="font-size:0.7rem; color:#999; text-indent:1rem; padding:12px 18px; background:#fefafa;"
-                                >{{props.data.msg}}</div>
-                            </div>
-                        </div>
-                    </div>
+                    <div
+                        style="padding:5px; background:#fee; font-size:0.7rem;"
+                    >addition text</div>
                 </template>
             </w-tree>
         </div>

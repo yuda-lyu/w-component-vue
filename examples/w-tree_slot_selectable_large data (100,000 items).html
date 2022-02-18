@@ -85,7 +85,7 @@
     </script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.1.69/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.1.70/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -138,24 +138,46 @@
                 onclick="window.open('//yuda-lyu.github.io/w-component-vue/examples/app.html?cmp='+this.innerText,'_blank')"
             >w-tree</span>
         </div>
-        <div class="bk dz">
-            <div class="item">slot &amp; defItemHeight</div>
+        <div class="bk" style="display:block; margin:0px 10px 0px 0px;">
+            <div
+                class="item"
+            >slot &amp; selectable &amp; large data (100,000 items)</div>
 
-            <w-tree
-                style="border:1px solid #ddd;"
-                :data="WTree.option.items"
-                :def-item-height="62"
-            >
-                <template v-slot:item="props">
-                    <div
-                        style="display:flex; align-items:center; min-height:34px;"
-                    >{{props.data.text}}</div>
+            <!-- 用:style才能支援IE11因vue會自動把overflow-x:auto轉為-ms-overflow-x:auto -->
+            <div :style="'overflow-x:auto;'">
+                <div style="display:table-cell; vertical-align:top;">
+                    <w-tree
+                        style="width:500px; border:1px solid #ddd;"
+                        :data="WTree.optionLarge.items"
+                        :selectable="true"
+                        :selections.sync="WTree.optionLarge.selections"
+                        @update:selections="changeSections"
+                    >
+                        <template v-slot:item="props">
+                            <div
+                                style="display:flex; align-items:center; min-height:34px;"
+                            >
+                                <div
+                                    style="margin-right:5px;"
+                                >{{props.data.text}}</div>
+                                <div
+                                    style="color:#26f; font-size:0.7rem;"
+                                >[id:{{props.data.id}}]</div>
+                            </div>
+                        </template>
+                    </w-tree>
+                </div>
 
+                <div style="display:table-cell; vertical-align:top;">
+                    <!-- 用:style才能支援IE11因vue會自動把overflow-y:auto轉為-ms-overflow-y:auto -->
                     <div
-                        style="padding:5px; background:#fee; font-size:0.7rem;"
-                    >addition text</div>
-                </template>
-            </w-tree>
+                        :style="'padding:10px 20px; height:402px; overflow-y:auto; border:1px solid #ddd; border-left-width:0px;'"
+                    >
+                        <div style="margin-bottom:5px;">selections:</div>
+                        <pre style="font-size:0.7rem;">{{JSON.stringify(showSelection(WTree.optionLarge.selections),null,4)}}</pre>
+                    </div>
+                </div>
+            </div>
         </div>
     </v-app>
 
