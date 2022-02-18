@@ -71,13 +71,11 @@
 
             <div>
                 <WDynamicList
-                    ref="wds"
                     :rows="items"
                     :filterKeywords="mode==='suggest'?valueTrans:''"
                     :viewHeightMax="maxHeight"
-                    :ratio.sync="ratio"
                     :itemMinHeight="defItemHeight"
-                    :searchEmpty="searchEmpty"
+                    :noResultsText="noResultsText"
                     :show="showPanelTrans"
                 >
                     <template v-slot="props">
@@ -150,7 +148,7 @@ import WIcon from './WIcon.vue'
  * @vue-prop {Number} [maxWidth=null] 輸入最大寬度，單位為px，預設null
  * @vue-prop {Number} [distY=5] 輸入彈窗距離觸發元素底部的距離數字，單位為px，預設5
  * @vue-prop {String} [placeholder=''] 輸入無文字時的替代字符字串，預設''
- * @vue-prop {String} [searchEmpty='Empty'] 輸入無過濾結果字串，預設'Empty'
+ * @vue-prop {String} [noResultsText='No results'] 輸入無過濾結果字串，預設'No results'
  * @vue-prop {Number} [defItemHeight=43] 輸入按需顯示時各項目預設高度數字，給越準或給大部分項目的高度則渲染速度越快，單位為px，預設43
  * @vue-prop {Boolean} [editable=true] 輸入是否為編輯模式布林值，預設true
  * @vue-prop {Boolean} [focused=false] 輸入是否為取得焦點狀態布林值，預設false
@@ -257,9 +255,9 @@ export default {
             type: String,
             default: '',
         },
-        searchEmpty: {
+        noResultsText: {
             type: String,
-            default: 'Empty',
+            default: 'No results',
         },
         defItemHeight: {
             type: Number,
@@ -283,7 +281,6 @@ export default {
             focusedTrans: false,
             showPanelTrans: false,
             valueTrans: null,
-            ratio: 0,
         }
     },
     computed: {
@@ -597,16 +594,16 @@ export default {
             let showPanel = get(obj, 'showPanel', null)
             let focused = get(obj, 'focused', null)
 
-            //因重新顯示時會因沒觸發高度或捲軸變化, 需自行調用WDynamicList的refreshAndTriggerEvent重新渲染
-            if (showPanel) {
+            // //因重新顯示時會因沒觸發高度或捲軸變化, 需自行調用WDynamicList的refreshAndTriggerEvent重新渲染
+            // if (showPanel) {
 
-                //t
-                let t = get(vo, '$refs.wds.refreshAndTriggerEvent', null)
-                if (t) {
-                    t('showPanel')
-                }
+            //     //t
+            //     let t = get(vo, '$refs.wds.refreshAndTriggerEvent', null)
+            //     if (t) {
+            //         t('showPanel')
+            //     }
 
-            }
+            // }
 
             //focused
             if (isbol(focused) && vo.focusedTrans !== focused) {

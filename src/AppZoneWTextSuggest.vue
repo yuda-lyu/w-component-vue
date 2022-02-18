@@ -95,12 +95,12 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-text-suggest'"
-                    :casename="'searchEmpty'"
+                    :casename="'noResultsText'"
                 ></demolink>
 
                 <w-text-suggest
                     :items="WTextSuggest.objItems"
-                    :searchEmpty="'無有效項目'"
+                    :noResultsText="'無有效項目'"
                     v-model="WTextSuggest.objValue"
                 ></w-text-suggest>
             </div>
@@ -270,7 +270,7 @@
                     :leftIcon="mdiCheckUnderlineCircle"
                     :items="WTextSuggest.objItemsKeyText"
                     :keyText="'name'"
-                    :searchEmpty="'無有效項目'"
+                    :noResultsText="'無有效項目'"
                     v-model="WTextSuggest.objValueKeyText"
                 ></w-text-suggest>
             </div>
@@ -319,7 +319,7 @@
                 <w-text-suggest
                     :leftIcon="mdiCheckUnderlineCircle"
                     :items="WTextSuggest.objItemsLarge"
-                    :searchEmpty="'無有效項目'"
+                    :noResultsText="'無有效項目'"
                     v-model="WTextSuggest.objValueLarge"
                 ></w-text-suggest>
             </div>
@@ -582,7 +582,7 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-text-suggest'"
-                    :casename="'border & searchEmpty'"
+                    :casename="'border & noResultsText'"
                 ></demolink>
 
                 <w-text-suggest
@@ -592,7 +592,7 @@
                     :borderColorFocus="'orange darken-2'"
                     :backgroundColorFocus="'orange lighten-5'"
                     :items="WTextSuggest.objItems"
-                    :searchEmpty="'無有效項目'"
+                    :noResultsText="'無有效項目'"
                     v-model="WTextSuggest.objValue"
                 ></w-text-suggest>
             </div>
@@ -839,7 +839,7 @@
                     :leftIcon="mdiCheckUnderlineCircle"
                     :items="WTextSuggest.objItemsKeyText"
                     :keyText="'name'"
-                    :searchEmpty="'無有效項目'"
+                    :noResultsText="'無有效項目'"
                     v-model="WTextSuggest.objValueKeyText"
                 ></w-text-suggest>
             </div>
@@ -903,7 +903,7 @@
                     :backgroundColorFocus="'orange lighten-5'"
                     :leftIcon="mdiCheckUnderlineCircle"
                     :items="WTextSuggest.objItemsLarge"
-                    :searchEmpty="'無有效項目'"
+                    :noResultsText="'無有效項目'"
                     v-model="WTextSuggest.objValueLarge"
                 ></w-text-suggest>
             </div>

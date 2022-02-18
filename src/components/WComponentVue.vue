@@ -24,7 +24,6 @@ import WIconSvg from './WIconSvg.vue'
 import WImageCascadingDyn from './WImageCascadingDyn.vue'
 import WImageViewerDyn from './WImageViewerDyn.vue'
 import WJsonView from './WJsonView.vue'
-import WJsonViewCore from './WJsonViewCore.vue'
 import WLeafletVueDyn from './WLeafletVueDyn.vue'
 import WListVertical from './WListVertical.vue'
 import WListVerticalItem from './WListVerticalItem.vue'
@@ -94,7 +93,6 @@ let WComponentVue = {
         Vue.component('w-image-cascading-dyn', WImageCascadingDyn)
         Vue.component('w-image-viewer-dyn', WImageViewerDyn)
         Vue.component('w-json-view', WJsonView)
-        Vue.component('w-json-view-core', WJsonViewCore)
         Vue.component('w-leaflet-vue-dyn', WLeafletVueDyn)
         Vue.component('w-list-vertical', WListVertical)
         Vue.component('w-list-vertical-item', WListVerticalItem)

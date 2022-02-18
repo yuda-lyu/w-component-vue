@@ -152,7 +152,7 @@
                         :rightIconTooltip="inputTextButtonTooltip"
                         :items="suggests"
                         :placeholder="placeholder"
-                        :searchEmpty="searchEmpty"
+                        :noResultsText="noResultsText"
                         v-model="userinput"
                         @enter="clickAddBtn"
                         @click-right="clickAddBtn"
@@ -222,7 +222,7 @@ import domDragDrop from '../js/domDragDrop.mjs'
  * @vue-prop {Number} [shiftRight=0] 輸入右側內寬平移距離數字，會對paddingStyle設定再添加，可調整例如關閉圖標與右側邊框距離，單位px，預設0
  * @vue-prop {Array} [suggests=[]] 輸入可選(建議)項目陣列，預設[]
  * @vue-prop {String} [placeholder=''] 輸入無文字時的替代字符字串，預設''
- * @vue-prop {String} [searchEmpty='Empty'] 輸入無過濾結果字串，預設'Empty'
+ * @vue-prop {String} [noResultsText='No results'] 輸入無過濾結果字串，預設'No results'
  * @vue-prop {Number} [inputTextWidth=150] 輸入新增按鈕或輸入框區寬度數字，單位px，預設150
  * @vue-prop {String} [inputTextColor='black'] 輸入文字顏色字串，預設'black'
  * @vue-prop {String} [inputTextBackgroundColor='white'] 輸入輸入框背景顏色字串，預設'white'
@@ -421,9 +421,9 @@ export default {
             type: String,
             default: '',
         },
-        searchEmpty: {
+        noResultsText: {
             type: String,
-            default: 'Empty',
+            default: 'No results',
         },
         inputTextWidth: {
             type: Number,

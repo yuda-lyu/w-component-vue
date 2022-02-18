@@ -85,7 +85,7 @@
     </script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.1.69/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.1.70/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -139,11 +139,20 @@
             >w-tree</span>
         </div>
         <div class="bk dz">
-            <div class="item">separatorColor</div>
+            <div class="item">filterKeywords &amp; noResultsText</div>
+
+            <div style="margin-bottom:10px;">
+                <span style="padding-right:10px;">Search :</span>
+                <input
+                    style="padding:2px 15px; color:#666; border:1px solid #fca; border-radius:30px; outline:none;"
+                    v-model="WTree.option.keywords"
+                />
+            </div>
 
             <w-tree
                 style="border:1px solid #ddd;"
-                :separator-color="'rgba(0,0,0,0.1)'"
+                :filter-keywords="WTree.option.keywords"
+                :no-results-text="'There are no items to show...'"
                 :data="WTree.option.items"
             ></w-tree>
         </div>

@@ -85,7 +85,7 @@
     </script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.1.69/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.1.70/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -136,55 +136,21 @@
                 style="cursor:pointer;"
                 title="open for copy link to view component"
                 onclick="window.open('//yuda-lyu.github.io/w-component-vue/examples/app.html?cmp='+this.innerText,'_blank')"
-            >w-panel-scrolly</span>
+            >w-text-suggest</span>
         </div>
         <div class="bk">
-            <div class="item">ratio</div>
+            <div class="item">border &amp; noResultsText</div>
 
-            <div
-                style="font-size:0.8rem; color:#aaa;"
-            >ratio: {{WPanelScrolly.ratio}}</div>
-
-            <w-panel-scrolly
-                style="width:240px; height:200px;"
-                :ratio.sync="WPanelScrolly.ratio"
-                @update:ratio="updateRatio"
-            >
-                <table :style="WPanelScrolly.tableStyle">
-                    <tbody>
-                        <tr>
-                            <td :style="WPanelScrolly.tdStyle">11</td>
-                            <td :style="WPanelScrolly.tdStyle">12</td>
-                            <td :style="WPanelScrolly.tdStyle">13</td>
-                            <td :style="WPanelScrolly.tdStyle">14</td>
-                        </tr>
-                        <tr>
-                            <td :style="WPanelScrolly.tdStyle">21</td>
-                            <td :style="WPanelScrolly.tdStyle">22</td>
-                            <td :style="WPanelScrolly.tdStyle">23</td>
-                            <td :style="WPanelScrolly.tdStyle">24</td>
-                        </tr>
-                        <tr>
-                            <td :style="WPanelScrolly.tdStyle">31</td>
-                            <td :style="WPanelScrolly.tdStyle">32</td>
-                            <td :style="WPanelScrolly.tdStyle">33</td>
-                            <td :style="WPanelScrolly.tdStyle">34</td>
-                        </tr>
-                        <tr>
-                            <td :style="WPanelScrolly.tdStyle">41</td>
-                            <td :style="WPanelScrolly.tdStyle">42</td>
-                            <td :style="WPanelScrolly.tdStyle">43</td>
-                            <td :style="WPanelScrolly.tdStyle">44</td>
-                        </tr>
-                        <tr>
-                            <td :style="WPanelScrolly.tdStyle">51</td>
-                            <td :style="WPanelScrolly.tdStyle">52</td>
-                            <td :style="WPanelScrolly.tdStyle">53</td>
-                            <td :style="WPanelScrolly.tdStyle">54</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </w-panel-scrolly>
+            <w-text-suggest
+                :shadow="false"
+                :border-color="'orange lighten-2'"
+                :border-color-hover="'orange'"
+                :border-color-focus="'orange darken-2'"
+                :background-color-focus="'orange lighten-5'"
+                :items="WTextSuggest.objItems"
+                :no-results-text="'無有效項目'"
+                v-model="WTextSuggest.objValue"
+            ></w-text-suggest>
         </div>
     </v-app>
 
@@ -198,14 +164,90 @@
     vuetify: new Vuetify(),
     data: function() {
       return {
-        WPanelScrolly: {
-          tableStyle:
-            "border-collapse:collapse; background-image:linear-gradient(141deg, #4cc5f8 0%, #3fd8eb 75%);",
-          tdStyle:
-            "padding:50px 22px; color:white; border:1px solid rgba(255,255,255,0.5); font-size:0.8rem;",
-          ratio: 0.5
+        WTextSuggest: {
+          focused: false,
+          showPanel: false,
+          objItems: [
+            {
+              key: "orange",
+              text: "橘子(orange)"
+            },
+            {
+              key: "banana",
+              text: "香蕉(banana)"
+            },
+            {
+              key: "strawberry",
+              text: "草莓(strawberry)"
+            }
+          ],
+          objValue: {
+            key: "banana",
+            text: "香蕉(banana)"
+          },
+          objItemsKeyText: [
+            {
+              key: "orange",
+              name: "橘子(orange)"
+            },
+            {
+              key: "banana",
+              name: "香蕉(banana)"
+            },
+            {
+              key: "strawberry",
+              name: "草莓(strawberry)"
+            }
+          ],
+          objValueKeyText: {
+            key: "banana",
+            name: "香蕉(banana)"
+          },
+          objItemsLarge: (function() {
+            let vs = [];
+            vs.push({
+              key: "banana:1",
+              text: "香蕉(banana:1)"
+            });
+            for (let i = 2; i <= 10000; i++) {
+              vs.push({
+                key: "banana:" + i,
+                text: "香蕉(banana:" + i + ")"
+              });
+            }
+            return vs;
+          })(),
+          objValueLarge: {
+            key: "banana:1",
+            text: "香蕉(banana:1)"
+          },
+          strItems: ["orange(橘子)", "banana(香蕉)", "strawberry(草莓)"],
+          strValue: "strawberry(草莓)"
         },
-        actions: []
+        actions: [
+          {
+            mode: "eleclick",
+            selector: 'input[type="text"]'
+          },
+          {
+            mode: "keypress",
+            key: "End"
+          },
+          {
+            mode: "keypress",
+            key: "Backspace",
+            count: 15
+          },
+          {
+            mode: "eleclick",
+            selector: 'li[role="option"]',
+            nth: 2
+          },
+          {
+            mode: "eleclick",
+            selector: "div.bk"
+          }
+        ]
       };
     },
     mounted: function() {
@@ -213,11 +255,43 @@
     },
     computed: {},
     methods: {
-      scroll: function(v) {
-        //console.log('scroll', v)
+      evUpdateFocused: function(item, kitem) {
+        console.log("evUpdateFocused", "item=", item, "kitem", kitem);
       },
-      updateRatio: function(v) {
-        //console.log('updateRatio', v)
+      evUpdateShowPanel: function(item, kitem) {
+        console.log("evUpdateShowPanel", "item=", item, "kitem", kitem);
+      },
+      evBlur: function(item, kitem) {
+        console.log("evBlur", "item=", item, "kitem", kitem);
+      },
+      evInput: function(item, kitem) {
+        console.log("evInput", "item=", item, "kitem", kitem);
+      },
+      evEnter: function(item, kitem) {
+        console.log("evEnter", "item=", item, "kitem", kitem);
+      },
+      evClickItem: function(item, kitem) {
+        console.log("evClickItem", "item=", item, "kitem", kitem);
+      },
+      evClickLeft: function() {
+        console.log("evClickLeft");
+      },
+      evClickRight: function() {
+        console.log("evClickRight");
+      },
+      hidePanelWhenEnter: function() {
+        // console.log('hidePanelWhenEnter')
+
+        let vo = this;
+
+        //blur, 要先將text的焦點取消, 先觸發掉focused變更事件(此會再觸發changeContent內容變更事件, 故會觸發顯示panel)
+        document.activeElement.blur();
+
+        //delay hide, 因enter觸發blur後會觸發changeContent內容變更事件, 故得等顯示事件完成才給予showPanel=false, 100ms是經驗值, 使其完整觸發隱藏panel流程
+        setTimeout(function() {
+          //hide
+          vo.WTextSuggest.showPanel = false;
+        }, 100);
       }
     }
   });

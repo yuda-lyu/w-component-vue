@@ -85,7 +85,7 @@
     </script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.1.69/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.1.70/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -136,14 +136,55 @@
                 style="cursor:pointer;"
                 title="open for copy link to view component"
                 onclick="window.open('//yuda-lyu.github.io/w-component-vue/examples/app.html?cmp='+this.innerText,'_blank')"
-            >w-badge</span>
+            >w-panel-scrolly</span>
         </div>
         <div class="bk">
-            <div class="item">default</div>
+            <div class="item">scrollTop</div>
 
-            <w-badge :text="WBadge.number">
-                <v-chip style="margin:0px;" label>{{WBadge.labelText}}</v-chip>
-            </w-badge>
+            <div
+                style="font-size:0.8rem; color:#aaa;"
+            >scrollTop: {{WPanelScrolly.scrollTop}}</div>
+
+            <w-panel-scrolly
+                style="width:240px; height:200px;"
+                :scroll-top.sync="WPanelScrolly.scrollTop"
+                @update:scroll-top="updateScrollTop"
+            >
+                <table :style="WPanelScrolly.tableStyle">
+                    <tbody>
+                        <tr>
+                            <td :style="WPanelScrolly.tdStyle">11</td>
+                            <td :style="WPanelScrolly.tdStyle">12</td>
+                            <td :style="WPanelScrolly.tdStyle">13</td>
+                            <td :style="WPanelScrolly.tdStyle">14</td>
+                        </tr>
+                        <tr>
+                            <td :style="WPanelScrolly.tdStyle">21</td>
+                            <td :style="WPanelScrolly.tdStyle">22</td>
+                            <td :style="WPanelScrolly.tdStyle">23</td>
+                            <td :style="WPanelScrolly.tdStyle">24</td>
+                        </tr>
+                        <tr>
+                            <td :style="WPanelScrolly.tdStyle">31</td>
+                            <td :style="WPanelScrolly.tdStyle">32</td>
+                            <td :style="WPanelScrolly.tdStyle">33</td>
+                            <td :style="WPanelScrolly.tdStyle">34</td>
+                        </tr>
+                        <tr>
+                            <td :style="WPanelScrolly.tdStyle">41</td>
+                            <td :style="WPanelScrolly.tdStyle">42</td>
+                            <td :style="WPanelScrolly.tdStyle">43</td>
+                            <td :style="WPanelScrolly.tdStyle">44</td>
+                        </tr>
+                        <tr>
+                            <td :style="WPanelScrolly.tdStyle">51</td>
+                            <td :style="WPanelScrolly.tdStyle">52</td>
+                            <td :style="WPanelScrolly.tdStyle">53</td>
+                            <td :style="WPanelScrolly.tdStyle">54</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </w-panel-scrolly>
         </div>
     </v-app>
 
@@ -157,25 +198,28 @@
     vuetify: new Vuetify(),
     data: function() {
       return {
-        WBadge: {
-          number: "5",
-          text: "A",
-          textLong: "A123",
-          labelText: "測試中文Label"
+        WPanelScrolly: {
+          tableStyle:
+            "border-collapse:collapse; background-image:linear-gradient(141deg, #4cc5f8 0%, #3fd8eb 75%);",
+          tdStyle:
+            "padding:50px 22px; color:white; border:1px solid rgba(255,255,255,0.5); font-size:0.8rem;",
+          scrollTop: 100
         },
-        actions: [
-          {
-            mode: "eleclick",
-            selector: 'span[class="v-chip__content"]'
-          }
-        ]
+        actions: []
       };
     },
     mounted: function() {
       return {};
     },
     computed: {},
-    methods: {}
+    methods: {
+      getEvents: function(evName, msg) {
+        console.log("getEvents", evName, msg);
+      },
+      updateScrollTop: function(msg) {
+        console.log("updateScrollTop", msg);
+      }
+    }
   });
     </script>
 </body>

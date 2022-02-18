@@ -55,7 +55,7 @@
                     :expansionIconSize="expansionIconSize"
                     :expansionIconColor="expansionIconColor"
                     :placeholder="placeholder"
-                    :searchEmpty="searchEmpty"
+                    :noResultsText="noResultsText"
                     :distY="useDistY"
                     :defItemHeight="defItemHeight"
                     :editable="editable"
@@ -136,7 +136,7 @@ import WTextSuggestCore from './WTextSuggestCore.vue'
  * @vue-prop {Number} [expansionIconSize=18] 輸入右側圖標尺寸數字，單位為px，預設18
  * @vue-prop {String} [expansionIconColor='grey'] 輸入右側圖標顏色字串，預設'grey'
  * @vue-prop {String} [placeholder=''] 輸入無文字時的替代字符字串，預設''
- * @vue-prop {String} [searchEmpty='Empty'] 輸入無過濾結果字串，預設'Empty'
+ * @vue-prop {String} [noResultsText='No results'] 輸入無過濾結果字串，預設'No results'
  * @vue-prop {Number} [defItemHeight=43] 輸入按需顯示時各項目預設高度值數字，給越準或給大部分項目的高度則渲染速度越快，單位為px，預設43
  * @vue-prop {Boolean} [editable=true] 輸入是否為編輯模式布林值，預設true
  * @vue-prop {Boolean} [focused=false] 輸入是否為取得焦點狀態布林值，預設false
@@ -313,9 +313,9 @@ export default {
             type: String,
             default: '',
         },
-        searchEmpty: {
+        noResultsText: {
             type: String,
-            default: 'Empty',
+            default: 'No results',
         },
         defItemHeight: {
             type: Number,

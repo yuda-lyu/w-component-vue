@@ -1,46 +1,58 @@
 <template>
     <div
-        :style="`height:${panelHeight}px; box-sizing:content-box;`"
+        :style="`box-sizing:content-box;`"
         v-domresize
-        @domresize="resize"
+        @domresize="resizePanel"
         @mouseenter="mouseEntering=true"
         @mouseleave="mouseEntering=false"
-        :changeRatio="changeRatio"
-        :changeViewHeightMax="changeViewHeightMax"
+        :changeScrollTop="changeScrollTop"
     >
 
-        <!-- 不能設定border-width=0, 瀏覽器會額外進行偵測渲染導致抖動 -->
-        <div :style="`position:relative; overflow:hidden; height:${viewHeightMax}px;`">
-
-            <!-- bar區 -->
-            <div :style="`position:absolute; top:0px; right:0px; z-index:1; height:${viewHeightMax}px;`" v-show="contentHeightEff>0">
-                <!-- 外層設定box-sizing=content-box也就是高度不包括border與padding, 內層高度就會是viewHeightMax不需減少, 此時bar的設定box-sizing=border-box才能自動考量padding影響 -->
-                <div :style="`box-sizing:border-box; padding:${barPanelPadding}px 1px; position:relative; width:${barWidth}px; height:100%; background:${useBarBackgroundColor}; transition:background 0.5s;`">
-                    <div
-                        ref="divBar"
-                        :style="`transform:translateY(${barLoc}px); width:100%; height:${barSize}px; user-select:none; cursor:pointer; border-radius:15px; background:${useBarColor}; transition:background 0.5s;`"
-                    ></div>
+        <!-- 計算nativeBarWidth -->
+        <div style="position:relative; width:0px; height:0px; opacity:0;">
+            <div style="position:absolute; left:0; top:0;">
+                <div ref="divDetect" style="width:50px; height:50px; overflow:auto;">
+                    <div style="width:100px; height:100px;"></div>
                 </div>
             </div>
+        </div>
 
-            <!-- 內容區 -->
+        <div
+            :style="`position:relative; width:100%; overflow-x:hidden;`"
+        >
+
             <div
-                ref="divPanel"
-                class="clsPanel"
-                :style="`position:relative; overflow-x:hidden; overflow-y:auto; width:calc( 100% + ${nativeBarWidth+extWidth}px ); height:${panelHeight}px;`"
-                @scroll="scroll"
+                ref="divShell"
+                _class="sb"
+                :style="`position:relative; width:calc( 100% + ${nativeBarWidth}px ); height:${panelHeight}px; box-sizing:content-box; overflow-x:hidden; overflow-y:scroll;`"
+                v-domresize
+                @domresize="resizeShell"
+                @scroll="scrollShell"
             >
 
-                <!-- 通過高度設定為viewHeightMax+extHeight使divPanel出現捲軸, 並強制設定scrollTop=extHeight/2可使保持監聽上下捲動與拖曳事件 -->
-                <div :style="`position:absolute; top:0px; left:0px; width:calc( 100% + ${extWidth}px ); height:${viewHeightMax+extHeight}px;`"></div>
-
                 <div
-                    ref="divSlot"
-                    :style="`position:absolute; top:${fakeScrollTop}px; left:0px; overflow:hidden; width:calc( 100% + ${extWidth}px ); height:${viewHeightMax}px;`"
+                    ref="divContent"
+                    :style="``"
                     v-dommutation
                     @dommutation="mutation"
                 >
                     <slot></slot>
+                </div>
+
+            </div>
+
+            <!-- isMobile時divBar仍要存在, 因通用檢測時才會有效, 故isMobile時需於移至右側之外 -->
+            <div :style="`position:absolute; top:0px; right:${isMobile?-8:0}px; width:8px;`">
+
+                <div
+                    ref="divBar"
+                    class="sb"
+                    :style="`width:8px; height:${panelHeight}px; box-sizing:content-box; overflow-x:hidden; overflow-y:auto; opacity:${mouseEntering?barOpacityHover:barOpacity};`"
+                    @scroll="scrollBar"
+                >
+
+                    <div :style="`width:1px; height:${contentHeight}px;`"></div>
+
                 </div>
 
             </div>
@@ -52,175 +64,73 @@
 
 <script>
 import get from 'lodash/get'
-import cloneDeep from 'lodash/cloneDeep'
-import isEle from 'wsemi/src/isEle.mjs'
-import domDragBarAndScroll from 'wsemi/src/domDragBarAndScroll.mjs'
-import color2hex from '../js/vuetifyColor.mjs'
+import isEqual from 'lodash/isEqual'
+// import cloneDeep from 'lodash/cloneDeep'
+import waitFun from 'wsemi/src/waitFun.mjs'
+import debounce from 'wsemi/src/debounce.mjs'
 import domResize from '../js/domResize.mjs'
 import domMutation from '../js/domMutation.mjs'
 
 
 /**
  * @vue-prop {Number} [viewHeightMax=400] 輸入顯示區最大高度，單位為px，預設400
- * @vue-prop {Number} [contentHeight=10000] 輸入內容最大高度，單位為px，預設10000
- * @vue-prop {Number} [scrollDelta=100] 輸入一次捲動高度，單位為px，預設100
- * @vue-prop {String} [barColor='rgba(0,0,0,0.15)'] 輸入捲軸內區塊顏色字串，預設'rgba(0,0,0,0.15)'
- * @vue-prop {String} [barColorHover='rgba(0,0,0,0.3)'] 輸入滑鼠移入時捲軸內區塊顏色字串，預設'rgba(0,0,0,0.3)'
- * @vue-prop {String} [barBackgroundColor='transparent'] 輸入捲軸背景顏色字串，預設'transparent'
- * @vue-prop {String} [barBackgroundColorHover='transparent'] 輸入滑鼠移入時捲軸背景顏色字串，預設'transparent'
- * @vue-prop {Number} [barWidth=8] 輸入捲軸區寬度，單位為px，預設8
- * @vue-prop {Number} [barHeightMin=50] 輸入捲軸內區塊最小高度，單位為px，預設50
- * @vue-prop {Number} [ratio=0] 輸入目前捲動比例數字，預設0
+ * @vue-prop {Number} [scrollTop=0] 輸入目前捲動值數字，預設0
+ * @vue-prop {Number} [barOpacity=0.6] 輸入捲軸透明度數字，預設0.6
+ * @vue-prop {Number} [barOpacityHover=1] 輸入滑鼠移入時捲軸透明度數字，預設1
  */
 export default {
     directives: {
         domresize: domResize(),
         dommutation: domMutation(),
     },
+    components: {
+    },
     props: {
         viewHeightMax: {
             type: Number,
             default: 400,
         },
-        contentHeight: {
-            type: Number,
-            default: 10000,
-        },
-        scrollDelta: {
-            type: Number,
-            default: 100,
-        },
-        barColor: {
-            type: String,
-            default: 'rgba(0,0,0,0.15)',
-        },
-        barColorHover: {
-            type: String,
-            default: 'rgba(0,0,0,0.3)',
-        },
-        barBackgroundColor: {
-            type: String,
-            default: 'transparent',
-        },
-        barBackgroundColorHover: {
-            type: String,
-            default: 'transparent',
-        },
-        barWidth: {
-            type: Number,
-            default: 8,
-        },
-        barHeightMin: {
-            type: Number,
-            default: 50,
-        },
-        ratio: {
+        scrollTop: {
             type: Number,
             default: 0,
+        },
+        barOpacity: {
+            type: Number,
+            default: 0.6,
+        },
+        barOpacityHover: {
+            type: Number,
+            default: 1,
         },
     },
     data: function() {
         return {
-            das: null,
+            dbc: debounce(),
 
-            mouseEntering: false, //滑鼠移入中
-            ratioTrans: 0, //捲動比例
-            barPressY: null, //bar按下準備拖曳前y座標
-            nativeBarWidth: 100, //原生捲軸寬度, 預設給超大值避免初始化時顯示捲軸出來
-            barPanelPadding: 1, //捲軸內與區塊的y向內間距
-            scrollInforLast: null, //上次算得的捲軸資訊
-            scrollInforTemp: null, //要恢復上次捲軸位置時用暫存的捲軸資訊
-            timerScrollTop: null, //偵測顯示區捲軸變動的timer
+            nativeBarWidth: 16, //預設bar寬度, 先給大值避免初始化時會顯示原本bar條
+
+            useEmitEvent: true, //是否可觸發事件
+            mouseEntering: false,
+            mouseLoc: '',
+
+            viewHeight: 0, //外框區高度px
+            contentHeight: 2, //內容區高度px, 一定要給>=2值(至少可能渲染2border)才能避免初始化無高度導致無法觸發後續事件
+
+            ratio: 0,
+            scrollInfor: null,
 
         }
-    },
-    mounted: function() {
-        //console.log('mounted')
-
-        let vo = this
-
-        //das
-        let das = domDragBarAndScroll(vo.$refs.divPanel, vo.$refs.divBar, {
-            getHeighRatio: () => vo.heighRatio,
-            //stopScrollPropagationForPanel: true, //禁止滑鼠捲動事件傳遞至外, 現已強制原生捲軸再攔截相關事件, 故不需要停用傳遞
-            //stopTouchDragPropagationForPanel: true, //禁止觸控拖曳事件傳遞至外, 現已強制原生捲軸再攔截相關事件, 故不需要停用傳遞
-        })
-        das.on('scrollPanel', vo.dgScrollPanel)
-        das.on('pressBar', vo.dgPressBar)
-        das.on('dragBar', vo.dgDragBar)
-        das.on('freeBar', vo.dgFreeBar)
-
-        //save
-        vo.das = das
-
-        //detect
-        vo.timerScrollTop = setInterval(() => {
-
-            //resetScrollTop, 因vue切換組件時若為共用狀態則mounted只會觸發1次, 此導致顯示區塊的scrollTop會自動被歸0但又不觸發scroll事件, 故需通過timer偵測並重設scrollTop
-            vo.resetScrollTop()
-
-        }, 100)
-
-    },
-    beforeDestroy: function() {
-        //console.log('beforeDestroy')
-
-        let vo = this
-
-        //clear
-        if (vo.das) {
-            vo.das.clear()
-        }
-
-        //clearInterval
-        clearInterval(vo.timerScrollTop)
-
-    },
-    watch: {
-
-        viewHeightMax: function() {
-            //console.log('watch viewHeightMax')
-
-            let vo = this
-
-            //由watch處儲存捲軸資訊scrollInfor供後續恢復, 因放在computed會被vue偵測記憶體變動
-            vo.scrollInforTemp = cloneDeep(vo.scrollInforLast)
-
-        },
-
     },
     computed: {
 
-        changeRatio: function () {
-            //console.log('computed changeRatio')
+        changeScrollTop: function () {
+            //console.log('computed changeScrollTop')
 
             let vo = this
 
-            //ratioTrans
-            let ratioTrans = vo.ratio
+            //updateScrollTop
+            vo.updateScrollTop(vo.scrollTop)
 
-            //limit
-            ratioTrans = Math.max(ratioTrans, 0)
-            ratioTrans = Math.min(ratioTrans, 1)
-
-            //save
-            vo.ratioTrans = ratioTrans
-
-            return ''
-        },
-
-        changeViewHeightMax: function() {
-            //console.log('computed changeViewHeightMax')
-
-            let vo = this
-
-            //viewHeightMax for trigger
-            let viewHeightMax = vo.viewHeightMax
-
-            //keepRatioByChangeViewHeightMax
-            vo.keepRatioByChangeViewHeightMax()
-
-            vo.___viewHeightMax___ = viewHeightMax
             return ''
         },
 
@@ -232,132 +142,6 @@ export default {
             return Math.min(vo.contentHeight, vo.viewHeightMax)
         },
 
-        extHeight: function() {
-            //console.log('computed extHeight')
-
-            let vo = this
-
-            //放大比率(依照viewHeightMax)與增量
-            let r = 10 //桌機需高放大比率, 於複雜dom中比較有緩衝能平滑拖曳, 不容易觸發拖曳外層document
-            let d = 0
-            if (vo.nativeBarWidth <= 0) {
-                r = 0.2 //手機需低放大比率, 大值時拖曳會出現回彈效果使用者體驗比較好, 但會常觸發回彈導致無法拖曳
-                d = 2
-            }
-
-            //額外撐開高度, 最小上下留1px也就是需為viewHeightMax+2
-            let h = vo.viewHeightMax * r + d
-
-            return h
-        },
-
-        useEntering: function() {
-            //console.log('computed useEntering')
-
-            let vo = this
-
-            //滑鼠移入以及對捲軸按下正在拖曳中時, 都視為滑鼠移入狀態
-            return vo.mouseEntering || vo.barPressY
-        },
-
-        useBarColor: function() {
-            //console.log('computed useBarColor')
-
-            let vo = this
-
-            if (vo.useEntering) {
-                return color2hex(vo.barColorHover)
-            }
-            return color2hex(vo.barColor)
-        },
-
-        useBarBackgroundColor: function() {
-            //console.log('computed useBarBackgroundColor')
-
-            let vo = this
-
-            if (vo.useEntering) {
-                return color2hex(vo.barBackgroundColorHover)
-            }
-            return color2hex(vo.barBackgroundColor)
-        },
-
-        heighRatio: function() {
-            //console.log('computed heighRatio')
-
-            let vo = this
-
-            //r, 顯示區與實際內容高度比, 此處只有domDragBarAndScroll會調用, 也就是使用者拖曳捲軸才觸發
-            let ch = vo.contentHeight
-            let r = vo.viewHeightMax / Math.max(ch, 1)
-
-            return r
-        },
-
-        barSize: function() {
-            //console.log('computed barSize')
-
-            let vo = this
-
-            //r size ratio
-            let r = vo.viewHeightMax / vo.contentHeight
-
-            //barSize
-            let barSize = Math.max(r * vo.viewHeightMax, vo.barHeightMin)
-
-            return barSize
-        },
-
-        barLoc: function() {
-            //console.log('computed barLoc')
-
-            let vo = this
-
-            return vo.ratioTrans * vo.viewHeightEff
-        },
-
-        contentHeightEff: function() {
-            //console.log('computed contentHeightEff')
-
-            let vo = this
-
-            //v
-            let v = vo.contentHeight - vo.viewHeightMax
-            v = Math.max(v, 0)
-
-            //triggerEvent, 若內容高度contentHeight或顯示區最大高度viewHeightMax變更則需要triggerEvent
-            vo.triggerEvent('changeHeight')
-
-            return v
-        },
-
-        viewHeightEff: function() {
-            //console.log('computed viewHeightEff')
-
-            let vo = this
-
-            //v
-            let v = vo.viewHeightMax - vo.barSize - vo.barPanelPadding * 2
-            v = Math.max(v, 0)
-
-            return v
-        },
-
-        viewTop: function() {
-            //console.log('computed viewTop')
-
-            let vo = this
-            return vo.ratioTrans * vo.contentHeightEff
-        },
-
-        viewBottom: function() {
-            //console.log('computed viewBottom')
-
-            let vo = this
-
-            return vo.viewTop + vo.viewHeightMax
-        },
-
         isMobile: function() {
             //console.log('computed isMobile')
 
@@ -366,378 +150,370 @@ export default {
             return vo.nativeBarWidth <= 0
         },
 
-        extWidth: function() {
-            //console.log('computed extWidth')
-
+        contentHeightEff: function() {
             let vo = this
-
-            //額外撐開寬度, 當手機瀏覽時會沒有原生捲軸寬度, 此時需額外撐開使捲軸隱藏
-            if (vo.isMobile) {
-                return 20
-            }
-            return 0
+            return Math.max(vo.contentHeight - vo.panelHeight, 0)
         },
 
-        fakeScrollTop: function() {
-            //console.log('computed fakeScrollTop')
-
+        viewTop: function() {
             let vo = this
+            return vo.ratio * vo.contentHeightEff
+        },
 
-            let st
-
-            //依照ratioTrans調整scrollTop
-            // if (vo.isMobile) {
-            //     st = vo.ratioTrans * vo.extHeight
-            // }
-            // else {
-            //     st = vo.extHeight / 2
-            // }
-
-            // //resetScrollTopDelay
-            // vo.resetScrollTopDelay()
-
-            //固定scrollTop為extHeight/2, 支援桌機, 手機拖曳捲軸正常但拖曳內容較卡
-            st = vo.extHeight / 2
-
-            return st
+        viewBottom: function() {
+            let vo = this
+            return vo.viewTop + vo.viewHeightMax
         },
 
     },
     methods: {
 
-        scroll: function(e) {
-            //console.log('scroll', e)
-
-            let vo = this
-
-            // //div
-            // let div = get(e, 'target')
-
-            //resetScrollTop
-            vo.resetScrollTop()
-
-        },
-
-        resetScrollTopDelay: function() {
-            //console.log('resetScrollTopDelay')
-
-            let vo = this
-
-            //nextTick
-            vo.$nextTick(() => {
-                vo.resetScrollTop()
-            })
-
-        },
-
-        resetScrollTop: function() {
-            //console.log('resetScrollTop')
-
-            let vo = this
-
-            //div
-            let div = get(vo, '$refs.divPanel', null)
-
-            //check
-            if (!isEle(div)) {
-                return
-            }
-
-            //check
-            if (div.scrollTop !== vo.fakeScrollTop) {
-
-                //修改scrollTop, 使內容物捲軸位置置中可持續接收上下捲動與拖曳事件
-                div.scrollTop = vo.fakeScrollTop
-
-            }
-
-        },
-
-        keepRatioByChangeViewHeightMax: function() {
-            //console.log('keepRatioByChangeViewHeightMax')
-
-            let vo = this
-
-            //resetScrollTop, 因變更viewHeightMax會影響extHeight, 故需重設ScrollTop
-            vo.resetScrollTop()
-
-            //nextTick
-            vo.$nextTick(() => {
-
-                //resumeRatio
-                vo.resumeRatio()
-
-            })
-
-        },
-
-        resumeRatio: function(si = null) {
-            // console.log('resumeRatio', si)
-
-            let vo = this
-
-            //si
-            if (si === null) {
-                //若非外部調用直接傳入, 則使用組件自己儲存的scrollInforTemp
-                si = vo.scrollInforTemp
-            }
-
-            //check, 因vue-cli編譯會重置組件導致scrollInforTemp恢復初始值null
-            if (si === null) {
-                return
-            }
-
-            //重算ratioTrans
-            let ratioTrans = 0
-            if (vo.contentHeight > 0 && si.ch > 0) { //已有內容資料
-
-                //內容高度變少
-                if (vo.contentHeight < si.ch) {
-
-                    //內容高度小於等於當前視窗高度
-                    if (vo.contentHeight <= vo.viewHeightMax) {
-                        ratioTrans = 0
-                        //console.log('內容高度變少, 內容高度小於當前視窗高度故改為置頂, ratioTrans=', ratioTrans)
-                    }
-                    // else if (si.r === 0) { //置底(si.r === 1)不需維持避免內容撐開過多時無法固定畫面於原本瀏覽處
-                    //     ratioTrans = si.r
-                    //     //console.log('內容高度變少, 原本為置頂故需維持, ratioTrans=', ratioTrans)
-                    // }
-                    //內容高度大於當前視窗高度
-                    else {
-                        ratioTrans = si.t / (vo.contentHeight - vo.viewHeightMax)
-                        //console.log('內容高度變少, 內容高度大於當前視窗高度, ratioTrans=', ratioTrans, si.t, vo.contentHeight, vo.viewHeightMax)
-                    }
-
-                }
-                //內容高度變高或不變
-                else {
-
-                    //內容高度小於等於當前視窗高度
-                    if (vo.contentHeight <= vo.viewHeightMax) {
-                        ratioTrans = 0
-                        //console.log('內容高度變高或不變, 內容高度小於當前視窗高度故改為置頂, ratioTrans=', ratioTrans)
-                    }
-                    // else if (si.r === 0) { //置底(si.r === 1)不需維持避免內容撐開過多時無法固定畫面於原本瀏覽處
-                    //     ratioTrans = si.r
-                    //     //console.log('內容高度變高或不變, 原本為置頂故需維持, ratioTrans=', ratioTrans)
-                    // }
-                    //內容高度大於當前視窗高度
-                    else {
-                        ratioTrans = si.t / (vo.contentHeight - vo.viewHeightMax)
-                        //console.log('內容高度變高或不變, 內容高度大於當前視窗高度, ratioTrans=', ratioTrans, si.t, vo.contentHeight, vo.viewHeightMax)
-                    }
-
-                }
-
-            }
-
-            //updateRatioTrans
-            vo.updateRatioTrans(ratioTrans)
-
-        },
-
-        resize: function(msg) {
-            //console.log('methods resize', msg)
+        resizePanel: function(msg) {
+            // console.log('methods resizePanel', msg)
 
             let vo = this
 
             //nativeBarWidth
-            let divPanel = get(vo, '$refs.divPanel')
-            if (divPanel) { //未顯示組件會無
+            let divDetect = get(vo, '$refs.divDetect')
+            if (divDetect) {
 
-                //nativeBarWidth
-                let nativeBarWidth = vo.$refs.divPanel.offsetWidth - vo.$refs.divPanel.clientWidth
-
-                //save
-                vo.nativeBarWidth = nativeBarWidth
+                //save nativeBarWidth
+                if (vo.nativeBarWidth !== divDetect.offsetWidth - divDetect.clientWidth) {
+                    // console.log('resizePanel 需更新nativeBarWidth', divDetect.offsetWidth - divDetect.clientWidth, '<-', vo.nativeBarWidth)
+                    vo.nativeBarWidth = divDetect.offsetWidth - divDetect.clientWidth
+                }
 
             }
 
-            //resetScrollTop, 初始化、顯示、嵌入彈窗出現元素或resize時就需重設ScrollTop
-            vo.resetScrollTop()
+            //save
+            if (vo.viewHeight !== msg.snew.offsetHeight) {
+                // console.log('resizePanel 需更新viewHeight', msg.snew.offsetHeight, '<-', vo.viewHeight)
+                vo.viewHeight = msg.snew.offsetHeight
+            }
 
-            //triggerEvent, resize觸發事件
-            vo.triggerEvent('resize')
+            //divShell
+            let divShell = get(vo, '$refs.divShell')
+            if (divShell) {
 
-            // //emit, 有triggerEvent故取消emit
-            // vo.$emit('resize', msg)
+                //emit scrollTop
+                vo.$emit('update:scrollTop', divShell.scrollTop)
+
+            }
+
+            //emit
+            vo.triggerEvent('resize', { ...msg, from: 'panel' })
+
+        },
+
+        resizeShell: function(msg) {
+            // console.log('methods resizeShell', msg)
+
+            let vo = this
+
+            //divContent
+            let divContent = get(vo, '$refs.divContent')
+            if (divContent) {
+                // console.log('resizeShell divContent.offsetHeight', divContent.offsetHeight)
+
+                //save
+                if (vo.contentHeight !== divContent.offsetHeight) {
+                    // console.log('resizeShell 需更新contentHeight', divContent.offsetHeight, '<-', vo.contentHeight)
+                    vo.contentHeight = divContent.offsetHeight
+                }
+
+            }
+
+            //divShell
+            let divShell = get(vo, '$refs.divShell')
+            if (divShell) {
+
+                //emit scrollTop
+                vo.$emit('update:scrollTop', divShell.scrollTop)
+
+            }
+
+            //emit
+            vo.triggerEvent('resize', { ...msg, from: 'shell' })
 
         },
 
         mutation: function(msg) {
-            //console.log('methods mutation', msg)
+            // console.log('methods mutation', msg)
 
             let vo = this
 
-            //triggerEvent, 內容slot有dom變更時觸發事件
-            vo.triggerEvent('mutation')
-
-        },
-
-        updateRatioTrans: function(ratioTrans) {
-            //console.log('methods updateRatioTrans', ratioTrans)
-
-            let vo = this
-
-            //limit
-            ratioTrans = Math.max(ratioTrans, 0)
-            ratioTrans = Math.min(ratioTrans, 1)
+            //divContent
+            let divContent = get(vo, '$refs.divContent')
 
             //check
-            if (vo.contentHeightEff === 0) {
-                ratioTrans = 0
-            }
+            if (divContent) {
+                // console.log('mutation divContent.offsetHeight', divContent.offsetHeight)
 
-            //changed
-            let changed = vo.ratioTrans !== ratioTrans
-            if (changed) {
-
-                //ratioTrans
-                vo.ratioTrans = ratioTrans
-
-                //triggerEvent, 捲動觸發事件
-                vo.triggerEvent('scroll')
+                //save
+                if (vo.contentHeight !== divContent.offsetHeight) {
+                    // console.log('mutation 需更新contentHeight', divContent.offsetHeight, '<-', vo.contentHeight)
+                    vo.contentHeight = divContent.offsetHeight
+                }
 
             }
 
-            return changed
+            //updateRatio
+            vo.updateRatio()
+
+            //emit
+            vo.triggerEvent('mutation', { ...msg, from: 'content' })
+
         },
 
-        dgPressBar: function({ clientY }) {
-            //console.log('methods dgPressBar', clientY)
+        updateRatio: function() {
+            // console.log('methods updateRatio')
 
             let vo = this
 
-            //save clientY
-            if (clientY) {
+            //check
+            if (!vo.$refs.divShell) { //於async中組件切換時還是有可能消失
+                return
+            }
 
-                //barPressY
-                vo.barPressY = clientY //e.clientY
+            //ratio
+            let ratio = 0
+            if (vo.contentHeightEff > 0) {
+                ratio = vo.$refs.divShell.scrollTop / vo.contentHeightEff
+            }
+
+            //save
+            vo.ratio = ratio
+
+        },
+
+        // updateScrollTopByRatio: function(r) {
+        //     // console.log('methods updateScrollTopByRatio', r)
+
+        //     let vo = this
+
+        //     //divShell
+        //     let divShell = get(vo, '$refs.divShell')
+
+        //     //check
+        //     if (!divShell) {
+        //         return
+        //     }
+
+        //     //divBar
+        //     let divBar = get(vo, '$refs.divBar')
+
+        //     //check
+        //     if (!divBar) {
+        //         return
+        //     }
+
+        //     //scrollTop
+        //     let h = vo.contentHeight - vo.panelHeight
+        //     let scrollTop = 0
+        //     if (h > 0) {
+        //         scrollTop = r * h
+        //     }
+
+        //     //update scrollTop
+        //     vo.$refs.divShell.scrollTop = scrollTop
+        //     vo.$refs.divBar.scrollTop = scrollTop
+
+        // },
+
+        updateScrollTop: function(scrollTop) {
+            // console.log('methods updateScrollTop', scrollTop)
+
+            let vo = this
+
+            async function core() {
+
+                //wait divShell與divBar, 組件初始化時會先觸發computed才會有實體元素出現, 故得用waitFun等待
+                await waitFun(() => {
+                    return vo.$refs.divShell !== undefined && vo.$refs.divBar !== undefined
+                }, { timeInterval: 20 })
+
+                //update scrollTop
+                if (vo.$refs.divShell) { //於async中組件切換時還是有可能消失
+                    vo.$refs.divShell.scrollTop = scrollTop
+                }
+                if (vo.$refs.divBar) { //於async中組件切換時還是有可能消失
+                    vo.$refs.divBar.scrollTop = scrollTop
+                }
 
             }
 
-        },
-
-        dgDragBar: function({ clientY }) {
-            //console.log('methods dgDragBar', clientY)
-
-            let vo = this
-
-            //d
-            let d = clientY - vo.barPressY //e.clientY
-
-            //deltaRatio
-            let deltaRatio = d / vo.viewHeightEff
-
-            //scrollByDeltaRatio
-            vo.scrollByDeltaRatio(deltaRatio)
-
-            //update
-            vo.barPressY = clientY //e.clientY
+            //core
+            core()
+                .catch((err) => {
+                    console.log(err)
+                })
 
         },
 
-        dgFreeBar: function() {
-            //console.log('methods dgFreeBar')
+        updateScrollInfor: function() {
+            //console.log('methods updateScrollInfor')
 
             let vo = this
 
-            //barPressY
-            vo.barPressY = null
-
-            //triggerEvent, 拖曳時有些外部組件處理過慢, 導致節點位置未更新完畢, 故於放掉滑鼠按鍵時triggerEvent, 使外部組件再次接收事件進行更新節點
-            vo.triggerEvent('dgFreeBar')
-
-        },
-
-        getScrollInfor: function(from) {
-            //console.log('methods getScrollInfor', from)
-
-            let vo = this
+            //check
+            if (!vo.$refs.divShell) { //於async中組件切換時還是有可能消失
+                return
+            }
 
             //scrollInfor
             let scrollInfor = {
-                from,
-                r: vo.ratioTrans,
+                r: vo.ratio,
+                sti: vo.scrollTop, //輸入給予scrollTop
+                stn: vo.$refs.divShell.scrollTop, //目前scrollTop, 要等emit scrollTop出去後才會與sti同值
+                dir: vo.scrollTop > vo.$refs.divShell.scrollTop ? 'up' : 'down', //判斷是往上還往下捲
                 t: vo.viewTop,
                 b: vo.viewBottom,
                 ch: vo.contentHeight,
+                che: vo.contentHeightEff,
+                // ph: vo.panelHeight,
             }
 
-            return scrollInfor
+            //save
+            if (!isEqual(vo.scrollInfor, scrollInfor)) {
+                vo.scrollInfor = scrollInfor
+            }
+
         },
 
-        triggerEvent: function(from) {
-            // console.log('methods triggerEvent', from)
+        scrollShell: function(ev) {
+            // console.log('methods scrollShell', ev)
 
             let vo = this
 
-            //nextTick, 因為外部可以因變更而呼叫triggerEvent, throttle第1次觸發是直接呼叫執行, 導致還沒收到外部傳入數據就由當前資訊emit出去
-            vo.$nextTick(() => {
+            //check
+            if (vo.mouseLoc === '') {
+                vo.mouseLoc = 'enter shell'
+            }
+            if (vo.mouseLoc !== 'enter shell') {
+                return
+            }
+            // console.log('scrollShell')
 
-                //scrollInfor, 計算捲軸資訊
-                let scrollInfor = vo.getScrollInfor(from)
+            //divShell
+            let divShell = get(vo, '$refs.divShell')
 
-                //emit ratio
-                vo.$emit('update:ratio', vo.ratioTrans)
+            //check
+            if (!divShell) {
+                return
+            }
 
-                //emit from
-                if (from) {
-                    vo.$emit(from, scrollInfor)
-                }
+            //divBar
+            let divBar = get(vo, '$refs.divBar')
 
-                //emit change
-                vo.$emit('change', scrollInfor)
+            //check
+            if (!divBar) {
+                return
+            }
 
-                //save scrollInforLast, 紀錄捲軸資訊, 供恢復捲軸資訊之用
-                vo.scrollInforLast = cloneDeep(scrollInfor)
+            //sync divBar
+            vo.$refs.divBar.scrollTop = vo.$refs.divShell.scrollTop
 
+            //emit scrollTop
+            vo.$emit('update:scrollTop', vo.$refs.divShell.scrollTop)
+
+            //updateRatio
+            vo.updateRatio()
+
+            //emit
+            vo.triggerEvent('scroll', { ev, from: 'shell' })
+
+            // //updateScrollInfor
+            // vo.updateScrollInfor()
+
+            // //emit
+            // vo.triggerEvent('scroll-infor', { ...vo.scrollInfor, from: 'shell' })
+
+            //clear mouseLoc
+            vo.dbc(() => {
+                // console.log('scrollShell clear mouseLoc')
+                vo.mouseLoc = ''
             })
 
         },
 
-        scrollByDeltaRatio: function(deltaRatio) {
-            //console.log('methods scrollByDeltaRatio', deltaRatio)
+        scrollBar: function(ev) {
+            // console.log('methods scrollBar', ev)
 
             let vo = this
 
-            //ratioTrans
-            let ratioTrans = vo.ratioTrans
+            //check
+            if (vo.mouseLoc === '') {
+                vo.mouseLoc = 'enter bar'
+            }
+            if (vo.mouseLoc !== 'enter bar') {
+                return
+            }
+            // console.log('scrollBar')
 
-            //update
-            if (ratioTrans >= 0 && ratioTrans <= 1) {
-                ratioTrans += deltaRatio
+            //divShell
+            let divShell = get(vo, '$refs.divShell')
+
+            //check
+            if (!divShell) {
+                return
             }
 
-            //updateRatioTrans
-            vo.updateRatioTrans(ratioTrans)
+            //divBar
+            let divBar = get(vo, '$refs.divBar')
+
+            //check
+            if (!divBar) {
+                return
+            }
+
+            //sync divShell
+            vo.$refs.divShell.scrollTop = vo.$refs.divBar.scrollTop
+
+            //emit scrollTop
+            vo.$emit('update:scrollTop', vo.$refs.divShell.scrollTop)
+
+            //updateRatio
+            vo.updateRatio()
+
+            //emit
+            vo.triggerEvent('scroll', { ev, from: 'bar' })
+
+            // //updateScrollInfor
+            // vo.updateScrollInfor()
+
+            // //emit
+            // vo.triggerEvent('scroll-infor', { ...vo.scrollInfor, from: 'bar' })
+
+            //clear mouseLoc
+            vo.dbc(() => {
+                // console.log('scrollBar clear mouseLoc')
+                vo.mouseLoc = ''
+            })
 
         },
 
-        scrollByDelta: function(delta) {
-            //console.log('methods scrollByDelta', delta)
+        triggerEvent: function(name, msg) {
+            // console.log('methods triggerEvent', name, msg)
 
             let vo = this
 
-            //deltaRatio
-            let deltaRatio = delta / vo.contentHeight
+            //check
+            if (!vo.useEmitEvent) {
+                return
+            }
 
-            //scrollByDeltaRatio
-            vo.scrollByDeltaRatio(deltaRatio)
+            //emit
+            vo.$emit(name, msg)
 
-        },
+            //updateScrollInfor
+            vo.updateScrollInfor()
 
-        dgScrollPanel: function({ ratioY }) {
-            //console.log('methods dgScrollPanel', ratioY)
-
-            let vo = this
-
-            //delta
-            let delta = ratioY * vo.scrollDelta
-
-            //scrollByDelta
-            vo.scrollByDelta(delta)
+            //emit
+            vo.$emit('change-infor', {
+                evName: name,
+                evMsg: msg,
+                ...vo.scrollInfor,
+            })
 
         },
 
@@ -746,23 +522,24 @@ export default {
 </script>
 
 <style scoped>
-
-/* 針對Chrome,Edge,Opera,Safari把捲軸顏色改透明, 避免有時渲染問題出現捲軸左側 */
-.clsPanel::-webkit-scrollbar {
-    width: 1em;
+.sb {
+    transition: opacity 0.3s;
+    /* Works on Firefox */
+    scrollbar-width: thin;
+    scrollbar-color: rgba(0,0,0,0.3) transparent;
 }
-.clsPanel::-webkit-scrollbar-thumb {
-    background-color: transparent;
+/* Works on Chrome, Edge, and Safari */
+.sb::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
 }
-.clsPanel::-webkit-scrollbar-track {
-    box-shadow: transparent;
-}
-.clsPanel::-webkit-scrollbar-track-piece{
+.sb::-webkit-scrollbar-track {
     background: transparent;
 }
-.clsPanel::-webkit-scrollbar-button{
-    background: transparent;
+.sb::-webkit-scrollbar-thumb {
+    background-color: rgba(0,0,0,0.3);
+    border-radius: 20px;
+    border: 3px solid transparent;
 }
-
 </style>
 

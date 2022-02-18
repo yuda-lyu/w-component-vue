@@ -173,6 +173,20 @@ export default {
             ],
         }
     },
+    methods: {
+        resize: function(msg) {
+            console.log('resize', msg)
+        },
+        mutation: function(msg) {
+            console.log('mutation', msg)
+        },
+        scroll: function(msg) {
+            console.log('scroll', msg)
+        },
+        scrollInfor: function(msg) {
+            console.log('scroll-infor', msg)
+        },
+    }
 }
 </script>
 

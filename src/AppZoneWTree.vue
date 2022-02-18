@@ -25,6 +25,37 @@
             <div class="bk dz">
                 <demolink
                     :kbname="'w-tree'"
+                    :casename="'iconHeight'"
+                ></demolink>
+
+                <w-tree
+                    style="border:1px solid #ddd;"
+                    :iconHeight="24"
+                    :data="WTree.option.items"
+                ></w-tree>
+
+            </div>
+
+
+            <div class="bk dz">
+                <demolink
+                    :kbname="'w-tree'"
+                    :casename="'iconHeight & defItemHeight'"
+                ></demolink>
+
+                <w-tree
+                    style="border:1px solid #ddd;"
+                    :iconHeight="24"
+                    :defItemHeight="24"
+                    :data="WTree.option.items"
+                ></w-tree>
+
+            </div>
+
+
+            <div class="bk dz">
+                <demolink
+                    :kbname="'w-tree'"
                     :casename="'viewHeightMax'"
                 ></demolink>
 
@@ -46,6 +77,30 @@
                 <w-tree
                     style="border:1px solid #ddd;"
                     :defaultDisplayLevel="1"
+                    :data="WTree.option.items"
+                ></w-tree>
+
+            </div>
+
+
+            <div class="bk dz">
+                <demolink
+                    :kbname="'w-tree'"
+                    :casename="'filterKeywords & noResultsText'"
+                ></demolink>
+
+                <div style="margin-bottom:10px;">
+                    <span style="padding-right:10px;">Search :</span>
+                    <input
+                        style="padding:2px 15px; color:#666; border:1px solid #fca; border-radius:30px; outline:none;"
+                        v-model="WTree.option.keywords"
+                    />
+                </div>
+
+                <w-tree
+                    style="border:1px solid #ddd;"
+                    :filterKeywords="WTree.option.keywords"
+                    :noResultsText="'There are no items to show...'"
                     :data="WTree.option.items"
                 ></w-tree>
 
@@ -273,37 +328,6 @@
             <div class="bk dz">
                 <demolink
                     :kbname="'w-tree'"
-                    :casename="'separatorColor'"
-                ></demolink>
-
-                <w-tree
-                    style="border:1px solid #ddd;"
-                    :separatorColor="'rgba(0,0,0,0.1)'"
-                    :data="WTree.option.items"
-                ></w-tree>
-
-            </div>
-
-
-            <div class="bk dz">
-                <demolink
-                    :kbname="'w-tree'"
-                    :casename="'separatorColor & separatorHeight'"
-                ></demolink>
-
-                <w-tree
-                    style="border:1px solid #ddd;"
-                    :separatorColor="'#f2f2f2'"
-                    :separatorHeight="4"
-                    :data="WTree.option.items"
-                ></w-tree>
-
-            </div>
-
-
-            <div class="bk dz">
-                <demolink
-                    :kbname="'w-tree'"
                     :casename="'iconToggleColor & iconToggleBackgroundColor & iconToggleBackgroundColorHover'"
                 ></demolink>
 
@@ -394,13 +418,12 @@
             <div class="bk dz">
                 <demolink
                     :kbname="'w-tree'"
-                    :casename="'slot & defItemHeight'"
+                    :casename="'slot'"
                 ></demolink>
 
                 <w-tree
                     style="border:1px solid #ddd;"
                     :data="WTree.option.items"
-                    :defItemHeight="62"
                 >
                     <template v-slot:item="props">
 
@@ -640,7 +663,7 @@
             <div class="bk" style="display:block; margin:0px 10px 0px 0px;">
                 <demolink
                     :kbname="'w-tree'"
-                    :casename="'filterKeywords & searchEmpty & selectable'"
+                    :casename="'filterKeywords & noResultsText & selectable'"
                 ></demolink>
 
                 <div style="margin-bottom:10px;">
@@ -661,7 +684,7 @@
                             :selectable="true"
                             :selections.sync="WTree.option.selections"
                             :filterKeywords="WTree.option.keywords"
-                            :searchEmpty="'There are no items to show...'"
+                            :noResultsText="'There are no items to show...'"
                             @update:selections="changeSections"
                         >
                             <template v-slot:item="props">
@@ -838,7 +861,7 @@
             <div class="bk" style="display:block; margin:0px 10px 0px 0px;">
                 <demolink
                     :kbname="'w-tree'"
-                    :casename="'selectable & large data (100,000 items)'"
+                    :casename="'slot & selectable & large data (100,000 items)'"
                 ></demolink>
 
                 <!-- 用:style才能支援IE11因vue會自動把overflow-x:auto轉為-ms-overflow-x:auto -->
@@ -853,7 +876,7 @@
                             @update:selections="changeSections"
                         >
                             <template v-slot:item="props">
-                                <div style="height:100%; display:flex; align-items:center;">
+                                <div style="display:flex; align-items:center; min-height:34px;">
                                     <div style="margin-right:5px;">
                                         {{props.data.text}}
                                     </div>

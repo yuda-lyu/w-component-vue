@@ -12,20 +12,17 @@
             :viewHeightMax="viewHeightMax"
             :itemMinHeight="defItemHeight"
             :itemsPreload="itemsPreload"
-            :searchEmpty="searchEmpty"
-            :separatorHeight="separatorHeight"
-            :separatorColor="separatorColor"
+            :noResultsText="noResultsText"
             :show="show"
             @change-view-items="changeViewItems"
         >
             <template v-slot="props">
 
                 <!-- 記得要:key, 使DOM可被唯一標記識別, 此為避免捲動按需顯示時, 因圖標有顯隱(2方向), 瞬間被Vue切換導致transition轉動問題 -->
-                <!-- wdl template內第1層元素高度需設定min-height不能用height, 因會偵測此元素高度來按需顯示, 用height會導致元素高度被寫死無法由slot撐開 -->
                 <!-- 要把原生拖曳功能關閉draggable=false -->
                 <div
                     :key="`wt-${props.index}`"
-                    :style="`min-height:${iconHeight}px; ${draggable?'user-select:none;':''}`"
+                    :style="`${draggable?'user-select:none;':''}`"
                     :dragindex="props.index"
                     v-domdragdrop="isDraggable?getDgOpt():null"
                     @domdragdrop="dragdrop"
@@ -35,6 +32,80 @@
                     @click="(e)=>{$emit('click',getEmitData(e,props))}"
                 >
                     <div :style="`position:relative; display:table; ${usePadding}`">
+
+                        <div :style="`display:table-cell; vertical-align:top;`">
+                            <slot
+                                name="head"
+                                :index="props.index"
+                                :data="props.row.item"
+                                :row="props.row"
+                            >
+                            </slot>
+                        </div>
+
+                        <!-- display:table內各元素需使用padding撐開寬度避免被壓縮 -->
+
+                        <div :style="`display:table-cell; vertical-align:top; padding-right:${getLevel(props.row)*useIndent}px;`"></div>
+
+                        <div :style="`display:table-cell; vertical-align:top; padding-right:${separation}px;`"></div>
+
+                        <div :style="`display:table-cell; vertical-align:top; padding:0px ${separation}px;`">
+                            <div :style="`display:flex; align-items:center; justify-content:center; height:${defItemHeight}px; overflow:hidden;`">
+                                <div :style="`transform-origin:center; transform:scale(${iconHeight/defIconHeight});`">
+                                    <WTreeIconToggle
+                                        :style="`width:24px; height:${defIconHeight}px;`"
+                                        :dir="`${props.row.unfolding?'bottom':'right'}`"
+                                        :iconColor="iconToggleColor"
+                                        :iconBackgroundColor="iconToggleBackgroundColor"
+                                        :iconBackgroundColorHover="iconToggleBackgroundColorHover"
+                                        @click.stop="toggleItems(props.row)"
+                                        v-if="hasChildren(props.index)"
+                                    ></WTreeIconToggle>
+                                    <div style="padding-right:24px;" v-else></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 因顯隱圖標比較小而勾選圖標比較大, 讓separation全灌到padding-right處使排版比較均勻 -->
+                        <div :style="`display:table-cell; vertical-align:top; padding:0px ${2*separation}px 0px 0px;`" v-if="selectable">
+                            <div :style="`display:flex; align-items:center; justify-content:center; height:${defItemHeight}px; overflow:hidden;`">
+                                <div :style="`transform-origin:center; transform:scale(${iconHeight/defIconHeight});`">
+                                    <WTreeIconCheckbox
+                                        :style="`height:${defIconHeight}px;`"
+                                        :mode="props.row.checked"
+                                        :editable="getEditable(props.row.item)"
+                                        :uncheckedColor="iconUncheckedColor"
+                                        :uncheckedDisabledColor="iconUncheckedDisabledColor"
+                                        :checkedColor="iconCheckedColor"
+                                        :checkedDisabledColor="iconCheckedDisabledColor"
+                                        :checkedPartiallyColor="iconCheckedPartiallyColor"
+                                        :checkedPartiallyDisabledColor="iconCheckedPartiallyDisabledColor"
+                                        @click="checkItems(props.row)"
+                                    ></WTreeIconCheckbox>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 給予width:100%使slot區可自動展開寬度至組件寬 -->
+                        <div :style="`display:table-cell; vertical-align:top; width:100%;`">
+
+                            <slot
+                                name="item"
+                                :index="props.index"
+                                :data="props.row.item"
+                                :row="props.row"
+                                :keyPrimary="keyPrimary"
+                                :keyText="keyText"
+                                :keyChildren="keyChildren"
+                                :setDataByPathAndValue="setDataByPathAndValue"
+                            >
+                                <!-- 得使用min-height否則無法撐開高度 -->
+                                <div :style="`min-height:${Math.max(iconHeight,defItemHeight)}px; display:flex; align-items:center;`">
+                                    {{getText(props.row.item)}}
+                                </div>
+                            </slot>
+
+                        </div>
 
                         <div style="position:absolute; top:2px; right:8px;" v-if="operatable">
 
@@ -77,62 +148,6 @@
 
                         </div>
 
-                        <!-- display:table內各元素需使用padding撐開寬度避免被壓縮 -->
-
-                        <div :style="`display:table-cell; vertical-align:top; padding-right:${getLevel(props.row)*useIndent}px;`"></div>
-
-                        <div :style="`display:table-cell; vertical-align:top; padding-right:${separation}px;`"></div>
-
-                        <div :style="`display:table-cell; vertical-align:top; padding:0px ${separation}px;`">
-                            <WTreeIconToggle
-                                :style="`width:24px; height:${iconHeight}px;`"
-                                :dir="`${props.row.unfolding?'bottom':'right'}`"
-                                :iconColor="iconToggleColor"
-                                :iconBackgroundColor="iconToggleBackgroundColor"
-                                :iconBackgroundColorHover="iconToggleBackgroundColorHover"
-                                @click.stop="toggleItems(props.row)"
-                                v-if="hasChildren(props.index)"
-                            ></WTreeIconToggle>
-                            <div style="padding-right:24px;" v-else></div>
-                        </div>
-
-                        <!-- 因顯隱圖標比較小而勾選圖標比較大, 讓separation全灌到padding-right處使排版比較均勻 -->
-                        <div :style="`display:table-cell; vertical-align:top; padding:0px ${2*separation}px 0px 0px;`" v-if="selectable">
-                            <WTreeIconCheckbox
-                                :style="`height:${iconHeight}px;`"
-                                :mode="props.row.checked"
-                                :editable="getEditable(props.row.item)"
-                                :uncheckedColor="iconUncheckedColor"
-                                :uncheckedDisabledColor="iconUncheckedDisabledColor"
-                                :checkedColor="iconCheckedColor"
-                                :checkedDisabledColor="iconCheckedDisabledColor"
-                                :checkedPartiallyColor="iconCheckedPartiallyColor"
-                                :checkedPartiallyDisabledColor="iconCheckedPartiallyDisabledColor"
-                                @click="checkItems(props.row)"
-                            ></WTreeIconCheckbox>
-                        </div>
-
-                        <!-- 給予width:100%使slot區可自動展開寬度至組件寬 -->
-                        <div :style="`display:table-cell; vertical-align:top; height:${iconHeight}px; width:100%;`">
-
-                            <slot
-                                name="item"
-                                :index="props.index"
-                                :data="props.row.item"
-                                :row="props.row"
-                                :keyPrimary="keyPrimary"
-                                :keyText="keyText"
-                                :keyChildren="keyChildren"
-                                :setDataByPathAndValue="setDataByPathAndValue"
-                            >
-                                <!-- 得使用min-height否則無法撐開高度 -->
-                                <div :style="`min-height:${iconHeight}px; display:flex; align-items:center;`">
-                                    {{getText(props.row.item)}}
-                                </div>
-                            </slot>
-
-                        </div>
-
                     </div>
                 </div>
 
@@ -140,7 +155,7 @@
         </WDynamicList>
 
         <div
-            :style="`position:absolute; z-index:1; pointer-events:none; left:${dgTipLeft}px; top:${dgTipTop}px; _width:calc( 100% - 8px ); _overflow-x:hidden;`"
+            :style="`position:absolute; z-index:1; pointer-events:none; left:${dgTipLeft}px; top:${dgTipTop}px;`"
             :msg="`需使用pointer-events:none;禁用事件, 避免拖曳時因接觸此元素時出現enter與leave`"
             v-if="dgTipMode!==''"
         >
@@ -194,12 +209,13 @@ import isobj from 'wsemi/src/isobj.mjs'
 import isfun from 'wsemi/src/isfun.mjs'
 import cint from 'wsemi/src/cint.mjs'
 import cdbl from 'wsemi/src/cdbl.mjs'
-import replace from 'wsemi/src/replace.mjs'
+import cstr from 'wsemi/src/cstr.mjs'
+// import replace from 'wsemi/src/replace.mjs'
 import haskey from 'wsemi/src/haskey.mjs'
 import genPm from 'wsemi/src/genPm.mjs'
 import waitFun from 'wsemi/src/waitFun.mjs'
 import debounce from 'wsemi/src/debounce.mjs'
-import flattenTreeObj from 'wsemi/src/flattenTreeObj'
+import flattenTree from 'wsemi/src/flattenTree'
 import globalMemory from '../js/globalMemory.mjs'
 import parseSpace from '../js/parseSpace.mjs'
 import color2hex from '../js/vuetifyColor.mjs'
@@ -228,6 +244,7 @@ let gm = globalMemory()
  * @vue-prop {String} [keyLock='locked'] 輸入可選項目為物件時，禁止勾選之欄位字串，物件給予此欄位需為布林值，預設'locked'
  * @vue-prop {Object} [paddingStyle={v:0,h:0}] 輸入內寬距離物件，可用鍵值為v、h、left、right、top、bottom，v代表同時設定top與bottom，h代表設定left與right，若有重複設定時後面鍵值會覆蓋前面，各鍵值為寬度數字，單位為px，預設{v:0,h:0}
  * @vue-prop {Number} [indent=1] 輸入縮排比率數字，若使用1就是1倍的圖標寬度(24px)+2*separation(3px)，預設1
+ * @vue-prop {Number} [iconHeight=34] 輸入顯隱icon按鈕高度數字，單位為px，預設34
  * @vue-prop {String} [iconToggleColor='grey'] 輸入顯隱icon按鈕顏色字串，預設'grey'
  * @vue-prop {String} [iconToggleBackgroundColor='transparent'] 輸入顯隱icon按鈕背景顏色字串，預設'transparent'
  * @vue-prop {String} [iconToggleBackgroundColorHover='rgba(128,128,128,0.15)'] 輸入滑鼠移入時顯隱icon按鈕背景顏色字串，預設'rgba(128,128,128,0.15)'
@@ -239,11 +256,9 @@ let gm = globalMemory()
  * @vue-prop {String} [iconCheckedPartiallyDisabledColor='grey'] 輸入禁用部份勾選時(子節點任一有勾選但非全部勾選)顏色字串，預設'grey'
  * @vue-prop {String} [filterKeywords=''] 輸入過濾關鍵字字串，多關鍵字用空白分隔，預設''
  * @vue-prop {Function} [filterFunction=null] 輸入過濾時呼叫處理函數，傳入為各項目物件資料，回傳布林值代表項目內是否含有關鍵字，預設null
- * @vue-prop {String} [searchEmpty='Empty'] 輸入無過濾結果字串，預設'Empty'
+ * @vue-prop {String} [noResultsText='No results'] 輸入無過濾結果字串，預設'No results'
  * @vue-prop {Number} [defItemHeight=34] 輸入按需顯示時各項目預設高度值，給越準或給大部分項目的高度則渲染速度越快，單位為px，預設34
  * @vue-prop {Number} [itemsPreload=5] 輸入上下方預先載入元素數量，預設5
- * @vue-prop {Number} [separatorHeight=1] 輸入分隔線高度數字，預設1
- * @vue-prop {String} [separatorColor='transparent'] 輸入分隔線顏色字串，預設'transparent'
  * @vue-prop {Boolean} [draggable=false] 輸入是否為可拖曳編輯模式，若draggable設定true，此時所有節點皆為展開顯示並且禁止顯隱節點功能，也就是defaultDisplayLevel強制設定為null，此外也不提供過濾功能，也就是filterKeywords強制清空。開啟draggable僅適用小規模數據。draggable預設false
  * @vue-prop {String} [dgTextDisabled='Can not drop here'] 輸入禁止拖曳文字字串，預設'Can not drop here'
  * @vue-prop {String} [dgTextDisabledColor='#812'] 輸入禁止拖曳文字顏色字串，預設'#812'
@@ -341,6 +356,10 @@ export default {
             type: Number,
             default: 1,
         },
+        iconHeight: {
+            type: Number,
+            default: 34,
+        },
         iconToggleColor: {
             type: String,
             default: 'grey',
@@ -385,9 +404,9 @@ export default {
             type: Function,
             default: null,
         },
-        searchEmpty: {
+        noResultsText: {
             type: String,
-            default: 'Empty',
+            default: 'No results',
         },
         defItemHeight: {
             type: Number,
@@ -396,14 +415,6 @@ export default {
         itemsPreload: {
             type: Number,
             default: 5,
-        },
-        separatorHeight: {
-            type: Number,
-            default: 1,
-        },
-        separatorColor: {
-            type: String,
-            default: 'transparent',
         },
         draggable: {
             type: Boolean,
@@ -552,10 +563,11 @@ export default {
             mdiDotsVertical,
 
             dbc: debounce(),
+
             mmkey: null,
 
             separation: 3,
-            iconHeight: 34,
+            defIconHeight: 34,
             selectionsTrans: [],
 
             filterKeywordsTrans: '',
@@ -768,8 +780,8 @@ export default {
 
             let vo = this
 
-            //flattenTreeObj
-            let ts = flattenTreeObj(data, { bindKey: vo.keyPrimary, bindChildren: vo.keyChildren })
+            //flattenTree
+            let ts = flattenTree(data, { bindKey: vo.keyPrimary, bindChildren: vo.keyChildren })
 
             //rows, lodash使用new Array建構比for+push快
             let rows = map(ts, (v, k) => {
@@ -793,7 +805,7 @@ export default {
 
                 //check
                 if (!isarr(data) && !isobj(data)) {
-                    let msg = 'data is not array or object'
+                    let msg = 'data is not an array or object'
                     //console.log(msg)
                     return msg
                 }
@@ -814,9 +826,11 @@ export default {
 
                 //cloneDeep
                 data = cloneDeep(data)
+                // console.log('setData data', cloneDeep(data))
 
                 //getRowsFromData
                 let rows = vo.getRowsFromData(data)
+                // console.log('setData getRowsFromData rows', cloneDeep(rows))
 
                 //save
                 //vo.rows = rows
@@ -828,7 +842,9 @@ export default {
                 }, { timeInterval: 20 })
 
                 //setRows
-                await vo.$refs.wdl.setRows(rows)
+                if (vo.$refs.wdl) { //於async中組件切換時還是有可能消失
+                    await vo.$refs.wdl.setRows(rows)
+                }
 
                 //defaultToggleItems
                 vo.defaultToggleItems()
@@ -853,7 +869,9 @@ export default {
         getText: function (item) {
             //console.log('methods getText', item)
             let vo = this
-            return get(item, vo.keyText, '')
+            let t = get(item, vo.keyText, '')
+            t = cstr(t)
+            return t
         },
 
         getEditable: function (item) {
@@ -942,7 +960,9 @@ export default {
                 }
 
                 //processItems
-                await vo.$refs.wdl.processItems(opt)
+                if (vo.$refs.wdl) { //於async中組件切換時還是有可能消失
+                    await vo.$refs.wdl.processItems(opt)
+                }
 
                 //save
                 vo.selectionsTrans = selectionsTrans
@@ -1054,6 +1074,18 @@ export default {
             let vo = this
 
             return vo.getLevelDiffFromItems(items, ind) > 0
+        },
+
+        getRows: function() {
+            //console.log('methods getRows')
+            //主要供外部例如WJsonView讀取展開後rows數量, 藉此調整顯示列數量欄寬
+
+            let vo = this
+
+            //rows
+            let rows = gm.get(vo.mmkey)
+
+            return rows
         },
 
         getLevelDiff: function(ind) {
@@ -1244,7 +1276,9 @@ export default {
                 }
 
                 //processItems
-                await vo.$refs.wdl.processItems(opt)
+                if (vo.$refs.wdl) { //於async中組件切換時還是有可能消失
+                    await vo.$refs.wdl.processItems(opt)
+                }
 
             }
 
@@ -1826,19 +1860,6 @@ export default {
             //emit
             vo.$emit('change-view-items', msg)
 
-            // //draggable
-            // if (vo.draggable) {
-
-            //     //$nextTick, 因WDynamicList為按需顯示, 為使domDrag能抓到元素, 需等WDynamicList內觸發change-view-items結束後dom才會更新, 故得延遲執行
-            //     vo.$nextTick(() => {
-
-            //         //dragInit
-            //         vo.dragInit()
-
-            //     })
-
-            // }
-
         },
 
         deleteItem: function (data, nk) {
@@ -2171,12 +2192,20 @@ export default {
                 let belong = vo.isBelong(itemEnter.item.nk, itemSelf.item.nk)
                 // console.log('belong', belong)
 
-                //ele, 因WDynamicList會重新封裝按需顯示, 故顯示拖曳指標區為上2層的父節點, 取top才會正確
-                let ele = get(msg, `endEle.parentNode.parentNode`)
+                //ele, 因WDynamicList會重新封裝按需顯示, 故顯示拖曳指標區為上層的父節點, 取top才會正確
+                let ele = get(msg, `endEle.parentNode`)
+                // console.log('endEle.parentNode ele', ele)
+
+                if (!ele.getAttribute) {
+                    console.log('invalud ele.getAttribute', ele)
+                    return
+                }
 
                 //location
-                vo.dgTipTop = cdbl(replace(ele.style.top, 'px', ''))
-                vo.dgTipLeft = cdbl(replace(ele.style.left, 'px', ''))
+                // vo.dgTipTop = cdbl(replace(ele.style.top, 'px', ''))
+                // vo.dgTipLeft = cdbl(replace(ele.style.left, 'px', ''))
+                vo.dgTipTop = cdbl(ele.getAttribute('top'))
+                vo.dgTipLeft = 0
                 vo.dgTipWidth = ele.offsetWidth
                 vo.dgTipHeight = ele.offsetHeight
 

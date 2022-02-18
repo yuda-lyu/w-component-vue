@@ -85,7 +85,7 @@
     </script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.1.69/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.1.70/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -139,23 +139,33 @@
             >w-dynamic-list</span>
         </div>
         <div class="bk dz">
-            <div class="item">separatorColor &amp; separatorHeight</div>
+            <div class="item">filterKeywords &amp; noResultsText</div>
+
+            <div style="margin-bottom:10px;">
+                <span style="padding-right:10px;">Search :</span>
+                <input
+                    style="padding:2px 15px; color:#666; border:1px solid #fca; border-radius:30px; outline:none;"
+                    v-model="WDynamicList.keywords"
+                />
+            </div>
 
             <w-dynamic-list
                 style="border:1px solid #ddd;"
+                :filter-keywords="WDynamicList.keywords"
+                :no-results-text="'There are no items to show...'"
                 :rows="WDynamicList.data1"
-                :separator-color="'rgba(255, 150, 200, 0.1)'"
-                :separator-height="8"
             >
                 <template v-slot="props">
                     <div
-                        style="display:flex; align-items:flex-start; padding:5px 15px; background:#222;"
+                        style="display:flex; align-items:flex-start; padding:5px 15px;"
                     >
                         <div style="color:#f26;">{{props.index+1}}</div>
 
                         <div style="padding-right:10px;">:</div>
 
-                        <div style="color:#999;">{{props.row}}</div>
+                        <div
+                            style="color:#999; word-break:normal;"
+                        >{{props.row}}</div>
                     </div>
                 </template>
             </w-dynamic-list>
@@ -315,7 +325,7 @@
             for (let d = 0; d < a; d++)
               for (let a = 0; a < b.length; a++) c.push(b[a]);
             return c;
-          })(1000000) //20000000 1000000 1000
+          })(1000000) //20000000 1000000 500000 100000 50000 1000
         },
         actions: []
       };

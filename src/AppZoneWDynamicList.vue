@@ -73,65 +73,6 @@
             <div class="bk dz">
                 <demolink
                     :kbname="'w-dynamic-list'"
-                    :casename="'separatorColor'"
-                ></demolink>
-
-                <w-dynamic-list
-                    style="border:1px solid #ddd;"
-                    :rows="WDynamicList.data1"
-                    :separatorColor="'rgba(0,0,0,0.1)'"
-                >
-                    <template v-slot="props">
-
-                        <div style="display:flex; align-items:flex-start; padding:5px 15px;">
-
-                            <div style="color:#f26;">{{props.index+1}}</div>
-
-                            <div style="padding-right:10px;">:</div>
-
-                            <div style="color:#999;">{{props.row}}</div>
-
-                        </div>
-
-                    </template>
-                </w-dynamic-list>
-
-            </div>
-
-
-            <div class="bk dz">
-                <demolink
-                    :kbname="'w-dynamic-list'"
-                    :casename="'separatorColor & separatorHeight'"
-                ></demolink>
-
-                <w-dynamic-list
-                    style="border:1px solid #ddd;"
-                    :rows="WDynamicList.data1"
-                    :separatorColor="'rgba(255, 150, 200, 0.1)'"
-                    :separatorHeight="8"
-                >
-                    <template v-slot="props">
-
-                        <div style="display:flex; align-items:flex-start; padding:5px 15px; background:#222;">
-
-                            <div style="color:#f26;">{{props.index+1}}</div>
-
-                            <div style="padding-right:10px;">:</div>
-
-                            <div style="color:#999;">{{props.row}}</div>
-
-                        </div>
-
-                    </template>
-                </w-dynamic-list>
-
-            </div>
-
-
-            <div class="bk dz">
-                <demolink
-                    :kbname="'w-dynamic-list'"
                     :casename="'change rows'"
                 ></demolink>
 
@@ -209,7 +150,7 @@
             <div class="bk dz">
                 <demolink
                     :kbname="'w-dynamic-list'"
-                    :casename="'filterKeywords & searchEmpty'"
+                    :casename="'filterKeywords & noResultsText'"
                 ></demolink>
 
                 <div style="margin-bottom:10px;">
@@ -223,7 +164,7 @@
                 <w-dynamic-list
                     style="border:1px solid #ddd;"
                     :filterKeywords="WDynamicList.keywords"
-                    :searchEmpty="'There are no items to show...'"
+                    :noResultsText="'There are no items to show...'"
                     :rows="WDynamicList.data1"
                 >
                     <template v-slot="props">
@@ -285,20 +226,20 @@
                 >
                     <template v-slot="props">
 
-                        <div style="padding:15px;">
+                        <div style="display:flex; padding:15px;">
 
-                            <div style="display:table-cell; vertical-align:top; padding:5px 20px 0px 0px;">
+                            <div style="padding:5px 20px 0px 0px; max-height:53px;">
                                 <img style="border-radius:50%; width:48px; height:48px;" :src="props.row.avatar" alt="avatar" />
                             </div>
 
-                            <div style="display:table-cell; vertical-align:top;">
+                            <div style="width:100%;">
 
-                                <div style="margin-bottom:5px;">
-                                    <div style="display:inline-block; vertical-align:middle; padding:1px 9px; color:#fff; background-color:#f26; border-radius:10px; font-size:0.6rem;">{{props.index+1}}</div>
-                                    <div style="display:inline-block; vertical-align:middle; font-size:1.1rem; margin-left:7px;">{{props.row.name}}</div>
+                                <div style="padding-bottom:5px;">
+                                    <div style="display:inline-block; vertical-align:middle; padding:1px 9px; color:#fff; background-color:#f26; border-radius:10px; font-size:10px; line-height:14px;">{{props.index+1}}</div>
+                                    <div style="display:inline-block; vertical-align:middle; font-size:14px; line-height:14px; padding-left:7px;">{{props.row.name}}</div>
                                 </div>
 
-                                <div style="font-size:0.8rem; color:#999;">{{props.row.msg}}</div>
+                                <div style="font-size:12px; color:#999;">{{props.row.msg}}</div>
 
                             </div>
 
@@ -328,20 +269,20 @@
                 >
                     <template v-slot="props">
 
-                        <div style="padding:15px;">
+                        <div style="display:flex; padding:15px;">
 
-                            <div style="display:table-cell; vertical-align:top; padding:5px 20px 0px 0px;">
+                            <div style="padding:5px 20px 0px 0px; max-height:53px;">
                                 <img style="border-radius:50%; width:48px; height:48px;" :src="props.row.avatar" alt="avatar" />
                             </div>
 
-                            <div style="display:table-cell; vertical-align:top;">
+                            <div style="width:100%;">
 
-                                <div style="margin-bottom:5px;">
-                                    <div style="display:inline-block; vertical-align:middle; padding:1px 9px; color:#fff; background-color:#f26; border-radius:10px; font-size:0.6rem;">{{props.index+1}}</div>
-                                    <div style="display:inline-block; vertical-align:middle; font-size:1.1rem; margin-left:7px;">{{props.row.name}}</div>
+                                <div style="padding-bottom:5px;">
+                                    <div style="display:inline-block; vertical-align:middle; padding:1px 9px; color:#fff; background-color:#f26; border-radius:10px; font-size:10px; line-height:14px;">{{props.index+1}}</div>
+                                    <div style="display:inline-block; vertical-align:middle; font-size:14px; line-height:14px; padding-left:7px;">{{props.row.name}}</div>
                                 </div>
 
-                                <div style="font-size:0.8rem; color:#999;">{{props.row.msg}}</div>
+                                <div style="font-size:12px; color:#999;">{{props.row.msg}}</div>
 
                             </div>
 
@@ -365,20 +306,20 @@
                 >
                     <template v-slot="props">
 
-                        <div style="padding:15px;">
+                        <div style="display:flex; padding:15px;">
 
-                            <div style="display:table-cell; vertical-align:top; padding:5px 20px 0px 0px;">
+                            <div style="padding:5px 20px 0px 0px; max-height:53px;">
                                 <img style="border-radius:50%; width:48px; height:48px;" :src="props.row.avatar" alt="avatar" />
                             </div>
 
-                            <div style="display:table-cell; vertical-align:top;">
+                            <div style="width:100%;">
 
-                                <div style="margin-bottom:5px;">
-                                    <div style="display:inline-block; vertical-align:middle; padding:1px 9px; color:#fff; background-color:#f26; border-radius:10px; font-size:0.6rem;">{{props.index+1}}</div>
-                                    <div style="display:inline-block; vertical-align:middle; font-size:1.1rem; margin-left:7px;">{{props.row.name}}</div>
+                                <div style="padding-bottom:5px;">
+                                    <div style="display:inline-block; vertical-align:middle; padding:1px 9px; color:#fff; background-color:#f26; border-radius:10px; font-size:10px; line-height:14px;">{{props.index+1}}</div>
+                                    <div style="display:inline-block; vertical-align:middle; font-size:14px; line-height:14px; padding-left:7px;">{{props.row.name}}</div>
                                 </div>
 
-                                <div style="font-size:0.8rem; color:#999;">{{props.row.msg}}</div>
+                                <div style="font-size:12px; color:#999;">{{props.row.msg}}</div>
 
                             </div>
 
@@ -485,7 +426,7 @@ export default {
                 })(100),
                 'data5': (function(a) {
                     a /= 5; let b = [{ name: 'Jason Oner', msg: 'Boost campaign performance by targeting specific user groups.', avatar: 'https://cdn.vuetifyjs.com/images/lists/1.jpg' }, { name: 'Travis Howard', msg: 'Determine the exact users you\'d like to target with a message or an experiment, based on behavioral data, like watching a video, or abandoning a cart, and demographic data, like age or location.', avatar: 'https://cdn.vuetifyjs.com/images/lists/2.jpg' }, { name: 'Ali Connors', msg: 'Integer porttitor urna ultricies justo iaculis vulputate ac non neque. Etiam iaculis est quis urna consequat ornare. Suspendisse a augue sit amet urna tincidunt rhoncus sed non tellus. Mauris ultricies lectus sit amet tellus egestas, in interdum elit rhoncus. Nullam viverra lectus mattis felis semper, in vulputate lorem tincidunt. Suspendisse dapibus arcu id nunc blandit, ut egestas nisi pulvinar. Examine trends in the movement of guns across different states. Code of Federal Regulations - Alcohol, Tobacco Products and Firearms 1980-2014 November General Election Turnout and Registration. Reported Voting and Registration, by Sex and Single Years of Age: November 2016. Map felon disenfranchisement patterns by state.', avatar: 'https://cdn.vuetifyjs.com/images/lists/3.jpg' }, { name: 'Cindy Baker', msg: 'Easily build highly personalized messages, and test multiple versions to see what works\u2014all in Mixpanel, no code required.', avatar: 'https://cdn.vuetifyjs.com/images/lists/4.jpg' }, { name: 'Deborah Lee', msg: 'Set detailed behavioral triggers, sequences, and rate limits for messages, to ensure that each campaign is relevant, timely, and delivered at the right pace.', avatar: 'https://cdn.vuetifyjs.com/images/lists/5.jpg' }]; let c = []; for (let d = 0; d < a; d++) for (let a = 0; a < b.length; a++)c.push(b[a]); return c
-                })(1000000), //20000000 1000000 1000
+                })(1000000), //20000000 1000000 500000 100000 50000 1000
             },
             'actions': [
             ],

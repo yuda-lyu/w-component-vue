@@ -479,7 +479,6 @@ export default {
                         { name: 'WPanelStripe' },
                         { name: 'WPanelBulge' },
                         { name: 'WPanelScrolly' },
-                        { name: 'WDynamicList' },
                         { name: 'WPanelDivideHorizontal' },
                         { name: 'WPanelDivideVertical' },
                         { name: 'WPanelScale' },
@@ -505,6 +504,7 @@ export default {
                     name: 'list',
                     cmps: [
                         { name: 'WListVertical' },
+                        { name: 'WDynamicList' },
                     ]
                 },
                 {

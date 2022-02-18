@@ -85,7 +85,7 @@
     </script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.1.69/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.1.70/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -150,7 +150,7 @@
                 :left-icon="'mdi-check-underline-circle'"
                 :items="WTextSuggest.objItemsKeyText"
                 :key-text="'name'"
-                :search-empty="'無有效項目'"
+                :no-results-text="'無有效項目'"
                 v-model="WTextSuggest.objValueKeyText"
             ></w-text-suggest>
         </div>

@@ -85,7 +85,7 @@
     </script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.1.69/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.1.70/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -139,13 +139,13 @@
             >w-group-tags</span>
         </div>
         <div class="bk" style="display:block;">
-            <div class="item">suggests &amp; placeholder &amp; searchEmpty</div>
+            <div class="item">suggests &amp; placeholder &amp; noResultsText</div>
 
             <w-group-tags
                 v-model="WGroupTags.strings"
                 :suggests="WGroupTags.suggests"
                 :placeholder="'請輸入關鍵字'"
-                :search-empty="'無符合項目'"
+                :no-results-text="'無符合項目'"
             ></w-group-tags>
         </div>
     </v-app>

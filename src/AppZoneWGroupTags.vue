@@ -117,14 +117,14 @@
             <div class="bk" style="display:block;">
                 <demolink
                     :kbname="'w-group-tags'"
-                    :casename="'suggests & placeholder & searchEmpty'"
+                    :casename="'suggests & placeholder & noResultsText'"
                 ></demolink>
 
                 <w-group-tags
                     v-model="WGroupTags.strings"
                     :suggests="WGroupTags.suggests"
                     :placeholder="'請輸入關鍵字'"
-                    :searchEmpty="'無符合項目'"
+                    :noResultsText="'無符合項目'"
                 ></w-group-tags>
             </div>
 
