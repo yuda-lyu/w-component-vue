@@ -12,7 +12,9 @@
             :viewHeightMax="viewHeightMax"
             :itemMinHeight="defItemHeight"
             :itemsPreload="itemsPreload"
+            :loadingText="loadingText"
             :noResultsText="noResultsText"
+            :searchingText="searchingText"
             :show="show"
             @change-view-items="changeViewItems"
         >
@@ -256,7 +258,9 @@ let gm = globalMemory()
  * @vue-prop {String} [iconCheckedPartiallyDisabledColor='grey'] 輸入禁用部份勾選時(子節點任一有勾選但非全部勾選)顏色字串，預設'grey'
  * @vue-prop {String} [filterKeywords=''] 輸入過濾關鍵字字串，多關鍵字用空白分隔，預設''
  * @vue-prop {Function} [filterFunction=null] 輸入過濾時呼叫處理函數，傳入為各項目物件資料，回傳布林值代表項目內是否含有關鍵字，預設null
+ * @vue-prop {String} [loadingText='Loading...'] 輸入載入中字串，預設'Loading...'
  * @vue-prop {String} [noResultsText='No results'] 輸入無過濾結果字串，預設'No results'
+ * @vue-prop {String} [searchingText='Searching...'] 輸入搜索中字串，預設'Searching...'
  * @vue-prop {Number} [defItemHeight=34] 輸入按需顯示時各項目預設高度值，給越準或給大部分項目的高度則渲染速度越快，單位為px，預設34
  * @vue-prop {Number} [itemsPreload=5] 輸入上下方預先載入元素數量，預設5
  * @vue-prop {Boolean} [draggable=false] 輸入是否為可拖曳編輯模式，若draggable設定true，此時所有節點皆為展開顯示並且禁止顯隱節點功能，也就是defaultDisplayLevel強制設定為null，此外也不提供過濾功能，也就是filterKeywords強制清空。開啟draggable僅適用小規模數據。draggable預設false
@@ -404,9 +408,17 @@ export default {
             type: Function,
             default: null,
         },
+        loadingText: {
+            type: String,
+            default: 'Loading...',
+        },
         noResultsText: {
             type: String,
             default: 'No results',
+        },
+        searchingText: {
+            type: String,
+            default: 'Searching...',
         },
         defItemHeight: {
             type: Number,

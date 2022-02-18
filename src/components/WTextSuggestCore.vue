@@ -75,7 +75,9 @@
                     :filterKeywords="mode==='suggest'?valueTrans:''"
                     :viewHeightMax="maxHeight"
                     :itemMinHeight="defItemHeight"
+                    :loadingText="loadingText"
                     :noResultsText="noResultsText"
+                    :searchingText="searchingText"
                     :show="showPanelTrans"
                 >
                     <template v-slot="props">
@@ -148,7 +150,9 @@ import WIcon from './WIcon.vue'
  * @vue-prop {Number} [maxWidth=null] 輸入最大寬度，單位為px，預設null
  * @vue-prop {Number} [distY=5] 輸入彈窗距離觸發元素底部的距離數字，單位為px，預設5
  * @vue-prop {String} [placeholder=''] 輸入無文字時的替代字符字串，預設''
+ * @vue-prop {String} [loadingText='Loading...'] 輸入載入中字串，預設'Loading...'
  * @vue-prop {String} [noResultsText='No results'] 輸入無過濾結果字串，預設'No results'
+ * @vue-prop {String} [searchingText='Searching...'] 輸入搜索中字串，預設'Searching...'
  * @vue-prop {Number} [defItemHeight=43] 輸入按需顯示時各項目預設高度數字，給越準或給大部分項目的高度則渲染速度越快，單位為px，預設43
  * @vue-prop {Boolean} [editable=true] 輸入是否為編輯模式布林值，預設true
  * @vue-prop {Boolean} [focused=false] 輸入是否為取得焦點狀態布林值，預設false
@@ -255,9 +259,17 @@ export default {
             type: String,
             default: '',
         },
+        loadingText: {
+            type: String,
+            default: 'Loading...',
+        },
         noResultsText: {
             type: String,
             default: 'No results',
+        },
+        searchingText: {
+            type: String,
+            default: 'Searching...',
         },
         defItemHeight: {
             type: Number,
