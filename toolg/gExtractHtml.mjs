@@ -266,7 +266,10 @@ function main() {
     ltfs = _.filter(ltfs, (v) => {
         return v.indexOf('AppZone') >= 0
     })
-    //console.log(ltfs)
+    // ltfs = [
+    //     'AppZoneWJsonView.vue',
+    // ]
+    // console.log(ltfs)
 
     //extractAppZone
     _.each(ltfs, (v) => {
