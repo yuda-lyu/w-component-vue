@@ -8,10 +8,10 @@
         :changeScrollTop="changeScrollTop"
     >
 
-        <!-- 計算nativeBarWidth -->
+        <!-- 計算nativeBarWidth, 需使用overflow:scroll否則firefox無法順利顯示右側捲軸 -->
         <div style="position:relative; width:0px; height:0px; opacity:0;">
             <div style="position:absolute; left:0; top:0;">
-                <div ref="divDetect" style="width:50px; height:50px; overflow:auto;">
+                <div ref="divDetect" style="width:50px; height:50px; overflow:scroll;">
                     <div style="width:100px; height:100px;"></div>
                 </div>
             </div>
