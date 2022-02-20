@@ -21,10 +21,11 @@
             :style="`position:relative; width:100%; overflow-x:hidden;`"
         >
 
+            <!-- 因瀏覽器計算誤差100%+nativeBarWidth仍會出現捲軸邊界, 故需+1px使捲軸能完全隱藏 -->
             <div
                 ref="divShell"
                 _class="sb"
-                :style="`position:relative; width:calc( 100% + ${nativeBarWidth}px ); height:${panelHeight}px; box-sizing:content-box; overflow-x:hidden; overflow-y:scroll;`"
+                :style="`position:relative; width:calc( 100% + ${nativeBarWidth+1}px ); height:${panelHeight}px; box-sizing:content-box; overflow-x:hidden; overflow-y:scroll;`"
                 v-domresize
                 @domresize="resizeShell"
                 @scroll="scrollShell"
@@ -178,9 +179,10 @@ export default {
             if (divDetect) {
 
                 //save nativeBarWidth
-                if (vo.nativeBarWidth !== divDetect.offsetWidth - divDetect.clientWidth) {
-                    // console.log('resizePanel 需更新nativeBarWidth', divDetect.offsetWidth - divDetect.clientWidth, '<-', vo.nativeBarWidth)
-                    vo.nativeBarWidth = divDetect.offsetWidth - divDetect.clientWidth
+                let w = divDetect.offsetWidth - divDetect.clientWidth
+                if (vo.nativeBarWidth !== w) {
+                    // console.log('resizePanel 需更新nativeBarWidth', w, '<-', vo.nativeBarWidth)
+                    vo.nativeBarWidth = w
                 }
 
             }
