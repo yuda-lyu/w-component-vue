@@ -183,6 +183,11 @@
             ></AppZoneWPopupEditText>
 
 
+            <AppZoneWDrawer
+                v-if="useCmpName==='WDrawer'"
+            ></AppZoneWDrawer>
+
+
             <AppZoneWGroupTags
                 v-if="useCmpName==='WGroupTags'"
             ></AppZoneWGroupTags>
@@ -358,6 +363,7 @@ import AppZoneWDialog from './AppZoneWDialog.vue'
 import AppZoneWConfirm from './AppZoneWConfirm.vue'
 import AppZoneWPopup from './AppZoneWPopup.vue'
 import AppZoneWPopupEditText from './AppZoneWPopupEditText.vue'
+import AppZoneWDrawer from './AppZoneWDrawer.vue'
 import AppZoneWButtonChip from './AppZoneWButtonChip.vue'
 import AppZoneWButtonCircle from './AppZoneWButtonCircle.vue'
 import AppZoneWProgressBar from './AppZoneWProgressBar.vue'
@@ -412,6 +418,7 @@ export default {
         AppZoneWConfirm,
         AppZoneWPopup,
         AppZoneWPopupEditText,
+        AppZoneWDrawer,
         AppZoneWButtonChip,
         AppZoneWButtonCircle,
         AppZoneWProgressBar,
@@ -542,6 +549,7 @@ export default {
                         { name: 'WConfirm' },
                         { name: 'WPopup' },
                         { name: 'WPopupEditText' },
+                        { name: 'WDrawer' },
                     ]
                 },
                 {

@@ -330,7 +330,6 @@
 import { mdiStackOverflow, mdiBookMusicOutline, mdiCharity, mdiLightbulbGroupOutline, mdiMessageCogOutline, mdiGestureDoubleTap, mdiPencilOutline, mdiLightbulbOnOutline } from '@mdi/js/mdi.js'
 import demolink from './components/demolink.vue'
 import WButtonCircle from './components/WButtonCircle.vue'
-import WIcon from './components/WIcon.vue'
 import WListVertical from './components/WListVertical.vue'
 
 
@@ -338,7 +337,6 @@ export default {
     components: {
         demolink,
         WButtonCircle,
-        WIcon,
         WListVertical,
     },
     props: {

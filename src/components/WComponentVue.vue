@@ -8,6 +8,7 @@ import WCheckbox from './WCheckbox.vue'
 import WCkeditorVueDyn from './WCkeditorVueDyn.vue'
 import WConfirm from './WConfirm.vue'
 import WDialog from './WDialog.vue'
+import WDrawer from './WDrawer.vue'
 import WDropfiles from './WDropfiles.vue'
 import WDynamicList from './WDynamicList.vue'
 import WEchartsVueDyn from './WEchartsVueDyn.vue'
@@ -77,6 +78,7 @@ let WComponentVue = {
         Vue.component('w-ckeditor-vue-dyn', WCkeditorVueDyn)
         Vue.component('w-confirm', WConfirm)
         Vue.component('w-dialog', WDialog)
+        Vue.component('w-drawer', WDrawer)
         Vue.component('w-dropfiles', WDropfiles)
         Vue.component('w-dynamic-list', WDynamicList)
         Vue.component('w-echarts-vue-dyn', WEchartsVueDyn)

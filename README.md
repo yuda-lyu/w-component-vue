@@ -73,7 +73,7 @@ export default {
 ```
 [Optional] Add link for icon.
 ```alias
-<link href="https://cdn.jsdelivr.net/npm/@mdi/font@5.9.55/css/materialdesignicons.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/@mdi/font@6.5.95/css/materialdesignicons.min.css" rel="stylesheet">
 <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" rel="stylesheet">
 ```
 [Necessary] Add script and link for vuetify.
@@ -83,7 +83,7 @@ export default {
 ```
 [Necessary] Add script for w-component-vue.
 ```alias
-<script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.1.73/dist/w-component-vue.umd.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.1.74/dist/w-component-vue.umd.js"></script>
 ```
 Directly use:
 ```alias

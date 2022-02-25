@@ -156,9 +156,9 @@
             </template>
         </WDynamicList>
 
+        <!-- 需使用pointer-events:none;禁用事件, 避免拖曳時因接觸此元素時出現enter與leave -->
         <div
             :style="`position:absolute; z-index:1; pointer-events:none; left:${dgTipLeft}px; top:${dgTipTop}px;`"
-            :msg="`需使用pointer-events:none;禁用事件, 避免拖曳時因接觸此元素時出現enter與leave`"
             v-if="dgTipMode!==''"
         >
             <template v-if="dgTipMode==='lineTop'">
