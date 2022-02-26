@@ -570,7 +570,7 @@ export default {
 
                     //fun
                     if (isfun(fun)) {
-                        fun('diff-new', index, h)
+                        fun(index, h)
                     }
 
                     //標記為高度有更新
@@ -604,10 +604,7 @@ export default {
             let n = size(items)
 
             //changeHeight, syncItemsHeight
-            vo.changeHeight = vo.syncItemsHeight(items, (mode, index, h) => {
-                if (mode !== 'diff-new') {
-                    return
-                }
+            vo.changeHeight = vo.syncItemsHeight(items, (index, h) => {
                 // console.log('修改高度', 'index', index, items[index].height, '->', h)
                 items[index].height = h
             })
@@ -794,6 +791,9 @@ export default {
 
                         //更新itemsHeight
                         vo.itemsHeight = itemsHeight
+
+                        //emit change-height-of-items
+                        vo.$emit('change-height-of-items', { height: itemsHeight })
 
                     }
 

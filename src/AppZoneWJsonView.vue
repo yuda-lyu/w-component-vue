@@ -40,6 +40,22 @@
             <div class="bk dz">
                 <demolink
                     :kbname="'w-json-view'"
+                    :casename="'sync viewHeightMax(change-height-of-items)'"
+                ></demolink>
+
+                <w-json-view
+                    style="border:1px solid #ddd;"
+                    :viewHeightMax="WJsonView.viewHeightMaxSync"
+                    :data="WJsonView.data3"
+                    @change-height-of-items="changeHeightOfItems"
+                ></w-json-view>
+
+            </div>
+
+
+            <div class="bk dz">
+                <demolink
+                    :kbname="'w-json-view'"
                     :casename="'filterKeywords & noResultsText'"
                 ></demolink>
 
@@ -186,6 +202,7 @@ export default {
     data: function() {
         return {
             'WJsonView': {
+                'viewHeightMaxSync': 400,
                 'keywords': 'pow ci uadn',
                 'data1': { 'squadName': 'Super hero squad', 'homeTown': 'Metro City', 'formed': 2016, 'secretBase': 'Super tower', 'active': true, 'arrayEmpth': [], 'members': [{ 'name': 'There are many variations of passages of Lorem Ipsum available', 'age': 29, 'secretIdentity': 'Dan Jukes', 'powers': ['Radiation resistance', 'Turning tiny', 'Radiation blast'] }, { 'name': 'Madame Uppercut', 'age': 39, 'secretIdentity': 'Jane Wilson', 'powers': ['Million tonne punch', 'Damage resistance', 'Superhuman reflexes'] }, { 'name': 'Eternal Flame', 'age': 1000000, 'secretIdentity': 'Unknown', 'powers': ['Immortality', 'Heat Immunity', 'Inferno', 'Teleportation', 'Interdimensional travel'] }] },
                 'data2': { 'cookie': 'username-localhost-8888="2|1:0|10:1624431350|23:username-localhost-8888|44:ZmMxYzkwOGI0ODYxNDY1M2ExY2VhOGE3MmFhNWE4M2Y=|f8840028a36433a4e69e67f7eae6d188994203da2f54fe8af55d3e815f5cad0f', 'homeTown': 'Metro City', 'formed': 2016, 'secretBase': 'Super tower', 'active': true, 'arrayEmpth': [], 'members': [{ 'name': 'There are many variations of passages of Lorem Ipsum available', 'age': 29, 'secretIdentity': 'Dan Jukes', 'powers': ['Radiation resistance', 'Turning tiny', 'Radiation blast'] }, { 'name': 'Madame Uppercut', 'age': 39, 'secretIdentity': 'Jane Wilson', 'powers': ['Million tonne punch', 'Damage resistance', 'Superhuman reflexes'] }, { 'name': 'Eternal Flame', 'age': 1000000, 'secretIdentity': 'Unknown', 'powers': ['Immortality', 'Heat Immunity', 'Inferno', 'Teleportation', 'Interdimensional travel'] }] },
@@ -202,6 +219,10 @@ export default {
     //     console.log('WJsonView.data4', this.WJsonView.data4)
     // },
     methods: {
+        changeHeightOfItems: function(msg) {
+            console.log('changeHeightOfItems', msg)
+            this.WJsonView.viewHeightMaxSync = msg.height
+        },
     },
 }
 </script>

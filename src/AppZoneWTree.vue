@@ -71,6 +71,22 @@
             <div class="bk dz">
                 <demolink
                     :kbname="'w-tree'"
+                    :casename="'sync viewHeightMax(change-height-of-items)'"
+                ></demolink>
+
+                <w-tree
+                    style="border:1px solid #ddd;"
+                    :viewHeightMax="WTree.viewHeightMaxSync"
+                    :data="WTree.option.items"
+                    @change-height-of-items="changeHeightOfItems"
+                ></w-tree>
+
+            </div>
+
+
+            <div class="bk dz">
+                <demolink
+                    :kbname="'w-tree'"
                     :casename="'defaultDisplayLevel'"
                 ></demolink>
 
@@ -946,6 +962,7 @@ export default {
     data: function() {
         return {
             'WTree': {
+                'viewHeightMaxSync': 400,
                 'option': {
                     keywords: 'abr care att',
                     selections: [
@@ -1298,6 +1315,10 @@ export default {
         }
     },
     methods: {
+        changeHeightOfItems: function(msg) {
+            console.log('changeHeightOfItems', msg)
+            this.WTree.viewHeightMaxSync = msg.height
+        },
         showSelection: function(selections) {
             let ss = {}
             for (let i = 0; i < selections.length; i++) {

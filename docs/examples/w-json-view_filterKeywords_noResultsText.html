@@ -85,7 +85,7 @@
     </script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.1.74/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.1.75/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -169,6 +169,7 @@
     data: function() {
       return {
         WJsonView: {
+          viewHeightMaxSync: 400,
           keywords: "pow ci uadn",
           data1: {
             squadName: "Super hero squad",
@@ -469,7 +470,12 @@
       return {};
     },
     computed: {},
-    methods: {}
+    methods: {
+      changeHeightOfItems: function(msg) {
+        console.log("changeHeightOfItems", msg);
+        this.WJsonView.viewHeightMaxSync = msg.height;
+      }
+    }
   });
     </script>
 </body>

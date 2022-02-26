@@ -16,7 +16,8 @@
             :noResultsText="noResultsText"
             :searchingText="searchingText"
             :show="show"
-            @change-view-items="changeViewItems"
+            @change-view-items="(msg)=>{$emit('change-view-items',msg)}"
+            @change-height-of-items="(msg)=>{$emit('change-height-of-items',msg)}"
         >
             <template v-slot="props">
 
@@ -1861,16 +1862,6 @@ export default {
                 vo.filterKeyWords()
 
             })
-
-        },
-
-        changeViewItems: function(msg) {
-            // console.log('methods changeViewItems', msg)
-
-            let vo = this
-
-            //emit
-            vo.$emit('change-view-items', msg)
 
         },
 

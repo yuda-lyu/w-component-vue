@@ -18,6 +18,8 @@
             :defItemHeight="defItemHeight"
             :itemsPreload="itemsPreload"
             :show="show"
+            @change-view-items="(msg)=>{$emit('change-view-items',msg)}"
+            @change-height-of-items="(msg)=>{$emit('change-height-of-items',msg)}"
         >
             <template v-slot:head="props">
 

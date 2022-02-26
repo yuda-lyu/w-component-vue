@@ -883,7 +883,7 @@ export default {
                 ],
                 'title': 'Popup Dialog',
                 'text1': 'Article Title',
-                'text2': 'Here is a article content, texts are from Vuetify.',
+                'text2': 'Here is an article content, texts are from Vuetify.',
                 'text3': 'Vuetify is a progressive framework that attempts to push web development to the next level. In order to best accomplish this task, some sacrifices had to be made in terms of support for older versions of Internet Explorer. This is not an exhaustive list of compatible browsers, but the main targeted ones.',
                 'text4': 'There are three ways in which you can install Vuetify. The first (and recommended) way is to utilize the vuetify-loader or what we call automatic A-la-carte. This will ensure that your application only uses the features and styles from Vuetify that are needed, significantly reducing your application\'s compiled size. Keep in mind, when importing from vuetify/lib, the necessary styles are automatically imported for you.',
                 'text5': 'End.',
