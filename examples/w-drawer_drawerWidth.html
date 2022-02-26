@@ -85,7 +85,7 @@
     </script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.1.74/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.1.75/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -151,30 +151,16 @@
             </div>
 
             <w-drawer
-                style="width:500px; height:400px; border:1px solid #ddd; _box-sizing:content-box;"
+                style="width:500px; height:400px; border:1px solid #ddd;"
                 v-model="WDrawer.bShow2"
                 :drawer-width="300"
             >
                 <template v-slot:drawer>
-                    <v-list
-                        style="padding:0px; background:transparent; height:100%; border-right:1px solid #ddd;"
-                    >
-                        <v-list-item
-                            style="min-height:inherit; padding:10px;"
-                            :key="kitem"
-                            @click="function(){}"
-                            v-for="(item,kitem) in WDrawer.listItems"
-                        >
-                            <div style="display:flex; align-items:center;">
-                                <div
-                                    style="padding-right:10px; width:35px; text-align:center;"
-                                >
-                                    <v-icon>{{item.icon}}</v-icon>
-                                </div>
-                                <div>{{item.text}}</div>
-                            </div>
-                        </v-list-item>
-                    </v-list>
+                    <w-list-vertical
+                        style="height:100%; border-right:1px solid #ddd;"
+                        :items="WDrawer.listItems"
+                        :item-active.sync="WDrawer.listItemActive"
+                    ></w-list-vertical>
                 </template>
 
                 <template v-slot:content>
@@ -204,7 +190,7 @@
         WDrawer: {
           title: "Article Title",
           content:
-            "Here is a article content, texts are from Vuetify. There are three ways in which you can install Vuetify. The first (and recommended) way is to utilize the vuetify-loader or what we call automatic A-la-carte. This will ensure that your application only uses the features and styles from Vuetify that are needed, significantly reducing your application's compiled size. Keep in mind, when importing from vuetify/lib, the necessary styles are automatically imported for you.",
+            "Here is an article content, texts are from Vuetify. There are three ways in which you can install Vuetify. The first (and recommended) way is to utilize the vuetify-loader or what we call automatic A-la-carte. This will ensure that your application only uses the features and styles from Vuetify that are needed, significantly reducing your application's compiled size. Keep in mind, when importing from vuetify/lib, the necessary styles are automatically imported for you.",
           listItems: [
             {
               text: "Interpreting",
@@ -229,16 +215,61 @@
             {
               text: "Chess-king",
               icon: "fas fa-chess-king"
+            },
+
+            {
+              text: "Calendar",
+              icon: "fas fa-calendar-alt"
+            },
+            {
+              text: "chart",
+              icon: "fas fa-chart-bar"
+            },
+            {
+              text: "Cloud-meatball",
+              icon: "fas fa-cloud-meatball"
+            },
+            {
+              text: "Cubes",
+              icon: "fas fa-cubes"
+            },
+            {
+              text: "Dungeon",
+              icon: "fas fa-dungeon"
             }
           ],
+          listPkgs: [
+            {
+              text: "Balance",
+              icon: "fas fa-balance-scale"
+            },
+            {
+              text: "Connection",
+              icon: "fas fa-bezier-curve"
+            },
+            {
+              text: "Issue",
+              icon: "fa-box-tissue"
+            }
+          ],
+          listItemActive: {
+            text: "Search",
+            icon: "fas fa-search"
+          },
+          listPkgActive: {
+            text: "Balance",
+            icon: "fas fa-balance-scale"
+          },
           bShow1: false,
           bShow2: false,
-          bShow3: false,
+          bShow3a: false,
+          bShow3b: false,
           bShow4: false,
           bShow5: false,
           bShow6: false,
           bShow7: false,
-          bShow8: false
+          bShow8: false,
+          bShow9: false
         },
         actions: [{}]
       };
