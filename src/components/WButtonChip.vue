@@ -20,7 +20,7 @@
                     <!-- v-tooltip下第1層dom會無法拖曳, 點擊事件於這層觸發, 且組件內tabindex不能重複, 故本層設定為0 -->
                     <div
                         v-on="on"
-                        :style="`transition:all 0.3s; ${useBorderRadiusStyle} background:${useBackgroundColor}; ${editable?'cursor:pointer;':''} outline:none; user-select:none; box-shadow:${useShadow};`"
+                        :style="`transition:all 0.3s; ${useBorderRadiusStyle} background:${useBackgroundColor}; ${editable&&cursorPointer?'cursor:pointer;':''} outline:none; user-select:none; box-shadow:${useShadow};`"
                         tabindex="0"
                         v-domripple="useRipple"
                         @mouseenter="hoverTrans=true;$emit('mouseenter',$event)"
@@ -184,6 +184,7 @@ import WIconLoading from './WIconLoading.vue'
  * @vue-prop {Number} [shiftRight=0] 輸入右側內寬平移距離數字，會對paddingStyle設定再添加，可調整例如關閉圖標與右側邊框距離，單位px，預設0
  * @vue-prop {Boolean} [active=false] 輸入是否為主動模式，預設false
  * @vue-prop {Boolean} [close=false] 輸入是否具有關閉按鈕模式，預設false
+ * @vue-prop {Boolean} [cursorPointer=true] 輸入是否滑鼠移入顯示pointer樣式，預設true
  * @vue-prop {Boolean} [loading=false] 輸入是否為載入模式，預設false
  * @vue-prop {String} [loadingColor='grey darken-2'] 輸入載入圖標顏色字串，預設'grey darken-2'
  * @vue-prop {String} [role='button'] 輸入角色字串，預設'button'
@@ -361,6 +362,10 @@ export default {
         close: {
             type: Boolean,
             default: false,
+        },
+        cursorPointer: {
+            type: Boolean,
+            default: true,
         },
         loading: {
             type: Boolean,

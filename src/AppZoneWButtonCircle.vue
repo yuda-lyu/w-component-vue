@@ -83,6 +83,25 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-button-circle'"
+                    :casename="'borderWidth & borderColor & borderColorHover & borderColorFocus'"
+                ></demolink>
+
+                <div style="display:inline-block; padding:15px; background:#888;">
+                    <w-button-circle
+                        :icon="mdiCheckUnderlineCircle"
+                        :borderWidth="1"
+                        :borderColor="'#aaa'"
+                        :borderColorHover="'#ccc'"
+                        :borderColorFocus="'#eee'"
+                    ></w-button-circle>
+                </div>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-button-circle'"
                     :casename="'rippleColor'"
                 ></demolink>
 

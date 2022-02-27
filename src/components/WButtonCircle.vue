@@ -16,7 +16,7 @@
                 <!-- v-tooltip下第1層dom會無法拖曳, 點擊事件於這層觸發, 且組件內tabindex不能重複, 故本層設定為0 -->
                 <div
                     v-on="on"
-                    :style="`position:relative; transition:all 0.3s; border-radius:50%; ${usePadding} background:${useBackgroundColor}; ${editable?'cursor:pointer;':''} outline:none; user-select:none; box-shadow:${useShadow};`"
+                    :style="`position:relative; transition:all 0.3s; ${usePadding} border-radius:50%; border:${borderWidth}px solid ${useBorderColor}; background:${useBackgroundColor}; ${editable&&cursorPointer?'cursor:pointer;':''} outline:none; user-select:none; box-shadow:${useShadow};`"
                     tabindex="0"
                     @mouseenter="hoverTrans=true;$emit('mouseenter',$event)"
                     @mouseleave="hoverTrans=false;$emit('mouseleave',$event)"
@@ -90,6 +90,10 @@ import WIconLoading from './WIconLoading.vue'
  * @vue-prop {String} [iconColor='grey darken-1'] 輸入按鈕圖標顏色字串，預設'grey darken-1'
  * @vue-prop {String} [iconColorHover='grey darken-2'] 輸入滑鼠移入時按鈕圖標顏色字串，預設'grey darken-2'
  * @vue-prop {String} [iconColorFocus='grey darken-3'] 輸入取得焦點時按鈕圖標顏色字串，預設'grey darken-3'
+ * @vue-prop {Number} [borderWidth=0] 輸入框線寬度數字，單位為px，預設0
+ * @vue-prop {String} [borderColor='transparent'] 輸入按鈕框線顏色字串，預設'transparent'
+ * @vue-prop {String} [borderColorHover='transparent'] 輸入滑鼠移入時按鈕框線顏色字串，預設'transparent'
+ * @vue-prop {String} [borderColorFocus='transparent'] 輸入取得焦點時按鈕框線顏色字串，預設'transparent'
  * @vue-prop {String} [backgroundColor='rgb(241,241,241)'] 輸入按鈕背景顏色字串，預設'rgb(241,241,241)'
  * @vue-prop {String} [backgroundColorHover='rgb(236,236,236)'] 輸入滑鼠移入時按鈕背景顏色字串，預設'rgb(236,236,236)'
  * @vue-prop {String} [backgroundColorFocus='rgb(230,230,230)'] 輸入取得焦點時按鈕背景顏色字串，預設'rgb(230,230,230)'
@@ -97,6 +101,7 @@ import WIconLoading from './WIconLoading.vue'
  * @vue-prop {Object} [paddingStyle={v:4,h:4}] 輸入內寬距離設定物件，可用鍵值為v、h、left、right、top、bottom，v代表同時設定top與bottom，h代表設定left與right，若有重複設定時後面鍵值會覆蓋前面，各鍵值為寬度數字，單位為px，預設{v:4,h:4}
  * @vue-prop {Boolean} [shadow=true] 輸入是否為陰影模式，預設true
  * @vue-prop {String} [shadowStyle=''] 輸入陰影顏色字串，預設值詳見props
+ * @vue-prop {Boolean} [cursorPointer=true] 輸入是否滑鼠移入顯示pointer樣式，預設true
  * @vue-prop {Boolean} [loading=false] 輸入是否為載入模式，預設false
  * @vue-prop {String} [loadingColor='grey darken-2'] 輸入載入圖標顏色字串，預設'grey darken-2'
  * @vue-prop {Boolean} [promiseUnlock=false] 輸入是否點擊後自動設定為loading為true並需使用promise解鎖布林值，預設false
@@ -134,6 +139,22 @@ export default {
             type: String,
             default: 'grey darken-3',
         },
+        borderWidth: {
+            type: Number,
+            default: 0,
+        },
+        borderColor: {
+            type: String,
+            default: 'transparent',
+        },
+        borderColorHover: {
+            type: String,
+            default: 'transparent',
+        },
+        borderColorFocus: {
+            type: String,
+            default: 'transparent',
+        },
         backgroundColor: {
             type: String,
             default: 'rgb(241,241,241)',
@@ -168,6 +189,10 @@ export default {
                     h: 4,
                 }
             },
+        },
+        cursorPointer: {
+            type: Boolean,
+            default: true,
         },
         loading: {
             type: Boolean,
@@ -241,6 +266,34 @@ export default {
             if (!vo.editable) {
                 // r = vo.focusTrans ? vo.effIconColorFocus : vo.effIconColor
                 r = vo.effIconColor
+            }
+            return r
+        },
+
+        effBorderColor: function() {
+            let vo = this
+            return color2hex(vo.borderColor)
+        },
+
+        effBorderColorHover: function() {
+            let vo = this
+            return color2hex(vo.borderColorHover)
+        },
+
+        effBorderColorFocus: function() {
+            let vo = this
+            return color2hex(vo.borderColorFocus)
+        },
+
+        useBorderColor: function() {
+            let vo = this
+            let r
+            if (vo.loadingTrans) {
+                return vo.effBorderColor
+            }
+            r = vo.focusTrans ? vo.effBorderColorFocus : vo.hoverTrans ? vo.effBorderColorHover : vo.effBorderColor
+            if (!vo.editable) {
+                r = vo.focusTrans ? vo.effBorderColorFocus : vo.effBorderColor
             }
             return r
         },
