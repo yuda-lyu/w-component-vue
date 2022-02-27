@@ -136,27 +136,22 @@
                 style="cursor:pointer;"
                 title="open for copy link to view component"
                 onclick="window.open('//yuda-lyu.github.io/w-component-vue/examples/app.html?cmp='+this.innerText,'_blank')"
-            >w-text-select</span>
+            >w-button-circle</span>
         </div>
         <div class="bk">
             <div
                 class="item"
-            >border &amp; leftIcon &amp; leftIconColor &amp; leftIconColorHover &amp; leftIconColorFocus &amp; leftIconTooltip</div>
+            >borderWidth &amp; borderColor &amp; borderColorHover &amp; borderColorFocus</div>
 
-            <w-text-select
-                :shadow="false"
-                :border-color="'orange lighten-2'"
-                :border-color-hover="'orange'"
-                :border-color-focus="'orange darken-2'"
-                :background-color-focus="'orange lighten-5'"
-                :left-icon="'mdi-check-underline-circle'"
-                :left-icon-color="'orange lighten-1'"
-                :left-icon-color-hover="'orange accent-3'"
-                :left-icon-color-focus="'orange darken-2'"
-                :left-icon-tooltip="'show tooltip'"
-                :items="WTextSelect.objItems"
-                v-model="WTextSelect.objValue"
-            ></w-text-select>
+            <div style="display:inline-block; padding:15px; background:#888;">
+                <w-button-circle
+                    :icon="'mdi-check-underline-circle'"
+                    :border-width="1"
+                    :border-color="'#aaa'"
+                    :border-color-hover="'#ccc'"
+                    :border-color-focus="'#eee'"
+                ></w-button-circle>
+            </div>
         </div>
     </v-app>
 
@@ -170,77 +165,11 @@
     vuetify: new Vuetify(),
     data: function() {
       return {
-        WTextSelect: {
-          objItems: [
-            {
-              key: "orange",
-              text: "橘子(orange)"
-            },
-            {
-              key: "banana",
-              text: "香蕉(banana)"
-            },
-            {
-              key: "strawberry",
-              text: "草莓(strawberry)"
-            }
-          ],
-          objValue: {
-            key: "banana",
-            text: "香蕉(banana)"
-          },
-          objItemsKeyText: [
-            {
-              key: "orange",
-              name: "橘子(orange)"
-            },
-            {
-              key: "banana",
-              name: "香蕉(banana)"
-            },
-            {
-              key: "strawberry",
-              name: "草莓(strawberry)"
-            }
-          ],
-          objValueKeyText: {
-            key: "banana",
-            name: "香蕉(banana)"
-          },
-          objItemsLarge: (function() {
-            let vs = [];
-            vs.push({
-              key: "banana:1",
-              text: "香蕉(banana:1)"
-            });
-            for (let i = 2; i <= 10000; i++) {
-              vs.push({
-                key: "banana:" + i,
-                text: "香蕉(banana:" + i + ")"
-              });
-            }
-            return vs;
-          })(),
-          objValueLarge: {
-            key: "banana:1",
-            text: "香蕉(banana:1)"
-          },
-          strItems: ["orange(橘子)", "banana(香蕉)", "strawberry(草莓)"],
-          strValue: "strawberry(草莓)"
-        },
+        WButtonCircle: {},
         actions: [
           {
-            mode: "eleclick",
-            selector: 'input[type="text"]'
-          },
-          {
-            mode: "eleclick",
-            selector: 'div[tabindex="0"]',
-            nth: 2
-          },
-          {
-            mode: "keypress",
-            key: "Tab"
+            mode: "elemove",
+            selector: 'button[type="button"]'
           }
         ]
       };
@@ -250,29 +179,12 @@
     },
     computed: {},
     methods: {
-      evUpdateFocused: function(item, kitem) {
-        console.log("evUpdateFocused", "item=", item, "kitem", kitem);
-      },
-      evUpdateShowPanel: function(item, kitem) {
-        console.log("evUpdateShowPanel", "item=", item, "kitem", kitem);
-      },
-      evBlur: function(item, kitem) {
-        console.log("evBlur", "item=", item, "kitem", kitem);
-      },
-      evInput: function(item, kitem) {
-        console.log("evInput", "item=", item, "kitem", kitem);
-      },
-      // evEnter: function(item, kitem) {
-      //     console.log('evEnter', 'item=', item, 'kitem', kitem)
-      // },
-      evClickItem: function(item, kitem) {
-        console.log("evClickItem", "item=", item, "kitem", kitem);
-      },
-      evClickLeft: function() {
-        console.log("evClickLeft");
-      },
-      evClickRight: function() {
-        console.log("evClickRight");
+      ckBtnPmUnlock: function(msg) {
+        console.log("ckBtnPmUnlock", msg);
+        setTimeout(function() {
+          console.log("finish");
+          msg.pm.resolve();
+        }, 2000);
       }
     }
   });
