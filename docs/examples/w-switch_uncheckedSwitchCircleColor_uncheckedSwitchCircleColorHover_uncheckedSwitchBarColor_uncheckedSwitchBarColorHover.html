@@ -136,97 +136,20 @@
                 style="cursor:pointer;"
                 title="open for copy link to view component"
                 onclick="window.open('//yuda-lyu.github.io/w-component-vue/examples/app.html?cmp='+this.innerText,'_blank')"
-            >w-panel-stripe</span>
+            >w-switch</span>
         </div>
         <div class="bk">
-            <div class="item">table in slot content</div>
+            <div
+                class="item"
+            >uncheckedSwitchCircleColor &amp; uncheckedSwitchCircleColorHover &amp; uncheckedSwitchBarColor &amp; uncheckedSwitchBarColorHover</div>
 
-            <w-panel-stripe style="width:600px;">
-                <template v-slot:icon>
-                    <v-icon style="margin-right:15px;" size="60">fab fa-angular</v-icon>
-                </template>
-
-                <template v-slot:title>
-                    <div style="font-size:2rem;">{{WPanelStripe.title}}</div>
-                </template>
-
-                <template v-slot:description>
-                    <div style="opacity:0.7;">{{WPanelStripe.description}}</div>
-                </template>
-
-                <template v-slot:content>
-                    <div style="padding:10px;">
-                        <span>A data table</span>
-                    </div>
-
-                    <table
-                        style="width:100%; font-size:0.7rem; border-collapse:collapse;"
-                    >
-                        <thead>
-                            <tr>
-                                <th
-                                    style="padding:2px 8px; text-align:left;"
-                                >Dessert</th>
-                                <th
-                                    style="padding:2px 8px; text-align:left;"
-                                >Calories</th>
-                                <th
-                                    style="padding:2px 8px; text-align:left;"
-                                >Fat</th>
-                                <th
-                                    style="padding:2px 8px; text-align:left;"
-                                >Carbs</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td
-                                    style="padding:2px 8px; border-top:1px solid #ddd;"
-                                >Frozen Yogurt</td>
-                                <td
-                                    style="padding:2px 8px; border-top:1px solid #ddd;"
-                                >159</td>
-                                <td
-                                    style="padding:2px 8px; border-top:1px solid #ddd;"
-                                >6</td>
-                                <td
-                                    style="padding:2px 8px; border-top:1px solid #ddd;"
-                                >24</td>
-                            </tr>
-                            <tr>
-                                <td
-                                    style="padding:2px 8px; border-top:1px solid #ddd;"
-                                >Ice cream sandwich</td>
-                                <td
-                                    style="padding:2px 8px; border-top:1px solid #ddd;"
-                                >237</td>
-                                <td
-                                    style="padding:2px 8px; border-top:1px solid #ddd;"
-                                >9</td>
-                                <td
-                                    style="padding:2px 8px; border-top:1px solid #ddd;"
-                                >37</td>
-                            </tr>
-                            <tr>
-                                <td
-                                    style="padding:2px 8px; border-top:1px solid #ddd;"
-                                >Eclair</td>
-                                <td
-                                    style="padding:2px 8px; border-top:1px solid #ddd;"
-                                >262</td>
-                                <td
-                                    style="padding:2px 8px; border-top:1px solid #ddd;"
-                                >16</td>
-                                <td
-                                    style="padding:2px 8px; border-top:1px solid #ddd;"
-                                >23</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </template>
-
-                <template v-slot:footer>{{WPanelStripe.footer}}</template>
-            </w-panel-stripe>
+            <w-switch
+                :unchecked-switch-circle-color="'#74a4d9'"
+                :unchecked-switch-circle-color-hover="'#69e'"
+                :unchecked-switch-bar-color="'#d1e1f2'"
+                :unchecked-switch-bar-color-hover="'#bce'"
+                v-model="WSwitch.valueBol"
+            ></w-switch>
         </div>
     </v-app>
 
@@ -240,12 +163,9 @@
     vuetify: new Vuetify(),
     data: function() {
       return {
-        WPanelStripe: {
-          title: "A panel title",
-          description: "Quisque ut nisi. Maecenas malesuada.",
-          content:
-            "Here is a panel content, Morbi mattis ullamcorper velit. Donec orci lectus, aliquam ut, faucibus non, euismod id, nulla. In ut quam vitae odio lacinia tincidunt.",
-          footer: "Here is a panel footer"
+        WSwitch: {
+          valueBol: true,
+          valueYN: "y"
         },
         actions: []
       };

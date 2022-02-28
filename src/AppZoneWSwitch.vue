@@ -53,8 +53,8 @@
 
                 <w-switch
                     :text="'顯示文字(text)'"
-                    :textColor="'#24c'"
-                    :textColorHover="'#68c'"
+                    :textColor="'#44f'"
+                    :textColorHover="'#77f'"
                     v-model="WSwitch.valueBol"
                 ></w-switch>
             </div>
@@ -78,14 +78,30 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-switch'"
-                    :casename="'checkedSwitchColor & checkedSwitchColorHover & uncheckedSwitchColor & uncheckedSwitchColorHover'"
+                    :casename="'checkedSwitchCircleColor & checkedSwitchCircleColorHover & checkedSwitchBarColor & checkedSwitchBarColorHover'"
                 ></demolink>
 
                 <w-switch
-                    :checkedSwitchColor="'#f6a'"
-                    :checkedSwitchColorHover="'#f26'"
-                    :uncheckedSwitchColor="'#ccc'"
-                    :uncheckedSwitchColorHover="'#cccccc'"
+                    :checkedSwitchCircleColor="'#f6a'"
+                    :checkedSwitchCircleColorHover="'#f26'"
+                    :checkedSwitchBarColor="'rgba(255, 102, 170, 0.6)'"
+                    :checkedSwitchBarColorHover="'rgba(255, 54, 122, 0.6)'"
+                    v-model="WSwitch.valueBol"
+                ></w-switch>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-switch'"
+                    :casename="'uncheckedSwitchCircleColor & uncheckedSwitchCircleColorHover & uncheckedSwitchBarColor & uncheckedSwitchBarColorHover'"
+                ></demolink>
+
+                <w-switch
+                    :uncheckedSwitchCircleColor="'#74a4d9'"
+                    :uncheckedSwitchCircleColorHover="'#69e'"
+                    :uncheckedSwitchBarColor="'#d1e1f2'"
+                    :uncheckedSwitchBarColorHover="'#bce'"
                     v-model="WSwitch.valueBol"
                 ></w-switch>
             </div>
@@ -107,13 +123,15 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-switch'"
-                    :casename="'not editable & checkedSwitchColorDisabled & uncheckedSwitchColorDisabled'"
+                    :casename="'not editable & checkedSwitchCircleColorDisabled & checkedSwitchBarColorDisabled & uncheckedSwitchCircleColorDisabled & uncheckedSwitchBarColorDisabled'"
                 ></demolink>
 
                 <w-switch
                     :editable="false"
-                    :checkedSwitchColorDisabled="'#ff8a65'"
-                    :uncheckedSwitchColorDisabled="'#ffbca6'"
+                    :checkedSwitchCircleColorDisabled="'#ff8a65'"
+                    :checkedSwitchBarColorDisabled="'#ffbca6'"
+                    :uncheckedSwitchCircleColorDisabled="'rgba(255, 138, 101, 0.5)'"
+                    :uncheckedSwitchBarColorDisabled="'rgba(255, 188, 166, 0.5)'"
                     v-model="WSwitch.valueBol"
                 ></w-switch>
             </div>

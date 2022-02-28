@@ -13,10 +13,10 @@
             <div :style="`padding:2px 0px; height:${4+Math.max(heightCir,heightBar)}px;`">
                 <div :style="`position:relative; padding-top:${(heightCir-heightBar)/2}px;`">
 
-                    <div class="ts" :style="`width:${widthBar}px; height:${heightBar}px; border-radius:8px; opacity:0.6; background:${useSwitchColor};`">
+                    <div class="ts" :style="`width:${widthBar}px; height:${heightBar}px; border-radius:8px; background:${useSwitchBarColor};`">
                     </div>
 
-                    <div class="ts bs" :style="`position:absolute; top:0px; left:${ b ? widthBar-widthCir : 0 }px; width:${widthCir}px; height:${heightCir}px; border-radius:50%; background:${useSwitchColor};`">
+                    <div class="ts bs" :style="`position:absolute; top:0px; left:${ b ? widthBar-widthCir : 0 }px; width:${widthCir}px; height:${heightCir}px; border-radius:50%; background:${useSwitchCircleColor};`">
                     </div>
 
                 </div>
@@ -44,12 +44,18 @@ import color2hex from '../js/vuetifyColor.mjs'
  * @vue-prop {String} [textColorHover='grey darken-3'] 輸入滑鼠移入時文字顏色字串，預設'grey darken-3'
  * @vue-prop {String} [textFontSize='0.85rem'] 輸入文字字型大小字串，預設'0.85rem'
  * @vue-prop {Number} [switchSize=24] 輸入切換器大小，單位為px，預設24
- * @vue-prop {String} [checkedSwitchColor='blue darken-3'] 輸入可編輯時，有效(true|'y')切換器顏色字串，預設'blue darken-3'
- * @vue-prop {String} [checkedSwitchColorHover='blue darken-2'] 輸入滑鼠移入時可編輯時，有效(true|'y')切換器顏色字串，預設'blue darken-2'
- * @@vue-prop {String} [checkedSwitchColorDisabled='grey'] 輸入不可編輯時，有效(true|'y')切換器顏色字串，預設'grey'
- * @vue-prop {String} [uncheckedSwitchColor='#8ad'] 輸入可編輯時，無效(false|'n')切換器顏色字串，預設'#8ad'
- * @vue-prop {String} [uncheckedSwitchColorHover='#9bd'] 輸入滑鼠移入時可編輯時，無效(false|'n')切換器顏色字串，預設'#9bd'
- * @@vue-prop {String} [uncheckedSwitchColorDisabled='#bbb'] 輸入不可編輯時，無效(false|'n')切換器顏色字串，預設'#bbb'
+ * @vue-prop {String} [checkedSwitchCircleColor='blue darken-3'] 輸入可編輯時，有效(true|'y')切換器鈕扣區顏色字串，預設'blue darken-3'
+ * @vue-prop {String} [checkedSwitchCircleColorHover='blue darken-2'] 輸入滑鼠移入時可編輯時，有效(true|'y')切換器鈕扣區顏色字串，預設'blue darken-2'
+ * @vue-prop {String} [checkedSwitchCircleColorDisabled='grey'] 輸入不可編輯時，有效(true|'y')切換器鈕扣區顏色字串，預設'grey'
+ * @vue-prop {String} [uncheckedSwitchCircleColor='#8ad'] 輸入可編輯時，無效(false|'n')切換器鈕扣區顏色字串，預設'#8ad'
+ * @vue-prop {String} [uncheckedSwitchCircleColorHover='#9bd'] 輸入滑鼠移入時可編輯時，無效(false|'n')切換器鈕扣區顏色字串，預設'#9bd'
+ * @vue-prop {String} [uncheckedSwitchCircleColorDisabled='#bbb'] 輸入不可編輯時，無效(false|'n')切換器鈕扣區顏色字串，預設'#bbb'
+ * @vue-prop {String} [checkedSwitchBarColor='blue darken-3'] 輸入可編輯時，有效(true|'y')切換器滑動區顏色字串，預設'blue darken-3'
+ * @vue-prop {String} [checkedSwitchBarColorHover='blue darken-2'] 輸入滑鼠移入時可編輯時，有效(true|'y')切換器滑動區顏色字串，預設'blue darken-2'
+ * @@vue-prop {String} [checkedSwitchBarColorDisabled='grey'] 輸入不可編輯時，有效(true|'y')切換器滑動區顏色字串，預設'grey'
+ * @vue-prop {String} [uncheckedSwitchBarColor='#8ad'] 輸入可編輯時，無效(false|'n')切換器滑動區顏色字串，預設'#8ad'
+ * @vue-prop {String} [uncheckedSwitchBarColorHover='#9bd'] 輸入滑鼠移入時可編輯時，無效(false|'n')切換器滑動區顏色字串，預設'#9bd'
+ * @vue-prop {String} [uncheckedSwitchBarColorDisabled='#bbb'] 輸入不可編輯時，無效(false|'n')切換器滑動區顏色字串，預設'#bbb'
  * @vue-prop {Boolean} [editable=true] 輸入是否為編輯模式，預設true
  */
 export default {
@@ -78,29 +84,53 @@ export default {
             type: Number,
             default: 24,
         },
-        checkedSwitchColor: {
+        checkedSwitchCircleColor: {
             type: String,
             default: 'blue darken-3',
         },
-        checkedSwitchColorHover: {
+        checkedSwitchCircleColorHover: {
             type: String,
             default: 'blue darken-2',
         },
-        checkedSwitchColorDisabled: {
+        checkedSwitchCircleColorDisabled: {
             type: String,
             default: 'grey',
         },
-        uncheckedSwitchColor: {
+        uncheckedSwitchCircleColor: {
             type: String,
-            default: '#8ad',
+            default: '#fafafa',
         },
-        uncheckedSwitchColorHover: {
+        uncheckedSwitchCircleColorHover: {
             type: String,
-            default: '#9bd',
+            default: '#fff',
         },
-        uncheckedSwitchColorDisabled: {
+        uncheckedSwitchCircleColorDisabled: {
             type: String,
             default: '#bbb',
+        },
+        checkedSwitchBarColor: {
+            type: String,
+            default: 'rgba(24, 103, 192, 0.6)',
+        },
+        checkedSwitchBarColorHover: {
+            type: String,
+            default: 'rgba(24, 103, 192, 0.5)',
+        },
+        checkedSwitchBarColorDisabled: {
+            type: String,
+            default: '#ececec',
+        },
+        uncheckedSwitchBarColor: {
+            type: String,
+            default: '#c5c5c5',
+        },
+        uncheckedSwitchBarColorHover: {
+            type: String,
+            default: '#ccc',
+        },
+        uncheckedSwitchBarColorDisabled: {
+            type: String,
+            default: '#ececec',
         },
         editable: {
             type: Boolean,
@@ -186,55 +216,106 @@ export default {
             return `font-size:${s};`
         },
 
-        effCheckedSwitchColor: function() {
+        effCheckedSwitchCircleColor: function() {
             let vo = this
-            return color2hex(vo.checkedSwitchColor)
+            return color2hex(vo.checkedSwitchCircleColor)
         },
 
-        effCheckedSwitchColorHover: function() {
+        effCheckedSwitchCircleColorHover: function() {
             let vo = this
-            return color2hex(vo.checkedSwitchColorHover)
+            return color2hex(vo.checkedSwitchCircleColorHover)
         },
 
-        effCheckedSwitchColorDisabled: function() {
+        effCheckedSwitchCircleColorDisabled: function() {
             let vo = this
-            return color2hex(vo.checkedSwitchColorDisabled)
+            return color2hex(vo.checkedSwitchCircleColorDisabled)
         },
 
-        useCheckedSwitchColor: function() {
+        useCheckedSwitchCircleColor: function() {
             let vo = this
             if (!vo.editable) {
-                return vo.effCheckedSwitchColorDisabled
+                return vo.effCheckedSwitchCircleColorDisabled
             }
-            return vo.hoverTrans ? vo.effCheckedSwitchColorHover : vo.effCheckedSwitchColor
+            return vo.hoverTrans ? vo.effCheckedSwitchCircleColorHover : vo.effCheckedSwitchCircleColor
         },
 
-        effUncheckedSwitchColor: function() {
+        effUncheckedSwitchCircleColor: function() {
             let vo = this
-            return color2hex(vo.uncheckedSwitchColor)
+            return color2hex(vo.uncheckedSwitchCircleColor)
         },
 
-        effUncheckedSwitchColorHover: function() {
+        effUncheckedSwitchCircleColorHover: function() {
             let vo = this
-            return color2hex(vo.uncheckedSwitchColorHover)
+            return color2hex(vo.uncheckedSwitchCircleColorHover)
         },
 
-        effUncheckedSwitchColorDisabled: function() {
+        effUncheckedSwitchCircleColorDisabled: function() {
             let vo = this
-            return color2hex(vo.uncheckedSwitchColorDisabled)
+            return color2hex(vo.uncheckedSwitchCircleColorDisabled)
         },
 
-        useUncheckedSwitchColor: function() {
+        useUncheckedSwitchCircleColor: function() {
             let vo = this
             if (!vo.editable) {
-                return vo.effUncheckedSwitchColorDisabled
+                return vo.effUncheckedSwitchCircleColorDisabled
             }
-            return vo.hoverTrans ? vo.effUncheckedSwitchColorHover : vo.effUncheckedSwitchColor
+            return vo.hoverTrans ? vo.effUncheckedSwitchCircleColorHover : vo.effUncheckedSwitchCircleColor
         },
 
-        useSwitchColor: function() {
+        useSwitchCircleColor: function() {
             let vo = this
-            return vo.b ? vo.useCheckedSwitchColor : vo.useUncheckedSwitchColor
+            return vo.b ? vo.useCheckedSwitchCircleColor : vo.useUncheckedSwitchCircleColor
+        },
+
+        effCheckedSwitchBarColor: function() {
+            let vo = this
+            return color2hex(vo.checkedSwitchBarColor)
+        },
+
+        effCheckedSwitchBarColorHover: function() {
+            let vo = this
+            return color2hex(vo.checkedSwitchBarColorHover)
+        },
+
+        effCheckedSwitchBarColorDisabled: function() {
+            let vo = this
+            return color2hex(vo.checkedSwitchBarColorDisabled)
+        },
+
+        useCheckedSwitchBarColor: function() {
+            let vo = this
+            if (!vo.editable) {
+                return vo.effCheckedSwitchBarColorDisabled
+            }
+            return vo.hoverTrans ? vo.effCheckedSwitchBarColorHover : vo.effCheckedSwitchBarColor
+        },
+
+        effUncheckedSwitchBarColor: function() {
+            let vo = this
+            return color2hex(vo.uncheckedSwitchBarColor)
+        },
+
+        effUncheckedSwitchBarColorHover: function() {
+            let vo = this
+            return color2hex(vo.uncheckedSwitchBarColorHover)
+        },
+
+        effUncheckedSwitchBarColorDisabled: function() {
+            let vo = this
+            return color2hex(vo.uncheckedSwitchBarColorDisabled)
+        },
+
+        useUncheckedSwitchBarColor: function() {
+            let vo = this
+            if (!vo.editable) {
+                return vo.effUncheckedSwitchBarColorDisabled
+            }
+            return vo.hoverTrans ? vo.effUncheckedSwitchBarColorHover : vo.effUncheckedSwitchBarColor
+        },
+
+        useSwitchBarColor: function() {
+            let vo = this
+            return vo.b ? vo.useCheckedSwitchBarColor : vo.useUncheckedSwitchBarColor
         },
 
     },
