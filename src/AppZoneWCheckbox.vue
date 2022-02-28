@@ -35,11 +35,11 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-checkbox'"
-                    :casename="'iconSize'"
+                    :casename="'text'"
                 ></demolink>
 
                 <w-checkbox
-                    :iconSize="18"
+                    :text="'顯示文字(text)'"
                     v-model="WCheckbox.valueBol"
                 ></w-checkbox>
             </div>
@@ -48,12 +48,28 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-checkbox'"
-                    :casename="'checkedIconColor & uncheckedIconColor'"
+                    :casename="'text & textColor & textColorHover'"
                 ></demolink>
 
                 <w-checkbox
-                    :checkedIconColor="'pink'"
-                    :uncheckedIconColor="'pink'"
+                    :text="'顯示文字(text)'"
+                    :textColor="'#24c'"
+                    :textColorHover="'#68c'"
+                    v-model="WCheckbox.valueBol"
+                ></w-checkbox>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-checkbox'"
+                    :casename="'iconSize & textFontSize'"
+                ></demolink>
+
+                <w-checkbox
+                    :text="'顯示文字(text)'"
+                    :iconSize="18"
+                    :textFontSize="'0.7rem'"
                     v-model="WCheckbox.valueBol"
                 ></w-checkbox>
             </div>
@@ -68,6 +84,22 @@
                 <w-checkbox
                     :checkedIcon="mdiCheck"
                     :uncheckedIcon="mdiClose"
+                    v-model="WCheckbox.valueBol"
+                ></w-checkbox>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-checkbox'"
+                    :casename="'checkedIconColor & checkedIconColorHover & uncheckedIconColor & uncheckedIconColorHover'"
+                ></demolink>
+
+                <w-checkbox
+                    :checkedIconColor="'#f6a'"
+                    :checkedIconColorHover="'#f26'"
+                    :uncheckedIconColor="'#f6a'"
+                    :uncheckedIconColorHover="'#f26'"
                     v-model="WCheckbox.valueBol"
                 ></w-checkbox>
             </div>
