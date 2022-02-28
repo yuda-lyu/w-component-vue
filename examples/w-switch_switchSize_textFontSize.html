@@ -85,7 +85,7 @@
     </script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.1.77/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.1.78/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -139,11 +139,12 @@
             >w-switch</span>
         </div>
         <div class="bk">
-            <div class="item">text &amp; color</div>
+            <div class="item">switchSize &amp; textFontSize</div>
 
             <w-switch
-                :text="'是否開啟分享'"
-                :color="'teal accent-3'"
+                :text="'顯示文字(text)'"
+                :switch-size="18"
+                :text-font-size="'0.7rem'"
                 v-model="WSwitch.valueBol"
             ></w-switch>
         </div>
