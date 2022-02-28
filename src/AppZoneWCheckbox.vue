@@ -126,8 +126,8 @@
 
                 <w-checkbox
                     :editable="false"
-                    :checkedIconColorDisabled="'#FF8A65'"
-                    :uncheckedIconColorDisabled="'#FF8A65'"
+                    :checkedIconColorDisabled="'#ff8a65'"
+                    :uncheckedIconColorDisabled="'#ff8a65'"
                     v-model="WCheckbox.valueBol"
                 ></w-checkbox>
             </div>

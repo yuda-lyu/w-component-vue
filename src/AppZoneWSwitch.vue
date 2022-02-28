@@ -14,7 +14,9 @@
                     :casename="'default'"
                 ></demolink>
 
-                <w-switch v-model="WSwitch.valueBol"></w-switch>
+                <w-switch
+                    v-model="WSwitch.valueBol"
+                ></w-switch>
             </div>
 
 
@@ -24,19 +26,66 @@
                     :casename="'use string (y or n)'"
                 ></demolink>
 
-                <w-switch v-model="WSwitch.valueYN"></w-switch>
+                <w-switch
+                    v-model="WSwitch.valueYN"
+                ></w-switch>
             </div>
 
 
             <div class="bk">
                 <demolink
                     :kbname="'w-switch'"
-                    :casename="'text & color'"
+                    :casename="'text'"
                 ></demolink>
 
                 <w-switch
-                    :text="'是否開啟分享'"
-                    :color="'teal accent-3'"
+                    :text="'顯示文字(text)'"
+                    v-model="WSwitch.valueBol"
+                ></w-switch>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-switch'"
+                    :casename="'text & textColor & textColorHover'"
+                ></demolink>
+
+                <w-switch
+                    :text="'顯示文字(text)'"
+                    :textColor="'#24c'"
+                    :textColorHover="'#68c'"
+                    v-model="WSwitch.valueBol"
+                ></w-switch>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-switch'"
+                    :casename="'switchSize & textFontSize'"
+                ></demolink>
+
+                <w-switch
+                    :text="'顯示文字(text)'"
+                    :switchSize="18"
+                    :textFontSize="'0.7rem'"
+                    v-model="WSwitch.valueBol"
+                ></w-switch>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-switch'"
+                    :casename="'checkedSwitchColor & checkedSwitchColorHover & uncheckedSwitchColor & uncheckedSwitchColorHover'"
+                ></demolink>
+
+                <w-switch
+                    :checkedSwitchColor="'#f6a'"
+                    :checkedSwitchColorHover="'#f26'"
+                    :uncheckedSwitchColor="'#ccc'"
+                    :uncheckedSwitchColorHover="'#cccccc'"
                     v-model="WSwitch.valueBol"
                 ></w-switch>
             </div>
@@ -48,7 +97,25 @@
                     :casename="'not editable'"
                 ></demolink>
 
-                <w-switch :editable="false" v-model="WSwitch.valueBol"></w-switch>
+                <w-switch
+                    :editable="false"
+                    v-model="WSwitch.valueBol"
+                ></w-switch>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-switch'"
+                    :casename="'not editable & checkedSwitchColorDisabled & uncheckedSwitchColorDisabled'"
+                ></demolink>
+
+                <w-switch
+                    :editable="false"
+                    :checkedSwitchColorDisabled="'#ff8a65'"
+                    :uncheckedSwitchColorDisabled="'#ffbca6'"
+                    v-model="WSwitch.valueBol"
+                ></w-switch>
             </div>
 
 
