@@ -85,7 +85,7 @@
     </script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.1.76/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.1.77/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -139,11 +139,12 @@
             >w-checkbox</span>
         </div>
         <div class="bk">
-            <div class="item">checkedIconColor &amp; uncheckedIconColor</div>
+            <div class="item">text &amp; textColor &amp; textColorHover</div>
 
             <w-checkbox
-                :checked-icon-color="'pink'"
-                :unchecked-icon-color="'pink'"
+                :text="'顯示文字(text)'"
+                :text-color="'#24c'"
+                :text-color-hover="'#68c'"
                 v-model="WCheckbox.valueBol"
             ></w-checkbox>
         </div>
