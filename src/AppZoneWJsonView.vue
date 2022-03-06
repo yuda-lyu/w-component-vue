@@ -40,13 +40,29 @@
             <div class="bk dz">
                 <demolink
                     :kbname="'w-json-view'"
-                    :casename="'sync viewHeightMax(change-height-of-items)'"
+                    :casename="'no viewHeightMax'"
+                ></demolink>
+
+                <w-json-view
+                    style="border:1px solid #ddd;"
+                    :viewHeightMax="null"
+                    :data="WJsonView.data3"
+                ></w-json-view>
+
+            </div>
+
+
+            <div class="bk dz">
+                <demolink
+                    :kbname="'w-json-view'"
+                    :casename="'events'"
                 ></demolink>
 
                 <w-json-view
                     style="border:1px solid #ddd;"
                     :viewHeightMax="WJsonView.viewHeightMaxSync"
                     :data="WJsonView.data3"
+                    @change-view-items="changeViewItems"
                     @change-height-of-items="changeHeightOfItems"
                 ></w-json-view>
 
@@ -219,9 +235,11 @@ export default {
     //     console.log('WJsonView.data4', this.WJsonView.data4)
     // },
     methods: {
+        changeViewItems: function(msg) {
+            console.log('changeViewItems', msg)
+        },
         changeHeightOfItems: function(msg) {
             console.log('changeHeightOfItems', msg)
-            this.WJsonView.viewHeightMaxSync = msg.height
         },
     },
 }

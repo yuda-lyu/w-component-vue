@@ -536,9 +536,8 @@ export default {
                 {
                     name: 'tree',
                     cmps: [
-                        { name: 'WJsonView' },
                         { name: 'WTree' },
-
+                        { name: 'WJsonView' },
                     ]
                 },
                 {

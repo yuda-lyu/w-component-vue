@@ -71,13 +71,29 @@
             <div class="bk dz">
                 <demolink
                     :kbname="'w-tree'"
-                    :casename="'sync viewHeightMax(change-height-of-items)'"
+                    :casename="'no viewHeightMax'"
+                ></demolink>
+
+                <w-tree
+                    style="border:1px solid #ddd;"
+                    :viewHeightMax="null"
+                    :data="WTree.option.items"
+                ></w-tree>
+
+            </div>
+
+
+            <div class="bk dz">
+                <demolink
+                    :kbname="'w-tree'"
+                    :casename="'events'"
                 ></demolink>
 
                 <w-tree
                     style="border:1px solid #ddd;"
                     :viewHeightMax="WTree.viewHeightMaxSync"
                     :data="WTree.option.items"
+                    @change-view-items="changeViewItems"
                     @change-height-of-items="changeHeightOfItems"
                 ></w-tree>
 
@@ -1315,10 +1331,6 @@ export default {
         }
     },
     methods: {
-        changeHeightOfItems: function(msg) {
-            console.log('changeHeightOfItems', msg)
-            this.WTree.viewHeightMaxSync = msg.height
-        },
         showSelection: function(selections) {
             let ss = {}
             for (let i = 0; i < selections.length; i++) {
@@ -1345,6 +1357,9 @@ export default {
         },
         changeViewItems: function(msg) {
             console.log('changeViewItems', msg)
+        },
+        changeHeightOfItems: function(msg) {
+            console.log('changeHeightOfItems', msg)
         },
         mouseenter: function(msg) {
             console.log('mouseenter', msg)

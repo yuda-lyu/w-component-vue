@@ -2,6 +2,7 @@
     <!-- 拖曳區可能超過組件區域外, 故得使用overflow:hidden -->
     <div
         style="position:relative; overflow:hidden;"
+        :changeViewHeightMax="changeViewHeightMax"
         :changeDefaultDisplayLevel="changeDefaultDisplayLevel"
         :changeDraggableAndOperatable="changeDraggableAndOperatable"
         :changeFilterKeyWords="changeFilterKeyWords"
@@ -9,7 +10,7 @@
 
         <WDynamicList
             ref="wdl"
-            :viewHeightMax="viewHeightMax"
+            :viewHeightMax="viewHeightMaxTrans"
             :itemMinHeight="defItemHeight"
             :itemsPreload="itemsPreload"
             :loadingText="loadingText"
@@ -17,7 +18,7 @@
             :searchingText="searchingText"
             :show="show"
             @change-view-items="(msg)=>{$emit('change-view-items',msg)}"
-            @change-height-of-items="(msg)=>{$emit('change-height-of-items',msg)}"
+            @change-height-of-items="(msg)=>{updateViewHeightMaxTrans(msg);$emit('change-height-of-items',msg)}"
         >
             <template v-slot="props">
 
@@ -237,7 +238,7 @@ let gm = globalMemory()
 
 /**
  * @vue-prop {Array|Object} [data=[]] 輸入資料陣列，預設[]，各元素配合slot顯示即可，slot內提供row與irow，對應原始rows內各元素與指標，另外各元素slot時不要用margin避免計算高度有誤差
- * @vue-prop {Number} [viewHeightMax=400] 輸入顯示區最大高度，單位為px，預設400
+ * @vue-prop {Number} [viewHeightMax=400] 輸入顯示區最大高度，單位為px，若給予非數字則自動依照當前顯隱最高內容調整，預設400
  * @vue-prop {Number} [defaultDisplayLevel=null] 輸入初始展開層數數字，若輸入1就是預設展開至第1層，第2層(含)以下則都隱藏，若輸入null就是全展開，預設null
  * @vue-prop {Boolean} [selectable=false] 輸入是否具有勾選模式，預設false
  * @vue-prop {Array} [selections=[]] 輸入勾選項目陣列，當selectable=true時才可使用，預設[]
@@ -579,6 +580,8 @@ export default {
 
             mmkey: null,
 
+            viewHeightMaxTrans: 2, //預設給予>=2最小內容區高度, 使能觸發顯示渲染連動機制
+
             separation: 3,
             defIconHeight: 34,
             selectionsTrans: [],
@@ -631,6 +634,18 @@ export default {
 
     },
     computed: {
+
+        changeViewHeightMax: function() {
+            let vo = this
+
+            //save
+            if (isNumber(vo.viewHeightMax)) {
+                vo.viewHeightMaxTrans = vo.viewHeightMax
+                // console.log('changeViewHeightMax viewHeightMaxTrans', vo.viewHeightMaxTrans)
+            }
+
+            return ''
+        },
 
         changeDefaultDisplayLevel: function() {
             //console.log('computed changeDefaultDisplayLevel')
@@ -786,6 +801,25 @@ export default {
             // let vo = this
 
             return { event: e, ele: e.currentTarget, row: props.row, item: props.row.item, index: props.index }
+        },
+
+        updateViewHeightMaxTrans: function(msg) {
+            //console.log('methods updateViewHeightMaxTrans', msg)
+
+            let vo = this
+
+            //check, 若viewHeightMax給予數字則將直接使用, 故不更新viewHeightMaxTrans
+            if (isNumber(vo.viewHeightMax)) {
+                return
+            }
+
+            //update viewHeightMaxTrans
+            let h = get(msg, 'height')
+            if (isNumber(h)) {
+                vo.viewHeightMaxTrans = h
+                // console.log('updateViewHeightMaxTrans viewHeightMaxTrans', vo.viewHeightMaxTrans)
+            }
+
         },
 
         getRowsFromData: function(data) {

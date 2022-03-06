@@ -106,7 +106,7 @@ import WTree from './WTree.vue'
 
 /**
  * @vue-prop {Array|Object} [data={}] 輸入資料陣列或物件，預設{}
- * @vue-prop {Number} [viewHeightMax=400] 輸入顯示區最大高度，單位為px，預設400
+ * @vue-prop {Number} [viewHeightMax=400] 輸入顯示區最大高度，單位為px，若給予非數字則自動依照當前顯隱最高內容調整，預設400
  * @vue-prop {Number} [defaultDisplayLevel=null] 輸入初始展開層數數字，若輸入1就是預設展開至第1層，第2層(含)以下則都隱藏，若輸入null就是全展開，預設null
  * @vue-prop {Number} [indent=1] 輸入縮排比率數字，若使用1就是1倍的圖標寬度(24px)+2*separation(3px)，預設1
  * @vue-prop {Number} [iconHeight=24] 輸入顯隱icon按鈕高度數字，單位為px，預設24
