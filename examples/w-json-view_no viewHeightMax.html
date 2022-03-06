@@ -85,7 +85,7 @@
     </script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.1.79/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.1.80/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -139,13 +139,12 @@
             >w-json-view</span>
         </div>
         <div class="bk dz">
-            <div class="item">sync viewHeightMax(change-height-of-items)</div>
+            <div class="item">no viewHeightMax</div>
 
             <w-json-view
                 style="border:1px solid #ddd;"
-                :view-height-max="WJsonView.viewHeightMaxSync"
+                :view-height-max="null"
                 :data="WJsonView.data3"
-                @change-height-of-items="changeHeightOfItems"
             ></w-json-view>
         </div>
     </v-app>
@@ -463,9 +462,11 @@
     },
     computed: {},
     methods: {
+      changeViewItems: function(msg) {
+        console.log("changeViewItems", msg);
+      },
       changeHeightOfItems: function(msg) {
         console.log("changeHeightOfItems", msg);
-        this.WJsonView.viewHeightMaxSync = msg.height;
       }
     }
   });

@@ -85,7 +85,7 @@
     </script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.1.79/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.1.80/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -471,9 +471,11 @@
     },
     computed: {},
     methods: {
+      changeViewItems: function(msg) {
+        console.log("changeViewItems", msg);
+      },
       changeHeightOfItems: function(msg) {
         console.log("changeHeightOfItems", msg);
-        this.WJsonView.viewHeightMaxSync = msg.height;
       }
     }
   });

@@ -85,7 +85,7 @@
     </script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.1.79/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.1.80/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -558,10 +558,6 @@
     },
     computed: {},
     methods: {
-      changeHeightOfItems: function(msg) {
-        console.log("changeHeightOfItems", msg);
-        this.WTree.viewHeightMaxSync = msg.height;
-      },
       showSelection: function(selections) {
         let ss = {};
         for (let i = 0; i < selections.length; i++) {
@@ -588,6 +584,9 @@
       },
       changeViewItems: function(msg) {
         console.log("changeViewItems", msg);
+      },
+      changeHeightOfItems: function(msg) {
+        console.log("changeHeightOfItems", msg);
       },
       mouseenter: function(msg) {
         console.log("mouseenter", msg);
