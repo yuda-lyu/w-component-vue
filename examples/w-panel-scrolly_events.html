@@ -85,7 +85,7 @@
     </script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.1.80/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.1.81/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -147,6 +147,7 @@
                 @scroll-infor="(msg)=>{getEvents('scroll-infor',msg)}"
                 @resize="(msg)=>{getEvents('resize',msg)}"
                 @mutation="(msg)=>{getEvents('mutation',msg)}"
+                @visible="(msg)=>{getEvents('visible',msg)}"
                 @update:scroll-top="(msg)=>{getEvents('update:scrollTop',msg)}"
             >
                 <table :style="WPanelScrolly.tableStyle">
