@@ -35,6 +35,7 @@
                     @scroll-infor="(msg)=>{getEvents('scroll-infor',msg)}"
                     @resize="(msg)=>{getEvents('resize',msg)}"
                     @mutation="(msg)=>{getEvents('mutation',msg)}"
+                    @visible="(msg)=>{getEvents('visible',msg)}"
                     @update:scrollTop="(msg)=>{getEvents('update:scrollTop',msg)}"
                 >
                     <table :style="WPanelScrolly.tableStyle"><tbody><tr><td :style="WPanelScrolly.tdStyle">11</td><td :style="WPanelScrolly.tdStyle">12</td><td :style="WPanelScrolly.tdStyle">13</td><td :style="WPanelScrolly.tdStyle">14</td></tr><tr><td :style="WPanelScrolly.tdStyle">21</td><td :style="WPanelScrolly.tdStyle">22</td><td :style="WPanelScrolly.tdStyle">23</td><td :style="WPanelScrolly.tdStyle">24</td></tr><tr><td :style="WPanelScrolly.tdStyle">31</td><td :style="WPanelScrolly.tdStyle">32</td><td :style="WPanelScrolly.tdStyle">33</td><td :style="WPanelScrolly.tdStyle">34</td></tr><tr><td :style="WPanelScrolly.tdStyle">41</td><td :style="WPanelScrolly.tdStyle">42</td><td :style="WPanelScrolly.tdStyle">43</td><td :style="WPanelScrolly.tdStyle">44</td></tr><tr><td :style="WPanelScrolly.tdStyle">51</td><td :style="WPanelScrolly.tdStyle">52</td><td :style="WPanelScrolly.tdStyle">53</td><td :style="WPanelScrolly.tdStyle">54</td></tr></tbody></table>

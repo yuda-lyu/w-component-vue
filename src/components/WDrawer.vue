@@ -42,14 +42,14 @@
             <div
                 :style="`position:${effOverlayPosition}; ${effDrawerDetectLoction} top:0px; right:0px; bottom:0px; z-index:${effDrawerZIndex+1}; width:${effDrawerDetectWidth}; height:100%; overflow:hidden;`"
                 @click="(ev)=>{ckToggle(ev,false)}"
-                v-if="showOverlay2Detect"
+                v-show="showOverlay2Detect"
             >
 
                 <!-- drawer平移層 -->
                 <div
-                    class="ts"
+                    _class="ts"
                     :style="`height:100%; display:flex; justify-content:${ isAtLeft ? 'start' : 'end' };`"
-                    v-if="showOverlay4Translate"
+                    _v-show="showOverlay4Translate"
                 >
 
                     <div
@@ -138,7 +138,7 @@ export default {
             // effOverlay3Shadow: false,
 
             timerOverlay4Translate: null,
-            showOverlay4Translate: false,
+            // showOverlay4Translate: false,
             effOverlay4Translate: false,
 
         }
@@ -279,7 +279,7 @@ export default {
 
             let sec
 
-            //fsm
+            //check
             if (value) {
                 // vo.fsmShowOverlay.showOverlay()
                 // vo.fsmShowStateOverlay.showOverlay()
@@ -302,7 +302,7 @@ export default {
 
                 // showOverlay4Translate: false,
                 // effOverlay4Translate: false,
-                vo.showOverlay4Translate = true
+                // vo.showOverlay4Translate = true
                 vo.timerOverlay4Translate = setTimeout(() => {
                     vo.effOverlay4Translate = true
                 }, sec)
@@ -335,9 +335,9 @@ export default {
                 // showOverlay4Translate: false,
                 // effOverlay4Translate: false,
                 vo.effOverlay4Translate = false
-                vo.timerOverlay4Translate = setTimeout(() => {
-                    vo.showOverlay4Translate = false
-                }, sec)
+                // vo.timerOverlay4Translate = setTimeout(() => {
+                //     vo.showOverlay4Translate = false
+                // }, sec)
 
             }
 

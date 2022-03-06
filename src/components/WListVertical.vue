@@ -245,9 +245,15 @@ export default {
                 footerHeight = eleFooter.offsetHeight
             }
 
-
             //listHeight
-            vo.listHeight = vo.panelHeight - headerHeight - footerHeight
+            let listHeight = vo.panelHeight - headerHeight - footerHeight
+            // console.log('vo.panelHeight', vo.panelHeight, 'headerHeight', headerHeight, 'footerHeight', footerHeight)
+            // console.log('listHeight',  listHeight)
+
+            //check
+            if (listHeight > 0 && vo.listHeight !== listHeight) {
+                vo.listHeight = listHeight
+            }
 
         },
 

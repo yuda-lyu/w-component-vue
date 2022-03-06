@@ -36,6 +36,8 @@
                     :style="``"
                     v-dommutation
                     @dommutation="mutation"
+                    v-domvisible
+                    @domvisible="visible"
                 >
                     <slot></slot>
                 </div>
@@ -71,6 +73,7 @@ import waitFun from 'wsemi/src/waitFun.mjs'
 import debounce from 'wsemi/src/debounce.mjs'
 import domResize from '../js/domResize.mjs'
 import domMutation from '../js/domMutation.mjs'
+import domVisible from '../js/domVisible.mjs'
 
 
 /**
@@ -83,6 +86,7 @@ export default {
     directives: {
         domresize: domResize(),
         dommutation: domMutation(),
+        domvisible: domVisible(),
     },
     components: {
     },
@@ -217,8 +221,8 @@ export default {
             if (divContent) {
                 // console.log('resizeShell divContent.offsetHeight', divContent.offsetHeight)
 
-                //save
-                if (vo.contentHeight !== divContent.offsetHeight) {
+                //check, 若為隱藏則不偵測與更新
+                if (divContent.offsetHeight !== 0 && vo.contentHeight !== divContent.offsetHeight) {
                     // console.log('resizeShell 需更新contentHeight', divContent.offsetHeight, '<-', vo.contentHeight)
                     vo.contentHeight = divContent.offsetHeight
                 }
@@ -246,13 +250,11 @@ export default {
 
             //divContent
             let divContent = get(vo, '$refs.divContent')
-
-            //check
             if (divContent) {
                 // console.log('mutation divContent.offsetHeight', divContent.offsetHeight)
 
-                //save
-                if (vo.contentHeight !== divContent.offsetHeight) {
+                //check, 若為隱藏則不偵測與更新
+                if (divContent.offsetHeight !== 0 && vo.contentHeight !== divContent.offsetHeight) {
                     // console.log('mutation 需更新contentHeight', divContent.offsetHeight, '<-', vo.contentHeight)
                     vo.contentHeight = divContent.offsetHeight
                 }
@@ -264,6 +266,32 @@ export default {
 
             //emit
             vo.triggerEvent('mutation', { ...msg, from: 'content' })
+
+        },
+
+        visible: function(v) {
+            // console.log('methods visible', v)
+
+            let vo = this
+
+            //divContent
+            let divContent = get(vo, '$refs.divContent')
+            if (divContent) {
+                // console.log('visible divContent.offsetHeight', divContent.offsetHeight)
+
+                //check, 若為隱藏則不偵測與更新
+                if (divContent.offsetHeight !== 0 && vo.contentHeight !== divContent.offsetHeight) {
+                    // console.log('visible 需更新contentHeight', divContent.offsetHeight, '<-', vo.contentHeight)
+                    vo.contentHeight = divContent.offsetHeight
+                }
+
+            }
+
+            //updateRatio
+            vo.updateRatio()
+
+            //emit
+            vo.triggerEvent('visible', { visible: v, from: 'content' })
 
         },
 
