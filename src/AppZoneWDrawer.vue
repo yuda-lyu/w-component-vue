@@ -401,52 +401,64 @@ export default {
                 'title': 'Article Title',
                 'content': 'Here is an article content, texts are from Vuetify. There are three ways in which you can install Vuetify. The first (and recommended) way is to utilize the vuetify-loader or what we call automatic A-la-carte. This will ensure that your application only uses the features and styles from Vuetify that are needed, significantly reducing your application\'s compiled size. Keep in mind, when importing from vuetify/lib, the necessary styles are automatically imported for you.',
                 'listItems': [
+
                     {
-                        text: 'Interpreting',
-                        icon: 'fas fa-american-sign-language-interpreting',
-                    },
-                    {
-                        text: 'Search',
-                        icon: 'fas fa-search',
-                    },
-                    {
-                        text: 'Binoculars',
+                        text: '宜蘭測站',
                         icon: 'fas fa-binoculars',
                     },
                     {
-                        text: 'Building',
-                        icon: 'fa-regular fa-building',
+                        text: '台南測站A',
+                        icon: 'fas fa-binoculars',
                     },
                     {
-                        text: 'Tachometer-alt',
-                        icon: 'fas fa-tachometer-alt',
-                    },
-                    {
-                        text: 'Chess-king',
-                        icon: 'fas fa-chess-king',
+                        text: '台南測站B',
+                        icon: 'fas fa-binoculars',
                     },
 
-
-                    {
-                        text: 'Calendar',
-                        icon: 'fas fa-calendar-alt',
-                    },
-                    {
-                        text: 'chart',
-                        icon: 'fas fa-chart-bar',
-                    },
-                    {
-                        text: 'Cloud-meatball',
-                        icon: 'fas fa-cloud-meatball',
-                    },
-                    {
-                        text: 'Cubes',
-                        icon: 'fas fa-cubes',
-                    },
-                    {
-                        text: 'Dungeon',
-                        icon: 'fas fa-dungeon',
-                    },
+                    // {
+                    //     text: 'Interpreting',
+                    //     icon: 'fas fa-american-sign-language-interpreting',
+                    // },
+                    // {
+                    //     text: 'Search',
+                    //     icon: 'fas fa-search',
+                    // },
+                    // {
+                    //     text: 'Binoculars',
+                    //     icon: 'fas fa-binoculars',
+                    // },
+                    // {
+                    //     text: 'Building',
+                    //     icon: 'fa-regular fa-building',
+                    // },
+                    // {
+                    //     text: 'Tachometer-alt',
+                    //     icon: 'fas fa-tachometer-alt',
+                    // },
+                    // {
+                    //     text: 'Chess-king',
+                    //     icon: 'fas fa-chess-king',
+                    // },
+                    // {
+                    //     text: 'Calendar',
+                    //     icon: 'fas fa-calendar-alt',
+                    // },
+                    // {
+                    //     text: 'chart',
+                    //     icon: 'fas fa-chart-bar',
+                    // },
+                    // {
+                    //     text: 'Cloud-meatball',
+                    //     icon: 'fas fa-cloud-meatball',
+                    // },
+                    // {
+                    //     text: 'Cubes',
+                    //     icon: 'fas fa-cubes',
+                    // },
+                    // {
+                    //     text: 'Dungeon',
+                    //     icon: 'fas fa-dungeon',
+                    // },
                 ],
                 'listPkgs': [
                     {

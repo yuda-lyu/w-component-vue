@@ -278,11 +278,6 @@
             ></AppZoneWHighchartsVueDyn>
 
 
-            <AppZoneWHighchartsBitmapDyn
-                v-if="useCmpName==='WHighchartsBitmapDyn'"
-            ></AppZoneWHighchartsBitmapDyn>
-
-
             <AppZoneWHighstockVueDyn
                 v-if="useCmpName==='WHighstockVueDyn'"
             ></AppZoneWHighstockVueDyn>
@@ -291,11 +286,6 @@
             <AppZoneWEchartsVueDyn
                 v-if="useCmpName==='WEchartsVueDyn'"
             ></AppZoneWEchartsVueDyn>
-
-
-            <AppZoneWPanelChart
-                v-if="useCmpName==='WPanelChart'"
-            ></AppZoneWPanelChart>
 
 
             <AppZoneWAggridVueDyn
@@ -389,10 +379,8 @@ import AppZoneWDynamicList from './AppZoneWDynamicList.vue'
 import AppZoneWJsonView from './AppZoneWJsonView.vue'
 import AppZoneWTree from './AppZoneWTree.vue'
 import AppZoneWHighchartsVueDyn from './AppZoneWHighchartsVueDyn.vue'
-import AppZoneWHighchartsBitmapDyn from './AppZoneWHighchartsBitmapDyn.vue'
 import AppZoneWHighstockVueDyn from './AppZoneWHighstockVueDyn.vue'
 import AppZoneWEchartsVueDyn from './AppZoneWEchartsVueDyn.vue'
-import AppZoneWPanelChart from './AppZoneWPanelChart.vue'
 import AppZoneWAggridVueDyn from './AppZoneWAggridVueDyn.vue'
 import AppZoneWTableDyn from './AppZoneWTableDyn.vue'
 import AppZoneWImageViewerDyn from './AppZoneWImageViewerDyn.vue'
@@ -444,10 +432,8 @@ export default {
         AppZoneWJsonView,
         AppZoneWTree,
         AppZoneWHighchartsVueDyn,
-        AppZoneWHighchartsBitmapDyn,
         AppZoneWHighstockVueDyn,
         AppZoneWEchartsVueDyn,
-        AppZoneWPanelChart,
         AppZoneWAggridVueDyn,
         AppZoneWTableDyn,
         AppZoneWImageViewerDyn,
@@ -558,10 +544,8 @@ export default {
                             name: 'plot',
                             cmps: [
                                 { name: 'WHighchartsVueDyn' },
-                                { name: 'WHighchartsBitmapDyn' },
                                 { name: 'WHighstockVueDyn' },
                                 { name: 'WEchartsVueDyn' },
-                                { name: 'WPanelChart' },
                             ],
                         },
                         {

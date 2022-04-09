@@ -16,7 +16,6 @@ import WGroupCheck from './WGroupCheck.vue'
 import WGroupDragdrop from './WGroupDragdrop.vue'
 import WGroupRadio from './WGroupRadio.vue'
 import WGroupTags from './WGroupTags.vue'
-import WHighchartsBitmapDyn from './WHighchartsBitmapDyn.vue'
 import WHighchartsVueDyn from './WHighchartsVueDyn.vue'
 import WHighstockVueDyn from './WHighstockVueDyn.vue'
 import WIcon from './WIcon.vue'
@@ -29,7 +28,6 @@ import WLeafletVueDyn from './WLeafletVueDyn.vue'
 import WListVertical from './WListVertical.vue'
 import WListVerticalItem from './WListVerticalItem.vue'
 import WPanelBulge from './WPanelBulge.vue'
-import WPanelChart from './WPanelChart.vue'
 import WPanelDivideHorizontal from './WPanelDivideHorizontal.vue'
 import WPanelDivideVertical from './WPanelDivideVertical.vue'
 import WPanelScale from './WPanelScale.vue'
@@ -86,7 +84,6 @@ let WComponentVue = {
         Vue.component('w-group-dragdrop', WGroupDragdrop)
         Vue.component('w-group-radio', WGroupRadio)
         Vue.component('w-group-tags', WGroupTags)
-        Vue.component('w-highcharts-bitmap-dyn', WHighchartsBitmapDyn)
         Vue.component('w-highcharts-vue-dyn', WHighchartsVueDyn)
         Vue.component('w-highstock-vue-dyn', WHighstockVueDyn)
         Vue.component('w-icon', WIcon)
@@ -99,7 +96,6 @@ let WComponentVue = {
         Vue.component('w-list-vertical', WListVertical)
         Vue.component('w-list-vertical-item', WListVerticalItem)
         Vue.component('w-panel-bulge', WPanelBulge)
-        Vue.component('w-panel-chart', WPanelChart)
         Vue.component('w-panel-divide-horizontal', WPanelDivideHorizontal)
         Vue.component('w-panel-divide-vertical', WPanelDivideVertical)
         Vue.component('w-panel-scale', WPanelScale)

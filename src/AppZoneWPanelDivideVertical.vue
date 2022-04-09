@@ -145,12 +145,12 @@
                     >
                         <template v-slot:top="props">
                             <div :style="'position:relative; height:'.concat(props.height, 'px; overflow:hidden;')">
-                                <img style="position:absolute; top:0; left:0; width:800px; height:600px; user-select:none; user-drag:none;" src="https://cdn.jsdelivr.net/npm/w-demores@1.0.13/res/img/view/001.jpg" />
+                                <img style="position:absolute; top:0; left:0; width:800px; height:600px; user-select:none; user-drag:none;" src="https://cdn.jsdelivr.net/npm/w-demores@1.0.18/res/img/view/001.jpg" />
                             </div>
                         </template>
                         <template v-slot:bottom="props">
                             <div :style="'position:relative; height:'.concat(props.height, 'px; overflow:hidden;')">
-                                <img style="position:absolute; bottom:-200px; left:0; width:800px; height:600px; user-select:none; user-drag:none;" src="https://cdn.jsdelivr.net/npm/w-demores@1.0.13/res/img/view/001-gray.jpg" />
+                                <img style="position:absolute; bottom:-200px; left:0; width:800px; height:600px; user-select:none; user-drag:none;" src="https://cdn.jsdelivr.net/npm/w-demores@1.0.18/res/img/view/001-gray.jpg" />
                             </div>
                         </template>
                     </w-panel-divide-vertical>
@@ -173,12 +173,12 @@
                     >
                         <template v-slot:top="props">
                             <div :style="'position:relative; height:'.concat(props.height, 'px; overflow:hidden;')">
-                                <img style="position:absolute; top:0; left:0; width:800px; height:600px; user-select:none; user-drag:none;" src="https://cdn.jsdelivr.net/npm/w-demores@1.0.13/res/img/view/001.jpg" />
+                                <img style="position:absolute; top:0; left:0; width:800px; height:600px; user-select:none; user-drag:none;" src="https://cdn.jsdelivr.net/npm/w-demores@1.0.18/res/img/view/001.jpg" />
                             </div>
                         </template>
                         <template v-slot:bottom="props">
                             <div :style="'position:relative; height:'.concat(props.height, 'px; overflow:hidden;')">
-                                <img style="position:absolute; bottom:-200px; left:0; width:800px; height:600px; user-select:none; user-drag:none;" src="https://cdn.jsdelivr.net/npm/w-demores@1.0.13/res/img/view/001-gray.jpg" />
+                                <img style="position:absolute; bottom:-200px; left:0; width:800px; height:600px; user-select:none; user-drag:none;" src="https://cdn.jsdelivr.net/npm/w-demores@1.0.18/res/img/view/001-gray.jpg" />
                             </div>
                         </template>
                     </w-panel-divide-vertical>
