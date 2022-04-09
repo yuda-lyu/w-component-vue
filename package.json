@@ -1,6 +1,6 @@
 {
   "name": "w-component-vue",
-  "version": "2.1.82",
+  "version": "2.1.83",
   "author": "yuda-lyu(semisphere)",
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -17,6 +17,15 @@
     "wsemi": "^1.6.54"
   },
   "devDependencies": {
+    "eslint": "^7.26.0",
+    "eslint-config-standard": "^16.0.2",
+    "eslint-friendly-formatter": "^4.0.1",
+    "eslint-loader": "^4.0.2",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^5.1.0",
+    "eslint-plugin-standard": "^4.1.0",
+    "eslint-plugin-vue": "^7.9.0",
     "@vue/cli-plugin-babel": "^4.5.13",
     "@vue/cli-plugin-eslint": "^4.5.13",
     "@vue/cli-service": "^4.5.13",
@@ -28,12 +37,6 @@
     "vuetify": "^2.6.4",
     "vuetify-loader": "^1.7.3",
     "w-package-tools": "^1.0.65"
-  },
-  "tmp": {
-    "vue": "^2.6.12",
-    "vue-cli-plugin-vuetify": "^2.4.0",
-    "vuetify": "^2.5.1",
-    "vuetify-loader": "^1.7.2"
   },
   "eslintConfig": {
     "root": true,
