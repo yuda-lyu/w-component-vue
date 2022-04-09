@@ -40,8 +40,7 @@
                         <div style="font-size:0.8rem; color:#fff;">{{img.name}}</div>
                     </div>
 
-                    <div style="background:rgba(200,200,200,0.5); padding:0px 5px;">
-                        <div style="margin-top:0px;">
+                    <div style="background:rgba(200,200,200,0.5); padding:3px 5px;">
                             <input
                                 type="text"
                                 class="inp"
@@ -49,7 +48,6 @@
                                 readonly
                                 :value="img.src"
                             >
-                        </div>
                     </div>
 
                 </div>
@@ -570,12 +568,16 @@ export default {
 <style scoped>
 .inp {
     opacity: 0.75;
+    font: inherit;
     font-size: 0.7rem;
     height: 1rem;
     line-height: 1rem;
     width: 100%;
     margin: 0;
     padding: 0;
+    display: block;
+    background-color: transparent;
+    border-style: none;
 }
 .inp:focus {
     outline: none;
