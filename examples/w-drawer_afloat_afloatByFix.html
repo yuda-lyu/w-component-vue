@@ -37,7 +37,7 @@
 
     <!-- mdi, 各組件使用mdi/js會於轉單頁時改為mdi icon, 故需引用mdi/css -->
     <link
-        href="https://cdn.jsdelivr.net/npm/@mdi/font@6.5.95/css/materialdesignicons.min.css"
+        href="https://cdn.jsdelivr.net/npm/@mdi/font@6.6.96/css/materialdesignicons.min.css"
         rel="stylesheet"
     />
 
@@ -53,25 +53,25 @@
 
     <!-- data -->
     <script
-        src="https://cdn.jsdelivr.net/npm/w-demores@1.0.13/res/data/dataAAPL.js"
+        src="https://cdn.jsdelivr.net/npm/w-demores@1.0.18/res/data/dataAAPL.js"
     ></script>
     <script
-        src="https://cdn.jsdelivr.net/npm/w-demores@1.0.13/res/data/dataUSD2EUR.js"
+        src="https://cdn.jsdelivr.net/npm/w-demores@1.0.18/res/data/dataUSD2EUR.js"
     ></script>
     <script
-        src="https://cdn.jsdelivr.net/npm/w-demores@1.0.13/res/data/dataTemperature.js"
+        src="https://cdn.jsdelivr.net/npm/w-demores@1.0.18/res/data/dataTemperature.js"
     ></script>
     <script
-        src="https://cdn.jsdelivr.net/npm/w-demores@1.0.13/res/data/dataHousePriceArea.js"
+        src="https://cdn.jsdelivr.net/npm/w-demores@1.0.18/res/data/dataHousePriceArea.js"
     ></script>
     <script
-        src="https://cdn.jsdelivr.net/npm/w-demores@1.0.13/res/data/dataFlare.js"
+        src="https://cdn.jsdelivr.net/npm/w-demores@1.0.18/res/data/dataFlare.js"
     ></script>
     <script
-        src="https://cdn.jsdelivr.net/npm/w-demores@1.0.13/res/data/dataRain.js"
+        src="https://cdn.jsdelivr.net/npm/w-demores@1.0.18/res/data/dataRain.js"
     ></script>
     <script
-        src="https://cdn.jsdelivr.net/npm/w-demores@1.0.13/res/data/dataRainClip.js"
+        src="https://cdn.jsdelivr.net/npm/w-demores@1.0.18/res/data/dataRainClip.js"
     ></script>
     <script>
   //save in window
@@ -85,7 +85,7 @@
     </script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.1.81/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.1.82/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -194,50 +194,62 @@
             "Here is an article content, texts are from Vuetify. There are three ways in which you can install Vuetify. The first (and recommended) way is to utilize the vuetify-loader or what we call automatic A-la-carte. This will ensure that your application only uses the features and styles from Vuetify that are needed, significantly reducing your application's compiled size. Keep in mind, when importing from vuetify/lib, the necessary styles are automatically imported for you.",
           listItems: [
             {
-              text: "Interpreting",
-              icon: "fas fa-american-sign-language-interpreting"
-            },
-            {
-              text: "Search",
-              icon: "fas fa-search"
-            },
-            {
-              text: "Binoculars",
+              text: "宜蘭測站",
               icon: "fas fa-binoculars"
             },
             {
-              text: "Building",
-              icon: "fa-regular fa-building"
+              text: "台南測站A",
+              icon: "fas fa-binoculars"
             },
             {
-              text: "Tachometer-alt",
-              icon: "fas fa-tachometer-alt"
-            },
-            {
-              text: "Chess-king",
-              icon: "fas fa-chess-king"
-            },
-
-            {
-              text: "Calendar",
-              icon: "fas fa-calendar-alt"
-            },
-            {
-              text: "chart",
-              icon: "fas fa-chart-bar"
-            },
-            {
-              text: "Cloud-meatball",
-              icon: "fas fa-cloud-meatball"
-            },
-            {
-              text: "Cubes",
-              icon: "fas fa-cubes"
-            },
-            {
-              text: "Dungeon",
-              icon: "fas fa-dungeon"
+              text: "台南測站B",
+              icon: "fas fa-binoculars"
             }
+
+            // {
+            //     text: 'Interpreting',
+            //     icon: 'fas fa-american-sign-language-interpreting',
+            // },
+            // {
+            //     text: 'Search',
+            //     icon: 'fas fa-search',
+            // },
+            // {
+            //     text: 'Binoculars',
+            //     icon: 'fas fa-binoculars',
+            // },
+            // {
+            //     text: 'Building',
+            //     icon: 'fa-regular fa-building',
+            // },
+            // {
+            //     text: 'Tachometer-alt',
+            //     icon: 'fas fa-tachometer-alt',
+            // },
+            // {
+            //     text: 'Chess-king',
+            //     icon: 'fas fa-chess-king',
+            // },
+            // {
+            //     text: 'Calendar',
+            //     icon: 'fas fa-calendar-alt',
+            // },
+            // {
+            //     text: 'chart',
+            //     icon: 'fas fa-chart-bar',
+            // },
+            // {
+            //     text: 'Cloud-meatball',
+            //     icon: 'fas fa-cloud-meatball',
+            // },
+            // {
+            //     text: 'Cubes',
+            //     icon: 'fas fa-cubes',
+            // },
+            // {
+            //     text: 'Dungeon',
+            //     icon: 'fas fa-dungeon',
+            // },
           ],
           listPkgs: [
             {
