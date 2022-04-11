@@ -233,8 +233,12 @@ import color2hex from '../js/vuetifyColor.mjs'
  * @vue-prop {String|Array} [hideIds=''] 輸入欲隱藏欄位字串或陣列，可被opt.kpHeadHide複寫，預設''
  * @vue-prop {String|Array} [fixIds=''] 輸入欲固定於左側欄位字串或陣列，可被opt.kpHeadFixLeft複寫，預設''
  * @vue-prop {String} [checkId=''] 輸入欲使用核選方塊欄位字串，可被opt.kpHeadCheckBox複寫，預設''
- * @vue-prop {String|Array} [removeIdsWhenDownload=''] 輸入當下載成Excel檔案時欲移除的欄位字串或陣列，預設''
- * @vue-prop {Boolean} [checkNoDataWhenSave=false] 輸入於儲存時是否檢查無有效資料布林值，預設為false
+ * @vue-prop {String|Array} [removeIdsWhenDownload=''] 輸入下載Excel檔案時欲移除的欄位字串或陣列，預設''
+ * @vue-prop {Boolean} [funGetLtdtHookWhenDownload=null] 輸入下載Excel檔案時針對ltdt數據階段的攔截處理函數，預設為null
+ * @vue-prop {Boolean} [funGetMatHookWhenDownload=null] 輸入下載Excel檔案時針對mat數據階段的攔截處理函數，預設為null
+ * @vue-prop {Boolean} [useHeadWhenDownload=true] 輸入下載Excel檔案時是否將欄位鍵值轉換成head布林值，此需提供opt.kpHead物件，預設為true
+ * @vue-prop {String} [fileNameWhenDownload='data.xlsx'] 輸入下載Excel檔案時儲存檔名稱字串，預設'data.xlsx'
+ * @vue-prop {String} [sheetNameWhenDownload='data'] 輸入下載Excel檔案時sheet名稱字串，預設'data'
  * @vue-prop {Boolean} [editable=false] 輸入是否可編輯布林值，可被opt.defCellEditable複寫，預設為false
  * @vue-prop {String} [textLabelDataName='Data name] 輸入數據名稱字串，預設'Data name'
  * @vue-prop {String} [textPlaceholderDataName='Please enter data name'] 輸入數據名稱placeholder字串，預設'Please enter data name'
@@ -381,6 +385,26 @@ export default {
             //     'order',
             //     'isActive',
             // ],
+        },
+        funGetLtdtHookWhenDownload: {
+            type: Function,
+            default: null,
+        },
+        funGetMatHookWhenDownload: {
+            type: Function,
+            default: null,
+        },
+        useHeadWhenDownload: {
+            type: Boolean,
+            default: false,
+        },
+        fileNameWhenDownload: {
+            type: String,
+            default: 'data.xlsx',
+        },
+        sheetNameWhenDownload: {
+            type: String,
+            default: 'data',
         },
         editable: {
             type: Boolean,
@@ -923,6 +947,7 @@ export default {
                 //downloadData
                 fun({
                     funGetKeysHook: (keys) => {
+                        // console.log('funGetKeysHook', keys)
                         if (isestr(vo.removeIdsWhenDownload)) {
                             pull(keys, vo.removeIdsWhenDownload)
                         }
@@ -930,7 +955,21 @@ export default {
                             pull(keys, ...vo.removeIdsWhenDownload)
                         }
                         return keys
-                    }
+                    },
+                    // funGetLtdtHook: function(ltdt) {
+                    //     // console.log('funGetLtdtHook', ltdt)
+                    //     return ltdt
+                    // },
+                    funGetLtdtHook: vo.funGetLtdtHookWhenDownload,
+                    // funGetMatHook: function(mat) {
+                    //     // console.log('funGetMatHook', mat)
+                    //     return mat
+                    // },
+                    funGetMatHook: vo.funGetMatHookWhenDownload,
+                    useHead: vo.useHeadWhenDownload, //default: false
+                    fileName: vo.fileNameWhenDownload, //default: 'data.xlsx'
+                    sheetName: vo.sheetNameWhenDownload, //default: data
+                    pathItems: null, //default: 'https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js'
                 })
 
                 vo.$emit('success', vo.successMsgFromDownloadData)
