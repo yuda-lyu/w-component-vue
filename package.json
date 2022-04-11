@@ -1,6 +1,6 @@
 {
   "name": "w-component-vue",
-  "version": "2.1.85",
+  "version": "2.1.86",
   "author": "yuda-lyu(semisphere)",
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -14,7 +14,7 @@
     "@mdi/js": "^6.6.96",
     "@vue/composition-api": "^1.4.9",
     "lodash": "^4.17.21",
-    "wsemi": "^1.6.54"
+    "wsemi": "^1.6.55"
   },
   "devDependencies": {
     "eslint": "^7.26.0",
