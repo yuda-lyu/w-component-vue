@@ -236,7 +236,7 @@ import color2hex from '../js/vuetifyColor.mjs'
  * @vue-prop {String|Array} [removeIdsWhenDownload=''] 輸入下載Excel檔案時欲移除的欄位字串或陣列，預設''
  * @vue-prop {Boolean} [funGetLtdtHookWhenDownload=null] 輸入下載Excel檔案時針對ltdt數據階段的攔截處理函數，預設為null
  * @vue-prop {Boolean} [funGetMatHookWhenDownload=null] 輸入下載Excel檔案時針對mat數據階段的攔截處理函數，預設為null
- * @vue-prop {Boolean} [useHeadWhenDownload=true] 輸入下載Excel檔案時是否將欄位鍵值轉換成head布林值，此需提供opt.kpHead物件，預設為true
+ * @vue-prop {Boolean} [useHeadWhenDownload=false] 輸入下載Excel檔案時是否將欄位鍵值轉換成head布林值，此需提供opt.kpHead物件，預設為false
  * @vue-prop {String} [fileNameWhenDownload='data.xlsx'] 輸入下載Excel檔案時儲存檔名稱字串，預設'data.xlsx'
  * @vue-prop {String} [sheetNameWhenDownload='data'] 輸入下載Excel檔案時sheet名稱字串，預設'data'
  * @vue-prop {Boolean} [editable=false] 輸入是否可編輯布林值，可被opt.defCellEditable複寫，預設為false
