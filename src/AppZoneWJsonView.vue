@@ -55,6 +55,22 @@
             <div class="bk dz">
                 <demolink
                     :kbname="'w-json-view'"
+                    :casename="'iconSize(24) & defItemHeight(32)'"
+                ></demolink>
+
+                <w-json-view
+                    style="border:1px solid #ddd;"
+                    :iconSize="24"
+                    :defItemHeight="32"
+                    :data="WJsonView.data1"
+                ></w-json-view>
+
+            </div>
+
+
+            <div class="bk dz">
+                <demolink
+                    :kbname="'w-json-view'"
                     :casename="'events'"
                 ></demolink>
 

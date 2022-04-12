@@ -54,39 +54,34 @@
                         <div :style="`display:table-cell; vertical-align:top; padding-right:${separation}px;`"></div>
 
                         <div :style="`display:table-cell; vertical-align:top; padding:0px ${separation}px;`">
-                            <div :style="`display:flex; align-items:center; justify-content:center; width:${defItemHeight/defIconHeight*defIconWidth}px; height:${defItemHeight}px; overflow:hidden;`">
-                                <div :style="`transform-origin:center; transform:scale(${iconHeight/defIconHeight});`">
-                                    <WTreeIconToggle
-                                        :style="`width${defIconWidth}px; height:${defIconHeight}px;`"
-                                        :dir="`${props.row.unfolding?'bottom':'right'}`"
-                                        :iconColor="iconToggleColor"
-                                        :iconBackgroundColor="iconToggleBackgroundColor"
-                                        :iconBackgroundColorHover="iconToggleBackgroundColorHover"
-                                        @click.stop="toggleItems(props.row)"
-                                        v-if="hasChildren(props.index)"
-                                    ></WTreeIconToggle>
-                                    <div :style="`padding-right:${defIconWidth}px;`" v-else></div>
-                                </div>
+                            <div :style="`display:flex; align-items:${useIconVerticalAlign}; justify-content:center; height:${defItemHeight}px; overflow:hidden;`">
+                                <WTreeIconToggle
+                                    :dir="`${props.row.unfolding?'bottom':'right'}`"
+                                    :iconSize="iconSize"
+                                    :iconColor="iconToggleColor"
+                                    :iconBackgroundColor="iconToggleBackgroundColor"
+                                    :iconBackgroundColorHover="iconToggleBackgroundColorHover"
+                                    @click.stop="toggleItems(props.row)"
+                                    v-if="hasChildren(props.index)"
+                                ></WTreeIconToggle>
+                                <div :style="`padding-right:${iconSize}px;`" v-else></div>
                             </div>
                         </div>
 
                         <!-- 因顯隱圖標比較小而勾選圖標比較大, 讓separation全灌到padding-right處使排版比較均勻 -->
                         <div :style="`display:table-cell; vertical-align:top; padding:0px ${2*separation}px 0px 0px;`" v-if="selectable">
-                            <div :style="`display:flex; align-items:center; justify-content:center; width:${defItemHeight/defIconHeight*defIconWidth}px; height:${defItemHeight}px; overflow:hidden;`">
-                                <div :style="`transform-origin:center; transform:scale(${iconHeight/defIconHeight});`">
-                                    <WTreeIconCheckbox
-                                        :style="`width${defIconWidth}px; height:${defIconHeight}px;`"
-                                        :mode="props.row.checked"
-                                        :editable="getEditable(props.row.item)"
-                                        :uncheckedColor="iconUncheckedColor"
-                                        :uncheckedDisabledColor="iconUncheckedDisabledColor"
-                                        :checkedColor="iconCheckedColor"
-                                        :checkedDisabledColor="iconCheckedDisabledColor"
-                                        :checkedPartiallyColor="iconCheckedPartiallyColor"
-                                        :checkedPartiallyDisabledColor="iconCheckedPartiallyDisabledColor"
-                                        @click="checkItems(props.row)"
-                                    ></WTreeIconCheckbox>
-                                </div>
+                            <div :style="`display:flex; align-items:${useIconVerticalAlign}; justify-content:center; width:${defIconSize*(iconSize/defIconSize)}px; height:${defItemHeight}px; overflow:hidden;`">
+                                <WTreeIconCheckbox
+                                    :mode="props.row.checked"
+                                    :editable="getEditable(props.row.item)"
+                                    :uncheckedColor="iconUncheckedColor"
+                                    :uncheckedDisabledColor="iconUncheckedDisabledColor"
+                                    :checkedColor="iconCheckedColor"
+                                    :checkedDisabledColor="iconCheckedDisabledColor"
+                                    :checkedPartiallyColor="iconCheckedPartiallyColor"
+                                    :checkedPartiallyDisabledColor="iconCheckedPartiallyDisabledColor"
+                                    @click="checkItems(props.row)"
+                                ></WTreeIconCheckbox>
                             </div>
                         </div>
 
@@ -104,7 +99,7 @@
                                 :setDataByPathAndValue="setDataByPathAndValue"
                             >
                                 <!-- 得使用min-height否則無法撐開高度 -->
-                                <div :style="`min-height:${Math.max(iconHeight,defItemHeight)}px; display:flex; align-items:center;`">
+                                <div :style="`min-height:${Math.max(iconSize,defItemHeight)}px; display:flex; align-items:center;`">
                                     {{getText(props.row.item)}}
                                 </div>
                             </slot>
@@ -248,16 +243,17 @@ let gm = globalMemory()
  * @vue-prop {String} [keyLock='locked'] 輸入可選項目為物件時，禁止勾選之欄位字串，物件給予此欄位需為布林值，預設'locked'
  * @vue-prop {Object} [paddingStyle={v:0,h:0}] 輸入內寬距離物件，可用鍵值為v、h、left、right、top、bottom，v代表同時設定top與bottom，h代表設定left與right，若有重複設定時後面鍵值會覆蓋前面，各鍵值為寬度數字，單位為px，預設{v:0,h:0}
  * @vue-prop {Number} [indent=1] 輸入縮排比率數字，若使用1就是1倍的圖標寬度(24px)+2*separation(3px)，預設1
- * @vue-prop {Number} [iconHeight=34] 輸入顯隱icon按鈕高度數字，單位為px，預設34
+ * @vue-prop {Number} [iconSize=24] 輸入顯隱icon按鈕高度數字，單位為px，預設24
  * @vue-prop {String} [iconToggleColor='grey'] 輸入顯隱icon按鈕顏色字串，預設'grey'
  * @vue-prop {String} [iconToggleBackgroundColor='transparent'] 輸入顯隱icon按鈕背景顏色字串，預設'transparent'
  * @vue-prop {String} [iconToggleBackgroundColorHover='rgba(128,128,128,0.15)'] 輸入滑鼠移入時顯隱icon按鈕背景顏色字串，預設'rgba(128,128,128,0.15)'
- * @vue-prop {String} [iconUncheckedColor='grey darken-2'] 輸入未勾選時顏色字串，預設'grey darken-2'
- * @vue-prop {String} [iconUncheckedDisabledColor='grey'] 輸入禁用時未勾選時顏色字串，預設'grey'
- * @vue-prop {String} [iconCheckedColor='blue darken-3'] 輸入勾選時顏色字串，預設'blue darken-3'
- * @vue-prop {String} [iconCheckedDisabledColor='grey'] 輸入禁用時勾選時顏色字串，預設'grey'
- * @vue-prop {String} [iconCheckedPartiallyColor='blue darken-3'] 輸入部份勾選時(子節點任一有勾選但非全部勾選)顏色字串，預設'blue darken-3'
- * @vue-prop {String} [iconCheckedPartiallyDisabledColor='grey'] 輸入禁用部份勾選時(子節點任一有勾選但非全部勾選)顏色字串，預設'grey'
+ * @vue-prop {String} [iconUncheckedColor='grey darken-2'] 輸入核選icon未勾選時顏色字串，預設'grey darken-2'
+ * @vue-prop {String} [iconUncheckedDisabledColor='grey'] 輸入核選icon禁用時未勾選時顏色字串，預設'grey'
+ * @vue-prop {String} [iconCheckedColor='blue darken-3'] 輸入核選icon勾選時顏色字串，預設'blue darken-3'
+ * @vue-prop {String} [iconCheckedDisabledColor='grey'] 輸入核選icon禁用時勾選時顏色字串，預設'grey'
+ * @vue-prop {String} [iconCheckedPartiallyColor='blue darken-3'] 輸入核選icon部份勾選時(子節點任一有勾選但非全部勾選)顏色字串，預設'blue darken-3'
+ * @vue-prop {String} [iconCheckedPartiallyDisabledColor='grey'] 輸入核選icon禁用時部份勾選時顏色字串，預設'grey'
+ * @vue-prop {String} [iconVerticalAlign='middle'] 輸入icon垂直對齊字串，預設'middle'
  * @vue-prop {String} [filterKeywords=''] 輸入過濾關鍵字字串，多關鍵字用空白分隔，預設''
  * @vue-prop {Function} [filterFunction=null] 輸入過濾時呼叫處理函數，傳入為各項目物件資料，回傳布林值代表項目內是否含有關鍵字，預設null
  * @vue-prop {String} [loadingText='Loading...'] 輸入載入中字串，預設'Loading...'
@@ -362,9 +358,9 @@ export default {
             type: Number,
             default: 1,
         },
-        iconHeight: {
+        iconSize: {
             type: Number,
-            default: 34,
+            default: 24,
         },
         iconToggleColor: {
             type: String,
@@ -401,6 +397,10 @@ export default {
         iconCheckedPartiallyDisabledColor: {
             type: String,
             default: 'grey',
+        },
+        iconVerticalAlign: {
+            type: String,
+            default: 'middle', //middle, top
         },
         filterKeywords: {
             type: String,
@@ -583,8 +583,7 @@ export default {
             viewHeightMaxTrans: 2, //預設給予>=2最小內容區高度, 使能觸發顯示渲染連動機制
 
             separation: 3,
-            defIconWidth: 24,
-            defIconHeight: 34,
+            defIconSize: 24,
             selectionsTrans: [],
 
             filterKeywordsTrans: '',
@@ -696,7 +695,7 @@ export default {
 
             let vo = this
 
-            return vo.indent * (vo.defIconWidth + 2 * vo.separation)
+            return vo.indent * (vo.defIconSize + 2 * vo.separation)
         },
 
         usePadding: function() {
@@ -711,6 +710,14 @@ export default {
             let padding = `padding:${cs};`
 
             return padding
+        },
+
+        useIconVerticalAlign: function() {
+            //console.log('computed useIconVerticalAlign')
+
+            let vo = this
+
+            return vo.iconVerticalAlign === 'top' ? 'flex-start' : 'center'
         },
 
         useDgTextDisabledColor: function() {

@@ -6,10 +6,11 @@
             :viewHeightMax="viewHeightMax"
             :defaultDisplayLevel="defaultDisplayLevel"
             :indent="indent"
-            :iconHeight="iconHeight"
+            :iconSize="iconSize"
             :iconToggleColor="iconToggleColor"
             :iconToggleBackgroundColor="iconToggleBackgroundColor"
             :iconToggleBackgroundColorHover="iconToggleBackgroundColorHover"
+            :iconVerticalAlign="'top'"
             :filterKeywords="filterKeywords"
             :filterFunction="filterFunction"
             :loadingText="loadingText"
@@ -23,8 +24,8 @@
         >
             <template v-slot:head="props">
 
-                <div :style="`min-width:${lineNumberWidth}px; display:flex; align-items:center; justify-content:end; font-size:0.8rem; line-height:1.5625rem; color:#f26; user-select:none;`">
-                    {{props.index+1}}
+                <div :style="`min-width:${lineNumberWidth}px; height:${iconSize}px; display:flex; align-items:center; justify-content:end;`">
+                    <div :style="`font-size:0.8rem; padding-top:1px; color:#f26; user-select:none;`">{{props.index+1}}</div>
                 </div>
 
             </template>
@@ -109,7 +110,7 @@ import WTree from './WTree.vue'
  * @vue-prop {Number} [viewHeightMax=400] 輸入顯示區最大高度，單位為px，若給予非數字則自動依照當前顯隱最高內容調整，預設400
  * @vue-prop {Number} [defaultDisplayLevel=null] 輸入初始展開層數數字，若輸入1就是預設展開至第1層，第2層(含)以下則都隱藏，若輸入null就是全展開，預設null
  * @vue-prop {Number} [indent=1] 輸入縮排比率數字，若使用1就是1倍的圖標寬度(24px)+2*separation(3px)，預設1
- * @vue-prop {Number} [iconHeight=24] 輸入顯隱icon按鈕高度數字，單位為px，預設24
+ * @vue-prop {Number} [iconSize=24] 輸入顯隱icon按鈕高度數字，單位為px，預設24
  * @vue-prop {String} [iconToggleColor='grey'] 輸入顯隱icon按鈕顏色字串，預設'grey'
  * @vue-prop {String} [iconToggleBackgroundColor='transparent'] 輸入顯隱icon按鈕背景顏色字串，預設'transparent'
  * @vue-prop {String} [iconToggleBackgroundColorHover='rgba(128,128,128,0.15)'] 輸入滑鼠移入時顯隱icon按鈕背景顏色字串，預設'rgba(128,128,128,0.15)'
@@ -152,7 +153,7 @@ export default {
             type: Number,
             default: 1,
         },
-        iconHeight: {
+        iconSize: {
             type: Number,
             default: 24,
         },

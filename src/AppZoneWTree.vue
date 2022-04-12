@@ -25,12 +25,12 @@
             <div class="bk dz">
                 <demolink
                     :kbname="'w-tree'"
-                    :casename="'iconHeight'"
+                    :casename="'iconSize'"
                 ></demolink>
 
                 <w-tree
                     style="border:1px solid #ddd;"
-                    :iconHeight="24"
+                    :iconSize="24"
                     :data="WTree.option.items"
                 ></w-tree>
 
@@ -40,13 +40,29 @@
             <div class="bk dz">
                 <demolink
                     :kbname="'w-tree'"
-                    :casename="'iconHeight & defItemHeight'"
+                    :casename="'iconSize(24) & defItemHeight(24)'"
                 ></demolink>
 
                 <w-tree
                     style="border:1px solid #ddd;"
-                    :iconHeight="24"
+                    :iconSize="24"
                     :defItemHeight="24"
+                    :data="WTree.option.items"
+                ></w-tree>
+
+            </div>
+
+
+            <div class="bk dz">
+                <demolink
+                    :kbname="'w-tree'"
+                    :casename="'iconSize(30) & defItemHeight(36)'"
+                ></demolink>
+
+                <w-tree
+                    style="border:1px solid #ddd;"
+                    :iconSize="30"
+                    :defItemHeight="36"
                     :data="WTree.option.items"
                 ></w-tree>
 
