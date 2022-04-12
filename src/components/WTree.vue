@@ -54,10 +54,10 @@
                         <div :style="`display:table-cell; vertical-align:top; padding-right:${separation}px;`"></div>
 
                         <div :style="`display:table-cell; vertical-align:top; padding:0px ${separation}px;`">
-                            <div :style="`display:flex; align-items:center; justify-content:center; height:${defItemHeight}px; overflow:hidden;`">
+                            <div :style="`display:flex; align-items:center; justify-content:center; width:${defItemHeight/defIconHeight*defIconWidth}px; height:${defItemHeight}px; overflow:hidden;`">
                                 <div :style="`transform-origin:center; transform:scale(${iconHeight/defIconHeight});`">
                                     <WTreeIconToggle
-                                        :style="`width:24px; height:${defIconHeight}px;`"
+                                        :style="`width${defIconWidth}px; height:${defIconHeight}px;`"
                                         :dir="`${props.row.unfolding?'bottom':'right'}`"
                                         :iconColor="iconToggleColor"
                                         :iconBackgroundColor="iconToggleBackgroundColor"
@@ -65,17 +65,17 @@
                                         @click.stop="toggleItems(props.row)"
                                         v-if="hasChildren(props.index)"
                                     ></WTreeIconToggle>
-                                    <div style="padding-right:24px;" v-else></div>
+                                    <div :style="`padding-right:${defIconWidth}px;`" v-else></div>
                                 </div>
                             </div>
                         </div>
 
                         <!-- 因顯隱圖標比較小而勾選圖標比較大, 讓separation全灌到padding-right處使排版比較均勻 -->
                         <div :style="`display:table-cell; vertical-align:top; padding:0px ${2*separation}px 0px 0px;`" v-if="selectable">
-                            <div :style="`display:flex; align-items:center; justify-content:center; height:${defItemHeight}px; overflow:hidden;`">
+                            <div :style="`display:flex; align-items:center; justify-content:center; width:${defItemHeight/defIconHeight*defIconWidth}px; height:${defItemHeight}px; overflow:hidden;`">
                                 <div :style="`transform-origin:center; transform:scale(${iconHeight/defIconHeight});`">
                                     <WTreeIconCheckbox
-                                        :style="`height:${defIconHeight}px;`"
+                                        :style="`width${defIconWidth}px; height:${defIconHeight}px;`"
                                         :mode="props.row.checked"
                                         :editable="getEditable(props.row.item)"
                                         :uncheckedColor="iconUncheckedColor"
@@ -583,6 +583,7 @@ export default {
             viewHeightMaxTrans: 2, //預設給予>=2最小內容區高度, 使能觸發顯示渲染連動機制
 
             separation: 3,
+            defIconWidth: 24,
             defIconHeight: 34,
             selectionsTrans: [],
 
@@ -695,7 +696,7 @@ export default {
 
             let vo = this
 
-            return vo.indent * (24 + 2 * vo.separation)
+            return vo.indent * (vo.defIconWidth + 2 * vo.separation)
         },
 
         usePadding: function() {
