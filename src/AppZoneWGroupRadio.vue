@@ -518,7 +518,7 @@
                                 View
                             </div>
 
-                            <div :style="'margin-right:-9px; display:inline-block; border-radius:10px; font-size:0.85rem; user-select:none; padding:0px 12px; '.concat(props.item.active ? 'color:#000; background:rgba(255,255,255,0.7);' : 'color:#888; background:transparent;')">
+                            <div :style="'margin-right:-9px; display:inline-block; border-radius:10px; font-size:0.85rem; user-select:none; padding:0px 12px; '.concat(props.item.active ? 'color:#000; background:rgba(255,255,255,0.7);' : 'color:#444; background:transparent;')">
                                 {{props.item.data}}
                             </div>
 
