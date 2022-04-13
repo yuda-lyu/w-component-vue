@@ -3,6 +3,7 @@
     <div
         style="position:relative; overflow:hidden;"
         :changeViewHeightMax="changeViewHeightMax"
+        :changeActiveItem="changeActiveItem"
         :changeDefaultDisplayLevel="changeDefaultDisplayLevel"
         :changeDraggableAndOperatable="changeDraggableAndOperatable"
         :changeFilterKeyWords="changeFilterKeyWords"
@@ -17,6 +18,7 @@
             :noResultsText="noResultsText"
             :searchingText="searchingText"
             :show="show"
+            @render="(msg)=>{$emit('render',msg)}"
             @change-view-items="(msg)=>{$emit('change-view-items',msg)}"
             @change-height-of-items="(msg)=>{updateViewHeightMaxTrans(msg);$emit('change-height-of-items',msg)}"
         >
@@ -26,14 +28,14 @@
                 <!-- 要把原生拖曳功能關閉draggable=false -->
                 <div
                     :key="`wt-${props.index}`"
-                    :style="`${draggable?'user-select:none;':''}`"
+                    :style="`transition:all 0.3s; ${draggable?'user-select:none;':''} ${getCursor({},props)} color:${getTextColor(props.row.item)}; background:${getBackgroundColor(props.row.item)};`"
                     :dragindex="props.index"
                     v-domdragdrop="isDraggable?getDgOpt():null"
                     @domdragdrop="dragdrop"
                     draggable="false"
-                    @mouseenter="(e)=>{$emit('mouseenter',getEmitData(e,props))}"
-                    @mouseleave="(e)=>{$emit('mouseleave',getEmitData(e,props))}"
-                    @click="(e)=>{$emit('click',getEmitData(e,props))}"
+                    @mouseenter="(e)=>{mouseenterItem(e,props)}"
+                    @mouseleave="(e)=>{mouseleaveItem(e,props)}"
+                    @click="(e)=>{clickItem(e,props)}"
                 >
                     <div :style="`position:relative; display:table; ${usePadding}`">
 
@@ -206,6 +208,8 @@ import sep from 'wsemi/src/sep.mjs'
 import isarr from 'wsemi/src/isarr.mjs'
 import isobj from 'wsemi/src/isobj.mjs'
 import isfun from 'wsemi/src/isfun.mjs'
+import isestr from 'wsemi/src/isestr.mjs'
+import isnum from 'wsemi/src/isnum.mjs'
 import cint from 'wsemi/src/cint.mjs'
 import cdbl from 'wsemi/src/cdbl.mjs'
 import cstr from 'wsemi/src/cstr.mjs'
@@ -235,7 +239,16 @@ let gm = globalMemory()
  * @vue-prop {Array|Object} [data=[]] 輸入資料陣列，預設[]，各元素配合slot顯示即可，slot內提供row與irow，對應原始rows內各元素與指標，另外各元素slot時不要用margin避免計算高度有誤差
  * @vue-prop {Number} [viewHeightMax=400] 輸入顯示區最大高度，單位為px，若給予非數字則自動依照當前顯隱最高內容調整，預設400
  * @vue-prop {Number} [defaultDisplayLevel=null] 輸入初始展開層數數字，若輸入1就是預設展開至第1層，第2層(含)以下則都隱藏，若輸入null就是全展開，預設null
- * @vue-prop {Boolean} [selectable=false] 輸入是否具有勾選模式，預設false
+ * @vue-prop {Boolean} [activable=false] 輸入是否使用主動模式布林值，預設false
+ * @vue-prop {Function} [funActive=null] 輸入主動模式時處理點擊項目函數，給予並回傳true時代表點擊項目給予主動模式，回傳false代表點擊項目不給予主動模式，可應用於資料夾與有效項目之區隔，預設null
+ * @vue-prop {Object} [activeItem={}] 輸入主動模式時外部給予主動模式項目物件，物件內至少要給予keyPrimary鍵值方能進行識別，預設{}
+ * @vue-prop {String} [itemTextColor='#444'] 輸入文字顏色字串，預設'#444'
+ * @vue-prop {String} [itemTextColorHover='#222'] 輸入滑鼠移入時文字顏色字串，預設'#222'
+ * @vue-prop {String} [itemTextColorActive='#d72'] 輸入主動模式時文字顏色字串，預設'#d72'
+ * @vue-prop {String} [itemBackgroundColor='transparent'] 輸入背景顏色字串，預設'transparent'
+ * @vue-prop {String} [itemBackgroundColorHover='rgba(200,200,200,0.2)'] 輸入滑鼠移入時背景顏色字串，預設'rgba(200,200,200,0.2)'
+ * @vue-prop {String} [itemBackgroundColorActive='rgba(255,167,38,0.2)'] 輸入主動模式時背景顏色字串，預設'rgba(255,167,38,0.2)'
+ * @vue-prop {Boolean} [selectable=false] 輸入是否具有勾選模式布林值，預設false
  * @vue-prop {Array} [selections=[]] 輸入勾選項目陣列，當selectable=true時才可使用，預設[]
  * @vue-prop {String} [keyPrimary='id'] 輸入可選項目為物件時，主鍵之欄位字串，預設'id'
  * @vue-prop {String} [keyText='text'] 輸入可選項目為物件時，顯示文字之欄位字串，預設'text'
@@ -261,7 +274,7 @@ let gm = globalMemory()
  * @vue-prop {String} [searchingText='Searching...'] 輸入搜索中字串，預設'Searching...'
  * @vue-prop {Number} [defItemHeight=34] 輸入按需顯示時各項目預設高度值，給越準或給大部分項目的高度則渲染速度越快，單位為px，預設34
  * @vue-prop {Number} [itemsPreload=5] 輸入上下方預先載入元素數量，預設5
- * @vue-prop {Boolean} [draggable=false] 輸入是否為可拖曳編輯模式，若draggable設定true，此時所有節點皆為展開顯示並且禁止顯隱節點功能，也就是defaultDisplayLevel強制設定為null，此外也不提供過濾功能，也就是filterKeywords強制清空。開啟draggable僅適用小規模數據。draggable預設false
+ * @vue-prop {Boolean} [draggable=false] 輸入是否為可拖曳編輯模式布林值，若draggable設定true，此時所有節點皆為展開顯示並且禁止顯隱節點功能，也就是defaultDisplayLevel強制設定為null，此外也不提供過濾功能，也就是filterKeywords強制清空。開啟draggable僅適用小規模數據。draggable預設false
  * @vue-prop {String} [dgTextDisabled='Can not drop here'] 輸入禁止拖曳文字字串，預設'Can not drop here'
  * @vue-prop {String} [dgTextDisabledColor='#812'] 輸入禁止拖曳文字顏色字串，預設'#812'
  * @vue-prop {Number} [dgTextDisabledPaddingLeft=15] 輸入禁止拖曳padding-left數字，單位px，預設15
@@ -275,7 +288,7 @@ let gm = globalMemory()
  * @vue-prop {Number} [dgPreviewBorderWidth=0] 輸入拖曳時預覽元素邊框寬度數字，預設0
  * @vue-prop {String} [dgPreviewBorderColor='#f26'] 輸入拖曳時預覽元素邊框顏色字串，預設'#f26'
  * @vue-prop {String} [dgPreviewBackground='transparent'] 輸入拖曳時預覽元素背景顏色字串，預設'transparent'
- * @vue-prop {Boolean} [operatable=false] 輸入是否使用控制節點模式，若operatable設定true，將於各項目右側顯示控制按鈕，點擊可彈出選單進行插入與刪除等項目，此時會觸發事件click-operate-item，而處理相應數據則需呼叫事件提供物件內operateItem函數，詳情請見範例。此時所有節點皆為展開顯示並且禁止顯隱節點功能，也就是defaultDisplayLevel強制設定為null，此外也不提供過濾功能，也就是filterKeywords強制清空。開啟operatable僅適用小規模數據。operatable預設false
+ * @vue-prop {Boolean} [operatable=false] 輸入是否使用控制節點模式布林值，若operatable設定true，將於各項目右側顯示控制按鈕，點擊可彈出選單進行插入與刪除等項目，此時會觸發事件click-operate-item，而處理相應數據則需呼叫事件提供物件內operateItem函數，詳情請見範例。此時所有節點皆為展開顯示並且禁止顯隱節點功能，也就是defaultDisplayLevel強制設定為null，此外也不提供過濾功能，也就是filterKeywords強制清空。開啟operatable僅適用小規模數據。operatable預設false
  * @vue-prop {String} [operateItemTextForInsertBefore='Insert before'] 輸入控制選項插入前項目之文字字串，預設'Insert before'
  * @vue-prop {String} [operateItemTextForInsertChild='Insert child'] 輸入控制選項插入子項目之文字字串，預設'Insert child'
  * @vue-prop {String} [operateItemTextForInsertAfter='Insert after'] 輸入控制選項插入後項目之文字字串，預設'Insert after'
@@ -294,7 +307,7 @@ let gm = globalMemory()
  * @vue-prop {Number} [operateItemIconSize=22] 輸入控制項目圖標尺寸數字，預設22
  * @vue-prop {String} [operateItemIconColor='#444'] 輸入控制項目圖標顏色字串，預設'#444'
  * @vue-prop {String} [operateItemIconColorHover='#222'] 輸入滑鼠移入時控制項目圖標顏色字串，預設'#222'
- * @vue-prop {Boolean} [show=true] 輸入是否為顯示模式，預設true，供組件嵌入popup時, 因先初始化但尚未顯示不需渲染, 可給予show=false避免無限偵測與重算高度問題
+ * @vue-prop {Boolean} [show=true] 輸入是否為顯示模式布林值，預設true，供組件嵌入popup時, 因先初始化但尚未顯示不需渲染, 可給予show=false避免無限偵測與重算高度問題
  */
 export default {
     directives: {
@@ -320,6 +333,18 @@ export default {
         defaultDisplayLevel: {
             type: Number,
             default: null,
+        },
+        activable: {
+            type: Boolean,
+            default: false,
+        },
+        funActive: {
+            type: Function,
+            default: null
+        },
+        activeItem: {
+            type: Object,
+            default: () => {},
         },
         selectable: {
             type: Boolean,
@@ -429,6 +454,30 @@ export default {
         itemsPreload: {
             type: Number,
             default: 5,
+        },
+        itemTextColor: {
+            type: String,
+            default: '#444',
+        },
+        itemTextColorHover: {
+            type: String,
+            default: '#222',
+        },
+        itemTextColorActive: {
+            type: String,
+            default: '#d72',
+        },
+        itemBackgroundColor: {
+            type: String,
+            default: 'transparent',
+        },
+        itemBackgroundColorHover: {
+            type: String,
+            default: 'rgba(200,200,200,0.2)',
+        },
+        itemBackgroundColorActive: {
+            type: String,
+            default: 'rgba(255,167,38,0.2)',
         },
         draggable: {
             type: Boolean,
@@ -600,6 +649,9 @@ export default {
             dgTipWidth: 0,
             dgTipHeight: 0,
 
+            pkActive: '',
+            pkHover: '',
+
         }
     },
     beforeDestroy: function() {
@@ -642,6 +694,24 @@ export default {
             if (isNumber(vo.viewHeightMax)) {
                 vo.viewHeightMaxTrans = vo.viewHeightMax
                 // console.log('changeViewHeightMax viewHeightMaxTrans', vo.viewHeightMaxTrans)
+            }
+
+            return ''
+        },
+
+        changeActiveItem: function() {
+            let vo = this
+
+            //pk
+            let pk = get(vo.activeItem, vo.keyPrimary)
+            // console.log('clickItem pk', pk)
+
+            //save pkActive
+            if (vo.isKey(pk)) {
+                vo.pkActive = pk
+            }
+            else {
+                vo.pkActive = ''
             }
 
             return ''
@@ -718,6 +788,54 @@ export default {
             let vo = this
 
             return vo.iconVerticalAlign === 'top' ? 'flex-start' : 'center'
+        },
+
+        useItemTextColor: function() {
+            //console.log('computed useItemTextColor')
+
+            let vo = this
+
+            return color2hex(vo.itemTextColor)
+        },
+
+        useItemBackgroundColor: function() {
+            //console.log('computed useItemBackgroundColor')
+
+            let vo = this
+
+            return color2hex(vo.itemBackgroundColor)
+        },
+
+        useItemTextColorHover: function() {
+            //console.log('computed useItemTextColorHover')
+
+            let vo = this
+
+            return color2hex(vo.itemTextColorHover)
+        },
+
+        useItemBackgroundColorHover: function() {
+            //console.log('computed useItemBackgroundColorHover')
+
+            let vo = this
+
+            return color2hex(vo.itemBackgroundColorHover)
+        },
+
+        useItemTextColorActive: function() {
+            //console.log('computed useItemTextColorActive')
+
+            let vo = this
+
+            return color2hex(vo.itemTextColorActive)
+        },
+
+        useItemBackgroundColorActive: function() {
+            //console.log('computed useItemBackgroundColorActive')
+
+            let vo = this
+
+            return color2hex(vo.itemBackgroundColorActive)
         },
 
         useDgTextDisabledColor: function() {
@@ -933,6 +1051,173 @@ export default {
             //console.log('methods getEditable', item)
             let vo = this
             return !get(item, vo.keyLocked, false)
+        },
+
+        isKey: function(k) {
+            return isestr(k) || isnum(k)
+        },
+
+        getCursor: function(e, props) {
+            // console.log('getCursor', e, props)
+            let vo = this
+
+            //activable
+            if (!vo.activable) {
+                return ''
+            }
+
+            //funActive
+            let ck = true
+            if (isfun(vo.funActive)) {
+                ck = vo.funActive(vo.getEmitData(e, props))
+            }
+
+            return ck ? 'cursor:pointer;' : ''
+        },
+
+        getTextColor: function(item) {
+            // console.log('getTextColor', item)
+            let vo = this
+
+            //pk
+            let pk = get(item, vo.keyPrimary)
+            // console.log('getTextColor pk', pk)
+
+            //check
+            if (!vo.isKey(pk)) {
+                return vo.useItemTextColor
+            }
+
+            //active
+            if (vo.isKey(vo.pkActive) && pk === vo.pkActive) {
+                // console.log('getTextColor vo.useItemTextColorActive', vo.useItemTextColorActive)
+                return vo.useItemTextColorActive
+            }
+
+            //hover
+            if (vo.isKey(vo.pkHover) && pk === vo.pkHover) {
+                // console.log('getTextColor vo.useItemTextColorHover', vo.useItemTextColorHover)
+                return vo.useItemTextColorHover
+            }
+
+            return vo.useItemTextColor
+        },
+
+        getBackgroundColor: function(item) {
+            // console.log('getBackgroundColor', item)
+            let vo = this
+
+            //pk
+            let pk = get(item, vo.keyPrimary)
+            // console.log('getBackgroundColor pk', pk)
+
+            //check
+            if (!vo.isKey(pk)) {
+                return vo.useItemBackgroundColor
+            }
+
+            //active
+            if (vo.isKey(vo.pkActive) && pk === vo.pkActive) {
+                // console.log('getBackgroundColor vo.useItemBackgroundColorActive', vo.useItemBackgroundColorActive)
+                return vo.useItemBackgroundColorActive
+            }
+
+            //hover
+            if (vo.isKey(vo.pkHover) && pk === vo.pkHover) {
+                // console.log('getBackgroundColor vo.useItemBackgroundColorHover', vo.useItemBackgroundColorHover)
+                return vo.useItemBackgroundColorHover
+            }
+
+            return vo.useItemBackgroundColor
+        },
+
+        mouseenterItem: function(e, props) {
+            // console.log('mouseenterItem', e, props)
+
+            let vo = this
+
+            //item
+            let item = get(props, 'row.item')
+
+            //pk
+            let pk = get(item, vo.keyPrimary)
+
+            //check
+            if (vo.isKey(pk)) {
+
+                //save pkHover
+                vo.pkHover = pk
+
+            }
+
+            //emit
+            vo.$emit('mouseenter', vo.getEmitData(e, props))
+
+        },
+
+        mouseleaveItem: function(e, props) {
+            // console.log('mouseleaveItem', e, props)
+
+            let vo = this
+
+            //clear pkHover
+            vo.pkHover = ''
+
+            //emit
+            vo.$emit('mouseleave', vo.getEmitData(e, props))
+
+        },
+
+        clickItem: function(e, props) {
+            // console.log('clickItem', e, props)
+
+            let vo = this
+
+            //activable
+            if (vo.activable) {
+                while (true) {
+
+                    //item
+                    let item = get(props, 'row.item')
+                    // console.log('clickItem item', item)
+
+                    //funActive
+                    let ck = true
+                    if (isfun(vo.funActive)) {
+                        ck = vo.funActive(vo.getEmitData(e, props))
+                    }
+
+                    //check
+                    if (!ck) {
+                        break
+                    }
+
+                    //pk
+                    let pk = get(item, vo.keyPrimary)
+                    // console.log('clickItem pk', pk)
+
+                    //check
+                    if (!vo.isKey(pk)) {
+                        break
+                    }
+
+                    //save pkActive
+                    vo.pkActive = pk
+
+                    //activeItem
+                    let activeItem = { [vo.keyPrimary]: pk }
+                    //  console.log('clickItem activeItem', activeItem)
+
+                    //emit
+                    vo.$emit('update:activeItem', activeItem)
+
+                    break
+                }
+            }
+
+            //emit
+            vo.$emit('click', vo.getEmitData(e, props))
+
         },
 
         updateSelections: function() {

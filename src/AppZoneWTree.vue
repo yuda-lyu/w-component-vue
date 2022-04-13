@@ -109,8 +109,12 @@
                     style="border:1px solid #ddd;"
                     :viewHeightMax="WTree.viewHeightMaxSync"
                     :data="WTree.option.items"
+                    @mouseenter="mouseenter"
+                    @mouseleave="mouseleave"
+                    @click="click"
                     @change-view-items="changeViewItems"
                     @change-height-of-items="changeHeightOfItems"
+                    @render="render"
                 ></w-tree>
 
             </div>
@@ -150,6 +154,88 @@
                     :filterKeywords="WTree.option.keywords"
                     :noResultsText="'There are no items to show...'"
                     :data="WTree.option.items"
+                ></w-tree>
+
+            </div>
+
+
+            <div class="bk dz">
+                <demolink
+                    :kbname="'w-tree'"
+                    :casename="'itemTextColor & itemTextColorHover & itemBackgroundColor & itemBackgroundColorHover'"
+                ></demolink>
+
+                <w-tree
+                    style="border:1px solid #ddd; background:#444;"
+                    :data="WTree.option.items"
+                    :itemTextColor="'#ccc'"
+                    :itemTextColorHover="'#eee'"
+                    :itemBackgroundColor="'#444'"
+                    :itemBackgroundColorHover="'rgba(187, 119, 34, 0.6)'"
+                ></w-tree>
+
+            </div>
+
+
+            <div class="bk dz">
+                <demolink
+                    :kbname="'w-tree'"
+                    :casename="'activable & activeItem'"
+                ></demolink>
+
+                <div style="font-size:0.8rem;">activeItem: {{WTree.option.activeItem}}</div>
+
+                <w-tree
+                    style="border:1px solid #ddd;"
+                    :data="WTree.option.items"
+                    :activable="true"
+                    :activeItem.sync="WTree.option.activeItem"
+                    @click="clickActive"
+                ></w-tree>
+
+            </div>
+
+
+            <div class="bk dz">
+                <demolink
+                    :kbname="'w-tree'"
+                    :casename="'activable & activeItem & funActive'"
+                ></demolink>
+
+                <div style="font-size:0.8rem;">activeItem: {{WTree.option.activeItem}}</div>
+
+                <w-tree
+                    style="border:1px solid #ddd;"
+                    :data="WTree.option.items"
+                    :activable="true"
+                    :activeItem.sync="WTree.option.activeItem"
+                    :funActive="funActive"
+                    @click="clickActive"
+                ></w-tree>
+
+            </div>
+
+
+            <div class="bk dz">
+                <demolink
+                    :kbname="'w-tree'"
+                    :casename="'activable & activeItem & itemTextColor & itemTextColorHover & itemTextColorActive & itemBackgroundColor & itemBackgroundColorHover & itemBackgroundColorActive'"
+                ></demolink>
+
+                <div style="font-size:0.8rem;">activeItem: {{WTree.option.activeItem}}</div>
+
+                <w-tree
+                    style="border:1px solid #ddd; background:#444;"
+                    :data="WTree.option.items"
+                    :activable="true"
+                    :activeItem.sync="WTree.option.activeItem"
+                    :itemTextColor="'#ccc'"
+                    :itemTextColorHover="'#eee'"
+                    :itemTextColorActive="'#fff'"
+                    :itemBackgroundColor="'#444'"
+                    :itemBackgroundColorHover="'rgba(187, 119, 34, 0.6)'"
+                    :itemBackgroundColorActive="'rgba(187, 119, 34, 0.8)'"
+                    @click="clickActive"
                 ></w-tree>
 
             </div>
@@ -410,24 +496,6 @@
             <div class="bk dz">
                 <demolink
                     :kbname="'w-tree'"
-                    :casename="'mouseenter & mouseleave & click & change-view-items'"
-                ></demolink>
-
-                <w-tree
-                    style="border:1px solid #ddd;"
-                    :data="WTree.option.items"
-                    @mouseenter="mouseenter"
-                    @mouseleave="mouseleave"
-                    @click="click"
-                    @change-view-items="changeViewItems"
-                ></w-tree>
-
-            </div>
-
-
-            <div class="bk dz">
-                <demolink
-                    :kbname="'w-tree'"
                     :casename="'slot'"
                 ></demolink>
 
@@ -533,7 +601,7 @@
                             :data="WTree.option.items"
                             :selectable="true"
                             :selections.sync="WTree.option.selections"
-                            @update:selections="changeSections"
+                            @update:selections="changeSelections"
                         ></w-tree>
                     </div>
 
@@ -565,7 +633,7 @@
                             :data="WTree.option.items"
                             :selectable="true"
                             :selections.sync="WTree.option.selections"
-                            @update:selections="changeSections"
+                            @update:selections="changeSelections"
                         >
                             <template v-slot:item="props">
                                 <div style="display:flex;">
@@ -628,7 +696,7 @@
                             :data.sync="WTree.option.items"
                             :selectable="true"
                             :selections.sync="WTree.option.selections"
-                            @update:selections="changeSections"
+                            @update:selections="changeSelections"
                         ></w-tree>
                     </div>
 
@@ -663,7 +731,7 @@
                             :data.sync="WTree.option.items"
                             :selectable="true"
                             :selections.sync="WTree.option.selections"
-                            @update:selections="changeSections"
+                            @update:selections="changeSelections"
                         >
                             <template v-slot:item="props">
                                 <div style="display:flex;">
@@ -733,7 +801,7 @@
                             :selections.sync="WTree.option.selections"
                             :filterKeywords="WTree.option.keywords"
                             :noResultsText="'There are no items to show...'"
-                            @update:selections="changeSections"
+                            @update:selections="changeSelections"
                         >
                             <template v-slot:item="props">
                                 <div style="display:flex;">
@@ -794,7 +862,7 @@
                             :selectable="true"
                             :selections.sync="WTree.optionLocked.selections"
                             :locked="'locked'"
-                            @update:selections="changeSections"
+                            @update:selections="changeSelections"
                         >
                             <template v-slot:item="props">
                                 <div style="display:flex;">
@@ -861,7 +929,7 @@
                             :iconCheckedDisabledColor="'orange lighten-4'"
                             :iconCheckedPartiallyColor="'orange lighten-2'"
                             :iconCheckedPartiallyDisabledColor="'orange lighten-4'"
-                            @update:selections="changeSections"
+                            @update:selections="changeSelections"
                         >
                             <template v-slot:item="props">
                                 <div style="display:flex;">
@@ -921,7 +989,7 @@
                             :data="WTree.optionLarge.items"
                             :selectable="true"
                             :selections.sync="WTree.optionLarge.selections"
-                            @update:selections="changeSections"
+                            @update:selections="changeSelections"
                         >
                             <template v-slot:item="props">
                                 <div style="display:flex; align-items:center; min-height:34px;">
@@ -1003,6 +1071,9 @@ export default {
                         { 'id': 18 },
                         //勾選id:18會自動再加入id:19
                     ],
+                    activeItem: {
+                        'id': 4
+                    },
                     items: [
                         {
                             id: 1,
@@ -1365,18 +1436,6 @@ export default {
                 })
             return t
         },
-        click: function(msg) {
-            console.log('click', msg)
-        },
-        changeSections: function(msg) {
-            console.log('changeSections', msg)
-        },
-        changeViewItems: function(msg) {
-            console.log('changeViewItems', msg)
-        },
-        changeHeightOfItems: function(msg) {
-            console.log('changeHeightOfItems', msg)
-        },
         mouseenter: function(msg) {
             console.log('mouseenter', msg)
             msg.ele.style.transition = 'all 0.3s'
@@ -1387,6 +1446,28 @@ export default {
             console.log('mouseleave', msg)
             msg.ele.style.background = 'rgba(255, 255, 255, 0)'
             //msg.ele.style.color = 'black'
+        },
+        click: function(msg) {
+            console.log('click', msg)
+        },
+        render: function(msg) {
+            console.log('render', msg)
+        },
+        clickActive: function(msg) {
+            console.log('clickActive', msg)
+        },
+        funActive: function(msg) {
+            console.log('funActive', msg)
+            return !Array.isArray(msg.item.children) //children非陣列代表沒有所屬節點
+        },
+        changeSelections: function(msg) {
+            console.log('changeSelections', msg)
+        },
+        changeViewItems: function(msg) {
+            console.log('changeViewItems', msg)
+        },
+        changeHeightOfItems: function(msg) {
+            console.log('changeHeightOfItems', msg)
         },
         clickOperateItem: function(msg) {
             console.log('clickOperateItem', msg)

@@ -85,7 +85,7 @@
     </script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.2.3/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.2.4/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -173,6 +173,9 @@
               { id: 18 }
               //勾選id:18會自動再加入id:19
             ],
+            activeItem: {
+              id: 4
+            },
             items: [
               {
                 id: 1,
@@ -570,18 +573,6 @@
           });
         return t;
       },
-      click: function(msg) {
-        console.log("click", msg);
-      },
-      changeSections: function(msg) {
-        console.log("changeSections", msg);
-      },
-      changeViewItems: function(msg) {
-        console.log("changeViewItems", msg);
-      },
-      changeHeightOfItems: function(msg) {
-        console.log("changeHeightOfItems", msg);
-      },
       mouseenter: function(msg) {
         console.log("mouseenter", msg);
         msg.ele.style.transition = "all 0.3s";
@@ -592,6 +583,28 @@
         console.log("mouseleave", msg);
         msg.ele.style.background = "rgba(255, 255, 255, 0)";
         //msg.ele.style.color = 'black'
+      },
+      click: function(msg) {
+        console.log("click", msg);
+      },
+      render: function(msg) {
+        console.log("render", msg);
+      },
+      clickActive: function(msg) {
+        console.log("clickActive", msg);
+      },
+      funActive: function(msg) {
+        console.log("funActive", msg);
+        return !Array.isArray(msg.item.children); //children非陣列代表沒有所屬節點
+      },
+      changeSelections: function(msg) {
+        console.log("changeSelections", msg);
+      },
+      changeViewItems: function(msg) {
+        console.log("changeViewItems", msg);
+      },
+      changeHeightOfItems: function(msg) {
+        console.log("changeHeightOfItems", msg);
       },
       clickOperateItem: function(msg) {
         console.log("clickOperateItem", msg);

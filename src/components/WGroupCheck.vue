@@ -67,7 +67,7 @@ import parseSpace from '../js/parseSpace.mjs'
 
 
 /**
- * @vue-prop {Boolean} [multiCheck=true] 輸入是否為複選模式，預設true
+ * @vue-prop {Boolean} [multiCheck=true] 輸入是否為複選模式布林值，預設true
  * @vue-prop {Array} [items=[]] 輸入全部可選字串或物件陣列，預設[]
  * @vue-prop {Array|String|Object} value 輸入複選字串或物件陣列，無預設
  * @vue-prop {String} [keyText='text'] 輸入可選項目為物件時，存放顯示文字之欄位字串，預設'text'
@@ -91,20 +91,20 @@ import parseSpace from '../js/parseSpace.mjs'
  * @vue-prop {String} [backgroundColorHover='rgba(200,200,200,0.25)'] 輸入滑鼠移入時背景顏色字串，預設'rgba(200,200,200,0.25)'
  * @vue-prop {String} [backgroundColorActive='orange'] 輸入主動模式時背景顏色字串，預設'orange'
  * @vue-prop {Object} [marginStyle={top:10,bottom:10,left:0,right:10}] 輸入外距設定物件，可用鍵值為v、h、left、right、top、bottom，v代表同時設定top與bottom，h代表設定left與right，若有重複設定時後面鍵值會覆蓋前面，各鍵值為寬度數字，單位為px，預設{top:10,bottom:10,left:0,right:10}
- * @vue-prop {Boolean} [shadow=false] 輸入是否顯示陰影，預設false
+ * @vue-prop {Boolean} [shadow=false] 輸入是否顯示陰影布林值，預設false
  * @vue-prop {String} [shadowStyle=''] 輸入陰影顏色字串，預設值詳見props
- * @vue-prop {Boolean} [shadowActive=true] 輸入主動模式時是否顯示陰影，預設true
+ * @vue-prop {Boolean} [shadowActive=true] 輸入主動模式時是否顯示陰影布林值，預設true
  * @vue-prop {String} [shadowActiveStyle=''] 輸入主動模式時陰影顏色字串，預設值詳見props
  * @vue-prop {Object} [paddingStyle={v:3,h:15}] 輸入內寬距離物件，可用鍵值為v、h、left、right、top、bottom，v代表同時設定top與bottom，h代表設定left與right，若有重複設定時後面鍵值會覆蓋前面，各鍵值為寬度數字，單位為px，預設{v:3,h:15}
  * @vue-prop {Number} [shiftLeft=0] 輸入左側內寬平移距離數字，會對paddingStyle設定再添加，可調整例如圖標與左側邊框距離，單位px，預設0
  * @vue-prop {Number} [shiftRight=0] 輸入右側內寬平移距離數字，會對paddingStyle設定再添加，可調整例如關閉圖標與右側邊框距離，單位px，預設0
- * @vue-prop {Boolean} [group=false] 輸入是否為群組模式，若group=true時會取消marginStyle、borderWidth、borderRadiusStyle設定，預設false
+ * @vue-prop {Boolean} [group=false] 輸入是否為群組模式布林值，若group=true時會取消marginStyle、borderWidth、borderRadiusStyle設定，預設false
  * @vue-prop {Object} [groupBorderRadiusStyle={left:true,right:true}] 輸入框圓角樣式物件，當群組模式group=true時才生效，可用鍵值為left、right、top、bottom、top-left、bottom-left、top-right、bottom-right，各鍵值為布林值，預設{left:true,right:true}
  * @vue-prop {Number} [groupShift=5] 輸入群組模式時第一按鈕左側以及最末按鈕右側與邊框距離數字，單位px，預設5
- * @vue-prop {Boolean} [close=false] 輸入是否具有關閉按鈕模式，預設false
- * @vue-prop {Boolean} [loading=false] 輸入是否為載入模式，預設false
+ * @vue-prop {Boolean} [close=false] 輸入是否具有關閉按鈕模式布林值，預設false
+ * @vue-prop {Boolean} [loading=false] 輸入是否為載入模式布林值，預設false
  * @vue-prop {String} [loadingColor='black'] 輸入載入圖標顏色字串，預設'black'
- * @vue-prop {Boolean} [editable=true] 輸入是否為編輯模式，預設true
+ * @vue-prop {Boolean} [editable=true] 輸入是否為編輯模式布林值，預設true
  */
 export default {
     components: {

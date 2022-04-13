@@ -188,12 +188,12 @@ import domDragDrop from '../js/domDragDrop.mjs'
 
 /**
  * @vue-prop {Array} [value=[]] 輸入項目的字串陣列或物件陣列，預設[]
- * @vue-prop {Boolean} [useActive=false] 輸入項目是否使用點擊成為活耀狀態，預設false
+ * @vue-prop {Boolean} [useActive=false] 輸入項目是否使用點擊成為活耀狀態布林值，預設false
  * @vue-prop {Object} [valueActive=null] 輸入活耀項目物件，預設null
  * @vue-prop {String} [keyText='text'] 輸入項目為物件時，存放顯示文字之欄位字串，預設'text'
  * @vue-prop {String} [keyIcon='icon'] 輸入項目為物件時，存放圖標之欄位字串，預設'icon'
  * @vue-prop {String} [keyTooltip='tooltip'] 輸入項目為物件時，存放提示之欄位字串，預設'tooltip'
- * @vue-prop {Boolean} [useColorsFromItem=false] 輸入當項目為物件時，是否使用其內相關顏色設定用以覆蓋預設值，預設false
+ * @vue-prop {Boolean} [useColorsFromItem=false] 輸入當項目為物件時是否使用其內相關顏色設定用以覆蓋預設值布林值，預設false
  * @vue-prop {String} [icon=''] 輸入左側圖標字串，預設''
  * @vue-prop {String} [iconColor='black'] 輸入圖標顏色字串，預設'black'
  * @vue-prop {String} [iconColorHover='grey darken-3'] 輸入滑鼠移入時圖標顏色字串，預設'grey darken-3'
@@ -213,9 +213,9 @@ import domDragDrop from '../js/domDragDrop.mjs'
  * @vue-prop {String} [backgroundColorHover='rgba(200,200,200,0.25)'] 輸入滑鼠移入時背景顏色字串，預設'rgba(200,200,200,0.25)'
  * @vue-prop {String} [backgroundColorActive='orange'] 輸入主動模式時背景顏色字串，預設'orange'
  * @vue-prop {Object} [marginStyle={top:10,bottom:10,left:0,right:10}] 輸入外距設定物件，可用鍵值為v、h、left、right、top、bottom，v代表同時設定top與bottom，h代表設定left與right，若有重複設定時後面鍵值會覆蓋前面，各鍵值為寬度數字，單位為px，預設{top:10,bottom:10,left:0,right:10}
- * @vue-prop {Boolean} [shadow=true] 輸入是否顯示陰影，預設true
+ * @vue-prop {Boolean} [shadow=true] 輸入是否顯示陰影布林值，預設true
  * @vue-prop {String} [shadowStyle=''] 輸入陰影顏色字串，預設值詳見props
- * @vue-prop {Boolean} [shadowActive=true] 輸入主動模式時是否顯示陰影，預設true
+ * @vue-prop {Boolean} [shadowActive=true] 輸入主動模式時是否顯示陰影布林值，預設true
  * @vue-prop {String} [shadowActiveStyle=''] 輸入主動模式時陰影顏色字串，預設值詳見props
  * @vue-prop {Object} [paddingStyle={v:3,h:15}] 輸入內寬距離物件，可用鍵值為v、h、left、right、top、bottom，v代表同時設定top與bottom，h代表設定left與right，若有重複設定時後面鍵值會覆蓋前面，各鍵值為寬度數字，單位為px，預設{v:3,h:15}
  * @vue-prop {Number} [shiftLeft=0] 輸入左側內寬平移距離數字，會對paddingStyle設定再添加，可調整例如圖標與左側邊框距離，單位px，預設0
@@ -249,11 +249,11 @@ import domDragDrop from '../js/domDragDrop.mjs'
  * @vue-prop {String} [addButtonBackgroundColor='white'] 輸入新增按鈕背景顏色字串，預設'white'
  * @vue-prop {String} [addButtonBackgroundColorHover='white'] 輸入滑鼠移入時新增按鈕背景顏色字串，預設'white'
  * @vue-prop {String} [addButtonTooltip='Add'] 輸入新增按鈕提示文字字串，預設'Add'
- * @vue-prop {Boolean} [closeWithInterceptor=false] 輸入是否通過攔截器來決定是否進行關閉，此處之攔截器係用promise來控制，當使用者點擊關閉時可先行確認或提示。當closeWithInterceptor=true時，於click-close事件所接收物件資訊中的pm，使用pm.resolve()則代表確定關閉，反之pm.reject()則取消關閉事件，預設false
- * @vue-prop {Boolean} [draggable=true] 輸入是否可拖曳模式，預設true
- * @vue-prop {Boolean} [editable=true] 輸入是否為編輯模式，預設true
- * @vue-prop {Boolean} [editableClose=true] 輸入editable=true時，是否顯示關閉按鈕，預設true
- * @vue-prop {Boolean} [editableInput=true] 輸入editable=true時，是否使用預設的slot input，預設true
+ * @vue-prop {Boolean} [closeWithInterceptor=false] 輸入是否通過攔截器來決定是否進行關閉布林值，此處之攔截器係用promise來控制，當使用者點擊關閉時可先行確認或提示。當closeWithInterceptor=true時，於click-close事件所接收物件資訊中的pm，使用pm.resolve()則代表確定關閉，反之pm.reject()則取消關閉事件，預設false
+ * @vue-prop {Boolean} [draggable=true] 輸入是否可拖曳模式布林值，預設true
+ * @vue-prop {Boolean} [editable=true] 輸入是否為編輯模式布林值，預設true
+ * @vue-prop {Boolean} [editableClose=true] 輸入editable=true時是否顯示關閉按鈕布林值，預設true
+ * @vue-prop {Boolean} [editableInput=true] 輸入editable=true時是否使用預設的slot input布林值，預設true
  * @vue-prop {Boolean} [enableCloseEventOnly=false] 輸入點擊移除按鈕時是否僅開啟關閉事件，代表不自動刪除項目，需通過監聽關閉事件@click-close自行處理刪除功能，預設false
  * @vue-prop {String} [nodata='無'] 輸入無任何字串陣列時的預設文字字串，預設'無'
  */
