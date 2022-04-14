@@ -72,6 +72,23 @@
             <div class="bk" style="display:block;">
                 <demolink
                     :kbname="'w-image-cascading-dyn'"
+                    :casename="'imageWidthSoft'"
+                ></demolink>
+
+                <w-image-cascading-dyn
+                    style="width:100%;"
+                    :imageWidthSoft="300"
+                    :images="WImageCascadingDyn.opt1.images"
+                    :imageStyle="WImageCascadingDyn.opt1.imageStyle"
+                    :opt="WImageCascadingDyn.opt1.opt"
+                ></w-image-cascading-dyn>
+
+            </div>
+
+
+            <div class="bk" style="display:block;">
+                <demolink
+                    :kbname="'w-image-cascading-dyn'"
                     :casename="'arrangeWhenFinish'"
                 ></demolink>
 

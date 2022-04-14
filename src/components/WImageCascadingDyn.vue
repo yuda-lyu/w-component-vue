@@ -73,6 +73,7 @@ import map from 'lodash/map'
 import get from 'lodash/get'
 import times from 'lodash/times'
 import size from 'lodash/size'
+import isNumber from 'lodash/isNumber'
 import importResources from 'wsemi/src/importResources.mjs'
 import domShowImagesDyn from 'wsemi/src/domShowImagesDyn.mjs'
 import ispint from 'wsemi/src/ispint.mjs'
@@ -101,6 +102,7 @@ function getFileName(str) {
  * @vue-prop {Array} [pathItems=['詳見原始碼']] 輸入viewerjs組件js與css檔案位置字串陣列，預設詳見原始碼處props->pathItems->default
  * @vue-prop {Array} [images=[]] 輸入圖片網址陣列，預設[]
  * @vue-prop {Number} [imageWidth=300] 輸入圖片寬度數字，單位為px，預設300
+ * @vue-prop {Number} [imageWidthSoft=null] 輸入自動計算最小需滿足的圖片寬度數字，單位為px，預設null
  * @vue-prop {Number} [colNum=null] 輸入組件寬度圖片欄位(水平向有幾張圖片)數量數字，預設null
  * @vue-prop {Number} [space=15] 輸入圖片間間距長度數字，單位為px，預設15
  * @vue-prop {Object} [imageStyle={}] 輸入圖片style物件，預設{}
@@ -131,6 +133,10 @@ export default {
         imageWidth: {
             type: Number,
             default: 300,
+        },
+        imageWidthSoft: {
+            type: Number,
+            default: null,
         },
         colNum: {
             type: Number,
@@ -205,7 +211,6 @@ export default {
 
             return ''
         },
-
 
         changeStyle: function() {
             // console.log('computed changeStyle')
@@ -387,8 +392,22 @@ export default {
             //uesImageWidth, colNum
             let uesImageWidth = null
             let colNum = null
-            if (ispint(vo.colNum)) {
-                //優先使用colNum計算imageWidth
+            if (isNumber(vo.imageWidthSoft) && vo.imageWidthSoft > 0) {
+                // console.log('優先使用imageWidthSoft計算colNum與imageWidth')
+
+                //colNum
+                colNum = (vo.widthPanel + vo.space) / (vo.imageWidthSoft + vo.space)
+                colNum = Math.floor(colNum)
+                colNum = Math.max(colNum, 1)
+                // console.log('colNum', colNum)
+
+                //uesImageWidth
+                uesImageWidth = (vo.widthPanel - vo.space * (colNum - 1)) / colNum
+                // console.log('uesImageWidth', uesImageWidth)
+
+            }
+            else if (ispint(vo.colNum)) {
+                // console.log('次先使用colNum計算imageWidth')
 
                 //colNum
                 colNum = cint(vo.colNum)
@@ -398,7 +417,8 @@ export default {
                 uesImageWidth = Math.floor(uesImageWidth)
 
             }
-            else if (vo.imageWidth > 0) {
+            else if (isNumber(vo.imageWidth) && vo.imageWidth > 0) {
+                // console.log('最後使用imageWidth計算colNum')
 
                 //uesImageWidth
                 uesImageWidth = vo.imageWidth
@@ -412,7 +432,7 @@ export default {
 
             }
             else {
-                console.log('invalid colNum or imageWidth')
+                console.log('invalid colNum or imageWidth or imageWidthSoft', vo.colNum, vo.imageWidth, vo.imageWidthSoft)
                 colNum = 4
                 uesImageWidth = 300
             }
