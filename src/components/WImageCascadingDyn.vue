@@ -37,17 +37,25 @@
                     </div>
 
                     <div style="background:rgba(0,0,0,0.65); padding:5px;">
-                        <div style="font-size:0.8rem; color:#fff;">{{img.name}}</div>
+                        <input
+                            type="text"
+                            class="inp"
+                            style="font-size:0.8rem; color:#fff;"
+                            _spellcheck="false"
+                            readonly
+                            :value="img.name"
+                        >
                     </div>
 
                     <div style="background:rgba(200,200,200,0.5); padding:3px 5px;">
-                            <input
-                                type="text"
-                                class="inp"
-                                _spellcheck="false"
-                                readonly
-                                :value="img.src"
-                            >
+                        <input
+                            type="text"
+                            class="inp"
+                            style="font-size:0.7rem; opacity:0.75;"
+                            _spellcheck="false"
+                            readonly
+                            :value="img.src"
+                        >
                     </div>
 
                 </div>
@@ -567,9 +575,7 @@ export default {
 
 <style scoped>
 .inp {
-    opacity: 0.75;
     font: inherit;
-    font-size: 0.7rem;
     height: 1rem;
     line-height: 1rem;
     width: 100%;
