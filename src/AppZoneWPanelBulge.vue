@@ -78,7 +78,7 @@
                     :casename="'with grey outer'"
                 ></demolink>
 
-                <div style="background-color:#bbb; padding:40px;">
+                <div style="background:#bbb; padding:40px;">
                     <w-panel-bulge
                         style="min-width:500px;"
                         :headerText="WPanelBulge.title"
@@ -95,7 +95,7 @@
                     :casename="'no headerShadow & no contentShadow, with green outer'"
                 ></demolink>
 
-                <div style="background-color:#8FF4B1; padding:40px;">
+                <div style="background:#8FF4B1; padding:40px;">
                     <w-panel-bulge
                         style="min-width:500px;"
                         :headerText="WPanelBulge.title"

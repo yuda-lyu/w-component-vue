@@ -161,7 +161,7 @@
                     :casename="'with grey outer'"
                 ></demolink>
 
-                <div style="background-color:#bbb; padding:40px;">
+                <div style="background:#bbb; padding:40px;">
 
                     <w-panel-stripe
                         style="width:520px;"
@@ -202,7 +202,7 @@
                     :casename="'no shadow, with crimson outer'"
                 ></demolink>
 
-                <div style="background-color:#a77; padding:40px;">
+                <div style="background:#a77; padding:40px;">
 
                     <w-panel-stripe
                         style="width:520px;"
@@ -362,8 +362,8 @@
 
                     <template v-slot:footer>
                         <div style="display:flex; justify-content:flex-end;">
-                            <button style="margin-left:15px; padding:5px 10px; background-color:#ddd; border-radius:10px; box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);">離開</button>
-                            <button style="margin-left:15px; padding:5px 10px; background-color:#ddd; border-radius:10px; box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);">儲存</button>
+                            <button style="margin-left:15px; padding:5px 10px; background:#ddd; border-radius:10px; box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);">離開</button>
+                            <button style="margin-left:15px; padding:5px 10px; background:#ddd; border-radius:10px; box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);">儲存</button>
                         </div>
                     </template>
 

@@ -235,7 +235,7 @@
                             <div style="width:100%;">
 
                                 <div style="padding-bottom:5px;">
-                                    <div style="display:inline-block; vertical-align:middle; padding:1px 9px; color:#fff; background-color:#f26; border-radius:10px; font-size:10px; line-height:14px;">{{props.index+1}}</div>
+                                    <div style="display:inline-block; vertical-align:middle; padding:1px 9px; color:#fff; background:#f26; border-radius:10px; font-size:10px; line-height:14px;">{{props.index+1}}</div>
                                     <div style="display:inline-block; vertical-align:middle; font-size:14px; line-height:14px; padding-left:7px;">{{props.row.name}}</div>
                                 </div>
 
@@ -278,7 +278,7 @@
                             <div style="width:100%;">
 
                                 <div style="padding-bottom:5px;">
-                                    <div style="display:inline-block; vertical-align:middle; padding:1px 9px; color:#fff; background-color:#f26; border-radius:10px; font-size:10px; line-height:14px;">{{props.index+1}}</div>
+                                    <div style="display:inline-block; vertical-align:middle; padding:1px 9px; color:#fff; background:#f26; border-radius:10px; font-size:10px; line-height:14px;">{{props.index+1}}</div>
                                     <div style="display:inline-block; vertical-align:middle; font-size:14px; line-height:14px; padding-left:7px;">{{props.row.name}}</div>
                                 </div>
 
@@ -315,7 +315,7 @@
                             <div style="width:100%;">
 
                                 <div style="padding-bottom:5px;">
-                                    <div style="display:inline-block; vertical-align:middle; padding:1px 9px; color:#fff; background-color:#f26; border-radius:10px; font-size:10px; line-height:14px;">{{props.index+1}}</div>
+                                    <div style="display:inline-block; vertical-align:middle; padding:1px 9px; color:#fff; background:#f26; border-radius:10px; font-size:10px; line-height:14px;">{{props.index+1}}</div>
                                     <div style="display:inline-block; vertical-align:middle; font-size:14px; line-height:14px; padding-left:7px;">{{props.row.name}}</div>
                                 </div>
 

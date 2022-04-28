@@ -117,7 +117,7 @@ function writeHtml(v) {
                 width: 100vw;
                 max-width: 100vw;
                 font-family: inherit;
-                background-color: #fff;
+                background: #fff;
             }
             .item { /* 因item位於demolink, 提取各範例html後會刪除demolink, 故得額外補上 */
                 border-left: 3px solid #ffba75;

@@ -188,7 +188,7 @@
                     @error="evError"
                 >
                     <template v-slot:btns="props">
-                        <select style="padding:0px 10px; background-color:rgba(255,255,255,0.1); color:#666; font-size:0.7rem; border:1px solid rgba(0,0,0,0.3); border-radius:30px; outline:none;">
+                        <select style="padding:0px 10px; background:rgba(255,255,255,0.1); color:#666; font-size:0.7rem; border:1px solid rgba(0,0,0,0.3); border-radius:30px; outline:none;">
                             <option style="color:#666; font-size:0.7rem;" value="0">Select Item</option>
                             <option style="color:#666; font-size:0.7rem;" value="1">Quisquam</option>
                             <option style="color:#666; font-size:0.7rem;" value="2">Dolorem</option>
@@ -413,7 +413,7 @@
                     @error="evError"
                 >
                     <template v-slot:btns="props">
-                        <select style="padding:0px 10px; background-color:rgba(255,255,255,0.1); color:#666; font-size:0.7rem; border:1px solid rgba(0,0,0,0.3); border-radius:30px; outline:none;">
+                        <select style="padding:0px 10px; background:rgba(255,255,255,0.1); color:#666; font-size:0.7rem; border:1px solid rgba(0,0,0,0.3); border-radius:30px; outline:none;">
                             <option style="color:#666; font-size:0.7rem;" value="0">Select Item</option>
                             <option style="color:#666; font-size:0.7rem;" value="1">Quisquam</option>
                             <option style="color:#666; font-size:0.7rem;" value="2">Dolorem</option>

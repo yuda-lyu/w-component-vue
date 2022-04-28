@@ -161,16 +161,16 @@
             v-if="dgTipMode!==''"
         >
             <template v-if="dgTipMode==='lineTop'">
-                <div :style="`display:inline-block; width:${dgTipWidth}px; height:${dgTipHeight}px; background-color:${useDgInsertBackgroundColor}; border-top:1px solid ${useDgInsertLineColor};`"></div>
+                <div :style="`display:inline-block; width:${dgTipWidth}px; height:${dgTipHeight}px; background:${useDgInsertBackgroundColor}; border-top:1px solid ${useDgInsertLineColor};`"></div>
             </template>
             <template v-else-if="dgTipMode==='lineBottom'">
-                <div :style="`display:inline-block; width:${dgTipWidth}px; height:${dgTipHeight}px; background-color:${useDgInsertBackgroundColor}; border-bottom:1px solid ${useDgInsertLineColor};`"></div>
+                <div :style="`display:inline-block; width:${dgTipWidth}px; height:${dgTipHeight}px; background:${useDgInsertBackgroundColor}; border-bottom:1px solid ${useDgInsertLineColor};`"></div>
             </template>
             <template v-else-if="dgTipMode==='block'">
-                <div :style="`display:inline-block; width:${dgTipWidth}px; height:${dgTipHeight}px; background-color:${uesDgBelongBackgroundColor};`"></div>
+                <div :style="`display:inline-block; width:${dgTipWidth}px; height:${dgTipHeight}px; background:${uesDgBelongBackgroundColor};`"></div>
             </template>
             <template v-else-if="dgTipMode==='disabled'">
-                <div :style="`display:inline-block; width:${dgTipWidth}px; height:${dgTipHeight}px; background-color:${useDgTextDisabledBackgroundColor};`">
+                <div :style="`display:inline-block; width:${dgTipWidth}px; height:${dgTipHeight}px; background:${useDgTextDisabledBackgroundColor};`">
                     <div :style="`height:${dgTipHeight}px; display:flex; align-items:center;`">
                         <div :style="`color:${useDgTextDisabledColor}; padding-left:${dgTextDisabledPaddingLeft}px; font-size:${dgTextDisabledFontSize};`">
                             {{dgTextDisabled}}

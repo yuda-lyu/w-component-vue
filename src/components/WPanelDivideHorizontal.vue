@@ -21,9 +21,9 @@
 
             <div
                 ref="divBar"
-                :style="`position:absolute; z-index:1; left:${(r)*panelWidth-bw/2}px; width:${bw}px; height:${panelHeight}px; border-left:${barBorderSize}px solid ${barBorderColor}; border-right:${barBorderSize}px solid ${barBorderColor}; cursor:col-resize; user-select:none;`"
+                :style="`position:absolute; z-index:1; left:${(r)*panelWidth-bw/2}px; width:${bw}px; height:${panelHeight}px; border-left:${barBorderSize}px solid ${useBarBorderColor}; border-right:${barBorderSize}px solid ${useBarBorderColor}; cursor:col-resize; user-select:none;`"
             >
-                <div :style="`width:${barSize}px; height:${panelHeight}px; background-color:${barColor};`"></div>
+                <div :style="`width:${barSize}px; height:${panelHeight}px; background:${useBarColor};`"></div>
             </div>
 
             <div ref="right" :style="`width:${(1-r)*panelWidth}px; height:${panelHeight}px;`">
@@ -43,6 +43,7 @@
 <script>
 import domDragBarAndScroll from 'wsemi/src/domDragBarAndScroll.mjs'
 import domResize from '../js/domResize.mjs'
+import color2hex from '../js/vuetifyColor.mjs'
 
 
 /**
@@ -50,8 +51,8 @@ import domResize from '../js/domResize.mjs'
  * @vue-prop {Number} [min=0] 輸入分隔條位置最小比例數字，範圍為0~1，需小於max，若min大於max則由min主導，預設0
  * @vue-prop {Number} [max=1] 輸入分隔條位置最大比例數字，範圍為0~1，需大於min，若min大於max則由min主導，預設1
  * @vue-prop {String} [barColor='#ddd'] 輸入分隔條顏色字串，預設'#ddd'
- * @vue-prop {String} [barBorderColor='transparent'] 輸入分隔條框線顏色字串，預設'transparent'
  * @vue-prop {Number} [barSize=2] 輸入分隔條尺寸數字，為分隔條寬度，單位為px，預設2
+ * @vue-prop {String} [barBorderColor='transparent'] 輸入分隔條框線顏色字串，預設'transparent'
  * @vue-prop {Number} [barBorderSize=3] 輸入分隔條框線寬度數字，單位為px，預設3，通常配合barBorderColor='transparent'使可拖曳區加大又不遮蔽可視區
  */
 export default {
@@ -75,13 +76,13 @@ export default {
             type: String,
             default: '#ddd',
         },
-        barBorderColor: {
-            type: String,
-            default: 'transparent',
-        },
         barSize: {
             type: Number,
             default: 2,
+        },
+        barBorderColor: {
+            type: String,
+            default: 'transparent',
         },
         barBorderSize: {
             type: Number,
@@ -146,6 +147,14 @@ export default {
             let vo = this
 
             return vo.barSize + vo.barBorderSize * 2
+        },
+
+        useBarColor: function() {
+            return color2hex(this.barColor)
+        },
+
+        useBarBorderColor: function() {
+            return color2hex(this.barBorderColor)
         },
 
     },

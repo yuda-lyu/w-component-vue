@@ -21,7 +21,7 @@
                     v-if="hasIcon"
                 ></WIcon>
 
-                <div :style="`color:${useTextColor}; ${useTextFontSize}`">
+                <div :style="`transition:all 0.3s; color:${useTextColor}; ${useTextFontSize}`">
                     {{text}}
                 </div>
 

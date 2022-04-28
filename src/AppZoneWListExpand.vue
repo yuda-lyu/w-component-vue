@@ -48,7 +48,7 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-list-expand'"
-                    :casename="'keyText & keyIcon'"
+                    :casename="'keyText & keyIcon & keyDsp'"
                 ></demolink>
 
                 <div style="display:inline-block; border:1px dashed #ddd;">
@@ -57,6 +57,7 @@
                         :items="WListExpand.itemsObjForKey"
                         :keyText="'name'"
                         :keyIcon="'path'"
+                        :keyDsp="'message'"
                     >
                     </w-list-expand>
                 </div>
@@ -422,32 +423,32 @@ export default {
                     {
                         name: 'Real-Time',
                         path: mdiStackOverflow,
-                        dsp: 'Lorem ipsum dolor sit amet, id nec quod persius patrioque. Quaestio antiopam sea ex. Ius no illud mucius admodum, ea nonumes habemus interpretaris sit, eu ius suavitate definitionem.',
+                        message: 'Lorem ipsum dolor sit amet, id nec quod persius patrioque. Quaestio antiopam sea ex. Ius no illud mucius admodum, ea nonumes habemus interpretaris sit, eu ius suavitate definitionem.',
                     },
                     {
                         name: 'Audience',
                         path: mdiBookMusicOutline,
-                        dsp: 'Ad est alii munere indoctum, ei partiendo assentior vituperatoribus his. Per cu dicunt indoctum qualisque. Eam eu honestatis complectitur, iuvaret democritum interpretaris ad vix.',
+                        message: 'Ad est alii munere indoctum, ei partiendo assentior vituperatoribus his. Per cu dicunt indoctum qualisque. Eam eu honestatis complectitur, iuvaret democritum interpretaris ad vix.',
                     },
                     {
                         name: 'Conversions',
                         path: mdiCharity,
-                        dsp: 'Etiam appellantur pri te, percipit atomorum consequat et mei, et pro liber ubique ceteros. Est at vocent instructior consequuntur.',
+                        message: 'Etiam appellantur pri te, percipit atomorum consequat et mei, et pro liber ubique ceteros. Est at vocent instructior consequuntur.',
                     },
                     {
                         name: 'Management',
                         path: mdiLightbulbGroupOutline,
-                        dsp: 'Qui oratio partem percipit ex, brute omittantur eum no, id his iriure splendide voluptatum. Ei his etiam vivendo adversarium, nam iusto ridens ei, meis disputationi eos eu. Meis accumsan mea et, ut ubique deserunt dignissim vix. Duo ex dicant detracto tacimates.',
+                        message: 'Qui oratio partem percipit ex, brute omittantur eum no, id his iriure splendide voluptatum. Ei his etiam vivendo adversarium, nam iusto ridens ei, meis disputationi eos eu. Meis accumsan mea et, ut ubique deserunt dignissim vix. Duo ex dicant detracto tacimates.',
                     },
                     {
                         name: 'Settings',
                         path: mdiMessageCogOutline,
-                        dsp: 'Sed et nisi maximus, aliquet justo in, consequat nisl.',
+                        message: 'Sed et nisi maximus, aliquet justo in, consequat nisl.',
                     },
                     {
                         name: 'Actions',
                         path: mdiGestureDoubleTap,
-                        dsp: 'Morbi mi lectus, semper vitae dolor eget, venenatis pellentesque purus. Phasellus sollicitudin mattis molestie. Nunc felis mauris.',
+                        message: 'Morbi mi lectus, semper vitae dolor eget, venenatis pellentesque purus. Phasellus sollicitudin mattis molestie. Nunc felis mauris.',
                     },
                 ],
                 'itemActive': {

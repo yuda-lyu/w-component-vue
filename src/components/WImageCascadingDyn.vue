@@ -602,7 +602,7 @@ export default {
     margin: 0;
     padding: 0;
     display: block;
-    background-color: transparent;
+    background: transparent;
     border-style: none;
 }
 .inp:focus {

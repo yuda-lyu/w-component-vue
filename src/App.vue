@@ -766,7 +766,7 @@ export default {
     width: 100vw !important;
     max-width: 100vw !important;
     font-family: inherit;
-    background-color: #fff;
+    background: #fff;
 }
 .head1 {
     margin: 0px;

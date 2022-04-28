@@ -21,9 +21,9 @@
 
             <div
                 ref="divBar"
-                :style="`position:absolute; z-index:1; top:${(r)*panelHeight-bw/2}px; width:${panelWidth}px; height:${barSize}px; border-top:${barBorderSize}px solid ${barBorderColor}; border-bottom:${barBorderSize}px solid ${barBorderColor}; cursor:row-resize; user-select:none;`"
+                :style="`position:absolute; z-index:1; top:${(r)*panelHeight-bw/2}px; width:${panelWidth}px; height:${barSize}px; border-top:${barBorderSize}px solid ${useBarBorderColor}; border-bottom:${barBorderSize}px solid ${useBarBorderColor}; cursor:row-resize; user-select:none;`"
             >
-                <div :style="`width:${panelWidth}px; height:${barSize}px; background-color:${barColor};`"></div>
+                <div :style="`width:${panelWidth}px; height:${barSize}px; background:${useBarColor};`"></div>
             </div>
 
             <div ref="bottom" :style="`width:${panelWidth}px; height:${(1-r)*panelHeight}px;`">
@@ -43,6 +43,7 @@
 <script>
 import domDragBarAndScroll from 'wsemi/src/domDragBarAndScroll.mjs'
 import domResize from '../js/domResize.mjs'
+import color2hex from '../js/vuetifyColor.mjs'
 
 
 /**
@@ -146,6 +147,14 @@ export default {
             let vo = this
 
             return vo.barSize + vo.barBorderSize * 2
+        },
+
+        useBarColor: function() {
+            return color2hex(this.barColor)
+        },
+
+        useBarBorderColor: function() {
+            return color2hex(this.barBorderColor)
         },
 
     },

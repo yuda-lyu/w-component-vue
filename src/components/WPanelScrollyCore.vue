@@ -567,7 +567,7 @@ export default {
     background: transparent;
 }
 .sb::-webkit-scrollbar-thumb {
-    background-color: rgba(0,0,0,0.3);
+    background: rgba(0,0,0,0.3);
     border-radius: 20px;
     border: 3px solid transparent;
 }

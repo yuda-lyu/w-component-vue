@@ -118,7 +118,7 @@
                         :scale="WPanelScale.scale"
                     >
 
-                        <select style="padding:0px 10px; background-color:rgba(200,200,200,0.1); color:#000; border:1px solid rgba(200,200,200,0.5); border-radius:30px; outline:none;">
+                        <select style="padding:0px 10px; background:rgba(200,200,200,0.1); color:#000; border:1px solid rgba(200,200,200,0.5); border-radius:30px; outline:none;">
                             <option style="color:#000;" value="0">Select Fruit</option>
                             <option style="color:#000;" value="1">Apple</option>
                             <option style="color:#000;" value="2">Orange</option>

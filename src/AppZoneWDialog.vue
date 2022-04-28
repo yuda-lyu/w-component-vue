@@ -260,7 +260,7 @@
                 >
 
                     <template v-slot:header-left>
-                        <select style="margin-left:15px; padding:0px 20px; background-color:rgba(255,255,255,0.1); color:#fff; border:1px solid rgba(255,255,255,0.7); border-radius:30px; outline:none;">
+                        <select style="margin-left:15px; padding:0px 20px; background:rgba(255,255,255,0.1); color:#fff; border:1px solid rgba(255,255,255,0.7); border-radius:30px; outline:none;">
                             <option style="color:#000;" value="0">Select Fruit</option>
                             <option style="color:#000;" value="1">L-Apple</option>
                             <option style="color:#000;" value="2">L-Orange</option>
@@ -269,7 +269,7 @@
                     </template>
 
                     <template v-slot:header-right>
-                        <select style="margin-right:15px; padding:0px 20px; background-color:rgba(255,255,255,0.1); color:#fff; border:1px solid rgba(255,255,255,0.7); border-radius:30px; outline:none;">
+                        <select style="margin-right:15px; padding:0px 20px; background:rgba(255,255,255,0.1); color:#fff; border:1px solid rgba(255,255,255,0.7); border-radius:30px; outline:none;">
                             <option style="color:#000;" value="0">Select Fruit</option>
                             <option style="color:#000;" value="1">R-Apple</option>
                             <option style="color:#000;" value="2">R-Orange</option>
