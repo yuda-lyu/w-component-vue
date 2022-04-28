@@ -85,7 +85,7 @@
     </script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.2.7/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.2.8/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -93,7 +93,7 @@
     width: 100vw;
     max-width: 100vw;
     font-family: inherit;
-    background-color: #fff;
+    background: #fff;
   }
   .item {
     /* 因item位於demolink, 提取各範例html後會刪除demolink, 故得額外補上 */
@@ -141,7 +141,7 @@
         <div class="bk">
             <div class="item">no shadow, with crimson outer</div>
 
-            <div style="background-color:#a77; padding:40px;">
+            <div style="background:#a77; padding:40px;">
                 <w-panel-stripe style="width:520px;" :shadow="false">
                     <template v-slot:icon>
                         <v-icon

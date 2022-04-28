@@ -85,7 +85,7 @@
     </script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.2.7/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.2.8/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -93,7 +93,7 @@
     width: 100vw;
     max-width: 100vw;
     font-family: inherit;
-    background-color: #fff;
+    background: #fff;
   }
   .item {
     /* 因item位於demolink, 提取各範例html後會刪除demolink, 故得額外補上 */
@@ -146,13 +146,13 @@
                     depressed
                     small
                     elevation="2"
-                    @click="WDrawer.bShow9=!WDrawer.bShow9"
-                >Show({{WDrawer.bShow9}})</v-btn>
+                    @click="WDrawer.bShow117=!WDrawer.bShow117"
+                >Show({{WDrawer.bShow117}})</v-btn>
             </div>
 
             <w-drawer
                 style="width:500px; height:400px; border:1px solid #ddd;"
-                v-model="WDrawer.bShow9"
+                v-model="WDrawer.bShow117"
                 :afloat="true"
                 :afloat-by-fix="true"
                 :mode="'from-right'"
@@ -190,6 +190,7 @@
     data: function() {
       return {
         WDrawer: {
+          drawerWidth: 300,
           title: "Article Title",
           content:
             "Here is an article content, texts are from Vuetify. There are three ways in which you can install Vuetify. The first (and recommended) way is to utilize the vuetify-loader or what we call automatic A-la-carte. This will ensure that your application only uses the features and styles from Vuetify that are needed, significantly reducing your application's compiled size. Keep in mind, when importing from vuetify/lib, the necessary styles are automatically imported for you.",
@@ -261,16 +262,25 @@
             text: "Balance",
             icon: "fas fa-balance-scale"
           },
-          bShow1: false,
-          bShow2: false,
-          bShow3a: false,
-          bShow3b: false,
-          bShow4: false,
-          bShow5: false,
-          bShow6: false,
-          bShow7: false,
-          bShow8: false,
-          bShow9: false
+          bShow101: false,
+          bShow102: false,
+          bShow103: false,
+          bShow104: false,
+          bShow105: false,
+          bShow106: false,
+          bShow107a: false,
+          bShow107b: false,
+          bShow108: false,
+          bShow109: false,
+          bShow110: false,
+          bShow111: false,
+          bShow112: false,
+          bShow113: false,
+          bShow114: false,
+          bShow115: false,
+          bShow116: false,
+          bShow117: false,
+          bShow118: false
         },
         actions: [{}]
       };
