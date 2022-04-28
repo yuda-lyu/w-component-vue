@@ -80,9 +80,9 @@ import WTimeminuteCore from './WTimeminuteCore.vue'
  * @vue-prop {String} [borderColorFocus='white'] 輸入取得焦點時邊框顏色字串，預設'white'
  * @vue-prop {String} [textColor='black'] 輸入文字顏色字串，預設'black'
  * @vue-prop {String} [pickColor='deep-orange darken-1'] 輸入日期彈窗中選擇指定日期之顏色字串，預設'deep-orange darken-1'
- * @vue-prop {String} [expansionIcon=mdiPlay] 輸入右側圖標字串，可為mdi,md,fa代號或mdi/js路徑，預設使用mdi的圖標(mdiPlay)
- * @vue-prop {Number} [expansionIconSize=18] 輸入右側圖標尺寸數字，單位為px，預設18
- * @vue-prop {String} [expansionIconColor='grey'] 輸入右側圖標顏色字串，預設'grey'
+ * @vue-prop {String} [expansionIcon=mdiPlay] 輸入顯隱圖標字串，可為mdi,md,fa代號或mdi/js路徑，預設使用mdi的圖標(mdiPlay)
+ * @vue-prop {Number} [expansionIconSize=18] 輸入顯隱圖標尺寸數字，單位為px，預設18
+ * @vue-prop {String} [expansionIconColor='grey'] 輸入顯隱圖標顏色字串，預設'grey'
  * @vue-prop {Boolean} [editable=true] 輸入是否為編輯模式，預設true
  * @vue-prop {Boolean} [focused=false] 輸入是否為取得焦點狀態，預設false
  */

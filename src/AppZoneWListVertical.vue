@@ -467,6 +467,7 @@ export default {
                 'itemActive': {
                     text: 'Audience',
                     icon: mdiBookMusicOutline,
+                    type: 'Default',
                 },
             },
             'actions': [

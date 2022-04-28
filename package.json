@@ -1,20 +1,12 @@
 {
   "name": "w-component-vue",
-  "version": "2.2.6",
-  "author": "yuda-lyu(semisphere)",
-  "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
-    "test": "mocha --parallel --timeout 60000 --experimental-modules --es-module-specifier-resolution=node",
-    "lint": "vue-cli-service lint",
-    "deploy": "gh-pages -d docs"
-  },
+  "version": "2.2.7",
   "main": "dist/w-component-vue.umd.js",
   "dependencies": {
     "@mdi/js": "^6.6.96",
     "@vue/composition-api": "^1.4.9",
     "lodash": "^4.17.21",
-    "wsemi": "^1.6.55"
+    "wsemi": "^1.6.61"
   },
   "devDependencies": {
     "eslint": "^7.26.0",
@@ -37,6 +29,13 @@
     "vuetify": "^2.6.4",
     "vuetify-loader": "^1.7.3",
     "w-package-tools": "^1.0.65"
+  },
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "test": "mocha --parallel --timeout 60000 --experimental-modules --es-module-specifier-resolution=node",
+    "lint": "vue-cli-service lint",
+    "deploy": "gh-pages -d docs"
   },
   "eslintConfig": {
     "root": true,
@@ -61,11 +60,6 @@
     "> 1%",
     "last 2 versions"
   ],
-  "bugs": {
-    "url": "https://github.com/yuda-lyu/w-component-vue/issues"
-  },
-  "homepage": "https://github.com/yuda-lyu/w-component-vue#readme",
-  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/yuda-lyu/w-component-vue.git"
@@ -74,5 +68,7 @@
     "component",
     "vue",
     "vuetify"
-  ]
+  ],
+  "author": "yuda-lyu(semisphere)",
+  "license": "MIT"
 }

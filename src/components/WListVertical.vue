@@ -4,6 +4,7 @@
         @domresize="resize"
         :changeItemActive="changeItemActive"
     >
+
         <div
             :style="`height:${panelHeight}px;`"
         >
@@ -17,7 +18,6 @@
                 :style="`height:${listHeight}px;`"
             >
                 <div
-                    style="cursor:pointer;"
                     :key="kitem"
                     v-for="(item,kitem) in items"
                 >
@@ -63,6 +63,7 @@
             </div>
 
         </div>
+
     </div>
 </template>
 
@@ -74,15 +75,15 @@ import isEqual from 'lodash/isEqual'
 import cloneDeep from 'lodash/cloneDeep'
 import isEle from 'wsemi/src/isEle.mjs'
 import isobj from 'wsemi/src/isobj.mjs'
+import domResize from '../js/domResize.mjs'
 import WPanelScrolly from './WPanelScrolly.vue'
 import WListVerticalItem from './WListVerticalItem.vue'
-import domResize from '../js/domResize.mjs'
 
 
 /**
  * @vue-prop {Array} [items=[]] 輸入項目的字串陣列或物件陣列，預設[]
  * @vue-prop {Boolean} [useActive=false] 輸入項目是否使用點擊成為活耀狀態，預設false
- * @vue-prop {Object} [itemActive=null] 輸入活耀項目物件，預設null
+ * @vue-prop {String|Object} [itemActive=null] 輸入活耀項目物件，預設null
  * @vue-prop {String} [itemTextFontSize='1rem'] 輸入文字字型大小字串，預設'1rem'
  * @vue-prop {String} [keyText='text'] 輸入項目為物件時，存放顯示文字之欄位字串，預設'text'
  * @vue-prop {String} [keyIcon='icon'] 輸入項目為物件時，存放圖標之欄位字串，預設'icon'
@@ -248,7 +249,7 @@ export default {
             //listHeight
             let listHeight = vo.panelHeight - headerHeight - footerHeight
             // console.log('vo.panelHeight', vo.panelHeight, 'headerHeight', headerHeight, 'footerHeight', footerHeight)
-            // console.log('listHeight',  listHeight)
+            // console.log('listHeight', listHeight)
 
             //check
             if (listHeight > 0 && vo.listHeight !== listHeight) {

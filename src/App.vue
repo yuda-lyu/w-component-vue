@@ -203,6 +203,11 @@
             ></AppZoneWListVertical>
 
 
+            <AppZoneWListExpand
+                v-if="useCmpName==='WListExpand'"
+            ></AppZoneWListExpand>
+
+
             <AppZoneWGroupCheck
                 v-if="useCmpName==='WGroupCheck'"
             ></AppZoneWGroupCheck>
@@ -369,6 +374,7 @@ import AppZoneWAlert from './AppZoneWAlert.vue'
 import AppZoneWGroupTags from './AppZoneWGroupTags.vue'
 import AppZoneWGroupDragdrop from './AppZoneWGroupDragdrop.vue'
 import AppZoneWListVertical from './AppZoneWListVertical.vue'
+import AppZoneWListExpand from './AppZoneWListExpand.vue'
 import AppZoneWGroupCheck from './AppZoneWGroupCheck.vue'
 import AppZoneWGroupRadio from './AppZoneWGroupRadio.vue'
 import AppZoneWText from './AppZoneWText.vue'
@@ -423,6 +429,7 @@ export default {
         AppZoneWGroupTags,
         AppZoneWGroupDragdrop,
         AppZoneWListVertical,
+        AppZoneWListExpand,
         AppZoneWGroupCheck,
         AppZoneWGroupRadio,
         AppZoneWText,
@@ -504,6 +511,7 @@ export default {
                     name: 'list',
                     cmps: [
                         { name: 'WListVertical' },
+                        { name: 'WListExpand' },
                         { name: 'WDynamicList' },
                     ]
                 },

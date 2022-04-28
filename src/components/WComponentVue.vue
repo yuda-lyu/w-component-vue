@@ -26,6 +26,8 @@ import WImageCascadingDyn from './WImageCascadingDyn.vue'
 import WImageViewerDyn from './WImageViewerDyn.vue'
 import WJsonView from './WJsonView.vue'
 import WLeafletVueDyn from './WLeafletVueDyn.vue'
+import WListExpand from './WListExpand.vue'
+import WListExpandItem from './WListExpandItem.vue'
 import WListVertical from './WListVertical.vue'
 import WListVerticalItem from './WListVerticalItem.vue'
 import WPanelBulge from './WPanelBulge.vue'
@@ -95,6 +97,8 @@ let WComponentVue = {
         Vue.component('w-image-viewer-dyn', WImageViewerDyn)
         Vue.component('w-json-view', WJsonView)
         Vue.component('w-leaflet-vue-dyn', WLeafletVueDyn)
+        Vue.component('w-list-expand', WListExpand)
+        Vue.component('w-list-expand-item', WListExpandItem)
         Vue.component('w-list-vertical', WListVertical)
         Vue.component('w-list-vertical-item', WListVerticalItem)
         Vue.component('w-panel-bulge', WPanelBulge)

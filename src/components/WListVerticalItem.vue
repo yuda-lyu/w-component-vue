@@ -1,12 +1,12 @@
 <template>
     <div
-        :style="`transition:all 0.3s; ${usePadding} background:${useBackgroundColor};`"
+        :style="`transition:all 0.3s; ${usePadding} background:${useBackgroundColor}; cursor:pointer;`"
         v-domripple="{color:rippleColor}"
         @mouseenter="mouseEnter=true"
         @mouseleave="mouseEnter=false"
         @click="$emit('click',{icon,text})"
     >
-        <div style="display:flex; align-items:center; white-space:nowrap;">
+        <div style="display:flex; align-items:center;">
 
             <slot
                 :mouseEnter="mouseEnter"
@@ -35,9 +35,9 @@
 import get from 'lodash/get'
 import replace from 'wsemi/src/replace.mjs'
 import domRipple from '../js/domRipple.mjs'
-import WIcon from './WIcon.vue'
 import color2hex from '../js/vuetifyColor.mjs'
 import parseSpace from '../js/parseSpace.mjs'
+import WIcon from './WIcon.vue'
 
 
 /**
