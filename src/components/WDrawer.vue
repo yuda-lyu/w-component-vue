@@ -3,6 +3,8 @@
         style=""
         :changeValue="changeValue"
         :changeDrawerWidth="changeDrawerWidth"
+        v-domresize
+        @domresize="updatePanelSize"
     >
 
         <div ref="divPanel" style="position:relative; height:100%;">
@@ -34,14 +36,14 @@
             <!-- overlay半透明灰色層 -->
             <div
                 class="ts"
-                :style="`position:${effOverlayPosition}; ${effDrawerDetectLoction} top:0px; bottom:0px; z-index:${effDrawerZIndex+1}; width:${effDrawerDetectWidth}; height:100%; opacity:${effOverlayOpacity}; background:${effOverlayColor};`"
+                :style="`position:${useOverlayPosition}; ${useDrawerDetectLoction} top:0px; bottom:0px; z-index:${useDrawerZIndex+1}; width:${useDrawerDetectWidth}; height:100%; opacity:${useOverlayOpacity}; background:${useOverlayColor};`"
                 v-if="showOverlay1Basic"
             >
             </div>
 
             <!-- overlay關閉事件監聽層, 與隱藏內層之向外陰影 -->
             <div
-                :style="`position:${effOverlayPosition}; ${effDrawerDetectLoction} top:0px; bottom:0px; z-index:${effDrawerZIndex+2}; width:${effDrawerDetectWidth}; height:100%; overflow:hidden;`"
+                :style="`position:${useOverlayPosition}; ${useDrawerDetectLoction} top:0px; bottom:0px; z-index:${useDrawerZIndex+2}; width:${useDrawerDetectWidth}; height:100%; overflow:hidden;`"
                 @click="(ev)=>{ckToggle(ev,false)}"
                 v-show="showOverlay2Detect"
             >
@@ -53,20 +55,20 @@
 
                     <div
                         ref="divDrawer"
-                        :class="`ts ${effDrawerClassShadow}`"
-                        :style="`width:${drawerWidthTrans}px; height:100%; background:#fff; transform:translateX(${effDrawerTranslateX}%);`"
+                        :class="`ts ${useDrawerClassShadow}`"
+                        :style="`width:${useDrawerWidthTrans}px; height:100%; background:#fff; transform:translateX(${useDrawerTranslateX}%);`"
                     >
 
                         <div
                             class="ts"
-                            :style="`width:${drawerWidthTrans}px; height:100%; display:flex;`"
+                            :style="`width:${useDrawerWidthTrans}px; height:100%; display:flex;`"
                         >
 
                             <div :style="`padding-left:${drawerBarSize/2}px;`" v-if="dragDrawerWidth && !isAtLeft"></div>
 
                             <div
                                 class="ts"
-                                :style="`width:${drawerWidthTrans-drawerBarSize/2}px;`"
+                                :style="`width:${useDrawerWidthTrans-drawerBarSize/2}px;`"
                             >
 
                                 <slot name="drawer"></slot>
@@ -87,10 +89,10 @@
             <!-- 延遲至抽屜出現後才通過opacity=1顯示, 否則於浮動模式時會在外側陰影層馬上看到拖曳寬度bar, 使用者體驗不佳 -->
             <div
                 ref="divBar"
-                :style="`position:${effOverlayPosition}; z-index:${effDrawerZIndex+3}; top:0px; ${isAtLeft?'left':'right'}:${drawerWidthTrans-bw/2}px; width:${bw}px; height:100%; border-left:${drawerBarBorderSize}px solid ${effDrawerBarBorderColor}; border-right:${drawerBarBorderSize}px solid ${effDrawerBarBorderColor}; opacity:${showOverlay5DragDrawerBar?1:0}; cursor:col-resize; user-select:none;`"
+                :style="`position:${useOverlayPosition}; z-index:${useDrawerZIndex+3}; top:0px; ${isAtLeft?'left':'right'}:${useDrawerWidthTrans-bw/2}px; width:${bw}px; height:100%; border-left:${drawerBarBorderSize}px solid ${useDrawerBarBorderColor}; border-right:${drawerBarBorderSize}px solid ${useDrawerBarBorderColor}; opacity:${showOverlay5DragDrawerBar?1:0}; cursor:col-resize; user-select:none;`"
                 v-show="value && dragDrawerWidth"
             >
-                <div :style="`width:${drawerBarSize}px; height:100%; background:${effDrawerBarColor};`"></div>
+                <div :style="`width:${drawerBarSize}px; height:100%; background:${useDrawerBarColor};`"></div>
             </div>
 
         </div>
@@ -100,12 +102,13 @@
 
 <script>
 import get from 'lodash/get'
-import filter from 'lodash/filter'
-import min from 'lodash/min'
 import isNumber from 'lodash/isNumber'
 import isnum from 'wsemi/src/isnum.mjs'
+import isfun from 'wsemi/src/isfun.mjs'
 import cdbl from 'wsemi/src/cdbl.mjs'
+import domGetWindowSize from 'wsemi/src/domGetWindowSize.mjs'
 import domDragBarAndScroll from 'wsemi/src/domDragBarAndScroll.mjs'
+import domResize from '../js/domResize.mjs'
 import color2hex from '../js/vuetifyColor.mjs'
 
 
@@ -128,6 +131,7 @@ import color2hex from '../js/vuetifyColor.mjs'
  */
 export default {
     directives: {
+        domresize: domResize(),
     },
     props: {
         value: {
@@ -193,6 +197,9 @@ export default {
     },
     data: function() {
         return {
+
+            panelWidth: 0,
+            panelHeight: 0,
 
             das: null,
 
@@ -265,6 +272,30 @@ export default {
             return ''
         },
 
+        useDrawerWidthTrans: function() {
+            let vo = this
+
+            //監聽drawerWidthTrans與panelWidth有變化則重算
+
+            //trigger
+            vo.___panelWidth___ = vo.panelWidth
+
+            //getPanelEffWidth
+            let dwMax = vo.getPanelEffWidth()
+            // console.log('vo.drawerWidthTrans', vo.drawerWidthTrans, 'dwMax', dwMax)
+
+            //check
+            if (isNumber(dwMax)) {
+                dwMax = Math.min(vo.drawerWidthTrans, dwMax)
+            }
+            else {
+                dwMax = vo.drawerWidthTrans
+            }
+            // console.log('dwMax', dwMax)
+
+            return dwMax
+        },
+
         virtualZoneWidth: function() {
             if (!this.value) {
                 return 0
@@ -272,14 +303,14 @@ export default {
             if (this.afloat) {
                 return 0
             }
-            return this.drawerWidthTrans
+            return this.useDrawerWidthTrans
         },
 
         isAtLeft: function() {
             return this.mode !== 'from-right'
         },
 
-        effDrawerZIndex: function() {
+        useDrawerZIndex: function() {
             let i = this.drawerZIndex
             if (this.afloat) {
                 i += 1000
@@ -290,25 +321,25 @@ export default {
             return i
         },
 
-        effOverlayColor: function() {
+        useOverlayColor: function() {
             if (!this.afloat) {
                 return 'transparent'
             }
             return color2hex(this.overlayColor)
         },
 
-        effOverlayPosition: function() {
+        useOverlayPosition: function() {
             return this.afloatByFix ? 'fixed' : 'absolute'
         },
 
-        effOverlayOpacity: function() {
+        useOverlayOpacity: function() {
             if (!this.afloat) {
                 return 0
             }
             return this.effOverlay1Basic ? this.overlayOpacity : 0
         },
 
-        effDrawerTranslateX: function() {
+        useDrawerTranslateX: function() {
             if (this.effOverlay4Translate) {
                 return 0
             }
@@ -316,21 +347,21 @@ export default {
             return s0
         },
 
-        effDrawerDetectLoction: function() {
+        useDrawerDetectLoction: function() {
             if (this.isAtLeft) {
                 return 'left:0px;'
             }
             return 'right:0px;'
         },
 
-        effDrawerDetectWidth: function() {
+        useDrawerDetectWidth: function() {
             if (this.afloat) {
                 return '100%'
             }
-            return `${this.drawerWidthTrans}px`
+            return `${this.useDrawerWidthTrans}px`
         },
 
-        effDrawerClassShadow: function() {
+        useDrawerClassShadow: function() {
             return this.afloat && this.showOverlay3Shadow ? 'bs' : ''
         },
 
@@ -342,16 +373,47 @@ export default {
             return vo.drawerBarSize + vo.drawerBarBorderSize * 2
         },
 
-        effDrawerBarColor: function() {
+        useDrawerBarColor: function() {
             return color2hex(this.drawerBarColor)
         },
 
-        effDrawerBarBorderColor: function() {
+        useDrawerBarBorderColor: function() {
             return color2hex(this.drawerBarBorderColor)
         },
 
     },
     methods: {
+
+        updatePanelSize: function(msg) {
+            // console.log('methods updatePanelSize', msg)
+
+            let vo = this
+            if (!vo.afloatByFix) {
+                //抽屜浮動於組件panel
+
+                //update
+                vo.panelWidth = msg.snew.offsetWidth
+                vo.panelHeight = msg.snew.offsetHeight
+
+            }
+            else {
+                //抽屜浮動於body
+
+                //domGetWindowSize
+                let ws = domGetWindowSize()
+
+                //update
+                vo.panelWidth = ws.width
+                vo.panelHeight = ws.height
+
+            }
+
+            // console.log('vo.panelWidth', vo.panelWidth)
+
+            //emit
+            vo.$emit('resize', msg)
+
+        },
 
         ckToggle: function(ev, value) {
             // console.log('methods ckToggle', ev, value)
@@ -479,6 +541,75 @@ export default {
 
         },
 
+        getPanelBounding: function() {
+            // console.log('methods getPanelBounding')
+
+            let vo = this
+
+            //bd
+            let bd = null
+            if (!vo.afloatByFix) {
+                //抽屜浮動於組件panel
+
+                //getBoundingClientRect
+                let func = get(vo, '$el.getBoundingClientRect')
+                if (isfun(func)) {
+                    // bd = func() //不能執行func, 會造成非法調用Illegal invocation
+                    bd = vo.$el.getBoundingClientRect()
+                    // console.log(vo.$el.getBoundingClientRect, isfun(vo.$el.getBoundingClientRect))
+                }
+                else {
+                    // console.log('vo.$el.getBoundingClientRect is not a function')
+                    bd = {
+                        left: 0,
+                        width: 0,
+                    }
+                }
+
+            }
+            else {
+                //抽屜浮動於body
+
+                //getWindowWidth
+                let windowWidth = get(domGetWindowSize(), 'width')
+
+                bd = {
+                    left: 0,
+                    width: windowWidth,
+                }
+
+            }
+
+            return bd
+        },
+
+        getPanelEffWidth: function() {
+            // console.log('methods getPanelEffWidth')
+
+            let vo = this
+
+            //effWidth
+            let effWidth = null
+            if (!vo.afloatByFix) {
+                //抽屜浮動於組件panel
+
+                //offsetWidth, 若於mounted之前呼叫因無$el, 故會回傳null
+                effWidth = get(vo, '$el.offsetWidth', null)
+                // console.log('vo.$el.offsetWidth', vo.$el.offsetWidth, 'effWidth', effWidth)
+
+            }
+            else {
+                //抽屜浮動於body
+
+                //getWindowWidth
+                effWidth = get(domGetWindowSize(), 'width')
+
+            }
+            // console.log('effWidth', effWidth)
+
+            return effWidth
+        },
+
         dragBar: function({ clientX }) {
             // console.log('methods dragBar', clientX)
 
@@ -494,37 +625,10 @@ export default {
                 return
             }
 
-            //getWindowWidth
-            let getWindowWidth = () => {
-                let w1 = get(window, 'innerWidth')
-                // console.log('window.innerWidth', window.innerWidth)
-                let w2 = get(document, 'documentElement.clientWidth')
-                // console.log('document.documentElement.clientWidth', document.documentElement.clientWidth)
-                let w3 = get(document, 'body.clientWidth')
-                // console.log('document.body.clientWidth', document.body.clientWidth)
-                let ws = [w1, w2, w3]
-                ws = filter(ws, isNumber)
-                let w = min(ws)
-                return w
-            }
-
-            //getWindowWidth
-            let windowWidth = getWindowWidth()
-
             //bd
-            let bd = null
-            if (!vo.afloatByFix) {
-                //抽屜浮動於組件panel
-                bd = vo.$el.getBoundingClientRect()
-            }
-            else {
-                //抽屜浮動於body
-                bd = {
-                    left: 0,
-                    width: windowWidth,
-                }
-            }
+            let bd = vo.getPanelBounding()
 
+            //x
             let x = clientX
 
             //dw
@@ -540,19 +644,11 @@ export default {
             // console.log(bd, 'x', x, 'dw', dw)
 
             //dwMax
-            let dwMax = null
-            if (!vo.afloatByFix) {
-                //抽屜浮動於組件panel
-                dwMax = vo.$el.offsetWidth
-            }
-            else {
-                //抽屜浮動於body
-                dwMax = windowWidth
-            }
+            let dwMax = vo.getPanelEffWidth()
             if (isnum(vo.drawerWidthMax)) {
                 dwMax = cdbl(vo.drawerWidthMax)
             }
-            // console.log('dwMax', dwMax, 'windowWidth', windowWidth)
+            // console.log('dwMax', dwMax)
 
             //dwMin
             let dwMin = 0
@@ -561,8 +657,12 @@ export default {
             }
 
             //min, max
-            dw = Math.min(dw, dwMax)
-            dw = Math.max(dw, dwMin)
+            if (isNumber(dwMax)) {
+                dw = Math.min(dw, dwMax)
+            }
+            if (isNumber(dwMin)) {
+                dw = Math.max(dw, dwMin)
+            }
 
             //update
             vo.drawerWidthTrans = dw
