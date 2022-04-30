@@ -85,7 +85,7 @@
     </script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.2.9/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.2.10/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -145,13 +145,13 @@
                 depressed
                 small
                 elevation="2"
-                @click="WDialog.bShow14=!WDialog.bShow14"
-            >Show({{WDialog.bShow14}})</v-btn>
+                @click="WDialog.bShow14a=!WDialog.bShow14a"
+            >Show({{WDialog.bShow14a}})</v-btn>
 
             <w-dialog
-                :show.sync="WDialog.bShow14"
+                :show.sync="WDialog.bShow14a"
                 :title="WDialog.title"
-                :max-width="0"
+                :max-width="WDialog.bShow14b?1000:0"
                 @resize="resizeEvent"
                 @click-save="clickSave"
                 @click-close="clickClose"
@@ -166,11 +166,20 @@
                         <div style="margin:15px 0px;">{{WDialog.text4}}</div>
 
                         <v-btn
+                            style="margin-right:10px;"
                             depressed
                             small
                             elevation="2"
-                            @click="WDialog.bShow14=!WDialog.bShow14"
+                            @click="WDialog.bShow14a=!WDialog.bShow14a"
                         >Hide Window</v-btn>
+
+                        <v-btn
+                            style="margin-right:10px;"
+                            depressed
+                            small
+                            elevation="2"
+                            @click="WDialog.bShow14b=!WDialog.bShow14b"
+                        >Toggle to {{WDialog.bShow14b?'Fullscreen':'Normal Size'}}</v-btn>
                     </div>
                 </template>
             </w-dialog>
@@ -201,7 +210,8 @@
           bShow11: false,
           bShow12: false,
           bShow13: false,
-          bShow14: false,
+          bShow14a: false,
+          bShow14b: false,
           bShow15: false,
           bShow16: false,
           bShow17: false,
