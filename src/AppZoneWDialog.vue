@@ -542,12 +542,12 @@
                     :casename="'fullscreen'"
                 ></demolink>
 
-                <v-btn depressed small elevation="2" @click="WDialog.bShow14=!WDialog.bShow14">Show({{WDialog.bShow14}})</v-btn>
+                <v-btn depressed small elevation="2" @click="WDialog.bShow14a=!WDialog.bShow14a">Show({{WDialog.bShow14a}})</v-btn>
 
                 <w-dialog
-                    :show.sync="WDialog.bShow14"
+                    :show.sync="WDialog.bShow14a"
                     :title="WDialog.title"
-                    :maxWidth="0"
+                    :maxWidth="WDialog.bShow14b?1000:0"
                     @resize="resizeEvent"
                     @click-save="clickSave"
                     @click-close="clickClose"
@@ -568,7 +568,9 @@
                                 {{WDialog.text4}}
                             </div>
 
-                            <v-btn depressed small elevation="2" @click="WDialog.bShow14=!WDialog.bShow14">Hide Window</v-btn>
+                            <v-btn style="margin-right:10px;" depressed small elevation="2" @click="WDialog.bShow14a=!WDialog.bShow14a">Hide Window</v-btn>
+
+                            <v-btn style="margin-right:10px;" depressed small elevation="2" @click="WDialog.bShow14b=!WDialog.bShow14b">Toggle to {{WDialog.bShow14b?'Fullscreen':'Normal Size'}}</v-btn>
 
                         </div>
                     </template>
@@ -855,7 +857,8 @@ export default {
                 'bShow11': false,
                 'bShow12': false,
                 'bShow13': false,
-                'bShow14': false,
+                'bShow14a': false,
+                'bShow14b': false,
                 'bShow15': false,
                 'bShow16': false,
                 'bShow17': false,

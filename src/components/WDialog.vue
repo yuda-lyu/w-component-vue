@@ -4,6 +4,7 @@
         scrollable
         :persistent="hasCloseBtn"
         :max-width="maxWidth"
+        :width="maxWidth"
         :fullscreen="fullscreen"
         :hide-overlay="fullscreen"
         v-resize="changeSize"
@@ -246,8 +247,14 @@ export default {
 
             let vo = this
 
+            //trigger
+            let maxWidth = vo.maxWidth
+
             //showTrans
             vo.showTrans = vo.show
+
+            //changeSize
+            vo.changeSize(maxWidth)
 
             return ''
         },
