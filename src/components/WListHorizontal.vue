@@ -5,7 +5,7 @@
         :changeItemActive="changeItemActive"
     >
 
-        <div style="position:relative; display:flex; align-items:center;">
+        <div style="position:relative; display:flex; align-items:center; white-space:nowrap;">
 
             <div
                 :style="`transition:all 0.3s; position:absolute; z-index:1; bottom:0px; left:${borderBottomLeft}px; padding-left:${borderBottomWidth}px; border-bottom:${borderBottomSize}px solid ${useBorderBottomColor};`"

@@ -122,7 +122,7 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-list-horizontal'"
-                    :casename="'borderBottom'"
+                    :casename="'no borderBottom'"
                 ></demolink>
 
                 <w-list-horizontal
@@ -282,7 +282,7 @@
 
                             </div>
 
-                            <div>
+                            <div style="">
 
                                 <w-badge
                                     :text="props.item.ind"
