@@ -85,7 +85,7 @@
     </script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.2.12/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.2.13/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -136,21 +136,27 @@
                 style="cursor:pointer;"
                 title="open for copy link to view component"
                 onclick="window.open('//yuda-lyu.github.io/w-component-vue/examples/app.html?cmp='+this.innerText,'_blank')"
-            >w-panel-bulge</span>
+            >w-panel-avatar</span>
         </div>
         <div class="bk">
-            <div class="item">headerPadding</div>
+            <div class="item">sepLineWidth &amp; sepLineColor</div>
 
-            <w-panel-bulge
-                style="min-width:500px;"
-                :header-text="WPanelBulge.title"
-                :header-padding="'0px 10px'"
-            >
-                <div
-                    style="padding:20px 10px 10px 10px;"
-                    v-html="WPanelBulge.table"
-                ></div>
-            </w-panel-bulge>
+            <div style="max-width:400px; padding:40px; background:#bbb;">
+                <w-panel-avatar
+                    style
+                    :sub-header-text="WPanelAvatar.subTitle"
+                    :header-text="WPanelAvatar.title"
+                    :sep-line-width="5"
+                    :sep-line-color="'rgba(0,0,0,0.5)'"
+                >
+                    <div style="padding:10px;">
+                        <div
+                            style="padding:10px; background:#fff;"
+                            v-html="WPanelAvatar.table"
+                        ></div>
+                    </div>
+                </w-panel-avatar>
+            </div>
         </div>
     </v-app>
 
@@ -164,49 +170,11 @@
     vuetify: new Vuetify(),
     data: function() {
       return {
-        WPanelBulge: {
-          tableFun: function() {
-            //註解會於編譯階段被清除無法用f2c
-            /**
-                            <div style="margin-bottom:10px; padding:0px 10px;">
-                                <span>A data table</span>
-                            </div>
-        
-                            <table style="width:100%; font-size:0.7rem; border-collapse:collapse;">
-                                <thead>
-                                    <tr>
-                                        <th style="padding:2px 8px; text-align:left;">Dessert</th>
-                                        <th style="padding:2px 8px; text-align:left;">Calories</th>
-                                        <th style="padding:2px 8px; text-align:left;">Fat</th>
-                                        <th style="padding:2px 8px; text-align:left;">Carbs</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td style="padding:2px 8px; border-top:1px solid #ddd;">Frozen Yogurt</td>
-                                        <td style="padding:2px 8px; border-top:1px solid #ddd;">159</td>
-                                        <td style="padding:2px 8px; border-top:1px solid #ddd;">6</td>
-                                        <td style="padding:2px 8px; border-top:1px solid #ddd;">24</td>
-                                    </tr>
-                                    <tr>
-                                        <td style="padding:2px 8px; border-top:1px solid #ddd;">Ice cream sandwich</td>
-                                        <td style="padding:2px 8px; border-top:1px solid #ddd;">237</td>
-                                        <td style="padding:2px 8px; border-top:1px solid #ddd;">9</td>
-                                        <td style="padding:2px 8px; border-top:1px solid #ddd;">37</td>
-                                    </tr>
-                                    <tr>
-                                        <td style="padding:2px 8px; border-top:1px solid #ddd;">Eclair</td>
-                                        <td style="padding:2px 8px; border-top:1px solid #ddd;">262</td>
-                                        <td style="padding:2px 8px; border-top:1px solid #ddd;">16</td>
-                                        <td style="padding:2px 8px; border-top:1px solid #ddd;">23</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                             */
-          },
+        WPanelAvatar: {
           table:
             '\n<div style="margin-bottom:10px; padding:0px 10px;">\n                        <span>A data table</span>\n                    </div>\n\n                    <table style="width:100%; font-size:0.7rem; border-collapse:collapse;">\n                        <thead>\n                            <tr>\n                                <th style="padding:2px 8px; text-align:left;">Dessert</th>\n                                <th style="padding:2px 8px; text-align:left;">Calories</th>\n                                <th style="padding:2px 8px; text-align:left;">Fat</th>\n                                <th style="padding:2px 8px; text-align:left;">Carbs</th>\n                            </tr>\n                        </thead>\n                        <tbody>\n                            <tr>\n                                <td style="padding:2px 8px; border-top:1px solid #ddd;">Frozen Yogurt</td>\n                                <td style="padding:2px 8px; border-top:1px solid #ddd;">159</td>\n                                <td style="padding:2px 8px; border-top:1px solid #ddd;">6</td>\n                                <td style="padding:2px 8px; border-top:1px solid #ddd;">24</td>\n                            </tr>\n                            <tr>\n                                <td style="padding:2px 8px; border-top:1px solid #ddd;">Ice cream sandwich</td>\n                                <td style="padding:2px 8px; border-top:1px solid #ddd;">237</td>\n                                <td style="padding:2px 8px; border-top:1px solid #ddd;">9</td>\n                                <td style="padding:2px 8px; border-top:1px solid #ddd;">37</td>\n                            </tr>\n                            <tr>\n                                <td style="padding:2px 8px; border-top:1px solid #ddd;">Eclair</td>\n                                <td style="padding:2px 8px; border-top:1px solid #ddd;">262</td>\n                                <td style="padding:2px 8px; border-top:1px solid #ddd;">16</td>\n                                <td style="padding:2px 8px; border-top:1px solid #ddd;">23</td>\n                            </tr>\n                        </tbody>\n                    </table>\n',
-          title: "Bulge",
+          title: "52/128",
+          subTitle: "Recovery rate",
           menu: {
             items: [
               {
