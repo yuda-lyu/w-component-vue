@@ -1,8 +1,8 @@
 <template>
     <div
+        :changeItemActive="changeItemActive"
         v-domresize
         @domresize="resize"
-        :changeItemActive="changeItemActive"
     >
 
         <div style="position:relative; display:flex; align-items:center; white-space:nowrap;">

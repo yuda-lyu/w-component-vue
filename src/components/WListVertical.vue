@@ -1,8 +1,8 @@
 <template>
     <div
+        :changeItemActive="changeItemActive"
         v-domresize
         @domresize="resize"
-        :changeItemActive="changeItemActive"
     >
 
         <div

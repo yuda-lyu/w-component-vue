@@ -42,13 +42,13 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-panel-bulge'"
-                    :casename="'headerPadding'"
+                    :casename="'paddingStyle'"
                 ></demolink>
 
                 <w-panel-bulge
                     style="min-width:500px;"
                     :headerText="WPanelBulge.title"
-                    :headerPadding="'0px 10px'"
+                    :paddingStyle="{v:0,h:10}"
                 >
                     <div style="padding:20px 10px 10px 10px;" v-html="WPanelBulge.table"></div>
                 </w-panel-bulge>
@@ -208,44 +208,6 @@ export default {
             mdiSpoonSugar,
             mdiApple,
             'WPanelBulge': {
-                'tableFun': function() { //註解會於編譯階段被清除無法用f2c
-                    /**
-                    <div style="margin-bottom:10px; padding:0px 10px;">
-                        <span>A data table</span>
-                    </div>
-
-                    <table style="width:100%; font-size:0.7rem; border-collapse:collapse;">
-                        <thead>
-                            <tr>
-                                <th style="padding:2px 8px; text-align:left;">Dessert</th>
-                                <th style="padding:2px 8px; text-align:left;">Calories</th>
-                                <th style="padding:2px 8px; text-align:left;">Fat</th>
-                                <th style="padding:2px 8px; text-align:left;">Carbs</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td style="padding:2px 8px; border-top:1px solid #ddd;">Frozen Yogurt</td>
-                                <td style="padding:2px 8px; border-top:1px solid #ddd;">159</td>
-                                <td style="padding:2px 8px; border-top:1px solid #ddd;">6</td>
-                                <td style="padding:2px 8px; border-top:1px solid #ddd;">24</td>
-                            </tr>
-                            <tr>
-                                <td style="padding:2px 8px; border-top:1px solid #ddd;">Ice cream sandwich</td>
-                                <td style="padding:2px 8px; border-top:1px solid #ddd;">237</td>
-                                <td style="padding:2px 8px; border-top:1px solid #ddd;">9</td>
-                                <td style="padding:2px 8px; border-top:1px solid #ddd;">37</td>
-                            </tr>
-                            <tr>
-                                <td style="padding:2px 8px; border-top:1px solid #ddd;">Eclair</td>
-                                <td style="padding:2px 8px; border-top:1px solid #ddd;">262</td>
-                                <td style="padding:2px 8px; border-top:1px solid #ddd;">16</td>
-                                <td style="padding:2px 8px; border-top:1px solid #ddd;">23</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                     */
-                },
                 'table': '\n<div style="margin-bottom:10px; padding:0px 10px;">\n                        <span>A data table</span>\n                    </div>\n\n                    <table style="width:100%; font-size:0.7rem; border-collapse:collapse;">\n                        <thead>\n                            <tr>\n                                <th style="padding:2px 8px; text-align:left;">Dessert</th>\n                                <th style="padding:2px 8px; text-align:left;">Calories</th>\n                                <th style="padding:2px 8px; text-align:left;">Fat</th>\n                                <th style="padding:2px 8px; text-align:left;">Carbs</th>\n                            </tr>\n                        </thead>\n                        <tbody>\n                            <tr>\n                                <td style="padding:2px 8px; border-top:1px solid #ddd;">Frozen Yogurt</td>\n                                <td style="padding:2px 8px; border-top:1px solid #ddd;">159</td>\n                                <td style="padding:2px 8px; border-top:1px solid #ddd;">6</td>\n                                <td style="padding:2px 8px; border-top:1px solid #ddd;">24</td>\n                            </tr>\n                            <tr>\n                                <td style="padding:2px 8px; border-top:1px solid #ddd;">Ice cream sandwich</td>\n                                <td style="padding:2px 8px; border-top:1px solid #ddd;">237</td>\n                                <td style="padding:2px 8px; border-top:1px solid #ddd;">9</td>\n                                <td style="padding:2px 8px; border-top:1px solid #ddd;">37</td>\n                            </tr>\n                            <tr>\n                                <td style="padding:2px 8px; border-top:1px solid #ddd;">Eclair</td>\n                                <td style="padding:2px 8px; border-top:1px solid #ddd;">262</td>\n                                <td style="padding:2px 8px; border-top:1px solid #ddd;">16</td>\n                                <td style="padding:2px 8px; border-top:1px solid #ddd;">23</td>\n                            </tr>\n                        </tbody>\n                    </table>\n',
                 'title': 'Bulge',
                 'menu': {

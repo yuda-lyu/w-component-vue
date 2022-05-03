@@ -98,6 +98,11 @@
             ></AppZoneWPanelBulge>
 
 
+            <AppZoneWPanelAvatar
+                v-if="useCmpName==='WPanelAvatar'"
+            ></AppZoneWPanelAvatar>
+
+
             <AppZoneWPanelScrolly
                 v-if="useCmpName==='WPanelScrolly'"
             ></AppZoneWPanelScrolly>
@@ -358,6 +363,7 @@ import urlParse from 'wsemi/src/urlParse.mjs'
 import AppZoneWBadge from './AppZoneWBadge.vue'
 import AppZoneWPanelStripe from './AppZoneWPanelStripe.vue'
 import AppZoneWPanelBulge from './AppZoneWPanelBulge.vue'
+import AppZoneWPanelAvatar from './AppZoneWPanelAvatar.vue'
 import AppZoneWPanelScrolly from './AppZoneWPanelScrolly.vue'
 import AppZoneWPanelDivideHorizontal from './AppZoneWPanelDivideHorizontal.vue'
 import AppZoneWPanelDivideVertical from './AppZoneWPanelDivideVertical.vue'
@@ -414,6 +420,7 @@ export default {
         AppZoneWBadge,
         AppZoneWPanelStripe,
         AppZoneWPanelBulge,
+        AppZoneWPanelAvatar,
         AppZoneWPanelScrolly,
         AppZoneWPanelDivideHorizontal,
         AppZoneWPanelDivideVertical,
@@ -492,6 +499,7 @@ export default {
                     cmps: [
                         { name: 'WPanelStripe' },
                         { name: 'WPanelBulge' },
+                        { name: 'WPanelAvatar' },
                         { name: 'WPanelScrolly' },
                         { name: 'WPanelDivideHorizontal' },
                         { name: 'WPanelDivideVertical' },

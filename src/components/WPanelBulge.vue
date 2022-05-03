@@ -2,7 +2,7 @@
     <div>
 
         <div
-            :style="`padding:${useHeaderPadding}; z-index:2;`"
+            :style="`${usePadding} z-index:2;`"
         >
             <div
                 :class="{'shadow-header':headerShadow}"
@@ -45,12 +45,13 @@
 <script>
 import isnum from 'wsemi/src/isnum.mjs'
 import color2hex from '../js/vuetifyColor.mjs'
+import parseSpace from '../js/parseSpace.mjs'
 import domResize from '../js/domResize.mjs'
 
 
 /**
  * @vue-prop {Number} [headerBorderRadius=0] 輸入標題區圓角寬度，單位為px，預設0
- * @vue-prop {Number|String} [headerPadding='0px 20px'] 輸入標題區邊寬長度數字或字串，若輸入數字則單位為px，若輸入字串則需自己添加單位，預設'0px 20px'
+ * @vue-prop {Object} [paddingStyle={v:0,h:20}] 輸入內寬距離設定物件，可用鍵值為v、h、left、right、top、bottom，v代表同時設定top與bottom，h代表設定left與right，若有重複設定時後面鍵值會覆蓋前面，各鍵值為寬度數字，單位為px，預設{v:0,h:20}
  * @vue-prop {String} [headerText=''] 輸入標題文字字串，預設''
  * @vue-prop {String} [headerTextColor='white'] 輸入標題文字顏色字串，預設'white'
  * @vue-prop {String} [headerBackgroundColor='teal lighten-2'] 輸入標題背景顏色字串，預設'teal lighten-2'
@@ -69,9 +70,14 @@ export default {
             type: Number,
             default: 0,
         },
-        headerPadding: {
-            type: [Number, String],
-            default: '0px 20px',
+        paddingStyle: {
+            type: Object,
+            default: () => {
+                return {
+                    v: 0,
+                    h: 20,
+                }
+            },
         },
         headerText: {
             type: String,
@@ -113,6 +119,20 @@ export default {
     },
     computed: {
 
+        usePadding: function() {
+            //console.log('computed usePadding')
+
+            let vo = this
+
+            //parseSpace
+            let cs = parseSpace(vo.paddingStyle, { ext: { left: vo.shiftLeft, right: vo.shiftRight } })
+
+            //padding
+            let padding = `padding:${cs};`
+
+            return padding
+        },
+
         useHeaderTextColor: function() {
             //console.log('computed useHeaderTextColor')
 
@@ -127,19 +147,6 @@ export default {
             let vo = this
 
             return color2hex(vo.headerBackgroundColor)
-        },
-
-        useHeaderPadding: function() {
-            //console.log('computed useHeaderPadding')
-
-            let vo = this
-
-            if (isnum(vo.headerPadding)) {
-                return `${vo.headerPadding}px`
-            }
-            else {
-                return vo.headerPadding
-            }
         },
 
         useContentBackgroundColor: function() {
