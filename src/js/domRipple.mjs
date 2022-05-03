@@ -23,19 +23,19 @@ function domRipple(opt = {}) {
 
     }
 
-    function update(el, binding) {
-        // console.log('update', 'el', el, 'binding', binding)
+    // function update(el, binding) { ///若有樣式變更則會更新元素, 例如滑鼠移入會導致ripple重載, 因此導致第一次點擊無法觸發ripple
+    //     // console.log('update', 'el', el, 'binding', binding)
 
-        //clear
-        clear(el)
+    //     //clear
+    //     clear(el)
 
-        //init
-        init(el, binding)
+    //     //init
+    //     init(el, binding)
 
-    }
+    // }
 
     function unbind(el) {
-        //console.log('unbind', 'el', el)
+        // console.log('unbind', 'el', el)
 
         //clear
         clear(el)
@@ -111,7 +111,7 @@ function domRipple(opt = {}) {
 
     return {
         bind,
-        update,
+        // update,
         unbind,
     }
 }

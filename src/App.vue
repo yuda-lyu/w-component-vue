@@ -203,6 +203,11 @@
             ></AppZoneWListVertical>
 
 
+            <AppZoneWListHorizontal
+                v-if="useCmpName==='WListHorizontal'"
+            ></AppZoneWListHorizontal>
+
+
             <AppZoneWListExpand
                 v-if="useCmpName==='WListExpand'"
             ></AppZoneWListExpand>
@@ -374,6 +379,7 @@ import AppZoneWAlert from './AppZoneWAlert.vue'
 import AppZoneWGroupTags from './AppZoneWGroupTags.vue'
 import AppZoneWGroupDragdrop from './AppZoneWGroupDragdrop.vue'
 import AppZoneWListVertical from './AppZoneWListVertical.vue'
+import AppZoneWListHorizontal from './AppZoneWListHorizontal.vue'
 import AppZoneWListExpand from './AppZoneWListExpand.vue'
 import AppZoneWGroupCheck from './AppZoneWGroupCheck.vue'
 import AppZoneWGroupRadio from './AppZoneWGroupRadio.vue'
@@ -429,6 +435,7 @@ export default {
         AppZoneWGroupTags,
         AppZoneWGroupDragdrop,
         AppZoneWListVertical,
+        AppZoneWListHorizontal,
         AppZoneWListExpand,
         AppZoneWGroupCheck,
         AppZoneWGroupRadio,
@@ -510,6 +517,7 @@ export default {
                 {
                     name: 'list',
                     cmps: [
+                        { name: 'WListHorizontal' },
                         { name: 'WListVertical' },
                         { name: 'WListExpand' },
                         { name: 'WDynamicList' },

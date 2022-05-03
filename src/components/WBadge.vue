@@ -35,7 +35,7 @@ import domResize from '../js/domResize.mjs'
 
 /**
  * @vue-prop {String} [text=''] 輸入文字字串，預設''
- * @vue-prop {String} [badgeAlign='center'] 輸入標記對齊位置字串，預設'center'
+ * @vue-prop {String|Number} [badgeAlign='center'] 輸入標記對齊位置字串，預設'center'
  * @vue-prop {String} [textFontSize='0.7rem'] 輸入文字字型大小字串，預設'0.7rem'
  * @vue-prop {String} [textColor='white'] 輸入文字顏色字串，預設'white'
  * @vue-prop {String} [backgroundColor='red'] 輸入背景顏色字串，預設'red'
@@ -49,7 +49,7 @@ export default {
     },
     props: {
         text: {
-            type: String,
+            type: [String, Number],
             default: '',
         },
         badgeAlign: {

@@ -28,8 +28,9 @@ import WJsonView from './WJsonView.vue'
 import WLeafletVueDyn from './WLeafletVueDyn.vue'
 import WListExpand from './WListExpand.vue'
 import WListExpandItem from './WListExpandItem.vue'
+import WListHorizontal from './WListHorizontal.vue'
+import WListItem from './WListItem.vue'
 import WListVertical from './WListVertical.vue'
-import WListVerticalItem from './WListVerticalItem.vue'
 import WPanelBulge from './WPanelBulge.vue'
 import WPanelDivideHorizontal from './WPanelDivideHorizontal.vue'
 import WPanelDivideVertical from './WPanelDivideVertical.vue'
@@ -99,8 +100,9 @@ let WComponentVue = {
         Vue.component('w-leaflet-vue-dyn', WLeafletVueDyn)
         Vue.component('w-list-expand', WListExpand)
         Vue.component('w-list-expand-item', WListExpandItem)
+        Vue.component('w-list-horizontal', WListHorizontal)
+        Vue.component('w-list-item', WListItem)
         Vue.component('w-list-vertical', WListVertical)
-        Vue.component('w-list-vertical-item', WListVerticalItem)
         Vue.component('w-panel-bulge', WPanelBulge)
         Vue.component('w-panel-divide-horizontal', WPanelDivideHorizontal)
         Vue.component('w-panel-divide-vertical', WPanelDivideVertical)

@@ -22,7 +22,7 @@
                     v-for="(item,kitem) in items"
                 >
 
-                    <WListVerticalItem
+                    <WListItem
                         :icon="getIcon(item)"
                         :text="getText(item)"
                         :textFontSize="itemTextFontSize"
@@ -52,7 +52,7 @@
                             </slot>
                         </template>
 
-                    </WListVerticalItem>
+                    </WListItem>
 
                 </div>
             </WPanelScrolly>
@@ -77,7 +77,7 @@ import isEle from 'wsemi/src/isEle.mjs'
 import isobj from 'wsemi/src/isobj.mjs'
 import domResize from '../js/domResize.mjs'
 import WPanelScrolly from './WPanelScrolly.vue'
-import WListVerticalItem from './WListVerticalItem.vue'
+import WListItem from './WListItem.vue'
 
 
 /**
@@ -106,7 +106,7 @@ export default {
     },
     components: {
         WPanelScrolly,
-        WListVerticalItem,
+        WListItem,
     },
     props: {
         items: {
