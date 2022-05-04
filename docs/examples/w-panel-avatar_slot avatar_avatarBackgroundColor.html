@@ -85,7 +85,7 @@
     </script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.2.14/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.2.15/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -143,7 +143,6 @@
 
             <div style="max-width:400px; padding:40px; background:#bbb;">
                 <w-panel-avatar
-                    style
                     :sub-header-text="WPanelAvatar.subTitle"
                     :header-text="WPanelAvatar.title"
                     :avatar-background-color="'rgba(120,120,190,0.4)'"
@@ -178,31 +177,7 @@
           table:
             '\n<div style="margin-bottom:10px; padding:0px 10px;">\n                        <span>A data table</span>\n                    </div>\n\n                    <table style="width:100%; font-size:0.7rem; border-collapse:collapse;">\n                        <thead>\n                            <tr>\n                                <th style="padding:2px 8px; text-align:left;">Dessert</th>\n                                <th style="padding:2px 8px; text-align:left;">Calories</th>\n                                <th style="padding:2px 8px; text-align:left;">Fat</th>\n                                <th style="padding:2px 8px; text-align:left;">Carbs</th>\n                            </tr>\n                        </thead>\n                        <tbody>\n                            <tr>\n                                <td style="padding:2px 8px; border-top:1px solid #ddd;">Frozen Yogurt</td>\n                                <td style="padding:2px 8px; border-top:1px solid #ddd;">159</td>\n                                <td style="padding:2px 8px; border-top:1px solid #ddd;">6</td>\n                                <td style="padding:2px 8px; border-top:1px solid #ddd;">24</td>\n                            </tr>\n                            <tr>\n                                <td style="padding:2px 8px; border-top:1px solid #ddd;">Ice cream sandwich</td>\n                                <td style="padding:2px 8px; border-top:1px solid #ddd;">237</td>\n                                <td style="padding:2px 8px; border-top:1px solid #ddd;">9</td>\n                                <td style="padding:2px 8px; border-top:1px solid #ddd;">37</td>\n                            </tr>\n                            <tr>\n                                <td style="padding:2px 8px; border-top:1px solid #ddd;">Eclair</td>\n                                <td style="padding:2px 8px; border-top:1px solid #ddd;">262</td>\n                                <td style="padding:2px 8px; border-top:1px solid #ddd;">16</td>\n                                <td style="padding:2px 8px; border-top:1px solid #ddd;">23</td>\n                            </tr>\n                        </tbody>\n                    </table>\n',
           title: "52/128",
-          subTitle: "Recovery rate",
-          menu: {
-            items: [
-              {
-                text: "Dashboard",
-                icon: "mdi-view-dashboard"
-              },
-              {
-                text: "Schedule",
-                icon: "mdi-clock-time-eight-outline"
-              },
-              {
-                text: "Profile",
-                icon: "mdi-blender-software"
-              },
-              {
-                text: "History",
-                icon: "mdi-spoon-sugar"
-              }
-            ],
-            select: {
-              text: "Dashboard",
-              icon: "mdi-view-dashboard"
-            }
-          }
+          subTitle: "Recovery rate"
         },
         actions: []
       };

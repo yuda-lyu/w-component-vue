@@ -10,7 +10,7 @@
             >
                 <div
                     :class="`${avatarShadow?'shadow-header':''}`"
-                    :style="`transition:all 0.3s; border-radius:${avatarBorderRadius}px; background:${useAvatarBackgroundColor};`"
+                    :style="`transition:all 0.3s; _box-sizing:border-box; border:${avatarBorderWidth}px solid ${useAvatarBorderColor}; border-radius:${avatarBorderRadius}px; background:${useAvatarBackgroundColor};`"
                     v-domresize
                     @domresize="resizeAvatar"
                 >
@@ -88,6 +88,8 @@ import WIcon from './WIcon.vue'
  * @vue-prop {String} [avatarIcon=mdiForest] 輸入圖標字串，預設mdiForest
  * @vue-prop {Number} [avatarIconSize=60] 輸入圖標尺寸數字，單位為px，預設60
  * @vue-prop {String} [avatarIconColor='white'] 輸入圖標顏色字串，預設'white'
+ * @vue-prop {Number} [avatarBorderWidth=1] 輸入圖標區框線寬度數字，單位為px，預設1
+ * @vue-prop {String} [avatarBorderColor='transparnet'] 輸入圖標區框線顏色字串，預設'transparnet'
  * @vue-prop {String} [avatarBackgroundColor='rgba(239,108,0,0.5)'] 輸入圖標區背景顏色字串，預設'rgba(239,108,0,0.5)'
  * @vue-prop {Number} [avatarBorderRadius=10] 輸入圖標區框圓角程度數字，單位為px，預設10
  * @vue-prop {Boolean} [avatarShadow=true] 輸入是否使用圖標區陰影效果數字，預設true
@@ -135,6 +137,14 @@ export default {
         avatarIconColor: {
             type: String,
             default: 'white',
+        },
+        avatarBorderWidth: {
+            type: Number,
+            default: 1,
+        },
+        avatarBorderColor: {
+            type: String,
+            default: 'transparent',
         },
         avatarBackgroundColor: {
             type: String,
@@ -233,6 +243,14 @@ export default {
             return color2hex(vo.avatarIconColor)
         },
 
+        useAvatarBorderColor: function() {
+            //console.log('computed useAvatarBorderColor')
+
+            let vo = this
+
+            return color2hex(vo.avatarBorderColor)
+        },
+
         useAvatarBackgroundColor: function() {
             //console.log('computed useAvatarBackgroundColor')
 
@@ -302,8 +320,8 @@ export default {
             let vo = this
 
             //update
-            vo.avatarWidth = msg.snew.clientWidth
-            vo.avatarHeight = msg.snew.clientHeight
+            vo.avatarWidth = msg.snew.offsetWidth
+            vo.avatarHeight = msg.snew.offsetHeight
 
         },
 

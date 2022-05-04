@@ -16,9 +16,46 @@
 
                 <div style="max-width:400px; padding:40px; background:#bbb;">
                     <w-panel-avatar
-                        style=""
                         :subHeaderText="WPanelAvatar.subTitle"
                         :headerText="WPanelAvatar.title"
+                    >
+                        <div style="padding:20px;" v-html="WPanelAvatar.table"></div>
+                    </w-panel-avatar>
+                </div>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-panel-avatar'"
+                    :casename="'avatarIcon (material)'"
+                ></demolink>
+
+                <div style="max-width:400px; padding:40px; background:#bbb;">
+                    <w-panel-avatar
+                        :subHeaderText="WPanelAvatar.subTitle"
+                        :headerText="WPanelAvatar.title"
+                        :avatarIcon="mdiLaravel"
+                    >
+                        <div style="padding:20px;" v-html="WPanelAvatar.table"></div>
+                    </w-panel-avatar>
+                </div>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-panel-avatar'"
+                    :casename="'avatarIcon (fontawesome)'"
+                ></demolink>
+
+                <div style="max-width:400px; padding:40px; background:#bbb;">
+                    <w-panel-avatar
+                        :subHeaderText="WPanelAvatar.subTitle"
+                        :headerText="WPanelAvatar.title"
+                        :avatarIcon="'fas fa-skiing'"
                     >
                         <div style="padding:20px;" v-html="WPanelAvatar.table"></div>
                     </w-panel-avatar>
@@ -35,7 +72,6 @@
 
                 <div style="max-width:400px; padding:40px; background:#bbb;">
                     <w-panel-avatar
-                        style=""
                         :subHeaderText="WPanelAvatar.subTitle"
                         :headerText="WPanelAvatar.title"
                         :avatarOuterPadding="20"
@@ -56,10 +92,30 @@
 
                 <div style="max-width:400px; padding:40px; background:#bbb;">
                     <w-panel-avatar
-                        style=""
                         :subHeaderText="WPanelAvatar.subTitle"
                         :headerText="WPanelAvatar.title"
                         :avatarBackgroundColor="'rgba(40,150,60,0.4)'"
+                    >
+                        <div style="padding:20px;" v-html="WPanelAvatar.table"></div>
+                    </w-panel-avatar>
+                </div>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-panel-avatar'"
+                    :casename="'avatarBorderWidth & avatarBorderColor & avatarBackgroundColor'"
+                ></demolink>
+
+                <div style="max-width:400px; padding:40px; background:#bbb;">
+                    <w-panel-avatar
+                        :subHeaderText="WPanelAvatar.subTitle"
+                        :headerText="WPanelAvatar.title"
+                        :avatarBorderWidth="5"
+                        :avatarBorderColor="'rgba(200,170,180,0.3)'"
+                        :avatarBackgroundColor="'rgba(255,60,120,0.3)'"
                     >
                         <div style="padding:20px;" v-html="WPanelAvatar.table"></div>
                     </w-panel-avatar>
@@ -76,7 +132,6 @@
 
                 <div style="max-width:400px; padding:40px; background:#bbb;">
                     <w-panel-avatar
-                        style=""
                         :subHeaderText="WPanelAvatar.subTitle"
                         :headerText="WPanelAvatar.title"
                         :avatarBorderRadius="50"
@@ -96,7 +151,6 @@
 
                 <div style="max-width:400px; padding:40px; background:#bbb;">
                     <w-panel-avatar
-                        style=""
                         :subHeaderText="WPanelAvatar.subTitle"
                         :headerText="WPanelAvatar.title"
                         :avatarIcon="'fas fa-cloud-sun'"
@@ -119,7 +173,6 @@
 
                 <div style="max-width:400px; padding:40px; background:#bbb;">
                     <w-panel-avatar
-                        style=""
                         :subHeaderText="WPanelAvatar.subTitle"
                         :headerText="WPanelAvatar.title"
                         :avatarShadow="false"
@@ -139,7 +192,6 @@
 
                 <div style="max-width:400px; padding:40px; background:#bbb;">
                     <w-panel-avatar
-                        style=""
                         :subHeaderText="WPanelAvatar.subTitle"
                         :headerText="WPanelAvatar.title"
                         :shiftVFromAvaterCenter="0"
@@ -159,7 +211,6 @@
 
                 <div style="max-width:400px; padding:40px; background:#bbb;">
                     <w-panel-avatar
-                        style=""
                         :subHeaderText="WPanelAvatar.subTitle"
                         :headerText="WPanelAvatar.title"
                         :spaceHBetweenAvatarAndHeader="40"
@@ -185,7 +236,6 @@
 
                     <div style="padding:40px 0px;">
                         <w-panel-avatar
-                            style=""
                             :subHeaderText="WPanelAvatar.subTitle"
                             :headerText="WPanelAvatar.title"
                             :headerVerticalAlign="'top'"
@@ -206,7 +256,6 @@
 
                     <div style="padding:40px 0px;">
                         <w-panel-avatar
-                            style=""
                             :subHeaderText="WPanelAvatar.subTitle"
                             :headerText="WPanelAvatar.title"
                             :headerVerticalAlign="'center'"
@@ -227,7 +276,6 @@
 
                     <div style="padding:40px 0px;">
                         <w-panel-avatar
-                            style=""
                             :subHeaderText="WPanelAvatar.subTitle"
                             :headerText="WPanelAvatar.title"
                             :headerVerticalAlign="'bottom'"
@@ -259,7 +307,6 @@
 
                 <div style="max-width:400px; padding:40px; background:#bbb;">
                     <w-panel-avatar
-                        style=""
                         :subHeaderText="'Capture and storage'"
                         :headerText="'358,912'"
                         :headerPadding="10"
@@ -283,7 +330,6 @@
 
                 <div style="max-width:400px; padding:40px; background:#bbb;">
                     <w-panel-avatar
-                        style=""
                         :subHeaderText="WPanelAvatar.subTitle"
                         :headerText="WPanelAvatar.title"
                         :contentBorderRadius="0"
@@ -303,7 +349,6 @@
 
                 <div style="max-width:400px; padding:40px; background:#bbb;">
                     <w-panel-avatar
-                        style=""
                         :subHeaderText="WPanelAvatar.subTitle"
                         :headerText="WPanelAvatar.title"
                         :sepLineWidth="5"
@@ -326,7 +371,6 @@
 
                 <div style="max-width:400px; padding:40px; background:#bbb;">
                     <w-panel-avatar
-                        style=""
                         :subHeaderText="WPanelAvatar.subTitle"
                         :headerText="WPanelAvatar.title"
                         :contentBackgroundColor="'rgba(255,255,255,0.5)'"
@@ -348,7 +392,6 @@
 
                 <div style="max-width:400px; padding:40px; background:#bbb;">
                     <w-panel-avatar
-                        style=""
                         :subHeaderText="WPanelAvatar.subTitle"
                         :headerText="WPanelAvatar.title"
                         :contentShadow="false"
@@ -368,7 +411,6 @@
 
                 <div style="max-width:400px; padding:40px; background:#bbb;">
                     <w-panel-avatar
-                        style=""
                         :subHeaderText="WPanelAvatar.subTitle"
                         :headerText="WPanelAvatar.title"
                         :avatarBackgroundColor="'rgba(120,120,190,0.4)'"
@@ -394,7 +436,7 @@
 </template>
 
 <script>
-import { mdiViewDashboard, mdiClockTimeEightOutline, mdiBlenderSoftware, mdiApple, mdiSpoonSugar } from '@mdi/js'
+import { mdiLaravel } from '@mdi/js'
 import demolink from './components/demolink.vue'
 import WPanelAvatar from './components/WPanelAvatar.vue'
 
@@ -408,39 +450,11 @@ export default {
     },
     data: function() {
         return {
-            mdiViewDashboard,
-            mdiClockTimeEightOutline,
-            mdiBlenderSoftware,
-            mdiSpoonSugar,
-            mdiApple,
+            mdiLaravel,
             'WPanelAvatar': {
                 'table': '\n<div style="margin-bottom:10px; padding:0px 10px;">\n                        <span>A data table</span>\n                    </div>\n\n                    <table style="width:100%; font-size:0.7rem; border-collapse:collapse;">\n                        <thead>\n                            <tr>\n                                <th style="padding:2px 8px; text-align:left;">Dessert</th>\n                                <th style="padding:2px 8px; text-align:left;">Calories</th>\n                                <th style="padding:2px 8px; text-align:left;">Fat</th>\n                                <th style="padding:2px 8px; text-align:left;">Carbs</th>\n                            </tr>\n                        </thead>\n                        <tbody>\n                            <tr>\n                                <td style="padding:2px 8px; border-top:1px solid #ddd;">Frozen Yogurt</td>\n                                <td style="padding:2px 8px; border-top:1px solid #ddd;">159</td>\n                                <td style="padding:2px 8px; border-top:1px solid #ddd;">6</td>\n                                <td style="padding:2px 8px; border-top:1px solid #ddd;">24</td>\n                            </tr>\n                            <tr>\n                                <td style="padding:2px 8px; border-top:1px solid #ddd;">Ice cream sandwich</td>\n                                <td style="padding:2px 8px; border-top:1px solid #ddd;">237</td>\n                                <td style="padding:2px 8px; border-top:1px solid #ddd;">9</td>\n                                <td style="padding:2px 8px; border-top:1px solid #ddd;">37</td>\n                            </tr>\n                            <tr>\n                                <td style="padding:2px 8px; border-top:1px solid #ddd;">Eclair</td>\n                                <td style="padding:2px 8px; border-top:1px solid #ddd;">262</td>\n                                <td style="padding:2px 8px; border-top:1px solid #ddd;">16</td>\n                                <td style="padding:2px 8px; border-top:1px solid #ddd;">23</td>\n                            </tr>\n                        </tbody>\n                    </table>\n',
                 'title': '52/128',
                 'subTitle': 'Recovery rate',
-                'menu': {
-                    'items': [
-                        {
-                            text: 'Dashboard',
-                            icon: mdiViewDashboard,
-                        },
-                        {
-                            text: 'Schedule',
-                            icon: mdiClockTimeEightOutline,
-                        },
-                        {
-                            text: 'Profile',
-                            icon: mdiBlenderSoftware,
-                        },
-                        {
-                            text: 'History',
-                            icon: mdiSpoonSugar,
-                        },
-                    ],
-                    'select': {
-                        text: 'Dashboard',
-                        icon: mdiViewDashboard,
-                    }
-                },
             },
             'actions': [
             ],

@@ -2,17 +2,17 @@
     <div>
 
         <div
-            :style="`${usePadding} z-index:2;`"
+            :style="`transition:all 0.3s; ${usePadding} z-index:2;`"
         >
             <div
                 :class="{'shadow-header':headerShadow}"
-                :style="`display:inline-block; background:${useHeaderBackgroundColor}; border-radius:${headerBorderRadius}px;`"
+                :style="`transition:all 0.3s; display:inline-block; background:${useHeaderBackgroundColor}; border-radius:${headerBorderRadius}px;`"
                 v-domresize
                 @domresize="updateHeaderHeight"
             >
 
                 <slot name="header">
-                    <div :style="`padding:5px 10px; color:${useHeaderTextColor};`">
+                    <div :style="`transition:all 0.3s; padding:5px 10px; color:${useHeaderTextColor};`">
                         {{headerText}}
                     </div>
                 </slot>
@@ -20,16 +20,16 @@
             </div>
         </div>
 
-        <div :style="`margin-top:-${headerHeight/2}px; z-index:1;`">
+        <div :style="`transition:all 0.3s; margin-top:-${headerHeight/2}px; z-index:1;`">
 
             <div
                 :class="{'shadow':contentShadow}"
-                :style="`background:${useContentBackgroundColor}; border-radius:${contentBorderRadius}px;`"
+                :style="`transition:all 0.3s; background:${useContentBackgroundColor}; border-radius:${contentBorderRadius}px;`"
             >
 
-                <div :style="`padding:${useContentPadding};`">
+                <div :style="`transition:all 0.3s; padding:${useContentPadding};`">
 
-                    <div :style="`height:${headerHeight/2}px;`"></div>
+                    <div :style="`transition:all 0.3s; height:${headerHeight/2}px;`"></div>
 
                     <slot></slot>
 
