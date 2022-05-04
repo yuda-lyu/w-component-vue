@@ -6,17 +6,17 @@
         <div style="position:absolute; top:0px; left:0px;">
 
             <div
-                :style="`padding:0px ${avatarOuterPadding}px ${avatarOuterPadding}px ${avatarOuterPadding}px;`"
+                :style="`transition:all 0.3s; padding:0px ${avatarOuterPadding}px ${avatarOuterPadding}px ${avatarOuterPadding}px;`"
             >
                 <div
                     :class="`${avatarShadow?'shadow-header':''}`"
-                    :style="`border-radius:${avatarBorderRadius}px; background:${useAvatarBackgroundColor};`"
+                    :style="`transition:all 0.3s; border-radius:${avatarBorderRadius}px; background:${useAvatarBackgroundColor};`"
                     v-domresize
                     @domresize="resizeAvatar"
                 >
 
                     <div style="height:100%; width:100%; display:flex; align-items:center; justify-content:center;">
-                        <div :style="`padding:${avatarInnerPadding}px;`">
+                        <div :style="`transition:all 0.3s; padding:${avatarInnerPadding}px;`">
 
                             <slot name="avatar">
                                 <WIcon
@@ -34,26 +34,26 @@
 
         </div>
 
-        <div :style="`padding-top:${avatarHeight/2-shiftVFromAvaterCenter}px;`"></div>
+        <div :style="`transition:all 0.3s; padding-top:${avatarHeight/2-shiftVFromAvaterCenter}px;`"></div>
 
         <div
             avatarWidth
             :class="`${contentShadow?'shadow':''}`"
-            :style="`border-radius:${contentBorderRadius}px; background:${useContentBackgroundColor};`"
+            :style="`transition:all 0.3s; border-radius:${contentBorderRadius}px; background:${useContentBackgroundColor};`"
         >
 
             <div style="display:flex;">
 
-                <div :style="`min-width:${avatarOuterPadding+avatarWidth+spaceHBetweenAvatarAndHeader}px; min-height:${avatarOuterPadding+(avatarHeight/2+shiftVFromAvaterCenter)+spaceVBetweenHeaderAndContent}px;`"></div>
+                <div :style="`transition:all 0.3s; min-width:${avatarOuterPadding+avatarWidth+spaceHBetweenAvatarAndHeader}px; min-height:${avatarOuterPadding+(avatarHeight/2+shiftVFromAvaterCenter)+spaceVBetweenHeaderAndContent}px;`"></div>
 
-                <div :style="`width:100%; padding:${headerPadding}px; display:flex; align-items:${useHeaderVerticalAlign}; justify-content:flex-end;`">
+                <div :style="`transition:all 0.3s; width:100%; padding:${headerPadding}px; display:flex; align-items:${useHeaderVerticalAlign}; justify-content:flex-end;`">
 
                     <div style="text-align:right;">
-                        <div :style="`color:${useSubHeaderTextColor}; font-size:${subHeaderTextSize}; line-height:${subHeaderTextSize};`">
+                        <div :style="`transition:all 0.3s; color:${useSubHeaderTextColor}; font-size:${subHeaderTextSize}; line-height:${subHeaderTextSize};`">
                             {{subHeaderText}}
                         </div>
 
-                        <div :style="`color:${useHeaderTextColor}; font-size:${headerTextSize};`">
+                        <div :style="`transition:all 0.3s; color:${useHeaderTextColor}; font-size:${headerTextSize};`">
                             {{headerText}}
                         </div>
                     </div>
@@ -62,9 +62,9 @@
 
             </div>
 
-            <div :style="`border-top:${sepLineWidth}px solid ${useSepLineColor};`">
+            <div :style="`transition:all 0.3s; border-top:${sepLineWidth}px solid ${useSepLineColor};`">
 
-                <div style="">
+                <div style="transition:all 0.3s;">
                     <slot></slot>
                 </div>
 
