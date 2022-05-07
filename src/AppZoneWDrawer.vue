@@ -417,8 +417,9 @@
                 >
 
                     <template v-slot:drawer>
+                        <!-- afloat模式下list會有透明色, 故需給予背景色避免透視下方 -->
                         <w-list-vertical
-                            style="height:100%;"
+                            style="height:100%; background:#fff;"
                             :items="WDrawer.listItems"
                             :itemActive.sync="WDrawer.listItemActive"
                         ></w-list-vertical>
@@ -454,8 +455,9 @@
                 >
 
                     <template v-slot:drawer>
+                        <!-- afloat模式下list會有透明色, 故需給予背景色避免透視下方 -->
                         <w-list-vertical
-                            style="height:100%;"
+                            style="height:100%; background:#fff;"
                             :items="WDrawer.listItems"
                             :itemActive.sync="WDrawer.listItemActive"
                         ></w-list-vertical>
@@ -491,8 +493,9 @@
                 >
 
                     <template v-slot:drawer>
+                        <!-- afloat模式下list會有透明色, 故需給予背景色避免透視下方 -->
                         <w-list-vertical
-                            style="height:100%;"
+                            style="height:100%; background:#fff;"
                             :items="WDrawer.listItems"
                             :itemActive.sync="WDrawer.listItemActive"
                         ></w-list-vertical>
@@ -528,8 +531,9 @@
                 >
 
                     <template v-slot:drawer>
+                        <!-- afloat模式下list會有透明色, 故需給予背景色避免透視下方 -->
                         <w-list-vertical
-                            style="height:100%;"
+                            style="height:100%; background:#fff;"
                             :items="WDrawer.listItems"
                             :itemActive.sync="WDrawer.listItemActive"
                         ></w-list-vertical>
@@ -566,8 +570,9 @@
                 >
 
                     <template v-slot:drawer>
+                        <!-- afloat模式下list會有透明色, 故需給予背景色避免透視下方 -->
                         <w-list-vertical
-                            style="height:100%;"
+                            style="height:100%; background:#fff;"
                             :items="WDrawer.listItems"
                             :itemActive.sync="WDrawer.listItemActive"
                         ></w-list-vertical>
@@ -603,8 +608,9 @@
                 >
 
                     <template v-slot:drawer>
+                        <!-- afloat模式下list會有透明色, 故需給予背景色避免透視下方 -->
                         <w-list-vertical
-                            style="height:100%;"
+                            style="height:100%; background:#fff;"
                             :items="WDrawer.listItems"
                             :itemActive.sync="WDrawer.listItemActive"
                         ></w-list-vertical>
@@ -641,8 +647,9 @@
                 >
 
                     <template v-slot:drawer>
+                        <!-- afloat模式下list會有透明色, 故需給予背景色避免透視下方 -->
                         <w-list-vertical
-                            style="height:100%;"
+                            style="height:100%; background:#fff;"
                             :items="WDrawer.listItems"
                             :itemActive.sync="WDrawer.listItemActive"
                         ></w-list-vertical>
@@ -679,8 +686,9 @@
                 >
 
                     <template v-slot:drawer>
+                        <!-- afloat模式下list會有透明色, 故需給予背景色避免透視下方 -->
                         <w-list-vertical
-                            style="height:100%;"
+                            style="height:100%; background:#fff;"
                             :items="WDrawer.listItems"
                             :itemActive.sync="WDrawer.listItemActive"
                         ></w-list-vertical>
@@ -718,8 +726,9 @@
                 >
 
                     <template v-slot:drawer>
+                        <!-- afloat模式下list會有透明色, 故需給予背景色避免透視下方 -->
                         <w-list-vertical
-                            style="height:100%;"
+                            style="height:100%; background:#fff;"
                             :items="WDrawer.listItems"
                             :itemActive.sync="WDrawer.listItemActive"
                         ></w-list-vertical>

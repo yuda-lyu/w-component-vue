@@ -56,7 +56,7 @@
                     <div
                         ref="divDrawer"
                         :class="`ts ${useDrawerClassShadow}`"
-                        :style="`width:${useDrawerWidthTrans}px; height:100%; background:#fff; transform:translateX(${useDrawerTranslateX}%);`"
+                        :style="`width:${useDrawerWidthTrans}px; height:100%; transform:translateX(${useDrawerTranslateX}%);`"
                     >
 
                         <div
@@ -64,18 +64,18 @@
                             :style="`width:${useDrawerWidthTrans}px; height:100%; display:flex;`"
                         >
 
-                            <div :style="`padding-left:${drawerBarSize/2}px;`" v-if="dragDrawerWidth && !isAtLeft"></div>
+                            <div :style="`padding-left:${useDrawerBarSize/2}px;`" v-if="dragDrawerWidth && !isAtLeft"></div>
 
                             <div
                                 class="ts"
-                                :style="`width:${useDrawerWidthTrans-drawerBarSize/2}px;`"
+                                :style="`width:${useDrawerWidthTrans-useDrawerBarSize/2}px;`"
                             >
 
                                 <slot name="drawer"></slot>
 
                             </div>
 
-                            <div :style="`padding-left:${drawerBarSize/2}px;`" v-if="dragDrawerWidth && isAtLeft"></div>
+                            <div :style="`padding-left:${useDrawerBarSize/2}px;`" v-if="dragDrawerWidth && isAtLeft"></div>
 
                         </div>
 
@@ -89,10 +89,10 @@
             <!-- 延遲至抽屜出現後才通過opacity=1顯示, 否則於浮動模式時會在外側陰影層馬上看到拖曳寬度bar, 使用者體驗不佳 -->
             <div
                 ref="divBar"
-                :style="`position:${useOverlayPosition}; z-index:${useDrawerZIndex+3}; top:0px; ${isAtLeft?'left':'right'}:${useDrawerWidthTrans-bw/2}px; width:${bw}px; height:100%; border-left:${drawerBarBorderSize}px solid ${useDrawerBarBorderColor}; border-right:${drawerBarBorderSize}px solid ${useDrawerBarBorderColor}; opacity:${showOverlay5DragDrawerBar?1:0}; cursor:col-resize; user-select:none;`"
+                :style="`position:${useOverlayPosition}; z-index:${useDrawerZIndex+3}; top:0px; ${isAtLeft?'left':'right'}:${useDrawerWidthTrans-useDrawerBarWidth/2}px; width:${useDrawerBarWidth}px; height:100%; border-left:${drawerBarBorderSize}px solid ${useDrawerBarBorderColor}; border-right:${drawerBarBorderSize}px solid ${useDrawerBarBorderColor}; opacity:${showOverlay5DragDrawerBar?1:0}; cursor:col-resize; user-select:none;`"
                 v-show="value && dragDrawerWidth"
             >
-                <div :style="`width:${drawerBarSize}px; height:100%; background:${useDrawerBarColor};`"></div>
+                <div :style="`width:${useDrawerBarSize}px; height:100%; background:${useDrawerBarColor};`"></div>
             </div>
 
         </div>
@@ -365,12 +365,14 @@ export default {
             return this.afloat && this.showOverlay3Shadow ? 'bs' : ''
         },
 
-        bw: function() {
-            //console.log('computed changeParam')
-
+        useDrawerBarWidth: function() {
             let vo = this
-
             return vo.drawerBarSize + vo.drawerBarBorderSize * 2
+        },
+
+        useDrawerBarSize: function() {
+            let vo = this
+            return vo.dragDrawerWidth ? vo.drawerBarSize : 0
         },
 
         useDrawerBarColor: function() {
