@@ -85,7 +85,7 @@
     </script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.2.15/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.2.16/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -157,8 +157,9 @@
                 :afloat-by-fix="true"
             >
                 <template v-slot:drawer>
+                    <!-- afloat模式下list會有透明色, 故需給予背景色避免透視下方 -->
                     <w-list-vertical
-                        style="height:100%;"
+                        style="height:100%; background:#fff;"
                         :items="WDrawer.listItems"
                         :item-active.sync="WDrawer.listItemActive"
                     ></w-list-vertical>
