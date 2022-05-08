@@ -85,7 +85,7 @@
     </script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.2.17/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.2.18/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -141,7 +141,7 @@
         <div class="bk">
             <div
                 class="item"
-            >border &amp; leftIcon &amp; leftIconColor &amp; leftIconColorHover &amp; leftIconColorFocus</div>
+            >border &amp; leftIcon &amp; leftIconColor &amp; leftIconColorHover &amp; leftIconColorFocus &amp; leftIconTooltip</div>
 
             <w-text
                 :shadow="false"
@@ -160,6 +160,7 @@
                 :left-icon-color="'indigo lighten-2'"
                 :left-icon-color-hover="'indigo lighten-1'"
                 :left-icon-color-focus="'indigo'"
+                :left-icon-tooltip="'Show tooltip'"
                 v-model="WText.text"
             ></w-text>
         </div>

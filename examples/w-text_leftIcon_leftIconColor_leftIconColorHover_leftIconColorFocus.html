@@ -85,7 +85,7 @@
     </script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.2.17/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.2.18/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -141,25 +141,13 @@
         <div class="bk">
             <div
                 class="item"
-            >border &amp; rightIcon &amp; rightIconColorHover &amp; rightIconColorFocus &amp; rightIconTooltip</div>
+            >leftIcon &amp; leftIconColor &amp; leftIconColorHover &amp; leftIconColorFocus</div>
 
             <w-text
-                :shadow="false"
-                :bottom-line-border-color="'transparent'"
-                :bottom-line-border-color-hover="'transparent'"
-                :bottom-line-border-color-focus="'transparent'"
-                :padding-style="{h:15}"
-                :icon-shift-outer="-10"
-                :border-color="'blue lighten-2'"
-                :border-color-hover="'blue'"
-                :border-color-focus="'blue darken-2'"
-                :background-color="'white'"
-                :background-color-hover="'rgba(237, 247, 255, 1)'"
-                :background-color-focus="'blue lighten-5'"
-                :right-icon="'mdi-send'"
-                :right-icon-color-hover="''"
-                :right-icon-color-focus="'blue darken-3'"
-                :right-icon-tooltip="'Send'"
+                :left-icon="'mdi-check-underline-circle'"
+                :left-icon-color="'pink lighten-2'"
+                :left-icon-color-hover="'pink lighten-1'"
+                :left-icon-color-focus="'pink'"
                 v-model="WText.text"
             ></w-text>
         </div>

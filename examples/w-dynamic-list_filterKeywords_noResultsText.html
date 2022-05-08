@@ -85,7 +85,7 @@
     </script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.2.17/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.2.18/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -339,10 +339,16 @@
         let vo = this;
         let opt = {
           fun: function(items) {
+            //可支援sync函數
             for (let i = 0; i < items.length; i++) {
               items[i].displayShow = i % 10 === 0;
             }
           }
+          // fun: async function(items) { //可支援async函數
+          //     for (let i = 0; i < items.length; i++) {
+          //         items[i].displayShow = (i % 10 === 0)
+          //     }
+          // },
         };
         vo.$refs.wdl.processItems(opt);
       },
