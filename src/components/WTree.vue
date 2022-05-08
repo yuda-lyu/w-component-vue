@@ -2066,7 +2066,7 @@ export default {
                     if (isfun(vo.filterFunction)) {
 
                         //filterFunction
-                        b = vo.filterFunction(items[i].row.item)
+                        b = vo.filterFunction(items[i].row.item, kws)
 
                     }
                     else {
