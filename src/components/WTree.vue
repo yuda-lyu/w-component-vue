@@ -210,6 +210,7 @@ import isobj from 'wsemi/src/isobj.mjs'
 import isfun from 'wsemi/src/isfun.mjs'
 import isestr from 'wsemi/src/isestr.mjs'
 import isnum from 'wsemi/src/isnum.mjs'
+import ispm from 'wsemi/src/ispm.mjs'
 import cint from 'wsemi/src/cint.mjs'
 import cdbl from 'wsemi/src/cdbl.mjs'
 import cstr from 'wsemi/src/cstr.mjs'
@@ -268,7 +269,7 @@ let gm = globalMemory()
  * @vue-prop {String} [iconCheckedPartiallyDisabledColor='grey'] 輸入核選icon禁用時部份勾選時顏色字串，預設'grey'
  * @vue-prop {String} [iconVerticalAlign='middle'] 輸入icon垂直對齊字串，預設'middle'
  * @vue-prop {String} [filterKeywords=''] 輸入過濾關鍵字字串，多關鍵字用空白分隔，預設''
- * @vue-prop {Function} [filterFunction=null] 輸入過濾時呼叫處理函數，傳入為各項目物件資料，回傳布林值代表項目內是否含有關鍵字，預設null
+ * @vue-prop {Function} [filterFunction=null] 輸入過濾時呼叫處理函數，可使用sync或async函數，傳入為各項目物件資料，若為sync函數回傳布林值，若為async函數等待resolve結果為布林值，代表項目內是否含有關鍵字，預設null
  * @vue-prop {String} [loadingText='Loading...'] 輸入載入中字串，預設'Loading...'
  * @vue-prop {String} [noResultsText='No results'] 輸入無過濾結果字串，預設'No results'
  * @vue-prop {String} [searchingText='Searching...'] 輸入搜索中字串，預設'Searching...'
@@ -2023,23 +2024,26 @@ export default {
 
         },
 
-        filterKeyWordsCore: function(items) {
+        filterKeyWordsCore: async function(items) {
             //console.log('methods filterKeyWordsCore', items)
 
             let vo = this
 
             //check draggable and operatable
             if (vo.draggable || vo.operatable) {
-                return
+                return Promise.resolve()
             }
 
             //check filterKeywordsTransTemp
             if (vo.filterKeywordsTransTemp === vo.filterKeywordsTrans) {
-                return
+                return Promise.resolve()
             }
 
             //filterKeywordsTransTemp
             vo.filterKeywordsTransTemp = vo.filterKeywordsTrans //因為函數為同步故可以先覆寫至temp
+
+            //searchingResults
+            let searchingResults = 0 //儲存全部關鍵字是否有找到至少一個項目
 
             //check
             if (size(vo.filterKeywordsTrans) === 0) {
@@ -2048,6 +2052,9 @@ export default {
                 for (let i = 0; i < items.length; i++) {
                     items[i].filterShow = true
                 }
+
+                //searchingResults
+                searchingResults = items.length
 
             }
             else {
@@ -2067,6 +2074,11 @@ export default {
 
                         //filterFunction
                         b = vo.filterFunction(items[i].row.item, kws)
+
+                        //check
+                        if (ispm(b)) {
+                            b = await b
+                        }
 
                     }
                     else {
@@ -2116,6 +2128,9 @@ export default {
 
                         }
 
+                        //searchingResults
+                        searchingResults++
+
                     }
                     else {
 
@@ -2128,6 +2143,7 @@ export default {
 
             }
 
+            return searchingResults
         },
 
         filterKeyWords: function() {
@@ -2151,18 +2167,25 @@ export default {
                 vo.filtering = true
 
                 //opt
+                let searchingResults = -1
                 let opt = {
-                    fun: function(items) {
+                    fun: async function(items) {
                         //console.log('items', cloneDeep(items))
 
                         //filterKeyWordsCore
-                        vo.filterKeyWordsCore(items)
+                        searchingResults = await vo.filterKeyWordsCore(items)
 
                     }
                 }
 
+                //setSearchingResults
+                vo.$refs.wdl.setSearchingResults(-1)
+
                 //processItems
                 await vo.$refs.wdl.processItems(opt)
+
+                //setSearchingResults, 依照搜尋結果數量給予wdl, 否則沒辦法呈現無搜尋結果
+                vo.$refs.wdl.setSearchingResults(searchingResults)
 
                 //filtering
                 vo.filtering = false

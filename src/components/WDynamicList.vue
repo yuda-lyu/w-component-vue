@@ -84,6 +84,7 @@ import isint from 'wsemi/src/isint.mjs'
 import isp0int from 'wsemi/src/isp0int.mjs'
 import isbol from 'wsemi/src/isbol.mjs'
 import isEle from 'wsemi/src/isEle.mjs'
+import ispm from 'wsemi/src/ispm.mjs'
 // import haskey from 'wsemi/src/haskey.mjs'
 // import waitFun from 'wsemi/src/waitFun.mjs'
 import arrFilterByKeywords from 'wsemi/src/arrFilterByKeywords.mjs'
@@ -917,7 +918,12 @@ export default {
                 if (isfun(fun)) {
 
                     //呼叫fun, items直接傳入被修改, 因記憶體共用不用回傳覆寫items
-                    fun(items)
+                    let r = fun(items)
+
+                    //check
+                    if (ispm(r)) {
+                        r = await r
+                    }
 
                     //changeDisplay
                     vo.changeDisplay = true
@@ -991,6 +997,10 @@ export default {
 
                 })
 
+        },
+
+        setSearchingResults: function(searchingResults) {
+            this.searchingResults = searchingResults
         },
 
         filterItems: function() {

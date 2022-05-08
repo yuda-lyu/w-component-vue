@@ -146,12 +146,13 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-text'"
-                    :casename="'leftIcon & leftIconColor & leftIconColorFocus'"
+                    :casename="'leftIcon & leftIconColor & leftIconColorHover & leftIconColorFocus'"
                 ></demolink>
 
                 <w-text
                     :leftIcon="mdiCheckUnderlineCircle"
                     :leftIconColor="'pink lighten-2'"
+                    :leftIconColorHover="'pink lighten-1'"
                     :leftIconColorFocus="'pink'"
                     v-model="WText.text"
                 ></w-text>
@@ -202,12 +203,13 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-text'"
-                    :casename="'rightIcon & rightIconColor & rightIconColorFocus'"
+                    :casename="'rightIcon & rightIconColor & rightIconColorHover & rightIconColorFocus'"
                 ></demolink>
 
                 <w-text
                     :rightIcon="mdiSend"
                     :rightIconColor="'pink lighten-2'"
+                    :rightIconColorHover="'pink lighten-1'"
                     :rightIconColorFocus="'pink'"
                     v-model="WText.text"
                 ></w-text>
@@ -495,7 +497,7 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-text'"
-                    :casename="'border & leftIcon & leftIconColor & leftIconColorHover & leftIconColorFocus'"
+                    :casename="'border & leftIcon & leftIconColor & leftIconColorHover & leftIconColorFocus & leftIconTooltip'"
                 ></demolink>
 
                 <w-text
@@ -515,6 +517,7 @@
                     :leftIconColor="'indigo lighten-2'"
                     :leftIconColorHover="'indigo lighten-1'"
                     :leftIconColorFocus="'indigo'"
+                    :leftIconTooltip="'Show tooltip'"
                     v-model="WText.text"
                 ></w-text>
             </div>
@@ -523,7 +526,7 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-text'"
-                    :casename="'border & rightIcon & rightIconColorHover & rightIconColorFocus & rightIconTooltip'"
+                    :casename="'border & rightIcon & rightIconColor & rightIconColorHover & rightIconColorFocus & rightIconTooltip'"
                 ></demolink>
 
                 <w-text
@@ -540,8 +543,9 @@
                     :backgroundColorHover="'rgba(237, 247, 255, 1)'"
                     :backgroundColorFocus="'blue lighten-5'"
                     :rightIcon="mdiSend"
-                    :rightIconColorHover="''"
-                    :rightIconColorFocus="'blue darken-3'"
+                    :rightIconColor="'blue lighten-1'"
+                    :rightIconColorHover="'blue'"
+                    :rightIconColorFocus="'blue darken-2'"
                     :rightIconTooltip="'Send'"
                     v-model="WText.text"
                 ></w-text>

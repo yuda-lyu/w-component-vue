@@ -436,11 +436,16 @@ export default {
         processItemsByFun: function() {
             let vo = this
             let opt = {
-                fun: function(items) {
+                fun: function(items) { //可支援sync函數
                     for (let i = 0; i < items.length; i++) {
                         items[i].displayShow = (i % 10 === 0)
                     }
-                }
+                },
+                // fun: async function(items) { //可支援async函數
+                //     for (let i = 0; i < items.length; i++) {
+                //         items[i].displayShow = (i % 10 === 0)
+                //     }
+                // },
             }
             vo.$refs.wdl.processItems(opt)
         },

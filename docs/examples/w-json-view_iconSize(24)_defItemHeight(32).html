@@ -85,7 +85,7 @@
     </script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.2.17/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.2.18/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -162,7 +162,7 @@
       return {
         WJsonView: {
           viewHeightMaxSync: 400,
-          keywords: "pow ci uadn",
+          keywords: "ci uadn",
           data1: {
             squadName: "Super hero squad",
             homeTown: "Metro City",
@@ -468,6 +468,20 @@
       },
       changeHeightOfItems: function(msg) {
         console.log("changeHeightOfItems", msg);
+      },
+      filterFunction: function(item, kws) {
+        console.log("filterFunction", item, kws);
+        if (!item.text) {
+          //若無text則跳出, 若要偵測父層節點得要針對key額外處理
+          return false;
+        }
+        let c = String(item.text).toLowerCase();
+        let b = false;
+        for (let i = 0; i < kws.length; i++) {
+          let kw = kws[i];
+          b = b || c.indexOf(kw) >= 0;
+        }
+        return b;
       }
     }
   });

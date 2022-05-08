@@ -85,7 +85,7 @@
     </script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.2.17/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.2.18/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -651,6 +651,16 @@
 
         //setDataByPathAndValue
         setDataByPathAndValue(data, path, value);
+      },
+      filterFunction: function(item, kws) {
+        console.log("filterFunction", item, kws);
+        let c = item.text.toLowerCase();
+        let b = false;
+        for (let i = 0; i < kws.length; i++) {
+          let kw = kws[i];
+          b = b || c.indexOf(kw) >= 0;
+        }
+        return b;
       }
     }
   });

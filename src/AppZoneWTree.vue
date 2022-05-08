@@ -162,6 +162,30 @@
             <div class="bk dz">
                 <demolink
                     :kbname="'w-tree'"
+                    :casename="'filterKeywords & filterFunction'"
+                ></demolink>
+
+                <div style="margin-bottom:10px;">
+                    <span style="padding-right:10px;">Search :</span>
+                    <input
+                        style="padding:2px 15px; color:#666; border:1px solid #fca; border-radius:30px; outline:none;"
+                        v-model="WTree.option.keywords"
+                    />
+                </div>
+
+                <w-tree
+                    style="border:1px solid #ddd;"
+                    :filterKeywords="WTree.option.keywords"
+                    :filterFunction="filterFunction"
+                    :data="WTree.option.items"
+                ></w-tree>
+
+            </div>
+
+
+            <div class="bk dz">
+                <demolink
+                    :kbname="'w-tree'"
                     :casename="'itemTextColor & itemTextColorHover & itemBackgroundColor & itemBackgroundColorHover'"
                 ></demolink>
 
@@ -1511,6 +1535,16 @@ export default {
             //setDataByPathAndValue
             setDataByPathAndValue(data, path, value)
 
+        },
+        filterFunction: function(item, kws) {
+            console.log('filterFunction', item, kws)
+            let c = item.text.toLowerCase()
+            let b = false
+            for (let i = 0; i < kws.length; i++) {
+                let kw = kws[i]
+                b = b || c.indexOf(kw) >= 0
+            }
+            return b
         },
     },
 }

@@ -112,6 +112,30 @@
             <div class="bk dz">
                 <demolink
                     :kbname="'w-json-view'"
+                    :casename="'filterKeywords & filterFunction'"
+                ></demolink>
+
+                <div style="margin-bottom:10px;">
+                    <span style="padding-right:10px;">Search :</span>
+                    <input
+                        style="padding:2px 15px; color:#666; border:1px solid #fca; border-radius:30px; outline:none;"
+                        v-model="WJsonView.keywords"
+                    />
+                </div>
+
+                <w-json-view
+                    style="border:1px solid #ddd;"
+                    :filterKeywords="WJsonView.keywords"
+                    :filterFunction="filterFunction"
+                    :data="WJsonView.data3"
+                ></w-json-view>
+
+            </div>
+
+
+            <div class="bk dz">
+                <demolink
+                    :kbname="'w-json-view'"
                     :casename="'iconColor & keyColor & keyNumbersColor & numColor & strColor & bolColor & funColor'"
                 ></demolink>
 
@@ -235,7 +259,7 @@ export default {
         return {
             'WJsonView': {
                 'viewHeightMaxSync': 400,
-                'keywords': 'pow ci uadn',
+                'keywords': 'ci uadn',
                 'data1': { 'squadName': 'Super hero squad', 'homeTown': 'Metro City', 'formed': 2016, 'secretBase': 'Super tower', 'active': true, 'arrayEmpth': [], 'members': [{ 'name': 'There are many variations of passages of Lorem Ipsum available', 'age': 29, 'secretIdentity': 'Dan Jukes', 'powers': ['Radiation resistance', 'Turning tiny', 'Radiation blast'] }, { 'name': 'Madame Uppercut', 'age': 39, 'secretIdentity': 'Jane Wilson', 'powers': ['Million tonne punch', 'Damage resistance', 'Superhuman reflexes'] }, { 'name': 'Eternal Flame', 'age': 1000000, 'secretIdentity': 'Unknown', 'powers': ['Immortality', 'Heat Immunity', 'Inferno', 'Teleportation', 'Interdimensional travel'] }] },
                 'data2': { 'cookie': 'username-localhost-8888="2|1:0|10:1624431350|23:username-localhost-8888|44:ZmMxYzkwOGI0ODYxNDY1M2ExY2VhOGE3MmFhNWE4M2Y=|f8840028a36433a4e69e67f7eae6d188994203da2f54fe8af55d3e815f5cad0f', 'homeTown': 'Metro City', 'formed': 2016, 'secretBase': 'Super tower', 'active': true, 'arrayEmpth': [], 'members': [{ 'name': 'There are many variations of passages of Lorem Ipsum available', 'age': 29, 'secretIdentity': 'Dan Jukes', 'powers': ['Radiation resistance', 'Turning tiny', 'Radiation blast'] }, { 'name': 'Madame Uppercut', 'age': 39, 'secretIdentity': 'Jane Wilson', 'powers': ['Million tonne punch', 'Damage resistance', 'Superhuman reflexes'] }, { 'name': 'Eternal Flame', 'age': 1000000, 'secretIdentity': 'Unknown', 'powers': ['Immortality', 'Heat Immunity', 'Inferno', 'Teleportation', 'Interdimensional travel'] }] },
                 'data3': ['squadName', 123, 45.678, 'Super hero squad', '[system::callfunc]abc', { 'homeTown': 'Metro City', 'formed': 2016, 'powers': ['Immortality', 'Heat Immunity', 'Inferno', 'Teleportation', 'Interdimensional travel'], 'members': { 'name': 'Molecule Man', 'age': 29, 'secretIdentity': 'Dan Jukes' } }],
@@ -256,6 +280,19 @@ export default {
         },
         changeHeightOfItems: function(msg) {
             console.log('changeHeightOfItems', msg)
+        },
+        filterFunction: function(item, kws) {
+            console.log('filterFunction', item, kws)
+            if (!item.text) { //若無text則跳出, 若要偵測父層節點得要針對key額外處理
+                return false
+            }
+            let c = String(item.text).toLowerCase()
+            let b = false
+            for (let i = 0; i < kws.length; i++) {
+                let kw = kws[i]
+                b = b || c.indexOf(kw) >= 0
+            }
+            return b
         },
     },
 }
