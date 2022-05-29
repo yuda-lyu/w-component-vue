@@ -1,9 +1,9 @@
 {
   "name": "w-component-vue",
-  "version": "2.2.20",
+  "version": "2.2.21",
   "main": "dist/w-component-vue.umd.js",
   "dependencies": {
-    "@mdi/js": "^6.6.96",
+    "@mdi/js": "^6.7.96",
     "lodash": "^4.17.21",
     "wsemi": "^1.6.67"
   },
