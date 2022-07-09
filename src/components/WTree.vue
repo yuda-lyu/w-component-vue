@@ -53,10 +53,13 @@
 
                         <div :style="`display:table-cell; vertical-align:top; padding-right:${getLevel(props.row)*useIndent}px;`"></div>
 
-                        <div :style="`display:table-cell; vertical-align:top; padding-right:${separation}px;`"></div>
+                        <!-- 顯隱圖標左側因右邊為文字或核選圖標導致間距呈現相對較窄, 故*2 -->
+                        <div :style="`display:table-cell; vertical-align:top; padding-right:${2*separation}px;`"></div>
 
-                        <div :style="`display:table-cell; vertical-align:top; padding:0px ${separation}px;`">
-                            <div :style="`display:flex; align-items:${useIconVerticalAlign}; justify-content:center; height:${defItemHeight}px; overflow:hidden;`">
+                        <div :style="`display:table-cell; vertical-align:top; padding-right:${separation}px;`">
+
+                            <!-- 若有顯隱圖標才會有min-height效果 -->
+                            <div :style="`display:flex; align-items:${useIconVerticalAlign}; justify-content:center; min-height:${defItemHeight}px;`" v-if="hasChildren(props.index)">
                                 <WTreeIconToggle
                                     :dir="`${props.row.unfolding?'bottom':'right'}`"
                                     :iconSize="iconSize"
@@ -64,17 +67,20 @@
                                     :iconBackgroundColor="iconToggleBackgroundColor"
                                     :iconBackgroundColorHover="iconToggleBackgroundColorHover"
                                     @click.stop="toggleItems(props.row)"
-                                    v-if="hasChildren(props.index)"
                                 ></WTreeIconToggle>
-                                <div :style="`padding-right:${iconSize}px;`" v-else></div>
                             </div>
+
+                            <!-- 若無顯隱圖標至少要撐開寬度 -->
+                            <div :style="`padding-right:${iconSize}px;`" v-else></div>
+
                         </div>
 
-                        <!-- 因顯隱圖標比較小而勾選圖標比較大, 讓separation全灌到padding-right處使排版比較均勻 -->
-                        <div :style="`display:table-cell; vertical-align:top; padding:0px ${2*separation}px 0px 0px;`" v-if="selectable">
-                            <div :style="`display:flex; align-items:${useIconVerticalAlign}; justify-content:center; width:${defIconSize*(iconSize/defIconSize)}px; height:${defItemHeight}px; overflow:hidden;`">
+                        <!-- 因顯隱圖標較小而右側間距看起來較寬, 故核選圖標右側間距*3 -->
+                        <div :style="`display:table-cell; vertical-align:top; padding-right:${3*separation}px;`" v-if="selectable">
+                            <div :style="`display:flex; align-items:${useIconVerticalAlign}; justify-content:center; min-height:${defItemHeight}px;`">
                                 <WTreeIconCheckbox
                                     :mode="props.row.checked"
+                                    :iconSize="iconSize"
                                     :editable="getEditable(props.row.item)"
                                     :uncheckedColor="iconUncheckedColor"
                                     :uncheckedDisabledColor="iconUncheckedDisabledColor"
@@ -273,7 +279,8 @@ let gm = globalMemory()
  * @vue-prop {String} [loadingText='Loading...'] 輸入載入中字串，預設'Loading...'
  * @vue-prop {String} [noResultsText='No results'] 輸入無過濾結果字串，預設'No results'
  * @vue-prop {String} [searchingText='Searching...'] 輸入搜索中字串，預設'Searching...'
- * @vue-prop {Number} [defItemHeight=34] 輸入按需顯示時各項目預設高度值，給越準或給大部分項目的高度則渲染速度越快，單位為px，預設34
+ * @vue-prop {Number} [defItemHeight=34] 輸入按需顯示時各項目預設最小高度(min-height)值，給越準或給大部分項目的高度則渲染速度越快，單位為px，預設34
+ * @vue-prop {Number} [=null] 輸入按需顯示時各項目圖標預設最小高度(min-height)值，通常不給由defItemHeight決定，若有給則取與defItemHeight之較大者，單位為px，預設null
  * @vue-prop {Number} [itemsPreload=5] 輸入上下方預先載入元素數量，預設5
  * @vue-prop {Boolean} [draggable=false] 輸入是否為可拖曳編輯模式布林值，若draggable設定true，此時所有節點皆為展開顯示並且禁止顯隱節點功能，也就是defaultDisplayLevel強制設定為null，此外也不提供過濾功能，也就是filterKeywords強制清空。開啟draggable僅適用小規模數據。draggable預設false
  * @vue-prop {String} [dgTextDisabled='Can not drop here'] 輸入禁止拖曳文字字串，預設'Can not drop here'

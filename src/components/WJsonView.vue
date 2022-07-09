@@ -119,7 +119,8 @@ import WTree from './WTree.vue'
  * @vue-prop {String} [loadingText='Loading...'] 輸入載入中字串，預設'Loading...'
  * @vue-prop {String} [noResultsText='No results'] 輸入無過濾結果字串，預設'No results'
  * @vue-prop {String} [searchingText='Searching...'] 輸入搜索中字串，預設'Searching...'
- * @vue-prop {Number} [defItemHeight=24] 輸入按需顯示時各項目預設高度值，給越準或給大部分項目的高度則渲染速度越快，單位為px，預設24
+ * @vue-prop {Number} [defItemHeight=24] 輸入按需顯示時各項目預設最小高度(min-height)值，給越準或給大部分項目的高度則渲染速度越快，單位為px，預設24
+ * @vue-prop {Number} [=null] 輸入按需顯示時各項目圖標預設最小高度(min-height)值，通常不給由defItemHeight決定，若有給則取與defItemHeight之較大者，單位為px，預設null
  * @vue-prop {Number} [itemsPreload=5] 輸入上下方預先載入元素數量，預設5
  * @vue-prop {String} [keyColor='grey darken-2'] 輸入鍵值顏色字串，預設'grey darken-2'
  * @vue-prop {String} [keyNumbersColor='grey lighten-1'] 輸入鍵值內含子節點數量顏色字串，預設'grey lighten-1'
