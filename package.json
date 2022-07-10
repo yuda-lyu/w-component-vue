@@ -1,6 +1,6 @@
 {
   "name": "w-component-vue",
-  "version": "2.2.27",
+  "version": "2.2.28",
   "main": "dist/w-component-vue.umd.js",
   "dependencies": {
     "@mdi/js": "^6.9.96",

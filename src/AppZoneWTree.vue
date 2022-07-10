@@ -123,6 +123,29 @@
             <div class="bk dz">
                 <demolink
                     :kbname="'w-tree'"
+                    :casename="'toggleItemsByFun'"
+                ></demolink>
+
+                <div>
+                    <v-btn style="margin:0px 5px 5px 0px;" small @click="toggleItems(0)">toggle(rows[0])</v-btn>
+                    <v-btn style="margin:0px 5px 5px 0px;" small @click="toggleItems(0, true)">show(rows[0])</v-btn>
+                    <v-btn style="margin:0px 5px 5px 0px;" small @click="toggleItems(0, false)">hide(rows[0])</v-btn>
+                    <v-btn style="margin:0px 5px 5px 0px;" small @click="toggleItems(1)">toggle(rows[1])</v-btn>
+                </div>
+
+                <w-tree
+                    ref="ref_toggleItemsByFun"
+                    style="border:1px solid #ddd;"
+                    :viewHeightMax="WTree.viewHeightMaxSync"
+                    :data="WTree.option.items"
+                ></w-tree>
+
+            </div>
+
+
+            <div class="bk dz">
+                <demolink
+                    :kbname="'w-tree'"
                     :casename="'defaultDisplayLevel'"
                 ></demolink>
 
@@ -1581,6 +1604,21 @@ export default {
                 b = b || c.indexOf(kw) >= 0
             }
             return b
+        },
+        toggleItems: function(ind, toUnfolding) {
+            console.log('toggleItems', ind, toUnfolding)
+
+            let vo = this
+
+            //toggleItemsByFun
+            vo.$refs.ref_toggleItemsByFun.toggleItemsByFun((rows) => {
+                console.log('toggleItems rows', rows)
+                return {
+                    row: rows[ind],
+                    toUnfolding,
+                }
+            })
+
         },
     },
 }

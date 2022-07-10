@@ -261,6 +261,17 @@ export default {
     },
     methods: {
 
+        getRows: function() {
+            //console.log('methods getRows')
+
+            let vo = this
+
+            //rows
+            let rows = gm.get(vo.mmkey)
+
+            return rows
+        },
+
         setRowsCore: function(rows) {
             // console.log('methods setRowsCore', rows)
 

@@ -88,6 +88,30 @@
             <div class="bk dz">
                 <demolink
                     :kbname="'w-json-view'"
+                    :casename="'toggleItemsByFun'"
+                ></demolink>
+
+                <div>
+                    <v-btn style="margin:0px 5px 5px 0px;" small @click="toggleItems(0)">toggle(rows[0])</v-btn>
+                    <v-btn style="margin:0px 5px 5px 0px;" small @click="toggleItems(0, true)">show(rows[0])</v-btn>
+                    <v-btn style="margin:0px 5px 5px 0px;" small @click="toggleItems(0, false)">hide(rows[0])</v-btn>
+                    <v-btn style="margin:0px 5px 5px 0px;" small @click="toggleItems(6)">toggle(rows[6])</v-btn>
+                    <v-btn style="margin:0px 5px 5px 0px;" small @click="toggleItems(9)">toggle(rows[9])</v-btn>
+                </div>
+
+                <w-json-view
+                    ref="ref_toggleItemsByFun"
+                    style="border:1px solid #ddd;"
+                    :viewHeightMax="WJsonView.viewHeightMaxSync"
+                    :data="WJsonView.data3"
+                ></w-json-view>
+
+            </div>
+
+
+            <div class="bk dz">
+                <demolink
+                    :kbname="'w-json-view'"
                     :casename="'filterKeywords & noResultsText'"
                 ></demolink>
 
@@ -293,6 +317,21 @@ export default {
                 b = b || c.indexOf(kw) >= 0
             }
             return b
+        },
+        toggleItems: function(ind, toUnfolding) {
+            console.log('toggleItems', ind, toUnfolding)
+
+            let vo = this
+
+            //toggleItemsByFun
+            vo.$refs.ref_toggleItemsByFun.toggleItemsByFun((rows) => {
+                console.log('toggleItems rows', rows)
+                return {
+                    row: rows[ind],
+                    toUnfolding,
+                }
+            })
+
         },
     },
 }

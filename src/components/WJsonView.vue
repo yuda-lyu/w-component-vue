@@ -542,6 +542,14 @@ export default {
             return c
         },
 
+        toggleItemsByFun: function(cb) {
+            // console.log('methods toggleItemsByFun', cb)
+
+            let vo = this
+
+            return vo.$refs.wt.toggleItemsByFun(cb)
+        },
+
     },
 }
 </script>

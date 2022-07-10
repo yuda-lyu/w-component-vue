@@ -213,9 +213,11 @@ import genID from 'wsemi/src/genID.mjs'
 import sep from 'wsemi/src/sep.mjs'
 import isarr from 'wsemi/src/isarr.mjs'
 import isobj from 'wsemi/src/isobj.mjs'
+import iseobj from 'wsemi/src/iseobj.mjs'
 import isfun from 'wsemi/src/isfun.mjs'
 import isestr from 'wsemi/src/isestr.mjs'
 import isnum from 'wsemi/src/isnum.mjs'
+import isbol from 'wsemi/src/isbol.mjs'
 import ispm from 'wsemi/src/ispm.mjs'
 import cint from 'wsemi/src/cint.mjs'
 import cdbl from 'wsemi/src/cdbl.mjs'
@@ -712,7 +714,7 @@ export default {
 
             //pk
             let pk = get(vo.activeItem, vo.keyPrimary)
-            // console.log('clickItem pk', pk)
+            // console.log('pk', pk)
 
             //save pkActive
             if (vo.isKey(pk)) {
@@ -1638,8 +1640,8 @@ export default {
 
         },
 
-        toggleItems: function(item) {
-            //console.log('methods toggleItems', item)
+        toggleItems: function(item, toUnfolding) {
+            // console.log('methods toggleItems', item, toUnfolding)
 
             let vo = this
 
@@ -1662,13 +1664,46 @@ export default {
                         //console.log('items', cloneDeep(items))
 
                         //ind
-                        let ind = item.index
+                        let ind = get(item, 'index', null)
+                        if (ind === null) {
+                            console.log('invalid ind')
+                            return
+                        }
+
+                        //wdl rows, 取得wdl內展示數據
+                        let rows = vo.$refs.wdl.getRows()
+                        // console.log('wdl rows', rows)
+
+                        //displayShow, 提取節點之直接顯示狀態
+                        let displayShow = get(rows, `${ind}.displayShow`)
+                        // console.log('displayShow', displayShow)
+
+                        //filterShow, 提取節點之過濾後顯示狀態
+                        let filterShow = get(rows, `${ind}.filterShow`)
+                        // console.log('filterShow', filterShow)
+
+                        //show, 節點是否為顯示狀態
+                        let show = !(!displayShow || !filterShow)
+                        // console.log('show', show)
+
+                        //check show, 若非顯示代表由上層隱藏或被過濾而隱藏, 不提供切換功能
+                        if (!show) {
+                            return
+                        }
 
                         //unfolding
                         let unfolding = get(items, `${ind}.row.unfolding`, null)
                         if (unfolding === null) {
                             console.log('invalid unfolding')
                             return
+                        }
+
+                        //toUnfolding
+                        if (isbol(toUnfolding)) { //若有指定要展開或隱藏
+                            // console.log('toUnfolding', toUnfolding, '(!unfolding)', (!unfolding))
+                            if (toUnfolding === unfolding) { //若節點當前已為指定要展開或隱藏, 則不用處理
+                                return
+                            }
                         }
 
                         //本身節點變更unfolding
@@ -1690,6 +1725,51 @@ export default {
                 .catch((err) => {
                     console.log(err)
                 })
+
+        },
+
+        toggleItemsByFun: async function(cb) {
+            // console.log('methods toggleItemsByFun', cb)
+
+            let vo = this
+
+            //check
+            if (!isfun(cb)) {
+                return
+            }
+
+            //getRows, 取得展開後數據
+            let rows = vo.getRows()
+            // console.log('rows', rows)
+
+            //r, 通過cb回傳操作物件, 包含欲顯隱之row與toUnfolding, 若toUnfolding不給則進行反向切換顯隱, cb亦支援使用async function使用resolve回傳操作物件
+            let r = cb(rows)
+
+            //check
+            if (ispm(r)) {
+                r = await r
+            }
+
+            //row
+            let row = get(r, 'row')
+
+            //check
+            if (!iseobj(row)) {
+                console.log('invalid row', row)
+                return
+            }
+
+            //toUnfolding
+            let toUnfolding = get(r, 'toUnfolding')
+
+            //check
+            if (!isbol(toUnfolding)) {
+                // console.log('invalid toUnfolding', toUnfolding, 'default to null')
+                toUnfolding = null
+            }
+
+            //toggleItems, 切換或指定顯隱狀態
+            vo.toggleItems(row, toUnfolding)
 
         },
 
