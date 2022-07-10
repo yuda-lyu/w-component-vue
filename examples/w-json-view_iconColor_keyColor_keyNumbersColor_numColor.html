@@ -85,7 +85,7 @@
     </script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.2.27/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.2.28/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -489,6 +489,20 @@
           b = b || c.indexOf(kw) >= 0;
         }
         return b;
+      },
+      toggleItems: function(ind, toUnfolding) {
+        console.log("toggleItems", ind, toUnfolding);
+
+        let vo = this;
+
+        //toggleItemsByFun
+        vo.$refs.ref_toggleItemsByFun.toggleItemsByFun(rows => {
+          console.log("toggleItems rows", rows);
+          return {
+            row: rows[ind],
+            toUnfolding
+          };
+        });
       }
     }
   });
