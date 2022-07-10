@@ -250,7 +250,7 @@ let gm = globalMemory()
  * @vue-prop {Number} [defaultDisplayLevel=null] 輸入初始展開層數數字，若輸入1就是預設展開至第1層，第2層(含)以下則都隱藏，若輸入null就是全展開，預設null
  * @vue-prop {Boolean} [activable=false] 輸入是否使用主動模式布林值，預設false
  * @vue-prop {Function} [funActive=null] 輸入主動模式時處理點擊項目函數，給予並回傳true時代表點擊項目給予主動模式，回傳false代表點擊項目不給予主動模式，可應用於資料夾與有效項目之區隔，預設null
- * @vue-prop {Object} [activeItem={}] 輸入主動模式時外部給予主動模式項目物件，物件內至少要給予keyPrimary鍵值方能進行識別，預設{}
+ * @vue-prop {Object} [itemActive={}] 輸入主動模式時外部給予主動模式項目物件，物件內至少要給予keyPrimary鍵值方能進行識別，預設{}
  * @vue-prop {String} [itemTextColor='#444'] 輸入文字顏色字串，預設'#444'
  * @vue-prop {String} [itemTextColorHover='#222'] 輸入滑鼠移入時文字顏色字串，預設'#222'
  * @vue-prop {String} [itemTextColorActive='#d72'] 輸入主動模式時文字顏色字串，預設'#d72'
@@ -352,7 +352,7 @@ export default {
             type: Function,
             default: null
         },
-        activeItem: {
+        itemActive: {
             type: Object,
             default: () => {},
         },
@@ -713,7 +713,7 @@ export default {
             let vo = this
 
             //pk
-            let pk = get(vo.activeItem, vo.keyPrimary)
+            let pk = get(vo.itemActive, vo.keyPrimary)
             // console.log('pk', pk)
 
             //save pkActive
@@ -1214,12 +1214,12 @@ export default {
                     //save pkActive
                     vo.pkActive = pk
 
-                    //activeItem
-                    let activeItem = { [vo.keyPrimary]: pk }
-                    //  console.log('clickItem activeItem', activeItem)
+                    //itemActive
+                    let itemActive = { [vo.keyPrimary]: pk }
+                    //  console.log('clickItem itemActive', itemActive)
 
                     //emit
-                    vo.$emit('update:activeItem', activeItem)
+                    vo.$emit('update:itemActive', itemActive)
 
                     break
                 }

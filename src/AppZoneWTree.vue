@@ -227,16 +227,16 @@
             <div class="bk dz">
                 <demolink
                     :kbname="'w-tree'"
-                    :casename="'activable & activeItem'"
+                    :casename="'activable & itemActive'"
                 ></demolink>
 
-                <div style="font-size:0.8rem;">activeItem: {{WTree.option.activeItem}}</div>
+                <div style="font-size:0.8rem;">itemActive: {{WTree.option.itemActive}}</div>
 
                 <w-tree
                     style="border:1px solid #ddd;"
                     :data="WTree.option.items"
                     :activable="true"
-                    :activeItem.sync="WTree.option.activeItem"
+                    :itemActive.sync="WTree.option.itemActive"
                     @click="clickActive"
                 ></w-tree>
 
@@ -246,16 +246,16 @@
             <div class="bk dz">
                 <demolink
                     :kbname="'w-tree'"
-                    :casename="'activable & activeItem & funActive'"
+                    :casename="'activable & itemActive & funActive'"
                 ></demolink>
 
-                <div style="font-size:0.8rem;">activeItem: {{WTree.option.activeItem}}</div>
+                <div style="font-size:0.8rem;">itemActive: {{WTree.option.itemActive}}</div>
 
                 <w-tree
                     style="border:1px solid #ddd;"
                     :data="WTree.option.items"
                     :activable="true"
-                    :activeItem.sync="WTree.option.activeItem"
+                    :itemActive.sync="WTree.option.itemActive"
                     :funActive="funActive"
                     @click="clickActive"
                 ></w-tree>
@@ -266,16 +266,16 @@
             <div class="bk dz">
                 <demolink
                     :kbname="'w-tree'"
-                    :casename="'activable & activeItem & itemTextColor & itemTextColorHover & itemTextColorActive & itemBackgroundColor & itemBackgroundColorHover & itemBackgroundColorActive'"
+                    :casename="'activable & itemActive & itemTextColor & itemTextColorHover & itemTextColorActive & itemBackgroundColor & itemBackgroundColorHover & itemBackgroundColorActive'"
                 ></demolink>
 
-                <div style="font-size:0.8rem;">activeItem: {{WTree.option.activeItem}}</div>
+                <div style="font-size:0.8rem;">itemActive: {{WTree.option.itemActive}}</div>
 
                 <w-tree
                     style="border:1px solid #ddd; background:#444;"
                     :data="WTree.option.items"
                     :activable="true"
-                    :activeItem.sync="WTree.option.activeItem"
+                    :itemActive.sync="WTree.option.itemActive"
                     :itemTextColor="'#ccc'"
                     :itemTextColorHover="'#eee'"
                     :itemTextColorActive="'#fff'"
@@ -1154,7 +1154,7 @@ export default {
                         { 'id': 18 },
                         //勾選id:18會自動再加入id:19
                     ],
-                    activeItem: {
+                    itemActive: {
                         'id': 4
                     },
                     items: [

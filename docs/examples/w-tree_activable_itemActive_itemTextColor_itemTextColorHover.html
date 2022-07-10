@@ -85,7 +85,7 @@
     </script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.2.28/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.2.29/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -139,18 +139,25 @@
             >w-tree</span>
         </div>
         <div class="bk dz">
-            <div class="item">activable &amp; activeItem &amp; funActive</div>
+            <div
+                class="item"
+            >activable &amp; itemActive &amp; itemTextColor &amp; itemTextColorHover &amp; itemTextColorActive &amp; itemBackgroundColor &amp; itemBackgroundColorHover &amp; itemBackgroundColorActive</div>
 
             <div
                 style="font-size:0.8rem;"
-            >activeItem: {{WTree.option.activeItem}}</div>
+            >itemActive: {{WTree.option.itemActive}}</div>
 
             <w-tree
-                style="border:1px solid #ddd;"
+                style="border:1px solid #ddd; background:#444;"
                 :data="WTree.option.items"
                 :activable="true"
-                :active-item.sync="WTree.option.activeItem"
-                :fun-active="funActive"
+                :item-active.sync="WTree.option.itemActive"
+                :item-text-color="'#ccc'"
+                :item-text-color-hover="'#eee'"
+                :item-text-color-active="'#fff'"
+                :item-background-color="'#444'"
+                :item-background-color-hover="'rgba(187, 119, 34, 0.6)'"
+                :item-background-color-active="'rgba(187, 119, 34, 0.8)'"
                 @click="clickActive"
             ></w-tree>
         </div>
@@ -176,7 +183,7 @@
               { id: 18 }
               //勾選id:18會自動再加入id:19
             ],
-            activeItem: {
+            itemActive: {
               id: 4
             },
             items: [
