@@ -85,7 +85,7 @@
     </script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.2.29/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.2.30/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -139,11 +139,11 @@
             >w-timeminute-range</span>
         </div>
         <div class="bk">
-            <div class="item">icon &amp; iconSize</div>
+            <div class="item">paddingStyle (equal height to using icon)</div>
 
             <w-timeminute-range
-                :icon="'mdi-check-underline-circle'"
-                :icon-size="20"
+                :icon="''"
+                :padding-style="{v:4,h:15}"
                 :minute-start.sync="WTimeminuteRange.minuteStart"
                 :minute-end.sync="WTimeminuteRange.minuteEnd"
             ></w-timeminute-range>
