@@ -85,7 +85,7 @@
     </script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.2.29/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.2.30/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -136,17 +136,17 @@
                 style="cursor:pointer;"
                 title="open for copy link to view component"
                 onclick="window.open('//yuda-lyu.github.io/w-component-vue/examples/app.html?cmp='+this.innerText,'_blank')"
-            >w-timeday-range</span>
+            >w-timeday</span>
         </div>
         <div class="bk">
-            <div class="item">icon &amp; iconSize</div>
+            <div class="item">icon &amp; iconSize &amp; distY</div>
 
-            <w-timeday-range
+            <w-timeday
                 :icon="'mdi-check-underline-circle'"
                 :icon-size="20"
-                :day-start.sync="WTimedayRange.dayStart"
-                :day-end.sync="WTimedayRange.dayEnd"
-            ></w-timeday-range>
+                :dist-y="5"
+                v-model="WTimeday.day"
+            ></w-timeday>
         </div>
     </v-app>
 
@@ -160,37 +160,20 @@
     vuetify: new Vuetify(),
     data: function() {
       return {
-        WTimedayRange: {
-          dayStart: "2019-01-01",
-          dayEnd: "2019-02-01"
+        WTimeday: {
+          day: "2019-01-01"
         },
         actions: [
           //pickColor測試不到
-
-          //起始時間
           {
             mode: "eleclick",
-            selector: 'div[TimedayCore="day"]',
-            nth: 0
+            selector: 'div[TimedayCore="day"]'
           },
           {
             mode: "eleclick",
             selector: 'button[type="button"]',
             nth: 11
           },
-
-          //結束時間
-          {
-            mode: "eleclick",
-            selector: 'div[TimedayCore="day"]',
-            nth: 1
-          },
-          {
-            mode: "eleclick",
-            selector: 'button[type="button"]',
-            nth: 14
-          },
-
           {
             mode: "elemove",
             selector: 'div[ShellEllipse="leftIcon"]',

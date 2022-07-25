@@ -21,6 +21,35 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-timeminute'"
+                    :casename="'paddingStyle (thin style) & distY'"
+                ></demolink>
+
+                <w-timeminute
+                    :icon="''"
+                    :paddingStyle="{v:0,h:8}"
+                    :distY="3"
+                    v-model="WTimeminute.value"
+                ></w-timeminute>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-timeminute'"
+                    :casename="'paddingStyle (equal height to using icon)'"
+                ></demolink>
+
+                <w-timeminute
+                    :icon="''"
+                    :paddingStyle="{v:4,h:15}"
+                    v-model="WTimeminute.value"
+                ></w-timeminute>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-timeminute'"
                     :casename="'borderRadius'"
                 ></demolink>
 
@@ -60,12 +89,13 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-timeminute'"
-                    :casename="'icon & iconSize'"
+                    :casename="'icon & iconSize & distY'"
                 ></demolink>
 
                 <w-timeminute
                     :icon="mdiCheckUnderlineCircle"
                     :iconSize="20"
+                    :distY="5"
                     v-model="WTimeminute.value"
                 ></w-timeminute>
             </div>

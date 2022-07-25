@@ -1,12 +1,12 @@
 <template>
-    <!-- 時間組件因v-date-picker有點擊區域的限制, 故得使用display:inline-block -->
     <div
-        style="display:inline-block;"
+        style=""
         :changeParam="changeParam"
     >
 
         <v-menu
             offset-y
+            :nudge-bottom="distY"
             :close-on-content-click="false"
             :disabled="!editable"
             v-model="show"
@@ -15,7 +15,7 @@
             <template v-slot:activator="{ on }">
                 <div
                     TimedayCore="day"
-                    :style="`display:inline-block; width:83px; color:${useTextColor}; ${useTextFontSize} height:${height}px; line-height:${height}px; vertical-align:middle;`"
+                    :style="`_width:83px; color:${useTextColor}; ${useTextFontSize}`"
                     v-on="on"
                 >
                     {{getShowTime}}
@@ -50,10 +50,10 @@ import color2hex from '../js/vuetifyColor.mjs'
 
 /**
  * @vue-prop {String} [value=''] 輸入日期字串，預設''
- * @vue-prop {String} [textFontSize='0.9rem'] 輸入文字大小字串，預設'0.9rem'
+ * @vue-prop {String} [textFontSize='0.85rem'] 輸入文字大小字串，預設'0.85rem'
  * @vue-prop {String} [textColor='black'] 輸入文字顏色字串，預設'black'
  * @vue-prop {String} [pickColor='deep-orange darken-1'] 輸入日期彈窗中選擇指定日期之顏色字串，預設'deep-orange darken-1'
- * @vue-prop {Number} [height=28] 輸入高度數字，單位為px，預設28
+ * @vue-prop {Number} [distY=7] 輸入日期彈窗y向下平移數字，預設7
  * @vue-prop {Boolean} [editable=true] 輸入是否為編輯模式，預設true
  */
 export default {
@@ -64,7 +64,7 @@ export default {
         },
         textFontSize: {
             type: String,
-            default: '0.9rem',
+            default: '0.85rem',
         },
         textColor: {
             type: String,
@@ -74,9 +74,9 @@ export default {
             type: String,
             default: 'deep-orange darken-1',
         },
-        height: {
+        distY: {
             type: Number,
-            default: 28,
+            default: 7,
         },
         editable: {
             type: Boolean,

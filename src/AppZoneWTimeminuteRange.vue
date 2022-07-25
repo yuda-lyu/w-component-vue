@@ -24,6 +24,37 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-timeminute-range'"
+                    :casename="'paddingStyle (thin style) & distY'"
+                ></demolink>
+
+                <w-timeminute-range
+                    :icon="''"
+                    :paddingStyle="{v:0,h:8}"
+                    :distY="3"
+                    :minuteStart.sync="WTimeminuteRange.minuteStart"
+                    :minuteEnd.sync="WTimeminuteRange.minuteEnd"
+                ></w-timeminute-range>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-timeminute-range'"
+                    :casename="'paddingStyle (equal height to using icon)'"
+                ></demolink>
+
+                <w-timeminute-range
+                    :icon="''"
+                    :paddingStyle="{v:4,h:15}"
+                    :minuteStart.sync="WTimeminuteRange.minuteStart"
+                    :minuteEnd.sync="WTimeminuteRange.minuteEnd"
+                ></w-timeminute-range>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-timeminute-range'"
                     :casename="'borderRadius'"
                 ></demolink>
 
@@ -80,12 +111,13 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-timeminute-range'"
-                    :casename="'icon & iconSize'"
+                    :casename="'icon & iconSize & distY'"
                 ></demolink>
 
                 <w-timeminute-range
                     :icon="mdiCheckUnderlineCircle"
                     :iconSize="20"
+                    :distY="5"
                     :minuteStart.sync="WTimeminuteRange.minuteStart"
                     :minuteEnd.sync="WTimeminuteRange.minuteEnd"
                 ></w-timeminute-range>

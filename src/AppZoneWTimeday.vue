@@ -21,10 +21,42 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-timeday'"
+                    :casename="'paddingStyle (thin style) & distY'"
+                ></demolink>
+
+                <w-timeday
+                    :icon="''"
+                    :paddingStyle="{v:0,h:8}"
+                    :distY="3"
+                    v-model="WTimeday.day"
+                ></w-timeday>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-timeday'"
+                    :casename="'paddingStyle (equal height to using icon)'"
+                ></demolink>
+
+                <w-timeday
+                    :icon="''"
+                    :paddingStyle="{v:4,h:15}"
+                    v-model="WTimeday.day"
+                ></w-timeday>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-timeday'"
                     :casename="'borderRadius'"
                 ></demolink>
 
-                <w-timeday :borderRadius="5" v-model="WTimeday.day"></w-timeday>
+                <w-timeday
+                    :borderRadius="5"
+                    v-model="WTimeday.day"
+                ></w-timeday>
             </div>
 
 
@@ -57,12 +89,13 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-timeday'"
-                    :casename="'icon & iconSize'"
+                    :casename="'icon & iconSize & distY'"
                 ></demolink>
 
                 <w-timeday
                     :icon="mdiCheckUnderlineCircle"
                     :iconSize="20"
+                    :distY="5"
                     v-model="WTimeday.day"
                 ></w-timeday>
             </div>

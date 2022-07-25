@@ -1,6 +1,5 @@
 <template>
-    <!-- 時間組件因v-date-picker有點擊區域的限制, 故得使用display:inline-block -->
-    <div style="display:inline-block;">
+    <div style="">
         <!-- 盡量不要讓display:flex暴露至外層 -->
         <div style="display:flex; align-items:center;">
 
@@ -9,14 +8,14 @@
                 :textFontSize="textFontSize"
                 :textColor="textColor"
                 :pickColor="pickColor"
-                :height="height"
+                :distY="distY"
                 :editable="editable"
                 :value="dayStart"
                 @update:focused="(v)=>{focused_start=v;changeFocused()}"
                 @input="(v)=>{$emit('update:dayStart', v)}"
             ></WTimedayCore>
 
-            <div :style="`display:inline-block; padding-left:5px; padding-right:8px; height:${height}px; line-height:${height}px; color:${useTextColor}; ${useTextFontSize} vertical-align:middle;`">
+            <div :style="`padding-left:5px; padding-right:8px; color:${useTextColor}; ${useTextFontSize}`">
                 {{between}}
             </div>
 
@@ -25,7 +24,7 @@
                 :textFontSize="textFontSize"
                 :textColor="textColor"
                 :pickColor="pickColor"
-                :height="height"
+                :distY="distY"
                 :editable="editable"
                 :value="dayEnd"
                 @update:focused="(v)=>{focused_end=v;changeFocused()}"
@@ -46,10 +45,10 @@ import WTimedayCore from './WTimedayCore.vue'
  * @vue-prop {String} [dayStart=''] 輸入起始日期字串，預設''
  * @vue-prop {String} [dayEnd=''] 輸入結束日期字串，預設''
  * @vue-prop {String} [between='to'] 輸入兩日期連接文字字串，預設'to'
- * @vue-prop {String} [textFontSize='0.9rem'] 輸入文字大小字串，預設'0.9rem'
+ * @vue-prop {String} [textFontSize='0.85rem'] 輸入文字大小字串，預設'0.85rem'
  * @vue-prop {String} [textColor='black'] 輸入文字顏色字串，預設'black'
  * @vue-prop {String} [pickColor='deep-orange darken-1'] 輸入日期彈窗中選擇指定日期之顏色字串，預設'deep-orange darken-1'
- * @vue-prop {Number} [height=28] 輸入高度數字，單位為px，預設28
+ * @vue-prop {Number} [distY=7] 輸入日期彈窗y向下平移數字，預設7
  * @vue-prop {Boolean} [editable=true] 輸入是否為編輯模式，預設true
  */
 export default {
@@ -71,7 +70,7 @@ export default {
         },
         textFontSize: {
             type: String,
-            default: '0.9rem',
+            default: '0.85rem',
         },
         textColor: {
             type: String,
@@ -81,9 +80,9 @@ export default {
             type: String,
             default: 'deep-orange darken-1',
         },
-        height: {
+        distY: {
             type: Number,
-            default: 28,
+            default: 7,
         },
         editable: {
             type: Boolean,

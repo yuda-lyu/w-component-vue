@@ -30,10 +30,12 @@
 
             <WTimedayRangeCore
                 :pickColor="pickColor"
+                :textFontSize="textFontSize"
                 :textColor="textColor"
                 :between="between"
                 :dayStart="dayStart"
                 :dayEnd="dayEnd"
+                :distY="distY"
                 :editable="editable"
                 @update:focused="changeFocused"
                 @update:dayStart="(v)=>{$emit('update:dayStart', v)}"
@@ -52,7 +54,7 @@ import WTimedayRangeCore from './WTimedayRangeCore.vue'
 
 
 /**
- * @vue-prop {Object} [paddingStyle={v:0,h:15}] 輸入內寬距離物件，可用鍵值為v、h、left、right、top、bottom，v代表同時設定top與bottom，h代表設定left與right，若有重複設定時後面鍵值會覆蓋前面，各鍵值為寬度數字，單位為px，預設{v:0,h:15}
+ * @vue-prop {Object} [paddingStyle={v:2,h:15}] 輸入內寬距離物件，可用鍵值為v、h、left、right、top、bottom，v代表同時設定top與bottom，h代表設定left與right，若有重複設定時後面鍵值會覆蓋前面，各鍵值為寬度數字，單位為px，預設{v:2,h:15}
  * @vue-prop {Number} [borderRadius=30] 輸入框圓角度數字，單位為px，預設30
  * @vue-prop {Boolean} [shadow=true] 輸入是否為陰影模式，預設true
  * @vue-prop {String} [dayStart=''] 輸入起始日期字串，預設''
@@ -72,8 +74,10 @@ import WTimedayRangeCore from './WTimedayRangeCore.vue'
  * @vue-prop {String} [borderColor='white'] 輸入邊框顏色字串，預設'white'
  * @vue-prop {String} [borderColorHover='white'] 輸入滑鼠移入時邊框顏色字串，預設'white'
  * @vue-prop {String} [borderColorFocus='white'] 輸入取得焦點時邊框顏色字串，預設'white'
+ * @vue-prop {String} [textFontSize='0.85rem'] 輸入文字大小字串，預設'0.85rem'
  * @vue-prop {String} [textColor='black'] 輸入文字顏色字串，預設'black'
  * @vue-prop {String} [pickColor='deep-orange darken-1'] 輸入日期彈窗中選擇指定日期之顏色字串，預設'deep-orange darken-1'
+ * @vue-prop {Number} [distY=7] 輸入日期彈窗y向下平移數字，預設7
  * @vue-prop {Boolean} [editable=true] 輸入是否為編輯模式，預設true
  * @vue-prop {Boolean} [focused=false] 輸入是否為取得焦點狀態，預設false
  */
@@ -87,7 +91,7 @@ export default {
             type: Object,
             default: () => {
                 return {
-                    v: 0,
+                    v: 2,
                     h: 15,
                 }
             },
@@ -168,6 +172,10 @@ export default {
             type: String,
             default: 'white',
         },
+        textFontSize: {
+            type: String,
+            default: '0.85rem',
+        },
         textColor: {
             type: String,
             default: 'black',
@@ -175,6 +183,10 @@ export default {
         pickColor: {
             type: String,
             default: 'deep-orange darken-1',
+        },
+        distY: {
+            type: Number,
+            default: 7,
         },
         editable: {
             type: Boolean,

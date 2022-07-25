@@ -24,6 +24,37 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-timeday-range'"
+                    :casename="'paddingStyle (thin style) & distY'"
+                ></demolink>
+
+                <w-timeday-range
+                    :icon="''"
+                    :paddingStyle="{v:0,h:8}"
+                    :distY="3"
+                    :dayStart.sync="WTimedayRange.dayStart"
+                    :dayEnd.sync="WTimedayRange.dayEnd"
+                ></w-timeday-range>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-timeday-range'"
+                    :casename="'paddingStyle (equal height to using icon)'"
+                ></demolink>
+
+                <w-timeday-range
+                    :icon="''"
+                    :paddingStyle="{v:4,h:15}"
+                    :dayStart.sync="WTimedayRange.dayStart"
+                    :dayEnd.sync="WTimedayRange.dayEnd"
+                ></w-timeday-range>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-timeday-range'"
                     :casename="'borderRadius'"
                 ></demolink>
 
@@ -80,12 +111,13 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-timeday-range'"
-                    :casename="'icon & iconSize'"
+                    :casename="'icon & iconSize & distY'"
                 ></demolink>
 
                 <w-timeday-range
                     :icon="mdiCheckUnderlineCircle"
                     :iconSize="20"
+                    :distY="5"
                     :dayStart.sync="WTimedayRange.dayStart"
                     :dayEnd.sync="WTimedayRange.dayEnd"
                 ></w-timeday-range>
