@@ -85,7 +85,7 @@
     </script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.2.33/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.2.34/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -153,7 +153,7 @@
                         >
                             <div
                                 style="padding:0px 5px; font-size:0.6rem; background:#eef; user-select:none; user-drag:none;"
-                            >{{props.ratio}}</div>
+                            >{{props.ratio}}({{props.height}}px)</div>
                             <div v-html="WPanelDivideVertical.htmlTop"></div>
                         </div>
                     </template>
@@ -164,7 +164,7 @@
                         >
                             <div
                                 style="padding:0px 5px; font-size:0.6rem; background:#eef; user-select:none; user-drag:none;"
-                            >{{props.ratio}}</div>
+                            >{{props.ratio}}({{props.height}}px)</div>
                             <div v-html="WPanelDivideVertical.htmlBottom"></div>
                         </div>
                     </template>

@@ -85,7 +85,7 @@
     </script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.2.33/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.2.34/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -136,40 +136,40 @@
                 style="cursor:pointer;"
                 title="open for copy link to view component"
                 onclick="window.open('//yuda-lyu.github.io/w-component-vue/examples/app.html?cmp='+this.innerText,'_blank')"
-            >w-panel-divide-horizontal</span>
+            >w-panel-divide-vertical</span>
         </div>
         <div class="bk" style="display:block;">
-            <div class="item">min &amp; max</div>
+            <div class="item">topHeightMin &amp; topHeightMax</div>
 
             <div style="display:inline-block; border:1px solid #ddd;">
-                <w-panel-divide-horizontal
+                <w-panel-divide-vertical
                     style="width:800px; height:300px;"
-                    :min="0.25"
-                    :max="0.75"
+                    :top-height-min="70"
+                    :top-height-max="130"
                 >
-                    <template v-slot:left="props">
+                    <template v-slot:top="props">
                         <!-- 用:style才能支援IE11因vue會自動把overflow-y:auto轉為-ms-overflow-y:auto -->
                         <div
                             :style="'overflow-y:auto; height:'.concat(props.height, 'px;')"
                         >
                             <div
                                 style="padding:0px 5px; font-size:0.6rem; background:#eef; user-select:none; user-drag:none;"
-                            >{{props.ratio}}</div>
-                            <div v-html="WPanelDivideHorizontal.htmlLeft"></div>
+                            >{{props.ratio}}({{props.height}}px)</div>
+                            <div v-html="WPanelDivideVertical.htmlTop"></div>
                         </div>
                     </template>
-                    <template v-slot:right="props">
+                    <template v-slot:bottom="props">
                         <!-- 用:style才能支援IE11因vue會自動把overflow-y:auto轉為-ms-overflow-y:auto -->
                         <div
                             :style="'overflow-y:auto; height:'.concat(props.height, 'px;')"
                         >
                             <div
                                 style="padding:0px 5px; font-size:0.6rem; background:#eef; user-select:none; user-drag:none;"
-                            >{{props.ratio}}</div>
-                            <div v-html="WPanelDivideHorizontal.htmlRight"></div>
+                            >{{props.ratio}}({{props.height}}px)</div>
+                            <div v-html="WPanelDivideVertical.htmlBottom"></div>
                         </div>
                     </template>
-                </w-panel-divide-horizontal>
+                </w-panel-divide-vertical>
             </div>
         </div>
     </v-app>
@@ -186,9 +186,9 @@
       let h =
         '<div style="margin:20px;">1. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis praesentium cumque magnam odio iure quidem, quod illum numquam possimus obcaecati commodi minima assumenda consectetur culpa fuga nulla ullam. In, libero. </div><div style="margin:20px;">2. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis praesentium cumque magnam odio iure quidem, quod illum numquam possimus obcaecati commodi minima assumenda consectetur culpa fuga nulla ullam. In, libero. </div><div style="margin:20px;">3. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis praesentium cumque magnam odio iure quidem, quod illum numquam possimus obcaecati commodi minima assumenda consectetur culpa fuga nulla ullam. In, libero. </div><div style="margin:20px;">4. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis praesentium cumque magnam odio iure quidem, quod illum numquam possimus obcaecati commodi minima assumenda consectetur culpa fuga nulla ullam. In, libero. </div>';
       return {
-        WPanelDivideHorizontal: {
-          htmlLeft: '<h2 style="margin:20px;">Left</h2>' + h,
-          htmlRight: '<h2 style="margin:20px;">Right</h2>' + h
+        WPanelDivideVertical: {
+          htmlTop: '<h2 style="margin:20px;">Top</h2>' + h,
+          htmlBottom: '<h2 style="margin:20px;">Bottom</h2>' + h
         },
         actions: []
       };

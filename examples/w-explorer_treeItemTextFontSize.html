@@ -85,7 +85,7 @@
     </script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.2.33/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.2.34/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -136,41 +136,16 @@
                 style="cursor:pointer;"
                 title="open for copy link to view component"
                 onclick="window.open('//yuda-lyu.github.io/w-component-vue/examples/app.html?cmp='+this.innerText,'_blank')"
-            >w-panel-divide-vertical</span>
+            >w-explorer</span>
         </div>
-        <div class="bk" style="display:block;">
-            <div class="item">min &amp; max</div>
+        <div class="bk">
+            <div class="item">treeItemTextFontSize</div>
 
-            <div style="display:inline-block; border:1px solid #ddd;">
-                <w-panel-divide-vertical
-                    style="width:800px; height:300px;"
-                    :min="0.25"
-                    :max="0.75"
-                >
-                    <template v-slot:top="props">
-                        <!-- 用:style才能支援IE11因vue會自動把overflow-y:auto轉為-ms-overflow-y:auto -->
-                        <div
-                            :style="'overflow-y:auto; height:'.concat(props.height, 'px;')"
-                        >
-                            <div
-                                style="padding:0px 5px; font-size:0.6rem; background:#eef; user-select:none; user-drag:none;"
-                            >{{props.ratio}}</div>
-                            <div v-html="WPanelDivideVertical.htmlTop"></div>
-                        </div>
-                    </template>
-                    <template v-slot:bottom="props">
-                        <!-- 用:style才能支援IE11因vue會自動把overflow-y:auto轉為-ms-overflow-y:auto -->
-                        <div
-                            :style="'overflow-y:auto; height:'.concat(props.height, 'px;')"
-                        >
-                            <div
-                                style="padding:0px 5px; font-size:0.6rem; background:#eef; user-select:none; user-drag:none;"
-                            >{{props.ratio}}</div>
-                            <div v-html="WPanelDivideVertical.htmlBottom"></div>
-                        </div>
-                    </template>
-                </w-panel-divide-vertical>
-            </div>
+            <w-explorer
+                style="width:600px; height:250px;"
+                :items="WExplorer.fps1"
+                :tree-item-text-font-size="'0.75rem'"
+            ></w-explorer>
         </div>
     </v-app>
 
@@ -183,21 +158,82 @@
     el: "#app",
     vuetify: new Vuetify(),
     data: function() {
-      let h =
-        '<div style="margin:20px;">1. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis praesentium cumque magnam odio iure quidem, quod illum numquam possimus obcaecati commodi minima assumenda consectetur culpa fuga nulla ullam. In, libero. </div><div style="margin:20px;">2. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis praesentium cumque magnam odio iure quidem, quod illum numquam possimus obcaecati commodi minima assumenda consectetur culpa fuga nulla ullam. In, libero. </div><div style="margin:20px;">3. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis praesentium cumque magnam odio iure quidem, quod illum numquam possimus obcaecati commodi minima assumenda consectetur culpa fuga nulla ullam. In, libero. </div><div style="margin:20px;">4. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis praesentium cumque magnam odio iure quidem, quod illum numquam possimus obcaecati commodi minima assumenda consectetur culpa fuga nulla ullam. In, libero. </div>';
       return {
-        WPanelDivideVertical: {
-          htmlTop: '<h2 style="margin:20px;">Top</h2>' + h,
-          htmlBottom: '<h2 style="margin:20px;">Bottom</h2>' + h
+        WExplorer: {
+          fps1: [
+            { type: "file", path: "/Applications/Calendar.app" },
+            { type: "file", path: "/Applications/Chrome.app" },
+            { type: "file", path: "/Applications/Webstorm.app" },
+            { type: "folder", path: "/Applications/Webs" },
+            { type: "file", path: "/Applications/Webs/web_infors.json" },
+            { type: "file", path: "/Applications/Webs/Shareco/s1.txt" },
+            { type: "file", path: "/Applications/Webs/Shareco/s2.txt" },
+            { type: "folder", path: "/Applications/Webs/Guess" },
+            { type: "file", path: "/Applications/Webs/Guess/s3.txt" },
+            { type: "file", path: "/Applications/Webs/Guess/s4.txt" },
+            { type: "file", path: "/Applications//Systems/Regulator.ini" },
+            {
+              type: "file",
+              path: "/Applications/Systems/Regulator/vers/settings-v1.st"
+            },
+            {
+              type: "file",
+              path: "/Applications/Systems/Regulator/vers/settings-v2.st"
+            },
+            {
+              type: "file",
+              path: "/Applications/Systems/Regulator/vers/settings-v3.st"
+            },
+            {
+              type: "file",
+              path: "/Applications/Systems/Regulator/vers/settings-v4.st"
+            },
+            {
+              type: "file",
+              path: "/Applications/Systems/Regulator/vers/settings-v5.st"
+            },
+            { type: "file", path: "/Documents/design-simple/src/index.txt" },
+            {
+              type: "file",
+              path: "/Documents/design-simple/src/bootstrap.txt"
+            },
+            { type: "file", path: "/Documents/design-material/src/btn.txt" },
+            { type: "file", path: "/Documents/design-material/src/card.txt" },
+            { type: "file", path: "/Documents/design-material/src/window.txt" },
+            { type: "file", path: "/Downloads/October.pdf" },
+            { type: "file", path: "/Downloads/November.pdf" },
+            { type: "file", path: "/Downloads/Tutorial.html" },
+            { type: "folder", path: "/Uploads" },
+            { type: "file", path: "/Videos/Tutorials/Basic layouts.mp4" },
+            { type: "file", path: "/Videos/Tutorials/Advanced techniques.mp4" },
+            { type: "file", path: "/Videos/Tutorials/All about app.mp4" },
+            { type: "file", path: "/Videos/Intro.mov" },
+            { type: "file", path: "/Videos/Conference introduction.avi" }
+          ]
         },
-        actions: []
+        actions: [
+          {
+            mode: "eleclick",
+            selector: 'span[class="v-chip__content"]'
+          }
+        ]
       };
     },
     mounted: function() {
       return {};
     },
     computed: {},
-    methods: {}
+    methods: {
+      ckItem: function(msg) {
+        console.log("ckItem", msg);
+      },
+      ckFolder: function(msg) {
+        console.log("ckFolder", msg);
+      },
+      ckFile: function(msg) {
+        console.log("ckFile", msg);
+      }
+    }
   });
     </script>
 </body>
