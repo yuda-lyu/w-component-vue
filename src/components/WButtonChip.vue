@@ -182,7 +182,7 @@ import WIconLoading from './WIconLoading.vue'
  * @vue-prop {Object} [paddingStyle={v:3,h:15}] 輸入內寬距離設定物件，可用鍵值為v、h、left、right、top、bottom，v代表同時設定top與bottom，h代表設定left與right，若有重複設定時後面鍵值會覆蓋前面，各鍵值為寬度數字，單位為px，預設{v:3,h:15}
  * @vue-prop {Number} [shiftLeft=0] 輸入左側內寬平移距離數字，會對paddingStyle設定再添加，可調整例如圖標與左側邊框距離，單位px，預設0
  * @vue-prop {Number} [shiftRight=0] 輸入右側內寬平移距離數字，會對paddingStyle設定再添加，可調整例如關閉圖標與右側邊框距離，單位px，預設0
- * @vue-prop {Boolean} [active=false] 輸入是否為主動模式，預設false
+ * @vue-prop {Boolean} [active=false] 輸入是否為主動模式布林值，預設false
  * @vue-prop {Boolean} [close=false] 輸入是否具有關閉按鈕模式，預設false
  * @vue-prop {Boolean} [cursorPointer=true] 輸入是否滑鼠移入顯示pointer樣式，預設true
  * @vue-prop {Boolean} [loading=false] 輸入是否為載入模式，預設false

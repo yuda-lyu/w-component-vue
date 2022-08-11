@@ -21,14 +21,14 @@
                         <template v-slot:top="props">
                             <!-- 用:style才能支援IE11因vue會自動把overflow-y:auto轉為-ms-overflow-y:auto -->
                             <div :style="'overflow-y:auto; height:'.concat(props.height, 'px;')">
-                                <div style="padding:0px 5px; font-size:0.6rem; background:#eef; user-select:none; user-drag:none;">{{props.ratio}}</div>
+                                <div style="padding:0px 5px; font-size:0.6rem; background:#eef; user-select:none; user-drag:none;">{{props.ratio}}({{props.height}}px)</div>
                                 <div v-html="WPanelDivideVertical.htmlTop"></div>
                             </div>
                         </template>
                         <template v-slot:bottom="props">
                             <!-- 用:style才能支援IE11因vue會自動把overflow-y:auto轉為-ms-overflow-y:auto -->
                             <div :style="'overflow-y:auto; height:'.concat(props.height, 'px;')">
-                                <div style="padding:0px 5px; font-size:0.6rem; background:#eef; user-select:none; user-drag:none;">{{props.ratio}}</div>
+                                <div style="padding:0px 5px; font-size:0.6rem; background:#eef; user-select:none; user-drag:none;">{{props.ratio}}({{props.height}}px)</div>
                                 <div v-html="WPanelDivideVertical.htmlBottom"></div>
                             </div>
                         </template>
@@ -52,14 +52,14 @@
                         <template v-slot:top="props">
                             <!-- 用:style才能支援IE11因vue會自動把overflow-y:auto轉為-ms-overflow-y:auto -->
                             <div :style="'overflow-y:auto; height:'.concat(props.height, 'px;')">
-                                <div style="padding:0px 5px; font-size:0.6rem; background:#eef; user-select:none; user-drag:none;">{{props.ratio}}</div>
+                                <div style="padding:0px 5px; font-size:0.6rem; background:#eef; user-select:none; user-drag:none;">{{props.ratio}}({{props.height}}px)</div>
                                 <div v-html="WPanelDivideVertical.htmlTop"></div>
                             </div>
                         </template>
                         <template v-slot:bottom="props">
                             <!-- 用:style才能支援IE11因vue會自動把overflow-y:auto轉為-ms-overflow-y:auto -->
                             <div :style="'overflow-y:auto; height:'.concat(props.height, 'px;')">
-                                <div style="padding:0px 5px; font-size:0.6rem; background:#eef; user-select:none; user-drag:none;">{{props.ratio}}</div>
+                                <div style="padding:0px 5px; font-size:0.6rem; background:#eef; user-select:none; user-drag:none;">{{props.ratio}}({{props.height}}px)</div>
                                 <div v-html="WPanelDivideVertical.htmlBottom"></div>
                             </div>
                         </template>
@@ -72,26 +72,90 @@
             <div class="bk" style="display:block;">
                 <demolink
                     :kbname="'w-panel-divide-vertical'"
-                    :casename="'min & max'"
+                    :casename="'ratioMin & ratioMax'"
                 ></demolink>
 
                 <div style="display:inline-block; border:1px solid #ddd;">
                     <w-panel-divide-vertical
                         style="width:800px; height:300px;"
-                        :min="0.25"
-                        :max="0.75"
+                        :ratioMin="0.25"
+                        :ratioMax="0.75"
                     >
                         <template v-slot:top="props">
                             <!-- 用:style才能支援IE11因vue會自動把overflow-y:auto轉為-ms-overflow-y:auto -->
                             <div :style="'overflow-y:auto; height:'.concat(props.height, 'px;')">
-                                <div style="padding:0px 5px; font-size:0.6rem; background:#eef; user-select:none; user-drag:none;">{{props.ratio}}</div>
+                                <div style="padding:0px 5px; font-size:0.6rem; background:#eef; user-select:none; user-drag:none;">{{props.ratio}}({{props.height}}px)</div>
                                 <div v-html="WPanelDivideVertical.htmlTop"></div>
                             </div>
                         </template>
                         <template v-slot:bottom="props">
                             <!-- 用:style才能支援IE11因vue會自動把overflow-y:auto轉為-ms-overflow-y:auto -->
                             <div :style="'overflow-y:auto; height:'.concat(props.height, 'px;')">
-                                <div style="padding:0px 5px; font-size:0.6rem; background:#eef; user-select:none; user-drag:none;">{{props.ratio}}</div>
+                                <div style="padding:0px 5px; font-size:0.6rem; background:#eef; user-select:none; user-drag:none;">{{props.ratio}}({{props.height}}px)</div>
+                                <div v-html="WPanelDivideVertical.htmlBottom"></div>
+                            </div>
+                        </template>
+                    </w-panel-divide-vertical>
+                </div>
+
+            </div>
+
+
+            <div class="bk" style="display:block;">
+                <demolink
+                    :kbname="'w-panel-divide-vertical'"
+                    :casename="'topHeightMin & topHeightMax'"
+                ></demolink>
+
+                <div style="display:inline-block; border:1px solid #ddd;">
+                    <w-panel-divide-vertical
+                        style="width:800px; height:300px;"
+                        :topHeightMin="70"
+                        :topHeightMax="130"
+                    >
+                        <template v-slot:top="props">
+                            <!-- 用:style才能支援IE11因vue會自動把overflow-y:auto轉為-ms-overflow-y:auto -->
+                            <div :style="'overflow-y:auto; height:'.concat(props.height, 'px;')">
+                                <div style="padding:0px 5px; font-size:0.6rem; background:#eef; user-select:none; user-drag:none;">{{props.ratio}}({{props.height}}px)</div>
+                                <div v-html="WPanelDivideVertical.htmlTop"></div>
+                            </div>
+                        </template>
+                        <template v-slot:bottom="props">
+                            <!-- 用:style才能支援IE11因vue會自動把overflow-y:auto轉為-ms-overflow-y:auto -->
+                            <div :style="'overflow-y:auto; height:'.concat(props.height, 'px;')">
+                                <div style="padding:0px 5px; font-size:0.6rem; background:#eef; user-select:none; user-drag:none;">{{props.ratio}}({{props.height}}px)</div>
+                                <div v-html="WPanelDivideVertical.htmlBottom"></div>
+                            </div>
+                        </template>
+                    </w-panel-divide-vertical>
+                </div>
+
+            </div>
+
+
+            <div class="bk" style="display:block;">
+                <demolink
+                    :kbname="'w-panel-divide-vertical'"
+                    :casename="'bottomHeightMin & bottomHeightMax'"
+                ></demolink>
+
+                <div style="display:inline-block; border:1px solid #ddd;">
+                    <w-panel-divide-vertical
+                        style="width:800px; height:300px;"
+                        :bottomHeightMin="70"
+                        :bottomHeightMax="130"
+                    >
+                        <template v-slot:top="props">
+                            <!-- 用:style才能支援IE11因vue會自動把overflow-y:auto轉為-ms-overflow-y:auto -->
+                            <div :style="'overflow-y:auto; height:'.concat(props.height, 'px;')">
+                                <div style="padding:0px 5px; font-size:0.6rem; background:#eef; user-select:none; user-drag:none;">{{props.ratio}}({{props.height}}px)</div>
+                                <div v-html="WPanelDivideVertical.htmlTop"></div>
+                            </div>
+                        </template>
+                        <template v-slot:bottom="props">
+                            <!-- 用:style才能支援IE11因vue會自動把overflow-y:auto轉為-ms-overflow-y:auto -->
+                            <div :style="'overflow-y:auto; height:'.concat(props.height, 'px;')">
+                                <div style="padding:0px 5px; font-size:0.6rem; background:#eef; user-select:none; user-drag:none;">{{props.ratio}}({{props.height}}px)</div>
                                 <div v-html="WPanelDivideVertical.htmlBottom"></div>
                             </div>
                         </template>
@@ -115,14 +179,14 @@
                         <template v-slot:top="props">
                             <!-- 用:style才能支援IE11因vue會自動把overflow-y:auto轉為-ms-overflow-y:auto -->
                             <div :style="'overflow-y:auto; height:'.concat(props.height, 'px;')">
-                                <div style="padding:0px 5px; font-size:0.6rem; background:#eef; user-select:none; user-drag:none;">{{props.ratio}}</div>
+                                <div style="padding:0px 5px; font-size:0.6rem; background:#eef; user-select:none; user-drag:none;">{{props.ratio}}({{props.height}}px)</div>
                                 <div v-html="WPanelDivideVertical.htmlTop"></div>
                             </div>
                         </template>
                         <template v-slot:bottom="props">
                             <!-- 用:style才能支援IE11因vue會自動把overflow-y:auto轉為-ms-overflow-y:auto -->
                             <div :style="'overflow-y:auto; height:'.concat(props.height, 'px;')">
-                                <div style="padding:0px 5px; font-size:0.6rem; background:#eef; user-select:none; user-drag:none;">{{props.ratio}}</div>
+                                <div style="padding:0px 5px; font-size:0.6rem; background:#eef; user-select:none; user-drag:none;">{{props.ratio}}({{props.height}}px)</div>
                                 <div v-html="WPanelDivideVertical.htmlBottom"></div>
                             </div>
                         </template>

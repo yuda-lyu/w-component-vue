@@ -41,6 +41,8 @@
                         :iconColorHover="itemIconColorHover"
                         :iconColorActive="itemIconColorActive"
                         :rippleColor="itemRippleColor"
+                        :clickable="itemClickable"
+                        :cursorPointer="itemCursorPointer"
                         @click="ckItem(item)"
                     >
 
@@ -71,7 +73,6 @@ import size from 'lodash/size'
 import each from 'lodash/each'
 import every from 'lodash/every'
 import isEqual from 'lodash/isEqual'
-import cloneDeep from 'lodash/cloneDeep'
 import isobj from 'wsemi/src/isobj.mjs'
 import domResize from '../js/domResize.mjs'
 import color2hex from '../js/vuetifyColor.mjs'
@@ -80,8 +81,8 @@ import WListItem from './WListItem.vue'
 
 /**
  * @vue-prop {Array} [items=[]] 輸入項目的字串陣列或物件陣列，預設[]
- * @vue-prop {Boolean} [useActive=false] 輸入項目是否使用點擊成為活耀狀態，預設false
- * @vue-prop {String|Object} [itemActive=null] 輸入活耀項目物件，預設null
+ * @vue-prop {Boolean} [useActive=false] 輸入項目是否使用點擊成為活耀狀態布林值，預設false
+ * @vue-prop {String|Object} [itemActive=null] 輸入活耀項目字串或物件，預設null
  * @vue-prop {String} [itemTextFontSize='1rem'] 輸入文字字型大小字串，預設'1rem'
  * @vue-prop {String} [keyText='text'] 輸入項目為物件時，存放顯示文字之欄位字串，預設'text'
  * @vue-prop {String} [keyIcon='icon'] 輸入項目為物件時，存放圖標之欄位字串，預設'icon'
@@ -99,6 +100,8 @@ import WListItem from './WListItem.vue'
  * @vue-prop {String} [itemIconColorHover='#222'] 輸入滑鼠移入時圖標顏色字串，預設'#222'
  * @vue-prop {String} [itemIconColorActive='orange darken-3'] 輸入主動模式時圖標顏色字串，預設'orange darken-3'
  * @vue-prop {String} [itemRippleColor='rgba(245,124,0,0.4)'] 輸入ripple效果顏色字串，預設'rgba(245,124,0,0.4)'
+ * @vue-prop {Boolean} [itemClickable=true] 輸入是否為可點擊模式布林值，預設true
+ * @vue-prop {Boolean} [itemCursorPointer=true] 輸入是否滑鼠移入顯示pointer樣式，預設true
  * @vue-prop {Boolean} [borderBottom=true] 輸入主動模式時是否於項目底部顯示高亮線條，預設true
  * @vue-prop {Number} [borderBottomSize=2] 輸入底部高亮線條尺寸(高度)數字，單位px，預設2
  * @vue-prop {String} [borderBottomColor='rgba(245,124,0,0.8)'] 輸入底部高亮線條顏色字串，預設'rgba(245,124,0,0.8)'
@@ -195,6 +198,14 @@ export default {
         itemRippleColor: {
             type: String,
             default: 'rgba(245,124,0,0.4)',
+        },
+        itemClickable: {
+            type: Boolean,
+            default: true,
+        },
+        itemCursorPointer: {
+            type: Boolean,
+            default: true,
         },
         borderBottom: {
             type: Boolean,
@@ -383,16 +394,11 @@ export default {
             //save itemActiveTrans
             vo.itemActiveTrans = item
 
-            //nextTick
-            vo.$nextTick(() => {
+            //emit
+            vo.$emit('click', { ...item })
 
-                //emit
-                vo.$emit('click', cloneDeep(item))
-
-                //emit
-                vo.$emit('update:itemActive', cloneDeep(item))
-
-            })
+            //emit
+            vo.$emit('update:itemActive', { ...item })
 
         },
 

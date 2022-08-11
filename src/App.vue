@@ -348,6 +348,11 @@
             ></AppZoneWLeafletVueDyn>
 
 
+            <AppZoneWExplorer
+                v-if="useCmpName==='WExplorer'"
+            ></AppZoneWExplorer>
+
+
         </div>
 
 
@@ -413,6 +418,7 @@ import AppZoneWCkeditorVueDyn from './AppZoneWCkeditorVueDyn.vue'
 import AppZoneWTinymceVueDyn from './AppZoneWTinymceVueDyn.vue'
 import AppZoneWQuillVueDyn from './AppZoneWQuillVueDyn.vue'
 import AppZoneWLeafletVueDyn from './AppZoneWLeafletVueDyn.vue'
+import AppZoneWExplorer from './AppZoneWExplorer.vue'
 
 
 export default {
@@ -470,6 +476,7 @@ export default {
         AppZoneWTinymceVueDyn,
         AppZoneWQuillVueDyn,
         AppZoneWLeafletVueDyn,
+        AppZoneWExplorer,
     },
     data: function() {
         return {
@@ -482,6 +489,12 @@ export default {
             io2: 0,
             io3: 0,
             sCmps: [
+                {
+                    name: 'combination',
+                    cmps: [
+                        { name: 'WExplorer' },
+                    ]
+                },
                 {
                     name: 'basic',
                     cmps: [
@@ -568,6 +581,12 @@ export default {
                         { name: 'WDrawer' },
                     ]
                 },
+                // {
+                //     name: 'combination',
+                //     cmps: [
+                //         { name: 'WExplorer' },
+                //     ]
+                // },
                 {
                     name: 'dynamic',
                     cmps: [

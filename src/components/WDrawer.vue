@@ -4,7 +4,7 @@
         :changeValue="changeValue"
         :changeDrawerWidth="changeDrawerWidth"
         v-domresize
-        @domresize="updatePanelSize"
+        @domresize="resizePanel"
     >
 
         <div ref="divPanel" style="position:relative; height:100%;">
@@ -20,7 +20,11 @@
 
                 <div :style="`width:100%; height:100%;`">
 
-                    <slot name="content"></slot>
+                    <slot
+                        name="content"
+                        :width="panelWidth-virtualZoneWidth"
+                        :height="panelHeight"
+                    ></slot>
 
                 </div>
 
@@ -71,7 +75,11 @@
                                 :style="`width:${useDrawerWidthTrans-useDrawerBarSize/2}px;`"
                             >
 
-                                <slot name="drawer"></slot>
+                                <slot
+                                    name="drawer"
+                                    :width="useDrawerWidthTrans-useDrawerBarSize/2"
+                                    :height="panelHeight"
+                                ></slot>
 
                             </div>
 
@@ -386,8 +394,8 @@ export default {
     },
     methods: {
 
-        updatePanelSize: function(msg) {
-            // console.log('methods updatePanelSize', msg)
+        resizePanel: function(msg) {
+            // console.log('methods resizePanel', msg)
 
             let vo = this
             if (!vo.afloatByFix) {

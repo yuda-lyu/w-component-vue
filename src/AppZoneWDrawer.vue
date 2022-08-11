@@ -102,17 +102,19 @@
                     :dragDrawerWidth="true"
                 >
 
-                    <template v-slot:drawer>
+                    <template v-slot:drawer="props">
+                        <div style="height:18px; background:#eef; font-size:0.7rem;">{{props.width}}px</div>
                         <!-- 有使用dragDrawerWidth就不用給分隔線 -->
                         <w-list-vertical
-                            style="height:100%; _border-right:1px solid #ddd;"
+                            style="height:calc( 100% - 18px ); _border-right:1px solid #ddd;"
                             :items="WDrawer.listItems"
                             :itemActive.sync="WDrawer.listItemActive"
                         ></w-list-vertical>
                     </template>
 
-                    <template v-slot:content>
-                        <div style="height:100%; overflow-y:auto;">
+                    <template v-slot:content="props">
+                        <div style="height:18px; background:#eef; font-size:0.7rem;">{{props.width}}px</div>
+                        <div style="height:calc( 100% - 18px ); overflow-y:auto;">
                             <div style="padding:10px; font-size:1.2rem;">{{WDrawer.title}}</div>
                             <div style="padding:0px 10px 10px 10px; font-size:0.9rem;">{{WDrawer.content}}</div>
                         </div>

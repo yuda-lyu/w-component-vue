@@ -2,7 +2,7 @@
     <div
         :changeParam="changeParam"
         v-domresize
-        @domresize="updatePanelSize"
+        @domresize="resizePanel"
     >
 
         <div
@@ -41,6 +41,7 @@
 </template>
 
 <script>
+import isNumber from 'lodash/isNumber'
 import domDragBarAndScroll from 'wsemi/src/domDragBarAndScroll.mjs'
 import domResize from '../js/domResize.mjs'
 import color2hex from '../js/vuetifyColor.mjs'
@@ -48,8 +49,12 @@ import color2hex from '../js/vuetifyColor.mjs'
 
 /**
  * @vue-prop {Number} [ratio=0.5] 輸入分隔條位置比例數字，範圍為0~1，預設0.5
- * @vue-prop {Number} [min=0] 輸入分隔條位置最小比例數字，範圍為0~1，需小於max，若min大於max則由min主導，預設0
- * @vue-prop {Number} [max=1] 輸入分隔條位置最大比例數字，範圍為0~1，需大於min，若min大於max則由min主導，預設1
+ * @vue-prop {Number} [ratioMin=0] 輸入分隔條位置最小比例數字，範圍為0~1，需小於ratioMax，若ratioMin大於ratioMax則由ratioMin主導，預設0
+ * @vue-prop {Number} [ratioMax=1] 輸入分隔條位置最大比例數字，範圍為0~1，需大於ratioMin，若ratioMin大於ratioMax則由ratioMin主導，預設1
+ * @vue-prop {Number} [topHeightMin=null] 輸入左側區最小寬度數字，處理優先權大於ratioMin與ratioMax，預設null
+ * @vue-prop {Number} [topHeightMax=null] 輸入左側區最大寬度數字，處理優先權大於ratioMin與ratioMax，預設null
+ * @vue-prop {Number} [bottomHeightMin=null] 輸入右側區最小寬度數字，處理優先權大於ratioMin、ratioMax、topHeightMin與topHeightMax，預設null
+ * @vue-prop {Number} [bottomHeightMax=null] 輸入右側區最大寬度數字，處理優先權大於ratioMin、ratioMax、topHeightMin與topHeightMax，預設null
  * @vue-prop {String} [barColor='#ddd'] 輸入分隔條顏色字串，預設'#ddd'
  * @vue-prop {String} [barBorderColor='transparent'] 輸入分隔條框線顏色字串，預設'transparent'
  * @vue-prop {Number} [barSize=2] 輸入分隔條尺寸數字，為分隔條高度，單位為px，預設2
@@ -64,13 +69,29 @@ export default {
             type: Number,
             default: 0.5, //0~1
         },
-        min: {
+        ratioMin: {
             type: Number,
             default: 0,
         },
-        max: {
+        ratioMax: {
             type: Number,
             default: 1,
+        },
+        topHeightMin: {
+            type: Number,
+            default: null,
+        },
+        topHeightMax: {
+            type: Number,
+            default: null,
+        },
+        bottomHeightMin: {
+            type: Number,
+            default: null,
+        },
+        bottomHeightMax: {
+            type: Number,
+            default: null,
         },
         barColor: {
             type: String,
@@ -131,9 +152,8 @@ export default {
             //ratio
             let r = vo.ratio
 
-            //min, max
-            r = Math.min(r, vo.max)
-            r = Math.max(r, vo.min)
+            //limitRatio
+            r = vo.limitRatio(r)
 
             //save
             vo.r = r
@@ -160,8 +180,8 @@ export default {
     },
     methods: {
 
-        updatePanelSize: function(msg) {
-            //console.log('methods updatePanelSize', msg)
+        resizePanel: function(msg) {
+            //console.log('methods resizePanel', msg)
 
             let vo = this
 
@@ -172,6 +192,57 @@ export default {
             //emit
             vo.$emit('resize', msg)
 
+        },
+
+        limitRatio: function(r) {
+            // console.log('methods limitRatio', r)
+
+            let vo = this
+
+            //ratioMin, ratioMax
+            r = Math.min(r, vo.ratioMax)
+            r = Math.max(r, vo.ratioMin)
+
+            //check
+            if (vo.panelHeight > 0) {
+
+                //topHeight
+                let topHeight = (r) * vo.panelHeight
+
+                //check topHeightMin
+                if (isNumber(vo.topHeightMin)) {
+                    if (topHeight < vo.topHeightMin) {
+                        r = vo.topHeightMin / vo.panelHeight
+                    }
+                }
+
+                //check topHeightMax
+                if (isNumber(vo.topHeightMax)) {
+                    if (topHeight > vo.topHeightMax) {
+                        r = vo.topHeightMax / vo.panelHeight
+                    }
+                }
+
+                //bottomHeight
+                let bottomHeight = (1 - r) * vo.panelHeight
+
+                //check bottomHeightMin
+                if (isNumber(vo.bottomHeightMin)) {
+                    if (bottomHeight < vo.bottomHeightMin) {
+                        r = -(vo.bottomHeightMin / vo.panelHeight - 1)
+                    }
+                }
+
+                //check bottomHeightMax
+                if (isNumber(vo.bottomHeightMax)) {
+                    if (bottomHeight > vo.bottomHeightMax) {
+                        r = -(vo.bottomHeightMax / vo.panelHeight - 1)
+                    }
+                }
+
+            }
+
+            return r
         },
 
         dragBar: function({ clientY }) {
@@ -187,9 +258,8 @@ export default {
                 r = (y - bd.top) / h //clientX需扣除元件的top位置
             }
 
-            //min, max
-            r = Math.min(r, vo.max)
-            r = Math.max(r, vo.min)
+            //limitRatio
+            r = vo.limitRatio(r)
 
             //save
             vo.r = r

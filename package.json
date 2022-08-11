@@ -1,11 +1,11 @@
 {
   "name": "w-component-vue",
-  "version": "2.2.33",
+  "version": "2.2.34",
   "main": "dist/w-component-vue.umd.js",
   "dependencies": {
     "@mdi/js": "^6.9.96",
     "lodash": "^4.17.21",
-    "wsemi": "^1.6.69"
+    "wsemi": "^1.6.71"
   },
   "devDependencies": {
     "eslint": "^7.26.0",

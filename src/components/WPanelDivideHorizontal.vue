@@ -2,7 +2,7 @@
     <div
         :changeParam="changeParam"
         v-domresize
-        @domresize="updatePanelSize"
+        @domresize="resizePanel"
     >
 
         <div
@@ -41,6 +41,7 @@
 </template>
 
 <script>
+import isNumber from 'lodash/isNumber'
 import domDragBarAndScroll from 'wsemi/src/domDragBarAndScroll.mjs'
 import domResize from '../js/domResize.mjs'
 import color2hex from '../js/vuetifyColor.mjs'
@@ -48,8 +49,12 @@ import color2hex from '../js/vuetifyColor.mjs'
 
 /**
  * @vue-prop {Number} [ratio=0.5] 輸入分隔條位置比例數字，範圍為0~1，預設0.5
- * @vue-prop {Number} [min=0] 輸入分隔條位置最小比例數字，範圍為0~1，需小於max，若min大於max則由min主導，預設0
- * @vue-prop {Number} [max=1] 輸入分隔條位置最大比例數字，範圍為0~1，需大於min，若min大於max則由min主導，預設1
+ * @vue-prop {Number} [ratioMin=0] 輸入分隔條位置最小比例數字，範圍為0~1，需小於ratioMax，若ratioMin大於ratioMax則由ratioMin主導，預設0
+ * @vue-prop {Number} [ratioMax=1] 輸入分隔條位置最大比例數字，範圍為0~1，需大於ratioMin，若ratioMin大於ratioMax則由ratioMin主導，預設1
+ * @vue-prop {Number} [leftWidthMin=null] 輸入左側區最小寬度數字，處理優先權大於ratioMin與ratioMax，預設null
+ * @vue-prop {Number} [leftWidthMax=null] 輸入左側區最大寬度數字，處理優先權大於ratioMin與ratioMax，預設null
+ * @vue-prop {Number} [rightWidthMin=null] 輸入右側區最小寬度數字，處理優先權大於ratioMin、ratioMax、leftWidthMin與leftWidthMax，預設null
+ * @vue-prop {Number} [rightWidthMax=null] 輸入右側區最大寬度數字，處理優先權大於ratioMin、ratioMax、leftWidthMin與leftWidthMax，預設null
  * @vue-prop {String} [barColor='#ddd'] 輸入分隔條顏色字串，預設'#ddd'
  * @vue-prop {Number} [barSize=2] 輸入分隔條尺寸數字，為分隔條寬度，單位為px，預設2
  * @vue-prop {String} [barBorderColor='transparent'] 輸入分隔條框線顏色字串，預設'transparent'
@@ -64,13 +69,29 @@ export default {
             type: Number,
             default: 0.5, //0~1
         },
-        min: {
+        ratioMin: {
             type: Number,
             default: 0,
         },
-        max: {
+        ratioMax: {
             type: Number,
             default: 1,
+        },
+        leftWidthMin: {
+            type: Number,
+            default: null,
+        },
+        leftWidthMax: {
+            type: Number,
+            default: null,
+        },
+        rightWidthMin: {
+            type: Number,
+            default: null,
+        },
+        rightWidthMax: {
+            type: Number,
+            default: null,
         },
         barColor: {
             type: String,
@@ -124,16 +145,15 @@ export default {
     computed: {
 
         changeParam: function() {
-            //console.log('computed changeParam')
+            // console.log('computed changeParam')
 
             let vo = this
 
             //ratio
             let r = vo.ratio
 
-            //min, max
-            r = Math.min(r, vo.max)
-            r = Math.max(r, vo.min)
+            //limitRatio
+            r = vo.limitRatio(r)
 
             //save
             vo.r = r
@@ -160,8 +180,8 @@ export default {
     },
     methods: {
 
-        updatePanelSize: function(msg) {
-            //console.log('methods updatePanelSize', msg)
+        resizePanel: function(msg) {
+            //console.log('methods resizePanel', msg)
 
             let vo = this
 
@@ -174,11 +194,63 @@ export default {
 
         },
 
+        limitRatio: function(r) {
+            // console.log('methods limitRatio', r)
+
+            let vo = this
+
+            //ratioMin, ratioMax
+            r = Math.min(r, vo.ratioMax)
+            r = Math.max(r, vo.ratioMin)
+
+            //check
+            if (vo.panelWidth > 0) {
+
+                //leftWidth
+                let leftWidth = (r) * vo.panelWidth
+
+                //check leftWidthMin
+                if (isNumber(vo.leftWidthMin)) {
+                    if (leftWidth < vo.leftWidthMin) {
+                        r = vo.leftWidthMin / vo.panelWidth
+                    }
+                }
+
+                //check leftWidthMax
+                if (isNumber(vo.leftWidthMax)) {
+                    if (leftWidth > vo.leftWidthMax) {
+                        r = vo.leftWidthMax / vo.panelWidth
+                    }
+                }
+
+                //rightWidth
+                let rightWidth = (1 - r) * vo.panelWidth
+
+                //check rightWidthMin
+                if (isNumber(vo.rightWidthMin)) {
+                    if (rightWidth < vo.rightWidthMin) {
+                        r = -(vo.rightWidthMin / vo.panelWidth - 1)
+                    }
+                }
+
+                //check rightWidthMax
+                if (isNumber(vo.rightWidthMax)) {
+                    if (rightWidth > vo.rightWidthMax) {
+                        r = -(vo.rightWidthMax / vo.panelWidth - 1)
+                    }
+                }
+
+            }
+
+            return r
+        },
+
         dragBar: function({ clientX }) {
             //console.log('methods dragBar', clientX)
 
             let vo = this
 
+            //r
             let bd = vo.$el.getBoundingClientRect()
             let x = clientX
             let w = vo.$el.offsetWidth
@@ -187,9 +259,8 @@ export default {
                 r = (x - bd.left) / w //clientX需扣除元件的left位置
             }
 
-            //min, max
-            r = Math.min(r, vo.max)
-            r = Math.max(r, vo.min)
+            //limitRatio
+            r = vo.limitRatio(r)
 
             //save
             vo.r = r

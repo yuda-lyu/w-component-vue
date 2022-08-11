@@ -1,28 +1,33 @@
 <template>
     <div
-        :style="`transition:all 0.3s; border-top-left-radius:${borderRadius}px; border-top-right-radius:${borderRadius}px; ${usePadding} background:${useBackgroundColor}; cursor:pointer;`"
+        :style="`transition:all 0.3s; border-top-left-radius:${borderRadius}px; border-top-right-radius:${borderRadius}px; ${usePadding} background:${useBackgroundColor}; ${clickable&&cursorPointer?'cursor:pointer;':''}`"
         v-domripple="{color:rippleColor}"
         @mouseenter="mouseEnter=true"
         @mouseleave="mouseEnter=false"
-        @click="$emit('click',{icon,text})"
+        @click="clickItem"
     >
-        <div style="display:flex; align-items:center;">
+        <!-- 文字顏色與字型大小放在slot外, 使組件設定能於slot內收到預設影響 -->
+        <div :style="`transition:all 0.3s; color:${useTextColor}; ${useTextFontSize}`">
 
             <slot
-                :mouseEnter="mouseEnter"
+                :isHover="mouseEnter"
                 :isActive="active"
             >
 
-                <WIcon
-                    style="margin-right:8px;"
-                    :icon="icon"
-                    :color="useIconColor"
-                    :size="iconSize"
-                    v-if="hasIcon"
-                ></WIcon>
+                <div style="display:flex; align-items:center;">
 
-                <div :style="`transition:all 0.3s; color:${useTextColor}; ${useTextFontSize}`">
-                    {{text}}
+                    <WIcon
+                        style="margin-right:8px;"
+                        :icon="icon"
+                        :color="useIconColor"
+                        :size="iconSize"
+                        v-if="hasIcon"
+                    ></WIcon>
+
+                    <div>
+                        {{text}}
+                    </div>
+
                 </div>
 
             </slot>
@@ -32,7 +37,6 @@
 </template>
 
 <script>
-import get from 'lodash/get'
 import replace from 'wsemi/src/replace.mjs'
 import domRipple from '../js/domRipple.mjs'
 import color2hex from '../js/vuetifyColor.mjs'
@@ -43,7 +47,7 @@ import WIcon from './WIcon.vue'
 /**
  * @vue-prop {String} [text=''] 輸入文字字串，預設''
  * @vue-prop {String} [textFontSize='1rem'] 輸入文字字型大小字串，預設'1rem'
- * @vue-prop {Boolean} [active=false] 輸入是否為主動模式，預設false
+ * @vue-prop {Boolean} [active=false] 輸入是否為主動模式布林值，預設false
  * @vue-prop {Object} [paddingStyle={v:10,h:12}] 輸入內寬距離設定物件，可用鍵值為v、h、left、right、top、bottom，v代表同時設定top與bottom，h代表設定left與right，若有重複設定時後面鍵值會覆蓋前面，各鍵值為寬度數字，單位為px，預設{v:10,h:12}
  * @vue-prop {Number} [borderRadius=0] 輸入框圓角度數字，單位為px，預設0
  * @vue-prop {String} [backgroundColor='white'] 輸入背景顏色字串，預設'white'
@@ -58,6 +62,8 @@ import WIcon from './WIcon.vue'
  * @vue-prop {String} [iconColorHover='#222'] 輸入滑鼠移入時圖標顏色字串，預設'#222'
  * @vue-prop {String} [iconColorActive='white'] 輸入主動模式時圖標顏色字串，預設'white'
  * @vue-prop {String} [rippleColor='rgba(255,255,255,0.4)'] 輸入ripple效果顏色字串，預設'rgba(255,255,255,0.4)'
+ * @vue-prop {Boolean} [clickable=true] 輸入是否為可點擊模式布林值，預設true
+ * @vue-prop {Boolean} [cursorPointer=true] 輸入是否滑鼠移入顯示pointer樣式，預設true
  */
 export default {
     directives: {
@@ -139,6 +145,14 @@ export default {
         rippleColor: {
             type: String,
             default: 'rgba(255,255,255,0.4)',
+        },
+        clickable: {
+            type: Boolean,
+            default: true,
+        },
+        cursorPointer: {
+            type: Boolean,
+            default: true,
         },
     },
     data: function() {
@@ -247,15 +261,19 @@ export default {
     },
     methods: {
 
-        getIcon: function(item) {
-            return get(item, 'icon', '')
-        },
+        clickItem: function() {
+            // console.log('clickItem')
 
-        getText: function(item) {
-            let t = get(item, 'text', '')
-            if (t === '') {
-                return item
+            let vo = this
+
+            //check
+            if (!vo.clickable) {
+                return
             }
+
+            //emit
+            vo.$emit('click', { icon: vo.icon, text: vo.text })
+
         },
 
     }

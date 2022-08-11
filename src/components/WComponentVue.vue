@@ -12,6 +12,7 @@ import WDrawer from './WDrawer.vue'
 import WDropfiles from './WDropfiles.vue'
 import WDynamicList from './WDynamicList.vue'
 import WEchartsVueDyn from './WEchartsVueDyn.vue'
+import WExplorer from './WExplorer.vue'
 import WGroupCheck from './WGroupCheck.vue'
 import WGroupDragdrop from './WGroupDragdrop.vue'
 import WGroupRadio from './WGroupRadio.vue'
@@ -85,6 +86,7 @@ let WComponentVue = {
         Vue.component('w-dropfiles', WDropfiles)
         Vue.component('w-dynamic-list', WDynamicList)
         Vue.component('w-echarts-vue-dyn', WEchartsVueDyn)
+        Vue.component('w-explorer', WExplorer)
         Vue.component('w-group-check', WGroupCheck)
         Vue.component('w-group-dragdrop', WGroupDragdrop)
         Vue.component('w-group-radio', WGroupRadio)

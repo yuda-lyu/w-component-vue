@@ -105,6 +105,8 @@
                                 :keyText="keyText"
                                 :keyChildren="keyChildren"
                                 :setDataByPathAndValue="setDataByPathAndValue"
+                                :isHover="pkHover===props.row.item[keyPrimary]"
+                                :isActive="pkActive===props.row.item[keyPrimary]"
                             >
                                 <!-- 得使用min-height否則無法撐開高度 -->
                                 <div :style="`min-height:${Math.max(iconSize,defItemHeight)}px; display:flex; align-items:center;`">
@@ -251,12 +253,6 @@ let gm = globalMemory()
  * @vue-prop {Boolean} [activable=false] 輸入是否使用主動模式布林值，預設false
  * @vue-prop {Function} [funActive=null] 輸入主動模式時處理點擊項目函數，給予並回傳true時代表點擊項目給予主動模式，回傳false代表點擊項目不給予主動模式，可應用於資料夾與有效項目之區隔，預設null
  * @vue-prop {Object} [itemActive={}] 輸入主動模式時外部給予主動模式項目物件，物件內至少要給予keyPrimary鍵值方能進行識別，預設{}
- * @vue-prop {String} [itemTextColor='#444'] 輸入文字顏色字串，預設'#444'
- * @vue-prop {String} [itemTextColorHover='#222'] 輸入滑鼠移入時文字顏色字串，預設'#222'
- * @vue-prop {String} [itemTextColorActive='#d72'] 輸入主動模式時文字顏色字串，預設'#d72'
- * @vue-prop {String} [itemBackgroundColor='transparent'] 輸入背景顏色字串，預設'transparent'
- * @vue-prop {String} [itemBackgroundColorHover='rgba(200,200,200,0.2)'] 輸入滑鼠移入時背景顏色字串，預設'rgba(200,200,200,0.2)'
- * @vue-prop {String} [itemBackgroundColorActive='rgba(255,167,38,0.2)'] 輸入主動模式時背景顏色字串，預設'rgba(255,167,38,0.2)'
  * @vue-prop {Boolean} [selectable=false] 輸入是否具有勾選模式布林值，預設false
  * @vue-prop {Array} [selections=[]] 輸入勾選項目陣列，當selectable=true時才可使用，預設[]
  * @vue-prop {String} [keyPrimary='id'] 輸入可選項目為物件時，主鍵之欄位字串，預設'id'
@@ -265,7 +261,7 @@ let gm = globalMemory()
  * @vue-prop {String} [keyLock='locked'] 輸入可選項目為物件時，禁止勾選之欄位字串，物件給予此欄位需為布林值，預設'locked'
  * @vue-prop {Object} [paddingStyle={v:0,h:0}] 輸入內寬距離物件，可用鍵值為v、h、left、right、top、bottom，v代表同時設定top與bottom，h代表設定left與right，若有重複設定時後面鍵值會覆蓋前面，各鍵值為寬度數字，單位為px，預設{v:0,h:0}
  * @vue-prop {Number} [indent=1] 輸入縮排比率數字，若使用1就是1倍的圖標寬度(24px)+2*separation(3px)，預設1
- * @vue-prop {Number} [iconSize=24] 輸入顯隱icon按鈕高度數字，單位為px，預設24
+ * @vue-prop {Number} [iconSize=24] 輸入顯隱與核選icon按鈕高度數字，單位為px，預設24
  * @vue-prop {String} [iconToggleColor='grey'] 輸入顯隱icon按鈕顏色字串，預設'grey'
  * @vue-prop {String} [iconToggleBackgroundColor='transparent'] 輸入顯隱icon按鈕背景顏色字串，預設'transparent'
  * @vue-prop {String} [iconToggleBackgroundColorHover='rgba(128,128,128,0.15)'] 輸入滑鼠移入時顯隱icon按鈕背景顏色字串，預設'rgba(128,128,128,0.15)'
@@ -282,8 +278,13 @@ let gm = globalMemory()
  * @vue-prop {String} [noResultsText='No results'] 輸入無過濾結果字串，預設'No results'
  * @vue-prop {String} [searchingText='Searching...'] 輸入搜索中字串，預設'Searching...'
  * @vue-prop {Number} [defItemHeight=34] 輸入按需顯示時各項目預設最小高度(min-height)值，給越準或給大部分項目的高度則渲染速度越快，單位為px，預設34
- * @vue-prop {Number} [=null] 輸入按需顯示時各項目圖標預設最小高度(min-height)值，通常不給由defItemHeight決定，若有給則取與defItemHeight之較大者，單位為px，預設null
  * @vue-prop {Number} [itemsPreload=5] 輸入上下方預先載入元素數量，預設5
+ * @vue-prop {String} [itemTextColor='#444'] 輸入文字顏色字串，預設'#444'
+ * @vue-prop {String} [itemTextColorHover='#222'] 輸入滑鼠移入時文字顏色字串，預設'#222'
+ * @vue-prop {String} [itemTextColorActive='#d72'] 輸入主動模式時文字顏色字串，預設'#d72'
+ * @vue-prop {String} [itemBackgroundColor='transparent'] 輸入背景顏色字串，預設'transparent'
+ * @vue-prop {String} [itemBackgroundColorHover='rgba(200,200,200,0.2)'] 輸入滑鼠移入時背景顏色字串，預設'rgba(200,200,200,0.2)'
+ * @vue-prop {String} [itemBackgroundColorActive='rgba(255,167,38,0.2)'] 輸入主動模式時背景顏色字串，預設'rgba(255,167,38,0.2)'
  * @vue-prop {Boolean} [draggable=false] 輸入是否為可拖曳編輯模式布林值，若draggable設定true，此時所有節點皆為展開顯示並且禁止顯隱節點功能，也就是defaultDisplayLevel強制設定為null，此外也不提供過濾功能，也就是filterKeywords強制清空。開啟draggable僅適用小規模數據。draggable預設false
  * @vue-prop {String} [dgTextDisabled='Can not drop here'] 輸入禁止拖曳文字字串，預設'Can not drop here'
  * @vue-prop {String} [dgTextDisabledColor='#812'] 輸入禁止拖曳文字顏色字串，預設'#812'
@@ -350,7 +351,7 @@ export default {
         },
         funActive: {
             type: Function,
-            default: null
+            default: null,
         },
         itemActive: {
             type: Object,
