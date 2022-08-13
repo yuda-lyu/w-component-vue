@@ -126,7 +126,7 @@
             </div>
 
 
-            <div class="bk" style="width:500px;">
+            <div class="bk">
                 <demolink
                     :kbname="'w-list-expand'"
                     :casename="'itemBackgroundColor & itemBackgroundColorHover & itemBackgroundColorActive'"
@@ -147,7 +147,7 @@
             </div>
 
 
-            <div class="bk" style="width:500px;">
+            <div class="bk">
                 <demolink
                     :kbname="'w-list-expand'"
                     :casename="'slot item-content & itemTextColor & itemTextColorHover & itemTextColorActive & itemIconColor & itemIconColorHover & itemIconColorActive & itemBackgroundColor & itemBackgroundColorHover & itemBackgroundColorActive'"

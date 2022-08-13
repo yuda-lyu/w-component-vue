@@ -79,7 +79,7 @@
             </div>
 
 
-            <div class="bk" style="width:500px;">
+            <div class="bk">
                 <demolink
                     :kbname="'w-list-vertical'"
                     :casename="'itemActive & itemBackgroundColor & itemBackgroundColorHover & itemBackgroundColorActive'"
@@ -100,7 +100,7 @@
             </div>
 
 
-            <div class="bk" style="width:500px;">
+            <div class="bk">
                 <demolink
                     :kbname="'w-list-vertical'"
                     :casename="'itemActive & itemTextColor & itemTextColorHover & itemTextColorActive & itemIconColor & itemIconColorHover & itemIconColorActive & itemBackgroundColor & itemBackgroundColorHover & itemBackgroundColorActive'"

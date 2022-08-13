@@ -85,7 +85,7 @@
     </script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.2.34/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.2.35/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -112,17 +112,13 @@
   }
   .bk {
     vertical-align: top;
-    margin: 10px 0px 0px 0px;
-    padding: 0px 0px 60px 0px;
+    padding: 10px 0px 60px 0px;
   }
   @media screen and (min-width: 1000px) {
     /* 寬版 */
     .bk {
       display: inline-block;
       margin: 0px 80px 0px 0px;
-    }
-    .dz {
-      width: 400px;
     }
   }
     </style>
@@ -138,42 +134,47 @@
                 onclick="window.open('//yuda-lyu.github.io/w-component-vue/examples/app.html?cmp='+this.innerText,'_blank')"
             >w-json-view</span>
         </div>
-        <div class="bk dz">
+        <div class="bk">
             <div class="item">toggleItemsByFun</div>
 
             <div>
                 <v-btn
                     style="margin:0px 5px 5px 0px;"
                     small
-                    @click="toggleItems(0)"
-                >toggle(rows[0])</v-btn>
-                <v-btn
-                    style="margin:0px 5px 5px 0px;"
-                    small
-                    @click="toggleItems(0, true)"
+                    @click="toggleItemsByFun(0, true)"
                 >show(rows[0])</v-btn>
                 <v-btn
                     style="margin:0px 5px 5px 0px;"
                     small
-                    @click="toggleItems(0, false)"
+                    @click="toggleItemsByFun(0, false)"
                 >hide(rows[0])</v-btn>
                 <v-btn
                     style="margin:0px 5px 5px 0px;"
                     small
-                    @click="toggleItems(6)"
-                >toggle(rows[6])</v-btn>
+                    @click="toggleItemsByFun(6, true)"
+                >show(rows[6])</v-btn>
                 <v-btn
                     style="margin:0px 5px 5px 0px;"
                     small
-                    @click="toggleItems(9)"
-                >toggle(rows[9])</v-btn>
+                    @click="toggleItemsByFun(6, false)"
+                >hide(rows[6])</v-btn>
+                <v-btn
+                    style="margin:0px 5px 5px 0px;"
+                    small
+                    @click="toggleItemsByFun(9, true)"
+                >show(rows[9])</v-btn>
+                <v-btn
+                    style="margin:0px 5px 5px 0px;"
+                    small
+                    @click="toggleItemsByFun(9, false)"
+                >hide(rows[9])</v-btn>
             </div>
 
             <w-json-view
                 ref="ref_toggleItemsByFun"
-                style="border:1px solid #ddd;"
-                :view-height-max="WJsonView.viewHeightMaxSync"
+                style="width:350px; border:1px solid #ddd;"
                 :data="WJsonView.data3"
+                :view-height-max="WJsonView.viewHeightMaxSync"
             ></w-json-view>
         </div>
     </v-app>
@@ -511,19 +512,27 @@
         }
         return b;
       },
-      toggleItems: function(ind, toUnfolding) {
-        console.log("toggleItems", ind, toUnfolding);
+      toggleItemsByFun: function(ind, toUnfolding) {
+        console.log("toggleItemsByFun", ind, toUnfolding);
 
         let vo = this;
 
         //toggleItemsByFun
         vo.$refs.ref_toggleItemsByFun.toggleItemsByFun(rows => {
-          console.log("toggleItems rows", rows);
+          console.log("toggleItemsByFun rows", rows);
           return {
             row: rows[ind],
             toUnfolding
           };
         });
+      },
+      toggleItemsAll: function(toUnfolding) {
+        console.log("toggleItemsAll", toUnfolding);
+
+        let vo = this;
+
+        //toggleItemsAll
+        vo.$refs.ref_toggleItemsAll.toggleItemsAll(toUnfolding);
       }
     }
   });

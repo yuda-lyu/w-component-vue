@@ -82,7 +82,7 @@
             </div>
 
 
-            <div style="width:100%;" class="bk">
+            <div class="bk" style="display:block;">
                 <demolink
                     :kbname="'w-aggrid-vue-dyn'"
                     :casename="'large data (1,000,000 items)'"

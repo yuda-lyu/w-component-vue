@@ -8,107 +8,122 @@
         <div style="padding:0px;">
 
 
-            <div class="bk dz">
+            <div class="bk">
                 <demolink
                     :kbname="'w-tree'"
                     :casename="'default'"
                 ></demolink>
 
                 <w-tree
-                    style="border:1px solid #ddd;"
+                    style="width:350px; border:1px solid #ddd;"
                     :data="WTree.option.items"
                 ></w-tree>
 
             </div>
 
 
-            <div class="bk dz">
+            <div class="bk">
                 <demolink
                     :kbname="'w-tree'"
                     :casename="'iconSize(20)'"
                 ></demolink>
 
                 <w-tree
-                    style="border:1px solid #ddd;"
-                    :iconSize="20"
+                    style="width:350px; border:1px solid #ddd;"
                     :data="WTree.option.items"
+                    :iconSize="20"
                 ></w-tree>
 
             </div>
 
 
-            <div class="bk dz">
+            <div class="bk">
                 <demolink
                     :kbname="'w-tree'"
                     :casename="'iconSize(20) & defItemHeight(24)'"
                 ></demolink>
 
                 <w-tree
-                    style="border:1px solid #ddd;"
+                    style="width:350px; border:1px solid #ddd;"
+                    :data="WTree.option.items"
                     :iconSize="20"
                     :defItemHeight="24"
-                    :data="WTree.option.items"
                 ></w-tree>
 
             </div>
 
 
-            <div class="bk dz">
+            <div class="bk">
                 <demolink
                     :kbname="'w-tree'"
                     :casename="'iconSize(30) & defItemHeight(36)'"
                 ></demolink>
 
                 <w-tree
-                    style="border:1px solid #ddd;"
+                    style="width:350px; border:1px solid #ddd;"
+                    :data="WTree.option.items"
                     :iconSize="30"
                     :defItemHeight="36"
-                    :data="WTree.option.items"
                 ></w-tree>
 
             </div>
 
 
-            <div class="bk dz">
+            <div class="bk">
                 <demolink
                     :kbname="'w-tree'"
                     :casename="'viewHeightMax'"
                 ></demolink>
 
                 <w-tree
-                    style="border:1px solid #ddd;"
-                    :viewHeightMax="300"
+                    style="width:350px; border:1px solid #ddd;"
                     :data="WTree.option.items"
+                    :viewHeightMax="300"
                 ></w-tree>
 
             </div>
 
 
-            <div class="bk dz">
+            <div class="bk">
                 <demolink
                     :kbname="'w-tree'"
                     :casename="'no viewHeightMax'"
                 ></demolink>
 
                 <w-tree
-                    style="border:1px solid #ddd;"
-                    :viewHeightMax="null"
+                    style="width:350px; border:1px solid #ddd;"
                     :data="WTree.option.items"
+                    :viewHeightMax="null"
                 ></w-tree>
 
             </div>
 
 
-            <div class="bk dz">
+            <div class="bk">
+                <demolink
+                    :kbname="'w-tree'"
+                    :casename="'rippleColor'"
+                ></demolink>
+
+                <w-tree
+                    style="width:350px; border:1px solid #ddd;"
+                    :data="WTree.option.items"
+                    :rippleColor="'rgba(245,124,0,0.4)'"
+                ></w-tree>
+
+            </div>
+
+
+            <div class="bk">
                 <demolink
                     :kbname="'w-tree'"
                     :casename="'events'"
                 ></demolink>
 
                 <w-tree
-                    style="border:1px solid #ddd;"
-                    :viewHeightMax="WTree.viewHeightMaxSync"
+                    style="width:350px; border:1px solid #ddd;"
                     :data="WTree.option.items"
+                    :viewHeightMax="WTree.viewHeightMaxSync"
                     @mouseenter="mouseenter"
                     @mouseleave="mouseleave"
                     @click="click"
@@ -120,45 +135,68 @@
             </div>
 
 
-            <div class="bk dz">
+            <div class="bk">
                 <demolink
                     :kbname="'w-tree'"
                     :casename="'toggleItemsByFun'"
                 ></demolink>
 
                 <div>
-                    <v-btn style="margin:0px 5px 5px 0px;" small @click="toggleItems(0)">toggle(rows[0])</v-btn>
-                    <v-btn style="margin:0px 5px 5px 0px;" small @click="toggleItems(0, true)">show(rows[0])</v-btn>
-                    <v-btn style="margin:0px 5px 5px 0px;" small @click="toggleItems(0, false)">hide(rows[0])</v-btn>
-                    <v-btn style="margin:0px 5px 5px 0px;" small @click="toggleItems(1)">toggle(rows[1])</v-btn>
+                    <v-btn style="margin:0px 5px 5px 0px;" small @click="toggleItemsByFun(0, true)">show(rows[0])</v-btn>
+                    <v-btn style="margin:0px 5px 5px 0px;" small @click="toggleItemsByFun(0, false)">hide(rows[0])</v-btn>
+                    <v-btn style="margin:0px 5px 5px 0px;" small @click="toggleItemsByFun(1, true)">show(rows[1])</v-btn>
+                    <v-btn style="margin:0px 5px 5px 0px;" small @click="toggleItemsByFun(1, false)">hide(rows[1])</v-btn>
+                    <v-btn style="margin:0px 5px 5px 0px;" small @click="toggleItemsByFun(2, true)">show(rows[2])</v-btn>
+                    <v-btn style="margin:0px 5px 5px 0px;" small @click="toggleItemsByFun(2, false)">hide(rows[2])</v-btn>
                 </div>
 
                 <w-tree
                     ref="ref_toggleItemsByFun"
-                    style="border:1px solid #ddd;"
-                    :viewHeightMax="WTree.viewHeightMaxSync"
+                    style="width:350px; border:1px solid #ddd;"
                     :data="WTree.option.items"
+                    :viewHeightMax="WTree.viewHeightMaxSync"
                 ></w-tree>
 
             </div>
 
 
-            <div class="bk dz">
+            <div class="bk">
+                <demolink
+                    :kbname="'w-tree'"
+                    :casename="'toggleItemsAll'"
+                ></demolink>
+
+                <div>
+                    <v-btn style="margin:0px 5px 5px 0px;" small @click="toggleItemsAll(true)">show all</v-btn>
+                    <v-btn style="margin:0px 5px 5px 0px;" small @click="toggleItemsAll(false)">hide all</v-btn>
+                </div>
+
+                <w-tree
+                    ref="ref_toggleItemsAll"
+                    style="width:350px; border:1px solid #ddd;"
+                    :data="WTree.option.items"
+                    :viewHeightMax="WTree.viewHeightMaxSync"
+                ></w-tree>
+
+            </div>
+
+
+            <div class="bk">
                 <demolink
                     :kbname="'w-tree'"
                     :casename="'defaultDisplayLevel'"
                 ></demolink>
 
                 <w-tree
-                    style="border:1px solid #ddd;"
-                    :defaultDisplayLevel="1"
+                    style="width:350px; border:1px solid #ddd;"
                     :data="WTree.option.items"
+                    :defaultDisplayLevel="1"
                 ></w-tree>
 
             </div>
 
 
-            <div class="bk dz">
+            <div class="bk">
                 <demolink
                     :kbname="'w-tree'"
                     :casename="'filterKeywords & noResultsText'"
@@ -173,16 +211,16 @@
                 </div>
 
                 <w-tree
-                    style="border:1px solid #ddd;"
+                    style="width:350px; border:1px solid #ddd;"
+                    :data="WTree.option.items"
                     :filterKeywords="WTree.option.keywords"
                     :noResultsText="'There are no items to show...'"
-                    :data="WTree.option.items"
                 ></w-tree>
 
             </div>
 
 
-            <div class="bk dz">
+            <div class="bk">
                 <demolink
                     :kbname="'w-tree'"
                     :casename="'filterKeywords & filterFunction'"
@@ -197,23 +235,23 @@
                 </div>
 
                 <w-tree
-                    style="border:1px solid #ddd;"
+                    style="width:350px; border:1px solid #ddd;"
+                    :data="WTree.option.items"
                     :filterKeywords="WTree.option.keywords"
                     :filterFunction="filterFunction"
-                    :data="WTree.option.items"
                 ></w-tree>
 
             </div>
 
 
-            <div class="bk dz">
+            <div class="bk">
                 <demolink
                     :kbname="'w-tree'"
                     :casename="'itemTextColor & itemTextColorHover & itemBackgroundColor & itemBackgroundColorHover'"
                 ></demolink>
 
                 <w-tree
-                    style="border:1px solid #ddd; background:#444;"
+                    style="width:350px; border:1px solid #ddd; background:#444;"
                     :data="WTree.option.items"
                     :itemTextColor="'#ccc'"
                     :itemTextColorHover="'#eee'"
@@ -224,7 +262,7 @@
             </div>
 
 
-            <div class="bk dz">
+            <div class="bk">
                 <demolink
                     :kbname="'w-tree'"
                     :casename="'activable & itemActive'"
@@ -233,7 +271,7 @@
                 <div style="font-size:0.8rem;">itemActive: {{WTree.option.itemActive}}</div>
 
                 <w-tree
-                    style="border:1px solid #ddd;"
+                    style="width:350px; border:1px solid #ddd;"
                     :data="WTree.option.items"
                     :activable="true"
                     :itemActive.sync="WTree.option.itemActive"
@@ -243,7 +281,7 @@
             </div>
 
 
-            <div class="bk dz">
+            <div class="bk">
                 <demolink
                     :kbname="'w-tree'"
                     :casename="'activable & itemActive & funActive'"
@@ -252,7 +290,7 @@
                 <div style="font-size:0.8rem;">itemActive: {{WTree.option.itemActive}}</div>
 
                 <w-tree
-                    style="border:1px solid #ddd;"
+                    style="width:350px; border:1px solid #ddd;"
                     :data="WTree.option.items"
                     :activable="true"
                     :itemActive.sync="WTree.option.itemActive"
@@ -263,7 +301,7 @@
             </div>
 
 
-            <div class="bk dz">
+            <div class="bk">
                 <demolink
                     :kbname="'w-tree'"
                     :casename="'activable & itemActive & itemTextColor & itemTextColorHover & itemTextColorActive & itemBackgroundColor & itemBackgroundColorHover & itemBackgroundColorActive'"
@@ -272,7 +310,7 @@
                 <div style="font-size:0.8rem;">itemActive: {{WTree.option.itemActive}}</div>
 
                 <w-tree
-                    style="border:1px solid #ddd; background:#444;"
+                    style="width:350px; border:1px solid #ddd; background:#444;"
                     :data="WTree.option.items"
                     :activable="true"
                     :itemActive.sync="WTree.option.itemActive"
@@ -288,7 +326,7 @@
             </div>
 
 
-            <div class="bk dz">
+            <div class="bk">
                 <demolink
                     :kbname="'w-tree'"
                     :casename="'draggable'"
@@ -297,7 +335,7 @@
                 <div style="margin-bottom:5px; color:#f26; font-size:0.8rem;">* Disable show and hide nodes when using draggable</div>
 
                 <w-tree
-                    style="border:1px solid #ddd;"
+                    style="width:350px; border:1px solid #ddd;"
                     :draggable="true"
                     :data.sync="WTree.option.items"
                 ></w-tree>
@@ -305,7 +343,7 @@
             </div>
 
 
-            <div class="bk dz">
+            <div class="bk">
                 <demolink
                     :kbname="'w-tree'"
                     :casename="'draggable & dgPreviewOpacity & dgPreviewBorderWidth & dgBelongBackgroundColor'"
@@ -314,7 +352,7 @@
                 <div style="margin-bottom:5px; color:#f26; font-size:0.8rem;">* Disable show and hide nodes when using draggable</div>
 
                 <w-tree
-                    style="border:1px solid #ddd;"
+                    style="width:350px; border:1px solid #ddd;"
                     :draggable="true"
                     :data.sync="WTree.option.items"
                     :dgPreviewOpacity="0.9"
@@ -326,7 +364,7 @@
             </div>
 
 
-            <div class="bk dz">
+            <div class="bk">
                 <demolink
                     :kbname="'w-tree'"
                     :casename="'draggable & dgInsertLineColor & dgInsertBackgroundColor & dgBelongBackgroundColor'"
@@ -335,7 +373,7 @@
                 <div style="margin-bottom:5px; color:#f26; font-size:0.8rem;">* Disable show and hide nodes when using draggable</div>
 
                 <w-tree
-                    style="border:1px solid #ddd;"
+                    style="width:350px; border:1px solid #ddd;"
                     :draggable="true"
                     :data.sync="WTree.option.items"
                     :dgInsertLineColor="'rgba(120,220,150,0.9)'"
@@ -346,7 +384,7 @@
             </div>
 
 
-            <div class="bk dz">
+            <div class="bk">
                 <demolink
                     :kbname="'w-tree'"
                     :casename="'draggable & dgTextDisabled & dgTextDisabledColor & dgTextDisabledPaddingLeft & dgTextDisabledFontSize & dgTextDisabledBackgroundColor'"
@@ -355,7 +393,7 @@
                 <div style="margin-bottom:5px; color:#f26; font-size:0.8rem;">* Disable show and hide nodes when using draggable</div>
 
                 <w-tree
-                    style="border:1px solid #ddd;"
+                    style="width:350px; border:1px solid #ddd;"
                     :draggable="true"
                     :data.sync="WTree.option.items"
                     :dgTextDisabled="'禁止拖曳至自己子節點當中'"
@@ -368,7 +406,7 @@
             </div>
 
 
-            <div class="bk dz">
+            <div class="bk">
                 <demolink
                     :kbname="'w-tree'"
                     :casename="'operatable'"
@@ -377,7 +415,7 @@
                 <div style="margin-bottom:5px; color:#f26; font-size:0.8rem;">* Disable show and hide nodes when using operatable</div>
 
                 <w-tree
-                    style="border:1px solid #ddd;"
+                    style="width:350px; border:1px solid #ddd;"
                     :data.sync="WTree.option.items"
                     :operatable="true"
                     @click-operate-item="clickOperateItem"
@@ -386,7 +424,7 @@
             </div>
 
 
-            <div class="bk dz">
+            <div class="bk">
                 <demolink
                     :kbname="'w-tree'"
                     :casename="'operatable & operateBtnTooltip & operateItemTextForInsertBefore & perateItemTextForInsertChild & operateItemTextForInsertAfter & operateItemTextForInsertDelete'"
@@ -395,7 +433,7 @@
                 <div style="margin-bottom:5px; color:#f26; font-size:0.8rem;">* Disable show and hide nodes when using operatable</div>
 
                 <w-tree
-                    style="border:1px solid #ddd;"
+                    style="width:350px; border:1px solid #ddd;"
                     :data.sync="WTree.option.items"
                     :operatable="true"
                     :operateBtnTooltip="'編輯'"
@@ -409,7 +447,7 @@
             </div>
 
 
-            <div class="bk dz">
+            <div class="bk">
                 <demolink
                     :kbname="'w-tree'"
                     :casename="'operatable & operateItemIconSize & operateItemPaddingStyle & operatePanelWidth & operatePanelHeight'"
@@ -418,7 +456,7 @@
                 <div style="margin-bottom:5px; color:#f26; font-size:0.8rem;">* Disable show and hide nodes when using operatable</div>
 
                 <w-tree
-                    style="border:1px solid #ddd;"
+                    style="width:350px; border:1px solid #ddd;"
                     :data.sync="WTree.option.items"
                     :operatable="true"
                     :operateItemIconSize="18"
@@ -431,7 +469,7 @@
             </div>
 
 
-            <div class="bk dz">
+            <div class="bk">
                 <demolink
                     :kbname="'w-tree'"
                     :casename="'operatable & operateBtnBackgroundColor & operateBtnBackgroundColorHover & operateBtnBackgroundColorFocus'"
@@ -440,7 +478,7 @@
                 <div style="margin-bottom:5px; color:#f26; font-size:0.8rem;">* Disable show and hide nodes when using operatable</div>
 
                 <w-tree
-                    style="border:1px solid #ddd;"
+                    style="width:350px; border:1px solid #ddd;"
                     :data.sync="WTree.option.items"
                     :operatable="true"
                     :operateBtnBackgroundColor="'rgba(230,230,230,0.4)'"
@@ -452,7 +490,7 @@
             </div>
 
 
-            <div class="bk dz">
+            <div class="bk">
                 <demolink
                     :kbname="'w-tree'"
                     :casename="'operatable & operateItemBackgroundColor & operateItemBackgroundColorHover & operateItemTextColor & operateItemTextColorHover & operateItemIconColor & operateItemIconColorHover'"
@@ -461,7 +499,7 @@
                 <div style="margin-bottom:5px; color:#f26; font-size:0.8rem;">* Disable show and hide nodes when using operatable</div>
 
                 <w-tree
-                    style="border:1px solid #ddd;"
+                    style="width:350px; border:1px solid #ddd;"
                     :data.sync="WTree.option.items"
                     :operatable="true"
                     :operateItemBackgroundColor="'blue-grey darken-1'"
@@ -476,78 +514,78 @@
             </div>
 
 
-            <div class="bk dz">
+            <div class="bk">
                 <demolink
                     :kbname="'w-tree'"
                     :casename="'paddingStyle'"
                 ></demolink>
 
                 <w-tree
-                    style="border:1px solid #ddd;"
-                    :paddingStyle="{v:5,h:5}"
+                    style="width:350px; border:1px solid #ddd;"
                     :data="WTree.option.items"
+                    :paddingStyle="{v:5,h:5}"
                 ></w-tree>
 
             </div>
 
 
-            <div class="bk dz">
+            <div class="bk">
                 <demolink
                     :kbname="'w-tree'"
                     :casename="'indent'"
                 ></demolink>
 
                 <w-tree
-                    style="border:1px solid #ddd;"
-                    :indent="0.5"
+                    style="width:350px; border:1px solid #ddd;"
                     :data="WTree.option.items"
+                    :indent="0.5"
                 ></w-tree>
 
             </div>
 
 
-            <div class="bk dz">
+            <div class="bk">
                 <demolink
                     :kbname="'w-tree'"
                     :casename="'iconToggleColor & iconToggleBackgroundColor & iconToggleBackgroundColorHover'"
                 ></demolink>
 
                 <w-tree
-                    style="border:1px solid #ddd;"
+                    style="width:350px; border:1px solid #ddd;"
+                    :data="WTree.option.items"
                     :iconToggleColor="'#d39a70'"
                     :iconToggleBackgroundColor="'rgba(211,154,112,0.1)'"
                     :iconToggleBackgroundColorHover="'rgba(211,154,112,0.3)'"
-                    :data="WTree.option.items"
                 ></w-tree>
 
             </div>
 
 
-            <div class="bk dz">
+            <div class="bk">
                 <demolink
                     :kbname="'w-tree'"
                     :casename="'keyPrimary & keyText & keyChildren'"
                 ></demolink>
 
                 <w-tree
-                    style="border:1px solid #ddd;"
+                    style="width:350px; border:1px solid #ddd;"
+                    :data="WTree.optionKeys.items"
                     :keyPrimary="'sid'"
                     :keyText="'name'"
                     :keyChildren="'packages'"
-                    :data="WTree.optionKeys.items"
                 ></w-tree>
 
             </div>
 
 
-            <div class="bk dz">
+            <div class="bk">
                 <demolink
                     :kbname="'w-tree'"
                     :casename="'slot'"
                 ></demolink>
 
                 <w-tree
-                    style="border:1px solid #ddd;"
+                    style="width:350px; border:1px solid #ddd;"
                     :data="WTree.option.items"
                 >
                     <template v-slot:item="props">
@@ -578,7 +616,7 @@
             </div>
 
 
-            <div class="bk dz">
+            <div class="bk">
                 <demolink
                     :kbname="'w-tree'"
                     :casename="'slot & operatable'"
@@ -587,7 +625,7 @@
                 <div style="margin-bottom:5px; color:#f26; font-size:0.8rem;">* Disable show and hide nodes when using operatable</div>
 
                 <w-tree
-                    style="border:1px solid #ddd;"
+                    style="width:350px; border:1px solid #ddd;"
                     :data.sync="WTree.option.items"
                     :operatable="true"
                     @click-operate-item="clickOperateItem"
@@ -607,7 +645,7 @@
             </div>
 
 
-            <div class="bk" style="display:block; margin:0px 10px 0px 0px;">
+            <div class="bk" style="display:block;">
                 <demolink
                     :kbname="'w-tree'"
                     :casename="'selectable'"
@@ -618,7 +656,7 @@
 
                     <div style="display:table-cell; vertical-align:top;">
                         <w-tree
-                            style="width:500px; border:1px solid #ddd;"
+                            style="width:350px; border:1px solid #ddd;"
                             :data="WTree.option.items"
                             :selectable="true"
                             :selections.sync="WTree.option.selections"
@@ -639,7 +677,7 @@
             </div>
 
 
-            <div class="bk" style="display:block; margin:0px 10px 0px 0px;">
+            <div class="bk" style="display:block;">
                 <demolink
                     :kbname="'w-tree'"
                     :casename="'slot & selectable'"
@@ -650,7 +688,7 @@
 
                     <div style="display:table-cell; vertical-align:top;">
                         <w-tree
-                            style="width:500px; border:1px solid #ddd;"
+                            style="width:350px; border:1px solid #ddd;"
                             :data="WTree.option.items"
                             :selectable="true"
                             :selections.sync="WTree.option.selections"
@@ -699,7 +737,7 @@
             </div>
 
 
-            <div class="bk" style="display:block; margin:0px 10px 0px 0px;">
+            <div class="bk" style="display:block;">
                 <demolink
                     :kbname="'w-tree'"
                     :casename="'slot & selectable & iconSize(20) & defItemHeight(24)'"
@@ -710,7 +748,7 @@
 
                     <div style="display:table-cell; vertical-align:top;">
                         <w-tree
-                            style="width:500px; border:1px solid #ddd;"
+                            style="width:350px; border:1px solid #ddd;"
                             :data="WTree.option.items"
                             :selectable="true"
                             :selections.sync="WTree.option.selections"
@@ -761,7 +799,7 @@
             </div>
 
 
-            <div class="bk" style="display:block; margin:0px 10px 0px 0px;">
+            <div class="bk" style="display:block;">
                 <demolink
                     :kbname="'w-tree'"
                     :casename="'selectable & draggable'"
@@ -774,7 +812,7 @@
 
                     <div style="display:table-cell; vertical-align:top;">
                         <w-tree
-                            style="width:500px; border:1px solid #ddd;"
+                            style="width:350px; border:1px solid #ddd;"
                             :draggable="true"
                             :data.sync="WTree.option.items"
                             :selectable="true"
@@ -796,7 +834,7 @@
             </div>
 
 
-            <div class="bk" style="display:block; margin:0px 10px 0px 0px;">
+            <div class="bk" style="display:block;">
                 <demolink
                     :kbname="'w-tree'"
                     :casename="'slot & selectable & draggable'"
@@ -809,7 +847,7 @@
 
                     <div style="display:table-cell; vertical-align:top;">
                         <w-tree
-                            style="width:500px; border:1px solid #ddd;"
+                            style="width:350px; border:1px solid #ddd;"
                             :draggable="true"
                             :data.sync="WTree.option.items"
                             :selectable="true"
@@ -859,7 +897,7 @@
             </div>
 
 
-            <div class="bk" style="display:block; margin:0px 10px 0px 0px;">
+            <div class="bk" style="display:block;">
                 <demolink
                     :kbname="'w-tree'"
                     :casename="'filterKeywords & noResultsText & selectable'"
@@ -878,7 +916,7 @@
 
                     <div style="display:table-cell; vertical-align:top;">
                         <w-tree
-                            style="width:500px; border:1px solid #ddd;"
+                            style="width:350px; border:1px solid #ddd;"
                             :data="WTree.option.items"
                             :selectable="true"
                             :selections.sync="WTree.option.selections"
@@ -929,7 +967,7 @@
             </div>
 
 
-            <div class="bk" style="display:block; margin:0px 10px 0px 0px;">
+            <div class="bk" style="display:block;">
                 <demolink
                     :kbname="'w-tree'"
                     :casename="'slot & locked & selectable'"
@@ -940,7 +978,7 @@
 
                     <div style="display:table-cell; vertical-align:top;">
                         <w-tree
-                            style="width:500px; border:1px solid #ddd;"
+                            style="width:350px; border:1px solid #ddd;"
                             :data="WTree.optionLocked.items"
                             :selectable="true"
                             :selections.sync="WTree.optionLocked.selections"
@@ -990,7 +1028,7 @@
             </div>
 
 
-            <div class="bk" style="display:block; margin:0px 10px 0px 0px;">
+            <div class="bk" style="display:block;">
                 <demolink
                     :kbname="'w-tree'"
                     :casename="'slot & iconUncheckedColor & iconUncheckedDisabledColor & iconCheckedColor & iconCheckedDisabledColor & iconCheckedPartiallyColor & iconCheckedPartiallyDisabledColor & locked & selectable'"
@@ -1001,7 +1039,7 @@
 
                     <div style="display:table-cell; vertical-align:top;">
                         <w-tree
-                            style="width:500px; border:1px solid #ddd;"
+                            style="width:350px; border:1px solid #ddd;"
                             :data="WTree.optionLocked.items"
                             :selectable="true"
                             :selections.sync="WTree.optionLocked.selections"
@@ -1057,7 +1095,7 @@
             </div>
 
 
-            <div class="bk" style="display:block; margin:0px 10px 0px 0px;">
+            <div class="bk" style="display:block;">
                 <demolink
                     :kbname="'w-tree'"
                     :casename="'slot & selectable & large data (100,000 items)'"
@@ -1068,7 +1106,7 @@
 
                     <div style="display:table-cell; vertical-align:top;">
                         <w-tree
-                            style="width:500px; border:1px solid #ddd;"
+                            style="border:1px solid #ddd;"
                             :data="WTree.optionLarge.items"
                             :selectable="true"
                             :selections.sync="WTree.optionLarge.selections"
@@ -1605,19 +1643,28 @@ export default {
             }
             return b
         },
-        toggleItems: function(ind, toUnfolding) {
-            console.log('toggleItems', ind, toUnfolding)
+        toggleItemsByFun: function(ind, toUnfolding) {
+            console.log('toggleItemsByFun', ind, toUnfolding)
 
             let vo = this
 
             //toggleItemsByFun
             vo.$refs.ref_toggleItemsByFun.toggleItemsByFun((rows) => {
-                console.log('toggleItems rows', rows)
+                console.log('toggleItemsByFun rows', rows)
                 return {
                     row: rows[ind],
                     toUnfolding,
                 }
             })
+
+        },
+        toggleItemsAll: function(toUnfolding) {
+            console.log('toggleItemsAll', toUnfolding)
+
+            let vo = this
+
+            //toggleItemsAll
+            vo.$refs.ref_toggleItemsAll.toggleItemsAll(toUnfolding)
 
         },
     },

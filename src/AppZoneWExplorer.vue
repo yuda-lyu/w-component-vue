@@ -43,6 +43,43 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-explorer'"
+                    :casename="'treeBackgroundColor'"
+                ></demolink>
+
+                <w-explorer
+                    style="width:600px; height:250px;"
+                    :items="WExplorer.fps1"
+                    :treeBackgroundColor="'#f8f8f8'"
+                >
+                </w-explorer>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-explorer'"
+                    :casename="'showTree & treeAfloat'"
+                ></demolink>
+
+                <div style="padding-bottom:10px;">
+                    <v-btn depressed small elevation="2" @click="WExplorer.bShowTree=!WExplorer.bShowTree">Show({{WExplorer.bShowTree}})</v-btn>
+                </div>
+
+                <w-explorer
+                    style="width:600px; height:250px;"
+                    :items="WExplorer.fps1"
+                    :showTree.sync="WExplorer.bShowTree"
+                    :treeAfloat="true"
+                >
+                </w-explorer>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-explorer'"
                     :casename="'treeDefaultDisplayLevel'"
                 ></demolink>
 
@@ -229,6 +266,22 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-explorer'"
+                    :casename="'treeItemRippleColor'"
+                ></demolink>
+
+                <w-explorer
+                    style="width:600px; height:250px;"
+                    :items="WExplorer.fps1"
+                    :treeItemRippleColor="'rgba(130, 180, 255, 0.4)'"
+                >
+                </w-explorer>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-explorer'"
                     :casename="'listPaddingStyle'"
                 ></demolink>
 
@@ -236,6 +289,22 @@
                     style="width:600px; height:250px;"
                     :items="WExplorer.fps1"
                     :listPaddingStyle="{v:2,h:8}"
+                >
+                </w-explorer>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-explorer'"
+                    :casename="'listBackgroundColor'"
+                ></demolink>
+
+                <w-explorer
+                    style="width:600px; height:250px;"
+                    :items="WExplorer.fps1"
+                    :listBackgroundColor="'#f8f8f8'"
                 >
                 </w-explorer>
 
@@ -339,7 +408,23 @@
                 <w-explorer
                     style="width:600px; height:250px;"
                     :items="WExplorer.fps1"
-                    :listItemRippleColor="'rgba(255, 180, 130, 0.4)'"
+                    :listItemRippleColor="'rgba(130, 180, 255, 0.4)'"
+                >
+                </w-explorer>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-explorer'"
+                    :casename="'pathBackgroundColor'"
+                ></demolink>
+
+                <w-explorer
+                    style="width:600px; height:250px;"
+                    :items="WExplorer.fps1"
+                    :pathBackgroundColor="'#f8f8f8'"
                 >
                 </w-explorer>
 
@@ -367,13 +452,13 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-explorer'"
-                    :casename="'pathTextFontSize'"
+                    :casename="'pathBtnTextFontSize'"
                 ></demolink>
 
                 <w-explorer
                     style="width:600px; height:250px;"
                     :items="WExplorer.fps1"
-                    :pathTextFontSize="'0.75rem'"
+                    :pathBtnTextFontSize="'0.75rem'"
                 >
                 </w-explorer>
 
@@ -383,14 +468,14 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-explorer'"
-                    :casename="'pathTextColor & pathTextColorHover'"
+                    :casename="'pathBtnTextColor & pathBtnTextColorHover'"
                 ></demolink>
 
                 <w-explorer
                     style="width:600px; height:250px;"
                     :items="WExplorer.fps1"
-                    :pathTextColor="'#EF5350'"
-                    :pathTextColorHover="'#EC407A'"
+                    :pathBtnTextColor="'#EF5350'"
+                    :pathBtnTextColorHover="'#EC407A'"
                 >
                 </w-explorer>
 
@@ -400,14 +485,14 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-explorer'"
-                    :casename="'pathBackgroundColor & pathBackgroundColorHover'"
+                    :casename="'pathBtnBackgroundColor & pathBtnBackgroundColorHover'"
                 ></demolink>
 
                 <w-explorer
                     style="width:600px; height:250px;"
                     :items="WExplorer.fps1"
-                    :pathBackgroundColor="'#EDE7F6'"
-                    :pathBackgroundColorHover="'#D1C4E9'"
+                    :pathBtnBackgroundColor="'#EDE7F6'"
+                    :pathBtnBackgroundColorHover="'#D1C4E9'"
                 >
                 </w-explorer>
 
@@ -513,7 +598,7 @@
                     :items="WExplorer.fps1"
                     :treeItemTextFontSize="'0.75rem'"
                     :listItemTextFontSize="'0.75rem'"
-                    :pathTextFontSize="'0.75rem'"
+                    :pathBtnTextFontSize="'0.75rem'"
                 >
                 </w-explorer>
 
@@ -557,10 +642,56 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-explorer'"
+                    :casename="'toggleTreeFoldersByFun'"
+                ></demolink>
+
+                <div>
+                    <v-btn style="margin:0px 5px 5px 0px;" small @click="toggleTreeFoldersByFun(0, true)">show(rows[0])</v-btn>
+                    <v-btn style="margin:0px 5px 5px 0px;" small @click="toggleTreeFoldersByFun(0, false)">hide(rows[0])</v-btn>
+                    <v-btn style="margin:0px 5px 5px 0px;" small @click="toggleTreeFoldersByFun(1, true)">show(rows[1])</v-btn>
+                    <v-btn style="margin:0px 5px 5px 0px;" small @click="toggleTreeFoldersByFun(1, false)">hide(rows[1])</v-btn>
+                    <v-btn style="margin:0px 5px 5px 0px;" small @click="toggleTreeFoldersByFun(2, true)">show(rows[2])</v-btn>
+                    <v-btn style="margin:0px 5px 5px 0px;" small @click="toggleTreeFoldersByFun(2, false)">hide(rows[2])</v-btn>
+                </div>
+
+                <w-explorer
+                    ref="ref_toggleTreeFoldersByFun"
+                    style="width:600px; height:250px;"
+                    :items="WExplorer.fps1"
+                >
+                </w-explorer>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-explorer'"
+                    :casename="'toggleTreeFoldersAll'"
+                ></demolink>
+
+                <div>
+                    <v-btn style="margin:0px 5px 5px 0px;" small @click="toggleTreeFoldersAll(true)">show all</v-btn>
+                    <v-btn style="margin:0px 5px 5px 0px;" small @click="toggleTreeFoldersAll(false)">hide all</v-btn>
+                </div>
+
+                <w-explorer
+                    ref="ref_toggleTreeFoldersAll"
+                    style="width:600px; height:250px;"
+                    :items="WExplorer.fps1"
+                >
+                </w-explorer>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-explorer'"
                     :casename="'dark mode'"
                 ></demolink>
 
-                <div style="padding:40px; background:#777;">
+                <div style="display:inline-block; padding:40px; background:#777;">
                     <w-explorer
                         style="width:700px; height:400px; background:#333;
                                border-radius:5px;
@@ -575,17 +706,19 @@
                         :treeFolderIconColorHover="'#FFCC80'"
                         :treeFolderIconColorActive="'#FFB74D'"
                         :treeItemBackgroundColor="'transparent'"
-                        :treeItemBackgroundColorHover="'#666'"
-                        :treeItemBackgroundColorActive="'#444'"
+                        :treeItemBackgroundColorHover="'rgba(150,150,150,0.4)'"
+                        :treeItemBackgroundColorActive="'rgba(150,150,150,0.2)'"
+                        :treeBackgroundColor="'transparent'"
 
                         :toggleTreeIconColor="'rgba(255,255,255,0.6)'"
                         :toggleTreeIconBackgroundColor="'transparent'"
                         :toggleTreeIconBackgroundColorHover="'rgba(150,150,150,0.2)'"
 
-                        :pathTextColor="'#ddd'"
-                        :pathTextColorHover="'#eee'"
+                        :pathBtnTextColor="'#ddd'"
+                        :pathBtnTextColorHover="'#eee'"
+                        :pathBtnBackgroundColor="'transparent'"
+                        :pathBtnBackgroundColorHover="'rgba(150,150,150,0.2)'"
                         :pathBackgroundColor="'transparent'"
-                        :pathBackgroundColorHover="'rgba(150,150,150,0.2)'"
 
                         :btnDisplayTreeIconColor="'#ccc'"
                         :btnDisplayTreeIconColorHover="'#eee'"
@@ -601,8 +734,9 @@
                         :listItemIconColorHover="'#FFCC80'"
                         :listItemIconColorActive="'#FFB74D'"
                         :listItemBackgroundColor="'transparent'"
-                        :listItemBackgroundColorHover="'rgba(150,150,150,0.2)'"
-                        :listItemBackgroundColorActive="'rgba(150,150,150,0.1)'"
+                        :listItemBackgroundColorHover="'rgba(150,150,150,0.4)'"
+                        :listItemBackgroundColorActive="'rgba(150,150,150,0.2)'"
+                        :listBackgroundColor="'transparent'"
 
                         :treeDrawerBarSize="1"
                         :treeDrawerBarColor="'rgba(150,150,150,0.4)'"
@@ -612,11 +746,202 @@
 
                         :treeItemTextFontSize="'0.75rem'"
                         :listItemTextFontSize="'0.75rem'"
-                        :pathTextFontSize="'0.75rem'"
+                        :pathBtnTextFontSize="'0.75rem'"
 
                     >
                     </w-explorer>
                 </div>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-explorer'"
+                    :casename="'slot list-item-cover'"
+                ></demolink>
+
+                <w-explorer
+                    style="width:600px; height:250px;"
+                    :items="WExplorer.fps1"
+                    @click="ckItem"
+                >
+
+                    <template v-slot:list-item-cover="props">
+                        <div style="display:flex; align-items:center;" v-if="props.item.data._type==='file'">
+
+                            <div
+                                style="padding:0px 5px; color:#6fb57e; cursor:pointer;"
+                                @click="ckItem('icon-shield')"
+                            >
+                                <i class="fas fa-shield-virus"></i>
+                            </div>
+
+                            <div style="padding-right:5px;"></div>
+
+                            <div
+                                style="padding:0px 5px; color:#b894be; cursor:pointer;"
+                                @click="ckItem('icon-dice')"
+                            >
+                                <i class="fas fa-dice"></i>
+                            </div>
+
+                            <div style="padding-right:5px;"></div>
+
+                            <div
+                                style="padding:0px 5px; color:#c79f6b; cursor:pointer;"
+                                @click="ckItem('icon-wired')"
+                            >
+                                <i class="fas fa-network-wired"></i>
+                            </div>
+
+                            <div style="padding-right:5px;"></div>
+
+                        </div>
+                    </template>
+
+                </w-explorer>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-explorer'"
+                    :casename="'slot list-item & list-item-cover'"
+                ></demolink>
+
+                <w-explorer
+                    style="width:600px; height:250px;"
+                    :items="WExplorer.fps1"
+                    @click="ckItem"
+                >
+
+                    <template v-slot:list-item="props">
+                        <div style="display:inline-block;">
+                            <div
+                                style="display:flex; align-items:center; cursor:pointer;"
+                                @click="props.funClickListItem()"
+                            >
+
+                                <div style="padding-right:5px;">
+                                    <w-icon
+                                        :icon="props.item.icon"
+                                        _color="props.item.iconColor"
+                                        :color="'#d7a72b'"
+                                        :size="props.item.iconSize"
+                                    ></w-icon>
+                                </div>
+
+                                <div style="">
+                                    {{props.item.data.text}}
+                                </div>
+
+                            </div>
+                        </div>
+                    </template>
+
+                    <template v-slot:list-head>
+                        <!-- 使用align-items:stretch讓分隔線div能有height:100%效果 -->
+                        <div style="display:flex; align-items:stretch;">
+
+                            <div style="width:100%;">
+                                <div style="padding:0px 7px;">
+                                    <div style="color:#999; font-size:0.7rem; text-align:center;">
+                                        name
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div style="margin:3px 0px; border-right:1px solid #ddd;"></div>
+
+                            <div style="padding:0px 7px;">
+                                <div style="width:60px; color:#999; font-size:0.7rem; text-align:center;">
+                                    size
+                                </div>
+                            </div>
+
+                            <div style="margin:3px 0px; border-right:1px solid #ddd;"></div>
+
+                            <div style="padding:0px 7px;">
+                                <div style="width:60px; color:#999; font-size:0.7rem; text-align:center;">
+                                    tester
+                                </div>
+                            </div>
+
+                            <div style="margin:3px 0px; border-right:1px solid #ddd;"></div>
+
+                            <div style="padding:0px 7px;">
+                                <div style="width:16px; color:#999; font-size:0.7rem; text-align:center;">
+                                    i
+                                </div>
+                            </div>
+
+                            <div style="margin:3px 0px; border-right:1px solid #ddd;"></div>
+
+                            <div style="padding:0px 7px;">
+                                <div style="width:16px; color:#999; font-size:0.7rem; text-align:center;">
+                                    s
+                                </div>
+                            </div>
+
+                            <div style="margin:3px 0px; border-right:1px solid #ddd;"></div>
+
+                            <!-- list右側有預留8px捲軸寬度, 2px是捲軸跟內容區重疊寬度, 1px是標題區最右側分隔線寬度 -->
+                            <div style="padding-right:calc( 8px - 2px - 1px );"></div>
+
+                        </div>
+                    </template>
+
+                    <template v-slot:list-item-cover="props">
+                        <div style="display:flex; align-items:center;" v-if="props.item.data._type==='file'">
+
+                            <div style="padding:0px 7px;">
+                                <div
+                                    style="width:60px; color:#999; font-size:0.7rem; text-align:right; cursor:pointer;"
+                                    @click="ckItem('text-size')"
+                                >
+                                    {{props.item.data.data.size}}
+                                </div>
+                            </div>
+
+                            <div style="padding-right:1px;"></div>
+
+                            <div style="padding:0px 7px;">
+                                <div
+                                    style="width:60px; color:#3448a9; font-size:0.7rem; text-align:right; cursor:pointer;"
+                                    @click="ckItem('text-tester')"
+                                >
+                                    {{props.item.data.data.tester}}
+                                </div>
+                            </div>
+
+                            <div style="padding-right:1px;"></div>
+
+                            <div style="padding:0px 7px;">
+                                <div
+                                    style="width:16px; color:#996887; cursor:pointer;"
+                                    @click="ckItem('icon-branch')"
+                                >
+                                    <i class="fas fa-code-branch"></i>
+                                </div>
+                            </div>
+
+                            <div style="padding-right:1px;"></div>
+
+                            <div style="padding:0px 7px;">
+                                <div
+                                    style="width:16px; color:#777; cursor:pointer;"
+                                    @click="ckItem('icon-cog')"
+                                >
+                                    <i class="fas fa-cog"></i>
+                                </div>
+                            </div>
+
+                        </div>
+                    </template>
+
+                </w-explorer>
 
             </div>
 
@@ -629,12 +954,14 @@
 
 <script>
 import demolink from './components/demolink.vue'
+import WIcon from './components/WIcon.vue'
 import WExplorer from './components/WExplorer.vue'
 
 
 export default {
     components: {
         demolink,
+        WIcon,
         WExplorer,
     },
     props: {
@@ -642,37 +969,358 @@ export default {
     data: function() {
         return {
             'WExplorer': {
+                bShowTree: true,
                 fps1: [
-                    { 'type': 'file', 'path': '/Applications/Calendar.app' },
-                    { 'type': 'file', 'path': '/Applications/Chrome.app' },
-                    { 'type': 'file', 'path': '/Applications/Webstorm.app' },
-                    { 'type': 'folder', 'path': '/Applications/Webs' },
-                    { 'type': 'file', 'path': '/Applications/Webs/web_infors.json' },
-                    { 'type': 'file', 'path': '/Applications/Webs/Shareco/s1.txt' },
-                    { 'type': 'file', 'path': '/Applications/Webs/Shareco/s2.txt' },
-                    { 'type': 'folder', 'path': '/Applications/Webs/Guess' },
-                    { 'type': 'file', 'path': '/Applications/Webs/Guess/s3.txt' },
-                    { 'type': 'file', 'path': '/Applications/Webs/Guess/s4.txt' },
-                    { 'type': 'file', 'path': '/Applications//Systems/Regulator.ini' },
-                    { 'type': 'file', 'path': '/Applications/Systems/Regulator/vers/settings-v1.st' },
-                    { 'type': 'file', 'path': '/Applications/Systems/Regulator/vers/settings-v2.st' },
-                    { 'type': 'file', 'path': '/Applications/Systems/Regulator/vers/settings-v3.st' },
-                    { 'type': 'file', 'path': '/Applications/Systems/Regulator/vers/settings-v4.st' },
-                    { 'type': 'file', 'path': '/Applications/Systems/Regulator/vers/settings-v5.st' },
-                    { 'type': 'file', 'path': '/Documents/design-simple/src/index.txt' },
-                    { 'type': 'file', 'path': '/Documents/design-simple/src/bootstrap.txt' },
-                    { 'type': 'file', 'path': '/Documents/design-material/src/btn.txt' },
-                    { 'type': 'file', 'path': '/Documents/design-material/src/card.txt' },
-                    { 'type': 'file', 'path': '/Documents/design-material/src/window.txt' },
-                    { 'type': 'file', 'path': '/Downloads/October.pdf' },
-                    { 'type': 'file', 'path': '/Downloads/November.pdf' },
-                    { 'type': 'file', 'path': '/Downloads/Tutorial.html' },
-                    { 'type': 'folder', 'path': '/Uploads' },
-                    { 'type': 'file', 'path': '/Videos/Tutorials/Basic layouts.mp4' },
-                    { 'type': 'file', 'path': '/Videos/Tutorials/Advanced techniques.mp4' },
-                    { 'type': 'file', 'path': '/Videos/Tutorials/All about app.mp4' },
-                    { 'type': 'file', 'path': '/Videos/Intro.mov' },
-                    { 'type': 'file', 'path': '/Videos/Conference introduction.avi' },
+                    {
+                        type: 'file',
+                        path: '/Applications/Calendar.app',
+                        size: '256.5mb',
+                        tester: 'Perter',
+                        priority: 'L4',
+                    },
+                    {
+                        type: 'file',
+                        path: '/Applications/Chrome.app',
+                        size: '496.7mb',
+                        tester: 'Chloe',
+                        priority: 'L4',
+                    },
+                    {
+                        type: 'file',
+                        path: '/Applications/Webstorm.app',
+                        size: '128.6mb',
+                        tester: 'Adrian',
+                        priority: 'L4',
+                    },
+                    {
+                        type: 'folder',
+                        path: '/Applications/Webs',
+                        size: '',
+                        tester: '',
+                        priority: '',
+                    },
+                    {
+                        type: 'file',
+                        path: '/Applications/Webs/web_infors.json',
+                        size: '92.2kb',
+                        tester: 'Carl',
+                        priority: 'L3',
+                    },
+                    {
+                        type: 'file',
+                        path: '/Applications/Webs/Shareco/shareco-s1.txt',
+                        size: '5.4kb',
+                        tester: 'Charissa',
+                        priority: 'L4',
+                    },
+                    {
+                        type: 'file',
+                        path: '/Applications/Webs/Shareco/shareco-s2.txt',
+                        size: '7.3kb',
+                        tester: 'Dexter',
+                        priority: 'L4',
+                    },
+                    {
+                        type: 'folder',
+                        path: '/Applications/Webs/Guess',
+                        size: '',
+                        tester: '',
+                        priority: '',
+                    },
+                    {
+                        type: 'file',
+                        path: '/Applications/Webs/Guess/guess-s3.txt',
+                        size: '21.6kb',
+                        tester: 'Ashley',
+                        priority: 'L4',
+                    },
+                    {
+                        type: 'file',
+                        path: '/Applications/Webs/Guess/guess-s4.txt',
+                        size: '82.7kb',
+                        tester: 'Dwight',
+                        priority: 'L4',
+                    },
+                    {
+                        type: 'file',
+                        path: '/Applications//Systems/Regulator.ini',
+                        size: '2.5kb',
+                        tester: 'Laura',
+                        priority: 'L5',
+                    },
+                    {
+                        type: 'file',
+                        path: '/Applications/Systems/Regulator/vers/settings-v01.st',
+                        size: '56.2kb',
+                        tester: 'Mavis',
+                        priority: 'L5',
+                    },
+                    {
+                        type: 'file',
+                        path: '/Applications/Systems/Regulator/vers/settings-v02.st',
+                        size: '87.2kb',
+                        tester: 'Geraint',
+                        priority: 'L5',
+                    },
+                    {
+                        type: 'file',
+                        path: '/Applications/Systems/Regulator/vers/settings-v03.st',
+                        size: '224.2kb',
+                        tester: 'Penelope',
+                        priority: 'L5',
+                    },
+                    {
+                        type: 'file',
+                        path: '/Applications/Systems/Regulator/vers/settings-v04.st',
+                        size: '72.7kb',
+                        tester: 'Heman',
+                        priority: 'L5',
+                    },
+                    {
+                        type: 'file',
+                        path: '/Applications/Systems/Regulator/vers/settings-v05.st',
+                        size: '91.2kb',
+                        tester: 'Tessa',
+                        priority: 'L5',
+                    },
+                    {
+                        type: 'file',
+                        path: '/Applications//Systems/device01.iso',
+                        size: '1.2gb',
+                        tester: 'Una',
+                        priority: 'L2',
+                    },
+                    {
+                        type: 'file',
+                        path: '/Applications//Systems/device02.iso',
+                        size: '1.3gb',
+                        tester: 'Jasper',
+                        priority: 'L2',
+                    },
+                    {
+                        type: 'file',
+                        path: '/Applications//Systems/device03.iso',
+                        size: '1.1gb',
+                        tester: 'Violet',
+                        priority: 'L2',
+                    },
+                    {
+                        type: 'file',
+                        path: '/Applications//Systems/device04.iso',
+                        size: '1.7gb',
+                        tester: 'Perter',
+                        priority: 'L2',
+                    },
+                    {
+                        type: 'file',
+                        path: '/Applications//Systems/device05.iso',
+                        size: '2.0gb',
+                        tester: 'Winifred',
+                        priority: 'L2',
+                    },
+                    {
+                        type: 'file',
+                        path: '/Applications//Systems/device06.iso',
+                        size: '1.7gb',
+                        tester: 'Lance',
+                        priority: 'L2',
+                    },
+                    {
+                        type: 'file',
+                        path: '/Applications//Systems/device07.iso',
+                        size: '2.1gb',
+                        tester: 'Marvin',
+                        priority: 'L2',
+                    },
+                    {
+                        type: 'file',
+                        path: '/Applications//Systems/device08.iso',
+                        size: '1.5gb',
+                        tester: 'Nat',
+                        priority: 'L2',
+                    },
+                    {
+                        type: 'file',
+                        path: '/Applications//Systems/device09.iso',
+                        size: '1.8gb',
+                        tester: 'Nahum',
+                        priority: 'L2',
+                    },
+                    {
+                        type: 'file',
+                        path: '/Applications//Systems/device10.iso',
+                        size: '1.6gb',
+                        tester: 'Nicholas',
+                        priority: 'L2',
+                    },
+                    {
+                        type: 'file',
+                        path: '/Applications//Systems/device11.iso',
+                        size: '1.2gb',
+                        tester: 'Ralph',
+                        priority: 'L2',
+                    },
+                    {
+                        type: 'file',
+                        path: '/Applications//Systems/device12.iso',
+                        size: '2.2gb',
+                        tester: 'Rudolph',
+                        priority: 'L2',
+                    },
+                    {
+                        type: 'file',
+                        path: '/Applications//Systems/device13.iso',
+                        size: '1.9gb',
+                        tester: 'Rory',
+                        priority: 'L2',
+                    },
+                    {
+                        type: 'file',
+                        path: '/Applications//Systems/device14.iso',
+                        size: '1.2gb',
+                        tester: 'Jacqueline',
+                        priority: 'L2',
+                    },
+                    {
+                        type: 'file',
+                        path: '/Applications//Systems/device15.iso',
+                        size: '1.7gb',
+                        tester: 'Kathy',
+                        priority: 'L2',
+                    },
+                    {
+                        type: 'file',
+                        path: '/Applications//Systems/device16.iso',
+                        size: '1.1gb',
+                        tester: 'Melinda',
+                        priority: 'L2',
+                    },
+                    {
+                        type: 'file',
+                        path: '/Applications//Systems/device17.iso',
+                        size: '1.9gb',
+                        tester: 'Sharon',
+                        priority: 'L2',
+                    },
+                    {
+                        type: 'file',
+                        path: '/Applications//Systems/device18.iso',
+                        size: '1.2gb',
+                        tester: 'Philippa',
+                        priority: 'L2',
+                    },
+                    {
+                        type: 'file',
+                        path: '/Applications//Systems/device19.iso',
+                        size: '1.5gb',
+                        tester: 'Thelma',
+                        priority: 'L2',
+                    },
+                    {
+                        type: 'file',
+                        path: '/Applications//Systems/device20.iso',
+                        size: '1.4gb',
+                        tester: 'Stewart',
+                        priority: 'L2',
+                    },
+                    {
+                        type: 'file',
+                        path: '/Documents/design-simple/src/index.txt',
+                        size: '6.7kb',
+                        tester: 'Steve',
+                        priority: 'L1',
+                    },
+                    {
+                        type: 'file',
+                        path: '/Documents/design-simple/src/bootstrap.txt',
+                        size: '251.7kb',
+                        tester: 'Theobald',
+                        priority: 'L1',
+                    },
+                    {
+                        type: 'file',
+                        path: '/Documents/design-material/src/btn.txt',
+                        size: '241.2b',
+                        tester: 'Padraic',
+                        priority: 'L1',
+                    },
+                    {
+                        type: 'file',
+                        path: '/Documents/design-material/src/card.txt',
+                        size: '4.7kb',
+                        tester: 'Napoleon',
+                        priority: 'L1',
+                    },
+                    {
+                        type: 'file',
+                        path: '/Documents/design-material/src/window.txt',
+                        size: '7.2kb',
+                        tester: 'Lionel',
+                        priority: 'L1',
+                    },
+                    {
+                        type: 'file',
+                        path: '/Downloads/October.pdf',
+                        size: '16.9kb',
+                        tester: 'Olive',
+                        priority: 'L1',
+                    },
+                    {
+                        type: 'file',
+                        path: '/Downloads/November.pdf',
+                        size: '94.5kb',
+                        tester: 'Molly',
+                        priority: 'L1',
+                    },
+                    {
+                        type: 'file',
+                        path: '/Downloads/Tutorial.html',
+                        size: '22.7kb',
+                        tester: 'Melanie',
+                        priority: 'L1',
+                    },
+                    {
+                        type: 'folder',
+                        path: '/Uploads',
+                        size: '',
+                        tester: '',
+                        priority: '',
+                    },
+                    {
+                        type: 'file',
+                        path: '/Videos/Tutorials/Basic layouts.mp4',
+                        size: '862.7mb',
+                        tester: 'Lindsay',
+                        priority: 'L3',
+                    },
+                    {
+                        type: 'file',
+                        path: '/Videos/Tutorials/Advanced techniques.mp4',
+                        size: '626.5mb',
+                        tester: 'Jarvis',
+                        priority: 'L3',
+                    },
+                    {
+                        type: 'file',
+                        path: '/Videos/Tutorials/All about app.mp4',
+                        size: '796.2mb',
+                        tester: 'Gaston',
+                        priority: 'L3',
+                    },
+                    {
+                        type: 'file',
+                        path: '/Videos/Intro.mov',
+                        size: '852.8mb',
+                        tester: 'Dermot',
+                        priority: 'L3',
+                    },
+                    {
+                        type: 'file',
+                        path: '/Videos/Conference introduction.avi',
+                        size: '676.7mb',
+                        tester: 'Hector',
+                        priority: 'L3',
+                    }
                 ],
             },
             'actions': [
@@ -692,6 +1340,30 @@ export default {
         },
         ckFile: function(msg) {
             console.log('ckFile', msg)
+        },
+        toggleTreeFoldersByFun: function(ind, toUnfolding) {
+            console.log('toggleTreeFoldersByFun', ind, toUnfolding)
+
+            let vo = this
+
+            //toggleTreeFoldersByFun
+            vo.$refs.ref_toggleTreeFoldersByFun.toggleTreeFoldersByFun((rows) => {
+                console.log('toggleTreeFoldersByFun rows', rows)
+                return {
+                    row: rows[ind],
+                    toUnfolding,
+                }
+            })
+
+        },
+        toggleTreeFoldersAll: function(toUnfolding) {
+            console.log('toggleTreeFoldersAll', toUnfolding)
+
+            let vo = this
+
+            //toggleTreeFoldersAll
+            vo.$refs.ref_toggleTreeFoldersAll.toggleTreeFoldersAll(toUnfolding)
+
         },
     }
 }

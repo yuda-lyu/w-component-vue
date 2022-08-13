@@ -31,6 +31,7 @@
                     :style="`transition:all 0.3s; ${draggable?'user-select:none;':''} ${getCursor({},props)} color:${getTextColor(props.row.item)}; background:${getBackgroundColor(props.row.item)};`"
                     :dragindex="props.index"
                     v-domdragdrop="isDraggable?getDgOpt():null"
+                    v-domripple="{color:itemRippleColor}"
                     @domdragdrop="dragdrop"
                     draggable="false"
                     @mouseenter="(e)=>{mouseenterItem(e,props)}"
@@ -59,7 +60,7 @@
                         <div :style="`display:table-cell; vertical-align:top; padding-right:${separation}px;`">
 
                             <!-- 若有顯隱圖標才會有min-height效果 -->
-                            <div :style="`display:flex; align-items:${useIconVerticalAlign}; justify-content:center; min-height:${defItemHeight}px;`" v-if="hasChildren(props.index)">
+                            <div :style="`${useItemHeightMin} display:flex; align-items:center; justify-content:center;`" v-if="hasChildren(props.index)">
                                 <WTreeIconToggle
                                     :dir="`${props.row.unfolding?'bottom':'right'}`"
                                     :iconSize="iconSize"
@@ -71,13 +72,13 @@
                             </div>
 
                             <!-- 若無顯隱圖標至少要撐開寬度 -->
-                            <div :style="`padding-right:${iconSize}px;`" v-else></div>
+                            <div :style="`${useItemHeightMin} padding-right:${iconSize}px;`" v-else></div>
 
                         </div>
 
                         <!-- 因顯隱圖標較小而右側間距看起來較寬, 故核選圖標右側間距*3 -->
                         <div :style="`display:table-cell; vertical-align:top; padding-right:${3*separation}px;`" v-if="selectable">
-                            <div :style="`display:flex; align-items:${useIconVerticalAlign}; justify-content:center; min-height:${defItemHeight}px;`">
+                            <div :style="`${useItemHeightMin} display:flex; align-items:center; justify-content:center;`">
                                 <WTreeIconCheckbox
                                     :mode="props.row.checked"
                                     :iconSize="iconSize"
@@ -109,7 +110,7 @@
                                 :isActive="pkActive===props.row.item[keyPrimary]"
                             >
                                 <!-- 得使用min-height否則無法撐開高度 -->
-                                <div :style="`min-height:${Math.max(iconSize,defItemHeight)}px; display:flex; align-items:center;`">
+                                <div :style="`${useItemHeightMin} display:flex; align-items:center;`">
                                     {{getText(props.row.item)}}
                                 </div>
                             </slot>
@@ -234,6 +235,7 @@ import globalMemory from '../js/globalMemory.mjs'
 import parseSpace from '../js/parseSpace.mjs'
 import color2hex from '../js/vuetifyColor.mjs'
 import domDragDrop from '../js/domDragDrop.mjs'
+import domRipple from '../js/domRipple.mjs'
 import WDynamicList from './WDynamicList.vue'
 import WButtonCircle from './WButtonCircle.vue'
 import WPopup from './WPopup.vue'
@@ -271,7 +273,6 @@ let gm = globalMemory()
  * @vue-prop {String} [iconCheckedDisabledColor='grey'] 輸入核選icon禁用時勾選時顏色字串，預設'grey'
  * @vue-prop {String} [iconCheckedPartiallyColor='blue darken-3'] 輸入核選icon部份勾選時(子節點任一有勾選但非全部勾選)顏色字串，預設'blue darken-3'
  * @vue-prop {String} [iconCheckedPartiallyDisabledColor='grey'] 輸入核選icon禁用時部份勾選時顏色字串，預設'grey'
- * @vue-prop {String} [iconVerticalAlign='middle'] 輸入icon垂直對齊字串，預設'middle'
  * @vue-prop {String} [filterKeywords=''] 輸入過濾關鍵字字串，多關鍵字用空白分隔，預設''
  * @vue-prop {Function} [filterFunction=null] 輸入過濾時呼叫處理函數，可使用sync或async函數，傳入為各項目物件資料，若為sync函數回傳布林值，若為async函數等待resolve結果為布林值，代表項目內是否含有關鍵字，預設null
  * @vue-prop {String} [loadingText='Loading...'] 輸入載入中字串，預設'Loading...'
@@ -285,6 +286,7 @@ let gm = globalMemory()
  * @vue-prop {String} [itemBackgroundColor='transparent'] 輸入背景顏色字串，預設'transparent'
  * @vue-prop {String} [itemBackgroundColorHover='rgba(200,200,200,0.2)'] 輸入滑鼠移入時背景顏色字串，預設'rgba(200,200,200,0.2)'
  * @vue-prop {String} [itemBackgroundColorActive='rgba(255,167,38,0.2)'] 輸入主動模式時背景顏色字串，預設'rgba(255,167,38,0.2)'
+ * @vue-prop {String} [itemRippleColor='rgba(200,200,200,0.4)'] 輸入ripple效果顏色字串，預設'rgba(200,200,200,0.4)'
  * @vue-prop {Boolean} [draggable=false] 輸入是否為可拖曳編輯模式布林值，若draggable設定true，此時所有節點皆為展開顯示並且禁止顯隱節點功能，也就是defaultDisplayLevel強制設定為null，此外也不提供過濾功能，也就是filterKeywords強制清空。開啟draggable僅適用小規模數據。draggable預設false
  * @vue-prop {String} [dgTextDisabled='Can not drop here'] 輸入禁止拖曳文字字串，預設'Can not drop here'
  * @vue-prop {String} [dgTextDisabledColor='#812'] 輸入禁止拖曳文字顏色字串，預設'#812'
@@ -323,6 +325,7 @@ let gm = globalMemory()
 export default {
     directives: {
         domdragdrop: domDragDrop(),
+        domripple: domRipple(),
     },
     components: {
         WDynamicList,
@@ -434,10 +437,6 @@ export default {
             type: String,
             default: 'grey',
         },
-        iconVerticalAlign: {
-            type: String,
-            default: 'middle', //middle, top
-        },
         filterKeywords: {
             type: String,
             default: '',
@@ -489,6 +488,10 @@ export default {
         itemBackgroundColorActive: {
             type: String,
             default: 'rgba(255,167,38,0.2)',
+        },
+        itemRippleColor: {
+            type: String,
+            default: 'rgba(200,200,200,0.4)',
         },
         draggable: {
             type: Boolean,
@@ -771,6 +774,14 @@ export default {
             return ''
         },
 
+        useItemHeightMin: function() {
+            //console.log('computed useItemHeightMin')
+
+            let vo = this
+
+            return `min-height:${Math.max(vo.iconSize, vo.defItemHeight)}px;`
+        },
+
         useIndent: function() {
             //console.log('computed useIndent')
 
@@ -791,14 +802,6 @@ export default {
             let padding = `padding:${cs};`
 
             return padding
-        },
-
-        useIconVerticalAlign: function() {
-            //console.log('computed useIconVerticalAlign')
-
-            let vo = this
-
-            return vo.iconVerticalAlign === 'top' ? 'flex-start' : 'center'
         },
 
         useItemTextColor: function() {
@@ -1497,7 +1500,7 @@ export default {
 
             let vo = this
 
-            //unfoldingChain
+            //unfoldingChain, 紀錄自己與其下子節點的unfolding值
             let unfoldingChain = []
 
             //依照unfoldingChain計算節點displayShow
@@ -1527,7 +1530,7 @@ export default {
                 //level
                 let level = get(items, `${ind}.row.item.level`, null)
                 if (level === null) {
-                    console.log('invalid level')
+                    console.log('invalid items[i].row.item.level')
                     return
                 }
 
@@ -1538,7 +1541,7 @@ export default {
                     //levelNow
                     let levelNow = get(items, `${i}.row.item.level`, null)
                     if (levelNow === null) {
-                        console.log('invalid levelNow')
+                        console.log('invalid items[i].row.item.level')
                         return
                     }
 
@@ -1585,9 +1588,70 @@ export default {
 
             //modifySelf
             modifySelf(ind, unfolding)
+            // console.log('modifySelf unfoldingChain', unfoldingChain)
 
             //modifyChildren
             modifyChildren(ind, unfolding)
+            // console.log('modifyChildren unfoldingChain', unfoldingChain)
+
+        },
+
+        unfoldingItemParentsCore: function(items, ind) {
+            // console.log('methods unfoldingItemParentsCore', items, ind)
+
+            let vo = this
+
+            //unfolding parents
+            let level = -1
+            let rs = []
+            for (let i = ind; i >= 0; i--) {
+
+                //levelNow
+                let levelNow = get(items, `${i}.row.item.level`, null)
+                if (levelNow === null) {
+                    console.log('invalid items[i].row.item.level')
+                    return
+                }
+
+                //check
+                if (level !== levelNow) {
+                    // console.log('get level', levelNow, items[i])
+
+                    //ind
+                    let ind = get(items, `${i}.row.index`, null)
+                    if (ind === null) {
+                        console.log('invalid items[i].row.index')
+                        return
+                    }
+
+                    //push, 紀錄需展開之父層節點編號(含自己)
+                    rs.push(ind)
+
+                    //update
+                    level = levelNow
+
+                }
+
+                //check
+                if (level === 0) {
+                    break //已處理至最頂層可先跳出加速
+                }
+
+            }
+
+            //reverse, 由最頂層往下排
+            rs = reverse(rs)
+
+            //dropRight, 剔除自己
+            rs = dropRight(rs)
+
+            //由頂層往下依序展開
+            each(rs, (ind) => {
+
+                //toggleItemsCore
+                vo.toggleItemsCore(items, ind, true) //展開指定父層
+
+            })
 
         },
 
@@ -1616,12 +1680,64 @@ export default {
                         //l, 有指定預先展開層數
                         let l = cint(vo.defaultDisplayLevelTrans)
 
-                        // toggleItemsCore
+                        //toggleItemsCore
                         each(items, (v, k) => {
                             if ((v.row.item.level + 1) > l && v.row.unfolding) {
                                 vo.toggleItemsCore(items, k, false) //非指定層數則隱藏
                             }
                         })
+
+                    }
+                }
+
+                //processItems
+                if (vo.$refs.wdl) { //於async中組件切換時還是有可能消失
+                    await vo.$refs.wdl.processItems(opt)
+                }
+
+            }
+
+            //core
+            core()
+                .catch((err) => {
+                    console.log(err)
+                })
+
+        },
+
+        toggleItemsAllCore: function(items, toUnfolding) {
+            // console.log('methods toggleItemsAllCore', items, toUnfolding)
+
+            let vo = this
+
+            //toggleItemsCore
+            each(items, (v, k) => {
+                if (v.row.unfolding !== toUnfolding) {
+                    vo.toggleItemsCore(items, k, toUnfolding)
+                }
+            })
+
+        },
+
+        toggleItemsAll: function(toUnfolding) {
+            // console.log('methods toggleItemsAll', toUnfolding)
+
+            let vo = this
+
+            async function core() {
+
+                //check
+                if (!vo.$refs.wdl) {
+                    return
+                }
+
+                //opt
+                let opt = {
+                    fun: function(items) {
+                        // console.log('items', cloneDeep(items))
+
+                        //toggleItemsAllCore
+                        vo.toggleItemsAllCore(items, toUnfolding)
 
                     }
                 }
@@ -1667,30 +1783,31 @@ export default {
                         //ind
                         let ind = get(item, 'index', null)
                         if (ind === null) {
-                            console.log('invalid ind')
+                            console.log('invalid item.index')
                             return
                         }
 
-                        //wdl rows, 取得wdl內展示數據
-                        let rows = vo.$refs.wdl.getRows()
-                        // console.log('wdl rows', rows)
+                        // //wdl rows, 取得wdl內展示數據
+                        // let rows = vo.$refs.wdl.getRows()
+                        // // console.log('wdl rows', rows)
 
-                        //displayShow, 提取節點之直接顯示狀態
-                        let displayShow = get(rows, `${ind}.displayShow`)
-                        // console.log('displayShow', displayShow)
+                        // //displayShow, 提取節點之直接顯示狀態
+                        // let displayShow = get(rows, `${ind}.displayShow`)
+                        // // console.log('displayShow', displayShow)
 
-                        //filterShow, 提取節點之過濾後顯示狀態
-                        let filterShow = get(rows, `${ind}.filterShow`)
-                        // console.log('filterShow', filterShow)
+                        // //filterShow, 提取節點之過濾後顯示狀態
+                        // let filterShow = get(rows, `${ind}.filterShow`)
+                        // // console.log('filterShow', filterShow)
 
-                        //show, 節點是否為顯示狀態
-                        let show = !(!displayShow || !filterShow)
-                        // console.log('show', show)
+                        // //show, 節點是否為顯示狀態
+                        // let show = !(!displayShow || !filterShow)
+                        // // console.log('show', show)
 
-                        //check show, 若非顯示代表由上層隱藏或被過濾而隱藏, 不提供切換功能
-                        if (!show) {
-                            return
-                        }
+                        // //check show, 若非顯示代表由上層隱藏或被過濾而隱藏, 不提供切換功能
+                        // if (!show) {
+                        //     console.log('本節點為非顯示狀態(包含節點隱藏與過濾被剔除)')
+                        //     return
+                        // }
 
                         //unfolding
                         let unfolding = get(items, `${ind}.row.unfolding`, null)
@@ -1701,14 +1818,34 @@ export default {
 
                         //toUnfolding
                         if (isbol(toUnfolding)) { //若有指定要展開或隱藏
-                            // console.log('toUnfolding', toUnfolding, '(!unfolding)', (!unfolding))
-                            if (toUnfolding === unfolding) { //若節點當前已為指定要展開或隱藏, 則不用處理
-                                return
-                            }
-                        }
 
-                        //本身節點變更unfolding
-                        unfolding = !unfolding
+                            //check 若節點當前已為指定要展開或隱藏, 則不用處理
+                            // if (toUnfolding === unfolding) {
+                            //     return
+                            // }
+
+                            //update
+                            unfolding = toUnfolding
+
+                            //若指定展開(toUnfolding=true), 得展開各父層節點
+                            if (toUnfolding) {
+                                // console.log('toUnfolding=true: call unfoldingItemParentsCore')
+                                vo.unfoldingItemParentsCore(items, ind)
+                            }
+
+                        }
+                        else {
+
+                            //本身節點變更unfolding
+                            unfolding = !unfolding
+
+                            //若原本為隱藏而需展開(unfolding=!unfolding), 得展開各父層節點
+                            if (unfolding) {
+                                // console.log('unfolding=!unfolding: call unfoldingItemParentsCore')
+                                vo.unfoldingItemParentsCore(items, ind)
+                            }
+
+                        }
 
                         //toggleItemsCore
                         vo.toggleItemsCore(items, ind, unfolding)
@@ -1753,6 +1890,7 @@ export default {
 
             //row
             let row = get(r, 'row')
+            // console.log('row', row)
 
             //check
             if (!iseobj(row)) {
@@ -1868,7 +2006,7 @@ export default {
                     //level
                     let level = get(items, `${ind}.row.item.level`, null)
                     if (level === null) {
-                        console.log('invalid level')
+                        console.log('invalid items[i].row.item.level')
                         return
                     }
 
@@ -1879,7 +2017,7 @@ export default {
                         //levelNow
                         let levelNow = get(items, `${i}.row.item.level`, null)
                         if (levelNow === null) {
-                            console.log('invalid levelNow')
+                            console.log('invalid items[i].row.item.level')
                             return
                         }
 
@@ -1909,7 +2047,7 @@ export default {
                 //level
                 let level = get(items, `${ind}.row.item.level`, null)
                 if (level === null) {
-                    console.log('invalid level')
+                    console.log('invalid items[i].row.item.level')
                     return null
                 }
 
@@ -1925,7 +2063,7 @@ export default {
                     //levelNow
                     let levelNow = get(items, `${i}.row.item.level`, null)
                     if (levelNow === null) {
-                        console.log('invalid levelNow')
+                        console.log('invalid items[i].row.item.level')
                         return
                     }
 
@@ -1953,7 +2091,7 @@ export default {
                     //levelNow
                     let levelNow = get(items, `${i}.row.item.level`, null)
                     if (levelNow === null) {
-                        console.log('invalid levelNow')
+                        console.log('invalid items[i].row.item.level')
                         return
                     }
 

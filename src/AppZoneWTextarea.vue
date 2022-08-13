@@ -8,7 +8,7 @@
         <div style="padding:0px;">
 
 
-            <div class="bk" style="width:500px;">
+            <div class="bk">
                 <demolink
                     :kbname="'w-textarea'"
                     :casename="'default'"
@@ -17,7 +17,7 @@
                 <w-textarea v-model="WTextarea.text"></w-textarea>
             </div>
 
-            <div class="bk" style="width:500px;">
+            <div class="bk">
                 <demolink
                     :kbname="'w-textarea'"
                     :casename="'borderColorFocus'"
@@ -29,7 +29,7 @@
                 ></w-textarea>
             </div>
 
-            <div class="bk" style="width:500px;">
+            <div class="bk">
                 <demolink
                     :kbname="'w-textarea'"
                     :casename="'placeholder'"
@@ -41,7 +41,7 @@
                 ></w-textarea>
             </div>
 
-            <div class="bk" style="width:500px;">
+            <div class="bk">
                 <demolink
                     :kbname="'w-textarea'"
                     :casename="'not editable'"
@@ -50,7 +50,7 @@
                 <w-textarea :editable="false" v-model="WTextarea.text"></w-textarea>
             </div>
 
-            <div class="bk" style="width:100%;">
+            <div class="bk" style="display:block;">
                 <demolink
                     :kbname="'w-textarea'"
                     :casename="'fullwidth'"

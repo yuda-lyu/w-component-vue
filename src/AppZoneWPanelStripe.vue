@@ -161,7 +161,7 @@
                     :casename="'with grey outer'"
                 ></demolink>
 
-                <div style="background:#bbb; padding:40px;">
+                <div style="display:inline-block; padding:40px; background:#bbb;">
 
                     <w-panel-stripe
                         style="width:520px;"
@@ -202,7 +202,7 @@
                     :casename="'no shadow, with crimson outer'"
                 ></demolink>
 
-                <div style="background:#a77; padding:40px;">
+                <div style="display:inline-block; padding:40px; background:#a77;">
 
                     <w-panel-stripe
                         style="width:520px;"

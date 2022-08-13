@@ -22,56 +22,60 @@
         <div style="padding:0px;">
 
 
-            <div class="bk">
+            <div class="bk" style="display:block;">
                 <demolink
                     :kbname="'w-leaflet-vue-dyn'"
                     :casename="'pointSets'"
                 ></demolink>
 
+                <!-- leaflet要給寬度否則無法撐開 -->
                 <w-leaflet-vue-dyn
-                    style="width:90vw; height:600px;"
+                    style="width:100%; height:600px;"
                     :opt="WLeafletVueDyn.pointSets"
                 ></w-leaflet-vue-dyn>
 
             </div>
 
 
-            <div class="bk">
+            <div class="bk" style="display:block;">
                 <demolink
                     :kbname="'w-leaflet-vue-dyn'"
                     :casename="'polygonSets'"
                 ></demolink>
 
+                <!-- leaflet要給寬度否則無法撐開 -->
                 <w-leaflet-vue-dyn
-                    style="width:90vw; height:600px;"
+                    style="width:100%; height:600px;"
                     :opt="WLeafletVueDyn.polygonSets"
                 ></w-leaflet-vue-dyn>
 
             </div>
 
 
-            <div class="bk">
+            <div class="bk" style="display:block;">
                 <demolink
                     :kbname="'w-leaflet-vue-dyn'"
                     :casename="'contourSets'"
                 ></demolink>
 
+                <!-- leaflet要給寬度否則無法撐開 -->
                 <w-leaflet-vue-dyn
-                    style="width:90vw; height:600px;"
+                    style="width:100%; height:600px;"
                     :opt="WLeafletVueDyn.contourSets"
                 ></w-leaflet-vue-dyn>
 
             </div>
 
 
-            <div class="bk">
+            <div class="bk" style="display:block;">
                 <demolink
                     :kbname="'w-leaflet-vue-dyn'"
                     :casename="'contourSet for rain data'"
                 ></demolink>
 
+                <!-- leaflet要給寬度否則無法撐開 -->
                 <w-leaflet-vue-dyn
-                    style="width:90vw; height:600px;"
+                    style="width:100%; height:600px;"
                     :opt="WLeafletVueDyn.largeSet"
                 ></w-leaflet-vue-dyn>
 

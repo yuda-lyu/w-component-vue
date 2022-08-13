@@ -810,16 +810,12 @@ export default {
 }
 .bk {
     vertical-align: top;
-    margin: 10px 0px 0px 0px;
-    padding: 0px 0px 60px 0px;
+    padding: 10px 0px 60px 0px;
 }
 @media screen and (min-width:1000px){ /* 寬版 */
     .bk {
         display: inline-block;
         margin: 0px 80px 0px 0px;
-    }
-    .dz {
-        width: 400px;
     }
 }
 </style>

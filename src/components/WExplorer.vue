@@ -1,6 +1,7 @@
 <template>
     <div
         style=""
+        :changeShowTree="changeShowTree"
         :changeItems="changeItems"
         v-domresize
         @domresize="resizePanel"
@@ -8,207 +9,255 @@
 
         <WDrawer
             :style="`width:${panelWidth}px; height:${panelHeight}px;`"
-            v-model="showTree"
+            :afloat="treeAfloat"
             :drawerWidth.sync="treeWidth"
             :drawerWidthMin="treeWidthMin"
             :drawerWidthMax="treeWidthMax"
             :dragDrawerWidth="true"
             :drawerBarColor="treeDrawerBarColor"
             :drawerBarSize="treeDrawerBarSize"
+            :value="showTreeTrans"
+            @input="emitShowTree"
         >
 
             <template v-slot:drawer="props">
+                <!-- tree高度是使用viewHeightMax為動態高度, 故外部封裝一層給予背景色 -->
+                <div :style="`height:100%; background:${effTreeBackgroundColor};`">
 
-                <WTree
-                    ref="wt"
-                    :style="`width:${props.width}px; min-width:${props.width}px;`"
-                    :viewHeightMax="panelHeight"
-                    :defItemHeight="treeDefItemHeight"
-                    :defaultDisplayLevel="treeDefaultDisplayLevel"
-                    :data="treeItemsFolder"
-                    :activable="true"
-                    :itemActive.sync="folderItemActive"
-                    :paddingStyle="treePaddingStyle"
-                    :indent="treeIndent"
-                    :iconSize="toggleTreeIconSize"
-                    :iconToggleColor="toggleTreeIconColor"
-                    :iconToggleBackgroundColor="toggleTreeIconBackgroundColor"
-                    :iconToggleBackgroundColorHover="toggleTreeIconBackgroundColorHover"
-                    :itemTextColor="treeItemTextColor"
-                    :itemTextColorHover="treeItemTextColorHover"
-                    :itemTextColorActive="treeItemTextColorActive"
-                    :itemBackgroundColor="treeItemBackgroundColor"
-                    :itemBackgroundColorHover="treeItemBackgroundColorHover"
-                    :itemBackgroundColorActive="treeItemBackgroundColorActive"
-                    _render="render"
-                >
-                    <template v-slot:item="props">
-                        <div
-                            :style="`display:flex; min-height:${treeDefItemHeight}px;`"
-                            @click="ckTreeFolder(props)"
-                        >
-
-                            <div :style="`height:${treeDefItemHeight}px; padding-right:4px; display:flex; align-items:center;`">
-                                <WIcon
-                                    :icon="treeFolderIcon"
-                                    :color="getTreeFolderIconColor(props)"
-                                    :size="treeFolderIconSize"
-                                ></WIcon>
-                            </div>
-
-                            <!-- 文字一般、hover與active顏色可由tree組件由item殼設定提供, 故slot內可不用自行封裝取得文字顏色功能 -->
-                            <div :style="`min-height:${treeDefItemHeight}px; line-height:${treeDefItemHeight}px; ${useTreeItemTextFontSize}`">
-                                {{props.data.text}}
-                            </div>
-
-                        </div>
-                    </template>
-                </WTree>
-
-            </template>
-
-            <template v-slot:content="props">
-
-                <div
-                    :style="`width:${props.width}px; min-width:${props.width}px; border-bottom:${lineBetweenPathAndListWidth}px solid ${effLineBetweenPathAndListColor}; background:transparent;`"
-                    v-domresize
-                    @domresize="resizePath"
-                >
-
-                    <div :style="`display:flex; align-items:start;`">
-
-                        <div :style="`min-height:${btnDisplayTreeIconSize+8}px; padding:0px 2px 0px 5px; display:flex; align-items:center;`">
-
-                            <!-- 切換顯隱tree按鈕 -->
-                            <WButtonCircle
-                                :paddingStyle="{h:2,v:2}"
-                                :icon="showTree?btnDisplayTreeIconHide:btnDisplayTreeIconShow"
-                                :iconSize="btnDisplayTreeIconSize"
-                                :iconColor="btnDisplayTreeIconColor"
-                                :iconColorHover="btnDisplayTreeIconColorHover"
-                                :iconColorFocus="btnDisplayTreeIconColorFocus"
-                                :backgroundColor="btnDisplayTreeBackgroundColor"
-                                :backgroundColorHover="btnDisplayTreeBackgroundColorHover"
-                                :backgroundColorFocus="btnDisplayTreeBackgroundColorFocus"
-                                :shadow="false"
-                                @click="showTree=!showTree"
-                            ></WButtonCircle>
-
-                        </div>
-
-                        <div
-                            :style="`min-height:${btnDisplayTreeIconSize+8}px; padding-left:4px; color:${effPathTextColor}; ${usePathTextFontSize} display:flex; align-items:center;`"
-                            v-if="parentInfors.length===0"
-                        >
-                            {{noSelectedText}}
-                        </div>
-
-                        <div :style="`display:flex; flex-wrap:wrap;`">
+                    <WTree
+                        ref="wt"
+                        :style="`width:${props.width}px; min-width:${props.width}px;`"
+                        :viewHeightMax="panelHeight"
+                        :defItemHeight="treeDefItemHeight"
+                        :defaultDisplayLevel="treeDefaultDisplayLevel"
+                        :data="treeItemsFolder"
+                        :activable="true"
+                        :itemActive.sync="folderItemActive"
+                        :paddingStyle="treePaddingStyle"
+                        :indent="treeIndent"
+                        :iconSize="toggleTreeIconSize"
+                        :iconToggleColor="toggleTreeIconColor"
+                        :iconToggleBackgroundColor="toggleTreeIconBackgroundColor"
+                        :iconToggleBackgroundColorHover="toggleTreeIconBackgroundColorHover"
+                        :itemTextColor="treeItemTextColor"
+                        :itemTextColorHover="treeItemTextColorHover"
+                        :itemTextColorActive="treeItemTextColorActive"
+                        :itemBackgroundColor="treeItemBackgroundColor"
+                        :itemBackgroundColorHover="treeItemBackgroundColorHover"
+                        :itemBackgroundColorActive="treeItemBackgroundColorActive"
+                        :itemRippleColor="treeItemRippleColor"
+                        _render="render"
+                    >
+                        <template v-slot:item="props">
                             <div
-                                :style="`min-height:${btnDisplayTreeIconSize+8}px;`"
-                                :key="'kpi-'+kpi"
-                                v-for="(pi,kpi) in parentInfors"
+                                :style="`display:flex; min-height:${treeDefItemHeight}px;`"
+                                @click="ckTreeFolder(props)"
                             >
 
-                                <!-- 因path區域預設有底線故-1px -->
-                                <div :style="`min-height:${btnDisplayTreeIconSize+8}px; display:flex; align-items:center;`">
-
+                                <div :style="`height:${treeDefItemHeight}px; padding-right:4px; display:flex; align-items:center;`">
                                     <WIcon
-                                        :icon="pathSepIcon"
-                                        :color="pathSepIconColor"
-                                        :size="pathSepIconSize"
+                                        :icon="treeFolderIcon"
+                                        :color="getTreeFolderIconColor(props)"
+                                        :size="treeFolderIconSize"
                                     ></WIcon>
+                                </div>
 
-                                    <!-- 因會重刷path故textColorActive與backgroundColorActive會被清除, 也就不須提供外部設定 -->
-                                    <WButtonChip
-                                        :paddingStyle="{h:6,v:0}"
-                                        :borderWidth="{}"
-                                        :borderRadius="4"
-                                        :shadow="false"
-                                        :text="pi.name"
-                                        :textColor="pathTextColor"
-                                        :textColorHover="pathTextColorHover"
-                                        _textColorActive="pathTextColorActive"
-                                        :textFontSize="pathTextFontSize"
-                                        _icon="pathSepIcon"
-                                        _iconColor="pathSepIconColor"
-                                        _iconSize="pathSepIconSize"
-                                        :backgroundColor="pathBackgroundColor"
-                                        :backgroundColorHover="pathBackgroundColorHover"
-                                        _backgroundColorActive="pathBackgroundColorActive"
-                                        @click="ckPathFolder(pi)"
-                                    >
-                                    </WButtonChip>
-
+                                <!-- 文字一般、hover與active顏色可由tree組件由item殼設定提供, 故slot內可不用自行封裝取得文字顏色功能 -->
+                                <div :style="`min-height:${treeDefItemHeight}px; line-height:${treeDefItemHeight}px; ${useTreeItemTextFontSize}`">
+                                    {{props.data.text}}
                                 </div>
 
                             </div>
+                        </template>
+                    </WTree>
+
+                </div>
+            </template>
+
+            <template v-slot:content="props">
+                <!-- 較多組件時初始化偵測高度會較慢, 連帶造成高度超過容器, 故使用overflow:hidden避免顯示捲軸 -->
+                <div :style="`height:100%; overflow:hidden;`">
+
+                    <div
+                        :style="`width:${props.width}px; min-width:${props.width}px; border-bottom:${lineBetweenPathAndListWidth}px solid ${effLineBetweenPathAndListColor}; background:${effPathBackgroundColor};`"
+                        v-domresize
+                        @domresize="resizePath"
+                    >
+
+                        <div :style="`display:flex; align-items:flex-start;`">
+
+                            <div :style="`min-height:${btnDisplayTreeIconSize+8}px; padding:0px 2px 0px 5px; display:flex; align-items:center;`">
+
+                                <!-- 切換顯隱tree按鈕 -->
+                                <WButtonCircle
+                                    :paddingStyle="{h:2,v:2}"
+                                    :icon="showTreeTrans?btnDisplayTreeIconHide:btnDisplayTreeIconShow"
+                                    :iconSize="btnDisplayTreeIconSize"
+                                    :iconColor="btnDisplayTreeIconColor"
+                                    :iconColorHover="btnDisplayTreeIconColorHover"
+                                    :iconColorFocus="btnDisplayTreeIconColorFocus"
+                                    :backgroundColor="btnDisplayTreeBackgroundColor"
+                                    :backgroundColorHover="btnDisplayTreeBackgroundColorHover"
+                                    :backgroundColorFocus="btnDisplayTreeBackgroundColorFocus"
+                                    :shadow="false"
+                                    @click="emitShowTree(!showTreeTrans)"
+                                ></WButtonCircle>
+
+                            </div>
+
+                            <div
+                                :style="`min-height:${btnDisplayTreeIconSize+8}px; padding-left:4px; color:${effPathBtnTextColor}; ${usePathBtnTextFontSize} display:flex; align-items:center;`"
+                                v-if="parentInfors.length===0"
+                            >
+                                {{noSelectedText}}
+                            </div>
+
+                            <div :style="`display:flex; flex-wrap:wrap;`">
+                                <div
+                                    :style="`min-height:${btnDisplayTreeIconSize+8}px;`"
+                                    :key="'kpi-'+kpi"
+                                    v-for="(pi,kpi) in parentInfors"
+                                >
+
+                                    <!-- 因path區域預設有底線故-1px -->
+                                    <div :style="`min-height:${btnDisplayTreeIconSize+8}px; display:flex; align-items:center;`">
+
+                                        <WIcon
+                                            :icon="pathSepIcon"
+                                            :color="pathSepIconColor"
+                                            :size="pathSepIconSize"
+                                        ></WIcon>
+
+                                        <!-- 因會重刷path故textColorActive與backgroundColorActive會被清除, 也就不須提供外部設定 -->
+                                        <WButtonChip
+                                            :paddingStyle="{h:6,v:0}"
+                                            :borderWidth="{}"
+                                            :borderRadius="4"
+                                            :shadow="false"
+                                            :text="pi.name"
+                                            :textColor="pathBtnTextColor"
+                                            :textColorHover="pathBtnTextColorHover"
+                                            _textColorActive="pathBtnTextColorActive"
+                                            :textFontSize="pathBtnTextFontSize"
+                                            _icon="pathSepIcon"
+                                            _iconColor="pathSepIconColor"
+                                            _iconSize="pathSepIconSize"
+                                            :backgroundColor="pathBtnBackgroundColor"
+                                            :backgroundColorHover="pathBtnBackgroundColorHover"
+                                            _backgroundColorActive="pathBtnBackgroundColorActive"
+                                            @click="ckPathFolder(pi)"
+                                        >
+                                        </WButtonChip>
+
+                                    </div>
+
+                                </div>
+                            </div>
+
                         </div>
 
                     </div>
 
-                </div>
-
-                <div
-                    :style="`height:${listHeight}px;`"
-                    v-if="folderItems.length>0"
-                >
-                    <WListVertical
-                        :style="`width:${props.width}px; min-width:${props.width}px; height:${listHeight}px;`"
-                        :items="folderItems"
-                        :itemActive.sync="fileItemActive"
-                        :itemClickable="true"
-                        :itemCursorPointer="false"
-                        :paddingStyle="listPaddingStyle"
-                        :itemBackgroundColor="listItemBackgroundColor"
-                        :itemBackgroundColorHover="listItemBackgroundColorHover"
-                        :itemBackgroundColorActive="listItemBackgroundColorActive"
-                        :itemTextColor="listItemTextColor"
-                        :itemTextColorHover="listItemTextColorHover"
-                        :itemTextColorActive="listItemTextColorActive"
-                        :itemIconSize="listItemIconSize"
-                        _itemIconColor="listItemIconColor"
-                        _itemIconColorHover="listItemIconColorHover"
-                        _itemIconColorActive="listItemIconColorActive"
-                        :itemRippleColor="listItemRippleColor"
-                        _click="ckListItem"
+                    <div
+                        :style="`height:${listHeight}px; background:${effListBackgroundColor};`"
                     >
-                        <template v-slot:item="props">
-                            <div>
+                        <WListVertical
+                            :style="`width:${props.width}px; min-width:${props.width}px; height:${listHeight}px;`"
+                            :items="folderItems"
+                            :itemActive.sync="fileItemActive"
+                            :itemClickable="true"
+                            :itemCursorPointer="false"
+                            :paddingStyle="listPaddingStyle"
+                            :itemBackgroundColor="listItemBackgroundColor"
+                            :itemBackgroundColorHover="listItemBackgroundColorHover"
+                            :itemBackgroundColorActive="listItemBackgroundColorActive"
+                            :itemTextColor="listItemTextColor"
+                            :itemTextColorHover="listItemTextColorHover"
+                            :itemTextColorActive="listItemTextColorActive"
+                            :itemIconSize="listItemIconSize"
+                            _itemIconColor="listItemIconColor"
+                            _itemIconColorHover="listItemIconColorHover"
+                            _itemIconColorActive="listItemIconColorActive"
+                            :itemRippleColor="listItemRippleColor"
+                            _click="ckListItem"
+                            v-if="folderItems.length>0"
+                        >
 
-                                <div :style="`display:flex;`">
-
-                                    <div
-                                        :style="`height:${listDefItemHeight}px; padding-right:4px; display:flex; align-items:center; cursor:pointer;`"
-                                        @click="ckListItem(props)"
-                                    >
-                                        <WIcon
-                                            :icon="props.item.icon"
-                                            :color="getListItemIconColor(props)"
-                                            :size="listIconSize"
-                                        ></WIcon>
-                                    </div>
-
-                                    <div
-                                        :style="`min-height:${listDefItemHeight}px; line-height:${listDefItemHeight}px; ${useListItemTextFontSize} cursor:pointer; user-select:none;`"
-                                        @click="ckListItem(props)"
-                                    >
-                                        {{props.item.text}}
-                                    </div>
-
-                                </div>
-
+                            <template v-slot:header>
                                 <slot
-                                    name="list-item-ext"
-                                    :item="props.item"
+                                    name="list-head"
                                 >
                                 </slot>
+                            </template>
 
-                            </div>
-                        </template>
-                    </WListVertical>
+                            <template v-slot:item="props">
+                                <div :style="`position:relative; min-height:${listDefItemHeight}px; line-height:${listDefItemHeight}px;`">
+
+                                    <!-- 由slot外側提供預設字型設定, 而字型顏色設定由更外側WListVertical組件提供 -->
+                                    <div :style="`${useListItemTextFontSize}`">
+                                        <slot
+                                            name="list-item"
+                                            :item="{
+                                                ...props.item,
+                                                iconColor:getListItemIconColor(props),
+                                                iconSize:listItemIconSize,
+                                            }"
+                                            :funClickListItem="()=>{ckListItem(props)}"
+                                        >
+
+                                            <div :style="`display:flex;`">
+
+                                                <div
+                                                    :style="`height:${listDefItemHeight}px; padding-right:4px; display:flex; align-items:center; cursor:pointer;`"
+                                                    @click="ckListItem(props)"
+                                                >
+                                                    <WIcon
+                                                        :icon="props.item.icon"
+                                                        :color="getListItemIconColor(props)"
+                                                        :size="listItemIconSize"
+                                                    ></WIcon>
+                                                </div>
+
+                                                <div
+                                                    :style="`${useListItemTextFontSize} cursor:pointer; user-select:none;`"
+                                                    @click="ckListItem(props)"
+                                                >
+                                                    {{props.item.text}}
+                                                </div>
+
+                                            </div>
+
+                                        </slot>
+                                    </div>
+
+                                    <div :style="`position:absolute; top:0px; right:0px; _width:100%; height:100%;`">
+                                        <slot
+                                            name="list-item-cover"
+                                            :item="props.item"
+                                        >
+                                        </slot>
+                                    </div>
+
+                                    <slot
+                                        name="list-item-pkg"
+                                        :item="props.item"
+                                    >
+                                    </slot>
+
+                                </div>
+                            </template>
+
+                            <template v-slot:footer>
+                                <slot
+                                    name="list-foot"
+                                >
+                                </slot>
+                            </template>
+
+                        </WListVertical>
+                    </div>
+
                 </div>
-
             </template>
 
         </WDrawer>
@@ -259,34 +308,46 @@ export default {
             type: Array,
             default: () => [],
         },
-        treeWidthMin: { //bbb
+        treeWidthMin: {
             type: Number,
             default: null,
         },
-        treeWidthMax: { //bbb
+        treeWidthMax: {
             type: Number,
             default: null,
         },
 
-        //  * @vue-prop {Number} [treeDefItemHeight=30] 輸入按需顯示時各項目預設最小高度(min-height)值，給越準或給大部分項目的高度則渲染速度越快，單位為px，預設30
-        //  * @vue-prop {Number} [treeDefaultDisplayLevel=null] 輸入初始展開層數數字，若輸入1就是預設展開至第1層，第2層(含)以下則都隱藏，若輸入null就是全展開，預設null
-        //  * @vue-prop {Object} [treePaddingStyle={v:0,h:0}] 輸入內寬距離物件，可用鍵值為v、h、left、right、top、bottom，v代表同時設定top與bottom，h代表設定left與right，若有重複設定時後面鍵值會覆蓋前面，各鍵值為寬度數字，單位為px，預設{v:0,h:0}
-        //  * @vue-prop {Number} [treeIndent=0.7] 輸入縮排比率數字，若使用1就是1倍的圖標寬度(24px)+2*separation(3px)，預設0.7
-        //  * @vue-prop {Number} [toggleTreeIconSize=24] 輸入顯隱icon按鈕高度數字，單位為px，預設24
-        //  * @vue-prop {String} [toggleTreeIconColor='grey'] 輸入顯隱icon按鈕顏色字串，預設'grey'
-        //  * @vue-prop {String} [toggleTreeIconBackgroundColor='transparent'] 輸入顯隱icon按鈕背景顏色字串，預設'transparent'
-        //  * @vue-prop {String} [toggleTreeIconBackgroundColorHover='rgba(128,128,128,0.15)'] 輸入滑鼠移入時顯隱icon按鈕背景顏色字串，預設'rgba(128,128,128,0.15)'
-        //  * @vue-prop {String} [treeItemTextColor='#444'] 輸入文字顏色字串，預設'#444'
-        //  * @vue-prop {String} [treeItemTextColorHover='#222'] 輸入滑鼠移入時文字顏色字串，預設'#222'
-        //  * @vue-prop {String} [treeItemTextColorActive='#000'] 輸入主動模式時文字顏色字串，預設'#000'
-        //  * @vue-prop {String} [treeFolderIcon=mdiFolder] 輸入資料夾圖標字串，預設mdiFolder
-        //  * @vue-prop {Number} [treeFolderIconSize=20] 輸入資料夾圖標之尺寸數字，單位px，預設20
-        //  * @vue-prop {String} [treeFolderIconColor='#888'] 輸入資料夾圖標顏色字串，預設'#888'
-        //  * @vue-prop {String} [treeFolderIconColorHover='#777'] 輸入滑鼠移入時資料夾圖標顏色字串，預設'#777'
-        //  * @vue-prop {String} [treeFolderIconColorActive='#666'] 輸入主動模式時資料夾圖標顏色字串，預設'#666'
-        //  * @vue-prop {String} [treeItemBackgroundColor='transparent'] 輸入背景顏色字串，預設'transparent'
-        //  * @vue-prop {String} [treeItemBackgroundColorHover='rgba(200,200,200,0.2)'] 輸入滑鼠移入時背景顏色字串，預設'rgba(200,200,200,0.2)'
-        //  * @vue-prop {String} [treeItemBackgroundColorActive='rgba(100,100,100,0.2)'] 輸入主動模式時背景顏色字串，預設'rgba(100,100,100,0.2)'
+        //  * @vue-prop {Boolean} [showTree=false] 輸入是否顯示樹狀資料夾布林值，預設false
+        //  * @vue-prop {Boolean} [treeAfloat=false] 輸入是否樹狀資料夾為浮動顯示布林值，設為true時浮在內容區上故不壓縮內容區寬度，預設false
+        //  * @vue-prop {Number} [treeDefItemHeight=30] 輸入樹狀資料夾之按需顯示時各項目預設最小高度(min-height)值，給越準或給大部分項目的高度則渲染速度越快，單位為px，預設30
+        //  * @vue-prop {Number} [treeDefaultDisplayLevel=null] 輸入樹狀資料夾之初始展開層數數字，若輸入1就是預設展開至第1層，第2層(含)以下則都隱藏，若輸入null就是全展開，預設null
+        //  * @vue-prop {Object} [treePaddingStyle={v:0,h:0}] 輸入樹狀資料夾之內寬距離物件，可用鍵值為v、h、left、right、top、bottom，v代表同時設定top與bottom，h代表設定left與right，若有重複設定時後面鍵值會覆蓋前面，各鍵值為寬度數字，單位為px，預設{v:0,h:0}
+        //  * @vue-prop {Number} [treeIndent=0.7] 輸入樹狀資料夾之縮排比率數字，若使用1就是1倍的圖標寬度(24px)+2*separation(3px)，預設0.7
+        //  * @vue-prop {Number} [toggleTreeIconSize=24] 輸入樹狀資料夾之顯隱icon按鈕高度數字，單位為px，預設24
+        //  * @vue-prop {String} [toggleTreeIconColor='grey'] 輸入樹狀資料夾之顯隱icon按鈕顏色字串，預設'grey'
+        //  * @vue-prop {String} [toggleTreeIconBackgroundColor='transparent'] 輸入樹狀資料夾之顯隱icon按鈕背景顏色字串，預設'transparent'
+        //  * @vue-prop {String} [toggleTreeIconBackgroundColorHover='rgba(128,128,128,0.15)'] 輸入滑鼠移入時樹狀資料夾之顯隱icon按鈕背景顏色字串，預設'rgba(128,128,128,0.15)'
+        //  * @vue-prop {String} [treeItemTextColor='#444'] 輸入樹狀資料夾之文字顏色字串，預設'#444'
+        //  * @vue-prop {String} [treeItemTextColorHover='#222'] 輸入滑鼠移入時樹狀資料夾之文字顏色字串，預設'#222'
+        //  * @vue-prop {String} [treeItemTextColorActive='#000'] 輸入主動模式時樹狀資料夾之文字顏色字串，預設'#000'
+        //  * @vue-prop {String} [treeFolderIcon=mdiFolder] 輸入樹狀資料夾之資料夾圖標字串，預設mdiFolder
+        //  * @vue-prop {Number} [treeFolderIconSize=20] 輸入樹狀資料夾之資料夾圖標之尺寸數字，單位px，預設20
+        //  * @vue-prop {String} [treeFolderIconColor='#888'] 輸入樹狀資料夾之資料夾圖標顏色字串，預設'#888'
+        //  * @vue-prop {String} [treeFolderIconColorHover='#777'] 輸入滑鼠移入時樹狀資料夾之資料夾圖標顏色字串，預設'#777'
+        //  * @vue-prop {String} [treeFolderIconColorActive='#666'] 輸入主動模式時樹狀資料夾之資料夾圖標顏色字串，預設'#666'
+        //  * @vue-prop {String} [treeItemBackgroundColor='transparent'] 輸入樹狀資料夾之項目區背景顏色字串，預設'transparent'
+        //  * @vue-prop {String} [treeItemBackgroundColorHover='rgba(200,200,200,0.2)'] 輸入滑鼠移入時樹狀資料夾之項目區背景顏色字串，預設'rgba(200,200,200,0.2)'
+        //  * @vue-prop {String} [treeItemBackgroundColorActive='rgba(100,100,100,0.2)'] 輸入主動模式時樹狀資料夾之項目區背景顏色字串，預設'rgba(100,100,100,0.2)'
+        //  * @vue-prop {String} [treeItemRippleColor='rgba(200,200,200,0.4)'] 輸入樹狀資料夾之項目區ripple效果顏色字串，預設'rgba(200,200,200,0.4)'
+        //  * @vue-prop {String} [treeBackgroundColor='#fff'] 輸入樹狀資料夾背景顏色字串，預設'#fff'
+        showTree: {
+            type: Boolean,
+            default: true,
+        },
+        treeAfloat: {
+            type: Boolean,
+            default: false,
+        },
         treeDefItemHeight: {
             type: Number,
             default: 30,
@@ -372,9 +433,17 @@ export default {
             type: String,
             default: 'rgba(100,100,100,0.2)',
         },
+        treeItemRippleColor: {
+            type: String,
+            default: 'rgba(200,200,200,0.4)',
+        },
+        treeBackgroundColor: {
+            type: String,
+            default: '#fff',
+        },
 
-        //  * @vue-prop {Number} [treeDrawerBarSize=2] 輸入分隔條尺寸數字，為分隔條寬度，單位為px，預設2
-        //  * @vue-prop {String} [treeDrawerBarColor='#ddd'] 輸入分隔條顏色字串，預設'#ddd'
+        //  * @vue-prop {Number} [treeDrawerBarSize=2] 輸入樹狀資料夾抽屜之分隔條尺寸數字，為分隔條寬度，單位為px，預設2
+        //  * @vue-prop {String} [treeDrawerBarColor='#ddd'] 輸入樹狀資料夾抽屜之分隔條顏色字串，預設'#ddd'
         treeDrawerBarSize: {
             type: Number,
             default: 2,
@@ -384,8 +453,8 @@ export default {
             default: '#ddd',
         },
 
-        //  * @vue-prop {Number} [lineBetweenPathAndListWidth=1] 輸入path與list區之間分隔線寬度，單位為px，預設1
-        //  * @vue-prop {String} [lineBetweenPathAndListColor='#ddd'] 輸入path與list區之間分隔線顏色字串，預設'#ddd'
+        //  * @vue-prop {Number} [lineBetweenPathAndListWidth=1] 輸入路徑區與清單區之間分隔線寬度，單位為px，預設1
+        //  * @vue-prop {String} [lineBetweenPathAndListColor='#ddd'] 輸入路徑區與清單區之間分隔線顏色字串，預設'#ddd'
         lineBetweenPathAndListWidth: {
             type: Number,
             default: 1,
@@ -395,24 +464,24 @@ export default {
             default: '#ddd',
         },
 
-        //  * @vue-prop {Number} [listDefItemHeight=30] 輸入按需顯示時各項目預設最小高度(min-height)值，單位為px，預設30
-        //  * @vue-prop {Object} [listPaddingStyle={v:0,h:6}] 輸入內寬距離設定物件，可用鍵值為v、h、left、right、top、bottom，v代表同時設定top與bottom，h代表設定left與right，若有重複設定時後面鍵值會覆蓋前面，各鍵值為寬度數字，單位為px，預設{v:0,h:6}
-        //  * @vue-prop {String} [listItemBackgroundColor='transparent'] 輸入背景顏色字串，預設'transparent'
-        //  * @vue-prop {String} [listItemBackgroundColorHover='rgba(200,200,200,0.2)'] 輸入滑鼠移入時背景顏色字串，預設'rgba(200,200,200,0.2)'
-        //  * @vue-prop {String} [listItemBackgroundColorActive='rgba(100,100,100,0.2)'] 輸入主動模式時背景顏色字串，預設'rgba(100,100,100,0.2)'
-        //  * @vue-prop {String} [listItemTextFontSize='0.85rem'] 輸入文字字型大小字串，預設'0.85rem'
-        //  * @vue-prop {String} [listItemTextColor='#444'] 輸入文字顏色字串，預設'#444'
-        //  * @vue-prop {String} [listItemTextColorHover='#222'] 輸入滑鼠移入時文字顏色字串，預設'#222'
-        //  * @vue-prop {String} [listItemTextColorActive='#000'] 輸入主動模式時文字顏色字串，預設'#000'
-        //  * @vue-prop {String} [listFolderIcon=mdiFolder] 輸入資料夾圖標字串，預設mdiFolder
-        //  * @vue-prop {String} [listFileIcon=mdiFileOutline] 輸入檔案圖標字串，預設mdiFileOutline
-        //  * @vue-prop {Number} [listIconSize=20] 輸入資料夾與檔案圖標之尺寸數字，單位px，預設20
-        //  * @vue-prop {Number} [listItemIconSize=22] 輸入左側圖標之尺寸數字，單位px，預設22
-        //  * @vue-prop {String} [listItemIconColor='#888'] 輸入圖標顏色字串，預設'#888'
-        //  * @vue-prop {String} [listItemIconColorHover='#777'] 輸入滑鼠移入時圖標顏色字串，預設'#777'
-        //  * @vue-prop {String} [listItemIconColorActive='#666'] 輸入主動模式時圖標顏色字串，預設'#666'
-        //  * @vue-prop {String} [listItemRippleColor='rgba(255,255,255,0.4)'] 輸入ripple效果顏色字串，預設'rgba(255,255,255,0.4)'
-        listDefItemHeight: { //bbb
+        //  * @vue-prop {Number} [listDefItemHeight=30] 輸入清單區按需顯示時各項目預設最小高度(min-height)值，單位為px，預設30
+        //  * @vue-prop {Object} [listPaddingStyle={v:0,h:6}] 輸入清單區項目之內寬距離設定物件，可用鍵值為v、h、left、right、top、bottom，v代表同時設定top與bottom，h代表設定left與right，若有重複設定時後面鍵值會覆蓋前面，各鍵值為寬度數字，單位為px，預設{v:0,h:6}
+        //  * @vue-prop {String} [listItemBackgroundColor='transparent'] 輸入清單區項目之背景顏色字串，預設'transparent'
+        //  * @vue-prop {String} [listItemBackgroundColorHover='rgba(200,200,200,0.2)'] 輸入滑鼠移入時清單區項目之背景顏色字串，預設'rgba(200,200,200,0.2)'
+        //  * @vue-prop {String} [listItemBackgroundColorActive='rgba(100,100,100,0.2)'] 輸入主動模式時清單區項目之背景顏色字串，預設'rgba(100,100,100,0.2)'
+        //  * @vue-prop {String} [listItemTextFontSize='0.85rem'] 輸入清單區項目之文字字型大小字串，預設'0.85rem'
+        //  * @vue-prop {String} [listItemTextColor='#444'] 輸入清單區項目之文字顏色字串，預設'#444'
+        //  * @vue-prop {String} [listItemTextColorHover='#222'] 輸入滑鼠移入時清單區項目之文字顏色字串，預設'#222'
+        //  * @vue-prop {String} [listItemTextColorActive='#000'] 輸入主動模式時清單區項目之文字顏色字串，預設'#000'
+        //  * @vue-prop {String} [listFolderIcon=mdiFolder] 輸入清單區項目之資料夾圖標字串，預設mdiFolder
+        //  * @vue-prop {String} [listFileIcon=mdiFileOutline] 輸入清單區項目之檔案圖標字串，預設mdiFileOutline
+        //  * @vue-prop {Number} [listItemIconSize=22] 輸入清單區項目之圖標尺寸數字，單位px，預設22
+        //  * @vue-prop {String} [listItemIconColor='#888'] 輸入清單區項目之圖標顏色字串，預設'#888'
+        //  * @vue-prop {String} [listItemIconColorHover='#777'] 輸入滑鼠移入時清單區項目之圖標顏色字串，預設'#777'
+        //  * @vue-prop {String} [listItemIconColorActive='#666'] 輸入主動模式時清單區項目之圖標顏色字串，預設'#666'
+        //  * @vue-prop {String} [listItemRippleColor='rgba(255,255,255,0.4)'] 輸入清單區項目之ripple效果顏色字串，預設'rgba(255,255,255,0.4)'
+        //  * @vue-prop {String} [listBackgroundColor='#fff'] 輸入清單區背景顏色字串，預設'#fff'
+        listDefItemHeight: {
             type: Number,
             default: 30,
         },
@@ -461,10 +530,6 @@ export default {
             type: String,
             default: mdiFileOutline,
         },
-        listIconSize: {
-            type: Number,
-            default: 20,
-        },
         listItemIconSize: {
             type: Number,
             default: 22,
@@ -485,6 +550,10 @@ export default {
             type: String,
             default: 'rgba(255,255,255,0.4)',
         },
+        listBackgroundColor: {
+            type: String,
+            default: '#fff',
+        },
 
         //  * @vue-prop {String} [btnDisplayTreeIconShow=mdiArrowRightBoldHexagonOutline] 輸入顯示tree按鈕圖標字串，預設mdiArrowRightBoldHexagonOutline
         //  * @vue-prop {String} [btnDisplayTreeIconShow=mdiArrowLeftBoldHexagonOutline] 輸入隱藏tree按鈕圖標字串，預設mdiArrowLeftBoldHexagonOutline
@@ -495,82 +564,87 @@ export default {
         //  * @vue-prop {String} [btnDisplayTreeBackgroundColor='transparent'] 輸入顯隱tree按鈕背景顏色字串，預設'transparent'
         //  * @vue-prop {String} [btnDisplayTreeBackgroundColorHover='rgb(236,236,236)'] 輸入滑鼠移入時顯隱tree按鈕背景顏色字串，預設'rgb(236,236,236)'
         //  * @vue-prop {String} [btnDisplayTreeBackgroundColorFocus='rgb(230,230,230)'] 輸入主動模式時顯隱tree按鈕背景顏色字串，預設'rgb(230,230,230)'
-        btnDisplayTreeIconShow: { //bbb
+        btnDisplayTreeIconShow: {
             type: String,
             default: mdiArrowRightBoldHexagonOutline,
         },
-        btnDisplayTreeIconHide: { //bbb
+        btnDisplayTreeIconHide: {
             type: String,
             default: mdiArrowLeftBoldHexagonOutline,
         },
-        btnDisplayTreeIconSize: { //bbb
+        btnDisplayTreeIconSize: {
             type: Number,
             default: 20,
         },
-        btnDisplayTreeIconColor: { //bbb
+        btnDisplayTreeIconColor: {
             type: String,
             default: 'grey darken-1',
         },
-        btnDisplayTreeIconColorHover: { //bbb
+        btnDisplayTreeIconColorHover: {
             type: String,
             default: 'grey darken-2',
         },
-        btnDisplayTreeIconColorFocus: { //bbb
+        btnDisplayTreeIconColorFocus: {
             type: String,
             default: 'grey darken-3',
         },
-        btnDisplayTreeBackgroundColor: { //bbb
+        btnDisplayTreeBackgroundColor: {
             type: String,
             default: 'transparent',
         },
-        btnDisplayTreeBackgroundColorHover: { //bbb
+        btnDisplayTreeBackgroundColorHover: {
             type: String,
             default: 'rgb(236,236,236)',
         },
-        btnDisplayTreeBackgroundColorFocus: { //bbb
+        btnDisplayTreeBackgroundColorFocus: {
             type: String,
             default: 'rgb(230,230,230)',
         },
 
-        //  * @vue-prop {String} [pathTextColor='#444'] 輸入文字顏色字串，預設'#444'
-        //  * @vue-prop {String} [pathTextColorHover='#222'] 輸入滑鼠移入時文字顏色字串，預設'#222'
-        //  * @vue-prop {String} [pathTextFontSize='0.85rem'] 輸入文字字型大小字串，預設'0.85rem'
-        //  * @vue-prop {String} [pathSepIcon=mdiChevronRight] 輸入分隔圖標字串，預設mdiChevronRight
-        //  * @vue-prop {String} [pathSepIconColor='#888'] 輸入分隔圖標顏色字串，預設'#888'
-        //  * @vue-prop {Number} [pathSepIconSize=18] 輸入分隔圖標之尺寸數字，單位px，預設18
-        //  * @vue-prop {String} [pathBackgroundColor='transparent'] 輸入背景顏色字串，預設'transparent'
-        //  * @vue-prop {String} [pathBackgroundColorHover='rgb(236,236,236)'] 輸入滑鼠移入時背景顏色字串，預設'rgb(236,236,236)'
-        pathTextColor: {
+        //  * @vue-prop {String} [pathBtnTextColor='#444'] 輸入路徑區按鈕之文字顏色字串，預設'#444'
+        //  * @vue-prop {String} [pathBtnTextColorHover='#222'] 輸入滑鼠移入時路徑區按鈕之文字顏色字串，預設'#222'
+        //  * @vue-prop {String} [pathBtnTextFontSize='0.85rem'] 輸入路徑區按鈕之文字字型大小字串，預設'0.85rem'
+        //  * @vue-prop {String} [pathBtnBackgroundColor='transparent'] 輸入路徑區按鈕之背景顏色字串，預設'transparent'
+        //  * @vue-prop {String} [pathBtnBackgroundColorHover='rgb(236,236,236)'] 輸入滑鼠移入時路徑區按鈕之背景顏色字串，預設'rgb(236,236,236)'
+        //  * @vue-prop {String} [pathSepIcon=mdiChevronRight] 輸入路徑區分隔符號之圖標字串，預設mdiChevronRight
+        //  * @vue-prop {String} [pathSepIconColor='#888'] 輸入路徑區分隔符號之圖標顏色字串，預設'#888'
+        //  * @vue-prop {Number} [pathSepIconSize=18] 輸入路徑區分隔符號之圖標尺寸數字，單位px，預設18
+        //  * @vue-prop {String} [pathBackgroundColor='transparent'] 輸入路徑區背景顏色字串，預設'#fff'
+        pathBtnTextColor: {
             type: String,
             default: '#444',
         },
-        pathTextColorHover: {
+        pathBtnTextColorHover: {
             type: String,
             default: '#222',
         },
-        pathTextFontSize: {
+        pathBtnTextFontSize: {
             type: String,
             default: '0.85rem',
         },
-        pathSepIcon: { //bbb
+        pathBtnBackgroundColor: {
+            type: String,
+            default: 'transparent',
+        },
+        pathBtnBackgroundColorHover: {
+            type: String,
+            default: 'rgb(236,236,236)',
+        },
+        pathSepIcon: {
             type: String,
             default: mdiChevronRight,
         },
-        pathSepIconColor: { //bbb
+        pathSepIconColor: {
             type: String,
             default: '#888',
         },
-        pathSepIconSize: { //bbb
+        pathSepIconSize: {
             type: Number,
             default: 18,
         },
         pathBackgroundColor: {
             type: String,
-            default: 'transparent',
-        },
-        pathBackgroundColorHover: {
-            type: String,
-            default: 'rgb(236,236,236)',
+            default: '#fff',
         },
 
         //  * @vue-prop {String} [noSelectedText='No selected folder'] 輸入尚未選擇資料夾字串，預設'No selected folder'
@@ -587,7 +661,7 @@ export default {
             panelHeight: 0,
             pathHeight: 0,
 
-            showTree: true,
+            showTreeTrans: true,
             treeWidth: 200,
 
             folderItemActive: null,
@@ -604,7 +678,15 @@ export default {
     },
     computed: {
 
+        changeShowTree: function() {
+            // console.log('changeShowTree')
+            let vo = this
+            vo.showTreeTrans = vo.showTree
+            return ''
+        },
+
         changeItems: function() {
+            // console.log('changeItems')
             let vo = this
             let r = filepathToTree(vo.items)
             vo.treeItemsFolder = r.treeItemsFolder
@@ -613,20 +695,25 @@ export default {
             return ''
         },
 
+        effTreeBackgroundColor: function() {
+            let vo = this
+            return color2hex(vo.treeBackgroundColor)
+        },
+
+        effListBackgroundColor: function() {
+            let vo = this
+            return color2hex(vo.listBackgroundColor)
+        },
+
+        effPathBackgroundColor: function() {
+            let vo = this
+            return color2hex(vo.pathBackgroundColor)
+        },
+
         effLineBetweenPathAndListColor: function() {
             let vo = this
             return color2hex(vo.lineBetweenPathAndListColor)
         },
-
-        // effTreeItemTextColorHover: function() {
-        //     let vo = this
-        //     return color2hex(vo.treeItemTextColorHover)
-        // },
-
-        // effTreeItemTextColorActive: function() {
-        //     let vo = this
-        //     return color2hex(vo.treeItemTextColorActive)
-        // },
 
         effTreeFolderIconColor: function() {
             let vo = this
@@ -642,21 +729,6 @@ export default {
             let vo = this
             return color2hex(vo.treeFolderIconColorActive)
         },
-
-        // effTextColor: function() {
-        //     let vo = this
-        //     return color2hex(vo.textColor)
-        // },
-
-        // effTextColorHover: function() {
-        //     let vo = this
-        //     return color2hex(vo.textColorHover)
-        // },
-
-        // effTextColorActive: function() {
-        //     let vo = this
-        //     return color2hex(vo.textColorActive)
-        // },
 
         useTreeItemTextFontSize: function() {
             let vo = this
@@ -687,9 +759,9 @@ export default {
             return color2hex(vo.listItemIconColorActive)
         },
 
-        usePathTextFontSize: function() {
+        usePathBtnTextFontSize: function() {
             let vo = this
-            let s = vo.pathTextFontSize
+            let s = vo.pathBtnTextFontSize
             s = replace(s, ';', '')
             return `font-size:${s};`
         },
@@ -699,20 +771,10 @@ export default {
             return vo.panelHeight - vo.pathHeight
         },
 
-        effPathTextColor: function() {
+        effPathBtnTextColor: function() {
             let vo = this
-            return color2hex(vo.pathTextColor)
+            return color2hex(vo.pathBtnTextColor)
         },
-
-        // effFolderIconColor: function() {
-        //     let vo = this
-        //     return color2hex(vo.folderIconColor)
-        // },
-
-        // effFileIconColor: function() {
-        //     let vo = this
-        //     return color2hex(vo.fileIconColor)
-        // },
 
     },
     methods: {
@@ -739,33 +801,18 @@ export default {
 
         },
 
-        // getTreeItemTextColor: function(props) {
-        //     console.log('methods getTreeItemTextColor', props)
+        emitShowTree: function(b) {
+            // console.log('methods emitShowTree', b)
 
-        //     let vo = this
+            let vo = this
 
-        //     //isHover
-        //     let isHover = get(props, 'isHover')
-        //     if (!isbol(isHover)) {
-        //         isHover = false
-        //     }
-        //     console.log('isHover', isHover)
+            //update
+            vo.showTreeTrans = b
 
-        //     //isActive
-        //     let isActive = get(props, 'isActive')
-        //     if (!isbol(isActive)) {
-        //         isActive = false
-        //     }
-        //     console.log('isActive', isActive)
+            //emit
+            vo.$emit('update:showTree', b)
 
-        //     if (isActive) {
-        //         return vo.effTreeItemTextColorActive
-        //     }
-        //     else if (isHover) {
-        //         return vo.effTreeItemTextColorHover
-        //     }
-        //     return vo.effTreeItemTextColor
-        // },
+        },
 
         getTreeFolderIconColor: function(props) {
             // console.log('methods getTreeFolderIconColor', props)
@@ -832,25 +879,17 @@ export default {
             let rs = map(children, (v) => {
                 let text = ''
                 let icon = ''
-                let iconColor = ''
-                let iconSize = null
                 if (v._type === 'folder') {
                     text = v.text
                     icon = vo.listFolderIcon
-                    // iconColor = vo.effFolderIconColor
-                    // iconSize = vo.folderIconSize
                 }
                 else {
                     text = v.text
                     icon = vo.listFileIcon
-                    // iconColor = vo.effFileIconColor
-                    // iconSize = vo.fileIconSize
                 }
                 return {
                     text,
                     icon,
-                    iconColor,
-                    iconSize,
                     data: v,
                 }
             })
@@ -986,6 +1025,22 @@ export default {
                 vo.fileItemActive = null
             })
 
+        },
+
+        toggleTreeFoldersByFun: function(cb) {
+            // console.log('methods toggleTreeFoldersByFun', cb)
+
+            let vo = this
+
+            return vo.$refs.wt.toggleItemsByFun(cb)
+        },
+
+        toggleTreeFoldersAll: function(toUnfolding) {
+            // console.log('methods toggleTreeFoldersAll', toUnfolding)
+
+            let vo = this
+
+            return vo.$refs.wt.toggleItemsAll(toUnfolding)
         },
 
     },

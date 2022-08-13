@@ -8,14 +8,14 @@
         <div style="padding:0px;">
 
 
-            <div class="bk dz">
+            <div class="bk">
                 <demolink
                     :kbname="'w-dynamic-list'"
                     :casename="'default'"
                 ></demolink>
 
                 <w-dynamic-list
-                    style="border:1px solid #ddd;"
+                    style="width:400px; border:1px solid #ddd;"
                     :rows="WDynamicList.data1"
                 >
                     <template v-slot="props">
@@ -36,7 +36,7 @@
             </div>
 
 
-            <div class="bk dz">
+            <div class="bk">
                 <demolink
                     :kbname="'w-dynamic-list'"
                     :casename="'viewHeightMax'"
@@ -48,7 +48,7 @@
                 </div>
 
                 <w-dynamic-list
-                    style="border:1px solid #ddd;"
+                    style="width:400px; border:1px solid #ddd;"
                     :viewHeightMax="WDynamicList.viewHeightMax"
                     :rows="WDynamicList.data1"
                 >
@@ -70,7 +70,7 @@
             </div>
 
 
-            <div class="bk dz">
+            <div class="bk">
                 <demolink
                     :kbname="'w-dynamic-list'"
                     :casename="'change rows'"
@@ -82,7 +82,7 @@
                 </div>
 
                 <w-dynamic-list
-                    style="border:1px solid #ddd;"
+                    style="width:400px; border:1px solid #ddd;"
                     :rows="WDynamicList.changeText?WDynamicList.data2:WDynamicList.data1"
                 >
                     <template v-slot="props">
@@ -103,7 +103,7 @@
             </div>
 
 
-            <div class="bk dz">
+            <div class="bk">
                 <demolink
                     :kbname="'w-dynamic-list'"
                     :casename="'change slot'"
@@ -115,7 +115,7 @@
                 </div>
 
                 <w-dynamic-list
-                    style="border:1px solid #ddd;"
+                    style="width:400px; border:1px solid #ddd;"
                     :rows="WDynamicList.data1"
                 >
                     <template v-slot="props">
@@ -147,7 +147,7 @@
             </div>
 
 
-            <div class="bk dz">
+            <div class="bk">
                 <demolink
                     :kbname="'w-dynamic-list'"
                     :casename="'filterKeywords & noResultsText'"
@@ -162,7 +162,7 @@
                 </div>
 
                 <w-dynamic-list
-                    style="border:1px solid #ddd;"
+                    style="width:400px; border:1px solid #ddd;"
                     :filterKeywords="WDynamicList.keywords"
                     :noResultsText="'There are no items to show...'"
                     :rows="WDynamicList.data1"
@@ -185,14 +185,14 @@
             </div>
 
 
-            <div class="bk dz">
+            <div class="bk">
                 <demolink
                     :kbname="'w-dynamic-list'"
                     :casename="'render'"
                 ></demolink>
 
                 <w-dynamic-list
-                    style="border:1px solid #ddd;"
+                    style="width:400px; border:1px solid #ddd;"
                     :rows="WDynamicList.data1"
                     @render="render"
                 >
@@ -214,14 +214,14 @@
             </div>
 
 
-            <div class="bk dz">
+            <div class="bk">
                 <demolink
                     :kbname="'w-dynamic-list'"
                     :casename="'slot item with image'"
                 ></demolink>
 
                 <w-dynamic-list
-                    style="border:1px solid #ddd;"
+                    style="width:400px; border:1px solid #ddd;"
                     :rows="WDynamicList.data3"
                 >
                     <template v-slot="props">
@@ -251,7 +251,7 @@
             </div>
 
 
-            <div class="bk dz">
+            <div class="bk">
                 <demolink
                     :kbname="'w-dynamic-list'"
                     :casename="'processItems'"
@@ -264,7 +264,7 @@
 
                 <w-dynamic-list
                     ref="wdl"
-                    style="border:1px solid #ddd;"
+                    style="width:400px; border:1px solid #ddd;"
                     :rows="WDynamicList.data4"
                 >
                     <template v-slot="props">
@@ -294,7 +294,7 @@
             </div>
 
 
-            <div class="bk" style="display:block; margin:0px 10px 0px 0px;">
+            <div class="bk" style="display:block;">
                 <demolink
                     :kbname="'w-dynamic-list'"
                     :casename="'large data (1,000,000 items)'"

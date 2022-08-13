@@ -8,76 +8,92 @@
         <div style="padding:0px;">
 
 
-            <div class="bk dz">
+            <div class="bk">
                 <demolink
                     :kbname="'w-json-view'"
                     :casename="'default'"
                 ></demolink>
 
                 <w-json-view
-                    style="border:1px solid #ddd;"
+                    style="width:350px; border:1px solid #ddd;"
                     :data="WJsonView.data1"
                 ></w-json-view>
 
             </div>
 
 
-            <div class="bk dz">
+            <div class="bk">
                 <demolink
                     :kbname="'w-json-view'"
                     :casename="'viewHeightMax'"
                 ></demolink>
 
                 <w-json-view
-                    style="border:1px solid #ddd;"
-                    :viewHeightMax="250"
+                    style="width:350px; border:1px solid #ddd;"
                     :data="WJsonView.data3"
+                    :viewHeightMax="250"
                 ></w-json-view>
 
             </div>
 
 
-            <div class="bk dz">
+            <div class="bk">
                 <demolink
                     :kbname="'w-json-view'"
                     :casename="'no viewHeightMax'"
                 ></demolink>
 
                 <w-json-view
-                    style="border:1px solid #ddd;"
-                    :viewHeightMax="null"
+                    style="width:350px; border:1px solid #ddd;"
                     :data="WJsonView.data3"
+                    :viewHeightMax="null"
                 ></w-json-view>
 
             </div>
 
 
-            <div class="bk dz">
+            <div class="bk">
                 <demolink
                     :kbname="'w-json-view'"
                     :casename="'iconSize(24) & defItemHeight(32)'"
                 ></demolink>
 
                 <w-json-view
-                    style="border:1px solid #ddd;"
+                    style="width:350px; border:1px solid #ddd;"
+                    :data="WJsonView.data1"
                     :iconSize="24"
                     :defItemHeight="32"
-                    :data="WJsonView.data1"
                 ></w-json-view>
 
             </div>
 
 
-            <div class="bk dz">
+            <div class="bk">
+                <demolink
+                    :kbname="'w-json-view'"
+                    :casename="'rippleColor'"
+                ></demolink>
+
+                <w-json-view
+                    style="width:350px; border:1px solid #ddd;"
+                    :data="WJsonView.data3"
+                    :viewHeightMax="WJsonView.viewHeightMaxSync"
+                    :rippleColor="'rgba(245,124,0,0.4)'"
+                ></w-json-view>
+
+            </div>
+
+
+            <div class="bk">
                 <demolink
                     :kbname="'w-json-view'"
                     :casename="'events'"
                 ></demolink>
 
                 <w-json-view
-                    style="border:1px solid #ddd;"
-                    :viewHeightMax="WJsonView.viewHeightMaxSync"
+                    style="width:350px; border:1px solid #ddd;"
                     :data="WJsonView.data3"
+                    :viewHeightMax="WJsonView.viewHeightMaxSync"
                     @change-view-items="changeViewItems"
                     @change-height-of-items="changeHeightOfItems"
                 ></w-json-view>
@@ -85,31 +101,53 @@
             </div>
 
 
-            <div class="bk dz">
+            <div class="bk">
                 <demolink
                     :kbname="'w-json-view'"
                     :casename="'toggleItemsByFun'"
                 ></demolink>
 
                 <div>
-                    <v-btn style="margin:0px 5px 5px 0px;" small @click="toggleItems(0)">toggle(rows[0])</v-btn>
-                    <v-btn style="margin:0px 5px 5px 0px;" small @click="toggleItems(0, true)">show(rows[0])</v-btn>
-                    <v-btn style="margin:0px 5px 5px 0px;" small @click="toggleItems(0, false)">hide(rows[0])</v-btn>
-                    <v-btn style="margin:0px 5px 5px 0px;" small @click="toggleItems(6)">toggle(rows[6])</v-btn>
-                    <v-btn style="margin:0px 5px 5px 0px;" small @click="toggleItems(9)">toggle(rows[9])</v-btn>
+                    <v-btn style="margin:0px 5px 5px 0px;" small @click="toggleItemsByFun(0, true)">show(rows[0])</v-btn>
+                    <v-btn style="margin:0px 5px 5px 0px;" small @click="toggleItemsByFun(0, false)">hide(rows[0])</v-btn>
+                    <v-btn style="margin:0px 5px 5px 0px;" small @click="toggleItemsByFun(6, true)">show(rows[6])</v-btn>
+                    <v-btn style="margin:0px 5px 5px 0px;" small @click="toggleItemsByFun(6, false)">hide(rows[6])</v-btn>
+                    <v-btn style="margin:0px 5px 5px 0px;" small @click="toggleItemsByFun(9, true)">show(rows[9])</v-btn>
+                    <v-btn style="margin:0px 5px 5px 0px;" small @click="toggleItemsByFun(9, false)">hide(rows[9])</v-btn>
                 </div>
 
                 <w-json-view
                     ref="ref_toggleItemsByFun"
-                    style="border:1px solid #ddd;"
-                    :viewHeightMax="WJsonView.viewHeightMaxSync"
+                    style="width:350px; border:1px solid #ddd;"
                     :data="WJsonView.data3"
+                    :viewHeightMax="WJsonView.viewHeightMaxSync"
                 ></w-json-view>
 
             </div>
 
 
-            <div class="bk dz">
+            <div class="bk">
+                <demolink
+                    :kbname="'w-json-view'"
+                    :casename="'toggleItemsAll'"
+                ></demolink>
+
+                <div>
+                    <v-btn style="margin:0px 5px 5px 0px;" small @click="toggleItemsAll(true)">show all</v-btn>
+                    <v-btn style="margin:0px 5px 5px 0px;" small @click="toggleItemsAll(false)">hide all</v-btn>
+                </div>
+
+                <w-json-view
+                    ref="ref_toggleItemsAll"
+                    style="width:350px; border:1px solid #ddd;"
+                    :data="WJsonView.data3"
+                    :viewHeightMax="WJsonView.viewHeightMaxSync"
+                ></w-json-view>
+
+            </div>
+
+
+            <div class="bk">
                 <demolink
                     :kbname="'w-json-view'"
                     :casename="'filterKeywords & noResultsText'"
@@ -124,16 +162,16 @@
                 </div>
 
                 <w-json-view
-                    style="border:1px solid #ddd;"
+                    style="width:350px; border:1px solid #ddd;"
+                    :data="WJsonView.data3"
                     :filterKeywords="WJsonView.keywords"
                     :noResultsText="'There are no items to show...'"
-                    :data="WJsonView.data3"
                 ></w-json-view>
 
             </div>
 
 
-            <div class="bk dz">
+            <div class="bk">
                 <demolink
                     :kbname="'w-json-view'"
                     :casename="'filterKeywords & filterFunction'"
@@ -148,23 +186,24 @@
                 </div>
 
                 <w-json-view
-                    style="border:1px solid #ddd;"
+                    style="width:350px; border:1px solid #ddd;"
+                    :data="WJsonView.data3"
                     :filterKeywords="WJsonView.keywords"
                     :filterFunction="filterFunction"
-                    :data="WJsonView.data3"
                 ></w-json-view>
 
             </div>
 
 
-            <div class="bk dz">
+            <div class="bk">
                 <demolink
                     :kbname="'w-json-view'"
                     :casename="'iconColor & keyColor & keyNumbersColor & numColor & strColor & bolColor & funColor'"
                 ></demolink>
 
                 <w-json-view
-                    style="border:1px solid #ddd;"
+                    style="width:350px; border:1px solid #ddd;"
+                    :data="WJsonView.data1"
                     :iconColor="'#aaa'"
                     :keyColor="'#f6a'"
                     :keyNumbersColor="'#f26'"
@@ -172,13 +211,12 @@
                     :strColor="'#bbb'"
                     :bolColor="'#c5f'"
                     :funColor="'#fa6'"
-                    :data="WJsonView.data1"
                 ></w-json-view>
 
             </div>
 
 
-            <div class="bk" style="display:block; margin:0px 10px 0px 0px;">
+            <div class="bk" style="display:block;">
                 <demolink
                     :kbname="'w-json-view'"
                     :casename="'large data (15,500 lines)'"
@@ -318,19 +356,28 @@ export default {
             }
             return b
         },
-        toggleItems: function(ind, toUnfolding) {
-            console.log('toggleItems', ind, toUnfolding)
+        toggleItemsByFun: function(ind, toUnfolding) {
+            console.log('toggleItemsByFun', ind, toUnfolding)
 
             let vo = this
 
             //toggleItemsByFun
             vo.$refs.ref_toggleItemsByFun.toggleItemsByFun((rows) => {
-                console.log('toggleItems rows', rows)
+                console.log('toggleItemsByFun rows', rows)
                 return {
                     row: rows[ind],
                     toUnfolding,
                 }
             })
+
+        },
+        toggleItemsAll: function(toUnfolding) {
+            console.log('toggleItemsAll', toUnfolding)
+
+            let vo = this
+
+            //toggleItemsAll
+            vo.$refs.ref_toggleItemsAll.toggleItemsAll(toUnfolding)
 
         },
     },

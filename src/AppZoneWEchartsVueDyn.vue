@@ -138,8 +138,9 @@
 
                 <!-- 用:style才能支援IE11因vue會自動把overflow-y:auto轉為-ms-overflow-y:auto -->
                 <div :style="'overflow-y:auto; height:300px;'">
+                    <!-- echarts要給寬度否則無法撐開 -->
                     <w-echarts-vue-dyn
-                        style="width:95%; height:2300px;"
+                        style="width:100%; height:2300px;"
                         :options="WEchartsVueDyn.options9"
                     ></w-echarts-vue-dyn>
                 </div>
@@ -153,6 +154,7 @@
                     :casename="'treemap'"
                 ></demolink>
 
+                <!-- echarts要給寬度否則無法撐開 -->
                 <w-echarts-vue-dyn
                     style="width:100%; height:500px;"
                     :options="WEchartsVueDyn.options10"

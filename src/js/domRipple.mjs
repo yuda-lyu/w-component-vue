@@ -62,7 +62,8 @@ function domRipple(opt = {}) {
         //color
         let color = get(binding, 'value.color')
         if (!isestr(color)) {
-            color = 'rgba(255, 255, 255, 0.5)'
+            // color = 'rgba(255, 255, 255, 0.5)'
+            return //若不給顏色則不使用
         }
         color = color2hex(color)
 

@@ -10,7 +10,7 @@
             :iconToggleColor="iconToggleColor"
             :iconToggleBackgroundColor="iconToggleBackgroundColor"
             :iconToggleBackgroundColorHover="iconToggleBackgroundColorHover"
-            :iconVerticalAlign="'top'"
+            :itemRippleColor="rippleColor"
             :filterKeywords="filterKeywords"
             :filterFunction="filterFunction"
             :loadingText="loadingText"
@@ -24,7 +24,7 @@
         >
             <template v-slot:head="props">
 
-                <div :style="`min-width:${lineNumberWidth}px; height:${iconSize}px; display:flex; align-items:center; justify-content:end;`">
+                <div :style="`${useItemHeightMin} min-width:${lineNumberWidth}px; display:flex; align-items:center; justify-content:end;`">
                     <div :style="`font-size:0.8rem; padding-top:1px; color:#f26; user-select:none;`">{{props.index+1}}</div>
                 </div>
 
@@ -32,7 +32,7 @@
 
             <template v-slot:item="props">
 
-                <div style="display:flex; align-items:center;">
+                <div :style="`${useItemHeightMin} display:flex; align-items:center;`">
 
                     <div style="display:flex;">
                         <div :style="`padding-right:5px; color:${useColors.keyColor};`" v-if="getKey(props.data)!==''">
@@ -129,6 +129,7 @@ import WTree from './WTree.vue'
  * @vue-prop {String} [bolColor='#ab0d90'] 輸入值為布林值時的顏色字串，預設'#ab0d90'
  * @vue-prop {String} [funColor='purple accent-2'] 輸入值為函數時的顏色字串，預設'purple accent-2'
  * @vue-prop {String} [defaultColor='grey darken-4'] 輸入值為其他類型時的顏色字串，預設'grey darken-4'
+ * @vue-prop {String} [rippleColor='rgba(200,200,200,0.4)'] 輸入ripple效果顏色字串，預設'rgba(200,200,200,0.4)'
  * @vue-prop {Boolean} [show=true] 輸入是否為顯示模式，預設true，供組件嵌入popup時, 因先初始化但尚未顯示不需渲染, 可給予show=false避免無限偵測與重算高度問題
  */
 export default {
@@ -226,6 +227,10 @@ export default {
             type: String,
             default: 'grey darken-4',
         },
+        rippleColor: {
+            type: String,
+            default: 'rgba(200,200,200,0.4)',
+        },
         show: {
             type: Boolean,
             default: true,
@@ -300,6 +305,14 @@ export default {
 
         //     return ft
         // },
+
+        useItemHeightMin: function() {
+            //console.log('computed useItemHeightMin')
+
+            let vo = this
+
+            return `min-height:${Math.max(vo.iconSize, vo.defItemHeight)}px;`
+        },
 
     },
     methods: {
@@ -548,6 +561,14 @@ export default {
             let vo = this
 
             return vo.$refs.wt.toggleItemsByFun(cb)
+        },
+
+        toggleItemsAll: function(toUnfolding) {
+            // console.log('methods toggleItemsAll', toUnfolding)
+
+            let vo = this
+
+            return vo.$refs.wt.toggleItemsAll(toUnfolding)
         },
 
     },
