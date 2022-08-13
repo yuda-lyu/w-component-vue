@@ -85,7 +85,7 @@
     </script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.2.34/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.2.35/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -112,17 +112,13 @@
   }
   .bk {
     vertical-align: top;
-    margin: 10px 0px 0px 0px;
-    padding: 0px 0px 60px 0px;
+    padding: 10px 0px 60px 0px;
   }
   @media screen and (min-width: 1000px) {
     /* 寬版 */
     .bk {
       display: inline-block;
       margin: 0px 80px 0px 0px;
-    }
-    .dz {
-      width: 400px;
     }
   }
     </style>
@@ -141,7 +137,7 @@
         <div class="bk">
             <div class="item">slot avatar &amp; avatarBackgroundColor</div>
 
-            <div style="max-width:400px; padding:40px; background:#bbb;">
+            <div style="display:inline-block; padding:40px; background:#bbb;">
                 <w-panel-avatar
                     :sub-header-text="WPanelAvatar.subTitle"
                     :header-text="WPanelAvatar.title"

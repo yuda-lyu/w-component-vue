@@ -85,7 +85,7 @@
     </script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.2.34/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.2.35/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -112,17 +112,13 @@
   }
   .bk {
     vertical-align: top;
-    margin: 10px 0px 0px 0px;
-    padding: 0px 0px 60px 0px;
+    padding: 10px 0px 60px 0px;
   }
   @media screen and (min-width: 1000px) {
     /* 寬版 */
     .bk {
       display: inline-block;
       margin: 0px 80px 0px 0px;
-    }
-    .dz {
-      width: 400px;
     }
   }
     </style>
@@ -138,13 +134,13 @@
                 onclick="window.open('//yuda-lyu.github.io/w-component-vue/examples/app.html?cmp='+this.innerText,'_blank')"
             >w-tree</span>
         </div>
-        <div class="bk dz">
+        <div class="bk">
             <div class="item">paddingStyle</div>
 
             <w-tree
-                style="border:1px solid #ddd;"
-                :padding-style="{v:5,h:5}"
+                style="width:350px; border:1px solid #ddd;"
                 :data="WTree.option.items"
+                :padding-style="{v:5,h:5}"
             ></w-tree>
         </div>
     </v-app>
@@ -653,19 +649,27 @@
         }
         return b;
       },
-      toggleItems: function(ind, toUnfolding) {
-        console.log("toggleItems", ind, toUnfolding);
+      toggleItemsByFun: function(ind, toUnfolding) {
+        console.log("toggleItemsByFun", ind, toUnfolding);
 
         let vo = this;
 
         //toggleItemsByFun
         vo.$refs.ref_toggleItemsByFun.toggleItemsByFun(rows => {
-          console.log("toggleItems rows", rows);
+          console.log("toggleItemsByFun rows", rows);
           return {
             row: rows[ind],
             toUnfolding
           };
         });
+      },
+      toggleItemsAll: function(toUnfolding) {
+        console.log("toggleItemsAll", toUnfolding);
+
+        let vo = this;
+
+        //toggleItemsAll
+        vo.$refs.ref_toggleItemsAll.toggleItemsAll(toUnfolding);
       }
     }
   });
