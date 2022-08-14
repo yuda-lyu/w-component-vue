@@ -85,7 +85,7 @@
     </script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.2.35/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.2.36/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -134,7 +134,7 @@
                 onclick="window.open('//yuda-lyu.github.io/w-component-vue/examples/app.html?cmp='+this.innerText,'_blank')"
             >w-explorer</span>
         </div>
-        <div class="bk">
+        <div v-if="false" class="bk">
             <div
                 class="item"
             >btnDisplayTreeBackgroundColor &amp; btnDisplayTreeBackgroundColorHover &amp; btnDisplayTreeBackgroundColorFocus</div>
@@ -557,6 +557,54 @@
 
         //toggleTreeFoldersAll
         vo.$refs.ref_toggleTreeFoldersAll.toggleTreeFoldersAll(toUnfolding);
+      },
+      ckTriggerClickTreeFolderById: function(treeItemId) {
+        console.log("ckTriggerClickTreeFolderById", treeItemId);
+
+        let vo = this;
+
+        //triggerClickTreeFolderById
+        vo.$refs.we_triggerClickTreeFolderById.triggerClickTreeFolderById(
+          treeItemId
+        );
+      },
+      ckTriggerClickTreeFolderByFun: function(text) {
+        console.log("ckTriggerClickTreeFolderByFun", text);
+
+        let vo = this;
+
+        //triggerClickTreeFolderByFun
+        vo.$refs.we_triggerClickTreeFolderByFun.triggerClickTreeFolderByFun(
+          msg => {
+            console.log("cb msg", msg);
+
+            //find and triggerClickTreeFolderById
+            for (let k = 0; k < msg.treeItemsSpread.length; k++) {
+              let v = msg.treeItemsSpread[k];
+              // console.log(v)
+              if (v.text === text) {
+                console.log("find and click", v);
+                // vo.$refs.we_triggerClickTreeFolderByFun.triggerClickTreeFolderById(v.id)
+                // break
+                return v;
+              }
+            }
+
+            return null;
+          }
+        );
+      },
+      getFolderInfor: function(props) {
+        console.log("getFolderInfor", props);
+        let k = 0;
+        for (let i = 0; i < props.items.length; i++) {
+          let v = props.items[i];
+          let t = v.data._type;
+          if (t === "file") {
+            k++;
+          }
+        }
+        return `There are ${k} file(s) in this folder`;
       }
     }
   });

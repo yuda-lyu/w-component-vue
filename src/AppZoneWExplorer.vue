@@ -8,7 +8,7 @@
         <div style="padding:0px;">
 
 
-            <div class="bk">
+            <div v-if="false" class="bk">
                 <demolink
                     :kbname="'w-explorer'"
                     :casename="'default'"
@@ -23,7 +23,23 @@
             </div>
 
 
-            <div class="bk">
+            <div v-if="false" class="bk">
+                <demolink
+                    :kbname="'w-explorer'"
+                    :casename="'bindRoot'"
+                ></demolink>
+
+                <w-explorer
+                    style="width:600px; height:250px;"
+                    :items="WExplorer.fps1"
+                    :bindRoot="'本機'"
+                >
+                </w-explorer>
+
+            </div>
+
+
+            <div v-if="false" class="bk">
                 <demolink
                     :kbname="'w-explorer'"
                     :casename="'treeWidthMin & treeWidthMax'"
@@ -40,7 +56,7 @@
             </div>
 
 
-            <div class="bk">
+            <div v-if="false" class="bk">
                 <demolink
                     :kbname="'w-explorer'"
                     :casename="'treeBackgroundColor'"
@@ -56,14 +72,14 @@
             </div>
 
 
-            <div class="bk">
+            <div v-if="false" class="bk">
                 <demolink
                     :kbname="'w-explorer'"
                     :casename="'showTree & treeAfloat'"
                 ></demolink>
 
                 <div style="padding-bottom:10px;">
-                    <v-btn depressed small elevation="2" @click="WExplorer.bShowTree=!WExplorer.bShowTree">Show({{WExplorer.bShowTree}})</v-btn>
+                    <v-btn style="margin:0px 5px 5px 0px;" small @click="WExplorer.bShowTree=!WExplorer.bShowTree">Show({{WExplorer.bShowTree}})</v-btn>
                 </div>
 
                 <w-explorer
@@ -77,7 +93,7 @@
             </div>
 
 
-            <div class="bk">
+            <div v-if="false" class="bk">
                 <demolink
                     :kbname="'w-explorer'"
                     :casename="'treeDefaultDisplayLevel'"
@@ -86,14 +102,14 @@
                 <w-explorer
                     style="width:600px; height:250px;"
                     :items="WExplorer.fps1"
-                    :treeDefaultDisplayLevel="0"
+                    :treeDefaultDisplayLevel="1"
                 >
                 </w-explorer>
 
             </div>
 
 
-            <div class="bk">
+            <div v-if="false" class="bk">
                 <demolink
                     :kbname="'w-explorer'"
                     :casename="'treeDefItemHeight & listDefItemHeight'"
@@ -110,7 +126,7 @@
             </div>
 
 
-            <div class="bk">
+            <div v-if="false" class="bk">
                 <demolink
                     :kbname="'w-explorer'"
                     :casename="'treePaddingStyle'"
@@ -126,7 +142,7 @@
             </div>
 
 
-            <div class="bk">
+            <div v-if="false" class="bk">
                 <demolink
                     :kbname="'w-explorer'"
                     :casename="'treeIndent'"
@@ -142,7 +158,7 @@
             </div>
 
 
-            <div class="bk">
+            <div v-if="false" class="bk">
                 <demolink
                     :kbname="'w-explorer'"
                     :casename="'toggleTreeIconSize'"
@@ -158,7 +174,7 @@
             </div>
 
 
-            <div class="bk">
+            <div v-if="false" class="bk">
                 <demolink
                     :kbname="'w-explorer'"
                     :casename="'toggleTreeIconColor & toggleTreeIconBackgroundColor & toggleTreeIconBackgroundColorHover'"
@@ -176,7 +192,7 @@
             </div>
 
 
-            <div class="bk">
+            <div v-if="false" class="bk">
                 <demolink
                     :kbname="'w-explorer'"
                     :casename="'treeFolderIcon & treeFolderIconSize'"
@@ -193,7 +209,7 @@
             </div>
 
 
-            <div class="bk">
+            <div v-if="false" class="bk">
                 <demolink
                     :kbname="'w-explorer'"
                     :casename="'treeItemTextFontSize'"
@@ -209,7 +225,7 @@
             </div>
 
 
-            <div class="bk">
+            <div v-if="false" class="bk">
                 <demolink
                     :kbname="'w-explorer'"
                     :casename="'treeItemTextColor & treeItemTextColorHover & treeItemTextColorActive'"
@@ -227,7 +243,7 @@
             </div>
 
 
-            <div class="bk">
+            <div v-if="false" class="bk">
                 <demolink
                     :kbname="'w-explorer'"
                     :casename="'treeFolderIconColor & treeFolderIconColorHover & treeFolderIconColorActive'"
@@ -245,7 +261,7 @@
             </div>
 
 
-            <div class="bk">
+            <div v-if="false" class="bk">
                 <demolink
                     :kbname="'w-explorer'"
                     :casename="'treeItemBackgroundColor & treeItemBackgroundColorHover & treeItemBackgroundColorActive'"
@@ -263,7 +279,7 @@
             </div>
 
 
-            <div class="bk">
+            <div v-if="false" class="bk">
                 <demolink
                     :kbname="'w-explorer'"
                     :casename="'treeItemRippleColor'"
@@ -279,7 +295,7 @@
             </div>
 
 
-            <div class="bk">
+            <div v-if="false" class="bk">
                 <demolink
                     :kbname="'w-explorer'"
                     :casename="'listPaddingStyle'"
@@ -295,7 +311,7 @@
             </div>
 
 
-            <div class="bk">
+            <div v-if="false" class="bk">
                 <demolink
                     :kbname="'w-explorer'"
                     :casename="'listBackgroundColor'"
@@ -311,7 +327,7 @@
             </div>
 
 
-            <div class="bk">
+            <div v-if="false" class="bk">
                 <demolink
                     :kbname="'w-explorer'"
                     :casename="'listFolderIcon & listFileIcon & listIconSize'"
@@ -329,7 +345,7 @@
             </div>
 
 
-            <div class="bk">
+            <div v-if="false" class="bk">
                 <demolink
                     :kbname="'w-explorer'"
                     :casename="'listItemTextFontSize'"
@@ -345,7 +361,7 @@
             </div>
 
 
-            <div class="bk">
+            <div v-if="false" class="bk">
                 <demolink
                     :kbname="'w-explorer'"
                     :casename="'listItemTextColor & listItemTextColorHover & listItemTextColorActive'"
@@ -363,7 +379,7 @@
             </div>
 
 
-            <div class="bk">
+            <div v-if="false" class="bk">
                 <demolink
                     :kbname="'w-explorer'"
                     :casename="'listItemIconColor & listItemIconColorHover & listItemIconColorActive'"
@@ -381,7 +397,7 @@
             </div>
 
 
-            <div class="bk">
+            <div v-if="false" class="bk">
                 <demolink
                     :kbname="'w-explorer'"
                     :casename="'listItemBackgroundColor & listItemBackgroundColorHover & listItemBackgroundColorActive'"
@@ -399,7 +415,7 @@
             </div>
 
 
-            <div class="bk">
+            <div v-if="false" class="bk">
                 <demolink
                     :kbname="'w-explorer'"
                     :casename="'listItemRippleColor'"
@@ -415,7 +431,7 @@
             </div>
 
 
-            <div class="bk">
+            <div v-if="false" class="bk">
                 <demolink
                     :kbname="'w-explorer'"
                     :casename="'pathBackgroundColor'"
@@ -431,7 +447,7 @@
             </div>
 
 
-            <div class="bk">
+            <div v-if="false" class="bk">
                 <demolink
                     :kbname="'w-explorer'"
                     :casename="'pathSepIcon & pathSepIconColor & pathSepIconSize'"
@@ -449,7 +465,7 @@
             </div>
 
 
-            <div class="bk">
+            <div v-if="false" class="bk">
                 <demolink
                     :kbname="'w-explorer'"
                     :casename="'pathBtnTextFontSize'"
@@ -465,7 +481,7 @@
             </div>
 
 
-            <div class="bk">
+            <div v-if="false" class="bk">
                 <demolink
                     :kbname="'w-explorer'"
                     :casename="'pathBtnTextColor & pathBtnTextColorHover'"
@@ -482,7 +498,7 @@
             </div>
 
 
-            <div class="bk">
+            <div v-if="false" class="bk">
                 <demolink
                     :kbname="'w-explorer'"
                     :casename="'pathBtnBackgroundColor & pathBtnBackgroundColorHover'"
@@ -499,7 +515,7 @@
             </div>
 
 
-            <div class="bk">
+            <div v-if="false" class="bk">
                 <demolink
                     :kbname="'w-explorer'"
                     :casename="'btnDisplayTreeIconShow & btnDisplayTreeIconHide & btnDisplayTreeIconSize'"
@@ -517,7 +533,7 @@
             </div>
 
 
-            <div class="bk">
+            <div v-if="false" class="bk">
                 <demolink
                     :kbname="'w-explorer'"
                     :casename="'btnDisplayTreeIconColor & btnDisplayTreeIconColorHover & btnDisplayTreeIconColorFocus'"
@@ -535,7 +551,7 @@
             </div>
 
 
-            <div class="bk">
+            <div v-if="false" class="bk">
                 <demolink
                     :kbname="'w-explorer'"
                     :casename="'btnDisplayTreeBackgroundColor & btnDisplayTreeBackgroundColorHover & btnDisplayTreeBackgroundColorFocus'"
@@ -553,7 +569,7 @@
             </div>
 
 
-            <div class="bk">
+            <div v-if="false" class="bk">
                 <demolink
                     :kbname="'w-explorer'"
                     :casename="'noSelectedText'"
@@ -569,7 +585,7 @@
             </div>
 
 
-            <div class="bk">
+            <div v-if="false" class="bk">
                 <demolink
                     :kbname="'w-explorer'"
                     :casename="'events'"
@@ -587,7 +603,7 @@
             </div>
 
 
-            <div class="bk">
+            <div v-if="false" class="bk">
                 <demolink
                     :kbname="'w-explorer'"
                     :casename="'small text'"
@@ -605,7 +621,7 @@
             </div>
 
 
-            <div class="bk">
+            <div v-if="false" class="bk">
                 <demolink
                     :kbname="'w-explorer'"
                     :casename="'treeDrawerBarSize & treeDrawerBarColor'"
@@ -622,7 +638,7 @@
             </div>
 
 
-            <div class="bk">
+            <div v-if="false" class="bk">
                 <demolink
                     :kbname="'w-explorer'"
                     :casename="'lineBetweenPathAndListWidth & lineBetweenPathAndListColor'"
@@ -639,7 +655,7 @@
             </div>
 
 
-            <div class="bk">
+            <div v-if="false" class="bk">
                 <demolink
                     :kbname="'w-explorer'"
                     :casename="'toggleTreeFoldersByFun'"
@@ -664,7 +680,7 @@
             </div>
 
 
-            <div class="bk">
+            <div v-if="false" class="bk">
                 <demolink
                     :kbname="'w-explorer'"
                     :casename="'toggleTreeFoldersAll'"
@@ -685,7 +701,7 @@
             </div>
 
 
-            <div class="bk">
+            <div v-if="false" class="bk">
                 <demolink
                     :kbname="'w-explorer'"
                     :casename="'dark mode'"
@@ -755,7 +771,49 @@
             </div>
 
 
-            <div class="bk">
+            <div v-if="false" class="bk">
+                <demolink
+                    :kbname="'w-explorer'"
+                    :casename="'triggerClickTreeFolderById'"
+                ></demolink>
+
+                <div style="padding-bottom:10px;">
+                    <v-btn style="margin:0px 5px 5px 0px;" small @click="ckTriggerClickTreeFolderById('root')">click(root)</v-btn>
+                    <v-btn style="margin:0px 5px 5px 0px;" small @click="ckTriggerClickTreeFolderById('root❯Applications')">click(Applications)</v-btn>
+                </div>
+
+                <w-explorer
+                    ref="we_triggerClickTreeFolderById"
+                    style="width:600px; height:250px;"
+                    :items="WExplorer.fps1"
+                >
+                </w-explorer>
+
+            </div>
+
+
+            <div v-if="false" class="bk">
+                <demolink
+                    :kbname="'w-explorer'"
+                    :casename="'triggerClickTreeFolderByFun'"
+                ></demolink>
+
+                <div style="padding-bottom:10px;">
+                    <v-btn style="margin:0px 5px 5px 0px;" small @click="ckTriggerClickTreeFolderByFun('Applications')">click(Applications)</v-btn>
+                    <v-btn style="margin:0px 5px 5px 0px;" small @click="ckTriggerClickTreeFolderByFun('Webs')">click(Webs)</v-btn>
+                </div>
+
+                <w-explorer
+                    ref="we_triggerClickTreeFolderByFun"
+                    style="width:600px; height:250px;"
+                    :items="WExplorer.fps1"
+                >
+                </w-explorer>
+
+            </div>
+
+
+            <div v-if="false" class="bk">
                 <demolink
                     :kbname="'w-explorer'"
                     :casename="'slot list-item-cover'"
@@ -808,7 +866,7 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-explorer'"
-                    :casename="'slot list-item & list-item-cover'"
+                    :casename="'slot list-item & list-item-cover & list-head & list-foot'"
                 ></demolink>
 
                 <w-explorer
@@ -818,30 +876,28 @@
                 >
 
                     <template v-slot:list-item="props">
-                        <div style="display:inline-block;">
-                            <div
-                                style="display:flex; align-items:center; cursor:pointer;"
-                                @click="props.funClickListItem()"
-                            >
+                        <div
+                            style="display:flex; align-items:center; cursor:pointer;"
+                            @click="props.funClickListItem()"
+                        >
 
-                                <div style="padding-right:5px;">
-                                    <w-icon
-                                        :icon="props.item.icon"
-                                        _color="props.item.iconColor"
-                                        :color="'#d7a72b'"
-                                        :size="props.item.iconSize"
-                                    ></w-icon>
-                                </div>
-
-                                <div style="">
-                                    {{props.item.data.text}}
-                                </div>
-
+                            <div style="padding-right:5px;">
+                                <w-icon
+                                    :icon="props.item.icon"
+                                    _color="props.item.iconColor"
+                                    :color="'#d7a72b'"
+                                    :size="props.item.iconSize"
+                                ></w-icon>
                             </div>
+
+                            <div style="">
+                                {{props.item.data.text}}
+                            </div>
+
                         </div>
                     </template>
 
-                    <template v-slot:list-head>
+                    <template v-slot:list-head="props">
                         <!-- 使用align-items:stretch讓分隔線div能有height:100%效果 -->
                         <div style="display:flex; align-items:stretch;">
 
@@ -893,6 +949,12 @@
                         </div>
                     </template>
 
+                    <template v-slot:list-foot="props">
+                        <div style="padding:1px 3px; background:#f8f8f8; border-top:1px solid #ddd; font-size:0.7rem; color:#888;">
+                            {{getFolderInfor(props)}}
+                        </div>
+                    </template>
+
                     <template v-slot:list-item-cover="props">
                         <div style="display:flex; align-items:center;" v-if="props.item.data._type==='file'">
 
@@ -936,6 +998,62 @@
                                 >
                                     <i class="fas fa-cog"></i>
                                 </div>
+                            </div>
+
+                        </div>
+                    </template>
+
+                </w-explorer>
+
+            </div>
+
+
+            <div v-if="false" class="bk">
+                <demolink
+                    :kbname="'w-explorer'"
+                    :casename="'slot list-item-sub'"
+                ></demolink>
+
+                <w-explorer
+                    style="width:600px; height:250px;"
+                    :items="WExplorer.fps1"
+                    @click="ckItem"
+                >
+
+                    <template v-slot:list-item-sub="props">
+                        <div :style="`transition:all 0.3s; padding:3px; background:${props.isHover?'#e2e2e2':'#fbf4f2'}; border-bottom:1px solid #ddd; font-size:0.7rem; line-height:0.7rem; display:flex; align-items:center; justify-content:flex-end;`" v-if="props.item.data._type==='file'">
+
+                            <div style="padding:0px 5px; display:flex; align-items:center;">
+                                <div style="padding-right:3px; color:#888;">
+                                    priority:
+                                </div>
+                                <div
+                                    style="width:20px; color:#2e31af; text-align:left; cursor:pointer;"
+                                    @click="ckItem('text-priority')"
+                                >
+                                    {{props.item.data.data.priority}}
+                                </div>
+                            </div>
+
+                            <div
+                                style="padding:0px 5px; color:#6fb57e; cursor:pointer;"
+                                @click="ckItem('icon-shield')"
+                            >
+                                <i class="fas fa-shield-virus"></i>
+                            </div>
+
+                            <div
+                                style="padding:0px 5px; color:#b894be; cursor:pointer;"
+                                @click="ckItem('icon-dice')"
+                            >
+                                <i class="fas fa-dice"></i>
+                            </div>
+
+                            <div
+                                style="padding:0px 5px; color:#c79f6b; cursor:pointer;"
+                                @click="ckItem('icon-wired')"
+                            >
+                                <i class="fas fa-network-wired"></i>
                             </div>
 
                         </div>
@@ -1364,6 +1482,52 @@ export default {
             //toggleTreeFoldersAll
             vo.$refs.ref_toggleTreeFoldersAll.toggleTreeFoldersAll(toUnfolding)
 
+        },
+        ckTriggerClickTreeFolderById: function(treeItemId) {
+            console.log('ckTriggerClickTreeFolderById', treeItemId)
+
+            let vo = this
+
+            //triggerClickTreeFolderById
+            vo.$refs.we_triggerClickTreeFolderById.triggerClickTreeFolderById(treeItemId)
+
+        },
+        ckTriggerClickTreeFolderByFun: function(text) {
+            console.log('ckTriggerClickTreeFolderByFun', text)
+
+            let vo = this
+
+            //triggerClickTreeFolderByFun
+            vo.$refs.we_triggerClickTreeFolderByFun.triggerClickTreeFolderByFun((msg) => {
+                console.log('cb msg', msg)
+
+                //find and triggerClickTreeFolderById
+                for (let k = 0; k < msg.treeItemsSpread.length; k++) {
+                    let v = msg.treeItemsSpread[k]
+                    // console.log(v)
+                    if (v.text === text) {
+                        console.log('find and click', v)
+                        // vo.$refs.we_triggerClickTreeFolderByFun.triggerClickTreeFolderById(v.id)
+                        // break
+                        return v
+                    }
+                }
+
+                return null
+            })
+
+        },
+        getFolderInfor: function(props) {
+            console.log('getFolderInfor', props)
+            let k = 0
+            for (let i = 0; i < props.items.length; i++) {
+                let v = props.items[i]
+                let t = v.data._type
+                if (t === 'file') {
+                    k++
+                }
+            }
+            return `There are ${k} file(s) in this folder`
         },
     }
 }

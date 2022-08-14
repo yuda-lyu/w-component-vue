@@ -46,6 +46,7 @@ function domMutation() {
 
         //save ob
         kpOb[id] = ob
+        console.log('observe kpOb', kpOb)
 
     }
 
@@ -61,6 +62,7 @@ function domMutation() {
         //clear
         if (kpOb[id]) {
             kpOb[id].disconnect()
+            console.log('disconnect kpOb', kpOb)
             delete kpOb[id]
         }
 
