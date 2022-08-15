@@ -135,16 +135,26 @@
             >w-explorer</span>
         </div>
         <div class="bk">
-            <div
-                class="item"
-            >listItemBackgroundColor &amp; listItemBackgroundColorHover &amp; listItemBackgroundColorActive</div>
+            <div class="item">funSortTree</div>
+
+            <div style="padding-bottom:10px;">
+                <v-btn
+                    style="margin:0px 5px 5px 0px;"
+                    small
+                    @click="ckFunSortTree('funSortTree')"
+                >funSortTree(reverse)</v-btn>
+                <v-btn
+                    style="margin:0px 5px 5px 0px;"
+                    small
+                    @click="ckFunSortTree('default')"
+                >default</v-btn>
+            </div>
 
             <w-explorer
+                ref="we_triggerClickTreeFolderByFun"
                 style="width:600px; height:250px;"
                 :items="WExplorer.fps1"
-                :list-item-background-color="'transparent'"
-                :list-item-background-color-hover="'#FFF3E0'"
-                :list-item-background-color-active="'#FFE0B2'"
+                :fun-sort-tree="WExplorer.funSortTree"
             ></w-explorer>
         </div>
     </v-app>

@@ -834,6 +834,28 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-explorer'"
+                    :casename="'funSortTree'"
+                ></demolink>
+
+                <div style="padding-bottom:10px;">
+                    <v-btn style="margin:0px 5px 5px 0px;" small @click="ckFunSortTree('funSortTree')">funSortTree(reverse)</v-btn>
+                    <v-btn style="margin:0px 5px 5px 0px;" small @click="ckFunSortTree('default')">default</v-btn>
+                </div>
+
+                <w-explorer
+                    ref="we_triggerClickTreeFolderByFun"
+                    style="width:600px; height:250px;"
+                    :items="WExplorer.fps1"
+                    :funSortTree="WExplorer.funSortTree"
+                >
+                </w-explorer>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-explorer'"
                     :casename="'slot list-item-cover'"
                 ></demolink>
 
@@ -1107,6 +1129,7 @@ export default {
             'WExplorer': {
                 bShowTree: true,
                 treeWidth: 250,
+                funSortTree: null,
                 fps1: [
                     {
                         type: 'file',
@@ -1534,6 +1557,27 @@ export default {
 
                 return null
             })
+
+        },
+        ckFunSortTree: function(m) {
+            console.log('ckFunSortTree', m)
+
+            let vo = this
+
+            //fun
+            let fun = (rs) => {
+                console.log('rs', rs)
+                rs.reverse()
+                return rs
+            }
+
+            //funSortTree
+            if (m === 'default') {
+                vo.WExplorer.funSortTree = null
+            }
+            else {
+                vo.WExplorer.funSortTree = fun
+            }
 
         },
         getFolderInfor: function(props) {
