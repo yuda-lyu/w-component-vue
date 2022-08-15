@@ -183,7 +183,7 @@
                             _itemIconColorActive="listItemIconColorActive"
                             :itemRippleColor="listItemRippleColor"
                             _click="ckListItem"
-                            v-if="listItems.length>0"
+                            _v-if="listItems.length>0"
                         >
 
                             <template v-slot:header>

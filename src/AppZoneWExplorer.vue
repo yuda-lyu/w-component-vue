@@ -1481,7 +1481,14 @@ export default {
                         size: '676.7mb',
                         tester: 'Hector',
                         priority: 'L3',
-                    }
+                    },
+                    {
+                        type: 'folder',
+                        path: '/Videos/Empty',
+                        size: '',
+                        tester: '',
+                        priority: '',
+                    },
                 ],
             },
             'actions': [
@@ -1583,15 +1590,19 @@ export default {
         },
         getFolderInfor: function(props) {
             console.log('getFolderInfor', props)
-            let k = 0
+            let kfd = 0
+            let kfl = 0
             for (let i = 0; i < props.items.length; i++) {
                 let v = props.items[i]
                 let t = v.data._type
-                if (t === 'file') {
-                    k++
+                if (t === 'folder') {
+                    kfd++
+                }
+                else if (t === 'file') {
+                    kfl++
                 }
             }
-            return `There are ${k} file(s) in this folder`
+            return `There are ${kfd} folder(s) and ${kfl} file(s) in this folder`
         },
     }
 }
