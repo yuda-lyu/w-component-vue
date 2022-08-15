@@ -2,6 +2,7 @@
     <div
         style=""
         :changeShowTree="changeShowTree"
+        :changeTreeWidth="changeTreeWidth"
         :changeItems="changeItems"
         v-domresize
         @domresize="resizePanel"
@@ -10,7 +11,7 @@
         <WDrawer
             :style="`width:${panelWidth}px; height:${panelHeight}px;`"
             :afloat="treeAfloat"
-            :drawerWidth.sync="treeWidth"
+            :drawerWidth="treeWidthTrans"
             :drawerWidthMin="treeWidthMin"
             :drawerWidthMax="treeWidthMax"
             :dragDrawerWidth="true"
@@ -18,6 +19,7 @@
             :drawerBarSize="treeDrawerBarSize"
             :value="showTreeTrans"
             @input="emitShowTree"
+            @update:drawerWidth="emitDrawerWidth"
         >
 
             <template v-slot:drawer="props">
@@ -35,10 +37,10 @@
                         :itemActive.sync="treeItemActive"
                         :paddingStyle="treePaddingStyle"
                         :indent="treeIndent"
-                        :iconSize="toggleTreeIconSize"
-                        :iconToggleColor="toggleTreeIconColor"
-                        :iconToggleBackgroundColor="toggleTreeIconBackgroundColor"
-                        :iconToggleBackgroundColorHover="toggleTreeIconBackgroundColorHover"
+                        :iconSize="treeToggleIconSize"
+                        :iconToggleColor="treeToggleIconColor"
+                        :iconToggleBackgroundColor="treeToggleIconBackgroundColor"
+                        :iconToggleBackgroundColorHover="treeToggleIconBackgroundColorHover"
                         :itemTextColor="treeItemTextColor"
                         :itemTextColorHover="treeItemTextColorHover"
                         :itemTextColorActive="treeItemTextColorActive"
@@ -298,13 +300,10 @@ import WButtonCircle from './WButtonCircle.vue'
 /**
  * @vue-prop {Array} [items=[]] 輸入項目物件陣列，預設[]
  * @vue-prop {String} [bindRoot='root'] 輸入建置根目錄名稱字串，預設'root'
- * @vue-prop {Number} [treeWidthMin=null] 輸入使用拖曳抽屜寬度分隔條(dragDrawerWidth=true)時，拖曳抽屜寬度分隔條最小值數字，預設null
- * @vue-prop {Number} [treeWidthMax=null] 輸入使用拖曳抽屜寬度分隔條(dragDrawerWidth=true)時，拖曳抽屜寬度分隔條最大值數字，預設null
- * @vue-prop {Number} [toggleTreeIconSize=24] 輸入顯隱樹狀資料夾按鈕之圖標尺寸數字，單位為px，預設24
- * @vue-prop {String} [toggleTreeIconColor='grey'] 輸入顯隱樹狀資料夾按鈕之圖標顏色字串，預設'grey'
- * @vue-prop {String} [toggleTreeIconBackgroundColor='transparent'] 輸入顯隱樹狀資料夾按鈕之圖標背景顏色字串，預設'transparent'
- * @vue-prop {String} [toggleTreeIconBackgroundColorHover='rgba(128,128,128,0.15)'] 輸入滑鼠移入時顯隱樹狀資料夾按鈕之圖標背景顏色字串，預設'rgba(128,128,128,0.15)'
  * @vue-prop {Boolean} [showTree=false] 輸入是否顯示樹狀資料夾布林值，預設false
+ * @vue-prop {Number} [treeWidth=200] 輸入拖曳抽屜寬度數字，單位為px，預設200
+ * @vue-prop {Number} [treeWidthMin=null] 輸入拖曳抽屜寬度最小值數字，單位為px，預設null
+ * @vue-prop {Number} [treeWidthMax=null] 輸入拖曳抽屜寬度最大值數字，單位為px，預設null
  * @vue-prop {Boolean} [treeAfloat=false] 輸入是否樹狀資料夾為浮動顯示布林值，設為true時浮在內容區上故不壓縮內容區寬度，預設false
  * @vue-prop {Number} [treeDefItemHeight=30] 輸入樹狀資料夾之按需顯示時各項目預設最小高度(min-height)值，給越準或給大部分項目的高度則渲染速度越快，單位為px，預設30
  * @vue-prop {Number} [treeDefaultDisplayLevel=null] 輸入樹狀資料夾之初始展開層數數字，若輸入1就是預設展開至第1層，第2層(含)以下則都隱藏，若輸入null就是全展開，預設null
@@ -314,7 +313,7 @@ import WButtonCircle from './WButtonCircle.vue'
  * @vue-prop {String} [treeItemTextColorHover='#222'] 輸入滑鼠移入時樹狀資料夾之文字顏色字串，預設'#222'
  * @vue-prop {String} [treeItemTextColorActive='#000'] 輸入主動模式時樹狀資料夾之文字顏色字串，預設'#000'
  * @vue-prop {String} [treeFolderIcon=mdiFolder] 輸入樹狀資料夾之資料夾圖標字串，預設mdiFolder
- * @vue-prop {Number} [treeFolderIconSize=20] 輸入樹狀資料夾之資料夾圖標之尺寸數字，單位px，預設20
+ * @vue-prop {Number} [treeFolderIconSize=20] 輸入樹狀資料夾之資料夾圖標之尺寸數字，單位為px，預設20
  * @vue-prop {String} [treeFolderIconColor='#888'] 輸入樹狀資料夾之資料夾圖標顏色字串，預設'#888'
  * @vue-prop {String} [treeFolderIconColorHover='#777'] 輸入滑鼠移入時樹狀資料夾之資料夾圖標顏色字串，預設'#777'
  * @vue-prop {String} [treeFolderIconColorActive='#666'] 輸入主動模式時樹狀資料夾之資料夾圖標顏色字串，預設'#666'
@@ -325,6 +324,10 @@ import WButtonCircle from './WButtonCircle.vue'
  * @vue-prop {String} [treeBackgroundColor='#fff'] 輸入樹狀資料夾背景顏色字串，預設'#fff'
  * @vue-prop {Number} [treeDrawerBarSize=2] 輸入樹狀資料夾抽屜之分隔條尺寸數字，為分隔條寬度，單位為px，預設2
  * @vue-prop {String} [treeDrawerBarColor='#ddd'] 輸入樹狀資料夾抽屜之分隔條顏色字串，預設'#ddd'
+ * @vue-prop {Number} [treeToggleIconSize=24] 輸入顯隱樹狀資料夾按鈕之圖標尺寸數字，單位為px，預設24
+ * @vue-prop {String} [treeToggleIconColor='grey'] 輸入顯隱樹狀資料夾按鈕之圖標顏色字串，預設'grey'
+ * @vue-prop {String} [treeToggleIconBackgroundColor='transparent'] 輸入顯隱樹狀資料夾按鈕之圖標背景顏色字串，預設'transparent'
+ * @vue-prop {String} [treeToggleIconBackgroundColorHover='rgba(128,128,128,0.15)'] 輸入滑鼠移入時顯隱樹狀資料夾按鈕之圖標背景顏色字串，預設'rgba(128,128,128,0.15)'
  * @vue-prop {Number} [lineBetweenPathAndListWidth=1] 輸入路徑區與清單區之間分隔線寬度，單位為px，預設1
  * @vue-prop {String} [lineBetweenPathAndListColor='#ddd'] 輸入路徑區與清單區之間分隔線顏色字串，預設'#ddd'
  * @vue-prop {Number} [listDefItemHeight=30] 輸入清單區按需顯示時各項目預設最小高度(min-height)值，單位為px，預設30
@@ -335,7 +338,7 @@ import WButtonCircle from './WButtonCircle.vue'
  * @vue-prop {String} [listItemTextColorActive='#000'] 輸入主動模式時清單區項目之文字顏色字串，預設'#000'
  * @vue-prop {String} [listFolderIcon=mdiFolder] 輸入清單區項目之資料夾圖標字串，預設mdiFolder
  * @vue-prop {String} [listFileIcon=mdiFileOutline] 輸入清單區項目之檔案圖標字串，預設mdiFileOutline
- * @vue-prop {Number} [listItemIconSize=22] 輸入清單區項目之圖標尺寸數字，單位px，預設22
+ * @vue-prop {Number} [listItemIconSize=22] 輸入清單區項目之圖標尺寸數字，單位為px，預設22
  * @vue-prop {String} [listItemIconColor='#888'] 輸入清單區項目之圖標顏色字串，預設'#888'
  * @vue-prop {String} [listItemIconColorHover='#777'] 輸入滑鼠移入時清單區項目之圖標顏色字串，預設'#777'
  * @vue-prop {String} [listItemIconColorActive='#666'] 輸入主動模式時清單區項目之圖標顏色字串，預設'#666'
@@ -346,7 +349,7 @@ import WButtonCircle from './WButtonCircle.vue'
  * @vue-prop {String} [listBackgroundColor='#fff'] 輸入清單區背景顏色字串，預設'#fff'
  * @vue-prop {String} [btnDisplayTreeIconShow=mdiArrowRightBoldHexagonOutline] 輸入顯示樹狀資料夾按鈕圖標字串，預設mdiArrowRightBoldHexagonOutline
  * @vue-prop {String} [btnDisplayTreeIconShow=mdiArrowLeftBoldHexagonOutline] 輸入隱藏樹狀資料夾按鈕圖標字串，預設mdiArrowLeftBoldHexagonOutline
- * @vue-prop {Number} [btnDisplayTreeIconSize=20] 輸入顯隱樹狀資料夾按鈕圖標之尺寸數字，單位px，預設20
+ * @vue-prop {Number} [btnDisplayTreeIconSize=20] 輸入顯隱樹狀資料夾按鈕圖標之尺寸數字，單位為px，預設20
  * @vue-prop {String} [btnDisplayTreeIconColor='grey darken-1'] 輸入顯隱樹狀資料夾按鈕圖標顏色字串，預設'grey darken-1'
  * @vue-prop {String} [btnDisplayTreeIconColorHover='grey darken-2'] 輸入滑鼠移入時顯隱樹狀資料夾按鈕圖標顏色字串，預設'grey darken-2'
  * @vue-prop {String} [btnDisplayTreeIconColorFocus='grey darken-3'] 輸入取得焦點時顯隱樹狀資料夾按鈕圖標顏色字串，預設'grey darken-3'
@@ -360,7 +363,7 @@ import WButtonCircle from './WButtonCircle.vue'
  * @vue-prop {String} [pathBtnBackgroundColorHover='rgb(236,236,236)'] 輸入滑鼠移入時路徑區按鈕之背景顏色字串，預設'rgb(236,236,236)'
  * @vue-prop {String} [pathSepIcon=mdiChevronRight] 輸入路徑區分隔符號之圖標字串，預設mdiChevronRight
  * @vue-prop {String} [pathSepIconColor='#888'] 輸入路徑區分隔符號之圖標顏色字串，預設'#888'
- * @vue-prop {Number} [pathSepIconSize=18] 輸入路徑區分隔符號之圖標尺寸數字，單位px，預設18
+ * @vue-prop {Number} [pathSepIconSize=18] 輸入路徑區分隔符號之圖標尺寸數字，單位為px，預設18
  * @vue-prop {String} [pathBackgroundColor='transparent'] 輸入路徑區背景顏色字串，預設'#fff'
  * @vue-prop {String} [noSelectedText='No selected folder'] 輸入尚未選擇資料夾文字字串，預設'No selected folder'
  */
@@ -385,6 +388,14 @@ export default {
             type: String,
             default: 'root',
         },
+        showTree: {
+            type: Boolean,
+            default: true,
+        },
+        treeWidth: {
+            type: Number,
+            default: 200,
+        },
         treeWidthMin: {
             type: Number,
             default: null,
@@ -392,26 +403,6 @@ export default {
         treeWidthMax: {
             type: Number,
             default: null,
-        },
-        toggleTreeIconSize: {
-            type: Number,
-            default: 24,
-        },
-        toggleTreeIconColor: {
-            type: String,
-            default: 'grey',
-        },
-        toggleTreeIconBackgroundColor: {
-            type: String,
-            default: 'transparent',
-        },
-        toggleTreeIconBackgroundColorHover: {
-            type: String,
-            default: 'rgba(128,128,128,0.15)',
-        },
-        showTree: {
-            type: Boolean,
-            default: true,
         },
         treeAfloat: {
             type: Boolean,
@@ -501,6 +492,22 @@ export default {
         treeDrawerBarColor: {
             type: String,
             default: '#ddd',
+        },
+        treeToggleIconSize: {
+            type: Number,
+            default: 24,
+        },
+        treeToggleIconColor: {
+            type: String,
+            default: 'grey',
+        },
+        treeToggleIconBackgroundColor: {
+            type: String,
+            default: 'transparent',
+        },
+        treeToggleIconBackgroundColorHover: {
+            type: String,
+            default: 'rgba(128,128,128,0.15)',
         },
         lineBetweenPathAndListWidth: {
             type: Number,
@@ -668,7 +675,7 @@ export default {
             pathHeight: 0,
 
             showTreeTrans: true,
-            treeWidth: 200,
+            treeWidthTrans: 200,
 
             kpPath: null,
             treeItemsFolder: null,
@@ -691,6 +698,17 @@ export default {
 
             //save
             vo.showTreeTrans = vo.showTree
+
+            return ''
+        },
+
+        changeTreeWidth: function() {
+            // console.log('changeTreeWidth')
+
+            let vo = this
+
+            //save
+            vo.treeWidthTrans = vo.treeWidth
 
             return ''
         },
@@ -846,6 +864,19 @@ export default {
 
             //emit
             vo.$emit('update:showTree', b)
+
+        },
+
+        emitDrawerWidth: function(w) {
+            // console.log('methods emitDrawerWidth', w)
+
+            let vo = this
+
+            //update
+            vo.treeWidthTrans = w
+
+            //emit
+            vo.$emit('update:treeWidth', w)
 
         },
 

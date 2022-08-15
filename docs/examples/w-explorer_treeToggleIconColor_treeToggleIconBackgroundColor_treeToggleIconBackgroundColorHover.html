@@ -85,7 +85,7 @@
     </script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.2.37/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.2.38/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -134,13 +134,17 @@
                 onclick="window.open('//yuda-lyu.github.io/w-component-vue/examples/app.html?cmp='+this.innerText,'_blank')"
             >w-explorer</span>
         </div>
-        <div v-if="false" class="bk">
-            <div class="item">toggleTreeIconSize</div>
+        <div class="bk">
+            <div
+                class="item"
+            >treeToggleIconColor &amp; treeToggleIconBackgroundColor &amp; treeToggleIconBackgroundColorHover</div>
 
             <w-explorer
                 style="width:600px; height:250px;"
                 :items="WExplorer.fps1"
-                :toggle-tree-icon-size="18"
+                :tree-toggle-icon-color="'#f58'"
+                :tree-toggle-icon-background-color="'rgba(255,200,200,0.5)'"
+                :tree-toggle-icon-background-color-hover="'#fcc'"
             ></w-explorer>
         </div>
     </v-app>
@@ -157,6 +161,7 @@
       return {
         WExplorer: {
           bShowTree: true,
+          treeWidth: 250,
           fps1: [
             {
               type: "file",

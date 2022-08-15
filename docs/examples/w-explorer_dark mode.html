@@ -85,7 +85,7 @@
     </script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.2.37/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.2.38/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -134,7 +134,7 @@
                 onclick="window.open('//yuda-lyu.github.io/w-component-vue/examples/app.html?cmp='+this.innerText,'_blank')"
             >w-explorer</span>
         </div>
-        <div v-if="false" class="bk">
+        <div class="bk">
             <div class="item">dark mode</div>
 
             <div style="display:inline-block; padding:40px; background:#777;">
@@ -153,15 +153,15 @@
                     :tree-item-background-color="'transparent'"
                     :tree-item-background-color-hover="'rgba(150,150,150,0.4)'"
                     :tree-item-background-color-active="'rgba(150,150,150,0.2)'"
-                    :tree-background-color="'transparent'"
-                    :toggle-tree-icon-color="'rgba(255,255,255,0.6)'"
-                    :toggle-tree-icon-background-color="'transparent'"
-                    :toggle-tree-icon-background-color-hover="'rgba(150,150,150,0.2)'"
+                    :tree-background-color="'#333'"
+                    :tree-toggle-icon-color="'rgba(255,255,255,0.6)'"
+                    :tree-toggle-icon-background-color="'transparent'"
+                    :tree-toggle-icon-background-color-hover="'rgba(150,150,150,0.2)'"
                     :path-btn-text-color="'#ddd'"
                     :path-btn-text-color-hover="'#eee'"
                     :path-btn-background-color="'transparent'"
                     :path-btn-background-color-hover="'rgba(150,150,150,0.2)'"
-                    :path-background-color="'transparent'"
+                    :path-background-color="'#333'"
                     :btn-display-tree-icon-color="'#ccc'"
                     :btn-display-tree-icon-color-hover="'#eee'"
                     :btn-display-tree-icon-color-focus="'#eee'"
@@ -177,7 +177,7 @@
                     :list-item-background-color="'transparent'"
                     :list-item-background-color-hover="'rgba(150,150,150,0.4)'"
                     :list-item-background-color-active="'rgba(150,150,150,0.2)'"
-                    :list-background-color="'transparent'"
+                    :list-background-color="'#333'"
                     :tree-drawer-bar-size="1"
                     :tree-drawer-bar-color="'rgba(150,150,150,0.4)'"
                     :line-between-path-and-list-width="1"
@@ -202,6 +202,7 @@
       return {
         WExplorer: {
           bShowTree: true,
+          treeWidth: 250,
           fps1: [
             {
               type: "file",

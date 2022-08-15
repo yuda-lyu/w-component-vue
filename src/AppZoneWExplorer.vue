@@ -8,7 +8,7 @@
         <div style="padding:0px;">
 
 
-            <div v-if="false" class="bk">
+            <div class="bk">
                 <demolink
                     :kbname="'w-explorer'"
                     :casename="'default'"
@@ -23,23 +23,25 @@
             </div>
 
 
-            <div v-if="false" class="bk">
+            <div class="bk">
                 <demolink
                     :kbname="'w-explorer'"
-                    :casename="'bindRoot'"
+                    :casename="'treeWidth'"
                 ></demolink>
+
+                <div style="padding-bottom:10px;font-size:0.8rem;">treeWidth: {{WExplorer.treeWidth}}</div>
 
                 <w-explorer
                     style="width:600px; height:250px;"
                     :items="WExplorer.fps1"
-                    :bindRoot="'本機'"
+                    :treeWidth.sync="WExplorer.treeWidth"
                 >
                 </w-explorer>
 
             </div>
 
 
-            <div v-if="false" class="bk">
+            <div class="bk">
                 <demolink
                     :kbname="'w-explorer'"
                     :casename="'treeWidthMin & treeWidthMax'"
@@ -56,7 +58,7 @@
             </div>
 
 
-            <div v-if="false" class="bk">
+            <div class="bk">
                 <demolink
                     :kbname="'w-explorer'"
                     :casename="'treeBackgroundColor'"
@@ -72,7 +74,7 @@
             </div>
 
 
-            <div v-if="false" class="bk">
+            <div class="bk">
                 <demolink
                     :kbname="'w-explorer'"
                     :casename="'showTree & treeAfloat'"
@@ -93,7 +95,7 @@
             </div>
 
 
-            <div v-if="false" class="bk">
+            <div class="bk">
                 <demolink
                     :kbname="'w-explorer'"
                     :casename="'treeDefaultDisplayLevel'"
@@ -109,7 +111,7 @@
             </div>
 
 
-            <div v-if="false" class="bk">
+            <div class="bk">
                 <demolink
                     :kbname="'w-explorer'"
                     :casename="'treeDefItemHeight & listDefItemHeight'"
@@ -126,7 +128,7 @@
             </div>
 
 
-            <div v-if="false" class="bk">
+            <div class="bk">
                 <demolink
                     :kbname="'w-explorer'"
                     :casename="'treePaddingStyle'"
@@ -142,7 +144,7 @@
             </div>
 
 
-            <div v-if="false" class="bk">
+            <div class="bk">
                 <demolink
                     :kbname="'w-explorer'"
                     :casename="'treeIndent'"
@@ -158,41 +160,7 @@
             </div>
 
 
-            <div v-if="false" class="bk">
-                <demolink
-                    :kbname="'w-explorer'"
-                    :casename="'toggleTreeIconSize'"
-                ></demolink>
-
-                <w-explorer
-                    style="width:600px; height:250px;"
-                    :items="WExplorer.fps1"
-                    :toggleTreeIconSize="18"
-                >
-                </w-explorer>
-
-            </div>
-
-
-            <div v-if="false" class="bk">
-                <demolink
-                    :kbname="'w-explorer'"
-                    :casename="'toggleTreeIconColor & toggleTreeIconBackgroundColor & toggleTreeIconBackgroundColorHover'"
-                ></demolink>
-
-                <w-explorer
-                    style="width:600px; height:250px;"
-                    :items="WExplorer.fps1"
-                    :toggleTreeIconColor="'#f58'"
-                    :toggleTreeIconBackgroundColor="'rgba(255,200,200,0.5)'"
-                    :toggleTreeIconBackgroundColorHover="'#fcc'"
-                >
-                </w-explorer>
-
-            </div>
-
-
-            <div v-if="false" class="bk">
+            <div class="bk">
                 <demolink
                     :kbname="'w-explorer'"
                     :casename="'treeFolderIcon & treeFolderIconSize'"
@@ -209,7 +177,7 @@
             </div>
 
 
-            <div v-if="false" class="bk">
+            <div class="bk">
                 <demolink
                     :kbname="'w-explorer'"
                     :casename="'treeItemTextFontSize'"
@@ -225,7 +193,7 @@
             </div>
 
 
-            <div v-if="false" class="bk">
+            <div class="bk">
                 <demolink
                     :kbname="'w-explorer'"
                     :casename="'treeItemTextColor & treeItemTextColorHover & treeItemTextColorActive'"
@@ -243,7 +211,7 @@
             </div>
 
 
-            <div v-if="false" class="bk">
+            <div class="bk">
                 <demolink
                     :kbname="'w-explorer'"
                     :casename="'treeFolderIconColor & treeFolderIconColorHover & treeFolderIconColorActive'"
@@ -261,7 +229,7 @@
             </div>
 
 
-            <div v-if="false" class="bk">
+            <div class="bk">
                 <demolink
                     :kbname="'w-explorer'"
                     :casename="'treeItemBackgroundColor & treeItemBackgroundColorHover & treeItemBackgroundColorActive'"
@@ -279,7 +247,7 @@
             </div>
 
 
-            <div v-if="false" class="bk">
+            <div class="bk">
                 <demolink
                     :kbname="'w-explorer'"
                     :casename="'treeItemRippleColor'"
@@ -295,143 +263,57 @@
             </div>
 
 
-            <div v-if="false" class="bk">
+            <div class="bk">
                 <demolink
                     :kbname="'w-explorer'"
-                    :casename="'listPaddingStyle'"
+                    :casename="'bindRoot'"
                 ></demolink>
 
                 <w-explorer
                     style="width:600px; height:250px;"
                     :items="WExplorer.fps1"
-                    :listPaddingStyle="{v:2,h:8}"
+                    :bindRoot="'本機'"
                 >
                 </w-explorer>
 
             </div>
 
 
-            <div v-if="false" class="bk">
+            <div class="bk">
                 <demolink
                     :kbname="'w-explorer'"
-                    :casename="'listBackgroundColor'"
+                    :casename="'treeToggleIconSize'"
                 ></demolink>
 
                 <w-explorer
                     style="width:600px; height:250px;"
                     :items="WExplorer.fps1"
-                    :listBackgroundColor="'#f8f8f8'"
+                    :treeToggleIconSize="18"
                 >
                 </w-explorer>
 
             </div>
 
 
-            <div v-if="false" class="bk">
+            <div class="bk">
                 <demolink
                     :kbname="'w-explorer'"
-                    :casename="'listFolderIcon & listFileIcon & listIconSize'"
+                    :casename="'treeToggleIconColor & treeToggleIconBackgroundColor & treeToggleIconBackgroundColorHover'"
                 ></demolink>
 
                 <w-explorer
                     style="width:600px; height:250px;"
                     :items="WExplorer.fps1"
-                    :listFolderIcon="'fas fa-folder-open'"
-                    :listFileIcon="'fas fa-tablet-alt'"
-                    :listIconSize="18"
+                    :treeToggleIconColor="'#f58'"
+                    :treeToggleIconBackgroundColor="'rgba(255,200,200,0.5)'"
+                    :treeToggleIconBackgroundColorHover="'#fcc'"
                 >
                 </w-explorer>
 
             </div>
 
 
-            <div v-if="false" class="bk">
-                <demolink
-                    :kbname="'w-explorer'"
-                    :casename="'listItemTextFontSize'"
-                ></demolink>
-
-                <w-explorer
-                    style="width:600px; height:250px;"
-                    :items="WExplorer.fps1"
-                    :listItemTextFontSize="'0.75rem'"
-                >
-                </w-explorer>
-
-            </div>
-
-
-            <div v-if="false" class="bk">
-                <demolink
-                    :kbname="'w-explorer'"
-                    :casename="'listItemTextColor & listItemTextColorHover & listItemTextColorActive'"
-                ></demolink>
-
-                <w-explorer
-                    style="width:600px; height:250px;"
-                    :items="WExplorer.fps1"
-                    :listItemTextColor="'#a84'"
-                    :listItemTextColorHover="'#864'"
-                    :listItemTextColorActive="'#862'"
-                >
-                </w-explorer>
-
-            </div>
-
-
-            <div v-if="false" class="bk">
-                <demolink
-                    :kbname="'w-explorer'"
-                    :casename="'listItemIconColor & listItemIconColorHover & listItemIconColorActive'"
-                ></demolink>
-
-                <w-explorer
-                    style="width:600px; height:250px;"
-                    :items="WExplorer.fps1"
-                    :listItemIconColor="'#ea6'"
-                    :listItemIconColorHover="'#c84'"
-                    :listItemIconColorActive="'#a62'"
-                >
-                </w-explorer>
-
-            </div>
-
-
-            <div v-if="false" class="bk">
-                <demolink
-                    :kbname="'w-explorer'"
-                    :casename="'listItemBackgroundColor & listItemBackgroundColorHover & listItemBackgroundColorActive'"
-                ></demolink>
-
-                <w-explorer
-                    style="width:600px; height:250px;"
-                    :items="WExplorer.fps1"
-                    :listItemBackgroundColor="'transparent'"
-                    :listItemBackgroundColorHover="'#FFF3E0'"
-                    :listItemBackgroundColorActive="'#FFE0B2'"
-                >
-                </w-explorer>
-
-            </div>
-
-
-            <div v-if="false" class="bk">
-                <demolink
-                    :kbname="'w-explorer'"
-                    :casename="'listItemRippleColor'"
-                ></demolink>
-
-                <w-explorer
-                    style="width:600px; height:250px;"
-                    :items="WExplorer.fps1"
-                    :listItemRippleColor="'rgba(130, 180, 255, 0.4)'"
-                >
-                </w-explorer>
-
-            </div>
-
-
-            <div v-if="false" class="bk">
+            <div class="bk">
                 <demolink
                     :kbname="'w-explorer'"
                     :casename="'pathBackgroundColor'"
@@ -447,7 +329,7 @@
             </div>
 
 
-            <div v-if="false" class="bk">
+            <div class="bk">
                 <demolink
                     :kbname="'w-explorer'"
                     :casename="'pathSepIcon & pathSepIconColor & pathSepIconSize'"
@@ -465,7 +347,7 @@
             </div>
 
 
-            <div v-if="false" class="bk">
+            <div class="bk">
                 <demolink
                     :kbname="'w-explorer'"
                     :casename="'pathBtnTextFontSize'"
@@ -481,7 +363,7 @@
             </div>
 
 
-            <div v-if="false" class="bk">
+            <div class="bk">
                 <demolink
                     :kbname="'w-explorer'"
                     :casename="'pathBtnTextColor & pathBtnTextColorHover'"
@@ -498,7 +380,7 @@
             </div>
 
 
-            <div v-if="false" class="bk">
+            <div class="bk">
                 <demolink
                     :kbname="'w-explorer'"
                     :casename="'pathBtnBackgroundColor & pathBtnBackgroundColorHover'"
@@ -515,7 +397,7 @@
             </div>
 
 
-            <div v-if="false" class="bk">
+            <div class="bk">
                 <demolink
                     :kbname="'w-explorer'"
                     :casename="'btnDisplayTreeIconShow & btnDisplayTreeIconHide & btnDisplayTreeIconSize'"
@@ -533,7 +415,7 @@
             </div>
 
 
-            <div v-if="false" class="bk">
+            <div class="bk">
                 <demolink
                     :kbname="'w-explorer'"
                     :casename="'btnDisplayTreeIconColor & btnDisplayTreeIconColorHover & btnDisplayTreeIconColorFocus'"
@@ -551,7 +433,7 @@
             </div>
 
 
-            <div v-if="false" class="bk">
+            <div class="bk">
                 <demolink
                     :kbname="'w-explorer'"
                     :casename="'btnDisplayTreeBackgroundColor & btnDisplayTreeBackgroundColorHover & btnDisplayTreeBackgroundColorFocus'"
@@ -569,7 +451,143 @@
             </div>
 
 
-            <div v-if="false" class="bk">
+            <div class="bk">
+                <demolink
+                    :kbname="'w-explorer'"
+                    :casename="'listPaddingStyle'"
+                ></demolink>
+
+                <w-explorer
+                    style="width:600px; height:250px;"
+                    :items="WExplorer.fps1"
+                    :listPaddingStyle="{v:2,h:8}"
+                >
+                </w-explorer>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-explorer'"
+                    :casename="'listBackgroundColor'"
+                ></demolink>
+
+                <w-explorer
+                    style="width:600px; height:250px;"
+                    :items="WExplorer.fps1"
+                    :listBackgroundColor="'#f8f8f8'"
+                >
+                </w-explorer>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-explorer'"
+                    :casename="'listFolderIcon & listFileIcon & listIconSize'"
+                ></demolink>
+
+                <w-explorer
+                    style="width:600px; height:250px;"
+                    :items="WExplorer.fps1"
+                    :listFolderIcon="'fas fa-folder-open'"
+                    :listFileIcon="'fas fa-tablet-alt'"
+                    :listIconSize="18"
+                >
+                </w-explorer>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-explorer'"
+                    :casename="'listItemTextFontSize'"
+                ></demolink>
+
+                <w-explorer
+                    style="width:600px; height:250px;"
+                    :items="WExplorer.fps1"
+                    :listItemTextFontSize="'0.75rem'"
+                >
+                </w-explorer>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-explorer'"
+                    :casename="'listItemTextColor & listItemTextColorHover & listItemTextColorActive'"
+                ></demolink>
+
+                <w-explorer
+                    style="width:600px; height:250px;"
+                    :items="WExplorer.fps1"
+                    :listItemTextColor="'#a84'"
+                    :listItemTextColorHover="'#864'"
+                    :listItemTextColorActive="'#862'"
+                >
+                </w-explorer>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-explorer'"
+                    :casename="'listItemIconColor & listItemIconColorHover & listItemIconColorActive'"
+                ></demolink>
+
+                <w-explorer
+                    style="width:600px; height:250px;"
+                    :items="WExplorer.fps1"
+                    :listItemIconColor="'#ea6'"
+                    :listItemIconColorHover="'#c84'"
+                    :listItemIconColorActive="'#a62'"
+                >
+                </w-explorer>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-explorer'"
+                    :casename="'listItemBackgroundColor & listItemBackgroundColorHover & listItemBackgroundColorActive'"
+                ></demolink>
+
+                <w-explorer
+                    style="width:600px; height:250px;"
+                    :items="WExplorer.fps1"
+                    :listItemBackgroundColor="'transparent'"
+                    :listItemBackgroundColorHover="'#FFF3E0'"
+                    :listItemBackgroundColorActive="'#FFE0B2'"
+                >
+                </w-explorer>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-explorer'"
+                    :casename="'listItemRippleColor'"
+                ></demolink>
+
+                <w-explorer
+                    style="width:600px; height:250px;"
+                    :items="WExplorer.fps1"
+                    :listItemRippleColor="'rgba(130, 180, 255, 0.4)'"
+                >
+                </w-explorer>
+
+            </div>
+
+
+            <div class="bk">
                 <demolink
                     :kbname="'w-explorer'"
                     :casename="'noSelectedText'"
@@ -585,7 +603,7 @@
             </div>
 
 
-            <div v-if="false" class="bk">
+            <div class="bk">
                 <demolink
                     :kbname="'w-explorer'"
                     :casename="'events'"
@@ -603,7 +621,7 @@
             </div>
 
 
-            <div v-if="false" class="bk">
+            <div class="bk">
                 <demolink
                     :kbname="'w-explorer'"
                     :casename="'small text'"
@@ -621,7 +639,7 @@
             </div>
 
 
-            <div v-if="false" class="bk">
+            <div class="bk">
                 <demolink
                     :kbname="'w-explorer'"
                     :casename="'treeDrawerBarSize & treeDrawerBarColor'"
@@ -638,7 +656,7 @@
             </div>
 
 
-            <div v-if="false" class="bk">
+            <div class="bk">
                 <demolink
                     :kbname="'w-explorer'"
                     :casename="'lineBetweenPathAndListWidth & lineBetweenPathAndListColor'"
@@ -655,7 +673,7 @@
             </div>
 
 
-            <div v-if="false" class="bk">
+            <div class="bk">
                 <demolink
                     :kbname="'w-explorer'"
                     :casename="'toggleTreeFoldersByFun'"
@@ -680,7 +698,7 @@
             </div>
 
 
-            <div v-if="false" class="bk">
+            <div class="bk">
                 <demolink
                     :kbname="'w-explorer'"
                     :casename="'toggleTreeFoldersAll'"
@@ -701,7 +719,7 @@
             </div>
 
 
-            <div v-if="false" class="bk">
+            <div class="bk">
                 <demolink
                     :kbname="'w-explorer'"
                     :casename="'dark mode'"
@@ -724,17 +742,17 @@
                         :treeItemBackgroundColor="'transparent'"
                         :treeItemBackgroundColorHover="'rgba(150,150,150,0.4)'"
                         :treeItemBackgroundColorActive="'rgba(150,150,150,0.2)'"
-                        :treeBackgroundColor="'transparent'"
+                        :treeBackgroundColor="'#333'"
 
-                        :toggleTreeIconColor="'rgba(255,255,255,0.6)'"
-                        :toggleTreeIconBackgroundColor="'transparent'"
-                        :toggleTreeIconBackgroundColorHover="'rgba(150,150,150,0.2)'"
+                        :treeToggleIconColor="'rgba(255,255,255,0.6)'"
+                        :treeToggleIconBackgroundColor="'transparent'"
+                        :treeToggleIconBackgroundColorHover="'rgba(150,150,150,0.2)'"
 
                         :pathBtnTextColor="'#ddd'"
                         :pathBtnTextColorHover="'#eee'"
                         :pathBtnBackgroundColor="'transparent'"
                         :pathBtnBackgroundColorHover="'rgba(150,150,150,0.2)'"
-                        :pathBackgroundColor="'transparent'"
+                        :pathBackgroundColor="'#333'"
 
                         :btnDisplayTreeIconColor="'#ccc'"
                         :btnDisplayTreeIconColorHover="'#eee'"
@@ -752,7 +770,7 @@
                         :listItemBackgroundColor="'transparent'"
                         :listItemBackgroundColorHover="'rgba(150,150,150,0.4)'"
                         :listItemBackgroundColorActive="'rgba(150,150,150,0.2)'"
-                        :listBackgroundColor="'transparent'"
+                        :listBackgroundColor="'#333'"
 
                         :treeDrawerBarSize="1"
                         :treeDrawerBarColor="'rgba(150,150,150,0.4)'"
@@ -771,7 +789,7 @@
             </div>
 
 
-            <div v-if="false" class="bk">
+            <div class="bk">
                 <demolink
                     :kbname="'w-explorer'"
                     :casename="'triggerClickTreeFolderById'"
@@ -792,7 +810,7 @@
             </div>
 
 
-            <div v-if="false" class="bk">
+            <div class="bk">
                 <demolink
                     :kbname="'w-explorer'"
                     :casename="'triggerClickTreeFolderByFun'"
@@ -813,7 +831,7 @@
             </div>
 
 
-            <div v-if="false" class="bk">
+            <div class="bk">
                 <demolink
                     :kbname="'w-explorer'"
                     :casename="'slot list-item-cover'"
@@ -1008,7 +1026,7 @@
             </div>
 
 
-            <div v-if="false" class="bk">
+            <div class="bk">
                 <demolink
                     :kbname="'w-explorer'"
                     :casename="'slot list-item-sub'"
@@ -1088,6 +1106,7 @@ export default {
         return {
             'WExplorer': {
                 bShowTree: true,
+                treeWidth: 250,
                 fps1: [
                     {
                         type: 'file',
