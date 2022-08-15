@@ -490,12 +490,6 @@ export default {
             io3: 0,
             sCmps: [
                 {
-                    name: 'combination',
-                    cmps: [
-                        { name: 'WExplorer' },
-                    ]
-                },
-                {
                     name: 'basic',
                     cmps: [
                         { name: 'WBadge' },
@@ -566,6 +560,7 @@ export default {
                 {
                     name: 'tree',
                     cmps: [
+                        { name: 'WExplorer' },
                         { name: 'WTree' },
                         { name: 'WJsonView' },
                     ]
@@ -581,12 +576,6 @@ export default {
                         { name: 'WDrawer' },
                     ]
                 },
-                // {
-                //     name: 'combination',
-                //     cmps: [
-                //         { name: 'WExplorer' },
-                //     ]
-                // },
                 {
                     name: 'dynamic',
                     cmps: [

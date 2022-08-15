@@ -286,6 +286,7 @@ import isestr from 'wsemi/src/isestr.mjs'
 import isfun from 'wsemi/src/isfun.mjs'
 import ispm from 'wsemi/src/ispm.mjs'
 import replace from 'wsemi/src/replace.mjs'
+import arrSort from 'wsemi/src/arrSort.mjs'
 import filepathToTree from 'wsemi/src/filepathToTree.mjs'
 import color2hex from '../js/vuetifyColor.mjs'
 import domResize from '../js/domResize.mjs'
@@ -300,6 +301,7 @@ import WButtonCircle from './WButtonCircle.vue'
 /**
  * @vue-prop {Array} [items=[]] 輸入項目物件陣列，預設[]
  * @vue-prop {String} [bindRoot='root'] 輸入建置根目錄名稱字串，預設'root'
+ * @vue-prop {Function} [funSortTree=null] 輸入排序樹狀資料夾名稱函數，預設null
  * @vue-prop {Boolean} [showTree=false] 輸入是否顯示樹狀資料夾布林值，預設false
  * @vue-prop {Number} [treeWidth=200] 輸入拖曳抽屜寬度數字，單位為px，預設200
  * @vue-prop {Number} [treeWidthMin=null] 輸入拖曳抽屜寬度最小值數字，單位為px，預設null
@@ -387,6 +389,10 @@ export default {
         bindRoot: {
             type: String,
             default: 'root',
+        },
+        funSortTree: {
+            type: Function,
+            default: null,
         },
         showTree: {
             type: Boolean,
@@ -718,8 +724,34 @@ export default {
 
             let vo = this
 
+            //soryItems
+            let soryItems = (rs, pid, ns) => {
+                // console.log('soryItems', 'pid=', pid, 'ns=', ns, 'rs=', rs)
+
+                // let mm = (rs) => {
+                //     return map(rs, (v, k) => {
+                //         return {
+                //             k,
+                //             t: v.text
+                //         }
+                //     })
+                // }
+
+                //arrSort
+                // console.log('rs1', JSON.stringify(mm(rs)))
+                rs = arrSort(rs, { compareKey: 'text', localeCompare: true })
+                // console.log('rs2', JSON.stringify(mm(rs)))
+
+                //funSortTree
+                if (isfun(vo.funSortTree)) {
+                    rs = vo.funSortTree(rs)
+                }
+
+                return rs
+            }
+
             //filepathToTree
-            let r = filepathToTree(vo.items, { bindRoot: vo.bindRoot })
+            let r = filepathToTree(vo.items, { bindRoot: vo.bindRoot, soryItems })
 
             //save
             vo.treeItemsFolder = r.treeItemsFolder
