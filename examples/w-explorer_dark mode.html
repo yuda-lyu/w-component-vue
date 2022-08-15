@@ -85,7 +85,7 @@
     </script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.2.39/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.2.40/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -203,6 +203,7 @@
         WExplorer: {
           bShowTree: true,
           treeWidth: 250,
+          funSortTree: null,
           fps1: [
             {
               type: "file",
@@ -635,6 +636,25 @@
             return null;
           }
         );
+      },
+      ckFunSortTree: function(m) {
+        console.log("ckFunSortTree", m);
+
+        let vo = this;
+
+        //fun
+        let fun = rs => {
+          console.log("rs", rs);
+          rs.reverse();
+          return rs;
+        };
+
+        //funSortTree
+        if (m === "default") {
+          vo.WExplorer.funSortTree = null;
+        } else {
+          vo.WExplorer.funSortTree = fun;
+        }
       },
       getFolderInfor: function(props) {
         console.log("getFolderInfor", props);
