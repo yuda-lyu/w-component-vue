@@ -135,16 +135,16 @@
             >w-explorer</span>
         </div>
         <div class="bk">
+            <div class="item">treeWidth</div>
+
             <div
-                class="item"
-            >treeFolderIconColor &amp; treeFolderIconColorHover &amp; treeFolderIconColorActive</div>
+                style="padding-bottom:10px;font-size:0.8rem;"
+            >treeWidth: {{WExplorer.treeWidth}}</div>
 
             <w-explorer
                 style="width:600px; height:250px;"
                 :items="WExplorer.fps1"
-                :tree-folder-icon-color="'#ea6'"
-                :tree-folder-icon-color-hover="'#c84'"
-                :tree-folder-icon-color-active="'#a62'"
+                :tree-width.sync="WExplorer.treeWidth"
             ></w-explorer>
         </div>
     </v-app>
