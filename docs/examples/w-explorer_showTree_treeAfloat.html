@@ -85,7 +85,7 @@
     </script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.2.40/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.2.41/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -557,13 +557,16 @@
           };
         });
       },
-      toggleTreeFoldersAll: function(toUnfolding) {
-        console.log("toggleTreeFoldersAll", toUnfolding);
+      toggleTreeFoldersAll: function(toUnfolding, toLevel) {
+        console.log("toggleTreeFoldersAll", toUnfolding, toLevel);
 
         let vo = this;
 
         //toggleTreeFoldersAll
-        vo.$refs.ref_toggleTreeFoldersAll.toggleTreeFoldersAll(toUnfolding);
+        vo.$refs.ref_toggleTreeFoldersAll.toggleTreeFoldersAll(
+          toUnfolding,
+          toLevel
+        );
       },
       ckTriggerClickTreeFolderById: function(treeItemId) {
         console.log("ckTriggerClickTreeFolderById", treeItemId);

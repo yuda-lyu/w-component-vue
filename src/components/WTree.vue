@@ -67,7 +67,7 @@
                                     :iconColor="iconToggleColor"
                                     :iconBackgroundColor="iconToggleBackgroundColor"
                                     :iconBackgroundColorHover="iconToggleBackgroundColorHover"
-                                    @click.stop="toggleItems(props.row)"
+                                    @click.stop="toggleItems(props.row, null)"
                                 ></WTreeIconToggle>
                             </div>
 
@@ -1602,9 +1602,10 @@ export default {
             let vo = this
 
             //unfolding parents
-            let level = -1
+            let level = 1e20
             let rs = []
             for (let i = ind; i >= 0; i--) {
+                // console.log('i', i)
 
                 //levelNow
                 let levelNow = get(items, `${i}.row.item.level`, null)
@@ -1614,8 +1615,8 @@ export default {
                 }
 
                 //check
-                if (level !== levelNow) {
-                    // console.log('get level', levelNow, items[i])
+                if (level > levelNow) {
+                    // console.log('get level', levelNow, items[i].row.item.text)
 
                     //ind
                     let ind = get(items, `${i}.row.index`, null)
@@ -1626,6 +1627,7 @@ export default {
 
                     //push, 紀錄需展開之父層節點編號(含自己)
                     rs.push(ind)
+                    // console.log('rs', rs)
 
                     //update
                     level = levelNow
@@ -1643,7 +1645,9 @@ export default {
             rs = reverse(rs)
 
             //dropRight, 剔除自己
+            // console.log('rs1', cloneDeep(rs))
             rs = dropRight(rs)
+            // console.log('rs2', cloneDeep(rs))
 
             //由頂層往下依序展開
             each(rs, (ind) => {
@@ -1682,7 +1686,7 @@ export default {
 
                         //toggleItemsCore
                         each(items, (v, k) => {
-                            if ((v.row.item.level + 1) > l && v.row.unfolding) {
+                            if (v.row.item.level >= l && v.row.unfolding) {
                                 vo.toggleItemsCore(items, k, false) //非指定層數則隱藏
                             }
                         })
@@ -1705,22 +1709,38 @@ export default {
 
         },
 
-        toggleItemsAllCore: function(items, toUnfolding) {
-            // console.log('methods toggleItemsAllCore', items, toUnfolding)
+        toggleItemsAllCore: function(items, toUnfolding, toLevel = 0) {
+            // console.log('methods toggleItemsAllCore', items, toUnfolding, toLevel)
 
             let vo = this
 
+            //check, 若指定level小於0則使用預設值0
+            if (toLevel < 0) {
+                toLevel = 0
+            }
+            // console.log('toLevel', toLevel)
+
+            //check, 若指定level大於0, 則代表是指定顯示至level而其下節點皆隱藏, 故toUnfolding=false
+            if (toLevel > 0) {
+                toUnfolding = false
+            }
+            // console.log('toUnfolding', toUnfolding)
+
             //toggleItemsCore
             each(items, (v, k) => {
-                if (v.row.unfolding !== toUnfolding) {
-                    vo.toggleItemsCore(items, k, toUnfolding)
+                // console.log(`v.row.item.level`, v.row.item.level, `v.row.unfolding[${v.row.unfolding}] !== toUnfolding[${toUnfolding}]`, v.row.unfolding !== toUnfolding)
+                if (v.row.item.level >= toLevel && (v.row.unfolding !== toUnfolding)) {
+                    vo.toggleItemsCore(items, k, toUnfolding) //大於等於指定層且與指定顯隱不同, 則切換
+                }
+                else if (v.row.item.level < toLevel && (v.row.unfolding !== (!toUnfolding))) {
+                    vo.toggleItemsCore(items, k, !toUnfolding) //大於等於指定層且與指定顯隱不同, 則切換
                 }
             })
 
         },
 
-        toggleItemsAll: function(toUnfolding) {
-            // console.log('methods toggleItemsAll', toUnfolding)
+        toggleItemsAll: function(toUnfolding, toLevel = 0) {
+            // console.log('methods toggleItemsAll', toUnfolding, toLevel)
 
             let vo = this
 
@@ -1737,7 +1757,7 @@ export default {
                         // console.log('items', cloneDeep(items))
 
                         //toggleItemsAllCore
-                        vo.toggleItemsAllCore(items, toUnfolding)
+                        vo.toggleItemsAllCore(items, toUnfolding, toLevel)
 
                     }
                 }

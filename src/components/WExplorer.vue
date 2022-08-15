@@ -1136,12 +1136,12 @@ export default {
             return vo.$refs.wt.toggleItemsByFun(cb)
         },
 
-        toggleTreeFoldersAll: function(toUnfolding) {
-            // console.log('methods toggleTreeFoldersAll', toUnfolding)
+        toggleTreeFoldersAll: function(toUnfolding, toLevel) {
+            // console.log('methods toggleTreeFoldersAll', toUnfolding, toLevel)
 
             let vo = this
 
-            return vo.$refs.wt.toggleItemsAll(toUnfolding)
+            return vo.$refs.wt.toggleItemsAll(toUnfolding, toLevel)
         },
 
         triggerClickTreeFolderById: function(id) {

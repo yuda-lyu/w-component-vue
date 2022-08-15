@@ -705,8 +705,10 @@
                 ></demolink>
 
                 <div>
-                    <v-btn style="margin:0px 5px 5px 0px;" small @click="toggleTreeFoldersAll(true)">show all</v-btn>
+                    <v-btn style="margin:0px 5px 5px 0px;" small @click="toggleTreeFoldersAll(true)">display all</v-btn>
                     <v-btn style="margin:0px 5px 5px 0px;" small @click="toggleTreeFoldersAll(false)">hide all</v-btn>
+                    <v-btn style="margin:0px 5px 5px 0px;" small @click="toggleTreeFoldersAll(null,1)">display to level1</v-btn>
+                    <v-btn style="margin:0px 5px 5px 0px;" small @click="toggleTreeFoldersAll(null,2)">display to level2</v-btn>
                 </div>
 
                 <w-explorer
@@ -843,7 +845,6 @@
                 </div>
 
                 <w-explorer
-                    ref="we_triggerClickTreeFolderByFun"
                     style="width:600px; height:250px;"
                     :items="WExplorer.fps1"
                     :funSortTree="WExplorer.funSortTree"
@@ -1516,13 +1517,13 @@ export default {
             })
 
         },
-        toggleTreeFoldersAll: function(toUnfolding) {
-            console.log('toggleTreeFoldersAll', toUnfolding)
+        toggleTreeFoldersAll: function(toUnfolding, toLevel) {
+            console.log('toggleTreeFoldersAll', toUnfolding, toLevel)
 
             let vo = this
 
             //toggleTreeFoldersAll
-            vo.$refs.ref_toggleTreeFoldersAll.toggleTreeFoldersAll(toUnfolding)
+            vo.$refs.ref_toggleTreeFoldersAll.toggleTreeFoldersAll(toUnfolding, toLevel)
 
         },
         ckTriggerClickTreeFolderById: function(treeItemId) {

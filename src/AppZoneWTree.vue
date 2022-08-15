@@ -167,8 +167,10 @@
                 ></demolink>
 
                 <div>
-                    <v-btn style="margin:0px 5px 5px 0px;" small @click="toggleItemsAll(true)">show all</v-btn>
+                    <v-btn style="margin:0px 5px 5px 0px;" small @click="toggleItemsAll(true)">display all</v-btn>
                     <v-btn style="margin:0px 5px 5px 0px;" small @click="toggleItemsAll(false)">hide all</v-btn>
+                    <v-btn style="margin:0px 5px 5px 0px;" small @click="toggleItemsAll(null,1)">display to level1</v-btn>
+                    <v-btn style="margin:0px 5px 5px 0px;" small @click="toggleItemsAll(null,2)">display to level2</v-btn>
                 </div>
 
                 <w-tree
@@ -1658,13 +1660,13 @@ export default {
             })
 
         },
-        toggleItemsAll: function(toUnfolding) {
-            console.log('toggleItemsAll', toUnfolding)
+        toggleItemsAll: function(toUnfolding, toLevel) {
+            console.log('toggleItemsAll', toUnfolding, toLevel)
 
             let vo = this
 
             //toggleItemsAll
-            vo.$refs.ref_toggleItemsAll.toggleItemsAll(toUnfolding)
+            vo.$refs.ref_toggleItemsAll.toggleItemsAll(toUnfolding, toLevel)
 
         },
     },
