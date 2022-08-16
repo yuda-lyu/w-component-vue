@@ -24,7 +24,7 @@
 
             <template v-slot:drawer="props">
                 <!-- tree高度是使用viewHeightMax為動態高度, 故外部封裝一層給予背景色 -->
-                <div :style="`height:100%; background:${effTreeBackgroundColor};`">
+                <div :style="`position:relative; height:100%; background:${effTreeBackgroundColor};`">
 
                     <WTree
                         ref="wt"
@@ -73,6 +73,28 @@
                         </template>
                     </WTree>
 
+                    <div :style="`position:absolute; top:0px; right:0px;`" v-if="showTreeTrans">
+                        <!-- drawer可能有捲軸, 給予預留空間padding-right:8px -->
+                        <div :style="`padding-right:8px; min-height:${btnDisplayTreeInDrawerHeightMin}px; display:flex; align-items:center;`">
+
+                            <!-- 切換顯隱tree按鈕 -->
+                            <WButtonCircle
+                                :paddingStyle="{h:2,v:2}"
+                                :icon="showTreeTrans?btnDisplayTreeIconHide:btnDisplayTreeIconShow"
+                                :iconSize="btnDisplayTreeIconSize"
+                                :iconColor="btnDisplayTreeIconColor"
+                                :iconColorHover="btnDisplayTreeIconColorHover"
+                                :iconColorFocus="btnDisplayTreeIconColorFocus"
+                                :backgroundColor="btnDisplayTreeBackgroundColor"
+                                :backgroundColorHover="btnDisplayTreeBackgroundColorHover"
+                                :backgroundColorFocus="btnDisplayTreeBackgroundColorFocus"
+                                :shadow="false"
+                                @click="emitShowTree(!showTreeTrans)"
+                            ></WButtonCircle>
+
+                        </div>
+                    </div>
+
                 </div>
             </template>
 
@@ -86,9 +108,12 @@
                         @domresize="resizePath"
                     >
 
-                        <div :style="`display:flex; align-items:flex-start;`">
+                        <div :style="`padding-left:5px; display:flex; align-items:flex-start;`">
 
-                            <div :style="`min-height:${btnDisplayTreeIconSize+8}px; padding:0px 2px 0px 5px; display:flex; align-items:center;`">
+                            <div
+                                :style="`min-height:${btnDisplayTreeIconSize+8}px; padding-right:2px; display:flex; align-items:center;`"
+                                v-if="!showTreeTrans"
+                            >
 
                                 <!-- 切換顯隱tree按鈕 -->
                                 <WButtonCircle
@@ -236,7 +261,7 @@
                                         </slot>
                                     </div>
 
-                                    <div :style="`position:absolute; top:0px; right:0px; _width:100%; _height:100%;`">
+                                    <div :style="`position:absolute; top:0px; right:0px;`">
                                         <slot
                                             name="list-item-cover"
                                             :item="props.item"
@@ -288,6 +313,7 @@ import ispm from 'wsemi/src/ispm.mjs'
 import replace from 'wsemi/src/replace.mjs'
 import arrSort from 'wsemi/src/arrSort.mjs'
 import filepathToTree from 'wsemi/src/filepathToTree.mjs'
+import parseSpace from '../js/parseSpace.mjs'
 import color2hex from '../js/vuetifyColor.mjs'
 import domResize from '../js/domResize.mjs'
 import WIcon from './WIcon.vue'
@@ -302,10 +328,11 @@ import WButtonCircle from './WButtonCircle.vue'
  * @vue-prop {Array} [items=[]] 輸入項目物件陣列，預設[]
  * @vue-prop {String} [bindRoot='root'] 輸入建置根目錄名稱字串，預設'root'
  * @vue-prop {Function} [funSortTree=null] 輸入排序樹狀資料夾名稱函數，預設null
- * @vue-prop {Boolean} [showTree=false] 輸入是否顯示樹狀資料夾布林值，預設false
- * @vue-prop {Number} [treeWidth=200] 輸入拖曳抽屜寬度數字，單位為px，預設200
- * @vue-prop {Number} [treeWidthMin=null] 輸入拖曳抽屜寬度最小值數字，單位為px，預設null
- * @vue-prop {Number} [treeWidthMax=null] 輸入拖曳抽屜寬度最大值數字，單位為px，預設null
+ * @vue-prop {Boolean} [showTree=true] 輸入是否顯示樹狀資料夾布林值，預設true
+ * @vue-prop {Boolean} [defaultShowTreeFirst=true] 輸入是否預先顯示樹狀資料夾之第1個資料夾布林值，預設true
+ * @vue-prop {Number} [treeWidth=200] 輸入樹狀資料夾寬度數字，單位為px，預設200
+ * @vue-prop {Number} [treeWidthMin=null] 輸入樹狀資料夾可拖曳寬度之最小值數字，單位為px，預設null
+ * @vue-prop {Number} [treeWidthMax=null] 輸入樹狀資料夾可拖曳寬度之最大值數字，單位為px，預設null
  * @vue-prop {Boolean} [treeAfloat=false] 輸入是否樹狀資料夾為浮動顯示布林值，設為true時浮在內容區上故不壓縮內容區寬度，預設false
  * @vue-prop {Number} [treeDefItemHeight=30] 輸入樹狀資料夾之按需顯示時各項目預設最小高度(min-height)值，給越準或給大部分項目的高度則渲染速度越快，單位為px，預設30
  * @vue-prop {Number} [treeDefaultDisplayLevel=null] 輸入樹狀資料夾之初始展開層數數字，若輸入1就是預設展開至第1層，第2層(含)以下則都隱藏，若輸入null就是全展開，預設null
@@ -356,8 +383,8 @@ import WButtonCircle from './WButtonCircle.vue'
  * @vue-prop {String} [btnDisplayTreeIconColorHover='grey darken-2'] 輸入滑鼠移入時顯隱樹狀資料夾按鈕圖標顏色字串，預設'grey darken-2'
  * @vue-prop {String} [btnDisplayTreeIconColorFocus='grey darken-3'] 輸入取得焦點時顯隱樹狀資料夾按鈕圖標顏色字串，預設'grey darken-3'
  * @vue-prop {String} [btnDisplayTreeBackgroundColor='transparent'] 輸入顯隱樹狀資料夾按鈕背景顏色字串，預設'transparent'
- * @vue-prop {String} [btnDisplayTreeBackgroundColorHover='rgb(236,236,236)'] 輸入滑鼠移入時顯隱樹狀資料夾按鈕背景顏色字串，預設'rgb(236,236,236)'
- * @vue-prop {String} [btnDisplayTreeBackgroundColorFocus='rgb(230,230,230)'] 輸入主動模式時顯隱樹狀資料夾按鈕背景顏色字串，預設'rgb(230,230,230)'
+ * @vue-prop {String} [btnDisplayTreeBackgroundColorHover='rgba(200,200,200,0.3)'] 輸入滑鼠移入時顯隱樹狀資料夾按鈕背景顏色字串，預設'rgba(200,200,200,0.3)'
+ * @vue-prop {String} [btnDisplayTreeBackgroundColorFocus='rgba(180,180,180,0.3)'] 輸入主動模式時顯隱樹狀資料夾按鈕背景顏色字串，預設'rgba(180,180,180,0.3)'
  * @vue-prop {String} [pathBtnTextColor='#444'] 輸入路徑區按鈕之文字顏色字串，預設'#444'
  * @vue-prop {String} [pathBtnTextColorHover='#222'] 輸入滑鼠移入時路徑區按鈕之文字顏色字串，預設'#222'
  * @vue-prop {String} [pathBtnTextFontSize='0.85rem'] 輸入路徑區按鈕之文字字型大小字串，預設'0.85rem'
@@ -395,6 +422,10 @@ export default {
             default: null,
         },
         showTree: {
+            type: Boolean,
+            default: true,
+        },
+        defaultShowTreeFirst: {
             type: Boolean,
             default: true,
         },
@@ -626,11 +657,11 @@ export default {
         },
         btnDisplayTreeBackgroundColorHover: {
             type: String,
-            default: 'rgb(236,236,236)',
+            default: 'rgba(200,200,200,0.3)',
         },
         btnDisplayTreeBackgroundColorFocus: {
             type: String,
-            default: 'rgb(230,230,230)',
+            default: 'rgba(180,180,180,0.3)',
         },
         pathBtnTextColor: {
             type: String,
@@ -758,8 +789,10 @@ export default {
             vo.treeItems = r.treeItems
             vo.kpPath = r.kpPath
 
-            //defaultShowFirst
-            vo.defaultShowFirst()
+            //showTreeFirstFolder
+            if (vo.defaultShowTreeFirst) {
+                vo.showTreeFirstFolder()
+            }
 
             return ''
         },
@@ -835,14 +868,24 @@ export default {
             return `font-size:${s};`
         },
 
+        effPathBtnTextColor: function() {
+            let vo = this
+            return color2hex(vo.pathBtnTextColor)
+        },
+
         listHeight: function() {
             let vo = this
             return vo.panelHeight - vo.pathHeight
         },
 
-        effPathBtnTextColor: function() {
+        btnDisplayTreeInDrawerHeightMin: function() {
             let vo = this
-            return color2hex(vo.pathBtnTextColor)
+            let o = parseSpace(vo.treePaddingStyle, { returnObj: true })
+            // console.log('btnDisplayTreeInDrawerHeightMin', o)
+            let t = o.top
+            let b = o.bottom
+            let h = vo.treeDefItemHeight
+            return h + t + b
         },
 
     },
@@ -870,19 +913,14 @@ export default {
 
         },
 
-        defaultShowFirst: function() {
-            // console.log('methods defaultShowFirst')
+        showTreeFirstFolder: function() {
+            // console.log('methods showTreeFirstFolder')
 
             let vo = this
 
-            //nextTick
-            vo.$nextTick(() => {
-
-                //triggerClickTreeFolderById
-                let id = vo.bindRoot
-                vo.triggerClickTreeFolderById(id)
-
-            })
+            //triggerClickTreeFolderById
+            let id = vo.bindRoot
+            vo.triggerClickTreeFolderById(id)
 
         },
 

@@ -135,11 +135,13 @@
             >w-explorer</span>
         </div>
         <div class="bk">
-            <div class="item">default</div>
+            <div class="item">defaultShowTreeFirst &amp; noSelectedText</div>
 
             <w-explorer
                 style="width:600px; height:250px;"
                 :items="WExplorer.fps1"
+                :default-show-tree-first="false"
+                :no-selected-text="'尚未選擇資料夾'"
             ></w-explorer>
         </div>
     </v-app>

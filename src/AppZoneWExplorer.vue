@@ -120,8 +120,8 @@
                 <w-explorer
                     style="width:600px; height:250px;"
                     :items="WExplorer.fps1"
-                    :treeDefItemHeight="24"
-                    :listDefItemHeight="24"
+                    :treeDefItemHeight="22"
+                    :listDefItemHeight="22"
                 >
                 </w-explorer>
 
@@ -590,12 +590,29 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-explorer'"
-                    :casename="'noSelectedText'"
+                    :casename="'defaultShowTreeFirst'"
                 ></demolink>
 
                 <w-explorer
                     style="width:600px; height:250px;"
                     :items="WExplorer.fps1"
+                    :defaultShowTreeFirst="false"
+                >
+                </w-explorer>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-explorer'"
+                    :casename="'defaultShowTreeFirst & noSelectedText'"
+                ></demolink>
+
+                <w-explorer
+                    style="width:600px; height:250px;"
+                    :items="WExplorer.fps1"
+                    :defaultShowTreeFirst="false"
                     :noSelectedText="'尚未選擇資料夾'"
                 >
                 </w-explorer>
