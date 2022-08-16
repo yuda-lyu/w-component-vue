@@ -442,9 +442,9 @@
                 <w-explorer
                     style="width:600px; height:250px;"
                     :items="WExplorer.fps1"
-                    :btnDisplayTreeBackgroundColor="'rgb(241,241,241)'"
-                    :btnDisplayTreeBackgroundColorHover="'rgb(220,220,220)'"
-                    :btnDisplayTreeBackgroundColorFocus="'rgb(200,200,200)'"
+                    :btnDisplayTreeBackgroundColor="'rgba(241,241,255,0.7)'"
+                    :btnDisplayTreeBackgroundColorHover="'rgb(220,220,255)'"
+                    :btnDisplayTreeBackgroundColorFocus="'rgb(200,200,255)'"
                 >
                 </w-explorer>
 
@@ -693,54 +693,6 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-explorer'"
-                    :casename="'toggleTreeFoldersByFun'"
-                ></demolink>
-
-                <div>
-                    <v-btn style="margin:0px 5px 5px 0px;" small @click="toggleTreeFoldersByFun(0, true)">show(rows[0])</v-btn>
-                    <v-btn style="margin:0px 5px 5px 0px;" small @click="toggleTreeFoldersByFun(0, false)">hide(rows[0])</v-btn>
-                    <v-btn style="margin:0px 5px 5px 0px;" small @click="toggleTreeFoldersByFun(1, true)">show(rows[1])</v-btn>
-                    <v-btn style="margin:0px 5px 5px 0px;" small @click="toggleTreeFoldersByFun(1, false)">hide(rows[1])</v-btn>
-                    <v-btn style="margin:0px 5px 5px 0px;" small @click="toggleTreeFoldersByFun(2, true)">show(rows[2])</v-btn>
-                    <v-btn style="margin:0px 5px 5px 0px;" small @click="toggleTreeFoldersByFun(2, false)">hide(rows[2])</v-btn>
-                </div>
-
-                <w-explorer
-                    ref="ref_toggleTreeFoldersByFun"
-                    style="width:600px; height:250px;"
-                    :items="WExplorer.fps1"
-                >
-                </w-explorer>
-
-            </div>
-
-
-            <div class="bk">
-                <demolink
-                    :kbname="'w-explorer'"
-                    :casename="'toggleTreeFoldersAll'"
-                ></demolink>
-
-                <div>
-                    <v-btn style="margin:0px 5px 5px 0px;" small @click="toggleTreeFoldersAll(true)">display all</v-btn>
-                    <v-btn style="margin:0px 5px 5px 0px;" small @click="toggleTreeFoldersAll(false)">hide all</v-btn>
-                    <v-btn style="margin:0px 5px 5px 0px;" small @click="toggleTreeFoldersAll(null,1)">display to level1</v-btn>
-                    <v-btn style="margin:0px 5px 5px 0px;" small @click="toggleTreeFoldersAll(null,2)">display to level2</v-btn>
-                </div>
-
-                <w-explorer
-                    ref="ref_toggleTreeFoldersAll"
-                    style="width:600px; height:250px;"
-                    :items="WExplorer.fps1"
-                >
-                </w-explorer>
-
-            </div>
-
-
-            <div class="bk">
-                <demolink
-                    :kbname="'w-explorer'"
                     :casename="'dark mode'"
                 ></demolink>
 
@@ -804,6 +756,54 @@
                     >
                     </w-explorer>
                 </div>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-explorer'"
+                    :casename="'toggleTreeFoldersByFun'"
+                ></demolink>
+
+                <div>
+                    <v-btn style="margin:0px 5px 5px 0px;" small @click="toggleTreeFoldersByFun(0, true)">show(rows[0])</v-btn>
+                    <v-btn style="margin:0px 5px 5px 0px;" small @click="toggleTreeFoldersByFun(0, false)">hide(rows[0])</v-btn>
+                    <v-btn style="margin:0px 5px 5px 0px;" small @click="toggleTreeFoldersByFun(1, true)">show(rows[1])</v-btn>
+                    <v-btn style="margin:0px 5px 5px 0px;" small @click="toggleTreeFoldersByFun(1, false)">hide(rows[1])</v-btn>
+                    <v-btn style="margin:0px 5px 5px 0px;" small @click="toggleTreeFoldersByFun(2, true)">show(rows[2])</v-btn>
+                    <v-btn style="margin:0px 5px 5px 0px;" small @click="toggleTreeFoldersByFun(2, false)">hide(rows[2])</v-btn>
+                </div>
+
+                <w-explorer
+                    ref="ref_toggleTreeFoldersByFun"
+                    style="width:600px; height:250px;"
+                    :items="WExplorer.fps1"
+                >
+                </w-explorer>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-explorer'"
+                    :casename="'toggleTreeFoldersAll'"
+                ></demolink>
+
+                <div>
+                    <v-btn style="margin:0px 5px 5px 0px;" small @click="toggleTreeFoldersAll(true)">display all</v-btn>
+                    <v-btn style="margin:0px 5px 5px 0px;" small @click="toggleTreeFoldersAll(false)">hide all</v-btn>
+                    <v-btn style="margin:0px 5px 5px 0px;" small @click="toggleTreeFoldersAll(null,1)">display to level1</v-btn>
+                    <v-btn style="margin:0px 5px 5px 0px;" small @click="toggleTreeFoldersAll(null,2)">display to level2</v-btn>
+                </div>
+
+                <w-explorer
+                    ref="ref_toggleTreeFoldersAll"
+                    style="width:600px; height:250px;"
+                    :items="WExplorer.fps1"
+                >
+                </w-explorer>
 
             </div>
 
@@ -884,7 +884,10 @@
                 >
 
                     <template v-slot:list-item-cover="props">
-                        <div style="display:flex; align-items:center;" v-if="props.item.data._type==='file'">
+                        <div
+                            style="display:flex; align-items:center;"
+                            v-if="props.item.data._type==='file'"
+                        >
 
                             <div
                                 style="padding:0px 5px; color:#6fb57e; cursor:pointer;"
@@ -1014,7 +1017,10 @@
                     </template>
 
                     <template v-slot:list-item-cover="props">
-                        <div style="display:flex; align-items:center;" v-if="props.item.data._type==='file'">
+                        <div
+                            style="display:flex; align-items:center;"
+                            v-if="props.item.data._type==='file'"
+                        >
 
                             <div style="padding:0px 7px;">
                                 <div
@@ -1079,7 +1085,10 @@
                 >
 
                     <template v-slot:list-item-sub="props">
-                        <div :style="`transition:all 0.3s; padding:3px; background:${props.isHover?'#e2e2e2':'#fbf4f2'}; border-bottom:1px solid #ddd; font-size:0.7rem; line-height:0.7rem; display:flex; align-items:center; justify-content:flex-end;`" v-if="props.item.data._type==='file'">
+                        <div
+                            :style="`transition:all 0.3s; padding:3px; background:${props.isHover?'#e2e2e2':'#fbf4f2'}; border-bottom:1px solid #ddd; font-size:0.7rem; line-height:0.7rem; display:flex; align-items:center; justify-content:flex-end;`"
+                            v-if="props.item.data._type==='file'"
+                        >
 
                             <div style="padding:0px 5px; display:flex; align-items:center;">
                                 <div style="padding-right:3px; color:#888;">
@@ -1112,6 +1121,84 @@
                                 @click="ckItem('icon-wired')"
                             >
                                 <i class="fas fa-network-wired"></i>
+                            </div>
+
+                        </div>
+                    </template>
+
+                </w-explorer>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-explorer'"
+                    :casename="'slot list-item-text-left'"
+                ></demolink>
+
+                <w-explorer
+                    style="width:600px; height:250px;"
+                    :items="WExplorer.fps1"
+                    @click="ckItem"
+                >
+
+                    <template v-slot:list-item-text-left="props">
+                        <div
+                            :style="`display:flex; align-items:center;`"
+                            v-if="props.item.data._type==='file'"
+                        >
+
+                            <div
+                                :style="`transition:all 0.3s; padding:3px 4px; border-radius:0px; font-size:0.7rem; line-height:0.7rem; color:#fff; cursor:pointer; background:${props.isHover?'#62a':'#84a'};`"
+                            >
+                                <div
+                                    style=""
+                                    @click="ckItem('text-priority')"
+                                >
+                                    {{props.item.data.data.priority}}
+                                </div>
+                            </div>
+
+                            <div style="padding-right:5px;"></div>
+
+                        </div>
+                    </template>
+
+                </w-explorer>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-explorer'"
+                    :casename="'slot list-item-text-right'"
+                ></demolink>
+
+                <w-explorer
+                    style="width:600px; height:250px;"
+                    :items="WExplorer.fps1"
+                    @click="ckItem"
+                >
+
+                    <template v-slot:list-item-text-right="props">
+                        <div
+                            :style="`display:flex; align-items:center;`"
+                            v-if="props.item.data._type==='file'"
+                        >
+
+                            <div style="padding-right:5px;"></div>
+
+                            <div
+                                :style="`transition:all 0.3s; padding:3px 5px; border-radius:4px; font-size:0.7rem; line-height:0.7rem; color:#fff; cursor:pointer; background:${props.isHover?'#f26':'#f48'};`"
+                            >
+                                <div
+                                    style=""
+                                    @click="ckItem('text-tester')"
+                                >
+                                    {{props.item.data.data.tester}}
+                                </div>
                             </div>
 
                         </div>
