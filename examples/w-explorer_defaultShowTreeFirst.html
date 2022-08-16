@@ -85,7 +85,7 @@
     </script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.2.42/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.2.43/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -135,12 +135,12 @@
             >w-explorer</span>
         </div>
         <div class="bk">
-            <div class="item">noSelectedText</div>
+            <div class="item">defaultShowTreeFirst</div>
 
             <w-explorer
                 style="width:600px; height:250px;"
                 :items="WExplorer.fps1"
-                :no-selected-text="'尚未選擇資料夾'"
+                :default-show-tree-first="false"
             ></w-explorer>
         </div>
     </v-app>
