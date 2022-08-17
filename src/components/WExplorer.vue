@@ -220,6 +220,7 @@
                             </template>
 
                             <template v-slot:item="props">
+
                                 <!-- 使用line-height使多行文字時依然能置頂對齊 -->
                                 <div :style="`position:relative; min-height:${listDefItemHeight}px; line-height:${listDefItemHeight}px;`">
 
@@ -298,6 +299,7 @@
                                     </slot>
 
                                 </div>
+
                             </template>
 
                             <template v-slot:footer>

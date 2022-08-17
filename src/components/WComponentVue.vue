@@ -13,6 +13,7 @@ import WDropfiles from './WDropfiles.vue'
 import WDynamicList from './WDynamicList.vue'
 import WEchartsVueDyn from './WEchartsVueDyn.vue'
 import WExplorer from './WExplorer.vue'
+import WGroupBaggage from './WGroupBaggage.vue'
 import WGroupCheck from './WGroupCheck.vue'
 import WGroupDragdrop from './WGroupDragdrop.vue'
 import WGroupRadio from './WGroupRadio.vue'
@@ -39,6 +40,7 @@ import WPanelDivideVertical from './WPanelDivideVertical.vue'
 import WPanelScale from './WPanelScale.vue'
 import WPanelScrolly from './WPanelScrolly.vue'
 import WPanelScrollyCore from './WPanelScrollyCore.vue'
+import WPanelSlotHover from './WPanelSlotHover.vue'
 import WPanelStripe from './WPanelStripe.vue'
 import WPopup from './WPopup.vue'
 import WPopupEditText from './WPopupEditText.vue'
@@ -87,6 +89,7 @@ let WComponentVue = {
         Vue.component('w-dynamic-list', WDynamicList)
         Vue.component('w-echarts-vue-dyn', WEchartsVueDyn)
         Vue.component('w-explorer', WExplorer)
+        Vue.component('w-group-baggage', WGroupBaggage)
         Vue.component('w-group-check', WGroupCheck)
         Vue.component('w-group-dragdrop', WGroupDragdrop)
         Vue.component('w-group-radio', WGroupRadio)
@@ -113,6 +116,7 @@ let WComponentVue = {
         Vue.component('w-panel-scale', WPanelScale)
         Vue.component('w-panel-scrolly', WPanelScrolly)
         Vue.component('w-panel-scrolly-core', WPanelScrollyCore)
+        Vue.component('w-panel-slot-hover', WPanelSlotHover)
         Vue.component('w-panel-stripe', WPanelStripe)
         Vue.component('w-popup', WPopup)
         Vue.component('w-popup-edit-text', WPopupEditText)

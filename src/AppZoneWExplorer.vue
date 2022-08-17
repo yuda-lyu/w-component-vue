@@ -937,12 +937,12 @@
                 >
 
                     <template v-slot:list-item="props">
-                        <div
-                            style="display:flex; align-items:center; cursor:pointer;"
-                            @click="props.funClickListItem()"
-                        >
+                        <div style="display:flex; align-items:center;">
 
-                            <div style="padding-right:5px;">
+                            <div
+                                style="padding-right:5px; cursor:pointer;"
+                                @click="props.funClickListItem()"
+                            >
                                 <w-icon
                                     :icon="props.item.icon"
                                     _color="props.item.iconColor"
@@ -951,7 +951,10 @@
                                 ></w-icon>
                             </div>
 
-                            <div style="">
+                            <div
+                                style=" cursor:pointer;"
+                                @click="props.funClickListItem()"
+                            >
                                 {{props.item.data.text}}
                             </div>
 

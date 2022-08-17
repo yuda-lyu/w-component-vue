@@ -85,7 +85,7 @@
     </script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.2.44/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.2.45/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -145,11 +145,11 @@
                 @click="ckItem"
             >
                 <template v-slot:list-item="props">
-                    <div
-                        style="display:flex; align-items:center; cursor:pointer;"
-                        @click="props.funClickListItem()"
-                    >
-                        <div style="padding-right:5px;">
+                    <div style="display:flex; align-items:center;">
+                        <div
+                            style="padding-right:5px; cursor:pointer;"
+                            @click="props.funClickListItem()"
+                        >
                             <w-icon
                                 :icon="props.item.icon"
                                 _color="props.item.iconColor"
@@ -158,7 +158,10 @@
                             ></w-icon>
                         </div>
 
-                        <div style>{{props.item.data.text}}</div>
+                        <div
+                            style=" cursor:pointer;"
+                            @click="props.funClickListItem()"
+                        >{{props.item.data.text}}</div>
                     </div>
                 </template>
 

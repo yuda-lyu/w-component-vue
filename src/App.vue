@@ -203,6 +203,11 @@
             ></AppZoneWGroupDragdrop>
 
 
+            <AppZoneWGroupBaggage
+                v-if="useCmpName==='WGroupBaggage'"
+            ></AppZoneWGroupBaggage>
+
+
             <AppZoneWListVertical
                 v-if="useCmpName==='WListVertical'"
             ></AppZoneWListVertical>
@@ -389,6 +394,7 @@ import AppZoneWCheckbox from './AppZoneWCheckbox.vue'
 import AppZoneWAlert from './AppZoneWAlert.vue'
 import AppZoneWGroupTags from './AppZoneWGroupTags.vue'
 import AppZoneWGroupDragdrop from './AppZoneWGroupDragdrop.vue'
+import AppZoneWGroupBaggage from './AppZoneWGroupBaggage.vue'
 import AppZoneWListVertical from './AppZoneWListVertical.vue'
 import AppZoneWListHorizontal from './AppZoneWListHorizontal.vue'
 import AppZoneWListExpand from './AppZoneWListExpand.vue'
@@ -447,6 +453,7 @@ export default {
         AppZoneWAlert,
         AppZoneWGroupTags,
         AppZoneWGroupDragdrop,
+        AppZoneWGroupBaggage,
         AppZoneWListVertical,
         AppZoneWListHorizontal,
         AppZoneWListExpand,
@@ -492,6 +499,7 @@ export default {
                 {
                     name: 'basic',
                     cmps: [
+                        { name: 'WGroupBaggage' },
                         { name: 'WBadge' },
                         { name: 'WSwitch' },
                         { name: 'WCheckbox' },
