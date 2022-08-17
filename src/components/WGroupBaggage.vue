@@ -13,26 +13,34 @@
                 :style="`display:flex; align-items:stretch;`"
             >
 
-                <table :style="`border-collapse:collapse;`">
-                    <tbody>
-                        <tr :style="`height:${connLineZoneHeightMin/2}px;`">
-                            <td :style="`${getStyleWidth(connLineZoneWidth/2)} border-right:${connLineWidth}px solid ${effConnLineColor};`"></td>
-                            <td :style="`${getStyleWidth(connLineZoneWidth/2)} border-bottom:${connLineWidth}px solid ${effConnLineColor};`"></td>
-                        </tr>
-                        <tr :style="`_height:calc( 100% - ${connLineZoneHeightMin/2}px );`">
-                            <td :style="`${getStyleWidth(connLineZoneWidth/2)} border-right:${connLineWidth}px solid ${kt===(items.length-1)?'transparent':effConnLineColor};`"></td>
-                            <td :style="`${getStyleWidth(connLineZoneWidth/2)}`"></td>
-                        </tr>
-                    </tbody>
-                </table>
+                <div>
 
-                <WPanelSlotHover :style="`padding-top:${connLineZoneHeightMin/4}px;`">
+                    <div :style="`height:${distBetweenTopAndTagBaseline}px; display:flex; align-items:stretch;`">
+                        <div :style="`${getStyleWidth(connLineZoneWidth/2)} height:${distBetweenTopAndTagBaseline}px; border-right:${connLineWidth}px solid ${effConnLineColor};`">
+                        </div>
+                        <div :style="`${getStyleWidth(connLineZoneWidth/2)} height:${distBetweenTopAndTagBaseline}px; border-bottom:${connLineWidth}px solid ${effConnLineColor};`">
+                        </div>
+                    </div>
+
+                    <div :style="`height:calc( 100% - ${distBetweenTopAndTagBaseline}px ); display:flex; align-items:stretch;`">
+                        <div :style="`${getStyleWidth(connLineZoneWidth/2)} border-right:${connLineWidth}px solid ${kt===(items.length-1)?'transparent':effConnLineColor};`">
+                        </div>
+                        <div :style="`${getStyleWidth(connLineZoneWidth/2)}`">
+                        </div>
+                    </div>
+
+                </div>
+
+                <WPanelSlotHover
+                    :style="`padding-top:${distBetweenTopAndTagBaseline-contentShiftTopFromBaseline}px; ${tagClickable?'cursor:pointer;':''}`"
+                    @click.native="ckContent"
+                >
                     <template v-slot="{isHover}">
                         <div :style="`transition:all 0.3s; ${useContentPaddingStyle} ${usetContentTextFontSize} color:${isHover?effContentTextColorHover:effContentTextColor}; border-radius:${contentBorderRadius}px; background:${isHover?effContentBackgroundColorHover:effContentBackgroundColor}; border:${contentBorderWidth}px solid ${isHover?effContentBorderColorHover:effContentBorderColor};`">
 
                             <slot
                                 name="text"
-                                :items="t"
+                                :item="t"
                                 :isHover="isHover"
                             >
                                 {{getText(t)}}
@@ -44,17 +52,20 @@
 
             </div>
 
-            <div :style="`position:absolute; left:${connLineZoneWidth/2}px; top:${connLineZoneHeightMin/2}px;`">
-                <WPanelSlotHover :style="`transform:translate(-50%, -50%);`">
+            <div :style="`position:absolute; left:${connLineZoneWidth/2}px; top:${distBetweenTopAndTagBaseline}px;`">
+                <WPanelSlotHover
+                    :style="`transform:translate(-50%, -50%); ${contentClickable?'cursor:pointer;':''}`"
+                    @click.native="ckTag"
+                >
                     <template v-slot="{isHover}">
                         <div :style="`transition:all 0.3s; ${useTagPaddingStyle} ${usetTagTextFontSize} color:${isHover?effTagTextColorHover:effTagTextColor}; border-radius:${tagBorderRadius}px; background:${isHover?effTagBackgroundColorHover:effTagBackgroundColor}; border:${tagBorderWidth}px solid ${isHover?effTagBorderColorHover:effTagBorderColor};`">
 
                             <slot
-                                name="text"
-                                :items="t"
+                                name="tag"
+                                :item="t"
                                 :isHover="isHover"
                             >
-                                {{getBag(t)}}
+                                {{getTag(t)}}
                             </slot>
 
                         </div>
@@ -69,21 +80,8 @@
 
 <script>
 import get from 'lodash/get'
-import each from 'lodash/each'
-import cloneDeep from 'lodash/cloneDeep'
-import trim from 'lodash/trim'
 import isNumber from 'lodash/isNumber'
-import pullAt from 'lodash/pullAt'
-import filter from 'lodash/filter'
-import isEqual from 'lodash/isEqual'
-import size from 'lodash/size'
-import genID from 'wsemi/src/genID.mjs'
-import o2j from 'wsemi/src/o2j.mjs'
-import isobj from 'wsemi/src/isobj.mjs'
-import genPm from 'wsemi/src/genPm.mjs'
 import replace from 'wsemi/src/replace.mjs'
-import WButtonChip from './WButtonChip.vue'
-import WTextSuggest from './WTextSuggest.vue'
 import parseSpace from '../js/parseSpace.mjs'
 import color2hex from '../js/vuetifyColor.mjs'
 import WPanelSlotHover from './WPanelSlotHover.vue'
@@ -91,12 +89,39 @@ import WPanelSlotHover from './WPanelSlotHover.vue'
 
 /**
  * @vue-prop {Array} [items=[]] 輸入項目的字串陣列或物件陣列，預設[]
- *
+ * @vue-prop {Array} [items=[]] 輸入項目的物件陣列，預設[]
+ * @vue-prop {String} [keyTag='tag'] 輸入存放標記欄位字串，預設'tag'
+ * @vue-prop {String} [keyText='text'] 輸入存放文字欄位字串，預設'text'
+ * @vue-prop {Number} [distBetweenTopAndTagBaseline=24] 輸入各項目頂部與標記基線距離數字，單位px，預設24
+ * @vue-prop {Number} [connLineZoneWidth=120] 輸入連接線與標記區域寬度數字，單位px，預設120
+ * @vue-prop {Number} [connLineWidth=1] 輸入連接線寬度數字，單位px，預設1
+ * @vue-prop {String} [connLineColor='#ccc'] 輸入連接線顏色字串，預設'#ccc'
+ * @vue-prop {String} [tagTextFontSize='0.7rem'] 輸入標記區文字字型大小字串，預設'0.7rem'
+ * @vue-prop {String} [tagTextColor='#444'] 輸入標記區文字顏色字串，預設'#444'
+ * @vue-prop {String} [tagTextColorHover='#222'] 輸入滑鼠移入時標記區文字顏色字串，預設'#222'
+ * @vue-prop {Number} [tagBorderRadius=4] 輸入標記區框線圓角度數字，單位為px，預設4
+ * @vue-prop {Number} [tagBorderWidth=1] 輸入標記區框線寬度數字，單位px，預設1
+ * @vue-prop {String} [tagBorderColor='#fff'] 輸入標記區框線顏色字串，預設'#fff'
+ * @vue-prop {String} [tagBorderColor='#ccc'] 輸入滑鼠移入時標記區框線顏色字串，預設'#ccc'
+ * @vue-prop {String} [tagBackgroundColor='#e5e5e5'] 輸入標記區背景顏色字串，預設'#e5e5e5'
+ * @vue-prop {String} [tagBackgroundColorHover='#d8d8d8'] 輸入滑鼠移入時標記區背景顏色字串，預設'#d8d8d8'
+ * @vue-prop {Object} [tagPaddingStyle={v:1,h:5}] 輸入標記區內寬距離設定物件，可用鍵值為v、h、left、right、top、bottom，v代表同時設定top與bottom，h代表設定left與right，若有重複設定時後面鍵值會覆蓋前面，各鍵值為寬度數字，單位為px，預設{v:1,h:5}
+ * @vue-prop {Boolean} [tagClickable=false] 輸入標記區是否可點擊布林值，預設false
+ * @vue-prop {Number} [contentShiftTopFromBaseline=11] 輸入內容區由標記基線平移距離數字，單位px，預設11
+ * @vue-prop {String} [contentTextFontSize='0.85rem'] 輸入內容區文字字型大小字串，預設'0.85rem'
+ * @vue-prop {String} [contentTextColor='#444'] 輸入內容區文字顏色字串，預設'#444'
+ * @vue-prop {String} [contentTextColorHover='#222'] 輸入滑鼠移入時內容區文字顏色字串，預設'#222'
+ * @vue-prop {Number} [contentBorderRadius=4] 輸入內容區框線圓角度數字，單位為px，預設4
+ * @vue-prop {Number} [contentBorderWidth=1] 輸入內容區框線寬度數字，單位px，預設1
+ * @vue-prop {String} [contentBorderColor='#ddd'] 輸入內容區框線顏色字串，預設'#ddd'
+ * @vue-prop {String} [contentBorderColor='#cccccc'] 輸入滑鼠移入時內容區框線顏色字串，預設'#cccccc'
+ * @vue-prop {String} [contentBackgroundColor='#fff'] 輸入內容區背景顏色字串，預設'#fff'
+ * @vue-prop {String} [contentBackgroundColorHover='#f2f2f2'] 輸入滑鼠移入時內容區背景顏色字串，預設'#f2f2f2'
+ * @vue-prop {Object} [contentPaddingStyle={v:1,h:5}] 輸入內容區內寬距離設定物件，可用鍵值為v、h、left、right、top、bottom，v代表同時設定top與bottom，h代表設定left與right，若有重複設定時後面鍵值會覆蓋前面，各鍵值為寬度數字，單位為px，預設{v:1,h:5}
+ * @vue-prop {Boolean} [contentClickable=false] 輸入內容區是否可點擊布林值，預設false
  */
 export default {
     components: {
-        // WButtonChip,
-        // WTextSuggest,
         WPanelSlotHover,
     },
     props: {
@@ -104,7 +129,7 @@ export default {
             type: Array,
             default: () => [],
         },
-        keyBag: {
+        keyTag: {
             type: String,
             default: 'tag',
         },
@@ -112,13 +137,13 @@ export default {
             type: String,
             default: 'text',
         },
+        distBetweenTopAndTagBaseline: {
+            type: Number,
+            default: 24,
+        },
         connLineZoneWidth: {
             type: Number,
-            default: 100,
-        },
-        connLineZoneHeightMin: {
-            type: Number,
-            default: 48,
+            default: 120,
         },
         connLineWidth: {
             type: Number,
@@ -150,19 +175,19 @@ export default {
         },
         tagBorderColor: {
             type: String,
-            default: '#ccc',
+            default: '#fff',
         },
         tagBorderColorHover: {
             type: String,
-            default: '#dab78b',
+            default: '#ccc',
         },
         tagBackgroundColor: {
             type: String,
-            default: '#f3e7d8',
+            default: '#e5e5e5',
         },
         tagBackgroundColorHover: {
             type: String,
-            default: '#f0e2d0',
+            default: '#d8d8d8',
         },
         tagPaddingStyle: {
             type: Object,
@@ -172,6 +197,14 @@ export default {
                     h: 5,
                 }
             },
+        },
+        tagClickable: {
+            type: Boolean,
+            default: false,
+        },
+        contentShiftTopFromBaseline: {
+            type: Number,
+            default: 11,
         },
         contentTextFontSize: {
             type: String,
@@ -217,6 +250,10 @@ export default {
                     h: 5,
                 }
             },
+        },
+        contentClickable: {
+            type: Boolean,
+            default: false,
         },
     },
     data: function() {
@@ -343,9 +380,9 @@ export default {
             return `width:${w}px; min-width:${w}px; max-width:${w}px;`
         },
 
-        getBag: function(item) {
+        getTag: function(item) {
             let vo = this
-            let r = get(item, vo.keyBag, '')
+            let r = get(item, vo.keyTag, '')
             return r
         },
 
@@ -353,6 +390,24 @@ export default {
             let vo = this
             let r = get(item, vo.keyText, '')
             return r
+        },
+
+        ckTag: function(ev) {
+            let vo = this
+            if (!vo.tagClickable) {
+                return
+            }
+            vo.$emit('click-tag', { ev })
+            vo.$emit('click', { from: 'tag', ev })
+        },
+
+        ckContent: function(ev) {
+            let vo = this
+            if (!vo.contentClickable) {
+                return
+            }
+            vo.$emit('click-contnet', { ev })
+            vo.$emit('click', { from: 'contnet', ev })
         },
 
     },

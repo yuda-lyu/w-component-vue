@@ -174,21 +174,21 @@ import WIconLoading from './WIconLoading.vue'
  * @vue-prop {String} [backgroundColor='rgb(241,241,241)'] 輸入背景顏色字串，預設'rgb(241,241,241)'
  * @vue-prop {String} [backgroundColorHover='rgb(236,236,236)'] 輸入滑鼠移入時背景顏色字串，預設'rgb(236,236,236)'
  * @vue-prop {String} [backgroundColorActive='orange'] 輸入主動模式時背景顏色字串，預設'orange'
- * @vue-prop {Boolean} [shadow=false] 輸入是否顯示陰影，預設false
+ * @vue-prop {Boolean} [shadow=false] 輸入是否顯示陰影布林值，預設false
  * @vue-prop {String} [shadowStyle=''] 輸入陰影顏色字串，預設值詳見props
- * @vue-prop {Boolean} [shadowActive=true] 輸入主動模式時是否顯示陰影，預設true
+ * @vue-prop {Boolean} [shadowActive=true] 輸入主動模式時是否顯示陰影布林值，預設true
  * @vue-prop {String} [shadowActiveStyle=''] 輸入主動模式時陰影顏色字串，預設值詳見props
  * @vue-prop {String} [rippleColor='rgba(255,255,255,0.4)'] 輸入ripple效果顏色字串，預設'rgba(255,255,255,0.4)'
  * @vue-prop {Object} [paddingStyle={v:3,h:15}] 輸入內寬距離設定物件，可用鍵值為v、h、left、right、top、bottom，v代表同時設定top與bottom，h代表設定left與right，若有重複設定時後面鍵值會覆蓋前面，各鍵值為寬度數字，單位為px，預設{v:3,h:15}
  * @vue-prop {Number} [shiftLeft=0] 輸入左側內寬平移距離數字，會對paddingStyle設定再添加，可調整例如圖標與左側邊框距離，單位px，預設0
  * @vue-prop {Number} [shiftRight=0] 輸入右側內寬平移距離數字，會對paddingStyle設定再添加，可調整例如關閉圖標與右側邊框距離，單位px，預設0
  * @vue-prop {Boolean} [active=false] 輸入是否為主動模式布林值，預設false
- * @vue-prop {Boolean} [close=false] 輸入是否具有關閉按鈕模式，預設false
- * @vue-prop {Boolean} [cursorPointer=true] 輸入是否滑鼠移入顯示pointer樣式，預設true
- * @vue-prop {Boolean} [loading=false] 輸入是否為載入模式，預設false
+ * @vue-prop {Boolean} [close=false] 輸入是否具有關閉按鈕模式布林值，預設false
+ * @vue-prop {Boolean} [cursorPointer=true] 輸入是否滑鼠移入顯示pointer樣式布林值，預設true
+ * @vue-prop {Boolean} [loading=false] 輸入是否為載入模式布林值，預設false
  * @vue-prop {String} [loadingColor='grey darken-2'] 輸入載入圖標顏色字串，預設'grey darken-2'
  * @vue-prop {String} [role='button'] 輸入角色字串，預設'button'
- * @vue-prop {Boolean} [editable=true] 輸入是否為編輯模式，預設true
+ * @vue-prop {Boolean} [editable=true] 輸入是否為編輯模式布林值，預設true
  * @vue-prop {String} [disabledColor='rgba(255,255,255,0.5)'] 輸入非編輯模式時遮罩顏色字串，預設'rgba(255,255,255,0.5)'
  */
 export default {

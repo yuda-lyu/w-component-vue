@@ -499,7 +499,6 @@ export default {
                 {
                     name: 'basic',
                     cmps: [
-                        { name: 'WGroupBaggage' },
                         { name: 'WBadge' },
                         { name: 'WSwitch' },
                         { name: 'WCheckbox' },
@@ -535,6 +534,7 @@ export default {
                         { name: 'WGroupRadio' },
                         { name: 'WGroupTags' },
                         { name: 'WGroupDragdrop' },
+                        { name: 'WGroupBaggage' },
                     ]
                 },
                 {

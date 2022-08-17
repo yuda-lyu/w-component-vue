@@ -87,10 +87,10 @@ import WListItem from './WListItem.vue'
  * @vue-prop {Array} [items=[]] 輸入項目的字串陣列或物件陣列，預設[]
  * @vue-prop {Boolean} [useActive=false] 輸入項目是否使用點擊成為活耀狀態布林值，預設false
  * @vue-prop {String|Object} [itemActive=null] 輸入活耀項目字串或物件，預設null
- * @vue-prop {String} [itemTextFontSize='1rem'] 輸入文字字型大小字串，預設'1rem'
  * @vue-prop {String} [keyText='text'] 輸入項目為物件時，存放顯示文字之欄位字串，預設'text'
  * @vue-prop {String} [keyIcon='icon'] 輸入項目為物件時，存放圖標之欄位字串，預設'icon'
  * @vue-prop {Object} [paddingStyle={v:10,h:12}] 輸入內寬距離設定物件，可用鍵值為v、h、left、right、top、bottom，v代表同時設定top與bottom，h代表設定left與right，若有重複設定時後面鍵值會覆蓋前面，各鍵值為寬度數字，單位為px，預設{v:10,h:12}
+ * @vue-prop {String} [itemTextFontSize='1rem'] 輸入文字字型大小字串，預設'1rem'
  * @vue-prop {String} [itemBackgroundColor='white'] 輸入背景顏色字串，預設'white'
  * @vue-prop {String} [itemBackgroundColorHover='rgba(200,200,200,0.2)'] 輸入滑鼠移入時背景顏色字串，預設'rgba(200,200,200,0.2)'
  * @vue-prop {String} [itemBackgroundColorActive='orange lighten-1'] 輸入主動模式時背景顏色字串，預設'orange lighten-1'
@@ -103,7 +103,7 @@ import WListItem from './WListItem.vue'
  * @vue-prop {String} [itemIconColorActive='white'] 輸入主動模式時圖標顏色字串，預設'white'
  * @vue-prop {String} [itemRippleColor='rgba(255,255,255,0.4)'] 輸入ripple效果顏色字串，預設'rgba(255,255,255,0.4)'
  * @vue-prop {Boolean} [itemClickable=true] 輸入是否為可點擊模式布林值，預設true
- * @vue-prop {Boolean} [itemCursorPointer=true] 輸入是否滑鼠移入顯示pointer樣式，預設true
+ * @vue-prop {Boolean} [itemCursorPointer=true] 輸入是否滑鼠移入顯示pointer樣式布林值，預設true
  */
 export default {
     directives: {
@@ -126,10 +126,6 @@ export default {
             type: [String, Object],
             default: null,
         },
-        itemTextFontSize: {
-            type: String,
-            default: '1rem',
-        },
         keyText: {
             type: String,
             default: 'text',
@@ -146,6 +142,10 @@ export default {
                     h: 12,
                 }
             },
+        },
+        itemTextFontSize: {
+            type: String,
+            default: '1rem',
         },
         itemBackgroundColor: {
             type: String,
