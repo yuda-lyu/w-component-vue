@@ -33,7 +33,7 @@
 
                 <WPanelSlotHover
                     :style="`padding-top:${distBetweenTopAndTagBaseline-contentShiftTopFromBaseline}px; ${tagClickable?'cursor:pointer;':''}`"
-                    @click.native="ckContent"
+                    @click.native="(ev)=>{ckContent(ev,t)}"
                 >
                     <template v-slot="{isHover}">
                         <div :style="`transition:all 0.3s; ${useContentPaddingStyle} ${usetContentTextFontSize} color:${isHover?effContentTextColorHover:effContentTextColor}; border-radius:${contentBorderRadius}px; background:${isHover?effContentBackgroundColorHover:effContentBackgroundColor}; border:${contentBorderWidth}px solid ${isHover?effContentBorderColorHover:effContentBorderColor};`">
@@ -55,7 +55,7 @@
             <div :style="`position:absolute; left:${connLineZoneWidth/2}px; top:${distBetweenTopAndTagBaseline}px;`">
                 <WPanelSlotHover
                     :style="`transform:translate(-50%, -50%); ${contentClickable?'cursor:pointer;':''}`"
-                    @click.native="ckTag"
+                    @click.native="(ev)=>{ckTag(ev,t)}"
                 >
                     <template v-slot="{isHover}">
                         <div :style="`transition:all 0.3s; ${useTagPaddingStyle} ${usetTagTextFontSize} color:${isHover?effTagTextColorHover:effTagTextColor}; border-radius:${tagBorderRadius}px; background:${isHover?effTagBackgroundColorHover:effTagBackgroundColor}; border:${tagBorderWidth}px solid ${isHover?effTagBorderColorHover:effTagBorderColor};`">
@@ -392,22 +392,22 @@ export default {
             return r
         },
 
-        ckTag: function(ev) {
+        ckTag: function(ev, item) {
             let vo = this
             if (!vo.tagClickable) {
                 return
             }
-            vo.$emit('click-tag', { ev })
-            vo.$emit('click', { from: 'tag', ev })
+            vo.$emit('click-tag', { ev, item })
+            vo.$emit('click', { from: 'tag', ev, item })
         },
 
-        ckContent: function(ev) {
+        ckContent: function(ev, item) {
             let vo = this
             if (!vo.contentClickable) {
                 return
             }
-            vo.$emit('click-contnet', { ev })
-            vo.$emit('click', { from: 'contnet', ev })
+            vo.$emit('click-content', { ev, item })
+            vo.$emit('click', { from: 'contnet', ev, item })
         },
 
     },
