@@ -15,14 +15,14 @@
 
                 <div>
 
-                    <div :style="`height:${distBetweenTopAndTagBaseline}px; display:flex; align-items:stretch;`">
-                        <div :style="`${getStyleWidth(connLineZoneWidth/2)} height:${distBetweenTopAndTagBaseline}px; border-right:${connLineWidth}px solid ${effConnLineColor};`">
+                    <div :style="`height:${tagDistBetweenTopAndBaseline}px; display:flex; align-items:stretch;`">
+                        <div :style="`${getStyleWidth(connLineZoneWidth/2)} height:${tagDistBetweenTopAndBaseline}px; border-right:${connLineWidth}px solid ${effConnLineColor};`">
                         </div>
-                        <div :style="`${getStyleWidth(connLineZoneWidth/2)} height:${distBetweenTopAndTagBaseline}px; border-bottom:${connLineWidth}px solid ${effConnLineColor};`">
+                        <div :style="`${getStyleWidth(connLineZoneWidth/2)} height:${tagDistBetweenTopAndBaseline}px; border-bottom:${connLineWidth}px solid ${effConnLineColor};`">
                         </div>
                     </div>
 
-                    <div :style="`height:calc( 100% - ${distBetweenTopAndTagBaseline}px ); display:flex; align-items:stretch;`">
+                    <div :style="`height:calc( 100% - ${tagDistBetweenTopAndBaseline}px ); display:flex; align-items:stretch;`">
                         <div :style="`${getStyleWidth(connLineZoneWidth/2)} border-right:${connLineWidth}px solid ${kt===(items.length-1)?'transparent':effConnLineColor};`">
                         </div>
                         <div :style="`${getStyleWidth(connLineZoneWidth/2)}`">
@@ -32,7 +32,7 @@
                 </div>
 
                 <WPanelSlotHover
-                    :style="`padding-top:${distBetweenTopAndTagBaseline-contentShiftTopFromBaseline}px; ${tagClickable?'cursor:pointer;':''}`"
+                    :style="`padding-top:${tagDistBetweenTopAndBaseline-contentShiftTopFromBaseline}px; ${tagClickable?'cursor:pointer;':''}`"
                     @click.native="(ev)=>{ckContent(ev,t)}"
                 >
                     <template v-slot="{isHover}">
@@ -52,7 +52,7 @@
 
             </div>
 
-            <div :style="`position:absolute; left:${connLineZoneWidth/2}px; top:${distBetweenTopAndTagBaseline}px;`">
+            <div :style="`position:absolute; left:${connLineZoneWidth/2}px; top:${tagDistBetweenTopAndBaseline}px;`">
                 <WPanelSlotHover
                     :style="`transform:translate(-50%, -50%); ${contentClickable?'cursor:pointer;':''}`"
                     @click.native="(ev)=>{ckTag(ev,t)}"
@@ -92,10 +92,10 @@ import WPanelSlotHover from './WPanelSlotHover.vue'
  * @vue-prop {Array} [items=[]] 輸入項目的物件陣列，預設[]
  * @vue-prop {String} [keyTag='tag'] 輸入存放標記欄位字串，預設'tag'
  * @vue-prop {String} [keyText='text'] 輸入存放文字欄位字串，預設'text'
- * @vue-prop {Number} [distBetweenTopAndTagBaseline=24] 輸入各項目頂部與標記基線距離數字，單位px，預設24
  * @vue-prop {Number} [connLineZoneWidth=120] 輸入連接線與標記區域寬度數字，單位px，預設120
  * @vue-prop {Number} [connLineWidth=1] 輸入連接線寬度數字，單位px，預設1
  * @vue-prop {String} [connLineColor='#ccc'] 輸入連接線顏色字串，預設'#ccc'
+ * @vue-prop {Number} [tagDistBetweenTopAndBaseline=24] 輸入各項目頂部與標記基線距離數字，單位px，預設24
  * @vue-prop {String} [tagTextFontSize='0.7rem'] 輸入標記區文字字型大小字串，預設'0.7rem'
  * @vue-prop {String} [tagTextColor='#444'] 輸入標記區文字顏色字串，預設'#444'
  * @vue-prop {String} [tagTextColorHover='#222'] 輸入滑鼠移入時標記區文字顏色字串，預設'#222'
@@ -137,10 +137,6 @@ export default {
             type: String,
             default: 'text',
         },
-        distBetweenTopAndTagBaseline: {
-            type: Number,
-            default: 24,
-        },
         connLineZoneWidth: {
             type: Number,
             default: 120,
@@ -152,6 +148,10 @@ export default {
         connLineColor: {
             type: String,
             default: '#ccc',
+        },
+        tagDistBetweenTopAndBaseline: {
+            type: Number,
+            default: 24,
         },
         tagTextFontSize: {
             type: String,

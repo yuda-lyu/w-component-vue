@@ -91,6 +91,22 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-group-baggage'"
+                    :casename="'tagDistBetweenTopAndBaseline'"
+                ></demolink>
+
+                <w-group-baggage
+                    style="width:600px;"
+                    :items="WGroupBaggage.items"
+                    :tagDistBetweenTopAndBaseline="40"
+                >
+                </w-group-baggage>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-group-baggage'"
                     :casename="'tagTextFontSize & contentShiftTopFromBaseline'"
                 ></demolink>
 
@@ -314,22 +330,6 @@
                     style="width:600px;"
                     :items="WGroupBaggage.items"
                     :contentPaddingStyle="{v:5,h:10}"
-                >
-                </w-group-baggage>
-
-            </div>
-
-
-            <div class="bk">
-                <demolink
-                    :kbname="'w-group-baggage'"
-                    :casename="'distBetweenTopAndTagBaseline'"
-                ></demolink>
-
-                <w-group-baggage
-                    style="width:600px;"
-                    :items="WGroupBaggage.items"
-                    :distBetweenTopAndTagBaseline="40"
                 >
                 </w-group-baggage>
 
