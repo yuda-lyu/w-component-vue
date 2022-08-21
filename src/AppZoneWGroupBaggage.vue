@@ -435,6 +435,47 @@
             </div>
 
 
+            <div class="bk">
+                <demolink
+                    :kbname="'w-group-baggage'"
+                    :casename="'slot text-sub'"
+                ></demolink>
+
+                <w-group-baggage
+                    style="width:600px;"
+                    :items="WGroupBaggage.items"
+                >
+
+                    <template v-slot:text-sub="props">
+                        <div
+                            :style="`display:flex; align-items:center; justify-content:flex-end; font-size:0.7rem;`"
+                            @click="ckItem('slot-text-sub')"
+                        >
+
+                            <div :style="`padding-right:5px; color:#777;`">
+                                {{props.item.title}}
+                            </div>
+
+                            <div :style="`padding-right:5px; color:#57938c;`">
+                                <i class="fas fa-cloud-meatball"></i>
+                            </div>
+
+                            <div :style="`padding-right:5px; color:#614b9e;`">
+                                <i class="fas fa-battery-three-quarters"></i>
+                            </div>
+
+                            <div :style="`padding-right:5px; color:#c72361;`">
+                                <i class="fas fa-balance-scale"></i>
+                            </div>
+
+                        </div>
+                    </template>
+
+                </w-group-baggage>
+
+            </div>
+
+
         </div>
 
 

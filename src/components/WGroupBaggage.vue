@@ -31,24 +31,35 @@
 
                 </div>
 
-                <WPanelSlotHover
-                    :style="`padding-top:${tagDistBetweenTopAndBaseline-contentShiftTopFromBaseline}px; ${tagClickable?'cursor:pointer;':''}`"
-                    @click.native="(ev)=>{ckContent(ev,t)}"
-                >
-                    <template v-slot="{isHover}">
-                        <div :style="`transition:all 0.3s; ${useContentPaddingStyle} ${usetContentTextFontSize} color:${isHover?effContentTextColorHover:effContentTextColor}; border-radius:${contentBorderRadius}px; background:${isHover?effContentBackgroundColorHover:effContentBackgroundColor}; border:${contentBorderWidth}px solid ${isHover?effContentBorderColorHover:effContentBorderColor};`">
+                <div style="width:100%;">
 
-                            <slot
-                                name="text"
-                                :item="t"
-                                :isHover="isHover"
-                            >
-                                {{getText(t)}}
-                            </slot>
+                    <WPanelSlotHover
+                        :style="`padding-top:${tagDistBetweenTopAndBaseline-contentShiftTopFromBaseline}px; ${tagClickable?'cursor:pointer;':''}`"
+                        @click.native="(ev)=>{ckContent(ev,t)}"
+                    >
+                        <template v-slot="{isHover}">
+                            <div :style="`transition:all 0.3s; ${useContentPaddingStyle} ${usetContentTextFontSize} color:${isHover?effContentTextColorHover:effContentTextColor}; border-radius:${contentBorderRadius}px; background:${isHover?effContentBackgroundColorHover:effContentBackgroundColor}; border:${contentBorderWidth}px solid ${isHover?effContentBorderColorHover:effContentBorderColor};`">
 
-                        </div>
-                    </template>
-                </WPanelSlotHover>
+                                <slot
+                                    name="text"
+                                    :item="t"
+                                    :isHover="isHover"
+                                >
+                                    {{getText(t)}}
+                                </slot>
+
+                            </div>
+
+                        </template>
+                    </WPanelSlotHover>
+
+                    <slot
+                        name="text-sub"
+                        :item="t"
+                    >
+                    </slot>
+
+                </div>
 
             </div>
 
@@ -88,7 +99,6 @@ import WPanelSlotHover from './WPanelSlotHover.vue'
 
 
 /**
- * @vue-prop {Array} [items=[]] 輸入項目的字串陣列或物件陣列，預設[]
  * @vue-prop {Array} [items=[]] 輸入項目的物件陣列，預設[]
  * @vue-prop {String} [keyTag='tag'] 輸入存放標記欄位字串，預設'tag'
  * @vue-prop {String} [keyText='text'] 輸入存放文字欄位字串，預設'text'
