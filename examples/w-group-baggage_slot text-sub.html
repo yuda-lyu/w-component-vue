@@ -132,22 +132,35 @@
                 style="cursor:pointer;"
                 title="open for copy link to view component"
                 onclick="window.open('//yuda-lyu.github.io/w-component-vue/examples/app.html?cmp='+this.innerText,'_blank')"
-            >w-text-suggest</span>
+            >w-group-baggage</span>
         </div>
         <div class="bk">
-            <div class="item">border &amp; placeholder</div>
+            <div class="item">slot text-sub</div>
 
-            <w-text-suggest
-                :shadow="false"
-                :border-color="'orange lighten-2'"
-                :border-color-hover="'orange'"
-                :border-color-focus="'orange darken-2'"
-                :background-color-focus="'orange lighten-5'"
-                :left-icon="'mdi-check-underline-circle'"
-                :placeholder="'keywords'"
-                :items="WTextSuggest.objItems"
-                v-model="WTextSuggest.objValue"
-            ></w-text-suggest>
+            <w-group-baggage style="width:600px;" :items="WGroupBaggage.items">
+                <template v-slot:text-sub="props">
+                    <div
+                        :style="`display:flex; align-items:center; justify-content:flex-end; font-size:0.7rem;`"
+                        @click="ckItem('slot-text-sub')"
+                    >
+                        <div
+                            :style="`padding-right:5px; color:#777;`"
+                        >{{props.item.title}}</div>
+
+                        <div :style="`padding-right:5px; color:#57938c;`">
+                            <i class="fas fa-cloud-meatball"></i>
+                        </div>
+
+                        <div :style="`padding-right:5px; color:#614b9e;`">
+                            <i class="fas fa-battery-three-quarters"></i>
+                        </div>
+
+                        <div :style="`padding-right:5px; color:#c72361;`">
+                            <i class="fas fa-balance-scale"></i>
+                        </div>
+                    </div>
+                </template>
+            </w-group-baggage>
         </div>
     </v-app>
 
@@ -161,90 +174,77 @@
     vuetify: new Vuetify(),
     data: function() {
       return {
-        WTextSuggest: {
-          focused: false,
-          showPanel: false,
-          objItems: [
+        WGroupBaggage: {
+          items: [
             {
-              key: "orange",
-              text: "橘子(orange)"
+              tag: "Audience",
+              text:
+                "Ad est alii munere indoctum, ei partiendo assentior vituperatoribus his. Per cu dicunt indoctum qualisque. Eam eu honestatis complectitur, iuvaret democritum interpretaris ad vix.",
+              title: "Indoctum"
             },
             {
-              key: "banana",
-              text: "香蕉(banana)"
+              tag: "Conversions",
+              text:
+                "Etiam appellantur pri te, percipit atomorum consequat et mei, et pro liber ubique ceteros. Est at vocent instructior consequuntur.",
+              title: "Omittantur"
             },
             {
-              key: "strawberry",
-              text: "草莓(strawberry)"
+              tag: "Management",
+              text:
+                "Qui oratio partem percipit ex, brute omittantur eum no, id his iriure splendide voluptatum. Ei his etiam vivendo adversarium, nam iusto ridens ei, meis disputationi eos eu. Meis accumsan mea et, ut ubique deserunt dignissim vix. Duo ex dicant detracto tacimates.",
+              title: "Consequat"
+            },
+            {
+              tag: "Settings",
+              text: "Sed et nisi maximus, aliquet justo in, consequat nisl.",
+              title: "Splendide"
+            },
+            {
+              tag: "Actions",
+              text:
+                "Morbi mi lectus, semper vitae dolor eget, venenatis pellentesque purus. Phasellus sollicitudin mattis molestie. Nunc felis mauris.",
+              title: "Pellentesque"
+            },
+            {
+              tag: "Real-Time",
+              text:
+                "Lorem ipsum dolor sit amet, id nec quod persius patrioque. Quaestio antiopam sea ex. Ius no illud mucius admodum, ea nonumes habemus interpretaris sit, eu ius suavitate definitionem.",
+              title: "Quaestio"
             }
           ],
-          objValue: {
-            key: "banana",
-            text: "香蕉(banana)"
-          },
-          objItemsKeyText: [
+          itemsKey: [
             {
-              key: "orange",
-              name: "橘子(orange)"
+              name: "Audience",
+              content:
+                "Ad est alii munere indoctum, ei partiendo assentior vituperatoribus his. Per cu dicunt indoctum qualisque. Eam eu honestatis complectitur, iuvaret democritum interpretaris ad vix."
             },
             {
-              key: "banana",
-              name: "香蕉(banana)"
+              name: "Conversions",
+              content:
+                "Etiam appellantur pri te, percipit atomorum consequat et mei, et pro liber ubique ceteros. Est at vocent instructior consequuntur."
             },
             {
-              key: "strawberry",
-              name: "草莓(strawberry)"
+              name: "Management",
+              content:
+                "Qui oratio partem percipit ex, brute omittantur eum no, id his iriure splendide voluptatum. Ei his etiam vivendo adversarium, nam iusto ridens ei, meis disputationi eos eu. Meis accumsan mea et, ut ubique deserunt dignissim vix. Duo ex dicant detracto tacimates."
+            },
+            {
+              name: "Settings",
+              content: "Sed et nisi maximus, aliquet justo in, consequat nisl."
+            },
+            {
+              name: "Actions",
+              content:
+                "Morbi mi lectus, semper vitae dolor eget, venenatis pellentesque purus. Phasellus sollicitudin mattis molestie. Nunc felis mauris."
+            },
+            {
+              name: "Real-Time",
+              content:
+                "Lorem ipsum dolor sit amet, id nec quod persius patrioque. Quaestio antiopam sea ex. Ius no illud mucius admodum, ea nonumes habemus interpretaris sit, eu ius suavitate definitionem."
             }
-          ],
-          objValueKeyText: {
-            key: "banana",
-            name: "香蕉(banana)"
-          },
-          objItemsLarge: (function() {
-            let vs = [];
-            vs.push({
-              key: "banana:1",
-              text: "香蕉(banana:1)"
-            });
-            for (let i = 2; i <= 10000; i++) {
-              vs.push({
-                key: "banana:" + i,
-                text: "香蕉(banana:" + i + ")"
-              });
-            }
-            return vs;
-          })(),
-          objValueLarge: {
-            key: "banana:1",
-            text: "香蕉(banana:1)"
-          },
-          strItems: ["orange(橘子)", "banana(香蕉)", "strawberry(草莓)"],
-          strValue: "strawberry(草莓)"
+          ]
         },
-        actions: [
-          {
-            mode: "eleclick",
-            selector: 'input[type="text"]'
-          },
-          {
-            mode: "keypress",
-            key: "End"
-          },
-          {
-            mode: "keypress",
-            key: "Backspace",
-            count: 15
-          },
-          {
-            mode: "eleclick",
-            selector: 'li[role="option"]',
-            nth: 2
-          },
-          {
-            mode: "eleclick",
-            selector: "div.bk"
-          }
-        ]
+        actions: []
       };
     },
     mounted: function() {
@@ -252,43 +252,14 @@
     },
     computed: {},
     methods: {
-      evUpdateFocused: function(item, kitem) {
-        console.log("evUpdateFocused", "item=", item, "kitem", kitem);
+      ckTag: function(msg) {
+        console.log("ckTag", msg);
       },
-      evUpdateShowPanel: function(item, kitem) {
-        console.log("evUpdateShowPanel", "item=", item, "kitem", kitem);
+      ckContent: function(msg) {
+        console.log("ckContent", msg);
       },
-      evBlur: function(item, kitem) {
-        console.log("evBlur", "item=", item, "kitem", kitem);
-      },
-      evInput: function(item, kitem) {
-        console.log("evInput", "item=", item, "kitem", kitem);
-      },
-      evEnter: function(item, kitem) {
-        console.log("evEnter", "item=", item, "kitem", kitem);
-      },
-      evClickItem: function(item, kitem) {
-        console.log("evClickItem", "item=", item, "kitem", kitem);
-      },
-      evClickLeft: function() {
-        console.log("evClickLeft");
-      },
-      evClickRight: function() {
-        console.log("evClickRight");
-      },
-      hidePanelWhenEnter: function() {
-        // console.log('hidePanelWhenEnter')
-
-        let vo = this;
-
-        //blur, 要先將text的焦點取消, 先觸發掉focused變更事件(此會再觸發changeContent內容變更事件, 故會觸發顯示panel)
-        document.activeElement.blur();
-
-        //delay hide, 因enter觸發blur後會觸發changeContent內容變更事件, 故得等顯示事件完成才給予showPanel=false, 100ms是經驗值, 使其完整觸發隱藏panel流程
-        setTimeout(function() {
-          //hide
-          vo.WTextSuggest.showPanel = false;
-        }, 100);
+      ckItem: function(msg) {
+        console.log("ckItem", msg);
       }
     }
   });
