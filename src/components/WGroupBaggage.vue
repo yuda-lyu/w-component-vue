@@ -34,7 +34,7 @@
                 <div style="width:100%;">
 
                     <WPanelSlotHover
-                        :style="`padding-top:${tagDistBetweenTopAndBaseline-contentShiftTopFromBaseline}px; ${tagClickable?'cursor:pointer;':''}`"
+                        :style="`padding-top:${tagDistBetweenTopAndBaseline-contentShiftTopFromBaseline}px; ${contentClickable?'cursor:pointer;':''}`"
                         @click.native="(ev)=>{ckContent(ev,t)}"
                     >
                         <template v-slot="{isHover}">
@@ -65,7 +65,7 @@
 
             <div :style="`position:absolute; left:${connLineZoneWidth/2}px; top:${tagDistBetweenTopAndBaseline}px;`">
                 <WPanelSlotHover
-                    :style="`transform:translate(-50%, -50%); ${contentClickable?'cursor:pointer;':''}`"
+                    :style="`transform:translate(-50%, -50%); ${tagClickable?'cursor:pointer;':''}`"
                     @click.native="(ev)=>{ckTag(ev,t)}"
                 >
                     <template v-slot="{isHover}">
