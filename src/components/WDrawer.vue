@@ -9,6 +9,7 @@
 
         <div ref="divPanel" style="position:relative; height:100%;">
 
+            <!-- 需要配合overflow-x:hidden, 否則右側抽屜會無法被內容區裁切遮蔽 -->
             <div style="width:100%; height:100%; display:flex; overflow-x:hidden;">
 
                 <!-- 撐開區, 需使用min-width避免被壓縮 -->
@@ -18,7 +19,8 @@
                     v-if="isAtLeft"
                 ></div>
 
-                <div :style="`width:100%; height:100%;`">
+                <!-- 因外層使用overflow-x:hidden且內容區具有無法崩塌元素, 故也得使用overflow-x:hidden進行裁切 -->
+                <div :style="`width:100%; height:100%; overflow:hidden;`">
 
                     <slot
                         name="content"
