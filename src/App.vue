@@ -223,9 +223,19 @@
             ></AppZoneWListExpand>
 
 
+            <AppZoneWInputCheckbox
+                v-if="useCmpName==='WInputCheckbox'"
+            ></AppZoneWInputCheckbox>
+
+
             <AppZoneWGroupCheck
                 v-if="useCmpName==='WGroupCheck'"
             ></AppZoneWGroupCheck>
+
+
+            <AppZoneWInputRadio
+                v-if="useCmpName==='WInputRadio'"
+            ></AppZoneWInputRadio>
 
 
             <AppZoneWGroupRadio
@@ -398,7 +408,9 @@ import AppZoneWGroupBaggage from './AppZoneWGroupBaggage.vue'
 import AppZoneWListVertical from './AppZoneWListVertical.vue'
 import AppZoneWListHorizontal from './AppZoneWListHorizontal.vue'
 import AppZoneWListExpand from './AppZoneWListExpand.vue'
+import AppZoneWInputCheckbox from './AppZoneWInputCheckbox.vue'
 import AppZoneWGroupCheck from './AppZoneWGroupCheck.vue'
+import AppZoneWInputRadio from './AppZoneWInputRadio.vue'
 import AppZoneWGroupRadio from './AppZoneWGroupRadio.vue'
 import AppZoneWText from './AppZoneWText.vue'
 import AppZoneWTextInt from './AppZoneWTextInt.vue'
@@ -457,7 +469,9 @@ export default {
         AppZoneWListVertical,
         AppZoneWListHorizontal,
         AppZoneWListExpand,
+        AppZoneWInputCheckbox,
         AppZoneWGroupCheck,
+        AppZoneWInputRadio,
         AppZoneWGroupRadio,
         AppZoneWText,
         AppZoneWTextInt,
@@ -530,7 +544,9 @@ export default {
                 {
                     name: 'group',
                     cmps: [
+                        { name: 'WInputCheckbox' },
                         { name: 'WGroupCheck' },
+                        { name: 'WInputRadio' },
                         { name: 'WGroupRadio' },
                         { name: 'WGroupTags' },
                         { name: 'WGroupDragdrop' },

@@ -26,6 +26,8 @@ import WIconLoading from './WIconLoading.vue'
 import WIconSvg from './WIconSvg.vue'
 import WImageCascadingDyn from './WImageCascadingDyn.vue'
 import WImageViewerDyn from './WImageViewerDyn.vue'
+import WInputCheckbox from './WInputCheckbox.vue'
+import WInputRadio from './WInputRadio.vue'
 import WJsonView from './WJsonView.vue'
 import WLeafletVueDyn from './WLeafletVueDyn.vue'
 import WListExpand from './WListExpand.vue'
@@ -102,6 +104,8 @@ let WComponentVue = {
         Vue.component('w-icon-svg', WIconSvg)
         Vue.component('w-image-cascading-dyn', WImageCascadingDyn)
         Vue.component('w-image-viewer-dyn', WImageViewerDyn)
+        Vue.component('w-input-checkbox', WInputCheckbox)
+        Vue.component('w-input-radio', WInputRadio)
         Vue.component('w-json-view', WJsonView)
         Vue.component('w-leaflet-vue-dyn', WLeafletVueDyn)
         Vue.component('w-list-expand', WListExpand)
