@@ -89,7 +89,7 @@
                                 :backgroundColorHover="btnDisplayTreeBackgroundColorHover"
                                 :backgroundColorFocus="btnDisplayTreeBackgroundColorFocus"
                                 :shadow="false"
-                                @click="emitShowTree(!showTreeTrans)"
+                                @click="emitShowTreeDelay(!showTreeTrans)"
                             ></WButtonCircle>
 
                         </div>
@@ -127,7 +127,7 @@
                                     :backgroundColorHover="btnDisplayTreeBackgroundColorHover"
                                     :backgroundColorFocus="btnDisplayTreeBackgroundColorFocus"
                                     :shadow="false"
-                                    @click="emitShowTree(!showTreeTrans)"
+                                    @click="emitShowTreeDelay(!showTreeTrans)"
                                 ></WButtonCircle>
 
                             </div>
@@ -941,6 +941,18 @@ export default {
             //triggerClickTreeFolderById
             let id = vo.bindRoot
             vo.triggerClickTreeFolderById(id)
+
+        },
+
+        emitShowTreeDelay: function(b) {
+            // console.log('methods emitShowTreeDelay', b)
+
+            let vo = this
+
+            //setTimeout
+            setTimeout(() => {
+                vo.emitShowTree(b)
+            }, 1)
 
         },
 

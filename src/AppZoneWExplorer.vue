@@ -77,7 +77,7 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-explorer'"
-                    :casename="'showTree & treeAfloat'"
+                    :casename="'showTree'"
                 ></demolink>
 
                 <div style="padding-bottom:10px;">
@@ -88,6 +88,21 @@
                     style="width:600px; height:250px;"
                     :items="WExplorer.fps1"
                     :showTree.sync="WExplorer.bShowTree"
+                >
+                </w-explorer>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-explorer'"
+                    :casename="'treeAfloat'"
+                ></demolink>
+
+                <w-explorer
+                    style="width:600px; height:250px;"
+                    :items="WExplorer.fps1"
                     :treeAfloat="true"
                 >
                 </w-explorer>

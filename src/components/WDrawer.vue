@@ -100,7 +100,7 @@
             <div
                 ref="divBar"
                 :style="`position:${useOverlayPosition}; z-index:${useDrawerZIndex+3}; top:0px; ${isAtLeft?'left':'right'}:${useDrawerWidthTrans-useDrawerBarWidth/2}px; width:${useDrawerBarWidth}px; height:100%; border-left:${drawerBarBorderSize}px solid ${useDrawerBarBorderColor}; border-right:${drawerBarBorderSize}px solid ${useDrawerBarBorderColor}; opacity:${showOverlay5DragDrawerBar?1:0}; cursor:col-resize; user-select:none;`"
-                v-show="value && dragDrawerWidth"
+                v-show="valueTrans && dragDrawerWidth"
             >
                 <div :style="`width:${useDrawerBarSize}px; height:100%; background:${useDrawerBarColor};`"></div>
             </div>
@@ -213,6 +213,8 @@ export default {
 
             das: null,
 
+            valueTrans: false,
+
             drawerWidthTrans: 200,
 
             timerOverlay1Basic: null,
@@ -267,11 +269,21 @@ export default {
 
             let vo = this
 
-            //trigger
-            let value = vo.value
+            //check
+            if (vo.valueTrans !== vo.value) {
 
-            //toggleValue
-            vo.toggleValue(value)
+                //toggleValue
+                vo.toggleValue(vo.value)
+
+            }
+            // console.log('vo.value', vo.value, 'vo.valueTrans', vo.valueTrans)
+
+            //update
+            vo.valueTrans = vo.value
+
+            // //trigger
+            // let value = vo.value
+            // // console.log('computed changeValue')
 
             return ''
         },
@@ -307,7 +319,7 @@ export default {
         },
 
         virtualZoneWidth: function() {
-            if (!this.value) {
+            if (!this.valueTrans) {
                 return 0
             }
             if (this.afloat) {
@@ -453,6 +465,9 @@ export default {
                 //toggleValue
                 vo.toggleValue(value)
 
+                //emit
+                vo.$emit('input', value)
+
             }
 
         },
@@ -461,11 +476,6 @@ export default {
             // console.log('methods toggleValue', value)
 
             let vo = this
-
-            // //check, 不可編輯時跳出
-            // if (!vo.editable) {
-            //     return
-            // }
 
             //clearTimeout
             clearTimeout(vo.timerOverlay1Basic)
@@ -548,9 +558,6 @@ export default {
 
             }
 
-            //emit
-            vo.$emit('input', value)
-
         },
 
         getPanelBounding: function() {
@@ -632,8 +639,8 @@ export default {
                 return
             }
 
-            //check value
-            if (!vo.value) {
+            //check valueTrans
+            if (!vo.valueTrans) {
                 return
             }
 
