@@ -698,6 +698,20 @@ export default {
             }
         },
 
+        selections: {
+            immediate: true,
+            deep: true,
+            handler(value) {
+                //console.log('watch selections', value)
+
+                let vo = this
+
+                //updateSelections
+                vo.updateSelections()
+
+            }
+        },
+
     },
     computed: {
 
@@ -1244,6 +1258,11 @@ export default {
 
                 //check
                 if (!vo.selectable) {
+                    return
+                }
+
+                //check
+                if (isEqual(vo.selectionsTrans, vo.selections)) {
                     return
                 }
 
