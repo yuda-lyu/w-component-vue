@@ -1,5 +1,5 @@
 import fs from 'fs'
-import cheerio from 'cheerio'
+import * as cheerio from 'cheerio'
 import _ from 'lodash'
 import w from 'wsemi'
 import getFiles from 'w-package-tools/src/getFiles.mjs'

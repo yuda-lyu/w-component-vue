@@ -1,11 +1,11 @@
 {
   "name": "w-component-vue",
-  "version": "2.2.61",
+  "version": "2.2.62",
   "main": "dist/w-component-vue.umd.js",
   "dependencies": {
-    "@mdi/js": "^7.0.96",
+    "@mdi/js": "^7.1.96",
     "lodash": "^4.17.21",
-    "wsemi": "^1.6.82"
+    "wsemi": "^1.6.89"
   },
   "devDependencies": {
     "eslint": "^7.26.0",
@@ -20,7 +20,7 @@
     "@vue/cli-plugin-babel": "^4.5.13",
     "@vue/cli-plugin-eslint": "^4.5.13",
     "@vue/cli-service": "^4.5.13",
-    "cheerio": "^1.0.0-rc.10",
+    "cheerio": "^1.0.0-rc.12",
     "sass": "^1.34.0",
     "sass-loader": "^10.1.1",
     "vue": "^2.6.14",

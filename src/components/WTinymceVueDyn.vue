@@ -25,7 +25,7 @@ export default {
             type: Array,
             default: () => [
                 'https://cdn.jsdelivr.net/npm/tinymce@5.5.1/tinymce.min.js',
-                'https://cdn.jsdelivr.net/npm/w-tinymce-vue@2.0.2/dist/w-tinymce-vue.umd.js',
+                'https://cdn.jsdelivr.net/npm/w-tinymce-vue@2.0.3/dist/w-tinymce-vue.umd.js',
             ],
         },
         value: {
