@@ -85,7 +85,7 @@
     </script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.2.64/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.2.65/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -137,13 +137,13 @@
         <div class="bk">
             <div class="item">in popup</div>
 
-            <w-popup v-model="WPopup.bShow12" @show="evShow" @hide="evHide">
+            <w-popup v-model="WPopup.bShow15a" @show="evShow" @hide="evHide">
                 <template v-slot:trigger>
                     <v-btn
                         depressed
                         small
                         elevation="2"
-                    >Show({{WPopup.bShow12}})</v-btn>
+                    >Show({{WPopup.bShow15a}})</v-btn>
                 </template>
 
                 <template v-slot:content>
@@ -153,7 +153,7 @@
                         >Here is 1st pupop.</div>
 
                         <w-popup
-                            v-model="WPopup.bShow12a"
+                            v-model="WPopup.bShow15b"
                             @show="evShow"
                             @hide="evHide"
                         >
@@ -162,7 +162,7 @@
                                     depressed
                                     small
                                     elevation="2"
-                                >Show({{WPopup.bShow12a}})</v-btn>
+                                >Show({{WPopup.bShow15b}})</v-btn>
                             </template>
 
                             <template v-slot:content>
@@ -176,7 +176,7 @@
 
                                     <w-popup
                                         style="margin-bottom:20px;"
-                                        v-model="WPopup.bShow12b"
+                                        v-model="WPopup.bShow15c"
                                         @show="evShow"
                                         @hide="evHide"
                                     >
@@ -185,7 +185,7 @@
                                                 depressed
                                                 small
                                                 elevation="2"
-                                            >Show({{WPopup.bShow12b}})</v-btn>
+                                            >Show({{WPopup.bShow15c}})</v-btn>
                                         </template>
 
                                         <template v-slot:content>
@@ -243,12 +243,15 @@
           bShow10: false,
           bShow11: false,
           bShow12: false,
-          bShow12a: false,
-          bShow12b: false,
           bShow13: false,
-          bShow13a: false,
           bShow14: false,
-          bShow15: false,
+          bShow15a: false,
+          bShow15b: false,
+          bShow15c: false,
+          bShow16a: false,
+          bShow16b: false,
+          bShow17: false,
+          bShow18: false,
           items: ["foo", "bar", "fizz", "buzz"],
           itemsExpand: ["foo", "bar", "fizz", "buzz"],
           text:

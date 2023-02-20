@@ -85,7 +85,7 @@
     </script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.2.64/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.2.65/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -137,30 +137,22 @@
         <div class="bk">
             <div class="item">isolated</div>
 
-            <w-popup :isolated="true" @show="evShow" @hide="evHide">
+            <w-tooltip :isolated="true" @show="evShow" @hide="evHide">
                 <template v-slot:trigger>
                     <v-btn depressed small elevation="2">Show</v-btn>
                 </template>
 
-                <template v-slot:content="props">
+                <template v-slot:content>
                     <v-list style="background:transparent;">
                         <v-list-item
                             style="min-height:inherit; padding:5px 15px;"
                             :key="kitem"
                             @click="function(){}"
-                            v-for="(item,kitem) in WPopup.items"
+                            v-for="(item,kitem) in WTooltip.items"
                         >Item {{item}}</v-list-item>
                     </v-list>
-                    <div style="padding:0px 5px 5px 5px;">
-                        <v-btn
-                            depressed
-                            small
-                            elevation="2"
-                            @click="props.funHide()"
-                        >Hide in popup panel</v-btn>
-                    </div>
                 </template>
-            </w-popup>
+            </w-tooltip>
         </div>
     </v-app>
 
@@ -174,7 +166,7 @@
     vuetify: new Vuetify(),
     data: function() {
       return {
-        WPopup: {
+        WTooltip: {
           bShow1: false,
           bShow2: false,
           bShow3: false,
@@ -187,12 +179,15 @@
           bShow10: false,
           bShow11: false,
           bShow12: false,
-          bShow12a: false,
-          bShow12b: false,
           bShow13: false,
-          bShow13a: false,
           bShow14: false,
-          bShow15: false,
+          bShow15a: false,
+          bShow15b: false,
+          bShow15c: false,
+          bShow16a: false,
+          bShow16b: false,
+          bShow17: false,
+          bShow18: false,
           items: ["foo", "bar", "fizz", "buzz"],
           itemsExpand: ["foo", "bar", "fizz", "buzz"],
           text:
@@ -218,13 +213,13 @@
       clickHide: function() {
         let vo = this;
         setTimeout(function() {
-          vo.WPopup.bShow2 = false;
+          vo.WTooltip.bShow2 = false;
         }, 200);
       },
       expandItem: function() {
         let vo = this;
         setTimeout(function() {
-          vo.WPopup.itemsExpand = [
+          vo.WTooltip.itemsExpand = [
             "Lorem ipsum dolor sit, amet consectetur",
             "bar",
             "fizz",
@@ -232,7 +227,7 @@
           ];
         }, 1000);
         setTimeout(function() {
-          vo.WPopup.itemsExpand = ["foo", "bar", "fizz", "buzz"];
+          vo.WTooltip.itemsExpand = ["foo", "bar", "fizz", "buzz"];
         }, 3000);
       }
     }
