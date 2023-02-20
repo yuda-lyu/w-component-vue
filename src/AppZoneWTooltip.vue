@@ -25,7 +25,7 @@
                     </template>
 
                     <template v-slot:content>
-                        <v-list style="background:transparent;"><v-list-item style="min-height:inherit; padding:5px 15px;" :key="kitem" @click="function(){}" v-for="(item,kitem) in WTooltip.items">Item {{item}}</v-list-item></v-list>
+                        {{WTooltip.text}}
                     </template>
 
                 </w-tooltip>
@@ -49,7 +49,7 @@
                     </template>
 
                     <template v-slot:content>
-                        <v-list style="background:transparent;"><v-list-item style="min-height:inherit; padding:5px 15px;" :key="kitem" @click="function(){}" v-for="(item,kitem) in WTooltip.items">Item {{item}}</v-list-item></v-list>
+                        {{WTooltip.text}}
                     </template>
 
                 </w-tooltip>
@@ -73,7 +73,7 @@
                     </template>
 
                     <template v-slot:content>
-                        <v-list style="background:transparent;"><v-list-item style="min-height:inherit; padding:5px 15px;" :key="kitem" @click="function(){}" v-for="(item,kitem) in WTooltip.items">Item {{item}}</v-list-item></v-list>
+                        {{WTooltip.text}}
                     </template>
 
                 </w-tooltip>
@@ -98,7 +98,7 @@
                     </template>
 
                     <template v-slot:content>
-                        <v-list style="background:transparent;"><v-list-item style="min-height:inherit; padding:5px 15px;" :key="kitem" @click="function(){}" v-for="(item,kitem) in WTooltip.items">Item {{item}}</v-list-item></v-list>
+                        {{WTooltip.text}}
                     </template>
 
                 </w-tooltip>
@@ -123,10 +123,7 @@
                     </template>
 
                     <template v-slot:content>
-                        <div style="padding:5px;">
-                            <div style="padding:5px;">1. {{WTooltip.text}}</div>
-                            <div style="padding:5px;">2. {{WTooltip.text}}</div>
-                        </div>
+                        {{WTooltip.text}}
                     </template>
 
                 </w-tooltip>
@@ -151,7 +148,7 @@
                     </template>
 
                     <template v-slot:content>
-                        <v-list style="background:transparent;"><v-list-item style="min-height:inherit; padding:5px 15px;" :key="kitem" @click="function(){}" v-for="(item,kitem) in WTooltip.items">Item {{item}}</v-list-item></v-list>
+                        {{WTooltip.text}}
                     </template>
 
                 </w-tooltip>
@@ -176,7 +173,7 @@
                     </template>
 
                     <template v-slot:content>
-                        <v-list style="background:transparent;"><v-list-item style="min-height:inherit; padding:5px 15px;" :key="kitem" @click="function(){}" v-for="(item,kitem) in WTooltip.items">Item {{item}}</v-list-item></v-list>
+                        {{WTooltip.text}}
                     </template>
 
                 </w-tooltip>
@@ -201,7 +198,7 @@
                     </template>
 
                     <template v-slot:content>
-                        <v-list style="background:transparent;"><v-list-item style="min-height:inherit; padding:5px 15px;" :key="kitem" @click="function(){}" v-for="(item,kitem) in WTooltip.items">Item {{item}}</v-list-item></v-list>
+                        {{WTooltip.text}}
                     </template>
 
                 </w-tooltip>
@@ -226,7 +223,7 @@
                     </template>
 
                     <template v-slot:content>
-                        <v-list style="background:transparent;"><v-list-item style="min-height:inherit; padding:5px 15px;" dark :key="kitem" @click="function(){}" v-for="(item,kitem) in WTooltip.items">Item {{item}}</v-list-item></v-list>
+                        <v-list style="background:transparent;"><v-list-item style="color:inherit; min-height:inherit; padding:5px 15px;" dark :key="kitem" @click="function(){}" v-for="(item,kitem) in WTooltip.items">Item {{item}}</v-list-item></v-list>
                     </template>
 
                 </w-tooltip>
@@ -252,7 +249,83 @@
                     </template>
 
                     <template v-slot:content>
-                        <v-list style="background:transparent;"><v-list-item style="min-height:inherit; padding:5px 15px;" dark :key="kitem" @click="function(){}" v-for="(item,kitem) in WTooltip.items">Item {{item}}</v-list-item></v-list>
+                        <v-list style="background:transparent;"><v-list-item style="color:inherit; min-height:inherit; padding:5px 15px;" dark :key="kitem" @click="function(){}" v-for="(item,kitem) in WTooltip.items">Item {{item}}</v-list-item></v-list>
+                    </template>
+
+                </w-tooltip>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-tooltip'"
+                    :casename="'textColor & backgroundColor'"
+                ></demolink>
+
+                <w-tooltip
+                    :textColor="'#E65100'"
+                    :backgroundColor="'#FFF3E0'"
+                    v-model="WTooltip.bShow10"
+                    @show="evShow"
+                    @hide="evHide"
+                >
+
+                    <template v-slot:trigger>
+                        <v-btn depressed small elevation="2">Show({{WTooltip.bShow10}})</v-btn>
+                    </template>
+
+                    <template v-slot:content>
+                        <v-list style="color:inherit; background:transparent;"><v-list-item style="color:inherit; min-height:inherit; padding:5px 15px;" dark :key="kitem" @click="function(){}" v-for="(item,kitem) in WTooltip.items">Item {{item}}</v-list-item></v-list>
+                    </template>
+
+                </w-tooltip>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-tooltip'"
+                    :casename="'textFontSize'"
+                ></demolink>
+
+                <w-tooltip
+                    :textFontSize="'0.7rem'"
+                    v-model="WTooltip.bShow11"
+                    @show="evShow"
+                    @hide="evHide"
+                >
+
+                    <template v-slot:trigger>
+                        <v-btn depressed small elevation="2">Show({{WTooltip.bShow11}})</v-btn>
+                    </template>
+
+                    <template v-slot:content>
+                        {{WTooltip.text}}
+                    </template>
+
+                </w-tooltip>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-tooltip'"
+                    :casename="'paddingStyle'"
+                ></demolink>
+
+                <w-tooltip
+                    :paddingStyle="{v:7,h:15}"
+                    v-model="WTooltip.bShow12"
+                    @show="evShow"
+                    @hide="evHide"
+                >
+
+                    <template v-slot:trigger>
+                        <v-btn depressed small elevation="2">Show({{WTooltip.bShow12}})</v-btn>
+                    </template>
+
+                    <template v-slot:content>
+                        {{WTooltip.text}}
                     </template>
 
                 </w-tooltip>
@@ -267,17 +340,17 @@
 
                 <w-tooltip
                     :shadowStyle="'0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12)'"
-                    v-model="WTooltip.bShow10"
+                    v-model="WTooltip.bShow13"
                     @show="evShow"
                     @hide="evHide"
                 >
 
                     <template v-slot:trigger>
-                        <v-btn depressed small elevation="2">Show({{WTooltip.bShow10}})</v-btn>
+                        <v-btn depressed small elevation="2">Show({{WTooltip.bShow13}})</v-btn>
                     </template>
 
                     <template v-slot:content>
-                        <v-list style="background:transparent;"><v-list-item style="min-height:inherit; padding:5px 15px;" :key="kitem" @click="function(){}" v-for="(item,kitem) in WTooltip.items">Item {{item}}</v-list-item></v-list>
+                        {{WTooltip.text}}
                     </template>
 
                 </w-tooltip>
@@ -292,17 +365,17 @@
 
                 <w-tooltip
                     :transitionTime="50"
-                    v-model="WTooltip.bShow11"
+                    v-model="WTooltip.bShow14"
                     @show="evShow"
                     @hide="evHide"
                 >
 
                     <template v-slot:trigger>
-                        <v-btn depressed small elevation="2">Show({{WTooltip.bShow11}})</v-btn>
+                        <v-btn depressed small elevation="2">Show({{WTooltip.bShow14}})</v-btn>
                     </template>
 
                     <template v-slot:content>
-                        <v-list style="background:transparent;"><v-list-item style="min-height:inherit; padding:5px 15px;" :key="kitem" @click="function(){}" v-for="(item,kitem) in WTooltip.items">Item {{item}}</v-list-item></v-list>
+                        {{WTooltip.text}}
                     </template>
 
                 </w-tooltip>
@@ -317,17 +390,17 @@
 
                 <w-tooltip
                     :placement="'right-start'"
-                    v-model="WTooltip.bShow12"
+                    v-model="WTooltip.bShow15"
                     @show="evShow"
                     @hide="evHide"
                 >
 
                     <template v-slot:trigger>
-                        <v-btn depressed small elevation="2">Show({{WTooltip.bShow12}})</v-btn>
+                        <v-btn depressed small elevation="2">Show({{WTooltip.bShow15}})</v-btn>
                     </template>
 
                     <template v-slot:content>
-                        <v-list style="background:transparent;"><v-list-item style="min-height:inherit; padding:5px 15px;" :key="kitem" @click="function(){}" v-for="(item,kitem) in WTooltip.items">Item {{item}}</v-list-item></v-list>
+                        {{WTooltip.text}}
                     </template>
 
                 </w-tooltip>
@@ -347,17 +420,17 @@
                         <div style="height:200px;"></div>
 
                         <w-tooltip
-                            v-model="WTooltip.bShow13"
+                            v-model="WTooltip.bShow16"
                             @show="evShow"
                             @hide="evHide"
                         >
 
                             <template v-slot:trigger>
-                                <v-btn depressed small elevation="2">Show({{WTooltip.bShow13}})</v-btn>
+                                <v-btn depressed small elevation="2">Show({{WTooltip.bShow16}})</v-btn>
                             </template>
 
                             <template v-slot:content>
-                                <v-list style="background:transparent;"><v-list-item style="min-height:inherit; padding:5px 15px;" :key="kitem" @click="function(){}" v-for="(item,kitem) in WTooltip.items">Item {{item}}</v-list-item></v-list>
+                                {{WTooltip.text}}
                             </template>
 
                         </w-tooltip>
@@ -384,17 +457,17 @@
                             <div style="height:200px;"></div>
 
                             <w-tooltip
-                                v-model="WTooltip.bShow14"
+                                v-model="WTooltip.bShow17"
                                 @show="evShow();expandItem()"
                                 @hide="evHide"
                             >
 
                                 <template v-slot:trigger>
-                                    <v-btn depressed small elevation="2" @click="expandItem">Show({{WTooltip.bShow14}})</v-btn>
+                                    <v-btn depressed small elevation="2" @click="expandItem">Show({{WTooltip.bShow17}})</v-btn>
                                 </template>
 
                                 <template v-slot:content>
-                                    <v-list style="background:transparent;"><v-list-item style="min-height:inherit; padding:5px 15px;" :key="kitem" @click="function(){}" v-for="(item,kitem) in WTooltip.itemsExpand">Item {{item}}</v-list-item></v-list>
+                                    <v-list style="background:transparent;"><v-list-item style="color:inherit; min-height:inherit; padding:5px 15px;" :key="kitem" @click="function(){}" v-for="(item,kitem) in WTooltip.itemsExpand">Item {{item}}</v-list-item></v-list>
                                 </template>
 
                             </w-tooltip>
@@ -414,10 +487,10 @@
                     :casename="'in dialog'"
                 ></demolink>
 
-                <v-btn depressed small elevation="2" @click="WTooltip.bShow16a=!WTooltip.bShow16a">Show({{WTooltip.bShow16a}})</v-btn>
+                <v-btn depressed small elevation="2" @click="WTooltip.bShow19a=!WTooltip.bShow19a">Show({{WTooltip.bShow19a}})</v-btn>
 
                 <w-dialog
-                    :show.sync="WTooltip.bShow16a"
+                    :show.sync="WTooltip.bShow19a"
                     :title="'in dialog'"
                     :maxWidth="500"
                 >
@@ -429,17 +502,17 @@
 
                             <w-tooltip
                                 style="margin-left:250px;"
-                                v-model="WTooltip.bShow16b"
+                                v-model="WTooltip.bShow19b"
                                 @show="evShow();expandItem()"
                                 @hide="evHide"
                             >
 
                                 <template v-slot:trigger>
-                                    <v-btn depressed small elevation="2" @click="expandItem">Show({{WTooltip.bShow16b}})</v-btn>
+                                    <v-btn depressed small elevation="2" @click="expandItem">Show({{WTooltip.bShow19b}})</v-btn>
                                 </template>
 
                                 <template v-slot:content>
-                                    <v-list style="background:transparent;"><v-list-item style="min-height:inherit; padding:5px 15px;" :key="kitem" @click="function(){}" v-for="(item,kitem) in WTooltip.itemsExpand">Item {{item}}</v-list-item></v-list>
+                                    <v-list style="background:transparent;"><v-list-item style="color:inherit; min-height:inherit; padding:5px 15px;" :key="kitem" @click="function(){}" v-for="(item,kitem) in WTooltip.itemsExpand">Item {{item}}</v-list-item></v-list>
                                 </template>
 
                             </w-tooltip>
@@ -462,19 +535,19 @@
 
                 <w-tooltip
                     :maxWidth="400"
-                    v-model="WTooltip.bShow17"
+                    v-model="WTooltip.bShow20"
                     @show="evShow"
                     @hide="evHide"
                 >
 
                     <template v-slot:trigger>
-                        <v-btn depressed small elevation="2">Show({{WTooltip.bShow17}})</v-btn>
+                        <v-btn depressed small elevation="2">Show({{WTooltip.bShow20}})</v-btn>
                     </template>
 
                     <template v-slot:content>
-                        <div style="padding:10px 0px;">
-                            <div style="padding:10px 20px; background:#666;">
-                                <span style="color:#fff;">A data table</span>
+                        <div style="padding:10px 0px; background:#777;">
+                            <div style="padding:10px 20px; background:#444;">
+                                <span style="font-size:1.1rem; color:#fff;">A data table</span>
                             </div>
                             <div style="padding:10px;" v-html="WTooltip.table"></div>
                             <div style="padding:0px 20px 10px 20px; font-size:0.8rem;">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis praesentium cumque magnam odio iure quidem, quod illum numquam possimus obcaecati commodi minima assumenda consectetur culpa fuga nulla ullam. In, libero.</div>
@@ -493,17 +566,17 @@
 
                 <w-tooltip
                     :editable="false"
-                    v-model="WTooltip.bShow18"
+                    v-model="WTooltip.bShow21"
                     @show="evShow"
                     @hide="evHide"
                 >
 
                     <template v-slot:trigger>
-                        <v-btn depressed small elevation="2">Show({{WTooltip.bShow18}})</v-btn>
+                        <v-btn depressed small elevation="2">Show({{WTooltip.bShow21}})</v-btn>
                     </template>
 
                     <template v-slot:content>
-                        <v-list style="background:transparent;"><v-list-item style="min-height:inherit; padding:5px 15px;" :key="kitem" @click="function(){}" v-for="(item,kitem) in WTooltip.items">Item {{item}}</v-list-item></v-list>
+                        {{WTooltip.text}}
                     </template>
 
                 </w-tooltip>
@@ -553,18 +626,20 @@ export default {
                 'bShow12': false,
                 'bShow13': false,
                 'bShow14': false,
-                'bShow15a': false,
-                'bShow15b': false,
-                'bShow15c': false,
-                'bShow16a': false,
-                'bShow16b': false,
+                'bShow15': false,
+                'bShow16': false,
                 'bShow17': false,
-                'bShow18': false,
+                'bShow18a': false,
+                'bShow18b': false,
+                'bShow18c': false,
+                'bShow19a': false,
+                'bShow19b': false,
+                'bShow20': false,
+                'bShow21': false,
                 'items': ['foo', 'bar', 'fizz', 'buzz'],
                 'itemsExpand': ['foo', 'bar', 'fizz', 'buzz'],
-                'text': 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis praesentium cumque magnam odio iure quidem, quod illum numquam possimus obcaecati commodi minima assumenda consectetur culpa fuga nulla ullam. In, libero.',
+                'text': 'Lorem ipsum 中文測試 test',
                 'table': '\n<table style="width:100%; font-size:0.7rem; border-collapse:collapse;">\n                        <thead>\n                            <tr>\n                                <th style="padding:2px 8px; text-align:left;">Dessert</th>\n                                <th style="padding:2px 8px; text-align:left;">Calories</th>\n                                <th style="padding:2px 8px; text-align:left;">Fat</th>\n                                <th style="padding:2px 8px; text-align:left;">Carbs</th>\n                            </tr>\n                        </thead>\n                        <tbody>\n                            <tr>\n                                <td style="padding:2px 8px; border-top:1px solid #ddd;">Frozen Yogurt</td>\n                                <td style="padding:2px 8px; border-top:1px solid #ddd;">159</td>\n                                <td style="padding:2px 8px; border-top:1px solid #ddd;">6</td>\n                                <td style="padding:2px 8px; border-top:1px solid #ddd;">24</td>\n                            </tr>\n                            <tr>\n                                <td style="padding:2px 8px; border-top:1px solid #ddd;">Ice cream sandwich</td>\n                                <td style="padding:2px 8px; border-top:1px solid #ddd;">237</td>\n                                <td style="padding:2px 8px; border-top:1px solid #ddd;">9</td>\n                                <td style="padding:2px 8px; border-top:1px solid #ddd;">37</td>\n                            </tr>\n                            <tr>\n                                <td style="padding:2px 8px; border-top:1px solid #ddd;">Eclair</td>\n                                <td style="padding:2px 8px; border-top:1px solid #ddd;">262</td>\n                                <td style="padding:2px 8px; border-top:1px solid #ddd;">16</td>\n                                <td style="padding:2px 8px; border-top:1px solid #ddd;">23</td>\n                            </tr>\n                        </tbody>\n                    </table>\n',
-                'title': 'Bulge',
             },
             'actions': [
             ],
@@ -598,5 +673,4 @@ export default {
 
 <style scoped>
 </style>
-
 

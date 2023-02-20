@@ -13,6 +13,9 @@
                 :displayType="'line'"
                 :isolated="true"
                 :borderRadius="tooltipBorderRadius"
+                :paddingStyle="tooltipPaddingStyle"
+                :textFontSize="tooltipTextFontSize"
+                :textColor="tooltipTextColor"
                 :backgroundColor="tooltipBackgroundColor"
                 :editable="hasTooltop"
             >
@@ -85,9 +88,7 @@
                 </template>
 
                 <template v-slot:content>
-                    <div :style="`${useTooltipPadding} ${useTooltipTextFontSize} color:${effTooltipTextColor};`">
-                        {{tooltip}}
-                    </div>
+                    {{tooltip}}
                 </template>
 
             </WTooltip>
@@ -179,7 +180,7 @@ import WTooltip from './WTooltip.vue'
  * @vue-prop {String} [backgroundColor='rgb(241,241,241)'] 輸入背景顏色字串，預設'rgb(241,241,241)'
  * @vue-prop {String} [backgroundColorHover='rgb(236,236,236)'] 輸入滑鼠移入時背景顏色字串，預設'rgb(236,236,236)'
  * @vue-prop {String} [backgroundColorActive='orange'] 輸入主動模式時背景顏色字串，預設'orange'
- * @vue-prop {Number} [tooltipBorderRadius=30] 輸入提示文字框圓角度數字，單位為px，預設4
+ * @vue-prop {Number} [tooltipBorderRadius=4] 輸入提示文字框圓角度數字，單位為px，預設4
  * @vue-prop {Object} [tooltipPaddingStyle={v:5,h:8}] 輸入提示文字內寬距離設定物件，可用鍵值為v、h、left、right、top、bottom，v代表同時設定top與bottom，h代表設定left與right，若有重複設定時後面鍵值會覆蓋前面，各鍵值為寬度數字，單位為px，預設{v:5,h:8}
  * @vue-prop {String} [tooltipTextFontSize='0.85rem'] 輸入提示文字字型大小字串，預設'0.85rem'
  * @vue-prop {String} [tooltipTextColor='black'] 輸入提示文字顏色字串，預設'white'
@@ -735,37 +736,6 @@ export default {
             }
             return r
         },
-
-        useTooltipPadding: function() {
-            //console.log('computed useTooltipPadding')
-
-            let vo = this
-
-            //parseSpace
-            let cs = parseSpace(vo.tooltipPaddingStyle)
-
-            //padding
-            let padding = `padding:${cs};`
-
-            return padding
-        },
-
-        useTooltipTextFontSize: function() {
-            let vo = this
-            let s = vo.tooltipTextFontSize
-            s = replace(s, ';', '')
-            return `font-size:${s};`
-        },
-
-        effTooltipTextColor: function() {
-            let vo = this
-            return color2hex(vo.tooltipTextColor)
-        },
-
-        // effTooltipBackgroundColor: function() {
-        //     let vo = this
-        //     return color2hex(vo.tooltipBackgroundColor)
-        // },
 
         useShadow: function() {
             let vo = this

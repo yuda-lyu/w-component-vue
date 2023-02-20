@@ -28,7 +28,7 @@
                 @domresize="updatePopper"
             >
                 <div
-                    :style="`${contentStyle} background:${useBackgroundColor}; ${useMinWidth} ${useMaxWidth} ${useBorderRadius} ${useShadow}`"
+                    :style="`${contentStyle} ${usePadding} ${useTextFontSize} color:${useTextColor}; background:${useBackgroundColor}; ${useMinWidth} ${useMaxWidth} ${useBorderRadius} ${useShadow}`"
                     v-if="valueTrans"
                 >
                     <slot
@@ -52,6 +52,7 @@ import replace from 'wsemi/src/replace.mjs'
 import domIsClientXYIn from 'wsemi/src/domIsClientXYIn.mjs'
 // import domCancelEvent from 'wsemi/src/domCancelEvent.mjs' //同樣都監聽window(非dom階層)故無法cancel
 import color2hex from '../js/vuetifyColor.mjs'
+import parseSpace from '../js/parseSpace.mjs'
 import domResize from '../js/domResize.mjs'
 import { createPopper } from '@popperjs/core/lib/popper-lite.js' //不用安裝@popperjs/core, 因wsemi安裝tippy.js內有依賴@popperjs/core
 import flip from '@popperjs/core/lib/modifiers/flip.js'
@@ -88,7 +89,10 @@ function removeTriggerMode(mode, mmkey) {
  * @vue-prop {Boolean} [autoFitMinWidth=false] 輸入是否使用驅動區寬度作為內容區之最小寬度布林值，預設false
  * @vue-prop {Number} [placementDist=5] 輸入彈窗距離觸發元素距離數字，單位為px，預設5
  * @vue-prop {Number} [borderRadius=4] 輸入框圓角度數字，單位為px，預設4
- * @vue-prop {String} [backgroundColor='white'] 輸入內容區塊背景顏色字串，預設'white'
+ * @vue-prop {String} [textFontSize='0.85rem'] 輸入入內容區塊文字字型大小字串，預設'0.85rem'
+ * @vue-prop {String} [textColor='white'] 輸入內容區塊文字顏色字串，預設'white'
+ * @vue-prop {String} [backgroundColor='rgba(60,60,60,0.75)'] 輸入內容區塊背景顏色字串，預設'rgba(60,60,60,0.75)'
+ * @vue-prop {Object} [paddingStyle={v:2,h:10}] 輸入內寬距離設定物件，可用鍵值為v、h、left、right、top、bottom，v代表同時設定top與bottom，h代表設定left與right，若有重複設定時後面鍵值會覆蓋前面，各鍵值為寬度數字，單位為px，預設{v:2,h:10}
  * @vue-prop {Boolean} [shadow=true] 輸入是否顯示陰影布林值，預設true
  * @vue-prop {String} [shadowStyle=''] 輸入陰影顏色字串，預設值詳見props
  * @vue-prop {Number} [transitionTime=200] 輸入淡入出現時間數字，單位為ms，預設200
@@ -139,9 +143,26 @@ export default {
             type: Number,
             default: 4,
         },
-        backgroundColor: {
+        textFontSize: {
+            type: String,
+            default: '0.85rem',
+        },
+        textColor: {
             type: String,
             default: 'white',
+        },
+        backgroundColor: {
+            type: String,
+            default: 'rgba(60,60,60,0.75)',
+        },
+        paddingStyle: {
+            type: Object,
+            default: () => {
+                return {
+                    v: 2,
+                    h: 10,
+                }
+            },
         },
         shadow: {
             type: Boolean,
@@ -412,12 +433,41 @@ export default {
             return ''
         },
 
+        useTextFontSize: function() {
+            let vo = this
+            let s = vo.textFontSize
+            s = replace(s, ';', '')
+            return `font-size:${s};`
+        },
+
+        useTextColor: function() {
+            //console.log('computed useTextColor')
+
+            let vo = this
+
+            return color2hex(vo.textColor)
+        },
+
         useBackgroundColor: function() {
             //console.log('computed useBackgroundColor')
 
             let vo = this
 
             return color2hex(vo.backgroundColor)
+        },
+
+        usePadding: function() {
+            //console.log('computed usePadding')
+
+            let vo = this
+
+            //parseSpace
+            let cs = parseSpace(vo.paddingStyle)
+
+            //padding
+            let padding = `padding:${cs};`
+
+            return padding
         },
 
         useShadow: function() {
