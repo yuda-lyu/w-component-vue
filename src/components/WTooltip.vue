@@ -496,8 +496,16 @@ export default {
 
                 if (b && !vo.popperShow) {
 
+                    //shift, 暫時無法取得popper自動變更的placement, shift無法即時連動, 待研究
+                    let shift = -15
+                    // if (vo.placement.indexOf('top') >= 0) {
+                    //     shift = 15
+                    // }
+                    // console.log('vo.placement', vo.placement, vo.placement.indexOf('top'))
+                    // console.log('shift', shift)
+
                     //contentStyle,, 初始化使用pointer-events:none避免彈出區遮蔽驅動區導致觸發隱藏
-                    vo.contentStyle = `opacity:0; pointer-events:none; transform:translateY(-15px);`
+                    vo.contentStyle = `opacity:0; pointer-events:none; transform:translateY(${shift}px);`
 
                     vo.showPopper()
                     vo.popperShow = true
