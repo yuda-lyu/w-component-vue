@@ -85,7 +85,7 @@
     </script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.2.64/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.2.65/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -132,18 +132,17 @@
                 style="cursor:pointer;"
                 title="open for copy link to view component"
                 onclick="window.open('//yuda-lyu.github.io/w-component-vue/examples/app.html?cmp='+this.innerText,'_blank')"
-            >w-timeday-range</span>
+            >w-button-chip</span>
         </div>
         <div class="bk">
-            <div class="item">icon &amp; iconSize &amp; distY</div>
+            <div class="item">tooltip &amp; tooltipBorderRadius</div>
 
-            <w-timeday-range
-                :icon="'mdi-check-underline-circle'"
-                :icon-size="20"
-                :dist-y="5"
-                :day-start.sync="WTimedayRange.dayStart"
-                :day-end.sync="WTimedayRange.dayEnd"
-            ></w-timeday-range>
+            <w-button-chip
+                :text="WButtonChip.text"
+                :icon="'mdi-face-man'"
+                :tooltip="'測試中文tooltip'"
+                :tooltip-border-radius="10"
+            ></w-button-chip>
         </div>
     </v-app>
 
@@ -157,41 +156,15 @@
     vuetify: new Vuetify(),
     data: function() {
       return {
-        WTimedayRange: {
-          dayStart: "2019-01-01",
-          dayEnd: "2019-02-01"
+        WButtonChip: {
+          text: "aBc數字123",
+          prog: null,
+          loading: false
         },
         actions: [
-          //pickColor測試不到
-
-          //起始時間
-          {
-            mode: "eleclick",
-            selector: 'div[TimedayCore="day"]',
-            nth: 0
-          },
-          {
-            mode: "eleclick",
-            selector: 'button[type="button"]',
-            nth: 11
-          },
-
-          //結束時間
-          {
-            mode: "eleclick",
-            selector: 'div[TimedayCore="day"]',
-            nth: 1
-          },
-          {
-            mode: "eleclick",
-            selector: 'button[type="button"]',
-            nth: 14
-          },
-
           {
             mode: "elemove",
-            selector: 'div[ShellEllipse="leftIcon"]',
-            nth: -1
+            selector: 'button[type="button"]'
           }
         ]
       };
@@ -200,7 +173,82 @@
       return {};
     },
     computed: {},
-    methods: {}
+    methods: {
+      ckBtn: function() {
+        console.log("ckBtn");
+      },
+      ckBtnClose: function() {
+        console.log("ckBtnClose");
+      },
+      ckBtnItem1: function() {
+        console.log("ckBtnItem1");
+      },
+      ckBtnItem2: function() {
+        console.log("ckBtnItem2");
+      },
+      ckBtnProg: function() {
+        console.log("ckBtnProg");
+        let vo = this;
+        let n = 0;
+        let t = setInterval(function() {
+          n += 0.5;
+          vo.WButtonChip.prog = n;
+          if (n >= 100) {
+            vo.WButtonChip.prog = null;
+            clearInterval(t);
+          }
+        }, 10);
+      },
+      ckBtnModProg: function(msg) {
+        //console.log('ckBtnModProg', msg)
+
+        //lock
+        msg.setProg(0); //先設定prog為0使按鈕自動上鎖禁止高頻觸發
+
+        try {
+          // if (Math.random() < 0.5) { //隨機添加出錯
+          //     throw new Error('Whoops!')
+          // }
+          setTimeout(function() {
+            //模擬呼叫api時至少等1s才有反應能setProg, 若沒先設定prog為0按鈕不會上鎖
+            let n = 0;
+            let t = setInterval(function() {
+              n += 0.5;
+              msg.setProg(n);
+              if (n >= 100) {
+                //vo.WButtonChip.prog = null //當prog>=100時會由內部自動設定為null
+                clearInterval(t);
+              }
+            }, 10);
+          }, 1000);
+        } catch (err) {
+          //unlock
+          msg.setProg(null);
+        }
+      },
+      ckBtnLoading: function() {
+        console.log("ckBtnLoading");
+        let vo = this;
+        vo.WButtonChip.loading = true;
+        setTimeout(function() {
+          vo.WButtonChip.loading = false;
+        }, 2000);
+      },
+      ckBtnModLoading: function(msg) {
+        console.log("ckBtnModLoading", msg);
+        msg.setLoading(true);
+        setTimeout(function() {
+          msg.setLoading(false);
+        }, 2000);
+      },
+      ckBtnPmUnlock: function(msg) {
+        console.log("ckBtnPmUnlock", msg);
+        setTimeout(function() {
+          console.log("finish");
+          msg.pm.resolve();
+        }, 2000);
+      }
+    }
   });
     </script>
 </body>

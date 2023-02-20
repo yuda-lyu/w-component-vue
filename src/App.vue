@@ -178,6 +178,11 @@
             ></AppZoneWConfirm>
 
 
+            <AppZoneWTooltip
+                v-if="useCmpName==='WTooltip'"
+            ></AppZoneWTooltip>
+
+
             <AppZoneWPopup
                 v-if="useCmpName==='WPopup'"
             ></AppZoneWPopup>
@@ -392,6 +397,7 @@ import AppZoneWIconSvg from './AppZoneWIconSvg.vue'
 import AppZoneWDropfiles from './AppZoneWDropfiles.vue'
 import AppZoneWDialog from './AppZoneWDialog.vue'
 import AppZoneWConfirm from './AppZoneWConfirm.vue'
+import AppZoneWTooltip from './AppZoneWTooltip.vue'
 import AppZoneWPopup from './AppZoneWPopup.vue'
 import AppZoneWPopupEditText from './AppZoneWPopupEditText.vue'
 import AppZoneWDrawer from './AppZoneWDrawer.vue'
@@ -453,6 +459,7 @@ export default {
         AppZoneWDropfiles,
         AppZoneWDialog,
         AppZoneWConfirm,
+        AppZoneWTooltip,
         AppZoneWPopup,
         AppZoneWPopupEditText,
         AppZoneWDrawer,
@@ -595,6 +602,7 @@ export default {
                         { name: 'WAlert' },
                         { name: 'WDialog' },
                         { name: 'WConfirm' },
+                        { name: 'WTooltip' },
                         { name: 'WPopup' },
                         { name: 'WPopupEditText' },
                         { name: 'WDrawer' },

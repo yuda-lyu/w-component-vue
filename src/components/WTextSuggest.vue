@@ -58,7 +58,7 @@
                     :loadingText="loadingText"
                     :noResultsText="noResultsText"
                     :searchingText="searchingText"
-                    :distY="useDistY"
+                    :placementDist="useDistY"
                     :defItemHeight="defItemHeight"
                     :editable="editable"
                     :focused="focusedTrans"

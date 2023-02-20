@@ -24,13 +24,13 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-timeminute-range'"
-                    :casename="'paddingStyle (thin style) & distY'"
+                    :casename="'paddingStyle (thin style) & placementDist'"
                 ></demolink>
 
                 <w-timeminute-range
                     :icon="''"
                     :paddingStyle="{v:0,h:8}"
-                    :distY="3"
+                    :placementDist="3"
                     :minuteStart.sync="WTimeminuteRange.minuteStart"
                     :minuteEnd.sync="WTimeminuteRange.minuteEnd"
                 ></w-timeminute-range>
@@ -111,13 +111,13 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-timeminute-range'"
-                    :casename="'icon & iconSize & distY'"
+                    :casename="'icon & iconSize & placementDist'"
                 ></demolink>
 
                 <w-timeminute-range
                     :icon="mdiCheckUnderlineCircle"
                     :iconSize="20"
-                    :distY="5"
+                    :placementDist="6"
                     :minuteStart.sync="WTimeminuteRange.minuteStart"
                     :minuteEnd.sync="WTimeminuteRange.minuteEnd"
                 ></w-timeminute-range>

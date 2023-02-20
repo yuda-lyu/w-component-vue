@@ -35,7 +35,7 @@
                 :between="between"
                 :dayStart="dayStart"
                 :dayEnd="dayEnd"
-                :distY="distY"
+                :placementDist="placementDist"
                 :editable="editable"
                 @update:focused="changeFocused"
                 @update:dayStart="(v)=>{$emit('update:dayStart', v)}"
@@ -77,7 +77,7 @@ import WTimedayRangeCore from './WTimedayRangeCore.vue'
  * @vue-prop {String} [textFontSize='0.85rem'] 輸入文字大小字串，預設'0.85rem'
  * @vue-prop {String} [textColor='black'] 輸入文字顏色字串，預設'black'
  * @vue-prop {String} [pickColor='deep-orange darken-1'] 輸入日期彈窗中選擇指定日期之顏色字串，預設'deep-orange darken-1'
- * @vue-prop {Number} [distY=7] 輸入日期彈窗y向下平移數字，預設7
+ * @vue-prop {Number} [placementDist=7] 輸入日期彈窗y向下平移數字，預設7
  * @vue-prop {Boolean} [editable=true] 輸入是否為編輯模式，預設true
  * @vue-prop {Boolean} [focused=false] 輸入是否為取得焦點狀態，預設false
  */
@@ -184,7 +184,7 @@ export default {
             type: String,
             default: 'deep-orange darken-1',
         },
-        distY: {
+        placementDist: {
             type: Number,
             default: 7,
         },

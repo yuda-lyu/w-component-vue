@@ -9,18 +9,19 @@
 
         <div style="position:relative;">
 
-            <v-tooltip
-                bottom
-                transition="slide-y-transition"
-                :disabled="!tooltip"
+            <WTooltip
+                :displayType="'line'"
+                :isolated="true"
+                :borderRadius="tooltipBorderRadius"
+                :backgroundColor="tooltipBackgroundColor"
+                :editable="hasTooltop"
             >
 
-                <template v-slot:activator="{ on }">
+                <template v-slot:trigger>
 
-                    <!-- v-tooltip下第1層dom會無法拖曳, 點擊事件於這層觸發, 且組件內tabindex不能重複, 故本層設定為0 -->
+                    <!-- 使用overflow:hidden預先測試, 因ripple會自行添加, 先行測試添加後狀態 -->
                     <div
-                        v-on="on"
-                        :style="`transition:all 0.3s; ${useBorderRadiusStyle} background:${useBackgroundColor}; ${editable&&cursorPointer?'cursor:pointer;':''} outline:none; user-select:none; box-shadow:${useShadow};`"
+                        :style="`transition:all 0.3s; ${useBorderRadiusStyle} background:${useBackgroundColor}; ${editable&&cursorPointer?'cursor:pointer;':''} box-shadow:${useShadow}; outline:none; user-select:none; overflow:hidden;`"
                         tabindex="0"
                         v-domripple="useRipple"
                         @mouseenter="hoverTrans=true;$emit('mouseenter',$event)"
@@ -83,9 +84,13 @@
 
                 </template>
 
-                <span>{{tooltip}}</span>
+                <template v-slot:content>
+                    <div :style="`${useTooltipPadding} ${useTooltipTextFontSize} color:${effTooltipTextColor};`">
+                        {{tooltip}}
+                    </div>
+                </template>
 
-            </v-tooltip>
+            </WTooltip>
 
             <div
                 style="position:absolute; left:0; right:0; top:0; bottom:0;"
@@ -140,13 +145,13 @@ import replace from 'wsemi/src/replace.mjs'
 import sep from 'wsemi/src/sep.mjs'
 import genPm from 'wsemi/src/genPm.mjs'
 import oc from 'wsemi/src/color.mjs'
-// import domRipple from 'wsemi/src/domRipple.mjs'
 import domCancelEvent from 'wsemi/src/domCancelEvent.mjs'
 import color2hex from '../js/vuetifyColor.mjs'
 import parseSpace from '../js/parseSpace.mjs'
 import domRipple from '../js/domRipple.mjs'
 import WIcon from './WIcon.vue'
 import WIconLoading from './WIconLoading.vue'
+import WTooltip from './WTooltip.vue'
 
 
 /**
@@ -174,6 +179,11 @@ import WIconLoading from './WIconLoading.vue'
  * @vue-prop {String} [backgroundColor='rgb(241,241,241)'] 輸入背景顏色字串，預設'rgb(241,241,241)'
  * @vue-prop {String} [backgroundColorHover='rgb(236,236,236)'] 輸入滑鼠移入時背景顏色字串，預設'rgb(236,236,236)'
  * @vue-prop {String} [backgroundColorActive='orange'] 輸入主動模式時背景顏色字串，預設'orange'
+ * @vue-prop {Number} [tooltipBorderRadius=30] 輸入提示文字框圓角度數字，單位為px，預設4
+ * @vue-prop {Object} [tooltipPaddingStyle={v:5,h:8}] 輸入提示文字內寬距離設定物件，可用鍵值為v、h、left、right、top、bottom，v代表同時設定top與bottom，h代表設定left與right，若有重複設定時後面鍵值會覆蓋前面，各鍵值為寬度數字，單位為px，預設{v:5,h:8}
+ * @vue-prop {String} [tooltipTextFontSize='0.85rem'] 輸入提示文字字型大小字串，預設'0.85rem'
+ * @vue-prop {String} [tooltipTextColor='black'] 輸入提示文字顏色字串，預設'white'
+ * @vue-prop {String} [tooltipBackgroundColor='rgba(60,60,60,0.75)'] 輸入背景顏色字串，預設'rgba(60,60,60,0.75)'
  * @vue-prop {Boolean} [shadow=false] 輸入是否顯示陰影布林值，預設false
  * @vue-prop {String} [shadowStyle=''] 輸入陰影顏色字串，預設值詳見props
  * @vue-prop {Boolean} [shadowActive=true] 輸入主動模式時是否顯示陰影布林值，預設true
@@ -198,6 +208,7 @@ export default {
     components: {
         WIcon,
         WIconLoading,
+        WTooltip,
     },
     props: {
         text: {
@@ -314,6 +325,31 @@ export default {
         backgroundColorActive: {
             type: String,
             default: 'orange',
+        },
+        tooltipBorderRadius: {
+            type: Number,
+            default: 4,
+        },
+        tooltipPaddingStyle: {
+            type: Object,
+            default: () => {
+                return {
+                    v: 5,
+                    h: 8,
+                }
+            },
+        },
+        tooltipTextFontSize: {
+            type: String,
+            default: '0.85rem',
+        },
+        tooltipTextColor: {
+            type: String,
+            default: 'white',
+        },
+        tooltipBackgroundColor: {
+            type: String,
+            default: 'rgba(60,60,60,0.75)',
         },
         shadow: {
             type: Boolean,
@@ -700,6 +736,37 @@ export default {
             return r
         },
 
+        useTooltipPadding: function() {
+            //console.log('computed useTooltipPadding')
+
+            let vo = this
+
+            //parseSpace
+            let cs = parseSpace(vo.tooltipPaddingStyle)
+
+            //padding
+            let padding = `padding:${cs};`
+
+            return padding
+        },
+
+        useTooltipTextFontSize: function() {
+            let vo = this
+            let s = vo.tooltipTextFontSize
+            s = replace(s, ';', '')
+            return `font-size:${s};`
+        },
+
+        effTooltipTextColor: function() {
+            let vo = this
+            return color2hex(vo.tooltipTextColor)
+        },
+
+        // effTooltipBackgroundColor: function() {
+        //     let vo = this
+        //     return color2hex(vo.tooltipBackgroundColor)
+        // },
+
         useShadow: function() {
             let vo = this
 
@@ -788,6 +855,11 @@ export default {
             }
 
             return { color: vo.rippleColor, timeDuration: 700 }
+        },
+
+        hasTooltop: function() {
+            let vo = this
+            return isestr(vo.tooltip)
         },
 
     },

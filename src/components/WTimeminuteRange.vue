@@ -42,7 +42,7 @@
                 :between="between"
                 :minuteEnd="minuteEnd"
                 :minuteStart="minuteStart"
-                :distY="distY"
+                :placementDist="placementDist"
                 :editable="editable"
                 @update:focused="changeFocused"
                 @update:minuteEnd="(v)=>{$emit('update:minuteEnd', v)}"
@@ -91,7 +91,7 @@ import WTimeminuteRangeCore from './WTimeminuteRangeCore.vue'
  * @vue-prop {String} [expansionIcon=mdiPlay] 輸入顯隱圖標字串，可為mdi,md,fa代號或mdi/js路徑，預設使用mdi的圖標(mdiPlay)
  * @vue-prop {Number} [expansionIconSize=18] 輸入顯隱圖標尺寸數字，單位為px，預設18
  * @vue-prop {String} [expansionIconColor='grey'] 輸入顯隱圖標顏色字串，預設'grey'
- * @vue-prop {Number} [distY=7] 輸入日期彈窗y向下平移數字，預設7
+ * @vue-prop {Number} [placementDist=7] 輸入日期彈窗y向下平移數字，預設7
  * @vue-prop {Boolean} [editable=true] 輸入是否為編輯模式，預設true
  * @vue-prop {Boolean} [focused=false] 輸入是否為取得焦點狀態，預設false
  */
@@ -226,7 +226,7 @@ export default {
             type: String,
             default: 'grey',
         },
-        distY: {
+        placementDist: {
             type: Number,
             default: 7,
         },

@@ -33,7 +33,7 @@
                 :textColor="textColor"
                 :pickColor="pickColor"
                 :value="value"
-                :distY="distY"
+                :placementDist="placementDist"
                 :editable="editable"
                 @update:focused="changeFocused"
                 @input="(v)=>{$emit('input', v)}"
@@ -72,7 +72,7 @@ import WTimedayCore from './WTimedayCore.vue'
  * @vue-prop {String} [borderColorHover='white'] 輸入滑鼠移入時邊框顏色字串，預設'white'
  * @vue-prop {String} [borderColorFocus='white'] 輸入取得焦點時邊框顏色字串，預設'white'
  * @vue-prop {String} [pickColor='deep-orange darken-1'] 輸入日期彈窗中選擇指定日期之顏色字串，預設'deep-orange darken-1'
- * @vue-prop {Number} [distY=7] 輸入日期彈窗y向下平移數字，預設7
+ * @vue-prop {Number} [placementDist=7] 輸入日期彈窗y向下平移數字，預設7
  * @vue-prop {Boolean} [editable=true] 輸入是否為編輯模式，預設true
  * @vue-prop {Boolean} [focused=false] 輸入是否為取得焦點狀態，預設false
  */
@@ -171,7 +171,7 @@ export default {
             type: String,
             default: 'deep-orange darken-1',
         },
-        distY: {
+        placementDist: {
             type: Number,
             default: 7,
         },

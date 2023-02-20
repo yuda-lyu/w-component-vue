@@ -21,13 +21,13 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-timeminute'"
-                    :casename="'paddingStyle (thin style) & distY'"
+                    :casename="'paddingStyle (thin style) & placementDist'"
                 ></demolink>
 
                 <w-timeminute
                     :icon="''"
                     :paddingStyle="{v:0,h:8}"
-                    :distY="3"
+                    :placementDist="3"
                     v-model="WTimeminute.value"
                 ></w-timeminute>
             </div>
@@ -89,13 +89,13 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-timeminute'"
-                    :casename="'icon & iconSize & distY'"
+                    :casename="'icon & iconSize & placementDist'"
                 ></demolink>
 
                 <w-timeminute
                     :icon="mdiCheckUnderlineCircle"
                     :iconSize="20"
-                    :distY="5"
+                    :placementDist="6"
                     v-model="WTimeminute.value"
                 ></w-timeminute>
             </div>

@@ -53,7 +53,7 @@
                     :expansionIcon="showExpansionIcon?undefined:''"
                     :expansionIconSize="expansionIconSize"
                     :expansionIconColor="expansionIconColor"
-                    :distY="useDistY"
+                    :placementDist="useDistY"
                     :defItemHeight="defItemHeight"
                     :editable="editable"
                     :focused="focusedTrans"

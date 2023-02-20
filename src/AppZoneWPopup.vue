@@ -126,9 +126,9 @@
                     </template>
 
                     <template v-slot:content>
-                        <div>
-                            <div style="margin:15px;">1. {{WPopup.text}}</div>
-                            <div style="margin:15px;">2. {{WPopup.text}}</div>
+                        <div style="padding:5px;">
+                            <div style="padding:5px;">1. {{WPopup.text}}</div>
+                            <div style="padding:5px;">2. {{WPopup.text}}</div>
                         </div>
                     </template>
 
@@ -139,18 +139,18 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-popup'"
-                    :casename="'distY'"
+                    :casename="'autoFitMinWidth'"
                 ></demolink>
 
                 <w-popup
-                    :distY="10"
+                    :autoFitMinWidth="true"
                     v-model="WPopup.bShow5"
                     @show="evShow"
                     @hide="evHide"
                 >
 
                     <template v-slot:trigger>
-                        <v-btn depressed small elevation="2">Show({{WPopup.bShow5}})</v-btn>
+                        <v-btn depressed small elevation="2">[autoFitMinWidth] Show({{WPopup.bShow5}})</v-btn>
                     </template>
 
                     <template v-slot:content>
@@ -164,11 +164,11 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-popup'"
-                    :casename="'borderRadius'"
+                    :casename="'placementDist'"
                 ></demolink>
 
                 <w-popup
-                    :borderRadius="10"
+                    :placementDist="10"
                     v-model="WPopup.bShow6"
                     @show="evShow"
                     @hide="evHide"
@@ -189,11 +189,11 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-popup'"
-                    :casename="'backgroundColor'"
+                    :casename="'borderRadius'"
                 ></demolink>
 
                 <w-popup
-                    :backgroundColor="'pink darken-2'"
+                    :borderRadius="10"
                     v-model="WPopup.bShow7"
                     @show="evShow"
                     @hide="evHide"
@@ -204,7 +204,7 @@
                     </template>
 
                     <template v-slot:content>
-                        <v-list style="background:transparent;"><v-list-item style="min-height:inherit; padding:5px 15px;" dark :key="kitem" @click="function(){}" v-for="(item,kitem) in WPopup.items">Item {{item}}</v-list-item></v-list>
+                        <v-list style="background:transparent;"><v-list-item style="min-height:inherit; padding:5px 15px;" :key="kitem" @click="function(){}" v-for="(item,kitem) in WPopup.items">Item {{item}}</v-list-item></v-list>
                     </template>
 
                 </w-popup>
@@ -214,12 +214,11 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-popup'"
-                    :casename="'no shadow & backgroundColor'"
+                    :casename="'backgroundColor'"
                 ></demolink>
 
                 <w-popup
-                    :shadow="false"
-                    :backgroundColor="'#e08956'"
+                    :backgroundColor="'pink darken-2'"
                     v-model="WPopup.bShow8"
                     @show="evShow"
                     @hide="evHide"
@@ -240,11 +239,12 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-popup'"
-                    :casename="'shadowStyle'"
+                    :casename="'no shadow & backgroundColor'"
                 ></demolink>
 
                 <w-popup
-                    :shadowStyle="'0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12)'"
+                    :shadow="false"
+                    :backgroundColor="'#e08956'"
                     v-model="WPopup.bShow9"
                     @show="evShow"
                     @hide="evHide"
@@ -252,6 +252,81 @@
 
                     <template v-slot:trigger>
                         <v-btn depressed small elevation="2">Show({{WPopup.bShow9}})</v-btn>
+                    </template>
+
+                    <template v-slot:content>
+                        <v-list style="background:transparent;"><v-list-item style="min-height:inherit; padding:5px 15px;" dark :key="kitem" @click="function(){}" v-for="(item,kitem) in WPopup.items">Item {{item}}</v-list-item></v-list>
+                    </template>
+
+                </w-popup>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-popup'"
+                    :casename="'shadowStyle'"
+                ></demolink>
+
+                <w-popup
+                    :shadowStyle="'0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12)'"
+                    v-model="WPopup.bShow10"
+                    @show="evShow"
+                    @hide="evHide"
+                >
+
+                    <template v-slot:trigger>
+                        <v-btn depressed small elevation="2">Show({{WPopup.bShow10}})</v-btn>
+                    </template>
+
+                    <template v-slot:content>
+                        <v-list style="background:transparent;"><v-list-item style="min-height:inherit; padding:5px 15px;" :key="kitem" @click="function(){}" v-for="(item,kitem) in WPopup.items">Item {{item}}</v-list-item></v-list>
+                    </template>
+
+                </w-popup>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-popup'"
+                    :casename="'transitionTime'"
+                ></demolink>
+
+                <w-popup
+                    :transitionTime="50"
+                    v-model="WPopup.bShow11"
+                    @show="evShow"
+                    @hide="evHide"
+                >
+
+                    <template v-slot:trigger>
+                        <v-btn depressed small elevation="2">Show({{WPopup.bShow11}})</v-btn>
+                    </template>
+
+                    <template v-slot:content>
+                        <v-list style="background:transparent;"><v-list-item style="min-height:inherit; padding:5px 15px;" :key="kitem" @click="function(){}" v-for="(item,kitem) in WPopup.items">Item {{item}}</v-list-item></v-list>
+                    </template>
+
+                </w-popup>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-popup'"
+                    :casename="'placement'"
+                ></demolink>
+
+                <w-popup
+                    :placement="'right-start'"
+                    v-model="WPopup.bShow12"
+                    @show="evShow"
+                    @hide="evHide"
+                >
+
+                    <template v-slot:trigger>
+                        <v-btn depressed small elevation="2">Show({{WPopup.bShow12}})</v-btn>
                     </template>
 
                     <template v-slot:content>
@@ -275,13 +350,13 @@
                         <div style="height:200px;"></div>
 
                         <w-popup
-                            v-model="WPopup.bShow10"
+                            v-model="WPopup.bShow13"
                             @show="evShow"
                             @hide="evHide"
                         >
 
                             <template v-slot:trigger>
-                                <v-btn depressed small elevation="2">Show({{WPopup.bShow10}})</v-btn>
+                                <v-btn depressed small elevation="2">Show({{WPopup.bShow13}})</v-btn>
                             </template>
 
                             <template v-slot:content>
@@ -312,13 +387,13 @@
                             <div style="height:200px;"></div>
 
                             <w-popup
-                                v-model="WPopup.bShow11"
+                                v-model="WPopup.bShow14"
                                 @show="evShow"
                                 @hide="evHide"
                             >
 
                                 <template v-slot:trigger>
-                                    <v-btn depressed small elevation="2" @click="expandItem">Show({{WPopup.bShow11}})</v-btn>
+                                    <v-btn depressed small elevation="2" @click="expandItem">Show({{WPopup.bShow14}})</v-btn>
                                 </template>
 
                                 <template v-slot:content>
@@ -343,13 +418,13 @@
                 ></demolink>
 
                 <w-popup
-                    v-model="WPopup.bShow12"
+                    v-model="WPopup.bShow15a"
                     @show="evShow"
                     @hide="evHide"
                 >
 
                     <template v-slot:trigger>
-                        <v-btn depressed small elevation="2">Show({{WPopup.bShow12}})</v-btn>
+                        <v-btn depressed small elevation="2">Show({{WPopup.bShow15a}})</v-btn>
                     </template>
 
                     <template v-slot:content>
@@ -358,13 +433,13 @@
                             <div style="font-size:0.8rem; white-space:nowrap;">Here is 1st pupop.</div>
 
                             <w-popup
-                                v-model="WPopup.bShow12a"
+                                v-model="WPopup.bShow15b"
                                 @show="evShow"
                                 @hide="evHide"
                             >
 
                                 <template v-slot:trigger>
-                                    <v-btn depressed small elevation="2">Show({{WPopup.bShow12a}})</v-btn>
+                                    <v-btn depressed small elevation="2">Show({{WPopup.bShow15b}})</v-btn>
                                 </template>
 
                                 <template v-slot:content>
@@ -375,13 +450,13 @@
 
                                         <w-popup
                                             style="margin-bottom:20px;"
-                                            v-model="WPopup.bShow12b"
+                                            v-model="WPopup.bShow15c"
                                             @show="evShow"
                                             @hide="evHide"
                                         >
 
                                             <template v-slot:trigger>
-                                                <v-btn depressed small elevation="2">Show({{WPopup.bShow12b}})</v-btn>
+                                                <v-btn depressed small elevation="2">Show({{WPopup.bShow15c}})</v-btn>
                                             </template>
 
                                             <template v-slot:content>
@@ -412,10 +487,10 @@
                     :casename="'in dialog'"
                 ></demolink>
 
-                <v-btn depressed small elevation="2" @click="WPopup.bShow13=!WPopup.bShow13">Show({{WPopup.bShow13}})</v-btn>
+                <v-btn depressed small elevation="2" @click="WPopup.bShow16a=!WPopup.bShow16a">Show({{WPopup.bShow16a}})</v-btn>
 
                 <w-dialog
-                    :show.sync="WPopup.bShow13"
+                    :show.sync="WPopup.bShow16a"
                     :title="'in dialog'"
                     :maxWidth="500"
                 >
@@ -427,13 +502,13 @@
 
                             <w-popup
                                 style="margin-left:250px;"
-                                v-model="WPopup.bShow13a"
+                                v-model="WPopup.bShow16b"
                                 @show="evShow"
                                 @hide="evHide"
                             >
 
                                 <template v-slot:trigger>
-                                    <v-btn depressed small elevation="2" @click="expandItem">Show({{WPopup.bShow13a}})</v-btn>
+                                    <v-btn depressed small elevation="2" @click="expandItem">Show({{WPopup.bShow16b}})</v-btn>
                                 </template>
 
                                 <template v-slot:content>
@@ -460,13 +535,13 @@
 
                 <w-popup
                     :maxWidth="400"
-                    v-model="WPopup.bShow14"
+                    v-model="WPopup.bShow17"
                     @show="evShow"
                     @hide="evHide"
                 >
 
                     <template v-slot:trigger>
-                        <v-btn depressed small elevation="2">Show({{WPopup.bShow14}})</v-btn>
+                        <v-btn depressed small elevation="2">Show({{WPopup.bShow17}})</v-btn>
                     </template>
 
                     <template v-slot:content>
@@ -491,13 +566,13 @@
 
                 <w-popup
                     :editable="false"
-                    v-model="WPopup.bShow15"
+                    v-model="WPopup.bShow18"
                     @show="evShow"
                     @hide="evHide"
                 >
 
                     <template v-slot:trigger>
-                        <v-btn depressed small elevation="2">Show({{WPopup.bShow15}})</v-btn>
+                        <v-btn depressed small elevation="2">Show({{WPopup.bShow18}})</v-btn>
                     </template>
 
                     <template v-slot:content>
@@ -549,12 +624,15 @@ export default {
                 'bShow10': false,
                 'bShow11': false,
                 'bShow12': false,
-                'bShow12a': false,
-                'bShow12b': false,
                 'bShow13': false,
-                'bShow13a': false,
                 'bShow14': false,
-                'bShow15': false,
+                'bShow15a': false,
+                'bShow15b': false,
+                'bShow15c': false,
+                'bShow16a': false,
+                'bShow16b': false,
+                'bShow17': false,
+                'bShow18': false,
                 'items': ['foo', 'bar', 'fizz', 'buzz'],
                 'itemsExpand': ['foo', 'bar', 'fizz', 'buzz'],
                 'text': 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis praesentium cumque magnam odio iure quidem, quod illum numquam possimus obcaecati commodi minima assumenda consectetur culpa fuga nulla ullam. In, libero.',

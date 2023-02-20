@@ -3,7 +3,8 @@
         style="display:block;"
         :minWidth="minWidth"
         :maxWidth="maxWidth"
-        :distY="distY"
+        :autoFitMinWidth="autoFitMinWidth"
+        :placementDist="placementDist"
         :editable="editable"
         :value="showPanelTrans"
         @input="(v)=>{updateShowPanel(v,'WPopup')}"
@@ -18,9 +19,10 @@
                 <!-- 盡量不要讓display:flex暴露至外層 -->
                 <div style="display:flex; align-items:center;">
 
+                    <!-- 不能使用tabindex=0禁用駐點, 會導致點擊無法觸發windowMousedown與windowMouseup事件, 進而導致無法自動取消popup -->
                     <div
                         :style="`width:100%; _height:${height}px; _line-height:${height}px; color:${useTextColor}; ${useTextFontSize} vertical-align:middle; white-space:nowrap; text-overflow:ellipsis; cursor:pointer; outline:none;`"
-                        tabindex="0"
+                        _tabindex="0"
                         @focus="focusText"
                         v-if="mode==='select'"
                     >
@@ -148,7 +150,8 @@ import WIcon from './WIcon.vue'
  * @vue-prop {Number} [maxHeight=200] 輸入顯示區最大高度數字，單位為px，預設200
  * @vue-prop {Number} [minWidth=null] 輸入最小寬度，單位為px，預設null
  * @vue-prop {Number} [maxWidth=null] 輸入最大寬度，單位為px，預設null
- * @vue-prop {Number} [distY=5] 輸入彈窗距離觸發元素底部的距離數字，單位為px，預設5
+ * @vue-prop {Boolean} [autoFitMinWidth=true] 輸入是否使用驅動區寬度作為內容區之最小寬度布林值，預設true
+ * @vue-prop {Number} [placementDist=5] 輸入彈窗距離觸發元素距離數字，單位為px，預設5
  * @vue-prop {String} [placeholder=''] 輸入無文字時的替代字符字串，預設''
  * @vue-prop {String} [loadingText='Loading...'] 輸入載入中字串，預設'Loading...'
  * @vue-prop {String} [noResultsText='No results'] 輸入無過濾結果字串，預設'No results'
@@ -251,7 +254,11 @@ export default {
             type: Number,
             default: null,
         },
-        distY: {
+        autoFitMinWidth: {
+            type: Boolean,
+            default: true,
+        },
+        placementDist: {
             type: Number,
             default: 5,
         },
