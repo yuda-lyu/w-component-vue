@@ -75,6 +75,7 @@
                         :text="'Passionate'"
                         :value="83"
                         :color="'#64B5F6'"
+                        :trackColor="'#444'"
                         :textColor="'#2196F3'"
                     ></w-progress-circle>
                 </div>
