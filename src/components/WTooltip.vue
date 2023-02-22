@@ -629,6 +629,12 @@ export default {
                     // },
                     flip,
                     hide,
+                    {
+                        name: 'flip',
+                        options: {
+                            fallbackPlacements: ['bottom-start', 'bottom-end', 'top', 'top-start', 'top-end'],
+                        },
+                    },
                     offset,
                     {
                         name: 'offset',

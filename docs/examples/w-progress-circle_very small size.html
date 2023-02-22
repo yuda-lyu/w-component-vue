@@ -85,7 +85,7 @@
     </script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.2.66/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.2.67/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -141,7 +141,7 @@
                 :value="100"
                 :size="26"
                 :width="2"
-                :color="'light-green accent-4'"
+                :color="'#00C853'"
             ></w-progress-circle>
         </div>
     </v-app>
@@ -165,11 +165,15 @@
             mode: "elehover",
             selector: 'div[role="progressbar"]'
           }
-        ]
+        ],
+        t: null
       };
     },
     mounted: function() {
-      return {};
+      let vo = this;
+      vo.t = setInterval(() => {
+        vo.WProgressCircle.value = Math.round(Math.random() * 100 * 10) / 10;
+      }, 1000);
     },
     computed: {},
     methods: {}

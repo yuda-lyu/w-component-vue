@@ -5,18 +5,22 @@
         :changeLoading="changeLoading"
     >
 
-        <v-tooltip
-            bottom
-            transition="slide-y-transition"
-            :disabled="!tooltip"
+        <WTooltip
+            :displayType="'line'"
+            :isolated="true"
+            :borderRadius="tooltipBorderRadius"
+            :paddingStyle="tooltipPaddingStyle"
+            :textFontSize="tooltipTextFontSize"
+            :textColor="tooltipTextColor"
+            :backgroundColor="tooltipBackgroundColor"
+            :editable="hasTooltop"
         >
 
-            <template v-slot:activator="{ on }">
+            <template v-slot:trigger>
 
-                <!-- v-tooltip下第1層dom會無法拖曳, 點擊事件於這層觸發, 且組件內tabindex不能重複, 故本層設定為0 -->
+                <!-- 使用overflow:hidden預先測試, 因ripple會自行添加, 先行測試添加後狀態 -->
                 <div
-                    v-on="on"
-                    :style="`position:relative; transition:all 0.3s; ${usePadding} border-radius:50%; border:${borderWidth}px solid ${useBorderColor}; background:${useBackgroundColor}; ${editable&&cursorPointer?'cursor:pointer;':''} outline:none; user-select:none; box-shadow:${useShadow};`"
+                    :style="`position:relative; transition:all 0.3s; ${usePadding} border-radius:50%; border:${borderWidth}px solid ${useBorderColor}; background:${useBackgroundColor}; ${editable&&cursorPointer?'cursor:pointer;':''} box-shadow:${useShadow}; outline:none; user-select:none; overflow:hidden;`"
                     tabindex="0"
                     @mouseenter="hoverTrans=true;$emit('mouseenter',$event)"
                     @mouseleave="hoverTrans=false;$emit('mouseleave',$event)"
@@ -58,9 +62,11 @@
 
             </template>
 
-            <span>{{tooltip}}</span>
+            <template v-slot:content>
+                {{tooltip}}
+            </template>
 
-        </v-tooltip>
+        </WTooltip>
 
     </div>
 </template>
@@ -81,6 +87,7 @@ import color2hex from '../js/vuetifyColor.mjs'
 import parseSpace from '../js/parseSpace.mjs'
 import WIcon from './WIcon.vue'
 import WIconLoading from './WIconLoading.vue'
+import WTooltip from './WTooltip.vue'
 
 
 /**
@@ -97,6 +104,11 @@ import WIconLoading from './WIconLoading.vue'
  * @vue-prop {String} [backgroundColor='rgb(241,241,241)'] 輸入按鈕背景顏色字串，預設'rgb(241,241,241)'
  * @vue-prop {String} [backgroundColorHover='rgb(236,236,236)'] 輸入滑鼠移入時按鈕背景顏色字串，預設'rgb(236,236,236)'
  * @vue-prop {String} [backgroundColorFocus='rgb(230,230,230)'] 輸入取得焦點時按鈕背景顏色字串，預設'rgb(230,230,230)'
+ * @vue-prop {Number} [tooltipBorderRadius=4] 輸入提示文字框圓角度數字，單位為px，預設4
+ * @vue-prop {Object} [tooltipPaddingStyle={v:5,h:8}] 輸入提示文字內寬距離設定物件，可用鍵值為v、h、left、right、top、bottom，v代表同時設定top與bottom，h代表設定left與right，若有重複設定時後面鍵值會覆蓋前面，各鍵值為寬度數字，單位為px，預設{v:5,h:8}
+ * @vue-prop {String} [tooltipTextFontSize='0.85rem'] 輸入提示文字字型大小字串，預設'0.85rem'
+ * @vue-prop {String} [tooltipTextColor='black'] 輸入提示文字顏色字串，預設'white'
+ * @vue-prop {String} [tooltipBackgroundColor='rgba(60,60,60,0.75)'] 輸入背景顏色字串，預設'rgba(60,60,60,0.75)'
  * @vue-prop {String} [rippleColor='rgba(255, 255, 255, 0.5)'] 輸入ripple效果顏色字串，預設'rgba(255, 255, 255, 0.5)'
  * @vue-prop {Object} [paddingStyle={v:4,h:4}] 輸入內寬距離設定物件，可用鍵值為v、h、left、right、top、bottom，v代表同時設定top與bottom，h代表設定left與right，若有重複設定時後面鍵值會覆蓋前面，各鍵值為寬度數字，單位為px，預設{v:4,h:4}
  * @vue-prop {Boolean} [shadow=true] 輸入是否為陰影模式，預設true
@@ -113,6 +125,7 @@ export default {
     components: {
         WIcon,
         WIconLoading,
+        WTooltip,
     },
     props: {
         tooltip: {
@@ -166,6 +179,31 @@ export default {
         backgroundColorFocus: {
             type: String,
             default: 'rgb(230,230,230)',
+        },
+        tooltipBorderRadius: {
+            type: Number,
+            default: 4,
+        },
+        tooltipPaddingStyle: {
+            type: Object,
+            default: () => {
+                return {
+                    v: 5,
+                    h: 8,
+                }
+            },
+        },
+        tooltipTextFontSize: {
+            type: String,
+            default: '0.85rem',
+        },
+        tooltipTextColor: {
+            type: String,
+            default: 'white',
+        },
+        tooltipBackgroundColor: {
+            type: String,
+            default: 'rgba(60,60,60,0.75)',
         },
         shadow: {
             type: Boolean,
@@ -403,6 +441,11 @@ export default {
             }
 
             return ''
+        },
+
+        hasTooltop: function() {
+            let vo = this
+            return isestr(vo.tooltip)
         },
 
     },

@@ -48,6 +48,20 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-progress-circle'"
+                    :casename="'color & trackColor'"
+                ></demolink>
+
+                <w-progress-circle
+                    :text="'Passionate'"
+                    :value="83"
+                    :color="'#AFB42B'"
+                    :trackColor="'#E6EE9C'"
+                ></w-progress-circle>
+            </div>
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-progress-circle'"
                     :casename="'width'"
                 ></demolink>
 
@@ -55,6 +69,7 @@
                     :text="'Completion'"
                     :value="57"
                     :width="3"
+                    :color="'#7B1FA2'"
                 ></w-progress-circle>
             </div>
 
@@ -69,8 +84,8 @@
                     :text="'Reverse'"
                     :value="92"
                     :size="80"
-                    :width="7"
-                    :color="'orange accent-1'"
+                    :width="4"
+                    :color="'#9E9D24'"
                 ></w-progress-circle>
             </div>
 
@@ -85,7 +100,7 @@
                     :value="100"
                     :size="26"
                     :width="2"
-                    :color="'light-green accent-4'"
+                    :color="'#00C853'"
                 ></w-progress-circle>
             </div>
 
@@ -99,8 +114,73 @@
                 <w-progress-circle
                     :text="'Exposure'"
                     :value="72"
-                    :color="'brown lighten-2'"
+                    :color="'#BDBDBD'"
                     :tooltip="'資訊揭露程度(%)'"
+                ></w-progress-circle>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-progress-circle'"
+                    :casename="'tooltip & tooltipBorderRadius'"
+                ></demolink>
+
+                <w-progress-circle
+                    :text="'Exposure'"
+                    :value="72"
+                    :color="'#BDBDBD'"
+                    :tooltip="'資訊揭露程度(%)'"
+                    :tooltipBorderRadius="10"
+                ></w-progress-circle>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-progress-circle'"
+                    :casename="'tooltip & tooltipPaddingStyle'"
+                ></demolink>
+
+                <w-progress-circle
+                    :text="'Exposure'"
+                    :value="72"
+                    :color="'#BDBDBD'"
+                    :tooltip="'資訊揭露程度(%)'"
+                    :tooltipPaddingStyle="{v:10,h:13}"
+                ></w-progress-circle>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-progress-circle'"
+                    :casename="'tooltip & tooltipTextFontSize'"
+                ></demolink>
+
+                <w-progress-circle
+                    :text="'Exposure'"
+                    :value="72"
+                    :color="'#BDBDBD'"
+                    :tooltip="'資訊揭露程度(%)'"
+                    :tooltipTextFontSize="'0.7rem'"
+                ></w-progress-circle>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-progress-circle'"
+                    :casename="'tooltip & tooltipTextColor & tooltipBackgroundColor'"
+                ></demolink>
+
+                <w-progress-circle
+                    :text="'Exposure'"
+                    :value="72"
+                    :color="'#BDBDBD'"
+                    :tooltip="'資訊揭露程度(%)'"
+                    :tooltipTextColor="'#E65100'"
+                    :tooltipBackgroundColor="'#FFF3E0'"
                 ></w-progress-circle>
             </div>
 
@@ -135,7 +215,18 @@ export default {
                     'selector': 'div[role="progressbar"]'
                 },
             ],
+            't': null,
         }
+    },
+    mounted: function() {
+        let vo = this
+        vo.t = setInterval(() => {
+            vo.WProgressCircle.value = Math.round(Math.random() * 100 * 10) / 10
+        }, 1000)
+    },
+    beforeDestroy: function() {
+        let vo = this
+        clearInterval(vo.t)
     },
 }
 </script>

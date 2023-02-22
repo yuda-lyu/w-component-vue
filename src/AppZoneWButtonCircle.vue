@@ -51,6 +51,67 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-button-circle'"
+                    :casename="'tooltip & tooltipBorderRadius'"
+                ></demolink>
+
+                <w-button-circle
+                    :icon="mdiFaceMan"
+                    :tooltip="'測試中文tooltip'"
+                    :tooltipBorderRadius="10"
+                ></w-button-circle>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-button-circle'"
+                    :casename="'tooltip & tooltipPaddingStyle'"
+                ></demolink>
+
+                <w-button-circle
+                    :icon="mdiFaceMan"
+                    :tooltip="'測試中文tooltip'"
+                    :tooltipPaddingStyle="{v:10,h:13}"
+                ></w-button-circle>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-button-circle'"
+                    :casename="'tooltip & tooltipTextFontSize'"
+                ></demolink>
+
+                <w-button-circle
+                    :icon="mdiFaceMan"
+                    :tooltip="'測試中文tooltip'"
+                    :tooltipTextFontSize="'0.7rem'"
+                ></w-button-circle>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-button-circle'"
+                    :casename="'tooltip & tooltipTextColor & tooltipBackgroundColor'"
+                ></demolink>
+
+                <w-button-circle
+                    :icon="mdiFaceMan"
+                    :tooltip="'測試中文tooltip'"
+                    :tooltipTextColor="'#E65100'"
+                    :tooltipBackgroundColor="'#FFF3E0'"
+                ></w-button-circle>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-button-circle'"
                     :casename="'iconColor & iconColorHover & iconColorFocus'"
                 ></demolink>
 

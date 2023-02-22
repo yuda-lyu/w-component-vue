@@ -51,7 +51,6 @@ import WProgressCircle from './WProgressCircle.vue'
 import WQuillVueDyn from './WQuillVueDyn.vue'
 import WShellBottomLine from './WShellBottomLine.vue'
 import WShellEllipse from './WShellEllipse.vue'
-import WShellMaterial from './WShellMaterial.vue'
 import WSwitch from './WSwitch.vue'
 import WTableDyn from './WTableDyn.vue'
 import WText from './WText.vue'
@@ -130,7 +129,6 @@ let WComponentVue = {
         Vue.component('w-quill-vue-dyn', WQuillVueDyn)
         Vue.component('w-shell-bottom-line', WShellBottomLine)
         Vue.component('w-shell-ellipse', WShellEllipse)
-        Vue.component('w-shell-material', WShellMaterial)
         Vue.component('w-switch', WSwitch)
         Vue.component('w-table-dyn', WTableDyn)
         Vue.component('w-text', WText)

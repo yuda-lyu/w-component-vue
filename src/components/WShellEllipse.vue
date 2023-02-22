@@ -17,21 +17,34 @@
                 v-if="leftIcon"
             >
 
-                <v-tooltip bottom transition="slide-y-transition" :disabled="leftIconTooltip===''">
+                <WTooltip
+                    :displayType="'line'"
+                    :isolated="true"
+                    :borderRadius="tooltipBorderRadius"
+                    :paddingStyle="tooltipPaddingStyle"
+                    :textFontSize="tooltipTextFontSize"
+                    :textColor="tooltipTextColor"
+                    :backgroundColor="tooltipBackgroundColor"
+                    :editable="hasLeftIconTooltop"
+                >
 
-                    <template v-slot:activator="{ on: ttShellEllipseLeft }">
-                        <div ShellEllipse="leftIcon" v-on="{...ttShellEllipseLeft}">
+                    <template v-slot:trigger>
+
+                        <div ShellEllipse="leftIcon">
                             <WIcon
                                 :icon="leftIcon"
                                 :size="leftIconSize"
                                 :color="useLeftIconColor"
                             ></WIcon>
                         </div>
+
                     </template>
 
-                    <span>{{leftIconTooltip}}</span>
+                    <template v-slot:content>
+                        {{leftIconTooltip}}
+                    </template>
 
-                </v-tooltip>
+                </WTooltip>
 
             </div>
 
@@ -49,21 +62,34 @@
                 v-if="rightIcon"
             >
 
-                <v-tooltip bottom transition="slide-y-transition" :disabled="rightIconTooltip===''">
+                <WTooltip
+                    :displayType="'line'"
+                    :isolated="true"
+                    :borderRadius="tooltipBorderRadius"
+                    :paddingStyle="tooltipPaddingStyle"
+                    :textFontSize="tooltipTextFontSize"
+                    :textColor="tooltipTextColor"
+                    :backgroundColor="tooltipBackgroundColor"
+                    :editable="hasRightIconTooltop"
+                >
 
-                    <template v-slot:activator="{ on: ttShellEllipseRight }">
-                        <div ShellEllipse="rightIcon" v-on="{...ttShellEllipseRight}">
+                    <template v-slot:trigger>
+
+                        <div ShellEllipse="rightIcon">
                             <WIcon
                                 :icon="rightIcon"
                                 :size="rightIconSize"
                                 :color="useRightIconColor"
                             ></WIcon>
                         </div>
+
                     </template>
 
-                    <span>{{rightIconTooltip}}</span>
+                    <template v-slot:content>
+                        {{rightIconTooltip}}
+                    </template>
 
-                </v-tooltip>
+                </WTooltip>
 
             </div>
 
@@ -73,9 +99,11 @@
 </template>
 
 <script>
+import isestr from 'wsemi/src/isestr.mjs'
 import color2hex from '../js/vuetifyColor.mjs'
 import parseSpace from '../js/parseSpace.mjs'
 import WIcon from './WIcon.vue'
+import WTooltip from './WTooltip.vue'
 
 
 /**
@@ -103,6 +131,11 @@ import WIcon from './WIcon.vue'
  * @vue-prop {String} [rightIconTooltip=''] 輸入右側圖標提示文字字串，預設''
  * @vue-prop {Number} [iconShiftOuter=-10] 輸入左右側圖標與外框距離數字，單位為px，預設-10
  * @vue-prop {Number} [iconShiftInner=5] 輸入左右側圖標與內插槽區距離數字，單位為px，預設5
+ * @vue-prop {Number} [tooltipBorderRadius=4] 輸入提示文字框圓角度數字，單位為px，預設4
+ * @vue-prop {Object} [tooltipPaddingStyle={v:5,h:8}] 輸入提示文字內寬距離設定物件，可用鍵值為v、h、left、right、top、bottom，v代表同時設定top與bottom，h代表設定left與right，若有重複設定時後面鍵值會覆蓋前面，各鍵值為寬度數字，單位為px，預設{v:5,h:8}
+ * @vue-prop {String} [tooltipTextFontSize='0.85rem'] 輸入提示文字字型大小字串，預設'0.85rem'
+ * @vue-prop {String} [tooltipTextColor='black'] 輸入提示文字顏色字串，預設'white'
+ * @vue-prop {String} [tooltipBackgroundColor='rgba(60,60,60,0.75)'] 輸入背景顏色字串，預設'rgba(60,60,60,0.75)'
  * @vue-prop {Boolean} [editable=true] 輸入是否為編輯模式，預設true
  * @vue-prop {Boolean} [hovered=false] 輸入是否為滑鼠移入狀態，預設false
  * @vue-prop {Boolean} [focused=false] 輸入是否為取得焦點狀態，預設false
@@ -110,6 +143,7 @@ import WIcon from './WIcon.vue'
 export default {
     components: {
         WIcon,
+        WTooltip,
     },
     props: {
         paddingStyle: {
@@ -213,6 +247,31 @@ export default {
             type: Number,
             default: 5,
         },
+        tooltipBorderRadius: {
+            type: Number,
+            default: 4,
+        },
+        tooltipPaddingStyle: {
+            type: Object,
+            default: () => {
+                return {
+                    v: 5,
+                    h: 8,
+                }
+            },
+        },
+        tooltipTextFontSize: {
+            type: String,
+            default: '0.85rem',
+        },
+        tooltipTextColor: {
+            type: String,
+            default: 'white',
+        },
+        tooltipBackgroundColor: {
+            type: String,
+            default: 'rgba(60,60,60,0.75)',
+        },
         editable: {
             type: Boolean,
             default: true,
@@ -289,11 +348,11 @@ export default {
 
             let vo = this
 
-            if (vo.focusedTrans) {
-                return color2hex(vo.leftIconColorFocus)
-            }
             if (vo.hoveredTrans) {
                 return color2hex(vo.leftIconColorHover)
+            }
+            else if (vo.focusedTrans) {
+                return color2hex(vo.leftIconColorFocus)
             }
             return color2hex(vo.leftIconColor)
         },
@@ -303,11 +362,11 @@ export default {
 
             let vo = this
 
-            if (vo.focusedTrans) {
-                return color2hex(vo.rightIconColorFocus)
-            }
             if (vo.hoveredTrans) {
                 return color2hex(vo.rightIconColorHover)
+            }
+            else if (vo.focusedTrans) {
+                return color2hex(vo.rightIconColorFocus)
             }
             return color2hex(vo.rightIconColor)
         },
@@ -336,6 +395,16 @@ export default {
             }
 
             return padding
+        },
+
+        hasLeftIconTooltop: function() {
+            let vo = this
+            return isestr(vo.leftIconTooltip)
+        },
+
+        hasRightIconTooltop: function() {
+            let vo = this
+            return isestr(vo.rightIconTooltip)
         },
 
     },

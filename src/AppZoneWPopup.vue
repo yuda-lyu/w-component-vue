@@ -25,6 +25,7 @@
                     </template>
 
                     <template v-slot:content>
+                        {{WPopup.text}}
                         <v-list style="background:transparent;"><v-list-item style="min-height:inherit; padding:5px 15px;" :key="kitem" @click="function(){}" v-for="(item,kitem) in WPopup.items">Item {{item}}</v-list-item></v-list>
                     </template>
 
@@ -217,22 +218,27 @@
                     :casename="'backgroundColor'"
                 ></demolink>
 
-                <w-popup
-                    :backgroundColor="'pink darken-2'"
-                    v-model="WPopup.bShow8"
-                    @show="evShow"
-                    @hide="evHide"
-                >
+                <div style="padding:30px; background:#ccb5c7;">
 
-                    <template v-slot:trigger>
-                        <v-btn depressed small elevation="2">Show({{WPopup.bShow8}})</v-btn>
-                    </template>
+                    <w-popup
+                        :backgroundColor="'rgba(0,0,0,0.5)'"
+                        v-model="WPopup.bShow8"
+                        @show="evShow"
+                        @hide="evHide"
+                    >
 
-                    <template v-slot:content>
-                        <v-list style="background:transparent;"><v-list-item style="min-height:inherit; padding:5px 15px;" dark :key="kitem" @click="function(){}" v-for="(item,kitem) in WPopup.items">Item {{item}}</v-list-item></v-list>
-                    </template>
+                        <template v-slot:trigger>
+                            <v-btn depressed small elevation="2">Show({{WPopup.bShow8}})</v-btn>
+                        </template>
 
-                </w-popup>
+                        <template v-slot:content>
+                            <v-list style="background:transparent;"><v-list-item style="min-height:inherit; padding:5px 15px;" dark :key="kitem" @click="function(){}" v-for="(item,kitem) in WPopup.items">Item {{item}}</v-list-item></v-list>
+                        </template>
+
+                    </w-popup>
+
+                </div>
+
             </div>
 
 
@@ -560,14 +566,14 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-popup'"
-                    :casename="'in dialog'"
+                    :casename="'auto flipping in dialog'"
                 ></demolink>
 
                 <v-btn depressed small elevation="2" @click="WPopup.bShow19a=!WPopup.bShow19a">Show({{WPopup.bShow19a}})</v-btn>
 
                 <w-dialog
                     :show.sync="WPopup.bShow19a"
-                    :title="'in dialog'"
+                    :title="'auto flipping in dialog'"
                     :maxWidth="500"
                 >
 
