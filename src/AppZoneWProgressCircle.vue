@@ -27,7 +27,11 @@
                     :casename="'中文text'"
                 ></demolink>
 
-                <w-progress-circle :text="'完成進度'" :value="12"></w-progress-circle>
+                <w-progress-circle
+                    :text="'完成進度'"
+                    :value="32"
+                    :color="'#FF9100'"
+                ></w-progress-circle>
             </div>
 
 
@@ -58,6 +62,25 @@
                     :trackColor="'#E6EE9C'"
                 ></w-progress-circle>
             </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-progress-circle'"
+                    :casename="'color & trackColor & textColor'"
+                ></demolink>
+
+                <div style="display:inline-block; padding:40px 45px 40px 40px; background:#222;">
+                    <w-progress-circle
+                        :text="'Passionate'"
+                        :value="83"
+                        :color="'#64B5F6'"
+                        :textColor="'#2196F3'"
+                    ></w-progress-circle>
+                </div>
+
+            </div>
+
 
             <div class="bk">
                 <demolink

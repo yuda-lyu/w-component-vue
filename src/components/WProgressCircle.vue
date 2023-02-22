@@ -81,10 +81,11 @@ import WTooltip from './WTooltip.vue'
 /**
  * @vue-prop {String} [text=''] 輸入文字字串，預設''
  * @vue-prop {Number} [value=0] 輸入數值，介於0~100之間，預設0
- * @vue-prop {String} [color='#FF9100'] 輸入環狀圓條顏色字串，預設'#FF9100'
+ * @vue-prop {String} [color='rgba(150,150,150,0.8)'] 輸入環狀圓條顏色字串，預設'rgba(150,150,150,0.8)'
  * @vue-prop {String} [trackColor='rgba(150,150,150,0.4)'] 輸入環狀軌道顏色字串，預設'rgba(150,150,150,0.4)'
  * @vue-prop {Number} [size=120] 輸入進度條外徑寬度，單位為px，預設120
  * @vue-prop {Number} [width=6] 輸入環狀圓條寬度，單位為px，預設6
+ * @vue-prop {String} [textColor='#666'] 輸入文字顏色字串，預設'#666'
  * @vue-prop {String} [tooltip=''] 輸入提示文字字串，預設''
  * @vue-prop {Number} [tooltipBorderRadius=4] 輸入提示文字框圓角度數字，單位為px，預設4
  * @vue-prop {Object} [tooltipPaddingStyle={v:5,h:8}] 輸入提示文字內寬距離設定物件，可用鍵值為v、h、left、right、top、bottom，v代表同時設定top與bottom，h代表設定left與right，若有重複設定時後面鍵值會覆蓋前面，各鍵值為寬度數字，單位為px，預設{v:5,h:8}
@@ -107,7 +108,7 @@ export default {
         },
         color: {
             type: String,
-            default: '#FF9100',
+            default: 'rgba(100,100,100,0.8)',
         },
         trackColor: {
             type: String,
@@ -120,6 +121,10 @@ export default {
         width: {
             type: Number,
             default: 6,
+        },
+        textColor: {
+            type: String,
+            default: '#666',
         },
         tooltip: {
             type: String,
@@ -236,7 +241,7 @@ export default {
             let fs = vo.size / 12
             let ts = 1.2
             let s = {
-                'color': '#666',
+                'color': vo.useTextColor,
                 'font-size': fs + 'pt',
                 'transform': `scale(${ts})`
             }
@@ -252,6 +257,11 @@ export default {
         useTrackColor: function() {
             let vo = this
             return color2hex(vo.trackColor)
+        },
+
+        useTextColor: function() {
+            let vo = this
+            return color2hex(vo.textColor)
         },
 
         hasTooltop: function() {
