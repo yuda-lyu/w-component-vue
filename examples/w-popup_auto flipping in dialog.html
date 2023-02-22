@@ -85,7 +85,7 @@
     </script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.2.66/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.2.67/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -135,7 +135,7 @@
             >w-popup</span>
         </div>
         <div class="bk">
-            <div class="item">in dialog</div>
+            <div class="item">auto flipping in dialog</div>
 
             <v-btn
                 depressed
@@ -146,7 +146,7 @@
 
             <w-dialog
                 :show.sync="WPopup.bShow19a"
-                :title="'in dialog'"
+                :title="'auto flipping in dialog'"
                 :max-width="500"
             >
                 <template v-slot:content>

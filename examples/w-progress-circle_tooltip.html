@@ -85,7 +85,7 @@
     </script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.2.66/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.2.67/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -140,7 +140,7 @@
             <w-progress-circle
                 :text="'Exposure'"
                 :value="72"
-                :color="'brown lighten-2'"
+                :color="'#BDBDBD'"
                 :tooltip="'資訊揭露程度(%)'"
             ></w-progress-circle>
         </div>
@@ -165,11 +165,15 @@
             mode: "elehover",
             selector: 'div[role="progressbar"]'
           }
-        ]
+        ],
+        t: null
       };
     },
     mounted: function() {
-      return {};
+      let vo = this;
+      vo.t = setInterval(() => {
+        vo.WProgressCircle.value = Math.round(Math.random() * 100 * 10) / 10;
+      }, 1000);
     },
     computed: {},
     methods: {}

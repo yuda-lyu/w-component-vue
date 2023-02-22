@@ -85,7 +85,7 @@
     </script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.2.66/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.2.67/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -141,8 +141,8 @@
                 :text="'Reverse'"
                 :value="92"
                 :size="80"
-                :width="7"
-                :color="'orange accent-1'"
+                :width="4"
+                :color="'#9E9D24'"
             ></w-progress-circle>
         </div>
     </v-app>
@@ -166,11 +166,15 @@
             mode: "elehover",
             selector: 'div[role="progressbar"]'
           }
-        ]
+        ],
+        t: null
       };
     },
     mounted: function() {
-      return {};
+      let vo = this;
+      vo.t = setInterval(() => {
+        vo.WProgressCircle.value = Math.round(Math.random() * 100 * 10) / 10;
+      }, 1000);
     },
     computed: {},
     methods: {}

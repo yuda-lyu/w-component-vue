@@ -85,7 +85,7 @@
     </script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.2.66/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.2.67/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -137,28 +137,34 @@
         <div class="bk">
             <div class="item">backgroundColor</div>
 
-            <w-popup
-                :background-color="'pink darken-2'"
-                v-model="WPopup.bShow8"
-                @show="evShow"
-                @hide="evHide"
-            >
-                <template v-slot:trigger>
-                    <v-btn depressed small elevation="2">Show({{WPopup.bShow8}})</v-btn>
-                </template>
+            <div style="padding:30px; background:#ccb5c7;">
+                <w-popup
+                    :background-color="'rgba(0,0,0,0.5)'"
+                    v-model="WPopup.bShow8"
+                    @show="evShow"
+                    @hide="evHide"
+                >
+                    <template v-slot:trigger>
+                        <v-btn
+                            depressed
+                            small
+                            elevation="2"
+                        >Show({{WPopup.bShow8}})</v-btn>
+                    </template>
 
-                <template v-slot:content>
-                    <v-list style="background:transparent;">
-                        <v-list-item
-                            style="min-height:inherit; padding:5px 15px;"
-                            dark
-                            :key="kitem"
-                            @click="function(){}"
-                            v-for="(item,kitem) in WPopup.items"
-                        >Item {{item}}</v-list-item>
-                    </v-list>
-                </template>
-            </w-popup>
+                    <template v-slot:content>
+                        <v-list style="background:transparent;">
+                            <v-list-item
+                                style="min-height:inherit; padding:5px 15px;"
+                                dark
+                                :key="kitem"
+                                @click="function(){}"
+                                v-for="(item,kitem) in WPopup.items"
+                            >Item {{item}}</v-list-item>
+                        </v-list>
+                    </template>
+                </w-popup>
+            </div>
         </div>
     </v-app>
 
