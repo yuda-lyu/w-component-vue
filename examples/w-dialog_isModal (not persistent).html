@@ -135,19 +135,19 @@
             >w-dialog</span>
         </div>
         <div class="bk">
-            <div class="item">maxWidth, for narrow width</div>
+            <div class="item">isModal (not persistent)</div>
 
             <v-btn
                 depressed
                 small
                 elevation="2"
-                @click="WDialog.bShow15=!WDialog.bShow15"
-            >Show({{WDialog.bShow15}})</v-btn>
+                @click="WDialog.bShow24=!WDialog.bShow24"
+            >Show({{WDialog.bShow24}})</v-btn>
 
             <w-dialog
-                :show.sync="WDialog.bShow15"
+                :show.sync="WDialog.bShow24"
                 :title="WDialog.title"
-                :max-width="500"
+                :is-modal="false"
                 @resize="resizeEvent"
                 @click-save="clickSave"
                 @click-close="clickClose"

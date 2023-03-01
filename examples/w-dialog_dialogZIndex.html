@@ -135,19 +135,19 @@
             >w-dialog</span>
         </div>
         <div class="bk">
-            <div class="item">maxWidth, for narrow width</div>
+            <div class="item">dialogZIndex</div>
 
             <v-btn
                 depressed
                 small
                 elevation="2"
-                @click="WDialog.bShow15=!WDialog.bShow15"
-            >Show({{WDialog.bShow15}})</v-btn>
+                @click="WDialog.bShow25=!WDialog.bShow25"
+            >Show({{WDialog.bShow25}})</v-btn>
 
             <w-dialog
-                :show.sync="WDialog.bShow15"
+                :show.sync="WDialog.bShow25"
                 :title="WDialog.title"
-                :max-width="500"
+                :dialog-z-index="1000"
                 @resize="resizeEvent"
                 @click-save="clickSave"
                 @click-close="clickClose"
