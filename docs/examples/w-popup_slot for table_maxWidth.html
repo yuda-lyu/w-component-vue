@@ -85,7 +85,7 @@
     </script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.2.68/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.2.69/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -139,7 +139,7 @@
 
             <w-popup
                 :max-width="400"
-                v-model="WPopup.bShow20"
+                v-model="WPopup.bShow21"
                 @show="evShow"
                 @hide="evHide"
             >
@@ -148,7 +148,7 @@
                         depressed
                         small
                         elevation="2"
-                    >Show({{WPopup.bShow20}})</v-btn>
+                    >Show({{WPopup.bShow21}})</v-btn>
                 </template>
 
                 <template v-slot:content>
@@ -199,8 +199,10 @@
           bShow18c: false,
           bShow19a: false,
           bShow19b: false,
-          bShow20: false,
+          bShow20a: false,
+          bShow20b: false,
           bShow21: false,
+          bShow22: false,
           items: ["foo", "bar", "fizz", "buzz"],
           itemsExpand: ["foo", "bar", "fizz", "buzz"],
           text:

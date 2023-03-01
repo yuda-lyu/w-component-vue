@@ -489,13 +489,56 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-tooltip'"
+                    :casename="'auto flipping in popup'"
+                ></demolink>
+
+                <w-popup
+                    v-model="WTooltip.bShow19a"
+                    @show="evShow"
+                    @hide="evHide"
+                >
+
+                    <template v-slot:trigger>
+                        <v-btn depressed small elevation="2" @click="WTooltip.bShow19a=!WTooltip.bShow19a">Show({{WTooltip.bShow19a}})</v-btn>
+                    </template>
+
+                    <template v-slot:content>
+                        <div style="padding:40px;">
+
+                            <w-tooltip
+                                v-model="WTooltip.bShow19b"
+                                @show="evShow();expandItem()"
+                                @hide="evHide"
+                            >
+
+                                <template v-slot:trigger>
+                                    <v-btn depressed small elevation="2" @click="expandItem">Show({{WTooltip.bShow19b}})</v-btn>
+                                </template>
+
+                                <template v-slot:content>
+                                    <v-list style="background:transparent;"><v-list-item style="color:#fff; min-height:inherit; padding:5px 15px;" :key="kitem" @click="function(){}" v-for="(item,kitem) in WTooltip.itemsExpand">Item {{item}}</v-list-item></v-list>
+                                </template>
+
+                            </w-tooltip>
+
+                        </div>
+                    </template>
+
+                </w-popup>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-tooltip'"
                     :casename="'auto flipping in dialog'"
                 ></demolink>
 
-                <v-btn depressed small elevation="2" @click="WTooltip.bShow19a=!WTooltip.bShow19a">Show({{WTooltip.bShow19a}})</v-btn>
+                <v-btn depressed small elevation="2" @click="WTooltip.bShow20a=!WTooltip.bShow20a">Show({{WTooltip.bShow20a}})</v-btn>
 
                 <w-dialog
-                    :show.sync="WTooltip.bShow19a"
+                    :show.sync="WTooltip.bShow20a"
                     :title="'auto flipping in dialog'"
                     :maxWidth="500"
                 >
@@ -507,13 +550,13 @@
 
                             <w-tooltip
                                 style="margin-left:250px;"
-                                v-model="WTooltip.bShow19b"
+                                v-model="WTooltip.bShow20b"
                                 @show="evShow();expandItem()"
                                 @hide="evHide"
                             >
 
                                 <template v-slot:trigger>
-                                    <v-btn depressed small elevation="2" @click="expandItem">Show({{WTooltip.bShow19b}})</v-btn>
+                                    <v-btn depressed small elevation="2" @click="expandItem">Show({{WTooltip.bShow20b}})</v-btn>
                                 </template>
 
                                 <template v-slot:content>
@@ -540,13 +583,13 @@
 
                 <w-tooltip
                     :maxWidth="400"
-                    v-model="WTooltip.bShow20"
+                    v-model="WTooltip.bShow21"
                     @show="evShow"
                     @hide="evHide"
                 >
 
                     <template v-slot:trigger>
-                        <v-btn depressed small elevation="2">Show({{WTooltip.bShow20}})</v-btn>
+                        <v-btn depressed small elevation="2">Show({{WTooltip.bShow21}})</v-btn>
                     </template>
 
                     <template v-slot:content>
@@ -571,13 +614,13 @@
 
                 <w-tooltip
                     :editable="false"
-                    v-model="WTooltip.bShow21"
+                    v-model="WTooltip.bShow22"
                     @show="evShow"
                     @hide="evHide"
                 >
 
                     <template v-slot:trigger>
-                        <v-btn depressed small elevation="2">Show({{WTooltip.bShow21}})</v-btn>
+                        <v-btn depressed small elevation="2">Show({{WTooltip.bShow22}})</v-btn>
                     </template>
 
                     <template v-slot:content>
@@ -598,6 +641,7 @@
 import { mdiViewDashboard, mdiClockTimeEightOutline, mdiBlenderSoftware, mdiApple, mdiSpoonSugar } from '@mdi/js'
 import demolink from './components/demolink.vue'
 import WTooltip from './components/WTooltip.vue'
+import WPopup from './components/WPopup.vue'
 import WDialog from './components/WDialog.vue'
 
 
@@ -605,6 +649,7 @@ export default {
     components: {
         demolink,
         WTooltip,
+        WPopup,
         WDialog,
     },
     props: {
@@ -639,8 +684,10 @@ export default {
                 'bShow18c': false,
                 'bShow19a': false,
                 'bShow19b': false,
-                'bShow20': false,
+                'bShow20a': false,
+                'bShow20b': false,
                 'bShow21': false,
+                'bShow22': false,
                 'items': ['foo', 'bar', 'fizz', 'buzz'],
                 'itemsExpand': ['foo', 'bar', 'fizz', 'buzz'],
                 'text': 'Lorem ipsum met consectetur adipisicing elit 中文測試 aquis praesentium cumque magnam odio iure quidem',

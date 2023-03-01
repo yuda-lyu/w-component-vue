@@ -85,7 +85,7 @@
     </script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.2.68/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.2.69/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -135,23 +135,19 @@
             >w-dialog</span>
         </div>
         <div class="bk">
-            <div
-                class="item"
-            >headerIconColor &amp; headerTextColor &amp; headerBackgroundColor</div>
+            <div class="item">panelBorderRadius</div>
 
             <v-btn
                 depressed
                 small
                 elevation="2"
-                @click="WDialog.bShow5=!WDialog.bShow5"
-            >Show({{WDialog.bShow5}})</v-btn>
+                @click="WDialog.bShow17=!WDialog.bShow17"
+            >Show({{WDialog.bShow17}})</v-btn>
 
             <w-dialog
-                :show.sync="WDialog.bShow5"
+                :show.sync="WDialog.bShow17"
                 :title="WDialog.title"
-                :header-icon-color="'amber darken-4'"
-                :header-text-color="'amber darken-4'"
-                :header-background-color="'amber lighten-5'"
+                :panel-border-radius="0"
                 @resize="resizeEvent"
                 @click-save="clickSave"
                 @click-close="clickClose"
@@ -194,14 +190,19 @@
           bShow11: false,
           bShow12: false,
           bShow13: false,
-          bShow14a: false,
-          bShow14b: false,
+          bShow14: false,
           bShow15: false,
-          bShow16: false,
+          bShow16a: false,
+          bShow16b: true, //fullscreen
           bShow17: false,
           bShow18: false,
-          bShow18A: false,
-          bShow18B: false,
+          bShow19: false,
+          bShow20: false,
+          bShow21: false,
+          bShow22: false,
+          bShow23a: false,
+          bShow23b: false,
+          bShow23c: false,
           headerBtns: [
             {
               icon: "fas fa-book-reader",

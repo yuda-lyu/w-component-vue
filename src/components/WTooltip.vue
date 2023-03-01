@@ -1,5 +1,8 @@
 <template>
-    <div :style="`${useDisplayType}`" :changeValue="changeValue">
+    <div
+        :style="`${useDisplayType}`"
+        :changeValue="changeValue"
+    >
 
         <div
             ref="divTrigger"

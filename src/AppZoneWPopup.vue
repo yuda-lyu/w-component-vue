@@ -569,10 +569,10 @@
                     :casename="'auto flipping in dialog'"
                 ></demolink>
 
-                <v-btn depressed small elevation="2" @click="WPopup.bShow19a=!WPopup.bShow19a">Show({{WPopup.bShow19a}})</v-btn>
+                <v-btn depressed small elevation="2" @click="WPopup.bShow20a=!WPopup.bShow20a">Show({{WPopup.bShow20a}})</v-btn>
 
                 <w-dialog
-                    :show.sync="WPopup.bShow19a"
+                    :show.sync="WPopup.bShow20a"
                     :title="'auto flipping in dialog'"
                     :maxWidth="500"
                 >
@@ -584,13 +584,13 @@
 
                             <w-popup
                                 style="margin-left:250px;"
-                                v-model="WPopup.bShow19b"
+                                v-model="WPopup.bShow20b"
                                 @show="evShow"
                                 @hide="evHide"
                             >
 
                                 <template v-slot:trigger>
-                                    <v-btn depressed small elevation="2" @click="expandItem">Show({{WPopup.bShow19b}})</v-btn>
+                                    <v-btn depressed small elevation="2" @click="expandItem">Show({{WPopup.bShow20b}})</v-btn>
                                 </template>
 
                                 <template v-slot:content>
@@ -617,13 +617,13 @@
 
                 <w-popup
                     :maxWidth="400"
-                    v-model="WPopup.bShow20"
+                    v-model="WPopup.bShow21"
                     @show="evShow"
                     @hide="evHide"
                 >
 
                     <template v-slot:trigger>
-                        <v-btn depressed small elevation="2">Show({{WPopup.bShow20}})</v-btn>
+                        <v-btn depressed small elevation="2">Show({{WPopup.bShow21}})</v-btn>
                     </template>
 
                     <template v-slot:content>
@@ -648,13 +648,13 @@
 
                 <w-popup
                     :editable="false"
-                    v-model="WPopup.bShow21"
+                    v-model="WPopup.bShow22"
                     @show="evShow"
                     @hide="evHide"
                 >
 
                     <template v-slot:trigger>
-                        <v-btn depressed small elevation="2">Show({{WPopup.bShow21}})</v-btn>
+                        <v-btn depressed small elevation="2">Show({{WPopup.bShow22}})</v-btn>
                     </template>
 
                     <template v-slot:content>
@@ -716,8 +716,10 @@ export default {
                 'bShow18c': false,
                 'bShow19a': false,
                 'bShow19b': false,
-                'bShow20': false,
+                'bShow20a': false,
+                'bShow20b': false,
                 'bShow21': false,
+                'bShow22': false,
                 'items': ['foo', 'bar', 'fizz', 'buzz'],
                 'itemsExpand': ['foo', 'bar', 'fizz', 'buzz'],
                 'text': 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis praesentium cumque magnam odio iure quidem, quod illum numquam possimus obcaecati commodi minima assumenda consectetur culpa fuga nulla ullam. In, libero.',

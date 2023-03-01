@@ -1,46 +1,57 @@
 <template>
-    <v-dialog
+    <w-dialog
         :changeParam="changeParam"
-        scrollable
-        persistent
-        :max-width="maxWidth"
-        v-model="showTrans"
+        :maxWidth="maxWidth"
+        :headerShadow="false"
+        :show.sync="showTrans"
     >
 
-        <v-card v-if="showTrans">
+        <template v-slot:header>
 
-            <div>
+            <div
+                :style="``"
+                v-if="showTrans"
+            >
                 <slot name="header">
                     <div :style="useHeaderStyle">
-                        <span
-                            :style="[{'font-size':'1.2rem'},useTitleColor]"
-                        >
-                            {{title}}
-                        </span>
+                        {{title}}
                     </div>
                 </slot>
             </div>
 
-            <v-card-text style="padding:0px;">
+        </template>
+
+        <template v-slot:content>
+
+            <div
+                :style="``"
+                v-if="showTrans"
+            >
                 <slot name="content">
                     <div :style="useContentStyle">
 
                         <div style="display:table-cell; vertical-align:middle; padding-right:15px;">
-                            <v-icon
+                            <WIcon
+                                :icon="contentIcon"
                                 :size="contentIconSize"
                                 :color="contentIconColor"
-                            >
-                                {{contentIcon}}
-                            </v-icon>
+                            ></WIcon>
                         </div>
 
                         <div style="display:table-cell; vertical-align:middle; width:100%;">{{content}}</div>
 
                     </div>
                 </slot>
-            </v-card-text>
+            </div>
 
-            <div>
+        </template>
+
+        <template v-slot:footer>
+
+            <div
+                :style="``"
+                v-if="showTrans"
+            >
                 <slot name="footer">
                     <div :style="useFooterStyle">
 
@@ -77,15 +88,17 @@
                 </slot>
             </div>
 
-        </v-card>
+        </template>
 
-    </v-dialog>
+    </w-dialog>
 </template>
 
 <script>
 import { mdiAlert, mdiCheckboxMarkedCircle, mdiCloseCircle } from '@mdi/js'
 import color2hex from '../js/vuetifyColor.mjs'
 import WButtonChip from './WButtonChip.vue'
+import WIcon from './WIcon.vue'
+import WDialog from './WDialog.vue'
 
 
 /**
@@ -116,6 +129,8 @@ import WButtonChip from './WButtonChip.vue'
 export default {
     components: {
         WButtonChip,
+        WIcon,
+        WDialog,
     },
     props: {
         show: {
@@ -234,25 +249,17 @@ export default {
             return ''
         },
 
-        useTitleColor: function() {
-            //console.log('computed useTitleColor')
-
-            let vo = this
-
-            let s = {}
-            s['color'] = color2hex(vo.titleColor)
-            return s
-        },
-
         useHeaderStyle: function() {
             //console.log('computed useHeaderStyle')
 
             let vo = this
 
             let s = {}
-            s['padding'] = '15px'
+            s['padding'] = '15px 20px'
             s['background-color'] = color2hex(vo.headerBackgroundColor)
             s['border-bottom'] = '1px solid #ddd'
+            s['font-size'] = '1.2rem'
+            s['color'] = color2hex(vo.titleColor)
             return s
         },
 
@@ -268,6 +275,7 @@ export default {
             s['width'] = '100%'
             //s['align-items'] = 'center'
             s['color'] = color2hex(vo.contentColor)
+            s['overflow-y'] = 'auto'
             return s
         },
 

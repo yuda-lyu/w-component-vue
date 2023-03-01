@@ -27,12 +27,11 @@
                 <div :style="`padding:20px; border-top:1px solid #ddd; border-bottom:1px solid #ddd; background:${useContentBackgroundColor}; display:flex; align-items:center;`">
 
                     <div style="padding-right:10px;">
-                        <v-icon
+                        <WIcon
+                            :icon="contentIcon"
                             :size="contentIconSize"
                             :color="contentIconColor"
-                        >
-                            {{contentIcon}}
-                        </v-icon>
+                        ></WIcon>
                     </div>
 
                     <div style="width:100%;">
@@ -79,6 +78,7 @@ import color2hex from '../js/vuetifyColor.mjs'
 import WPopup from './WPopup.vue'
 import WText from './WText.vue'
 import WButtonChip from './WButtonChip.vue'
+import WIcon from './WIcon.vue'
 
 
 /**
@@ -114,6 +114,7 @@ export default {
         WPopup,
         WText,
         WButtonChip,
+        WIcon,
     },
     props: {
         value: {

@@ -85,7 +85,7 @@
     </script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.2.68/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.2.69/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -141,11 +141,11 @@
                 depressed
                 small
                 elevation="2"
-                @click="WDialog.bShow12=!WDialog.bShow12"
-            >Show({{WDialog.bShow12}})</v-btn>
+                @click="WDialog.bShow14=!WDialog.bShow14"
+            >Show({{WDialog.bShow14}})</v-btn>
 
             <w-dialog
-                :show.sync="WDialog.bShow12"
+                :show.sync="WDialog.bShow14"
                 :title="WDialog.title"
                 :content-text-color="'#fff'"
                 :content-background-color="'cyan darken-2'"
@@ -197,14 +197,19 @@
           bShow11: false,
           bShow12: false,
           bShow13: false,
-          bShow14a: false,
-          bShow14b: false,
+          bShow14: false,
           bShow15: false,
-          bShow16: false,
+          bShow16a: false,
+          bShow16b: true, //fullscreen
           bShow17: false,
           bShow18: false,
-          bShow18A: false,
-          bShow18B: false,
+          bShow19: false,
+          bShow20: false,
+          bShow21: false,
+          bShow22: false,
+          bShow23a: false,
+          bShow23b: false,
+          bShow23c: false,
           headerBtns: [
             {
               icon: "fas fa-book-reader",
