@@ -1018,6 +1018,83 @@
             </div>
 
 
+            <div class="bk">
+                <demolink
+                    :kbname="'w-dialog'"
+                    :casename="'isModal (not persistent)'"
+                ></demolink>
+
+                <v-btn depressed small elevation="2" @click="WDialog.bShow24=!WDialog.bShow24">Show({{WDialog.bShow24}})</v-btn>
+
+                <w-dialog
+                    :show.sync="WDialog.bShow24"
+                    :title="WDialog.title"
+                    :isModal="false"
+                    @resize="resizeEvent"
+                    @click-save="clickSave"
+                    @click-close="clickClose"
+                >
+
+                    <template v-slot:content>
+                        <div style="padding:20px;">
+                            <div style="font-size:2rem; margin:20px 0px 30px 0px;">
+                                {{WDialog.text1}}
+                            </div>
+                            <div style="margin:15px 0px;">
+                                {{WDialog.text2}}
+                            </div>
+                            <div style="margin:15px 0px;">
+                                {{WDialog.text3}}
+                            </div>
+                            <div style="margin:15px 0px;">
+                                {{WDialog.text4}}
+                            </div>
+                        </div>
+                    </template>
+
+                </w-dialog>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-dialog'"
+                    :casename="'dialogZIndex'"
+                ></demolink>
+
+                <v-btn depressed small elevation="2" @click="WDialog.bShow25=!WDialog.bShow25">Show({{WDialog.bShow25}})</v-btn>
+
+                <w-dialog
+                    :show.sync="WDialog.bShow25"
+                    :title="WDialog.title"
+                    :dialogZIndex="1000"
+                    @resize="resizeEvent"
+                    @click-save="clickSave"
+                    @click-close="clickClose"
+                >
+
+                    <template v-slot:content>
+                        <div style="padding:20px;">
+                            <div style="font-size:2rem; margin:20px 0px 30px 0px;">
+                                {{WDialog.text1}}
+                            </div>
+                            <div style="margin:15px 0px;">
+                                {{WDialog.text2}}
+                            </div>
+                            <div style="margin:15px 0px;">
+                                {{WDialog.text3}}
+                            </div>
+                            <div style="margin:15px 0px;">
+                                {{WDialog.text4}}
+                            </div>
+                        </div>
+                    </template>
+
+                </w-dialog>
+
+            </div>
+
         </div>
 
 
@@ -1065,6 +1142,8 @@ export default {
                 'bShow23a': false,
                 'bShow23b': false,
                 'bShow23c': false,
+                'bShow24': false,
+                'bShow25': false,
                 'headerBtns': [
                     {
                         icon: 'fas fa-book-reader',
