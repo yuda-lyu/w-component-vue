@@ -85,7 +85,7 @@
     </script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.2.68/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.2.69/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -141,11 +141,11 @@
                 depressed
                 small
                 elevation="2"
-                @click="WPopup.bShow19a=!WPopup.bShow19a"
-            >Show({{WPopup.bShow19a}})</v-btn>
+                @click="WPopup.bShow20a=!WPopup.bShow20a"
+            >Show({{WPopup.bShow20a}})</v-btn>
 
             <w-dialog
-                :show.sync="WPopup.bShow19a"
+                :show.sync="WPopup.bShow20a"
                 :title="'auto flipping in dialog'"
                 :max-width="500"
             >
@@ -155,7 +155,7 @@
 
                         <w-popup
                             style="margin-left:250px;"
-                            v-model="WPopup.bShow19b"
+                            v-model="WPopup.bShow20b"
                             @show="evShow"
                             @hide="evHide"
                         >
@@ -165,7 +165,7 @@
                                     small
                                     elevation="2"
                                     @click="expandItem"
-                                >Show({{WPopup.bShow19b}})</v-btn>
+                                >Show({{WPopup.bShow20b}})</v-btn>
                             </template>
 
                             <template v-slot:content>
@@ -220,8 +220,10 @@
           bShow18c: false,
           bShow19a: false,
           bShow19b: false,
-          bShow20: false,
+          bShow20a: false,
+          bShow20b: false,
           bShow21: false,
+          bShow22: false,
           items: ["foo", "bar", "fizz", "buzz"],
           itemsExpand: ["foo", "bar", "fizz", "buzz"],
           text:

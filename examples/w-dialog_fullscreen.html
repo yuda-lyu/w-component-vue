@@ -85,7 +85,7 @@
     </script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.2.68/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.2.69/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -141,13 +141,13 @@
                 depressed
                 small
                 elevation="2"
-                @click="WDialog.bShow14a=!WDialog.bShow14a"
-            >Show({{WDialog.bShow14a}})</v-btn>
+                @click="WDialog.bShow16a=!WDialog.bShow16a"
+            >Show({{WDialog.bShow16a}})</v-btn>
 
             <w-dialog
-                :show.sync="WDialog.bShow14a"
+                :show.sync="WDialog.bShow16a"
                 :title="WDialog.title"
-                :max-width="WDialog.bShow14b?1000:0"
+                :fullscreen="WDialog.bShow16b"
                 @resize="resizeEvent"
                 @click-save="clickSave"
                 @click-close="clickClose"
@@ -166,7 +166,7 @@
                             depressed
                             small
                             elevation="2"
-                            @click="WDialog.bShow14a=!WDialog.bShow14a"
+                            @click="WDialog.bShow16a=!WDialog.bShow16a"
                         >Hide Window</v-btn>
 
                         <v-btn
@@ -174,8 +174,8 @@
                             depressed
                             small
                             elevation="2"
-                            @click="WDialog.bShow14b=!WDialog.bShow14b"
-                        >Toggle to {{WDialog.bShow14b?'Fullscreen':'Normal Size'}}</v-btn>
+                            @click="WDialog.bShow16b=!WDialog.bShow16b"
+                        >Toggle to {{WDialog.bShow16b?'Normal Size':'Fullscreen'}}</v-btn>
                     </div>
                 </template>
             </w-dialog>
@@ -206,14 +206,19 @@
           bShow11: false,
           bShow12: false,
           bShow13: false,
-          bShow14a: false,
-          bShow14b: false,
+          bShow14: false,
           bShow15: false,
-          bShow16: false,
+          bShow16a: false,
+          bShow16b: true, //fullscreen
           bShow17: false,
           bShow18: false,
-          bShow18A: false,
-          bShow18B: false,
+          bShow19: false,
+          bShow20: false,
+          bShow21: false,
+          bShow22: false,
+          bShow23a: false,
+          bShow23b: false,
+          bShow23c: false,
           headerBtns: [
             {
               icon: "fas fa-book-reader",
