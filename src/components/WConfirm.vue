@@ -1,9 +1,9 @@
 <template>
-    <w-dialog
-        :changeParam="changeParam"
+    <WDialog
         :maxWidth="maxWidth"
         :headerShadow="false"
         :show.sync="showTrans"
+        :changeParam="changeParam"
     >
 
         <template v-slot:header>
@@ -90,7 +90,7 @@
 
         </template>
 
-    </w-dialog>
+    </WDialog>
 </template>
 
 <script>

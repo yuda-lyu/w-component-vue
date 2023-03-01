@@ -657,11 +657,16 @@ export default {
 
             //msg
             let msg = {
+                panelWidth: vo.panelWidth,
+                panelHeight: vo.panelHeight,
+                // headerWidth: vo.panelWidth,
                 headerHeight: vo.headerHeight,
-                panelWidth: vo.contentWidth,
-                panelHeight: vo.contentHeight,
-                panelHeightMax: vo.contentHeightMax,
-                panelScrollHSize: vo.contentScrollHSize,
+                // contentWidth: vo.contentWidth,
+                contentHeight: vo.contentHeight,
+                contentHeightMax: vo.contentHeightMax,
+                contentScrollHSize: vo.contentScrollHSize,
+                // footerWidth: vo.panelWidth,
+                footerHeight: vo.footerHeight,
             }
 
             //check
