@@ -85,7 +85,7 @@
     </script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.2.70/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.2.71/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -144,10 +144,11 @@
 
                 <template v-slot:content>
                     <div style="padding:45px 25px;">
-                        <w-text-suggest
-                            :items="WTextSuggest.objItems"
-                            v-model="WTextSuggest.objValue"
-                        ></w-text-suggest>
+                        <w-text-select
+                            style="width:200px;"
+                            :items="WTextSelect.objItems"
+                            v-model="WTextSelect.objValue"
+                        ></w-text-select>
                     </div>
                 </template>
             </w-popup>
@@ -164,9 +165,7 @@
     vuetify: new Vuetify(),
     data: function() {
       return {
-        WTextSuggest: {
-          focused: false,
-          showPanel: false,
+        WTextSelect: {
           objItems: [
             {
               key: "orange",
@@ -230,22 +229,13 @@
             selector: 'input[type="text"]'
           },
           {
-            mode: "keypress",
-            key: "End"
-          },
-          {
-            mode: "keypress",
-            key: "Backspace",
-            count: 15
-          },
-          {
             mode: "eleclick",
-            selector: 'li[role="option"]',
+            selector: 'div[tabindex="0"]',
             nth: 2
           },
           {
-            mode: "eleclick",
-            selector: "div.bk"
+            mode: "keypress",
+            key: "Tab"
           }
         ]
       };
@@ -267,9 +257,9 @@
       evInput: function(item, kitem) {
         console.log("evInput", "item=", item, "kitem", kitem);
       },
-      evEnter: function(item, kitem) {
-        console.log("evEnter", "item=", item, "kitem", kitem);
-      },
+      // evEnter: function(item, kitem) {
+      //     console.log('evEnter', 'item=', item, 'kitem', kitem)
+      // },
       evClickItem: function(item, kitem) {
         console.log("evClickItem", "item=", item, "kitem", kitem);
       },
@@ -278,20 +268,6 @@
       },
       evClickRight: function() {
         console.log("evClickRight");
-      },
-      hidePanelWhenEnter: function() {
-        // console.log('hidePanelWhenEnter')
-
-        let vo = this;
-
-        //blur, 要先將text的焦點取消, 先觸發掉focused變更事件(此會再觸發changeContent內容變更事件, 故會觸發顯示panel)
-        document.activeElement.blur();
-
-        //delay hide, 因enter觸發blur後會觸發changeContent內容變更事件, 故得等顯示事件完成才給予showPanel=false, 100ms是經驗值, 使其完整觸發隱藏panel流程
-        setTimeout(function() {
-          //hide
-          vo.WTextSuggest.showPanel = false;
-        }, 100);
       }
     }
   });

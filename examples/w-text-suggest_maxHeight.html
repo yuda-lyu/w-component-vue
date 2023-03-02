@@ -85,7 +85,7 @@
     </script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.2.70/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.2.71/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -132,19 +132,22 @@
                 style="cursor:pointer;"
                 title="open for copy link to view component"
                 onclick="window.open('//yuda-lyu.github.io/w-component-vue/examples/app.html?cmp='+this.innerText,'_blank')"
-            >w-text-select</span>
+            >w-text-suggest</span>
         </div>
         <div class="bk">
-            <div class="item">itemTextFontSize &amp; defItemHeight &amp; width</div>
+            <div class="item">maxHeight</div>
 
-            <w-text-select
-                style="width:250px;"
-                :left-icon="'mdi-check-underline-circle'"
-                :def-item-height="48"
-                :item-text-font-size="'1rem'"
-                :items="WTextSelect.objItems"
-                v-model="WTextSelect.objValue"
-            ></w-text-select>
+            <w-text-suggest
+                style="width:200px;"
+                :shadow="false"
+                :border-color="'orange lighten-2'"
+                :border-color-hover="'orange'"
+                :border-color-focus="'orange darken-2'"
+                :background-color-focus="'orange lighten-5'"
+                :max-height="300"
+                :items="WTextSuggest.objItemsLarge"
+                v-model="WTextSuggest.objValueLarge"
+            ></w-text-suggest>
         </div>
     </v-app>
 
@@ -158,7 +161,9 @@
     vuetify: new Vuetify(),
     data: function() {
       return {
-        WTextSelect: {
+        WTextSuggest: {
+          focused: false,
+          showPanel: false,
           objItems: [
             {
               key: "orange",
@@ -222,13 +227,22 @@
             selector: 'input[type="text"]'
           },
           {
-            mode: "eleclick",
-            selector: 'div[tabindex="0"]',
-            nth: 2
+            mode: "keypress",
+            key: "End"
           },
           {
             mode: "keypress",
-            key: "Tab"
+            key: "Backspace",
+            count: 15
+          },
+          {
+            mode: "eleclick",
+            selector: 'li[role="option"]',
+            nth: 2
+          },
+          {
+            mode: "eleclick",
+            selector: "div.bk"
           }
         ]
       };
@@ -250,9 +264,9 @@
       evInput: function(item, kitem) {
         console.log("evInput", "item=", item, "kitem", kitem);
       },
-      // evEnter: function(item, kitem) {
-      //     console.log('evEnter', 'item=', item, 'kitem', kitem)
-      // },
+      evEnter: function(item, kitem) {
+        console.log("evEnter", "item=", item, "kitem", kitem);
+      },
       evClickItem: function(item, kitem) {
         console.log("evClickItem", "item=", item, "kitem", kitem);
       },
@@ -261,6 +275,20 @@
       },
       evClickRight: function() {
         console.log("evClickRight");
+      },
+      hidePanelWhenEnter: function() {
+        // console.log('hidePanelWhenEnter')
+
+        let vo = this;
+
+        //blur, 要先將text的焦點取消, 先觸發掉focused變更事件(此會再觸發changeContent內容變更事件, 故會觸發顯示panel)
+        document.activeElement.blur();
+
+        //delay hide, 因enter觸發blur後會觸發changeContent內容變更事件, 故得等顯示事件完成才給予showPanel=false, 100ms是經驗值, 使其完整觸發隱藏panel流程
+        setTimeout(function() {
+          //hide
+          vo.WTextSuggest.showPanel = false;
+        }, 100);
       }
     }
   });
