@@ -85,7 +85,7 @@
     </script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.2.70/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.2.71/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -137,22 +137,410 @@
         <div class="bk">
             <div class="item">placement</div>
 
-            <w-tooltip
-                :placement="'right-start'"
-                v-model="WTooltip.bShow15"
-                @show="evShow"
-                @hide="evHide"
-            >
-                <template v-slot:trigger>
-                    <v-btn
-                        depressed
-                        small
-                        elevation="2"
-                    >Show({{WTooltip.bShow15}})</v-btn>
-                </template>
+            <table style="border-collapse:collapse;">
+                <tbody>
+                    <tr>
+                        <td style="padding:10px;">
+                            <div
+                                style="font-size:0.7rem; color:#999;"
+                            >left-start</div>
 
-                <template v-slot:content>{{WTooltip.text}}</template>
-            </w-tooltip>
+                            <w-tooltip
+                                :placement="'left-start'"
+                                v-model="WTooltip.bShow16a"
+                                @show="evShow"
+                                @hide="evHide"
+                            >
+                                <template v-slot:trigger>
+                                    <v-btn
+                                        depressed
+                                        small
+                                        elevation="2"
+                                    >Show({{WTooltip.bShow16a}})</v-btn>
+                                </template>
+
+                                <template v-slot:content>
+                                    <div style="padding:5px;">
+                                        <div
+                                            style="padding:5px;"
+                                        >{{WTooltip.textL1}}</div>
+                                        <div
+                                            style="padding:5px;"
+                                        >{{WTooltip.textL2}}</div>
+                                        <div
+                                            style="padding:5px;"
+                                        >{{WTooltip.textL3}}</div>
+                                    </div>
+                                </template>
+                            </w-tooltip>
+                        </td>
+                        <td style="padding:10px;">
+                            <div style="font-size:0.7rem; color:#999;">left</div>
+
+                            <w-tooltip
+                                :placement="'left'"
+                                v-model="WTooltip.bShow16b"
+                                @show="evShow"
+                                @hide="evHide"
+                            >
+                                <template v-slot:trigger>
+                                    <v-btn
+                                        depressed
+                                        small
+                                        elevation="2"
+                                    >Show({{WTooltip.bShow16b}})</v-btn>
+                                </template>
+
+                                <template v-slot:content>
+                                    <div style="padding:5px;">
+                                        <div
+                                            style="padding:5px;"
+                                        >{{WTooltip.textL1}}</div>
+                                        <div
+                                            style="padding:5px;"
+                                        >{{WTooltip.textL2}}</div>
+                                        <div
+                                            style="padding:5px;"
+                                        >{{WTooltip.textL3}}</div>
+                                    </div>
+                                </template>
+                            </w-tooltip>
+                        </td>
+                        <td style="padding:10px;">
+                            <div style="font-size:0.7rem; color:#999;">left-end</div>
+
+                            <w-tooltip
+                                :placement="'left-end'"
+                                v-model="WTooltip.bShow16c"
+                                @show="evShow"
+                                @hide="evHide"
+                            >
+                                <template v-slot:trigger>
+                                    <v-btn
+                                        depressed
+                                        small
+                                        elevation="2"
+                                    >Show({{WTooltip.bShow16c}})</v-btn>
+                                </template>
+
+                                <template v-slot:content>
+                                    <div style="padding:5px;">
+                                        <div
+                                            style="padding:5px;"
+                                        >{{WTooltip.textL1}}</div>
+                                        <div
+                                            style="padding:5px;"
+                                        >{{WTooltip.textL2}}</div>
+                                        <div
+                                            style="padding:5px;"
+                                        >{{WTooltip.textL3}}</div>
+                                    </div>
+                                </template>
+                            </w-tooltip>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding:10px;">
+                            <div
+                                style="font-size:0.7rem; color:#999;"
+                            >right-start</div>
+
+                            <w-tooltip
+                                :placement="'right-start'"
+                                v-model="WTooltip.bShow16d"
+                                @show="evShow"
+                                @hide="evHide"
+                            >
+                                <template v-slot:trigger>
+                                    <v-btn
+                                        depressed
+                                        small
+                                        elevation="2"
+                                    >Show({{WTooltip.bShow16d}})</v-btn>
+                                </template>
+
+                                <template v-slot:content>
+                                    <div style="padding:5px;">
+                                        <div
+                                            style="padding:5px;"
+                                        >{{WTooltip.textL1}}</div>
+                                        <div
+                                            style="padding:5px;"
+                                        >{{WTooltip.textL2}}</div>
+                                        <div
+                                            style="padding:5px;"
+                                        >{{WTooltip.textL3}}</div>
+                                    </div>
+                                </template>
+                            </w-tooltip>
+                        </td>
+                        <td style="padding:10px;">
+                            <div style="font-size:0.7rem; color:#999;">right</div>
+
+                            <w-tooltip
+                                :placement="'right'"
+                                v-model="WTooltip.bShow16e"
+                                @show="evShow"
+                                @hide="evHide"
+                            >
+                                <template v-slot:trigger>
+                                    <v-btn
+                                        depressed
+                                        small
+                                        elevation="2"
+                                    >Show({{WTooltip.bShow16e}})</v-btn>
+                                </template>
+
+                                <template v-slot:content>
+                                    <div style="padding:5px;">
+                                        <div
+                                            style="padding:5px;"
+                                        >{{WTooltip.textL1}}</div>
+                                        <div
+                                            style="padding:5px;"
+                                        >{{WTooltip.textL2}}</div>
+                                        <div
+                                            style="padding:5px;"
+                                        >{{WTooltip.textL3}}</div>
+                                    </div>
+                                </template>
+                            </w-tooltip>
+                        </td>
+                        <td style="padding:10px;">
+                            <div style="font-size:0.7rem; color:#999;">right-end</div>
+
+                            <w-tooltip
+                                :placement="'right-end'"
+                                v-model="WTooltip.bShow16f"
+                                @show="evShow"
+                                @hide="evHide"
+                            >
+                                <template v-slot:trigger>
+                                    <v-btn
+                                        depressed
+                                        small
+                                        elevation="2"
+                                    >Show({{WTooltip.bShow16f}})</v-btn>
+                                </template>
+
+                                <template v-slot:content>
+                                    <div style="padding:5px;">
+                                        <div
+                                            style="padding:5px;"
+                                        >{{WTooltip.textL1}}</div>
+                                        <div
+                                            style="padding:5px;"
+                                        >{{WTooltip.textL2}}</div>
+                                        <div
+                                            style="padding:5px;"
+                                        >{{WTooltip.textL3}}</div>
+                                    </div>
+                                </template>
+                            </w-tooltip>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding:10px;">
+                            <div style="font-size:0.7rem; color:#999;">top-start</div>
+
+                            <w-tooltip
+                                :placement="'top-start'"
+                                v-model="WTooltip.bShow16g"
+                                @show="evShow"
+                                @hide="evHide"
+                            >
+                                <template v-slot:trigger>
+                                    <v-btn
+                                        depressed
+                                        small
+                                        elevation="2"
+                                    >Show({{WTooltip.bShow16g}})</v-btn>
+                                </template>
+
+                                <template v-slot:content>
+                                    <div style="padding:5px;">
+                                        <div
+                                            style="padding:5px;"
+                                        >{{WTooltip.textL1}}</div>
+                                        <div
+                                            style="padding:5px;"
+                                        >{{WTooltip.textL2}}</div>
+                                        <div
+                                            style="padding:5px;"
+                                        >{{WTooltip.textL3}}</div>
+                                    </div>
+                                </template>
+                            </w-tooltip>
+                        </td>
+                        <td style="padding:10px;">
+                            <div style="font-size:0.7rem; color:#999;">top</div>
+
+                            <w-tooltip
+                                :placement="'top'"
+                                v-model="WTooltip.bShow16h"
+                                @show="evShow"
+                                @hide="evHide"
+                            >
+                                <template v-slot:trigger>
+                                    <v-btn
+                                        depressed
+                                        small
+                                        elevation="2"
+                                    >Show({{WTooltip.bShow16h}})</v-btn>
+                                </template>
+
+                                <template v-slot:content>
+                                    <div style="padding:5px;">
+                                        <div
+                                            style="padding:5px;"
+                                        >{{WTooltip.textL1}}</div>
+                                        <div
+                                            style="padding:5px;"
+                                        >{{WTooltip.textL2}}</div>
+                                        <div
+                                            style="padding:5px;"
+                                        >{{WTooltip.textL3}}</div>
+                                    </div>
+                                </template>
+                            </w-tooltip>
+                        </td>
+                        <td style="padding:10px;">
+                            <div style="font-size:0.7rem; color:#999;">top-end</div>
+
+                            <w-tooltip
+                                :placement="'top-end'"
+                                v-model="WTooltip.bShow16i"
+                                @show="evShow"
+                                @hide="evHide"
+                            >
+                                <template v-slot:trigger>
+                                    <v-btn
+                                        depressed
+                                        small
+                                        elevation="2"
+                                    >Show({{WTooltip.bShow16i}})</v-btn>
+                                </template>
+
+                                <template v-slot:content>
+                                    <div style="padding:5px;">
+                                        <div
+                                            style="padding:5px;"
+                                        >{{WTooltip.textL1}}</div>
+                                        <div
+                                            style="padding:5px;"
+                                        >{{WTooltip.textL2}}</div>
+                                        <div
+                                            style="padding:5px;"
+                                        >{{WTooltip.textL3}}</div>
+                                    </div>
+                                </template>
+                            </w-tooltip>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding:10px;">
+                            <div
+                                style="font-size:0.7rem; color:#999;"
+                            >bottom-start</div>
+
+                            <w-tooltip
+                                :placement="'bottom-start'"
+                                v-model="WTooltip.bShow16j"
+                                @show="evShow"
+                                @hide="evHide"
+                            >
+                                <template v-slot:trigger>
+                                    <v-btn
+                                        depressed
+                                        small
+                                        elevation="2"
+                                    >Show({{WTooltip.bShow16j}})</v-btn>
+                                </template>
+
+                                <template v-slot:content>
+                                    <div style="padding:5px;">
+                                        <div
+                                            style="padding:5px;"
+                                        >{{WTooltip.textL1}}</div>
+                                        <div
+                                            style="padding:5px;"
+                                        >{{WTooltip.textL2}}</div>
+                                        <div
+                                            style="padding:5px;"
+                                        >{{WTooltip.textL3}}</div>
+                                    </div>
+                                </template>
+                            </w-tooltip>
+                        </td>
+                        <td style="padding:10px;">
+                            <div style="font-size:0.7rem; color:#999;">bottom</div>
+
+                            <w-tooltip
+                                :placement="'bottom'"
+                                v-model="WTooltip.bShow16k"
+                                @show="evShow"
+                                @hide="evHide"
+                            >
+                                <template v-slot:trigger>
+                                    <v-btn
+                                        depressed
+                                        small
+                                        elevation="2"
+                                    >Show({{WTooltip.bShow16k}})</v-btn>
+                                </template>
+
+                                <template v-slot:content>
+                                    <div style="padding:5px;">
+                                        <div
+                                            style="padding:5px;"
+                                        >{{WTooltip.textL1}}</div>
+                                        <div
+                                            style="padding:5px;"
+                                        >{{WTooltip.textL2}}</div>
+                                        <div
+                                            style="padding:5px;"
+                                        >{{WTooltip.textL3}}</div>
+                                    </div>
+                                </template>
+                            </w-tooltip>
+                        </td>
+                        <td style="padding:10px;">
+                            <div
+                                style="font-size:0.7rem; color:#999;"
+                            >bottom-end</div>
+
+                            <w-tooltip
+                                :placement="'bottom-end'"
+                                v-model="WTooltip.bShow16l"
+                                @show="evShow"
+                                @hide="evHide"
+                            >
+                                <template v-slot:trigger>
+                                    <v-btn
+                                        depressed
+                                        small
+                                        elevation="2"
+                                    >Show({{WTooltip.bShow16l}})</v-btn>
+                                </template>
+
+                                <template v-slot:content>
+                                    <div style="padding:5px;">
+                                        <div
+                                            style="padding:5px;"
+                                        >{{WTooltip.textL1}}</div>
+                                        <div
+                                            style="padding:5px;"
+                                        >{{WTooltip.textL2}}</div>
+                                        <div
+                                            style="padding:5px;"
+                                        >{{WTooltip.textL3}}</div>
+                                    </div>
+                                </template>
+                            </w-tooltip>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </v-app>
 
@@ -182,21 +570,37 @@
           bShow13: false,
           bShow14: false,
           bShow15: false,
-          bShow16: false,
+          bShow16a: false,
+          bShow16b: false,
+          bShow16c: false,
+          bShow16d: false,
+          bShow16e: false,
+          bShow16f: false,
+          bShow16g: false,
+          bShow16h: false,
+          bShow16i: false,
+          bShow16j: false,
+          bShow16k: false,
+          bShow16l: false,
           bShow17: false,
-          bShow18a: false,
-          bShow18b: false,
-          bShow18c: false,
+          bShow18: false,
           bShow19a: false,
           bShow19b: false,
+          bShow19c: false,
           bShow20a: false,
           bShow20b: false,
-          bShow21: false,
+          bShow21a: false,
+          bShow21b: false,
           bShow22: false,
+          bShow23: false,
           items: ["foo", "bar", "fizz", "buzz"],
           itemsExpand: ["foo", "bar", "fizz", "buzz"],
           text:
             "Lorem ipsum met consectetur adipisicing elit 中文測試 aquis praesentium cumque magnam odio iure quidem",
+          textShort: "Lorem 中文測試",
+          textL1: "Lorem ipsum",
+          textL2: "Met consectetur",
+          textL3: "Aquis praesentium",
           table:
             '\n<table style="width:100%; font-size:0.7rem; border-collapse:collapse;">\n                        <thead>\n                            <tr>\n                                <th style="padding:2px 8px; text-align:left;">Dessert</th>\n                                <th style="padding:2px 8px; text-align:left;">Calories</th>\n                                <th style="padding:2px 8px; text-align:left;">Fat</th>\n                                <th style="padding:2px 8px; text-align:left;">Carbs</th>\n                            </tr>\n                        </thead>\n                        <tbody>\n                            <tr>\n                                <td style="padding:2px 8px; border-top:1px solid #ddd;">Frozen Yogurt</td>\n                                <td style="padding:2px 8px; border-top:1px solid #ddd;">159</td>\n                                <td style="padding:2px 8px; border-top:1px solid #ddd;">6</td>\n                                <td style="padding:2px 8px; border-top:1px solid #ddd;">24</td>\n                            </tr>\n                            <tr>\n                                <td style="padding:2px 8px; border-top:1px solid #ddd;">Ice cream sandwich</td>\n                                <td style="padding:2px 8px; border-top:1px solid #ddd;">237</td>\n                                <td style="padding:2px 8px; border-top:1px solid #ddd;">9</td>\n                                <td style="padding:2px 8px; border-top:1px solid #ddd;">37</td>\n                            </tr>\n                            <tr>\n                                <td style="padding:2px 8px; border-top:1px solid #ddd;">Eclair</td>\n                                <td style="padding:2px 8px; border-top:1px solid #ddd;">262</td>\n                                <td style="padding:2px 8px; border-top:1px solid #ddd;">16</td>\n                                <td style="padding:2px 8px; border-top:1px solid #ddd;">23</td>\n                            </tr>\n                        </tbody>\n                    </table>\n'
         },

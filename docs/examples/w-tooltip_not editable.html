@@ -85,7 +85,7 @@
     </script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.2.70/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.2.71/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -139,7 +139,7 @@
 
             <w-tooltip
                 :editable="false"
-                v-model="WTooltip.bShow22"
+                v-model="WTooltip.bShow23"
                 @show="evShow"
                 @hide="evHide"
             >
@@ -148,7 +148,7 @@
                         depressed
                         small
                         elevation="2"
-                    >Show({{WTooltip.bShow22}})</v-btn>
+                    >Show({{WTooltip.bShow23}})</v-btn>
                 </template>
 
                 <template v-slot:content>{{WTooltip.text}}</template>
@@ -182,21 +182,37 @@
           bShow13: false,
           bShow14: false,
           bShow15: false,
-          bShow16: false,
+          bShow16a: false,
+          bShow16b: false,
+          bShow16c: false,
+          bShow16d: false,
+          bShow16e: false,
+          bShow16f: false,
+          bShow16g: false,
+          bShow16h: false,
+          bShow16i: false,
+          bShow16j: false,
+          bShow16k: false,
+          bShow16l: false,
           bShow17: false,
-          bShow18a: false,
-          bShow18b: false,
-          bShow18c: false,
+          bShow18: false,
           bShow19a: false,
           bShow19b: false,
+          bShow19c: false,
           bShow20a: false,
           bShow20b: false,
-          bShow21: false,
+          bShow21a: false,
+          bShow21b: false,
           bShow22: false,
+          bShow23: false,
           items: ["foo", "bar", "fizz", "buzz"],
           itemsExpand: ["foo", "bar", "fizz", "buzz"],
           text:
             "Lorem ipsum met consectetur adipisicing elit 中文測試 aquis praesentium cumque magnam odio iure quidem",
+          textShort: "Lorem 中文測試",
+          textL1: "Lorem ipsum",
+          textL2: "Met consectetur",
+          textL3: "Aquis praesentium",
           table:
             '\n<table style="width:100%; font-size:0.7rem; border-collapse:collapse;">\n                        <thead>\n                            <tr>\n                                <th style="padding:2px 8px; text-align:left;">Dessert</th>\n                                <th style="padding:2px 8px; text-align:left;">Calories</th>\n                                <th style="padding:2px 8px; text-align:left;">Fat</th>\n                                <th style="padding:2px 8px; text-align:left;">Carbs</th>\n                            </tr>\n                        </thead>\n                        <tbody>\n                            <tr>\n                                <td style="padding:2px 8px; border-top:1px solid #ddd;">Frozen Yogurt</td>\n                                <td style="padding:2px 8px; border-top:1px solid #ddd;">159</td>\n                                <td style="padding:2px 8px; border-top:1px solid #ddd;">6</td>\n                                <td style="padding:2px 8px; border-top:1px solid #ddd;">24</td>\n                            </tr>\n                            <tr>\n                                <td style="padding:2px 8px; border-top:1px solid #ddd;">Ice cream sandwich</td>\n                                <td style="padding:2px 8px; border-top:1px solid #ddd;">237</td>\n                                <td style="padding:2px 8px; border-top:1px solid #ddd;">9</td>\n                                <td style="padding:2px 8px; border-top:1px solid #ddd;">37</td>\n                            </tr>\n                            <tr>\n                                <td style="padding:2px 8px; border-top:1px solid #ddd;">Eclair</td>\n                                <td style="padding:2px 8px; border-top:1px solid #ddd;">262</td>\n                                <td style="padding:2px 8px; border-top:1px solid #ddd;">16</td>\n                                <td style="padding:2px 8px; border-top:1px solid #ddd;">23</td>\n                            </tr>\n                        </tbody>\n                    </table>\n'
         },

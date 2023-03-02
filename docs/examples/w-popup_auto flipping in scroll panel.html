@@ -85,7 +85,7 @@
     </script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.2.70/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.2.71/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -146,7 +146,7 @@
                         <div style="height:200px;"></div>
 
                         <w-popup
-                            v-model="WPopup.bShow17"
+                            v-model="WPopup.bShow18"
                             @show="evShow"
                             @hide="evHide"
                         >
@@ -156,7 +156,7 @@
                                     small
                                     elevation="2"
                                     @click="expandItem"
-                                >Show({{WPopup.bShow17}})</v-btn>
+                                >Show({{WPopup.bShow18}})</v-btn>
                             </template>
 
                             <template v-slot:content>
@@ -204,19 +204,37 @@
           bShow13: false,
           bShow14: false,
           bShow15: false,
-          bShow16: false,
+          bShow16a: false,
+          bShow16b: false,
+          bShow16c: false,
+          bShow16d: false,
+          bShow16e: false,
+          bShow16f: false,
+          bShow16g: false,
+          bShow16h: false,
+          bShow16i: false,
+          bShow16j: false,
+          bShow16k: false,
+          bShow16l: false,
           bShow17: false,
-          bShow18a: false,
-          bShow18b: false,
-          bShow18c: false,
+          bShow18: false,
           bShow19a: false,
           bShow19b: false,
+          bShow19c: false,
           bShow20a: false,
           bShow20b: false,
-          bShow21: false,
+          bShow21a: false,
+          bShow21b: false,
           bShow22: false,
+          bShow23: false,
           items: ["foo", "bar", "fizz", "buzz"],
           itemsExpand: ["foo", "bar", "fizz", "buzz"],
+          itemsL: [
+            "Lorem ipsum",
+            "Met consectetur",
+            "Aquis praesentium",
+            "Quis praesentium"
+          ],
           text:
             "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis praesentium cumque magnam odio iure quidem, quod illum numquam possimus obcaecati commodi minima assumenda consectetur culpa fuga nulla ullam. In, libero.",
           table:

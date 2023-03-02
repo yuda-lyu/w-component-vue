@@ -15,6 +15,7 @@
                 ></demolink>
 
                 <w-text-select
+                    style="width:200px;"
                     :items="WTextSelect.objItems"
                     v-model="WTextSelect.objValue"
                 ></w-text-select>
@@ -28,6 +29,7 @@
                 ></demolink>
 
                 <w-text-select
+                    style="width:200px;"
                     :paddingStyle="{v:0,h:10}"
                     :items="WTextSelect.objItems"
                     v-model="WTextSelect.objValue"
@@ -42,6 +44,7 @@
                 ></demolink>
 
                 <w-text-select
+                    style="width:200px;"
                     :paddingStyle="{v:4,h:15}"
                     :items="WTextSelect.objItems"
                     v-model="WTextSelect.objValue"
@@ -56,6 +59,7 @@
                 ></demolink>
 
                 <w-text-select
+                    style="width:200px;"
                     :textFontSize="'0.8rem'"
                     :items="WTextSelect.objItems"
                     v-model="WTextSelect.objValue"
@@ -70,6 +74,7 @@
                 ></demolink>
 
                 <w-text-select
+                    style="width:200px;"
                     :textColor="'orange darken-2'"
                     :expansionIconColor="'orange'"
                     :items="WTextSelect.objItems"
@@ -85,6 +90,7 @@
                 ></demolink>
 
                 <w-text-select
+                    style="width:200px;"
                     :expansionIconSize="14"
                     :items="WTextSelect.objItems"
                     v-model="WTextSelect.objValue"
@@ -99,6 +105,7 @@
                 ></demolink>
 
                 <w-text-select
+                    style="width:200px;"
                     :leftIcon="mdiCheckUnderlineCircle"
                     :items="WTextSelect.objItems"
                     v-model="WTextSelect.objValue"
@@ -113,6 +120,7 @@
                 ></demolink>
 
                 <w-text-select
+                    style="width:200px;"
                     :leftIcon="'fas fa-clipboard-check'"
                     :items="WTextSelect.objItems"
                     v-model="WTextSelect.objValue"
@@ -127,6 +135,7 @@
                 ></demolink>
 
                 <w-text-select
+                    style="width:200px;"
                     :leftIcon="mdiCheckUnderlineCircle"
                     :leftIconSize="20"
                     :items="WTextSelect.objItems"
@@ -142,6 +151,7 @@
                 ></demolink>
 
                 <w-text-select
+                    style="width:200px;"
                     :leftIcon="mdiCheckUnderlineCircle"
                     :leftIconColor="'orange lighten-1'"
                     :leftIconColorHover="'orange accent-3'"
@@ -160,6 +170,7 @@
                 ></demolink>
 
                 <w-text-select
+                    style="width:200px;"
                     :rightIcon="mdiCheckUnderlineCircle"
                     :rightIconSize="20"
                     :items="WTextSelect.objItems"
@@ -175,6 +186,7 @@
                 ></demolink>
 
                 <w-text-select
+                    style="width:200px;"
                     :rightIcon="mdiCheckUnderlineCircle"
                     :rightIconColor="'orange lighten-1'"
                     :rightIconColorHover="'orange accent-3'"
@@ -193,6 +205,7 @@
                 ></demolink>
 
                 <w-text-select
+                    style="width:200px;"
                     :leftIcon="mdiCheckUnderlineCircle"
                     :showExpansionIcon="false"
                     :items="WTextSelect.objItems"
@@ -208,6 +221,7 @@
                 ></demolink>
 
                 <w-text-select
+                    style="width:200px;"
                     :leftIcon="mdiCheckUnderlineCircle"
                     :borderRadius="5"
                     :items="WTextSelect.objItems"
@@ -223,6 +237,7 @@
                 ></demolink>
 
                 <w-text-select
+                    style="width:200px;"
                     :leftIcon="mdiCheckUnderlineCircle"
                     :itemPaddingStyle="{v:5,h:8}"
                     :items="WTextSelect.objItems"
@@ -238,6 +253,7 @@
                 ></demolink>
 
                 <w-text-select
+                    style="width:200px;"
                     :leftIcon="mdiCheckUnderlineCircle"
                     :items="WTextSelect.objItemsKeyText"
                     :keyText="'name'"
@@ -249,11 +265,11 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-text-select'"
-                    :casename="'itemTextFontSize & defItemHeight & width'"
+                    :casename="'itemTextFontSize & defItemHeight'"
                 ></demolink>
 
                 <w-text-select
-                    style="width:250px;"
+                    style="width:200px;"
                     :leftIcon="mdiCheckUnderlineCircle"
                     :defItemHeight="48"
                     :itemTextFontSize="'1rem'"
@@ -270,6 +286,7 @@
                 ></demolink>
 
                 <w-text-select
+                    style="width:200px;"
                     :leftIcon="mdiCheckUnderlineCircle"
                     :itemTextColor="'orange darken-3'"
                     :itemTextColorHover="'white'"
@@ -288,6 +305,7 @@
                 ></demolink>
 
                 <w-text-select
+                    style="width:200px;"
                     :leftIcon="mdiCheckUnderlineCircle"
                     :items="WTextSelect.objItemsLarge"
                     v-model="WTextSelect.objValueLarge"
@@ -302,6 +320,7 @@
                 ></demolink>
 
                 <w-text-select
+                    style="width:200px;"
                     :leftIcon="mdiCheckUnderlineCircle"
                     :items="WTextSelect.strItems"
                     v-model="WTextSelect.strValue"
@@ -316,6 +335,7 @@
                 ></demolink>
 
                 <w-text-select
+                    style="width:200px;"
                     :leftIcon="mdiCheckUnderlineCircle"
                     :items="WTextSelect.objItems"
                     v-model="WTextSelect.objValue"
@@ -338,6 +358,7 @@
                 ></demolink>
 
                 <w-text-select
+                    style="width:200px;"
                     :leftIcon="mdiCheckUnderlineCircle"
                     :items="WTextSelect.objItems"
                     v-model="WTextSelect.objValue"
@@ -357,9 +378,59 @@
                 ></demolink>
 
                 <w-text-select
+                    style=""
                     :leftIcon="mdiCheckUnderlineCircle"
                     :items="WTextSelect.objItems"
                     v-model="WTextSelect.objValue"
+                ></w-text-select>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-text-select'"
+                    :casename="'maxHeight'"
+                ></demolink>
+
+                <w-text-select
+                    style="width:200px;"
+                    :maxHeight="300"
+                    :items="WTextSelect.objItemsLarge"
+                    v-model="WTextSelect.objValueLarge"
+                ></w-text-select>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-text-select'"
+                    :casename="'minWidth & autoFitMinWidth & autoFitMaxWidth'"
+                ></demolink>
+
+                <w-text-select
+                    style="width:200px;"
+                    :minWidth="250"
+                    :autoFitMinWidth="false"
+                    :autoFitMaxWidth="false"
+                    :items="WTextSelect.objItemsLarge"
+                    v-model="WTextSelect.objValueLarge"
+                ></w-text-select>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-text-select'"
+                    :casename="'maxWidth & autoFitMinWidth & autoFitMaxWidth'"
+                ></demolink>
+
+                <w-text-select
+                    style="width:200px;"
+                    :maxWidth="140"
+                    :autoFitMinWidth="false"
+                    :autoFitMaxWidth="false"
+                    :items="WTextSelect.objItemsLarge"
+                    v-model="WTextSelect.objValueLarge"
                 ></w-text-select>
             </div>
 
@@ -381,6 +452,7 @@
                     <template v-slot:content>
                         <div style="padding:45px 25px;">
                             <w-text-select
+                                style="width:200px;"
                                 :items="WTextSelect.objItems"
                                 v-model="WTextSelect.objValue"
                             ></w-text-select>
@@ -399,6 +471,7 @@
                 ></demolink>
 
                 <w-text-select
+                    style="width:200px;"
                     :leftIcon="mdiCheckUnderlineCircle"
                     :rightIcon="mdiCheckUnderlineCircle"
                     :items="WTextSelect.objItems"
@@ -422,6 +495,7 @@
                 ></demolink>
 
                 <w-text-select
+                    style="width:200px;"
                     :leftIcon="mdiCheckUnderlineCircle"
                     :editable="false"
                     :items="WTextSelect.objItems"
@@ -440,6 +514,7 @@
                 ></demolink>
 
                 <w-text-select
+                    style="width:200px;"
                     :shadow="false"
                     :borderColor="'orange lighten-2'"
                     :borderColorHover="'orange'"
@@ -458,6 +533,7 @@
                 ></demolink>
 
                 <w-text-select
+                    style="width:200px;"
                     :shadow="false"
                     :borderColor="'orange lighten-2'"
                     :borderColorHover="'orange'"
@@ -477,6 +553,7 @@
                 ></demolink>
 
                 <w-text-select
+                    style="width:200px;"
                     :shadow="false"
                     :borderColor="'orange lighten-2'"
                     :borderColorHover="'orange'"
@@ -496,6 +573,7 @@
                 ></demolink>
 
                 <w-text-select
+                    style="width:200px;"
                     :shadow="false"
                     :borderColor="'orange lighten-2'"
                     :borderColorHover="'orange'"
@@ -515,6 +593,7 @@
                 ></demolink>
 
                 <w-text-select
+                    style="width:200px;"
                     :shadow="false"
                     :borderColor="'orange lighten-2'"
                     :borderColorHover="'orange'"
@@ -535,6 +614,7 @@
                 ></demolink>
 
                 <w-text-select
+                    style="width:200px;"
                     :shadow="false"
                     :borderColor="'orange lighten-2'"
                     :borderColorHover="'orange'"
@@ -554,6 +634,7 @@
                 ></demolink>
 
                 <w-text-select
+                    style="width:200px;"
                     :shadow="false"
                     :borderColor="'orange lighten-2'"
                     :borderColorHover="'orange'"
@@ -573,6 +654,7 @@
                 ></demolink>
 
                 <w-text-select
+                    style="width:200px;"
                     :shadow="false"
                     :borderColor="'orange lighten-2'"
                     :borderColorHover="'orange'"
@@ -592,6 +674,7 @@
                 ></demolink>
 
                 <w-text-select
+                    style="width:200px;"
                     :shadow="false"
                     :borderColor="'orange lighten-2'"
                     :borderColorHover="'orange'"
@@ -612,6 +695,7 @@
                 ></demolink>
 
                 <w-text-select
+                    style="width:200px;"
                     :shadow="false"
                     :borderColor="'orange lighten-2'"
                     :borderColorHover="'orange'"
@@ -635,6 +719,7 @@
                 ></demolink>
 
                 <w-text-select
+                    style="width:200px;"
                     :shadow="false"
                     :borderColor="'orange lighten-2'"
                     :borderColorHover="'orange'"
@@ -655,6 +740,7 @@
                 ></demolink>
 
                 <w-text-select
+                    style="width:200px;"
                     :shadow="false"
                     :borderColor="'orange lighten-2'"
                     :borderColorHover="'orange'"
@@ -678,6 +764,7 @@
                 ></demolink>
 
                 <w-text-select
+                    style="width:200px;"
                     :shadow="false"
                     :borderColor="'orange lighten-2'"
                     :borderColorHover="'orange'"
@@ -700,6 +787,7 @@
                 ></demolink>
 
                 <w-text-select
+                    style="width:200px;"
                     :shadow="false"
                     :borderColor="'orange lighten-2'"
                     :borderColorHover="'orange'"
@@ -720,6 +808,7 @@
                 ></demolink>
 
                 <w-text-select
+                    style="width:200px;"
                     :shadow="false"
                     :borderColor="'orange lighten-2'"
                     :borderColorHover="'orange'"
@@ -740,6 +829,7 @@
                 ></demolink>
 
                 <w-text-select
+                    style="width:200px;"
                     :shadow="false"
                     :borderColor="'orange lighten-2'"
                     :borderColorHover="'orange'"
@@ -760,6 +850,7 @@
                 ></demolink>
 
                 <w-text-select
+                    style="width:200px;"
                     :shadow="false"
                     :borderColor="'orange lighten-2'"
                     :borderColorHover="'orange'"
@@ -776,11 +867,11 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-text-select'"
-                    :casename="'border & itemTextFontSize & defItemHeight & width'"
+                    :casename="'border & itemTextFontSize & defItemHeight'"
                 ></demolink>
 
                 <w-text-select
-                    style="width:250px;"
+                    style="width:200px;"
                     :shadow="false"
                     :borderColor="'orange lighten-2'"
                     :borderColorHover="'orange'"
@@ -802,6 +893,7 @@
                 ></demolink>
 
                 <w-text-select
+                    style="width:200px;"
                     :shadow="false"
                     :borderColor="'orange lighten-2'"
                     :borderColorHover="'orange'"
@@ -825,6 +917,7 @@
                 ></demolink>
 
                 <w-text-select
+                    style="width:200px;"
                     :shadow="false"
                     :borderColor="'orange lighten-2'"
                     :borderColorHover="'orange'"
@@ -844,6 +937,7 @@
                 ></demolink>
 
                 <w-text-select
+                    style="width:200px;"
                     :shadow="false"
                     :borderColor="'orange lighten-2'"
                     :borderColorHover="'orange'"
@@ -863,6 +957,7 @@
                 ></demolink>
 
                 <w-text-select
+                    style="width:200px;"
                     :shadow="false"
                     :borderColor="'orange lighten-2'"
                     :borderColorHover="'orange'"
@@ -890,6 +985,7 @@
                 ></demolink>
 
                 <w-text-select
+                    style="width:200px;"
                     :shadow="false"
                     :borderColor="'orange lighten-2'"
                     :borderColorHover="'orange'"
@@ -914,6 +1010,7 @@
                 ></demolink>
 
                 <w-text-select
+                    style=""
                     :shadow="false"
                     :borderColor="'orange lighten-2'"
                     :borderColorHover="'orange'"
@@ -922,6 +1019,70 @@
                     :leftIcon="mdiCheckUnderlineCircle"
                     :items="WTextSelect.objItems"
                     v-model="WTextSelect.objValue"
+                ></w-text-select>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-text-select'"
+                    :casename="'border & maxHeight'"
+                ></demolink>
+
+                <w-text-select
+                    style="width:200px;"
+                    :shadow="false"
+                    :borderColor="'orange lighten-2'"
+                    :borderColorHover="'orange'"
+                    :borderColorFocus="'orange darken-2'"
+                    :backgroundColorFocus="'orange lighten-5'"
+                    :maxHeight="300"
+                    :items="WTextSelect.objItemsLarge"
+                    v-model="WTextSelect.objValueLarge"
+                ></w-text-select>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-text-select'"
+                    :casename="'border & minWidth & autoFitMinWidth & autoFitMaxWidth'"
+                ></demolink>
+
+                <w-text-select
+                    style="width:200px;"
+                    :shadow="false"
+                    :borderColor="'orange lighten-2'"
+                    :borderColorHover="'orange'"
+                    :borderColorFocus="'orange darken-2'"
+                    :backgroundColorFocus="'orange lighten-5'"
+                    :minWidth="250"
+                    :autoFitMinWidth="false"
+                    :autoFitMaxWidth="false"
+                    :items="WTextSelect.objItemsLarge"
+                    v-model="WTextSelect.objValueLarge"
+                ></w-text-select>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-text-select'"
+                    :casename="'border & maxWidth & autoFitMinWidth & autoFitMaxWidth'"
+                ></demolink>
+
+                <w-text-select
+                    style="width:200px;"
+                    :shadow="false"
+                    :borderColor="'orange lighten-2'"
+                    :borderColorHover="'orange'"
+                    :borderColorFocus="'orange darken-2'"
+                    :backgroundColorFocus="'orange lighten-5'"
+                    :maxWidth="140"
+                    :autoFitMinWidth="false"
+                    :autoFitMaxWidth="false"
+                    :items="WTextSelect.objItemsLarge"
+                    v-model="WTextSelect.objValueLarge"
                 ></w-text-select>
             </div>
 
@@ -943,6 +1104,7 @@
                     <template v-slot:content>
                         <div style="padding:45px 25px;">
                             <w-text-select
+                                style="width:200px;"
                                 :shadow="false"
                                 :borderColor="'orange lighten-2'"
                                 :borderColorHover="'orange'"
@@ -966,6 +1128,7 @@
                 ></demolink>
 
                 <w-text-select
+                    style="width:200px;"
                     :shadow="false"
                     :borderColor="'orange lighten-2'"
                     :borderColorHover="'orange'"
@@ -994,6 +1157,7 @@
                 ></demolink>
 
                 <w-text-select
+                    style="width:200px;"
                     :shadow="false"
                     :borderColor="'orange lighten-2'"
                     :borderColorHover="'orange'"

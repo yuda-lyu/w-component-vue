@@ -53,6 +53,11 @@
                     :expansionIcon="showExpansionIcon?undefined:''"
                     :expansionIconSize="expansionIconSize"
                     :expansionIconColor="expansionIconColor"
+                    :maxHeight="maxHeight"
+                    :minWidth="minWidth"
+                    :maxWidth="maxWidth"
+                    :autoFitMinWidth="autoFitMinWidth"
+                    :autoFitMaxWidth="autoFitMaxWidth"
                     :placementDist="useDistY"
                     :defItemHeight="defItemHeight"
                     :editable="editable"
@@ -143,6 +148,11 @@ import WTextSuggestCore from './WTextSuggestCore.vue'
  * @vue-prop {Boolean} [showExpansionIcon=true] 輸入是否顯示時顯示旋轉按鈕布林值，預設true
  * @vue-prop {Number} [expansionIconSize=18] 輸入右側圖標尺寸數字，單位為px，預設18
  * @vue-prop {String} [expansionIconColor='grey'] 輸入右側圖標顏色字串，預設'grey'
+ * @vue-prop {Number} [maxHeight=200] 輸入顯示區最大高度數字，單位為px，預設200
+ * @vue-prop {Number} [minWidth=null] 輸入最小寬度，單位為px，預設null
+ * @vue-prop {Number} [maxWidth=null] 輸入最大寬度，單位為px，預設null
+ * @vue-prop {Boolean} [autoFitMinWidth=true] 輸入是否使用驅動區寬度作為內容區之最小寬度布林值，預設true
+ * @vue-prop {Boolean} [autoFitMaxWidth=true] 輸入是否使用驅動區寬度作為內容區之最大寬度布林值，預設true
  * @vue-prop {Number} [defItemHeight=43] 輸入按需顯示時各項目預設高度值數字，給越準或給大部分項目的高度則渲染速度越快，單位為px，預設43
  * @vue-prop {Boolean} [editable=true] 輸入是否為編輯模式布林值，預設true
  * @vue-prop {Boolean} [focused=false] 輸入是否為取得焦點狀態布林值，預設false
@@ -313,6 +323,26 @@ export default {
         expansionIconColor: {
             type: String,
             default: 'grey',
+        },
+        maxHeight: {
+            type: Number,
+            default: 200,
+        },
+        minWidth: {
+            type: Number,
+            default: null,
+        },
+        maxWidth: {
+            type: Number,
+            default: null,
+        },
+        autoFitMinWidth: {
+            type: Boolean,
+            default: true,
+        },
+        autoFitMaxWidth: {
+            type: Boolean,
+            default: true,
         },
         defItemHeight: {
             type: Number,

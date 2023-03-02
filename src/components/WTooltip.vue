@@ -90,6 +90,7 @@ function removeTriggerMode(mode, mmkey) {
  * @vue-prop {Number} [minWidth=null] 輸入最小寬度數字，單位為px，預設null
  * @vue-prop {Number} [maxWidth=null] 輸入最大寬度數字，單位為px，預設null
  * @vue-prop {Boolean} [autoFitMinWidth=false] 輸入是否使用驅動區寬度作為內容區之最小寬度布林值，預設false
+ * @vue-prop {Boolean} [autoFitMaxWidth=false] 輸入是否使用驅動區寬度作為內容區之最大寬度布林值，預設false
  * @vue-prop {Number} [placementDist=5] 輸入彈窗距離觸發元素距離數字，單位為px，預設5
  * @vue-prop {Number} [borderRadius=4] 輸入框圓角度數字，單位為px，預設4
  * @vue-prop {String} [textFontSize='0.85rem'] 輸入入內容區塊文字字型大小字串，預設'0.85rem'
@@ -135,6 +136,10 @@ export default {
             default: null,
         },
         autoFitMinWidth: {
+            type: Boolean,
+            default: false,
+        },
+        autoFitMaxWidth: {
             type: Boolean,
             default: false,
         },
@@ -421,6 +426,9 @@ export default {
 
             if (isNumber(vo.maxWidth)) {
                 return `max-width:${vo.maxWidth}px;`
+            }
+            else if (vo.autoFitMaxWidth) {
+                return `max-width:${vo.triggerWidth}px;`
             }
             return ''
         },

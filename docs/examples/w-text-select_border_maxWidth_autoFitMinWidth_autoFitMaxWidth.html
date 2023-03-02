@@ -85,7 +85,7 @@
     </script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.2.70/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.2.71/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -137,20 +137,20 @@
         <div class="bk">
             <div
                 class="item"
-            >border &amp; itemTextFontSize &amp; defItemHeight &amp; width</div>
+            >border &amp; maxWidth &amp; autoFitMinWidth &amp; autoFitMaxWidth</div>
 
             <w-text-select
-                style="width:250px;"
+                style="width:200px;"
                 :shadow="false"
                 :border-color="'orange lighten-2'"
                 :border-color-hover="'orange'"
                 :border-color-focus="'orange darken-2'"
                 :background-color-focus="'orange lighten-5'"
-                :left-icon="'mdi-check-underline-circle'"
-                :def-item-height="48"
-                :item-text-font-size="'1rem'"
-                :items="WTextSelect.objItems"
-                v-model="WTextSelect.objValue"
+                :max-width="140"
+                :auto-fit-min-width="false"
+                :auto-fit-max-width="false"
+                :items="WTextSelect.objItemsLarge"
+                v-model="WTextSelect.objValueLarge"
             ></w-text-select>
         </div>
     </v-app>

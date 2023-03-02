@@ -15,6 +15,7 @@
                 ></demolink>
 
                 <w-text-suggest
+                    style="width:200px;"
                     :items="WTextSuggest.objItems"
                     v-model="WTextSuggest.objValue"
                 ></w-text-suggest>
@@ -28,6 +29,7 @@
                 ></demolink>
 
                 <w-text-suggest
+                    style="width:200px;"
                     :paddingStyle="{v:0,h:10}"
                     :items="WTextSuggest.objItems"
                     v-model="WTextSuggest.objValue"
@@ -42,6 +44,7 @@
                 ></demolink>
 
                 <w-text-suggest
+                    style="width:200px;"
                     :paddingStyle="{v:4,h:15}"
                     :items="WTextSuggest.objItems"
                     v-model="WTextSuggest.objValue"
@@ -56,6 +59,7 @@
                 ></demolink>
 
                 <w-text-suggest
+                    style="width:200px;"
                     :textFontSize="'0.8rem'"
                     :items="WTextSuggest.objItems"
                     v-model="WTextSuggest.objValue"
@@ -70,6 +74,7 @@
                 ></demolink>
 
                 <w-text-suggest
+                    style="width:200px;"
                     :textColor="'orange darken-2'"
                     :expansionIconColor="'orange'"
                     :items="WTextSuggest.objItems"
@@ -85,6 +90,7 @@
                 ></demolink>
 
                 <w-text-suggest
+                    style="width:200px;"
                     :expansionIconSize="14"
                     :items="WTextSuggest.objItems"
                     v-model="WTextSuggest.objValue"
@@ -99,6 +105,7 @@
                 ></demolink>
 
                 <w-text-suggest
+                    style="width:200px;"
                     :items="WTextSuggest.objItems"
                     :noResultsText="'無有效項目'"
                     v-model="WTextSuggest.objValue"
@@ -113,6 +120,7 @@
                 ></demolink>
 
                 <w-text-suggest
+                    style="width:200px;"
                     :leftIcon="mdiCheckUnderlineCircle"
                     :items="WTextSuggest.objItems"
                     v-model="WTextSuggest.objValue"
@@ -127,6 +135,7 @@
                 ></demolink>
 
                 <w-text-suggest
+                    style="width:200px;"
                     :leftIcon="'fas fa-clipboard-check'"
                     :items="WTextSuggest.objItems"
                     v-model="WTextSuggest.objValue"
@@ -141,6 +150,7 @@
                 ></demolink>
 
                 <w-text-suggest
+                    style="width:200px;"
                     :leftIcon="mdiCheckUnderlineCircle"
                     :leftIconSize="20"
                     :items="WTextSuggest.objItems"
@@ -156,6 +166,7 @@
                 ></demolink>
 
                 <w-text-suggest
+                    style="width:200px;"
                     :leftIcon="mdiCheckUnderlineCircle"
                     :leftIconColor="'orange lighten-1'"
                     :leftIconColorHover="'orange accent-3'"
@@ -174,6 +185,7 @@
                 ></demolink>
 
                 <w-text-suggest
+                    style="width:200px;"
                     :rightIcon="mdiCheckUnderlineCircle"
                     :rightIconSize="20"
                     :items="WTextSuggest.objItems"
@@ -189,6 +201,7 @@
                 ></demolink>
 
                 <w-text-suggest
+                    style="width:200px;"
                     :rightIcon="mdiCheckUnderlineCircle"
                     :rightIconColor="'orange lighten-1'"
                     :rightIconColorHover="'orange accent-3'"
@@ -207,6 +220,7 @@
                 ></demolink>
 
                 <w-text-suggest
+                    style="width:200px;"
                     :leftIcon="mdiCheckUnderlineCircle"
                     :showExpansionIcon="false"
                     :items="WTextSuggest.objItems"
@@ -222,6 +236,7 @@
                 ></demolink>
 
                 <w-text-suggest
+                    style="width:200px;"
                     :leftIcon="mdiCheckUnderlineCircle"
                     :placeholder="'keywords'"
                     :items="WTextSuggest.objItems"
@@ -237,6 +252,7 @@
                 ></demolink>
 
                 <w-text-suggest
+                    style="width:200px;"
                     :leftIcon="mdiCheckUnderlineCircle"
                     :borderRadius="5"
                     :items="WTextSuggest.objItems"
@@ -252,6 +268,7 @@
                 ></demolink>
 
                 <w-text-suggest
+                    style="width:200px;"
                     :leftIcon="mdiCheckUnderlineCircle"
                     :itemPaddingStyle="{v:5,h:8}"
                     :items="WTextSuggest.objItems"
@@ -267,6 +284,7 @@
                 ></demolink>
 
                 <w-text-suggest
+                    style="width:200px;"
                     :leftIcon="mdiCheckUnderlineCircle"
                     :items="WTextSuggest.objItemsKeyText"
                     :keyText="'name'"
@@ -283,6 +301,7 @@
                 ></demolink>
 
                 <w-text-suggest
+                    style="width:200px;"
                     :leftIcon="mdiCheckUnderlineCircle"
                     :defItemHeight="48"
                     :itemTextFontSize="'1rem'"
@@ -299,6 +318,7 @@
                 ></demolink>
 
                 <w-text-suggest
+                    style="width:200px;"
                     :leftIcon="mdiCheckUnderlineCircle"
                     :itemTextColor="'orange darken-3'"
                     :itemTextColorHover="'white'"
@@ -317,6 +337,7 @@
                 ></demolink>
 
                 <w-text-suggest
+                    style="width:200px;"
                     :leftIcon="mdiCheckUnderlineCircle"
                     :items="WTextSuggest.objItemsLarge"
                     :noResultsText="'無有效項目'"
@@ -332,6 +353,7 @@
                 ></demolink>
 
                 <w-text-suggest
+                    style="width:200px;"
                     :leftIcon="mdiCheckUnderlineCircle"
                     :items="WTextSuggest.strItems"
                     v-model="WTextSuggest.strValue"
@@ -354,6 +376,7 @@
                 </div>
 
                 <w-text-suggest
+                    style="width:200px;"
                     :focused.sync="WTextSuggest.focused"
                     :showPanel.sync="WTextSuggest.showPanel"
                     @enter="hidePanelWhenEnter"
@@ -370,6 +393,7 @@
                 ></demolink>
 
                 <w-text-suggest
+                    style="width:200px;"
                     :leftIcon="mdiCheckUnderlineCircle"
                     :items="WTextSuggest.objItems"
                     v-model="WTextSuggest.objValue"
@@ -389,6 +413,7 @@
                 ></demolink>
 
                 <w-text-suggest
+                    style=""
                     :leftIcon="mdiCheckUnderlineCircle"
                     :items="WTextSuggest.objItems"
                     v-model="WTextSuggest.objValue"
@@ -398,7 +423,56 @@
 
             <div class="bk">
                 <demolink
-                    :kbname="'w-text-select'"
+                    :kbname="'w-text-suggest'"
+                    :casename="'maxHeight'"
+                ></demolink>
+
+                <w-text-suggest
+                    style="width:200px;"
+                    :maxHeight="300"
+                    :items="WTextSuggest.objItemsLarge"
+                    v-model="WTextSuggest.objValueLarge"
+                ></w-text-suggest>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-text-suggest'"
+                    :casename="'minWidth & autoFitMinWidth & autoFitMaxWidth'"
+                ></demolink>
+
+                <w-text-suggest
+                    style="width:200px;"
+                    :minWidth="250"
+                    :autoFitMinWidth="false"
+                    :autoFitMaxWidth="false"
+                    :items="WTextSuggest.objItemsLarge"
+                    v-model="WTextSuggest.objValueLarge"
+                ></w-text-suggest>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-text-suggest'"
+                    :casename="'maxWidth & autoFitMinWidth & autoFitMaxWidth'"
+                ></demolink>
+
+                <w-text-suggest
+                    style="width:200px;"
+                    :maxWidth="140"
+                    :autoFitMinWidth="false"
+                    :autoFitMaxWidth="false"
+                    :items="WTextSuggest.objItemsLarge"
+                    v-model="WTextSuggest.objValueLarge"
+                ></w-text-suggest>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-text-suggest'"
                     :casename="'with popup'"
                 ></demolink>
 
@@ -413,6 +487,7 @@
                     <template v-slot:content>
                         <div style="padding:45px 25px;">
                             <w-text-suggest
+                                style="width:200px;"
                                 :items="WTextSuggest.objItems"
                                 v-model="WTextSuggest.objValue"
                             ></w-text-suggest>
@@ -431,6 +506,7 @@
                 ></demolink>
 
                 <w-text-suggest
+                    style="width:200px;"
                     :leftIcon="mdiCheckUnderlineCircle"
                     :rightIcon="mdiCheckUnderlineCircle"
                     :items="WTextSuggest.objItems"
@@ -454,6 +530,7 @@
                 ></demolink>
 
                 <w-text-suggest
+                    style="width:200px;"
                     :leftIcon="mdiCheckUnderlineCircle"
                     :editable="false"
                     :items="WTextSuggest.objItems"
@@ -472,6 +549,7 @@
                 ></demolink>
 
                 <w-text-suggest
+                    style="width:200px;"
                     :shadow="false"
                     :borderColor="'orange lighten-2'"
                     :borderColorHover="'orange'"
@@ -490,6 +568,7 @@
                 ></demolink>
 
                 <w-text-suggest
+                    style="width:200px;"
                     :shadow="false"
                     :borderColor="'orange lighten-2'"
                     :borderColorHover="'orange'"
@@ -509,6 +588,7 @@
                 ></demolink>
 
                 <w-text-suggest
+                    style="width:200px;"
                     :shadow="false"
                     :borderColor="'orange lighten-2'"
                     :borderColorHover="'orange'"
@@ -528,6 +608,7 @@
                 ></demolink>
 
                 <w-text-suggest
+                    style="width:200px;"
                     :shadow="false"
                     :borderColor="'orange lighten-2'"
                     :borderColorHover="'orange'"
@@ -547,6 +628,7 @@
                 ></demolink>
 
                 <w-text-suggest
+                    style="width:200px;"
                     :shadow="false"
                     :borderColor="'orange lighten-2'"
                     :borderColorHover="'orange'"
@@ -567,6 +649,7 @@
                 ></demolink>
 
                 <w-text-suggest
+                    style="width:200px;"
                     :shadow="false"
                     :borderColor="'orange lighten-2'"
                     :borderColorHover="'orange'"
@@ -586,6 +669,7 @@
                 ></demolink>
 
                 <w-text-suggest
+                    style="width:200px;"
                     :shadow="false"
                     :borderColor="'orange lighten-2'"
                     :borderColorHover="'orange'"
@@ -605,6 +689,7 @@
                 ></demolink>
 
                 <w-text-suggest
+                    style="width:200px;"
                     :shadow="false"
                     :borderColor="'orange lighten-2'"
                     :borderColorHover="'orange'"
@@ -624,6 +709,7 @@
                 ></demolink>
 
                 <w-text-suggest
+                    style="width:200px;"
                     :shadow="false"
                     :borderColor="'orange lighten-2'"
                     :borderColorHover="'orange'"
@@ -643,6 +729,7 @@
                 ></demolink>
 
                 <w-text-suggest
+                    style="width:200px;"
                     :shadow="false"
                     :borderColor="'orange lighten-2'"
                     :borderColorHover="'orange'"
@@ -663,6 +750,7 @@
                 ></demolink>
 
                 <w-text-suggest
+                    style="width:200px;"
                     :shadow="false"
                     :borderColor="'orange lighten-2'"
                     :borderColorHover="'orange'"
@@ -686,6 +774,7 @@
                 ></demolink>
 
                 <w-text-suggest
+                    style="width:200px;"
                     :shadow="false"
                     :borderColor="'orange lighten-2'"
                     :borderColorHover="'orange'"
@@ -706,6 +795,7 @@
                 ></demolink>
 
                 <w-text-suggest
+                    style="width:200px;"
                     :shadow="false"
                     :borderColor="'orange lighten-2'"
                     :borderColorHover="'orange'"
@@ -729,6 +819,7 @@
                 ></demolink>
 
                 <w-text-suggest
+                    style="width:200px;"
                     :shadow="false"
                     :borderColor="'orange lighten-2'"
                     :borderColorHover="'orange'"
@@ -751,6 +842,7 @@
                 ></demolink>
 
                 <w-text-suggest
+                    style="width:200px;"
                     :shadow="false"
                     :borderColor="'orange lighten-2'"
                     :borderColorHover="'orange'"
@@ -771,6 +863,7 @@
                 ></demolink>
 
                 <w-text-suggest
+                    style="width:200px;"
                     :shadow="false"
                     :borderColor="'orange lighten-2'"
                     :borderColorHover="'orange'"
@@ -791,6 +884,7 @@
                 ></demolink>
 
                 <w-text-suggest
+                    style="width:200px;"
                     :shadow="false"
                     :borderColor="'orange lighten-2'"
                     :borderColorHover="'orange'"
@@ -811,6 +905,7 @@
                 ></demolink>
 
                 <w-text-suggest
+                    style="width:200px;"
                     :shadow="false"
                     :borderColor="'orange lighten-2'"
                     :borderColorHover="'orange'"
@@ -831,6 +926,7 @@
                 ></demolink>
 
                 <w-text-suggest
+                    style="width:200px;"
                     :shadow="false"
                     :borderColor="'orange lighten-2'"
                     :borderColorHover="'orange'"
@@ -852,6 +948,7 @@
                 ></demolink>
 
                 <w-text-suggest
+                    style="width:200px;"
                     :shadow="false"
                     :borderColor="'orange lighten-2'"
                     :borderColorHover="'orange'"
@@ -873,6 +970,7 @@
                 ></demolink>
 
                 <w-text-suggest
+                    style="width:200px;"
                     :shadow="false"
                     :borderColor="'orange lighten-2'"
                     :borderColorHover="'orange'"
@@ -896,6 +994,7 @@
                 ></demolink>
 
                 <w-text-suggest
+                    style="width:200px;"
                     :shadow="false"
                     :borderColor="'orange lighten-2'"
                     :borderColorHover="'orange'"
@@ -916,6 +1015,7 @@
                 ></demolink>
 
                 <w-text-suggest
+                    style="width:200px;"
                     :shadow="false"
                     :borderColor="'orange lighten-2'"
                     :borderColorHover="'orange'"
@@ -943,6 +1043,7 @@
                 </div>
 
                 <w-text-suggest
+                    style="width:200px;"
                     :focused.sync="WTextSuggest.focused"
                     :showPanel.sync="WTextSuggest.showPanel"
                     @enter="hidePanelWhenEnter"
@@ -964,6 +1065,7 @@
                 ></demolink>
 
                 <w-text-suggest
+                    style="width:200px;"
                     :shadow="false"
                     :borderColor="'orange lighten-2'"
                     :borderColorHover="'orange'"
@@ -988,6 +1090,7 @@
                 ></demolink>
 
                 <w-text-suggest
+                    style=""
                     :shadow="false"
                     :borderColor="'orange lighten-2'"
                     :borderColorHover="'orange'"
@@ -996,6 +1099,70 @@
                     :leftIcon="mdiCheckUnderlineCircle"
                     :items="WTextSuggest.objItems"
                     v-model="WTextSuggest.objValue"
+                ></w-text-suggest>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-text-suggest'"
+                    :casename="'maxHeight'"
+                ></demolink>
+
+                <w-text-suggest
+                    style="width:200px;"
+                    :shadow="false"
+                    :borderColor="'orange lighten-2'"
+                    :borderColorHover="'orange'"
+                    :borderColorFocus="'orange darken-2'"
+                    :backgroundColorFocus="'orange lighten-5'"
+                    :maxHeight="300"
+                    :items="WTextSuggest.objItemsLarge"
+                    v-model="WTextSuggest.objValueLarge"
+                ></w-text-suggest>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-text-suggest'"
+                    :casename="'minWidth & autoFitMinWidth & autoFitMaxWidth'"
+                ></demolink>
+
+                <w-text-suggest
+                    style="width:200px;"
+                    :shadow="false"
+                    :borderColor="'orange lighten-2'"
+                    :borderColorHover="'orange'"
+                    :borderColorFocus="'orange darken-2'"
+                    :backgroundColorFocus="'orange lighten-5'"
+                    :minWidth="250"
+                    :autoFitMinWidth="false"
+                    :autoFitMaxWidth="false"
+                    :items="WTextSuggest.objItemsLarge"
+                    v-model="WTextSuggest.objValueLarge"
+                ></w-text-suggest>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-text-suggest'"
+                    :casename="'maxWidth & autoFitMinWidth & autoFitMaxWidth'"
+                ></demolink>
+
+                <w-text-suggest
+                    style="width:200px;"
+                    :shadow="false"
+                    :borderColor="'orange lighten-2'"
+                    :borderColorHover="'orange'"
+                    :borderColorFocus="'orange darken-2'"
+                    :backgroundColorFocus="'orange lighten-5'"
+                    :maxWidth="140"
+                    :autoFitMinWidth="false"
+                    :autoFitMaxWidth="false"
+                    :items="WTextSuggest.objItemsLarge"
+                    v-model="WTextSuggest.objValueLarge"
                 ></w-text-suggest>
             </div>
 
@@ -1017,6 +1184,7 @@
                     <template v-slot:content>
                         <div style="padding:45px 25px;">
                             <w-text-suggest
+                                style="width:200px;"
                                 :shadow="false"
                                 :borderColor="'orange lighten-2'"
                                 :borderColorHover="'orange'"
@@ -1040,6 +1208,7 @@
                 ></demolink>
 
                 <w-text-suggest
+                    style="width:200px;"
                     :shadow="false"
                     :borderColor="'orange lighten-2'"
                     :borderColorHover="'orange'"
@@ -1068,6 +1237,7 @@
                 ></demolink>
 
                 <w-text-suggest
+                    style="width:200px;"
                     :shadow="false"
                     :borderColor="'orange lighten-2'"
                     :borderColorHover="'orange'"
