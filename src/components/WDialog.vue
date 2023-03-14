@@ -229,6 +229,7 @@ import isEqual from 'lodash/isEqual'
 import cloneDeep from 'lodash/cloneDeep'
 import genPm from 'wsemi/src/genPm.mjs'
 import replace from 'wsemi/src/replace.mjs'
+import domIsClientXYIn from 'wsemi/src/domIsClientXYIn.mjs'
 import color2hex from '../js/vuetifyColor.mjs'
 import domResize from '../js/domResize.mjs'
 import WButtonCircle from './WButtonCircle.vue'
@@ -714,10 +715,22 @@ export default {
             let b = false
             try {
                 b = !vo.$refs.divPanel.contains(ev.target)
+                // console.log('vo.$refs.divPanel',vo.$refs.divPanel)
+                // console.log('ev.target',ev.target,ev)
+                // console.log('contains',vo.$refs.divPanel.contains(ev.target))
             }
             catch (err) {}
 
-            //check
+            //若為點擊為抽屜slot區之外, 可能是按鈕表層虛擬層或ripple層, 此可能用position定位而導致用contains檢測會為false, 故改用事件座標再檢測一次
+            if (b) {
+                try {
+                    b = !domIsClientXYIn(ev.clientX, ev.clientY, vo.$refs.divPanel)
+                    // console.log(`domIsClientXYIn(ev.clientX, ev.clientY, vo.$refs.divPanel)`,domIsClientXYIn(ev.clientX, ev.clientY, vo.$refs.divPanel))
+                }
+                catch (err) {}
+            }
+
+            //check, 確定點擊位於抽屜slot區之外
             if (b) {
 
                 //放大比例
