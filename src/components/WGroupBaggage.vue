@@ -33,25 +33,30 @@
 
                 <div style="width:100%;">
 
-                    <WPanelSlotHover
-                        :style="`padding-top:${tagDistBetweenTopAndBaseline-contentShiftTopFromBaseline}px; ${contentClickable?'cursor:pointer;':''}`"
-                        @click.native="(ev)=>{ckContent(ev,t)}"
-                    >
-                        <template v-slot="{isHover}">
-                            <div :style="`transition:all 0.3s; ${useContentPaddingStyle} ${usetContentTextFontSize} color:${isHover?effContentTextColorHover:effContentTextColor}; border-radius:${contentBorderRadius}px; background:${isHover?effContentBackgroundColorHover:effContentBackgroundColor}; border:${contentBorderWidth}px solid ${isHover?effContentBorderColorHover:effContentBorderColor};`">
+                    <!-- 上方空間使用padding-top撐開, 記得不能與click區合併 -->
+                    <div :style="`padding-top:${tagDistBetweenTopAndBaseline-contentShiftTopFromBaseline}px;`">
 
-                                <slot
-                                    name="text"
-                                    :item="t"
-                                    :isHover="isHover"
-                                >
-                                    {{getText(t)}}
-                                </slot>
+                        <WGroupBaggageItem
+                            :style="`${contentClickable?'cursor:pointer;':''}`"
+                            @click.native="(ev)=>{ckContent(ev,t)}"
+                        >
+                            <template v-slot="{isHover}">
+                                <div :style="`transition:all 0.3s; ${useContentPaddingStyle} ${usetContentTextFontSize} color:${isHover?effContentTextColorHover:effContentTextColor}; border-radius:${contentBorderRadius}px; background:${isHover?effContentBackgroundColorHover:effContentBackgroundColor}; border:${contentBorderWidth}px solid ${isHover?effContentBorderColorHover:effContentBorderColor};`">
 
-                            </div>
+                                    <slot
+                                        name="text"
+                                        :item="t"
+                                        :isHover="isHover"
+                                    >
+                                        {{getText(t)}}
+                                    </slot>
 
-                        </template>
-                    </WPanelSlotHover>
+                                </div>
+
+                            </template>
+                        </WGroupBaggageItem>
+
+                    </div>
 
                     <slot
                         name="text-sub"
@@ -64,7 +69,7 @@
             </div>
 
             <div :style="`position:absolute; left:${connLineZoneWidth/2}px; top:${tagDistBetweenTopAndBaseline}px;`">
-                <WPanelSlotHover
+                <WGroupBaggageItem
                     :style="`transform:translate(-50%, -50%); ${tagClickable?'cursor:pointer;':''}`"
                     @click.native="(ev)=>{ckTag(ev,t)}"
                 >
@@ -81,7 +86,7 @@
 
                         </div>
                     </template>
-                </WPanelSlotHover>
+                </WGroupBaggageItem>
             </div>
 
         </div>
@@ -95,7 +100,7 @@ import isNumber from 'lodash/isNumber'
 import replace from 'wsemi/src/replace.mjs'
 import parseSpace from '../js/parseSpace.mjs'
 import color2hex from '../js/vuetifyColor.mjs'
-import WPanelSlotHover from './WPanelSlotHover.vue'
+import WGroupBaggageItem from './WGroupBaggageItem.vue'
 
 
 /**
@@ -132,7 +137,7 @@ import WPanelSlotHover from './WPanelSlotHover.vue'
  */
 export default {
     components: {
-        WPanelSlotHover,
+        WGroupBaggageItem,
     },
     props: {
         items: {
