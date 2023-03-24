@@ -711,7 +711,7 @@ export default {
                 return
             }
 
-            //偵測點擊為抽屜slot區之外
+            //偵測點擊為彈窗區之外
             let b = false
             try {
                 b = !vo.$refs.divPanel.contains(ev.target)
@@ -721,7 +721,7 @@ export default {
             }
             catch (err) {}
 
-            //若為點擊為抽屜slot區之外, 可能是按鈕表層虛擬層或ripple層, 此可能用position定位而導致用contains檢測會為false, 故改用事件座標再檢測一次
+            //若為點擊為彈窗區之外, 可能是按鈕表層虛擬層、ripple層或下拉選單彈窗內容區, 此可能用position定位而導致用contains檢測會為false, 故改用事件座標再檢測一次
             if (b) {
                 try {
                     b = !domIsClientXYIn(ev.clientX, ev.clientY, vo.$refs.divPanel)

@@ -116,6 +116,7 @@ import isNumber from 'lodash/isNumber'
 import isnum from 'wsemi/src/isnum.mjs'
 import isfun from 'wsemi/src/isfun.mjs'
 import cdbl from 'wsemi/src/cdbl.mjs'
+import domIsClientXYIn from 'wsemi/src/domIsClientXYIn.mjs'
 import domGetWindowSize from 'wsemi/src/domGetWindowSize.mjs'
 import domDragBarAndScroll from 'wsemi/src/domDragBarAndScroll.mjs'
 import domResize from '../js/domResize.mjs'
@@ -449,7 +450,7 @@ export default {
                 return
             }
 
-            //偵測點擊為抽屜slot區之外
+            //偵測點擊為抽屜區之外
             let b = false
             try {
                 b = !vo.$refs.divDrawer.contains(ev.target)
@@ -458,6 +459,15 @@ export default {
             // console.log('vo.$refs.divDrawer', vo.$refs.divDrawer)
             // console.log('ev.target', ev.target)
             // console.log(vo.$refs.divDrawer.contains(ev.target))
+
+            //若為點擊為抽屜區之外, 可能是按鈕表層虛擬層、ripple層或下拉選單彈窗內容區, 此可能用position定位而導致用contains檢測會為false, 故改用事件座標再檢測一次
+            if (b) {
+                try {
+                    b = !domIsClientXYIn(ev.clientX, ev.clientY, vo.$refs.divDrawer)
+                    // console.log(`domIsClientXYIn(ev.clientX, ev.clientY, vo.$refs.divPanel)`,domIsClientXYIn(ev.clientX, ev.clientY, vo.$refs.divPanel))
+                }
+                catch (err) {}
+            }
 
             //check
             if (b) {
