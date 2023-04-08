@@ -15,20 +15,20 @@ let opt = {
     <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" rel="stylesheet">
 
     <!-- mdi, 各組件使用mdi/js故不需引用 -->
-    <link _href="https://cdn.jsdelivr.net/npm/@mdi/font@6.6.96/css/materialdesignicons.min.css" rel="stylesheet">
+    <link _href="https://cdn.jsdelivr.net/npm/@mdi/font@7.2.96/css/materialdesignicons.min.css" rel="stylesheet">
 
     <!-- google, 各組件使用mdi/js故不需引用 -->
     <link _href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
     <link _href="https://fonts.googleapis.com/css?family=Material+Icons" rel="stylesheet">
 
     <!-- data -->
-    <script src="https://cdn.jsdelivr.net/npm/w-demores@1.0.18/res/data/dataAAPL.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/w-demores@1.0.18/res/data/dataUSD2EUR.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/w-demores@1.0.18/res/data/dataTemperature.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/w-demores@1.0.18/res/data/dataHousePriceArea.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/w-demores@1.0.18/res/data/dataFlare.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/w-demores@1.0.18/res/data/dataRain.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/w-demores@1.0.18/res/data/dataRainClip.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-demores@1.0.20/res/data/dataAAPL.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-demores@1.0.20/res/data/dataUSD2EUR.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-demores@1.0.20/res/data/dataTemperature.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-demores@1.0.20/res/data/dataHousePriceArea.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-demores@1.0.20/res/data/dataFlare.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-demores@1.0.20/res/data/dataRain.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-demores@1.0.20/res/data/dataRainClip.js"></script>
     <script>
         //save in window
         window.dataAAPL=dataAAPL
