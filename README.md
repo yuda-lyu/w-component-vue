@@ -78,8 +78,8 @@ export default {
 ```
 [Necessary] Add script and link for vuetify.
 ```alias
-<link href="https://cdn.jsdelivr.net/npm/vuetify@2.5.1/dist/vuetify.min.css" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/vuetify@2.5.1/dist/vuetify.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/vuetify@2.6.14/dist/vuetify.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/vuetify@2.6.14/dist/vuetify.min.js"></script>
 ```
 [Necessary] Add script for w-component-vue.
 ```alias

@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import App from './App.vue'
 import vuetify from './plugins/vuetify.mjs'
+// console.log('vuetify', vuetify)
 
 Vue.config.productionTip = false
 
