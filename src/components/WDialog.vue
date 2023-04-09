@@ -476,6 +476,16 @@ export default {
             return mdiCheckerboard
         },
 
+        useRatioHeight: function() {
+            let vo = this
+            if (vo.useFullscreen) {
+                return 1
+            }
+            else {
+                return vo.ratioHeightMax
+            }
+        },
+
         useWidth: function() {
             let vo = this
             if (vo.useFullscreen) {
@@ -488,12 +498,15 @@ export default {
 
         useHeight: function() {
             let vo = this
+            let ch = ''
             if (vo.useFullscreen) {
-                return `height:100vh;`
+                ch = 'height'
             }
             else {
-                return `max-height:${vo.ratioHeightMax * 100}vh;`
+                ch = 'max-height'
             }
+            ch = `${ch}:${vo.useRatioHeight * 100}vh;`
+            return ch
         },
 
         useOverlayColor: function() {
@@ -568,19 +581,24 @@ export default {
                 vo.footerHeight = 0
             }
 
-            //contentHeightMax, 因headerHeight由外部給予, footerHeight由上方計算, 故位置得要放在footerHeight計算之後才行
-            vo.contentHeightMax = Math.max(window.innerHeight * vo.ratioHeightMax - vo.headerHeight - vo.footerHeight, 0)
+            //fullscreenForce, 會影響useFullscreen與連帶影響useRatioHeight, 故得要放計算contentHeightMax之前
+            vo.fullscreenForce = false
+            if (vo.autoFullscreenWhenNarrow) {
+                vo.fullscreenForce = vo.maxWidth >= window.innerWidth
+            }
+
+            //contentHeightMax, 因有使用useRatioHeight得要放在計算fullscreenForce之後
+            vo.contentHeightMax = Math.max(window.innerHeight * vo.useRatioHeight - vo.headerHeight - vo.footerHeight, 0)
+            // console.log('window.innerHeight',window.innerHeight)
+            // console.log('window.innerHeight * vo.useRatioHeight',vo.useRatioHeight, window.innerHeight * vo.useRatioHeight)
+            // console.log('vo.headerHeight',vo.headerHeight)
+            // console.log('vo.footerHeight',vo.footerHeight)
+            // console.log('vo.contentHeightMax',vo.contentHeightMax)
             if (vo.contentHeightMax === 0) { //若為0代表尚未初始化, 須不提供指定height自動撐開, 再重算height
                 vo.useContentHeight = ''
             }
             else {
                 vo.useContentHeight = `max-height:${vo.contentHeightMax}px;`
-            }
-
-            //fullscreenForce
-            vo.fullscreenForce = false
-            if (vo.autoFullscreenWhenNarrow) {
-                vo.fullscreenForce = vo.maxWidth >= window.innerWidth
             }
 
             //nativeBarWidth
