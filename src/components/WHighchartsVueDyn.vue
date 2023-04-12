@@ -7,7 +7,6 @@
 import importResources from 'wsemi/src/importResources.mjs'
 import WIconLoading from './WIconLoading.vue'
 import getVue from '../js/getVue.mjs'
-import { iniHCMarkers, getHCGlobal } from '../js/highchartsSetting.mjs'
 
 
 /**
@@ -31,6 +30,7 @@ export default {
                 'https://cdn.jsdelivr.net/npm/highcharts@10.3.3/modules/boost-canvas.js',
                 'https://cdn.jsdelivr.net/npm/vue-highcharts@0.1.0/dist/vue-highcharts.min.js', //for vue2
                 //'https://cdn.jsdelivr.net/npm/vue-highcharts@0.2.0/dist/vue-highcharts.min.js',
+                'https://cdn.jsdelivr.net/npm/w-highcharts/dist/w-highcharts.umd.js', //使用最新版
             ],
         },
         options: {
@@ -57,11 +57,14 @@ export default {
                     //Highcharts
                     let Highcharts = window['Highcharts']
 
-                    //iniHCMarkers
-                    iniHCMarkers(Highcharts)
+                    //whc
+                    let whc = window['w-highcharts']
+
+                    //iniMarkers
+                    whc.iniMarkers(Highcharts)
 
                     //setOptions
-                    Highcharts.setOptions(getHCGlobal())
+                    Highcharts.setOptions(whc.getDefOpt())
 
                     //cmp
                     let cmp = window['VueHighcharts']

@@ -13,7 +13,6 @@ import iseobj from 'wsemi/src/iseobj.mjs'
 import isfun from 'wsemi/src/isfun.mjs'
 import importResources from 'wsemi/src/importResources.mjs'
 import WIconLoading from './WIconLoading.vue'
-import { iniHCMarkers, getHCGlobal } from '../js/highchartsSetting.mjs'
 
 
 /**
@@ -36,6 +35,7 @@ export default {
                 'https://cdn.jsdelivr.net/npm/highcharts@10.3.3/modules/heatmap.js',
                 'https://cdn.jsdelivr.net/npm/highcharts@10.3.3/modules/boost.js',
                 'https://cdn.jsdelivr.net/npm/highcharts@10.3.3/modules/boost-canvas.js',
+                'https://cdn.jsdelivr.net/npm/w-highcharts/dist/w-highcharts.umd.js', //使用最新版
             ],
         },
         options: {
@@ -74,11 +74,14 @@ export default {
                     //Highcharts
                     let Highcharts = window['Highcharts']
 
-                    //iniHCMarkers
-                    iniHCMarkers(Highcharts)
+                    //whc
+                    let whc = window['w-highcharts']
+
+                    //iniMarkers
+                    whc.iniMarkers(Highcharts)
 
                     //setOptions
-                    Highcharts.setOptions(getHCGlobal())
+                    Highcharts.setOptions(whc.getDefOpt())
 
                 }
 
