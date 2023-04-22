@@ -36,6 +36,22 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-timeday'"
+                    :casename="'paddingStyle (thin style) & textFontSize & placementDist'"
+                ></demolink>
+
+                <w-timeday
+                    :icon="''"
+                    :paddingStyle="{v:0,h:8}"
+                    :textFontSize="'0.7rem'"
+                    :placementDist="3"
+                    v-model="WTimeday.day"
+                ></w-timeday>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-timeday'"
                     :casename="'paddingStyle (equal height to using icon)'"
                 ></demolink>
 
@@ -177,6 +193,66 @@
                     :borderColorHover="'orange'"
                     :borderColorFocus="'orange darken-2'"
                     :backgroundColorFocus="'orange lighten-5'"
+                    v-model="WTimeday.day"
+                ></w-timeday>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-timeday'"
+                    :casename="'border & paddingStyle (thin style) & placementDist'"
+                ></demolink>
+
+                <w-timeday
+                    :shadow="false"
+                    :borderColor="'orange lighten-2'"
+                    :borderColorHover="'orange'"
+                    :borderColorFocus="'orange darken-2'"
+                    :backgroundColorFocus="'orange lighten-5'"
+                    :icon="''"
+                    :paddingStyle="{v:0,h:8}"
+                    :placementDist="3"
+                    v-model="WTimeday.day"
+                ></w-timeday>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-timeday'"
+                    :casename="'border & paddingStyle (thin style) & textFontSize & placementDist'"
+                ></demolink>
+
+                <w-timeday
+                    :shadow="false"
+                    :borderColor="'orange lighten-2'"
+                    :borderColorHover="'orange'"
+                    :borderColorFocus="'orange darken-2'"
+                    :backgroundColorFocus="'orange lighten-5'"
+                    :icon="''"
+                    :paddingStyle="{v:0,h:8}"
+                    :textFontSize="'0.7rem'"
+                    :placementDist="3"
+                    v-model="WTimeday.day"
+                ></w-timeday>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-timeday'"
+                    :casename="'border & paddingStyle (equal height to using icon)'"
+                ></demolink>
+
+                <w-timeday
+                    :shadow="false"
+                    :borderColor="'orange lighten-2'"
+                    :borderColorHover="'orange'"
+                    :borderColorFocus="'orange darken-2'"
+                    :backgroundColorFocus="'orange lighten-5'"
+                    :icon="''"
+                    :paddingStyle="{v:4,h:15}"
                     v-model="WTimeday.day"
                 ></w-timeday>
             </div>

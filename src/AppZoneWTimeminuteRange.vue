@@ -40,6 +40,23 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-timeminute-range'"
+                    :casename="'paddingStyle (thin style) & textFontSize & placementDist'"
+                ></demolink>
+
+                <w-timeminute-range
+                    :icon="''"
+                    :paddingStyle="{v:0,h:8}"
+                    :textFontSize="'0.7rem'"
+                    :placementDist="3"
+                    :minuteStart.sync="WTimeminuteRange.minuteStart"
+                    :minuteEnd.sync="WTimeminuteRange.minuteEnd"
+                ></w-timeminute-range>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-timeminute-range'"
                     :casename="'paddingStyle (equal height to using icon)'"
                 ></demolink>
 
@@ -251,6 +268,69 @@
                     :borderColorHover="'orange'"
                     :borderColorFocus="'orange darken-2'"
                     :backgroundColorFocus="'orange lighten-5'"
+                    :minuteStart.sync="WTimeminuteRange.minuteStart"
+                    :minuteEnd.sync="WTimeminuteRange.minuteEnd"
+                ></w-timeminute-range>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-timeminute-range'"
+                    :casename="'border & paddingStyle (thin style) & placementDist'"
+                ></demolink>
+
+                <w-timeminute-range
+                    :shadow="false"
+                    :borderColor="'orange lighten-2'"
+                    :borderColorHover="'orange'"
+                    :borderColorFocus="'orange darken-2'"
+                    :backgroundColorFocus="'orange lighten-5'"
+                    :icon="''"
+                    :paddingStyle="{v:0,h:8}"
+                    :placementDist="3"
+                    :minuteStart.sync="WTimeminuteRange.minuteStart"
+                    :minuteEnd.sync="WTimeminuteRange.minuteEnd"
+                ></w-timeminute-range>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-timeminute-range'"
+                    :casename="'border & paddingStyle (thin style) & textFontSize & placementDist'"
+                ></demolink>
+
+                <w-timeminute-range
+                    :shadow="false"
+                    :borderColor="'orange lighten-2'"
+                    :borderColorHover="'orange'"
+                    :borderColorFocus="'orange darken-2'"
+                    :backgroundColorFocus="'orange lighten-5'"
+                    :icon="''"
+                    :paddingStyle="{v:0,h:8}"
+                    :textFontSize="'0.7rem'"
+                    :placementDist="3"
+                    :minuteStart.sync="WTimeminuteRange.minuteStart"
+                    :minuteEnd.sync="WTimeminuteRange.minuteEnd"
+                ></w-timeminute-range>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-timeminute-range'"
+                    :casename="'border & paddingStyle (equal height to using icon)'"
+                ></demolink>
+
+                <w-timeminute-range
+                    :shadow="false"
+                    :borderColor="'orange lighten-2'"
+                    :borderColorHover="'orange'"
+                    :borderColorFocus="'orange darken-2'"
+                    :backgroundColorFocus="'orange lighten-5'"
+                    :icon="''"
+                    :paddingStyle="{v:4,h:15}"
                     :minuteStart.sync="WTimeminuteRange.minuteStart"
                     :minuteEnd.sync="WTimeminuteRange.minuteEnd"
                 ></w-timeminute-range>
