@@ -9,14 +9,15 @@
 
         <div style="display:flex; align-items:center;">
 
-            <!-- 用padding:2px 0px與height+4撐開至預設高度24px -->
-            <div :style="`padding:2px 0px; height:${4+Math.max(heightCir,heightBar)}px;`">
-                <div :style="`position:relative; padding-top:${(heightCir-heightBar)/2}px;`">
+            <div :style="`width:${widthBar}px; height:${heightToogle}px;`">
+                <div :style="`position:relative;`">
 
-                    <div class="ts" :style="`width:${widthBar}px; height:${heightBar}px; border-radius:8px; background:${useSwitchBarColor};`">
+                    <!-- 文字會稍微偏下故top+1 -->
+                    <div class="ts" :style="`position:absolute; top:${1+(heightToogle-heightBar)/2}px; left:0px; width:${widthBar}px; height:${heightBar}px; border-radius:8px; background:${useSwitchBarColor};`">
                     </div>
 
-                    <div class="ts bs" :style="`position:absolute; top:0px; left:${ b ? widthBar-widthCir : 0 }px; width:${widthCir}px; height:${heightCir}px; border-radius:50%; background:${useSwitchCircleColor};`">
+                    <!-- 文字會稍微偏下故top+1 -->
+                    <div class="ts bs" :style="`position:absolute; top:${1+(heightToogle-heightCir)/2}px; left:${ b ? widthBar-widthCir : 0 }px; width:${widthCir}px; height:${heightCir}px; border-radius:50%; background:${useSwitchCircleColor};`">
                     </div>
 
                 </div>
@@ -187,6 +188,11 @@ export default {
         widthBar: function() { // widthBar: 36,
             let vo = this
             return vo.switchSize / 24 * 36
+        },
+
+        heightToogle: function() {
+            let vo = this
+            return Math.max(vo.heightCir, vo.heightBar)
         },
 
         effTextColor: function() {
