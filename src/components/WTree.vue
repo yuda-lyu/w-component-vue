@@ -641,7 +641,13 @@ export default {
 
             dbc: debounce(),
 
-            mmkey: null,
+            // mmkey: null,
+            mmkey: genID(), //beforeMount內無法變更data, mounted內會晚於computed, 故優先放於data生成
+            // mmkey: (() => {
+            //     let id = genID()
+            //     console.log('data gen mmkey', id)
+            //     return id
+            // })(),
 
             viewHeightMaxTrans: 2, //預設給予>=2最小內容區高度, 使能觸發顯示渲染連動機制
 
@@ -669,7 +675,7 @@ export default {
         }
     },
     beforeDestroy: function() {
-        //console.log('beforeMount')
+        //console.log('beforeDestroy')
 
         let vo = this
 
@@ -1011,11 +1017,11 @@ export default {
                     return msg
                 }
 
-                //mmkey, 產生mmkey要放在資料變更的地方, 否則beforeCreate只有1次(mounted會比computed還慢), 於vue-cli編譯情況下會有部份情境有問題
+                //mmkey, 產生mmkey要放在資料變更的地方, 否則須放在beforeMount, 且於vue-cli編譯情況下會有部份情境有問題
                 if (vo.mmkey === null) {
 
-                    //mmkey
-                    vo.mmkey = genID()
+                    // //mmkey
+                    // vo.mmkey = genID()
 
                 }
                 else {

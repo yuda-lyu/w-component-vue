@@ -160,7 +160,13 @@ export default {
             dbcRefresh: debounce(),
             dbcSetRows: debounce(),
 
-            mmkey: null,
+            // mmkey: null,
+            mmkey: genID(), //beforeMount內無法變更data, mounted內會晚於computed, 故優先放於data生成
+            // mmkey: (() => {
+            //     let id = genID()
+            //     console.log('data gen mmkey', id)
+            //     return id
+            // })(),
 
             changeHeight: true, //是否有變更高度, 初始化給true使第一次顯示能自動重算節點高度
             changeDisplay: false, //是否有變更節點顯隱狀態
@@ -201,7 +207,7 @@ export default {
 
     },
     beforeDestroy: function() {
-        //console.log('beforeMount')
+        //console.log('beforeDestroy')
 
         let vo = this
 
@@ -305,11 +311,11 @@ export default {
                 return msg
             }
 
-            //mmkey, 產生mmkey要放在資料變更的地方, 否則beforeCreate只有1次(mounted會比computed還慢), 於vue-cli編譯情況下會有部份情境有問題
+            //mmkey, 產生mmkey要放在資料變更的地方, 否則須放在beforeMount, 且於vue-cli編譯情況下會有部份情境有問題
             if (vo.mmkey === null) {
 
-                //mmkey
-                vo.mmkey = genID()
+                // //mmkey
+                // vo.mmkey = genID()
 
             }
             else {

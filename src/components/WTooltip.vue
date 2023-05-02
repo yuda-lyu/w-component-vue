@@ -19,13 +19,13 @@
 
         <!-- 需外層使用position包覆隔離, 因popper會對外層產生影響(添加class) -->
         <!--   -->
-        <div style="position:fixed; left:0; top:0; z-index:99999;">
+        <div :style="`position:fixed; left:0; top:0; z-index:${cmpZIndex};`">
             <!-- style不給予position因會被popper洗掉改用translate定位 -->
             <!-- 若使用minWidth, 會使popupjs重算給予minWidth用以自動撐開彈窗寬度失效, 若於其內slot外添加div給予minWidth, 亦會使popupjs給予minWidth機制失效, 待研究 -->
             <div
                 ref="divContent"
                 class="WPopup-Content"
-                :style="`z-index:100000;`"
+                :style="`z-index:${cmpZIndex+1};`"
                 v-show="valueTrans"
                 v-domresize
                 @domresize="updatePopper"
@@ -85,6 +85,7 @@ function removeTriggerMode(mode, mmkey) {
  * @vue-prop {String} [mode='tooltip'] 輸入組件模式字串，可選'tooltip'與'popup'，預設'tooltip'
  * @vue-prop {String} [displayType='block'] 輸入display設定字串，可選'block'與'line'，預設'block'
  * @vue-prop {Boolean} [value=false] 輸入是否顯示布林值，預設false
+ * @vue-prop {Number} [cmpZIndex=3000] 輸入彈窗使用z-index數字，預設3000
  * @vue-prop {Boolean} [isolated=false] 輸入當mode為'popup'時是否為獨立顯引狀態布林值，也就是可不接收外部傳入value值，預設false
  * @vue-prop {String} [placement='bottom'] 輸入內容區出現位置字串，可選'top-start'、'top'、'top-end'、'bottom-start'、'bottom'、'bottom-end'、'left-start'、'left'、'left-end'、'right-start'、'right'、'right-end'、，預設'bottom'
  * @vue-prop {Number} [minWidth=null] 輸入最小寬度數字，單位為px，預設null
@@ -118,6 +119,10 @@ export default {
         value: {
             type: Boolean,
             default: false,
+        },
+        cmpZIndex: {
+            type: Number,
+            default: 3000,
         },
         isolated: {
             type: Boolean,
@@ -191,7 +196,13 @@ export default {
     },
     data: function() {
         return {
-            mmkey: null,
+            // mmkey: null,
+            mmkey: genID(), //beforeMount內無法變更data, mounted內會晚於computed, 故優先放於data生成
+            // mmkey: (() => {
+            //     let id = genID()
+            //     console.log('data gen mmkey', id)
+            //     return id
+            // })(),
 
             valueTrans: false,
 
@@ -217,8 +228,8 @@ export default {
 
         let vo = this
 
-        //mmkey
-        vo.mmkey = genID()
+        // //mmkey
+        // vo.mmkey = genID()
 
         //windowMousemove
         vo.windowMousemove = (e) => {

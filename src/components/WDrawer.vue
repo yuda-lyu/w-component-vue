@@ -133,7 +133,7 @@ import color2hex from '../js/vuetifyColor.mjs'
  * @vue-prop {Boolean} [afloatByFix=false] 輸入浮動顯示時是否使用fixed使能具有滿版配置布林值，預設false
  * @vue-prop {Number} [overlayOpacity=0.45] 輸入浮動顯示時抽屜外側陰影層之透明度數字，預設0.45
  * @vue-prop {String} [overlayColor='grey darken-2'] 輸入浮動顯示時抽屜外側陰影層背景顏色字串，預設'grey darken-2'
- * @vue-prop {Number} [drawerZIndex=1] 輸入浮動顯示時抽屜使用z-index數字，預設1
+ * @vue-prop {Number} [drawerZIndex=1000] 輸入浮動顯示時抽屜使用z-index數字，預設1000
  * @vue-prop {Boolean} [dragDrawerWidth=false] 輸入是否使用拖曳抽屜寬度分隔條布林值，預設false
  * @vue-prop {String} [drawerBarColor='#ddd'] 輸入分隔條顏色字串，預設'#ddd'
  * @vue-prop {Number} [drawerBarSize=2] 輸入分隔條尺寸數字，為分隔條寬度，單位為px，預設2
@@ -183,7 +183,7 @@ export default {
         },
         drawerZIndex: {
             type: Number,
-            default: 1,
+            default: 1000,
         },
         dragDrawerWidth: {
             type: Boolean,
@@ -336,10 +336,10 @@ export default {
         useDrawerZIndex: function() {
             let i = this.drawerZIndex
             if (this.afloat) {
-                i += 1000
+                i += 1
             }
             if (this.afloatByFix) {
-                i += 10000
+                i += 500 //drawer, dialog, tooltip分配z-index值差為1000, 故內部分配給500
             }
             return i
         },

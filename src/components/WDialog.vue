@@ -11,7 +11,7 @@
             :style="`
                 position:fixed; left:0px; top:0px;
                 width:calc( 100vw + ${nativeBarWidth+1}px ); height:100vh; overflow-x:hidden; overflow-y:scroll;
-                z-index:${dialogZIndex};
+                z-index:${useDialogZIndex};
                 overscroll-behavior:contain;
                 user-select:none;
             `"
@@ -227,11 +227,13 @@ import { mdiCheckCircle, mdiClose, mdiCheckerboard } from '@mdi/js'
 import get from 'lodash/get'
 import isEqual from 'lodash/isEqual'
 import cloneDeep from 'lodash/cloneDeep'
+import genID from 'wsemi/src/genID.mjs'
 import genPm from 'wsemi/src/genPm.mjs'
 import replace from 'wsemi/src/replace.mjs'
 import domIsClientXYIn from 'wsemi/src/domIsClientXYIn.mjs'
 import color2hex from '../js/vuetifyColor.mjs'
 import domResize from '../js/domResize.mjs'
+import domZIndex from '../js/domZIndex.mjs'
 import WButtonCircle from './WButtonCircle.vue'
 import WIcon from './WIcon.vue'
 
@@ -239,7 +241,7 @@ import WIcon from './WIcon.vue'
 /**
  * @vue-prop {Boolean} [show=false] 輸入是否顯示布林值，預設false
  * @vue-prop {Boolean} [isModal=true] 輸入是否為強制模式布林值，預設true
- * @vue-prop {Number} [dialogZIndex=100] 輸入彈窗使用z-index數字，預設100
+ * @vue-prop {Number} [dialogZIndex=2000] 輸入彈窗使用z-index數字，預設2000
  * @vue-prop {Boolean} [fullscreen=false] 輸入是否為全螢幕顯示布林值，若為true則忽略minWidth與maxWidth設定，預設false
  * @vue-prop {Number} [minWidth=200] 輸入彈窗最小寬度數值，單位為px，預設200，當裝置寬度小於彈窗最小寬度時則使用裝置寬度
  * @vue-prop {Number} [maxWidth=1000] 輸入彈窗最大寬度數值，單位為px，預設1000
@@ -286,7 +288,7 @@ export default {
         },
         dialogZIndex: {
             type: Number,
-            default: 100,
+            default: 2000,
         },
         fullscreen: {
             type: Boolean,
@@ -397,6 +399,15 @@ export default {
         return {
             get,
 
+            // mmkey: null,
+            mmkey: genID(), //beforeMount內無法變更data, mounted內會晚於computed, 故優先放於data生成
+            // mmkey: (() => {
+            //     let id = genID()
+            //     console.log('data gen mmkey', id)
+            //     return id
+            // })(),
+            zind: 0,
+
             mdiCheckCircle,
             mdiClose,
             mdiCheckerboard,
@@ -437,10 +448,32 @@ export default {
             // console.log('changeParam vo.showTrans', vo.showTrans)
 
             if (vo.showTrans) {
+                // console.log('changeParam showTrans', vo.showTrans)
+
+                //getLevel
+                vo.zind = domZIndex.getLevel('dialog', vo.mmkey)
+                // console.log('changeParam mmkey', vo.mmkey, 'getLevel zind', vo.zind)
+
+                //showPanel
                 vo.showPanel()
+
+            }
+            else {
+                // console.log('changeParam showTrans', vo.showTrans)
+
+                //destroyLevel
+                domZIndex.destroyLevel('dialog', vo.mmkey)
+                // console.log('changeParam mmkey', vo.mmkey, 'destroyLevel')
+
             }
 
             return ''
+        },
+
+        useDialogZIndex: function() {
+            let vo = this
+            let zind = vo.dialogZIndex + vo.zind
+            return zind
         },
 
         useIsModal: function() {

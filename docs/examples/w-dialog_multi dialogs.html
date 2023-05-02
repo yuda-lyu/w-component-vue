@@ -85,7 +85,7 @@
     </script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.2.80/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.2.81/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -145,25 +145,16 @@
             >Show({{WDialog.bShow23a}})</v-btn>
 
             <w-dialog
-                :show.sync="WDialog.bShow23a"
+                :show.sync="WDialog.bShow23c"
                 :title="WDialog.title"
-                :min-width="1200"
+                :min-width="600"
                 @resize="resizeEvent"
                 @click-save="clickSave"
                 @click-close="clickClose"
             >
                 <template v-slot:content>
                     <div style="padding:20px;">
-                        <div style="margin:15px 0px;">Here is 1st window.</div>
-
-                        <v-btn
-                            depressed
-                            small
-                            elevation="2"
-                            @click="WDialog.bShow23b=!WDialog.bShow23b"
-                        >Show({{WDialog.bShow23b}})</v-btn>
-
-                        <div style="height:160px;"></div>
+                        <div style="margin:15px 0px;">Here is 3rd window.</div>
                     </div>
                 </template>
             </w-dialog>
@@ -193,16 +184,25 @@
             </w-dialog>
 
             <w-dialog
-                :show.sync="WDialog.bShow23c"
+                :show.sync="WDialog.bShow23a"
                 :title="WDialog.title"
-                :min-width="600"
+                :min-width="1200"
                 @resize="resizeEvent"
                 @click-save="clickSave"
                 @click-close="clickClose"
             >
                 <template v-slot:content>
                     <div style="padding:20px;">
-                        <div style="margin:15px 0px;">Here is 3rd window.</div>
+                        <div style="margin:15px 0px;">Here is 1st window.</div>
+
+                        <v-btn
+                            depressed
+                            small
+                            elevation="2"
+                            @click="WDialog.bShow23b=!WDialog.bShow23b"
+                        >Show({{WDialog.bShow23b}})</v-btn>
+
+                        <div style="height:160px;"></div>
                     </div>
                 </template>
             </w-dialog>

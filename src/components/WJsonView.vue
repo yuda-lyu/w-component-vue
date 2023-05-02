@@ -252,7 +252,7 @@ export default {
         }
     },
     // beforeDestroy: function() {
-    //     //console.log('beforeMount')
+    //     //console.log('beforeDestroy')
 
     //     let vo = this
 
