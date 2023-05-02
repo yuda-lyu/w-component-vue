@@ -85,7 +85,7 @@
     </script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.2.82/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.2.83/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -153,6 +153,12 @@
                 :drag-drawer-width="true"
             >
                 <template v-slot:drawer>
+                    <!-- <div style="text-align:right;">
+                            <w-button-circle
+                                :icon="'fas fa-clipboard-check'"
+                                :tooltip="'test abc def'"
+                            ></w-button-circle>
+                    </div>-->
                     <!-- afloat模式下list會有透明色, 故需給予背景色避免透視下方 -->
                     <w-list-vertical
                         style="height:100%; background:#fff;"

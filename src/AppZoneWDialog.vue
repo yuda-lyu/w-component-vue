@@ -8,7 +8,7 @@
         <div style="padding:0px;">
 
 
-            <div v-if="false" class="bk">
+            <div class="bk">
                 <demolink
                     :kbname="'w-dialog'"
                     :casename="'slot content'"
@@ -46,7 +46,7 @@
             </div>
 
 
-            <div v-if="false" class="bk">
+            <div class="bk">
                 <demolink
                     :kbname="'w-dialog'"
                     :casename="'icon (fontawesome)'"
@@ -85,7 +85,7 @@
             </div>
 
 
-            <div v-if="false" class="bk">
+            <div class="bk">
                 <demolink
                     :kbname="'w-dialog'"
                     :casename="'title'"
@@ -123,7 +123,7 @@
             </div>
 
 
-            <div v-if="false" class="bk">
+            <div class="bk">
                 <demolink
                     :kbname="'w-dialog'"
                     :casename="'headerBackgroundColor'"
@@ -162,7 +162,7 @@
             </div>
 
 
-            <div v-if="false" class="bk">
+            <div class="bk">
                 <demolink
                     :kbname="'w-dialog'"
                     :casename="'titleColor & headerIconColor & headerBackgroundColor'"
@@ -203,7 +203,7 @@
             </div>
 
 
-            <div v-if="false" class="bk">
+            <div class="bk">
                 <demolink
                     :kbname="'w-dialog'"
                     :casename="'headerShadow (no shadow)'"
@@ -242,7 +242,7 @@
             </div>
 
 
-            <div v-if="false" class="bk">
+            <div class="bk">
                 <demolink
                     :kbname="'w-dialog'"
                     :casename="'headerShadowStyle'"
@@ -281,7 +281,7 @@
             </div>
 
 
-            <div v-if="false" class="bk">
+            <div class="bk">
                 <demolink
                     :kbname="'w-dialog'"
                     :casename="'headerBtns'"
@@ -321,7 +321,7 @@
             </div>
 
 
-            <div v-if="false" class="bk">
+            <div class="bk">
                 <demolink
                     :kbname="'w-dialog'"
                     :casename="'slot header-left & header-right'"
@@ -377,7 +377,7 @@
             </div>
 
 
-            <div v-if="false" class="bk">
+            <div class="bk">
                 <demolink
                     :kbname="'w-dialog'"
                     :casename="'saveBtnTooltip & closeBtnTooltip'"
@@ -417,7 +417,7 @@
             </div>
 
 
-            <div v-if="false" class="bk">
+            <div class="bk">
                 <demolink
                     :kbname="'w-dialog'"
                     :casename="'hasSaveBtn, no save button'"
@@ -456,7 +456,7 @@
             </div>
 
 
-            <div v-if="false" class="bk">
+            <div class="bk">
                 <demolink
                     :kbname="'w-dialog'"
                     :casename="'hasSaveBtn and hasCloseBtn, no save and close button'"
@@ -496,7 +496,7 @@
             </div>
 
 
-            <div v-if="false" class="bk">
+            <div class="bk">
                 <demolink
                     :kbname="'w-dialog'"
                     :casename="'closeWithInterceptor'"
@@ -535,7 +535,7 @@
             </div>
 
 
-            <div v-if="false" class="bk">
+            <div class="bk">
                 <demolink
                     :kbname="'w-dialog'"
                     :casename="'contentTextColor & contentBackgroundColor'"
@@ -575,7 +575,7 @@
             </div>
 
 
-            <div v-if="false" class="bk">
+            <div class="bk">
                 <demolink
                     :kbname="'w-dialog'"
                     :casename="'maxWidth, for narrow width'"
@@ -614,7 +614,7 @@
             </div>
 
 
-            <div v-if="false" class="bk">
+            <div class="bk">
                 <demolink
                     :kbname="'w-dialog'"
                     :casename="'fullscreen'"
@@ -658,7 +658,7 @@
             </div>
 
 
-            <div v-if="false" class="bk">
+            <div class="bk">
                 <demolink
                     :kbname="'w-dialog'"
                     :casename="'panelBorderRadius'"
@@ -697,7 +697,7 @@
             </div>
 
 
-            <div v-if="false" class="bk">
+            <div class="bk">
                 <demolink
                     :kbname="'w-dialog'"
                     :casename="'panelShadow (no shadow)'"
@@ -736,7 +736,7 @@
             </div>
 
 
-            <div v-if="false" class="bk">
+            <div class="bk">
                 <demolink
                     :kbname="'w-dialog'"
                     :casename="'panelShadowStyle'"
@@ -775,7 +775,7 @@
             </div>
 
 
-            <div v-if="false" class="bk">
+            <div class="bk">
                 <demolink
                     :kbname="'w-dialog'"
                     :casename="'scrollable'"
@@ -816,7 +816,7 @@
             </div>
 
 
-            <div v-if="false" class="bk">
+            <div class="bk">
                 <demolink
                     :kbname="'w-dialog'"
                     :casename="'separate for slot content'"
@@ -861,7 +861,7 @@
             </div>
 
 
-            <div v-if="false" class="bk">
+            <div class="bk">
                 <demolink
                     :kbname="'w-dialog'"
                     :casename="'table in slot content'"
@@ -1018,7 +1018,7 @@
             </div>
 
 
-            <div v-if="false" class="bk">
+            <div class="bk">
                 <demolink
                     :kbname="'w-dialog'"
                     :casename="'isModal (not persistent)'"
@@ -1057,7 +1057,7 @@
             </div>
 
 
-            <div v-if="false" class="bk">
+            <div class="bk">
                 <demolink
                     :kbname="'w-dialog'"
                     :casename="'dialogZIndex'"

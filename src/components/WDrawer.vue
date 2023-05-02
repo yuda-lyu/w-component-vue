@@ -67,7 +67,7 @@
 
                         <div
                             class="ts"
-                            :style="`width:${useDrawerWidthTrans}px; height:100%; display:flex;`"
+                            :style="`width:${useDrawerWidthTrans}px; height:100%; display:flex; position:relative;`"
                         >
 
                             <div :style="`padding-left:${useDrawerBarSize/2}px;`" v-if="dragDrawerWidth && !isAtLeft"></div>
@@ -87,22 +87,22 @@
 
                             <div :style="`padding-left:${useDrawerBarSize/2}px;`" v-if="dragDrawerWidth && isAtLeft"></div>
 
+                            <!-- 拖曳寬度bar, 須放置於drawer內, 才能避免drawer內有position顯示之dom(例如tooltip)被拖曳寬度bar遮蔽 -->
+                            <!-- 延遲至抽屜出現後才通過opacity=1顯示, 否則於浮動模式時會在外側陰影層馬上看到拖曳寬度bar, 使用者體驗不佳 -->
+                            <div
+                                ref="divBar"
+                                :style="`position:${useOverlayPosition}; z-index:${useDrawerZIndex+2}; top:0px; ${isAtLeft?'left':'right'}:${useDrawerWidthTrans-useDrawerBarWidth/2}px; width:${useDrawerBarWidth}px; height:100%; border-left:${drawerBarBorderSize}px solid ${useDrawerBarBorderColor}; border-right:${drawerBarBorderSize}px solid ${useDrawerBarBorderColor}; opacity:${showOverlay5DragDrawerBar?1:0}; cursor:col-resize; user-select:none;`"
+                                v-show="valueTrans && dragDrawerWidth"
+                            >
+                                <div :style="`width:${useDrawerBarSize}px; height:100%; background:${useDrawerBarColor};`"></div>
+                            </div>
+
                         </div>
 
                     </div>
 
                 </div>
 
-            </div>
-
-            <!-- 拖曳寬度bar, z-index需大於drawer區, 否則多層drawer開啟拖曳寬度bar時會被遮蔽 -->
-            <!-- 延遲至抽屜出現後才通過opacity=1顯示, 否則於浮動模式時會在外側陰影層馬上看到拖曳寬度bar, 使用者體驗不佳 -->
-            <div
-                ref="divBar"
-                :style="`position:${useOverlayPosition}; z-index:${useDrawerZIndex+3}; top:0px; ${isAtLeft?'left':'right'}:${useDrawerWidthTrans-useDrawerBarWidth/2}px; width:${useDrawerBarWidth}px; height:100%; border-left:${drawerBarBorderSize}px solid ${useDrawerBarBorderColor}; border-right:${drawerBarBorderSize}px solid ${useDrawerBarBorderColor}; opacity:${showOverlay5DragDrawerBar?1:0}; cursor:col-resize; user-select:none;`"
-                v-show="valueTrans && dragDrawerWidth"
-            >
-                <div :style="`width:${useDrawerBarSize}px; height:100%; background:${useDrawerBarColor};`"></div>
             </div>
 
         </div>
@@ -130,7 +130,7 @@ import color2hex from '../js/vuetifyColor.mjs'
  * @vue-prop {Number} [drawerWidthMin=null] 輸入使用拖曳抽屜寬度分隔條(dragDrawerWidth=true)時，拖曳抽屜寬度分隔條最小值數字，預設null
  * @vue-prop {Number} [drawerWidthMax=null] 輸入使用拖曳抽屜寬度分隔條(dragDrawerWidth=true)時，拖曳抽屜寬度分隔條最大值數字，預設null
  * @vue-prop {Boolean} [afloat=false] 輸入是否為浮動顯示布林值，設為true時浮在內容區上故不壓縮內容區寬度，預設false
- * @vue-prop {Boolean} [afloatByFix=false] 輸入浮動顯示時是否使用fixed使能具有滿版配置布林值，預設false
+ * @vue-prop {Boolean} [afloatByFix=false] 輸入浮動顯示時是否使用fixed布林值，若為true使用'fixed'反之使用'absolute'，預設false
  * @vue-prop {Number} [overlayOpacity=0.45] 輸入浮動顯示時抽屜外側陰影層之透明度數字，預設0.45
  * @vue-prop {String} [overlayColor='grey darken-2'] 輸入浮動顯示時抽屜外側陰影層背景顏色字串，預設'grey darken-2'
  * @vue-prop {Number} [drawerZIndex=1000] 輸入浮動顯示時抽屜使用z-index數字，預設1000

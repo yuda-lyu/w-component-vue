@@ -17,28 +17,24 @@
 
         </div>
 
-        <!-- 需外層使用position包覆隔離, 因popper會對外層產生影響(添加class) -->
-        <!--   -->
-        <div :style="`position:fixed; left:0; top:0; z-index:${cmpZIndex};`">
-            <!-- style不給予position因會被popper洗掉改用translate定位 -->
-            <!-- 若使用minWidth, 會使popupjs重算給予minWidth用以自動撐開彈窗寬度失效, 若於其內slot外添加div給予minWidth, 亦會使popupjs給予minWidth機制失效, 待研究 -->
+        <!-- 不能給予position因會被popupjs洗掉, 但可給z-index, 且popupjs會改用transform:translate定位 -->
+        <!-- 若使用minWidth, 會使popupjs重算給予minWidth用以自動撐開彈窗寬度失效, 若於其內slot外添加div給予minWidth, 亦會使popupjs給予minWidth機制失效, 待研究 -->
+        <div
+            ref="divContent"
+            class="WPopup-Content"
+            :style="`z-index:${cmpZIndex};`"
+            v-show="valueTrans"
+            v-domresize
+            @domresize="updatePopper"
+        >
             <div
-                ref="divContent"
-                class="WPopup-Content"
-                :style="`z-index:${cmpZIndex+1};`"
-                v-show="valueTrans"
-                v-domresize
-                @domresize="updatePopper"
+                :style="`${contentStyle} ${usePadding} ${useTextFontSize} color:${useTextColor}; background:${useBackgroundColor}; ${useMinWidth} ${useMaxWidth} ${useBorderRadius} ${useShadow}`"
+                v-if="valueTrans"
             >
-                <div
-                    :style="`${contentStyle} ${usePadding} ${useTextFontSize} color:${useTextColor}; background:${useBackgroundColor}; ${useMinWidth} ${useMaxWidth} ${useBorderRadius} ${useShadow}`"
-                    v-if="valueTrans"
-                >
-                    <slot
-                        name="content"
-                        :funHide="()=>{updateValue(false)}"
-                    ></slot>
-                </div>
+                <slot
+                    name="content"
+                    :funHide="()=>{updateValue(false)}"
+                ></slot>
             </div>
         </div>
 
@@ -638,7 +634,7 @@ export default {
 
             //@popperjs/core 2.x
             let opt = {
-                strategy: 'fixed', //需使用fixed, 否則popup彈窗會盡量基於trigger寬度而盡量窄化
+                strategy: 'absolute', //盡量使用absolute而不用fixesd, 避免跟其他組件處於不同stacking context, 統一用absolute避免後續衍生問題
                 placement: vo.placement,
                 modifiers: [
                     // preventOverflow,

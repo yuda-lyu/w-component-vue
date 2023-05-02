@@ -457,6 +457,12 @@
                 >
 
                     <template v-slot:drawer>
+                        <!-- <div style="text-align:right;">
+                            <w-button-circle
+                                :icon="'fas fa-clipboard-check'"
+                                :tooltip="'test abc def'"
+                            ></w-button-circle>
+                        </div> -->
                         <!-- afloat模式下list會有透明色, 故需給予背景色避免透視下方 -->
                         <w-list-vertical
                             style="height:100%; background:#fff;"
@@ -572,6 +578,12 @@
                 >
 
                     <template v-slot:drawer>
+                        <!-- <div style="text-align:left;">
+                            <w-button-circle
+                                :icon="'fas fa-clipboard-check'"
+                                :tooltip="'test abc def'"
+                            ></w-button-circle>
+                        </div> -->
                         <!-- afloat模式下list會有透明色, 故需給予背景色避免透視下方 -->
                         <w-list-vertical
                             style="height:100%; background:#fff;"
@@ -758,6 +770,7 @@
 import demolink from './components/demolink.vue'
 import WListVertical from './components/WListVertical.vue'
 import WDrawer from './components/WDrawer.vue'
+// import WButtonCircle from './components/WButtonCircle.vue'
 
 
 export default {
@@ -765,6 +778,7 @@ export default {
         demolink,
         WListVertical,
         WDrawer,
+        // WButtonCircle,
     },
     props: {
     },
