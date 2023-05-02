@@ -1,5 +1,6 @@
 <template>
     <WDialog
+        :minWidth="minWidth"
         :maxWidth="maxWidth"
         :headerShadow="false"
         :show.sync="showTrans"
@@ -124,6 +125,7 @@ import WDialog from './WDialog.vue'
  * @vue-prop {String} [headerBackgroundColor='grey lighten-5'] 輸入上方區塊背景顏色字串，預設'grey lighten-5'
  * @vue-prop {String} [contentBackgroundColor='white'] 輸入內容區塊背景顏色字串，預設'white'
  * @vue-prop {String} [footerBackgroundColor='grey lighten-5'] 輸入下方區塊背景顏色字串，預設'grey lighten-5'
+ * @vue-prop {Number} [minWidth=200] 輸入彈窗最小寬度數值，單位為px，預設200，當裝置寬度小於彈窗最小寬度時則使用裝置寬度
  * @vue-prop {Number} [maxWidth=500] 輸入彈窗最大寬度，單位為px，預設500
  */
 export default {
@@ -220,6 +222,10 @@ export default {
         footerBackgroundColor: {
             type: String,
             default: 'grey lighten-5',
+        },
+        minWidth: {
+            type: Number,
+            default: 200,
         },
         maxWidth: {
             type: Number,
