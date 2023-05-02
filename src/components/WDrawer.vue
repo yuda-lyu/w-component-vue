@@ -67,19 +67,19 @@
 
                         <div
                             class="ts"
-                            :style="`width:${useDrawerWidthTrans}px; height:100%; display:flex; position:relative;`"
+                            :style="`position:relative; width:${useDrawerWidthTrans}px; height:100%; display:flex;`"
                         >
 
                             <div :style="`padding-left:${useDrawerBarSize/2}px;`" v-if="dragDrawerWidth && !isAtLeft"></div>
 
                             <div
                                 class="ts"
-                                :style="`width:${useDrawerWidthTrans-useDrawerBarSize/2}px;`"
+                                :style="`width:${useEffDrawerWidthTrans}px;`"
                             >
 
                                 <slot
                                     name="drawer"
-                                    :width="useDrawerWidthTrans-useDrawerBarSize/2"
+                                    :width="useEffDrawerWidthTrans"
                                     :height="panelHeight"
                                 ></slot>
 
@@ -301,23 +301,33 @@ export default {
             //監聽drawerWidthTrans與panelWidth有變化則重算
 
             //trigger
+            vo.___drawerWidthTrans___ = vo.drawerWidthTrans
             vo.___panelWidth___ = vo.panelWidth
 
             //getPanelEffWidth
             let dwMax = vo.getPanelEffWidth()
-            // console.log('vo.drawerWidthTrans', vo.drawerWidthTrans, 'dwMax', dwMax)
+            // console.log('getPanelEffWidth dwMax', dwMax)
 
             //check
+            let r = null
             if (isNumber(dwMax)) {
-                dwMax = Math.min(vo.drawerWidthTrans, dwMax)
+                r = Math.min(vo.drawerWidthTrans, dwMax)
             }
             else {
-                dwMax = vo.drawerWidthTrans
+                r = vo.drawerWidthTrans
             }
-            // console.log('dwMax', dwMax)
+            // console.log('useDrawerWidthTrans', r)
 
-            return dwMax
+            return r
         },
+
+        useEffDrawerWidthTrans: function() {
+            let vo = this
+            let r = Math.max(vo.useDrawerWidthTrans - vo.useDrawerBarSize / 2, 0)
+            // console.log('useEffDrawerWidthTrans', r)
+            return r
+        },
+
 
         virtualZoneWidth: function() {
             if (!this.valueTrans) {
@@ -695,7 +705,7 @@ export default {
 
             //update
             vo.drawerWidthTrans = dw
-            // console.log('dw', dw)
+            // console.log('drawerWidthTrans', dw)
 
             //emit
             vo.$emit('update:drawerWidth', dw)
