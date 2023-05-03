@@ -634,7 +634,7 @@ export default {
 
             //@popperjs/core 2.x
             let opt = {
-                strategy: 'absolute', //盡量使用absolute而不用fixesd, 避免跟其他組件處於不同stacking context, 統一用absolute避免後續衍生問題
+                strategy: 'fixed', //盡量使用'fixed'而不用'absolute', 否則位於多層dialog或多層drawer內popup顯示會異常
                 placement: vo.placement,
                 modifiers: [
                     // preventOverflow,

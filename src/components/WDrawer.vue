@@ -1,15 +1,18 @@
 <template>
     <div
-        style=""
         :changeValue="changeValue"
         :changeDrawerWidth="changeDrawerWidth"
         v-domresize
         @domresize="resizePanel"
     >
 
-        <div ref="divPanel" style="position:relative; height:100%;">
+        <!-- 因拖曳寬度bar現放置於divPanel下並且浮動定位, 左右側之拖曳區會超出divPanel, 故須使用overflow-x:hidden -->
+        <div
+            ref="divPanel"
+            style="position:relative; width:100%; height:100%; overflow-x:hidden;"
+        >
 
-            <!-- 需要配合overflow-x:hidden, 否則右側抽屜會無法被內容區裁切遮蔽 -->
+            <!-- 因右側抽屜會無法被內容區裁切遮蔽, 故須使用overflow-x:hidden -->
             <div style="width:100%; height:100%; display:flex; overflow-x:hidden;">
 
                 <!-- 撐開區, 需使用min-width避免被壓縮 -->
@@ -19,7 +22,7 @@
                     v-if="isAtLeft"
                 ></div>
 
-                <!-- 因外層使用overflow-x:hidden且內容區具有無法崩塌元素, 故也得使用overflow-x:hidden進行裁切 -->
+                <!-- 因外層使用overflow-x:hidden且內容區具有無法崩塌元素, 故也須使用overflow:hidden進行裁切 -->
                 <div :style="`width:100%; height:100%; overflow:hidden;`">
 
                     <slot
@@ -49,14 +52,14 @@
 
             <!-- overlay關閉事件監聽層, 與隱藏內層之向外陰影 -->
             <div
-                :style="`position:${useOverlayPosition}; ${useDrawerDetectLoction} top:0px; bottom:0px; z-index:${useDrawerZIndex+2}; width:${useDrawerDetectWidth}; height:100%; overflow:hidden;`"
+                :style="`position:${useOverlayPosition}; ${useDrawerDetectLoction} top:0px; bottom:0px; z-index:${useDrawerZIndex+2}; width:${useDrawerDetectWidth}; height:100%;`"
                 @click="(ev)=>{ckToggle(ev,false)}"
                 v-show="showOverlay2Detect"
             >
 
                 <!-- drawer平移層 -->
                 <div
-                    :style="`height:100%; display:flex; justify-content:${ isAtLeft ? 'start' : 'end' };`"
+                    :style="`width:100%; height:100%; display:flex; justify-content:${ isAtLeft ? 'start' : 'end' };`"
                 >
 
                     <div
@@ -91,7 +94,7 @@
                             <!-- 延遲至抽屜出現後才通過opacity=1顯示, 否則於浮動模式時會在外側陰影層馬上看到拖曳寬度bar, 使用者體驗不佳 -->
                             <div
                                 ref="divBar"
-                                :style="`position:${useOverlayPosition}; z-index:${useDrawerZIndex+2}; top:0px; ${isAtLeft?'left':'right'}:${useDrawerWidthTrans-useDrawerBarWidth/2}px; width:${useDrawerBarWidth}px; height:100%; border-left:${drawerBarBorderSize}px solid ${useDrawerBarBorderColor}; border-right:${drawerBarBorderSize}px solid ${useDrawerBarBorderColor}; opacity:${showOverlay5DragDrawerBar?1:0}; cursor:col-resize; user-select:none;`"
+                                :style="`position:${useOverlayPosition}; top:0px; ${isAtLeft?'left':'right'}:${useDrawerWidthTrans-useDrawerBarWidth/2}px; width:${useDrawerBarWidth}px; height:100%; border-left:${drawerBarBorderSize}px solid ${useDrawerBarBorderColor}; border-right:${drawerBarBorderSize}px solid ${useDrawerBarBorderColor}; opacity:${showOverlay5DragDrawerBar?1:0}; cursor:col-resize; user-select:none;`"
                                 v-show="valueTrans && dragDrawerWidth"
                             >
                                 <div :style="`width:${useDrawerBarSize}px; height:100%; background:${useDrawerBarColor};`"></div>
@@ -203,7 +206,7 @@ export default {
         },
         drawerBarBorderSize: {
             type: Number,
-            default: 3, //抽屜內捲軸通常是WPanelScrolly的捲軸故寬度是8px, 而拖曳寬度bar邊寬是雙向展開, 故不能超過此8px
+            default: 3,
         },
     },
     data: function() {
@@ -215,6 +218,8 @@ export default {
             das: null,
 
             valueTrans: false,
+
+            lockToggle: false,
 
             drawerWidthTrans: 200,
 
@@ -247,6 +252,16 @@ export default {
         //das
         let das = domDragBarAndScroll(vo.$refs.divPanel, vo.$refs.divBar, { useTouchDragForPanel: false })
         das.on('dragBar', vo.dragBar)
+        das.on('pressBar', () => {
+            // console.log('pressBar')
+            vo.lockToggle = true
+        })
+        das.on('freeBar', () => {
+            setTimeout(() => { //因拖曳寬度bar現在位於overlay關閉事件監聽層之內, 故會優先觸發點擊事件後才冒泡出去, 導致放掉拖曳時會觸發點擊關閉事件, 故改採通過delay脫勾與上鎖機制避免關閉
+                // console.log('freeBar')
+                vo.lockToggle = false
+            }, 1)
+        })
 
         //save
         vo.das = das
@@ -327,7 +342,6 @@ export default {
             // console.log('useEffDrawerWidthTrans', r)
             return r
         },
-
 
         virtualZoneWidth: function() {
             if (!this.valueTrans) {
@@ -460,10 +474,18 @@ export default {
                 return
             }
 
+            //check, 上鎖時禁止觸發
+            if (vo.lockToggle) {
+                return
+            }
+
             //偵測點擊為抽屜區之外
             let b = false
             try {
                 b = !vo.$refs.divDrawer.contains(ev.target)
+                // if (b) {
+                //     console.log('偵測點擊為抽屜區之外 domContains')
+                // }
             }
             catch (err) {}
             // console.log('vo.$refs.divDrawer', vo.$refs.divDrawer)
@@ -475,6 +497,9 @@ export default {
                 try {
                     b = !domIsClientXYIn(ev.clientX, ev.clientY, vo.$refs.divDrawer)
                     // console.log(`domIsClientXYIn(ev.clientX, ev.clientY, vo.$refs.divPanel)`,domIsClientXYIn(ev.clientX, ev.clientY, vo.$refs.divPanel))
+                    // if (b) {
+                    //     console.log('偵測點擊為抽屜區之外: domIsClientXYIn')
+                    // }
                 }
                 catch (err) {}
             }

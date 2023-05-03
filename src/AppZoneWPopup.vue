@@ -25,7 +25,6 @@
                     </template>
 
                     <template v-slot:content>
-                        {{WPopup.text}}
                         <v-list style="background:transparent;"><v-list-item style="min-height:inherit; padding:5px 15px;" :key="kitem" @click="function(){}" v-for="(item,kitem) in WPopup.items">Item {{item}}</v-list-item></v-list>
                     </template>
 

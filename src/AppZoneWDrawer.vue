@@ -486,7 +486,7 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-drawer'"
-                    :casename="'afloat & overlayOpacity'"
+                    :casename="'afloat & dragDrawerWidth & drawerWidthMin & drawerWidthMax'"
                 ></demolink>
 
                 <div style="padding-bottom:10px;">
@@ -496,6 +496,46 @@
                 <w-drawer
                     style="width:500px; height:400px; border:1px solid #ddd;"
                     v-model="WDrawer.bShow112"
+                    :afloat="true"
+                    :dragDrawerWidth="true"
+                    :drawerWidthMin="150"
+                    :drawerWidthMax="300"
+                >
+
+                    <template v-slot:drawer>
+                        <!-- afloat模式下list會有透明色, 故需給予背景色避免透視下方 -->
+                        <w-list-vertical
+                            style="height:100%; background:#fff;"
+                            :items="WDrawer.listItems"
+                            :itemActive.sync="WDrawer.listItemActive"
+                        ></w-list-vertical>
+                    </template>
+
+                    <template v-slot:content>
+                        <div style="height:100%; overflow-y:auto;">
+                            <div style="padding:10px; font-size:1.2rem;">{{WDrawer.title}}</div>
+                            <div style="padding:0px 10px 10px 10px; font-size:0.9rem;">{{WDrawer.content}}</div>
+                        </div>
+                    </template>
+
+                </w-drawer>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-drawer'"
+                    :casename="'afloat & overlayOpacity'"
+                ></demolink>
+
+                <div style="padding-bottom:10px;">
+                    <v-btn depressed small elevation="2" @click="WDrawer.bShow113=!WDrawer.bShow113">Show({{WDrawer.bShow113}})</v-btn>
+                </div>
+
+                <w-drawer
+                    style="width:500px; height:400px; border:1px solid #ddd;"
+                    v-model="WDrawer.bShow113"
                     :afloat="true"
                     :overlayOpacity="0.1"
                 >
@@ -528,12 +568,12 @@
                 ></demolink>
 
                 <div style="padding-bottom:10px;">
-                    <v-btn depressed small elevation="2" @click="WDrawer.bShow113=!WDrawer.bShow113">Show({{WDrawer.bShow113}})</v-btn>
+                    <v-btn depressed small elevation="2" @click="WDrawer.bShow114=!WDrawer.bShow114">Show({{WDrawer.bShow114}})</v-btn>
                 </div>
 
                 <w-drawer
                     style="width:500px; height:400px; border:1px solid #ddd;"
-                    v-model="WDrawer.bShow113"
+                    v-model="WDrawer.bShow114"
                     :afloat="true"
                     :mode="'from-right'"
                 >
@@ -566,12 +606,12 @@
                 ></demolink>
 
                 <div style="padding-bottom:10px;">
-                    <v-btn depressed small elevation="2" @click="WDrawer.bShow114=!WDrawer.bShow114">Show({{WDrawer.bShow114}})</v-btn>
+                    <v-btn depressed small elevation="2" @click="WDrawer.bShow115=!WDrawer.bShow115">Show({{WDrawer.bShow115}})</v-btn>
                 </div>
 
                 <w-drawer
                     style="width:500px; height:400px; border:1px solid #ddd;"
-                    v-model="WDrawer.bShow114"
+                    v-model="WDrawer.bShow115"
                     :afloat="true"
                     :mode="'from-right'"
                     :dragDrawerWidth="true"
@@ -607,16 +647,57 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-drawer'"
-                    :casename="'afloat & afloatByFix'"
+                    :casename="'afloat & mode & dragDrawerWidth & drawerWidthMin & drawerWidthMax'"
                 ></demolink>
 
                 <div style="padding-bottom:10px;">
-                    <v-btn depressed small elevation="2" @click="WDrawer.bShow115=!WDrawer.bShow115">Show({{WDrawer.bShow115}})</v-btn>
+                    <v-btn depressed small elevation="2" @click="WDrawer.bShow116=!WDrawer.bShow116">Show({{WDrawer.bShow116}})</v-btn>
                 </div>
 
                 <w-drawer
                     style="width:500px; height:400px; border:1px solid #ddd;"
-                    v-model="WDrawer.bShow115"
+                    v-model="WDrawer.bShow116"
+                    :afloat="true"
+                    :mode="'from-right'"
+                    :dragDrawerWidth="true"
+                    :drawerWidthMin="150"
+                    :drawerWidthMax="300"
+                >
+
+                    <template v-slot:drawer>
+                        <!-- afloat模式下list會有透明色, 故需給予背景色避免透視下方 -->
+                        <w-list-vertical
+                            style="height:100%; background:#fff;"
+                            :items="WDrawer.listItems"
+                            :itemActive.sync="WDrawer.listItemActive"
+                        ></w-list-vertical>
+                    </template>
+
+                    <template v-slot:content>
+                        <div style="height:100%; overflow-y:auto;">
+                            <div style="padding:10px; font-size:1.2rem;">{{WDrawer.title}}</div>
+                            <div style="padding:0px 10px 10px 10px; font-size:0.9rem;">{{WDrawer.content}}</div>
+                        </div>
+                    </template>
+
+                </w-drawer>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-drawer'"
+                    :casename="'afloat & afloatByFix'"
+                ></demolink>
+
+                <div style="padding-bottom:10px;">
+                    <v-btn depressed small elevation="2" @click="WDrawer.bShow117=!WDrawer.bShow117">Show({{WDrawer.bShow117}})</v-btn>
+                </div>
+
+                <w-drawer
+                    style="width:500px; height:400px; border:1px solid #ddd;"
+                    v-model="WDrawer.bShow117"
                     :afloat="true"
                     :afloatByFix="true"
                 >
@@ -649,12 +730,12 @@
                 ></demolink>
 
                 <div style="padding-bottom:10px;">
-                    <v-btn depressed small elevation="2" @click="WDrawer.bShow116=!WDrawer.bShow116">Show({{WDrawer.bShow116}})</v-btn>
+                    <v-btn depressed small elevation="2" @click="WDrawer.bShow118=!WDrawer.bShow118">Show({{WDrawer.bShow118}})</v-btn>
                 </div>
 
                 <w-drawer
                     style="width:500px; height:400px; border:1px solid #ddd;"
-                    v-model="WDrawer.bShow116"
+                    v-model="WDrawer.bShow118"
                     :afloat="true"
                     :afloatByFix="true"
                     :dragDrawerWidth="true"
@@ -688,12 +769,12 @@
                 ></demolink>
 
                 <div style="padding-bottom:10px;">
-                    <v-btn depressed small elevation="2" @click="WDrawer.bShow117=!WDrawer.bShow117">Show({{WDrawer.bShow117}})</v-btn>
+                    <v-btn depressed small elevation="2" @click="WDrawer.bShow119=!WDrawer.bShow119">Show({{WDrawer.bShow119}})</v-btn>
                 </div>
 
                 <w-drawer
                     style="width:500px; height:400px; border:1px solid #ddd;"
-                    v-model="WDrawer.bShow117"
+                    v-model="WDrawer.bShow119"
                     :afloat="true"
                     :afloatByFix="true"
                     :mode="'from-right'"
@@ -727,12 +808,12 @@
                 ></demolink>
 
                 <div style="padding-bottom:10px;">
-                    <v-btn depressed small elevation="2" @click="WDrawer.bShow118=!WDrawer.bShow118">Show({{WDrawer.bShow118}})</v-btn>
+                    <v-btn depressed small elevation="2" @click="WDrawer.bShow120=!WDrawer.bShow120">Show({{WDrawer.bShow120}})</v-btn>
                 </div>
 
                 <w-drawer
                     style="width:500px; height:400px; border:1px solid #ddd;"
-                    v-model="WDrawer.bShow118"
+                    v-model="WDrawer.bShow120"
                     :afloat="true"
                     :afloatByFix="true"
                     :mode="'from-right'"
@@ -770,7 +851,7 @@
 import demolink from './components/demolink.vue'
 import WListVertical from './components/WListVertical.vue'
 import WDrawer from './components/WDrawer.vue'
-// import WButtonCircle from './components/WButtonCircle.vue'
+import WButtonCircle from './components/WButtonCircle.vue'
 
 
 export default {
@@ -778,7 +859,7 @@ export default {
         demolink,
         WListVertical,
         WDrawer,
-        // WButtonCircle,
+        WButtonCircle,
     },
     props: {
     },
@@ -875,6 +956,8 @@ export default {
                 'bShow116': false,
                 'bShow117': false,
                 'bShow118': false,
+                'bShow119': false,
+                'bShow120': false,
             },
             'actions': [
                 {
