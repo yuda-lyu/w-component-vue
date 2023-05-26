@@ -420,7 +420,7 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-dialog'"
-                    :casename="'hasSaveBtn, no save button'"
+                    :casename="'hasSaveBtn (no save button)'"
                 ></demolink>
 
                 <v-btn depressed small elevation="2" @click="WDialog.bShow11=!WDialog.bShow11">Show({{WDialog.bShow11}})</v-btn>
@@ -459,7 +459,46 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-dialog'"
-                    :casename="'hasSaveBtn and hasCloseBtn, no save and close button'"
+                    :casename="'isModal (not persistent)'"
+                ></demolink>
+
+                <v-btn depressed small elevation="2" @click="WDialog.bShow12=!WDialog.bShow12">Show({{WDialog.bShow12}})</v-btn>
+
+                <w-dialog
+                    :show.sync="WDialog.bShow12"
+                    :title="WDialog.title"
+                    :isModal="false"
+                    @resize="resizeEvent"
+                    @click-save="clickSave"
+                    @click-close="clickClose"
+                >
+
+                    <template v-slot:content>
+                        <div style="padding:20px;">
+                            <div style="font-size:2rem; margin:20px 0px 30px 0px;">
+                                {{WDialog.text1}}
+                            </div>
+                            <div style="margin:15px 0px;">
+                                {{WDialog.text2}}
+                            </div>
+                            <div style="margin:15px 0px;">
+                                {{WDialog.text3}}
+                            </div>
+                            <div style="margin:15px 0px;">
+                                {{WDialog.text4}}
+                            </div>
+                        </div>
+                    </template>
+
+                </w-dialog>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-dialog'"
+                    :casename="'hasSaveBtn & hasCloseBtn & isModal (no save and close button)'"
                 ></demolink>
 
                 <v-btn depressed small elevation="2" @click="WDialog.bShow13=!WDialog.bShow13">Show({{WDialog.bShow13}})</v-btn>
@@ -469,6 +508,7 @@
                     :title="WDialog.title"
                     :hasSaveBtn="false"
                     :hasCloseBtn="false"
+                    :isModal="false"
                     @resize="resizeEvent"
                     @click-save="clickSave"
                     @click-close="clickClose"
@@ -502,10 +542,10 @@
                     :casename="'closeWithInterceptor'"
                 ></demolink>
 
-                <v-btn depressed small elevation="2" @click="WDialog.bShow12=!WDialog.bShow12">Show({{WDialog.bShow12}})</v-btn>
+                <v-btn depressed small elevation="2" @click="WDialog.bShow14=!WDialog.bShow14">Show({{WDialog.bShow14}})</v-btn>
 
                 <w-dialog
-                    :show.sync="WDialog.bShow12"
+                    :show.sync="WDialog.bShow14"
                     :title="WDialog.title"
                     :closeWithInterceptor="true"
                     @resize="resizeEvent"
@@ -541,10 +581,10 @@
                     :casename="'contentTextColor & contentBackgroundColor'"
                 ></demolink>
 
-                <v-btn depressed small elevation="2" @click="WDialog.bShow14=!WDialog.bShow14">Show({{WDialog.bShow14}})</v-btn>
+                <v-btn depressed small elevation="2" @click="WDialog.bShow15=!WDialog.bShow15">Show({{WDialog.bShow15}})</v-btn>
 
                 <w-dialog
-                    :show.sync="WDialog.bShow14"
+                    :show.sync="WDialog.bShow15"
                     :title="WDialog.title"
                     :contentTextColor="'#fff'"
                     :contentBackgroundColor="'cyan darken-2'"
@@ -578,13 +618,13 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-dialog'"
-                    :casename="'maxWidth, for narrow width'"
+                    :casename="'maxWidth (narrow width)'"
                 ></demolink>
 
-                <v-btn depressed small elevation="2" @click="WDialog.bShow15=!WDialog.bShow15">Show({{WDialog.bShow15}})</v-btn>
+                <v-btn depressed small elevation="2" @click="WDialog.bShow16=!WDialog.bShow16">Show({{WDialog.bShow16}})</v-btn>
 
                 <w-dialog
-                    :show.sync="WDialog.bShow15"
+                    :show.sync="WDialog.bShow16"
                     :title="WDialog.title"
                     :maxWidth="500"
                     @resize="resizeEvent"
@@ -620,12 +660,12 @@
                     :casename="'fullscreen'"
                 ></demolink>
 
-                <v-btn depressed small elevation="2" @click="WDialog.bShow16a=!WDialog.bShow16a">Show({{WDialog.bShow16a}})</v-btn>
+                <v-btn depressed small elevation="2" @click="WDialog.bShow17a=!WDialog.bShow17a">Show({{WDialog.bShow17a}})</v-btn>
 
                 <w-dialog
-                    :show.sync="WDialog.bShow16a"
+                    :show.sync="WDialog.bShow17a"
                     :title="WDialog.title"
-                    :fullscreen="WDialog.bShow16b"
+                    :fullscreen="WDialog.bShow17b"
                     @resize="resizeEvent"
                     @click-save="clickSave"
                     @click-close="clickClose"
@@ -646,9 +686,9 @@
                                 {{WDialog.text4}}
                             </div>
 
-                            <v-btn style="margin-right:10px;" depressed small elevation="2" @click="WDialog.bShow16a=!WDialog.bShow16a">Hide Window</v-btn>
+                            <v-btn style="margin-right:10px;" depressed small elevation="2" @click="WDialog.bShow17a=!WDialog.bShow17a">Hide Window</v-btn>
 
-                            <v-btn style="margin-right:10px;" depressed small elevation="2" @click="WDialog.bShow16b=!WDialog.bShow16b">Toggle to {{WDialog.bShow16b?'Normal Size':'Fullscreen'}}</v-btn>
+                            <v-btn style="margin-right:10px;" depressed small elevation="2" @click="WDialog.bShow17b=!WDialog.bShow17b">Toggle to {{WDialog.bShow17b?'Normal Size':'Fullscreen'}}</v-btn>
 
                         </div>
                     </template>
@@ -664,10 +704,10 @@
                     :casename="'panelBorderRadius'"
                 ></demolink>
 
-                <v-btn depressed small elevation="2" @click="WDialog.bShow17=!WDialog.bShow17">Show({{WDialog.bShow17}})</v-btn>
+                <v-btn depressed small elevation="2" @click="WDialog.bShow18=!WDialog.bShow18">Show({{WDialog.bShow18}})</v-btn>
 
                 <w-dialog
-                    :show.sync="WDialog.bShow17"
+                    :show.sync="WDialog.bShow18"
                     :title="WDialog.title"
                     :panelBorderRadius="0"
                     @resize="resizeEvent"
@@ -703,10 +743,10 @@
                     :casename="'panelShadow (no shadow)'"
                 ></demolink>
 
-                <v-btn depressed small elevation="2" @click="WDialog.bShow18=!WDialog.bShow18">Show({{WDialog.bShow18}})</v-btn>
+                <v-btn depressed small elevation="2" @click="WDialog.bShow19=!WDialog.bShow19">Show({{WDialog.bShow19}})</v-btn>
 
                 <w-dialog
-                    :show.sync="WDialog.bShow18"
+                    :show.sync="WDialog.bShow19"
                     :title="WDialog.title"
                     :panelShadow="false"
                     @resize="resizeEvent"
@@ -742,10 +782,10 @@
                     :casename="'panelShadowStyle'"
                 ></demolink>
 
-                <v-btn depressed small elevation="2" @click="WDialog.bShow19=!WDialog.bShow19">Show({{WDialog.bShow19}})</v-btn>
+                <v-btn depressed small elevation="2" @click="WDialog.bShow20=!WDialog.bShow20">Show({{WDialog.bShow20}})</v-btn>
 
                 <w-dialog
-                    :show.sync="WDialog.bShow19"
+                    :show.sync="WDialog.bShow20"
                     :title="WDialog.title"
                     :panelShadowStyle="'0px 16px 25px rgba(0, 0, 0, 0.43)'"
                     @resize="resizeEvent"
@@ -781,10 +821,10 @@
                     :casename="'scrollable'"
                 ></demolink>
 
-                <v-btn depressed small elevation="2" @click="WDialog.bShow20=!WDialog.bShow20">Show({{WDialog.bShow20}})</v-btn>
+                <v-btn depressed small elevation="2" @click="WDialog.bShow21=!WDialog.bShow21">Show({{WDialog.bShow21}})</v-btn>
 
                 <w-dialog
-                    :show.sync="WDialog.bShow20"
+                    :show.sync="WDialog.bShow21"
                     :title="WDialog.title"
                     @resize="resizeEvent"
                     @click-save="clickSave"
@@ -819,13 +859,13 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-dialog'"
-                    :casename="'separate for slot content'"
+                    :casename="'slot content (separate line)'"
                 ></demolink>
 
-                <v-btn depressed small elevation="2" @click="WDialog.bShow21=!WDialog.bShow21">Show({{WDialog.bShow21}})</v-btn>
+                <v-btn depressed small elevation="2" @click="WDialog.bShow22=!WDialog.bShow22">Show({{WDialog.bShow22}})</v-btn>
 
                 <w-dialog
-                    :show.sync="WDialog.bShow21"
+                    :show.sync="WDialog.bShow22"
                     :title="WDialog.title"
                     @resize="resizeEvent"
                     @click-save="clickSave"
@@ -864,13 +904,13 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-dialog'"
-                    :casename="'table in slot content'"
+                    :casename="'slot content (table)'"
                 ></demolink>
 
-                <v-btn depressed small elevation="2" @click="WDialog.bShow22=!WDialog.bShow22">Show({{WDialog.bShow22}})</v-btn>
+                <v-btn depressed small elevation="2" @click="WDialog.bShow23=!WDialog.bShow23">Show({{WDialog.bShow23}})</v-btn>
 
                 <w-dialog
-                    :show.sync="WDialog.bShow22"
+                    :show.sync="WDialog.bShow23"
                     :title="WDialog.title"
                     :maxWidth="500"
                     @resize="resizeEvent"
@@ -939,13 +979,53 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-dialog'"
+                    :casename="'slot panel'"
+                ></demolink>
+
+                <v-btn depressed small elevation="2" @click="WDialog.bShow24=!WDialog.bShow24;delayClose()">Show({{WDialog.bShow24}})</v-btn>
+
+                <w-dialog
+                    :show.sync="WDialog.bShow24"
+                    :title="WDialog.title"
+                    :maxWidth="600"
+                    @resize="resizeEvent"
+                    @click-save="clickSave"
+                    @click-close="clickClose"
+                >
+
+                    <template v-slot:panel>
+
+                        <div style="padding:20px;">
+                            <div style="margin:10px;">
+                                {{WDialog.text3}}
+                            </div>
+                            <div style="margin:10px; color:#5b7ad7;">
+                                Auto close after
+                                <span style="color:#f26;">
+                                    {{WDialog.iShow24}}
+                                </span>
+                                seconds...
+                            </div>
+
+                        </div>
+
+                    </template>
+
+                </w-dialog>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-dialog'"
                     :casename="'multi dialogs'"
                 ></demolink>
 
-                <v-btn depressed small elevation="2" @click="WDialog.bShow23a=!WDialog.bShow23a">Show({{WDialog.bShow23a}})</v-btn>
+                <v-btn depressed small elevation="2" @click="WDialog.bShow25a=!WDialog.bShow25a">Show({{WDialog.bShow25a}})</v-btn>
 
                 <w-dialog
-                    :show.sync="WDialog.bShow23c"
+                    :show.sync="WDialog.bShow25c"
                     :title="WDialog.title"
                     :minWidth="600"
                     @resize="resizeEvent"
@@ -966,7 +1046,7 @@
                 </w-dialog>
 
                 <w-dialog
-                    :show.sync="WDialog.bShow23b"
+                    :show.sync="WDialog.bShow25b"
                     :title="WDialog.title"
                     :minWidth="900"
                     @resize="resizeEvent"
@@ -981,7 +1061,7 @@
                                 Here is 2nd window.
                             </div>
 
-                            <v-btn depressed small elevation="2" @click="WDialog.bShow23c=!WDialog.bShow23c">Show({{WDialog.bShow23c}})</v-btn>
+                            <v-btn depressed small elevation="2" @click="WDialog.bShow25c=!WDialog.bShow25c">Show({{WDialog.bShow25c}})</v-btn>
 
                             <div style="height:80px;"></div>
 
@@ -991,7 +1071,7 @@
                 </w-dialog>
 
                 <w-dialog
-                    :show.sync="WDialog.bShow23a"
+                    :show.sync="WDialog.bShow25a"
                     :title="WDialog.title"
                     :minWidth="1200"
                     @resize="resizeEvent"
@@ -1006,7 +1086,7 @@
                                 Here is 1st window.
                             </div>
 
-                            <v-btn depressed small elevation="2" @click="WDialog.bShow23b=!WDialog.bShow23b">Show({{WDialog.bShow23b}})</v-btn>
+                            <v-btn depressed small elevation="2" @click="WDialog.bShow25b=!WDialog.bShow25b">Show({{WDialog.bShow25b}})</v-btn>
 
                             <div style="height:160px;"></div>
 
@@ -1021,52 +1101,13 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-dialog'"
-                    :casename="'isModal (not persistent)'"
-                ></demolink>
-
-                <v-btn depressed small elevation="2" @click="WDialog.bShow24=!WDialog.bShow24">Show({{WDialog.bShow24}})</v-btn>
-
-                <w-dialog
-                    :show.sync="WDialog.bShow24"
-                    :title="WDialog.title"
-                    :isModal="false"
-                    @resize="resizeEvent"
-                    @click-save="clickSave"
-                    @click-close="clickClose"
-                >
-
-                    <template v-slot:content>
-                        <div style="padding:20px;">
-                            <div style="font-size:2rem; margin:20px 0px 30px 0px;">
-                                {{WDialog.text1}}
-                            </div>
-                            <div style="margin:15px 0px;">
-                                {{WDialog.text2}}
-                            </div>
-                            <div style="margin:15px 0px;">
-                                {{WDialog.text3}}
-                            </div>
-                            <div style="margin:15px 0px;">
-                                {{WDialog.text4}}
-                            </div>
-                        </div>
-                    </template>
-
-                </w-dialog>
-
-            </div>
-
-
-            <div class="bk">
-                <demolink
-                    :kbname="'w-dialog'"
                     :casename="'dialogZIndex'"
                 ></demolink>
 
-                <v-btn depressed small elevation="2" @click="WDialog.bShow25=!WDialog.bShow25">Show({{WDialog.bShow25}})</v-btn>
+                <v-btn depressed small elevation="2" @click="WDialog.bShow26=!WDialog.bShow26">Show({{WDialog.bShow26}})</v-btn>
 
                 <w-dialog
-                    :show.sync="WDialog.bShow25"
+                    :show.sync="WDialog.bShow26"
                     :title="WDialog.title"
                     :dialogZIndex="1000"
                     @resize="resizeEvent"
@@ -1131,19 +1172,21 @@ export default {
                 'bShow13': false,
                 'bShow14': false,
                 'bShow15': false,
-                'bShow16a': false,
-                'bShow16b': true, //fullscreen
-                'bShow17': false,
+                'bShow16': false,
+                'bShow17a': false,
+                'bShow17b': true, //fullscreen
                 'bShow18': false,
                 'bShow19': false,
                 'bShow20': false,
                 'bShow21': false,
                 'bShow22': false,
-                'bShow23a': false,
-                'bShow23b': false,
-                'bShow23c': false,
+                'bShow23': false,
                 'bShow24': false,
-                'bShow25': false,
+                'iShow24': 0,
+                'bShow25a': false,
+                'bShow25b': false,
+                'bShow25c': false,
+                'bShow26': false,
                 'headerBtns': [
                     {
                         icon: 'fas fa-book-reader',
@@ -1201,6 +1244,19 @@ export default {
             alert('pm.resolve() for close')
             msg.pm.resolve()
             //msg.pm.reject()
+        },
+
+        delayClose: function() {
+            console.log('delayClose')
+            let vo = this
+            vo.WDialog.iShow24 = 5
+            let t = setInterval(() => {
+                vo.WDialog.iShow24 -= 1
+                if (vo.WDialog.iShow24 <= 0) {
+                    clearInterval(t)
+                    vo.WDialog.bShow24 = false
+                }
+            }, 1000)
         },
 
     },

@@ -309,6 +309,52 @@
             </div>
 
 
+            <div class="bk">
+                <demolink
+                    :kbname="'w-progress-bar'"
+                    :casename="'enableContinuous'"
+                ></demolink>
+
+                <w-progress-bar
+                    style="width:400px;"
+                    :enableContinuous="true"
+                ></w-progress-bar>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-progress-bar'"
+                    :casename="'enableContinuous & progColor & progBackgroundColor'"
+                ></demolink>
+
+                <w-progress-bar
+                    style="width:400px;"
+                    :enableContinuous="true"
+                    :progColor="'orange lighten-1'"
+                    :progBackgroundColor="'orange lighten-5'"
+                ></w-progress-bar>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-progress-bar'"
+                    :casename="'enableContinuous & continuousIncrease & continuousPeriod'"
+                ></demolink>
+
+                <w-progress-bar
+                    style="width:400px;"
+                    :enableContinuous="true"
+                    :continuousIncrease="10"
+                    :continuousPeriod="200"
+                ></w-progress-bar>
+
+            </div>
+
+
         </div>
 
 

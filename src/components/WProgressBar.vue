@@ -1,14 +1,17 @@
 <template>
-    <div>
+    <div :changeContinuous="changeContinuous">
 
         <div
             :style="`color:${useTitleTextColor}; ${useTitleTextFontSize};`"
-            v-if="title"
+            v-if="hasTitle"
         >
             {{title}}
         </div>
 
-        <div style="display:flex; align-items:center;">
+        <div
+            :style="`display:flex; align-items:center;`"
+            v-if="!enableContinuous"
+        >
 
             <div :style="`${useBorderRadius} overflow:hidden; width:100%; height:${height}px;`">
                 <div :style="`background:${useProgBackgroundColor}; height:${height}px;`">
@@ -33,11 +36,21 @@
 
         </div>
 
+        <div
+            :style="`${useBorderRadius} overflow:hidden; width:100%; height:${height}px;`"
+            v-if="enableContinuous"
+        >
+            <div :style="`position:relative; background:${useProgBackgroundColor}; height:${height}px;`">
+                <div :style="`position:absolute; transition:all ${continuousFirst?0:continuousPeriod}ms linear; left:${continuousShiftX}%; top:0px; background:${useProgColor}; width:${continuousWidth}%; height:${height}px;`"></div>
+            </div>
+        </div>
+
     </div>
 </template>
 
 <script>
 import { mdiCheck, mdiOrbitVariant } from '@mdi/js'
+import isestr from 'wsemi/src/isestr.mjs'
 import dig from 'wsemi/src/dig.mjs'
 import replace from 'wsemi/src/replace.mjs'
 import color2hex from '../js/vuetifyColor.mjs'
@@ -59,10 +72,13 @@ import WIcon from './WIcon.vue'
  * @vue-prop {String} [iconFinish='mdiCheck'] 輸入完成狀態(value>=100)圖標字串，可為mdi,md,fa代號或mdi/js路徑，預設'mdiCheck'
  * @vue-prop {String} [iconWaitingColor='grey'] 輸入等待狀態(value<=0)圖標顏色字串，預設'grey'
  * @vue-prop {String} [iconFinishColor='green'] 輸入完成狀態(value>=100)圖標顏色字串，預設'green'
- * @vue-prop {Boolean} [enableIconWaiting=true] 輸入是否使用等待狀態(value<=0)圖標，預設true
- * @vue-prop {Boolean} [enableIconFinish=true] 輸入是否使用完成狀態(value>=100)圖標，預設true
+ * @vue-prop {Boolean} [enableIconWaiting=true] 輸入是否使用等待狀態(value<=0)圖標布林值，預設true
+ * @vue-prop {Boolean} [enableIconFinish=true] 輸入是否使用完成狀態(value>=100)圖標布林值，預設true
  * @vue-prop {String} [valueTextColor='grey darken-2'] 輸入文字顏色字串，預設'grey darken-2'
  * @vue-prop {String} [valueTextFontSize='0.85rem'] 輸入文字字型大小字串，預設'0.85rem'
+ * @vue-prop {Boolean} [enableContinuous=false] 輸入是否使用持續變化展示布林值，使用true時進度數字(value)與圖標(icon)失效，預設false
+ * @vue-prop {Number} [continuousIncrease=12] 輸入持續變化時進度寬度增量數字，單位為px，預設12
+ * @vue-prop {Number} [continuousPeriod=100] 輸入持續變化時定時器週期數字，單位為ms，預設100
  */
 export default {
     components: {
@@ -141,14 +157,62 @@ export default {
             type: String,
             default: '0.85rem',
         },
+        enableContinuous: {
+            type: Boolean,
+            default: false,
+        },
+        continuousIncrease: {
+            type: Number,
+            default: 12,
+        },
+        continuousPeriod: {
+            type: Number,
+            default: 100,
+        },
     },
     data: function() {
         return {
             mdiCheck,
             mdiOrbitVariant,
+
+            timer: null,
+            continuousFirst: true,
+            continuousRatio: 0,
+            continuousShiftX: 0,
+            continuousWidth: 0,
+
         }
     },
+    beforeDestroy: function() {
+        //console.log('beforeDestroy')
+
+        let vo = this
+
+        //clearInterval
+        if (vo.timer !== null) {
+            clearInterval(vo.timer)
+            vo.timer = null
+        }
+
+    },
     computed: {
+
+        changeContinuous: function() {
+            let vo = this
+            if (vo.enableContinuous) {
+                vo.runContinuous()
+            }
+            else {
+                vo.destroyContinuous()
+            }
+            return ''
+        },
+
+        hasTitle: function() {
+            let vo = this
+            let b = isestr(vo.title)
+            return b
+        },
 
         status: function() {
             let vo = this
@@ -226,6 +290,74 @@ export default {
             //console.log('methods digValue', value)
             let vo = this
             return dig(value, vo.decimal)
+        },
+
+        runContinuous: function() {
+            // console.log('methods runContinuous')
+            let vo = this
+
+            //waveInOutCubic
+            let waveInOutCubic = (x) => {
+                x /= 100
+                let y = x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2
+                y = Math.max(Math.min(y, 1), 0)
+                y *= 100
+                return y
+            }
+            // for (let x = -20; x <= 120; x++) {
+            //     let y = waveInOutCubic(x)
+            //     console.log('waveInOutCubic', x, y)
+            // }
+
+            //waveGausian
+            let waveGausian = (x) => {
+                x -= 50
+                x *= 2
+                x /= 100
+                x = Math.max(Math.min(x, 1), -1)
+                let landa = 1
+                let alpha = 2
+                let y = landa * Math.exp(-alpha * x ** 2)
+                y = Math.max(Math.min(y, 1), 0)
+                let ym = 0.1353352832366127
+                y -= ym
+                y *= 1 / (1 - 0.1353352832366127)
+                y *= 100
+                return y
+            }
+            // for (let x = -20; x <= 120; x++) {
+            //     let y = waveGausian(x)
+            //     console.log('waveGausian', x, y)
+            // }
+
+            if (vo.timer === null) {
+                vo.timer = setInterval(() => {
+
+                    //continuousRatio
+                    vo.continuousRatio += vo.continuousIncrease
+                    vo.continuousFirst = false
+                    if (vo.continuousRatio >= (100 + vo.continuousIncrease)) {
+                        vo.continuousFirst = true
+                        vo.continuousRatio = -vo.continuousIncrease
+                    }
+
+                    //continuousShiftX
+                    vo.continuousShiftX = waveInOutCubic(vo.continuousRatio)
+
+                    //continuousWidth
+                    vo.continuousWidth = waveGausian(vo.continuousRatio)
+
+                }, vo.continuousPeriod)
+            }
+        },
+
+        destroyContinuous: function() {
+            // console.log('methods destroyContinuous')
+            let vo = this
+            if (vo.timer !== null) {
+                clearInterval(vo.timer)
+                vo.timer = null
+            }
         },
 
     },

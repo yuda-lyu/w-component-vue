@@ -40,7 +40,7 @@
                 >
 
                     <!-- 因toolbar陰影要顯示到content上, content給予background會遮蔽陰影, 故改由視窗本體提供content的background -->
-                    <!-- 因使用user-select:none屏蔽快速點擊, 故得於panel處恢復user-select:text提供選擇文字功能 -->
+                    <!-- 因使用user-select:none屏蔽快速點擊, 故得於divPanel處恢復user-select:text提供選擇文字功能 -->
                     <div
                         ref="divPanel"
                         :style="`
@@ -56,160 +56,172 @@
                         @domresize="resizePanel"
                     >
 
-                        <!-- 標題區 -->
-                        <div
-                            ref="divHeader"
-                            :style="`
-                                background:${useHeaderBackgroundColor};
-                                ${useHeaderShadowStyle}
-                            `"
+                        <slot
+                            name="panel"
+                            :panelWidth="panelWidth"
+                            :headerHeight="headerHeight"
+                            :contentHeight="contentHeight"
+                            :contentHeightMax="contentHeightMax"
+                            :footerHeight="footerHeight"
                         >
 
-                            <slot
-                                name="header"
-                                :panelWidth="panelWidth"
-                                :headerHeight="headerHeight"
-                                :contentHeight="contentHeight"
-                                :contentHeightMax="contentHeightMax"
-                                :footerHeight="footerHeight"
+                            <!-- 標題區 -->
+                            <div
+                                ref="divHeader"
+                                :style="`
+                                    background:${useHeaderBackgroundColor};
+                                    ${useHeaderShadowStyle}
+                                `"
                             >
 
-                                <div
-                                    :style="`
-                                        display:flex; align-items:center; padding:0px 12px;
-                                        height:${headerHeight}px; max-height:${headerHeight}px; overflow:hidden;
-                                    `"
+                                <slot
+                                    name="header"
+                                    :panelWidth="panelWidth"
+                                    :headerHeight="headerHeight"
+                                    :contentHeight="contentHeight"
+                                    :contentHeightMax="contentHeightMax"
+                                    :footerHeight="footerHeight"
                                 >
 
-                                    <div style="padding-right:10px;">
+                                    <div
+                                        :style="`
+                                            display:flex; align-items:center; padding:0px 12px;
+                                            height:${headerHeight}px; max-height:${headerHeight}px; overflow:hidden;
+                                        `"
+                                    >
 
-                                        <WIcon
-                                            :icon="useHeaderIcon"
-                                            :color="headerIconColor"
-                                        ></WIcon>
+                                        <div style="padding-right:10px;">
+
+                                            <WIcon
+                                                :icon="useHeaderIcon"
+                                                :color="headerIconColor"
+                                            ></WIcon>
+
+                                        </div>
+
+                                        <div style="padding-right:5px;">
+                                            <span :style="`${useTitleFontSize} color:${useTitleColor}; white-space:nowrap;`">
+                                                {{title}}
+                                            </span>
+                                        </div>
+
+                                        <!-- 記得slot name為小寫, 若使用駝峰於瀏覽器端會需要轉小寫, 但於vue-cli無法使用小寫識別得要用駝峰, 故統一都小寫較安全 -->
+                                        <slot name="header-left"></slot>
+
+                                        <div style="width:100%;"></div>
+
+                                        <!-- 記得slot name為小寫, 若使用駝峰於瀏覽器端會需要轉小寫, 但於vue-cli無法使用小寫識別得要用駝峰, 故統一都小寫較安全 -->
+                                        <slot name="header-right"></slot>
+
+                                        <template v-for="(btn,kbtn) in headerBtns">
+
+                                            <WButtonCircle
+                                                style="padding-left:5px;"
+                                                :key="kbtn"
+                                                :icon="get(btn,'icon')"
+                                                :shadow="false"
+                                                :paddingStyle="{v:9,h:9}"
+                                                :loadingColor="get(btn,'iconColor') || headerIconColor"
+                                                :iconColor="get(btn,'iconColor') || headerIconColor"
+                                                :iconColorHover="get(btn,'iconColor') || headerIconColor"
+                                                :iconColorFocus="get(btn,'iconColor') || headerIconColor"
+                                                :backgroundColor="get(btn,'backgroundColor') || 'transparent'"
+                                                :backgroundColorHover="'rgba(255, 255, 255, 0.1)'"
+                                                :backgroundColorFocus="'rgba(255, 255, 255, 0.3)'"
+                                                :rippleColor="'rgba(255, 255, 255, 0.4)'"
+                                                :tooltip="get(btn,'tooltip')"
+                                                @click="clickBtns(btn)"
+                                            ></WButtonCircle>
+
+                                        </template>
+
+                                        <template v-if="hasSaveBtn">
+                                            <WButtonCircle
+                                                style="padding-left:5px;"
+                                                :icon="mdiCheckCircle"
+                                                :shadow="false"
+                                                :paddingStyle="{v:9,h:9}"
+                                                :loadingColor="headerIconColor"
+                                                :iconColor="headerIconColor"
+                                                :iconColorHover="headerIconColor"
+                                                :iconColorFocus="headerIconColor"
+                                                :backgroundColor="'transparent'"
+                                                :backgroundColorHover="'rgba(255, 255, 255, 0.1)'"
+                                                :backgroundColorFocus="'rgba(255, 255, 255, 0.3)'"
+                                                :rippleColor="'rgba(255, 255, 255, 0.4)'"
+                                                :tooltip="saveBtnTooltip"
+                                                :promiseUnlock="true"
+                                                @click="clickSave"
+                                            ></WButtonCircle>
+                                        </template>
+
+                                        <template v-if="hasCloseBtn">
+                                            <WButtonCircle
+                                                style="padding-left:5px;"
+                                                :icon="mdiClose"
+                                                :shadow="false"
+                                                :paddingStyle="{v:9,h:9}"
+                                                :loadingColor="headerIconColor"
+                                                :iconColor="headerIconColor"
+                                                :iconColorHover="headerIconColor"
+                                                :iconColorFocus="headerIconColor"
+                                                :backgroundColor="'transparent'"
+                                                :backgroundColorHover="'rgba(255, 255, 255, 0.1)'"
+                                                :backgroundColorFocus="'rgba(255, 255, 255, 0.3)'"
+                                                :rippleColor="'rgba(255, 255, 255, 0.4)'"
+                                                :tooltip="closeBtnTooltip"
+                                                @click="clickClose(false)"
+                                            ></WButtonCircle>
+                                        </template>
 
                                     </div>
 
-                                    <div style="padding-right:5px;">
-                                        <span :style="`${useTitleFontSize} color:${useTitleColor}; white-space:nowrap;`">
-                                            {{title}}
-                                        </span>
-                                    </div>
+                                </slot>
 
-                                    <!-- 記得slot name為小寫, 若使用駝峰於瀏覽器端會需要轉小寫, 但於vue-cli無法使用小寫識別得要用駝峰, 故統一都小寫較安全 -->
-                                    <slot name="header-left"></slot>
+                            </div>
 
-                                    <div style="width:100%;"></div>
+                            <!-- 內容區, 因content給予background會遮蔽toolbar的陰影, 故改由視窗本體提供content的background, 此處background不使用 -->
+                            <div
+                                ref="divContent"
+                                :style="`
+                                    color:${useContentTextColor};
+                                    ${useContentHeight}
+                                    overflow-y:auto;
+                                `"
+                                v-domresize
+                                @domresize="resizeContent"
+                            >
 
-                                    <!-- 記得slot name為小寫, 若使用駝峰於瀏覽器端會需要轉小寫, 但於vue-cli無法使用小寫識別得要用駝峰, 故統一都小寫較安全 -->
-                                    <slot name="header-right"></slot>
+                                <slot
+                                    name="content"
+                                    :panelWidth="panelWidth"
+                                    :headerHeight="headerHeight"
+                                    :contentHeight="contentHeight"
+                                    :contentHeightMax="contentHeightMax"
+                                    :footerHeight="footerHeight"
+                                ></slot>
 
-                                    <template v-for="(btn,kbtn) in headerBtns">
+                            </div>
 
-                                        <WButtonCircle
-                                            style="padding-left:5px;"
-                                            :key="kbtn"
-                                            :icon="get(btn,'icon')"
-                                            :shadow="false"
-                                            :paddingStyle="{v:9,h:9}"
-                                            :loadingColor="get(btn,'iconColor') || headerIconColor"
-                                            :iconColor="get(btn,'iconColor') || headerIconColor"
-                                            :iconColorHover="get(btn,'iconColor') || headerIconColor"
-                                            :iconColorFocus="get(btn,'iconColor') || headerIconColor"
-                                            :backgroundColor="get(btn,'backgroundColor') || 'transparent'"
-                                            :backgroundColorHover="'rgba(255, 255, 255, 0.1)'"
-                                            :backgroundColorFocus="'rgba(255, 255, 255, 0.3)'"
-                                            :rippleColor="'rgba(255, 255, 255, 0.4)'"
-                                            :tooltip="get(btn,'tooltip')"
-                                            @click="clickBtns(btn)"
-                                        ></WButtonCircle>
+                            <!-- 下方區 -->
+                            <div
+                                ref="divFooter"
+                                :style="`
+                                `"
+                            >
 
-                                    </template>
+                                <slot
+                                    name="footer"
+                                    :panelWidth="panelWidth"
+                                    :headerHeight="headerHeight"
+                                    :contentHeight="contentHeight"
+                                    :contentHeightMax="contentHeightMax"
+                                    :footerHeight="footerHeight"
+                                ></slot>
 
-                                    <template v-if="hasSaveBtn">
-                                        <WButtonCircle
-                                            style="padding-left:5px;"
-                                            :icon="mdiCheckCircle"
-                                            :shadow="false"
-                                            :paddingStyle="{v:9,h:9}"
-                                            :loadingColor="headerIconColor"
-                                            :iconColor="headerIconColor"
-                                            :iconColorHover="headerIconColor"
-                                            :iconColorFocus="headerIconColor"
-                                            :backgroundColor="'transparent'"
-                                            :backgroundColorHover="'rgba(255, 255, 255, 0.1)'"
-                                            :backgroundColorFocus="'rgba(255, 255, 255, 0.3)'"
-                                            :rippleColor="'rgba(255, 255, 255, 0.4)'"
-                                            :tooltip="saveBtnTooltip"
-                                            :promiseUnlock="true"
-                                            @click="clickSave"
-                                        ></WButtonCircle>
-                                    </template>
+                            </div>
 
-                                    <template v-if="hasCloseBtn">
-                                        <WButtonCircle
-                                            style="padding-left:5px;"
-                                            :icon="mdiClose"
-                                            :shadow="false"
-                                            :paddingStyle="{v:9,h:9}"
-                                            :loadingColor="headerIconColor"
-                                            :iconColor="headerIconColor"
-                                            :iconColorHover="headerIconColor"
-                                            :iconColorFocus="headerIconColor"
-                                            :backgroundColor="'transparent'"
-                                            :backgroundColorHover="'rgba(255, 255, 255, 0.1)'"
-                                            :backgroundColorFocus="'rgba(255, 255, 255, 0.3)'"
-                                            :rippleColor="'rgba(255, 255, 255, 0.4)'"
-                                            :tooltip="closeBtnTooltip"
-                                            @click="clickClose(false)"
-                                        ></WButtonCircle>
-                                    </template>
-
-                                </div>
-
-                            </slot>
-
-                        </div>
-
-                        <!-- 內容區, 因content給予background會遮蔽toolbar的陰影, 故改由視窗本體提供content的background, 此處background不使用 -->
-                        <div
-                            ref="divContent"
-                            :style="`
-                                color:${useContentTextColor};
-                                ${useContentHeight}
-                                overflow-y:auto;
-                            `"
-                            v-domresize
-                            @domresize="resizeContent"
-                        >
-
-                            <slot
-                                name="content"
-                                :panelWidth="panelWidth"
-                                :headerHeight="headerHeight"
-                                :contentHeight="contentHeight"
-                                :contentHeightMax="contentHeightMax"
-                                :footerHeight="footerHeight"
-                            ></slot>
-
-                        </div>
-
-                        <div
-                            ref="divFooter"
-                            :style="`
-                            `"
-                        >
-
-                            <slot
-                                name="footer"
-                                :panelWidth="panelWidth"
-                                :headerHeight="headerHeight"
-                                :contentHeight="contentHeight"
-                                :contentHeightMax="contentHeightMax"
-                                :footerHeight="footerHeight"
-                            ></slot>
-
-                        </div>
+                        </slot>
 
                     </div>
 
@@ -478,9 +490,9 @@ export default {
 
         useIsModal: function() {
             let vo = this
-            if (!vo.hasSaveBtn && !vo.hasCloseBtn) {
-                return false
-            }
+            // if (!vo.hasSaveBtn && !vo.hasCloseBtn) {
+            //     return false
+            // }
             return vo.isModal
         },
 

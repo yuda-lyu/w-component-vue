@@ -930,6 +930,11 @@ export default {
                 //let items = vo.items
                 let items = gm.get(vo.mmkey)
 
+                //check
+                if (!isarr(items)) {
+                    return //因加速渲染技術是由外部wdl.setRows, wdl有可能出現未setRows但被調用processItems, 故導致gm內無數據
+                }
+
                 //外部使用fun直接修改items
                 let fun = get(opt, 'fun', null)
                 if (isfun(fun)) {

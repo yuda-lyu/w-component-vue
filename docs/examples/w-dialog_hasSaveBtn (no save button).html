@@ -85,7 +85,7 @@
     </script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.2.85/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.2.86/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -135,97 +135,31 @@
             >w-dialog</span>
         </div>
         <div class="bk">
-            <div class="item">table in slot content</div>
+            <div class="item">hasSaveBtn (no save button)</div>
 
             <v-btn
                 depressed
                 small
                 elevation="2"
-                @click="WDialog.bShow22=!WDialog.bShow22"
-            >Show({{WDialog.bShow22}})</v-btn>
+                @click="WDialog.bShow11=!WDialog.bShow11"
+            >Show({{WDialog.bShow11}})</v-btn>
 
             <w-dialog
-                :show.sync="WDialog.bShow22"
+                :show.sync="WDialog.bShow11"
                 :title="WDialog.title"
-                :max-width="500"
+                :has-save-btn="false"
                 @resize="resizeEvent"
                 @click-save="clickSave"
                 @click-close="clickClose"
             >
                 <template v-slot:content>
-                    <div style="padding:20px 20px 10px 20px;">
-                        <div style="margin:10px 0px 20px 0px;">{{WDialog.text2}}</div>
-                        <div style="margin:10px 0px 25px 0px;">{{WDialog.text3}}</div>
-                        <div style="font-size:1.5rem;">A data table</div>
-                    </div>
-
-                    <table
-                        style="width:100%; font-size:0.8rem; border-collapse:collapse;"
-                    >
-                        <thead>
-                            <tr>
-                                <th
-                                    style="padding:5px 20px; text-align:left;"
-                                >Dessert</th>
-                                <th
-                                    style="padding:5px 20px; text-align:left;"
-                                >Calories</th>
-                                <th
-                                    style="padding:5px 20px; text-align:left;"
-                                >Fat</th>
-                                <th
-                                    style="padding:5px 20px; text-align:left;"
-                                >Carbs</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td
-                                    style="padding:5px 20px; border-top:1px solid #ddd;"
-                                >Frozen Yogurt</td>
-                                <td
-                                    style="padding:5px 20px; border-top:1px solid #ddd;"
-                                >159</td>
-                                <td
-                                    style="padding:5px 20px; border-top:1px solid #ddd;"
-                                >6</td>
-                                <td
-                                    style="padding:5px 20px; border-top:1px solid #ddd;"
-                                >24</td>
-                            </tr>
-                            <tr>
-                                <td
-                                    style="padding:5px 20px; border-top:1px solid #ddd;"
-                                >Ice cream sandwich</td>
-                                <td
-                                    style="padding:5px 20px; border-top:1px solid #ddd;"
-                                >237</td>
-                                <td
-                                    style="padding:5px 20px; border-top:1px solid #ddd;"
-                                >9</td>
-                                <td
-                                    style="padding:5px 20px; border-top:1px solid #ddd;"
-                                >37</td>
-                            </tr>
-                            <tr>
-                                <td
-                                    style="padding:5px 20px; border-top:1px solid #ddd;"
-                                >Eclair</td>
-                                <td
-                                    style="padding:5px 20px; border-top:1px solid #ddd;"
-                                >262</td>
-                                <td
-                                    style="padding:5px 20px; border-top:1px solid #ddd;"
-                                >16</td>
-                                <td
-                                    style="padding:5px 20px; border-top:1px solid #ddd;"
-                                >23</td>
-                            </tr>
-                        </tbody>
-                    </table>
-
-                    <div style="padding:20px 20px 10px 20px;">
-                        <div style="margin:10px 0px 25px 0px;">{{WDialog.text4}}</div>
+                    <div style="padding:20px;">
+                        <div
+                            style="font-size:2rem; margin:20px 0px 30px 0px;"
+                        >{{WDialog.text1}}</div>
+                        <div style="margin:15px 0px;">{{WDialog.text2}}</div>
+                        <div style="margin:15px 0px;">{{WDialog.text3}}</div>
+                        <div style="margin:15px 0px;">{{WDialog.text4}}</div>
                     </div>
                 </template>
             </w-dialog>
@@ -258,19 +192,21 @@
           bShow13: false,
           bShow14: false,
           bShow15: false,
-          bShow16a: false,
-          bShow16b: true, //fullscreen
-          bShow17: false,
+          bShow16: false,
+          bShow17a: false,
+          bShow17b: true, //fullscreen
           bShow18: false,
           bShow19: false,
           bShow20: false,
           bShow21: false,
           bShow22: false,
-          bShow23a: false,
-          bShow23b: false,
-          bShow23c: false,
+          bShow23: false,
           bShow24: false,
-          bShow25: false,
+          iShow24: 0,
+          bShow25a: false,
+          bShow25b: false,
+          bShow25c: false,
+          bShow26: false,
           headerBtns: [
             {
               icon: "fas fa-book-reader",
@@ -332,6 +268,19 @@
         alert("pm.resolve() for close");
         msg.pm.resolve();
         //msg.pm.reject()
+      },
+
+      delayClose: function() {
+        console.log("delayClose");
+        let vo = this;
+        vo.WDialog.iShow24 = 5;
+        let t = setInterval(() => {
+          vo.WDialog.iShow24 -= 1;
+          if (vo.WDialog.iShow24 <= 0) {
+            clearInterval(t);
+            vo.WDialog.bShow24 = false;
+          }
+        }, 1000);
       }
     }
   });

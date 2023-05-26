@@ -85,7 +85,7 @@
     </script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.2.85/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.2.86/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -135,34 +135,33 @@
             >w-dialog</span>
         </div>
         <div class="bk">
-            <div
-                class="item"
-            >hasSaveBtn and hasCloseBtn, no save and close button</div>
+            <div class="item">slot panel</div>
 
             <v-btn
                 depressed
                 small
                 elevation="2"
-                @click="WDialog.bShow13=!WDialog.bShow13"
-            >Show({{WDialog.bShow13}})</v-btn>
+                @click="WDialog.bShow24=!WDialog.bShow24;delayClose()"
+            >Show({{WDialog.bShow24}})</v-btn>
 
             <w-dialog
-                :show.sync="WDialog.bShow13"
+                :show.sync="WDialog.bShow24"
                 :title="WDialog.title"
-                :has-save-btn="false"
-                :has-close-btn="false"
+                :max-width="600"
                 @resize="resizeEvent"
                 @click-save="clickSave"
                 @click-close="clickClose"
             >
-                <template v-slot:content>
+                <template v-slot:panel>
                     <div style="padding:20px;">
-                        <div
-                            style="font-size:2rem; margin:20px 0px 30px 0px;"
-                        >{{WDialog.text1}}</div>
-                        <div style="margin:15px 0px;">{{WDialog.text2}}</div>
-                        <div style="margin:15px 0px;">{{WDialog.text3}}</div>
-                        <div style="margin:15px 0px;">{{WDialog.text4}}</div>
+                        <div style="margin:10px;">{{WDialog.text3}}</div>
+                        <div style="margin:10px; color:#5b7ad7;">
+                            Auto close after
+                            <span
+                                style="color:#f26;"
+                            >{{WDialog.iShow24}}</span>
+                            seconds...
+                        </div>
                     </div>
                 </template>
             </w-dialog>
@@ -195,19 +194,21 @@
           bShow13: false,
           bShow14: false,
           bShow15: false,
-          bShow16a: false,
-          bShow16b: true, //fullscreen
-          bShow17: false,
+          bShow16: false,
+          bShow17a: false,
+          bShow17b: true, //fullscreen
           bShow18: false,
           bShow19: false,
           bShow20: false,
           bShow21: false,
           bShow22: false,
-          bShow23a: false,
-          bShow23b: false,
-          bShow23c: false,
+          bShow23: false,
           bShow24: false,
-          bShow25: false,
+          iShow24: 0,
+          bShow25a: false,
+          bShow25b: false,
+          bShow25c: false,
+          bShow26: false,
           headerBtns: [
             {
               icon: "fas fa-book-reader",
@@ -269,6 +270,19 @@
         alert("pm.resolve() for close");
         msg.pm.resolve();
         //msg.pm.reject()
+      },
+
+      delayClose: function() {
+        console.log("delayClose");
+        let vo = this;
+        vo.WDialog.iShow24 = 5;
+        let t = setInterval(() => {
+          vo.WDialog.iShow24 -= 1;
+          if (vo.WDialog.iShow24 <= 0) {
+            clearInterval(t);
+            vo.WDialog.bShow24 = false;
+          }
+        }, 1000);
       }
     }
   });

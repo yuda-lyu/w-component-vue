@@ -102,13 +102,13 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-tree'"
-                    :casename="'rippleColor'"
+                    :casename="'itemRippleColor'"
                 ></demolink>
 
                 <w-tree
                     style="width:350px; border:1px solid #ddd;"
                     :data="WTree.option.items"
-                    :rippleColor="'rgba(245,124,0,0.4)'"
+                    :itemRippleColor="'rgba(245,124,0,0.4)'"
                 ></w-tree>
 
             </div>
@@ -1601,8 +1601,8 @@ export default {
                     let id = Math.floor(Math.random() * 1000)
                     let text = 'node-' + id //msg.rowItem.row.item.text + '-' + msg.opItem.key
                     let dataNew = {
-                        id: id,
-                        text: text,
+                        id,
+                        text,
                     }
                     resolve(dataNew)
                 })

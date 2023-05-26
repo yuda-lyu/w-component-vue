@@ -684,9 +684,6 @@ export default {
             gm.remove(vo.mmkey)
         }
 
-        // //dragClear
-        // vo.dragClear()
-
     },
     watch: {
 
@@ -708,7 +705,7 @@ export default {
             immediate: true,
             deep: true,
             handler(value) {
-                //console.log('watch selections', value)
+                // console.log('watch selections', value)
 
                 let vo = this
 
@@ -964,7 +961,7 @@ export default {
         },
 
         updateViewHeightMaxTrans: function(msg) {
-            //console.log('methods updateViewHeightMaxTrans', msg)
+            // console.log('methods updateViewHeightMaxTrans', msg)
 
             let vo = this
 
@@ -1899,7 +1896,9 @@ export default {
                 }
 
                 //processItems
-                await vo.$refs.wdl.processItems(opt)
+                if (vo.$refs.wdl) { //於async中組件切換時還是有可能消失
+                    await vo.$refs.wdl.processItems(opt)
+                }
 
             }
 
@@ -2230,7 +2229,7 @@ export default {
         },
 
         checkItems: function(item) {
-            //console.log('methods checkItems', item)
+            // console.log('methods checkItems', item)
 
             let vo = this
 
@@ -2277,7 +2276,9 @@ export default {
                 }
 
                 //processItems
-                await vo.$refs.wdl.processItems(opt)
+                if (vo.$refs.wdl) { //於async中組件切換時還是有可能消失
+                    await vo.$refs.wdl.processItems(opt)
+                }
 
                 //save
                 vo.selectionsTrans = selectionsTrans
@@ -2296,7 +2297,7 @@ export default {
         },
 
         filterKeyWordsCore: async function(items) {
-            //console.log('methods filterKeyWordsCore', items)
+            // console.log('methods filterKeyWordsCore', items)
 
             let vo = this
 
@@ -2418,7 +2419,7 @@ export default {
         },
 
         filterKeyWords: function() {
-            //console.log('methods filterKeyWords')
+            // console.log('methods filterKeyWords')
 
             let vo = this
 
@@ -2441,7 +2442,6 @@ export default {
                 let searchingResults = -1
                 let opt = {
                     fun: async function(items) {
-                        //console.log('items', cloneDeep(items))
 
                         //filterKeyWordsCore
                         searchingResults = await vo.filterKeyWordsCore(items)
@@ -2453,7 +2453,9 @@ export default {
                 vo.$refs.wdl.setSearchingResults(-1)
 
                 //processItems
-                await vo.$refs.wdl.processItems(opt)
+                if (vo.$refs.wdl) { //於async中組件切換時還是有可能消失
+                    await vo.$refs.wdl.processItems(opt)
+                }
 
                 //setSearchingResults, 依照搜尋結果數量給予wdl, 否則沒辦法呈現無搜尋結果
                 vo.$refs.wdl.setSearchingResults(searchingResults)

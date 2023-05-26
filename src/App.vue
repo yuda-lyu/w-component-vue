@@ -591,8 +591,8 @@ export default {
                 {
                     name: 'tree',
                     cmps: [
-                        { name: 'WExplorer' },
                         { name: 'WTree' },
+                        { name: 'WExplorer' },
                         { name: 'WJsonView' },
                     ]
                 },

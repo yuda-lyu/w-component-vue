@@ -85,7 +85,7 @@
     </script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.2.85/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.2.86/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -141,11 +141,11 @@
                 depressed
                 small
                 elevation="2"
-                @click="WDialog.bShow23a=!WDialog.bShow23a"
-            >Show({{WDialog.bShow23a}})</v-btn>
+                @click="WDialog.bShow25a=!WDialog.bShow25a"
+            >Show({{WDialog.bShow25a}})</v-btn>
 
             <w-dialog
-                :show.sync="WDialog.bShow23c"
+                :show.sync="WDialog.bShow25c"
                 :title="WDialog.title"
                 :min-width="600"
                 @resize="resizeEvent"
@@ -160,7 +160,7 @@
             </w-dialog>
 
             <w-dialog
-                :show.sync="WDialog.bShow23b"
+                :show.sync="WDialog.bShow25b"
                 :title="WDialog.title"
                 :min-width="900"
                 @resize="resizeEvent"
@@ -175,8 +175,8 @@
                             depressed
                             small
                             elevation="2"
-                            @click="WDialog.bShow23c=!WDialog.bShow23c"
-                        >Show({{WDialog.bShow23c}})</v-btn>
+                            @click="WDialog.bShow25c=!WDialog.bShow25c"
+                        >Show({{WDialog.bShow25c}})</v-btn>
 
                         <div style="height:80px;"></div>
                     </div>
@@ -184,7 +184,7 @@
             </w-dialog>
 
             <w-dialog
-                :show.sync="WDialog.bShow23a"
+                :show.sync="WDialog.bShow25a"
                 :title="WDialog.title"
                 :min-width="1200"
                 @resize="resizeEvent"
@@ -199,8 +199,8 @@
                             depressed
                             small
                             elevation="2"
-                            @click="WDialog.bShow23b=!WDialog.bShow23b"
-                        >Show({{WDialog.bShow23b}})</v-btn>
+                            @click="WDialog.bShow25b=!WDialog.bShow25b"
+                        >Show({{WDialog.bShow25b}})</v-btn>
 
                         <div style="height:160px;"></div>
                     </div>
@@ -235,19 +235,21 @@
           bShow13: false,
           bShow14: false,
           bShow15: false,
-          bShow16a: false,
-          bShow16b: true, //fullscreen
-          bShow17: false,
+          bShow16: false,
+          bShow17a: false,
+          bShow17b: true, //fullscreen
           bShow18: false,
           bShow19: false,
           bShow20: false,
           bShow21: false,
           bShow22: false,
-          bShow23a: false,
-          bShow23b: false,
-          bShow23c: false,
+          bShow23: false,
           bShow24: false,
-          bShow25: false,
+          iShow24: 0,
+          bShow25a: false,
+          bShow25b: false,
+          bShow25c: false,
+          bShow26: false,
           headerBtns: [
             {
               icon: "fas fa-book-reader",
@@ -309,6 +311,19 @@
         alert("pm.resolve() for close");
         msg.pm.resolve();
         //msg.pm.reject()
+      },
+
+      delayClose: function() {
+        console.log("delayClose");
+        let vo = this;
+        vo.WDialog.iShow24 = 5;
+        let t = setInterval(() => {
+          vo.WDialog.iShow24 -= 1;
+          if (vo.WDialog.iShow24 <= 0) {
+            clearInterval(t);
+            vo.WDialog.bShow24 = false;
+          }
+        }, 1000);
       }
     }
   });

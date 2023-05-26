@@ -85,7 +85,7 @@
     </script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.2.85/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.2.86/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -141,13 +141,13 @@
                 depressed
                 small
                 elevation="2"
-                @click="WDialog.bShow16a=!WDialog.bShow16a"
-            >Show({{WDialog.bShow16a}})</v-btn>
+                @click="WDialog.bShow17a=!WDialog.bShow17a"
+            >Show({{WDialog.bShow17a}})</v-btn>
 
             <w-dialog
-                :show.sync="WDialog.bShow16a"
+                :show.sync="WDialog.bShow17a"
                 :title="WDialog.title"
-                :fullscreen="WDialog.bShow16b"
+                :fullscreen="WDialog.bShow17b"
                 @resize="resizeEvent"
                 @click-save="clickSave"
                 @click-close="clickClose"
@@ -166,7 +166,7 @@
                             depressed
                             small
                             elevation="2"
-                            @click="WDialog.bShow16a=!WDialog.bShow16a"
+                            @click="WDialog.bShow17a=!WDialog.bShow17a"
                         >Hide Window</v-btn>
 
                         <v-btn
@@ -174,8 +174,8 @@
                             depressed
                             small
                             elevation="2"
-                            @click="WDialog.bShow16b=!WDialog.bShow16b"
-                        >Toggle to {{WDialog.bShow16b?'Normal Size':'Fullscreen'}}</v-btn>
+                            @click="WDialog.bShow17b=!WDialog.bShow17b"
+                        >Toggle to {{WDialog.bShow17b?'Normal Size':'Fullscreen'}}</v-btn>
                     </div>
                 </template>
             </w-dialog>
@@ -208,19 +208,21 @@
           bShow13: false,
           bShow14: false,
           bShow15: false,
-          bShow16a: false,
-          bShow16b: true, //fullscreen
-          bShow17: false,
+          bShow16: false,
+          bShow17a: false,
+          bShow17b: true, //fullscreen
           bShow18: false,
           bShow19: false,
           bShow20: false,
           bShow21: false,
           bShow22: false,
-          bShow23a: false,
-          bShow23b: false,
-          bShow23c: false,
+          bShow23: false,
           bShow24: false,
-          bShow25: false,
+          iShow24: 0,
+          bShow25a: false,
+          bShow25b: false,
+          bShow25c: false,
+          bShow26: false,
           headerBtns: [
             {
               icon: "fas fa-book-reader",
@@ -282,6 +284,19 @@
         alert("pm.resolve() for close");
         msg.pm.resolve();
         //msg.pm.reject()
+      },
+
+      delayClose: function() {
+        console.log("delayClose");
+        let vo = this;
+        vo.WDialog.iShow24 = 5;
+        let t = setInterval(() => {
+          vo.WDialog.iShow24 -= 1;
+          if (vo.WDialog.iShow24 <= 0) {
+            clearInterval(t);
+            vo.WDialog.bShow24 = false;
+          }
+        }, 1000);
       }
     }
   });

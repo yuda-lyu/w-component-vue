@@ -9,10 +9,7 @@
 
         <template v-slot:header>
 
-            <div
-                :style="``"
-                v-if="showTrans"
-            >
+            <div v-if="showTrans">
                 <slot name="header">
                     <div :style="useHeaderStyle">
                         {{title}}
@@ -24,10 +21,7 @@
 
         <template v-slot:content>
 
-            <div
-                :style="``"
-                v-if="showTrans"
-            >
+            <div v-if="showTrans">
                 <slot name="content">
                     <div :style="useContentStyle">
 
@@ -49,10 +43,7 @@
 
         <template v-slot:footer>
 
-            <div
-                :style="``"
-                v-if="showTrans"
-            >
+            <div v-if="showTrans">
                 <slot name="footer">
                     <div :style="useFooterStyle">
 
