@@ -85,7 +85,7 @@
     </script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.2.85/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.2.86/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -624,8 +624,8 @@
             let id = Math.floor(Math.random() * 1000);
             let text = "node-" + id; //msg.rowItem.row.item.text + '-' + msg.opItem.key
             let dataNew = {
-              id: id,
-              text: text
+              id,
+              text
             };
             resolve(dataNew);
           });
