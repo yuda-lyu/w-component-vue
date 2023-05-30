@@ -2458,7 +2458,9 @@ export default {
                 }
 
                 //setSearchingResults, 依照搜尋結果數量給予wdl, 否則沒辦法呈現無搜尋結果
-                vo.$refs.wdl.setSearchingResults(searchingResults)
+                if (vo.$refs.wdl) { //於async中組件切換時還是有可能消失
+                    vo.$refs.wdl.setSearchingResults(searchingResults)
+                }
 
                 //filtering
                 vo.filtering = false
