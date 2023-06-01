@@ -109,17 +109,17 @@
         <td>No</td>
         <td>輸入key對應需tooltip的html字串物件，於各head處滑鼠移入時觸發，預設各key值為undefined</td>
     </tr><tr>
-        <td><code>opt.defHeadAlighH</code></td>
+        <td><code>opt.defHeadAlignH</code></td>
         <td>String</td>
         <td><code>'center'</code></td>
         <td>No</td>
         <td>輸入head預設之左右對齊字串，預設為'center'</td>
     </tr><tr>
-        <td><code>opt.kpHeadAlighH</code></td>
+        <td><code>opt.kpHeadAlignH</code></td>
         <td>Object</td>
         <td><code>{}</code></td>
         <td>No</td>
-        <td>輸入key對應head之左右對齊字串物件，預設各key值為defHeadAlighH</td>
+        <td>輸入key對應head之左右對齊字串物件，預設各key值為defHeadAlignH</td>
     </tr><tr>
         <td><code>opt.defHeadSort</code></td>
         <td>Boolean</td>
@@ -199,11 +199,29 @@
         <td>No</td>
         <td>輸入key對應col之是否能拖曳排序物件，預設各key值為false</td>
     </tr><tr>
+        <td><code>opt.genRowsPinnTop</code></td>
+        <td>function</td>
+        <td><code>null</code></td>
+        <td>No</td>
+        <td>輸入產生置頂rows函數，輸入為表內全部數據，預設為null</td>
+    </tr><tr>
+        <td><code>opt.genRowsPinnBottom</code></td>
+        <td>function</td>
+        <td><code>null</code></td>
+        <td>No</td>
+        <td>輸入產生置底rows函數，輸入為表內全部數據，預設為null</td>
+    </tr><tr>
         <td><code>opt.kpColStyle</code></td>
         <td>Object</td>
         <td><code>{}</code></td>
         <td>No</td>
-        <td>輸入key對應row style之物件，可設定各key欄之col style，預設各key值為undefined</td>
+        <td>輸入key對應col style之物件，可設定各key欄之col style，預設各key值為undefined</td>
+    </tr><tr>
+        <td><code>opt.kpColSpan</code></td>
+        <td>Object</td>
+        <td><code>{}</code></td>
+        <td>No</td>
+        <td>輸入key對應col span之物件，可設定各key欄之col span，預設各key值為undefined</td>
     </tr><tr>
         <td><code>opt.defCellMinWidth</code></td>
         <td>Number</td>
@@ -229,17 +247,17 @@
         <td>No</td>
         <td>輸入key對應cell之tooltip的html字串物件，於各cell處滑鼠移入時觸發，預設各key值為undefined</td>
     </tr><tr>
-        <td><code>opt.defCellAlighH</code></td>
+        <td><code>opt.defCellAlignH</code></td>
         <td>String</td>
         <td><code>'center'</code></td>
         <td>No</td>
         <td>輸入cell預設之左右對齊字串，預設為'center'</td>
     </tr><tr>
-        <td><code>opt.kpCellAlighH</code></td>
+        <td><code>opt.kpCellAlignH</code></td>
         <td>Object</td>
         <td><code>{}</code></td>
         <td>No</td>
-        <td>輸入key對應cell之左右對齊字串物件，預設各key值為defCellAlighH</td>
+        <td>輸入key對應cell之左右對齊字串物件，預設各key值為defCellAlignH</td>
     </tr><tr>
         <td><code>opt.defCellEditable</code></td>
         <td>Boolean</td>
@@ -261,69 +279,69 @@
     </tr><tr>
         <td><code>opt.rowClick</code></td>
         <td>function</td>
-        <td><code>function(){}</code></td>
+        <td><code>()=>{}</code></td>
         <td>No</td>
-        <td>輸入row click之觸發事件，預設為function(){}</td>
+        <td>輸入row click之觸發事件，預設為()=>{}</td>
     </tr><tr>
         <td><code>opt.rowDbClick</code></td>
         <td>function</td>
-        <td><code>function(){}</code></td>
+        <td><code>()=>{}</code></td>
         <td>No</td>
-        <td>輸入row double click之觸發事件，預設為function(){}</td>
+        <td>輸入row double click之觸發事件，預設為()=>{}</td>
     </tr><tr>
         <td><code>opt.rowChange</code></td>
         <td>function</td>
-        <td><code>function(){}</code></td>
+        <td><code>()=>{}</code></td>
         <td>No</td>
-        <td>輸入row change之觸發事件，預設為function(){}</td>
+        <td>輸入row change之觸發事件，預設為()=>{}</td>
     </tr><tr>
         <td><code>opt.rowChecked</code></td>
         <td>function</td>
-        <td><code>function(){}</code></td>
+        <td><code>()=>{}</code></td>
         <td>No</td>
-        <td>輸入row checked之觸發事件，需使用kpHeadCheckBox開啟指定key的head與對應rows使用checkbox，預設為function(){}</td>
+        <td>輸入row checked之觸發事件，需使用kpHeadCheckBox開啟指定key的head與對應rows使用checkbox，預設為()=>{}</td>
     </tr><tr>
         <td><code>opt.rowMouseEnter</code></td>
         <td>function</td>
-        <td><code>function(){}</code></td>
+        <td><code>()=>{}</code></td>
         <td>No</td>
-        <td>輸入row mouseenter之觸發事件，預設為function(){}</td>
+        <td>輸入row mouseenter之觸發事件，預設為()=>{}</td>
     </tr><tr>
         <td><code>opt.rowMouseLeave</code></td>
         <td>function</td>
-        <td><code>function(){}</code></td>
+        <td><code>()=>{}</code></td>
         <td>No</td>
-        <td>輸入row mouseleave之觸發事件，預設為function(){}</td>
+        <td>輸入row mouseleave之觸發事件，預設為()=>{}</td>
     </tr><tr>
         <td><code>opt.cellClick</code></td>
         <td>function</td>
-        <td><code>function(){}</code></td>
+        <td><code>()=>{}</code></td>
         <td>No</td>
-        <td>輸入cell click之觸發事件，預設為function(){}</td>
+        <td>輸入cell click之觸發事件，預設為()=>{}</td>
     </tr><tr>
         <td><code>opt.cellDbClick</code></td>
         <td>function</td>
-        <td><code>function(){}</code></td>
+        <td><code>()=>{}</code></td>
         <td>No</td>
-        <td>輸入cell double click之觸發事件，預設為function(){}</td>
+        <td>輸入cell double click之觸發事件，預設為()=>{}</td>
     </tr><tr>
         <td><code>opt.cellChange</code></td>
         <td>function</td>
-        <td><code>function(){}</code></td>
+        <td><code>()=>{}</code></td>
         <td>No</td>
-        <td>輸入cell change之觸發事件，預設為function(){}</td>
+        <td>輸入cell change之觸發事件，預設為()=>{}</td>
     </tr><tr>
         <td><code>opt.cellMouseEnter</code></td>
         <td>function</td>
-        <td><code>function(){}</code></td>
+        <td><code>()=>{}</code></td>
         <td>No</td>
-        <td>輸入cell mouseenter之觸發事件，預設為function(){}</td>
+        <td>輸入cell mouseenter之觸發事件，預設為()=>{}</td>
     </tr><tr>
         <td><code>opt.cellMouseLeave</code></td>
         <td>function</td>
-        <td><code>function(){}</code></td>
+        <td><code>()=>{}</code></td>
         <td>No</td>
-        <td>輸入cell mouseleave之觸發事件，預設為function(){}</td>
+        <td>輸入cell mouseleave之觸發事件，預設為()=>{}</td>
     </tr><tr>
         <td><code>opt.autoFitColumn</code></td>
         <td>Boolean</td>
@@ -505,17 +523,17 @@
         <td>No</td>
         <td>輸入key對應需tooltip的html字串物件，於各head處滑鼠移入時觸發，預設各key值為undefined</td>
     </tr><tr>
-        <td><code>opt.defHeadAlighH</code></td>
+        <td><code>opt.defHeadAlignH</code></td>
         <td>String</td>
         <td><code>'center'</code></td>
         <td>No</td>
         <td>輸入head預設之左右對齊字串，預設為'center'</td>
     </tr><tr>
-        <td><code>opt.kpHeadAlighH</code></td>
+        <td><code>opt.kpHeadAlignH</code></td>
         <td>Object</td>
         <td><code>{}</code></td>
         <td>No</td>
-        <td>輸入key對應head之左右對齊字串物件，預設各key值為defHeadAlighH</td>
+        <td>輸入key對應head之左右對齊字串物件，預設各key值為defHeadAlignH</td>
     </tr><tr>
         <td><code>opt.defHeadSort</code></td>
         <td>Boolean</td>
@@ -595,11 +613,29 @@
         <td>No</td>
         <td>輸入key對應col之是否能拖曳排序物件，預設各key值為false</td>
     </tr><tr>
+        <td><code>opt.genRowsPinnTop</code></td>
+        <td>function</td>
+        <td><code>null</code></td>
+        <td>No</td>
+        <td>輸入產生置頂rows函數，輸入為表內全部數據，預設為null</td>
+    </tr><tr>
+        <td><code>opt.genRowsPinnBottom</code></td>
+        <td>function</td>
+        <td><code>null</code></td>
+        <td>No</td>
+        <td>輸入產生置底rows函數，輸入為表內全部數據，預設為null</td>
+    </tr><tr>
         <td><code>opt.kpColStyle</code></td>
         <td>Object</td>
         <td><code>{}</code></td>
         <td>No</td>
-        <td>輸入key對應row style之物件，可設定各key欄之col style，預設各key值為undefined</td>
+        <td>輸入key對應col style之物件，可設定各key欄之col style，預設各key值為undefined</td>
+    </tr><tr>
+        <td><code>opt.kpColSpan</code></td>
+        <td>Object</td>
+        <td><code>{}</code></td>
+        <td>No</td>
+        <td>輸入key對應col span之物件，可設定各key欄之col span，預設各key值為undefined</td>
     </tr><tr>
         <td><code>opt.defCellMinWidth</code></td>
         <td>Number</td>
@@ -625,17 +661,17 @@
         <td>No</td>
         <td>輸入key對應cell之tooltip的html字串物件，於各cell處滑鼠移入時觸發，預設各key值為undefined</td>
     </tr><tr>
-        <td><code>opt.defCellAlighH</code></td>
+        <td><code>opt.defCellAlignH</code></td>
         <td>String</td>
         <td><code>'center'</code></td>
         <td>No</td>
         <td>輸入cell預設之左右對齊字串，預設為'center'</td>
     </tr><tr>
-        <td><code>opt.kpCellAlighH</code></td>
+        <td><code>opt.kpCellAlignH</code></td>
         <td>Object</td>
         <td><code>{}</code></td>
         <td>No</td>
-        <td>輸入key對應cell之左右對齊字串物件，預設各key值為defCellAlighH</td>
+        <td>輸入key對應cell之左右對齊字串物件，預設各key值為defCellAlignH</td>
     </tr><tr>
         <td><code>opt.defCellEditable</code></td>
         <td>Boolean</td>
@@ -657,69 +693,69 @@
     </tr><tr>
         <td><code>opt.rowClick</code></td>
         <td>function</td>
-        <td><code>function(){}</code></td>
+        <td><code>()=>{}</code></td>
         <td>No</td>
-        <td>輸入row click之觸發事件，預設為function(){}</td>
+        <td>輸入row click之觸發事件，預設為()=>{}</td>
     </tr><tr>
         <td><code>opt.rowDbClick</code></td>
         <td>function</td>
-        <td><code>function(){}</code></td>
+        <td><code>()=>{}</code></td>
         <td>No</td>
-        <td>輸入row double click之觸發事件，預設為function(){}</td>
+        <td>輸入row double click之觸發事件，預設為()=>{}</td>
     </tr><tr>
         <td><code>opt.rowChange</code></td>
         <td>function</td>
-        <td><code>function(){}</code></td>
+        <td><code>()=>{}</code></td>
         <td>No</td>
-        <td>輸入row change之觸發事件，預設為function(){}</td>
+        <td>輸入row change之觸發事件，預設為()=>{}</td>
     </tr><tr>
         <td><code>opt.rowChecked</code></td>
         <td>function</td>
-        <td><code>function(){}</code></td>
+        <td><code>()=>{}</code></td>
         <td>No</td>
-        <td>輸入row checked之觸發事件，需使用kpHeadCheckBox開啟指定key的head與對應rows使用checkbox，預設為function(){}</td>
+        <td>輸入row checked之觸發事件，需使用kpHeadCheckBox開啟指定key的head與對應rows使用checkbox，預設為()=>{}</td>
     </tr><tr>
         <td><code>opt.rowMouseEnter</code></td>
         <td>function</td>
-        <td><code>function(){}</code></td>
+        <td><code>()=>{}</code></td>
         <td>No</td>
-        <td>輸入row mouseenter之觸發事件，預設為function(){}</td>
+        <td>輸入row mouseenter之觸發事件，預設為()=>{}</td>
     </tr><tr>
         <td><code>opt.rowMouseLeave</code></td>
         <td>function</td>
-        <td><code>function(){}</code></td>
+        <td><code>()=>{}</code></td>
         <td>No</td>
-        <td>輸入row mouseleave之觸發事件，預設為function(){}</td>
+        <td>輸入row mouseleave之觸發事件，預設為()=>{}</td>
     </tr><tr>
         <td><code>opt.cellClick</code></td>
         <td>function</td>
-        <td><code>function(){}</code></td>
+        <td><code>()=>{}</code></td>
         <td>No</td>
-        <td>輸入cell click之觸發事件，預設為function(){}</td>
+        <td>輸入cell click之觸發事件，預設為()=>{}</td>
     </tr><tr>
         <td><code>opt.cellDbClick</code></td>
         <td>function</td>
-        <td><code>function(){}</code></td>
+        <td><code>()=>{}</code></td>
         <td>No</td>
-        <td>輸入cell double click之觸發事件，預設為function(){}</td>
+        <td>輸入cell double click之觸發事件，預設為()=>{}</td>
     </tr><tr>
         <td><code>opt.cellChange</code></td>
         <td>function</td>
-        <td><code>function(){}</code></td>
+        <td><code>()=>{}</code></td>
         <td>No</td>
-        <td>輸入cell change之觸發事件，預設為function(){}</td>
+        <td>輸入cell change之觸發事件，預設為()=>{}</td>
     </tr><tr>
         <td><code>opt.cellMouseEnter</code></td>
         <td>function</td>
-        <td><code>function(){}</code></td>
+        <td><code>()=>{}</code></td>
         <td>No</td>
-        <td>輸入cell mouseenter之觸發事件，預設為function(){}</td>
+        <td>輸入cell mouseenter之觸發事件，預設為()=>{}</td>
     </tr><tr>
         <td><code>opt.cellMouseLeave</code></td>
         <td>function</td>
-        <td><code>function(){}</code></td>
+        <td><code>()=>{}</code></td>
         <td>No</td>
-        <td>輸入cell mouseleave之觸發事件，預設為function(){}</td>
+        <td>輸入cell mouseleave之觸發事件，預設為()=>{}</td>
     </tr><tr>
         <td><code>opt.autoFitColumn</code></td>
         <td>Boolean</td>
@@ -851,7 +887,7 @@
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.2</a> on Tue May 30 2023 15:09:50 GMT+0800 (台北標準時間) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.2</a> on Thu Jun 01 2023 23:52:54 GMT+0800 (台北標準時間) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>
