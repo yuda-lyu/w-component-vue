@@ -696,6 +696,9 @@ export default {
 
             }
 
+            //updateTitleWidth
+            vo.updateTitleWidth('resizePanel')
+
             //triggerResize
             vo.triggerResize('resizePanel')
 
@@ -707,7 +710,7 @@ export default {
             let vo = this
 
             //updateTitleWidth
-            vo.updateTitleWidth()
+            vo.updateTitleWidth('resizeHead')
 
         },
 
@@ -798,42 +801,42 @@ export default {
 
         },
 
-        updateTitleWidth: function() {
-            // console.log('methods updateTitleWidth')
+        updateTitleWidth: function(from) {
+            // console.log('methods updateTitleWidth', from)
 
             let vo = this
 
-            async function core() {
+            //titleWidth
+            let whdIcon = get(vo, '$refs.hdIcon.clientWidth', 0)
+            let whdStl = get(vo, '$refs.hdStl.clientWidth', 0)
+            let whdStr = get(vo, '$refs.hdStr.clientWidth', 0)
+            let whdBtns = get(vo, '$refs.hdBtns.clientWidth', 0)
+            // console.log('panelWidth', vo.panelWidth)
+            // console.log('whdIcon', whdIcon)
+            // console.log('whdStl', whdStl)
+            // console.log('whdStr', whdStr)
+            // console.log('whdBtns', whdBtns)
+            let titleWidth = vo.panelWidth - 2 * vo.headSpace - whdIcon - whdStl - whdStr - whdBtns
+            titleWidth = Math.max(titleWidth, 0)
+            // console.log('titleWidth', titleWidth)
 
-                //因head位於panel內, 故會優先panel的resize事件前觸發, 但此時尚未有panelWidth會無法計算準確titleWidth, 故須等待panelWidth>0
-                await waitFun(() => {
-                    return vo.panelWidth > 0
-                }, { timeInterval: 10 })
+            //update
+            vo.titleWidth = titleWidth
 
-                //titleWidth
-                let whdIcon = get(vo, '$refs.hdIcon.clientWidth', 0)
-                let whdStl = get(vo, '$refs.hdStl.clientWidth', 0)
-                let whdStr = get(vo, '$refs.hdStr.clientWidth', 0)
-                let whdBtns = get(vo, '$refs.hdBtns.clientWidth', 0)
-                // console.log('panelWidth', vo.panelWidth)
-                // console.log('whdIcon', whdIcon)
-                // console.log('whdStl', whdStl)
-                // console.log('whdStr', whdStr)
-                // console.log('whdBtns', whdBtns)
-                let titleWidth = vo.panelWidth - 2 * vo.headSpace - whdIcon - whdStl - whdStr - whdBtns
-                titleWidth = Math.max(titleWidth, 0)
-                // console.log('titleWidth', titleWidth)
+            // async function core() {
 
-                //update
-                vo.titleWidth = titleWidth
+            //     //因head位於panel內, 故會優先panel的resize事件前觸發, 但此時尚未有panelWidth會無法計算準確titleWidth, 故須等待panelWidth>0
+            //     await waitFun(() => {
+            //         return vo.panelWidth > 0
+            //     }, { timeInterval: 10 })
 
-            }
+            // }
 
-            //core
-            core()
-                .catch((err) => {
-                    console.log(err)
-                })
+            // //core
+            // core()
+            //     .catch((err) => {
+            //         console.log(err)
+            //     })
 
         },
 

@@ -129,11 +129,12 @@
                     :casename="'long title'"
                 ></demolink>
 
-                <v-btn depressed small elevation="2" @click="WDialog.bShow04=!WDialog.bShow04">Show({{WDialog.bShow04}})</v-btn>
+                <v-btn depressed small elevation="2" @click="WDialog.bShow04a=!WDialog.bShow04a">Show({{WDialog.bShow04a}})</v-btn>
 
                 <w-dialog
-                    :show.sync="WDialog.bShow04"
+                    :show.sync="WDialog.bShow04a"
                     :title="'彈窗組件超長標題 Neque porro quisquam est qui dolorem ipsum quia dolor sit amet consectetur'"
+                    :fullscreen="WDialog.bShow04b"
                     @resize="resizeEvent"
                     @click-save="clickSave"
                     @click-close="clickClose"
@@ -153,6 +154,11 @@
                             <div style="margin:15px 0px;">
                                 {{WDialog.text4}}
                             </div>
+
+                            <v-btn style="margin-right:10px;" depressed small elevation="2" @click="WDialog.bShow04a=!WDialog.bShow04a">Hide Window</v-btn>
+
+                            <v-btn style="margin-right:10px;" depressed small elevation="2" @click="WDialog.bShow04b=!WDialog.bShow04b">Toggle to {{WDialog.bShow04b?'Normal Size':'Fullscreen'}}</v-btn>
+
                         </div>
                     </template>
 
@@ -1198,7 +1204,8 @@ export default {
                 'bShow01': false,
                 'bShow02': false,
                 'bShow03': false,
-                'bShow04': false,
+                'bShow04a': false,
+                'bShow04b': false, //fullscreen
                 'bShow05': false,
                 'bShow06': false,
                 'bShow07': false,
