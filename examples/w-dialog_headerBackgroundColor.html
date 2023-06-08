@@ -85,7 +85,7 @@
     </script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.2.89/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.2.90/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -141,11 +141,11 @@
                 depressed
                 small
                 elevation="2"
-                @click="WDialog.bShow4=!WDialog.bShow4"
-            >Show({{WDialog.bShow4}})</v-btn>
+                @click="WDialog.bShow05=!WDialog.bShow05"
+            >Show({{WDialog.bShow05}})</v-btn>
 
             <w-dialog
-                :show.sync="WDialog.bShow4"
+                :show.sync="WDialog.bShow05"
                 :title="WDialog.title"
                 :header-background-color="'pink darken-1'"
                 @resize="resizeEvent"
@@ -177,15 +177,15 @@
     data: function() {
       return {
         WDialog: {
-          bShow1: false,
-          bShow2: false,
-          bShow3: false,
-          bShow4: false,
-          bShow5: false,
-          bShow6: false,
-          bShow7: false,
-          bShow8: false,
-          bShow9: false,
+          bShow01: false,
+          bShow02: false,
+          bShow03: false,
+          bShow04: false,
+          bShow05: false,
+          bShow06: false,
+          bShow07: false,
+          bShow08: false,
+          bShow09: false,
           bShow10: false,
           bShow11: false,
           bShow12: false,
@@ -193,20 +193,21 @@
           bShow14: false,
           bShow15: false,
           bShow16: false,
-          bShow17a: false,
-          bShow17b: true, //fullscreen
-          bShow18: false,
+          bShow17: false,
+          bShow18a: false,
+          bShow18b: true, //fullscreen
           bShow19: false,
           bShow20: false,
           bShow21: false,
           bShow22: false,
           bShow23: false,
           bShow24: false,
+          bShow25: false,
           iShow24: 0,
-          bShow25a: false,
-          bShow25b: false,
-          bShow25c: false,
-          bShow26: false,
+          bShow26a: false,
+          bShow26b: false,
+          bShow26c: false,
+          bShow27: false,
           headerBtns: [
             {
               icon: "fas fa-book-reader",
@@ -278,7 +279,7 @@
           vo.WDialog.iShow24 -= 1;
           if (vo.WDialog.iShow24 <= 0) {
             clearInterval(t);
-            vo.WDialog.bShow24 = false;
+            vo.WDialog.bShow25 = false;
           }
         }, 1000);
       }
