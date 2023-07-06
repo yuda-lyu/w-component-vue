@@ -101,7 +101,7 @@
         <td>function</td>
         <td><code>null</code></td>
         <td>No</td>
-        <td>輸入主動模式時處理點擊項目函數，給予並回傳true時代表點擊項目給予主動模式，回傳false代表點擊項目不給予主動模式，可應用於資料夾與有效項目之區隔，預設null</td>
+        <td>輸入主動模式時處理點擊項目函數，回傳true時代表點擊項目給予主動模式，回傳false代表點擊項目不給予主動模式，可應用於資料夾與有效項目之區隔，預設null</td>
     </tr><tr>
         <td><code>itemActive</code></td>
         <td>Object</td>
@@ -371,7 +371,7 @@
         <td>Number</td>
         <td><code>0</code></td>
         <td>No</td>
-        <td>輸入拖曳時預覽元素邊框寬度數字，預設0</td>
+        <td>輸入拖曳時預覽元素邊框寬度數字，單位px，預設0</td>
     </tr><tr>
         <td><code>dgPreviewBorderColor</code></td>
         <td>String</td>
@@ -391,6 +391,12 @@
         <td>No</td>
         <td>輸入是否使用控制節點模式布林值，若operatable設定true，將於各項目右側顯示控制按鈕，點擊可彈出選單進行插入與刪除等項目，此時會觸發事件click-operate-item，而處理相應數據則需呼叫事件提供物件內operateItem函數，詳情請見範例。此時所有節點皆為展開顯示並且禁止顯隱節點功能，也就是defaultDisplayLevel強制設定為null，此外也不提供過濾功能，也就是filterKeywords強制清空。開啟operatable僅適用小規模數據。operatable預設false</td>
     </tr><tr>
+        <td><code>operateItemTextForRename</code></td>
+        <td>String</td>
+        <td><code>'Rename'</code></td>
+        <td>No</td>
+        <td>輸入控制選項變更文字之文字字串，預設'Rename'</td>
+    </tr><tr>
         <td><code>operateItemTextForInsertBefore</code></td>
         <td>String</td>
         <td><code>'Insert before'</code></td>
@@ -409,11 +415,41 @@
         <td>No</td>
         <td>輸入控制選項插入後項目之文字字串，預設'Insert after'</td>
     </tr><tr>
-        <td><code>operateItemTextForInsertDelete</code></td>
+        <td><code>operateItemTextForDelete</code></td>
         <td>String</td>
         <td><code>'Delete'</code></td>
         <td>No</td>
         <td>輸入控制選項刪除項目之文字字串，預設'Delete'</td>
+    </tr><tr>
+        <td><code>operateItemIconForRename</code></td>
+        <td>String</td>
+        <td><code>mdiRenameOutline</code></td>
+        <td>No</td>
+        <td>輸入控制選項變更文字之圖標字串，預設mdiRenameOutline</td>
+    </tr><tr>
+        <td><code>operateItemIconForInsertBefore</code></td>
+        <td>String</td>
+        <td><code>mdiFormatVerticalAlignTop</code></td>
+        <td>No</td>
+        <td>輸入控制選項插入前項目之圖標字串，預設mdiFormatVerticalAlignTop</td>
+    </tr><tr>
+        <td><code>operateItemIconForInsertChild</code></td>
+        <td>String</td>
+        <td><code>mdiFormatHorizontalAlignRight</code></td>
+        <td>No</td>
+        <td>輸入控制選項插入子項目之圖標字串，預設mdiFormatHorizontalAlignRight</td>
+    </tr><tr>
+        <td><code>operateItemIconForInsertAfter</code></td>
+        <td>String</td>
+        <td><code>mdiFormatVerticalAlignBottom</code></td>
+        <td>No</td>
+        <td>輸入控制選項插入後項目之圖標字串，預設mdiFormatVerticalAlignBottom</td>
+    </tr><tr>
+        <td><code>operateItemIconForDelete</code></td>
+        <td>String</td>
+        <td><code>mdiClose</code></td>
+        <td>No</td>
+        <td>輸入控制選項刪除項目之圖標字串，預設mdiClose</td>
     </tr><tr>
         <td><code>operateItemPaddingStyle</code></td>
         <td>Object</td>
@@ -425,13 +461,13 @@
         <td>Number</td>
         <td><code>150</code></td>
         <td>No</td>
-        <td>輸入控制選項寬度數字，預設150</td>
+        <td>輸入控制選項寬度數字，單位px，預設150</td>
     </tr><tr>
         <td><code>operatePanelHeight</code></td>
         <td>Number</td>
-        <td><code>168</code></td>
+        <td><code>null</code></td>
         <td>No</td>
-        <td>輸入控制選項高度數字，預設168</td>
+        <td>輸入控制選項高度數字，若為null則使用選項數量*operateItemHeight，單位px，預設null</td>
     </tr><tr>
         <td><code>operateBtnTooltip</code></td>
         <td>String</td>
@@ -469,6 +505,12 @@
         <td>No</td>
         <td>輸入滑鼠移入時控制項目背景顏色字串，預設'rgba(200,200,200,0.2)'</td>
     </tr><tr>
+        <td><code>operateItemHeight</code></td>
+        <td>Number</td>
+        <td><code>42</code></td>
+        <td>No</td>
+        <td>輸入控制項目高度數字，單位px，預設42</td>
+    </tr><tr>
         <td><code>operateItemTextColor</code></td>
         <td>String</td>
         <td><code>'#444'</code></td>
@@ -485,7 +527,7 @@
         <td>Number</td>
         <td><code>22</code></td>
         <td>No</td>
-        <td>輸入控制項目圖標尺寸數字，預設22</td>
+        <td>輸入控制項目圖標尺寸數字，單位px，預設22</td>
     </tr><tr>
         <td><code>operateItemIconColor</code></td>
         <td>String</td>
@@ -498,6 +540,168 @@
         <td><code>'#222'</code></td>
         <td>No</td>
         <td>輸入滑鼠移入時控制項目圖標顏色字串，預設'#222'</td>
+    </tr><tr>
+        <td><code>funOperateItem</code></td>
+        <td>function</td>
+        <td><code>null</code></td>
+        <td>No</td>
+        <td>輸入使用控制節點模式時處理項目函數，回傳陣列代表該項目提供指定控制按鈕，回傳true代表提供全部控制按鈕，回傳false或空陣列代表不提供控制按鈕，可應用於檔案清單之根目錄禁用控制節點模式或特定項目採用控制節點模式，預設null</td>
+    </tr><tr>
+        <td><code>editorRenameContentBackgroundColor</code></td>
+        <td>String</td>
+        <td><code>'white'</code></td>
+        <td>No</td>
+        <td>輸入變更文字彈窗之內容區塊背景顏色字串，預設'white'</td>
+    </tr><tr>
+        <td><code>editorRenameFooterBackgroundColor</code></td>
+        <td>String</td>
+        <td><code>'grey lighten-5'</code></td>
+        <td>No</td>
+        <td>輸入變更文字彈窗之下方區背景顏色字串，預設'grey lighten-5'</td>
+    </tr><tr>
+        <td><code>editorRenameInputTextColor</code></td>
+        <td>String</td>
+        <td><code>'grey darken-3'</code></td>
+        <td>No</td>
+        <td>輸入變更文字彈窗之輸入文字框之文字顏色字串，預設'grey darken-3'</td>
+    </tr><tr>
+        <td><code>editorRenameInputTextBottomLineBorderColor</code></td>
+        <td>String</td>
+        <td><code>'grey lighten-1'</code></td>
+        <td>No</td>
+        <td>輸入變更文字彈窗之輸入文字框之底部線顏色字串，預設'grey lighten-1'</td>
+    </tr><tr>
+        <td><code>editorRenameInputTextBottomLineBorderColorHover</code></td>
+        <td>String</td>
+        <td><code>'grey'</code></td>
+        <td>No</td>
+        <td>輸入變更文字彈窗之輸入文字框之滑鼠移入時底部線顏色字串，預設'grey'</td>
+    </tr><tr>
+        <td><code>editorRenameInputTextBottomLineBorderColorFocus</code></td>
+        <td>String</td>
+        <td><code>'blue darken-1'</code></td>
+        <td>No</td>
+        <td>輸入變更文字彈窗之輸入文字框之取得焦點時底部線顏色字串，預設'blue darken-1'</td>
+    </tr><tr>
+        <td><code>editorRenameCancelBtnText</code></td>
+        <td>String</td>
+        <td><code>'Save'</code></td>
+        <td>No</td>
+        <td>輸入變更文字彈窗之取消按鈕文字字串，預設'Save'</td>
+    </tr><tr>
+        <td><code>editorRenameCancelBtnTextColor</code></td>
+        <td>String</td>
+        <td><code>'grey darken-3'</code></td>
+        <td>No</td>
+        <td>輸入變更文字彈窗之取消按鈕文字顏色字串，預設'grey darken-3'</td>
+    </tr><tr>
+        <td><code>editorRenameCancelBtnTextColorHover</code></td>
+        <td>String</td>
+        <td><code>'grey darken-2'</code></td>
+        <td>No</td>
+        <td>輸入變更文字彈窗之滑鼠移入時取消按鈕文字顏色字串，預設'grey darken-2'</td>
+    </tr><tr>
+        <td><code>editorRenameCancelBtnIcon</code></td>
+        <td>String</td>
+        <td><code>mdiCloseCircleOutline</code></td>
+        <td>No</td>
+        <td>輸入變更文字彈窗之取消按鈕圖標字串，可為mdi,md,fa代號或mdi/js路徑，預設mdiCloseCircleOutline</td>
+    </tr><tr>
+        <td><code>editorRenameCancelBtnIconSize</code></td>
+        <td>Number</td>
+        <td><code>22</code></td>
+        <td>No</td>
+        <td>輸入變更文字彈窗之取消按鈕圖標大小，單位為px，預設22</td>
+    </tr><tr>
+        <td><code>editorRenameCancelBtnIconColor</code></td>
+        <td>String</td>
+        <td><code>'grey darken-1'</code></td>
+        <td>No</td>
+        <td>輸入變更文字彈窗之取消按鈕圖標顏色字串，預設'grey darken-1'</td>
+    </tr><tr>
+        <td><code>editorRenameCancelBtnIconColorHover</code></td>
+        <td>String</td>
+        <td><code>'grey darken-2'</code></td>
+        <td>No</td>
+        <td>輸入變更文字彈窗之滑鼠移入時取消按鈕圖標顏色字串，預設'grey darken-2'</td>
+    </tr><tr>
+        <td><code>editorRenameCancelBtnIconRippleColor</code></td>
+        <td>String</td>
+        <td><code>'rgba(200,200,200,0.4)'</code></td>
+        <td>No</td>
+        <td>輸入變更文字彈窗之取消按鈕ripple效果顏色字串，預設'rgba(200,200,200,0.4)'</td>
+    </tr><tr>
+        <td><code>editorRenameCancelBtnBackgroundColor</code></td>
+        <td>String</td>
+        <td><code>'white'</code></td>
+        <td>No</td>
+        <td>輸入變更文字彈窗之取消按鈕背景顏色字串，預設'white'</td>
+    </tr><tr>
+        <td><code>editorRenameCancelBtnBackgroundColorHover</code></td>
+        <td>String</td>
+        <td><code>'grey lighten-3'</code></td>
+        <td>No</td>
+        <td>輸入變更文字彈窗之滑鼠移入時取消按鈕背景顏色字串，預設'grey lighten-3'</td>
+    </tr><tr>
+        <td><code>editorRenameSaveBtnText</code></td>
+        <td>String</td>
+        <td><code>'Save'</code></td>
+        <td>No</td>
+        <td>輸入變更文字彈窗之儲存按鈕文字字串，預設'Save'</td>
+    </tr><tr>
+        <td><code>editorRenameSaveBtnTextColor</code></td>
+        <td>String</td>
+        <td><code>'grey darken-3'</code></td>
+        <td>No</td>
+        <td>輸入變更文字彈窗之儲存按鈕文字顏色字串，預設'grey darken-3'</td>
+    </tr><tr>
+        <td><code>editorRenameSaveBtnTextColorHover</code></td>
+        <td>String</td>
+        <td><code>'grey darken-2'</code></td>
+        <td>No</td>
+        <td>輸入變更文字彈窗之滑鼠移入時儲存按鈕文字顏色字串，預設'grey darken-2'</td>
+    </tr><tr>
+        <td><code>editorRenameSaveBtnIcon</code></td>
+        <td>String</td>
+        <td><code>mdiCloudUploadOutline</code></td>
+        <td>No</td>
+        <td>輸入變更文字彈窗之儲存按鈕圖標字串，可為mdi,md,fa代號或mdi/js路徑，預設mdiCheckboxMarkedCircle</td>
+    </tr><tr>
+        <td><code>editorRenameSaveBtnIconSize</code></td>
+        <td>Number</td>
+        <td><code>22</code></td>
+        <td>No</td>
+        <td>輸入變更文字彈窗之儲存按鈕圖標大小，單位為px，預設22</td>
+    </tr><tr>
+        <td><code>editorRenameSaveBtnIconColor</code></td>
+        <td>String</td>
+        <td><code>'grey darken-1'</code></td>
+        <td>No</td>
+        <td>輸入變更文字彈窗之儲存按鈕圖標顏色字串，預設'grey darken-1'</td>
+    </tr><tr>
+        <td><code>editorRenameSaveBtnIconColorHover</code></td>
+        <td>String</td>
+        <td><code>'grey darken-2'</code></td>
+        <td>No</td>
+        <td>輸入變更文字彈窗之滑鼠移入時儲存按鈕圖標顏色字串，預設'grey darken-2'</td>
+    </tr><tr>
+        <td><code>editorRenameSaveBtnIconRippleColor</code></td>
+        <td>String</td>
+        <td><code>'rgba(200,200,200,0.4)'</code></td>
+        <td>No</td>
+        <td>輸入變更文字彈窗之儲存按鈕ripple效果顏色字串，預設'rgba(200,200,200,0.4)'</td>
+    </tr><tr>
+        <td><code>editorRenameSaveBtnBackgroundColor</code></td>
+        <td>String</td>
+        <td><code>'white'</code></td>
+        <td>No</td>
+        <td>輸入變更文字彈窗之儲存按鈕背景顏色字串，預設'white'</td>
+    </tr><tr>
+        <td><code>editorRenameSaveBtnBackgroundColorHover</code></td>
+        <td>String</td>
+        <td><code>'grey lighten-3'</code></td>
+        <td>No</td>
+        <td>輸入變更文字彈窗之滑鼠移入時儲存按鈕背景顏色字串，預設'grey lighten-3'</td>
     </tr><tr>
         <td><code>show</code></td>
         <td>Boolean</td>
@@ -599,7 +803,7 @@
         <td>function</td>
         <td><code>null</code></td>
         <td>No</td>
-        <td>輸入主動模式時處理點擊項目函數，給予並回傳true時代表點擊項目給予主動模式，回傳false代表點擊項目不給予主動模式，可應用於資料夾與有效項目之區隔，預設null</td>
+        <td>輸入主動模式時處理點擊項目函數，回傳true時代表點擊項目給予主動模式，回傳false代表點擊項目不給予主動模式，可應用於資料夾與有效項目之區隔，預設null</td>
     </tr><tr>
         <td><code>itemActive</code></td>
         <td>Object</td>
@@ -869,7 +1073,7 @@
         <td>Number</td>
         <td><code>0</code></td>
         <td>No</td>
-        <td>輸入拖曳時預覽元素邊框寬度數字，預設0</td>
+        <td>輸入拖曳時預覽元素邊框寬度數字，單位px，預設0</td>
     </tr><tr>
         <td><code>dgPreviewBorderColor</code></td>
         <td>String</td>
@@ -889,6 +1093,12 @@
         <td>No</td>
         <td>輸入是否使用控制節點模式布林值，若operatable設定true，將於各項目右側顯示控制按鈕，點擊可彈出選單進行插入與刪除等項目，此時會觸發事件click-operate-item，而處理相應數據則需呼叫事件提供物件內operateItem函數，詳情請見範例。此時所有節點皆為展開顯示並且禁止顯隱節點功能，也就是defaultDisplayLevel強制設定為null，此外也不提供過濾功能，也就是filterKeywords強制清空。開啟operatable僅適用小規模數據。operatable預設false</td>
     </tr><tr>
+        <td><code>operateItemTextForRename</code></td>
+        <td>String</td>
+        <td><code>'Rename'</code></td>
+        <td>No</td>
+        <td>輸入控制選項變更文字之文字字串，預設'Rename'</td>
+    </tr><tr>
         <td><code>operateItemTextForInsertBefore</code></td>
         <td>String</td>
         <td><code>'Insert before'</code></td>
@@ -907,11 +1117,41 @@
         <td>No</td>
         <td>輸入控制選項插入後項目之文字字串，預設'Insert after'</td>
     </tr><tr>
-        <td><code>operateItemTextForInsertDelete</code></td>
+        <td><code>operateItemTextForDelete</code></td>
         <td>String</td>
         <td><code>'Delete'</code></td>
         <td>No</td>
         <td>輸入控制選項刪除項目之文字字串，預設'Delete'</td>
+    </tr><tr>
+        <td><code>operateItemIconForRename</code></td>
+        <td>String</td>
+        <td><code>mdiRenameOutline</code></td>
+        <td>No</td>
+        <td>輸入控制選項變更文字之圖標字串，預設mdiRenameOutline</td>
+    </tr><tr>
+        <td><code>operateItemIconForInsertBefore</code></td>
+        <td>String</td>
+        <td><code>mdiFormatVerticalAlignTop</code></td>
+        <td>No</td>
+        <td>輸入控制選項插入前項目之圖標字串，預設mdiFormatVerticalAlignTop</td>
+    </tr><tr>
+        <td><code>operateItemIconForInsertChild</code></td>
+        <td>String</td>
+        <td><code>mdiFormatHorizontalAlignRight</code></td>
+        <td>No</td>
+        <td>輸入控制選項插入子項目之圖標字串，預設mdiFormatHorizontalAlignRight</td>
+    </tr><tr>
+        <td><code>operateItemIconForInsertAfter</code></td>
+        <td>String</td>
+        <td><code>mdiFormatVerticalAlignBottom</code></td>
+        <td>No</td>
+        <td>輸入控制選項插入後項目之圖標字串，預設mdiFormatVerticalAlignBottom</td>
+    </tr><tr>
+        <td><code>operateItemIconForDelete</code></td>
+        <td>String</td>
+        <td><code>mdiClose</code></td>
+        <td>No</td>
+        <td>輸入控制選項刪除項目之圖標字串，預設mdiClose</td>
     </tr><tr>
         <td><code>operateItemPaddingStyle</code></td>
         <td>Object</td>
@@ -923,13 +1163,13 @@
         <td>Number</td>
         <td><code>150</code></td>
         <td>No</td>
-        <td>輸入控制選項寬度數字，預設150</td>
+        <td>輸入控制選項寬度數字，單位px，預設150</td>
     </tr><tr>
         <td><code>operatePanelHeight</code></td>
         <td>Number</td>
-        <td><code>168</code></td>
+        <td><code>null</code></td>
         <td>No</td>
-        <td>輸入控制選項高度數字，預設168</td>
+        <td>輸入控制選項高度數字，若為null則使用選項數量*operateItemHeight，單位px，預設null</td>
     </tr><tr>
         <td><code>operateBtnTooltip</code></td>
         <td>String</td>
@@ -967,6 +1207,12 @@
         <td>No</td>
         <td>輸入滑鼠移入時控制項目背景顏色字串，預設'rgba(200,200,200,0.2)'</td>
     </tr><tr>
+        <td><code>operateItemHeight</code></td>
+        <td>Number</td>
+        <td><code>42</code></td>
+        <td>No</td>
+        <td>輸入控制項目高度數字，單位px，預設42</td>
+    </tr><tr>
         <td><code>operateItemTextColor</code></td>
         <td>String</td>
         <td><code>'#444'</code></td>
@@ -983,7 +1229,7 @@
         <td>Number</td>
         <td><code>22</code></td>
         <td>No</td>
-        <td>輸入控制項目圖標尺寸數字，預設22</td>
+        <td>輸入控制項目圖標尺寸數字，單位px，預設22</td>
     </tr><tr>
         <td><code>operateItemIconColor</code></td>
         <td>String</td>
@@ -996,6 +1242,168 @@
         <td><code>'#222'</code></td>
         <td>No</td>
         <td>輸入滑鼠移入時控制項目圖標顏色字串，預設'#222'</td>
+    </tr><tr>
+        <td><code>funOperateItem</code></td>
+        <td>function</td>
+        <td><code>null</code></td>
+        <td>No</td>
+        <td>輸入使用控制節點模式時處理項目函數，回傳陣列代表該項目提供指定控制按鈕，回傳true代表提供全部控制按鈕，回傳false或空陣列代表不提供控制按鈕，可應用於檔案清單之根目錄禁用控制節點模式或特定項目採用控制節點模式，預設null</td>
+    </tr><tr>
+        <td><code>editorRenameContentBackgroundColor</code></td>
+        <td>String</td>
+        <td><code>'white'</code></td>
+        <td>No</td>
+        <td>輸入變更文字彈窗之內容區塊背景顏色字串，預設'white'</td>
+    </tr><tr>
+        <td><code>editorRenameFooterBackgroundColor</code></td>
+        <td>String</td>
+        <td><code>'grey lighten-5'</code></td>
+        <td>No</td>
+        <td>輸入變更文字彈窗之下方區背景顏色字串，預設'grey lighten-5'</td>
+    </tr><tr>
+        <td><code>editorRenameInputTextColor</code></td>
+        <td>String</td>
+        <td><code>'grey darken-3'</code></td>
+        <td>No</td>
+        <td>輸入變更文字彈窗之輸入文字框之文字顏色字串，預設'grey darken-3'</td>
+    </tr><tr>
+        <td><code>editorRenameInputTextBottomLineBorderColor</code></td>
+        <td>String</td>
+        <td><code>'grey lighten-1'</code></td>
+        <td>No</td>
+        <td>輸入變更文字彈窗之輸入文字框之底部線顏色字串，預設'grey lighten-1'</td>
+    </tr><tr>
+        <td><code>editorRenameInputTextBottomLineBorderColorHover</code></td>
+        <td>String</td>
+        <td><code>'grey'</code></td>
+        <td>No</td>
+        <td>輸入變更文字彈窗之輸入文字框之滑鼠移入時底部線顏色字串，預設'grey'</td>
+    </tr><tr>
+        <td><code>editorRenameInputTextBottomLineBorderColorFocus</code></td>
+        <td>String</td>
+        <td><code>'blue darken-1'</code></td>
+        <td>No</td>
+        <td>輸入變更文字彈窗之輸入文字框之取得焦點時底部線顏色字串，預設'blue darken-1'</td>
+    </tr><tr>
+        <td><code>editorRenameCancelBtnText</code></td>
+        <td>String</td>
+        <td><code>'Save'</code></td>
+        <td>No</td>
+        <td>輸入變更文字彈窗之取消按鈕文字字串，預設'Save'</td>
+    </tr><tr>
+        <td><code>editorRenameCancelBtnTextColor</code></td>
+        <td>String</td>
+        <td><code>'grey darken-3'</code></td>
+        <td>No</td>
+        <td>輸入變更文字彈窗之取消按鈕文字顏色字串，預設'grey darken-3'</td>
+    </tr><tr>
+        <td><code>editorRenameCancelBtnTextColorHover</code></td>
+        <td>String</td>
+        <td><code>'grey darken-2'</code></td>
+        <td>No</td>
+        <td>輸入變更文字彈窗之滑鼠移入時取消按鈕文字顏色字串，預設'grey darken-2'</td>
+    </tr><tr>
+        <td><code>editorRenameCancelBtnIcon</code></td>
+        <td>String</td>
+        <td><code>mdiCloseCircleOutline</code></td>
+        <td>No</td>
+        <td>輸入變更文字彈窗之取消按鈕圖標字串，可為mdi,md,fa代號或mdi/js路徑，預設mdiCloseCircleOutline</td>
+    </tr><tr>
+        <td><code>editorRenameCancelBtnIconSize</code></td>
+        <td>Number</td>
+        <td><code>22</code></td>
+        <td>No</td>
+        <td>輸入變更文字彈窗之取消按鈕圖標大小，單位為px，預設22</td>
+    </tr><tr>
+        <td><code>editorRenameCancelBtnIconColor</code></td>
+        <td>String</td>
+        <td><code>'grey darken-1'</code></td>
+        <td>No</td>
+        <td>輸入變更文字彈窗之取消按鈕圖標顏色字串，預設'grey darken-1'</td>
+    </tr><tr>
+        <td><code>editorRenameCancelBtnIconColorHover</code></td>
+        <td>String</td>
+        <td><code>'grey darken-2'</code></td>
+        <td>No</td>
+        <td>輸入變更文字彈窗之滑鼠移入時取消按鈕圖標顏色字串，預設'grey darken-2'</td>
+    </tr><tr>
+        <td><code>editorRenameCancelBtnIconRippleColor</code></td>
+        <td>String</td>
+        <td><code>'rgba(200,200,200,0.4)'</code></td>
+        <td>No</td>
+        <td>輸入變更文字彈窗之取消按鈕ripple效果顏色字串，預設'rgba(200,200,200,0.4)'</td>
+    </tr><tr>
+        <td><code>editorRenameCancelBtnBackgroundColor</code></td>
+        <td>String</td>
+        <td><code>'white'</code></td>
+        <td>No</td>
+        <td>輸入變更文字彈窗之取消按鈕背景顏色字串，預設'white'</td>
+    </tr><tr>
+        <td><code>editorRenameCancelBtnBackgroundColorHover</code></td>
+        <td>String</td>
+        <td><code>'grey lighten-3'</code></td>
+        <td>No</td>
+        <td>輸入變更文字彈窗之滑鼠移入時取消按鈕背景顏色字串，預設'grey lighten-3'</td>
+    </tr><tr>
+        <td><code>editorRenameSaveBtnText</code></td>
+        <td>String</td>
+        <td><code>'Save'</code></td>
+        <td>No</td>
+        <td>輸入變更文字彈窗之儲存按鈕文字字串，預設'Save'</td>
+    </tr><tr>
+        <td><code>editorRenameSaveBtnTextColor</code></td>
+        <td>String</td>
+        <td><code>'grey darken-3'</code></td>
+        <td>No</td>
+        <td>輸入變更文字彈窗之儲存按鈕文字顏色字串，預設'grey darken-3'</td>
+    </tr><tr>
+        <td><code>editorRenameSaveBtnTextColorHover</code></td>
+        <td>String</td>
+        <td><code>'grey darken-2'</code></td>
+        <td>No</td>
+        <td>輸入變更文字彈窗之滑鼠移入時儲存按鈕文字顏色字串，預設'grey darken-2'</td>
+    </tr><tr>
+        <td><code>editorRenameSaveBtnIcon</code></td>
+        <td>String</td>
+        <td><code>mdiCloudUploadOutline</code></td>
+        <td>No</td>
+        <td>輸入變更文字彈窗之儲存按鈕圖標字串，可為mdi,md,fa代號或mdi/js路徑，預設mdiCheckboxMarkedCircle</td>
+    </tr><tr>
+        <td><code>editorRenameSaveBtnIconSize</code></td>
+        <td>Number</td>
+        <td><code>22</code></td>
+        <td>No</td>
+        <td>輸入變更文字彈窗之儲存按鈕圖標大小，單位為px，預設22</td>
+    </tr><tr>
+        <td><code>editorRenameSaveBtnIconColor</code></td>
+        <td>String</td>
+        <td><code>'grey darken-1'</code></td>
+        <td>No</td>
+        <td>輸入變更文字彈窗之儲存按鈕圖標顏色字串，預設'grey darken-1'</td>
+    </tr><tr>
+        <td><code>editorRenameSaveBtnIconColorHover</code></td>
+        <td>String</td>
+        <td><code>'grey darken-2'</code></td>
+        <td>No</td>
+        <td>輸入變更文字彈窗之滑鼠移入時儲存按鈕圖標顏色字串，預設'grey darken-2'</td>
+    </tr><tr>
+        <td><code>editorRenameSaveBtnIconRippleColor</code></td>
+        <td>String</td>
+        <td><code>'rgba(200,200,200,0.4)'</code></td>
+        <td>No</td>
+        <td>輸入變更文字彈窗之儲存按鈕ripple效果顏色字串，預設'rgba(200,200,200,0.4)'</td>
+    </tr><tr>
+        <td><code>editorRenameSaveBtnBackgroundColor</code></td>
+        <td>String</td>
+        <td><code>'white'</code></td>
+        <td>No</td>
+        <td>輸入變更文字彈窗之儲存按鈕背景顏色字串，預設'white'</td>
+    </tr><tr>
+        <td><code>editorRenameSaveBtnBackgroundColorHover</code></td>
+        <td>String</td>
+        <td><code>'grey lighten-3'</code></td>
+        <td>No</td>
+        <td>輸入變更文字彈窗之滑鼠移入時儲存按鈕背景顏色字串，預設'grey lighten-3'</td>
     </tr><tr>
         <td><code>show</code></td>
         <td>Boolean</td>
@@ -1055,7 +1463,7 @@
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.2</a> on Thu Jun 08 2023 15:21:42 GMT+0800 (台北標準時間) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.2</a> on Thu Jul 06 2023 18:19:04 GMT+0800 (台北標準時間) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>

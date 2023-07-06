@@ -85,7 +85,7 @@
     </script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.3.0/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.3.1/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -143,7 +143,7 @@
                                border-radius:5px;
                                overflow:hidden;
                                box-shadow: 0 3px 1px -2px rgb(0 0 0 / 20%), 0 2px 2px 0 rgb(0 0 0 / 14%), 0 1px 5px 0 rgb(0 0 0 / 12%);"
-                    :items="WExplorer.fps1"
+                    :items="WExplorer.fps"
                     :tree-item-text-color="'#ddd'"
                     :tree-item-text-color-hover="'#eee'"
                     :tree-item-text-color-active="'#fff'"
@@ -202,9 +202,9 @@
       return {
         WExplorer: {
           bShowTree: true,
-          treeWidth: 250,
+          treeWidth: 275,
           funSortTree: null,
-          fps1: [
+          fps: [
             {
               type: "file",
               path: "/Applications/Calendar.app",
@@ -680,6 +680,36 @@
           }
         }
         return `There are ${kfd} folder(s) and ${kfl} file(s) in this folder`;
+      },
+      clickOperateItem: function(msg) {
+        console.log("clickOperateItem", msg);
+
+        //fun, 僅處理並回傳新項目, 不處理刪除項目
+        let fun = function() {
+          return new Promise(function(resolve, reject) {
+            let id = Math.floor(Math.random() * 1000);
+            let text = "new-" + id;
+            let dataNew = {
+              // id: '',
+              text,
+              type: "folder",
+              // path: '',
+              size: "test",
+              tester: "test",
+              priority: "test"
+            };
+            resolve(dataNew);
+          });
+        };
+
+        //targetInd
+        let targetInd = msg.rowItem.index;
+
+        //operateItem
+        msg.operateItem(targetInd, msg.opItem.key, fun);
+      },
+      changeItem: function(msg) {
+        console.log("changeItem", msg);
       }
     }
   });

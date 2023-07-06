@@ -85,7 +85,7 @@
     </script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.3.0/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.3.1/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -141,7 +141,7 @@
 
             <w-explorer
                 style="width:600px; height:250px;"
-                :items="WExplorer.fps1"
+                :items="WExplorer.fps"
                 :btn-display-tree-background-color="'rgba(241,241,255,0.7)'"
                 :btn-display-tree-background-color-hover="'rgb(220,220,255)'"
                 :btn-display-tree-background-color-focus="'rgb(200,200,255)'"
@@ -161,9 +161,9 @@
       return {
         WExplorer: {
           bShowTree: true,
-          treeWidth: 250,
+          treeWidth: 275,
           funSortTree: null,
-          fps1: [
+          fps: [
             {
               type: "file",
               path: "/Applications/Calendar.app",
@@ -639,6 +639,36 @@
           }
         }
         return `There are ${kfd} folder(s) and ${kfl} file(s) in this folder`;
+      },
+      clickOperateItem: function(msg) {
+        console.log("clickOperateItem", msg);
+
+        //fun, 僅處理並回傳新項目, 不處理刪除項目
+        let fun = function() {
+          return new Promise(function(resolve, reject) {
+            let id = Math.floor(Math.random() * 1000);
+            let text = "new-" + id;
+            let dataNew = {
+              // id: '',
+              text,
+              type: "folder",
+              // path: '',
+              size: "test",
+              tester: "test",
+              priority: "test"
+            };
+            resolve(dataNew);
+          });
+        };
+
+        //targetInd
+        let targetInd = msg.rowItem.index;
+
+        //operateItem
+        msg.operateItem(targetInd, msg.opItem.key, fun);
+      },
+      changeItem: function(msg) {
+        console.log("changeItem", msg);
       }
     }
   });
