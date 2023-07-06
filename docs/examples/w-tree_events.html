@@ -85,7 +85,7 @@
     </script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.3.0/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.3.1/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -147,6 +147,8 @@
                 @change-view-items="changeViewItems"
                 @change-height-of-items="changeHeightOfItems"
                 @render="render"
+                @update:data="changeData"
+                @change-item="changeItem"
             ></w-tree>
         </div>
     </v-app>
@@ -595,6 +597,9 @@
         console.log("funActive", msg);
         return !Array.isArray(msg.item.children); //children非陣列代表沒有所屬節點
       },
+      changeData: function(msg) {
+        console.log("changeData", msg);
+      },
       changeSelections: function(msg) {
         console.log("changeSelections", msg);
       },
@@ -604,10 +609,17 @@
       changeHeightOfItems: function(msg) {
         console.log("changeHeightOfItems", msg);
       },
+      changeItem: function(msg) {
+        console.log("changeItem", msg);
+      },
+      funOperateItem: function(msg) {
+        console.log("funOperateItem", msg);
+        return !Array.isArray(msg.item.children); //children非陣列代表沒有所屬節點
+      },
       clickOperateItem: function(msg) {
         console.log("clickOperateItem", msg);
 
-        //fun
+        //fun, 僅處理並回傳新項目, 不處理刪除項目
         let fun = function() {
           return new Promise(function(resolve, reject) {
             let id = Math.floor(Math.random() * 1000);

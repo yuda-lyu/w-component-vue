@@ -130,6 +130,8 @@
                     @change-view-items="changeViewItems"
                     @change-height-of-items="changeHeightOfItems"
                     @render="render"
+                    @update:data="changeData"
+                    @change-item="changeItem"
                 ></w-tree>
 
             </div>
@@ -338,8 +340,10 @@
 
                 <w-tree
                     style="width:350px; border:1px solid #ddd;"
-                    :draggable="true"
                     :data.sync="WTree.option.items"
+                    :draggable="true"
+                    @update:data="changeData"
+                    @change-item="changeItem"
                 ></w-tree>
 
             </div>
@@ -355,8 +359,8 @@
 
                 <w-tree
                     style="width:350px; border:1px solid #ddd;"
-                    :draggable="true"
                     :data.sync="WTree.option.items"
+                    :draggable="true"
                     :dgPreviewOpacity="0.9"
                     :dgPreviewBorderWidth="3"
                     :dgPreviewBorderColor="'rgba(255,100,200,1)'"
@@ -376,8 +380,8 @@
 
                 <w-tree
                     style="width:350px; border:1px solid #ddd;"
-                    :draggable="true"
                     :data.sync="WTree.option.items"
+                    :draggable="true"
                     :dgInsertLineColor="'rgba(120,220,150,0.9)'"
                     :dgInsertBackgroundColor="'rgba(50,220,100,0.1)'"
                     :dgBelongBackgroundColor="'rgba(50,220,100,0.2)'"
@@ -396,8 +400,8 @@
 
                 <w-tree
                     style="width:350px; border:1px solid #ddd;"
-                    :draggable="true"
                     :data.sync="WTree.option.items"
+                    :draggable="true"
                     :dgTextDisabled="'禁止拖曳至自己子節點當中'"
                     :dgTextDisabledColor="'pink accent-3'"
                     :dgTextDisabledPaddingLeft="13"
@@ -421,6 +425,8 @@
                     :data.sync="WTree.option.items"
                     :operatable="true"
                     @click-operate-item="clickOperateItem"
+                    @update:data="changeData"
+                    @change-item="changeItem"
                 ></w-tree>
 
             </div>
@@ -429,7 +435,7 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-tree'"
-                    :casename="'operatable & operateBtnTooltip & operateItemTextForInsertBefore & perateItemTextForInsertChild & operateItemTextForInsertAfter & operateItemTextForInsertDelete'"
+                    :casename="'operatable & operateBtnTooltip & operateItemTextForRename & operateItemTextForInsertBefore & perateItemTextForInsertChild & operateItemTextForInsertAfter & operateItemTextForDelete'"
                 ></demolink>
 
                 <div style="margin-bottom:5px; color:#f26; font-size:0.8rem;">* Disable show and hide nodes when using operatable</div>
@@ -439,10 +445,11 @@
                     :data.sync="WTree.option.items"
                     :operatable="true"
                     :operateBtnTooltip="'編輯'"
+                    :operateItemTextForRename="'變更項目名稱'"
                     :operateItemTextForInsertBefore="'插入前項目'"
                     :operateItemTextForInsertChild="'插入子項目'"
                     :operateItemTextForInsertAfter="'插入後項目'"
-                    :operateItemTextForInsertDelete="'刪除項目'"
+                    :operateItemTextForDelete="'刪除項目'"
                     @click-operate-item="clickOperateItem"
                 ></w-tree>
 
@@ -452,7 +459,7 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-tree'"
-                    :casename="'operatable & operateItemIconSize & operateItemPaddingStyle & operatePanelWidth & operatePanelHeight'"
+                    :casename="'operatable & operatePanelWidth & operatePanelHeight & operateItemIconSize & operateItemPaddingStyle'"
                 ></demolink>
 
                 <div style="margin-bottom:5px; color:#f26; font-size:0.8rem;">* Disable show and hide nodes when using operatable</div>
@@ -464,7 +471,28 @@
                     :operateItemIconSize="18"
                     :operateItemPaddingStyle="{v:5,h:5}"
                     :operatePanelWidth="130"
-                    :operatePanelHeight="29.2*4"
+                    :operatePanelHeight="90"
+                    @click-operate-item="clickOperateItem"
+                ></w-tree>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-tree'"
+                    :casename="'operatable & operateItemHeight & operateItemIconSize & operateItemPaddingStyle'"
+                ></demolink>
+
+                <div style="margin-bottom:5px; color:#f26; font-size:0.8rem;">* Disable show and hide nodes when using operatable</div>
+
+                <w-tree
+                    style="width:350px; border:1px solid #ddd;"
+                    :data.sync="WTree.option.items"
+                    :operatable="true"
+                    :operateItemIconSize="18"
+                    :operateItemPaddingStyle="{v:5,h:5}"
+                    :operateItemHeight="29.2"
                     @click-operate-item="clickOperateItem"
                 ></w-tree>
 
@@ -511,6 +539,255 @@
                     :operateItemIconColor="'grey lighten-4'"
                     :operateItemIconColorHover="'white'"
                     @click-operate-item="clickOperateItem"
+                ></w-tree>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-tree'"
+                    :casename="'operatable & operateItemIconForRename & operateItemIconForInsertBefore & operateItemIconForInsertChild & operateItemIconForInsertAfter & operateItemIconForDelete'"
+                ></demolink>
+
+                <div style="margin-bottom:5px; color:#f26; font-size:0.8rem;">* Disable show and hide nodes when using operatable</div>
+
+                <w-tree
+                    style="width:350px; border:1px solid #ddd;"
+                    :data.sync="WTree.option.items"
+                    :operatable="true"
+                    :operateItemIconForRename="mdiCommentEditOutline"
+                    :operateItemIconForInsertBefore="mdiChevronDoubleUp"
+                    :operateItemIconForInsertChild="mdiChevronDoubleRight"
+                    :operateItemIconForInsertAfter="mdiChevronDoubleDown"
+                    :operateItemIconForDelete="mdiDeleteVariant"
+                    @click-operate-item="clickOperateItem"
+                ></w-tree>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-tree'"
+                    :casename="'operatable & funOperateItem'"
+                ></demolink>
+
+                <div style="margin-bottom:5px; color:#f26; font-size:0.8rem;">* Disable show and hide nodes when using operatable</div>
+
+                <w-tree
+                    style="width:350px; border:1px solid #ddd;"
+                    :data.sync="WTree.option.items"
+                    :operatable="true"
+                    :funOperateItem="funOperateItem"
+                    @click-operate-item="clickOperateItem"
+                ></w-tree>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-tree'"
+                    :casename="'operatable & editorRenameContentBackgroundColor & editorRenameFooterBackgroundColor'"
+                ></demolink>
+
+                <div style="margin-bottom:5px; color:#f26; font-size:0.8rem;">* Disable show and hide nodes when using operatable</div>
+
+                <w-tree
+                    style="width:350px; border:1px solid #ddd;"
+                    :data.sync="WTree.option.items"
+                    :operatable="true"
+                    :editorRenameContentBackgroundColor="'#f2f2f2'"
+                    :editorRenameFooterBackgroundColor="'#EFEBE9'"
+                    @click-operate-item="clickOperateItem"
+                    @update:data="changeData"
+                    @change-item="changeItem"
+                ></w-tree>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-tree'"
+                    :casename="'operatable & editorRenameInputTextColor & editorRenameInputTextBottomLineBorderColor & editorRenameInputTextBottomLineBorderColorHover & editorRenameInputTextBottomLineBorderColorFocus'"
+                ></demolink>
+
+                <div style="margin-bottom:5px; color:#f26; font-size:0.8rem;">* Disable show and hide nodes when using operatable</div>
+
+                <w-tree
+                    style="width:350px; border:1px solid #ddd;"
+                    :data.sync="WTree.option.items"
+                    :operatable="true"
+                    :editorRenameInputTextColor="'#444'"
+                    :editorRenameInputTextBottomLineBorderColor="'#888'"
+                    :editorRenameInputTextBottomLineBorderColorHover="'#aaa'"
+                    :editorRenameInputTextBottomLineBorderColorFocus="'#666'"
+                    @click-operate-item="clickOperateItem"
+                    @update:data="changeData"
+                    @change-item="changeItem"
+                ></w-tree>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-tree'"
+                    :casename="'operatable & editorRenameCancelBtnText & editorRenameCancelBtnTextColor & editorRenameCancelBtnTextColorHover'"
+                ></demolink>
+
+                <div style="margin-bottom:5px; color:#f26; font-size:0.8rem;">* Disable show and hide nodes when using operatable</div>
+
+                <w-tree
+                    style="width:350px; border:1px solid #ddd;"
+                    :data.sync="WTree.option.items"
+                    :operatable="true"
+                    :editorRenameCancelBtnText="'取消'"
+                    :editorRenameCancelBtnTextColor="'#444'"
+                    :editorRenameCancelBtnTextColorHover="'#222'"
+                    @click-operate-item="clickOperateItem"
+                    @update:data="changeData"
+                    @change-item="changeItem"
+                ></w-tree>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-tree'"
+                    :casename="'operatable & editorRenameCancelBtnIcon & editorRenameCancelBtnIconSize & editorRenameCancelBtnIconColor & editorRenameCancelBtnIconColorHover & editorRenameCancelBtnIconRippleColor'"
+                ></demolink>
+
+                <div style="margin-bottom:5px; color:#f26; font-size:0.8rem;">* Disable show and hide nodes when using operatable</div>
+
+                <w-tree
+                    style="width:350px; border:1px solid #ddd;"
+                    :data.sync="WTree.option.items"
+                    :operatable="true"
+                    :editorRenameCancelBtnIcon="'fas fa-times'"
+                    :editorRenameCancelBtnIconSize="24"
+                    :editorRenameCancelBtnIconColor="'#444'"
+                    :editorRenameCancelBtnIconColorHover="'#222'"
+                    :editorRenameCancelBtnIconRippleColor="'rgba(200,200,200,0.3)'"
+                    @click-operate-item="clickOperateItem"
+                    @update:data="changeData"
+                    @change-item="changeItem"
+                ></w-tree>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-tree'"
+                    :casename="'operatable & editorRenameCancelBtnBackgroundColor & editorRenameCancelBtnBackgroundColorHover'"
+                ></demolink>
+
+                <div style="margin-bottom:5px; color:#f26; font-size:0.8rem;">* Disable show and hide nodes when using operatable</div>
+
+                <w-tree
+                    style="width:350px; border:1px solid #ddd;"
+                    :data.sync="WTree.option.items"
+                    :operatable="true"
+                    :editorRenameCancelBtnBackgroundColor="'#EFEBE9'"
+                    :editorRenameCancelBtnBackgroundColorHover="'#D7CCC8'"
+                    @click-operate-item="clickOperateItem"
+                    @update:data="changeData"
+                    @change-item="changeItem"
+                ></w-tree>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-tree'"
+                    :casename="'operatable & editorRenameSaveBtnText & editorRenameSaveBtnTextColor & editorRenameSaveBtnTextColorHover'"
+                ></demolink>
+
+                <div style="margin-bottom:5px; color:#f26; font-size:0.8rem;">* Disable show and hide nodes when using operatable</div>
+
+                <w-tree
+                    style="width:350px; border:1px solid #ddd;"
+                    :data.sync="WTree.option.items"
+                    :operatable="true"
+                    :editorRenameSaveBtnText="'儲存'"
+                    :editorRenameSaveBtnTextColor="'#444'"
+                    :editorRenameSaveBtnTextColorHover="'#222'"
+                    @click-operate-item="clickOperateItem"
+                    @update:data="changeData"
+                    @change-item="changeItem"
+                ></w-tree>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-tree'"
+                    :casename="'operatable & editorRenameSaveBtnIcon & editorRenameSaveBtnIconSize & editorRenameSaveBtnIconColor & editorRenameSaveBtnIconColorHover & editorRenameSaveBtnIconRippleColor'"
+                ></demolink>
+
+                <div style="margin-bottom:5px; color:#f26; font-size:0.8rem;">* Disable show and hide nodes when using operatable</div>
+
+                <w-tree
+                    style="width:350px; border:1px solid #ddd;"
+                    :data.sync="WTree.option.items"
+                    :operatable="true"
+                    :editorRenameSaveBtnIcon="'fas fa-check'"
+                    :editorRenameSaveBtnIconSize="24"
+                    :editorRenameSaveBtnIconColor="'#444'"
+                    :editorRenameSaveBtnIconColorHover="'#222'"
+                    :editorRenameSaveBtnIconRippleColor="'rgba(200,200,200,0.3)'"
+                    @click-operate-item="clickOperateItem"
+                    @update:data="changeData"
+                    @change-item="changeItem"
+                ></w-tree>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-tree'"
+                    :casename="'operatable & editorRenameSaveBtnBackgroundColor & editorRenameSaveBtnBackgroundColorHover'"
+                ></demolink>
+
+                <div style="margin-bottom:5px; color:#f26; font-size:0.8rem;">* Disable show and hide nodes when using operatable</div>
+
+                <w-tree
+                    style="width:350px; border:1px solid #ddd;"
+                    :data.sync="WTree.option.items"
+                    :operatable="true"
+                    :editorRenameSaveBtnBackgroundColor="'#EFEBE9'"
+                    :editorRenameSaveBtnBackgroundColorHover="'#D7CCC8'"
+                    @click-operate-item="clickOperateItem"
+                    @update:data="changeData"
+                    @change-item="changeItem"
+                ></w-tree>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-tree'"
+                    :casename="'operatable & draggable'"
+                ></demolink>
+
+                <div style="margin-bottom:5px; color:#f26; font-size:0.8rem;">* Disable show and hide nodes when using operatable or draggable</div>
+
+                <w-tree
+                    style="width:350px; border:1px solid #ddd;"
+                    :data.sync="WTree.option.items"
+                    :draggable="true"
+                    :operatable="true"
+                    @click-operate-item="clickOperateItem"
+                    @update:data="changeData"
+                    @change-item="changeItem"
                 ></w-tree>
 
             </div>
@@ -630,6 +907,32 @@
                     style="width:350px; border:1px solid #ddd;"
                     :data.sync="WTree.option.items"
                     :operatable="true"
+                    @click-operate-item="clickOperateItem"
+                >
+                    <template v-slot:item="props">
+                        <div style="display:flex; align-items:center; min-height:34px;">
+
+                            <w-popup-edit-text
+                                :value="props.data.text"
+                                @input="function(v){modifyText({data:WTree.option.items,value:v,props:props})}"
+                            ></w-popup-edit-text>
+
+                        </div>
+                    </template>
+                </w-tree>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-tree'"
+                    :casename="'slot & edit-text'"
+                ></demolink>
+
+                <w-tree
+                    style="width:350px; border:1px solid #ddd;"
+                    :data.sync="WTree.option.items"
                     @click-operate-item="clickOperateItem"
                 >
                     <template v-slot:item="props">
@@ -815,8 +1118,8 @@
                     <div style="display:table-cell; vertical-align:top;">
                         <w-tree
                             style="width:350px; border:1px solid #ddd;"
-                            :draggable="true"
                             :data.sync="WTree.option.items"
+                            :draggable="true"
                             :selectable="true"
                             :selections.sync="WTree.option.selections"
                             @update:selections="changeSelections"
@@ -850,8 +1153,8 @@
                     <div style="display:table-cell; vertical-align:top;">
                         <w-tree
                             style="width:350px; border:1px solid #ddd;"
-                            :draggable="true"
                             :data.sync="WTree.option.items"
+                            :draggable="true"
                             :selectable="true"
                             :selections.sync="WTree.option.selections"
                             @update:selections="changeSelections"
@@ -1147,6 +1450,7 @@
 </template>
 
 <script>
+import { mdiCommentEditOutline, mdiChevronDoubleUp, mdiChevronDoubleRight, mdiChevronDoubleDown, mdiDeleteVariant } from '@mdi/js'
 import demolink from './components/demolink.vue'
 import WTree from './components/WTree.vue'
 import WPopupEditText from './components/WPopupEditText.vue'
@@ -1184,6 +1488,11 @@ export default {
     },
     data: function() {
         return {
+            mdiCommentEditOutline,
+            mdiChevronDoubleUp,
+            mdiChevronDoubleRight,
+            mdiChevronDoubleDown,
+            mdiDeleteVariant,
             'WTree': {
                 'viewHeightMaxSync': 400,
                 'option': {
@@ -1583,6 +1892,9 @@ export default {
             console.log('funActive', msg)
             return !Array.isArray(msg.item.children) //children非陣列代表沒有所屬節點
         },
+        changeData: function(msg) {
+            console.log('changeData', msg)
+        },
         changeSelections: function(msg) {
             console.log('changeSelections', msg)
         },
@@ -1592,10 +1904,17 @@ export default {
         changeHeightOfItems: function(msg) {
             console.log('changeHeightOfItems', msg)
         },
+        changeItem: function(msg) {
+            console.log('changeItem', msg)
+        },
+        funOperateItem: function(msg) {
+            console.log('funOperateItem', msg)
+            return !Array.isArray(msg.item.children) //children非陣列代表沒有所屬節點
+        },
         clickOperateItem: function(msg) {
             console.log('clickOperateItem', msg)
 
-            //fun
+            //fun, 僅處理並回傳新項目, 不處理刪除項目
             let fun = function() {
                 return new Promise(function(resolve, reject) {
                     let id = Math.floor(Math.random() * 1000)

@@ -85,7 +85,7 @@
     </script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.3.0/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.3.1/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -135,9 +135,7 @@
             >w-tree</span>
         </div>
         <div class="bk">
-            <div
-                class="item"
-            >operatable &amp; operateBtnTooltip &amp; operateItemTextForInsertBefore &amp; perateItemTextForInsertChild &amp; operateItemTextForInsertAfter &amp; operateItemTextForInsertDelete</div>
+            <div class="item">operatable &amp; funOperateItem</div>
 
             <div
                 style="margin-bottom:5px; color:#f26; font-size:0.8rem;"
@@ -147,11 +145,7 @@
                 style="width:350px; border:1px solid #ddd;"
                 :data.sync="WTree.option.items"
                 :operatable="true"
-                :operate-btn-tooltip="'編輯'"
-                :operate-item-text-for-insert-before="'插入前項目'"
-                :operate-item-text-for-insert-child="'插入子項目'"
-                :operate-item-text-for-insert-after="'插入後項目'"
-                :operate-item-text-for-insert-delete="'刪除項目'"
+                :fun-operate-item="funOperateItem"
                 @click-operate-item="clickOperateItem"
             ></w-tree>
         </div>
@@ -601,6 +595,9 @@
         console.log("funActive", msg);
         return !Array.isArray(msg.item.children); //children非陣列代表沒有所屬節點
       },
+      changeData: function(msg) {
+        console.log("changeData", msg);
+      },
       changeSelections: function(msg) {
         console.log("changeSelections", msg);
       },
@@ -610,10 +607,17 @@
       changeHeightOfItems: function(msg) {
         console.log("changeHeightOfItems", msg);
       },
+      changeItem: function(msg) {
+        console.log("changeItem", msg);
+      },
+      funOperateItem: function(msg) {
+        console.log("funOperateItem", msg);
+        return !Array.isArray(msg.item.children); //children非陣列代表沒有所屬節點
+      },
       clickOperateItem: function(msg) {
         console.log("clickOperateItem", msg);
 
-        //fun
+        //fun, 僅處理並回傳新項目, 不處理刪除項目
         let fun = function() {
           return new Promise(function(resolve, reject) {
             let id = Math.floor(Math.random() * 1000);

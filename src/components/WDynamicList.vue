@@ -305,11 +305,11 @@ export default {
                 //console.log(msg)
                 return msg
             }
-            if (size(rows) === 0) {
-                let msg = 'rows is empty'
-                //console.log(msg)
-                return msg
-            }
+            // if (size(rows) === 0) { //不能檢查size=0, 因需要支援使用者刪除全部節點操作
+            //     let msg = 'rows is empty'
+            //     //console.log(msg)
+            //     return msg
+            // }
 
             //mmkey, 產生mmkey要放在資料變更的地方, 否則須放在beforeMount, 且於vue-cli編譯情況下會有部份情境有問題
             if (vo.mmkey === null) {
@@ -421,78 +421,85 @@ export default {
             //n
             let n = size(items)
 
-            //check
-            if (n === 0) {
-                return
-            }
+            // //check
+            // if (n === 0) { //不能檢查與跳出, 因使用者可能清空全部數據
+            //     return
+            // }
 
-            //indStart, 該元素區(底部)有侵入顯示區
-            let indStartActual = binarySearch(items, (ind) => {
-                let v = items[ind]
-                let dy = vo.scrollInfor.t - (v.y + v.height)
-                return dy
-            })
-            if (indStartActual === null) {
-                indStartActual = 0
-            }
-            // let indStart = Math.max(indStartActual - vo.itemsPreload, 0)
-            let indStart = Math.max(indStartActual - 1, 0) //只先預載上方1個
-
-            //indEnd, 該元素區(頂部)有侵入顯示區
-            let indEndActual = binarySearch(items, (ind) => {
-                let v = items[ind]
-                let dy = vo.scrollInfor.b - v.y
-                return dy
-            })
-            if (indEndActual === null) {
-                indEndActual = n - 1
-            }
-            let indEnd = Math.min(indEndActual + vo.itemsPreload, n - 1)
-
-            //itemsHeightPre
-            let itemsHeightPre = 0
-            for (let k = 0; k < indStart; k++) {
-                let v = items[k]
-                if (v.displayShow && v.filterShow) {
-                    itemsHeightPre += v.height
-                }
-            }
-
-            //itemsHeightAft
-            let itemsHeightAft = 0
-            for (let k = indEnd + 1; k <= n - 1; k++) {
-                let v = items[k]
-                if (v.displayShow && v.filterShow) {
-                    itemsHeightAft += v.height
-                }
-            }
-            // console.log('indStartActual', indStartActual, 'indEndActual', indEndActual, 'indStart', indStart, 'indEnd', indEnd)
-
-            //useItems
+            //useItems, bPadding, bItems
             let useItems = []
-            for (let k = indStart; k <= indEnd; k++) {
-                // let v = {
-                //     ...items[k]
-                // }
-                let v = cloneDeep(items[k])
-                if (v.displayShow && v.filterShow) {
-                    v.nowShow = true //k >= indStartActual //顯示區下方之預載節點都直接顯示供重算高度
-                    v.top = v.y - vo.scrollInfor.t
-                    useItems.push(v)
+            let bPadding = false
+            let bItems = false
+            if (n > 0) {
+
+                //indStart, 該元素區(底部)有侵入顯示區
+                let indStartActual = binarySearch(items, (ind) => {
+                    let v = items[ind]
+                    let dy = vo.scrollInfor.t - (v.y + v.height)
+                    return dy
+                })
+                if (indStartActual === null) {
+                    indStartActual = 0
                 }
+                // let indStart = Math.max(indStartActual - vo.itemsPreload, 0)
+                let indStart = Math.max(indStartActual - 1, 0) //只先預載上方1個
+
+                //indEnd, 該元素區(頂部)有侵入顯示區
+                let indEndActual = binarySearch(items, (ind) => {
+                    let v = items[ind]
+                    let dy = vo.scrollInfor.b - v.y
+                    return dy
+                })
+                if (indEndActual === null) {
+                    indEndActual = n - 1
+                }
+                let indEnd = Math.min(indEndActual + vo.itemsPreload, n - 1)
+
+                //itemsHeightPre
+                let itemsHeightPre = 0
+                for (let k = 0; k < indStart; k++) {
+                    let v = items[k]
+                    if (v.displayShow && v.filterShow) {
+                        itemsHeightPre += v.height
+                    }
+                }
+
+                //itemsHeightAft
+                let itemsHeightAft = 0
+                for (let k = indEnd + 1; k <= n - 1; k++) {
+                    let v = items[k]
+                    if (v.displayShow && v.filterShow) {
+                        itemsHeightAft += v.height
+                    }
+                }
+                // console.log('indStartActual', indStartActual, 'indEndActual', indEndActual, 'indStart', indStart, 'indEnd', indEnd)
+
+                //useItems
+                for (let k = indStart; k <= indEnd; k++) {
+                    // let v = {
+                    //     ...items[k]
+                    // }
+                    let v = cloneDeep(items[k])
+                    if (v.displayShow && v.filterShow) {
+                        v.nowShow = true //k >= indStartActual //顯示區下方之預載節點都直接顯示供重算高度
+                        v.top = v.y - vo.scrollInfor.t
+                        useItems.push(v)
+                    }
+                }
+
+                //save itemsHeightPre, itemsHeightAft
+                if (vo.itemsHeightPre !== itemsHeightPre) {
+                    bPadding = true
+                    vo.itemsHeightPre = itemsHeightPre
+                }
+                if (vo.itemsHeightAft !== itemsHeightAft) {
+                    bPadding = true
+                    vo.itemsHeightAft = itemsHeightAft
+                }
+
             }
 
-            //save
-            let bPadding = false
-            if (vo.itemsHeightPre !== itemsHeightPre) {
-                bPadding = true
-                vo.itemsHeightPre = itemsHeightPre
-            }
-            if (vo.itemsHeightAft !== itemsHeightAft) {
-                bPadding = true
-                vo.itemsHeightAft = itemsHeightAft
-            }
-            let bItems = false
+            //save useItems
             if (!isEqual(vo.useItems, useItems)) {
                 bItems = true
                 vo.useItems = useItems
@@ -537,12 +544,19 @@ export default {
 
             let vo = this
 
+            //只偵測已顯示dom的高度是否有變化, 若是變更未顯示節點例如於最末新增節點, 就無法得知有變
+            let changeHeight = false
+
+            //check
+            if (size(items) === 0) {
+                return changeHeight //若使用者清除全部數據, 則此時dom都是待清除, 故已顯示dom的高度皆視為無變化
+            }
+
             //wdsDiv
             let wdsDiv = get(vo, '$refs.wdsDiv', [])
             // console.log('wdsDiv', wdsDiv)
 
-            //只偵測已顯示dom的高度是否有變化, 若是變更未顯示節點例如於最末新增節點, 就無法得知有變
-            let changeHeight = false
+            //detect
             each(wdsDiv, (v, k) => {
                 // console.log('wdsDiv', k, v)
                 //採分層級判斷用以加速, 但可讀性變差
@@ -566,9 +580,11 @@ export default {
                     console.log('!isp0int(index)', index)
                     return true //跳出換下一個
                 }
+                // console.log('index', index)
 
                 //cint
                 index = cint(index)
+                // console.log('cint index', index)
 
                 //找偵測高度元素, 需針對slot外層元素判斷offsetHeight比較準確, 否則用v.offsetHeight跟cnode.offsetHeight不同(通常差1px), 則會出現捲動後項目位置跳動問題
                 let cnode = get(v, 'children.0')

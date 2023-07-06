@@ -88,7 +88,7 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-popup-edit-text'"
-                    :casename="'title & saveBtnText & saveBtnTextColor & saveBtnTextColorHover & saveBtnIconColor & saveBtnIconColorHover & saveBtnIconRippleColor & saveBtnBackgroundColor & saveBtnBackgroundColorHover'"
+                    :casename="'title & saveBtnText & saveBtnTextColor & saveBtnTextColorHover & saveBtnIconSize & saveBtnIconColor & saveBtnIconColorHover & saveBtnIconRippleColor & saveBtnBackgroundColor & saveBtnBackgroundColorHover'"
                 ></demolink>
 
                 <div style="display:inline-block; border:1px dashed #999;">
@@ -98,6 +98,7 @@
                         :saveBtnText="'儲存'"
                         :saveBtnTextColor="'pink darken-1'"
                         :saveBtnTextColorHover="'pink darken-3'"
+                        :saveBtnIconSize="24"
                         :saveBtnIconColor="'pink darken-1'"
                         :saveBtnIconColorHover="'pink darken-3'"
                         :saveBtnIconRippleColor="'rgba(200, 200, 200, 0.5)'"

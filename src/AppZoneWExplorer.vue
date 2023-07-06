@@ -16,7 +16,7 @@
 
                 <w-explorer
                     style="width:600px; height:250px;"
-                    :items="WExplorer.fps1"
+                    :items="WExplorer.fps"
                 >
                 </w-explorer>
 
@@ -33,7 +33,7 @@
 
                 <w-explorer
                     style="width:600px; height:250px;"
-                    :items="WExplorer.fps1"
+                    :items="WExplorer.fps"
                     :treeWidth.sync="WExplorer.treeWidth"
                 >
                 </w-explorer>
@@ -49,7 +49,7 @@
 
                 <w-explorer
                     style="width:600px; height:250px;"
-                    :items="WExplorer.fps1"
+                    :items="WExplorer.fps"
                     :treeWidthMin="100"
                     :treeWidthMax="400"
                 >
@@ -66,7 +66,7 @@
 
                 <w-explorer
                     style="width:600px; height:250px;"
-                    :items="WExplorer.fps1"
+                    :items="WExplorer.fps"
                     :treeBackgroundColor="'#f8f8f8'"
                 >
                 </w-explorer>
@@ -86,7 +86,7 @@
 
                 <w-explorer
                     style="width:600px; height:250px;"
-                    :items="WExplorer.fps1"
+                    :items="WExplorer.fps"
                     :showTree.sync="WExplorer.bShowTree"
                 >
                 </w-explorer>
@@ -102,7 +102,7 @@
 
                 <w-explorer
                     style="width:600px; height:250px;"
-                    :items="WExplorer.fps1"
+                    :items="WExplorer.fps"
                     :treeAfloat="true"
                 >
                 </w-explorer>
@@ -118,7 +118,7 @@
 
                 <w-explorer
                     style="width:600px; height:250px;"
-                    :items="WExplorer.fps1"
+                    :items="WExplorer.fps"
                     :treeDefaultDisplayLevel="1"
                 >
                 </w-explorer>
@@ -134,7 +134,7 @@
 
                 <w-explorer
                     style="width:600px; height:250px;"
-                    :items="WExplorer.fps1"
+                    :items="WExplorer.fps"
                     :treeDefItemHeight="22"
                     :listDefItemHeight="22"
                 >
@@ -151,7 +151,7 @@
 
                 <w-explorer
                     style="width:600px; height:250px;"
-                    :items="WExplorer.fps1"
+                    :items="WExplorer.fps"
                     :treePaddingStyle="{v:4,h:4}"
                 >
                 </w-explorer>
@@ -167,7 +167,7 @@
 
                 <w-explorer
                     style="width:600px; height:250px;"
-                    :items="WExplorer.fps1"
+                    :items="WExplorer.fps"
                     :treeIndent="0.5"
                 >
                 </w-explorer>
@@ -183,7 +183,7 @@
 
                 <w-explorer
                     style="width:600px; height:250px;"
-                    :items="WExplorer.fps1"
+                    :items="WExplorer.fps"
                     :treeFolderIcon="'fas fa-folder-open'"
                     :treeFolderIconSize="18"
                 >
@@ -200,7 +200,7 @@
 
                 <w-explorer
                     style="width:600px; height:250px;"
-                    :items="WExplorer.fps1"
+                    :items="WExplorer.fps"
                     :treeItemTextFontSize="'0.75rem'"
                 >
                 </w-explorer>
@@ -216,7 +216,7 @@
 
                 <w-explorer
                     style="width:600px; height:250px;"
-                    :items="WExplorer.fps1"
+                    :items="WExplorer.fps"
                     :treeItemTextColor="'#a84'"
                     :treeItemTextColorHover="'#864'"
                     :treeItemTextColorActive="'#862'"
@@ -234,7 +234,7 @@
 
                 <w-explorer
                     style="width:600px; height:250px;"
-                    :items="WExplorer.fps1"
+                    :items="WExplorer.fps"
                     :treeFolderIconColor="'#ea6'"
                     :treeFolderIconColorHover="'#c84'"
                     :treeFolderIconColorActive="'#a62'"
@@ -252,7 +252,7 @@
 
                 <w-explorer
                     style="width:600px; height:250px;"
-                    :items="WExplorer.fps1"
+                    :items="WExplorer.fps"
                     :treeItemBackgroundColor="'transparent'"
                     :treeItemBackgroundColorHover="'#FFF3E0'"
                     :treeItemBackgroundColorActive="'#FFE0B2'"
@@ -270,7 +270,7 @@
 
                 <w-explorer
                     style="width:600px; height:250px;"
-                    :items="WExplorer.fps1"
+                    :items="WExplorer.fps"
                     :treeItemRippleColor="'rgba(130, 180, 255, 0.4)'"
                 >
                 </w-explorer>
@@ -286,7 +286,7 @@
 
                 <w-explorer
                     style="width:600px; height:250px;"
-                    :items="WExplorer.fps1"
+                    :items="WExplorer.fps"
                     :bindRoot="'本機'"
                 >
                 </w-explorer>
@@ -302,7 +302,7 @@
 
                 <w-explorer
                     style="width:600px; height:250px;"
-                    :items="WExplorer.fps1"
+                    :items="WExplorer.fps"
                     :treeToggleIconSize="18"
                 >
                 </w-explorer>
@@ -318,7 +318,7 @@
 
                 <w-explorer
                     style="width:600px; height:250px;"
-                    :items="WExplorer.fps1"
+                    :items="WExplorer.fps"
                     :treeToggleIconColor="'#f58'"
                     :treeToggleIconBackgroundColor="'rgba(255,200,200,0.5)'"
                     :treeToggleIconBackgroundColorHover="'#fcc'"
@@ -336,7 +336,7 @@
 
                 <w-explorer
                     style="width:600px; height:250px;"
-                    :items="WExplorer.fps1"
+                    :items="WExplorer.fps"
                     :pathBackgroundColor="'#f8f8f8'"
                 >
                 </w-explorer>
@@ -352,7 +352,7 @@
 
                 <w-explorer
                     style="width:600px; height:250px;"
-                    :items="WExplorer.fps1"
+                    :items="WExplorer.fps"
                     :pathSepIcon="'fas fa-angle-double-right'"
                     :pathSepIconColor="'#00C853'"
                     :pathSepIconSize="14"
@@ -370,7 +370,7 @@
 
                 <w-explorer
                     style="width:600px; height:250px;"
-                    :items="WExplorer.fps1"
+                    :items="WExplorer.fps"
                     :pathBtnTextFontSize="'0.75rem'"
                 >
                 </w-explorer>
@@ -386,7 +386,7 @@
 
                 <w-explorer
                     style="width:600px; height:250px;"
-                    :items="WExplorer.fps1"
+                    :items="WExplorer.fps"
                     :pathBtnTextColor="'#EF5350'"
                     :pathBtnTextColorHover="'#EC407A'"
                 >
@@ -403,7 +403,7 @@
 
                 <w-explorer
                     style="width:600px; height:250px;"
-                    :items="WExplorer.fps1"
+                    :items="WExplorer.fps"
                     :pathBtnBackgroundColor="'#EDE7F6'"
                     :pathBtnBackgroundColorHover="'#D1C4E9'"
                 >
@@ -420,7 +420,7 @@
 
                 <w-explorer
                     style="width:600px; height:250px;"
-                    :items="WExplorer.fps1"
+                    :items="WExplorer.fps"
                     :btnDisplayTreeIconShow="'fas fa-arrow-circle-right'"
                     :btnDisplayTreeIconHide="'fas fa-arrow-circle-left'"
                     :btnDisplayTreeIconSize="22"
@@ -438,7 +438,7 @@
 
                 <w-explorer
                     style="width:600px; height:250px;"
-                    :items="WExplorer.fps1"
+                    :items="WExplorer.fps"
                     :btnDisplayTreeIconColor="'rgb(240,70,120)'"
                     :btnDisplayTreeIconColorHover="'rgb(240,50,100)'"
                     :btnDisplayTreeIconColorFocus="'rgb(255,70,120)'"
@@ -456,7 +456,7 @@
 
                 <w-explorer
                     style="width:600px; height:250px;"
-                    :items="WExplorer.fps1"
+                    :items="WExplorer.fps"
                     :btnDisplayTreeBackgroundColor="'rgba(241,241,255,0.7)'"
                     :btnDisplayTreeBackgroundColorHover="'rgb(220,220,255)'"
                     :btnDisplayTreeBackgroundColorFocus="'rgb(200,200,255)'"
@@ -474,7 +474,7 @@
 
                 <w-explorer
                     style="width:600px; height:250px;"
-                    :items="WExplorer.fps1"
+                    :items="WExplorer.fps"
                     :listPaddingStyle="{v:2,h:8}"
                 >
                 </w-explorer>
@@ -490,7 +490,7 @@
 
                 <w-explorer
                     style="width:600px; height:250px;"
-                    :items="WExplorer.fps1"
+                    :items="WExplorer.fps"
                     :listBackgroundColor="'#f8f8f8'"
                 >
                 </w-explorer>
@@ -506,7 +506,7 @@
 
                 <w-explorer
                     style="width:600px; height:250px;"
-                    :items="WExplorer.fps1"
+                    :items="WExplorer.fps"
                     :listFolderIcon="'fas fa-folder-open'"
                     :listFileIcon="'fas fa-tablet-alt'"
                     :listIconSize="18"
@@ -524,7 +524,7 @@
 
                 <w-explorer
                     style="width:600px; height:250px;"
-                    :items="WExplorer.fps1"
+                    :items="WExplorer.fps"
                     :listItemTextFontSize="'0.75rem'"
                 >
                 </w-explorer>
@@ -540,7 +540,7 @@
 
                 <w-explorer
                     style="width:600px; height:250px;"
-                    :items="WExplorer.fps1"
+                    :items="WExplorer.fps"
                     :listItemTextColor="'#a84'"
                     :listItemTextColorHover="'#864'"
                     :listItemTextColorActive="'#862'"
@@ -558,7 +558,7 @@
 
                 <w-explorer
                     style="width:600px; height:250px;"
-                    :items="WExplorer.fps1"
+                    :items="WExplorer.fps"
                     :listItemIconColor="'#ea6'"
                     :listItemIconColorHover="'#c84'"
                     :listItemIconColorActive="'#a62'"
@@ -576,7 +576,7 @@
 
                 <w-explorer
                     style="width:600px; height:250px;"
-                    :items="WExplorer.fps1"
+                    :items="WExplorer.fps"
                     :listItemBackgroundColor="'transparent'"
                     :listItemBackgroundColorHover="'#FFF3E0'"
                     :listItemBackgroundColorActive="'#FFE0B2'"
@@ -594,7 +594,7 @@
 
                 <w-explorer
                     style="width:600px; height:250px;"
-                    :items="WExplorer.fps1"
+                    :items="WExplorer.fps"
                     :listItemRippleColor="'rgba(130, 180, 255, 0.4)'"
                 >
                 </w-explorer>
@@ -610,7 +610,7 @@
 
                 <w-explorer
                     style="width:600px; height:250px;"
-                    :items="WExplorer.fps1"
+                    :items="WExplorer.fps"
                     :defaultShowTreeFirst="false"
                 >
                 </w-explorer>
@@ -626,7 +626,7 @@
 
                 <w-explorer
                     style="width:600px; height:250px;"
-                    :items="WExplorer.fps1"
+                    :items="WExplorer.fps"
                     :defaultShowTreeFirst="false"
                     :noSelectedText="'尚未選擇資料夾'"
                 >
@@ -643,7 +643,7 @@
 
                 <w-explorer
                     style="width:600px; height:250px;"
-                    :items="WExplorer.fps1"
+                    :items="WExplorer.fps"
                     @click="ckItem"
                     @click-folder="ckFolder"
                     @click-file="ckFile"
@@ -661,7 +661,7 @@
 
                 <w-explorer
                     style="width:600px; height:250px;"
-                    :items="WExplorer.fps1"
+                    :items="WExplorer.fps"
                     :treeItemTextFontSize="'0.75rem'"
                     :listItemTextFontSize="'0.75rem'"
                     :pathBtnTextFontSize="'0.75rem'"
@@ -679,7 +679,7 @@
 
                 <w-explorer
                     style="width:600px; height:250px;"
-                    :items="WExplorer.fps1"
+                    :items="WExplorer.fps"
                     :treeDrawerBarSize="5"
                     :treeDrawerBarColor="'rgba(0,0,0,0.1)'"
                 >
@@ -696,7 +696,7 @@
 
                 <w-explorer
                     style="width:600px; height:250px;"
-                    :items="WExplorer.fps1"
+                    :items="WExplorer.fps"
                     :lineBetweenPathAndListWidth="5"
                     :lineBetweenPathAndListColor="'rgba(0,0,0,0.1)'"
                 >
@@ -717,7 +717,7 @@
                                border-radius:5px;
                                overflow:hidden;
                                box-shadow: 0 3px 1px -2px rgb(0 0 0 / 20%), 0 2px 2px 0 rgb(0 0 0 / 14%), 0 1px 5px 0 rgb(0 0 0 / 12%);"
-                        :items="WExplorer.fps1"
+                        :items="WExplorer.fps"
 
                         :treeItemTextColor="'#ddd'"
                         :treeItemTextColorHover="'#eee'"
@@ -793,7 +793,7 @@
                 <w-explorer
                     ref="ref_toggleTreeFoldersByFun"
                     style="width:600px; height:250px;"
-                    :items="WExplorer.fps1"
+                    :items="WExplorer.fps"
                 >
                 </w-explorer>
 
@@ -816,7 +816,7 @@
                 <w-explorer
                     ref="ref_toggleTreeFoldersAll"
                     style="width:600px; height:250px;"
-                    :items="WExplorer.fps1"
+                    :items="WExplorer.fps"
                 >
                 </w-explorer>
 
@@ -837,7 +837,7 @@
                 <w-explorer
                     ref="we_triggerClickTreeFolderById"
                     style="width:600px; height:250px;"
-                    :items="WExplorer.fps1"
+                    :items="WExplorer.fps"
                 >
                 </w-explorer>
 
@@ -858,7 +858,7 @@
                 <w-explorer
                     ref="we_triggerClickTreeFolderByFun"
                     style="width:600px; height:250px;"
-                    :items="WExplorer.fps1"
+                    :items="WExplorer.fps"
                 >
                 </w-explorer>
 
@@ -878,7 +878,7 @@
 
                 <w-explorer
                     style="width:600px; height:250px;"
-                    :items="WExplorer.fps1"
+                    :items="WExplorer.fps"
                     :funSortTree="WExplorer.funSortTree"
                 >
                 </w-explorer>
@@ -894,7 +894,7 @@
 
                 <w-explorer
                     style="width:600px; height:250px;"
-                    :items="WExplorer.fps1"
+                    :items="WExplorer.fps"
                     @click="ckItem"
                 >
 
@@ -947,7 +947,7 @@
 
                 <w-explorer
                     style="width:600px; height:250px;"
-                    :items="WExplorer.fps1"
+                    :items="WExplorer.fps"
                     @click="ckItem"
                 >
 
@@ -1098,7 +1098,7 @@
 
                 <w-explorer
                     style="width:600px; height:250px;"
-                    :items="WExplorer.fps1"
+                    :items="WExplorer.fps"
                     @click="ckItem"
                 >
 
@@ -1157,7 +1157,7 @@
 
                 <w-explorer
                     style="width:600px; height:250px;"
-                    :items="WExplorer.fps1"
+                    :items="WExplorer.fps"
                     @click="ckItem"
                 >
 
@@ -1196,7 +1196,7 @@
 
                 <w-explorer
                     style="width:600px; height:250px;"
-                    :items="WExplorer.fps1"
+                    :items="WExplorer.fps"
                     @click="ckItem"
                 >
 
@@ -1227,6 +1227,468 @@
             </div>
 
 
+            <div class="bk">
+                <demolink
+                    :kbname="'w-explorer'"
+                    :casename="'draggable'"
+                ></demolink>
+
+                <div style="margin-bottom:5px; color:#f26; font-size:0.8rem;">* Disable show and hide nodes when using draggable</div>
+
+                <w-explorer
+                    style="width:800px; height:450px;"
+                    :items.sync="WExplorer.fps"
+                    :draggable="true"
+                    @click-operate-item="clickOperateItem"
+                    @change-item="changeItem"
+                >
+                </w-explorer>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-explorer'"
+                    :casename="'draggable & dgPreviewOpacity & dgPreviewBorderWidth & dgBelongBackgroundColor'"
+                ></demolink>
+
+                <div style="margin-bottom:5px; color:#f26; font-size:0.8rem;">* Disable show and hide nodes when using draggable</div>
+
+                <w-explorer
+                    style="width:800px; height:450px;"
+                    :items.sync="WExplorer.fps"
+                    :draggable="true"
+                    :dgPreviewOpacity="0.9"
+                    :dgPreviewBorderWidth="3"
+                    :dgPreviewBorderColor="'rgba(255,100,200,1)'"
+                    :dgPreviewBackground="'rgba(255,100,200,0.2)'"
+                    @click-operate-item="clickOperateItem"
+                    @change-item="changeItem"
+                >
+                </w-explorer>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-explorer'"
+                    :casename="'draggable & dgInsertLineColor & dgInsertBackgroundColor & dgBelongBackgroundColor'"
+                ></demolink>
+
+                <div style="margin-bottom:5px; color:#f26; font-size:0.8rem;">* Disable show and hide nodes when using draggable</div>
+
+                <w-explorer
+                    style="width:800px; height:450px;"
+                    :items.sync="WExplorer.fps"
+                    :draggable="true"
+                    :dgInsertLineColor="'rgba(120,220,150,0.9)'"
+                    :dgInsertBackgroundColor="'rgba(50,220,100,0.1)'"
+                    :dgBelongBackgroundColor="'rgba(50,220,100,0.2)'"
+                    @click-operate-item="clickOperateItem"
+                    @change-item="changeItem"
+                >
+                </w-explorer>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-explorer'"
+                    :casename="'draggable & dgTextDisabled & dgTextDisabledColor & dgTextDisabledPaddingLeft & dgTextDisabledFontSize & dgTextDisabledBackgroundColor'"
+                ></demolink>
+
+                <div style="margin-bottom:5px; color:#f26; font-size:0.8rem;">* Disable show and hide nodes when using draggable</div>
+
+                <w-explorer
+                    style="width:800px; height:450px;"
+                    :items.sync="WExplorer.fps"
+                    :draggable="true"
+                    :dgTextDisabled="'禁止拖曳至自己子節點當中'"
+                    :dgTextDisabledColor="'pink accent-3'"
+                    :dgTextDisabledPaddingLeft="13"
+                    :dgTextDisabledFontSize="'0.8rem'"
+                    :dgTextDisabledBackgroundColor="'rgba(255,255,255,0.8)'"
+                    @click-operate-item="clickOperateItem"
+                    @change-item="changeItem"
+                >
+                </w-explorer>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-explorer'"
+                    :casename="'operatable'"
+                ></demolink>
+
+                <div style="margin-bottom:5px; color:#f26; font-size:0.8rem;">* Disable show and hide nodes when using operatable</div>
+
+                <w-explorer
+                    style="width:800px; height:450px;"
+                    :items.sync="WExplorer.fps"
+                    :operatable="true"
+                    @click-operate-item="clickOperateItem"
+                    @change-item="changeItem"
+                >
+                </w-explorer>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-explorer'"
+                    :casename="'operatable & operateBtnTooltip & operateItemTextForRename & perateItemTextForInsertChild & operateItemTextForDelete'"
+                ></demolink>
+
+                <div style="margin-bottom:5px; color:#f26; font-size:0.8rem;">* Disable show and hide nodes when using operatable</div>
+
+                <w-explorer
+                    style="width:800px; height:450px;"
+                    :items.sync="WExplorer.fps"
+                    :operatable="true"
+                    :operateBtnTooltip="'編輯'"
+                    :operateItemTextForRename="'變更項目名稱'"
+                    :operateItemTextForInsertChild="'插入子項目'"
+                    :operateItemTextForDelete="'刪除項目'"
+                    @click-operate-item="clickOperateItem"
+                    @change-item="changeItem"
+                >
+                </w-explorer>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-explorer'"
+                    :casename="'operatable & operatePanelWidth & operatePanelHeight & operateItemIconSize & operateItemPaddingStyle'"
+                ></demolink>
+
+                <div style="margin-bottom:5px; color:#f26; font-size:0.8rem;">* Disable show and hide nodes when using operatable</div>
+
+                <w-explorer
+                    style="width:800px; height:450px;"
+                    :items.sync="WExplorer.fps"
+                    :operatable="true"
+                    :operateItemIconSize="18"
+                    :operateItemPaddingStyle="{v:5,h:5}"
+                    :operatePanelWidth="130"
+                    :operatePanelHeight="90"
+                    @click-operate-item="clickOperateItem"
+                    @change-item="changeItem"
+                >
+                </w-explorer>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-explorer'"
+                    :casename="'operatable & operateItemHeight & operateItemIconSize & operateItemPaddingStyle'"
+                ></demolink>
+
+                <div style="margin-bottom:5px; color:#f26; font-size:0.8rem;">* Disable show and hide nodes when using operatable</div>
+
+                <w-explorer
+                    style="width:800px; height:450px;"
+                    :items.sync="WExplorer.fps"
+                    :operatable="true"
+                    :operateItemIconSize="18"
+                    :operateItemPaddingStyle="{v:5,h:5}"
+                    :operateItemHeight="29.2"
+                    @click-operate-item="clickOperateItem"
+                    @change-item="changeItem"
+                >
+                </w-explorer>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-explorer'"
+                    :casename="'operatable & operateBtnBackgroundColor & operateBtnBackgroundColorHover & operateBtnBackgroundColorFocus'"
+                ></demolink>
+
+                <div style="margin-bottom:5px; color:#f26; font-size:0.8rem;">* Disable show and hide nodes when using operatable</div>
+
+                <w-explorer
+                    style="width:800px; height:450px;"
+                    :items.sync="WExplorer.fps"
+                    :operatable="true"
+                    :operateBtnBackgroundColor="'rgba(230,230,230,0.4)'"
+                    :operateBtnBackgroundColorHover="'rgba(230,230,255,0.8)'"
+                    :operateBtnBackgroundColorFocus="'rgba(210,210,255,0.8)'"
+                    @click-operate-item="clickOperateItem"
+                    @change-item="changeItem"
+                >
+                </w-explorer>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-explorer'"
+                    :casename="'operatable & operateItemBackgroundColor & operateItemBackgroundColorHover & operateItemTextColor & operateItemTextColorHover & operateItemIconColor & operateItemIconColorHover'"
+                ></demolink>
+
+                <div style="margin-bottom:5px; color:#f26; font-size:0.8rem;">* Disable show and hide nodes when using operatable</div>
+
+                <w-explorer
+                    style="width:800px; height:450px;"
+                    :items.sync="WExplorer.fps"
+                    :operatable="true"
+                    :operateItemBackgroundColor="'blue-grey darken-1'"
+                    :operateItemBackgroundColorHover="'blue-grey'"
+                    :operateItemTextColor="'grey lighten-4'"
+                    :operateItemTextColorHover="'white'"
+                    :operateItemIconColor="'grey lighten-4'"
+                    :operateItemIconColorHover="'white'"
+                    @click-operate-item="clickOperateItem"
+                    @change-item="changeItem"
+                >
+                </w-explorer>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-explorer'"
+                    :casename="'operatable & operateItemIconForRename & operateItemIconForInsertChild & operateItemIconForDelete'"
+                ></demolink>
+
+                <div style="margin-bottom:5px; color:#f26; font-size:0.8rem;">* Disable show and hide nodes when using operatable</div>
+
+                <w-explorer
+                    style="width:800px; height:450px;"
+                    :items.sync="WExplorer.fps"
+                    :operatable="true"
+                    :operateItemIconForRename="mdiCommentEditOutline"
+                    :operateItemIconForInsertChild="mdiChevronDoubleRight"
+                    :operateItemIconForDelete="mdiDeleteVariant"
+                    @click-operate-item="clickOperateItem"
+                    @change-item="changeItem"
+                >
+                </w-explorer>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-explorer'"
+                    :casename="'operatable & editorRenameContentBackgroundColor & editorRenameFooterBackgroundColor'"
+                ></demolink>
+
+                <div style="margin-bottom:5px; color:#f26; font-size:0.8rem;">* Disable show and hide nodes when using operatable</div>
+
+                <w-explorer
+                    style="width:800px; height:450px;"
+                    :items.sync="WExplorer.fps"
+                    :operatable="true"
+                    :editorRenameContentBackgroundColor="'#f2f2f2'"
+                    :editorRenameFooterBackgroundColor="'#EFEBE9'"
+                    @click-operate-item="clickOperateItem"
+                    @change-item="changeItem"
+                >
+                </w-explorer>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-explorer'"
+                    :casename="'operatable & editorRenameInputTextColor & editorRenameInputTextBottomLineBorderColor & editorRenameInputTextBottomLineBorderColorHover & editorRenameInputTextBottomLineBorderColorFocus'"
+                ></demolink>
+
+                <div style="margin-bottom:5px; color:#f26; font-size:0.8rem;">* Disable show and hide nodes when using operatable</div>
+
+                <w-explorer
+                    style="width:800px; height:450px;"
+                    :items.sync="WExplorer.fps"
+                    :operatable="true"
+                    :editorRenameInputTextColor="'#444'"
+                    :editorRenameInputTextBottomLineBorderColor="'#888'"
+                    :editorRenameInputTextBottomLineBorderColorHover="'#aaa'"
+                    :editorRenameInputTextBottomLineBorderColorFocus="'#666'"
+                    @click-operate-item="clickOperateItem"
+                    @change-item="changeItem"
+                >
+                </w-explorer>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-explorer'"
+                    :casename="'operatable & editorRenameCancelBtnText & editorRenameCancelBtnTextColor & editorRenameCancelBtnTextColorHover'"
+                ></demolink>
+
+                <div style="margin-bottom:5px; color:#f26; font-size:0.8rem;">* Disable show and hide nodes when using operatable</div>
+
+                <w-explorer
+                    style="width:800px; height:450px;"
+                    :items.sync="WExplorer.fps"
+                    :operatable="true"
+                    :editorRenameCancelBtnText="'取消'"
+                    :editorRenameCancelBtnTextColor="'#444'"
+                    :editorRenameCancelBtnTextColorHover="'#222'"
+                    @click-operate-item="clickOperateItem"
+                    @change-item="changeItem"
+                >
+                </w-explorer>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-explorer'"
+                    :casename="'operatable & editorRenameCancelBtnIcon & editorRenameCancelBtnIconSize & editorRenameCancelBtnIconColor & editorRenameCancelBtnIconColorHover & editorRenameCancelBtnIconRippleColor'"
+                ></demolink>
+
+                <div style="margin-bottom:5px; color:#f26; font-size:0.8rem;">* Disable show and hide nodes when using operatable</div>
+
+                <w-explorer
+                    style="width:800px; height:450px;"
+                    :items.sync="WExplorer.fps"
+                    :operatable="true"
+                    :editorRenameCancelBtnIcon="'fas fa-times'"
+                    :editorRenameCancelBtnIconSize="24"
+                    :editorRenameCancelBtnIconColor="'#444'"
+                    :editorRenameCancelBtnIconColorHover="'#222'"
+                    :editorRenameCancelBtnIconRippleColor="'rgba(200,200,200,0.3)'"
+                    @click-operate-item="clickOperateItem"
+                    @change-item="changeItem"
+                >
+                </w-explorer>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-explorer'"
+                    :casename="'operatable & editorRenameCancelBtnBackgroundColor & editorRenameCancelBtnBackgroundColorHover'"
+                ></demolink>
+
+                <div style="margin-bottom:5px; color:#f26; font-size:0.8rem;">* Disable show and hide nodes when using operatable</div>
+
+                <w-explorer
+                    style="width:800px; height:450px;"
+                    :items.sync="WExplorer.fps"
+                    :operatable="true"
+                    :editorRenameCancelBtnBackgroundColor="'#EFEBE9'"
+                    :editorRenameCancelBtnBackgroundColorHover="'#D7CCC8'"
+                    @click-operate-item="clickOperateItem"
+                    @change-item="changeItem"
+                >
+                </w-explorer>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-explorer'"
+                    :casename="'operatable & editorRenameSaveBtnText & editorRenameSaveBtnTextColor & editorRenameSaveBtnTextColorHover'"
+                ></demolink>
+
+                <div style="margin-bottom:5px; color:#f26; font-size:0.8rem;">* Disable show and hide nodes when using operatable</div>
+
+                <w-explorer
+                    style="width:800px; height:450px;"
+                    :items.sync="WExplorer.fps"
+                    :operatable="true"
+                    :editorRenameSaveBtnText="'儲存'"
+                    :editorRenameSaveBtnTextColor="'#444'"
+                    :editorRenameSaveBtnTextColorHover="'#222'"
+                    @click-operate-item="clickOperateItem"
+                    @change-item="changeItem"
+                >
+                </w-explorer>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-explorer'"
+                    :casename="'operatable & editorRenameSaveBtnIcon & editorRenameSaveBtnIconSize & editorRenameSaveBtnIconColor & editorRenameSaveBtnIconColorHover & editorRenameSaveBtnIconRippleColor'"
+                ></demolink>
+
+                <div style="margin-bottom:5px; color:#f26; font-size:0.8rem;">* Disable show and hide nodes when using operatable</div>
+
+                <w-explorer
+                    style="width:800px; height:450px;"
+                    :items.sync="WExplorer.fps"
+                    :operatable="true"
+                    :editorRenameSaveBtnIcon="'fas fa-check'"
+                    :editorRenameSaveBtnIconSize="24"
+                    :editorRenameSaveBtnIconColor="'#444'"
+                    :editorRenameSaveBtnIconColorHover="'#222'"
+                    :editorRenameSaveBtnIconRippleColor="'rgba(200,200,200,0.3)'"
+                    @click-operate-item="clickOperateItem"
+                    @change-item="changeItem"
+                >
+                </w-explorer>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-explorer'"
+                    :casename="'operatable & editorRenameSaveBtnBackgroundColor & editorRenameSaveBtnBackgroundColorHover'"
+                ></demolink>
+
+                <div style="margin-bottom:5px; color:#f26; font-size:0.8rem;">* Disable show and hide nodes when using operatable</div>
+
+                <w-explorer
+                    style="width:800px; height:450px;"
+                    :items.sync="WExplorer.fps"
+                    :operatable="true"
+                    :editorRenameSaveBtnBackgroundColor="'#EFEBE9'"
+                    :editorRenameSaveBtnBackgroundColorHover="'#D7CCC8'"
+                    @click-operate-item="clickOperateItem"
+                    @change-item="changeItem"
+                >
+                </w-explorer>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-explorer'"
+                    :casename="'operatable & draggable'"
+                ></demolink>
+
+                <div style="margin-bottom:5px; color:#f26; font-size:0.8rem;">* Disable show and hide nodes when using operatable or draggable</div>
+
+                <w-explorer
+                    style="width:800px; height:450px;"
+                    :items.sync="WExplorer.fps"
+                    :operatable="true"
+                    :draggable="true"
+                    @click-operate-item="clickOperateItem"
+                    @change-item="changeItem"
+                >
+                </w-explorer>
+
+            </div>
+
+
         </div>
 
 
@@ -1234,6 +1696,7 @@
 </template>
 
 <script>
+import { mdiCommentEditOutline, mdiChevronDoubleRight, mdiDeleteVariant } from '@mdi/js'
 import demolink from './components/demolink.vue'
 import WIcon from './components/WIcon.vue'
 import WExplorer from './components/WExplorer.vue'
@@ -1249,11 +1712,14 @@ export default {
     },
     data: function() {
         return {
+            mdiCommentEditOutline,
+            mdiChevronDoubleRight,
+            mdiDeleteVariant,
             'WExplorer': {
                 bShowTree: true,
-                treeWidth: 250,
+                treeWidth: 275,
                 funSortTree: null,
-                fps1: [
+                fps: [
                     {
                         type: 'file',
                         path: '/Applications/Calendar.app',
@@ -1725,6 +2191,37 @@ export default {
                 }
             }
             return `There are ${kfd} folder(s) and ${kfl} file(s) in this folder`
+        },
+        clickOperateItem: function(msg) {
+            console.log('clickOperateItem', msg)
+
+            //fun, 僅處理並回傳新項目, 不處理刪除項目
+            let fun = function() {
+                return new Promise(function(resolve, reject) {
+                    let id = Math.floor(Math.random() * 1000)
+                    let text = 'new-' + id
+                    let dataNew = {
+                        // id: '',
+                        text,
+                        type: 'folder',
+                        // path: '',
+                        size: 'test',
+                        tester: 'test',
+                        priority: 'test',
+                    }
+                    resolve(dataNew)
+                })
+            }
+
+            //targetInd
+            let targetInd = msg.rowItem.index
+
+            //operateItem
+            msg.operateItem(targetInd, msg.opItem.key, fun)
+
+        },
+        changeItem: function(msg) {
+            console.log('changeItem', msg)
         },
     }
 }

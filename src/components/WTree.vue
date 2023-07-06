@@ -19,7 +19,7 @@
             :searchingText="searchingText"
             :show="show"
             @render="(msg)=>{$emit('render',msg)}"
-            @change-view-items="(msg)=>{$emit('change-view-items',msg)}"
+            @change-view-items="(msg)=>{updateOperateShow(false);$emit('change-view-items',msg)}"
             @change-height-of-items="(msg)=>{updateViewHeightMaxTrans(msg);$emit('change-height-of-items',msg)}"
         >
             <template v-slot="props">
@@ -28,9 +28,14 @@
                 <!-- 要把原生拖曳功能關閉draggable=false -->
                 <div
                     :key="`wt-${props.index}`"
-                    :style="`transition:all 0.3s; ${draggable?'user-select:none;':''} ${getCursor({},props)} color:${getTextColor(props.row.item)}; background:${getBackgroundColor(props.row.item)};`"
+                    :style="`
+                        transition:all 0.3s; ${draggable?'user-select:none;':''}
+                        ${getUseActivable(props)?'cursor:pointer;':''}
+                        color:${getTextColor(props.row.item)};
+                        background:${getBackgroundColor(props.row.item)};
+                    `"
                     :dragindex="props.index"
-                    v-domdragdrop="isDraggable?getDgOpt():null"
+                    v-domdragdrop="useDraggable?getDgOpt():null"
                     v-domripple="{color:itemRippleColor}"
                     @domdragdrop="dragdrop"
                     draggable="false"
@@ -117,10 +122,18 @@
 
                         </div>
 
-                        <div style="position:absolute; top:2px; right:8px;" v-if="operatable">
+                        <div
+                            style="position:absolute; top:2px; right:8px;"
+                            v-if="getUseOperatable(props)"
+                            @mousedown="(ev)=>{operateDisableEvent(ev,'mousedown')}"
+                            @touchstart="(ev)=>{operateDisableEvent(ev,'touchstart')}"
+                            @click="(ev)=>{operateDisableEvent(ev,'click')}"
+                        >
 
                             <WPopup
                                 :isolated="true"
+                                @show="operateDisplayEvent('show')"
+                                @hide="operateDisplayEvent('hide')"
                             >
 
                                 <template v-slot:trigger>
@@ -137,8 +150,8 @@
                                 <template v-slot:content="propsOperate">
                                     <!-- 因位於WDynamicList內位置太複雜popup.js無法順利計算寬高, 得由外部指定寬高 -->
                                     <WListVertical
-                                        :style="`height:${operatePanelHeight}px; width:${operatePanelWidth}px;`"
-                                        :items="useOperateItems"
+                                        :style="`${getOperatePanelHeight(props)} width:${operatePanelWidth}px;`"
+                                        :items="getUseOperateItems(props)"
                                         :itemTextFontSize="'0.8rem'"
                                         :useActive="false"
                                         :paddingStyle="operateItemPaddingStyle"
@@ -150,11 +163,11 @@
                                         :itemIconColor="operateItemIconColor"
                                         :itemIconColorHover="operateItemIconColorHover"
                                         @click="(item)=>{propsOperate.funHide();clickOperateItem({opItem:item,rowItem:props})}"
+                                        @mousedown.stop=""
                                     ></WListVertical>
                                 </template>
 
                             </WPopup>
-
 
                         </div>
 
@@ -189,11 +202,76 @@
             </template>
         </div>
 
+        <Teleport to="body">
+            <WDialog
+                :show.sync="editorShow"
+                :minWidth="300"
+                :maxWidth="300"
+            >
+
+                <template v-slot:panel>
+
+                    <div :style="`padding:20px; border-bottom:1px solid #ddd; background:${useEditorContentBackgroundColor};`">
+
+                        <div style="width:100%;">
+                            <WText
+                                :textColor="editorRenameInputTextColor"
+                                :bottomLineBorderColor="editorRenameInputTextBottomLineBorderColor"
+                                :bottomLineBorderColorHover="editorRenameInputTextBottomLineBorderColorHover"
+                                :bottomLineBorderColorFocus="editorRenameInputTextBottomLineBorderColorFocus"
+                                v-model="editorRenameInputText"
+                                @enter="saveRename"
+                            ></WText>
+                        </div>
+
+                    </div>
+
+                    <div :style="`padding:10px; background:${useEditorFooterBackgroundColor}; display:flex; justify-content:flex-end;`">
+
+                        <WButtonChip
+                            :shiftLeft="-5"
+                            :icon="editorRenameCancelBtnIcon"
+                            :iconColor="editorRenameCancelBtnIconColor"
+                            :iconColorHover="editorRenameCancelBtnIconColorHover"
+                            :iconSize="editorRenameCancelBtnIconSize"
+                            :text="editorRenameCancelBtnText"
+                            :textColor="editorRenameCancelBtnTextColor"
+                            :textColorHover="editorRenameCancelBtnTextColorHover"
+                            :backgroundColor="editorRenameCancelBtnBackgroundColor"
+                            :backgroundColorHover="editorRenameCancelBtnBackgroundColorHover"
+                            :rippleColor="editorRenameCancelBtnIconRippleColor"
+                            @click="cancelEditor"
+                        ></WButtonChip>
+
+                        <div style="padding-left:10px;"></div>
+
+                        <WButtonChip
+                            :shiftLeft="-5"
+                            :icon="editorRenameSaveBtnIcon"
+                            :iconColor="editorRenameSaveBtnIconColor"
+                            :iconColorHover="editorRenameSaveBtnIconColorHover"
+                            :iconSize="editorRenameSaveBtnIconSize"
+                            :text="editorRenameSaveBtnText"
+                            :textColor="editorRenameSaveBtnTextColor"
+                            :textColorHover="editorRenameSaveBtnTextColorHover"
+                            :backgroundColor="editorRenameSaveBtnBackgroundColor"
+                            :backgroundColorHover="editorRenameSaveBtnBackgroundColorHover"
+                            :rippleColor="editorRenameSaveBtnIconRippleColor"
+                            @click="saveRename"
+                        ></WButtonChip>
+
+                    </div>
+
+                </template>
+
+            </WDialog>
+        </Teleport>
+
     </div>
 </template>
 
 <script>
-import { mdiDotsVertical, mdiFormatVerticalAlignTop, mdiFormatHorizontalAlignRight, mdiFormatVerticalAlignBottom, mdiClose } from '@mdi/js/mdi.js'
+import { mdiDotsVertical, mdiRenameOutline, mdiFormatVerticalAlignTop, mdiFormatHorizontalAlignRight, mdiFormatVerticalAlignBottom, mdiClose, mdiCloseCircleOutline, mdiCloudUploadOutline } from '@mdi/js/mdi.js'
 import each from 'lodash/each'
 import get from 'lodash/get'
 import set from 'lodash/set'
@@ -213,6 +291,7 @@ import cloneDeep from 'lodash/cloneDeep'
 import isInteger from 'lodash/isInteger'
 import dropRight from 'lodash/dropRight'
 import genID from 'wsemi/src/genID.mjs'
+import genPm from 'wsemi/src/genPm.mjs'
 import sep from 'wsemi/src/sep.mjs'
 import isarr from 'wsemi/src/isarr.mjs'
 import isobj from 'wsemi/src/isobj.mjs'
@@ -225,12 +304,10 @@ import ispm from 'wsemi/src/ispm.mjs'
 import cint from 'wsemi/src/cint.mjs'
 import cdbl from 'wsemi/src/cdbl.mjs'
 import cstr from 'wsemi/src/cstr.mjs'
-// import replace from 'wsemi/src/replace.mjs'
 import haskey from 'wsemi/src/haskey.mjs'
-import genPm from 'wsemi/src/genPm.mjs'
 import waitFun from 'wsemi/src/waitFun.mjs'
 import debounce from 'wsemi/src/debounce.mjs'
-import flattenTree from 'wsemi/src/flattenTree'
+import flattenTreeWk from '../js/flattenTreeWk.wk.umd.js'
 import globalMemory from '../js/globalMemory.mjs'
 import parseSpace from '../js/parseSpace.mjs'
 import color2hex from '../js/vuetifyColor.mjs'
@@ -238,10 +315,14 @@ import domDragDrop from '../js/domDragDrop.mjs'
 import domRipple from '../js/domRipple.mjs'
 import WDynamicList from './WDynamicList.vue'
 import WButtonCircle from './WButtonCircle.vue'
+import WButtonChip from './WButtonChip.vue'
+import WText from './WText.vue'
 import WPopup from './WPopup.vue'
+import WDialog from './WDialog.vue'
 import WListVertical from './WListVertical.vue'
 import WTreeIconToggle from './WTreeIconToggle.vue'
 import WTreeIconCheckbox from './WTreeIconCheckbox.vue'
+import Teleport from './Teleport.vue'
 
 
 //gm
@@ -253,7 +334,7 @@ let gm = globalMemory()
  * @vue-prop {Number} [viewHeightMax=400] 輸入顯示區最大高度，單位為px，若給予非數字則自動依照當前顯隱最高內容調整，預設400
  * @vue-prop {Number} [defaultDisplayLevel=null] 輸入初始展開層數數字，若輸入1就是預設展開至第1層，第2層(含)以下則都隱藏，若輸入null就是全展開，預設null
  * @vue-prop {Boolean} [activable=false] 輸入是否使用主動模式布林值，預設false
- * @vue-prop {Function} [funActive=null] 輸入主動模式時處理點擊項目函數，給予並回傳true時代表點擊項目給予主動模式，回傳false代表點擊項目不給予主動模式，可應用於資料夾與有效項目之區隔，預設null
+ * @vue-prop {Function} [funActive=null] 輸入主動模式時處理點擊項目函數，回傳true時代表點擊項目給予主動模式，回傳false代表點擊項目不給予主動模式，可應用於資料夾與有效項目之區隔，預設null
  * @vue-prop {Object} [itemActive={}] 輸入主動模式時外部給予主動模式項目物件，物件內至少要給予keyPrimary鍵值方能進行識別，預設{}
  * @vue-prop {Boolean} [selectable=false] 輸入是否具有勾選模式布林值，預設false
  * @vue-prop {Array} [selections=[]] 輸入勾選項目陣列，當selectable=true時才可使用，預設[]
@@ -298,28 +379,62 @@ let gm = globalMemory()
  * @vue-prop {String} [dgBelongBackgroundColor='rgba(80,150,255,0.3)'] 輸入拖曳時顯示插入區域(成為目標的子節點)背景顏色字串，預設'rgba(80,150,255,0.3)'
  * @vue-prop {Number} [dgPreviewOpacity=1] 輸入拖曳時預覽元素透明度數字，預設1
  * @vue-prop {Number} [dgPreviewDisabledOpacity=1] 輸入無效時(位於非可拖曳元素內)拖曳時預覽元素透明度數字，預設1
- * @vue-prop {Number} [dgPreviewBorderWidth=0] 輸入拖曳時預覽元素邊框寬度數字，預設0
+ * @vue-prop {Number} [dgPreviewBorderWidth=0] 輸入拖曳時預覽元素邊框寬度數字，單位px，預設0
  * @vue-prop {String} [dgPreviewBorderColor='#f26'] 輸入拖曳時預覽元素邊框顏色字串，預設'#f26'
  * @vue-prop {String} [dgPreviewBackground='transparent'] 輸入拖曳時預覽元素背景顏色字串，預設'transparent'
  * @vue-prop {Boolean} [operatable=false] 輸入是否使用控制節點模式布林值，若operatable設定true，將於各項目右側顯示控制按鈕，點擊可彈出選單進行插入與刪除等項目，此時會觸發事件click-operate-item，而處理相應數據則需呼叫事件提供物件內operateItem函數，詳情請見範例。此時所有節點皆為展開顯示並且禁止顯隱節點功能，也就是defaultDisplayLevel強制設定為null，此外也不提供過濾功能，也就是filterKeywords強制清空。開啟operatable僅適用小規模數據。operatable預設false
+ * @vue-prop {String} [operateItemTextForRename='Rename'] 輸入控制選項變更文字之文字字串，預設'Rename'
  * @vue-prop {String} [operateItemTextForInsertBefore='Insert before'] 輸入控制選項插入前項目之文字字串，預設'Insert before'
  * @vue-prop {String} [operateItemTextForInsertChild='Insert child'] 輸入控制選項插入子項目之文字字串，預設'Insert child'
  * @vue-prop {String} [operateItemTextForInsertAfter='Insert after'] 輸入控制選項插入後項目之文字字串，預設'Insert after'
- * @vue-prop {String} [operateItemTextForInsertDelete='Delete'] 輸入控制選項刪除項目之文字字串，預設'Delete'
+ * @vue-prop {String} [operateItemTextForDelete='Delete'] 輸入控制選項刪除項目之文字字串，預設'Delete'
+ * @vue-prop {String} [operateItemIconForRename=mdiRenameOutline] 輸入控制選項變更文字之圖標字串，預設mdiRenameOutline
+ * @vue-prop {String} [operateItemIconForInsertBefore=mdiFormatVerticalAlignTop] 輸入控制選項插入前項目之圖標字串，預設mdiFormatVerticalAlignTop
+ * @vue-prop {String} [operateItemIconForInsertChild=mdiFormatHorizontalAlignRight] 輸入控制選項插入子項目之圖標字串，預設mdiFormatHorizontalAlignRight
+ * @vue-prop {String} [operateItemIconForInsertAfter=mdiFormatVerticalAlignBottom] 輸入控制選項插入後項目之圖標字串，預設mdiFormatVerticalAlignBottom
+ * @vue-prop {String} [operateItemIconForDelete=mdiClose] 輸入控制選項刪除項目之圖標字串，預設mdiClose
  * @vue-prop {Object} [operateItemPaddingStyle={v:10,h:12}] 輸入控制選項內寬距離設定物件，可用鍵值為v、h、left、right、top、bottom，v代表同時設定top與bottom，h代表設定left與right，若有重複設定時後面鍵值會覆蓋前面，各鍵值為寬度數字，單位為px，預設{v:10,h:12}
- * @vue-prop {Number} [operatePanelWidth=150] 輸入控制選項寬度數字，預設150
- * @vue-prop {Number} [operatePanelHeight=168] 輸入控制選項高度數字，預設168
+ * @vue-prop {Number} [operatePanelWidth=150] 輸入控制選項寬度數字，單位px，預設150
+ * @vue-prop {Number} [operatePanelHeight=null] 輸入控制選項高度數字，若為null則使用選項數量*operateItemHeight，單位px，預設null
  * @vue-prop {String} [operateBtnTooltip='Operations'] 輸入控制按鈕之提示文字字串，預設'Operations'
  * @vue-prop {String} [operateBtnBackgroundColor='transparent'] 輸入控制按鈕背景顏色字串，預設'transparent'
  * @vue-prop {String} [operateBtnBackgroundColorHover='rgba(230,230,230,0.7)'] 輸入滑鼠移入時控制按鈕背景顏色字串，預設'rgba(230,230,230,0.7)'
  * @vue-prop {String} [operateBtnBackgroundColorFocus='rgba(230,230,230,0.9)'] 輸入取得焦點時控制按鈕背景顏色字串，預設'rgba(230,230,230,0.9)'
  * @vue-prop {String} [operateItemBackgroundColor='transparent'] 輸入控制項目背景顏色字串，預設'transparent'
  * @vue-prop {String} [operateItemBackgroundColorHover='rgba(200,200,200,0.2)'] 輸入滑鼠移入時控制項目背景顏色字串，預設'rgba(200,200,200,0.2)'
+ * @vue-prop {Number} [operateItemHeight=42] 輸入控制項目高度數字，單位px，預設42
  * @vue-prop {String} [operateItemTextColor='#444'] 輸入控制項目文字顏色字串，預設'#444'
  * @vue-prop {String} [operateItemTextColorHover='#222'] 輸入滑鼠移入時控制項目文字顏色字串，預設'#222'
- * @vue-prop {Number} [operateItemIconSize=22] 輸入控制項目圖標尺寸數字，預設22
+ * @vue-prop {Number} [operateItemIconSize=22] 輸入控制項目圖標尺寸數字，單位px，預設22
  * @vue-prop {String} [operateItemIconColor='#444'] 輸入控制項目圖標顏色字串，預設'#444'
  * @vue-prop {String} [operateItemIconColorHover='#222'] 輸入滑鼠移入時控制項目圖標顏色字串，預設'#222'
+ * @vue-prop {Function} [funOperateItem=null] 輸入使用控制節點模式時處理項目函數，回傳陣列代表該項目提供指定控制按鈕，回傳true代表提供全部控制按鈕，回傳false或空陣列代表不提供控制按鈕，可應用於檔案清單之根目錄禁用控制節點模式或特定項目採用控制節點模式，預設null
+ * @vue-prop {String} [editorRenameContentBackgroundColor='white'] 輸入變更文字彈窗之內容區塊背景顏色字串，預設'white'
+ * @vue-prop {String} [editorRenameFooterBackgroundColor='grey lighten-5'] 輸入變更文字彈窗之下方區背景顏色字串，預設'grey lighten-5'
+ * @vue-prop {String} [editorRenameInputTextColor='grey darken-3'] 輸入變更文字彈窗之輸入文字框之文字顏色字串，預設'grey darken-3'
+ * @vue-prop {String} [editorRenameInputTextBottomLineBorderColor='grey lighten-1'] 輸入變更文字彈窗之輸入文字框之底部線顏色字串，預設'grey lighten-1'
+ * @vue-prop {String} [editorRenameInputTextBottomLineBorderColorHover='grey'] 輸入變更文字彈窗之輸入文字框之滑鼠移入時底部線顏色字串，預設'grey'
+ * @vue-prop {String} [editorRenameInputTextBottomLineBorderColorFocus='blue darken-1'] 輸入變更文字彈窗之輸入文字框之取得焦點時底部線顏色字串，預設'blue darken-1'
+ * @vue-prop {String} [editorRenameCancelBtnText='Save'] 輸入變更文字彈窗之取消按鈕文字字串，預設'Save'
+ * @vue-prop {String} [editorRenameCancelBtnTextColor='grey darken-3'] 輸入變更文字彈窗之取消按鈕文字顏色字串，預設'grey darken-3'
+ * @vue-prop {String} [editorRenameCancelBtnTextColorHover='grey darken-2'] 輸入變更文字彈窗之滑鼠移入時取消按鈕文字顏色字串，預設'grey darken-2'
+ * @vue-prop {String} [editorRenameCancelBtnIcon=mdiCloseCircleOutline] 輸入變更文字彈窗之取消按鈕圖標字串，可為mdi,md,fa代號或mdi/js路徑，預設mdiCloseCircleOutline
+ * @vue-prop {Number} [editorRenameCancelBtnIconSize=22] 輸入變更文字彈窗之取消按鈕圖標大小，單位為px，預設22
+ * @vue-prop {String} [editorRenameCancelBtnIconColor='grey darken-1'] 輸入變更文字彈窗之取消按鈕圖標顏色字串，預設'grey darken-1'
+ * @vue-prop {String} [editorRenameCancelBtnIconColorHover='grey darken-2'] 輸入變更文字彈窗之滑鼠移入時取消按鈕圖標顏色字串，預設'grey darken-2'
+ * @vue-prop {String} [editorRenameCancelBtnIconRippleColor='rgba(200,200,200,0.4)'] 輸入變更文字彈窗之取消按鈕ripple效果顏色字串，預設'rgba(200,200,200,0.4)'
+ * @vue-prop {String} [editorRenameCancelBtnBackgroundColor='white'] 輸入變更文字彈窗之取消按鈕背景顏色字串，預設'white'
+ * @vue-prop {String} [editorRenameCancelBtnBackgroundColorHover='grey lighten-3'] 輸入變更文字彈窗之滑鼠移入時取消按鈕背景顏色字串，預設'grey lighten-3'
+ * @vue-prop {String} [editorRenameSaveBtnText='Save'] 輸入變更文字彈窗之儲存按鈕文字字串，預設'Save'
+ * @vue-prop {String} [editorRenameSaveBtnTextColor='grey darken-3'] 輸入變更文字彈窗之儲存按鈕文字顏色字串，預設'grey darken-3'
+ * @vue-prop {String} [editorRenameSaveBtnTextColorHover='grey darken-2'] 輸入變更文字彈窗之滑鼠移入時儲存按鈕文字顏色字串，預設'grey darken-2'
+ * @vue-prop {String} [editorRenameSaveBtnIcon=mdiCloudUploadOutline] 輸入變更文字彈窗之儲存按鈕圖標字串，可為mdi,md,fa代號或mdi/js路徑，預設mdiCheckboxMarkedCircle
+ * @vue-prop {Number} [editorRenameSaveBtnIconSize=22] 輸入變更文字彈窗之儲存按鈕圖標大小，單位為px，預設22
+ * @vue-prop {String} [editorRenameSaveBtnIconColor='grey darken-1'] 輸入變更文字彈窗之儲存按鈕圖標顏色字串，預設'grey darken-1'
+ * @vue-prop {String} [editorRenameSaveBtnIconColorHover='grey darken-2'] 輸入變更文字彈窗之滑鼠移入時儲存按鈕圖標顏色字串，預設'grey darken-2'
+ * @vue-prop {String} [editorRenameSaveBtnIconRippleColor='rgba(200,200,200,0.4)'] 輸入變更文字彈窗之儲存按鈕ripple效果顏色字串，預設'rgba(200,200,200,0.4)'
+ * @vue-prop {String} [editorRenameSaveBtnBackgroundColor='white'] 輸入變更文字彈窗之儲存按鈕背景顏色字串，預設'white'
+ * @vue-prop {String} [editorRenameSaveBtnBackgroundColorHover='grey lighten-3'] 輸入變更文字彈窗之滑鼠移入時儲存按鈕背景顏色字串，預設'grey lighten-3'
  * @vue-prop {Boolean} [show=true] 輸入是否為顯示模式布林值，預設true，供組件嵌入popup時, 因先初始化但尚未顯示不需渲染, 可給予show=false避免無限偵測與重算高度問題
  */
 export default {
@@ -330,10 +445,14 @@ export default {
     components: {
         WDynamicList,
         WButtonCircle,
+        WButtonChip,
+        WText,
         WPopup,
+        WDialog,
         WListVertical,
         WTreeIconToggle,
         WTreeIconCheckbox,
+        Teleport,
     },
     props: {
         data: {
@@ -553,6 +672,10 @@ export default {
             type: Boolean,
             default: false,
         },
+        operateItemTextForRename: {
+            type: String,
+            default: 'Rename',
+        },
         operateItemTextForInsertBefore: {
             type: String,
             default: 'Insert before',
@@ -565,9 +688,29 @@ export default {
             type: String,
             default: 'Insert after',
         },
-        operateItemTextForInsertDelete: {
+        operateItemTextForDelete: {
             type: String,
             default: 'Delete',
+        },
+        operateItemIconForRename: {
+            type: String,
+            default: mdiRenameOutline,
+        },
+        operateItemIconForInsertBefore: {
+            type: String,
+            default: mdiFormatVerticalAlignTop,
+        },
+        operateItemIconForInsertChild: {
+            type: String,
+            default: mdiFormatHorizontalAlignRight,
+        },
+        operateItemIconForInsertAfter: {
+            type: String,
+            default: mdiFormatVerticalAlignBottom,
+        },
+        operateItemIconForDelete: {
+            type: String,
+            default: mdiClose,
         },
         operateItemPaddingStyle: {
             type: Object,
@@ -584,7 +727,7 @@ export default {
         },
         operatePanelHeight: {
             type: Number,
-            default: 42 * 4,
+            default: null,
         },
         operateBtnTooltip: {
             type: String,
@@ -610,6 +753,10 @@ export default {
             type: String,
             default: 'rgba(200,200,200,0.2)',
         },
+        operateItemHeight: {
+            type: Number,
+            default: 42,
+        },
         operateItemTextColor: {
             type: String,
             default: '#444',
@@ -629,6 +776,114 @@ export default {
         operateItemIconColorHover: {
             type: String,
             default: '#222',
+        },
+        funOperateItem: {
+            type: Function,
+            default: null,
+        },
+        editorRenameContentBackgroundColor: {
+            type: String,
+            default: 'white',
+        },
+        editorRenameFooterBackgroundColor: {
+            type: String,
+            default: 'grey lighten-5',
+        },
+        editorRenameInputTextColor: {
+            type: String,
+            default: 'grey darken-3',
+        },
+        editorRenameInputTextBottomLineBorderColor: {
+            type: String,
+            default: 'grey lighten-1',
+        },
+        editorRenameInputTextBottomLineBorderColorHover: {
+            type: String,
+            default: 'grey',
+        },
+        editorRenameInputTextBottomLineBorderColorFocus: {
+            type: String,
+            default: 'blue darken-1',
+        },
+        editorRenameCancelBtnText: {
+            type: String,
+            default: 'Cancel',
+        },
+        editorRenameCancelBtnTextColor: {
+            type: String,
+            default: 'grey darken-3',
+        },
+        editorRenameCancelBtnTextColorHover: {
+            type: String,
+            default: 'grey darken-2',
+        },
+        editorRenameCancelBtnIcon: {
+            type: String,
+            default: mdiCloseCircleOutline,
+        },
+        editorRenameCancelBtnIconSize: {
+            type: Number,
+            default: 22,
+        },
+        editorRenameCancelBtnIconColor: {
+            type: String,
+            default: 'grey darken-1',
+        },
+        editorRenameCancelBtnIconColorHover: {
+            type: String,
+            default: 'grey darken-2',
+        },
+        editorRenameCancelBtnIconRippleColor: {
+            type: String,
+            default: 'rgba(200,200,200,0.4)',
+        },
+        editorRenameCancelBtnBackgroundColor: {
+            type: String,
+            default: 'white',
+        },
+        editorRenameCancelBtnBackgroundColorHover: {
+            type: String,
+            default: 'grey lighten-3',
+        },
+        editorRenameSaveBtnText: {
+            type: String,
+            default: 'Save',
+        },
+        editorRenameSaveBtnTextColor: {
+            type: String,
+            default: 'grey darken-3',
+        },
+        editorRenameSaveBtnTextColorHover: {
+            type: String,
+            default: 'grey darken-2',
+        },
+        editorRenameSaveBtnIcon: {
+            type: String,
+            default: mdiCloudUploadOutline,
+        },
+        editorRenameSaveBtnIconSize: {
+            type: Number,
+            default: 22,
+        },
+        editorRenameSaveBtnIconColor: {
+            type: String,
+            default: 'grey darken-1',
+        },
+        editorRenameSaveBtnIconColorHover: {
+            type: String,
+            default: 'grey darken-2',
+        },
+        editorRenameSaveBtnIconRippleColor: {
+            type: String,
+            default: 'rgba(200,200,200,0.4)',
+        },
+        editorRenameSaveBtnBackgroundColor: {
+            type: String,
+            default: 'white',
+        },
+        editorRenameSaveBtnBackgroundColorHover: {
+            type: String,
+            default: 'grey lighten-3',
         },
         show: {
             type: Boolean,
@@ -671,6 +926,14 @@ export default {
 
             pkActive: '',
             pkHover: '',
+
+            operateShow: false,
+
+            editorShow: false,
+            editorPm: null,
+            editorRenameData: null,
+            editorRenameItem: {},
+            editorRenameInputText: '',
 
         }
     },
@@ -909,44 +1172,62 @@ export default {
             return color2hex(vo.dgBelongBackgroundColor)
         },
 
-        useOperateItems: function() {
-            //console.log('computed useOperateItems')
+        operateItems: function() {
+            //console.log('computed operateItems')
 
             let vo = this
 
-            //operateItems
-            let operateItems = [
+            //rs
+            let rs = [
+                {
+                    key: 'Rename',
+                    text: vo.operateItemTextForRename,
+                    icon: vo.operateItemIconForRename,
+                },
                 {
                     key: 'InsertBefore',
                     text: vo.operateItemTextForInsertBefore,
-                    icon: mdiFormatVerticalAlignTop,
+                    icon: vo.operateItemIconForInsertBefore,
                 },
                 {
                     key: 'InsertChild',
                     text: vo.operateItemTextForInsertChild,
-                    icon: mdiFormatHorizontalAlignRight,
+                    icon: vo.operateItemIconForInsertChild,
                 },
                 {
                     key: 'InsertAfter',
                     text: vo.operateItemTextForInsertAfter,
-                    icon: mdiFormatVerticalAlignBottom,
+                    icon: vo.operateItemIconForInsertAfter,
                 },
                 {
                     key: 'Delete',
-                    text: vo.operateItemTextForInsertDelete,
-                    icon: mdiClose,
+                    text: vo.operateItemTextForDelete,
+                    icon: vo.operateItemIconForDelete,
                 },
             ]
 
-            return operateItems
+            return rs
         },
 
-        isDraggable: function() {
-            //console.log('computed isDraggable')
+        useDraggable: function() {
+            //console.log('computed useDraggable')
 
             let vo = this
 
-            return vo.draggable // && vo.editable
+            //b, 彈窗內點擊或拖曳項目亦會驅動drag, 故須使用operateShow偵測禁用拖曳功能
+            let b = vo.draggable && !vo.operateShow
+
+            return b
+        },
+
+        useEditorContentBackgroundColor: function() {
+            let vo = this
+            return color2hex(vo.editorRenameContentBackgroundColor)
+        },
+
+        useEditorFooterBackgroundColor: function() {
+            let vo = this
+            return color2hex(vo.editorRenameFooterBackgroundColor)
         },
 
     },
@@ -957,7 +1238,16 @@ export default {
 
             // let vo = this
 
-            return { event: e, ele: e.currentTarget, row: props.row, item: props.row.item, index: props.index }
+            //r
+            let r = {
+                event: e,
+                ele: get(e, 'currentTarget', null),
+                row: props.row,
+                item: props.row.item,
+                index: props.index
+            }
+
+            return r
         },
 
         updateViewHeightMaxTrans: function(msg) {
@@ -979,13 +1269,13 @@ export default {
 
         },
 
-        getRowsFromData: function(data) {
+        getRowsFromData: async function(data) {
             //console.log('methods getRowsFromData', data)
 
             let vo = this
 
-            //flattenTree
-            let ts = flattenTree(data, { bindKey: vo.keyPrimary, bindChildren: vo.keyChildren })
+            //flattenTreeWk
+            let ts = await flattenTreeWk(data, { bindKey: vo.keyPrimary, bindChildren: vo.keyChildren })
 
             //rows, lodash使用new Array建構比for+push快
             let rows = map(ts, (v, k) => {
@@ -1033,7 +1323,7 @@ export default {
                 // console.log('setData data', cloneDeep(data))
 
                 //getRowsFromData
-                let rows = vo.getRowsFromData(data)
+                let rows = await vo.getRowsFromData(data)
                 // console.log('setData getRowsFromData rows', cloneDeep(rows))
 
                 //save
@@ -1088,22 +1378,30 @@ export default {
             return isestr(k) || isnum(k)
         },
 
-        getCursor: function(e, props) {
-            // console.log('getCursor', e, props)
+        getUseActivable: function(props) {
+            // console.log('getUseActivable', props)
             let vo = this
 
             //activable
             if (!vo.activable) {
-                return ''
+                return false
             }
 
-            //funActive
+            //ck
             let ck = true
             if (isfun(vo.funActive)) {
-                ck = vo.funActive(vo.getEmitData(e, props))
+
+                //funActive
+                ck = vo.funActive(vo.getEmitData({}, props))
+
+                //check
+                if (!isbol(ck)) {
+                    throw new Error(`funActive return value is not a boolean`)
+                }
+
             }
 
-            return ck ? 'cursor:pointer;' : ''
+            return ck
         },
 
         getTextColor: function(item) {
@@ -2521,6 +2819,49 @@ export default {
 
         },
 
+        getPathInfors: function (data, nk) {
+            //console.log('methods getPathInfors', data, nk)
+
+            let vo = this
+
+            //ps
+            let ps = []
+            for (let i = 0; i < size(nk); i++) {
+
+                //k
+                let k = nk[i]
+
+                //check
+                if (k === vo.keyChildren) {
+                    continue
+                }
+
+                //tss
+                let tss = []
+                for (let j = 0; j <= i; j++) {
+                    tss.push(nk[j])
+                }
+
+                //p
+                let p = get(data, tss)
+
+                //pt
+                let pt = {}
+                each(p, (vv, kk) => {
+                    if (kk === vo.keyChildren) {
+                        return true //跳出換下一個
+                    }
+                    pt[kk] = vv
+                })
+
+                //push
+                ps.push(pt)
+
+            }
+
+            return ps
+        },
+
         dragItem: function(startInd, endInd, modeDir, modeInsert) {
             //console.log('methods dragItem', startInd, endInd, modeDir, modeInsert)
 
@@ -2543,16 +2884,24 @@ export default {
             //src, 來源節點
             let nkSelf = itemSelf.item.nk
             let nkEnter = itemEnter.item.nk
-            let dataSelf = get(data, itemSelf.item.nk)
-            // let dataEnter = get(data, itemEnter.item.nk)
-            // console.log('dataSelf', nkSelf, dataSelf)
-            // console.log('dataEnter', nkEnter, dataEnter)
+            let dataSelf = cloneDeep(get(data, nkSelf))
+            // let dataEnter = get(data, nkEnter)
+            // console.log('nkSelf', nkSelf)
+            // console.log('dataSelf', dataSelf)
+            // console.log('nkEnter', nkEnter)
+            // console.log('dataEnter', dataEnter)
+
+            //pathInforsOri, pathInforsNew, nkOri, nkNew
+            let pathInforsOri = vo.getPathInfors(data, nkSelf) //要先取得, 否則modeDir=forward時會先刪除來源導致之後就無法取得
+            let pathInforsNew = []
+            let nkOri = nkSelf //可先取得
+            let nkNew = []
 
             //modeDir
             if (modeDir === 'forward') {
-                //若為由後往前移動, 則需先刪除來源節點
+                //若為由後往前移動, 則需先刪除來源節點, 否則同資料夾下節點先移動會導致來源節點指標+1無法刪除
                 vo.deleteItem(data, nkSelf)
-                // console.log('data2', JSON.parse(JSON.stringify(data)))
+                // console.log('modeDir forward', 'deleteItem', JSON.parse(JSON.stringify(data)), 'nkSelf', nkSelf)
             }
 
             if (modeInsert === 'before' || modeInsert === 'after') {
@@ -2567,18 +2916,28 @@ export default {
                 }
                 else {
                     let ks = dropRight(nkEnter) //目標父節點的keys, dropRight後就是其上的keyChildren
-                    tar = get(data, ks, []) //取得要移入的父節點
+                    tar = get(data, ks, []) //取得要移入的父節點children
                 }
 
+                //tar insert
                 if (modeInsert === 'before') {
                     // ind = ind
                 }
                 else if (modeInsert === 'after') {
                     ind += 1
                 }
-
-                //array insert
                 tar.splice(ind, 0, dataSelf)
+
+                //nkTar
+                let nkTar = dropRight(nkEnter)
+                nkTar = [...nkTar, ind]
+
+                //nkNew
+                nkNew = nkTar
+
+                //pathInforsNew
+                pathInforsNew = vo.getPathInfors(data, nkTar)
+                // console.log('before|after', 'pathInforsNew', cloneDeep(pathInforsNew))
 
             }
             else if (modeInsert === 'belongto') {
@@ -2595,14 +2954,27 @@ export default {
                 //set
                 set(data, ks, tar)
 
+                //nkTar
+                let nkTar = [...ks, size(tar) - 1]
+                // console.log('belongto', 'nkEnter', nkEnter)
+                // console.log('belongto', 'ks', ks)
+                // console.log('belongto', 'nkTar', nkTar)
+
+                //nkNew
+                nkNew = nkTar
+
+                //pathInforsNew
+                pathInforsNew = vo.getPathInfors(data, nkTar)
+                // console.log('belongto', 'pathInforsNew', pathInforsNew)
+
             }
-            // console.log('data3', JSON.parse(JSON.stringify(data)))
+            // console.log('data2', JSON.parse(JSON.stringify(data)))
 
             //modeDir
             if (modeDir === 'backward') {
                 //若為由前往後移動, 則需於來源節點複製進目標節點處後, 才能刪除來源節點
                 vo.deleteItem(data, nkSelf)
-                // console.log('data4', JSON.parse(JSON.stringify(data)))
+                // console.log('modeDir backward', 'deleteItem', JSON.parse(JSON.stringify(data)), 'nkSelf', nkSelf)
             }
 
             //$nextTick
@@ -2611,12 +2983,118 @@ export default {
                 //emit
                 vo.$emit('update:data', cloneDeep(data))
 
+                //emit
+                vo.$emit('change-item', {
+                    from: 'drag',
+                    mode: 'move',
+                    dir: modeDir,
+                    kind: modeInsert,
+                    nkOri,
+                    pathInforsOri,
+                    nkNew,
+                    pathInforsNew,
+                })
+
             })
 
         },
 
-        operateItem: function(targetInd, mode, fun) {
-            //console.log('methods operateItem', targetInd, mode, fun)
+        getUseOperateItems: function(props) {
+            // console.log('getUseOperateItems', props)
+
+            let vo = this
+
+            //operatable
+            if (!vo.operatable) {
+                return []
+            }
+
+            //rs
+            let rs = null
+            if (isfun(vo.funOperateItem)) {
+
+                //funOperateItem
+                let ck = vo.funOperateItem(vo.getEmitData({}, props))
+
+                //check
+                if (!isbol(ck) && !isarr(ck)) {
+                    throw new Error(`funOperateItem return value is not a boolean or an array`)
+                }
+
+                //rs
+                if (ck === true) {
+                    rs = vo.operateItems
+                    // console.log('ck === true rs', rs)
+                }
+                else if (ck === false) {
+                    rs = []
+                    // console.log('ck === false rs', rs)
+                }
+                else {
+                    rs = []
+                    each(ck, (v) => {
+                        let r = find(vo.operateItems, { key: v })
+                        if (iseobj(r)) {
+                            rs.push(r)
+                        }
+                    })
+                    // console.log('ck isarr rs', rs)
+                }
+
+            }
+            else {
+                rs = vo.operateItems
+                // console.log('ck all rs', rs)
+            }
+
+            return rs
+        },
+
+        getUseOperatable: function(props) {
+            // console.log('getUseOperatable', props)
+
+            let vo = this
+
+            //getUseOperateItems
+            let rs = vo.getUseOperateItems(props)
+
+            //ck
+            let ck = size(rs) > 0
+
+            return ck
+        },
+
+        getOperatePanelHeight: function(props) {
+            // console.log('getOperatePanelHeight', props)
+
+            let vo = this
+
+            //h
+            let h = ''
+            if (isnum(vo.operatePanelHeight)) {
+                h = `height:${vo.operatePanelHeight}px;`
+            }
+            else if (isestr(vo.operatePanelHeight)) {
+                h = `height:${vo.operatePanelHeight};`
+            }
+            else if (isnum(vo.operateItemHeight)) {
+
+                //operateItemHeight
+                let operateItemHeight = cdbl(vo.operateItemHeight)
+
+                //getUseOperateItems
+                let rs = vo.getUseOperateItems(props)
+
+                //h
+                h = `height:${size(rs) * operateItemHeight}px;`
+
+            }
+
+            return h
+        },
+
+        operateItem: async function(targetInd, mode, fun) {
+            // console.log('methods operateItem', targetInd, mode, fun)
 
             let vo = this
 
@@ -2638,109 +3116,226 @@ export default {
                 let nkTarget = itemTarget.item.nk
                 // console.log('dataEnter', nkTarget, itemTarget.item)
 
+                //modeOperate, pathInforsOri, pathInforsNew, nkOri, nkNew
+                let modeOperate = ''
+                let pathInforsOri = []
+                let pathInforsNew = []
+                let nkOri = []
+                let nkNew = []
+
                 //mode for Delete
                 if (mode === 'Delete') {
 
+                    //modeOperate
+                    modeOperate = 'self'
+
+                    //nkOri, 要於deleteItem之前處理
+                    nkOri = nkTarget
+
+                    //pathInforsOri, 要於deleteItem之前處理
+                    pathInforsOri = vo.getPathInfors(data, nkTarget)
+                    // console.log('delete', 'pathInforsOri', pathInforsOri)
+
                     //deleteItem
                     vo.deleteItem(data, nkTarget)
+                    // console.log('data', cloneDeep(data))
 
-                    return data
+                    //nkNew
+                    nkNew = []
+
+                    //pathInforsNew
+                    pathInforsNew = []
+                    // console.log('delete', 'pathInforsNew', pathInforsNew)
+
                 }
+                else if (mode === 'Rename') {
 
-                //check
-                if (!isfun(fun)) {
-                    throw new Error('invalid fun')
-                }
+                    //showEditor
+                    vo.editorRenameData = data
+                    vo.editorRenameItem = get(itemTarget, 'item', {})
+                    vo.editorRenameInputText = get(itemTarget, `item.${vo.keyText}`, '')
+                    let r = await vo.showEditor()
 
-                //dataNew
-                let dataNew = await fun()
-                // console.log('dataNew', dataNew)
+                    //state
+                    if (r === 'save') {
 
-                //modeInsert and convert for InsertBefore, InsertAfter, InsertChild
-                let modeInsert = mode
-                if (modeInsert === 'InsertBefore') {
-                    modeInsert = 'before'
-                }
-                else if (modeInsert === 'InsertAfter') {
-                    modeInsert = 'after'
-                }
-                else if (modeInsert === 'InsertChild') {
-                    modeInsert = 'belongto'
-                }
+                        //modeOperate
+                        modeOperate = 'self'
 
-                if (modeInsert === 'before' || modeInsert === 'after') {
+                        //nkOri
+                        nkOri = nkTarget
 
-                    //ind, 依照mode決定ind, before是直接splice對目標節點ind位置塞入, 就能把目標往後移動, after就需+1
-                    let ind = takeRight(nkTarget)[0]
+                        //pathInforsOri
+                        pathInforsOri = vo.getPathInfors(vo.data, nkTarget)
+                        // console.log('rename', 'pathInforsOri', pathInforsOri)
 
-                    //tar, 目標的父節點, 待移入對象
-                    let tar
-                    if (size(nkTarget) === 1) {
-                        tar = data //因目標是第1層內元素, 故要取得的父節點就是原本數據
+                        //update data
+                        data = vo.editorRenameData
+
+                        //nkNew
+                        nkNew = nkOri
+
+                        //pathInforsNew
+                        pathInforsNew = vo.getPathInfors(data, nkTarget)
+                        // console.log('rename', 'pathInforsNew', pathInforsNew)
+
                     }
                     else {
-                        let ks = dropRight(nkTarget) //目標父節點的keys, dropRight後就是其上的keyChildren
-                        tar = get(data, ks, []) //取得要移入的父節點
+                        return //跳出
                     }
 
-                    if (modeInsert === 'before') {
-                    // ind = ind
+                }
+                else { //InsertBefore, InsertAfter, InsertChild
+
+                    //check
+                    if (!isfun(fun)) {
+                        throw new Error('invalid fun')
                     }
-                    else if (modeInsert === 'after') {
-                        ind += 1
+
+                    //dataNew
+                    let dataNew = fun() //外部fun僅用於提供新項目數據
+                    if (ispm(dataNew)) {
+                        dataNew = await dataNew
+                    }
+                    // console.log('dataNew', dataNew)
+
+                    //modeOperate
+                    if (mode === 'InsertBefore') {
+                        modeOperate = 'before'
+                    }
+                    else if (mode === 'InsertAfter') {
+                        modeOperate = 'after'
+                    }
+                    else if (mode === 'InsertChild') {
+                        modeOperate = 'belongto'
+                    }
+                    else {
+                        throw new Error(`invalid mode[${mode}]`)
                     }
 
-                    //array insert
-                    tar.splice(ind, 0, dataNew)
+                    let modeInsert = modeOperate
+                    if (modeInsert === 'before' || modeInsert === 'after') {
+
+                        //nkOri
+                        nkOri = []
+
+                        //pathInforsOri
+                        pathInforsOri = []
+                        // console.log('before|after', 'pathInforsOri', pathInforsOri)
+
+                        //ind, 依照mode決定ind, before是直接splice對目標節點ind位置塞入, 就能把目標往後移動, after就需+1
+                        let ind = takeRight(nkTarget)[0]
+
+                        //tar, 目標的父節點, 待移入對象
+                        let tar
+                        if (size(nkTarget) === 1) {
+                            tar = data //因目標是第1層內元素, 故要取得的父節點就是原本數據
+                        }
+                        else {
+                            let ks = dropRight(nkTarget) //目標父節點的keys, dropRight後就是其上的keyChildren
+                            tar = get(data, ks, []) //取得要移入的父節點children
+                        }
+
+                        //tar insert
+                        if (modeInsert === 'before') {
+                            // ind = ind
+                        }
+                        else if (modeInsert === 'after') {
+                            ind += 1
+                        }
+                        tar.splice(ind, 0, dataNew)
+
+                        //nkTar
+                        let nkTar = dropRight(nkTarget)
+                        nkTar = [...nkTar, ind]
+
+                        //nkNew
+                        nkNew = nkTar
+
+                        //pathInforsNew
+                        pathInforsNew = vo.getPathInfors(data, nkTar)
+                        // console.log('before|after', 'pathInforsNew', pathInforsNew)
+
+                    }
+                    else if (modeInsert === 'belongto') {
+
+                        //nkOri
+                        nkOri = []
+
+                        //pathInforsOri
+                        pathInforsOri = []
+                        // console.log('belongto', 'pathInforsOri', pathInforsOri)
+
+                        //ks, 所屬儲存子節點欄位, 也就是keyChildren
+                        let ks = [...nkTarget, vo.keyChildren]
+
+                        //tar, 取得子節點, 若無則預設空陣列[]
+                        let tar = get(data, ks, [])
+
+                        //push
+                        tar.push(dataNew)
+
+                        //set
+                        set(data, ks, tar)
+
+                        //nkTar
+                        let nkTar = [...ks, size(tar) - 1]
+                        // console.log('belongto', 'nkEnter', nkEnter)
+                        // console.log('belongto', 'ks', ks)
+                        // console.log('belongto', 'nkTar', nkTar)
+
+                        //nkNew
+                        nkNew = nkTar
+
+                        //pathInforsNew
+                        pathInforsNew = vo.getPathInfors(data, nkTar)
+                        // console.log('belongto', 'pathInforsNew', pathInforsNew)
+
+                    }
+                    // console.log('data2', JSON.parse(JSON.stringify(data)))
 
                 }
-                else if (modeInsert === 'belongto') {
 
-                    //ks, 所屬儲存子節點欄位, 也就是keyChildren
-                    let ks = [...nkTarget, vo.keyChildren]
+                //$nextTick
+                vo.$nextTick(() => {
 
-                    //tar, 取得子節點, 若無則預設空陣列[]
-                    let tar = get(data, ks, [])
+                    //emit
+                    vo.$emit('update:data', cloneDeep(data))
 
-                    //push
-                    tar.push(dataNew)
+                    //modeMain
+                    let modeMain = ''
+                    if (mode === 'Delete') {
+                        modeMain = 'delete'
+                    }
+                    else if (mode === 'Rename') {
+                        modeMain = 'rename'
+                    }
+                    else {
+                        modeMain = 'add'
+                    }
 
-                    //set
-                    set(data, ks, tar)
-
-                }
-                else {
-                    throw new Error('invalid modeInsert')
-                }
-                // console.log('data3', JSON.parse(JSON.stringify(data)))
-
-                return data
-            }
-
-            //pm, 提供外部呼叫時能知道已觸發data變更
-            let pm = genPm()
-
-            //core
-            core()
-                .then((data) => {
-
-                    //$nextTick
-                    vo.$nextTick(() => {
-
-                        //emit
-                        vo.$emit('update:data', cloneDeep(data))
-
-                        //resolve
-                        pm.resolve()
-
+                    //emit
+                    vo.$emit('change-item', {
+                        from: 'operate',
+                        mode: modeMain,
+                        dir: '',
+                        kind: modeOperate,
+                        nkOri,
+                        pathInforsOri,
+                        nkNew,
+                        pathInforsNew,
                     })
 
                 })
+
+            }
+
+            //core
+            await core()
                 .catch((err) => {
                     console.log(err)
                 })
 
-            return pm
         },
 
         getDgGroupKey: function() {
@@ -2925,7 +3520,7 @@ export default {
 
             let vo = this
 
-            //add operateItem function and set from lodash
+            //改由operateItem複寫msg.operateItem
             msg.operateItem = vo.operateItem
 
             //emit
@@ -2943,6 +3538,104 @@ export default {
 
             //setData
             vo.setData(data)
+
+        },
+
+        saveRename: function() {
+            // console.log('saveRename')
+
+            let vo = this
+
+            //nk
+            let nk = get(vo.editorRenameItem, 'nk', [])
+            // console.log('vo.editorRenameItem', cloneDeep(vo.editorRenameItem))
+            // console.log('nk', nk)
+
+            //path
+            let path = [...nk, vo.keyText]
+            // console.log('path', path)
+
+            //value
+            let value = vo.editorRenameInputText
+            // console.log('value', value)
+
+            //set
+            set(vo.editorRenameData, path, value)
+
+            //resolve
+            vo.editorPm.resolve('save')
+
+            //hide
+            vo.editorShow = false
+
+        },
+
+        cancelEditor: function() {
+            // console.log('cancelEditor')
+
+            let vo = this
+
+            //resolve
+            vo.editorPm.resolve('cancel')
+
+            //hide
+            vo.editorShow = false
+
+        },
+
+        showEditor: async function() {
+            // console.log('showEditor')
+
+            let vo = this
+
+            //pm
+            let pm = genPm()
+
+            //show
+            vo.editorShow = true
+
+            //save
+            vo.editorPm = pm
+
+            return pm
+        },
+
+        operateDisableEvent: function(ev, from) {
+            // console.log('operateDisableEvent', from, this.operateShow)
+
+            let vo = this
+
+            //check, 當operate彈窗開啟時須跳出, 否則彈窗內點擊事件亦會被stopPropagation而禁用, 而彈窗內點擊或拖曳造成drag則通過operateShow連帶變更useDraggable禁用拖曳功能
+            if (vo.operateShow) {
+                return
+            }
+
+            //stopPropagation, 用以停用拖曳或點擊事件, 但允許mouseenter可有hover效果
+            ev.stopPropagation()
+
+        },
+
+        operateDisplayEvent: function(from) {
+            // console.log('operateDisplayEvent', from)
+
+            let vo = this
+
+            if (from === 'show') {
+                vo.operateShow = true
+            }
+            else {
+                vo.operateShow = false //若開啟operate彈窗又於list捲動, 會造成原始驅動popup物件已消失但來不及接收hide事件, 導致operateShow無法變更為false, 故須於change-view-items事件變更operateShow為false
+            }
+
+        },
+
+        updateOperateShow: function(b) {
+            // console.log('updateOperateShow', b)
+
+            let vo = this
+
+            //save
+            vo.operateShow = b
 
         },
 

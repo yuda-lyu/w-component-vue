@@ -1,6 +1,6 @@
 <template>
     <!-- popup的minWidth是內容有超長文字可自動撐開才適用, 編輯區內沒有此種條件元素故設定minWidth會失效 -->
-    <w-popup
+    <WPopup
         :isolated="true"
         _minWidth="minWidthForPopup"
         @show="evShow"
@@ -55,11 +55,13 @@
                         :icon="saveBtnIcon"
                         :iconColor="saveBtnIconColor"
                         :iconColorHover="saveBtnIconColorHover"
+                        :iconSize="saveBtnIconSize"
                         :text="saveBtnText"
                         :textColor="saveBtnTextColor"
                         :textColorHover="saveBtnTextColorHover"
                         :backgroundColor="saveBtnBackgroundColor"
                         :backgroundColorHover="saveBtnBackgroundColorHover"
+                        :rippleColor="saveBtnIconRippleColor"
                         @click="ckSave(props)"
                     ></WButtonChip>
 
@@ -68,7 +70,7 @@
             </div>
 
         </template>
-    </w-popup>
+    </WPopup>
 </template>
 
 <script>
@@ -89,10 +91,10 @@ import WIcon from './WIcon.vue'
  * @vue-prop {String} [contentIcon=mdiSquareEditOutline] 輸入內容區圖標字串，可為mdi,md,fa代號或mdi/js路徑，預設mdiCommentEditOutline
  * @vue-prop {String} [contentIconColor='orange'] 輸入內容區圖標顏色字串，預設'orange'
  * @vue-prop {Number} [contentIconSize=36] 輸入內容區圖標大小，單位為px，預設36
- * @vue-prop {String} [inputTextColor='grey darken-3'] 輸入輸入文字顏色字串，預設'grey darken-3'
- * @vue-prop {String} [inputTextBottomLineBorderColor='grey lighten-1'] 輸入底部線顏色字串，預設'grey lighten-1'
- * @vue-prop {String} [inputTextBottomLineBorderColorHover='grey'] 輸入滑鼠移入時底部線顏色字串，預設'grey'
- * @vue-prop {String} [inputTextBottomLineBorderColorFocus='blue darken-1'] 輸入取得焦點時底部線顏色字串，預設'blue darken-1'
+ * @vue-prop {String} [inputTextColor='grey darken-3'] 輸入輸入文字框之文字顏色字串，預設'grey darken-3'
+ * @vue-prop {String} [inputTextBottomLineBorderColor='grey lighten-1'] 輸入輸入文字框之底部線顏色字串，預設'grey lighten-1'
+ * @vue-prop {String} [inputTextBottomLineBorderColorHover='grey'] 輸入輸入文字框之滑鼠移入時底部線顏色字串，預設'grey'
+ * @vue-prop {String} [inputTextBottomLineBorderColorFocus='blue darken-1'] 輸入輸入文字框之取得焦點時底部線顏色字串，預設'blue darken-1'
  * @vue-prop {String} [saveBtnText='Save'] 輸入儲存按鈕文字字串，預設'Save'
  * @vue-prop {String} [saveBtnTextColor='grey darken-3'] 輸入儲存按鈕文字顏色字串，預設'grey darken-3'
  * @vue-prop {String} [saveBtnTextColorHover='grey darken-2'] 輸入滑鼠移入時儲存按鈕文字顏色字串，預設'grey darken-2'

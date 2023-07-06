@@ -8,9 +8,9 @@
             ref="divTrigger"
             style="outline:none;"
             tabindex="0"
-            @click="evShow('click','@click.stop')"
-            @mouseenter="evShow('hover','@mouseenter')"
-            @mouseleave="evHide('hover','@mouseleave')"
+            @click="evShow('click','click')"
+            @mouseenter="evShow('hover','mouseenter')"
+            @mouseleave="evHide('hover','mouseleave')"
         >
 
             <slot name="trigger"></slot>
@@ -33,7 +33,7 @@
             >
                 <slot
                     name="content"
-                    :funHide="()=>{updateValue(false)}"
+                    :funHide="()=>{updateValue(false,'slot')}"
                 ></slot>
             </div>
         </div>
@@ -378,8 +378,11 @@ export default {
         window.removeEventListener('mouseup', vo.windowMouseup, false)
         window.removeEventListener('scroll', vo.windowMouseup, false)
 
-        //hidePopper, 不論click或hover一律隱藏
-        vo.hidePopper()
+        // //hidePopper, 不論click或hover一律隱藏
+        // vo.hidePopper('beforeDestroy')
+
+        //triggerEvent for hide
+        vo.triggerEvent(false)
 
         //bbb
         clearInterval(vo.trt)
@@ -398,7 +401,7 @@ export default {
 
             //updateValue
             if (!isolated) {
-                vo.updateValue(value)
+                vo.updateValue(value, 'changeValue')
             }
 
             return ''
@@ -533,77 +536,8 @@ export default {
             return removeTriggerMode(vo.mode, mmkey)
         },
 
-        updateValue: function (value) {
-            //console.log('methods updateValue', value)
-
-            let vo = this
-
-            //check, 不可編輯時跳出
-            if (!vo.editable) {
-                return
-            }
-
-            //save
-            vo.valueTrans = value
-
-            //displayPopper
-            vo.displayPopper()
-
-        },
-
-        displayPopper: function() {
-            //console.log('methods displayPopper')
-
-            let vo = this
-
-            //showPopper or hidePopper
-            vo.$nextTick(() => {
-
-                //b
-                let b = vo.editable && vo.valueTrans //顯示時valueTrans=true與可編輯時才顯示, 否則一律隱藏
-
-                if (b && !vo.popperShow) {
-
-                    //shift, 暫時無法取得popper自動變更的placement, shift無法即時連動, 待研究
-                    let shift = -15
-                    // if (vo.placement.indexOf('top') >= 0) {
-                    //     shift = 15
-                    // }
-                    // console.log('vo.placement', vo.placement, vo.placement.indexOf('top'))
-                    // console.log('shift', shift)
-
-                    //contentStyle,, 初始化使用pointer-events:none避免彈出區遮蔽驅動區導致觸發隱藏
-                    vo.contentStyle = `opacity:0; pointer-events:none; transform:translateY(${shift}px);`
-
-                    vo.showPopper()
-                    vo.popperShow = true
-                    vo.$emit('show')
-
-                    //contentStyle, 顯示才給予transition用以驅動動畫, 動畫期間使用pointer-events:none避免彈出區遮蔽驅動區導致觸發隱藏
-                    setTimeout(() => {
-                        vo.contentStyle = `transition:all ${vo.transitionTime}ms ease-out; opacity:1; pointer-events:none;`
-                    }, 1)
-
-                    //contentStyle, 動畫結束清除pointer-events:none, 使內部能接收事件
-                    setTimeout(() => {
-                        vo.contentStyle = ``
-                    }, vo.transitionTime)
-
-                }
-                else if (!b && vo.popperShow) {
-
-                    vo.hidePopper()
-                    vo.popperShow = false
-                    vo.$emit('hide')
-
-                }
-
-            })
-
-        },
-
-        showPopper: function() {
-            // console.log(this.mmkey, 'methods showPopper')
+        showPopper: function(from) {
+            // console.log('methods showPopper', this.mmkey, from)
 
             let vo = this
 
@@ -686,8 +620,8 @@ export default {
 
         },
 
-        hidePopper: function() {
-            // console.log(this.mmkey, 'methods hidePopper')
+        hidePopper: function(from) {
+            // console.log('methods hidePopper', from, this.mmkey)
 
             let vo = this
 
@@ -726,28 +660,105 @@ export default {
 
         },
 
+        displayPopper: function() {
+            //console.log('methods displayPopper')
+
+            let vo = this
+
+            //showPopper or hidePopper
+            vo.$nextTick(() => {
+
+                //b
+                let b = vo.editable && vo.valueTrans //顯示時valueTrans=true與可編輯時才顯示, 否則一律隱藏
+
+                if (b && !vo.popperShow) {
+                    // console.log('call showPopper', vo.mmkey)
+
+                    //shift, 暫時無法取得popper自動變更的placement, shift無法即時連動, 待研究
+                    let shift = -15
+                    // if (vo.placement.indexOf('top') >= 0) {
+                    //     shift = 15
+                    // }
+                    // console.log('vo.placement', vo.placement, vo.placement.indexOf('top'))
+                    // console.log('shift', shift)
+
+                    //contentStyle,, 初始化使用pointer-events:none避免彈出區遮蔽驅動區導致觸發隱藏
+                    vo.contentStyle = `opacity:0; pointer-events:none; transform:translateY(${shift}px);`
+
+                    vo.showPopper('displayPopper')
+                    vo.popperShow = true
+                    vo.$emit('show')
+                    // console.log('emit show')
+
+                    //contentStyle, 顯示才給予transition用以驅動動畫, 動畫期間使用pointer-events:none避免彈出區遮蔽驅動區導致觸發隱藏
+                    setTimeout(() => {
+                        vo.contentStyle = `transition:all ${vo.transitionTime}ms ease-out; opacity:1; pointer-events:none;`
+                    }, 1)
+
+                    //contentStyle, 動畫結束清除pointer-events:none, 使內部能接收事件
+                    setTimeout(() => {
+                        vo.contentStyle = ``
+                    }, vo.transitionTime)
+
+                }
+                else if (!b && vo.popperShow) {
+                    // console.log('call hidePopper', vo.mmkey)
+
+                    vo.hidePopper('displayPopper')
+                    vo.popperShow = false
+                    vo.$emit('hide')
+                    // console.log('emit hide')
+
+                }
+
+            })
+
+        },
+
+        updateValue: function (value, from) {
+            // console.log('methods updateValue', value, from)
+
+            let vo = this
+
+            //check, 不可編輯時跳出
+            if (!vo.editable) {
+                return
+            }
+
+            //save
+            vo.valueTrans = value
+            // console.log('updateValue', vo.valueTrans, from, vo.mmkey)
+
+            //displayPopper
+            vo.displayPopper()
+
+        },
+
         triggerEvent: function(value) {
             // console.log('methods triggerEvent', value)
 
             let vo = this
 
+            //check, 不可編輯時跳出
+            if (!vo.editable) {
+                return
+            }
+
+            //check
             if (vo.isolated) {
 
                 //updateValue
-                vo.updateValue(value)
+                vo.updateValue(value, 'triggerEvent')
 
             }
-            else {
 
-                //$nextTick
-                vo.$nextTick(() => {
+            //$nextTick, 不論是否isolated都須emit
+            vo.$nextTick(() => {
 
-                    //emit
-                    vo.$emit('input', value)
+                //emit
+                vo.$emit('input', value)
 
-                })
-
-            }
+            })
 
         },
 

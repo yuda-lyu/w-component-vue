@@ -32,7 +32,7 @@
                         :viewHeightMax="panelHeight"
                         :defItemHeight="treeDefItemHeight"
                         :defaultDisplayLevel="treeDefaultDisplayLevel"
-                        :data="treeItemsFolder"
+                        :data.sync="treeItemsFolder"
                         :activable="true"
                         :itemActive.sync="treeItemActive"
                         :paddingStyle="treePaddingStyle"
@@ -48,6 +48,76 @@
                         :itemBackgroundColorHover="treeItemBackgroundColorHover"
                         :itemBackgroundColorActive="treeItemBackgroundColorActive"
                         :itemRippleColor="treeItemRippleColor"
+                        :draggable="draggable"
+                        :dgTextDisabled="dgTextDisabled"
+                        :dgTextDisabledColor="dgTextDisabledColor"
+                        :dgTextDisabledPaddingLeft="dgTextDisabledPaddingLeft"
+                        :dgTextDisabledFontSize="dgTextDisabledFontSize"
+                        :dgTextDisabledBackgroundColor="dgTextDisabledBackgroundColor"
+                        :dgInsertLineColor="dgInsertLineColor"
+                        :dgInsertBackgroundColor="dgInsertBackgroundColor"
+                        :dgBelongBackgroundColor="dgBelongBackgroundColor"
+                        :dgPreviewOpacity="dgPreviewOpacity"
+                        :dgPreviewDisabledOpacity="dgPreviewDisabledOpacity"
+                        :dgPreviewBorderWidth="dgPreviewBorderWidth"
+                        :dgPreviewBorderColor="dgPreviewBorderColor"
+                        :dgPreviewBackground="dgPreviewBackground"
+                        :operatable="operatable"
+                        :operateItemTextForRename="operateItemTextForRename"
+                        _operateItemTextForInsertBefore="operateItemTextForInsertBefore"
+                        :operateItemTextForInsertChild="operateItemTextForInsertChild"
+                        _operateItemTextForInsertAfter="operateItemTextForInsertAfter"
+                        :operateItemTextForDelete="operateItemTextForDelete"
+                        :operateItemIconForRename="operateItemIconForRename"
+                        _operateItemIconForInsertBefore="operateItemIconForInsertBefore"
+                        :operateItemIconForInsertChild="operateItemIconForInsertChild"
+                        _operateItemIconForInsertAfter="operateItemIconForInsertAfter"
+                        :operateItemIconForDelete="operateItemIconForDelete"
+                        :operateItemPaddingStyle="operateItemPaddingStyle"
+                        :operatePanelWidth="operatePanelWidth"
+                        :operatePanelHeight="operatePanelHeight"
+                        :operateBtnTooltip="operateBtnTooltip"
+                        :operateBtnBackgroundColor="operateBtnBackgroundColor"
+                        :operateBtnBackgroundColorHover="operateBtnBackgroundColorHover"
+                        :operateBtnBackgroundColorFocus="operateBtnBackgroundColorFocus"
+                        :operateItemBackgroundColor="operateItemBackgroundColor"
+                        :operateItemBackgroundColorHover="operateItemBackgroundColorHover"
+                        :operateItemHeight="operateItemHeight"
+                        :operateItemTextColor="operateItemTextColor"
+                        :operateItemTextColorHover="operateItemTextColorHover"
+                        :operateItemIconSize="operateItemIconSize"
+                        :operateItemIconColor="operateItemIconColor"
+                        :operateItemIconColorHover="operateItemIconColorHover"
+                        :funOperateItem="useFunOperateItem"
+                        :editorRenameContentBackgroundColor="editorRenameContentBackgroundColor"
+                        :editorRenameFooterBackgroundColor="editorRenameFooterBackgroundColor"
+                        :editorRenameInputTextColor="editorRenameInputTextColor"
+                        :editorRenameInputTextBottomLineBorderColor="editorRenameInputTextBottomLineBorderColor"
+                        :editorRenameInputTextBottomLineBorderColorHover="editorRenameInputTextBottomLineBorderColorHover"
+                        :editorRenameInputTextBottomLineBorderColorFocus="editorRenameInputTextBottomLineBorderColorFocus"
+                        :editorRenameCancelBtnText="editorRenameCancelBtnText"
+                        :editorRenameCancelBtnTextColor="editorRenameCancelBtnTextColor"
+                        :editorRenameCancelBtnTextColorHover="editorRenameCancelBtnTextColorHover"
+                        :editorRenameCancelBtnIcon="editorRenameCancelBtnIcon"
+                        :editorRenameCancelBtnIconSize="editorRenameCancelBtnIconSize"
+                        :editorRenameCancelBtnIconColor="editorRenameCancelBtnIconColor"
+                        :editorRenameCancelBtnIconColorHover="editorRenameCancelBtnIconColorHover"
+                        :editorRenameCancelBtnIconRippleColor="editorRenameCancelBtnIconRippleColor"
+                        :editorRenameCancelBtnBackgroundColor="editorRenameCancelBtnBackgroundColor"
+                        :editorRenameCancelBtnBackgroundColorHover="editorRenameCancelBtnBackgroundColorHover"
+                        :editorRenameSaveBtnText="editorRenameSaveBtnText"
+                        :editorRenameSaveBtnTextColor="editorRenameSaveBtnTextColor"
+                        :editorRenameSaveBtnTextColorHover="editorRenameSaveBtnTextColorHover"
+                        :editorRenameSaveBtnIcon="editorRenameSaveBtnIcon"
+                        :editorRenameSaveBtnIconSize="editorRenameSaveBtnIconSize"
+                        :editorRenameSaveBtnIconColor="editorRenameSaveBtnIconColor"
+                        :editorRenameSaveBtnIconColorHover="editorRenameSaveBtnIconColorHover"
+                        :editorRenameSaveBtnIconRippleColor="editorRenameSaveBtnIconRippleColor"
+                        :editorRenameSaveBtnBackgroundColor="editorRenameSaveBtnBackgroundColor"
+                        :editorRenameSaveBtnBackgroundColorHover="editorRenameSaveBtnBackgroundColorHover"
+                        @click-operate-item="clickOperateItem"
+                        @update:data="changeData"
+                        @change-item="changeItem"
                         _render="render"
                     >
                         <template v-slot:item="props">
@@ -73,9 +143,9 @@
                         </template>
                     </WTree>
 
-                    <div :style="`position:absolute; top:0px; right:0px;`" v-if="showTreeTrans">
+                    <div :style="`position:absolute; top:1px; right:${8+operatable?32:0}px;`" v-if="showTreeTrans">
                         <!-- drawer可能有捲軸, 給予預留空間padding-right:8px -->
-                        <div :style="`padding-right:8px; min-height:${btnDisplayTreeInDrawerHeightMin}px; display:flex; align-items:center;`">
+                        <div :style="``">
 
                             <!-- 切換顯隱tree按鈕 -->
                             <WButtonCircle
@@ -134,7 +204,7 @@
 
                             <div
                                 :style="`min-height:${btnDisplayTreeIconSize+8}px; padding-left:4px; color:${effPathBtnTextColor}; ${usePathBtnTextFontSize} display:flex; align-items:center;`"
-                                v-if="parentInfors.length===0"
+                                v-if="pathInfors.length===0"
                             >
                                 {{noSelectedText}}
                             </div>
@@ -143,7 +213,7 @@
                                 <div
                                     :style="`min-height:${btnDisplayTreeIconSize+8}px;`"
                                     :key="'kpi-'+kpi"
-                                    v-for="(pi,kpi) in parentInfors"
+                                    v-for="(pi,kpi) in pathInfors"
                                 >
 
                                     <!-- 因path區域預設有底線故-1px -->
@@ -322,17 +392,24 @@
 </template>
 
 <script>
-import { mdiFolder, mdiFileOutline, mdiChevronRight, mdiArrowLeftBoldHexagonOutline, mdiArrowRightBoldHexagonOutline } from '@mdi/js'
+import { mdiFolder, mdiFileOutline, mdiChevronRight, mdiArrowLeftBoldHexagonOutline, mdiArrowRightBoldHexagonOutline, mdiFolderPlusOutline, mdiFolderRemoveOutline, mdiRenameOutline, mdiCloseCircleOutline, mdiCloudUploadOutline } from '@mdi/js'
 import get from 'lodash/get'
 import each from 'lodash/each'
 import map from 'lodash/map'
+import size from 'lodash/size'
+import join from 'lodash/join'
+import cloneDeep from 'lodash/cloneDeep'
 import isbol from 'wsemi/src/isbol.mjs'
 import isestr from 'wsemi/src/isestr.mjs'
 import isfun from 'wsemi/src/isfun.mjs'
 import ispm from 'wsemi/src/ispm.mjs'
 import replace from 'wsemi/src/replace.mjs'
+import strleft from 'wsemi/src/strleft.mjs'
+import strdelleft from 'wsemi/src/strdelleft.mjs'
 import arrSort from 'wsemi/src/arrSort.mjs'
+// import treeToFilepath from 'wsemi/src/treeToFilepath.mjs'
 import filepathToTree from 'wsemi/src/filepathToTree.mjs'
+// import filepathToTreeWk from '../js/filepathToTreeWk.wk.umd.js'
 import parseSpace from '../js/parseSpace.mjs'
 import color2hex from '../js/vuetifyColor.mjs'
 import domResize from '../js/domResize.mjs'
@@ -350,7 +427,7 @@ import WButtonCircle from './WButtonCircle.vue'
  * @vue-prop {Function} [funSortTree=null] 輸入排序樹狀資料夾名稱函數，預設null
  * @vue-prop {Boolean} [showTree=true] 輸入是否顯示樹狀資料夾布林值，預設true
  * @vue-prop {Boolean} [defaultShowTreeFirst=true] 輸入是否預先顯示樹狀資料夾之第1個資料夾布林值，預設true
- * @vue-prop {Number} [treeWidth=200] 輸入樹狀資料夾寬度數字，單位為px，預設200
+ * @vue-prop {Number} [treeWidth=250] 輸入樹狀資料夾寬度數字，單位為px，預設250
  * @vue-prop {Number} [treeWidthMin=null] 輸入樹狀資料夾可拖曳寬度之最小值數字，單位為px，預設null
  * @vue-prop {Number} [treeWidthMax=null] 輸入樹狀資料夾可拖曳寬度之最大值數字，單位為px，預設null
  * @vue-prop {Boolean} [treeAfloat=false] 輸入是否樹狀資料夾為浮動顯示布林值，設為true時浮在內容區上故不壓縮內容區寬度，預設false
@@ -415,6 +492,68 @@ import WButtonCircle from './WButtonCircle.vue'
  * @vue-prop {Number} [pathSepIconSize=18] 輸入路徑區分隔符號之圖標尺寸數字，單位為px，預設18
  * @vue-prop {String} [pathBackgroundColor='transparent'] 輸入路徑區背景顏色字串，預設'#fff'
  * @vue-prop {String} [noSelectedText='No selected folder'] 輸入尚未選擇資料夾文字字串，預設'No selected folder'
+ * @vue-prop {Boolean} [draggable=false] 輸入是否為可拖曳編輯模式布林值，若draggable設定true，此時所有節點皆為展開顯示並且禁止顯隱節點功能，也就是defaultDisplayLevel強制設定為null，此外也不提供過濾功能，也就是filterKeywords強制清空。開啟draggable僅適用小規模數據。draggable預設false
+ * @vue-prop {String} [dgTextDisabled='Can not drop here'] 輸入禁止拖曳文字字串，預設'Can not drop here'
+ * @vue-prop {String} [dgTextDisabledColor='#812'] 輸入禁止拖曳文字顏色字串，預設'#812'
+ * @vue-prop {Number} [dgTextDisabledPaddingLeft=15] 輸入禁止拖曳padding-left數字，單位px，預設15
+ * @vue-prop {String} [dgTextDisabledFontSize='0.9rem'] 輸入禁止拖曳文字大小字串，預設'0.9rem'
+ * @vue-prop {String} [dgTextDisabledBackgroundColor='rgba(255,220,240,0.6)'] 輸入禁止拖曳文字區背景顏色字串，預設'rgba(255,220,240,0.6)'
+ * @vue-prop {String} [dgInsertLineColor='#29f'] 輸入拖曳時顯示插入區域線顏色字串，預設'#29f'
+ * @vue-prop {String} [dgInsertBackgroundColor='rgba(80,150,255,0.15)'] 輸入拖曳時顯示插入區域背景顏色字串，預設'rgba(80,150,255,0.15)'
+ * @vue-prop {String} [dgBelongBackgroundColor='rgba(80,150,255,0.3)'] 輸入拖曳時顯示插入區域(成為目標的子節點)背景顏色字串，預設'rgba(80,150,255,0.3)'
+ * @vue-prop {Number} [dgPreviewOpacity=1] 輸入拖曳時預覽元素透明度數字，預設1
+ * @vue-prop {Number} [dgPreviewDisabledOpacity=1] 輸入無效時(位於非可拖曳元素內)拖曳時預覽元素透明度數字，預設1
+ * @vue-prop {Number} [dgPreviewBorderWidth=0] 輸入拖曳時預覽元素邊框寬度數字，單位px，預設0
+ * @vue-prop {String} [dgPreviewBorderColor='#f26'] 輸入拖曳時預覽元素邊框顏色字串，預設'#f26'
+ * @vue-prop {String} [dgPreviewBackground='transparent'] 輸入拖曳時預覽元素背景顏色字串，預設'transparent'
+ * @vue-prop {Boolean} [operatable=false] 輸入是否使用控制節點模式布林值，若operatable設定true，將於各項目右側顯示控制按鈕，點擊可彈出選單進行插入與刪除等項目，此時會觸發事件click-operate-item，而處理相應數據則需呼叫事件提供物件內operateItem函數，詳情請見範例。此時所有節點皆為展開顯示並且禁止顯隱節點功能，也就是defaultDisplayLevel強制設定為null，此外也不提供過濾功能，也就是filterKeywords強制清空。開啟operatable僅適用小規模數據。operatable預設false
+ * @vue-prop {String} [operateItemTextForRename='Rename folder'] 輸入控制選項變更文字之文字字串，預設'Rename folder'
+ * @vue-prop {String} [operateItemTextForInsertChild='Create sub folder'] 輸入控制選項插入子項目之文字字串，預設'Create sub folder'
+ * @vue-prop {String} [operateItemTextForDelete='Delete folder'] 輸入控制選項刪除項目之文字字串，預設'Delete folder'
+ * @vue-prop {String} [operateItemIconForRename=mdiRenameOutline] 輸入控制選項變更文字之圖標字串，預設mdiRenameOutline
+ * @vue-prop {String} [operateItemIconForInsertChild=mdiFolderPlusOutline] 輸入控制選項插入子項目之圖標字串，預設mdiFolderPlusOutline
+ * @vue-prop {String} [operateItemIconForDelete=mdiFolderRemoveOutline] 輸入控制選項刪除項目之圖標字串，預設mdiFolderRemoveOutline
+ * @vue-prop {Object} [operateItemPaddingStyle={v:10,h:12}] 輸入控制選項內寬距離設定物件，可用鍵值為v、h、left、right、top、bottom，v代表同時設定top與bottom，h代表設定left與right，若有重複設定時後面鍵值會覆蓋前面，各鍵值為寬度數字，單位為px，預設{v:10,h:12}
+ * @vue-prop {Number} [operatePanelWidth=170] 輸入控制選項寬度數字，單位px，預設170
+ * @vue-prop {Number} [operatePanelHeight=null] 輸入控制選項高度數字，若為null則使用選項數量*operateItemHeight，單位px，預設null
+ * @vue-prop {String} [operateBtnTooltip='Operations'] 輸入控制按鈕之提示文字字串，預設'Operations'
+ * @vue-prop {String} [operateBtnBackgroundColor='transparent'] 輸入控制按鈕背景顏色字串，預設'transparent'
+ * @vue-prop {String} [operateBtnBackgroundColorHover='rgba(230,230,230,0.7)'] 輸入滑鼠移入時控制按鈕背景顏色字串，預設'rgba(230,230,230,0.7)'
+ * @vue-prop {String} [operateBtnBackgroundColorFocus='rgba(230,230,230,0.9)'] 輸入取得焦點時控制按鈕背景顏色字串，預設'rgba(230,230,230,0.9)'
+ * @vue-prop {String} [operateItemBackgroundColor='transparent'] 輸入控制項目背景顏色字串，預設'transparent'
+ * @vue-prop {String} [operateItemBackgroundColorHover='rgba(200,200,200,0.2)'] 輸入滑鼠移入時控制項目背景顏色字串，預設'rgba(200,200,200,0.2)'
+ * @vue-prop {Number} [operateItemHeight=42] 輸入控制項目高度數字，單位px，預設42
+ * @vue-prop {String} [operateItemTextColor='#444'] 輸入控制項目文字顏色字串，預設'#444'
+ * @vue-prop {String} [operateItemTextColorHover='#222'] 輸入滑鼠移入時控制項目文字顏色字串，預設'#222'
+ * @vue-prop {Number} [operateItemIconSize=22] 輸入控制項目圖標尺寸數字，單位px，預設22
+ * @vue-prop {String} [operateItemIconColor='#444'] 輸入控制項目圖標顏色字串，預設'#444'
+ * @vue-prop {String} [operateItemIconColorHover='#222'] 輸入滑鼠移入時控制項目圖標顏色字串，預設'#222'
+ * @vue-prop {String} [editorRenameContentBackgroundColor='white'] 輸入變更文字彈窗之內容區塊背景顏色字串，預設'white'
+ * @vue-prop {String} [editorRenameFooterBackgroundColor='grey lighten-5'] 輸入變更文字彈窗之下方區背景顏色字串，預設'grey lighten-5'
+ * @vue-prop {String} [editorRenameInputTextColor='grey darken-3'] 輸入變更文字彈窗之輸入文字框之文字顏色字串，預設'grey darken-3'
+ * @vue-prop {String} [editorRenameInputTextBottomLineBorderColor='grey lighten-1'] 輸入變更文字彈窗之輸入文字框之底部線顏色字串，預設'grey lighten-1'
+ * @vue-prop {String} [editorRenameInputTextBottomLineBorderColorHover='grey'] 輸入變更文字彈窗之輸入文字框之滑鼠移入時底部線顏色字串，預設'grey'
+ * @vue-prop {String} [editorRenameInputTextBottomLineBorderColorFocus='blue darken-1'] 輸入變更文字彈窗之輸入文字框之取得焦點時底部線顏色字串，預設'blue darken-1'
+ * @vue-prop {String} [editorRenameCancelBtnText='Save'] 輸入變更文字彈窗之取消按鈕文字字串，預設'Save'
+ * @vue-prop {String} [editorRenameCancelBtnTextColor='grey darken-3'] 輸入變更文字彈窗之取消按鈕文字顏色字串，預設'grey darken-3'
+ * @vue-prop {String} [editorRenameCancelBtnTextColorHover='grey darken-2'] 輸入變更文字彈窗之滑鼠移入時取消按鈕文字顏色字串，預設'grey darken-2'
+ * @vue-prop {String} [editorRenameCancelBtnIcon=mdiCloseCircleOutline] 輸入變更文字彈窗之取消按鈕圖標字串，可為mdi,md,fa代號或mdi/js路徑，預設mdiCloseCircleOutline
+ * @vue-prop {Number} [editorRenameCancelBtnIconSize=22] 輸入變更文字彈窗之取消按鈕圖標大小，單位為px，預設22
+ * @vue-prop {String} [editorRenameCancelBtnIconColor='grey darken-1'] 輸入變更文字彈窗之取消按鈕圖標顏色字串，預設'grey darken-1'
+ * @vue-prop {String} [editorRenameCancelBtnIconColorHover='grey darken-2'] 輸入變更文字彈窗之滑鼠移入時取消按鈕圖標顏色字串，預設'grey darken-2'
+ * @vue-prop {String} [editorRenameCancelBtnIconRippleColor='rgba(200,200,200,0.4)'] 輸入變更文字彈窗之取消按鈕ripple效果顏色字串，預設'rgba(200,200,200,0.4)'
+ * @vue-prop {String} [editorRenameCancelBtnBackgroundColor='white'] 輸入變更文字彈窗之取消按鈕背景顏色字串，預設'white'
+ * @vue-prop {String} [editorRenameCancelBtnBackgroundColorHover='grey lighten-3'] 輸入變更文字彈窗之滑鼠移入時取消按鈕背景顏色字串，預設'grey lighten-3'
+ * @vue-prop {String} [editorRenameSaveBtnText='Save'] 輸入變更文字彈窗之儲存按鈕文字字串，預設'Save'
+ * @vue-prop {String} [editorRenameSaveBtnTextColor='grey darken-3'] 輸入變更文字彈窗之儲存按鈕文字顏色字串，預設'grey darken-3'
+ * @vue-prop {String} [editorRenameSaveBtnTextColorHover='grey darken-2'] 輸入變更文字彈窗之滑鼠移入時儲存按鈕文字顏色字串，預設'grey darken-2'
+ * @vue-prop {String} [editorRenameSaveBtnIcon=mdiCloudUploadOutline] 輸入變更文字彈窗之儲存按鈕圖標字串，可為mdi,md,fa代號或mdi/js路徑，預設mdiCheckboxMarkedCircle
+ * @vue-prop {Number} [editorRenameSaveBtnIconSize=22] 輸入變更文字彈窗之儲存按鈕圖標大小，單位為px，預設22
+ * @vue-prop {String} [editorRenameSaveBtnIconColor='grey darken-1'] 輸入變更文字彈窗之儲存按鈕圖標顏色字串，預設'grey darken-1'
+ * @vue-prop {String} [editorRenameSaveBtnIconColorHover='grey darken-2'] 輸入變更文字彈窗之滑鼠移入時儲存按鈕圖標顏色字串，預設'grey darken-2'
+ * @vue-prop {String} [editorRenameSaveBtnIconRippleColor='rgba(200,200,200,0.4)'] 輸入變更文字彈窗之儲存按鈕ripple效果顏色字串，預設'rgba(200,200,200,0.4)'
+ * @vue-prop {String} [editorRenameSaveBtnBackgroundColor='white'] 輸入變更文字彈窗之儲存按鈕背景顏色字串，預設'white'
+ * @vue-prop {String} [editorRenameSaveBtnBackgroundColorHover='grey lighten-3'] 輸入變更文字彈窗之滑鼠移入時儲存按鈕背景顏色字串，預設'grey lighten-3'
  */
 export default {
     directives: {
@@ -451,7 +590,7 @@ export default {
         },
         treeWidth: {
             type: Number,
-            default: 200,
+            default: 250,
         },
         treeWidthMin: {
             type: Number,
@@ -723,6 +862,275 @@ export default {
             type: String,
             default: 'No selected folder',
         },
+        draggable: {
+            type: Boolean,
+            default: false,
+        },
+        dgTextDisabled: {
+            type: String,
+            default: 'Can not drop here', //禁止拖曳至自己子節點當中
+        },
+        dgTextDisabledColor: {
+            type: String,
+            default: '#812',
+        },
+        dgTextDisabledPaddingLeft: {
+            type: Number,
+            default: 15,
+        },
+        dgTextDisabledFontSize: {
+            type: String,
+            default: '0.9rem',
+        },
+        dgTextDisabledBackgroundColor: {
+            type: String,
+            default: 'rgba(255,220,240,0.6)',
+        },
+        dgInsertLineColor: {
+            type: String,
+            default: '#29f',
+        },
+        dgInsertBackgroundColor: {
+            type: String,
+            default: 'rgba(80,150,255,0.15)',
+        },
+        dgBelongBackgroundColor: {
+            type: String,
+            default: 'rgba(80,150,255,0.3)',
+        },
+        dgPreviewOpacity: {
+            type: Number,
+            default: 1,
+        },
+        dgPreviewDisabledOpacity: {
+            type: Number,
+            default: 1,
+        },
+        dgPreviewBorderWidth: {
+            type: Number,
+            default: 0,
+        },
+        dgPreviewBorderColor: {
+            type: String,
+            default: '#f26',
+        },
+        dgPreviewBackground: {
+            type: String,
+            default: 'transparent',
+        },
+        operatable: {
+            type: Boolean,
+            default: false,
+        },
+        operateItemTextForRename: {
+            type: String,
+            default: 'Rename',
+        },
+        // operateItemTextForInsertBefore: {
+        //     type: String,
+        //     default: 'Insert before',
+        // },
+        operateItemTextForInsertChild: {
+            type: String,
+            default: 'Create sub folder',
+        },
+        // operateItemTextForInsertAfter: {
+        //     type: String,
+        //     default: 'Insert after',
+        // },
+        operateItemTextForDelete: {
+            type: String,
+            default: 'Delete folder',
+        },
+        operateItemIconForRename: {
+            type: String,
+            default: mdiRenameOutline,
+        },
+        // operateItemIconForInsertBefore: {
+        //     type: String,
+        //     default: mdiFormatVerticalAlignTop,
+        // },
+        operateItemIconForInsertChild: {
+            type: String,
+            default: mdiFolderPlusOutline,
+        },
+        // operateItemIconForInsertAfter: {
+        //     type: String,
+        //     default: mdiFormatVerticalAlignBottom,
+        // },
+        operateItemIconForDelete: {
+            type: String,
+            default: mdiFolderRemoveOutline,
+        },
+        operateItemPaddingStyle: {
+            type: Object,
+            default: () => {
+                return {
+                    v: 10,
+                    h: 12,
+                }
+            },
+        },
+        operatePanelWidth: {
+            type: Number,
+            default: 170,
+        },
+        operatePanelHeight: {
+            type: Number,
+            default: null,
+        },
+        operateBtnTooltip: {
+            type: String,
+            default: 'Operations',
+        },
+        operateBtnBackgroundColor: {
+            type: String,
+            default: 'transparent', //'rgba(225,225,225,0.5)',
+        },
+        operateBtnBackgroundColorHover: {
+            type: String,
+            default: 'rgba(230,230,230,0.7)',
+        },
+        operateBtnBackgroundColorFocus: {
+            type: String,
+            default: 'rgba(230,230,230,0.9)',
+        },
+        operateItemBackgroundColor: {
+            type: String,
+            default: 'transparent',
+        },
+        operateItemBackgroundColorHover: {
+            type: String,
+            default: 'rgba(200,200,200,0.2)',
+        },
+        operateItemHeight: {
+            type: Number,
+            default: 42,
+        },
+        operateItemTextColor: {
+            type: String,
+            default: '#444',
+        },
+        operateItemTextColorHover: {
+            type: String,
+            default: '#222',
+        },
+        operateItemIconSize: {
+            type: Number,
+            default: 22,
+        },
+        operateItemIconColor: {
+            type: String,
+            default: '#444',
+        },
+        operateItemIconColorHover: {
+            type: String,
+            default: '#222',
+        },
+        editorRenameContentBackgroundColor: {
+            type: String,
+            default: 'white',
+        },
+        editorRenameFooterBackgroundColor: {
+            type: String,
+            default: 'grey lighten-5',
+        },
+        editorRenameInputTextColor: {
+            type: String,
+            default: 'grey darken-3',
+        },
+        editorRenameInputTextBottomLineBorderColor: {
+            type: String,
+            default: 'grey lighten-1',
+        },
+        editorRenameInputTextBottomLineBorderColorHover: {
+            type: String,
+            default: 'grey',
+        },
+        editorRenameInputTextBottomLineBorderColorFocus: {
+            type: String,
+            default: 'blue darken-1',
+        },
+        editorRenameCancelBtnText: {
+            type: String,
+            default: 'Cancel',
+        },
+        editorRenameCancelBtnTextColor: {
+            type: String,
+            default: 'grey darken-3',
+        },
+        editorRenameCancelBtnTextColorHover: {
+            type: String,
+            default: 'grey darken-2',
+        },
+        editorRenameCancelBtnIcon: {
+            type: String,
+            default: mdiCloseCircleOutline,
+        },
+        editorRenameCancelBtnIconSize: {
+            type: Number,
+            default: 22,
+        },
+        editorRenameCancelBtnIconColor: {
+            type: String,
+            default: 'grey darken-1',
+        },
+        editorRenameCancelBtnIconColorHover: {
+            type: String,
+            default: 'grey darken-2',
+        },
+        editorRenameCancelBtnIconRippleColor: {
+            type: String,
+            default: 'rgba(200,200,200,0.4)',
+        },
+        editorRenameCancelBtnBackgroundColor: {
+            type: String,
+            default: 'white',
+        },
+        editorRenameCancelBtnBackgroundColorHover: {
+            type: String,
+            default: 'grey lighten-3',
+        },
+        editorRenameSaveBtnText: {
+            type: String,
+            default: 'Save',
+        },
+        editorRenameSaveBtnTextColor: {
+            type: String,
+            default: 'grey darken-3',
+        },
+        editorRenameSaveBtnTextColorHover: {
+            type: String,
+            default: 'grey darken-2',
+        },
+        editorRenameSaveBtnIcon: {
+            type: String,
+            default: mdiCloudUploadOutline,
+        },
+        editorRenameSaveBtnIconSize: {
+            type: Number,
+            default: 22,
+        },
+        editorRenameSaveBtnIconColor: {
+            type: String,
+            default: 'grey darken-1',
+        },
+        editorRenameSaveBtnIconColorHover: {
+            type: String,
+            default: 'grey darken-2',
+        },
+        editorRenameSaveBtnIconRippleColor: {
+            type: String,
+            default: 'rgba(200,200,200,0.4)',
+        },
+        editorRenameSaveBtnBackgroundColor: {
+            type: String,
+            default: 'white',
+        },
+        editorRenameSaveBtnBackgroundColorHover: {
+            type: String,
+            default: 'grey lighten-3',
+        },
     },
     data: function() {
         return {
@@ -734,12 +1142,13 @@ export default {
             showTreeTrans: true,
             treeWidthTrans: 200,
 
+            itemsTrans: [],
             kpPath: null,
             treeItemsFolder: null,
             treeItems: null,
             treeItemActive: null,
 
-            parentInfors: [],
+            pathInfors: [],
 
             listItems: [],
             listItemActive: null,
@@ -775,44 +1184,8 @@ export default {
 
             let vo = this
 
-            //soryItems
-            let soryItems = (rs, pid, ns) => {
-                // console.log('soryItems', 'pid=', pid, 'ns=', ns, 'rs=', rs)
-
-                // let mm = (rs) => {
-                //     return map(rs, (v, k) => {
-                //         return {
-                //             k,
-                //             t: v.text
-                //         }
-                //     })
-                // }
-
-                //arrSort
-                // console.log('rs1', JSON.stringify(mm(rs)))
-                rs = arrSort(rs, { compareKey: 'text', localeCompare: true })
-                // console.log('rs2', JSON.stringify(mm(rs)))
-
-                //funSortTree
-                if (isfun(vo.funSortTree)) {
-                    rs = vo.funSortTree(rs)
-                }
-
-                return rs
-            }
-
-            //filepathToTree
-            let r = filepathToTree(vo.items, { bindRoot: vo.bindRoot, soryItems })
-
-            //save
-            vo.treeItemsFolder = r.treeItemsFolder
-            vo.treeItems = r.treeItems
-            vo.kpPath = r.kpPath
-
-            //showTreeFirstFolder
-            if (vo.defaultShowTreeFirst) {
-                vo.showTreeFirstFolder()
-            }
+            //convertItems
+            vo.convertItems(vo.items)
 
             return ''
         },
@@ -933,6 +1306,33 @@ export default {
 
         },
 
+        soryItems: function(rs, pid, ns) {
+            // console.log('soryItems', rs, pid, ns)
+
+            let vo = this
+
+            // let mm = (rs) => {
+            //     return map(rs, (v, k) => {
+            //         return {
+            //             k,
+            //             t: v.text
+            //         }
+            //     })
+            // }
+
+            //arrSort
+            // console.log('rs1', JSON.stringify(mm(rs)))
+            rs = arrSort(rs, { compareKey: 'text', localeCompare: true })
+            // console.log('rs2', JSON.stringify(mm(rs)))
+
+            //funSortTree
+            if (isfun(vo.funSortTree)) {
+                rs = vo.funSortTree(rs)
+            }
+
+            return rs
+        },
+
         showTreeFirstFolder: function() {
             // console.log('methods showTreeFirstFolder')
 
@@ -941,6 +1341,43 @@ export default {
             //triggerClickTreeFolderById
             let id = vo.bindRoot
             vo.triggerClickTreeFolderById(id)
+
+        },
+
+        convertItems: function() {
+            // console.log('convertItems')
+
+            let vo = this
+
+            async function core() {
+
+                //filepathToTree
+                let r = filepathToTree(vo.items, { bindRoot: vo.bindRoot, soryItems: vo.soryItems })
+                // let r = await filepathToTreeWk(vo.items, { bindRoot: vo.bindRoot, soryItems: vo.soryItems }) //filepathToTree因opt可傳入soryItems為function, 此無法通過序列化傳入worker, 故不使用wk版
+
+                //save
+                vo.itemsTrans = r.fpsNormalize
+                vo.treeItemsFolder = r.treeItemsFolder
+                vo.treeItems = r.treeItems
+                vo.kpPath = r.kpPath
+                // console.log('items', cloneDeep(vo.items))
+                // console.log('itemsTrans', cloneDeep(vo.itemsTrans))
+                // console.log('treeItemsFolder', cloneDeep(vo.treeItemsFolder))
+                // console.log('treeItems', cloneDeep(vo.treeItems))
+                // console.log('kpPath', cloneDeep(vo.kpPath))
+
+                //showTreeFirstFolder
+                if (vo.defaultShowTreeFirst) {
+                    vo.showTreeFirstFolder()
+                }
+
+            }
+
+            //core
+            core()
+                .catch((err) => {
+                    console.log(err)
+                })
 
         },
 
@@ -1068,8 +1505,8 @@ export default {
 
         },
 
-        displayFolderById: function(id) {
-            // console.log('methods displayFolderById', id)
+        displayFolderById: function(id, from) {
+            // console.log('methods displayFolderById', id, from)
 
             let vo = this
 
@@ -1094,12 +1531,12 @@ export default {
             //listFolder
             vo.listFolder(children)
 
-            //parentInfors
-            let parentInfors = get(self, 'parentInfors', [])
-            // console.log('parentInfors', parentInfors)
+            //pathInfors
+            let pathInfors = get(self, 'pathInfors', [])
+            // console.log('pathInfors', pathInfors)
 
             //save
-            vo.parentInfors = parentInfors
+            vo.pathInfors = pathInfors
 
         },
 
@@ -1117,7 +1554,7 @@ export default {
             // console.log('id', id)
 
             //displayFolderById
-            vo.displayFolderById(id)
+            vo.displayFolderById(id, 'ckTreeFolder')
 
             //emit
             vo.$emit('click-folder', { from: 'tree', item })
@@ -1151,7 +1588,7 @@ export default {
             if (_type === 'folder') {
 
                 //displayFolderById
-                vo.displayFolderById(id)
+                vo.displayFolderById(id, 'ckListItem')
 
                 //emit
                 vo.$emit('click-folder', { from: 'list', item })
@@ -1184,7 +1621,7 @@ export default {
             // console.log('id', id)
 
             //displayFolderById
-            vo.displayFolderById(id)
+            vo.displayFolderById(id, 'ckPathFolder')
 
             //emit
             vo.$emit('click-folder', { from: 'path', item })
@@ -1244,7 +1681,7 @@ export default {
                 return
             }
 
-            //treeItemsSpread
+            //treeItemsSpread, 供外部尋找待點擊項目
             let treeItemsSpread = []
             each(vo.kpPath, (pt) => {
                 let r = get(vo.treeItems, pt, '')
@@ -1280,6 +1717,221 @@ export default {
 
             //triggerClickTreeFolderById
             vo.triggerClickTreeFolderById(id)
+
+        },
+
+        useFunOperateItem: function(msg) {
+            // console.log('methods useFunOperateItem', msg)
+
+            let vo = this
+
+            //ck
+            let ck = [
+                'Rename',
+                // 'InsertBefore',
+                // 'InsertAfter',
+                'InsertChild',
+                'Delete',
+            ]
+
+            //根目錄僅允許新增子資料夾
+            let id = get(msg, 'item.id', '')
+            if (id === vo.bindRoot) {
+                ck = [
+                    'InsertChild',
+                ]
+            }
+
+            return ck
+        },
+
+        changeData: function(msg) {
+            // console.log('changeData', msg)
+            // let vo = this
+        },
+
+        changeItem: function(msg) {
+            // console.log('changeItem', msg)
+
+            let vo = this
+
+            //getItem
+            let getItem = (pathInfors) => {
+
+                //n1
+                let n1 = size(pathInfors) - 1
+                if (n1 < 1) {
+                    throw new Error(`n1${n1} < 1`)
+                }
+
+                //n2
+                let n2 = n1 - 1
+                if (n2 < 0) {
+                    throw new Error(`n2${n2} < 0`)
+                }
+
+                //node
+                let node = get(pathInfors, n1, {}) //不直接用last改用get, 使能有預設值{}, 讓後續spread能解構
+                // console.log('node', node)
+
+                //text
+                let text = get(node, 'text', '')
+
+                //check
+                if (!isestr(text)) {
+                    throw new Error(`node.text is not a string`)
+                }
+
+                //pnode
+                let pnode = get(pathInfors, n2, {}) //last(dropRight(pathInfors)) //所在父節點
+                // console.log('pnode', pnode)
+
+                //ts
+                let ts = get(pnode, 'ts', [])
+                // console.log('ts', ts)
+
+                //nk
+                let nk = [...ts, text]
+                // console.log('nk', nk)
+
+                //path
+                let path = '/' + join(nk, '/') //配合treeToFilepath使用同格式
+
+                //itemTar
+                let itemTar = {
+                    ...node,
+                    type: 'folder',
+                    path,
+                }
+                // console.log('itemTar', itemTar)
+
+                return itemTar
+            }
+
+            //removeRoot
+            let removeRoot = (itemsNew) => {
+
+                //剔除root
+                let n = size(vo.bindRoot) + 1
+                // console.log('n', n)
+                itemsNew = map(itemsNew, (v) => {
+                    v.path = strdelleft(v.path, n)
+                    return v
+                })
+                // console.log('itemsNew(剔除root)', cloneDeep(itemsNew))
+
+                return itemsNew
+            }
+
+            //itemsNew
+            let itemsNew = []
+            if (msg.mode === 'add') {
+
+                //check
+                if (msg.kind !== 'belongto') {
+                    console.log(msg)
+                    throw new Error(`kind[${msg.kind}] is not supported`)
+                }
+
+                //itemNew
+                let itemNew = getItem(msg.pathInforsNew)
+                // console.log('itemNew', itemNew)
+
+                //itemsNew
+                itemsNew = cloneDeep(vo.itemsTrans)
+                // console.log('itemsNew', itemsNew)
+
+                //push
+                itemsNew.push(itemNew)
+                // console.log('itemsNew(push)', cloneDeep(itemsNew))
+
+            }
+            else if (msg.mode === 'delete') {
+
+                //itemDel
+                let itemDel = getItem(msg.pathInforsOri)
+                // console.log('itemDel', itemDel)
+
+                //np
+                let np = size(itemDel.path)
+                // console.log('np', np)
+
+                //itemsTrans
+                let itemsTrans = cloneDeep(vo.itemsTrans)
+                // console.log('itemsTrans', itemsTrans)
+
+                //itemsNew
+                itemsNew = []
+                each(itemsTrans, (v) => {
+                    if (strleft(v.path, np) !== itemDel.path) { //path中不隸屬於itemDel.path為不刪除節點, 才須儲存
+                        itemsNew.push(v)
+                    }
+                })
+                // console.log('itemsNew', cloneDeep(itemsNew))
+
+            }
+            else if (msg.mode === 'move' || msg.mode === 'rename') {
+                //msg.kind於before是先針對nkOri刪除目標節點再對nkNew塞入新節點, 於after是先針對nkNew塞入新節點再對nkOri刪除來源節點
+
+                //pathInforsOri
+                let pathInforsOri = msg.pathInforsOri
+                // console.log('pathInforsOri', cloneDeep(pathInforsOri))
+
+                //pathInforsNew
+                let pathInforsNew = msg.pathInforsNew
+                // console.log('pathInforsNew', cloneDeep(pathInforsNew))
+
+                //pathOri
+                let pathOri = '/' + join(map(pathInforsOri, 'text'), '/') //配合treeToFilepath使用同格式
+                // console.log('pathOri', pathOri)
+
+                //n
+                let n = size(pathOri)
+
+                //pathNew
+                let pathNew = '/' + join(map(pathInforsNew, 'text'), '/') //配合treeToFilepath使用同格式
+                // console.log('pathNew', pathNew)
+
+                // //check, 不能偵測同名跳出, 因tree可拖曳順序但explorer得要按照排序規則呈現, 故得要向外變更數據, 觸發數據重新處理與呈現
+                // if (pathOri === pathNew) {
+                //     return
+                // }
+
+                //itemsNew
+                itemsNew = cloneDeep(vo.itemsTrans)
+                // console.log('itemsNew', cloneDeep(itemsNew))
+
+                //modify path
+                itemsNew = map(itemsNew, (v) => {
+                    if (strleft(v.path, n) === pathOri) {
+                        let path = strdelleft(v.path, n)
+                        v.path = pathNew + path
+                    }
+                    return v
+                })
+                // console.log('itemsNew(replace)', cloneDeep(itemsNew))
+
+            }
+
+            //removeRoot
+            itemsNew = removeRoot(itemsNew)
+            // console.log('itemsNew(剔除root)', cloneDeep(itemsNew))
+
+            //emit
+            vo.$emit('update:items', itemsNew)
+
+            //emit
+            vo.$emit('change-item', msg)
+
+        },
+
+        clickOperateItem: function(msg) {
+            // console.log('clickOperateItem', msg)
+
+            let vo = this
+
+            //emit
+            vo.$emit('click-operate-item', msg)
 
         },
 

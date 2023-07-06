@@ -1,4 +1,5 @@
 <script>
+import Teleport from './Teleport.vue'
 import WAggridVueDyn from './WAggridVueDyn.vue'
 import WAlert from './WAlert.mjs'
 import WBadge from './WBadge.vue'
@@ -77,6 +78,7 @@ import WTreeIconToggle from './WTreeIconToggle.vue'
 
 let WComponentVue = {
     install: function(Vue) {
+        Vue.component('teleport', Teleport)
         Vue.component('w-aggrid-vue-dyn', WAggridVueDyn)
         Vue.prototype.$alert = WAlert
         Vue.component('w-badge', WBadge)
