@@ -1233,7 +1233,7 @@
                     :casename="'draggable'"
                 ></demolink>
 
-                <div style="margin-bottom:5px; color:#f26; font-size:0.8rem;">* Disable show and hide nodes when using draggable</div>
+                <div style="margin-bottom:5px; color:#f26; font-size:0.8rem;">* Disable show and hide folders when using draggable</div>
 
                 <w-explorer
                     style="width:800px; height:450px;"
@@ -1253,7 +1253,7 @@
                     :casename="'draggable & dgPreviewOpacity & dgPreviewBorderWidth & dgBelongBackgroundColor'"
                 ></demolink>
 
-                <div style="margin-bottom:5px; color:#f26; font-size:0.8rem;">* Disable show and hide nodes when using draggable</div>
+                <div style="margin-bottom:5px; color:#f26; font-size:0.8rem;">* Disable show and hide folders when using draggable</div>
 
                 <w-explorer
                     style="width:800px; height:450px;"
@@ -1277,7 +1277,7 @@
                     :casename="'draggable & dgInsertLineColor & dgInsertBackgroundColor & dgBelongBackgroundColor'"
                 ></demolink>
 
-                <div style="margin-bottom:5px; color:#f26; font-size:0.8rem;">* Disable show and hide nodes when using draggable</div>
+                <div style="margin-bottom:5px; color:#f26; font-size:0.8rem;">* Disable show and hide folders when using draggable</div>
 
                 <w-explorer
                     style="width:800px; height:450px;"
@@ -1300,7 +1300,7 @@
                     :casename="'draggable & dgTextDisabled & dgTextDisabledColor & dgTextDisabledPaddingLeft & dgTextDisabledFontSize & dgTextDisabledBackgroundColor'"
                 ></demolink>
 
-                <div style="margin-bottom:5px; color:#f26; font-size:0.8rem;">* Disable show and hide nodes when using draggable</div>
+                <div style="margin-bottom:5px; color:#f26; font-size:0.8rem;">* Disable show and hide folders when using draggable</div>
 
                 <w-explorer
                     style="width:800px; height:450px;"
@@ -1325,7 +1325,7 @@
                     :casename="'operatable'"
                 ></demolink>
 
-                <div style="margin-bottom:5px; color:#f26; font-size:0.8rem;">* Disable show and hide nodes when using operatable</div>
+                <div style="margin-bottom:5px; color:#f26; font-size:0.8rem;">* Disable show and hide folders when using operatable</div>
 
                 <w-explorer
                     style="width:800px; height:450px;"
@@ -1345,7 +1345,7 @@
                     :casename="'operatable & operateBtnTooltip & operateItemTextForRename & perateItemTextForInsertChild & operateItemTextForDelete'"
                 ></demolink>
 
-                <div style="margin-bottom:5px; color:#f26; font-size:0.8rem;">* Disable show and hide nodes when using operatable</div>
+                <div style="margin-bottom:5px; color:#f26; font-size:0.8rem;">* Disable show and hide folders when using operatable</div>
 
                 <w-explorer
                     style="width:800px; height:450px;"
@@ -1369,7 +1369,7 @@
                     :casename="'operatable & operatePanelWidth & operatePanelHeight & operateItemIconSize & operateItemPaddingStyle'"
                 ></demolink>
 
-                <div style="margin-bottom:5px; color:#f26; font-size:0.8rem;">* Disable show and hide nodes when using operatable</div>
+                <div style="margin-bottom:5px; color:#f26; font-size:0.8rem;">* Disable show and hide folders when using operatable</div>
 
                 <w-explorer
                     style="width:800px; height:450px;"
@@ -1393,7 +1393,7 @@
                     :casename="'operatable & operateItemHeight & operateItemIconSize & operateItemPaddingStyle'"
                 ></demolink>
 
-                <div style="margin-bottom:5px; color:#f26; font-size:0.8rem;">* Disable show and hide nodes when using operatable</div>
+                <div style="margin-bottom:5px; color:#f26; font-size:0.8rem;">* Disable show and hide folders when using operatable</div>
 
                 <w-explorer
                     style="width:800px; height:450px;"
@@ -1416,7 +1416,7 @@
                     :casename="'operatable & operateBtnBackgroundColor & operateBtnBackgroundColorHover & operateBtnBackgroundColorFocus'"
                 ></demolink>
 
-                <div style="margin-bottom:5px; color:#f26; font-size:0.8rem;">* Disable show and hide nodes when using operatable</div>
+                <div style="margin-bottom:5px; color:#f26; font-size:0.8rem;">* Disable show and hide folders when using operatable</div>
 
                 <w-explorer
                     style="width:800px; height:450px;"
@@ -1439,7 +1439,7 @@
                     :casename="'operatable & operateItemBackgroundColor & operateItemBackgroundColorHover & operateItemTextColor & operateItemTextColorHover & operateItemIconColor & operateItemIconColorHover'"
                 ></demolink>
 
-                <div style="margin-bottom:5px; color:#f26; font-size:0.8rem;">* Disable show and hide nodes when using operatable</div>
+                <div style="margin-bottom:5px; color:#f26; font-size:0.8rem;">* Disable show and hide folders when using operatable</div>
 
                 <w-explorer
                     style="width:800px; height:450px;"
@@ -1465,7 +1465,7 @@
                     :casename="'operatable & operateItemIconForRename & operateItemIconForInsertChild & operateItemIconForDelete'"
                 ></demolink>
 
-                <div style="margin-bottom:5px; color:#f26; font-size:0.8rem;">* Disable show and hide nodes when using operatable</div>
+                <div style="margin-bottom:5px; color:#f26; font-size:0.8rem;">* Disable show and hide folders when using operatable</div>
 
                 <w-explorer
                     style="width:800px; height:450px;"
@@ -1488,7 +1488,7 @@
                     :casename="'operatable & editorRenameContentBackgroundColor & editorRenameFooterBackgroundColor'"
                 ></demolink>
 
-                <div style="margin-bottom:5px; color:#f26; font-size:0.8rem;">* Disable show and hide nodes when using operatable</div>
+                <div style="margin-bottom:5px; color:#f26; font-size:0.8rem;">* Disable show and hide folders when using operatable</div>
 
                 <w-explorer
                     style="width:800px; height:450px;"
@@ -1510,7 +1510,7 @@
                     :casename="'operatable & editorRenameInputTextColor & editorRenameInputTextBottomLineBorderColor & editorRenameInputTextBottomLineBorderColorHover & editorRenameInputTextBottomLineBorderColorFocus'"
                 ></demolink>
 
-                <div style="margin-bottom:5px; color:#f26; font-size:0.8rem;">* Disable show and hide nodes when using operatable</div>
+                <div style="margin-bottom:5px; color:#f26; font-size:0.8rem;">* Disable show and hide folders when using operatable</div>
 
                 <w-explorer
                     style="width:800px; height:450px;"
@@ -1534,7 +1534,7 @@
                     :casename="'operatable & editorRenameCancelBtnText & editorRenameCancelBtnTextColor & editorRenameCancelBtnTextColorHover'"
                 ></demolink>
 
-                <div style="margin-bottom:5px; color:#f26; font-size:0.8rem;">* Disable show and hide nodes when using operatable</div>
+                <div style="margin-bottom:5px; color:#f26; font-size:0.8rem;">* Disable show and hide folders when using operatable</div>
 
                 <w-explorer
                     style="width:800px; height:450px;"
@@ -1557,7 +1557,7 @@
                     :casename="'operatable & editorRenameCancelBtnIcon & editorRenameCancelBtnIconSize & editorRenameCancelBtnIconColor & editorRenameCancelBtnIconColorHover & editorRenameCancelBtnIconRippleColor'"
                 ></demolink>
 
-                <div style="margin-bottom:5px; color:#f26; font-size:0.8rem;">* Disable show and hide nodes when using operatable</div>
+                <div style="margin-bottom:5px; color:#f26; font-size:0.8rem;">* Disable show and hide folders when using operatable</div>
 
                 <w-explorer
                     style="width:800px; height:450px;"
@@ -1582,7 +1582,7 @@
                     :casename="'operatable & editorRenameCancelBtnBackgroundColor & editorRenameCancelBtnBackgroundColorHover'"
                 ></demolink>
 
-                <div style="margin-bottom:5px; color:#f26; font-size:0.8rem;">* Disable show and hide nodes when using operatable</div>
+                <div style="margin-bottom:5px; color:#f26; font-size:0.8rem;">* Disable show and hide folders when using operatable</div>
 
                 <w-explorer
                     style="width:800px; height:450px;"
@@ -1604,7 +1604,7 @@
                     :casename="'operatable & editorRenameSaveBtnText & editorRenameSaveBtnTextColor & editorRenameSaveBtnTextColorHover'"
                 ></demolink>
 
-                <div style="margin-bottom:5px; color:#f26; font-size:0.8rem;">* Disable show and hide nodes when using operatable</div>
+                <div style="margin-bottom:5px; color:#f26; font-size:0.8rem;">* Disable show and hide folders when using operatable</div>
 
                 <w-explorer
                     style="width:800px; height:450px;"
@@ -1627,7 +1627,7 @@
                     :casename="'operatable & editorRenameSaveBtnIcon & editorRenameSaveBtnIconSize & editorRenameSaveBtnIconColor & editorRenameSaveBtnIconColorHover & editorRenameSaveBtnIconRippleColor'"
                 ></demolink>
 
-                <div style="margin-bottom:5px; color:#f26; font-size:0.8rem;">* Disable show and hide nodes when using operatable</div>
+                <div style="margin-bottom:5px; color:#f26; font-size:0.8rem;">* Disable show and hide folders when using operatable</div>
 
                 <w-explorer
                     style="width:800px; height:450px;"
@@ -1652,7 +1652,7 @@
                     :casename="'operatable & editorRenameSaveBtnBackgroundColor & editorRenameSaveBtnBackgroundColorHover'"
                 ></demolink>
 
-                <div style="margin-bottom:5px; color:#f26; font-size:0.8rem;">* Disable show and hide nodes when using operatable</div>
+                <div style="margin-bottom:5px; color:#f26; font-size:0.8rem;">* Disable show and hide folders when using operatable</div>
 
                 <w-explorer
                     style="width:800px; height:450px;"
@@ -1674,7 +1674,7 @@
                     :casename="'operatable & draggable'"
                 ></demolink>
 
-                <div style="margin-bottom:5px; color:#f26; font-size:0.8rem;">* Disable show and hide nodes when using operatable or draggable</div>
+                <div style="margin-bottom:5px; color:#f26; font-size:0.8rem;">* Disable show and hide folders when using operatable or draggable</div>
 
                 <w-explorer
                     style="width:800px; height:450px;"

@@ -78,10 +78,6 @@ export default {
             type: Number,
             default: 24,
         },
-        editable: {
-            type: Boolean,
-            default: true,
-        },
         uncheckedColor: {
             type: String,
             default: 'grey darken-2',
@@ -105,6 +101,10 @@ export default {
         checkedPartiallyDisabledColor: {
             type: String,
             default: 'grey',
+        },
+        editable: {
+            type: Boolean,
+            default: true,
         },
     },
     data: function() {

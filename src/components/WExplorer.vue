@@ -39,6 +39,7 @@
                         :indent="treeIndent"
                         :iconSize="treeToggleIconSize"
                         :iconToggleColor="treeToggleIconColor"
+                        :iconToggleDisabledColor="treeToggleIconDisabledColor"
                         :iconToggleBackgroundColor="treeToggleIconBackgroundColor"
                         :iconToggleBackgroundColorHover="treeToggleIconBackgroundColorHover"
                         :itemTextColor="treeItemTextColor"
@@ -457,6 +458,7 @@ import WButtonCircle from './WButtonCircle.vue'
  * @vue-prop {String} [treeDrawerBarColor='#ddd'] 輸入樹狀資料夾抽屜之分隔條顏色字串，預設'#ddd'
  * @vue-prop {Number} [treeToggleIconSize=24] 輸入顯隱樹狀資料夾按鈕之圖標尺寸數字，單位為px，預設24
  * @vue-prop {String} [treeToggleIconColor='grey'] 輸入顯隱樹狀資料夾按鈕之圖標顏色字串，預設'grey'
+ * @vue-prop {String} [treeToggleIconDisabledColor='grey lighten-1'] 輸入顯隱樹狀資料夾按鈕之禁用時圖標顏色字串，預設'grey lighten-1'
  * @vue-prop {String} [treeToggleIconBackgroundColor='transparent'] 輸入顯隱樹狀資料夾按鈕之圖標背景顏色字串，預設'transparent'
  * @vue-prop {String} [treeToggleIconBackgroundColorHover='rgba(128,128,128,0.15)'] 輸入滑鼠移入時顯隱樹狀資料夾按鈕之圖標背景顏色字串，預設'rgba(128,128,128,0.15)'
  * @vue-prop {Number} [lineBetweenPathAndListWidth=1] 輸入路徑區與清單區之間分隔線寬度，單位為px，預設1
@@ -701,6 +703,10 @@ export default {
         treeToggleIconColor: {
             type: String,
             default: 'grey',
+        },
+        treeToggleIconDisabledColor: {
+            type: String,
+            default: 'grey lighten-1',
         },
         treeToggleIconBackgroundColor: {
             type: String,

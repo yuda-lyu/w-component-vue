@@ -1,12 +1,15 @@
 <template>
     <div :style="`display:inline-block; width:${iconSize}px; height:${iconSize}px; overflow:hidden;`">
         <div :style="`transform:scale(${useScale}); transform-origin:0% 0%;`">
+
             <div
-                :style="`display:inline-block; width:${defIconSize}px; height:${defIconSize}px; user-select:none; cursor:pointer; outline:none;`"
+                :style="`position:relative; display:inline-block; width:${defIconSize}px; height:${defIconSize}px; user-select:none; cursor:pointer; outline:none;`"
                 tabindex="0"
                 @keyup.enter="(v)=>{$emit('click',v)}"
                 @click="(v)=>{$emit('click',v)}"
             >
+
+                <!-- 三角形按鈕 -->
                 <div
                     class="cc"
                     style="height:100%;"
@@ -35,7 +38,28 @@
 
                     </div>
                 </div>
+
+                <!-- 禁用符號 -->
+                <template>
+
+                    <div
+                        style="position:absolute; z-index:1; left:0px; top:0px; bottom:0; right:0; margin:auto; opacity:0.75;"
+                    >
+                        <div :style="`height:${defIconSize}px; transform:rotate(45deg) translateY(-5px);`" v-if="!editable">
+                            <div :style="`display:inline-block; width:24px; height:1px; border-top:2px solid #fff;`"></div>
+                        </div>
+                    </div>
+
+                    <div style="position:absolute; z-index:1; left:0px; top:0px; bottom:0; right:0; margin:auto; opacity:0.75;">
+                        <div :style="`height:${defIconSize}px; transform:rotate(45deg) translateY(-3px);`" v-if="!editable">
+                            <div :style="`display:inline-block; width:24px; height:1px; border-top:2px solid ${useIconColor};`"></div>
+                        </div>
+                    </div>
+
+                </template>
+
             </div>
+
         </div>
     </div>
 </template>
@@ -46,11 +70,13 @@ import color2hex from '../js/vuetifyColor.mjs'
 
 
 /**
- * @vue-prop {String} [mode='right'] 輸入圖標朝向字串，可選'right'、'bottom'、'left'、'top'，預設'right'
+ * @vue-prop {String} [dir='right'] 輸入圖標朝向字串，可選'right'、'bottom'、'left'、'top'，預設'right'
  * @vue-prop {Number} [iconSize=24] 輸入顯隱icon按鈕高度數字，預設24
  * @vue-prop {String} [iconColor='grey'] 輸入顯隱icon按鈕顏色字串，預設'grey'
+ * @vue-prop {String} [iconDisabledColor='grey lighten-1'] 輸入顯隱icon按鈕禁用時顏色字串，預設'grey lighten-1'
  * @vue-prop {String} [iconBackgroundColor='transparent'] 輸入顯隱icon按鈕背景顏色字串，預設'transparent'
  * @vue-prop {String} [iconBackgroundColorHover='rgba(128,128,128,0.15)'] 輸入滑鼠移入時顯隱icon按鈕背景顏色字串，預設'rgba(128,128,128,0.15)'
+ * @vue-prop {Boolean} [editable=true] 輸入是否為編輯模式，預設true
  */
 export default {
     components: {
@@ -68,6 +94,10 @@ export default {
             type: String,
             default: 'grey',
         },
+        iconDisabledColor: {
+            type: String,
+            default: 'grey lighten-1',
+        },
         iconBackgroundColor: {
             type: String,
             default: 'transparent',
@@ -75,6 +105,10 @@ export default {
         iconBackgroundColorHover: {
             type: String,
             default: 'rgba(128,128,128,0.15)',
+        },
+        editable: {
+            type: Boolean,
+            default: true,
         },
     },
     data: function() {
@@ -107,7 +141,10 @@ export default {
 
             let vo = this
 
-            return color2hex(vo.iconColor)
+            if (vo.editable) {
+                return color2hex(vo.iconColor)
+            }
+            return color2hex(vo.iconDisabledColor)
         },
 
         useIconBackgroundColor: function() {

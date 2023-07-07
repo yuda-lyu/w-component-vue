@@ -70,8 +70,10 @@
                                     :dir="`${props.row.unfolding?'bottom':'right'}`"
                                     :iconSize="iconSize"
                                     :iconColor="iconToggleColor"
+                                    :iconDisabledColor="iconToggleDisabledColor"
                                     :iconBackgroundColor="iconToggleBackgroundColor"
                                     :iconBackgroundColorHover="iconToggleBackgroundColorHover"
+                                    :editable="!useDraggableOrOperatable"
                                     @click.stop="toggleItems(props.row, null)"
                                 ></WTreeIconToggle>
                             </div>
@@ -353,6 +355,7 @@ let gm = globalMemory()
  * @vue-prop {Number} [indent=1] 輸入縮排比率數字，若使用1就是1倍的圖標寬度(24px)+2*separation(3px)，預設1
  * @vue-prop {Number} [iconSize=24] 輸入顯隱與核選icon按鈕高度數字，單位為px，預設24
  * @vue-prop {String} [iconToggleColor='grey'] 輸入顯隱icon按鈕顏色字串，預設'grey'
+ * @vue-prop {String} [iconToggleDisabledColor='grey lighten-1'] 輸入顯隱icon按鈕禁用時顏色字串，預設'grey lighten-1'
  * @vue-prop {String} [iconToggleBackgroundColor='transparent'] 輸入顯隱icon按鈕背景顏色字串，預設'transparent'
  * @vue-prop {String} [iconToggleBackgroundColorHover='rgba(128,128,128,0.15)'] 輸入滑鼠移入時顯隱icon按鈕背景顏色字串，預設'rgba(128,128,128,0.15)'
  * @vue-prop {String} [iconUncheckedColor='grey darken-2'] 輸入核選icon未勾選時顏色字串，預設'grey darken-2'
@@ -531,6 +534,10 @@ export default {
         iconToggleColor: {
             type: String,
             default: 'grey',
+        },
+        iconToggleDisabledColor: {
+            type: String,
+            default: 'grey lighten-1',
         },
         iconToggleBackgroundColor: {
             type: String,
@@ -1034,17 +1041,21 @@ export default {
             return ''
         },
 
+        useDraggableOrOperatable: function() {
+            //console.log('computed useDraggableOrOperatable')
+
+            let vo = this
+
+            return vo.draggable || vo.operatable
+        },
+
         changeDraggableAndOperatable: function() {
             //console.log('computed changeDraggableAndOperatable')
 
             let vo = this
 
-            //trigger
-            let draggable = vo.draggable
-            let operatable = vo.operatable
-
             //若draggable或operatable為true, 則defaultDisplayLevel強制為null, filterKeywords強制清空
-            if (draggable || operatable) {
+            if (vo.useDraggableOrOperatable) {
                 vo.defaultDisplayLevelTrans = null
                 vo.filterKeywordsTrans = ''
             }
@@ -2121,8 +2132,8 @@ export default {
                     return
                 }
 
-                //check draggable and operatable
-                if (vo.draggable || vo.operatable) {
+                //check useDraggableOrOperatable
+                if (vo.useDraggableOrOperatable) {
                     // console.log('禁止顯隱節點')
                     return
                 }
@@ -2611,8 +2622,9 @@ export default {
 
             let vo = this
 
-            //check draggable and operatable
-            if (vo.draggable || vo.operatable) {
+            //check useDraggableOrOperatable
+            if (vo.useDraggableOrOperatable) {
+                // console.log('禁止過濾')
                 return Promise.resolve()
             }
 
