@@ -502,7 +502,7 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-tree'"
-                    :casename="'operatable & operateBtnBackgroundColor & operateBtnBackgroundColorHover & operateBtnBackgroundColorFocus'"
+                    :casename="'operatable & operateBtnIconSize & operateBtnBackgroundColor & operateBtnBackgroundColorHover & operateBtnBackgroundColorFocus'"
                 ></demolink>
 
                 <div style="margin-bottom:5px; color:#f26; font-size:0.8rem;">* Disable show and hide nodes when using operatable</div>
@@ -511,6 +511,7 @@
                     style="width:350px; border:1px solid #ddd;"
                     :data.sync="WTree.option.items"
                     :operatable="true"
+                    :operateBtnIconSize="20"
                     :operateBtnBackgroundColor="'rgba(230,230,230,0.4)'"
                     :operateBtnBackgroundColorHover="'rgba(230,230,255,0.8)'"
                     :operateBtnBackgroundColorFocus="'rgba(210,210,255,0.8)'"

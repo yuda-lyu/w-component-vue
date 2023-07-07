@@ -143,26 +143,29 @@
                         </template>
                     </WTree>
 
-                    <div :style="`position:absolute; top:1px; right:${8+operatable?32:0}px;`" v-if="showTreeTrans">
-                        <!-- drawer可能有捲軸, 給予預留空間padding-right:8px -->
-                        <div :style="``">
+                    <!-- drawer可能有捲軸, 給予預留與右側空間8px -->
+                    <div
+                        :style="`position:absolute; top:${(useTreeItemHeightMin-(btnDisplayTreeIconSize+2*2))/2}px; right:${8+(operatable?(btnDisplayTreeIconSize+2*2):0)}px;`"
+                        v-if="showTreeTrans"
+                    >
 
-                            <!-- 切換顯隱tree按鈕 -->
-                            <WButtonCircle
-                                :paddingStyle="{h:2,v:2}"
-                                :icon="showTreeTrans?btnDisplayTreeIconHide:btnDisplayTreeIconShow"
-                                :iconSize="btnDisplayTreeIconSize"
-                                :iconColor="btnDisplayTreeIconColor"
-                                :iconColorHover="btnDisplayTreeIconColorHover"
-                                :iconColorFocus="btnDisplayTreeIconColorFocus"
-                                :backgroundColor="btnDisplayTreeBackgroundColor"
-                                :backgroundColorHover="btnDisplayTreeBackgroundColorHover"
-                                :backgroundColorFocus="btnDisplayTreeBackgroundColorFocus"
-                                :shadow="false"
-                                @click="emitShowTreeDelay(!showTreeTrans)"
-                            ></WButtonCircle>
+                        <!-- 切換顯隱tree按鈕 -->
+                        <!-- 指定display:block避免有text-node間隙 -->
+                        <WButtonCircle
+                            style="display:block;"
+                            :paddingStyle="{h:2,v:2}"
+                            :icon="showTreeTrans?btnDisplayTreeIconHide:btnDisplayTreeIconShow"
+                            :iconSize="btnDisplayTreeIconSize"
+                            :iconColor="btnDisplayTreeIconColor"
+                            :iconColorHover="btnDisplayTreeIconColorHover"
+                            :iconColorFocus="btnDisplayTreeIconColorFocus"
+                            :backgroundColor="btnDisplayTreeBackgroundColor"
+                            :backgroundColorHover="btnDisplayTreeBackgroundColorHover"
+                            :backgroundColorFocus="btnDisplayTreeBackgroundColorFocus"
+                            :shadow="false"
+                            @click="emitShowTreeDelay(!showTreeTrans)"
+                        ></WButtonCircle>
 
-                        </div>
                     </div>
 
                 </div>
@@ -186,7 +189,9 @@
                             >
 
                                 <!-- 切換顯隱tree按鈕 -->
+                                <!-- 指定display:block避免有text-node間隙 -->
                                 <WButtonCircle
+                                    style="display:block;"
                                     :paddingStyle="{h:2,v:2}"
                                     :icon="showTreeTrans?btnDisplayTreeIconHide:btnDisplayTreeIconShow"
                                     :iconSize="btnDisplayTreeIconSize"
@@ -1188,6 +1193,14 @@ export default {
             vo.convertItems(vo.items)
 
             return ''
+        },
+
+        useTreeItemHeightMin: function() {
+            //console.log('computed useTreeItemHeightMin')
+
+            let vo = this
+
+            return Math.max(vo.treeToggleIconSize, vo.treeDefItemHeight)
         },
 
         effTreeBackgroundColor: function() {

@@ -65,7 +65,7 @@
                         <div :style="`display:table-cell; vertical-align:top; padding-right:${separation}px;`">
 
                             <!-- 若有顯隱圖標才會有min-height效果 -->
-                            <div :style="`${useItemHeightMin} display:flex; align-items:center; justify-content:center;`" v-if="hasChildren(props.index)">
+                            <div :style="`min-height:${useItemHeightMin}px; display:flex; align-items:center; justify-content:center;`" v-if="hasChildren(props.index)">
                                 <WTreeIconToggle
                                     :dir="`${props.row.unfolding?'bottom':'right'}`"
                                     :iconSize="iconSize"
@@ -77,13 +77,13 @@
                             </div>
 
                             <!-- 若無顯隱圖標至少要撐開寬度 -->
-                            <div :style="`${useItemHeightMin} padding-right:${iconSize}px;`" v-else></div>
+                            <div :style="`min-height:${useItemHeightMin}px; padding-right:${iconSize}px;`" v-else></div>
 
                         </div>
 
                         <!-- 因顯隱圖標較小而右側間距看起來較寬, 故核選圖標右側間距*3 -->
                         <div :style="`display:table-cell; vertical-align:top; padding-right:${3*separation}px;`" v-if="selectable">
-                            <div :style="`${useItemHeightMin} display:flex; align-items:center; justify-content:center;`">
+                            <div :style="`min-height:${useItemHeightMin}px; display:flex; align-items:center; justify-content:center;`">
                                 <WTreeIconCheckbox
                                     :mode="props.row.checked"
                                     :iconSize="iconSize"
@@ -115,30 +115,37 @@
                                 :isActive="pkActive===props.row.item[keyPrimary]"
                             >
                                 <!-- 得使用min-height否則無法撐開高度 -->
-                                <div :style="`${useItemHeightMin} display:flex; align-items:center;`">
+                                <div :style="`min-height:${useItemHeightMin}px; display:flex; align-items:center;`">
                                     {{getText(props.row.item)}}
                                 </div>
                             </slot>
 
                         </div>
 
+                        <!-- tree可能有捲軸, 給予預留與右側空間8px -->
                         <div
-                            style="position:absolute; top:2px; right:8px;"
+                            :style="`position:absolute; top:${(useItemHeightMin-(operateBtnIconSize+2*2))/2}px; right:8px;`"
                             v-if="getUseOperatable(props)"
                             @mousedown="(ev)=>{operateDisableEvent(ev,'mousedown')}"
                             @touchstart="(ev)=>{operateDisableEvent(ev,'touchstart')}"
                             @click="(ev)=>{operateDisableEvent(ev,'click')}"
                         >
 
+                            <!-- 使用displayType=line使WPopup的display:block, 避免出現text-node間隙 -->
                             <WPopup
                                 :isolated="true"
+                                :displayType="'line'"
                                 @show="operateDisplayEvent('show')"
                                 @hide="operateDisplayEvent('hide')"
                             >
 
                                 <template v-slot:trigger>
+                                    <!-- 指定display:block避免有text-node間隙 -->
                                     <WButtonCircle
+                                        style="display:block;"
+                                        :paddingStyle="{v:2,h:2}"
                                         :icon="mdiDotsVertical"
+                                        :iconSize="operateBtnIconSize"
                                         :backgroundColor="operateBtnBackgroundColor"
                                         :backgroundColorHover="operateBtnBackgroundColorHover"
                                         :backgroundColorFocus="operateBtnBackgroundColorFocus"
@@ -397,6 +404,7 @@ let gm = globalMemory()
  * @vue-prop {Number} [operatePanelWidth=150] 輸入控制選項寬度數字，單位px，預設150
  * @vue-prop {Number} [operatePanelHeight=null] 輸入控制選項高度數字，若為null則使用選項數量*operateItemHeight，單位px，預設null
  * @vue-prop {String} [operateBtnTooltip='Operations'] 輸入控制按鈕之提示文字字串，預設'Operations'
+ * @vue-prop {Number} [operateBtnIconSize=22] 輸入控制按鈕圖標尺寸數字，單位px，預設22
  * @vue-prop {String} [operateBtnBackgroundColor='transparent'] 輸入控制按鈕背景顏色字串，預設'transparent'
  * @vue-prop {String} [operateBtnBackgroundColorHover='rgba(230,230,230,0.7)'] 輸入滑鼠移入時控制按鈕背景顏色字串，預設'rgba(230,230,230,0.7)'
  * @vue-prop {String} [operateBtnBackgroundColorFocus='rgba(230,230,230,0.9)'] 輸入取得焦點時控制按鈕背景顏色字串，預設'rgba(230,230,230,0.9)'
@@ -733,6 +741,10 @@ export default {
             type: String,
             default: 'Operations',
         },
+        operateBtnIconSize: {
+            type: Number,
+            default: 22,
+        },
         operateBtnBackgroundColor: {
             type: String,
             default: 'transparent', //'rgba(225,225,225,0.5)',
@@ -1059,7 +1071,7 @@ export default {
 
             let vo = this
 
-            return `min-height:${Math.max(vo.iconSize, vo.defItemHeight)}px;`
+            return Math.max(vo.iconSize, vo.defItemHeight)
         },
 
         useIndent: function() {

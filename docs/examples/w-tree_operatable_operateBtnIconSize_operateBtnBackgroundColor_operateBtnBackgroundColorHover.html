@@ -85,7 +85,7 @@
     </script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.3.1/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.3.2/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -137,7 +137,7 @@
         <div class="bk">
             <div
                 class="item"
-            >operatable &amp; operateBtnBackgroundColor &amp; operateBtnBackgroundColorHover &amp; operateBtnBackgroundColorFocus</div>
+            >operatable &amp; operateBtnIconSize &amp; operateBtnBackgroundColor &amp; operateBtnBackgroundColorHover &amp; operateBtnBackgroundColorFocus</div>
 
             <div
                 style="margin-bottom:5px; color:#f26; font-size:0.8rem;"
@@ -147,6 +147,7 @@
                 style="width:350px; border:1px solid #ddd;"
                 :data.sync="WTree.option.items"
                 :operatable="true"
+                :operate-btn-icon-size="20"
                 :operate-btn-background-color="'rgba(230,230,230,0.4)'"
                 :operate-btn-background-color-hover="'rgba(230,230,255,0.8)'"
                 :operate-btn-background-color-focus="'rgba(210,210,255,0.8)'"

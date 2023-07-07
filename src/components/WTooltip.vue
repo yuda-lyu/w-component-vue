@@ -79,8 +79,8 @@ function removeTriggerMode(mode, mmkey) {
 
 /**
  * @vue-prop {String} [mode='tooltip'] 輸入組件模式字串，可選'tooltip'與'popup'，預設'tooltip'
- * @vue-prop {String} [displayType='block'] 輸入display設定字串，可選'block'與'line'，預設'block'
  * @vue-prop {Boolean} [value=false] 輸入是否顯示布林值，預設false
+ * @vue-prop {String} [displayType='block'] 輸入display設定字串，可選'block'與'line'，預設'block'
  * @vue-prop {Number} [cmpZIndex=3000] 輸入彈窗使用z-index數字，預設3000
  * @vue-prop {Boolean} [isolated=false] 輸入當mode為'popup'時是否為獨立顯引狀態布林值，也就是可不接收外部傳入value值，預設false
  * @vue-prop {String} [placement='bottom'] 輸入內容區出現位置字串，可選'top-start'、'top'、'top-end'、'bottom-start'、'bottom'、'bottom-end'、'left-start'、'left'、'left-end'、'right-start'、'right'、'right-end'、，預設'bottom'
@@ -108,13 +108,13 @@ export default {
             type: String,
             default: 'tooltip', //tooltip, popup
         },
-        displayType: {
-            type: String,
-            default: 'block', //line, block
-        },
         value: {
             type: Boolean,
             default: false,
+        },
+        displayType: {
+            type: String,
+            default: 'block', //line, block
         },
         cmpZIndex: {
             type: Number,
