@@ -1,0 +1,347 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-tw">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui"
+    />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>w-component-vue</title>
+
+    <!-- @babel/polyfill -->
+    <script
+        nomodule
+        src="https://cdn.jsdelivr.net/npm/@babel/polyfill/dist/polyfill.min.js"
+    ></script>
+
+    <!-- vue -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.min.js"></script>
+
+    <!-- extractHtml已自動添加@babel/polyfill與vue -->
+
+    <!-- vuetify -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/vuetify@2.6.14/dist/vuetify.min.css"
+        rel="stylesheet"
+    />
+    <script
+        src="https://cdn.jsdelivr.net/npm/vuetify@2.6.14/dist/vuetify.min.js"
+    ></script>
+
+    <!-- fontawesome -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css"
+        rel="stylesheet"
+    />
+
+    <!-- mdi, 各組件使用mdi/js會於轉單頁時改為mdi icon, 故需引用mdi/css -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/@mdi/font@7.2.96/css/materialdesignicons.min.css"
+        rel="stylesheet"
+    />
+
+    <!-- google, 各組件使用mdi/js故不需引用 -->
+    <link
+        _href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900"
+        rel="stylesheet"
+    />
+    <link
+        _href="https://fonts.googleapis.com/css?family=Material+Icons"
+        rel="stylesheet"
+    />
+
+    <!-- data -->
+    <script
+        src="https://cdn.jsdelivr.net/npm/w-demores@1.0.20/res/data/dataAAPL.js"
+    ></script>
+    <script
+        src="https://cdn.jsdelivr.net/npm/w-demores@1.0.20/res/data/dataUSD2EUR.js"
+    ></script>
+    <script
+        src="https://cdn.jsdelivr.net/npm/w-demores@1.0.20/res/data/dataTemperature.js"
+    ></script>
+    <script
+        src="https://cdn.jsdelivr.net/npm/w-demores@1.0.20/res/data/dataHousePriceArea.js"
+    ></script>
+    <script
+        src="https://cdn.jsdelivr.net/npm/w-demores@1.0.20/res/data/dataFlare.js"
+    ></script>
+    <script
+        src="https://cdn.jsdelivr.net/npm/w-demores@1.0.20/res/data/dataRain.js"
+    ></script>
+    <script
+        src="https://cdn.jsdelivr.net/npm/w-demores@1.0.20/res/data/dataRainClip.js"
+    ></script>
+    <script>
+  //save in window
+  window.dataAAPL = dataAAPL;
+  window.dataUSD2EUR = dataUSD2EUR;
+  window.dataTemperature = dataTemperature;
+  window.dataHousePriceArea = dataHousePriceArea;
+  window.dataFlare = dataFlare;
+  window.dataRain = dataRain;
+  window.dataRainClip = dataRainClip;
+    </script>
+
+    <!-- w-component-vue -->
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.3.4/dist/w-component-vue.umd.js"></script>
+
+    <style>
+  .v-application--wrap {
+    /* width與max-width fix for IE11, 其外不能使用padding或margin避免失效 */
+    width: 100vw;
+    max-width: 100vw;
+    font-family: inherit;
+    background: #fff;
+  }
+  .item {
+    /* 因item位於demolink, 提取各範例html後會刪除demolink, 故得額外補上 */
+    border-left: 3px solid #ffba75;
+    margin: 5px 5px 8px 0px;
+    padding: 3px 3px 5px 10px;
+    font-size: 0.9rem;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
+  .head1 {
+    margin: 0px;
+    padding: 0px 0px 20px 0px;
+    font-size: 2.5rem;
+  }
+  .bk {
+    vertical-align: top;
+    padding: 10px 0px 60px 0px;
+  }
+  @media screen and (min-width: 1000px) {
+    /* 寬版 */
+    .bk {
+      display: inline-block;
+      margin: 0px 80px 0px 0px;
+    }
+  }
+    </style>
+</head>
+<body
+    style="font-family:'Microsoft JhengHei','Avenir','Helvetica'; padding:0px; margin:0px;"
+>
+    <v-app id="app" style="font-family:inherit; padding:0px 30px;">
+        <div class="head1">
+            <span
+                style="cursor:pointer;"
+                title="open for copy link to view component"
+                onclick="window.open('//yuda-lyu.github.io/w-component-vue/examples/app.html?cmp='+this.innerText,'_blank')"
+            >w-segments-vertical</span>
+        </div>
+        <div class="bk">
+            <div class="item">funSegmentBackgroundColor &amp; segmentBorderColor</div>
+
+            <w-segments-vertical
+                :items="WSegmentsVertical.items"
+                :fun-segment-background-color="genSegmentBackgroundColor"
+                :segment-border-color="'rgba(200,200,200,0.1)'"
+            ></w-segments-vertical>
+        </div>
+    </v-app>
+
+    <script>
+  //install
+  Vue.use(window["w-component-vue"]);
+
+  //initialize
+  new Vue({
+    el: "#app",
+    vuetify: new Vuetify(),
+    data: function() {
+      return {
+        WSegmentsVertical: {
+          items: [
+            {
+              valueStart: 1979,
+              valueEnd: 1985,
+              text: "Myriel",
+              type: "Audience",
+              icon: "mdi-stack-overflow"
+            },
+            {
+              valueStart: 1986,
+              valueEnd: 1992,
+              text: "Napoleon",
+              type: "Audience",
+              icon: "mdi-book-music-outline"
+            },
+            {
+              valueStart: 1995,
+              valueEnd: 2000,
+              text: "MlleBaptistine",
+              type: "Conversions",
+              icon: "mdi-charity"
+            },
+            {
+              valueStart: 2001,
+              valueEnd: 2007,
+              text: "MmeMagloire",
+              type: "Management",
+              icon: "mdi-lightbulb-group-outline"
+            },
+            {
+              valueStart: 2009,
+              valueEnd: 2012,
+              text: "CountessDeLo",
+              type: "Conversions",
+              icon: "mdi-message-cog-outline"
+            },
+            {
+              valueStart: 2013,
+              valueEnd: 2015,
+              text: "Geborand",
+              type: "Actions",
+              icon: "mdi-gesture-double-tap"
+            },
+            {
+              valueStart: 2017,
+              valueEnd: 2018,
+              text: "Champtercier",
+              type: "Actions",
+              icon: "mdi-pencil-outline"
+            },
+            {
+              valueStart: 2018,
+              valueEnd: 2020,
+              text: "Cravatte",
+              type: "Management",
+              icon: "mdi-lightbulb-on-outline"
+            }
+          ],
+          itemsConti: [
+            {
+              valueStart: 1979,
+              valueEnd: 1985,
+              text: "Myriel",
+              type: "Audience",
+              icon: "mdi-stack-overflow"
+            },
+            {
+              valueStart: 1985,
+              valueEnd: 1992,
+              text: "Napoleon",
+              type: "Audience",
+              icon: "mdi-book-music-outline"
+            },
+            {
+              valueStart: 1992,
+              valueEnd: 2000,
+              text: "MlleBaptistine",
+              type: "Conversions",
+              icon: "mdi-charity"
+            },
+            {
+              valueStart: 2000,
+              valueEnd: 2007,
+              text: "MmeMagloire",
+              type: "Management",
+              icon: "mdi-lightbulb-group-outline"
+            },
+            {
+              valueStart: 2007,
+              valueEnd: 2012,
+              text: "CountessDeLo",
+              type: "Conversions",
+              icon: "mdi-message-cog-outline"
+            },
+            {
+              valueStart: 2012,
+              valueEnd: 2015,
+              text: "Geborand",
+              type: "Actions",
+              icon: "mdi-gesture-double-tap"
+            },
+            {
+              valueStart: 2015,
+              valueEnd: 2018,
+              text: "Champtercier",
+              type: "Actions",
+              icon: "mdi-pencil-outline"
+            },
+            {
+              valueStart: 2018,
+              valueEnd: 2020,
+              text: "Cravatte",
+              type: "Management",
+              icon: "mdi-lightbulb-on-outline"
+            }
+          ],
+          itemsDepth: [
+            {
+              depthStart: 0,
+              depthEnd: 0.6,
+              kind: "Sand"
+            },
+            {
+              depthStart: 1,
+              depthEnd: 1.4,
+              kind: "Clay"
+            },
+            {
+              depthStart: 1.6,
+              depthEnd: 2.4,
+              kind: "Silt"
+            },
+            {
+              depthStart: 2.7,
+              depthEnd: 3.2,
+              kind: "Sand"
+            },
+            {
+              depthStart: 3.5,
+              depthEnd: 4.7,
+              kind: "Clay"
+            },
+            {
+              depthStart: 5,
+              depthEnd: 5.3,
+              kind: "Silt"
+            },
+            {
+              depthStart: 5.6,
+              depthEnd: 6,
+              kind: "Sand"
+            },
+            {
+              depthStart: 6.7,
+              depthEnd: 7.2,
+              kind: "Clay"
+            }
+          ]
+        },
+        actions: []
+      };
+    },
+    mounted: function() {
+      return {};
+    },
+    computed: {},
+    methods: {
+      genSegmentBackgroundColor: function(item) {
+        // console.log('genSegmentBackgroundColor', item)
+        let kp = {
+          Audience: "#FF9800",
+          Conversions: "#8BC34A",
+          Management: "#039BE5",
+          Actions: "#651FFF"
+        };
+        let c = kp[item.type];
+        return c;
+      },
+      clickText: function(msg) {
+        console.log("clickText", msg);
+      },
+      clickSegment: function(msg) {
+        console.log("clickSegment", msg);
+      }
+    }
+  });
+    </script>
+</body>
+</html>

@@ -50,6 +50,7 @@ import WPopupEditText from './WPopupEditText.vue'
 import WProgressBar from './WProgressBar.vue'
 import WProgressCircle from './WProgressCircle.vue'
 import WQuillVueDyn from './WQuillVueDyn.vue'
+import WSegmentsVertical from './WSegmentsVertical.vue'
 import WShellBottomLine from './WShellBottomLine.vue'
 import WShellEllipse from './WShellEllipse.vue'
 import WSwitch from './WSwitch.vue'
@@ -129,6 +130,7 @@ let WComponentVue = {
         Vue.component('w-progress-bar', WProgressBar)
         Vue.component('w-progress-circle', WProgressCircle)
         Vue.component('w-quill-vue-dyn', WQuillVueDyn)
+        Vue.component('w-segments-vertical', WSegmentsVertical)
         Vue.component('w-shell-bottom-line', WShellBottomLine)
         Vue.component('w-shell-ellipse', WShellEllipse)
         Vue.component('w-switch', WSwitch)

@@ -298,6 +298,11 @@
             ></AppZoneWDynamicList>
 
 
+            <AppZoneWSegmentsVertical
+                v-if="useCmpName==='WSegmentsVertical'"
+            ></AppZoneWSegmentsVertical>
+
+
             <AppZoneWJsonView
                 v-if="useCmpName==='WJsonView'"
             ></AppZoneWJsonView>
@@ -428,6 +433,7 @@ import AppZoneWTimeminute from './AppZoneWTimeminute.vue'
 import AppZoneWTimedayRange from './AppZoneWTimedayRange.vue'
 import AppZoneWTimeminuteRange from './AppZoneWTimeminuteRange.vue'
 import AppZoneWDynamicList from './AppZoneWDynamicList.vue'
+import AppZoneWSegmentsVertical from './AppZoneWSegmentsVertical.vue'
 import AppZoneWJsonView from './AppZoneWJsonView.vue'
 import AppZoneWTree from './AppZoneWTree.vue'
 import AppZoneWHighchartsVueDyn from './AppZoneWHighchartsVueDyn.vue'
@@ -490,6 +496,7 @@ export default {
         AppZoneWTimedayRange,
         AppZoneWTimeminuteRange,
         AppZoneWDynamicList,
+        AppZoneWSegmentsVertical,
         AppZoneWJsonView,
         AppZoneWTree,
         AppZoneWHighchartsVueDyn,
@@ -567,6 +574,7 @@ export default {
                         { name: 'WListVertical' },
                         { name: 'WListExpand' },
                         { name: 'WDynamicList' },
+                        { name: 'WSegmentsVertical' },
                     ]
                 },
                 {
