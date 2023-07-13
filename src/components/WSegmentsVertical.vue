@@ -24,7 +24,7 @@
                 </div>
 
                 <div
-                    :style="`position:absolute; top:${s.y}px; left:-${segmentSize/2}px; width:${segmentSize}px; height:${s.height}px; background:${getSegmentBackgroundColor(ks)}; border:1px solid ${useSegmentBorderColor}; ${useSegmentCursor}`"
+                    :style="`position:absolute; top:${s.y}px; left:-${segmentSize/2}px; width:${segmentSize}px; height:${s.height}px; background:${getSegmentBackgroundColor(ks)}; border:1px solid ${getSegmentBorderColor(ks)}; ${useSegmentCursor}`"
                     :key="'sample-block'+ks"
                     v-for="(s,ks) in useSamplesLocs"
                     @click="(ev)=>{clickSegment(ev,s.data)}"
@@ -159,9 +159,10 @@ import color2hex from '../js/vuetifyColor.mjs'
  * @vue-prop {String} [tickLabelColor='#666'] 輸入刻度文字顏色字串，預設'#666'
  * @vue-prop {String} [tickLabelFontSize='0.7rem'] 輸入刻度文字字型大小字串，預設'0.7rem'
  * @vue-prop {String} [segmentBackgroundColor='#FFB74D'] 輸入區塊背景顏色字串，預設'#FFB74D'
- * @vue-prop {String} [segmentBorderColor='#FFB74D'] 輸入區塊邊框顏色字串，預設'#FB8C00'
- * @vue-prop {Number} [segmentSize=6] 輸入區塊尺寸(為兩側總寬度)數字，單位為px，預設6
  * @vue-prop {Function} [funSegmentBackgroundColor=null] 輸入處理項目數據之區塊背景函數，預設null
+ * @vue-prop {String} [segmentBorderColor='#FFB74D'] 輸入區塊邊框顏色字串，預設'#FB8C00'
+ * @vue-prop {Function} [funSegmentBorderColor=null] 輸入處理項目數據之區塊邊框函數，預設null
+ * @vue-prop {Number} [segmentSize=6] 輸入區塊尺寸(為兩側總寬度)數字，單位為px，預設6
  * @vue-prop {Boolean} [textWithPopup=false] 輸入項目文字是否可點擊顯示popup彈窗布林值，預設false
  * @vue-prop {String} [textFontSize='0.7rem'] 輸入項目文字區之文字字型大小字串，預設'0.7rem'
  * @vue-prop {String} [textColor='#222'] 輸入項目文字區之文字顏色字串，預設'#222'
@@ -256,17 +257,21 @@ export default {
             type: String,
             default: '#FFB74D',
         },
+        funSegmentBackgroundColor: {
+            type: Function,
+            default: null,
+        },
         segmentBorderColor: {
             type: String,
             default: '#FB8C00',
         },
+        funSegmentBorderColor: {
+            type: Function,
+            default: null,
+        },
         segmentSize: {
             type: Number,
             default: 6,
-        },
-        funSegmentBackgroundColor: {
-            type: Function,
-            default: null,
         },
         textWithPopup: {
             type: Boolean,
@@ -642,11 +647,6 @@ export default {
             return color2hex(vo.tickLabelColor)
         },
 
-        useSegmentBorderColor: function() {
-            let vo = this
-            return color2hex(vo.segmentBorderColor)
-        },
-
         useSegmentCursor: function() {
             let vo = this
             let b = vo.segmentCanClick
@@ -717,6 +717,26 @@ export default {
 
                 //funSegmentBackgroundColor
                 c = vo.funSegmentBackgroundColor(item, c)
+
+            }
+
+            return c
+        },
+
+        getSegmentBorderColor: function(k) {
+            let vo = this
+
+            //color2hex
+            let c = color2hex(vo.segmentBorderColor)
+
+            //check
+            if (isfun(vo.funSegmentBorderColor)) {
+
+                //item
+                let item = get(vo, `useItems.${k}.data`, {})
+
+                //funSegmentBorderColor
+                c = vo.funSegmentBorderColor(item, c)
 
             }
 

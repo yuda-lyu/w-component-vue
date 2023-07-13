@@ -85,7 +85,7 @@
     </script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.3.4/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.3.5/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -135,12 +135,14 @@
             >w-segments-vertical</span>
         </div>
         <div class="bk">
-            <div class="item">funSegmentBackgroundColor &amp; segmentBorderColor</div>
+            <div
+                class="item"
+            >funSegmentBackgroundColor &amp; funSegmentBorderColor</div>
 
             <w-segments-vertical
                 :items="WSegmentsVertical.items"
-                :fun-segment-background-color="genSegmentBackgroundColor"
-                :segment-border-color="'rgba(200,200,200,0.1)'"
+                :fun-segment-background-color="getSegmentBackgroundColor"
+                :fun-segment-border-color="getSegmentBorderColor"
             ></w-segments-vertical>
         </div>
     </v-app>
@@ -323,8 +325,19 @@
     },
     computed: {},
     methods: {
-      genSegmentBackgroundColor: function(item) {
-        // console.log('genSegmentBackgroundColor', item)
+      getSegmentBackgroundColor: function(item) {
+        // console.log('getSegmentBackgroundColor', item)
+        let kp = {
+          Audience: "#ffb13e",
+          Conversions: "#a2cf70",
+          Management: "#4ac2fd",
+          Actions: "#9f77ff"
+        };
+        let c = kp[item.type];
+        return c;
+      },
+      getSegmentBorderColor: function(item) {
+        // console.log('getSegmentBorderColor', item)
         let kp = {
           Audience: "#FF9800",
           Conversions: "#8BC34A",

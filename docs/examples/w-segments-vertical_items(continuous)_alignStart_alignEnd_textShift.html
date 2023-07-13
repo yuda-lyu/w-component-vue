@@ -85,7 +85,7 @@
     </script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.3.4/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.3.5/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -327,8 +327,19 @@
     },
     computed: {},
     methods: {
-      genSegmentBackgroundColor: function(item) {
-        // console.log('genSegmentBackgroundColor', item)
+      getSegmentBackgroundColor: function(item) {
+        // console.log('getSegmentBackgroundColor', item)
+        let kp = {
+          Audience: "#ffb13e",
+          Conversions: "#a2cf70",
+          Management: "#4ac2fd",
+          Actions: "#9f77ff"
+        };
+        let c = kp[item.type];
+        return c;
+      },
+      getSegmentBorderColor: function(item) {
+        // console.log('getSegmentBorderColor', item)
         let kp = {
           Audience: "#FF9800",
           Conversions: "#8BC34A",

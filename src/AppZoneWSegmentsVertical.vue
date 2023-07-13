@@ -162,13 +162,13 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-segments-vertical'"
-                    :casename="'funSegmentBackgroundColor & segmentBorderColor'"
+                    :casename="'funSegmentBackgroundColor & funSegmentBorderColor'"
                 ></demolink>
 
                 <w-segments-vertical
                     :items="WSegmentsVertical.items"
-                    :funSegmentBackgroundColor="genSegmentBackgroundColor"
-                    :segmentBorderColor="'rgba(200,200,200,0.1)'"
+                    :funSegmentBackgroundColor="getSegmentBackgroundColor"
+                    :funSegmentBorderColor="getSegmentBorderColor"
                 ></w-segments-vertical>
 
             </div>
@@ -498,8 +498,19 @@ export default {
         }
     },
     methods: {
-        genSegmentBackgroundColor: function(item) {
-            // console.log('genSegmentBackgroundColor', item)
+        getSegmentBackgroundColor: function(item) {
+            // console.log('getSegmentBackgroundColor', item)
+            let kp = {
+                Audience: '#ffb13e',
+                Conversions: '#a2cf70',
+                Management: '#4ac2fd',
+                Actions: '#9f77ff',
+            }
+            let c = kp[item.type]
+            return c
+        },
+        getSegmentBorderColor: function(item) {
+            // console.log('getSegmentBorderColor', item)
             let kp = {
                 Audience: '#FF9800',
                 Conversions: '#8BC34A',
