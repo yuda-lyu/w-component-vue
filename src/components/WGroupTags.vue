@@ -114,7 +114,7 @@
                 <template v-if="isObjValue">
                     <WButtonChip
                         :style="`${useMarginStyle}`"
-                        :icon="mdiPlusCircle"
+                        :icon="addButtonIcon"
                         :iconColor="addButtonIconColor"
                         :iconColorHover="addButtonIconColorHover"
                         :text="addButtonText"
@@ -123,6 +123,9 @@
                         :backgroundColor="addButtonBackgroundColor"
                         :backgroundColorHover="addButtonBackgroundColorHover"
                         :tooltip="addButtonTooltip"
+                        :paddingStyle="{v:3,h:12}"
+                        _shiftLeft="shiftLeft"
+                        _shiftRight="shiftRight"
                         @click="clickAddBtn"
                     ></WButtonChip>
                 </template>
@@ -145,7 +148,7 @@
                         :backgroundColorHover="inputTextBackgroundColorHover"
                         :backgroundColorFocus="inputTextBackgroundColorFocus"
                         :showExpansionIcon="false"
-                        :rightIcon="mdiPlusCircle"
+                        :rightIcon="inputTextButtonIcon"
                         :rightIconColor="inputTextButtonColor"
                         :rightIconColorHover="inputTextButtonColorHover"
                         :rightIconColorFocus="inputTextButtonColorFocus"
@@ -231,6 +234,7 @@ import domDragDrop from '../js/domDragDrop.mjs'
  * @vue-prop {String} [inputTextBorderColor='grey lighten-1'] 輸入輸入框邊框顏色字串，預設'grey lighten-1'
  * @vue-prop {String} [inputTextBorderColorHover='grey'] 輸入滑鼠移入時輸入框邊框字串，預設'grey'
  * @vue-prop {String} [inputTextBorderColorFocus='grey'] 輸入取得焦點時輸入框文字邊框字串，預設'grey'
+ * @vue-prop {String} [inputTextButtonIcon=mdiPlusCircle] 輸入新增按鈕圖標字串，可為mdi,md,fa代號或mdi/js路徑，預設mdiPlusCircle
  * @vue-prop {String} [inputTextButtonColor='grey lighten-1'] 輸入輸入框按鈕顏色字串，預設'grey lighten-1'
  * @vue-prop {String} [inputTextButtonColorHover='grey'] 輸入滑鼠移入時輸入框按鈕顏色字串，預設'grey'
  * @vue-prop {String} [inputTextButtonColorFocus='grey'] 輸入取得焦點時輸入框按鈕顏色字串，預設'grey'
@@ -244,6 +248,7 @@ import domDragDrop from '../js/domDragDrop.mjs'
  * @vue-prop {String} [addButtonText='Add'] 輸入新增按鈕文字字串，預設'Add'
  * @vue-prop {String} [addButtonTextColor='black'] 輸入新增按鈕文字顏色字串，預設'black'
  * @vue-prop {String} [addButtonTextColorHover='black'] 輸入滑鼠移入時新增按鈕文字顏色字串，預設'black'
+ * @vue-prop {String} [addButtonIcon=mdiPlusCircle] 輸入新增按鈕圖標字串，可為mdi,md,fa代號或mdi/js路徑，預設mdiPlusCircle
  * @vue-prop {String} [addButtonIconColor='pink darken-1'] 輸入新增按鈕圖標顏色字串，預設'pink darken-1'
  * @vue-prop {String} [addButtonIconColorHover='pink darken-1'] 輸入滑鼠移入時新增按鈕圖標顏色字串，預設'pink darken-1'
  * @vue-prop {String} [addButtonBackgroundColor='white'] 輸入新增按鈕背景顏色字串，預設'white'
@@ -457,6 +462,10 @@ export default {
             type: String,
             default: 'grey',
         },
+        inputTextButtonIcon: {
+            type: String,
+            default: mdiPlusCircle,
+        },
         inputTextButtonColor: {
             type: String,
             default: 'grey lighten-1',
@@ -508,6 +517,10 @@ export default {
         addButtonTextColorHover: {
             type: String,
             default: 'black',
+        },
+        addButtonIcon: {
+            type: String,
+            default: mdiPlusCircle,
         },
         addButtonIconColor: {
             type: String,
@@ -779,47 +792,63 @@ export default {
 
             let vo = this
 
-            //check
-            if (trim(vo.userinput) === '') {
-                return
-            }
-
-            //check
-            let r = filter(vo.itemsTrans, (v) => {
-                return isEqual(v, vo.userinput)
-            })
-            if (size(r) >= 1) {
+            //isObjValue
+            if (vo.isObjValue) {
 
                 //$nextTick
                 vo.$nextTick(() => {
 
                     //emit
-                    vo.$emit('error', 'disable duplicate values')
+                    vo.$emit('click-add', null)
+
+                })
+
+            }
+            else {
+
+                //check
+                if (trim(vo.userinput) === '') {
+                    return
+                }
+
+                //check
+                let r = filter(vo.itemsTrans, (v) => {
+                    return isEqual(v, vo.userinput)
+                })
+                if (size(r) >= 1) {
+
+                    //$nextTick
+                    vo.$nextTick(() => {
+
+                        //emit
+                        vo.$emit('error', 'disable duplicate values')
+
+                        //clear
+                        vo.userinput = ''
+
+                    })
+
+                    return
+                }
+
+                //$nextTick
+                vo.$nextTick(() => {
+
+                    //push
+                    vo.itemsTrans.push(trim(vo.userinput))
+
+                    //emit
+                    vo.$emit('input', vo.itemsTrans)
+
+                    //emit
+                    vo.$emit('click-add', vo.userinput)
 
                     //clear
                     vo.userinput = ''
 
                 })
 
-                return
             }
-
-            //$nextTick
-            vo.$nextTick(() => {
-
-                //push
-                vo.itemsTrans.push(trim(vo.userinput))
-
-                //emit
-                vo.$emit('input', vo.itemsTrans)
-
-                //emit
-                vo.$emit('click-add', vo.userinput)
-
-                //clear
-                vo.userinput = ''
-
-            })
 
         },
 

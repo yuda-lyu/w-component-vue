@@ -165,7 +165,7 @@
             <div class="bk" style="display:block;">
                 <demolink
                     :kbname="'w-group-tags'"
-                    :casename="'inputTextColor & inputTextBorderColor & inputTextBorderColorHover & inputTextBorderColorFocus & inputTextButtonColor & inputTextButtonColorHover & inputTextButtonColorHover & inputTextBackgroundColor & inputTextBackgroundColorHover & inputTextBackgroundColorFocus'"
+                    :casename="'inputTextColor & inputTextBorderColor & inputTextBorderColorHover & inputTextBorderColorFocus & inputTextButtonIcon & inputTextButtonColor & inputTextButtonColorHover & inputTextButtonColorHover & inputTextBackgroundColor & inputTextBackgroundColorHover & inputTextBackgroundColorFocus'"
                 ></demolink>
 
                 <w-group-tags
@@ -174,6 +174,7 @@
                     :inputTextBorderColor="'indigo darken-1'"
                     :inputTextBorderColorHover="'indigo darken-1'"
                     :inputTextBorderColorFocus="'indigo darken-2'"
+                    :inputTextButtonIcon="mdiCloudPlus"
                     :inputTextButtonColor="'indigo'"
                     :inputTextButtonColorHover="'indigo'"
                     :inputTextButtonColorFocus="'indigo darken-1'"
@@ -267,11 +268,12 @@
             <div class="bk" style="display:block;">
                 <demolink
                     :kbname="'w-group-tags'"
-                    :casename="'object items & addButtonTextColor & addButtonTextColorHover & addButtonIconColor & addButtonIconColorHover & addButtonBackgroundColor &  addButtonBackgroundColorHover'"
+                    :casename="'object items & addButtonIcon & addButtonTextColor & addButtonTextColorHover & addButtonIconColor & addButtonIconColorHover & addButtonBackgroundColor &  addButtonBackgroundColorHover'"
                 ></demolink>
 
                 <w-group-tags
                     v-model="WGroupTags.objects"
+                    :addButtonIcon="mdiCloudPlus"
                     :addButtonTextColor="'white'"
                     :addButtonTextColorHover="'white'"
                     :addButtonIconColor="'white'"
@@ -889,7 +891,7 @@
 </template>
 
 <script>
-import { mdiEmailVariant, mdiChartBubble, mdiCodepen, mdiPlusCircle } from '@mdi/js'
+import { mdiEmailVariant, mdiChartBubble, mdiCodepen, mdiPlusCircle, mdiCloudPlus } from '@mdi/js'
 import demolink from './components/demolink.vue'
 import WGroupTags from './components/WGroupTags.vue'
 import WButtonChip from './components/WButtonChip.vue'
@@ -909,6 +911,7 @@ export default {
             mdiChartBubble,
             mdiCodepen,
             mdiPlusCircle,
+            mdiCloudPlus,
             'WGroupTags': {
                 'strings': [
                     'Dashboard',
