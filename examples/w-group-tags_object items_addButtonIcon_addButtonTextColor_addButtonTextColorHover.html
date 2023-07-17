@@ -85,7 +85,7 @@
     </script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.3.5/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.3.6/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -137,10 +137,11 @@
         <div class="bk" style="display:block;">
             <div
                 class="item"
-            >object items &amp; addButtonTextColor &amp; addButtonTextColorHover &amp; addButtonIconColor &amp; addButtonIconColorHover &amp; addButtonBackgroundColor &amp; addButtonBackgroundColorHover</div>
+            >object items &amp; addButtonIcon &amp; addButtonTextColor &amp; addButtonTextColorHover &amp; addButtonIconColor &amp; addButtonIconColorHover &amp; addButtonBackgroundColor &amp; addButtonBackgroundColorHover</div>
 
             <w-group-tags
                 v-model="WGroupTags.objects"
+                :add-button-icon="'mdi-cloud-plus'"
                 :add-button-text-color="'white'"
                 :add-button-text-color-hover="'white'"
                 :add-button-icon-color="'white'"
