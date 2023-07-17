@@ -1915,7 +1915,7 @@ export default {
         clickOperateItem: function(msg) {
             console.log('clickOperateItem', msg)
 
-            //fun, 僅處理並回傳新項目, 不處理刪除項目
+            //fun, 僅處理並回傳新項目, 不處理其他項目
             let fun = function() {
                 return new Promise(function(resolve, reject) {
                     let id = Math.floor(Math.random() * 1000)
