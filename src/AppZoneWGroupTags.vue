@@ -688,7 +688,7 @@
             <div class="bk" style="display:block;">
                 <demolink
                     :kbname="'w-group-tags'"
-                    :casename="'editableInput(no slot input)'"
+                    :casename="'editableInput(no input text)'"
                 ></demolink>
 
                 <w-group-tags
@@ -704,7 +704,23 @@
             <div class="bk" style="display:block;">
                 <demolink
                     :kbname="'w-group-tags'"
-                    :casename="'iconColor & iconColorHover & textColor & textColorHover & borderColor & borderColorHover & backgroundColor & backgroundColorHover & not draggable & no shadow & editableClose(no close button) & editableInput(no slot input)'"
+                    :casename="'editableInput(no input button)'"
+                ></demolink>
+
+                <w-group-tags
+                    v-model="WGroupTags.objects"
+                    :icon="mdiChartBubble"
+                    :editableInput="false"
+                ></w-group-tags>
+
+                <div style="padding-left:5px; font-size:0.9rem; color:#ea6;">binding: objects</div>
+            </div>
+
+
+            <div class="bk" style="display:block;">
+                <demolink
+                    :kbname="'w-group-tags'"
+                    :casename="'iconColor & iconColorHover & textColor & textColorHover & borderColor & borderColorHover & backgroundColor & backgroundColorHover & not draggable & no shadow & editableClose(no close button) & editableInput(no input text)'"
                 ></demolink>
 
                 <w-group-tags
@@ -800,7 +816,7 @@
             <div class="bk" style="display:block;">
                 <demolink
                     :kbname="'w-group-tags'"
-                    :casename="'object items & slot item & editableInput(no slot input) & useActive & valueActive & paddingStyle & textColor & textColorHover & textColorActive & backgroundColor & backgroundColorActive & shadowActiveStyle'"
+                    :casename="'object items & slot item & editableInput(no input button) & useActive & valueActive & paddingStyle & textColor & textColorHover & textColorActive & backgroundColor & backgroundColorActive & shadowActiveStyle'"
                 ></demolink>
 
                 <w-group-tags
@@ -852,7 +868,7 @@
             <div class="bk" style="display:block;">
                 <demolink
                     :kbname="'w-group-tags'"
-                    :casename="'object items & slot item & useColorsFromItem & editableInput(no slot input) & no shadow & no shadowActive & useActive & valueActive & paddingStyle'"
+                    :casename="'object items & slot item & useColorsFromItem & editableInput(no input button) & no shadow & no shadowActive & useActive & valueActive & paddingStyle'"
                 ></demolink>
 
                 <w-group-tags
