@@ -1,6 +1,6 @@
 <template>
     <div
-        :style="`transition:all 0.3s; border-top-left-radius:${borderRadius}px; border-top-right-radius:${borderRadius}px; ${usePadding} background:${useBackgroundColor}; ${clickable&&cursorPointer?'cursor:pointer;':''}`"
+        :style="`position:relative; transition:all 0.3s; border-top-left-radius:${borderRadius}px; border-top-right-radius:${borderRadius}px; ${usePadding} background:${useBackgroundColor}; ${editable&&cursorPointer?'cursor:pointer;':''}`"
         v-domripple="{color:rippleColor}"
         @mouseenter="mouseEnter=true"
         @mouseleave="mouseEnter=false"
@@ -32,6 +32,16 @@
 
             </slot>
 
+            <div
+                style="position:absolute; left:0; right:0; top:0; bottom:0;"
+                v-if="!editable"
+            >
+                <div :style="`overflow:hidden; width:100%; height:100%;`">
+                    <div :style="`background:${effDisabledColor}; height:100%;`">
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 </template>
@@ -62,8 +72,9 @@ import WIcon from './WIcon.vue'
  * @vue-prop {String} [iconColorHover='#222'] 輸入滑鼠移入時圖標顏色字串，預設'#222'
  * @vue-prop {String} [iconColorActive='white'] 輸入主動模式時圖標顏色字串，預設'white'
  * @vue-prop {String} [rippleColor='rgba(255,255,255,0.4)'] 輸入ripple效果顏色字串，預設'rgba(255,255,255,0.4)'
- * @vue-prop {Boolean} [clickable=true] 輸入是否為可點擊模式布林值，預設true
  * @vue-prop {Boolean} [cursorPointer=true] 輸入是否滑鼠移入顯示pointer樣式，預設true
+ * @vue-prop {Boolean} [editable=true] 輸入是否為可點擊模式布林值，預設true
+ * @vue-prop {String} [disabledColor='rgba(255,255,255,0.5)'] 輸入非編輯模式時遮罩顏色字串，預設'rgba(255,255,255,0.5)'
  */
 export default {
     directives: {
@@ -146,9 +157,13 @@ export default {
             type: String,
             default: 'rgba(255,255,255,0.4)',
         },
-        clickable: {
+        editable: {
             type: Boolean,
             default: true,
+        },
+        disabledColor: {
+            type: String,
+            default: 'rgba(255,255,255,0.5)',
         },
         cursorPointer: {
             type: Boolean,
@@ -258,6 +273,11 @@ export default {
             return vo.mouseEnter ? vo.effIconColorHover : vo.effIconColor
         },
 
+        effDisabledColor: function() {
+            let vo = this
+            return color2hex(vo.disabledColor)
+        },
+
     },
     methods: {
 
@@ -267,7 +287,7 @@ export default {
             let vo = this
 
             //check
-            if (!vo.clickable) {
+            if (!vo.editable) {
                 return
             }
 

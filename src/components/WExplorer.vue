@@ -269,7 +269,6 @@
                             :style="`width:${props.width}px; min-width:${props.width}px; height:${listHeight}px;`"
                             :items="listItems"
                             :itemActive.sync="listItemActive"
-                            :itemClickable="true"
                             :itemCursorPointer="false"
                             :paddingStyle="listPaddingStyle"
                             :itemBackgroundColor="listItemBackgroundColor"

@@ -107,6 +107,38 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-list-horizontal'"
+                    :casename="'item with no editable'"
+                ></demolink>
+
+                <w-list-horizontal
+                    :items="WListHorizontal.itemsObjForNoEditable"
+                >
+                </w-list-horizontal>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-list-horizontal'"
+                    :casename="'item with no editable & itemDisabledColor'"
+                ></demolink>
+
+                <!-- itemDisabledColor是對item故會對背景有影響, 原則是基於item背景色RGB並給予其他半透明度作為禁用效果 -->
+                <div style="padding:25px 30px; background:rgb(245,245,245);">
+                    <w-list-horizontal
+                        :items="WListHorizontal.itemsObjForNoEditable"
+                        :itemDisabledColor="'rgba(245,245,245,0.4)'"
+                    >
+                    </w-list-horizontal>
+                </div>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-list-horizontal'"
                     :casename="'string items'"
                 ></demolink>
 
@@ -277,7 +309,7 @@
                                 <w-icon
                                     :icon="props.item.icon"
                                     :size="32"
-                                    :color="props.item.isActive?'#FF9800':'#666'"
+                                    :color="props.isActive?'#CDDC39':props.isHover?'#444':'#666'"
                                 ></w-icon>
 
                             </div>
@@ -285,15 +317,15 @@
                             <div style="">
 
                                 <w-badge
-                                    :text="props.item.ind"
+                                    :text="props.kitem"
                                     :badge-align="'left'"
                                 >
-                                    <div :style="`padding:0px 11px 0px 0px; font-size:0.9rem; line-height:0.9rem; color:${props.item.isActive?'#FF9800':'#666'}`">
+                                    <div :style="`padding:0px 11px 0px 0px; font-size:0.9rem; line-height:0.9rem; color:${props.isActive?'#FF9800':props.isHover?'#444':'#666'};`">
                                         {{props.item.text}}
                                     </div>
                                 </w-badge>
 
-                                <div :style="`font-size:0.7rem; line-height:0.7rem; opacity:0.7; color:${props.item.isActive?'#FF9800':'#666'}`">
+                                <div :style="`font-size:0.7rem; line-height:0.7rem; opacity:0.7; color:${props.isActive?'#FF9800':props.isHover?'#444':'#666'};`">
                                     {{props.item.type}}
                                 </div>
 
@@ -448,6 +480,44 @@ export default {
                     {
                         name: 'Actions',
                         path: mdiGestureDoubleTap,
+                    },
+                ],
+                'itemsObjForNoEditable': [
+                    {
+                        text: 'Real-Time',
+                        icon: mdiStackOverflow,
+                        type: 'Default',
+                        editable: true,
+                    },
+                    {
+                        text: 'Audience',
+                        icon: mdiBookMusicOutline,
+                        type: 'Default',
+                        editable: true,
+                    },
+                    {
+                        text: 'Conversions',
+                        icon: mdiCharity,
+                        type: 'Default',
+                        editable: false,
+                    },
+                    {
+                        text: 'Management',
+                        icon: mdiLightbulbGroupOutline,
+                        type: 'Default',
+                        editable: true,
+                    },
+                    {
+                        text: 'Settings',
+                        icon: mdiMessageCogOutline,
+                        type: 'Primary',
+                        editable: false,
+                    },
+                    {
+                        text: 'Actions',
+                        icon: mdiGestureDoubleTap,
+                        type: 'Primary',
+                        editable: true,
                     },
                 ],
                 'itemsStringActive': 'Real-Time',

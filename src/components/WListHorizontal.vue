@@ -40,9 +40,10 @@
                         :iconColor="itemIconColor"
                         :iconColorHover="itemIconColorHover"
                         :iconColorActive="itemIconColorActive"
-                        :rippleColor="itemRippleColor"
-                        :clickable="itemClickable"
-                        :cursorPointer="itemCursorPointer"
+                        :rippleColor="getEditable(item)?itemRippleColor:null"
+                        :editable="getEditable(item)"
+                        :disabledColor="itemDisabledColor"
+                        :cursorPointer="true"
                         @click="ckItem(item)"
                     >
 
@@ -51,7 +52,10 @@
                         >
                             <slot
                                 name="item"
-                                :item="{ind:kitem,...item,...props}"
+                                :item="item"
+                                :kitem="kitem"
+                                :isHover="props.isHover"
+                                :isActive="props.isActive"
                             >
                             </slot>
                         </template>
@@ -100,11 +104,11 @@ import WListItem from './WListItem.vue'
  * @vue-prop {String} [itemIconColorHover='#222'] 輸入滑鼠移入時圖標顏色字串，預設'#222'
  * @vue-prop {String} [itemIconColorActive='orange darken-3'] 輸入主動模式時圖標顏色字串，預設'orange darken-3'
  * @vue-prop {String} [itemRippleColor='rgba(245,124,0,0.4)'] 輸入ripple效果顏色字串，預設'rgba(245,124,0,0.4)'
- * @vue-prop {Boolean} [itemClickable=true] 輸入是否為可點擊模式布林值，預設true
- * @vue-prop {Boolean} [itemCursorPointer=true] 輸入是否滑鼠移入顯示pointer樣式，預設true
  * @vue-prop {Boolean} [borderBottom=true] 輸入主動模式時是否於項目底部顯示高亮線條，預設true
  * @vue-prop {Number} [borderBottomSize=2] 輸入底部高亮線條尺寸(高度)數字，單位px，預設2
  * @vue-prop {String} [borderBottomColor='rgba(245,124,0,0.8)'] 輸入底部高亮線條顏色字串，預設'rgba(245,124,0,0.8)'
+ * @vue-prop {String} [itemDisabledColor='rgba(255,255,255,0.5)'] 輸入非編輯模式時遮罩顏色字串，預設'rgba(255,255,255,0.5)'
+ * @vue-prop {Boolean} [itemCursorPointer=true] 輸入是否滑鼠移入顯示pointer樣式，預設true
  */
 export default {
     directives: {
@@ -199,14 +203,6 @@ export default {
             type: String,
             default: 'rgba(245,124,0,0.4)',
         },
-        itemClickable: {
-            type: Boolean,
-            default: true,
-        },
-        itemCursorPointer: {
-            type: Boolean,
-            default: true,
-        },
         borderBottom: {
             type: Boolean,
             default: true,
@@ -218,6 +214,14 @@ export default {
         borderBottomColor: {
             type: String,
             default: 'rgba(245,124,0,0.8)',
+        },
+        itemDisabledColor: {
+            type: String,
+            default: 'rgba(255,255,255,0.5)',
+        },
+        itemCursorPointer: {
+            type: Boolean,
+            default: true,
         },
     },
     data: function() {
@@ -314,6 +318,12 @@ export default {
             return b
         },
 
+        getEditable: function(item) {
+            // let vo = this
+            let b = get(item, 'editable', true)
+            return b
+        },
+
         updateBorderBottom: function() {
             // console.log('methods updateBorderBottom')
 
@@ -390,6 +400,11 @@ export default {
             // console.log('methods ckItem', item)
 
             let vo = this
+
+            //check
+            if (!vo.getEditable(item)) {
+                return
+            }
 
             //save itemActiveTrans
             vo.itemActiveTrans = item

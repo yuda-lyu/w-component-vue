@@ -47,6 +47,41 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-list-vertical'"
+                    :casename="'item with no editable'"
+                ></demolink>
+
+                <div style="display:inline-block; border:1px dashed #ddd;">
+                    <w-list-vertical
+                        style="height:400px; width:250px;"
+                        :items="WListVertical.itemsObjForNoEditable"
+                    >
+                    </w-list-vertical>
+                </div>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-list-vertical'"
+                    :casename="'item with no editable & itemDisabledColor'"
+                ></demolink>
+
+                <div style="display:inline-block; border:1px dashed #ddd;">
+                    <w-list-vertical
+                        style="height:400px; width:250px;"
+                        :items="WListVertical.itemsObjForNoEditable"
+                        :itemDisabledColor="'rgba(245,245,245,0.4)'"
+                    >
+                    </w-list-vertical>
+                </div>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-list-vertical'"
                     :casename="'string items'"
                 ></demolink>
 
@@ -260,10 +295,10 @@
                                         style="margin-right:8px;"
                                         :icon="props.item.icon"
                                         :size="16"
-                                        :color="props.item.isActive?'#CDDC39':'#666'"
+                                        :color="props.isActive?'#CDDC39':props.isHover?'#444':'#666'"
                                     ></w-icon>
 
-                                    <div :style="'transition:all 0.3s; font-size:0.8rem; color:'.concat(props.item.isActive?'#B388FF':'#666')">
+                                    <div :style="`transition:all 0.3s; font-size:0.8rem; color:${props.isActive?'#B388FF':props.isHover?'#444':'#666'};`">
 
                                         <div>{{props.item.type}}</div>
 
@@ -277,10 +312,10 @@
                                         style="margin-right:8px;"
                                         :icon="mdiLightbulbOnOutline"
                                         :size="16"
-                                        :color="props.item.isActive?'#CDDC39':'#666'"
+                                        :color="props.isActive?'#CDDC39':'#666'"
                                     ></w-icon>
 
-                                    <div :style="'transition:all 0.3s; color:'.concat(props.item.isActive?'#fff':'#666')+';'">{{props.item.text}}</div>
+                                    <div :style="'transition:all 0.3s; color:'.concat(props.isActive?'#fff':'#666')+';'">{{props.item.text}}</div>
 
                                 </div>
 
@@ -462,6 +497,44 @@ export default {
                     {
                         name: 'Actions',
                         path: mdiGestureDoubleTap,
+                    },
+                ],
+                'itemsObjForNoEditable': [
+                    {
+                        text: 'Real-Time',
+                        icon: mdiStackOverflow,
+                        type: 'Default',
+                        editable: true,
+                    },
+                    {
+                        text: 'Audience',
+                        icon: mdiBookMusicOutline,
+                        type: 'Default',
+                        editable: true,
+                    },
+                    {
+                        text: 'Conversions',
+                        icon: mdiCharity,
+                        type: 'Default',
+                        editable: false,
+                    },
+                    {
+                        text: 'Management',
+                        icon: mdiLightbulbGroupOutline,
+                        type: 'Default',
+                        editable: true,
+                    },
+                    {
+                        text: 'Settings',
+                        icon: mdiMessageCogOutline,
+                        type: 'Primary',
+                        editable: false,
+                    },
+                    {
+                        text: 'Actions',
+                        icon: mdiGestureDoubleTap,
+                        type: 'Primary',
+                        editable: true,
                     },
                 ],
                 'itemActive': {

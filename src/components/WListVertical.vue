@@ -38,9 +38,10 @@
                         :iconColor="itemIconColor"
                         :iconColorHover="itemIconColorHover"
                         :iconColorActive="itemIconColorActive"
-                        :rippleColor="itemRippleColor"
-                        :clickable="itemClickable"
-                        :cursorPointer="itemCursorPointer"
+                        :rippleColor="getEditable(item)?itemRippleColor:null"
+                        :editable="getEditable(item)"
+                        :disabledColor="itemDisabledColor"
+                        :cursorPointer="true"
                         @click="ckItem(item)"
                     >
 
@@ -50,6 +51,7 @@
                             <slot
                                 name="item"
                                 :item="item"
+                                :kitem="kitem"
                                 :isHover="props.isHover"
                                 :isActive="props.isActive"
                             >
@@ -102,7 +104,7 @@ import WListItem from './WListItem.vue'
  * @vue-prop {String} [itemIconColorHover='#222'] 輸入滑鼠移入時圖標顏色字串，預設'#222'
  * @vue-prop {String} [itemIconColorActive='white'] 輸入主動模式時圖標顏色字串，預設'white'
  * @vue-prop {String} [itemRippleColor='rgba(255,255,255,0.4)'] 輸入ripple效果顏色字串，預設'rgba(255,255,255,0.4)'
- * @vue-prop {Boolean} [itemClickable=true] 輸入是否為可點擊模式布林值，預設true
+ * @vue-prop {String} [itemDisabledColor='rgba(255,255,255,0.5)'] 輸入非編輯模式時遮罩顏色字串，預設'rgba(255,255,255,0.5)'
  * @vue-prop {Boolean} [itemCursorPointer=true] 輸入是否滑鼠移入顯示pointer樣式布林值，預設true
  */
 export default {
@@ -191,9 +193,9 @@ export default {
             type: String,
             default: 'rgba(255,255,255,0.4)',
         },
-        itemClickable: {
-            type: Boolean,
-            default: true,
+        itemDisabledColor: {
+            type: String,
+            default: 'rgba(255,255,255,0.5)',
         },
         itemCursorPointer: {
             type: Boolean,
@@ -297,10 +299,21 @@ export default {
             return b
         },
 
+        getEditable: function(item) {
+            // let vo = this
+            let b = get(item, 'editable', true)
+            return b
+        },
+
         ckItem: function(item) {
             // console.log('methods ckItem', item)
 
             let vo = this
+
+            //check
+            if (!vo.getEditable(item)) {
+                return
+            }
 
             //save itemActiveTrans
             vo.itemActiveTrans = item
