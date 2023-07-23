@@ -85,7 +85,7 @@
     </script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.3.6/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.3.7/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -152,11 +152,11 @@
                                     style="margin-right:8px;"
                                     :icon="props.item.icon"
                                     :size="16"
-                                    :color="props.item.isActive?'#CDDC39':'#666'"
+                                    :color="props.isActive?'#CDDC39':props.isHover?'#444':'#666'"
                                 ></w-icon>
 
                                 <div
-                                    :style="'transition:all 0.3s; font-size:0.8rem; color:'.concat(props.item.isActive?'#B388FF':'#666')"
+                                    :style="`transition:all 0.3s; font-size:0.8rem; color:${props.isActive?'#B388FF':props.isHover?'#444':'#666'};`"
                                 >
                                     <div>{{props.item.type}}</div>
                                 </div>
@@ -167,11 +167,11 @@
                                     style="margin-right:8px;"
                                     :icon="'mdi-lightbulb-on-outline'"
                                     :size="16"
-                                    :color="props.item.isActive?'#CDDC39':'#666'"
+                                    :color="props.isActive?'#CDDC39':'#666'"
                                 ></w-icon>
 
                                 <div
-                                    :style="'transition:all 0.3s; color:'.concat(props.item.isActive?'#fff':'#666')+';'"
+                                    :style="'transition:all 0.3s; color:'.concat(props.isActive?'#fff':'#666')+';'"
                                 >{{props.item.text}}</div>
                             </div>
                         </div>
@@ -306,6 +306,44 @@
             {
               name: "Actions",
               path: "mdi-gesture-double-tap"
+            }
+          ],
+          itemsObjForNoEditable: [
+            {
+              text: "Real-Time",
+              icon: "mdi-stack-overflow",
+              type: "Default",
+              editable: true
+            },
+            {
+              text: "Audience",
+              icon: "mdi-book-music-outline",
+              type: "Default",
+              editable: true
+            },
+            {
+              text: "Conversions",
+              icon: "mdi-charity",
+              type: "Default",
+              editable: false
+            },
+            {
+              text: "Management",
+              icon: "mdi-lightbulb-group-outline",
+              type: "Default",
+              editable: true
+            },
+            {
+              text: "Settings",
+              icon: "mdi-message-cog-outline",
+              type: "Primary",
+              editable: false
+            },
+            {
+              text: "Actions",
+              icon: "mdi-gesture-double-tap",
+              type: "Primary",
+              editable: true
             }
           ],
           itemActive: {

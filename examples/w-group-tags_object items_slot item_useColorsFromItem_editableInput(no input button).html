@@ -85,7 +85,7 @@
     </script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.3.6/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.3.7/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -135,17 +135,36 @@
             >w-group-tags</span>
         </div>
         <div class="bk" style="display:block;">
-            <div class="item">editableInput(no slot input)</div>
+            <div
+                class="item"
+            >object items &amp; slot item &amp; useColorsFromItem &amp; editableInput(no input button) &amp; no shadow &amp; no shadowActive &amp; useActive &amp; valueActive &amp; paddingStyle</div>
 
             <w-group-tags
-                v-model="WGroupTags.strings"
-                :icon="'mdi-chart-bubble'"
+                v-model="WGroupTags.objectsColor"
                 :editable-input="false"
-            ></w-group-tags>
+                :shadow="false"
+                :shadow-active="false"
+                :use-active="true"
+                :value-active.sync="WGroupTags.objectsColorActive"
+                :padding-style="{v:1,h:12}"
+                :use-colors-from-item="true"
+            >
+                <template v-slot:items="props">
+                    <div style="display:flex; align-items:center;">
+                        <div
+                            :style="'margin-left:-9px; display:inline-block; border-radius:10px; font-size:0.85rem; user-select:none; padding:0px 12px; '.concat(props.active ? 'color:#263238; background:rgba(255,255,255,0.7);' : 'color:#888; background:rgba(100,100,100,0.1);')"
+                        >Menu</div>
+
+                        <div
+                            :style="'display:inline-block; font-size:0.85rem; user-select:none; padding:0px 6px; '.concat(props.active ? 'color:#fff;' : 'color:#444;')"
+                        >{{props.item.text}}</div>
+                    </div>
+                </template>
+            </w-group-tags>
 
             <div
                 style="padding-left:5px; font-size:0.9rem; color:#ea6;"
-            >binding: strings</div>
+            >binding: objectsColor</div>
         </div>
     </v-app>
 
