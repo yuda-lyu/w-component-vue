@@ -85,7 +85,7 @@
     </script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.3.9/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.3.10/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -135,21 +135,43 @@
             >w-panel-label-Item</span>
         </div>
         <div class="bk">
-            <div class="item">labelHeight</div>
+            <div
+                class="item"
+            >seplines &amp; labelWidth &amp; labelHorizontalAlign</div>
 
-            <w-panel-label-item :label="'Remark'" :label-height="58">
-                <template v-slot:item>
-                    <div style="font-size:0.8rem; color:#aaa;">
-                        <div
-                            style
-                        >Phasellus feugiat arcu sapien, et iaculis ipsum elementum sit amet.</div>
-                        <div style>Mauris cursus commodo interdum.</div>
-                        <div
-                            style
-                        >Praesent ut risus eget metus luctus accumsan id ultrices nunc.</div>
-                    </div>
-                </template>
-            </w-panel-label-item>
+            <div style>
+                <w-panel-label-item
+                    :seplines="true"
+                    :label="'Styles'"
+                    :label-width="220"
+                    :label-horizontal-align="'right'"
+                >
+                    <template v-slot:item>
+                        <w-text
+                            style="width:220px;"
+                            :value="'CSS'"
+                            :text-font-size="'0.85rem'"
+                        ></w-text>
+                    </template>
+                </w-panel-label-item>
+
+                <div style="padding-top:20px;"></div>
+
+                <w-panel-label-item
+                    :seplines="true"
+                    :label="'Components'"
+                    :label-width="220"
+                    :label-horizontal-align="'right'"
+                >
+                    <template v-slot:item>
+                        <w-text
+                            style="width:220px;"
+                            :value="'Data tables'"
+                            :text-font-size="'0.85rem'"
+                        ></w-text>
+                    </template>
+                </w-panel-label-item>
+            </div>
         </div>
     </v-app>
 

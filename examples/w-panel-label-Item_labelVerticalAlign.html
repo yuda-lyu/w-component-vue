@@ -85,7 +85,7 @@
     </script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.3.9/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.3.10/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -135,15 +135,11 @@
             >w-panel-label-Item</span>
         </div>
         <div class="bk">
-            <div class="item">seplines &amp; labelHeight</div>
+            <div class="item">labelVerticalAlign</div>
 
-            <w-panel-label-item
-                :seplines="true"
-                :label="'Remark'"
-                :label-height="21"
-            >
+            <w-panel-label-item :label="'Remark'" :label-vertical-align="'top'">
                 <template v-slot:item>
-                    <div style="font-size:0.8rem; color:#888;">
+                    <div style="font-size:0.8rem; color:#aaa;">
                         <div
                             style
                         >Phasellus feugiat arcu sapien, et iaculis ipsum elementum sit amet.</div>
