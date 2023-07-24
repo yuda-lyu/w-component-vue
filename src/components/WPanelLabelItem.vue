@@ -40,6 +40,7 @@
                 :style="[
                     {
                         display:'table-cell',
+                        width:'100%',
                     },
                 ]"
             >
