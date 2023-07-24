@@ -108,6 +108,11 @@
             ></AppZoneWPanelScrolly>
 
 
+            <AppZoneWPanelLabelItem
+                v-if="useCmpName==='WPanelLabelItem'"
+            ></AppZoneWPanelLabelItem>
+
+
             <AppZoneWPanelDivideHorizontal
                 v-if="useCmpName==='WPanelDivideHorizontal'"
             ></AppZoneWPanelDivideHorizontal>
@@ -395,6 +400,7 @@ import AppZoneWPanelStripe from './AppZoneWPanelStripe.vue'
 import AppZoneWPanelBulge from './AppZoneWPanelBulge.vue'
 import AppZoneWPanelAvatar from './AppZoneWPanelAvatar.vue'
 import AppZoneWPanelScrolly from './AppZoneWPanelScrolly.vue'
+import AppZoneWPanelLabelItem from './AppZoneWPanelLabelItem.vue'
 import AppZoneWPanelDivideHorizontal from './AppZoneWPanelDivideHorizontal.vue'
 import AppZoneWPanelDivideVertical from './AppZoneWPanelDivideVertical.vue'
 import AppZoneWPanelScale from './AppZoneWPanelScale.vue'
@@ -458,6 +464,7 @@ export default {
         AppZoneWPanelBulge,
         AppZoneWPanelAvatar,
         AppZoneWPanelScrolly,
+        AppZoneWPanelLabelItem,
         AppZoneWPanelDivideHorizontal,
         AppZoneWPanelDivideVertical,
         AppZoneWPanelScale,
@@ -543,6 +550,7 @@ export default {
                         { name: 'WPanelBulge' },
                         { name: 'WPanelAvatar' },
                         { name: 'WPanelScrolly' },
+                        { name: 'WPanelLabelItem' },
                         { name: 'WPanelDivideHorizontal' },
                         { name: 'WPanelDivideVertical' },
                         { name: 'WPanelScale' },

@@ -1,0 +1,175 @@
+<template>
+    <div style="">
+
+        <div
+            style="display:flex; align-items:center;"
+            v-if="!seplines"
+        >
+
+            <slot name="label">
+
+                <div
+                    :style="[
+                        useLabelHeight,
+                        useLabelWidth,
+                        {
+                            display:'seplines-block',
+                            color:useLabelColor,
+                            fontSize:labelFontSize,
+                            textAlign:labelAlign,
+                        },
+                    ]"
+                >
+                    {{label}}:
+                </div>
+
+            </slot>
+
+            <div
+                :style="[
+                    {
+                        paddingRight:`${space+8}px`,
+                    },
+                ]"
+            ></div>
+
+            <div style="">
+
+                <slot name="item"></slot>
+
+            </div>
+
+        </div>
+
+        <div v-else>
+
+            <slot name="label">
+
+                <div
+                    :style="[
+                        useLabelHeight,
+                        useLabelWidth,
+                        {
+                            color:useLabelColor,
+                            fontSize:labelFontSize,
+                            textAlign:labelAlign,
+                            paddingBottom:`${space}px`,
+                        },
+                    ]"
+                >
+                    {{label}}
+                </div>
+
+            </slot>
+
+            <div style="">
+
+                <slot name="item"></slot>
+
+            </div>
+
+        </div>
+
+    </div>
+</template>
+
+<script>
+import isnum from 'wsemi/src/isnum.mjs'
+import cdbl from 'wsemi/src/cdbl.mjs'
+import color2hex from '../js/vuetifyColor.mjs'
+
+
+/**
+ * @vue-prop {String} [label=''] 輸入標籤文字字串，預設''
+ * @vue-prop {Number} [labelWidth=null] 輸入標籤寬度數字，單位為px，預設null
+ * @vue-prop {Number} [labelHeight=null] 輸入標籤高度數字，單位為px，預設null
+ * @vue-prop {String} [labelColor='#666'] 輸入文字顏色字串，預設'#666'
+ * @vue-prop {String} [labelFontSize='0.8rem'] 輸入文字字型大小字串，預設'0.8rem'
+ * @vue-prop {String} [labelAlign='left'] 輸入文字左右對齊字串，可選'left'、'center'、'right'，預設'left'
+ * @vue-prop {Number} [space=0] 輸入標籤與項目區距離數字，單位為px，若為分行展示時則代表垂直距離(基礎距離0px)，若為非分行展示時則代表水平距離(基礎距離8px)，space為基礎距離再額外增加之距離，預設0
+ * @vue-prop {Boolean} [seplines=false] 輸入標籤與項目是否為分行展示布林值，預設false
+ */
+export default {
+    components: {
+    },
+    props: {
+        label: {
+            type: String,
+            default: '',
+        },
+        labelWidth: {
+            type: Number,
+            default: null,
+        },
+        labelHeight: {
+            type: Number,
+            default: null,
+        },
+        labelColor: {
+            type: String,
+            default: '#666',
+        },
+        labelFontSize: {
+            type: String,
+            default: '0.8rem',
+        },
+        labelAlign: {
+            type: String,
+            default: 'left',
+        },
+        space: {
+            type: Number,
+            default: 0,
+        },
+        seplines: {
+            type: Boolean,
+            default: false,
+        },
+    },
+    data: function() {
+        return {
+        }
+    },
+    computed: {
+
+        useLabelHeight: function() {
+            //console.log('computed useLabelHeight')
+
+            let vo = this
+
+            if (isnum(vo.labelHeight)) {
+                let h = cdbl(vo.labelHeight)
+                return { height: `${h}px` }
+            }
+
+            return {}
+        },
+
+        useLabelWidth: function() {
+            //console.log('computed useLabelWidth')
+
+            let vo = this
+
+            if (isnum(vo.labelWidth)) {
+                return { width: `${vo.labelWidth}px` }
+            }
+
+            return {}
+        },
+
+        useLabelColor: function() {
+            //console.log('computed useLabelColor')
+
+            let vo = this
+
+            return color2hex(vo.labelColor)
+        },
+
+    },
+    methods: {
+    }
+}
+</script>
+
+<style scoped>
+</style>

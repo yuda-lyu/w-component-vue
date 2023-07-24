@@ -28,6 +28,9 @@ import domResize from '../js/domResize.mjs'
 import domMutation from '../js/domMutation.mjs'
 
 
+/**
+ * @vue-prop {Number} [scale=1] 輸入放大比率數字，預設1
+ */
 export default {
     directives: {
         domresize: domResize(),

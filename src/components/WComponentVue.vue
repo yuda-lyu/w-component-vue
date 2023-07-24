@@ -41,6 +41,7 @@ import WPanelAvatar from './WPanelAvatar.vue'
 import WPanelBulge from './WPanelBulge.vue'
 import WPanelDivideHorizontal from './WPanelDivideHorizontal.vue'
 import WPanelDivideVertical from './WPanelDivideVertical.vue'
+import WPanelLabelItem from './WPanelLabelItem.vue'
 import WPanelScale from './WPanelScale.vue'
 import WPanelScrolly from './WPanelScrolly.vue'
 import WPanelScrollyCore from './WPanelScrollyCore.vue'
@@ -121,6 +122,7 @@ let WComponentVue = {
         Vue.component('w-panel-bulge', WPanelBulge)
         Vue.component('w-panel-divide-horizontal', WPanelDivideHorizontal)
         Vue.component('w-panel-divide-vertical', WPanelDivideVertical)
+        Vue.component('w-panel-label-item', WPanelLabelItem)
         Vue.component('w-panel-scale', WPanelScale)
         Vue.component('w-panel-scrolly', WPanelScrolly)
         Vue.component('w-panel-scrolly-core', WPanelScrollyCore)

@@ -22,7 +22,7 @@ import domResize from '../js/domResize.mjs'
 
 
 /**
- * @vue-prop {Number} [viewHeightMax=400] 輸入顯示區最大高度，單位為px，預設400
+ * @vue-prop {Number} [viewHeightMax=400] 輸入顯示區最大高度數字，單位為px，預設400
  * @vue-prop {Number} [scrollTop=0] 輸入目前捲動值數字，預設0
  * @vue-prop {Number} [barOpacity=0.6] 輸入捲軸透明度數字，預設0.6
  * @vue-prop {Number} [barOpacityHover=1] 輸入滑鼠移入時捲軸透明度數字，預設1
