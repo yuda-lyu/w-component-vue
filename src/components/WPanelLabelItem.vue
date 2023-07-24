@@ -2,7 +2,7 @@
     <div style="">
 
         <div
-            style="display:flex; align-items:center;"
+            style="display:table; width:100%;"
             v-if="!seplines"
         >
 
@@ -13,10 +13,12 @@
                         useLabelHeight,
                         useLabelWidth,
                         {
-                            display:'seplines-block',
+                            display:'table-cell',
+                            verticalAlign:useLabelVerticalAlign,
+                            whiteSpace:'nowrap',
                             color:useLabelColor,
                             fontSize:labelFontSize,
-                            textAlign:labelAlign,
+                            textAlign:labelHorizontalAlign,
                         },
                     ]"
                 >
@@ -28,12 +30,19 @@
             <div
                 :style="[
                     {
+                        display:'table-cell',
                         paddingRight:`${space+8}px`,
                     },
                 ]"
             ></div>
 
-            <div style="">
+            <div
+                :style="[
+                    {
+                        display:'table-cell',
+                    },
+                ]"
+            >
 
                 <slot name="item"></slot>
 
@@ -52,7 +61,7 @@
                         {
                             color:useLabelColor,
                             fontSize:labelFontSize,
-                            textAlign:labelAlign,
+                            textAlign:labelHorizontalAlign,
                             paddingBottom:`${space}px`,
                         },
                     ]"
@@ -82,10 +91,11 @@ import color2hex from '../js/vuetifyColor.mjs'
 /**
  * @vue-prop {String} [label=''] 輸入標籤文字字串，預設''
  * @vue-prop {Number} [labelWidth=null] 輸入標籤寬度數字，單位為px，預設null
- * @vue-prop {Number} [labelHeight=null] 輸入標籤高度數字，單位為px，預設null
+ * @vue-prop {Number} [labelHeight=null] 輸入標籤高度數字，單位為px，若為非分行展示時則高度受table-cell控制故會失效，預設null
  * @vue-prop {String} [labelColor='#666'] 輸入文字顏色字串，預設'#666'
  * @vue-prop {String} [labelFontSize='0.8rem'] 輸入文字字型大小字串，預設'0.8rem'
- * @vue-prop {String} [labelAlign='left'] 輸入文字左右對齊字串，可選'left'、'center'、'right'，預設'left'
+ * @vue-prop {String} [labelHorizontalAlign='left'] 輸入文字左右對齊字串，可選'left'、'center'、'right'，預設'left'
+ * @vue-prop {String} [labelVerticalAlign='center'] 輸入文字垂直對齊字串，可選'top'、'center'、'bottom'，若為分行展示時則因展示機制故不處理，預設'center'
  * @vue-prop {Number} [space=0] 輸入標籤與項目區距離數字，單位為px，若為分行展示時則代表垂直距離(基礎距離0px)，若為非分行展示時則代表水平距離(基礎距離8px)，space為基礎距離再額外增加之距離，預設0
  * @vue-prop {Boolean} [seplines=false] 輸入標籤與項目是否為分行展示布林值，預設false
  */
@@ -113,9 +123,13 @@ export default {
             type: String,
             default: '0.8rem',
         },
-        labelAlign: {
+        labelHorizontalAlign: {
             type: String,
             default: 'left',
+        },
+        labelVerticalAlign: {
+            type: String,
+            default: 'center',
         },
         space: {
             type: Number,
@@ -155,6 +169,17 @@ export default {
             }
 
             return {}
+        },
+
+        useLabelVerticalAlign: function() {
+            let vo = this
+
+            let align = 'middle'
+            if (vo.labelVerticalAlign === 'top' || vo.labelVerticalAlign === 'bottom') {
+                align = vo.labelVerticalAlign
+            }
+
+            return align
         },
 
         useLabelColor: function() {

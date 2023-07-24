@@ -91,7 +91,7 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-panel-label-Item'"
-                    :casename="'labelWidth & labelAlign'"
+                    :casename="'labelWidth & labelHorizontalAlign'"
                 ></demolink>
 
                 <div style="">
@@ -99,7 +99,7 @@
                     <w-panel-label-Item
                         :label="'Styles'"
                         :labelWidth="100"
-                        :labelAlign="'right'"
+                        :labelHorizontalAlign="'right'"
                     >
                         <template v-slot:item>
                             <w-text
@@ -114,7 +114,7 @@
                     <w-panel-label-Item
                         :label="'Components'"
                         :labelWidth="100"
-                        :labelAlign="'right'"
+                        :labelHorizontalAlign="'right'"
                     >
                         <template v-slot:item>
                             <w-text
@@ -132,12 +132,12 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-panel-label-Item'"
-                    :casename="'labelHeight'"
+                    :casename="'labelVerticalAlign'"
                 ></demolink>
 
                 <w-panel-label-Item
                     :label="'Remark'"
-                    :labelHeight="58"
+                    :labelVerticalAlign="'top'"
                 >
                     <template v-slot:item>
                         <div style="font-size:0.8rem; color:#aaa;">
@@ -317,7 +317,7 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-panel-label-Item'"
-                    :casename="'seplines & labelWidth & labelAlign'"
+                    :casename="'seplines & labelWidth & labelHorizontalAlign'"
                 ></demolink>
 
                 <div style="">
@@ -326,7 +326,7 @@
                         :seplines="true"
                         :label="'Styles'"
                         :labelWidth="220"
-                        :labelAlign="'right'"
+                        :labelHorizontalAlign="'right'"
                     >
                         <template v-slot:item>
                             <w-text
@@ -343,7 +343,7 @@
                         :seplines="true"
                         :label="'Components'"
                         :labelWidth="220"
-                        :labelAlign="'right'"
+                        :labelHorizontalAlign="'right'"
                     >
                         <template v-slot:item>
                             <w-text
@@ -355,35 +355,6 @@
                     </w-panel-label-Item>
 
                 </div>
-
-            </div>
-
-
-            <div class="bk">
-                <demolink
-                    :kbname="'w-panel-label-Item'"
-                    :casename="'seplines & labelHeight'"
-                ></demolink>
-
-                <w-panel-label-Item
-                    :seplines="true"
-                    :label="'Remark'"
-                    :labelHeight="21"
-                >
-                    <template v-slot:item>
-                        <div style="font-size:0.8rem; color:#888;">
-                            <div style="">
-                                Phasellus feugiat arcu sapien, et iaculis ipsum elementum sit amet.
-                            </div>
-                            <div style="">
-                                Mauris cursus commodo interdum.
-                            </div>
-                            <div style="">
-                                Praesent ut risus eget metus luctus accumsan id ultrices nunc.
-                            </div>
-                        </div>
-                    </template>
-                </w-panel-label-Item>
 
             </div>
 
