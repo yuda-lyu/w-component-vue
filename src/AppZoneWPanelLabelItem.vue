@@ -11,7 +11,7 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-panel-label-Item'"
-                    :casename="'text'"
+                    :casename="'with text'"
                 ></demolink>
 
                 <w-panel-label-Item
@@ -31,7 +31,7 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-panel-label-Item'"
-                    :casename="'select'"
+                    :casename="'with select'"
                 ></demolink>
 
                 <w-panel-label-Item
@@ -43,6 +43,56 @@
                             :items="WPanelLabelItem.objItems"
                             v-model="WPanelLabelItem.objValue"
                         ></w-text-select>
+                    </template>
+                </w-panel-label-Item>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-panel-label-Item'"
+                    :casename="'labelVerticalAlign'"
+                ></demolink>
+
+                <w-panel-label-Item
+                    :label="'Remark'"
+                    :labelVerticalAlign="'top'"
+                >
+                    <template v-slot:item>
+                        <div style="font-size:0.8rem; color:#aaa;">
+                            <div style="">
+                                Phasellus feugiat arcu sapien, et iaculis ipsum elementum sit amet.
+                            </div>
+                            <div style="">
+                                Mauris cursus commodo interdum.
+                            </div>
+                            <div style="">
+                                Praesent ut risus eget metus luctus accumsan id ultrices nunc.
+                            </div>
+                        </div>
+                    </template>
+                </w-panel-label-Item>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-panel-label-Item'"
+                    :casename="'with textarea & labelVerticalAlign'"
+                ></demolink>
+
+                <w-panel-label-Item
+                    :label="'Fruit'"
+                    :labelVerticalAlign="'top'"
+                >
+                    <template v-slot:item>
+                        <w-textarea
+                            style="width:300px;"
+                            :textFontSize="'0.85rem'"
+                            v-model="WPanelLabelItem.text"
+                        ></w-textarea>
                     </template>
                 </w-panel-label-Item>
 
@@ -132,34 +182,6 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-panel-label-Item'"
-                    :casename="'labelVerticalAlign'"
-                ></demolink>
-
-                <w-panel-label-Item
-                    :label="'Remark'"
-                    :labelVerticalAlign="'top'"
-                >
-                    <template v-slot:item>
-                        <div style="font-size:0.8rem; color:#aaa;">
-                            <div style="">
-                                Phasellus feugiat arcu sapien, et iaculis ipsum elementum sit amet.
-                            </div>
-                            <div style="">
-                                Mauris cursus commodo interdum.
-                            </div>
-                            <div style="">
-                                Praesent ut risus eget metus luctus accumsan id ultrices nunc.
-                            </div>
-                        </div>
-                    </template>
-                </w-panel-label-Item>
-
-            </div>
-
-
-            <div class="bk">
-                <demolink
-                    :kbname="'w-panel-label-Item'"
                     :casename="'labelFontSize'"
                 ></demolink>
 
@@ -233,7 +255,7 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-panel-label-Item'"
-                    :casename="'seplines & text'"
+                    :casename="'with text & seplines'"
                 ></demolink>
 
                 <w-panel-label-Item
@@ -254,7 +276,7 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-panel-label-Item'"
-                    :casename="'seplines & select'"
+                    :casename="'with select & seplines'"
                 ></demolink>
 
                 <w-panel-label-Item
@@ -267,6 +289,28 @@
                             :items="WPanelLabelItem.objItems"
                             v-model="WPanelLabelItem.objValue"
                         ></w-text-select>
+                    </template>
+                </w-panel-label-Item>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-panel-label-Item'"
+                    :casename="'with textarea & seplines'"
+                ></demolink>
+
+                <w-panel-label-Item
+                    :seplines="true"
+                    :label="'Fruit'"
+                >
+                    <template v-slot:item>
+                        <w-textarea
+                            style="width:300px;"
+                            :textFontSize="'0.85rem'"
+                            v-model="WPanelLabelItem.text"
+                        ></w-textarea>
                     </template>
                 </w-panel-label-Item>
 
@@ -446,6 +490,7 @@ import { mdiCat } from '@mdi/js/mdi.js'
 import demolink from './components/demolink.vue'
 import WIcon from './components/WIcon.vue'
 import WText from './components/WText.vue'
+import WTextarea from './components/WTextarea.vue'
 import WTextSelect from './components/WTextSelect.vue'
 import WPanelLabelItem from './components/WPanelLabelItem.vue'
 
@@ -455,6 +500,7 @@ export default {
         demolink,
         WIcon,
         WText,
+        WTextarea,
         WTextSelect,
         WPanelLabelItem,
     },
@@ -482,6 +528,7 @@ export default {
                     key: 'banana',
                     text: '香蕉(banana)',
                 },
+                text: 'The Woodman(樵夫) set to work at once, and so sharp was his axe that the tree was soon chopped nearly through.',
             },
             'actions': [
             ],

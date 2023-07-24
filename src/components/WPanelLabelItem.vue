@@ -10,8 +10,6 @@
 
                 <div
                     :style="[
-                        useLabelHeight,
-                        useLabelWidth,
                         {
                             display:'table-cell',
                             verticalAlign:useLabelVerticalAlign,
@@ -22,7 +20,12 @@
                         },
                     ]"
                 >
-                    {{label}}:
+                    <div :style="[
+                        useLabelWidth,
+                        useLabelHeight,
+                    ]">
+                        {{label}}:
+                    </div>
                 </div>
 
             </slot>
@@ -57,8 +60,8 @@
 
                 <div
                     :style="[
-                        useLabelHeight,
                         useLabelWidth,
+                        useLabelHeight,
                         {
                             color:useLabelColor,
                             fontSize:labelFontSize,
@@ -147,6 +150,19 @@ export default {
     },
     computed: {
 
+        useLabelWidth: function() {
+            //console.log('computed useLabelWidth')
+
+            let vo = this
+
+            if (isnum(vo.labelWidth)) {
+                let w = cdbl(vo.labelWidth)
+                return { width: `${w}px` }
+            }
+
+            return {}
+        },
+
         useLabelHeight: function() {
             //console.log('computed useLabelHeight')
 
@@ -155,18 +171,6 @@ export default {
             if (isnum(vo.labelHeight)) {
                 let h = cdbl(vo.labelHeight)
                 return { height: `${h}px` }
-            }
-
-            return {}
-        },
-
-        useLabelWidth: function() {
-            //console.log('computed useLabelWidth')
-
-            let vo = this
-
-            if (isnum(vo.labelWidth)) {
-                return { width: `${vo.labelWidth}px` }
             }
 
             return {}
