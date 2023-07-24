@@ -98,7 +98,7 @@
                     :bottomLineBorderColor="'pink lighten-3'"
                     :bottomLineBorderColorHover="'pink lighten-1'"
                     :bottomLineBorderColorFocus="'pink'"
-                    v-model="WText.emptytext"
+                    v-model="WText.text"
                 ></w-text>
             </div>
 

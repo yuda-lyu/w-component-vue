@@ -20,7 +20,7 @@
 
 <script>
 import isnum from 'wsemi/src/isnum.mjs'
-// import isestr from 'wsemi/src/isestr.mjs'
+import isestr from 'wsemi/src/isestr.mjs'
 import verifyValue from 'wsemi/src/verifyValue.mjs'
 import replace from 'wsemi/src/replace.mjs'
 import color2hex from '../js/vuetifyColor.mjs'
@@ -28,7 +28,7 @@ import color2hex from '../js/vuetifyColor.mjs'
 
 /**
  * @vue-prop {String} [type='any'] 輸入文字框類型字串，預設'any'
- * @vue-prop {String|Number} value 輸入文字框值
+ * @vue-prop {String|Number} [value=''] 輸入文字框值字串或數字，預設''
  * @vue-prop {String} [textFontSize='1rem'] 輸入文字大小字串，預設'1rem'
  * @vue-prop {String} [textColor='black'] 輸入文字顏色字串，預設'black'
  * @vue-prop {String} [textAlign='left'] 輸入文字左右對齊字串，預設'left'
@@ -45,6 +45,7 @@ export default {
         },
         value: {
             type: [String, Number],
+            default: '',
         },
         textFontSize: {
             type: String,
@@ -103,7 +104,10 @@ export default {
 
             let h = ''
             if (isnum(vo.height)) {
-                h = `height:${vo.height}px; line-height:${vo.height}px;`
+                h = `height:${vo.height}px;`
+            }
+            else if (isestr(vo.height)) {
+                h = `height:${vo.height}; line-height:${vo.height};`
             }
 
             return h
@@ -136,21 +140,8 @@ export default {
 
             let vo = this
 
-            // //detect
-            // let b = vo.valueTrans !== value
-
             //save
             vo.valueTrans = value
-
-            // //$nextTick
-            // vo.$nextTick(() => {
-
-            //     //emit change
-            //     if (b) {
-            //         vo.$emit('change', value, null)
-            //     }
-
-            // })
 
         },
 
@@ -196,11 +187,6 @@ export default {
             //save
             vo.valueTrans = r.value
             vo.errmsg = r.errmsg
-
-            // //trigger
-            // if (isestr(ev.data)) {
-            //     vo.trigger('change', ev)
-            // }
 
         },
 

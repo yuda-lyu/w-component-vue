@@ -85,7 +85,7 @@
     </script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.3.11/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.3.12/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -137,7 +137,11 @@
         <div class="bk" style="display:block;">
             <div class="item">fullwidth</div>
 
-            <w-textarea v-model="WTextarea.text"></w-textarea>
+            <w-textarea
+                style="width:350px;"
+                :left-icon="'mdi-arrow-right-drop-circle-outline'"
+                v-model="WTextarea.text"
+            ></w-textarea>
         </div>
     </v-app>
 
@@ -153,35 +157,45 @@
       return {
         WTextarea: {
           text:
-            "The Woodman(樵夫) set to work at once, and so sharp was his axe that the tree was soon chopped nearly through."
+            "The Woodman(樵夫) set to work at once, and so sharp was his axe that the tree was soon chopped nearly through.",
+          emptytext: ""
         },
-        actions: [
-          {
-            mode: "eleclick",
-            selector: 'textarea[rows="1"]'
-          },
-          {
-            mode: "keypress",
-            key: "ArrowRight"
-          },
-          {
-            mode: "keypress",
-            key: "ArrowDown"
-          },
-          {
-            mode: "type",
-            selector: 'textarea[rows="1"]',
-            str: "新增文字",
-            noEnter: true
-          }
-        ]
+        actions: []
       };
     },
     mounted: function() {
       return {};
     },
     computed: {},
-    methods: {}
+    methods: {
+      clickLeft: function() {
+        console.log("clickLeft");
+      },
+
+      clickRight: function() {
+        console.log("clickRight");
+      },
+
+      select: function(value, err, ev) {
+        console.log("select", value, err, ev);
+      },
+
+      blur: function(value, err, ev) {
+        console.log("blur", value, err, ev);
+      },
+
+      enter: function(value, err, ev) {
+        console.log("enter", value, err, ev);
+      },
+
+      input: function(value, err, ev) {
+        console.log("input", value, err, ev);
+      },
+
+      change: function(value, err, ev) {
+        console.log("change", value, err, ev);
+      }
+    }
   });
     </script>
 </body>

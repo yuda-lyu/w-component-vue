@@ -3,8 +3,20 @@
 
         <!-- 避免class group所使用display:flex直接暴露至外部 -->
         <div
-            :class="{'group':true,'shadow':shadow}"
-            :style="[usePadding,useBackgroundColor,useBorder,{'border-radius':borderRadius+'px'},{'opacity':editable?1:0.6}]"
+            :style="[
+                {
+                    'transition':'all 0.3s',
+                    'display':'flex',
+                    'justify-content':'flex-start',
+                    'border-radius':borderRadius+'px',
+                    'opacity':editable?1:0.6,
+                },
+                usePadding,
+                useBackgroundColor,
+                useBorder,
+                useShadow,
+                useVerticalAlign,
+            ]"
             @mouseenter="mouseenter"
             @mouseleave="mouseleave"
         >
@@ -136,6 +148,7 @@ import WTooltip from './WTooltip.vue'
  * @vue-prop {String} [tooltipTextFontSize='0.85rem'] 輸入提示文字字型大小字串，預設'0.85rem'
  * @vue-prop {String} [tooltipTextColor='black'] 輸入提示文字顏色字串，預設'white'
  * @vue-prop {String} [tooltipBackgroundColor='rgba(60,60,60,0.75)'] 輸入背景顏色字串，預設'rgba(60,60,60,0.75)'
+ * @vue-prop {String} [verticalAlign='center'] 輸入input與文字之垂直對齊字串，可選'top'、'center'、'bottom'，預設'center'
  * @vue-prop {Boolean} [editable=true] 輸入是否為編輯模式，預設true
  * @vue-prop {Boolean} [hovered=false] 輸入是否為滑鼠移入狀態，預設false
  * @vue-prop {Boolean} [focused=false] 輸入是否為取得焦點狀態，預設false
@@ -272,6 +285,10 @@ export default {
             type: String,
             default: 'rgba(60,60,60,0.75)',
         },
+        verticalAlign: {
+            type: String,
+            default: 'center',
+        },
         editable: {
             type: Boolean,
             default: true,
@@ -343,6 +360,18 @@ export default {
             return s
         },
 
+        useShadow: function() {
+            //console.log('computed useShadow')
+
+            let vo = this
+
+            let s = {}
+            if (vo.shadow) {
+                s['box-shadow'] = '0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12)'
+            }
+            return s
+        },
+
         useLeftIconColor: function() {
             //console.log('computed useLeftIconColor')
 
@@ -405,6 +434,24 @@ export default {
         hasRightIconTooltop: function() {
             let vo = this
             return isestr(vo.rightIconTooltip)
+        },
+
+        useVerticalAlign: function() {
+            //console.log('computed useVerticalAlign')
+
+            let vo = this
+
+            let s = {}
+            if (vo.verticalAlign === 'center') {
+                s['align-items'] = 'center'
+            }
+            else if (vo.verticalAlign === 'top') {
+                s['align-items'] = 'flex-start'
+            }
+            else if (vo.verticalAlign === 'bottom') {
+                s['align-items'] = 'flex-end'
+            }
+            return s
         },
 
     },
@@ -470,16 +517,4 @@ export default {
 </script>
 
 <style scoped>
-.group {
-    transition: all 0.3s;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-}
-.shadow {
-    box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
-}
-/* .shadow:hover {
-    box-shadow: 0 3px 9px -2px rgba(0,0,0,.2), 0 2px 7px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
-} */
 </style>

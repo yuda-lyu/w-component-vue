@@ -58,6 +58,7 @@ import WSwitch from './WSwitch.vue'
 import WTableDyn from './WTableDyn.vue'
 import WText from './WText.vue'
 import WTextarea from './WTextarea.vue'
+import WTextareaCore from './WTextareaCore.vue'
 import WTextCore from './WTextCore.vue'
 import WTextInt from './WTextInt.vue'
 import WTextIntCore from './WTextIntCore.vue'
@@ -139,6 +140,7 @@ let WComponentVue = {
         Vue.component('w-table-dyn', WTableDyn)
         Vue.component('w-text', WText)
         Vue.component('w-textarea', WTextarea)
+        Vue.component('w-textarea-core', WTextareaCore)
         Vue.component('w-text-core', WTextCore)
         Vue.component('w-text-int', WTextInt)
         Vue.component('w-text-int-core', WTextIntCore)

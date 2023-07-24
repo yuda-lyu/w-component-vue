@@ -85,7 +85,7 @@
     </script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.3.11/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.3.12/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -135,10 +135,66 @@
             >w-textarea</span>
         </div>
         <div class="bk">
-            <div class="item">borderColorFocus</div>
+            <div class="item">border &amp; textAlign</div>
 
             <w-textarea
-                :border-color-focus="'light-blue darken-2'"
+                style="width:350px;"
+                :shadow="false"
+                :bottom-line-border-color="'transparent'"
+                :bottom-line-border-color-hover="'transparent'"
+                :bottom-line-border-color-focus="'transparent'"
+                :padding-style="{v:5,h:8}"
+                :icon-shift-outer="0"
+                :icon-shift-inner="0"
+                :border-color="'blue lighten-2'"
+                :border-color-hover="'blue'"
+                :border-color-focus="'blue darken-2'"
+                :background-color="'white'"
+                :background-color-hover="'rgba(237, 247, 255, 1)'"
+                :background-color-focus="'blue lighten-5'"
+                :text-align="'left'"
+                v-model="WTextarea.text"
+            ></w-textarea>
+
+            <div style="height:5px;"></div>
+
+            <w-textarea
+                style="width:350px;"
+                :shadow="false"
+                :bottom-line-border-color="'transparent'"
+                :bottom-line-border-color-hover="'transparent'"
+                :bottom-line-border-color-focus="'transparent'"
+                :padding-style="{v:5,h:8}"
+                :icon-shift-outer="0"
+                :icon-shift-inner="0"
+                :border-color="'blue lighten-2'"
+                :border-color-hover="'blue'"
+                :border-color-focus="'blue darken-2'"
+                :background-color="'white'"
+                :background-color-hover="'rgba(237, 247, 255, 1)'"
+                :background-color-focus="'blue lighten-5'"
+                :text-align="'center'"
+                v-model="WTextarea.text"
+            ></w-textarea>
+
+            <div style="height:5px;"></div>
+
+            <w-textarea
+                style="width:350px;"
+                :shadow="false"
+                :bottom-line-border-color="'transparent'"
+                :bottom-line-border-color-hover="'transparent'"
+                :bottom-line-border-color-focus="'transparent'"
+                :padding-style="{v:5,h:8}"
+                :icon-shift-outer="0"
+                :icon-shift-inner="0"
+                :border-color="'blue lighten-2'"
+                :border-color-hover="'blue'"
+                :border-color-focus="'blue darken-2'"
+                :background-color="'white'"
+                :background-color-hover="'rgba(237, 247, 255, 1)'"
+                :background-color-focus="'blue lighten-5'"
+                :text-align="'right'"
                 v-model="WTextarea.text"
             ></w-textarea>
         </div>
@@ -156,35 +212,45 @@
       return {
         WTextarea: {
           text:
-            "The Woodman(樵夫) set to work at once, and so sharp was his axe that the tree was soon chopped nearly through."
+            "The Woodman(樵夫) set to work at once, and so sharp was his axe that the tree was soon chopped nearly through.",
+          emptytext: ""
         },
-        actions: [
-          {
-            mode: "eleclick",
-            selector: 'textarea[rows="1"]'
-          },
-          {
-            mode: "keypress",
-            key: "ArrowRight"
-          },
-          {
-            mode: "keypress",
-            key: "ArrowDown"
-          },
-          {
-            mode: "type",
-            selector: 'textarea[rows="1"]',
-            str: "新增文字",
-            noEnter: true
-          }
-        ]
+        actions: []
       };
     },
     mounted: function() {
       return {};
     },
     computed: {},
-    methods: {}
+    methods: {
+      clickLeft: function() {
+        console.log("clickLeft");
+      },
+
+      clickRight: function() {
+        console.log("clickRight");
+      },
+
+      select: function(value, err, ev) {
+        console.log("select", value, err, ev);
+      },
+
+      blur: function(value, err, ev) {
+        console.log("blur", value, err, ev);
+      },
+
+      enter: function(value, err, ev) {
+        console.log("enter", value, err, ev);
+      },
+
+      input: function(value, err, ev) {
+        console.log("input", value, err, ev);
+      },
+
+      change: function(value, err, ev) {
+        console.log("change", value, err, ev);
+      }
+    }
   });
     </script>
 </body>
