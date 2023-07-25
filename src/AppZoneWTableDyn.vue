@@ -51,6 +51,44 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-table-dyn'"
+                    :casename="'no useInfor'"
+                ></demolink>
+
+                <w-table-dyn
+                    style="width:600px; height:400px;"
+                    :useInfor="false"
+                    :name="WTableDyn.name"
+                    :description="WTableDyn.description"
+                    :opt="WTableDyn.opt1"
+                    @success="evSuccess"
+                    @error="evError"
+                ></w-table-dyn>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-table-dyn'"
+                    :casename="'no useMenu'"
+                ></demolink>
+
+                <w-table-dyn
+                    style="width:600px; height:400px;"
+                    :useMenu="false"
+                    :name="WTableDyn.name"
+                    :description="WTableDyn.description"
+                    :opt="WTableDyn.opt1"
+                    @success="evSuccess"
+                    @error="evError"
+                ></w-table-dyn>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-table-dyn'"
                     :casename="'opt.kpHead'"
                 ></demolink>
 
@@ -208,6 +246,46 @@
 
                 <w-table-dyn
                     style="width:600px; height:400px;"
+                    :name="WTableDyn.name"
+                    :description="WTableDyn.description"
+                    :opt="WTableDyn.opt2"
+                    :editable="true"
+                    @success="evSuccess"
+                    @error="evError"
+                ></w-table-dyn>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-table-dyn'"
+                    :casename="'editable & no useInfor'"
+                ></demolink>
+
+                <w-table-dyn
+                    style="width:600px; height:400px;"
+                    :useInfor="false"
+                    :name="WTableDyn.name"
+                    :description="WTableDyn.description"
+                    :opt="WTableDyn.opt2"
+                    :editable="true"
+                    @success="evSuccess"
+                    @error="evError"
+                ></w-table-dyn>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-table-dyn'"
+                    :casename="'editable & no useMenu'"
+                ></demolink>
+
+                <w-table-dyn
+                    style="width:600px; height:400px;"
+                    :useMenu="false"
                     :name="WTableDyn.name"
                     :description="WTableDyn.description"
                     :opt="WTableDyn.opt2"

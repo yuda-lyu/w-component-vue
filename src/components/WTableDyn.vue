@@ -11,36 +11,43 @@
                 @domresize="domresize"
             >
 
+                <!-- 編輯模式 -->
                 <template v-if="editable">
 
-                    <div :style="`${useInforPadding}`">
+                    <div
+                        :style="`${useInforPadding}`"
+                        v-if="useInfor"
+                    >
                         <table style="width:100%;">
                             <tbody>
                                 <tr>
                                     <td :style="`${hasEffLabelNameAndDesp?'padding-right:5px;':''} vertical-align:middle; opacity:0.8; font-size:0.8rem; white-space:nowrap;`">{{textLabelDataName}}</td>
                                     <td style="width:100%; vertical-align:middle;">
-                                        <w-text
+                                        <WText
                                             style="width:100%;"
                                             :placeholder="textPlaceholderDataName"
                                             v-model="nameTrans"
-                                        ></w-text>
+                                        ></WText>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td :style="`${hasEffLabelNameAndDesp?'padding-right:5px;':''} vertical-align:middle; opacity:0.8; font-size:0.8rem; white-space:nowrap;`">{{textLabelDataDescription}}</td>
                                     <td style="width:100%; vertical-align:middle;">
-                                        <w-text
+                                        <WText
                                             style="width:100%;"
                                             :placeholder="textPlaceholderDataDescription"
                                             v-model="descriptionTrans"
-                                        ></w-text>
+                                        ></WText>
                                     </td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
 
-                    <div :style="`${useMenuPaddingStyle} background:${useMenuBackgroundColor};`">
+                    <div
+                        :style="`${useMenuPaddingStyle} background:${useMenuBackgroundColor};`"
+                        v-if="useMenu"
+                    >
                         <div style="display:flex; align-items:center;">
 
                             <WButtonCircle
@@ -128,11 +135,15 @@
 
                 </template>
 
+                <!-- 顯示模式 -->
                 <template v-else>
 
                     <div :style="`display:flex; align-items:center;`">
 
-                        <div :style="`${useMenuPaddingStyle} background:${useMenuBackgroundColor};`">
+                        <div
+                            :style="`${useMenuPaddingStyle} background:${useMenuBackgroundColor};`"
+                            v-if="useMenu"
+                        >
                             <div style="display:flex; align-items:center;">
 
                                 <WButtonCircle
@@ -153,7 +164,10 @@
                             </div>
                         </div>
 
-                        <div :style="`${useInforPadding}`">
+                        <div
+                            :style="`${useInforPadding}`"
+                            v-if="useInfor"
+                        >
                             <slot
                                 name="infor"
                                 :infor="{name:nameTrans,description:descriptionTrans}"
@@ -224,9 +238,11 @@ import color2hex from '../js/vuetifyColor.mjs'
 
 /**
  * @vue-prop {Array} [pathItems=['詳見原始碼']] 輸入w-aggrid-vue-dyn組件js檔案位置字串陣列，預設詳見原始碼處props->pathItems->default
+ * @vue-prop {Boolean} [useInfor=true] 輸入是否使用資訊區(資料名稱name與資料描述description)布林值，預設為true
  * @vue-prop {String} [name=''] 輸入資料名稱字串，預設''
  * @vue-prop {String} [description=''] 輸入資料描述字串，預設''
  * @vue-prop {Object} [inforPaddingStyle={v:0,h:0}] 輸入資訊區(資料名稱name與資料描述description)內寬距離物件，可用鍵值為v、h、left、right、top、bottom，v代表同時設定top與bottom，h代表設定left與right，若有重複設定時後面鍵值會覆蓋前面，各鍵值為寬度數字，單位為px，預設{v:0,h:0}
+ * @vue-prop {Boolean} [useMenu=true] 輸入是否使用選單按鈕區布林值，預設為true
  * @vue-prop {Object} [menuPaddingStyle={v:3,h:3}] 輸入選單按鈕區內寬距離物件，可用鍵值為v、h、left、right、top、bottom，v代表同時設定top與bottom，h代表設定left與right，若有重複設定時後面鍵值會覆蓋前面，各鍵值為寬度數字，單位為px，預設{v:3,h:3}
  * @vue-prop {String} [menuBackgroundColor='transparent'] 輸入選單按鈕區背景顏色字串，預設'transparent'
  * @vue-prop {String|Array} [sortColIds=''] 輸入初始化時自動排序數據的欄位，為字串或陣列，若輸入陣列時則依照順序排序，故最末者代表最終排序。預設''
@@ -323,6 +339,10 @@ export default {
         pathItems: {
             type: Array, //預設值見WAggridVueDyn
         },
+        useInfor: {
+            type: Boolean,
+            default: true,
+        },
         name: {
             type: String,
             default: '',
@@ -339,6 +359,10 @@ export default {
                     h: 0,
                 }
             },
+        },
+        useMenu: {
+            type: Boolean,
+            default: true,
         },
         menuPaddingStyle: {
             type: Object,
