@@ -191,12 +191,12 @@ import domDragDrop from '../js/domDragDrop.mjs'
 
 /**
  * @vue-prop {Array} [value=[]] 輸入項目的字串陣列或物件陣列，預設[]
- * @vue-prop {Boolean} [useActive=false] 輸入項目是否使用點擊成為活耀狀態布林值，預設false
+ * @vue-prop {Boolean} [enableActive=false] 輸入項目是否使用點擊成為活耀狀態布林值，預設false
  * @vue-prop {Object} [valueActive=null] 輸入活耀項目物件，預設null
  * @vue-prop {String} [keyText='text'] 輸入項目為物件時，存放顯示文字之欄位字串，預設'text'
  * @vue-prop {String} [keyIcon='icon'] 輸入項目為物件時，存放圖標之欄位字串，預設'icon'
  * @vue-prop {String} [keyTooltip='tooltip'] 輸入項目為物件時，存放提示之欄位字串，預設'tooltip'
- * @vue-prop {Boolean} [useColorsFromItem=false] 輸入當項目為物件時是否使用其內相關顏色設定用以覆蓋預設值布林值，預設false
+ * @vue-prop {Boolean} [enableColorsFromItem=false] 輸入當項目為物件時是否使用其內相關顏色設定用以覆蓋預設值布林值，預設false
  * @vue-prop {String} [icon=''] 輸入左側圖標字串，預設''
  * @vue-prop {String} [iconColor='black'] 輸入圖標顏色字串，預設'black'
  * @vue-prop {String} [iconColorHover='grey darken-3'] 輸入滑鼠移入時圖標顏色字串，預設'grey darken-3'
@@ -260,7 +260,8 @@ import domDragDrop from '../js/domDragDrop.mjs'
  * @vue-prop {Boolean} [editableClose=true] 輸入editable=true時是否顯示關閉按鈕布林值，預設true
  * @vue-prop {Boolean} [editableInput=true] 輸入editable=true時是否使用預設的slot input布林值，預設true
  * @vue-prop {Boolean} [enableCloseEventOnly=false] 輸入點擊移除按鈕時是否僅開啟關閉事件，代表不自動刪除項目，需通過監聽關閉事件@click-close自行處理刪除功能，預設false
- * @vue-prop {String} [nodata='無'] 輸入無任何字串陣列時的預設文字字串，預設'無'
+ * @vue-prop {Boolean} [enableNodata=false] 輸入是否使用nodata展示布林值，預設false
+ * @vue-prop {String} [nodata='Empty'] 輸入無任何字串陣列時的預設文字字串，預設'Empty'
  */
 export default {
     directives: {
@@ -275,7 +276,7 @@ export default {
             type: Array,
             default: () => [],
         },
-        useActive: {
+        enableActive: {
             type: Boolean,
             default: false,
         },
@@ -295,7 +296,7 @@ export default {
             type: String,
             default: 'tooltip',
         },
-        useColorsFromItem: {
+        enableColorsFromItem: {
             type: Boolean,
             default: false,
         },
@@ -568,7 +569,7 @@ export default {
         },
         nodata: {
             type: String,
-            default: 'empty',
+            default: 'Empty',
         },
     },
     data: function() {
@@ -681,7 +682,7 @@ export default {
 
             //c
             let c = null
-            if (vo.isObjValue) {
+            if (vo.enableColorsFromItem && vo.isObjValue) {
                 c = get(item, keyColor, null)
             }
             if (!c) {
@@ -697,7 +698,7 @@ export default {
             let vo = this
 
             //check
-            if (!vo.useActive) {
+            if (!vo.enableActive) {
                 return false
             }
 
@@ -765,8 +766,8 @@ export default {
             //$nextTick
             vo.$nextTick(() => {
 
-                //useActive
-                if (vo.useActive) {
+                //enableActive
+                if (vo.enableActive) {
 
                     //emit
                     vo.$emit('update:valueActive', item)
@@ -911,8 +912,8 @@ export default {
                         .then(() => { //確認關閉
                             //console.log('pm then')
 
-                            //useActive and isActive
-                            if (vo.useActive && vo.isActive(item)) {
+                            //enableActive and isActive
+                            if (vo.enableActive && vo.isActive(item)) {
 
                                 //emit
                                 vo.$emit('update:valueActive', null)
@@ -942,8 +943,8 @@ export default {
                     //emit
                     vo.$emit('click-close', msg)
 
-                    //useActive and isActive
-                    if (vo.useActive && vo.isActive(item)) {
+                    //enableActive and isActive
+                    if (vo.enableActive && vo.isActive(item)) {
 
                         //emit
                         vo.$emit('update:valueActive', null)

@@ -183,14 +183,14 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-list-vertical'"
-                    :casename="'useActive (no active)'"
+                    :casename="'enableActive (no active)'"
                 ></demolink>
 
                 <div style="display:inline-block; border:1px dashed #ddd;">
                     <w-list-vertical
                         style="height:400px; width:250px;"
                         :items="WListVertical.itemsObj"
-                        :useActive="false"
+                        :enableActive="false"
                     >
                     </w-list-vertical>
                 </div>
@@ -201,14 +201,14 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-list-vertical'"
-                    :casename="'useActive (no active) & itemRippleColor'"
+                    :casename="'enableActive (no active) & itemRippleColor'"
                 ></demolink>
 
                 <div style="display:inline-block; border:1px dashed #ddd;">
                     <w-list-vertical
                         style="height:400px; width:250px;"
                         :items="WListVertical.itemsObj"
-                        :useActive="false"
+                        :enableActive="false"
                         :itemRippleColor="'rgba(155, 1, 87, 0.4)'"
                     >
                     </w-list-vertical>

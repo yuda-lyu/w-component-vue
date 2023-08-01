@@ -86,11 +86,9 @@
                                     <!-- 使用display:flex排版會無法支援動態變更btns, 故改為使用display:table -->
                                     <div
                                         :style="`
-                                            _display:flex; _align-items:center;
                                             display:table;
                                             padding:0px ${headSpace}px;
                                             height:${headerHeight}px; max-height:${headerHeight}px;
-                                            _overflow:hidden;
                                         `"
                                         v-domresize
                                         @domresize="resizeHead"
@@ -115,7 +113,6 @@
                                             ref="hdTitleAndStl"
                                             style="
                                                 width:100%;
-                                                _display:flex; _align-items:center;
                                                 display:table-cell; vertical-align:middle;
                                             "
                                         >
@@ -157,7 +154,6 @@
                                         <div
                                             ref="hdBtns"
                                             style="
-                                                _display:flex; _align-items:center;
                                                 display:table-cell; vertical-align:middle;
                                             "
                                         >

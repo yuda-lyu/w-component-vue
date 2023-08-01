@@ -16,7 +16,7 @@
 
                     <div
                         :style="`${useInforPadding}`"
-                        v-if="useInfor"
+                        v-if="enableInfor"
                     >
                         <table style="width:100%;">
                             <tbody>
@@ -46,7 +46,7 @@
 
                     <div
                         :style="`${useMenuPaddingStyle} background:${useMenuBackgroundColor};`"
-                        v-if="useMenu"
+                        v-if="enableMenu"
                     >
                         <div style="display:flex; align-items:center;">
 
@@ -142,7 +142,7 @@
 
                         <div
                             :style="`${useMenuPaddingStyle} background:${useMenuBackgroundColor};`"
-                            v-if="useMenu"
+                            v-if="enableMenu"
                         >
                             <div style="display:flex; align-items:center;">
 
@@ -166,7 +166,7 @@
 
                         <div
                             :style="`${useInforPadding}`"
-                            v-if="useInfor"
+                            v-if="enableInfor"
                         >
                             <slot
                                 name="infor"
@@ -238,11 +238,11 @@ import color2hex from '../js/vuetifyColor.mjs'
 
 /**
  * @vue-prop {Array} [pathItems=['詳見原始碼']] 輸入w-aggrid-vue-dyn組件js檔案位置字串陣列，預設詳見原始碼處props->pathItems->default
- * @vue-prop {Boolean} [useInfor=true] 輸入是否使用資訊區(資料名稱name與資料描述description)布林值，預設為true
+ * @vue-prop {Boolean} [enableInfor=true] 輸入是否使用資訊區(資料名稱name與資料描述description)布林值，預設為true
  * @vue-prop {String} [name=''] 輸入資料名稱字串，預設''
  * @vue-prop {String} [description=''] 輸入資料描述字串，預設''
  * @vue-prop {Object} [inforPaddingStyle={v:0,h:0}] 輸入資訊區(資料名稱name與資料描述description)內寬距離物件，可用鍵值為v、h、left、right、top、bottom，v代表同時設定top與bottom，h代表設定left與right，若有重複設定時後面鍵值會覆蓋前面，各鍵值為寬度數字，單位為px，預設{v:0,h:0}
- * @vue-prop {Boolean} [useMenu=true] 輸入是否使用選單按鈕區布林值，預設為true
+ * @vue-prop {Boolean} [enableMenu=true] 輸入是否使用選單按鈕區布林值，預設為true
  * @vue-prop {Object} [menuPaddingStyle={v:3,h:3}] 輸入選單按鈕區內寬距離物件，可用鍵值為v、h、left、right、top、bottom，v代表同時設定top與bottom，h代表設定left與right，若有重複設定時後面鍵值會覆蓋前面，各鍵值為寬度數字，單位為px，預設{v:3,h:3}
  * @vue-prop {String} [menuBackgroundColor='transparent'] 輸入選單按鈕區背景顏色字串，預設'transparent'
  * @vue-prop {String|Array} [sortColIds=''] 輸入初始化時自動排序數據的欄位，為字串或陣列，若輸入陣列時則依照順序排序，故最末者代表最終排序。預設''
@@ -252,7 +252,7 @@ import color2hex from '../js/vuetifyColor.mjs'
  * @vue-prop {String|Array} [removeIdsWhenDownload=''] 輸入下載Excel檔案時欲移除的欄位字串或陣列，預設''
  * @vue-prop {Boolean} [funGetLtdtHookWhenDownload=null] 輸入下載Excel檔案時針對ltdt數據階段的攔截處理函數，預設為null
  * @vue-prop {Boolean} [funGetMatHookWhenDownload=null] 輸入下載Excel檔案時針對mat數據階段的攔截處理函數，預設為null
- * @vue-prop {Boolean} [useHeadWhenDownload=false] 輸入下載Excel檔案時是否將欄位鍵值轉換成head布林值，此需提供opt.kpHead物件，預設為false
+ * @vue-prop {Boolean} [enableHeadWhenDownload=false] 輸入下載Excel檔案時是否將欄位鍵值轉換成head布林值，此需提供opt.kpHead物件，預設為false
  * @vue-prop {String} [fileNameWhenDownload='data.xlsx'] 輸入下載Excel檔案時儲存檔名稱字串，預設'data.xlsx'
  * @vue-prop {String} [sheetNameWhenDownload='data'] 輸入下載Excel檔案時sheet名稱字串，預設'data'
  * @vue-prop {Boolean} [editable=false] 輸入是否可編輯布林值，可被opt.defCellEditable複寫，預設為false
@@ -339,7 +339,7 @@ export default {
         pathItems: {
             type: Array, //預設值見WAggridVueDyn
         },
-        useInfor: {
+        enableInfor: {
             type: Boolean,
             default: true,
         },
@@ -360,7 +360,7 @@ export default {
                 }
             },
         },
-        useMenu: {
+        enableMenu: {
             type: Boolean,
             default: true,
         },
@@ -418,7 +418,7 @@ export default {
             type: Function,
             default: null,
         },
-        useHeadWhenDownload: {
+        enableHeadWhenDownload: {
             type: Boolean,
             default: false,
         },
@@ -990,7 +990,7 @@ export default {
                     //     return mat
                     // },
                     funGetMatHook: vo.funGetMatHookWhenDownload,
-                    useHead: vo.useHeadWhenDownload, //default: false
+                    useHead: vo.enableHeadWhenDownload, //default: false
                     fileName: vo.fileNameWhenDownload, //default: 'data.xlsx'
                     sheetName: vo.sheetNameWhenDownload, //default: data
                     pathItems: null, //default: 'https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js'

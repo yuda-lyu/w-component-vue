@@ -17,6 +17,8 @@
                 <w-group-tags
                     v-model="WGroupTags.strings"
                 ></w-group-tags>
+
+                <div style="padding-left:5px; font-size:0.9rem; color:#ea6;">binding: strings</div>
             </div>
 
 
@@ -30,6 +32,8 @@
                     v-model="WGroupTags.strings"
                     :icon="mdiChartBubble"
                 ></w-group-tags>
+
+                <div style="padding-left:5px; font-size:0.9rem; color:#ea6;">binding: strings</div>
             </div>
 
 
@@ -43,6 +47,8 @@
                     v-model="WGroupTags.strings"
                     :icon="'fas fa-clipboard-check'"
                 ></w-group-tags>
+
+                <div style="padding-left:5px; font-size:0.9rem; color:#ea6;">binding: strings</div>
             </div>
 
 
@@ -57,6 +63,8 @@
                     :icon="'fas fa-clipboard-check'"
                     :shiftLeft="-3"
                 ></w-group-tags>
+
+                <div style="padding-left:5px; font-size:0.9rem; color:#ea6;">binding: strings</div>
             </div>
 
 
@@ -72,6 +80,8 @@
                     _marginStyle="{v:0,h:20}"
                     :marginStyle="{top:0,right:25,bottom:0,left:0}"
                 ></w-group-tags>
+
+                <div style="padding-left:5px; font-size:0.9rem; color:#ea6;">binding: strings</div>
             </div>
 
 
@@ -85,6 +95,8 @@
                     v-model="WGroupTags.strings"
                     :inputTextButtonTooltip="'新增'"
                 ></w-group-tags>
+
+                <div style="padding-left:5px; font-size:0.9rem; color:#ea6;">binding: strings</div>
             </div>
 
 
@@ -98,6 +110,8 @@
                     v-model="WGroupTags.strings"
                     :inputTextWidth="250"
                 ></w-group-tags>
+
+                <div style="padding-left:5px; font-size:0.9rem; color:#ea6;">binding: strings</div>
             </div>
 
 
@@ -111,6 +125,8 @@
                     v-model="WGroupTags.strings"
                     :suggests="WGroupTags.suggests"
                 ></w-group-tags>
+
+                <div style="padding-left:5px; font-size:0.9rem; color:#ea6;">binding: strings</div>
             </div>
 
 
@@ -126,6 +142,8 @@
                     :placeholder="'請輸入關鍵字'"
                     :noResultsText="'無符合項目'"
                 ></w-group-tags>
+
+                <div style="padding-left:5px; font-size:0.9rem; color:#ea6;">binding: strings</div>
             </div>
 
 
@@ -141,6 +159,8 @@
                     :inputTextColor="'orange darken-2'"
                     :inputExpansionIconColor="'orange'"
                 ></w-group-tags>
+
+                <div style="padding-left:5px; font-size:0.9rem; color:#ea6;">binding: strings</div>
             </div>
 
 
@@ -159,6 +179,8 @@
                     :suggectItemBackgroundColor="'white'"
                     :suggectItemBackgroundColorHover="'orange darken-3'"
                 ></w-group-tags>
+
+                <div style="padding-left:5px; font-size:0.9rem; color:#ea6;">binding: strings</div>
             </div>
 
 
@@ -182,6 +204,8 @@
                     :inputTextBackgroundColorHover="'#fafaff'"
                     :inputTextBackgroundColorFocus="'#f2f2ff'"
                 ></w-group-tags>
+
+                <div style="padding-left:5px; font-size:0.9rem; color:#ea6;">binding: strings</div>
             </div>
 
 
@@ -290,7 +314,7 @@
             <div class="bk" style="display:block;">
                 <demolink
                     :kbname="'w-group-tags'"
-                    :casename="'slot item'"
+                    :casename="'slot items'"
                 ></demolink>
 
                 <w-group-tags
@@ -335,7 +359,7 @@
             <div class="bk" style="display:block;">
                 <demolink
                     :kbname="'w-group-tags'"
-                    :casename="'object items & slot item'"
+                    :casename="'object items & slot items'"
                 ></demolink>
 
                 <w-group-tags
@@ -564,6 +588,7 @@
 
                 <w-group-tags
                     v-model="WGroupTags.strings"
+                    :icon="mdiChartBubble"
                     @click="ckBtnModProg"
                 ></w-group-tags>
 
@@ -579,6 +604,7 @@
 
                 <w-group-tags
                     v-model="WGroupTags.strings"
+                    :icon="mdiChartBubble"
                     :progColor="'rgba(250,50,150,0.4)'"
                     :progBackgroundColor="'rgba(250,50,150,0.075)'"
                     @click="ckBtnModProg"
@@ -596,23 +622,7 @@
 
                 <w-group-tags
                     v-model="WGroupTags.strings"
-                    @click="ckBtnModLoading"
-                ></w-group-tags>
-
-                <div style="padding-left:5px; font-size:0.9rem; color:#ea6;">binding: strings</div>
-            </div>
-
-
-            <div class="bk" style="display:block;">
-                <demolink
-                    :kbname="'w-group-tags'"
-                    :casename="'modify loading & textColor & textColorHover'"
-                ></demolink>
-
-                <w-group-tags
-                    v-model="WGroupTags.strings"
-                    :textColor="'rgba(255,30,60,0.9)'"
-                    :textColorHover="'rgba(255,20,50,1)'"
+                    :icon="mdiChartBubble"
                     @click="ckBtnModLoading"
                 ></w-group-tags>
 
@@ -640,6 +650,20 @@
             <div class="bk" style="display:block;">
                 <demolink
                     :kbname="'w-group-tags'"
+                    :casename="'enableCloseEventOnly'"
+                ></demolink>
+
+                <w-group-tags
+                    :enableCloseEventOnly="true"
+                    v-model="WGroupTags.strings"
+                    @click-close="ckBtnClose"
+                ></w-group-tags>
+            </div>
+
+
+            <div class="bk" style="display:block;">
+                <demolink
+                    :kbname="'w-group-tags'"
                     :casename="'not draggable'"
                 ></demolink>
 
@@ -650,6 +674,15 @@
                 ></w-group-tags>
 
                 <div style="padding-left:5px; font-size:0.9rem; color:#ea6;">binding: strings</div>
+
+                <w-group-tags
+                    v-model="WGroupTags.objects"
+                    :icon="mdiChartBubble"
+                    :draggable="false"
+                ></w-group-tags>
+
+                <div style="padding-left:5px; font-size:0.9rem; color:#ea6;">binding: objects</div>
+
             </div>
 
 
@@ -666,6 +699,15 @@
                 ></w-group-tags>
 
                 <div style="padding-left:5px; font-size:0.9rem; color:#ea6;">binding: strings</div>
+
+                <w-group-tags
+                    v-model="WGroupTags.objects"
+                    :icon="mdiChartBubble"
+                    :editable="false"
+                ></w-group-tags>
+
+                <div style="padding-left:5px; font-size:0.9rem; color:#ea6;">binding: objects</div>
+
             </div>
 
 
@@ -682,6 +724,15 @@
                 ></w-group-tags>
 
                 <div style="padding-left:5px; font-size:0.9rem; color:#ea6;">binding: strings</div>
+
+                <w-group-tags
+                    v-model="WGroupTags.objects"
+                    :icon="mdiChartBubble"
+                    :editableClose="false"
+                ></w-group-tags>
+
+                <div style="padding-left:5px; font-size:0.9rem; color:#ea6;">binding: objects</div>
+
             </div>
 
 
@@ -698,14 +749,6 @@
                 ></w-group-tags>
 
                 <div style="padding-left:5px; font-size:0.9rem; color:#ea6;">binding: strings</div>
-            </div>
-
-
-            <div class="bk" style="display:block;">
-                <demolink
-                    :kbname="'w-group-tags'"
-                    :casename="'editableInput(no input button)'"
-                ></demolink>
 
                 <w-group-tags
                     v-model="WGroupTags.objects"
@@ -714,6 +757,67 @@
                 ></w-group-tags>
 
                 <div style="padding-left:5px; font-size:0.9rem; color:#ea6;">binding: objects</div>
+
+            </div>
+
+
+            <div class="bk" style="display:block;">
+                <demolink
+                    :kbname="'w-group-tags'"
+                    :casename="'editableClose(no close button) & editableInput(no input text)'"
+                ></demolink>
+
+                <w-group-tags
+                    v-model="WGroupTags.strings"
+                    :icon="mdiChartBubble"
+                    :editableClose="false"
+                    :editableInput="false"
+                ></w-group-tags>
+
+                <div style="padding-left:5px; font-size:0.9rem; color:#ea6;">binding: strings</div>
+
+                <w-group-tags
+                    v-model="WGroupTags.objects"
+                    :icon="mdiChartBubble"
+                    :editableClose="false"
+                    :editableInput="false"
+                ></w-group-tags>
+
+                <div style="padding-left:5px; font-size:0.9rem; color:#ea6;">binding: objects</div>
+
+            </div>
+
+
+            <div class="bk" style="display:block;">
+                <demolink
+                    :kbname="'w-group-tags'"
+                    :casename="'enableNodata'"
+                ></demolink>
+
+                <w-group-tags
+                    v-model="WGroupTags.empty"
+                    :enableNodata="true"
+                ></w-group-tags>
+
+                <div style="padding-left:5px; font-size:0.9rem; color:#ea6;">binding: empty</div>
+            </div>
+
+
+            <div class="bk" style="display:block;">
+                <demolink
+                    :kbname="'w-group-tags'"
+                    :casename="'enableNodata & nodata & editableClose(no close button) & editableInput(no input text)'"
+                ></demolink>
+
+                <w-group-tags
+                    v-model="WGroupTags.empty"
+                    :editableClose="false"
+                    :editableInput="false"
+                    :enableNodata="true"
+                    :nodata="'無'"
+                ></w-group-tags>
+
+                <div style="padding-left:5px; font-size:0.9rem; color:#ea6;">binding: empty</div>
             </div>
 
 
@@ -747,28 +851,12 @@
             <div class="bk" style="display:block;">
                 <demolink
                     :kbname="'w-group-tags'"
-                    :casename="'not editable & nodata'"
-                ></demolink>
-
-                <w-group-tags
-                    v-model="WGroupTags.empty"
-                    :editable="false"
-                    :nodata="'無'"
-                ></w-group-tags>
-
-                <div style="padding-left:5px; font-size:0.9rem; color:#ea6;">binding: empty</div>
-            </div>
-
-
-            <div class="bk" style="display:block;">
-                <demolink
-                    :kbname="'w-group-tags'"
-                    :casename="'useActive & valueActive'"
+                    :casename="'enableActive & valueActive'"
                 ></demolink>
 
                 <w-group-tags
                     v-model="WGroupTags.strings"
-                    :useActive="true"
+                    :enableActive="true"
                     :valueActive.sync="WGroupTags.stringActive"
                 ></w-group-tags>
 
@@ -779,12 +867,12 @@
             <div class="bk" style="display:block;">
                 <demolink
                     :kbname="'w-group-tags'"
-                    :casename="'slot item & useActive & valueActive & paddingStyle & textColor & textColorHover & textColorActive & backgroundColor & backgroundColorActive & shadowActiveStyle'"
+                    :casename="'slot items & enableActive & valueActive & paddingStyle & textColor & textColorHover & textColorActive & backgroundColor & backgroundColorActive & shadowActiveStyle'"
                 ></demolink>
 
                 <w-group-tags
                     v-model="WGroupTags.strings"
-                    :useActive="true"
+                    :enableActive="true"
                     :valueActive.sync="WGroupTags.stringActive"
                     :paddingStyle="{v:1,h:13}"
                     :textColor="'pink lighten-1'"
@@ -816,13 +904,13 @@
             <div class="bk" style="display:block;">
                 <demolink
                     :kbname="'w-group-tags'"
-                    :casename="'object items & slot item & editableInput(no input button) & useActive & valueActive & paddingStyle & textColor & textColorHover & textColorActive & backgroundColor & backgroundColorActive & shadowActiveStyle'"
+                    :casename="'object items & slot items & editableInput(no input button) & enableActive & valueActive & paddingStyle & textColor & textColorHover & textColorActive & backgroundColor & backgroundColorActive & shadowActiveStyle'"
                 ></demolink>
 
                 <w-group-tags
                     v-model="WGroupTags.objectsSlotText"
                     :editableInput="false"
-                    :useActive="true"
+                    :enableActive="true"
                     :valueActive.sync="WGroupTags.objectsSlotTextActive"
                     :paddingStyle="{v:1,h:13}"
                     :textColor="'pink lighten-1'"
@@ -854,21 +942,7 @@
             <div class="bk" style="display:block;">
                 <demolink
                     :kbname="'w-group-tags'"
-                    :casename="'enableCloseEventOnly'"
-                ></demolink>
-
-                <w-group-tags
-                    :enableCloseEventOnly="true"
-                    v-model="WGroupTags.strings"
-                    @click-close="ckBtnClose"
-                ></w-group-tags>
-            </div>
-
-
-            <div class="bk" style="display:block;">
-                <demolink
-                    :kbname="'w-group-tags'"
-                    :casename="'object items & slot item & useColorsFromItem & editableInput(no input button) & no shadow & no shadowActive & useActive & valueActive & paddingStyle'"
+                    :casename="'object items & slot items & enableColorsFromItem & editableInput(no input button) & no shadow & no shadowActive & enableActive & valueActive & paddingStyle'"
                 ></demolink>
 
                 <w-group-tags
@@ -876,10 +950,10 @@
                     :editableInput="false"
                     :shadow="false"
                     :shadowActive="false"
-                    :useActive="true"
+                    :enableActive="true"
                     :valueActive.sync="WGroupTags.objectsColorActive"
                     :paddingStyle="{v:1,h:12}"
-                    :useColorsFromItem="true"
+                    :enableColorsFromItem="true"
                 >
                     <template v-slot:items="props">
                         <div style="display:flex; align-items:center;">

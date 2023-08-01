@@ -162,7 +162,7 @@
                                         :style="`${getOperatePanelHeight(props)} width:${operatePanelWidth}px;`"
                                         :items="getUseOperateItems(props)"
                                         :itemTextFontSize="'0.8rem'"
-                                        :useActive="false"
+                                        :enableActive="false"
                                         :paddingStyle="operateItemPaddingStyle"
                                         :itemBackgroundColor="operateItemBackgroundColor"
                                         :itemBackgroundColorHover="operateItemBackgroundColorHover"

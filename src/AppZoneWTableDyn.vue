@@ -51,12 +51,12 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-table-dyn'"
-                    :casename="'no useInfor'"
+                    :casename="'no enableInfor'"
                 ></demolink>
 
                 <w-table-dyn
                     style="width:600px; height:400px;"
-                    :useInfor="false"
+                    :enableInfor="false"
                     :name="WTableDyn.name"
                     :description="WTableDyn.description"
                     :opt="WTableDyn.opt1"
@@ -70,12 +70,12 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-table-dyn'"
-                    :casename="'no useMenu'"
+                    :casename="'no enableMenu'"
                 ></demolink>
 
                 <w-table-dyn
                     style="width:600px; height:400px;"
-                    :useMenu="false"
+                    :enableMenu="false"
                     :name="WTableDyn.name"
                     :description="WTableDyn.description"
                     :opt="WTableDyn.opt1"
@@ -260,12 +260,12 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-table-dyn'"
-                    :casename="'editable & no useInfor'"
+                    :casename="'editable & no enableInfor'"
                 ></demolink>
 
                 <w-table-dyn
                     style="width:600px; height:400px;"
-                    :useInfor="false"
+                    :enableInfor="false"
                     :name="WTableDyn.name"
                     :description="WTableDyn.description"
                     :opt="WTableDyn.opt2"
@@ -280,12 +280,12 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-table-dyn'"
-                    :casename="'editable & no useMenu'"
+                    :casename="'editable & no enableMenu'"
                 ></demolink>
 
                 <w-table-dyn
                     style="width:600px; height:400px;"
-                    :useMenu="false"
+                    :enableMenu="false"
                     :name="WTableDyn.name"
                     :description="WTableDyn.description"
                     :opt="WTableDyn.opt2"

@@ -85,7 +85,7 @@ import WListItem from './WListItem.vue'
 
 /**
  * @vue-prop {Array} [items=[]] 輸入項目的字串陣列或物件陣列，預設[]
- * @vue-prop {Boolean} [useActive=false] 輸入項目是否使用點擊成為活耀狀態布林值，預設false
+ * @vue-prop {Boolean} [enableActive=false] 輸入項目是否使用點擊成為活耀狀態布林值，預設false
  * @vue-prop {String|Object} [itemActive=null] 輸入活耀項目字串或物件，預設null
  * @vue-prop {String} [itemTextFontSize='1rem'] 輸入文字字型大小字串，預設'1rem'
  * @vue-prop {String} [keyText='text'] 輸入項目為物件時，存放顯示文字之欄位字串，預設'text'
@@ -122,7 +122,7 @@ export default {
             type: Array,
             default: () => [],
         },
-        useActive: {
+        enableActive: {
             type: Boolean,
             default: true,
         },
@@ -254,7 +254,7 @@ export default {
 
         changeItemActive: function() {
             let vo = this
-            if (vo.useActive) {
+            if (vo.enableActive) {
                 vo.itemActiveTrans = vo.itemActive
             }
             return ''
@@ -312,7 +312,7 @@ export default {
         getActive: function(item) {
             let vo = this
             let b = false
-            if (vo.useActive) {
+            if (vo.enableActive) {
                 b = isEqual(item, vo.itemActiveTrans)
             }
             return b
