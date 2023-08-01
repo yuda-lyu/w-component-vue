@@ -63,7 +63,7 @@
             </template>
         </transition-group>
 
-        <template v-if="itemsTrans.length===0">
+        <template v-if="enableNodata && itemsTrans.length===0">
 
             <WButtonChip
                 :style="`${useMarginStyle}`"
@@ -564,6 +564,10 @@ export default {
             default: true,
         },
         enableCloseEventOnly: {
+            type: Boolean,
+            default: false,
+        },
+        enableNodata: {
             type: Boolean,
             default: false,
         },

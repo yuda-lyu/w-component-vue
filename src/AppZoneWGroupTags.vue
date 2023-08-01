@@ -791,6 +791,21 @@
             <div class="bk" style="display:block;">
                 <demolink
                     :kbname="'w-group-tags'"
+                    :casename="'no enableNodata'"
+                ></demolink>
+
+                <w-group-tags
+                    v-model="WGroupTags.empty"
+                    :enableNodata="false"
+                ></w-group-tags>
+
+                <div style="padding-left:5px; font-size:0.9rem; color:#ea6;">binding: empty</div>
+            </div>
+
+
+            <div class="bk" style="display:block;">
+                <demolink
+                    :kbname="'w-group-tags'"
                     :casename="'enableNodata'"
                 ></demolink>
 
