@@ -85,7 +85,7 @@
     </script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.3.18/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.3.19/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -137,17 +137,17 @@
         <div class="bk" style="display:block;">
             <div
                 class="item"
-            >object items &amp; slot item &amp; useColorsFromItem &amp; editableInput(no input button) &amp; no shadow &amp; no shadowActive &amp; useActive &amp; valueActive &amp; paddingStyle</div>
+            >object items &amp; slot items &amp; enableColorsFromItem &amp; editableInput(no input button) &amp; no shadow &amp; no shadowActive &amp; enableActive &amp; valueActive &amp; paddingStyle</div>
 
             <w-group-tags
                 v-model="WGroupTags.objectsColor"
                 :editable-input="false"
                 :shadow="false"
                 :shadow-active="false"
-                :use-active="true"
+                :enable-active="true"
                 :value-active.sync="WGroupTags.objectsColorActive"
                 :padding-style="{v:1,h:12}"
-                :use-colors-from-item="true"
+                :enable-colors-from-item="true"
             >
                 <template v-slot:items="props">
                     <div style="display:flex; align-items:center;">

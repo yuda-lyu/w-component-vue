@@ -85,7 +85,7 @@
     </script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.3.18/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.3.19/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -135,17 +135,49 @@
             >w-group-tags</span>
         </div>
         <div class="bk" style="display:block;">
-            <div class="item">editableInput(no input button)</div>
+            <div class="item">object items &amp; slot items</div>
 
             <w-group-tags
-                v-model="WGroupTags.objects"
-                :icon="'mdi-chart-bubble'"
-                :editable-input="false"
-            ></w-group-tags>
+                v-model="WGroupTags.objectsSlotText"
+                @click="ckBtn"
+                @click-close="ckBtnClose"
+                @click-add="ckBtnAddObjSlotText"
+            >
+                <template v-slot:items="props">
+                    <div style="display:flex; align-items:center;">
+                        <div
+                            style="margin-left:-9px; margin-right:5px; display:flex;"
+                        >
+                            <w-button-chip
+                                :text="props.item.slotTextKind"
+                                :text-font-size="'0.75rem'"
+                                :padding-style="{v:0,h:8}"
+                                :text-color="'#fff'"
+                                :text-color-hover="'#fff'"
+                                :background-color="'rgba(250,50,120,0.9)'"
+                                :background-color-hover="'rgba(250,50,120,0.9)'"
+                                @click="ckBtnItem1(props)"
+                            ></w-button-chip>
+                        </div>
+                        <div style="display:flex;">
+                            <w-button-chip
+                                :text="props.item.slotTextLevel"
+                                :text-font-size="'0.75rem'"
+                                :padding-style="{v:0,h:8}"
+                                :text-color="'#fff'"
+                                :text-color-hover="'#fff'"
+                                :background-color="'rgba(200,20,170,0.9)'"
+                                :background-color-hover="'rgba(200,20,170,0.9)'"
+                                @click="ckBtnItem2(props)"
+                            ></w-button-chip>
+                        </div>
+                    </div>
+                </template>
+            </w-group-tags>
 
             <div
                 style="padding-left:5px; font-size:0.9rem; color:#ea6;"
-            >binding: objects</div>
+            >binding: objectsSlotText</div>
         </div>
     </v-app>
 

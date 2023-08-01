@@ -85,7 +85,7 @@
     </script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.3.18/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.3.19/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -137,11 +137,11 @@
         <div class="bk" style="display:block;">
             <div
                 class="item"
-            >slot item &amp; useActive &amp; valueActive &amp; paddingStyle &amp; textColor &amp; textColorHover &amp; textColorActive &amp; backgroundColor &amp; backgroundColorActive &amp; shadowActiveStyle</div>
+            >slot items &amp; enableActive &amp; valueActive &amp; paddingStyle &amp; textColor &amp; textColorHover &amp; textColorActive &amp; backgroundColor &amp; backgroundColorActive &amp; shadowActiveStyle</div>
 
             <w-group-tags
                 v-model="WGroupTags.strings"
-                :use-active="true"
+                :enable-active="true"
                 :value-active.sync="WGroupTags.stringActive"
                 :padding-style="{v:1,h:13}"
                 :text-color="'pink lighten-1'"
