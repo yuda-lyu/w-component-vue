@@ -400,7 +400,7 @@ export default {
         },
 
         changeShowPanel: function () {
-            // console.log('computed changeShowPanel', this.showPanel)
+            //console.log('computed changeShowPanel')
 
             let vo = this
 
@@ -414,7 +414,7 @@ export default {
     methods: {
 
         resize: function(msg) {
-            // console.log('methods resize', msg)
+            //console.log('methods resize', msg)
 
             let vo = this
 
@@ -435,7 +435,7 @@ export default {
             //useDistY
             let def = 5
             vo.useDistY = ypb + ych + def
-            // console.log('ypb', ypb, 'ych', ych, 'vo.useDistY ', vo.useDistY)
+            //console.log('ypb', ypb, 'ych', ych, 'vo.useDistY ', vo.useDistY)
 
         },
 
@@ -473,7 +473,7 @@ export default {
         },
 
         updateShowPanel: function(showPanel) {
-            // console.log('methods updateShowPanel', showPanel)
+            //console.log('methods updateShowPanel', showPanel)
 
             let vo = this
 
