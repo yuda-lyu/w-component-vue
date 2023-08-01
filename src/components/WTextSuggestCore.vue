@@ -322,7 +322,7 @@ export default {
         },
 
         changeShowPanelFromPopup: function () {
-            //console.log('computed changeShowPanelFromPopup')
+            // console.log('computed changeShowPanelFromPopup')
 
             let vo = this
 
@@ -468,7 +468,7 @@ export default {
             //check, 若由滑鼠進行範圍選擇, 離開時位於組件外時, 會被popup視為滑鼠點擊至內容區外側(於外面mousuup), 故會自動隱藏選單, 得重新顯示
             if (!vo.showPanelTrans) {
 
-                //triggerAll
+                //triggerAll, 須於triggerEvent之後觸發
                 vo.triggerAll({
                     showPanel: true,
                     focused: true,
@@ -493,7 +493,7 @@ export default {
                 return
             }
 
-            //triggerAll
+            //triggerAll, 須於triggerEvent之後觸發
             vo.triggerAll({
                 showPanel: true,
                 focused: true,
@@ -511,7 +511,7 @@ export default {
                 return
             }
 
-            //triggerAll
+            //triggerAll, 須於triggerEvent之後觸發
             vo.triggerAll({
                 // showPanel: false, //不能觸發隱藏, 會導致點擊項目時先被隱藏panel導致無法觸發click事件
                 focused, //失去焦點時還是需要觸發focused變更事件
@@ -529,7 +529,7 @@ export default {
                 return
             }
 
-            //triggerAll
+            //triggerAll, 須於triggerEvent之後觸發
             vo.triggerAll({
                 showPanel,
                 focused: showPanel,
@@ -547,17 +547,17 @@ export default {
                 return
             }
 
-            //triggerAll
-            vo.triggerAll({
-                showPanel: true,
-                focused: true,
-            }, 'updateValue')
-
             //save
             vo.valueTrans = value
 
             //triggerEvent
             vo.triggerEvent('input', value, null, 'updateValue') //文字框查詢關鍵字
+
+            //triggerAll, 須於triggerEvent之後觸發
+            vo.triggerAll({
+                showPanel: true,
+                focused: true,
+            }, 'updateValue')
 
         },
 
@@ -571,17 +571,17 @@ export default {
                 return
             }
 
-            //triggerAll
-            vo.triggerAll({
-                showPanel: false,
-                focused: false,
-            }, 'clickItem')
-
             //triggerEvent
             vo.triggerEvent('input', item, kitem, 'clickItem')
 
             //triggerEvent
             vo.triggerEvent('click-item', item, kitem, 'clickItem')
+
+            //triggerAll, 須於triggerEvent之後觸發
+            vo.triggerAll({
+                showPanel: false,
+                focused: false,
+            }, 'clickItem')
 
         },
 
@@ -630,34 +630,39 @@ export default {
 
             // }
 
-            //focused
-            if (isbol(focused) && vo.focusedTrans !== focused) {
-                // console.log('triggerAll focused', focused, 'from', from)
+            //setTimeout, 因多組件時update:showPanel於隱藏時可能出現popup先消失, 進而導致triggerEvent所觸發click事件被吃掉無法觸發, 且triggerEvent已用nextTick且triggerAll再用nextTick包過亦無法保證一定能延後觸發(讓click先觸發完), 故使用setTimeout強制延後觸發
+            setTimeout(() => {
 
-                //save
-                vo.focusedTrans = focused
+                //focused
+                if (isbol(focused) && vo.focusedTrans !== focused) {
+                    // console.log('triggerAll focused', focused, 'from', from)
 
-                //triggerEvent
-                vo.triggerEvent('update:focused', focused, null, 'triggerAll')
+                    //save
+                    vo.focusedTrans = focused
 
-            }
+                    //triggerEvent
+                    vo.triggerEvent('update:focused', focused, null, 'triggerAll')
 
-            //showPanel
-            if (isbol(showPanel) && vo.showPanelTrans !== showPanel) {
-                // console.log('triggerAll showPanel', showPanel, 'from', from)
-
-                //save
-                if (size(vo.items) > 0) {
-                    vo.showPanelTrans = showPanel
-                }
-                else {
-                    vo.showPanelTrans = false
                 }
 
-                //triggerEvent
-                vo.triggerEvent('update:showPanel', showPanel, null, 'triggerAll')
+                //showPanel
+                if (isbol(showPanel) && vo.showPanelTrans !== showPanel) {
+                    // console.log('triggerAll showPanel', showPanel, 'from', from)
 
-            }
+                    //save
+                    if (size(vo.items) > 0) {
+                        vo.showPanelTrans = showPanel
+                    }
+                    else {
+                        vo.showPanelTrans = false
+                    }
+
+                    //triggerEvent
+                    vo.triggerEvent('update:showPanel', showPanel, null, 'triggerAll')
+
+                }
+
+            }, 20)
 
         },
 

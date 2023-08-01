@@ -400,7 +400,7 @@ export default {
         },
 
         changeShowPanel: function () {
-            //console.log('computed changeShowPanel')
+            // console.log('computed changeShowPanel', this.showPanel)
 
             let vo = this
 
@@ -473,7 +473,7 @@ export default {
         },
 
         updateShowPanel: function(showPanel) {
-            //console.log('methods updateShowPanel', showPanel)
+            // console.log('methods updateShowPanel', showPanel)
 
             let vo = this
 

@@ -379,7 +379,7 @@
                     style="width:200px;"
                     :focused.sync="WTextSuggest.focused"
                     :showPanel.sync="WTextSuggest.showPanel"
-                    @enter="hidePanelWhenEnter"
+                    :enter="hidePanelWhenEnter"
                     :items="WTextSuggest.objItems"
                     v-model="WTextSuggest.objValue"
                 ></w-text-suggest>
@@ -1363,14 +1363,14 @@ export default {
         }
     },
     methods: {
-        evUpdateFocused: function(item, kitem) {
-            console.log('evUpdateFocused', 'item=', item, 'kitem', kitem)
+        evUpdateFocused: function(value) {
+            console.log('evUpdateFocused', value)
         },
-        evUpdateShowPanel: function(item, kitem) {
-            console.log('evUpdateShowPanel', 'item=', item, 'kitem', kitem)
+        evUpdateShowPanel: function(value) {
+            console.log('evUpdateShowPanel', value)
         },
-        evBlur: function(item, kitem) {
-            console.log('evBlur', 'item=', item, 'kitem', kitem)
+        evBlur: function(value) {
+            console.log('evBlur', value)
         },
         evInput: function(item, kitem) {
             console.log('evInput', 'item=', item, 'kitem', kitem)
