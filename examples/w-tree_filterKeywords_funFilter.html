@@ -85,7 +85,7 @@
     </script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.3.21/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.3.22/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -135,7 +135,7 @@
             >w-tree</span>
         </div>
         <div class="bk">
-            <div class="item">filterKeywords &amp; filterFunction</div>
+            <div class="item">filterKeywords &amp; funFilter</div>
 
             <div style="margin-bottom:10px;">
                 <span style="padding-right:10px;">Search :</span>
@@ -149,7 +149,7 @@
                 style="width:350px; border:1px solid #ddd;"
                 :data="WTree.option.items"
                 :filter-keywords="WTree.option.keywords"
-                :filter-function="filterFunction"
+                :fun-filter="funFilter"
             ></w-tree>
         </div>
     </v-app>
@@ -658,8 +658,8 @@
         //setDataByPathAndValue
         setDataByPathAndValue(data, path, value);
       },
-      filterFunction: function(item, kws) {
-        console.log("filterFunction", item, kws);
+      funFilter: function(item, kws) {
+        console.log("funFilter", item, kws);
         let c = item.text.toLowerCase();
         let b = false;
         for (let i = 0; i < kws.length; i++) {

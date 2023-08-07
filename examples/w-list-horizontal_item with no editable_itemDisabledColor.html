@@ -85,7 +85,7 @@
     </script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.3.21/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.3.22/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -137,8 +137,8 @@
         <div class="bk">
             <div class="item">item with no editable &amp; itemDisabledColor</div>
 
-            <!-- itemDisabledColor是對item故會對背景有影響, 原則是基於item背景色RGB並給予其他半透明度作為禁用效果 -->
-            <div style="padding:25px 30px; background:rgb(245,245,245);">
+            <div style="padding:25px 30px; background:#eee;">
+                <!-- itemDisabledColor是對item故會對背景有影響, 原則是基於item背景色RGB並給予其他半透明度作為禁用效果 -->
                 <w-list-horizontal
                     :items="WListHorizontal.itemsObjForNoEditable"
                     :item-disabled-color="'rgba(245,245,245,0.4)'"

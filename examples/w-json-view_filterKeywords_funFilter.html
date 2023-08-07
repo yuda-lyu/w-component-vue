@@ -85,7 +85,7 @@
     </script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.3.21/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.3.22/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -135,7 +135,7 @@
             >w-json-view</span>
         </div>
         <div class="bk">
-            <div class="item">filterKeywords &amp; filterFunction</div>
+            <div class="item">filterKeywords &amp; funFilter</div>
 
             <div style="margin-bottom:10px;">
                 <span style="padding-right:10px;">Search :</span>
@@ -149,7 +149,7 @@
                 style="width:350px; border:1px solid #ddd;"
                 :data="WJsonView.data3"
                 :filter-keywords="WJsonView.keywords"
-                :filter-function="filterFunction"
+                :fun-filter="funFilter"
             ></w-json-view>
         </div>
     </v-app>
@@ -473,8 +473,8 @@
       changeHeightOfItems: function(msg) {
         console.log("changeHeightOfItems", msg);
       },
-      filterFunction: function(item, kws) {
-        console.log("filterFunction", item, kws);
+      funFilter: function(item, kws) {
+        console.log("funFilter", item, kws);
         if (!item.text) {
           //若無text則跳出, 若要偵測父層節點得要針對key額外處理
           return false;

@@ -85,7 +85,7 @@
     </script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.3.21/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.3.22/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -138,10 +138,11 @@
             <div class="item">item with no editable &amp; itemDisabledColor</div>
 
             <div style="display:inline-block; border:1px dashed #ddd;">
+                <!-- itemDisabledColor是對item故會對背景有影響, 原則是基於item背景色RGB並給予其他半透明度作為禁用效果 -->
                 <w-list-vertical
                     style="height:400px; width:250px;"
                     :items="WListVertical.itemsObjForNoEditable"
-                    :item-disabled-color="'rgba(245,245,245,0.4)'"
+                    :item-disabled-color="'rgba(230,230,230,0.4)'"
                 ></w-list-vertical>
             </div>
         </div>
@@ -316,6 +317,12 @@
             text: "Audience",
             icon: "mdi-book-music-outline",
             type: "Default"
+          },
+          itemActiveForNoEditable: {
+            text: "Audience",
+            icon: "mdi-book-music-outline",
+            type: "Default",
+            editable: true
           }
         },
         actions: []

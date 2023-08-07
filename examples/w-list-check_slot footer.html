@@ -85,7 +85,7 @@
     </script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.3.21/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.3.22/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -132,40 +132,31 @@
                 style="cursor:pointer;"
                 title="open for copy link to view component"
                 onclick="window.open('//yuda-lyu.github.io/w-component-vue/examples/app.html?cmp='+this.innerText,'_blank')"
-            >w-list-horizontal</span>
+            >w-list-check</span>
         </div>
         <div class="bk">
-            <div class="item">slot</div>
+            <div class="item">slot footer</div>
 
-            <w-list-horizontal
-                :items="WListHorizontal.itemsObj"
-                :item-active.sync="WListHorizontal.itemActive"
-                :item-ripple-color="'rgba(200, 200, 200, 0.3)'"
-            >
-                <template v-slot:item="props">
-                    <div style="display:flex; align-items:center;">
-                        <div style="padding:8px 7px 0px 0px;">
-                            <w-icon
-                                :icon="props.item.icon"
-                                :size="32"
-                                :color="props.isActive?'#CDDC39':props.isHover?'#444':'#666'"
-                            ></w-icon>
+            <div style="display:inline-block; border:1px dashed #ddd;">
+                <w-list-check
+                    style="height:400px; width:250px;"
+                    :items="WListCheck.itemsObj"
+                    v-model="WListCheck.itemsObjChecks"
+                >
+                    <template v-slot:footer>
+                        <div
+                            style="padding:10px 15px; font-size:0.9rem; color:#fff; background:rgba(150,150,150,0.25); text-align:right;"
+                        >
+                            <v-btn style="margin-left:8px;" small rounded>Save</v-btn>
+                            <v-btn
+                                style="margin-left:8px;"
+                                small
+                                rounded
+                            >Analysis</v-btn>
                         </div>
-
-                        <div style>
-                            <w-badge :text="props.kitem" :badge-align="'left'">
-                                <div
-                                    :style="`padding:0px 11px 0px 0px; font-size:0.9rem; line-height:0.9rem; color:${props.isActive?'#FF9800':props.isHover?'#444':'#666'};`"
-                                >{{props.item.text}}</div>
-                            </w-badge>
-
-                            <div
-                                :style="`font-size:0.7rem; line-height:0.7rem; opacity:0.7; color:${props.isActive?'#FF9800':props.isHover?'#444':'#666'};`"
-                            >{{props.item.type}}</div>
-                        </div>
-                    </div>
-                </template>
-            </w-list-horizontal>
+                    </template>
+                </w-list-check>
+            </div>
         </div>
     </v-app>
 
@@ -179,7 +170,7 @@
     vuetify: new Vuetify(),
     data: function() {
       return {
-        WListHorizontal: {
+        WListCheck: {
           itemsString: [
             "Real-Time",
             "Audience",
@@ -188,6 +179,7 @@
             "Settings",
             "Actions"
           ],
+          itemsStringChecks: ["Audience", "Actions"],
           itemsObj: [
             {
               text: "Real-Time",
@@ -213,6 +205,23 @@
               text: "Settings",
               icon: "mdi-message-cog-outline",
               type: "Primary"
+            },
+            {
+              text: "Actions",
+              icon: "mdi-gesture-double-tap",
+              type: "Primary"
+            }
+          ],
+          itemsObjCheck: {
+            text: "Audience",
+            icon: "mdi-book-music-outline",
+            type: "Default"
+          },
+          itemsObjChecks: [
+            {
+              text: "Audience",
+              icon: "mdi-book-music-outline",
+              type: "Default"
             },
             {
               text: "Actions",
@@ -270,6 +279,16 @@
               icon: "mdi-gesture-double-tap"
             }
           ],
+          itemsObjLargeChecks: [
+            {
+              text: "Real-Time-1",
+              icon: "mdi-stack-overflow"
+            },
+            {
+              text: "Management-1",
+              icon: "mdi-lightbulb-group-outline"
+            }
+          ],
           itemsObjForKey: [
             {
               name: "Real-Time",
@@ -294,6 +313,16 @@
             {
               name: "Actions",
               path: "mdi-gesture-double-tap"
+            }
+          ],
+          itemsObjForKeyChecks: [
+            {
+              text: "Audience",
+              icon: "mdi-book-music-outline"
+            },
+            {
+              text: "Actions",
+              icon: "mdi-gesture-double-tap"
             }
           ],
           itemsObjForNoEditable: [
@@ -334,12 +363,20 @@
               editable: true
             }
           ],
-          itemsStringActive: "Real-Time",
-          itemActive: {
-            text: "Audience",
-            icon: "mdi-book-music-outline",
-            type: "Default"
-          }
+          itemsObjForNoEditableChecks: [
+            {
+              text: "Audience",
+              icon: "mdi-book-music-outline",
+              type: "Default",
+              editable: true
+            },
+            {
+              text: "Actions",
+              icon: "mdi-gesture-double-tap",
+              type: "Primary",
+              editable: true
+            }
+          ]
         },
         actions: []
       };
