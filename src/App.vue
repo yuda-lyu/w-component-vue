@@ -228,14 +228,9 @@
             ></AppZoneWListHorizontal>
 
 
-            <AppZoneWListExpand
-                v-if="useCmpName==='WListExpand'"
-            ></AppZoneWListExpand>
-
-
-            <AppZoneWListCheck
-                v-if="useCmpName==='WListCheck'"
-            ></AppZoneWListCheck>
+            <AppZoneWInputRadio
+                v-if="useCmpName==='WInputRadio'"
+            ></AppZoneWInputRadio>
 
 
             <AppZoneWInputCheckbox
@@ -243,19 +238,29 @@
             ></AppZoneWInputCheckbox>
 
 
-            <AppZoneWGroupCheck
-                v-if="useCmpName==='WGroupCheck'"
-            ></AppZoneWGroupCheck>
+            <AppZoneWListExpand
+                v-if="useCmpName==='WListExpand'"
+            ></AppZoneWListExpand>
 
 
-            <AppZoneWInputRadio
-                v-if="useCmpName==='WInputRadio'"
-            ></AppZoneWInputRadio>
+            <AppZoneWListRadio
+                v-if="useCmpName==='WListRadio'"
+            ></AppZoneWListRadio>
+
+
+            <AppZoneWListCheck
+                v-if="useCmpName==='WListCheck'"
+            ></AppZoneWListCheck>
 
 
             <AppZoneWGroupRadio
                 v-if="useCmpName==='WGroupRadio'"
             ></AppZoneWGroupRadio>
+
+
+            <AppZoneWGroupCheck
+                v-if="useCmpName==='WGroupCheck'"
+            ></AppZoneWGroupCheck>
 
 
             <AppZoneWText
@@ -430,6 +435,7 @@ import AppZoneWGroupBaggage from './AppZoneWGroupBaggage.vue'
 import AppZoneWListVertical from './AppZoneWListVertical.vue'
 import AppZoneWListHorizontal from './AppZoneWListHorizontal.vue'
 import AppZoneWListExpand from './AppZoneWListExpand.vue'
+import AppZoneWListRadio from './AppZoneWListRadio.vue'
 import AppZoneWListCheck from './AppZoneWListCheck.vue'
 import AppZoneWInputCheckbox from './AppZoneWInputCheckbox.vue'
 import AppZoneWGroupCheck from './AppZoneWGroupCheck.vue'
@@ -495,6 +501,7 @@ export default {
         AppZoneWListVertical,
         AppZoneWListHorizontal,
         AppZoneWListExpand,
+        AppZoneWListRadio,
         AppZoneWListCheck,
         AppZoneWInputCheckbox,
         AppZoneWGroupCheck,
@@ -588,6 +595,7 @@ export default {
                         { name: 'WListHorizontal' },
                         { name: 'WListVertical' },
                         { name: 'WListExpand' },
+                        { name: 'WListRadio' },
                         { name: 'WListCheck' },
                         { name: 'WDynamicList' },
                         { name: 'WSegmentsVertical' },

@@ -777,9 +777,11 @@ export default {
 
             //modify
             if (vo.multiCheck) {
+                //多選
                 itemsCheck[kitem] = !itemsCheck[kitem]
             }
             else {
+                //單選
                 if (!itemsCheck[kitem]) {
                     each(itemsCheck, (v, k) => {
                         if (k === kitem) {
@@ -790,9 +792,9 @@ export default {
                         }
                     })
                 }
-                else {
-                    itemsCheck[kitem] = !itemsCheck[kitem]
-                }
+                // else { //不提供單選時點擊已勾選能取消機制
+                //     itemsCheck[kitem] = !itemsCheck[kitem]
+                // }
             }
             // console.log('itemsCheck', itemsCheck)
 

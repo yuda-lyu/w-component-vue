@@ -39,10 +39,6 @@ export default {
         WInputCheckbox,
     },
     props: {
-        multiCheck: {
-            type: Boolean,
-            default: true,
-        },
         items: {
             type: Array,
             default: () => [],

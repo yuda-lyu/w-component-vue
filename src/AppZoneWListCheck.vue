@@ -73,7 +73,6 @@
                 <div style="display:inline-block; border:1px dashed #ddd;">
                     <w-list-check
                         style="height:400px; width:250px;"
-                        :multiCheck="false"
                         :items="WListCheck.itemsObjForKey"
                         v-model="WListCheck.itemsObjForKeyChecks"
                         :keyText="'name'"
@@ -631,11 +630,6 @@ export default {
                         type: 'Primary',
                     },
                 ],
-                'itemsObjCheck': {
-                    text: 'Audience',
-                    icon: mdiBookMusicOutline,
-                    type: 'Default',
-                },
                 'itemsObjChecks': [
                     {
                         text: 'Audience',
@@ -736,12 +730,12 @@ export default {
                 ],
                 'itemsObjForKeyChecks': [
                     {
-                        text: 'Audience',
-                        icon: mdiBookMusicOutline,
+                        name: 'Audience',
+                        path: mdiBookMusicOutline,
                     },
                     {
-                        text: 'Actions',
-                        icon: mdiGestureDoubleTap,
+                        name: 'Actions',
+                        path: mdiGestureDoubleTap,
                     },
                 ],
                 'itemsObjForNoEditable': [
