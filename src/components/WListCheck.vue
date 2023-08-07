@@ -796,6 +796,37 @@ export default {
             }
             // console.log('itemsCheck', itemsCheck)
 
+            //value
+            let value = []
+            each(itemsCheck, (b, k) => {
+
+                //check
+                if (!b) {
+                    return true //跳出換下一個
+                }
+
+                //v
+                let v = cloneDeep(vo.items[k])
+
+                //vt
+                let vt = null
+                if (vo.isObjValue && isestr(vo.keyPickForObjItem)) {
+                    vt = get(v, vo.keyPickForObjItem)
+                }
+                else {
+                    vt = v
+                }
+
+                //push
+                value.push(vt)
+
+            })
+            // console.log('value', value)
+            if (!vo.multiCheck) {
+                value = get(value, 0, null)
+                // console.log('value(single)', value)
+            }
+
             //save
             vo.itemsCheck = itemsCheck
             // console.log('itemsCheck', itemsCheck)
@@ -807,8 +838,8 @@ export default {
                 kitem,
             })
 
-            // //emit
-            // vo.$emit('input', value)
+            //emit
+            vo.$emit('input', value)
 
         },
 
@@ -844,27 +875,6 @@ export default {
             // let vo = this
             let b = get(item, 'editable', true)
             return b
-        },
-
-        ckItem: function(item) {
-            // console.log('methods ckItem', item)
-
-            let vo = this
-
-            //check
-            if (!vo.getEditable(item)) {
-                return
-            }
-
-            // //save itemActiveTrans
-            // vo.itemActiveTrans = item
-
-            //emit
-            vo.$emit('click', { ...item })
-
-            // //emit
-            // vo.$emit('update:itemActive', { ...item })
-
         },
 
     }
