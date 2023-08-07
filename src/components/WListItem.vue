@@ -10,23 +10,46 @@
         <div :style="`transition:all 0.3s; color:${useTextColor}; ${useTextFontSize}`">
 
             <slot
+                name="item"
                 :isHover="mouseEnter"
                 :isActive="active"
             >
 
                 <div style="display:flex; align-items:center;">
 
-                    <WIcon
-                        style="margin-right:8px;"
-                        :icon="icon"
-                        :color="useIconColor"
-                        :size="iconSize"
-                        v-if="hasIcon"
-                    ></WIcon>
+                    <slot
+                        name="item-left"
+                        :isHover="mouseEnter"
+                        :isActive="active"
+                    >
+                    </slot>
 
-                    <div>
-                        {{text}}
-                    </div>
+                    <slot
+                        name="item-content"
+                        :isHover="mouseEnter"
+                        :isActive="active"
+                    >
+
+                        <WIcon
+                            style="margin-right:8px;"
+                            :icon="icon"
+                            :color="useIconColor"
+                            :size="iconSize"
+                            v-if="hasIcon"
+                        ></WIcon>
+
+                        <div>
+                            {{text}}
+                        </div>
+
+                    </slot>
+
+                    <slot
+                        name="item-right"
+                        :isHover="mouseEnter"
+                        :isActive="active"
+                    >
+                    </slot>
 
                 </div>
 
@@ -63,14 +86,17 @@ import WIcon from './WIcon.vue'
  * @vue-prop {String} [backgroundColor='white'] 輸入背景顏色字串，預設'white'
  * @vue-prop {String} [backgroundColorHover='rgba(200,200,200,0.2)'] 輸入滑鼠移入時背景顏色字串，預設'rgba(200,200,200,0.2)'
  * @vue-prop {String} [backgroundColorActive='orange lighten-1'] 輸入主動模式時背景顏色字串，預設'orange lighten-1'
+ * @vue-prop {String} [backgroundColorDisabled='white'] 輸入非啟用模式時背景顏色字串，預設'white'
  * @vue-prop {String} [textColor='#444'] 輸入文字顏色字串，預設'#444'
  * @vue-prop {String} [textColorHover='#222'] 輸入滑鼠移入時文字顏色字串，預設'#222'
  * @vue-prop {String} [textColorActive='white'] 輸入主動模式時文字顏色字串，預設'white'
+ * @vue-prop {String} [textColorDisabled='#444'] 輸入非啟用模式時文字顏色字串，預設'#444'
  * @vue-prop {String} [icon=''] 輸入圖標字串，可為mdi,md,fa代號或mdi/js路徑，預設''
  * @vue-prop {Number} [iconSize=22] 輸入左側圖標之尺寸數字，單位px，預設22
  * @vue-prop {String} [iconColor='#444'] 輸入圖標顏色字串，預設'#444'
  * @vue-prop {String} [iconColorHover='#222'] 輸入滑鼠移入時圖標顏色字串，預設'#222'
  * @vue-prop {String} [iconColorActive='white'] 輸入主動模式時圖標顏色字串，預設'white'
+ * @vue-prop {String} [iconColorDisabled='#444'] 輸入非啟用模式時圖標顏色字串，預設'#444'
  * @vue-prop {String} [rippleColor='rgba(255,255,255,0.4)'] 輸入ripple效果顏色字串，預設'rgba(255,255,255,0.4)'
  * @vue-prop {Boolean} [cursorPointer=true] 輸入是否滑鼠移入顯示pointer樣式，預設true
  * @vue-prop {Boolean} [editable=true] 輸入是否為可點擊模式布林值，預設true
@@ -121,6 +147,10 @@ export default {
             type: String,
             default: 'orange lighten-1',
         },
+        backgroundColorDisabled: {
+            type: String,
+            default: 'white',
+        },
         textColor: {
             type: String,
             default: '#444',
@@ -132,6 +162,10 @@ export default {
         textColorActive: {
             type: String,
             default: 'white',
+        },
+        textColorDisabled: {
+            type: String,
+            default: '#444',
         },
         icon: {
             type: String,
@@ -152,6 +186,10 @@ export default {
         iconColorActive: {
             type: String,
             default: 'white',
+        },
+        iconColorDisabled: {
+            type: String,
+            default: '#444',
         },
         rippleColor: {
             type: String,
@@ -219,8 +257,16 @@ export default {
             return color2hex(vo.backgroundColorActive)
         },
 
+        effBackgroundColorDisabled: function() {
+            let vo = this
+            return color2hex(vo.backgroundColorDisabled)
+        },
+
         useBackgroundColor: function() {
             let vo = this
+            if (!vo.editable) {
+                return vo.effBackgroundColorDisabled
+            }
             if (vo.active) {
                 return vo.effBackgroundActive
             }
@@ -242,8 +288,16 @@ export default {
             return color2hex(vo.textColorActive)
         },
 
+        effTextColorDisabled: function() {
+            let vo = this
+            return color2hex(vo.textColorDisabled)
+        },
+
         useTextColor: function() {
             let vo = this
+            if (!vo.editable) {
+                return vo.effTextColorDisabled
+            }
             if (vo.active) {
                 return vo.effTextActive
             }
@@ -265,8 +319,16 @@ export default {
             return color2hex(vo.iconColorActive)
         },
 
+        effIconColorDisabled: function() {
+            let vo = this
+            return color2hex(vo.iconColorDisabled)
+        },
+
         useIconColor: function() {
             let vo = this
+            if (!vo.editable) {
+                return vo.effIconColorDisabled
+            }
             if (vo.active) {
                 return vo.effIconActive
             }

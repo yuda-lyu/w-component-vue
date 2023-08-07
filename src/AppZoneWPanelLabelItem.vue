@@ -255,6 +255,31 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-panel-label-Item'"
+                    :casename="'slot item-sub'"
+                ></demolink>
+
+                <w-panel-label-Item
+                    :label="'Name'"
+                >
+                    <template v-slot:item>
+                        <w-text
+                            :value="'Adelina'"
+                            :textFontSize="'0.85rem'"
+                        ></w-text>
+                    </template>
+                    <template v-slot:item-sub>
+                        <div style="color:#f26; font-size:0.7rem;">
+                            Please fill in data.
+                        </div>
+                    </template>
+                </w-panel-label-Item>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-panel-label-Item'"
                     :casename="'with text & seplines'"
                 ></demolink>
 
@@ -473,6 +498,32 @@
                             :value="'Adelina'"
                             :textFontSize="'0.85rem'"
                         ></w-text>
+                    </template>
+                </w-panel-label-Item>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-panel-label-Item'"
+                    :casename="'seplines & slot item-sub'"
+                ></demolink>
+
+                <w-panel-label-Item
+                    :seplines="true"
+                    :label="'Name'"
+                >
+                    <template v-slot:item>
+                        <w-text
+                            :value="'Adelina'"
+                            :textFontSize="'0.85rem'"
+                        ></w-text>
+                    </template>
+                    <template v-slot:item-sub>
+                        <div style="color:#f26; font-size:0.7rem;">
+                            Please fill in data.
+                        </div>
                     </template>
                 </w-panel-label-Item>
 

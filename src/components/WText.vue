@@ -1,5 +1,5 @@
 <template>
-    <div :changeParam="changeParam">
+    <div :changeFocused="changeFocused">
 
         <WShellBottomLine
             :borderColor="bottomLineBorderColor"
@@ -50,7 +50,7 @@
                     :editable="editable"
                     :value="value"
                     :focused="focusedTrans"
-                    @update:focused="changeFocused"
+                    @update:focused="modifyFocused"
                     @select="(v,err,ev)=>{$emit('select',v,err,ev)}"
                     @blur="(v,err,ev)=>{$emit('blur',v,err,ev)}"
                     @enter="(v,err,ev)=>{$emit('enter',v,err,ev)}"
@@ -283,8 +283,8 @@ export default {
     },
     computed: {
 
-        changeParam: function () {
-            //console.log('computed changeParam')
+        changeFocused: function () {
+            //console.log('computed changeFocused')
 
             let vo = this
 
@@ -297,8 +297,8 @@ export default {
     },
     methods: {
 
-        changeFocused: function(focused) {
-            //console.log('methods changeFocused', focused)
+        modifyFocused: function(focused) {
+            //console.log('methods modifyFocused', focused)
 
             let vo = this
 

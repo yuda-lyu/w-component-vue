@@ -12,7 +12,7 @@
             :iconToggleBackgroundColorHover="iconToggleBackgroundColorHover"
             :itemRippleColor="rippleColor"
             :filterKeywords="filterKeywords"
-            :filterFunction="filterFunction"
+            :funFilter="funFilter"
             :loadingText="loadingText"
             :noResultsText="lockFromSetData?'':noResultsText"
             :searchingText="searchingText"
@@ -115,7 +115,7 @@ import WTree from './WTree.vue'
  * @vue-prop {String} [iconToggleBackgroundColor='transparent'] 輸入顯隱icon按鈕背景顏色字串，預設'transparent'
  * @vue-prop {String} [iconToggleBackgroundColorHover='rgba(128,128,128,0.15)'] 輸入滑鼠移入時顯隱icon按鈕背景顏色字串，預設'rgba(128,128,128,0.15)'
  * @vue-prop {String} [filterKeywords=''] 輸入過濾關鍵字字串，多關鍵字用空白分隔，預設''
- * @vue-prop {Function} [filterFunction=null] 輸入過濾時呼叫處理函數，可使用sync或async函數，傳入為各項目物件資料，若為sync函數回傳布林值，若為async函數等待resolve結果為布林值，代表項目內是否含有關鍵字，預設null
+ * @vue-prop {Function} [funFilter=null] 輸入過濾時呼叫處理函數，可使用sync或async函數，傳入為各項目物件資料，若為sync函數回傳布林值，若為async函數等待resolve結果為布林值，代表項目內是否含有關鍵字，預設null
  * @vue-prop {String} [loadingText='Loading...'] 輸入載入中字串，預設'Loading...'
  * @vue-prop {String} [noResultsText='No results'] 輸入無過濾結果字串，預設'No results'
  * @vue-prop {String} [searchingText='Searching...'] 輸入搜索中字串，預設'Searching...'
@@ -175,7 +175,7 @@ export default {
             type: String,
             default: '',
         },
-        filterFunction: {
+        funFilter: {
             type: Function,
             default: null,
         },

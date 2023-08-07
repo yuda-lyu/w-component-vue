@@ -85,7 +85,7 @@
     </script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.3.21/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.3.22/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -135,48 +135,18 @@
             >w-list-vertical</span>
         </div>
         <div class="bk">
-            <div class="item">slot item</div>
+            <div
+                class="item"
+            >item with no editable &amp; itemTextColorDisabled &amp; itemIconColorDisabled &amp; itemBackgroundColorDisabled</div>
 
             <div style="display:inline-block; border:1px dashed #ddd;">
                 <w-list-vertical
                     style="height:400px; width:250px;"
-                    :items="WListVertical.itemsObj"
-                    :item-background-color-active="'#444'"
-                >
-                    <template v-slot:item="props">
-                        <div>
-                            <div
-                                style="margin-bottom:5px; display:flex; align-items:center;"
-                            >
-                                <w-icon
-                                    style="margin-right:8px;"
-                                    :icon="props.item.icon"
-                                    :size="16"
-                                    :color="props.isActive?'#CDDC39':props.isHover?'#444':'#666'"
-                                ></w-icon>
-
-                                <div
-                                    :style="`transition:all 0.3s; font-size:0.8rem; color:${props.isActive?'#B388FF':props.isHover?'#444':'#666'};`"
-                                >
-                                    <div>{{props.item.type}}</div>
-                                </div>
-                            </div>
-
-                            <div style="display:flex; align-items:center;">
-                                <w-icon
-                                    style="margin-right:8px;"
-                                    :icon="'mdi-lightbulb-on-outline'"
-                                    :size="16"
-                                    :color="props.isActive?'#CDDC39':'#666'"
-                                ></w-icon>
-
-                                <div
-                                    :style="'transition:all 0.3s; color:'.concat(props.isActive?'#fff':'#666')+';'"
-                                >{{props.item.text}}</div>
-                            </div>
-                        </div>
-                    </template>
-                </w-list-vertical>
+                    :items="WListVertical.itemsObjForNoEditable"
+                    :item-text-color-disabled="'#aaa'"
+                    :item-icon-color-disabled="'#aaa'"
+                    :item-background-color-disabled="'transparent'"
+                ></w-list-vertical>
             </div>
         </div>
     </v-app>
@@ -350,6 +320,12 @@
             text: "Audience",
             icon: "mdi-book-music-outline",
             type: "Default"
+          },
+          itemActiveForNoEditable: {
+            text: "Audience",
+            icon: "mdi-book-music-outline",
+            type: "Default",
+            editable: true
           }
         },
         actions: []

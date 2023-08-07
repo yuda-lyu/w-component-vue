@@ -8,7 +8,7 @@
         <div style="position:relative; display:flex; align-items:center; white-space:nowrap;">
 
             <div
-                :style="`transition:all 0.3s; position:absolute; z-index:1; bottom:0px; left:${borderBottomLeft}px; padding-left:${borderBottomWidth}px; border-bottom:${borderBottomSize}px solid ${useBorderBottomColor};`"
+                :style="`transition:all 0.3s; position:absolute; z-index:1; bottom:0px; left:${borderBottomLeft}px; padding-left:${borderBottomWidth}px; border-bottom:${borderBottomSize}px solid ${effBorderBottomColor};`"
                 v-if="borderBottom"
             >
             </div>
@@ -33,25 +33,48 @@
                         :backgroundColor="itemBackgroundColor"
                         :backgroundColorHover="itemBackgroundColorHover"
                         :backgroundColorActive="itemBackgroundColorActive"
+                        :backgroundColorDisabled="itemBackgroundColorDisabled"
                         :textColor="itemTextColor"
                         :textColorHover="itemTextColorHover"
                         :textColorActive="itemTextColorActive"
+                        :textColorDisabled="itemTextColorDisabled"
                         :iconSize="itemIconSize"
                         :iconColor="itemIconColor"
                         :iconColorHover="itemIconColorHover"
                         :iconColorActive="itemIconColorActive"
+                        :iconColorDisabled="itemIconColorDisabled"
                         :rippleColor="getEditable(item)?itemRippleColor:null"
                         :editable="getEditable(item)"
                         :disabledColor="itemDisabledColor"
                         :cursorPointer="itemCursorPointer"
-                        @click="ckItem(item)"
+                        @click="ckItem(item,kitem)"
                     >
 
-                        <template
-                            v-slot="props"
-                        >
+                        <template v-slot:item="props">
                             <slot
-                                name="item"
+                                name="item-content"
+                                :item="item"
+                                :kitem="kitem"
+                                :isHover="props.isHover"
+                                :isActive="props.isActive"
+                            >
+                            </slot>
+                        </template>
+
+                        <!-- item-left與item-right位於item之內, 若要使用則不能slot:item -->
+                        <template v-slot:item-left="props">
+                            <slot
+                                name="item-left"
+                                :item="item"
+                                :kitem="kitem"
+                                :isHover="props.isHover"
+                                :isActive="props.isActive"
+                            >
+                            </slot>
+                        </template>
+                        <template v-slot:item-right="props">
+                            <slot
+                                name="item-right"
                                 :item="item"
                                 :kitem="kitem"
                                 :isHover="props.isHover"
@@ -96,18 +119,21 @@ import WListItem from './WListItem.vue'
  * @vue-prop {String} [itemBackgroundColor='white'] 輸入背景顏色字串，預設'white'
  * @vue-prop {String} [itemBackgroundColorHover='rgba(200,200,200,0.2)'] 輸入滑鼠移入時背景顏色字串，預設'rgba(200,200,200,0.2)'
  * @vue-prop {String} [itemBackgroundColorActive='white'] 輸入主動模式時背景顏色字串，預設'white'
+ * @vue-prop {String} [itemBackgroundColorDisabled='white'] 輸入非啟用模式時背景顏色字串，預設'white'
  * @vue-prop {String} [itemTextColor='#444'] 輸入文字顏色字串，預設'#444'
  * @vue-prop {String} [itemTextColorHover='#222'] 輸入滑鼠移入時文字顏色字串，預設'#222'
  * @vue-prop {String} [itemTextColorActive='orange darken-3'] 輸入主動模式時文字顏色字串，預設'orange darken-3'
+ * @vue-prop {String} [itemTextColorDisabled='#444'] 輸入非啟用模式時文字顏色字串，預設'#444'
  * @vue-prop {Number} [itemIconSize=22] 輸入左側圖標之尺寸數字，單位px，預設22
  * @vue-prop {String} [itemIconColor='#444'] 輸入圖標顏色字串，預設'#444'
  * @vue-prop {String} [itemIconColorHover='#222'] 輸入滑鼠移入時圖標顏色字串，預設'#222'
  * @vue-prop {String} [itemIconColorActive='orange darken-3'] 輸入主動模式時圖標顏色字串，預設'orange darken-3'
+ * @vue-prop {String} [itemIconColorDisabled='#444'] 輸入非啟用模式時圖標顏色字串，預設'#444'
  * @vue-prop {String} [itemRippleColor='rgba(245,124,0,0.4)'] 輸入ripple效果顏色字串，預設'rgba(245,124,0,0.4)'
  * @vue-prop {Boolean} [borderBottom=true] 輸入主動模式時是否於項目底部顯示高亮線條，預設true
  * @vue-prop {Number} [borderBottomSize=2] 輸入底部高亮線條尺寸(高度)數字，單位px，預設2
  * @vue-prop {String} [borderBottomColor='rgba(245,124,0,0.8)'] 輸入底部高亮線條顏色字串，預設'rgba(245,124,0,0.8)'
- * @vue-prop {String} [itemDisabledColor='rgba(255,255,255,0.5)'] 輸入非編輯模式時遮罩顏色字串，預設'rgba(255,255,255,0.5)'
+ * @vue-prop {String} [itemDisabledColor='transparent'] 輸入非編輯模式時遮罩顏色字串，預設'transparent'
  * @vue-prop {Boolean} [itemCursorPointer=true] 輸入是否滑鼠移入顯示pointer樣式，預設true
  */
 export default {
@@ -171,6 +197,10 @@ export default {
             type: String,
             default: 'white',
         },
+        itemBackgroundColorDisabled: {
+            type: String,
+            default: 'white',
+        },
         itemTextColor: {
             type: String,
             default: '#444',
@@ -182,6 +212,10 @@ export default {
         itemTextColorActive: {
             type: String,
             default: 'orange darken-3',
+        },
+        itemTextColorDisabled: {
+            type: String,
+            default: '#444',
         },
         itemIconSize: {
             type: Number,
@@ -198,6 +232,10 @@ export default {
         itemIconColorActive: {
             type: String,
             default: 'orange darken-3',
+        },
+        itemIconColorDisabled: {
+            type: String,
+            default: '#444',
         },
         itemRippleColor: {
             type: String,
@@ -217,7 +255,7 @@ export default {
         },
         itemDisabledColor: {
             type: String,
-            default: 'rgba(255,255,255,0.5)',
+            default: 'transparent',
         },
         itemCursorPointer: {
             type: Boolean,
@@ -274,7 +312,7 @@ export default {
             })
         },
 
-        useBorderBottomColor: function() {
+        effBorderBottomColor: function() {
             let vo = this
             return color2hex(vo.borderBottomColor)
         },
@@ -396,8 +434,8 @@ export default {
 
         },
 
-        ckItem: function(item) {
-            // console.log('methods ckItem', item)
+        ckItem: function(item, kitem) {
+            // console.log('methods ckItem', item, kitem)
 
             let vo = this
 
@@ -410,7 +448,7 @@ export default {
             vo.itemActiveTrans = item
 
             //emit
-            vo.$emit('click', { ...item })
+            vo.$emit('click', { ...item }, kitem)
 
             //emit
             vo.$emit('update:itemActive', { ...item })

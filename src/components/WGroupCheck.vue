@@ -69,7 +69,7 @@ import parseSpace from '../js/parseSpace.mjs'
 /**
  * @vue-prop {Boolean} [multiCheck=true] 輸入是否為複選模式布林值，預設true
  * @vue-prop {Array} [items=[]] 輸入全部可選字串或物件陣列，預設[]
- * @vue-prop {Array|String|Object} value 輸入複選字串或物件陣列，無預設
+ * @vue-prop {Array|String|Object} [value=null] 輸入單、複選陣列、字串或物件陣列，預設null
  * @vue-prop {String} [keyText='text'] 輸入可選項目為物件時，存放顯示文字之欄位字串，預設'text'
  * @vue-prop {String} [keyIcon='icon'] 輸入可選項目為物件時，存放圖標之欄位字串，預設'icon'
  * @vue-prop {String} [keyTooltip='tooltip'] 輸入可選項目為物件時，存放提示之欄位字串，預設'tooltip'
@@ -121,6 +121,7 @@ export default {
         },
         value: {
             type: [Array, String, Object],
+            default: null,
         },
         keyText: {
             type: String,
@@ -336,9 +337,9 @@ export default {
                 return {
                     active,
                     hover: false,
-                    borderColor: vo.borderColor,
-                    borderColorHover: vo.borderColorHover,
-                    borderColorActive: vo.borderColorActive,
+                    borderColor: vo.borderColor, //供配合左右active項目邊框變色
+                    borderColorHover: vo.borderColorHover, //供配合左右active項目邊框變色
+                    borderColorActive: vo.borderColorActive, //供配合左右active項目邊框變色
                     // borderLeftColor: borderColor,
                     // borderRightColor: borderColor,
                     // borderLeftColorHover: borderColorHover,

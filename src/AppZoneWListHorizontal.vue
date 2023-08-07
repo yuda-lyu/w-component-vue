@@ -124,11 +124,30 @@
                     :casename="'item with no editable & itemDisabledColor'"
                 ></demolink>
 
-                <!-- itemDisabledColor是對item故會對背景有影響, 原則是基於item背景色RGB並給予其他半透明度作為禁用效果 -->
-                <div style="padding:25px 30px; background:rgb(245,245,245);">
+                <div style="padding:25px 30px; background:#eee;">
+                    <!-- itemDisabledColor是對item故會對背景有影響, 原則是基於item背景色RGB並給予其他半透明度作為禁用效果 -->
                     <w-list-horizontal
                         :items="WListHorizontal.itemsObjForNoEditable"
                         :itemDisabledColor="'rgba(245,245,245,0.4)'"
+                    >
+                    </w-list-horizontal>
+                </div>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-list-horizontal'"
+                    :casename="'item with no editable & itemTextColorDisabled & itemIconColorDisabled & itemBackgroundColorDisabled'"
+                ></demolink>
+
+                <div style="padding:25px 30px; background:#eee;">
+                    <w-list-horizontal
+                        :items="WListHorizontal.itemsObjForNoEditable"
+                        :itemTextColorDisabled="'#aaa'"
+                        :itemIconColorDisabled="'#aaa'"
+                        :itemBackgroundColorDisabled="'transparent'"
                     >
                     </w-list-horizontal>
                 </div>
@@ -293,7 +312,7 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-list-horizontal'"
-                    :casename="'slot'"
+                    :casename="'slot item-content'"
                 ></demolink>
 
                 <w-list-horizontal
@@ -301,7 +320,7 @@
                     :itemActive.sync="WListHorizontal.itemActive"
                     :itemRippleColor="'rgba(200, 200, 200, 0.3)'"
                 >
-                    <template v-slot:item="props">
+                    <template v-slot:item-content="props">
                         <div style="display:flex; align-items:center;">
 
                             <div style="padding:8px 7px 0px 0px;">

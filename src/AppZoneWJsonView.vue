@@ -174,7 +174,7 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-json-view'"
-                    :casename="'filterKeywords & filterFunction'"
+                    :casename="'filterKeywords & funFilter'"
                 ></demolink>
 
                 <div style="margin-bottom:10px;">
@@ -189,7 +189,7 @@
                     style="width:350px; border:1px solid #ddd;"
                     :data="WJsonView.data3"
                     :filterKeywords="WJsonView.keywords"
-                    :filterFunction="filterFunction"
+                    :funFilter="funFilter"
                 ></w-json-view>
 
             </div>
@@ -343,8 +343,8 @@ export default {
         changeHeightOfItems: function(msg) {
             console.log('changeHeightOfItems', msg)
         },
-        filterFunction: function(item, kws) {
-            console.log('filterFunction', item, kws)
+        funFilter: function(item, kws) {
+            console.log('funFilter', item, kws)
             if (!item.text) { //若無text則跳出, 若要偵測父層節點得要針對key額外處理
                 return false
             }

@@ -85,7 +85,7 @@
     </script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.3.21/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.3.22/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -478,8 +478,8 @@
       changeHeightOfItems: function(msg) {
         console.log("changeHeightOfItems", msg);
       },
-      filterFunction: function(item, kws) {
-        console.log("filterFunction", item, kws);
+      funFilter: function(item, kws) {
+        console.log("funFilter", item, kws);
         if (!item.text) {
           //若無text則跳出, 若要偵測父層節點得要針對key額外處理
           return false;

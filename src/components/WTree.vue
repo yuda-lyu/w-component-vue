@@ -365,7 +365,7 @@ let gm = globalMemory()
  * @vue-prop {String} [iconCheckedPartiallyColor='blue darken-3'] 輸入核選icon部份勾選時(子節點任一有勾選但非全部勾選)顏色字串，預設'blue darken-3'
  * @vue-prop {String} [iconCheckedPartiallyDisabledColor='grey'] 輸入核選icon禁用時部份勾選時顏色字串，預設'grey'
  * @vue-prop {String} [filterKeywords=''] 輸入過濾關鍵字字串，多關鍵字用空白分隔，預設''
- * @vue-prop {Function} [filterFunction=null] 輸入過濾時呼叫處理函數，可使用sync或async函數，傳入為各項目物件資料，若為sync函數回傳布林值，若為async函數等待resolve結果為布林值，代表項目內是否含有關鍵字，預設null
+ * @vue-prop {Function} [funFilter=null] 輸入過濾時呼叫處理函數，可使用sync或async函數，傳入為各項目物件資料，若為sync函數回傳布林值，若為async函數等待resolve結果為布林值，代表項目內是否含有關鍵字，預設null
  * @vue-prop {String} [loadingText='Loading...'] 輸入載入中字串，預設'Loading...'
  * @vue-prop {String} [noResultsText='No results'] 輸入無過濾結果字串，預設'No results'
  * @vue-prop {String} [searchingText='Searching...'] 輸入搜索中字串，預設'Searching...'
@@ -575,7 +575,7 @@ export default {
             type: String,
             default: '',
         },
-        filterFunction: {
+        funFilter: {
             type: Function,
             default: null,
         },
@@ -2664,10 +2664,10 @@ export default {
                     let b = false
 
                     //filter
-                    if (isfun(vo.filterFunction)) {
+                    if (isfun(vo.funFilter)) {
 
-                        //filterFunction
-                        b = vo.filterFunction(items[i].row.item, kws)
+                        //funFilter
+                        b = vo.funFilter(items[i].row.item, kws)
 
                         //check
                         if (ispm(b)) {

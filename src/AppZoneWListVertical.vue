@@ -68,10 +68,31 @@
                 ></demolink>
 
                 <div style="display:inline-block; border:1px dashed #ddd;">
+                    <!-- itemDisabledColor是對item故會對背景有影響, 原則是基於item背景色RGB並給予其他半透明度作為禁用效果 -->
                     <w-list-vertical
                         style="height:400px; width:250px;"
                         :items="WListVertical.itemsObjForNoEditable"
-                        :itemDisabledColor="'rgba(245,245,245,0.4)'"
+                        :itemDisabledColor="'rgba(230,230,230,0.4)'"
+                    >
+                    </w-list-vertical>
+                </div>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-list-vertical'"
+                    :casename="'item with no editable & itemTextColorDisabled & itemIconColorDisabled & itemBackgroundColorDisabled'"
+                ></demolink>
+
+                <div style="display:inline-block; border:1px dashed #ddd;">
+                    <w-list-vertical
+                        style="height:400px; width:250px;"
+                        :items="WListVertical.itemsObjForNoEditable"
+                        :itemTextColorDisabled="'#aaa'"
+                        :itemIconColorDisabled="'#aaa'"
+                        :itemBackgroundColorDisabled="'transparent'"
                     >
                     </w-list-vertical>
                 </div>
@@ -277,7 +298,7 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-list-vertical'"
-                    :casename="'slot item'"
+                    :casename="'slot item-content & itemBackgroundColorActive'"
                 ></demolink>
 
                 <div style="display:inline-block; border:1px dashed #ddd;">
@@ -286,7 +307,7 @@
                         :items="WListVertical.itemsObj"
                         :itemBackgroundColorActive="'#444'"
                     >
-                        <template v-slot:item="props">
+                        <template v-slot:item-content="props">
                             <div>
 
                                 <div style="margin-bottom:5px; display:flex; align-items:center;">
@@ -315,7 +336,7 @@
                                         :color="props.isActive?'#CDDC39':'#666'"
                                     ></w-icon>
 
-                                    <div :style="'transition:all 0.3s; color:'.concat(props.isActive?'#fff':'#666')+';'">{{props.item.text}}</div>
+                                    <div :style="`transition:all 0.3s; color:${props.isActive?'#fff':'#666'};`">{{props.item.text}}</div>
 
                                 </div>
 
@@ -541,6 +562,12 @@ export default {
                     text: 'Audience',
                     icon: mdiBookMusicOutline,
                     type: 'Default',
+                },
+                'itemActiveForNoEditable': {
+                    text: 'Audience',
+                    icon: mdiBookMusicOutline,
+                    type: 'Default',
+                    editable: true,
                 },
             },
             'actions': [

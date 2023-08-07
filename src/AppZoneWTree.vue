@@ -227,7 +227,7 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-tree'"
-                    :casename="'filterKeywords & filterFunction'"
+                    :casename="'filterKeywords & funFilter'"
                 ></demolink>
 
                 <div style="margin-bottom:10px;">
@@ -242,7 +242,7 @@
                     style="width:350px; border:1px solid #ddd;"
                     :data="WTree.option.items"
                     :filterKeywords="WTree.option.keywords"
-                    :filterFunction="filterFunction"
+                    :funFilter="funFilter"
                 ></w-tree>
 
             </div>
@@ -1955,8 +1955,8 @@ export default {
             setDataByPathAndValue(data, path, value)
 
         },
-        filterFunction: function(item, kws) {
-            console.log('filterFunction', item, kws)
+        funFilter: function(item, kws) {
+            console.log('funFilter', item, kws)
             let c = item.text.toLowerCase()
             let b = false
             for (let i = 0; i < kws.length; i++) {

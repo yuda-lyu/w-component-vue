@@ -233,6 +233,11 @@
             ></AppZoneWListExpand>
 
 
+            <AppZoneWListCheck
+                v-if="useCmpName==='WListCheck'"
+            ></AppZoneWListCheck>
+
+
             <AppZoneWInputCheckbox
                 v-if="useCmpName==='WInputCheckbox'"
             ></AppZoneWInputCheckbox>
@@ -425,6 +430,7 @@ import AppZoneWGroupBaggage from './AppZoneWGroupBaggage.vue'
 import AppZoneWListVertical from './AppZoneWListVertical.vue'
 import AppZoneWListHorizontal from './AppZoneWListHorizontal.vue'
 import AppZoneWListExpand from './AppZoneWListExpand.vue'
+import AppZoneWListCheck from './AppZoneWListCheck.vue'
 import AppZoneWInputCheckbox from './AppZoneWInputCheckbox.vue'
 import AppZoneWGroupCheck from './AppZoneWGroupCheck.vue'
 import AppZoneWInputRadio from './AppZoneWInputRadio.vue'
@@ -489,6 +495,7 @@ export default {
         AppZoneWListVertical,
         AppZoneWListHorizontal,
         AppZoneWListExpand,
+        AppZoneWListCheck,
         AppZoneWInputCheckbox,
         AppZoneWGroupCheck,
         AppZoneWInputRadio,
@@ -581,6 +588,7 @@ export default {
                         { name: 'WListHorizontal' },
                         { name: 'WListVertical' },
                         { name: 'WListExpand' },
+                        { name: 'WListCheck' },
                         { name: 'WDynamicList' },
                         { name: 'WSegmentsVertical' },
                     ]

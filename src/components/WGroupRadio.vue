@@ -18,7 +18,7 @@ import WGroupCheck from './WGroupCheck.vue'
 
 /**
  * @vue-prop {Array} [items=[]] 輸入全部可選字串或物件陣列，預設[]
- * @vue-prop {String|Object} value 輸入單選字串或物件，無預設
+ * @vue-prop {String|Object} [value=null] 輸入單選字串或物件，預設null
  * @vue-prop {String} [keyText='text'] 輸入可選項目為物件時，存放顯示文字之欄位字串，預設'text'
  * @vue-prop {String} [keyIcon='icon'] 輸入可選項目為物件時，存放圖標之欄位字串，預設'icon'
  * @vue-prop {String} [keyTooltip='tooltip'] 輸入可選項目為物件時，存放提示之欄位字串，預設'tooltip'
@@ -66,6 +66,7 @@ export default {
         },
         value: {
             type: [String, Object],
+            default: null,
         },
         keyText: {
             type: String,

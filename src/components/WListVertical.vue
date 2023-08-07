@@ -1,5 +1,6 @@
 <template>
     <div
+        :changeParams="changeParams"
         :changeItemActive="changeItemActive"
         v-domresize
         @domresize="resize"
@@ -19,7 +20,7 @@
             >
                 <div
                     :key="kitem"
-                    v-for="(item,kitem) in items"
+                    v-for="(item,kitem) in useItems"
                 >
 
                     <WListItem
@@ -31,25 +32,48 @@
                         :backgroundColor="itemBackgroundColor"
                         :backgroundColorHover="itemBackgroundColorHover"
                         :backgroundColorActive="itemBackgroundColorActive"
+                        :backgroundColorDisabled="itemBackgroundColorDisabled"
                         :textColor="itemTextColor"
                         :textColorHover="itemTextColorHover"
                         :textColorActive="itemTextColorActive"
+                        :textColorDisabled="itemTextColorDisabled"
                         :iconSize="itemIconSize"
                         :iconColor="itemIconColor"
                         :iconColorHover="itemIconColorHover"
                         :iconColorActive="itemIconColorActive"
+                        :iconColorDisabled="itemIconColorDisabled"
                         :rippleColor="getEditable(item)?itemRippleColor:null"
                         :editable="getEditable(item)"
                         :disabledColor="itemDisabledColor"
                         :cursorPointer="itemCursorPointer"
-                        @click="ckItem(item)"
+                        @click="ckItem(item,kitem)"
                     >
 
-                        <template
-                            v-slot="props"
-                        >
+                        <template v-slot:item-content="props">
                             <slot
-                                name="item"
+                                name="item-content"
+                                :item="item"
+                                :kitem="kitem"
+                                :isHover="props.isHover"
+                                :isActive="props.isActive"
+                            >
+                            </slot>
+                        </template>
+
+                        <!-- item-left與item-right位於item之內, 若要使用則不能slot:item -->
+                        <template v-slot:item-left="props">
+                            <slot
+                                name="item-left"
+                                :item="item"
+                                :kitem="kitem"
+                                :isHover="props.isHover"
+                                :isActive="props.isActive"
+                            >
+                            </slot>
+                        </template>
+                        <template v-slot:item-right="props">
+                            <slot
+                                name="item-right"
                                 :item="item"
                                 :kitem="kitem"
                                 :isHover="props.isHover"
@@ -78,8 +102,14 @@ import get from 'lodash/get'
 import size from 'lodash/size'
 import every from 'lodash/every'
 import isEqual from 'lodash/isEqual'
+import cloneDeep from 'lodash/cloneDeep'
 import isEle from 'wsemi/src/isEle.mjs'
 import isobj from 'wsemi/src/isobj.mjs'
+import isestr from 'wsemi/src/isestr.mjs'
+import isfun from 'wsemi/src/isfun.mjs'
+import ispm from 'wsemi/src/ispm.mjs'
+import sep from 'wsemi/src/sep.mjs'
+import cstr from 'wsemi/src/cstr.mjs'
 import domResize from '../js/domResize.mjs'
 import WPanelScrolly from './WPanelScrolly.vue'
 import WListItem from './WListItem.vue'
@@ -96,16 +126,20 @@ import WListItem from './WListItem.vue'
  * @vue-prop {String} [itemBackgroundColor='white'] 輸入背景顏色字串，預設'white'
  * @vue-prop {String} [itemBackgroundColorHover='rgba(200,200,200,0.2)'] 輸入滑鼠移入時背景顏色字串，預設'rgba(200,200,200,0.2)'
  * @vue-prop {String} [itemBackgroundColorActive='orange lighten-1'] 輸入主動模式時背景顏色字串，預設'orange lighten-1'
+ * @vue-prop {String} [itemBackgroundColorDisabled='white'] 輸入非啟用模式時背景顏色字串，預設'white'
  * @vue-prop {String} [itemTextColor='#444'] 輸入文字顏色字串，預設'#444'
  * @vue-prop {String} [itemTextColorHover='#222'] 輸入滑鼠移入時文字顏色字串，預設'#222'
  * @vue-prop {String} [itemTextColorActive='white'] 輸入主動模式時文字顏色字串，預設'white'
+ * @vue-prop {String} [itemTextColorDisabled='#444'] 輸入非啟用模式時文字顏色字串，預設'#444'
  * @vue-prop {Number} [itemIconSize=22] 輸入左側圖標之尺寸數字，單位px，預設22
  * @vue-prop {String} [itemIconColor='#444'] 輸入圖標顏色字串，預設'#444'
  * @vue-prop {String} [itemIconColorHover='#222'] 輸入滑鼠移入時圖標顏色字串，預設'#222'
  * @vue-prop {String} [itemIconColorActive='white'] 輸入主動模式時圖標顏色字串，預設'white'
+ * @vue-prop {String} [itemIconColorDisabled='#444'] 輸入非啟用模式時圖標顏色字串，預設'#444'
  * @vue-prop {String} [itemRippleColor='rgba(255,255,255,0.4)'] 輸入ripple效果顏色字串，預設'rgba(255,255,255,0.4)'
- * @vue-prop {String} [itemDisabledColor='rgba(255,255,255,0.5)'] 輸入非編輯模式時遮罩顏色字串，預設'rgba(255,255,255,0.5)'
+ * @vue-prop {String} [itemDisabledColor='transparent'] 輸入非編輯模式時遮罩顏色字串，預設'transparent'
  * @vue-prop {Boolean} [itemCursorPointer=true] 輸入是否滑鼠移入顯示pointer樣式布林值，預設true
+ * @vue-prop {Function} [funFilter=null] 輸入過濾時呼叫處理函數，可使用sync或async函數，傳入為各項目物件資料，若為sync函數回傳布林值，若為async函數等待resolve結果為布林值，代表項目內是否含有關鍵字，預設null
  */
 export default {
     directives: {
@@ -161,6 +195,10 @@ export default {
             type: String,
             default: 'orange lighten-1',
         },
+        itemBackgroundColorDisabled: {
+            type: String,
+            default: 'white',
+        },
         itemTextColor: {
             type: String,
             default: '#444',
@@ -172,6 +210,10 @@ export default {
         itemTextColorActive: {
             type: String,
             default: 'white',
+        },
+        itemTextColorDisabled: {
+            type: String,
+            default: '#444',
         },
         itemIconSize: {
             type: Number,
@@ -189,17 +231,29 @@ export default {
             type: String,
             default: 'white',
         },
+        itemIconColorDisabled: {
+            type: String,
+            default: '#444',
+        },
         itemRippleColor: {
             type: String,
             default: 'rgba(255,255,255,0.4)',
         },
         itemDisabledColor: {
             type: String,
-            default: 'rgba(255,255,255,0.5)',
+            default: 'transparent',
         },
         itemCursorPointer: {
             type: Boolean,
             default: true,
+        },
+        query: {
+            type: String,
+            default: '',
+        },
+        funFilter: {
+            type: Function,
+            default: null,
         },
     },
     data: function() {
@@ -208,11 +262,27 @@ export default {
             panelHeight: 0,
             listHeight: 0,
 
+            queryTrans: '',
+            useItems: [],
             itemActiveTrans: null,
 
         }
     },
     computed: {
+
+        changeParams: function() {
+            //console.log('computed changeParams')
+
+            let vo = this
+
+            //queryTrans
+            vo.queryTrans = vo.query
+
+            //updateUseItems
+            vo.updateUseItems()
+
+            return ''
+        },
 
         changeItemActive: function() {
             let vo = this
@@ -305,8 +375,97 @@ export default {
             return b
         },
 
-        ckItem: function(item) {
-            // console.log('methods ckItem', item)
+        updateUseItems: function() {
+            // console.log('methods updateUseItems')
+
+            let vo = this
+
+            async function core() {
+
+                //useItems
+                let useItems = []
+
+                //check
+                if (isestr(vo.queryTrans)) {
+                    //使用過濾
+
+                    for (let i = 0; i < size(vo.items); i++) {
+                        let v = vo.items[i]
+
+                        //預設不可見
+                        let b = false
+
+                        if (isfun(vo.funFilter)) {
+                            //有給予指定過濾函數
+
+                            //funFilter
+                            b = vo.funFilter(v, i)
+
+                            //check
+                            if (ispm(b)) {
+                                b = await b
+                            }
+
+                        }
+                        else {
+                            //使用內建過濾
+
+                            //kws
+                            let kws = sep(vo.queryTrans.toLowerCase(), ' ')
+
+                            //預設取得項目文字供關鍵字過濾
+                            let c = ''
+                            if (vo.isObjValue) {
+                                c = vo.getText(v)
+                            }
+                            else {
+                                c = cstr(v)
+                            }
+                            c = c.toLowerCase()
+                            // console.log('getText', v, 'c=', c)
+
+                            //若值含有關建字
+                            for (let k = 0; k < size(kws); k++) {
+                                let kw = kws[k]
+                                if (c.indexOf(kw) >= 0) {
+                                    b = true
+                                    break
+                                }
+                            }
+
+                        }
+
+                        //check
+                        if (b) {
+                            useItems.push(cloneDeep(v))
+                        }
+
+                    }
+                }
+                else {
+                    //不使用過濾
+
+                    //cloneDeep
+                    useItems = cloneDeep(vo.items)
+
+                }
+
+                //save
+                vo.useItems = useItems
+
+            }
+
+            //core
+            core()
+                .catch((err) => {
+                    console.log(err)
+                })
+
+        },
+
+
+        ckItem: function(item, kitem) {
+            // console.log('methods ckItem', item, kitem)
 
             let vo = this
 
@@ -319,7 +478,7 @@ export default {
             vo.itemActiveTrans = item
 
             //emit
-            vo.$emit('click', { ...item })
+            vo.$emit('click', { ...item }, kitem)
 
             //emit
             vo.$emit('update:itemActive', { ...item })
