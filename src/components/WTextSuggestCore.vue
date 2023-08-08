@@ -140,11 +140,11 @@ import WIcon from './WIcon.vue'
  * @vue-prop {String} [textColor='black'] 輸入文字顏色字串，預設'black'
  * @vue-prop {String} [textAlign='left'] 輸入文字左右對齊字串，預設'left'
  * @vue-prop {String} [itemTextFontSize='0.8rem'] 輸入項目顯示文字大小字串，預設'0.8rem'
- * @vue-prop {String} [itemTextColor='grey darken-3'] 輸入項目文字顏色字串，預設'grey darken-3'
- * @vue-prop {String} [itemTextColorHover='light-blue darken-2'] 輸入項目文字Hover顏色字串，預設'light-blue darken-2'
+ * @vue-prop {String} [itemTextColor='#444'] 輸入項目文字顏色字串，預設'#444'
+ * @vue-prop {String} [itemTextColorHover='#333'] 輸入項目文字Hover顏色字串，預設'#333'
  * @vue-prop {String} [itemBackgroundColor='white'] 輸入項目背景顏色字串，預設'white'
- * @vue-prop {String} [itemBackgroundColorHover='light-blue lighten-5'] 輸入項目背景Hover顏色字串，預設'light-blue lighten-5'
- * @vue-prop {Object} [itemPaddingStyle={v:12,h:16}] 輸入內寬距離設定物件，可用鍵值為v、h、left、right、top、bottom，v代表同時設定top與bottom，h代表設定left與right，若有重複設定時後面鍵值會覆蓋前面，各鍵值為寬度數字，單位為px，預設{v:12,h:16}
+ * @vue-prop {String} [itemBackgroundColorHover='#f2f2f2'] 輸入項目背景Hover顏色字串，預設'#f2f2f2'
+ * @vue-prop {Object} [itemPaddingStyle={v:10,h:14}] 輸入內寬距離設定物件，可用鍵值為v、h、left、right、top、bottom，v代表同時設定top與bottom，h代表設定left與right，若有重複設定時後面鍵值會覆蓋前面，各鍵值為寬度數字，單位為px，預設{v:10,h:14}
  * @vue-prop {String} [expansionIcon=mdiPlay] 輸入顯隱圖標字串，可為mdi,md,fa代號或mdi/js路徑，預設使用mdi的圖標(mdiPlay)
  * @vue-prop {Number} [expansionIconSize=18] 輸入顯隱圖標尺寸數字，單位為px，預設18
  * @vue-prop {String} [expansionIconColor='grey'] 輸入顯隱圖標顏色字串，預設'grey'
@@ -209,11 +209,11 @@ export default {
         },
         itemTextColor: {
             type: String,
-            default: 'grey darken-3',
+            default: '#444',
         },
         itemTextColorHover: {
             type: String,
-            default: 'light-blue darken-2',
+            default: '#333',
         },
         itemBackgroundColor: {
             type: String,
@@ -221,14 +221,14 @@ export default {
         },
         itemBackgroundColorHover: {
             type: String,
-            default: 'light-blue lighten-5',
+            default: '#f2f2f2',
         },
         itemPaddingStyle: {
             type: Object,
             default: () => {
                 return {
-                    v: 12,
-                    h: 16,
+                    v: 10,
+                    h: 14,
                 }
             },
         },
