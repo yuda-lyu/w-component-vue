@@ -85,7 +85,7 @@
     </script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.3.24/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.3.25/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -132,40 +132,52 @@
                 style="cursor:pointer;"
                 title="open for copy link to view component"
                 onclick="window.open('//yuda-lyu.github.io/w-component-vue/examples/app.html?cmp='+this.innerText,'_blank')"
-            >w-list-horizontal</span>
+            >w-list-vertical</span>
         </div>
         <div class="bk">
-            <div class="item">slot item-content</div>
+            <div class="item">slot item &amp; itemBackgroundColorActive</div>
 
-            <w-list-horizontal
-                :items="WListHorizontal.itemsObj"
-                :item-active.sync="WListHorizontal.itemActive"
-                :item-ripple-color="'rgba(200, 200, 200, 0.3)'"
-            >
-                <template v-slot:item-content="props">
-                    <div style="display:flex; align-items:center;">
-                        <div style="padding:8px 7px 0px 0px;">
-                            <w-icon
-                                :icon="props.item.icon"
-                                :size="32"
-                                :color="props.isActive?'#CDDC39':props.isHover?'#444':'#666'"
-                            ></w-icon>
-                        </div>
-
-                        <div style>
-                            <w-badge :text="props.kitem" :badge-align="'left'">
-                                <div
-                                    :style="`padding:0px 11px 0px 0px; font-size:0.9rem; line-height:0.9rem; color:${props.isActive?'#FF9800':props.isHover?'#444':'#666'};`"
-                                >{{props.item.text}}</div>
-                            </w-badge>
-
+            <div style="display:inline-block; border:1px dashed #ddd;">
+                <w-list-vertical
+                    style="height:400px; width:250px;"
+                    :items="WListVertical.itemsObj"
+                    :item-background-color-active="'#444'"
+                >
+                    <template v-slot:item="props">
+                        <div>
                             <div
-                                :style="`font-size:0.7rem; line-height:0.7rem; opacity:0.7; color:${props.isActive?'#FF9800':props.isHover?'#444':'#666'};`"
-                            >{{props.item.type}}</div>
+                                style="margin-bottom:5px; display:flex; align-items:center;"
+                            >
+                                <w-icon
+                                    style="margin-right:8px;"
+                                    :icon="props.item.icon"
+                                    :size="16"
+                                    :color="props.isActive?'#CDDC39':props.isHover?'#444':'#666'"
+                                ></w-icon>
+
+                                <div
+                                    :style="`transition:all 0.3s; font-size:0.8rem; color:${props.isActive?'#B388FF':props.isHover?'#444':'#666'};`"
+                                >
+                                    <div>{{props.item.type}}</div>
+                                </div>
+                            </div>
+
+                            <div style="display:flex; align-items:center;">
+                                <w-icon
+                                    style="margin-right:8px;"
+                                    :icon="'mdi-lightbulb-on-outline'"
+                                    :size="16"
+                                    :color="props.isActive?'#CDDC39':'#666'"
+                                ></w-icon>
+
+                                <div
+                                    :style="`transition:all 0.3s; color:${props.isActive?'#fff':'#666'};`"
+                                >{{props.item.text}}</div>
+                            </div>
                         </div>
-                    </div>
-                </template>
-            </w-list-horizontal>
+                    </template>
+                </w-list-vertical>
+            </div>
         </div>
     </v-app>
 
@@ -179,7 +191,7 @@
     vuetify: new Vuetify(),
     data: function() {
       return {
-        WListHorizontal: {
+        WListVertical: {
           itemsString: [
             "Real-Time",
             "Audience",
@@ -334,11 +346,16 @@
               editable: true
             }
           ],
-          itemsStringActive: "Real-Time",
           itemActive: {
             text: "Audience",
             icon: "mdi-book-music-outline",
             type: "Default"
+          },
+          itemActiveForNoEditable: {
+            text: "Audience",
+            icon: "mdi-book-music-outline",
+            type: "Default",
+            editable: true
           }
         },
         actions: []
