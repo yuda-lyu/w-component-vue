@@ -312,7 +312,7 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-list-horizontal'"
-                    :casename="'slot item-content'"
+                    :casename="'slot item'"
                 ></demolink>
 
                 <w-list-horizontal
@@ -320,7 +320,7 @@
                     :itemActive.sync="WListHorizontal.itemActive"
                     :itemRippleColor="'rgba(200, 200, 200, 0.3)'"
                 >
-                    <template v-slot:item-content="props">
+                    <template v-slot:item="props">
                         <div style="display:flex; align-items:center;">
 
                             <div style="padding:8px 7px 0px 0px;">

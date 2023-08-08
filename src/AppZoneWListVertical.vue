@@ -298,7 +298,7 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-list-vertical'"
-                    :casename="'slot item-content & itemBackgroundColorActive'"
+                    :casename="'slot item & itemBackgroundColorActive'"
                 ></demolink>
 
                 <div style="display:inline-block; border:1px dashed #ddd;">
@@ -307,7 +307,7 @@
                         :items="WListVertical.itemsObj"
                         :itemBackgroundColorActive="'#444'"
                     >
-                        <template v-slot:item-content="props">
+                        <template v-slot:item="props">
                             <div>
 
                                 <div style="margin-bottom:5px; display:flex; align-items:center;">

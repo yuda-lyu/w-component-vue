@@ -49,6 +49,28 @@
                         @click="ckItem(item,kitem)"
                     >
 
+                        <template v-slot:item="props">
+                            <slot
+                                name="item"
+                                :item="item"
+                                :kitem="kitem"
+                                :isHover="props.isHover"
+                                :isActive="props.isActive"
+                            >
+                            </slot>
+                        </template>
+
+                        <template v-slot:item-left="props">
+                            <slot
+                                name="item-left"
+                                :item="item"
+                                :kitem="kitem"
+                                :isHover="props.isHover"
+                                :isActive="props.isActive"
+                            >
+                            </slot>
+                        </template>
+
                         <template v-slot:item-content="props">
                             <slot
                                 name="item-content"
@@ -60,17 +82,6 @@
                             </slot>
                         </template>
 
-                        <!-- item-left與item-right位於item之內, 若要使用則不能slot:item -->
-                        <template v-slot:item-left="props">
-                            <slot
-                                name="item-left"
-                                :item="item"
-                                :kitem="kitem"
-                                :isHover="props.isHover"
-                                :isActive="props.isActive"
-                            >
-                            </slot>
-                        </template>
                         <template v-slot:item-right="props">
                             <slot
                                 name="item-right"
