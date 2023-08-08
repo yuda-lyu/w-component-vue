@@ -16,7 +16,7 @@
 
                 <div style="display:inline-block; border:1px dashed #ddd;">
                     <w-list-radio
-                        style="height:400px; width:250px;"
+                        style="height:300px; width:250px;"
                         :items="WListRadio.itemsObj"
                         v-model="WListRadio.itemsObjCheck"
                     >
@@ -34,7 +34,7 @@
 
                 <div style="display:inline-block; border:1px dashed #ddd;">
                     <w-list-radio
-                        style="height:400px; width:250px;"
+                        style="height:300px; width:250px;"
                         :items="WListRadio.itemsString"
                         v-model="WListRadio.itemsStringCheck"
                     >
@@ -52,7 +52,7 @@
 
                 <div style="display:inline-block; border:1px dashed #ddd;">
                     <w-list-radio
-                        style="height:400px; width:250px;"
+                        style="height:300px; width:250px;"
                         :items="WListRadio.itemsObj"
                         v-model="WListRadio.itemsObjCheck"
                         :paddingStyle="{v:5,h:6}"
@@ -72,8 +72,7 @@
 
                 <div style="display:inline-block; border:1px dashed #ddd;">
                     <w-list-radio
-                        style="height:400px; width:250px;"
-                        :multiCheck="false"
+                        style="height:300px; width:250px;"
                         :items="WListRadio.itemsObjForKey"
                         v-model="WListRadio.itemsObjForKeyCheck"
                         :keyText="'name'"
@@ -88,12 +87,34 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-list-radio'"
+                    :casename="'keyPickForObjItem'"
+                ></demolink>
+
+                <div style="display:inline-block; border:1px dashed #ddd;">
+                    <w-list-radio
+                        style="height:300px; width:250px;"
+                        :items="WListRadio.itemsObj"
+                        v-model="WListRadio.itemsObjCheckPick"
+                        :keyPickForObjItem="'text'"
+                    >
+                    </w-list-radio>
+                </div>
+                <div style="width:250px; font-size:0.7rem; word-break:break-all;">
+                    selects: {{JSON.stringify(WListRadio.itemsObjCheckPick)}}
+                </div>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-list-radio'"
                     :casename="'item with no editable'"
                 ></demolink>
 
                 <div style="display:inline-block; border:1px dashed #ddd;">
                     <w-list-radio
-                        style="height:400px; width:250px;"
+                        style="height:300px; width:250px;"
                         :items="WListRadio.itemsObjForNoEditable"
                         v-model="WListRadio.itemsObjForNoEditableCheck"
                     >
@@ -111,7 +132,7 @@
 
                 <div style="display:inline-block; border:1px dashed #ddd;">
                     <w-list-radio
-                        style="height:400px; width:250px;"
+                        style="height:300px; width:250px;"
                         :items="WListRadio.itemsObjForNoEditable"
                         v-model="WListRadio.itemsObjForNoEditableCheck"
                         :itemDisabledColor="'rgba(230,230,230,0.4)'"
@@ -130,7 +151,7 @@
 
                 <div style="display:inline-block; border:1px dashed #ddd;">
                     <w-list-radio
-                        style="height:400px; width:250px;"
+                        style="height:300px; width:250px;"
                         :items="WListRadio.itemsObjForNoEditable"
                         v-model="WListRadio.itemsObjForNoEditableCheck"
                         :itemTextColorDisabled="'#aaa'"
@@ -151,7 +172,7 @@
 
                 <div style="display:inline-block; border:1px dashed #ddd;">
                     <w-list-radio
-                        style="height:400px; width:250px;"
+                        style="height:300px; width:250px;"
                         :items="WListRadio.itemsObj"
                         v-model="WListRadio.itemsObjCheck"
                         :itemTextColor="'#666'"
@@ -178,7 +199,7 @@
 
                 <div style="display:inline-block; border:1px dashed #ddd;">
                     <w-list-radio
-                        style="height:400px; width:250px;"
+                        style="height:300px; width:250px;"
                         :items="WListRadio.itemsObj"
                         v-model="WListRadio.itemsObjCheck"
                         :itemCheckIconIconSize="20"
@@ -199,7 +220,7 @@
 
                 <div style="display:inline-block; border:1px dashed #ddd;">
                     <w-list-radio
-                        style="height:400px; width:250px;"
+                        style="height:300px; width:250px;"
                         :items="WListRadio.itemsObj"
                         v-model="WListRadio.itemsObjCheck"
                         :itemRippleColor="'rgba(21, 101, 192, 0.4)'"
@@ -218,7 +239,7 @@
 
                 <div style="display:inline-block; border:1px dashed #ddd;">
                     <w-list-radio
-                        style="height:400px; width:250px;"
+                        style="height:300px; width:250px;"
                         :items="WListRadio.itemsObjForNoEditable"
                         v-model="WListRadio.itemsObjForNoEditableCheck"
                         :itemCheckIconCheckedIconColorDisabled="'#B0BEC5'"
@@ -238,7 +259,7 @@
 
                 <div style="display:inline-block; border:1px dashed #ddd;">
                     <w-list-radio
-                        style="height:400px; width:250px;"
+                        style="height:300px; width:250px;"
                         :items="WListRadio.itemsObj"
                         v-model="WListRadio.itemsObjCheck"
                         :itemCheckIconCheckedIcon="mdiCheckboxMultipleMarkedCircle"
@@ -258,7 +279,7 @@
 
                 <div style="display:inline-block; border:1px dashed #ddd;">
                     <w-list-radio
-                        style="height:400px; width:250px;"
+                        style="height:300px; width:250px;"
                         :items="WListRadio.itemsObj"
                         v-model="WListRadio.itemsObjCheck"
                         :itemCheckIconCheckedIconColor="'#90A4AE'"
@@ -282,7 +303,7 @@
 
                 <div style="display:inline-block; border:1px dashed #ddd;">
                     <w-list-radio
-                        style="height:400px; width:250px;"
+                        style="height:300px; width:250px;"
                         :items="WListRadio.itemsObj"
                         v-model="WListRadio.itemsObjCheck"
                         :enableQuery="true"
@@ -301,7 +322,7 @@
 
                 <div style="display:inline-block; border:1px dashed #ddd;">
                     <w-list-radio
-                        style="height:400px; width:250px;"
+                        style="height:300px; width:250px;"
                         :items="WListRadio.itemsObj"
                         v-model="WListRadio.itemsObjCheck"
                         :itemBackgroundColorActive="'#444'"
@@ -357,7 +378,7 @@
 
                 <div style="display:inline-block; border:1px dashed #ddd;">
                     <w-list-radio
-                        style="height:400px; width:250px;"
+                        style="height:300px; width:250px;"
                         :items="WListRadio.itemsObj"
                         v-model="WListRadio.itemsObjCheck"
                         :enableQuery="true"
@@ -405,7 +426,7 @@
 
                 <div style="display:inline-block; border:1px dashed #ddd;">
                     <w-list-radio
-                        style="height:400px; width:250px;"
+                        style="height:300px; width:250px;"
                         :items="WListRadio.itemsObj"
                         v-model="WListRadio.itemsObjCheck"
                         :enableQuery="true"
@@ -429,7 +450,7 @@
 
                 <div style="display:inline-block; border:1px dashed #ddd;">
                     <w-list-radio
-                        style="height:400px; width:250px;"
+                        style="height:300px; width:250px;"
                         :items="WListRadio.itemsObj"
                         v-model="WListRadio.itemsObjCheck"
                         :enableQuery="true"
@@ -450,7 +471,7 @@
 
                 <div style="display:inline-block; border:1px dashed #ddd;">
                     <w-list-radio
-                        style="height:400px; width:250px;"
+                        style="height:300px; width:250px;"
                         :items="WListRadio.itemsObj"
                         v-model="WListRadio.itemsObjCheck"
                         :enableQuery="true"
@@ -483,7 +504,7 @@
 
                 <div style="display:inline-block; border:1px dashed #ddd;">
                     <w-list-radio
-                        style="height:400px; width:250px;"
+                        style="height:300px; width:250px;"
                         :items="WListRadio.itemsObj"
                         v-model="WListRadio.itemsObjCheck"
                     >
@@ -516,7 +537,7 @@
 
                 <div style="display:inline-block; border:1px dashed #ddd;">
                     <w-list-radio
-                        style="height:400px; width:250px;"
+                        style="height:300px; width:250px;"
                         :items="WListRadio.itemsObj"
                         v-model="WListRadio.itemsObjCheck"
                     >
@@ -540,7 +561,7 @@
 
                 <div style="display:inline-block; border:1px dashed #ddd;">
                     <w-list-radio
-                        style="height:400px; width:250px;"
+                        style="height:300px; width:250px;"
                         :items="WListRadio.itemsObjLarge"
                         v-model="WListRadio.itemsObjLargeCheck"
                     >
@@ -636,6 +657,7 @@ export default {
                     icon: mdiBookMusicOutline,
                     type: 'Default',
                 },
+                'itemsObjCheckPick': 'Audience',
                 'itemsObjLarge': [
                     {
                         text: 'Real-Time-1',

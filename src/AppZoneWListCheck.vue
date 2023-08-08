@@ -16,7 +16,7 @@
 
                 <div style="display:inline-block; border:1px dashed #ddd;">
                     <w-list-check
-                        style="height:400px; width:250px;"
+                        style="height:300px; width:250px;"
                         :items="WListCheck.itemsObj"
                         v-model="WListCheck.itemsObjChecks"
                     >
@@ -34,7 +34,7 @@
 
                 <div style="display:inline-block; border:1px dashed #ddd;">
                     <w-list-check
-                        style="height:400px; width:250px;"
+                        style="height:300px; width:250px;"
                         :items="WListCheck.itemsString"
                         v-model="WListCheck.itemsStringChecks"
                     >
@@ -52,7 +52,7 @@
 
                 <div style="display:inline-block; border:1px dashed #ddd;">
                     <w-list-check
-                        style="height:400px; width:250px;"
+                        style="height:300px; width:250px;"
                         :items="WListCheck.itemsObj"
                         v-model="WListCheck.itemsObjChecks"
                         :paddingStyle="{v:5,h:6}"
@@ -72,7 +72,7 @@
 
                 <div style="display:inline-block; border:1px dashed #ddd;">
                     <w-list-check
-                        style="height:400px; width:250px;"
+                        style="height:300px; width:250px;"
                         :items="WListCheck.itemsObjForKey"
                         v-model="WListCheck.itemsObjForKeyChecks"
                         :keyText="'name'"
@@ -87,12 +87,34 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-list-check'"
+                    :casename="'keyPickForObjItem'"
+                ></demolink>
+
+                <div style="display:inline-block; border:1px dashed #ddd;">
+                    <w-list-check
+                        style="height:300px; width:250px;"
+                        :items="WListCheck.itemsObj"
+                        v-model="WListCheck.itemsObjChecksPick"
+                        :keyPickForObjItem="'text'"
+                    >
+                    </w-list-check>
+                </div>
+                <div style="width:250px; font-size:0.7rem; word-break:break-all;">
+                    selects: {{JSON.stringify(WListCheck.itemsObjChecksPick)}}
+                </div>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-list-check'"
                     :casename="'item with no editable'"
                 ></demolink>
 
                 <div style="display:inline-block; border:1px dashed #ddd;">
                     <w-list-check
-                        style="height:400px; width:250px;"
+                        style="height:300px; width:250px;"
                         :items="WListCheck.itemsObjForNoEditable"
                         v-model="WListCheck.itemsObjForNoEditableChecks"
                     >
@@ -110,7 +132,7 @@
 
                 <div style="display:inline-block; border:1px dashed #ddd;">
                     <w-list-check
-                        style="height:400px; width:250px;"
+                        style="height:300px; width:250px;"
                         :items="WListCheck.itemsObjForNoEditable"
                         v-model="WListCheck.itemsObjForNoEditableChecks"
                         :itemDisabledColor="'rgba(230,230,230,0.4)'"
@@ -129,7 +151,7 @@
 
                 <div style="display:inline-block; border:1px dashed #ddd;">
                     <w-list-check
-                        style="height:400px; width:250px;"
+                        style="height:300px; width:250px;"
                         :items="WListCheck.itemsObjForNoEditable"
                         v-model="WListCheck.itemsObjForNoEditableChecks"
                         :itemTextColorDisabled="'#aaa'"
@@ -150,7 +172,7 @@
 
                 <div style="display:inline-block; border:1px dashed #ddd;">
                     <w-list-check
-                        style="height:400px; width:250px;"
+                        style="height:300px; width:250px;"
                         :items="WListCheck.itemsObj"
                         v-model="WListCheck.itemsObjChecks"
                         :itemTextColor="'#666'"
@@ -177,7 +199,7 @@
 
                 <div style="display:inline-block; border:1px dashed #ddd;">
                     <w-list-check
-                        style="height:400px; width:250px;"
+                        style="height:300px; width:250px;"
                         :items="WListCheck.itemsObj"
                         v-model="WListCheck.itemsObjChecks"
                         :itemCheckIconIconSize="20"
@@ -198,7 +220,7 @@
 
                 <div style="display:inline-block; border:1px dashed #ddd;">
                     <w-list-check
-                        style="height:400px; width:250px;"
+                        style="height:300px; width:250px;"
                         :items="WListCheck.itemsObj"
                         v-model="WListCheck.itemsObjChecks"
                         :itemRippleColor="'rgba(21, 101, 192, 0.4)'"
@@ -217,7 +239,7 @@
 
                 <div style="display:inline-block; border:1px dashed #ddd;">
                     <w-list-check
-                        style="height:400px; width:250px;"
+                        style="height:300px; width:250px;"
                         :items="WListCheck.itemsObjForNoEditable"
                         v-model="WListCheck.itemsObjForNoEditableChecks"
                         :itemCheckIconCheckedIconColorDisabled="'#B0BEC5'"
@@ -237,7 +259,7 @@
 
                 <div style="display:inline-block; border:1px dashed #ddd;">
                     <w-list-check
-                        style="height:400px; width:250px;"
+                        style="height:300px; width:250px;"
                         :items="WListCheck.itemsObj"
                         v-model="WListCheck.itemsObjChecks"
                         :itemCheckIconCheckedIcon="mdiCheckboxMultipleMarked"
@@ -257,7 +279,7 @@
 
                 <div style="display:inline-block; border:1px dashed #ddd;">
                     <w-list-check
-                        style="height:400px; width:250px;"
+                        style="height:300px; width:250px;"
                         :items="WListCheck.itemsObj"
                         v-model="WListCheck.itemsObjChecks"
                         :itemCheckIconCheckedIconColor="'#90A4AE'"
@@ -281,7 +303,7 @@
 
                 <div style="display:inline-block; border:1px dashed #ddd;">
                     <w-list-check
-                        style="height:400px; width:250px;"
+                        style="height:300px; width:250px;"
                         :items="WListCheck.itemsObj"
                         v-model="WListCheck.itemsObjChecks"
                         :enableQuery="true"
@@ -300,7 +322,7 @@
 
                 <div style="display:inline-block; border:1px dashed #ddd;">
                     <w-list-check
-                        style="height:400px; width:250px;"
+                        style="height:300px; width:250px;"
                         :items="WListCheck.itemsObj"
                         v-model="WListCheck.itemsObjChecks"
                         :itemBackgroundColorActive="'#444'"
@@ -356,7 +378,7 @@
 
                 <div style="display:inline-block; border:1px dashed #ddd;">
                     <w-list-check
-                        style="height:400px; width:250px;"
+                        style="height:300px; width:250px;"
                         :items="WListCheck.itemsObj"
                         v-model="WListCheck.itemsObjChecks"
                         :enableQuery="true"
@@ -404,7 +426,7 @@
 
                 <div style="display:inline-block; border:1px dashed #ddd;">
                     <w-list-check
-                        style="height:400px; width:250px;"
+                        style="height:300px; width:250px;"
                         :items="WListCheck.itemsObj"
                         v-model="WListCheck.itemsObjChecks"
                         :enableQuery="true"
@@ -428,7 +450,7 @@
 
                 <div style="display:inline-block; border:1px dashed #ddd;">
                     <w-list-check
-                        style="height:400px; width:250px;"
+                        style="height:300px; width:250px;"
                         :items="WListCheck.itemsObj"
                         v-model="WListCheck.itemsObjChecks"
                         :enableQuery="true"
@@ -449,7 +471,7 @@
 
                 <div style="display:inline-block; border:1px dashed #ddd;">
                     <w-list-check
-                        style="height:400px; width:250px;"
+                        style="height:300px; width:250px;"
                         :items="WListCheck.itemsObj"
                         v-model="WListCheck.itemsObjChecks"
                         :enableQuery="true"
@@ -482,7 +504,7 @@
 
                 <div style="display:inline-block; border:1px dashed #ddd;">
                     <w-list-check
-                        style="height:400px; width:250px;"
+                        style="height:300px; width:250px;"
                         :items="WListCheck.itemsObj"
                         v-model="WListCheck.itemsObjChecks"
                     >
@@ -515,7 +537,7 @@
 
                 <div style="display:inline-block; border:1px dashed #ddd;">
                     <w-list-check
-                        style="height:400px; width:250px;"
+                        style="height:300px; width:250px;"
                         :items="WListCheck.itemsObj"
                         v-model="WListCheck.itemsObjChecks"
                     >
@@ -539,7 +561,7 @@
 
                 <div style="display:inline-block; border:1px dashed #ddd;">
                     <w-list-check
-                        style="height:400px; width:250px;"
+                        style="height:300px; width:250px;"
                         :items="WListCheck.itemsObjLarge"
                         v-model="WListCheck.itemsObjLargeChecks"
                     >
@@ -641,6 +663,10 @@ export default {
                         icon: mdiGestureDoubleTap,
                         type: 'Primary',
                     },
+                ],
+                'itemsObjChecksPick': [
+                    'Audience',
+                    'Actions',
                 ],
                 'itemsObjLarge': [
                     {
