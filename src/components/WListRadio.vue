@@ -3,14 +3,29 @@
         v-bind="{...$props,multiCheck:false}"
         v-on="$listeners"
     >
-        <template v-slot="props">
+
+        <template v-slot:header="">
             <slot
+                name="header"
+            ></slot>
+        </template>
+
+        <template v-slot:item-content="props">
+            <slot
+                name="item-content"
                 :item="props.item"
                 :kitem="props.kitem"
                 :isHover="props.isHover"
                 :isActive="props.isActive"
             ></slot>
         </template>
+
+        <template v-slot:footer="">
+            <slot
+                name="footer"
+            ></slot>
+        </template>
+
     </WListCheck>
 </template>
 
