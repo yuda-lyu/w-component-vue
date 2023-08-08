@@ -85,7 +85,7 @@
     </script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.3.25/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.3.26/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -139,7 +139,7 @@
 
             <div style="display:inline-block; border:1px dashed #ddd;">
                 <w-list-radio
-                    style="height:400px; width:250px;"
+                    style="height:300px; width:250px;"
                     :items="WListRadio.itemsObj"
                     v-model="WListRadio.itemsObjCheck"
                     :padding-style="{v:5,h:6}"
@@ -206,6 +206,7 @@
             icon: "mdi-book-music-outline",
             type: "Default"
           },
+          itemsObjCheckPick: "Audience",
           itemsObjLarge: [
             {
               text: "Real-Time-1",
