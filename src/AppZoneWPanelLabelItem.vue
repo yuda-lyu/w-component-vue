@@ -182,6 +182,27 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-panel-label-Item'"
+                    :casename="'labelColor'"
+                ></demolink>
+
+                <w-panel-label-Item
+                    :label="'Name'"
+                    :labelColor="'#EF6C00'"
+                >
+                    <template v-slot:item>
+                        <w-text
+                            :value="'Adelina'"
+                            :textFontSize="'0.85rem'"
+                        ></w-text>
+                    </template>
+                </w-panel-label-Item>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-panel-label-Item'"
                     :casename="'labelFontSize'"
                 ></demolink>
 
@@ -454,6 +475,28 @@
                     </w-panel-label-Item>
 
                 </div>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-panel-label-Item'"
+                    :casename="'seplines & labelColor'"
+                ></demolink>
+
+                <w-panel-label-Item
+                    :seplines="true"
+                    :label="'Name'"
+                    :labelColor="'#EF6C00'"
+                >
+                    <template v-slot:item>
+                        <w-text
+                            :value="'Adelina'"
+                            :textFontSize="'0.85rem'"
+                        ></w-text>
+                    </template>
+                </w-panel-label-Item>
 
             </div>
 
