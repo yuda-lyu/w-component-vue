@@ -1,68 +1,77 @@
 <template>
     <div style="">
 
-        <div
-            style="display:table; width:100%;"
-            v-if="!seplines"
-        >
+        <template v-if="!seplines">
+            <table style="width:100%; border-collapse:collapse;">
+                <tr>
+                    <td
+                        :style="[
+                            {
+                                verticalAlign:useLabelVerticalAlign,
+                                whiteSpace:'nowrap',
+                                color:useLabelColor,
+                                fontSize:labelFontSize,
+                                textAlign:labelHorizontalAlign,
+                            },
+                        ]"
+                    >
 
-            <slot name="label">
+                        <slot name="label">
+                            <div :style="[
+                                useLabelWidth,
+                                useLabelHeight,
+                            ]">
+                                {{label}}:
+                            </div>
+                        </slot>
 
-                <div
-                    :style="[
-                        {
-                            display:'table-cell',
-                            verticalAlign:useLabelVerticalAlign,
-                            whiteSpace:'nowrap',
-                            color:useLabelColor,
-                            fontSize:labelFontSize,
-                            textAlign:labelHorizontalAlign,
-                        },
-                    ]"
-                >
-                    <div :style="[
-                        useLabelWidth,
-                        useLabelHeight,
-                    ]">
-                        {{label}}:
-                    </div>
-                </div>
+                    </td>
+                    <td
+                        :style="[
+                            {
+                                paddingRight:`${space+8}px`,
+                            },
+                        ]"
+                    ></td>
+                    <td
+                        :style="[
+                            {
+                                width:'100%',
+                            },
+                        ]"
+                    >
 
-            </slot>
+                        <slot name="item"></slot>
 
-            <div
-                :style="[
-                    {
-                        display:'table-cell',
-                        paddingRight:`${space+8}px`,
-                    },
-                ]"
-            ></div>
+                        <div
+                            style="position:relative;"
+                            v-if="floatForItemSub"
+                        >
+                            <div style="position:absolute; top:0; left:0;">
 
-            <div
-                :style="[
-                    {
-                        display:'table-cell',
-                        width:'100%',
-                    },
-                ]"
-            >
+                                <slot name="item-sub"></slot>
 
-                <slot name="item"></slot>
+                            </div>
+                        </div>
 
-                <div style="position:relative;">
-                    <div style="position:absolute; top:0; left:0;">
+                    </td>
+                </tr>
+                <tr v-if="!floatForItemSub">
+                    <td>
+                    </td>
+                    <td>
+                    </td>
+                    <td>
 
                         <slot name="item-sub"></slot>
 
-                    </div>
-                </div>
+                    </td>
+                </tr>
+            </table>
 
-            </div>
+        </template>
 
-        </div>
-
-        <div v-else>
+        <template v-else>
 
             <slot name="label">
 
@@ -88,7 +97,7 @@
                 <slot name="item"></slot>
 
                 <div style="position:relative;">
-                    <div style="position:absolute; top:0; left:0;">
+                    <div :style="`${floatForItemSub?'position:absolute; top:0; left:0;':''}`">
 
                         <slot name="item-sub"></slot>
 
@@ -97,7 +106,7 @@
 
             </div>
 
-        </div>
+        </template>
 
     </div>
 </template>
@@ -159,6 +168,10 @@ export default {
             type: Boolean,
             default: false,
         },
+        floatForItemSub: {
+            type: Boolean,
+            default: true,
+        },
     },
     data: function() {
         return {
@@ -213,6 +226,7 @@ export default {
 
     },
     methods: {
+
     }
 }
 </script>

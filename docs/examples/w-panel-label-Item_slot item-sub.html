@@ -85,7 +85,7 @@
     </script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.3.27/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.3.28/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -137,16 +137,18 @@
         <div class="bk">
             <div class="item">slot item-sub</div>
 
-            <w-panel-label-item :label="'Name'">
-                <template v-slot:item>
-                    <w-text :value="'Adelina'" :text-font-size="'0.85rem'"></w-text>
-                </template>
-                <template v-slot:item-sub>
-                    <div
-                        style="color:#f26; font-size:0.7rem;"
-                    >Please fill in data.</div>
-                </template>
-            </w-panel-label-item>
+            <div style="border:1px dashed #ddd;">
+                <w-panel-label-item :label="'Name'">
+                    <template v-slot:item>
+                        <w-text :value="'Adelina'" :text-font-size="'0.85rem'"></w-text>
+                    </template>
+                    <template v-slot:item-sub>
+                        <div
+                            style="color:#f26; font-size:0.7rem;"
+                        >Please fill in data.</div>
+                    </template>
+                </w-panel-label-item>
+            </div>
         </div>
     </v-app>
 
