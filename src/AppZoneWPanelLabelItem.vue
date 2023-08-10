@@ -102,6 +102,29 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-panel-label-Item'"
+                    :casename="'with group-tags & labelVerticalAlign & labelShiftTop'"
+                ></demolink>
+
+                <w-panel-label-Item
+                    :label="'Fruit'"
+                    :labelVerticalAlign="'top'"
+                    :labelShiftTop="15"
+                >
+                    <template v-slot:item>
+                        <w-group-tags
+                            style="width:300px;"
+                            :textFontSize="'0.85rem'"
+                            v-model="WPanelLabelItem.strItems"
+                        ></w-group-tags>
+                    </template>
+                </w-panel-label-Item>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-panel-label-Item'"
                     :casename="'labelWidth'"
                 ></demolink>
 
@@ -647,6 +670,7 @@ import WIcon from './components/WIcon.vue'
 import WText from './components/WText.vue'
 import WTextarea from './components/WTextarea.vue'
 import WTextSelect from './components/WTextSelect.vue'
+import WGroupTags from './components/WGroupTags.vue'
 import WPanelLabelItem from './components/WPanelLabelItem.vue'
 
 
@@ -657,6 +681,7 @@ export default {
         WText,
         WTextarea,
         WTextSelect,
+        WGroupTags,
         WPanelLabelItem,
     },
     props: {
@@ -665,6 +690,14 @@ export default {
         return {
             mdiCat,
             'WPanelLabelItem': {
+                strItems: [
+                    'Dashboard',
+                    'Schedule',
+                    'Profile',
+                    'History',
+                    'Map',
+                    '聯絡方式',
+                ],
                 objItems: [
                     {
                         key: 'orange',

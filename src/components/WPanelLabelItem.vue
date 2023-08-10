@@ -20,6 +20,9 @@
                             <div :style="[
                                 useLabelWidth,
                                 useLabelHeight,
+                                {
+                                    paddingTop:`${labelShiftTop}px`,
+                                },
                             ]">
                                 {{label}}:
                             </div>
@@ -83,6 +86,7 @@
                             color:useLabelColor,
                             fontSize:labelFontSize,
                             textAlign:labelHorizontalAlign,
+                            paddingTop:`${labelShiftTop}px`,
                             paddingBottom:`${space}px`,
                         },
                     ]"
@@ -125,6 +129,7 @@ import color2hex from '../js/vuetifyColor.mjs'
  * @vue-prop {String} [labelFontSize='0.8rem'] 輸入文字字型大小字串，預設'0.8rem'
  * @vue-prop {String} [labelHorizontalAlign='left'] 輸入文字左右對齊字串，可選'left'、'center'、'right'，預設'left'
  * @vue-prop {String} [labelVerticalAlign='center'] 輸入文字垂直對齊字串，可選'top'、'center'、'bottom'，若為分行展示時則因展示機制故不處理，預設'center'
+ * @vue-prop {Number} [labelShiftTop=0] 輸入文字垂直平移距離數字，單位為px，預設0
  * @vue-prop {Number} [space=0] 輸入標籤與項目區距離數字，單位為px，若為分行展示時則代表垂直距離(基礎距離0px)，若為非分行展示時則代表水平距離(基礎距離8px)，space為基礎距離再額外增加之距離，預設0
  * @vue-prop {Boolean} [seplines=false] 輸入標籤與項目是否為分行展示布林值，預設false
  */
@@ -159,6 +164,10 @@ export default {
         labelVerticalAlign: {
             type: String,
             default: 'center',
+        },
+        labelShiftTop: {
+            type: Number,
+            default: 0,
         },
         space: {
             type: Number,
