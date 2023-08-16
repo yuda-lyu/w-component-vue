@@ -104,15 +104,15 @@ import WDialog from './WDialog.vue'
  * @vue-prop {Number} [contentIconSize=40] 輸入內容左側圖標大小數字，預設40
  * @vue-prop {Boolean} [hasNoBtn=true] 輸入是否顯示取消按鈕，預設true
  * @vue-prop {String} [noBtnText='Cancel'] 輸入否決按鈕文字字串，預設'Cancel'
- * @vue-prop {String} [noBtnTextColor='white'] 輸入否決按鈕文字顏色字串，預設'white'
- * @vue-prop {String} [noBtnTextColorHover='white'] 輸入滑鼠移入時否決按鈕文字顏色字串，預設'white'
- * @vue-prop {String} [noBtnBackgroundColor='pink lighten-1'] 輸入否決按鈕顏色字串，預設'pink lighten-1'
- * @vue-prop {String} [noBtnBackgroundColorHover='pink lighten-1'] 輸入滑鼠移入時否決按鈕顏色字串，預設'pink lighten-1'
+ * @vue-prop {String} [noBtnTextColor='#444'] 輸入否決按鈕文字顏色字串，預設'#444'
+ * @vue-prop {String} [noBtnTextColorHover='#444'] 輸入滑鼠移入時否決按鈕文字顏色字串，預設'#444'
+ * @vue-prop {String} [noBtnBackgroundColor='#fff'] 輸入否決按鈕顏色字串，預設'#fff'
+ * @vue-prop {String} [noBtnBackgroundColorHover='#f2f2f2'] 輸入滑鼠移入時否決按鈕顏色字串，預設'#f2f2f2'
  * @vue-prop {String} [yesBtnText='Yes'] 輸入同意按鈕文字字串，預設'Yes'
- * @vue-prop {String} [yesBtnTextColor='white'] 輸入同意按鈕文字顏色字串，預設'white'
- * @vue-prop {String} [yesBtnTextColorHover='white'] 輸入滑鼠移入時同意按鈕文字顏色字串，預設'white'
- * @vue-prop {String} [yesBtnBackgroundColor='blue'] 輸入同意按鈕顏色字串，預設'blue'
- * @vue-prop {String} [yesBtnBackgroundColorHover='blue'] 輸入滑鼠移入時同意按鈕顏色字串，預設'blue'
+ * @vue-prop {String} [yesBtnTextColor='#fff'] 輸入同意按鈕文字顏色字串，預設'#fff'
+ * @vue-prop {String} [yesBtnTextColorHover='#fff'] 輸入滑鼠移入時同意按鈕文字顏色字串，預設'#fff'
+ * @vue-prop {String} [yesBtnBackgroundColor='#f15'] 輸入同意按鈕顏色字串，預設'#f15'
+ * @vue-prop {String} [yesBtnBackgroundColorHover='#f26'] 輸入滑鼠移入時同意按鈕顏色字串，預設'#f26'
  * @vue-prop {String} [headerBackgroundColor='grey lighten-5'] 輸入上方區塊背景顏色字串，預設'grey lighten-5'
  * @vue-prop {String} [contentBackgroundColor='white'] 輸入內容區塊背景顏色字串，預設'white'
  * @vue-prop {String} [footerBackgroundColor='grey lighten-5'] 輸入下方區塊背景顏色字串，預設'grey lighten-5'
@@ -168,19 +168,19 @@ export default {
         },
         noBtnTextColor: {
             type: String,
-            default: 'white',
+            default: '#444',
         },
         noBtnTextColorHover: {
             type: String,
-            default: 'white',
+            default: '#444',
         },
         noBtnBackgroundColor: {
             type: String,
-            default: 'pink lighten-1',
+            default: '#fff',
         },
         noBtnBackgroundColorHover: {
             type: String,
-            default: 'pink lighten-1',
+            default: '#f2f2f2',
         },
         yesBtnText: {
             type: String,
@@ -188,19 +188,19 @@ export default {
         },
         yesBtnTextColor: {
             type: String,
-            default: 'white',
+            default: '#fff',
         },
         yesBtnTextColorHover: {
             type: String,
-            default: 'white',
+            default: '#fff',
         },
         yesBtnBackgroundColor: {
             type: String,
-            default: 'blue',
+            default: '#f15',
         },
         yesBtnBackgroundColorHover: {
             type: String,
-            default: 'blue',
+            default: '#f26',
         },
         headerBackgroundColor: {
             type: String,
