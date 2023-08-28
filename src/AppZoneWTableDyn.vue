@@ -400,7 +400,7 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-table-dyn'"
-                    :casename="'editable & textLabelDataName & textPlaceholderDataName & textLabelDataDescription & textPlaceholderDataDescription'"
+                    :casename="'editable & language & textLabelDataName & textPlaceholderDataName & textLabelDataDescription & textPlaceholderDataDescription'"
                 ></demolink>
 
                 <w-table-dyn
@@ -409,6 +409,7 @@
                     :description="WTableDyn.description"
                     :opt="WTableDyn.opt2"
                     :editable="true"
+                    :language="'zh-tw'"
                     :textLabelDataName="'名稱'"
                     :textPlaceholderDataName="'請輸入數據名稱'"
                     :textLabelDataDescription="'說明'"
@@ -423,7 +424,7 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-table-dyn'"
-                    :casename="'editable & checkId & tooltipAddRow & tooltipDeleteSelectedRows & tooltipDownloadExcelFile & tooltipUploadExcelFile & uploadModeTitle & uploadModeTextForReplace & uploadModeTextForAppend'"
+                    :casename="'editable & language & checkId & tooltipAddRow & tooltipDeleteSelectedRows & tooltipDownloadExcelFile & tooltipDownloadExcelFileForDisplay & tooltipUploadExcelFile & uploadModeTitle & uploadModeTextForReplace & uploadModeTextForAppend'"
                 ></demolink>
 
                 <w-table-dyn
@@ -432,10 +433,12 @@
                     :description="WTableDyn.description"
                     :opt="WTableDyn.opt2"
                     :editable="true"
+                    :language="'zh-tw'"
                     :checkId="'id'"
                     :tooltipAddRow="'新增數據'"
                     :tooltipDeleteSelectedRows="'刪除選擇數據'"
-                    :tooltipDownloadExcelFile="'下載 Excel(xlsx) 數據檔案'"
+                    :tooltipDownloadExcelFile="'下載數據成為 Excel(xlsx) 檔案'"
+                    :tooltipDownloadExcelFileForDisplay="'下載過濾後數據成為 Excel(xlsx) 檔案'"
                     :tooltipUploadExcelFile="'上傳 Excel(xlsx) 數據檔案'"
                     :uploadModeTitle="'請選擇上傳模式：'"
                     :uploadModeTextForReplace="'取代'"
@@ -550,6 +553,11 @@ export default {
     },
     data: function() {
         let keys1 = ['make', 'model', 'price']
+        let kpHeadFilterType1 = { //default: num (num,text,time,set)
+            'make': 'text',
+            'model': 'text',
+            'price': 'num',
+        }
         let rows1 = [
             { make: 'Toyota', model: 'Celica', price: 35000 },
             { make: 'Ford', model: 'Mondeo', price: 32000 },
@@ -566,6 +574,15 @@ export default {
             { make: 'Subaru', model: 'BRZ', price: 48000 },
         ]
         let keys2 = ['id', 'mappingId', 'order', 'make', 'model', 'price', 'isActive']
+        let kpHeadFilterType2 = { //default: num (num,text,time,set)
+            'id': 'text',
+            'mappingId': 'text',
+            'order': 'num',
+            'make': 'text',
+            'model': 'text',
+            'price': 'num',
+            'isActive': 'text',
+        }
         let rows2 = [
             { id: 'id-Toyota', mappingId: 'car_table', order: 0, make: 'Toyota', model: 'Celica', price: 35000, isActive: 'y' },
             { id: 'id-Ford', mappingId: 'car_table', order: 1, make: 'Ford', model: 'Mondeo', price: 32000, isActive: 'y' },
@@ -582,6 +599,15 @@ export default {
             { id: 'id-Subaru', mappingId: 'car_table', order: 3, make: 'Subaru', model: 'BRZ', price: 48000, isActive: 'y' },
         ]
         let keys3 = ['id', 'mappingId', 'order', 'make', 'model', 'price', 'isActive']
+        let kpHeadFilterType3 = { //default: num (num,text,time,set)
+            'id': 'text',
+            'mappingId': 'text',
+            'order': 'num',
+            'make': 'text',
+            'model': 'text',
+            'price': 'num',
+            'isActive': 'text',
+        }
         let rows3 = [
             { id: '', mappingId: '', order: 0, make: 'Toyota', model: 'Celica', price: 35000 },
             { id: '', mappingId: '', order: 1, make: 'Ford', model: 'Mondeo', price: 32000 },
@@ -603,14 +629,17 @@ export default {
                 'description': 'The relationship between different car types and prices',
                 'opt1': {
                     keys: keys1,
+                    kpHeadFilterType: kpHeadFilterType1,
                     rows: rows1,
                 },
                 'opt2': {
                     keys: keys2,
+                    kpHeadFilterType: kpHeadFilterType2,
                     rows: rows2,
                 },
                 'opt3': {
                     keys: keys2,
+                    kpHeadFilterType: kpHeadFilterType2,
                     rows: rows2,
                     kpHead: {
                         id: '主鍵',
@@ -624,6 +653,7 @@ export default {
                 },
                 'opt4': {
                     keys: keys2,
+                    kpHeadFilterType: kpHeadFilterType2,
                     rows: rows2,
                     beforeAddRow: function(newRow) {
                         newRow.id = 'id-random-' + Math.random()
@@ -632,6 +662,7 @@ export default {
                 },
                 'opt5': {
                     keys: keys2,
+                    kpHeadFilterType: kpHeadFilterType2,
                     rows: rows2,
                     kpConvertKeysWhenUploadData: {
                         makeTemp: 'make',
@@ -650,6 +681,7 @@ export default {
                 },
                 'opt7': {
                     keys: keys3,
+                    kpHeadFilterType: kpHeadFilterType3,
                     rows: rows3,
                     modifyDataWhenSave: function(rows) {
                         console.log('modifyDataWhenSave', rows)

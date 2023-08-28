@@ -76,8 +76,18 @@
                                 :backgroundColor="'white'"
                                 :backgroundColorHover="'white'"
                                 :tooltip="tooltipDownloadExcelFile"
-                                @click="downloadData"
+                                @click="downloadData('raw')"
                                 v-if="hasEffRows"
+                            ></WButtonCircle>
+
+                            <WButtonCircle
+                                style="margin:5px;"
+                                :icon="mdiMonitorArrowDown"
+                                :backgroundColor="'white'"
+                                :backgroundColorHover="'white'"
+                                :tooltip="tooltipDownloadExcelFileForDisplay"
+                                @click="downloadData('display')"
+                                v-if="isFilter && hasEffRows"
                             ></WButtonCircle>
 
                             <WPopup
@@ -152,8 +162,18 @@
                                     :tooltip="tooltipDownloadExcelFile"
                                     :backgroundColor="'white'"
                                     :backgroundColorHover="'white'"
-                                    @click="downloadData"
+                                    @click="downloadData('raw')"
                                     v-if="hasEffRows"
+                                ></WButtonCircle>
+
+                                <WButtonCircle
+                                    style="margin:5px;"
+                                    :icon="mdiMonitorArrowDown"
+                                    :tooltip="tooltipDownloadExcelFileForDisplay"
+                                    :backgroundColor="'white'"
+                                    :backgroundColorHover="'white'"
+                                    @click="downloadData('display')"
+                                    v-if="isFilter && hasEffRows"
                                 ></WButtonCircle>
 
                                 <slot
@@ -203,7 +223,7 @@
 </template>
 
 <script>
-import { mdiDownload, mdiUpload, mdiDeleteForever, mdiTextBoxPlusOutline } from '@mdi/js/mdi.js'
+import { mdiDownload, mdiMonitorArrowDown, mdiUpload, mdiDeleteForever, mdiTextBoxPlusOutline } from '@mdi/js/mdi.js'
 import get from 'lodash/get'
 import map from 'lodash/map'
 import each from 'lodash/each'
@@ -262,7 +282,8 @@ import color2hex from '../js/vuetifyColor.mjs'
  * @vue-prop {String} [textPlaceholderDataDescription='Please enter data description'] 輸入數據說明placeholder字串，預設'Please enter data description'
  * @vue-prop {String} [tooltipAddRow='add new row'] 輸入新增數據按鈕tooltip字串，預設'add new row'
  * @vue-prop {String} [tooltipDeleteSelectedRows='delete selected rows'] 輸入刪除選擇數據按鈕tooltip字串，預設'delete selected rows'
- * @vue-prop {String} [tooltipDownloadExcelFile='download data to Excel file'] 輸入下載Excel數據檔案按鈕tooltip字串，預設'download data to Excel file'
+ * @vue-prop {String} [tooltipDownloadExcelFile='download data to Excel file'] 輸入下載數據成為Excel檔案按鈕tooltip字串，預設'download data to Excel file'
+ * @vue-prop {String} [tooltipDownloadExcelFileForDisplay='download filtered data to Excel file'] 輸入下載過濾後數據成為Excel檔案按鈕tooltip字串，預設'download filtered data to Excel file'
  * @vue-prop {String} [tooltipUploadExcelFile='upload data to Excel file'] 輸入上傳Excel數據檔案按鈕tooltip字串，預設'upload data to Excel file'
  * @vue-prop {String} [successMsgFromAddRow='add row successfully'] 輸入新增數據成功事件訊息字串，預設'add row successfully'
  * @vue-prop {String} [errorMsgFromAddRow='can not add row'] 輸入無法新增數據事件訊息字串，預設'can not add row'
@@ -319,7 +340,9 @@ import color2hex from '../js/vuetifyColor.mjs'
  * @vue-prop {Function} [opt.cellChange=function(){}] 輸入cell change之觸發事件，預設為function(){}
  * @vue-prop {Function} [opt.cellMouseEnter=function(){}] 輸入cell mouseenter之觸發事件，預設為function(){}
  * @vue-prop {Function} [opt.cellMouseLeave=function(){}] 輸入cell mouseleave之觸發事件，預設為function(){}
+ * @vue-prop {Function} [opt.filterChange=()=>{}] 輸入filter change之觸發事件，預設為()=>{}
  * @vue-prop {Boolean} [opt.autoFitColumn=false] 輸入當表格尺寸變更時自動調整欄寬布林值，預設false
+ * @vue-prop {String} [opt.language='en'] 輸入指定語系字串，可選'en'、'zh-tw'、'zh-cn'，預設為'en'
  * @vue-prop {Object} [opt.optForUploadData={}] 輸入呼叫組件uploadData上傳檔案時用的設定物件，物件可給予鍵值：pathItems代表調用wsemi的getDataFromExcelFileU8ArrDyn所傳入的xlsx的來源網址陣列，beforeUpload代表上傳前的處理數據函數，parseSheetInd代表提取Excel檔案的第幾個sheet整數(預設為0)，optForUploadData預設{}
  * @vue-prop {Function} [opt.modifyDataWhenSave=undefined] 輸入當儲存時修改儲存數據事件，輸入rows，輸出rows，預設為undefined
  * @vue-prop {Boolean} [opt.checkNoDataWhenSave=false] 輸入當儲存時是否檢核無數據布林值，預設false
@@ -338,6 +361,10 @@ export default {
     props: {
         pathItems: {
             type: Array, //預設值見WAggridVueDyn
+        },
+        language: {
+            type: String,
+            default: 'en',
         },
         enableInfor: {
             type: Boolean,
@@ -460,11 +487,15 @@ export default {
         },
         tooltipDownloadExcelFile: {
             type: String,
-            default: 'download data to Excel file', //下載 Excel 數據檔案
+            default: 'download data to Excel file', //下載數據成為Excel檔案
+        },
+        tooltipDownloadExcelFileForDisplay: {
+            type: String,
+            default: 'download filtered data to Excel file', //下載過濾後數據成為Excel檔案
         },
         tooltipUploadExcelFile: {
             type: String,
-            default: 'upload data to Excel file', //上傳 Excel 數據檔案
+            default: 'upload data to Excel file', //上傳數據 Excel 檔案
         },
         successMsgFromAddRow: {
             type: String,
@@ -526,6 +557,7 @@ export default {
     data: function() {
         return {
             mdiDownload,
+            mdiMonitorArrowDown,
             mdiUpload,
             mdiDeleteForever,
             mdiTextBoxPlusOutline,
@@ -544,6 +576,8 @@ export default {
             nameTemp: '',
             descriptionTemp: '',
             rowsTemp: [],
+
+            isFilter: false,
 
         }
     },
@@ -812,14 +846,41 @@ export default {
 
             //useOpt
             let useOpt = {
+
+                defCellAlighH: 'left',
+
+                ...vo.opt,
+
+                //由此組件複寫
+                language: vo.language,
                 rows,
                 keys: vo.useKeys,
                 defCellEditable: vo.editable,
-                defCellAlighH: 'left',
                 kpHead: vo.useKpHead,
                 rowChecked: function(rs) {
                     //console.log('rowChecked rs', rs)
+
+                    //save
                     vo.rowsSelect = rs
+
+                    //call
+                    if (isfun(get(vo.opt, 'rowChecked'))) {
+                        vo.opt.rowChecked(rs)
+                    }
+
+                },
+                filterChange: function(msg) {
+                    // console.log('filterChange msg', msg)
+
+                    //save
+                    let isFilter = get(msg, 'isFilter', false)
+                    vo.isFilter = isFilter
+
+                    //call
+                    if (isfun(get(vo.opt, 'filterChange'))) {
+                        vo.opt.filterChange(msg)
+                    }
+
                 },
             }
 
@@ -953,15 +1014,27 @@ export default {
 
         },
 
-        downloadData: function() {
-            //console.log('methods downloadData')
+        downloadData: function(mode = 'raw') {
+            //console.log('methods downloadData', mode)
 
             let vo = this
 
             try {
 
+                //keyFun
+                let keyFun = ''
+                if (mode === 'raw') {
+                    keyFun = 'downloadData'
+                }
+                else if (mode === 'display') {
+                    keyFun = 'downloadDisplayData'
+                }
+                else {
+                    throw new Error(`invlaid mode[${mode}]`)
+                }
+
                 //fun
-                let fun = get(vo, `$refs.cmp.$refs.$self.downloadData`)
+                let fun = get(vo, `$refs.cmp.$refs.$self.${keyFun}`)
 
                 //check
                 if (!isfun(fun)) {

@@ -163,6 +163,12 @@
         <td>No</td>
         <td>輸入key對應head之是否允許過濾物件，預設各key值為defHeadFilter</td>
     </tr><tr>
+        <td><code>opt.kpHeadFilterType</code></td>
+        <td>Object</td>
+        <td><code>{}</code></td>
+        <td>No</td>
+        <td>輸入key對應head之過濾器物件，可使用'num'、'text'、'time'、'set'，預設各key值為'num'</td>
+    </tr><tr>
         <td><code>opt.defHeadDrag</code></td>
         <td>Boolean</td>
         <td><code>true</code></td>
@@ -277,6 +283,12 @@
         <td>No</td>
         <td>輸入上傳Excel檔案時，當key轉會成對應新key值物件，預設{}</td>
     </tr><tr>
+        <td><code>opt.rowsChange</code></td>
+        <td>function</td>
+        <td><code>()=>{}</code></td>
+        <td>No</td>
+        <td>輸入rows change之觸發事件，預設為()=>{}</td>
+    </tr><tr>
         <td><code>opt.rowClick</code></td>
         <td>function</td>
         <td><code>()=>{}</code></td>
@@ -343,11 +355,23 @@
         <td>No</td>
         <td>輸入cell mouseleave之觸發事件，預設為()=>{}</td>
     </tr><tr>
+        <td><code>opt.filterChange</code></td>
+        <td>function</td>
+        <td><code>()=>{}</code></td>
+        <td>No</td>
+        <td>輸入filter change之觸發事件，預設為()=>{}</td>
+    </tr><tr>
         <td><code>opt.autoFitColumn</code></td>
         <td>Boolean</td>
         <td><code>false</code></td>
         <td>No</td>
         <td>輸入當表格尺寸變更時自動調整欄寬布林值，預設false</td>
+    </tr><tr>
+        <td><code>opt.language</code></td>
+        <td>String</td>
+        <td><code>'en'</code></td>
+        <td>No</td>
+        <td>輸入指定語系字串，可選'en'、'zh-tw'、'zh-cn'，預設為'en'</td>
     </tr><tr>
         <td><code>height</code></td>
         <td>Number</td>
@@ -369,66 +393,6 @@
 
 
 
-
-<h3 class="subsection-title" style="margin-top: 1em" data-jsdoc-vuejs="section-event">Events</h3>
-<table data-jsdoc-vuejs="table-event">
-    <thead>
-    <tr>
-        <th>Name</th>
-        <th>Payload Type</th>
-        <th>Description</th>
-    </tr>
-    </thead>
-    <tbody><tr>
-        <td><code>refresh</code></td>
-        <td>Null</td>
-        <td>指調用組件的method，無輸入與回傳，刷新表格</td>
-    </tr><tr>
-        <td><code>showKeys</code></td>
-        <td>Array</td>
-        <td>指調用組件的method，輸入指定欲顯示欄位的keys，數量最多為原本初始化的keys，可更改順序，無回傳</td>
-    </tr><tr>
-        <td><code>setHeadFilter</code></td>
-        <td>Array</td>
-        <td>指調用組件的method，輸入指定欄位的key與要過濾的值value，會於界面上指定欄進行過濾</td>
-    </tr><tr>
-        <td><code>clearHeadFilter</code></td>
-        <td>Array</td>
-        <td>指調用組件的method，輸入指定欄位的key並清除當前所使用的過濾值</td>
-    </tr><tr>
-        <td><code>clearHeadFilterAll</code></td>
-        <td>Array</td>
-        <td>指調用組件的method，無輸入與回傳，清除當前所有欄位所使用的過濾值</td>
-    </tr><tr>
-        <td><code>getDisplayData</code></td>
-        <td>Null</td>
-        <td>指調用組件的method，無輸入，會回傳目前表格所顯示之數據</td>
-    </tr><tr>
-        <td><code>getInstance</code></td>
-        <td>Null</td>
-        <td>指調用組件的method，無輸入，會回傳ag-grid表格實例物件</td>
-    </tr><tr>
-        <td><code>fitColumns</code></td>
-        <td>Null</td>
-        <td>指調用組件的method，無輸入與回傳，自動調整欄寬</td>
-    </tr><tr>
-        <td><code>pasteText</code></td>
-        <td>String</td>
-        <td>指調用組件的method，輸入text為欲貼上的文字，showRowIndNow為貼上的列指標整數，預設null，showColKeyNow為貼上的欄位key值字串，預設null</td>
-    </tr><tr>
-        <td><code>downloadDisplayData</code></td>
-        <td>Null</td>
-        <td>指調用組件的method，無輸入，下載目前表格所顯示之數據為Excel檔，亦會回傳目前表格所顯示之數據</td>
-    </tr><tr>
-        <td><code>downloadData</code></td>
-        <td>Null</td>
-        <td>指調用組件的method，無輸入，下載數據為Excel檔，亦會回傳數據</td>
-    </tr><tr>
-        <td><code>uploadData</code></td>
-        <td>Object</td>
-        <td>指調用組件的method，輸入設定物件，其中pathItems代表調用wsemi的getDataFromExcelFileU8ArrDyn所傳入的xlsx的來源網址陣列，beforeUpload代表上傳前的處理數據函數，parseSheetInd代表提取Excel檔案的第幾個sheet整數，預設為0。呼叫時會開啟選擇檔案視窗給使用者上傳Excel檔案，需為含有標題的Excel檔，標題需為各欄位key值而非head。回傳為Promise，resolve為成功上傳之數據，reject為失敗原因</td>
-    </tr></tbody>
-</table>
 
 
 <div class="container-overview"><div><p> 
@@ -577,6 +541,12 @@
         <td>No</td>
         <td>輸入key對應head之是否允許過濾物件，預設各key值為defHeadFilter</td>
     </tr><tr>
+        <td><code>opt.kpHeadFilterType</code></td>
+        <td>Object</td>
+        <td><code>{}</code></td>
+        <td>No</td>
+        <td>輸入key對應head之過濾器物件，可使用'num'、'text'、'time'、'set'，預設各key值為'num'</td>
+    </tr><tr>
         <td><code>opt.defHeadDrag</code></td>
         <td>Boolean</td>
         <td><code>true</code></td>
@@ -691,6 +661,12 @@
         <td>No</td>
         <td>輸入上傳Excel檔案時，當key轉會成對應新key值物件，預設{}</td>
     </tr><tr>
+        <td><code>opt.rowsChange</code></td>
+        <td>function</td>
+        <td><code>()=>{}</code></td>
+        <td>No</td>
+        <td>輸入rows change之觸發事件，預設為()=>{}</td>
+    </tr><tr>
         <td><code>opt.rowClick</code></td>
         <td>function</td>
         <td><code>()=>{}</code></td>
@@ -757,11 +733,23 @@
         <td>No</td>
         <td>輸入cell mouseleave之觸發事件，預設為()=>{}</td>
     </tr><tr>
+        <td><code>opt.filterChange</code></td>
+        <td>function</td>
+        <td><code>()=>{}</code></td>
+        <td>No</td>
+        <td>輸入filter change之觸發事件，預設為()=>{}</td>
+    </tr><tr>
         <td><code>opt.autoFitColumn</code></td>
         <td>Boolean</td>
         <td><code>false</code></td>
         <td>No</td>
         <td>輸入當表格尺寸變更時自動調整欄寬布林值，預設false</td>
+    </tr><tr>
+        <td><code>opt.language</code></td>
+        <td>String</td>
+        <td><code>'en'</code></td>
+        <td>No</td>
+        <td>輸入指定語系字串，可選'en'、'zh-tw'、'zh-cn'，預設為'en'</td>
     </tr><tr>
         <td><code>height</code></td>
         <td>Number</td>
@@ -783,66 +771,6 @@
 
 
 
-
-<h3 class="subsection-title" style="margin-top: 1em" data-jsdoc-vuejs="section-event">Events</h3>
-<table data-jsdoc-vuejs="table-event">
-    <thead>
-    <tr>
-        <th>Name</th>
-        <th>Payload Type</th>
-        <th>Description</th>
-    </tr>
-    </thead>
-    <tbody><tr>
-        <td><code>refresh</code></td>
-        <td>Null</td>
-        <td>指調用組件的method，無輸入與回傳，刷新表格</td>
-    </tr><tr>
-        <td><code>showKeys</code></td>
-        <td>Array</td>
-        <td>指調用組件的method，輸入指定欲顯示欄位的keys，數量最多為原本初始化的keys，可更改順序，無回傳</td>
-    </tr><tr>
-        <td><code>setHeadFilter</code></td>
-        <td>Array</td>
-        <td>指調用組件的method，輸入指定欄位的key與要過濾的值value，會於界面上指定欄進行過濾</td>
-    </tr><tr>
-        <td><code>clearHeadFilter</code></td>
-        <td>Array</td>
-        <td>指調用組件的method，輸入指定欄位的key並清除當前所使用的過濾值</td>
-    </tr><tr>
-        <td><code>clearHeadFilterAll</code></td>
-        <td>Array</td>
-        <td>指調用組件的method，無輸入與回傳，清除當前所有欄位所使用的過濾值</td>
-    </tr><tr>
-        <td><code>getDisplayData</code></td>
-        <td>Null</td>
-        <td>指調用組件的method，無輸入，會回傳目前表格所顯示之數據</td>
-    </tr><tr>
-        <td><code>getInstance</code></td>
-        <td>Null</td>
-        <td>指調用組件的method，無輸入，會回傳ag-grid表格實例物件</td>
-    </tr><tr>
-        <td><code>fitColumns</code></td>
-        <td>Null</td>
-        <td>指調用組件的method，無輸入與回傳，自動調整欄寬</td>
-    </tr><tr>
-        <td><code>pasteText</code></td>
-        <td>String</td>
-        <td>指調用組件的method，輸入text為欲貼上的文字，showRowIndNow為貼上的列指標整數，預設null，showColKeyNow為貼上的欄位key值字串，預設null</td>
-    </tr><tr>
-        <td><code>downloadDisplayData</code></td>
-        <td>Null</td>
-        <td>指調用組件的method，無輸入，下載目前表格所顯示之數據為Excel檔，亦會回傳目前表格所顯示之數據</td>
-    </tr><tr>
-        <td><code>downloadData</code></td>
-        <td>Null</td>
-        <td>指調用組件的method，無輸入，下載數據為Excel檔，亦會回傳數據</td>
-    </tr><tr>
-        <td><code>uploadData</code></td>
-        <td>Object</td>
-        <td>指調用組件的method，輸入設定物件，其中pathItems代表調用wsemi的getDataFromExcelFileU8ArrDyn所傳入的xlsx的來源網址陣列，beforeUpload代表上傳前的處理數據函數，parseSheetInd代表提取Excel檔案的第幾個sheet整數，預設為0。呼叫時會開啟選擇檔案視窗給使用者上傳Excel檔案，需為含有標題的Excel檔，標題需為各欄位key值而非head。回傳為Promise，resolve為成功上傳之數據，reject為失敗原因</td>
-    </tr></tbody>
-</table>
 
 
 <div class="container-overview"><div><p> 
@@ -887,7 +815,7 @@
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.2</a> on Wed Aug 16 2023 13:22:22 GMT+0800 (台北標準時間) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.2</a> on Mon Aug 28 2023 21:42:37 GMT+0800 (台北標準時間) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>

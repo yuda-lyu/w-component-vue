@@ -85,7 +85,7 @@
     </script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.3.30/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.3.31/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -172,6 +172,12 @@
     vuetify: new Vuetify(),
     data: function() {
       let keys1 = ["make", "model", "price"];
+      let kpHeadFilterType1 = {
+        //default: num (num,text,time,set)
+        make: "text",
+        model: "text",
+        price: "num"
+      };
       let rows1 = [
         { make: "Toyota", model: "Celica", price: 35000 },
         { make: "Ford", model: "Mondeo", price: 32000 },
@@ -196,6 +202,16 @@
         "price",
         "isActive"
       ];
+      let kpHeadFilterType2 = {
+        //default: num (num,text,time,set)
+        id: "text",
+        mappingId: "text",
+        order: "num",
+        make: "text",
+        model: "text",
+        price: "num",
+        isActive: "text"
+      };
       let rows2 = [
         {
           id: "id-Toyota",
@@ -324,6 +340,16 @@
         "price",
         "isActive"
       ];
+      let kpHeadFilterType3 = {
+        //default: num (num,text,time,set)
+        id: "text",
+        mappingId: "text",
+        order: "num",
+        make: "text",
+        model: "text",
+        price: "num",
+        isActive: "text"
+      };
       let rows3 = [
         {
           id: "",
@@ -437,14 +463,17 @@
             "The relationship between different car types and prices",
           opt1: {
             keys: keys1,
+            kpHeadFilterType: kpHeadFilterType1,
             rows: rows1
           },
           opt2: {
             keys: keys2,
+            kpHeadFilterType: kpHeadFilterType2,
             rows: rows2
           },
           opt3: {
             keys: keys2,
+            kpHeadFilterType: kpHeadFilterType2,
             rows: rows2,
             kpHead: {
               id: "主鍵",
@@ -458,6 +487,7 @@
           },
           opt4: {
             keys: keys2,
+            kpHeadFilterType: kpHeadFilterType2,
             rows: rows2,
             beforeAddRow: function(newRow) {
               newRow.id = "id-random-" + Math.random();
@@ -466,6 +496,7 @@
           },
           opt5: {
             keys: keys2,
+            kpHeadFilterType: kpHeadFilterType2,
             rows: rows2,
             kpConvertKeysWhenUploadData: {
               makeTemp: "make",
@@ -485,6 +516,7 @@
           },
           opt7: {
             keys: keys3,
+            kpHeadFilterType: kpHeadFilterType3,
             rows: rows3,
             modifyDataWhenSave: function(rows) {
               console.log("modifyDataWhenSave", rows);
