@@ -24,15 +24,8 @@ function domResize() {
         let de = domDetect(() => {
             return el
         })
-        de.on('resizeWithWindow', (s) => {
-            // console.log('resizeWithWindow', s)
-
-            //msg
-            let winHeight = window.innerHeight
-            let msg = {
-                ...s,
-                winHeight,
-            }
+        de.on('resizeWithWindow', (msg) => {
+            // console.log('resizeWithWindow', msg)
 
             //emit
             emit(vnode, 'domresize', msg)
