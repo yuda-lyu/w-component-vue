@@ -2,6 +2,7 @@
     <div
         :changeValue="changeValue"
         :changeDrawerWidth="changeDrawerWidth"
+        :changeAfloat="changeAfloat"
         v-domresize
         @domresize="resizePanel"
     >
@@ -142,6 +143,8 @@ import color2hex from '../js/vuetifyColor.mjs'
  * @vue-prop {Number} [drawerBarSize=2] 輸入分隔條尺寸數字，為分隔條寬度，單位為px，預設2
  * @vue-prop {String} [drawerBarBorderColor='transparent'] 輸入分隔條框線顏色字串，預設'transparent'
  * @vue-prop {Number} [drawerBarBorderSize=3] 輸入分隔條框線寬度數字，單位為px，預設3，通常配合barBorderColor='transparent'使可拖曳區加大又不遮蔽可視區
+ * @vue-prop {Boolean} [autoSwitch=false] 輸入是否自動顯隱布林值，設為true時當組件寬度過小時則隱藏抽屜且改為浮動顯示，反之則恢復顯示且改為佔版顯示，預設false
+ * @vue-prop {Number} [switchWidth=340] 輸入當自動顯隱時判斷組件寬度過小之門檻寬度數字，單位為px，預設340
  */
 export default {
     directives: {
@@ -208,6 +211,14 @@ export default {
             type: Number,
             default: 3,
         },
+        autoSwitch: {
+            type: Boolean,
+            default: false,
+        },
+        switchWidth: {
+            type: Number,
+            default: 340,
+        },
     },
     data: function() {
         return {
@@ -222,6 +233,7 @@ export default {
             lockToggle: false,
 
             drawerWidthTrans: 200,
+            afloatTrans: false,
 
             timerOverlay1Basic: null,
             showOverlay1Basic: false,
@@ -310,6 +322,12 @@ export default {
             return ''
         },
 
+        changeAfloat: function() {
+            let vo = this
+            vo.afloatTrans = vo.afloat
+            return ''
+        },
+
         useDrawerWidthTrans: function() {
             let vo = this
 
@@ -347,7 +365,7 @@ export default {
             if (!this.valueTrans) {
                 return 0
             }
-            if (this.afloat) {
+            if (this.afloatTrans) {
                 return 0
             }
             return this.useDrawerWidthTrans
@@ -359,7 +377,7 @@ export default {
 
         useDrawerZIndex: function() {
             let i = this.drawerZIndex
-            if (this.afloat) {
+            if (this.afloatTrans) {
                 i += 1
             }
             if (this.afloatByFix) {
@@ -369,7 +387,7 @@ export default {
         },
 
         useOverlayColor: function() {
-            if (!this.afloat) {
+            if (!this.afloatTrans) {
                 return 'transparent'
             }
             return color2hex(this.overlayColor)
@@ -380,7 +398,7 @@ export default {
         },
 
         useOverlayOpacity: function() {
-            if (!this.afloat) {
+            if (!this.afloatTrans) {
                 return 0
             }
             return this.effOverlay1Basic ? this.overlayOpacity : 0
@@ -402,14 +420,14 @@ export default {
         },
 
         useDrawerDetectWidth: function() {
-            if (this.afloat) {
+            if (this.afloatTrans) {
                 return '100%'
             }
             return `${this.useDrawerWidthTrans}px`
         },
 
         useDrawerClassShadow: function() {
-            return this.afloat && this.showOverlay3Shadow ? 'bs' : ''
+            return this.afloatTrans && this.showOverlay3Shadow ? 'bs' : ''
         },
 
         useDrawerBarWidth: function() {
@@ -456,8 +474,49 @@ export default {
                 vo.panelHeight = ws.height
 
             }
-
             // console.log('vo.panelWidth', vo.panelWidth)
+            // console.log('vo.panelHeight', vo.panelHeight)
+
+            //autoSwitch
+            if (vo.autoSwitch) {
+
+                //wl
+                let wl = vo.switchWidth
+                // console.log('wl', wl)
+
+                //mw
+                let mw = get(msg, 'smode.width', '')
+
+                //switch
+                if (vo.valueTrans && mw === 'smaller' && vo.panelWidth < wl) { //已開啟抽屜且為變窄時才偵測
+
+                    //toggleValue
+                    vo.toggleValue(false)
+
+                    //emit
+                    vo.$emit('input', false)
+
+                }
+                else if (!vo.valueTrans && mw === 'larger' && vo.panelWidth >= wl) { //已隱藏抽屜且為變寬時才偵測
+
+                    //toggleValue
+                    vo.toggleValue(true)
+
+                    //emit
+                    vo.$emit('input', true)
+
+                }
+
+                //afloatTrans
+                let afloatTrans = vo.panelWidth < wl
+
+                //save afloatTrans
+                vo.afloatTrans = afloatTrans
+
+                //emit
+                vo.$emit('update:afloat', afloatTrans)
+
+            }
 
             //emit
             vo.$emit('resize', msg)
@@ -470,7 +529,7 @@ export default {
             let vo = this
 
             //check, 固定時(非浮動)禁止關閉
-            if (!vo.afloat) {
+            if (!vo.afloatTrans) {
                 return
             }
 
