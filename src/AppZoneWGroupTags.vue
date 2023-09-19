@@ -900,11 +900,11 @@
                     <template v-slot:items="props">
                         <div style="display:flex; align-items:center;">
 
-                            <div :style="'margin-left:-9px; display:inline-block; border-radius:10px; font-size:0.85rem; user-select:none; padding:0px 12px; '.concat(props.active ? 'color:#263238; background:rgba(255,255,255,0.7);' : 'color:#888; background:rgba(100,100,100,0.1);')">
+                            <div :style="`margin-left:-9px; display:inline-block; border-radius:10px; font-size:0.85rem; user-select:none; padding:0px 12px; ${props.active?'color:#263238; background:rgba(255,255,255,0.7);':'color:#888; background:rgba(100,100,100,0.1);'}`">
                                 Menu
                             </div>
 
-                            <div :style="'display:inline-block; font-size:0.85rem; user-select:none; padding:0px 6px; '.concat(props.active ? 'color:#fff;' : 'color:#444;')">
+                            <div :style="`display:inline-block; font-size:0.85rem; user-select:none; padding:0px 6px; ${props.active?'color:#fff;':'color:#444;'}`">
                                 {{props.item}}
                             </div>
 
@@ -938,11 +938,11 @@
                     <template v-slot:items="props">
                         <div style="display:flex; align-items:center;">
 
-                            <div :style="'margin-left:-9px; display:inline-block; border-radius:10px; font-size:0.85rem; user-select:none; padding:0px 12px; '.concat(props.active ? 'color:#263238; background:rgba(255,255,255,0.7);' : 'color:#888; background:rgba(100,100,100,0.1);')">
+                            <div :style="`margin-left:-9px; display:inline-block; border-radius:10px; font-size:0.85rem; user-select:none; padding:0px 12px; ${props.active?'color:#263238; background:rgba(255,255,255,0.7);':'color:#888; background:rgba(100,100,100,0.1);'}`">
                                 {{props.item.slotTextKind}}
                             </div>
 
-                            <div :style="'display:inline-block; font-size:0.85rem; user-select:none; padding:0px 6px; '.concat(props.active ? 'color:#fff;' : 'color:#444;')">
+                            <div :style="`display:inline-block; font-size:0.85rem; user-select:none; padding:0px 6px; ${props.active?'color:#fff;':'color:#444;'}`">
                                 {{props.item.text}}
                             </div>
 
@@ -973,11 +973,11 @@
                     <template v-slot:items="props">
                         <div style="display:flex; align-items:center;">
 
-                            <div :style="'margin-left:-9px; display:inline-block; border-radius:10px; font-size:0.85rem; user-select:none; padding:0px 12px; '.concat(props.active ? 'color:#263238; background:rgba(255,255,255,0.7);' : 'color:#888; background:rgba(100,100,100,0.1);')">
+                            <div :style="`margin-left:-9px; display:inline-block; border-radius:10px; font-size:0.85rem; user-select:none; padding:0px 12px; ${props.active?'color:#263238; background:rgba(255,255,255,0.7);':'color:#888; background:rgba(100,100,100,0.1);'}`">
                                 Menu
                             </div>
 
-                            <div :style="'display:inline-block; font-size:0.85rem; user-select:none; padding:0px 6px; '.concat(props.active ? 'color:#fff;' : 'color:#444;')">
+                            <div :style="`display:inline-block; font-size:0.85rem; user-select:none; padding:0px 6px; ${props.active?'color:#fff;':'color:#444;'}`">
                                 {{props.item.text}}
                             </div>
 

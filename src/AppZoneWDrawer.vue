@@ -841,6 +841,50 @@
             </div>
 
 
+            <div class="bk" style="display:block;">
+                <demolink
+                    :kbname="'w-drawer'"
+                    :casename="'autoSwitch & switchWidth'"
+                ></demolink>
+
+                <div style="padding-bottom:10px;">
+                    <v-btn depressed small elevation="2" @click="WDrawer.bShow121=!WDrawer.bShow121">Show({{WDrawer.bShow121}})</v-btn>
+                </div>
+
+                <w-panel-divide-horizontal
+                    style="width:100%; height:400px; border:1px dashed #ec596b;"
+                    :barColor="'#f26'"
+                >
+                    <template v-slot:left="props">
+                        <w-drawer
+                            :style="`width:${props.width}px; height:400px; border:1px solid #ddd;`"
+                            v-model="WDrawer.bShow121"
+                            :autoSwitch="true"
+                            :switchWidth="WDrawer.drawerWidth*2"
+                        >
+
+                            <template v-slot:drawer>
+                                <w-list-vertical
+                                    style="height:100%; border-right:1px solid #ddd;"
+                                    :items="WDrawer.listItems"
+                                    :itemActive.sync="WDrawer.listItemActive"
+                                ></w-list-vertical>
+                            </template>
+
+                            <template v-slot:content>
+                                <div style="height:100%; overflow-y:auto;">
+                                    <div style="padding:10px; font-size:1.2rem;">{{WDrawer.title}}</div>
+                                    <div style="padding:0px 10px 10px 10px; font-size:0.9rem;">{{WDrawer.content}}</div>
+                                </div>
+                            </template>
+
+                        </w-drawer>
+                    </template>
+                </w-panel-divide-horizontal>
+
+            </div>
+
+
         </div>
 
 
@@ -851,7 +895,7 @@
 import demolink from './components/demolink.vue'
 import WListVertical from './components/WListVertical.vue'
 import WDrawer from './components/WDrawer.vue'
-import WButtonCircle from './components/WButtonCircle.vue'
+import WPanelDivideHorizontal from './components/WPanelDivideHorizontal.vue'
 
 
 export default {
@@ -859,7 +903,7 @@ export default {
         demolink,
         WListVertical,
         WDrawer,
-        WButtonCircle,
+        WPanelDivideHorizontal,
     },
     props: {
     },
@@ -958,6 +1002,7 @@ export default {
                 'bShow118': false,
                 'bShow119': false,
                 'bShow120': false,
+                'bShow121': false,
             },
             'actions': [
                 {
