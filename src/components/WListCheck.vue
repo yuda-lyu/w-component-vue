@@ -773,7 +773,7 @@ export default {
                     kpCheck[k] = false
                 })
                 kpCheck[kLast] = true
-                console.log('kpCheck(single)', kpCheck)
+                // console.log('kpCheck(single)', kpCheck)
             }
 
             //itemsTrans
