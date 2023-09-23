@@ -85,7 +85,7 @@
     </script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.3.34/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.3.35/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -145,7 +145,7 @@
                     <template v-slot:top="props">
                         <!-- 用:style才能支援IE11因vue會自動把overflow-y:auto轉為-ms-overflow-y:auto -->
                         <div
-                            :style="'overflow-y:auto; height:'.concat(props.height, 'px;')"
+                            :style="`overflow-y:auto; height:${props.height}px;`"
                         >
                             <div
                                 style="padding:0px 5px; font-size:0.6rem; background:#eef; user-select:none; user-drag:none;"
@@ -156,7 +156,7 @@
                     <template v-slot:bottom="props">
                         <!-- 用:style才能支援IE11因vue會自動把overflow-y:auto轉為-ms-overflow-y:auto -->
                         <div
-                            :style="'overflow-y:auto; height:'.concat(props.height, 'px;')"
+                            :style="`overflow-y:auto; height:${props.height}px;`"
                         >
                             <div
                                 style="padding:0px 5px; font-size:0.6rem; background:#eef; user-select:none; user-drag:none;"

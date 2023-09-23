@@ -85,7 +85,7 @@
     </script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.3.34/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.3.35/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -145,7 +145,7 @@
                 >
                     <template v-slot:top="props">
                         <div
-                            :style="'position:relative; height:'.concat(props.height, 'px; overflow:hidden;')"
+                            :style="`position:relative; height:${props.height}px; overflow:hidden;`"
                         >
                             <img
                                 style="position:absolute; top:0; left:0; width:800px; height:600px; user-select:none; user-drag:none;"
@@ -155,7 +155,7 @@
                     </template>
                     <template v-slot:bottom="props">
                         <div
-                            :style="'position:relative; height:'.concat(props.height, 'px; overflow:hidden;')"
+                            :style="`position:relative; height:${props.height}px; overflow:hidden;`"
                         >
                             <img
                                 style="position:absolute; bottom:-200px; left:0; width:800px; height:600px; user-select:none; user-drag:none;"

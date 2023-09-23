@@ -1,6 +1,7 @@
 <template>
     <div
-        :changeParams="changeParams"
+        :changeValue="changeValue"
+        :changeQuery="changeQuery"
         v-domresize
         @domresize="resize"
     >
@@ -570,13 +571,21 @@ export default {
     },
     computed: {
 
-        changeParams: function () {
-            //console.log('computed changeParams')
+        changeValue: function () {
+            // console.log('computed changeValue')
 
             let vo = this
 
             //modifyItems
             vo.modifyItems(vo.value)
+
+            return ''
+        },
+
+        changeQuery: function () {
+            // console.log('computed changeQuery')
+
+            let vo = this
 
             //save
             vo.queryTrans = vo.query
