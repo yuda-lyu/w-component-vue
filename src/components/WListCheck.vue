@@ -111,7 +111,7 @@
                     :uncheckedIconColorHover="props.isActive?itemCheckIconUncheckedIconColorActive:itemCheckIconUncheckedIconColorHover"
                     :uncheckedIconColorDisabled="itemCheckIconUncheckedIconColorDisabled"
                     :editable="getEditable(props.item.data)"
-                    :value="itemsCheck[props.kitem]"
+                    :value="getCheck(props.item.data)"
                 ></WCheckbox>
 
                 <div :style="`padding-right:${spaceBetweenCheckboxAndContent}px;`"></div>
@@ -155,11 +155,13 @@ import isEqual from 'lodash/isEqual'
 import cloneDeep from 'lodash/cloneDeep'
 import isestr from 'wsemi/src/isestr.mjs'
 import isobj from 'wsemi/src/isobj.mjs'
+import iseobj from 'wsemi/src/iseobj.mjs'
 import isearr from 'wsemi/src/isearr.mjs'
 import arrHas from 'wsemi/src/arrHas.mjs'
 import sep from 'wsemi/src/sep.mjs'
 import o2j from 'wsemi/src/o2j.mjs'
 import cstr from 'wsemi/src/cstr.mjs'
+import strleft from 'wsemi/src/strleft.mjs'
 import domResize from '../js/domResize.mjs'
 import color2hex from '../js/vuetifyColor.mjs'
 import parseSpace from '../js/parseSpace.mjs'
@@ -561,8 +563,7 @@ export default {
             panelHeight: 0,
 
             itemsTrans: [],
-            itemsCheck: [],
-            // itemsShow: [],
+            kpCheck: {},
 
             queryTrans: '',
             queryFocusedTrans: false,
@@ -640,19 +641,51 @@ export default {
 
         },
 
-        getCheck: function (v, value) {
-            // console.log('getCheck', v, value)
+        getItem: function(v) {
+            // console.log('getItem', v)
+            let vo = this
+            let r = null
+            if (vo.isObjValue && isestr(vo.keyPickForObjItem)) {
+                r = get(v, vo.keyPickForObjItem)
+            }
+            else {
+                r = v
+            }
+            return r
+        },
+
+        getKeyFromItemAndInd: function(v, k) {
+            // console.log('getKeyFromItemAndInd', v, k)
+            let vo = this
+            let vt = vo.getItem(v)
+            if (iseobj(vt)) {
+                vt = JSON.stringify(vt)
+                vt = strleft(vt, 20)
+            }
+            let r = `${k}|${vt}`
+            return r
+        },
+
+        getKeyFromItem: function(v) {
+            // console.log('getKeyFromItem', v)
+            let vo = this
+            let vk = null
+            each(vo.items, (_v, k) => {
+                if (isEqual(_v, v)) {
+                    vk = vo.getKeyFromItemAndInd(v, k)
+                    return false //跳出
+                }
+            })
+            return vk
+        },
+
+        judgeItem: function (v, value) {
+            // console.log('judgeItem', v, value)
 
             let vo = this
 
             //vt
-            let vt = null
-            if (vo.isObjValue && isestr(vo.keyPickForObjItem)) {
-                vt = get(v, vo.keyPickForObjItem)
-            }
-            else {
-                vt = v
-            }
+            let vt = vo.getItem(v)
 
             //check
             let check = null
@@ -660,7 +693,7 @@ export default {
                 check = arrHas(value, vt)
             }
             else {
-                check = isEqual(vt, value)
+                check = isEqual(value, vt)
             }
 
             return check
@@ -720,25 +753,27 @@ export default {
 
             let vo = this
 
-            //itemsCheck
-            let kLast = -1
-            let itemsCheck = map(vo.items, (v, k) => {
-                let check = vo.getCheck(v, value)
+            //kpCheck
+            let kLast = null
+            let kpCheck = {}
+            each(vo.items, (v, k) => {
+                let vk = vo.getKeyFromItemAndInd(v, k) //k為真實ind
+                let check = vo.judgeItem(v, value)
+                kpCheck[vk] = check
                 if (check) {
-                    kLast = k
+                    kLast = vk
                 }
-                return check
             })
-            // console.log('itemsCheck', itemsCheck)
+            // console.log('kpCheck', kpCheck)
             // console.log('kLast', kLast)
 
             //單選時僅允許最後核選為有效值
-            if (!vo.multiCheck && kLast >= 0) {
-                itemsCheck = map(itemsCheck, (v) => {
-                    return false
+            if (!vo.multiCheck && kLast !== null) {
+                each(kpCheck, (v, k) => {
+                    kpCheck[k] = false
                 })
-                itemsCheck[kLast] = true
-                // console.log('itemsCheck(single)', itemsCheck)
+                kpCheck[kLast] = true
+                console.log('kpCheck(single)', kpCheck)
             }
 
             //itemsTrans
@@ -767,7 +802,7 @@ export default {
 
             //save
             vo.itemsTrans = itemsTrans
-            vo.itemsCheck = itemsCheck
+            vo.kpCheck = kpCheck
 
         },
 
@@ -782,51 +817,49 @@ export default {
             }
 
             //cloneDeep
-            let itemsCheck = cloneDeep(vo.itemsCheck)
+            let kpCheck = cloneDeep(vo.kpCheck)
+            // console.log('kpCheck(cloneDeep)', kpCheck)
+
+            //vk
+            let vk = vo.getKeyFromItem(item) //kitem可能受list query影響, 為非真實ind
+            // console.log('vk', vk)
 
             //modify
             if (vo.multiCheck) {
                 //多選
-                itemsCheck[kitem] = !itemsCheck[kitem]
+                kpCheck[vk] = !kpCheck[vk]
             }
             else {
                 //單選
-                if (!itemsCheck[kitem]) {
-                    each(itemsCheck, (v, k) => {
-                        if (k === kitem) {
-                            itemsCheck[k] = true
-                        }
-                        else {
-                            itemsCheck[k] = false
-                        }
+                if (!kpCheck[kitem]) {
+                    each(kpCheck, (v, k) => {
+                        kpCheck[k] = false
                     })
+                    kpCheck[vk] = true
                 }
                 // else { //不提供單選時點擊已勾選能取消機制
-                //     itemsCheck[kitem] = !itemsCheck[kitem]
+                //     kpCheck[kitem] = !kpCheck[kitem]
                 // }
             }
-            // console.log('itemsCheck', itemsCheck)
+            // console.log('kpCheck', kpCheck)
 
             //value
             let value = []
-            each(itemsCheck, (b, k) => {
+            each(vo.items, (v, k) => {
+
+                //vk
+                let vk = vo.getKeyFromItemAndInd(v, k)
 
                 //check
-                if (!b) {
+                let check = kpCheck[vk]
+
+                //check
+                if (!check) {
                     return true //跳出換下一個
                 }
 
-                //v
-                let v = cloneDeep(vo.items[k])
-
                 //vt
-                let vt = null
-                if (vo.isObjValue && isestr(vo.keyPickForObjItem)) {
-                    vt = get(v, vo.keyPickForObjItem)
-                }
-                else {
-                    vt = v
-                }
+                let vt = vo.getItem(v)
 
                 //push
                 value.push(vt)
@@ -837,14 +870,15 @@ export default {
                 value = get(value, 0, null)
                 // console.log('value(single)', value)
             }
+            // console.log('value', value)
 
             //save
-            vo.itemsCheck = itemsCheck
-            // console.log('itemsCheck', itemsCheck)
+            vo.kpCheck = kpCheck
+            // console.log('kpCheck', kpCheck)
 
             //emit
             vo.$emit('click', {
-                check: itemsCheck[kitem],
+                check: kpCheck[vk],
                 item: cloneDeep(vo.items[kitem]),
                 kitem,
             })
@@ -882,7 +916,22 @@ export default {
 
         },
 
+        getCheck: function(item) {
+            // console.log('methods getCheck', item)
+
+            let vo = this
+
+            //vk
+            let vk = vo.getKeyFromItem(item)
+
+            //b
+            let b = vo.kpCheck[vk]
+
+            return b
+        },
+
         getEditable: function(item) {
+            // console.log('methods getEditable', item)
             // let vo = this
             let b = get(item, 'editable', true)
             return b
