@@ -127,6 +127,30 @@
         <td>No</td>
         <td>輸入項目陣列內全部值之最大值數字，預設null</td>
     </tr><tr>
+        <td><code>title</code></td>
+        <td>String</td>
+        <td><code>'left'</code></td>
+        <td>No</td>
+        <td>輸入軸標題文字字串，可選'left'與'right'，預設'left'</td>
+    </tr><tr>
+        <td><code>titleColor</code></td>
+        <td>String</td>
+        <td><code>'#444'</code></td>
+        <td>No</td>
+        <td>輸入軸標題文字顏色字串，預設'#444'</td>
+    </tr><tr>
+        <td><code>titleFontSize</code></td>
+        <td>String</td>
+        <td><code>'1rem'</code></td>
+        <td>No</td>
+        <td>輸入軸標題文字字型大小字串，預設'1rem'</td>
+    </tr><tr>
+        <td><code>titleShift</code></td>
+        <td>Number</td>
+        <td><code>null</code></td>
+        <td>No</td>
+        <td>輸入軸標題與左側軸距離數字，單位為px，若給null則自動使用值為-paddingStyle.left+12，預設null</td>
+    </tr><tr>
         <td><code>alignStart</code></td>
         <td>String</td>
         <td><code>'left'</code></td>
@@ -175,6 +199,30 @@
         <td>No</td>
         <td>輸入刻度文字字型大小字串，預設'0.7rem'</td>
     </tr><tr>
+        <td><code>segmentBackgroundType</code></td>
+        <td>String</td>
+        <td><code>'color'</code></td>
+        <td>No</td>
+        <td>輸入區塊背景類型字串，可選'color'或'image'，預設'color'</td>
+    </tr><tr>
+        <td><code>segmentBackgroundImage</code></td>
+        <td>String</td>
+        <td><code>''</code></td>
+        <td>No</td>
+        <td>輸入區塊背景圖片字串，通過background-image:url(...)設定，預設''</td>
+    </tr><tr>
+        <td><code>funSegmentBackgroundImage</code></td>
+        <td>function</td>
+        <td><code>null</code></td>
+        <td>No</td>
+        <td>輸入處理項目數據之區塊背景圖片函數，預設null</td>
+    </tr><tr>
+        <td><code>segmentBackgroundImageSize</code></td>
+        <td>String</td>
+        <td><code>'75%'</code></td>
+        <td>No</td>
+        <td>輸入區塊背景圖片尺寸字串，預設'75%'</td>
+    </tr><tr>
         <td><code>segmentBackgroundColor</code></td>
         <td>String</td>
         <td><code>'#FFB74D'</code></td>
@@ -188,10 +236,10 @@
         <td>輸入處理項目數據之區塊背景函數，預設null</td>
     </tr><tr>
         <td><code>segmentBorderColor</code></td>
-        <td>String</td>
+        <td>String|Object</td>
         <td><code>'#FFB74D'</code></td>
         <td>No</td>
-        <td>輸入區塊邊框顏色字串，預設'#FB8C00'</td>
+        <td>輸入區塊邊框顏色字串或物件，給予物件時可用鍵值為v、h、left、right、top、bottom，v代表同時設定top與bottom，h代表設定left與right，預設'#FB8C00'</td>
     </tr><tr>
         <td><code>funSegmentBorderColor</code></td>
         <td>function</td>
@@ -245,7 +293,7 @@
         <td>Number</td>
         <td><code>null</code></td>
         <td>No</td>
-        <td>輸入項目文字區與左側軸距離數字，單位為px，若給null則自動使用paddingStyle.left值，預設null</td>
+        <td>輸入項目文字區與左側軸距離數字，單位為px，若給null則自動使用值為1+segmentSize/2+paddingStyle.left，預設null</td>
     </tr><tr>
         <td><code>textCanClick</code></td>
         <td>Boolean</td>
@@ -379,6 +427,30 @@
         <td>No</td>
         <td>輸入項目陣列內全部值之最大值數字，預設null</td>
     </tr><tr>
+        <td><code>title</code></td>
+        <td>String</td>
+        <td><code>'left'</code></td>
+        <td>No</td>
+        <td>輸入軸標題文字字串，可選'left'與'right'，預設'left'</td>
+    </tr><tr>
+        <td><code>titleColor</code></td>
+        <td>String</td>
+        <td><code>'#444'</code></td>
+        <td>No</td>
+        <td>輸入軸標題文字顏色字串，預設'#444'</td>
+    </tr><tr>
+        <td><code>titleFontSize</code></td>
+        <td>String</td>
+        <td><code>'1rem'</code></td>
+        <td>No</td>
+        <td>輸入軸標題文字字型大小字串，預設'1rem'</td>
+    </tr><tr>
+        <td><code>titleShift</code></td>
+        <td>Number</td>
+        <td><code>null</code></td>
+        <td>No</td>
+        <td>輸入軸標題與左側軸距離數字，單位為px，若給null則自動使用值為-paddingStyle.left+12，預設null</td>
+    </tr><tr>
         <td><code>alignStart</code></td>
         <td>String</td>
         <td><code>'left'</code></td>
@@ -427,6 +499,30 @@
         <td>No</td>
         <td>輸入刻度文字字型大小字串，預設'0.7rem'</td>
     </tr><tr>
+        <td><code>segmentBackgroundType</code></td>
+        <td>String</td>
+        <td><code>'color'</code></td>
+        <td>No</td>
+        <td>輸入區塊背景類型字串，可選'color'或'image'，預設'color'</td>
+    </tr><tr>
+        <td><code>segmentBackgroundImage</code></td>
+        <td>String</td>
+        <td><code>''</code></td>
+        <td>No</td>
+        <td>輸入區塊背景圖片字串，通過background-image:url(...)設定，預設''</td>
+    </tr><tr>
+        <td><code>funSegmentBackgroundImage</code></td>
+        <td>function</td>
+        <td><code>null</code></td>
+        <td>No</td>
+        <td>輸入處理項目數據之區塊背景圖片函數，預設null</td>
+    </tr><tr>
+        <td><code>segmentBackgroundImageSize</code></td>
+        <td>String</td>
+        <td><code>'75%'</code></td>
+        <td>No</td>
+        <td>輸入區塊背景圖片尺寸字串，預設'75%'</td>
+    </tr><tr>
         <td><code>segmentBackgroundColor</code></td>
         <td>String</td>
         <td><code>'#FFB74D'</code></td>
@@ -440,10 +536,10 @@
         <td>輸入處理項目數據之區塊背景函數，預設null</td>
     </tr><tr>
         <td><code>segmentBorderColor</code></td>
-        <td>String</td>
+        <td>String|Object</td>
         <td><code>'#FFB74D'</code></td>
         <td>No</td>
-        <td>輸入區塊邊框顏色字串，預設'#FB8C00'</td>
+        <td>輸入區塊邊框顏色字串或物件，給予物件時可用鍵值為v、h、left、right、top、bottom，v代表同時設定top與bottom，h代表設定left與right，預設'#FB8C00'</td>
     </tr><tr>
         <td><code>funSegmentBorderColor</code></td>
         <td>function</td>
@@ -497,7 +593,7 @@
         <td>Number</td>
         <td><code>null</code></td>
         <td>No</td>
-        <td>輸入項目文字區與左側軸距離數字，單位為px，若給null則自動使用paddingStyle.left值，預設null</td>
+        <td>輸入項目文字區與左側軸距離數字，單位為px，若給null則自動使用值為1+segmentSize/2+paddingStyle.left，預設null</td>
     </tr><tr>
         <td><code>textCanClick</code></td>
         <td>Boolean</td>
@@ -563,7 +659,7 @@
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.2</a> on Sat Sep 23 2023 18:18:29 GMT+0800 (台北標準時間) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.2</a> on Thu Sep 28 2023 14:42:47 GMT+0800 (台北標準時間) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>
