@@ -90,13 +90,14 @@ function writeHtml(v) {
         <link _href="https://fonts.googleapis.com/css?family=Material+Icons" rel="stylesheet">
     
         <!-- data -->
-        <script src="https://cdn.jsdelivr.net/npm/w-demores@1.0.20/res/data/dataAAPL.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/w-demores@1.0.20/res/data/dataUSD2EUR.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/w-demores@1.0.20/res/data/dataTemperature.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/w-demores@1.0.20/res/data/dataHousePriceArea.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/w-demores@1.0.20/res/data/dataFlare.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/w-demores@1.0.20/res/data/dataRain.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/w-demores@1.0.20/res/data/dataRainClip.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/w-demores@1.0.22/res/data/dataAAPL.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/w-demores@1.0.22/res/data/dataUSD2EUR.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/w-demores@1.0.22/res/data/dataTemperature.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/w-demores@1.0.22/res/data/dataHousePriceArea.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/w-demores@1.0.22/res/data/dataFlare.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/w-demores@1.0.22/res/data/dataRain.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/w-demores@1.0.22/res/data/dataRainClip.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/w-demores@1.0.22/res/data/dataCivilSoilCodeIcon.js"></script>
         <script>
             //save in window
             window.dataAAPL=dataAAPL
@@ -106,6 +107,7 @@ function writeHtml(v) {
             window.dataFlare=dataFlare
             window.dataRain=dataRain
             window.dataRainClip=dataRainClip
+            window.dataCivilSoilCodeIcon=dataCivilSoilCodeIcon
         </script>
     
         <!-- w-component-vue -->

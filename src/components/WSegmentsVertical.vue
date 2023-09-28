@@ -6,6 +6,13 @@
             <div :style="`position:relative; width:${plotWidth}px; height:${plotHeight}px; border-left:1px solid ${useAxisColor};`">
 
                 <div
+                    :style="`position:absolute; top:50%; left:0%; width:${100}px; color:${useTitleColor}; font-size:${titleFontSize}; text-align:center; transform-origin:center; transform:translate(-50%,-50%) rotate(-90deg) translateY(${useTitleShift}px);`"
+                    v-if="title"
+                >
+                    {{title}}
+                </div>
+
+                <div
                     :style="`position:absolute; top:${l.y}px; left:0px; transform:translate( calc( ${getLabelShift(l.align)} ), -50% );`"
                     :key="'label'+kl"
                     v-for="(l,kl) in useLabelsLocs"
@@ -24,11 +31,25 @@
                 </div>
 
                 <div
-                    :style="`position:absolute; top:${s.y}px; left:-${segmentSize/2}px; width:${segmentSize}px; height:${s.height}px; background:${getSegmentBackgroundColor(ks)}; border:1px solid ${getSegmentBorderColor(ks)}; ${useSegmentCursor}`"
+                    :style="`position:absolute; top:${s.y}px; left:-${segmentSize/2}px; width:${segmentSize}px; height:${s.height}px; ${getSegmentBackground(ks)} ${getSegmentBorder(ks)} ${useSegmentCursor}`"
                     :key="'sample-block'+ks"
                     v-for="(s,ks) in useSamplesLocs"
                     @click="(ev)=>{clickSegment(ev,s.data)}"
                 >
+                </div>
+
+                <div :style="`position:absolute; top:0px; left:0px; transform:translateX(-${paddingLeft}px);`">
+                    <slot
+                        name="support-left"
+                        :convertValueToY="convertValueToY"
+                    ></slot>
+                </div>
+
+                <div :style="`position:absolute; top:0px; left:${useTickOuter}px;`">
+                    <slot
+                        name="support-right"
+                        :convertValueToY="convertValueToY"
+                    ></slot>
                 </div>
 
                 <div
@@ -134,9 +155,12 @@ import values from 'lodash/values'
 import isestr from 'wsemi/src/isestr.mjs'
 import isfun from 'wsemi/src/isfun.mjs'
 import isnum from 'wsemi/src/isnum.mjs'
+import isobj from 'wsemi/src/isobj.mjs'
 import cdbl from 'wsemi/src/cdbl.mjs'
+import replace from 'wsemi/src/replace.mjs'
 import WPopup from './WPopup.vue'
 import parseSpace from '../js/parseSpace.mjs'
+import parseDirection from '../js/parseDirection.mjs'
 import color2hex from '../js/vuetifyColor.mjs'
 
 
@@ -150,6 +174,10 @@ import color2hex from '../js/vuetifyColor.mjs'
  * @vue-prop {String} [keyText='text'] 輸入項目物件存放顯示文字之欄位字串，預設'text'
  * @vue-prop {Number} [valueMin=null] 輸入項目陣列內全部值之最小值數字，預設null
  * @vue-prop {Number} [valueMax=null] 輸入項目陣列內全部值之最大值數字，預設null
+ * @vue-prop {String} [title='left'] 輸入軸標題文字字串，可選'left'與'right'，預設'left'
+ * @vue-prop {String} [titleColor='#444'] 輸入軸標題文字顏色字串，預設'#444'
+ * @vue-prop {String} [titleFontSize='1rem'] 輸入軸標題文字字型大小字串，預設'1rem'
+ * @vue-prop {Number} [titleShift=null] 輸入軸標題與左側軸距離數字，單位為px，若給null則自動使用值為-paddingStyle.left+12，預設null
  * @vue-prop {String} [alignStart='left'] 輸入項目起始值刻度文字對齊字串，可選'left'與'right'，預設'left'
  * @vue-prop {String} [alignEnd='right'] 輸入項目結束值刻度文字對齊字串，可選'left'與'right'，預設'right'
  * @vue-prop {Function} [funFormatTickValue=null] 輸入處理項目數據之刻度值用以顯示函數，預設null
@@ -158,9 +186,13 @@ import color2hex from '../js/vuetifyColor.mjs'
  * @vue-prop {Number} [tickSize=5] 輸入刻度尺寸(為單側寬度)數字，單位為px，預設5
  * @vue-prop {String} [tickLabelColor='#666'] 輸入刻度文字顏色字串，預設'#666'
  * @vue-prop {String} [tickLabelFontSize='0.7rem'] 輸入刻度文字字型大小字串，預設'0.7rem'
+ * @vue-prop {String} [segmentBackgroundType='color'] 輸入區塊背景類型字串，可選'color'或'image'，預設'color'
+ * @vue-prop {String} [segmentBackgroundImage=''] 輸入區塊背景圖片字串，通過background-image:url(...)設定，預設''
+ * @vue-prop {Function} [funSegmentBackgroundImage=null] 輸入處理項目數據之區塊背景圖片函數，預設null
+ * @vue-prop {String} [segmentBackgroundImageSize='75%'] 輸入區塊背景圖片尺寸字串，預設'75%'
  * @vue-prop {String} [segmentBackgroundColor='#FFB74D'] 輸入區塊背景顏色字串，預設'#FFB74D'
  * @vue-prop {Function} [funSegmentBackgroundColor=null] 輸入處理項目數據之區塊背景函數，預設null
- * @vue-prop {String} [segmentBorderColor='#FFB74D'] 輸入區塊邊框顏色字串，預設'#FB8C00'
+ * @vue-prop {String|Object} [segmentBorderColor='#FFB74D'] 輸入區塊邊框顏色字串或物件，給予物件時可用鍵值為v、h、left、right、top、bottom，v代表同時設定top與bottom，h代表設定left與right，預設'#FB8C00'
  * @vue-prop {Function} [funSegmentBorderColor=null] 輸入處理項目數據之區塊邊框函數，預設null
  * @vue-prop {Number} [segmentSize=6] 輸入區塊尺寸(為兩側總寬度)數字，單位為px，預設6
  * @vue-prop {Boolean} [textWithPopup=false] 輸入項目文字是否可點擊顯示popup彈窗布林值，預設false
@@ -169,7 +201,7 @@ import color2hex from '../js/vuetifyColor.mjs'
  * @vue-prop {String} [textBackgroundColor='#ddd'] 輸入項目文字區之背景顏色字串，預設'#ddd'
  * @vue-prop {Number} [textTriangularSize=15] 輸入項目文字區之箭頭長度數字，單位為px，若textTriangularSize/textTriangularRatio*2小於項目文字區高度時則會破圖，預設15
  * @vue-prop {Number} [textTriangularRatio=1.5] 輸入項目文字區之箭頭長寬比值數字，若textTriangularSize/textTriangularRatio*2小於項目文字區高度時則會破圖，預設1.5
- * @vue-prop {Number} [textShift=null] 輸入項目文字區與左側軸距離數字，單位為px，若給null則自動使用paddingStyle.left值，預設null
+ * @vue-prop {Number} [textShift=null] 輸入項目文字區與左側軸距離數字，單位為px，若給null則自動使用值為1+segmentSize/2+paddingStyle.left，預設null
  * @vue-prop {Boolean} [textCanClick=false] 輸入項目文字是否可點擊布林值，預設false
  * @vue-prop {Boolean} [segmentCanClick=false] 輸入區塊是否可點擊布林值，預設false
  */
@@ -221,6 +253,22 @@ export default {
             type: Number,
             default: null,
         },
+        title: {
+            type: String,
+            default: '',
+        },
+        titleColor: {
+            type: String,
+            default: '#444',
+        },
+        titleFontSize: {
+            type: String,
+            default: '1rem',
+        },
+        titleShift: {
+            type: Number,
+            default: null,
+        },
         alignStart: {
             type: String,
             default: 'left',
@@ -253,6 +301,10 @@ export default {
             type: String,
             default: '0.7rem',
         },
+        segmentBackgroundType: {
+            type: String,
+            default: 'color', //color image
+        },
         segmentBackgroundColor: {
             type: String,
             default: '#FFB74D',
@@ -261,8 +313,20 @@ export default {
             type: Function,
             default: null,
         },
-        segmentBorderColor: {
+        segmentBackgroundImage: {
             type: String,
+            default: '',
+        },
+        funSegmentBackgroundImage: {
+            type: Function,
+            default: null,
+        },
+        segmentBackgroundImageSize: {
+            type: String,
+            default: '75%',
+        },
+        segmentBorderColor: {
+            type: [String, Object],
             default: '#FB8C00',
         },
         funSegmentBorderColor: {
@@ -479,6 +543,14 @@ export default {
             return r
         },
 
+        userValueRange: function() {
+            let vo = this
+
+            let r = vo.useValueMax - vo.useValueMin
+
+            return r
+        },
+
         useItems: function() {
             let vo = this
 
@@ -572,14 +644,11 @@ export default {
         useLabelsLocs: function() {
             let vo = this
 
-            //range
-            let range = vo.useValueMax - vo.useValueMin
-
             //locs
             let locs = map(vo.useLabels, (v) => {
 
                 //y
-                let y = (v.value - vo.useValueMin) / range * vo.plotHeight
+                let y = vo.convertValueToY(v.value)
 
                 //label
                 let label = v.value
@@ -632,6 +701,11 @@ export default {
             return locs
         },
 
+        useTitleColor: function() {
+            let vo = this
+            return color2hex(vo.titleColor)
+        },
+
         useAxisColor: function() {
             let vo = this
             return color2hex(vo.axisColor)
@@ -653,6 +727,29 @@ export default {
             return b ? 'cursor:pointer;' : ''
         },
 
+        useTitleShift: function() {
+            let vo = this
+
+            //titleShift
+            if (isNumber(vo.titleShift)) {
+                return vo.titleShift
+            }
+
+            //自動計算
+            let s = -vo.paddingLeft + 12
+
+            return s
+        },
+
+        useTickOuter: function() {
+            let vo = this
+
+            let s = vo.tickSize
+            s += 4
+
+            return s
+        },
+
         useTextShift: function() {
             let vo = this
 
@@ -661,7 +758,7 @@ export default {
                 return vo.textShift
             }
 
-            //給予paddingLeft
+            //自動計算
             let s = 1 + vo.segmentSize / 2
             if (vo.useAlignStart === 'right' || vo.useAlignEnd === 'right') {
                 s += vo.paddingLeft
@@ -689,6 +786,14 @@ export default {
     },
     methods: {
 
+        convertValueToY: function(v) {
+            let vo = this
+
+            let y = (v - vo.useValueMin) / vo.userValueRange * vo.plotHeight
+
+            return y
+        },
+
         getLabelShift: function(align) {
             let vo = this
 
@@ -696,11 +801,29 @@ export default {
             if (align === 'left') {
                 t = '-100% - '
             }
-            let s = Math.max(vo.tickSize, 0)
-            s += 4
+            let s = vo.useTickOuter
             let c = `${t}${s}px`
 
             return c
+        },
+
+        getSegmentBackground: function(k) {
+            let vo = this
+
+            let bg = ''
+            if (vo.segmentBackgroundType === 'color') {
+                bg = `background:${vo.getSegmentBackgroundColor(k)};`
+            }
+            else if (vo.segmentBackgroundType === 'image') {
+                let segmentBackgroundImageSize = vo.segmentBackgroundImageSize
+                segmentBackgroundImageSize = replace(segmentBackgroundImageSize, ';', '')
+                bg = `background-image:url('${vo.getSegmentBackgroundImage(k)}'); background-size:${segmentBackgroundImageSize}; background-repeat:repeat;`
+            }
+            else {
+                throw new Error(`segmentBackgroundType[${vo.segmentBackgroundType}] need to set 'color' or 'image'`)
+            }
+
+            return bg
         },
 
         getSegmentBackgroundColor: function(k) {
@@ -716,28 +839,67 @@ export default {
                 let item = get(vo, `useItems.${k}.data`, {})
 
                 //funSegmentBackgroundColor
-                c = vo.funSegmentBackgroundColor(item, c)
+                c = vo.funSegmentBackgroundColor(item)
 
             }
 
             return c
         },
 
-        getSegmentBorderColor: function(k) {
+        getSegmentBackgroundImage: function(k) {
             let vo = this
 
-            //color2hex
-            let c = color2hex(vo.segmentBorderColor)
+            //img
+            let img = vo.segmentBackgroundImage
 
             //check
-            if (isfun(vo.funSegmentBorderColor)) {
+            if (isfun(vo.funSegmentBackgroundImage)) {
 
                 //item
                 let item = get(vo, `useItems.${k}.data`, {})
 
-                //funSegmentBorderColor
-                c = vo.funSegmentBorderColor(item, c)
+                //funSegmentBackgroundImage
+                img = vo.funSegmentBackgroundImage(item)
 
+            }
+
+            return img
+        },
+
+        getSegmentBorder: function(k) {
+            let vo = this
+
+            //cv
+            let cv = (color) => {
+
+                //color2hex
+                let c = color2hex(color)
+
+                //check
+                if (isfun(vo.funSegmentBorderColor)) {
+
+                    //item
+                    let item = get(vo, `useItems.${k}.data`, {})
+
+                    //funSegmentBorderColor
+                    c = vo.funSegmentBorderColor(item)
+
+                }
+
+                return c
+            }
+
+            let c
+            if (isobj(vo.segmentBorderColor)) {
+                let r = parseDirection(vo.segmentBorderColor, { def: '', type: 'text' })
+                let cl = cv(r.left)
+                let cr = cv(r.right)
+                let ct = cv(r.top)
+                let cb = cv(r.bottom)
+                c = `border-left:1px solid ${cl}; border-right:1px solid ${cr}; border-top:1px solid ${ct}; border-bottom:1px solid ${cb};`
+            }
+            else {
+                c = `border:1px solid ${cv(vo.segmentBorderColor)};`
             }
 
             return c

@@ -53,25 +53,28 @@
 
     <!-- data -->
     <script
-        src="https://cdn.jsdelivr.net/npm/w-demores@1.0.20/res/data/dataAAPL.js"
+        src="https://cdn.jsdelivr.net/npm/w-demores@1.0.22/res/data/dataAAPL.js"
     ></script>
     <script
-        src="https://cdn.jsdelivr.net/npm/w-demores@1.0.20/res/data/dataUSD2EUR.js"
+        src="https://cdn.jsdelivr.net/npm/w-demores@1.0.22/res/data/dataUSD2EUR.js"
     ></script>
     <script
-        src="https://cdn.jsdelivr.net/npm/w-demores@1.0.20/res/data/dataTemperature.js"
+        src="https://cdn.jsdelivr.net/npm/w-demores@1.0.22/res/data/dataTemperature.js"
     ></script>
     <script
-        src="https://cdn.jsdelivr.net/npm/w-demores@1.0.20/res/data/dataHousePriceArea.js"
+        src="https://cdn.jsdelivr.net/npm/w-demores@1.0.22/res/data/dataHousePriceArea.js"
     ></script>
     <script
-        src="https://cdn.jsdelivr.net/npm/w-demores@1.0.20/res/data/dataFlare.js"
+        src="https://cdn.jsdelivr.net/npm/w-demores@1.0.22/res/data/dataFlare.js"
     ></script>
     <script
-        src="https://cdn.jsdelivr.net/npm/w-demores@1.0.20/res/data/dataRain.js"
+        src="https://cdn.jsdelivr.net/npm/w-demores@1.0.22/res/data/dataRain.js"
     ></script>
     <script
-        src="https://cdn.jsdelivr.net/npm/w-demores@1.0.20/res/data/dataRainClip.js"
+        src="https://cdn.jsdelivr.net/npm/w-demores@1.0.22/res/data/dataRainClip.js"
+    ></script>
+    <script
+        src="https://cdn.jsdelivr.net/npm/w-demores@1.0.22/res/data/dataCivilSoilCodeIcon.js"
     ></script>
     <script>
   //save in window
@@ -82,10 +85,11 @@
   window.dataFlare = dataFlare;
   window.dataRain = dataRain;
   window.dataRainClip = dataRainClip;
+  window.dataCivilSoilCodeIcon = dataCivilSoilCodeIcon;
     </script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.3.36/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.3.37/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -330,6 +334,62 @@
               depthEnd: 7.2,
               kind: "Clay"
             }
+          ],
+          itemLayers: [
+            {
+              depthStart: 0,
+              depthEnd: 2.3,
+              code: "106",
+              description: "Gray Clay"
+            },
+            {
+              depthStart: 2.3,
+              depthEnd: 5.3,
+              code: "106",
+              description: "Brownish Yellow Clay"
+            },
+            {
+              depthStart: 5.3,
+              depthEnd: 9.2,
+              code: "224",
+              description: "Gray Medium Sand"
+            },
+            {
+              depthStart: 9.2,
+              depthEnd: 14.4,
+              code: "106",
+              description: "Grayish Brown Clay"
+            },
+            {
+              depthStart: 14.4,
+              depthEnd: 32.4,
+              code: "106",
+              description: "Gray Clay"
+            },
+            {
+              depthStart: 32.4,
+              depthEnd: 37.1,
+              code: "106",
+              description: "Gray Clay with Fine Sand"
+            },
+            {
+              depthStart: 37.1,
+              depthEnd: 41.2,
+              code: "106",
+              description: "Gray Clay"
+            },
+            {
+              depthStart: 41.2,
+              depthEnd: 45.1,
+              code: "225",
+              description: "Gray Fine Sand"
+            },
+            {
+              depthStart: 45.1,
+              depthEnd: 46.7,
+              code: "106",
+              description: "Gray Clay"
+            }
           ]
         },
         actions: []
@@ -350,6 +410,13 @@
         };
         let c = kp[item.type];
         return c;
+      },
+      getSegmentBackgroundIcon: function(item) {
+        // console.log('getSegmentBackgroundIcon', item)
+        let kp = window.dataCivilSoilCodeIcon;
+        let bgicon = kp[item.code];
+        // console.log('bgicon', bgicon)
+        return bgicon;
       },
       getSegmentBorderColor: function(item) {
         // console.log('getSegmentBorderColor', item)

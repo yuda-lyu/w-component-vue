@@ -53,25 +53,28 @@
 
     <!-- data -->
     <script
-        src="https://cdn.jsdelivr.net/npm/w-demores@1.0.20/res/data/dataAAPL.js"
+        src="https://cdn.jsdelivr.net/npm/w-demores@1.0.22/res/data/dataAAPL.js"
     ></script>
     <script
-        src="https://cdn.jsdelivr.net/npm/w-demores@1.0.20/res/data/dataUSD2EUR.js"
+        src="https://cdn.jsdelivr.net/npm/w-demores@1.0.22/res/data/dataUSD2EUR.js"
     ></script>
     <script
-        src="https://cdn.jsdelivr.net/npm/w-demores@1.0.20/res/data/dataTemperature.js"
+        src="https://cdn.jsdelivr.net/npm/w-demores@1.0.22/res/data/dataTemperature.js"
     ></script>
     <script
-        src="https://cdn.jsdelivr.net/npm/w-demores@1.0.20/res/data/dataHousePriceArea.js"
+        src="https://cdn.jsdelivr.net/npm/w-demores@1.0.22/res/data/dataHousePriceArea.js"
     ></script>
     <script
-        src="https://cdn.jsdelivr.net/npm/w-demores@1.0.20/res/data/dataFlare.js"
+        src="https://cdn.jsdelivr.net/npm/w-demores@1.0.22/res/data/dataFlare.js"
     ></script>
     <script
-        src="https://cdn.jsdelivr.net/npm/w-demores@1.0.20/res/data/dataRain.js"
+        src="https://cdn.jsdelivr.net/npm/w-demores@1.0.22/res/data/dataRain.js"
     ></script>
     <script
-        src="https://cdn.jsdelivr.net/npm/w-demores@1.0.20/res/data/dataRainClip.js"
+        src="https://cdn.jsdelivr.net/npm/w-demores@1.0.22/res/data/dataRainClip.js"
+    ></script>
+    <script
+        src="https://cdn.jsdelivr.net/npm/w-demores@1.0.22/res/data/dataCivilSoilCodeIcon.js"
     ></script>
     <script>
   //save in window
@@ -82,10 +85,11 @@
   window.dataFlare = dataFlare;
   window.dataRain = dataRain;
   window.dataRainClip = dataRainClip;
+  window.dataCivilSoilCodeIcon = dataCivilSoilCodeIcon;
     </script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.3.36/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.3.37/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -160,21 +164,21 @@
         WImageCascadingDyn: {
           opt1: {
             images: [
-              "https://cdn.jsdelivr.net/npm/w-demores@1.0.20/res/img/food/001.jpg",
-              "https://cdn.jsdelivr.net/npm/w-demores@1.0.20/res/img/food/002.jpg",
-              "https://cdn.jsdelivr.net/npm/w-demores@1.0.20/res/img/food/003.jpg",
-              "https://cdn.jsdelivr.net/npm/w-demores@1.0.20/res/img/food/004.jpg",
-              "https://cdn.jsdelivr.net/npm/w-demores@1.0.20/res/img/food/005.jpg",
-              "https://cdn.jsdelivr.net/npm/w-demores@1.0.20/res/img/food/006.jpg",
-              "https://cdn.jsdelivr.net/npm/w-demores@1.0.20/res/img/food/007.jpg",
-              "https://cdn.jsdelivr.net/npm/w-demores@1.0.20/res/img/food/008.jpg",
-              "https://cdn.jsdelivr.net/npm/w-demores@1.0.20/res/img/food/009.jpg",
-              "https://cdn.jsdelivr.net/npm/w-demores@1.0.20/res/img/food/010.jpg",
-              "https://cdn.jsdelivr.net/npm/w-demores@1.0.20/res/img/food/011.jpg",
-              "https://cdn.jsdelivr.net/npm/w-demores@1.0.20/res/img/food/012.jpg",
-              "https://cdn.jsdelivr.net/npm/w-demores@1.0.20/res/img/food/013.jpg",
-              "https://cdn.jsdelivr.net/npm/w-demores@1.0.20/res/img/food/014.jpg",
-              "https://cdn.jsdelivr.net/npm/w-demores@1.0.20/res/img/food/015.jpg"
+              "https://cdn.jsdelivr.net/npm/w-demores@1.0.22/res/img/food/001.jpg",
+              "https://cdn.jsdelivr.net/npm/w-demores@1.0.22/res/img/food/002.jpg",
+              "https://cdn.jsdelivr.net/npm/w-demores@1.0.22/res/img/food/003.jpg",
+              "https://cdn.jsdelivr.net/npm/w-demores@1.0.22/res/img/food/004.jpg",
+              "https://cdn.jsdelivr.net/npm/w-demores@1.0.22/res/img/food/005.jpg",
+              "https://cdn.jsdelivr.net/npm/w-demores@1.0.22/res/img/food/006.jpg",
+              "https://cdn.jsdelivr.net/npm/w-demores@1.0.22/res/img/food/007.jpg",
+              "https://cdn.jsdelivr.net/npm/w-demores@1.0.22/res/img/food/008.jpg",
+              "https://cdn.jsdelivr.net/npm/w-demores@1.0.22/res/img/food/009.jpg",
+              "https://cdn.jsdelivr.net/npm/w-demores@1.0.22/res/img/food/010.jpg",
+              "https://cdn.jsdelivr.net/npm/w-demores@1.0.22/res/img/food/011.jpg",
+              "https://cdn.jsdelivr.net/npm/w-demores@1.0.22/res/img/food/012.jpg",
+              "https://cdn.jsdelivr.net/npm/w-demores@1.0.22/res/img/food/013.jpg",
+              "https://cdn.jsdelivr.net/npm/w-demores@1.0.22/res/img/food/014.jpg",
+              "https://cdn.jsdelivr.net/npm/w-demores@1.0.22/res/img/food/015.jpg"
             ],
             imageStyle: {},
             opt: {}

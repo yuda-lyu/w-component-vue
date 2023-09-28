@@ -39,6 +39,30 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-segments-vertical'"
+                    :casename="'title & titleColor & titleFontSize & titleShift & width & paddingStyle'"
+                ></demolink>
+
+                <w-segments-vertical
+                    :items="WSegmentsVertical.items"
+                    :width="270"
+                    :paddingStyle="{
+                        top: 10,
+                        right: 0,
+                        bottom: 10,
+                        left: 70,
+                    }"
+                    :title="'Timeline'"
+                    :titleColor="'#666'"
+                    :titleFontSize="'1.2rem'"
+                    :titleShift="-58"
+                ></w-segments-vertical>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-segments-vertical'"
                     :casename="'paddingStyle & textShift & width & height'"
                 ></demolink>
 
@@ -310,6 +334,144 @@
             </div>
 
 
+            <div class="bk">
+                <demolink
+                    :kbname="'w-segments-vertical'"
+                    :casename="'slot support-left & width & paddingStyle & segmentBackgroundType & funSegmentBackgroundImage & segmentBorderColor & tickSize & segmentSize & axisColor & tickColor & keyValueStart & keyValueEnd & keyText & alignEnd & textShift & title'"
+                ></demolink>
+
+                <w-segments-vertical
+                    :items="WSegmentsVertical.itemLayers"
+                    :width="310"
+                    :paddingStyle="{
+                        top: 10,
+                        right: 0,
+                        bottom: 10,
+                        left: 95,
+                    }"
+                    :tickSize="30"
+                    :segmentSize="50"
+                    :segmentBackgroundType="'image'"
+                    :funSegmentBackgroundImage="getSegmentBackgroundIcon"
+                    :segmentBorderColor="{v:'transparent',h:'#444'}"
+                    :axisColor="'transparent'"
+                    :tickColor="'#444'"
+                    :keyValueStart="'depthStart'"
+                    :keyValueEnd="'depthEnd'"
+                    :keyText="'description'"
+                    :alignEnd="'left'"
+                    :textShift="35"
+                    :title="'Depth(m)'"
+                >
+                    <template v-slot:support-left="props">
+                        <div :style="`padding-top:${props.convertValueToY(2.6)}px;`">
+
+                            <!-- anchor line, 圖標與數值寬度38px -->
+                            <div style="_width:38px; _border-top:1px solid #f26;">
+
+                                <!-- wl vertical center line, 圖標與數值垂直中線距左側19px -->
+                                <div style="padding-left:19px;">
+
+                                    <div style="position:relative;">
+
+                                        <!-- water level text -->
+                                        <div style="position:absolute; top:-30px; left:1px; transform:translateX(-50%);">
+                                            <div style="white-space:nowrap; transform-origin:center; transform:scale(0.6);">
+                                                GL 2.6m
+                                            </div>
+                                        </div>
+
+                                        <!-- water level icon -->
+                                        <div style="position:absolute; top:-15px; left:0px; transform:translateX(-50%);">
+                                            <svg width="14" height="12" viewBox="0 0 14 12">
+                                                <polygon points="2,0 12,0 7,9" style="fill:rgba(0,0,0,0);stroke:#000;stroke-width:1" />
+                                                <line x1="0" y1="9" x2="14" y2="9" style="stroke:#000;stroke-width:1" />
+                                                <line x1="4" y1="11" x2="11" y2="11" style="stroke:#000;stroke-width:1" />
+                                            </svg>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </template>
+                </w-segments-vertical>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-segments-vertical'"
+                    :casename="'slot support-right & width & paddingStyle & segmentBackgroundType & funSegmentBackgroundImage & segmentBorderColor & tickSize & segmentSize & axisColor & tickColor & keyValueStart & keyValueEnd & keyText & alignEnd & textShift & title'"
+                ></demolink>
+
+                <w-segments-vertical
+                    :items="WSegmentsVertical.itemLayers"
+                    :width="340"
+                    :paddingStyle="{
+                        top: 10,
+                        right: 0,
+                        bottom: 10,
+                        left: 80,
+                    }"
+                    :tickSize="30"
+                    :segmentSize="50"
+                    :segmentBackgroundType="'image'"
+                    :funSegmentBackgroundImage="getSegmentBackgroundIcon"
+                    :segmentBorderColor="{v:'transparent',h:'#444'}"
+                    :axisColor="'transparent'"
+                    :tickColor="'#444'"
+                    :keyValueStart="'depthStart'"
+                    :keyValueEnd="'depthEnd'"
+                    :keyText="'description'"
+                    :alignEnd="'left'"
+                    :textShift="80"
+                    :title="'Depth(m)'"
+                >
+                    <template v-slot:support-right="props">
+                        <div :style="`padding-top:${props.convertValueToY(2.6)}px;`">
+
+                            <!-- anchor line, 圖標與數值寬度38px -->
+                            <div style="_width:38px; _border-top:1px solid #f26;">
+
+                                <!-- wl vertical center line, 圖標與數值垂直中線距左側19px -->
+                                <div style="padding-left:19px;">
+
+                                    <div style="position:relative;">
+
+                                        <!-- water level text -->
+                                        <div style="position:absolute; top:-30px; left:1px; transform:translateX(-50%);">
+                                            <div style="white-space:nowrap; transform-origin:center; transform:scale(0.6);">
+                                                GL 2.6m
+                                            </div>
+                                        </div>
+
+                                        <!-- water level icon -->
+                                        <div style="position:absolute; top:-15px; left:0px; transform:translateX(-50%);">
+                                            <svg width="14" height="12" viewBox="0 0 14 12">
+                                                <polygon points="2,0 12,0 7,9" style="fill:rgba(0,0,0,0);stroke:#000;stroke-width:1" />
+                                                <line x1="0" y1="9" x2="14" y2="9" style="stroke:#000;stroke-width:1" />
+                                                <line x1="4" y1="11" x2="11" y2="11" style="stroke:#000;stroke-width:1" />
+                                            </svg>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </template>
+                </w-segments-vertical>
+
+            </div>
+
+
         </div>
 
 
@@ -492,6 +654,17 @@ export default {
                         kind: 'Clay',
                     },
                 ],
+                'itemLayers': [
+                    { depthStart: 0, depthEnd: 2.3, code: '106', description: 'Gray Clay' },
+                    { depthStart: 2.3, depthEnd: 5.3, code: '106', description: 'Brownish Yellow Clay' },
+                    { depthStart: 5.3, depthEnd: 9.2, code: '224', description: 'Gray Medium Sand' },
+                    { depthStart: 9.2, depthEnd: 14.4, code: '106', description: 'Grayish Brown Clay' },
+                    { depthStart: 14.4, depthEnd: 32.4, code: '106', description: 'Gray Clay' },
+                    { depthStart: 32.4, depthEnd: 37.1, code: '106', description: 'Gray Clay with Fine Sand' },
+                    { depthStart: 37.1, depthEnd: 41.2, code: '106', description: 'Gray Clay' },
+                    { depthStart: 41.2, depthEnd: 45.1, code: '225', description: 'Gray Fine Sand' },
+                    { depthStart: 45.1, depthEnd: 46.7, code: '106', description: 'Gray Clay' },
+                ],
             },
             'actions': [
             ],
@@ -508,6 +681,13 @@ export default {
             }
             let c = kp[item.type]
             return c
+        },
+        getSegmentBackgroundIcon: function(item) {
+            // console.log('getSegmentBackgroundIcon', item)
+            let kp = window.dataCivilSoilCodeIcon
+            let bgicon = kp[item.code]
+            // console.log('bgicon', bgicon)
+            return bgicon
         },
         getSegmentBorderColor: function(item) {
             // console.log('getSegmentBorderColor', item)

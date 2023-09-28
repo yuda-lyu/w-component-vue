@@ -1,7 +1,7 @@
-import isNumber from 'lodash/isNumber'
 import get from 'lodash/get'
 import isbol from 'wsemi/src/isbol.mjs'
 import iseobj from 'wsemi/src/iseobj.mjs'
+import parseDirection from './parseDirection.mjs'
 
 
 function parseSpace(obj, opt = {}) {
@@ -36,26 +36,11 @@ function parseSpace(obj, opt = {}) {
     let top = 0
     let bottom = 0
     if (parse) {
-        if (isNumber(get(obj, 'h'))) {
-            left = get(obj, 'h')
-            right = left
-        }
-        if (isNumber(get(obj, 'v'))) {
-            top = get(obj, 'v')
-            bottom = top
-        }
-        if (isNumber(get(obj, 'left'))) {
-            left = get(obj, 'left')
-        }
-        if (isNumber(get(obj, 'right'))) {
-            right = get(obj, 'right')
-        }
-        if (isNumber(get(obj, 'top'))) {
-            top = get(obj, 'top')
-        }
-        if (isNumber(get(obj, 'bottom'))) {
-            bottom = get(obj, 'bottom')
-        }
+        let dir = parseDirection(obj)
+        left = dir.left
+        right = dir.right
+        top = dir.top
+        bottom = dir.bottom
     }
 
     //add ext
