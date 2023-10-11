@@ -73,12 +73,6 @@
     </tr>
     </thead>
     <tbody><tr>
-        <td><code>pathItems</code></td>
-        <td>Array</td>
-        <td><code>['詳見原始碼']</code></td>
-        <td>No</td>
-        <td>輸入ag-grid與w-aggrid-vue組件js檔案位置字串陣列，預設詳見原始碼處props->pathItems->default</td>
-    </tr><tr>
         <td><code>opt</code></td>
         <td>Object</td>
         <td>-</td>
@@ -199,6 +193,12 @@
         <td>No</td>
         <td>輸入圖層顯隱切換區位置字串，可選'topleft'、'topright'、'bottomleft'、'bottomright'，預設'topleft'</td>
     </tr><tr>
+        <td><code>opt.panelItems.width</code></td>
+        <td>Number</td>
+        <td><code>null</code></td>
+        <td>No</td>
+        <td>輸入圖層顯隱切換區寬度數字，單位px，預設null</td>
+    </tr><tr>
         <td><code>opt.panelItems.maxWidth</code></td>
         <td>Number</td>
         <td><code>null</code></td>
@@ -222,6 +222,12 @@
         <td><code>'bottomright'</code></td>
         <td>No</td>
         <td>輸入圖例區位置字串，可選'topleft'、'topright'、'bottomleft'、'bottomright'，預設'bottomright'</td>
+    </tr><tr>
+        <td><code>opt.panelLegends.width</code></td>
+        <td>Number</td>
+        <td><code>null</code></td>
+        <td>No</td>
+        <td>輸入圖例區寬度數字，單位px，預設null</td>
     </tr><tr>
         <td><code>opt.panelLegends.maxWidth</code></td>
         <td>Number</td>
@@ -283,11 +289,17 @@
         <td>No</td>
         <td>輸入第i個點集合的顯示popup或tooltip時的指向位置陣列，由實際定位點起算，往右移動為+x，往下移動為+y，x與y單位px，需給予[x,y]，預設[0,-iconSize[1]/1.5]</td>
     </tr><tr>
+        <td><code>opt.pointSets[i].visible</code></td>
+        <td>Boolean</td>
+        <td><code>true</code></td>
+        <td>No</td>
+        <td>輸入第i個點集合的是否顯示布林值，預設為true</td>
+    </tr><tr>
         <td><code>opt.pointSets[i].points</code></td>
         <td>Array</td>
         <td><code>[]</code></td>
         <td>No</td>
-        <td>輸入第i個點集合的各點陣列，各元素為物件或為緯經度(注意非經緯度)陣列，也就是[{p1},{p2},...]或是[[p1lat,p1lng],[p2lat,p2lng],...]，預設為[]</td>
+        <td>輸入第i個點集合的各點數據陣列，各元素為物件或為緯經度陣列，也就是[{p1},{p2},...]或是[[p1lat,p1lng],[p2lat,p2lng],...]，預設為[]</td>
     </tr><tr>
         <td><code>opt.pointSets[i].points[j].title</code></td>
         <td>String</td>
@@ -305,7 +317,7 @@
         <td>Array</td>
         <td><code>[]</code></td>
         <td>No</td>
-        <td>輸入第i個點集合的第j個點的緯經度(注意非經緯度)座標陣列，也就是給予[lat,lng]，預設[]</td>
+        <td>輸入第i個點集合的第j個點的緯經度座標陣列，也就是給予[lat,lng]，預設[]</td>
     </tr><tr>
         <td><code>opt.pointSets[i].points[j].iconSrc</code></td>
         <td>String</td>
@@ -445,6 +457,12 @@
         <td>No</td>
         <td>輸入滑鼠移入時第i個多邊形集合的填充顏色字串，預設為'rgba(0,150,255,0.25)'</td>
     </tr><tr>
+        <td><code>opt.polygonSets[i].latLngs</code></td>
+        <td>Array</td>
+        <td><code>[]</code></td>
+        <td>No</td>
+        <td>輸入第i個多邊形集合的數據陣列，可使用polygon或multiPolygon，各點座標為緯經度，預設[]</td>
+    </tr><tr>
         <td><code>opt.defPolygonSetsClick</code></td>
         <td>function</td>
         <td><code>function(){}</code></td>
@@ -481,6 +499,120 @@
         <td>No</td>
         <td>輸入第i個多邊形集合的tooltip內容產生函數，可基於傳入資料回傳顯示文字或html內容，預設為function(){}</td>
     </tr><tr>
+        <td><code>opt.polygonSets[i].visible</code></td>
+        <td>Boolean</td>
+        <td><code>true</code></td>
+        <td>No</td>
+        <td>輸入第i個多邊形集合的是否顯示布林值，預設為true</td>
+    </tr><tr>
+        <td><code>opt.geojsonSets</code></td>
+        <td>Array</td>
+        <td><code>[]</code></td>
+        <td>No</td>
+        <td>輸入geojson集合陣列，各元素為物件，預設[]</td>
+    </tr><tr>
+        <td><code>opt.geojsonSets[i].title</code></td>
+        <td>String</td>
+        <td><code>''</code></td>
+        <td>No</td>
+        <td>輸入第i個geojson集合的標題字串，預設為''</td>
+    </tr><tr>
+        <td><code>opt.geojsonSets[i].msg</code></td>
+        <td>String</td>
+        <td><code>''</code></td>
+        <td>No</td>
+        <td>輸入第i個geojson集合的說明字串，預設為''</td>
+    </tr><tr>
+        <td><code>opt.geojsonSets[i].order</code></td>
+        <td>Number</td>
+        <td><code>null</code></td>
+        <td>No</td>
+        <td>輸入第i個geojson集合的排序用數字，預設null</td>
+    </tr><tr>
+        <td><code>opt.geojsonSets[i].lineColor</code></td>
+        <td>String</td>
+        <td><code>'rgba(0,150,255,1)'</code></td>
+        <td>No</td>
+        <td>輸入第i個geojson集合的框線顏色字串，預設為'rgba(0,150,255,1)'</td>
+    </tr><tr>
+        <td><code>opt.geojsonSets[i].lineColorHover</code></td>
+        <td>String</td>
+        <td><code>'rgba(0,150,255,1)'</code></td>
+        <td>No</td>
+        <td>輸入滑鼠移入時第i個geojson集合的框線顏色字串，預設為'rgba(0,150,255,1)'</td>
+    </tr><tr>
+        <td><code>opt.geojsonSets[i].lineWidth</code></td>
+        <td>Number</td>
+        <td><code>3</code></td>
+        <td>No</td>
+        <td>輸入第i個geojson集合的框線寬度數字，預設為3</td>
+    </tr><tr>
+        <td><code>opt.geojsonSets[i].lineWidthHover</code></td>
+        <td>Number</td>
+        <td><code>3</code></td>
+        <td>No</td>
+        <td>輸入滑鼠移入時第i個geojson集合的框線寬度數字，預設為3</td>
+    </tr><tr>
+        <td><code>opt.geojsonSets[i].fillColor</code></td>
+        <td>String</td>
+        <td><code>'rgba(0,150,255,0.25)'</code></td>
+        <td>No</td>
+        <td>輸入第i個geojson集合的填充顏色字串，預設為'rgba(0,150,255,0.25)'</td>
+    </tr><tr>
+        <td><code>opt.geojsonSets[i].fillColorHover</code></td>
+        <td>String</td>
+        <td><code>'rgba(0,150,255,0.25)'</code></td>
+        <td>No</td>
+        <td>輸入滑鼠移入時第i個geojson集合的填充顏色字串，預設為'rgba(0,150,255,0.25)'</td>
+    </tr><tr>
+        <td><code>opt.geojsonSets[i].geojson</code></td>
+        <td>Object</td>
+        <td><code>{}</code></td>
+        <td>No</td>
+        <td>輸入第i個geojson集合的數據物件，各點座標為緯經度，預設{}</td>
+    </tr><tr>
+        <td><code>opt.defGeojsonSetsClick</code></td>
+        <td>function</td>
+        <td><code>function(){}</code></td>
+        <td>No</td>
+        <td>輸入全域geojson集合的click呼叫函數，可給予函數接收點擊事件，預設為function(){}</td>
+    </tr><tr>
+        <td><code>opt.geojsonSets[i].click</code></td>
+        <td>function</td>
+        <td><code>function(){}</code></td>
+        <td>No</td>
+        <td>輸入第i個geojson集合的click呼叫函數，預設為function(){}</td>
+    </tr><tr>
+        <td><code>opt.defGeojsonSetsPopup</code></td>
+        <td>function</td>
+        <td><code>function(){}</code></td>
+        <td>No</td>
+        <td>輸入全域geojson集合的popup內容產生函數，可基於傳入資料回傳顯示文字或html內容，預設為function(){}</td>
+    </tr><tr>
+        <td><code>opt.geojsonSets[i].popup</code></td>
+        <td>function</td>
+        <td><code>function(){}</code></td>
+        <td>No</td>
+        <td>輸入第i個geojson集合的popup內容產生函數，可基於傳入資料回傳顯示文字或html內容，預設為function(){}</td>
+    </tr><tr>
+        <td><code>opt.defGeojsonSetsTooltip</code></td>
+        <td>function</td>
+        <td><code>function(){}</code></td>
+        <td>No</td>
+        <td>輸入全域geojson集合的tooltip內容產生函數，可基於傳入資料回傳顯示文字或html內容，預設為function(){}</td>
+    </tr><tr>
+        <td><code>opt.geojsonSets[i].tooltip</code></td>
+        <td>function</td>
+        <td><code>function(){}</code></td>
+        <td>No</td>
+        <td>輸入第i個geojson集合的tooltip內容產生函數，可基於傳入資料回傳顯示文字或html內容，預設為function(){}</td>
+    </tr><tr>
+        <td><code>opt.geojsonSets[i].visible</code></td>
+        <td>Boolean</td>
+        <td><code>true</code></td>
+        <td>No</td>
+        <td>輸入第i個geojson集合的是否顯示布林值，預設為true</td>
+    </tr><tr>
         <td><code>opt.contourSets</code></td>
         <td>Array</td>
         <td><code>[]</code></td>
@@ -499,6 +631,48 @@
         <td>No</td>
         <td>輸入第i個等值線集合的色階(color map)設定物件，鍵範圍0至1，值為對應之顏色，於各鍵之間則採用內插取色，預設值詳見程式碼</td>
     </tr><tr>
+        <td><code>opt.contourSets[i].getColor</code></td>
+        <td>function</td>
+        <td><code>null</code></td>
+        <td>No</td>
+        <td>輸入第i個等值線集合的顏色函數，預設null</td>
+    </tr><tr>
+        <td><code>opt.contourSets[i].lineColor</code></td>
+        <td>String</td>
+        <td><code>''</code></td>
+        <td>No</td>
+        <td>輸入第i個等值線集合的框線顏色字串，若不輸入則預設為gradient內插所得顏色，預設為''</td>
+    </tr><tr>
+        <td><code>opt.contourSets[i].lineColorHover</code></td>
+        <td>String</td>
+        <td><code>''</code></td>
+        <td>No</td>
+        <td>輸入滑鼠移入時第i個等值線集合的框線顏色字串，若不輸入則預設為gradient內插所得顏色，預設為''</td>
+    </tr><tr>
+        <td><code>opt.contourSets[i].lineWidth</code></td>
+        <td>Number</td>
+        <td><code>1</code></td>
+        <td>No</td>
+        <td>輸入第i個等值線集合的框線寬度數字，預設為1</td>
+    </tr><tr>
+        <td><code>opt.contourSets[i].lineWidthHover</code></td>
+        <td>Number</td>
+        <td><code>3</code></td>
+        <td>No</td>
+        <td>輸入滑鼠移入時第i個等值線集合的框線寬度數字，預設為3</td>
+    </tr><tr>
+        <td><code>opt.contourSets[i].fillOpacity</code></td>
+        <td>Number</td>
+        <td><code>0.2</code></td>
+        <td>No</td>
+        <td>輸入第i個等值線集合的填充透明度數字，預設為0.2</td>
+    </tr><tr>
+        <td><code>opt.contourSets[i].fillOpacityHover</code></td>
+        <td>Number</td>
+        <td><code>0.5</code></td>
+        <td>No</td>
+        <td>輸入滑鼠移入時第i個等值線集合的填充透明度數字，預設為0.5</td>
+    </tr><tr>
         <td><code>opt.contourSets[i].changeStyleWhenHover</code></td>
         <td>Boolean</td>
         <td><code>true</code></td>
@@ -515,7 +689,13 @@
         <td>function</td>
         <td><code>null</code></td>
         <td>No</td>
-        <td>輸入第i個等值線集合的對圖例內各色階的內容產生函數，可基於傳入資料回傳顯示文字或html內容，null代表不取，預設null</td>
+        <td>輸入第i個等值線集合的對圖例內各色階的文字內容產生函數，可基於傳入資料回傳顯示文字或html內容，null代表不取，預設null</td>
+    </tr><tr>
+        <td><code>opt.contourSets[i].legendTextExtra</code></td>
+        <td>function</td>
+        <td><code>null</code></td>
+        <td>No</td>
+        <td>輸入第i個等值線集合的對圖例內各色階的文字提供額外文字函數，預設null</td>
     </tr><tr>
         <td><code>opt.contourSets[i].polygonClipOuter</code></td>
         <td>Array</td>
@@ -535,13 +715,25 @@
         <td>No</td>
         <td>輸入第i個等值線集合的保留以內之複數多邊形(multi-polygon，深度為3，例如[[[p1lat,p1lng]],[[p2lat,p2lng]],...])陣列，預設[]</td>
     </tr><tr>
+        <td><code>opt.contourSets[i].thresholds</code></td>
+        <td>Array</td>
+        <td><code>[]</code></td>
+        <td>No</td>
+        <td>輸入第i個等值線集合的用等值線門檻值陣列，給予非有效陣列則使用自動計算各線門檻值，預設[]</td>
+    </tr><tr>
+        <td><code>opt.contourSets[i].points</code></td>
+        <td>Array</td>
+        <td><code>[]</code></td>
+        <td>No</td>
+        <td>輸入第i個等值線集合的數據陣列，各點座標為緯經度，並自動基於三角網格技術計算等值線，預設[]</td>
+    </tr><tr>
         <td><code>opt.defContourSetsClick</code></td>
         <td>function</td>
         <td><code>function(){}</code></td>
         <td>No</td>
         <td>輸入全域等值線集合的click呼叫函數，可給予函數接收點擊事件，預設為function(){}</td>
     </tr><tr>
-        <td><code>opt.ContourSets[i].click</code></td>
+        <td><code>opt.contourSets[i].click</code></td>
         <td>function</td>
         <td><code>function(){}</code></td>
         <td>No</td>
@@ -553,7 +745,7 @@
         <td>No</td>
         <td>輸入全域等值線集合的popup內容產生函數，可基於傳入資料回傳顯示文字或html內容，預設為function(){}</td>
     </tr><tr>
-        <td><code>opt.ContourSets[i].popup</code></td>
+        <td><code>opt.contourSets[i].popup</code></td>
         <td>function</td>
         <td><code>function(){}</code></td>
         <td>No</td>
@@ -565,11 +757,17 @@
         <td>No</td>
         <td>輸入全域等值線集合的tooltip內容產生函數，可基於傳入資料回傳顯示文字或html內容，預設為function(){}</td>
     </tr><tr>
-        <td><code>opt.ContourSets[i].tooltip</code></td>
+        <td><code>opt.contourSets[i].tooltip</code></td>
         <td>function</td>
         <td><code>function(){}</code></td>
         <td>No</td>
         <td>輸入第i個等值線集合的tooltip內容產生函數，可基於傳入資料回傳顯示文字或html內容，預設為function(){}</td>
+    </tr><tr>
+        <td><code>opt.contourSets[i].visible</code></td>
+        <td>Boolean</td>
+        <td><code>true</code></td>
+        <td>No</td>
+        <td>輸入第i個等值線集合的是否顯示布林值，預設為true</td>
     </tr></tbody>
 </table>
 
@@ -637,12 +835,6 @@
     </tr>
     </thead>
     <tbody><tr>
-        <td><code>pathItems</code></td>
-        <td>Array</td>
-        <td><code>['詳見原始碼']</code></td>
-        <td>No</td>
-        <td>輸入ag-grid與w-aggrid-vue組件js檔案位置字串陣列，預設詳見原始碼處props->pathItems->default</td>
-    </tr><tr>
         <td><code>opt</code></td>
         <td>Object</td>
         <td>-</td>
@@ -763,6 +955,12 @@
         <td>No</td>
         <td>輸入圖層顯隱切換區位置字串，可選'topleft'、'topright'、'bottomleft'、'bottomright'，預設'topleft'</td>
     </tr><tr>
+        <td><code>opt.panelItems.width</code></td>
+        <td>Number</td>
+        <td><code>null</code></td>
+        <td>No</td>
+        <td>輸入圖層顯隱切換區寬度數字，單位px，預設null</td>
+    </tr><tr>
         <td><code>opt.panelItems.maxWidth</code></td>
         <td>Number</td>
         <td><code>null</code></td>
@@ -786,6 +984,12 @@
         <td><code>'bottomright'</code></td>
         <td>No</td>
         <td>輸入圖例區位置字串，可選'topleft'、'topright'、'bottomleft'、'bottomright'，預設'bottomright'</td>
+    </tr><tr>
+        <td><code>opt.panelLegends.width</code></td>
+        <td>Number</td>
+        <td><code>null</code></td>
+        <td>No</td>
+        <td>輸入圖例區寬度數字，單位px，預設null</td>
     </tr><tr>
         <td><code>opt.panelLegends.maxWidth</code></td>
         <td>Number</td>
@@ -847,11 +1051,17 @@
         <td>No</td>
         <td>輸入第i個點集合的顯示popup或tooltip時的指向位置陣列，由實際定位點起算，往右移動為+x，往下移動為+y，x與y單位px，需給予[x,y]，預設[0,-iconSize[1]/1.5]</td>
     </tr><tr>
+        <td><code>opt.pointSets[i].visible</code></td>
+        <td>Boolean</td>
+        <td><code>true</code></td>
+        <td>No</td>
+        <td>輸入第i個點集合的是否顯示布林值，預設為true</td>
+    </tr><tr>
         <td><code>opt.pointSets[i].points</code></td>
         <td>Array</td>
         <td><code>[]</code></td>
         <td>No</td>
-        <td>輸入第i個點集合的各點陣列，各元素為物件或為緯經度(注意非經緯度)陣列，也就是[{p1},{p2},...]或是[[p1lat,p1lng],[p2lat,p2lng],...]，預設為[]</td>
+        <td>輸入第i個點集合的各點數據陣列，各元素為物件或為緯經度陣列，也就是[{p1},{p2},...]或是[[p1lat,p1lng],[p2lat,p2lng],...]，預設為[]</td>
     </tr><tr>
         <td><code>opt.pointSets[i].points[j].title</code></td>
         <td>String</td>
@@ -869,7 +1079,7 @@
         <td>Array</td>
         <td><code>[]</code></td>
         <td>No</td>
-        <td>輸入第i個點集合的第j個點的緯經度(注意非經緯度)座標陣列，也就是給予[lat,lng]，預設[]</td>
+        <td>輸入第i個點集合的第j個點的緯經度座標陣列，也就是給予[lat,lng]，預設[]</td>
     </tr><tr>
         <td><code>opt.pointSets[i].points[j].iconSrc</code></td>
         <td>String</td>
@@ -1009,6 +1219,12 @@
         <td>No</td>
         <td>輸入滑鼠移入時第i個多邊形集合的填充顏色字串，預設為'rgba(0,150,255,0.25)'</td>
     </tr><tr>
+        <td><code>opt.polygonSets[i].latLngs</code></td>
+        <td>Array</td>
+        <td><code>[]</code></td>
+        <td>No</td>
+        <td>輸入第i個多邊形集合的數據陣列，可使用polygon或multiPolygon，各點座標為緯經度，預設[]</td>
+    </tr><tr>
         <td><code>opt.defPolygonSetsClick</code></td>
         <td>function</td>
         <td><code>function(){}</code></td>
@@ -1045,6 +1261,120 @@
         <td>No</td>
         <td>輸入第i個多邊形集合的tooltip內容產生函數，可基於傳入資料回傳顯示文字或html內容，預設為function(){}</td>
     </tr><tr>
+        <td><code>opt.polygonSets[i].visible</code></td>
+        <td>Boolean</td>
+        <td><code>true</code></td>
+        <td>No</td>
+        <td>輸入第i個多邊形集合的是否顯示布林值，預設為true</td>
+    </tr><tr>
+        <td><code>opt.geojsonSets</code></td>
+        <td>Array</td>
+        <td><code>[]</code></td>
+        <td>No</td>
+        <td>輸入geojson集合陣列，各元素為物件，預設[]</td>
+    </tr><tr>
+        <td><code>opt.geojsonSets[i].title</code></td>
+        <td>String</td>
+        <td><code>''</code></td>
+        <td>No</td>
+        <td>輸入第i個geojson集合的標題字串，預設為''</td>
+    </tr><tr>
+        <td><code>opt.geojsonSets[i].msg</code></td>
+        <td>String</td>
+        <td><code>''</code></td>
+        <td>No</td>
+        <td>輸入第i個geojson集合的說明字串，預設為''</td>
+    </tr><tr>
+        <td><code>opt.geojsonSets[i].order</code></td>
+        <td>Number</td>
+        <td><code>null</code></td>
+        <td>No</td>
+        <td>輸入第i個geojson集合的排序用數字，預設null</td>
+    </tr><tr>
+        <td><code>opt.geojsonSets[i].lineColor</code></td>
+        <td>String</td>
+        <td><code>'rgba(0,150,255,1)'</code></td>
+        <td>No</td>
+        <td>輸入第i個geojson集合的框線顏色字串，預設為'rgba(0,150,255,1)'</td>
+    </tr><tr>
+        <td><code>opt.geojsonSets[i].lineColorHover</code></td>
+        <td>String</td>
+        <td><code>'rgba(0,150,255,1)'</code></td>
+        <td>No</td>
+        <td>輸入滑鼠移入時第i個geojson集合的框線顏色字串，預設為'rgba(0,150,255,1)'</td>
+    </tr><tr>
+        <td><code>opt.geojsonSets[i].lineWidth</code></td>
+        <td>Number</td>
+        <td><code>3</code></td>
+        <td>No</td>
+        <td>輸入第i個geojson集合的框線寬度數字，預設為3</td>
+    </tr><tr>
+        <td><code>opt.geojsonSets[i].lineWidthHover</code></td>
+        <td>Number</td>
+        <td><code>3</code></td>
+        <td>No</td>
+        <td>輸入滑鼠移入時第i個geojson集合的框線寬度數字，預設為3</td>
+    </tr><tr>
+        <td><code>opt.geojsonSets[i].fillColor</code></td>
+        <td>String</td>
+        <td><code>'rgba(0,150,255,0.25)'</code></td>
+        <td>No</td>
+        <td>輸入第i個geojson集合的填充顏色字串，預設為'rgba(0,150,255,0.25)'</td>
+    </tr><tr>
+        <td><code>opt.geojsonSets[i].fillColorHover</code></td>
+        <td>String</td>
+        <td><code>'rgba(0,150,255,0.25)'</code></td>
+        <td>No</td>
+        <td>輸入滑鼠移入時第i個geojson集合的填充顏色字串，預設為'rgba(0,150,255,0.25)'</td>
+    </tr><tr>
+        <td><code>opt.geojsonSets[i].geojson</code></td>
+        <td>Object</td>
+        <td><code>{}</code></td>
+        <td>No</td>
+        <td>輸入第i個geojson集合的數據物件，各點座標為緯經度，預設{}</td>
+    </tr><tr>
+        <td><code>opt.defGeojsonSetsClick</code></td>
+        <td>function</td>
+        <td><code>function(){}</code></td>
+        <td>No</td>
+        <td>輸入全域geojson集合的click呼叫函數，可給予函數接收點擊事件，預設為function(){}</td>
+    </tr><tr>
+        <td><code>opt.geojsonSets[i].click</code></td>
+        <td>function</td>
+        <td><code>function(){}</code></td>
+        <td>No</td>
+        <td>輸入第i個geojson集合的click呼叫函數，預設為function(){}</td>
+    </tr><tr>
+        <td><code>opt.defGeojsonSetsPopup</code></td>
+        <td>function</td>
+        <td><code>function(){}</code></td>
+        <td>No</td>
+        <td>輸入全域geojson集合的popup內容產生函數，可基於傳入資料回傳顯示文字或html內容，預設為function(){}</td>
+    </tr><tr>
+        <td><code>opt.geojsonSets[i].popup</code></td>
+        <td>function</td>
+        <td><code>function(){}</code></td>
+        <td>No</td>
+        <td>輸入第i個geojson集合的popup內容產生函數，可基於傳入資料回傳顯示文字或html內容，預設為function(){}</td>
+    </tr><tr>
+        <td><code>opt.defGeojsonSetsTooltip</code></td>
+        <td>function</td>
+        <td><code>function(){}</code></td>
+        <td>No</td>
+        <td>輸入全域geojson集合的tooltip內容產生函數，可基於傳入資料回傳顯示文字或html內容，預設為function(){}</td>
+    </tr><tr>
+        <td><code>opt.geojsonSets[i].tooltip</code></td>
+        <td>function</td>
+        <td><code>function(){}</code></td>
+        <td>No</td>
+        <td>輸入第i個geojson集合的tooltip內容產生函數，可基於傳入資料回傳顯示文字或html內容，預設為function(){}</td>
+    </tr><tr>
+        <td><code>opt.geojsonSets[i].visible</code></td>
+        <td>Boolean</td>
+        <td><code>true</code></td>
+        <td>No</td>
+        <td>輸入第i個geojson集合的是否顯示布林值，預設為true</td>
+    </tr><tr>
         <td><code>opt.contourSets</code></td>
         <td>Array</td>
         <td><code>[]</code></td>
@@ -1063,6 +1393,48 @@
         <td>No</td>
         <td>輸入第i個等值線集合的色階(color map)設定物件，鍵範圍0至1，值為對應之顏色，於各鍵之間則採用內插取色，預設值詳見程式碼</td>
     </tr><tr>
+        <td><code>opt.contourSets[i].getColor</code></td>
+        <td>function</td>
+        <td><code>null</code></td>
+        <td>No</td>
+        <td>輸入第i個等值線集合的顏色函數，預設null</td>
+    </tr><tr>
+        <td><code>opt.contourSets[i].lineColor</code></td>
+        <td>String</td>
+        <td><code>''</code></td>
+        <td>No</td>
+        <td>輸入第i個等值線集合的框線顏色字串，若不輸入則預設為gradient內插所得顏色，預設為''</td>
+    </tr><tr>
+        <td><code>opt.contourSets[i].lineColorHover</code></td>
+        <td>String</td>
+        <td><code>''</code></td>
+        <td>No</td>
+        <td>輸入滑鼠移入時第i個等值線集合的框線顏色字串，若不輸入則預設為gradient內插所得顏色，預設為''</td>
+    </tr><tr>
+        <td><code>opt.contourSets[i].lineWidth</code></td>
+        <td>Number</td>
+        <td><code>1</code></td>
+        <td>No</td>
+        <td>輸入第i個等值線集合的框線寬度數字，預設為1</td>
+    </tr><tr>
+        <td><code>opt.contourSets[i].lineWidthHover</code></td>
+        <td>Number</td>
+        <td><code>3</code></td>
+        <td>No</td>
+        <td>輸入滑鼠移入時第i個等值線集合的框線寬度數字，預設為3</td>
+    </tr><tr>
+        <td><code>opt.contourSets[i].fillOpacity</code></td>
+        <td>Number</td>
+        <td><code>0.2</code></td>
+        <td>No</td>
+        <td>輸入第i個等值線集合的填充透明度數字，預設為0.2</td>
+    </tr><tr>
+        <td><code>opt.contourSets[i].fillOpacityHover</code></td>
+        <td>Number</td>
+        <td><code>0.5</code></td>
+        <td>No</td>
+        <td>輸入滑鼠移入時第i個等值線集合的填充透明度數字，預設為0.5</td>
+    </tr><tr>
         <td><code>opt.contourSets[i].changeStyleWhenHover</code></td>
         <td>Boolean</td>
         <td><code>true</code></td>
@@ -1079,7 +1451,13 @@
         <td>function</td>
         <td><code>null</code></td>
         <td>No</td>
-        <td>輸入第i個等值線集合的對圖例內各色階的內容產生函數，可基於傳入資料回傳顯示文字或html內容，null代表不取，預設null</td>
+        <td>輸入第i個等值線集合的對圖例內各色階的文字內容產生函數，可基於傳入資料回傳顯示文字或html內容，null代表不取，預設null</td>
+    </tr><tr>
+        <td><code>opt.contourSets[i].legendTextExtra</code></td>
+        <td>function</td>
+        <td><code>null</code></td>
+        <td>No</td>
+        <td>輸入第i個等值線集合的對圖例內各色階的文字提供額外文字函數，預設null</td>
     </tr><tr>
         <td><code>opt.contourSets[i].polygonClipOuter</code></td>
         <td>Array</td>
@@ -1099,13 +1477,25 @@
         <td>No</td>
         <td>輸入第i個等值線集合的保留以內之複數多邊形(multi-polygon，深度為3，例如[[[p1lat,p1lng]],[[p2lat,p2lng]],...])陣列，預設[]</td>
     </tr><tr>
+        <td><code>opt.contourSets[i].thresholds</code></td>
+        <td>Array</td>
+        <td><code>[]</code></td>
+        <td>No</td>
+        <td>輸入第i個等值線集合的用等值線門檻值陣列，給予非有效陣列則使用自動計算各線門檻值，預設[]</td>
+    </tr><tr>
+        <td><code>opt.contourSets[i].points</code></td>
+        <td>Array</td>
+        <td><code>[]</code></td>
+        <td>No</td>
+        <td>輸入第i個等值線集合的數據陣列，各點座標為緯經度，並自動基於三角網格技術計算等值線，預設[]</td>
+    </tr><tr>
         <td><code>opt.defContourSetsClick</code></td>
         <td>function</td>
         <td><code>function(){}</code></td>
         <td>No</td>
         <td>輸入全域等值線集合的click呼叫函數，可給予函數接收點擊事件，預設為function(){}</td>
     </tr><tr>
-        <td><code>opt.ContourSets[i].click</code></td>
+        <td><code>opt.contourSets[i].click</code></td>
         <td>function</td>
         <td><code>function(){}</code></td>
         <td>No</td>
@@ -1117,7 +1507,7 @@
         <td>No</td>
         <td>輸入全域等值線集合的popup內容產生函數，可基於傳入資料回傳顯示文字或html內容，預設為function(){}</td>
     </tr><tr>
-        <td><code>opt.ContourSets[i].popup</code></td>
+        <td><code>opt.contourSets[i].popup</code></td>
         <td>function</td>
         <td><code>function(){}</code></td>
         <td>No</td>
@@ -1129,11 +1519,17 @@
         <td>No</td>
         <td>輸入全域等值線集合的tooltip內容產生函數，可基於傳入資料回傳顯示文字或html內容，預設為function(){}</td>
     </tr><tr>
-        <td><code>opt.ContourSets[i].tooltip</code></td>
+        <td><code>opt.contourSets[i].tooltip</code></td>
         <td>function</td>
         <td><code>function(){}</code></td>
         <td>No</td>
         <td>輸入第i個等值線集合的tooltip內容產生函數，可基於傳入資料回傳顯示文字或html內容，預設為function(){}</td>
+    </tr><tr>
+        <td><code>opt.contourSets[i].visible</code></td>
+        <td>Boolean</td>
+        <td><code>true</code></td>
+        <td>No</td>
+        <td>輸入第i個等值線集合的是否顯示布林值，預設為true</td>
     </tr></tbody>
 </table>
 
@@ -1187,7 +1583,7 @@
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.2</a> on Thu Sep 28 2023 14:42:47 GMT+0800 (台北標準時間) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.2</a> on Wed Oct 11 2023 20:49:22 GMT+0800 (台北標準時間) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>
