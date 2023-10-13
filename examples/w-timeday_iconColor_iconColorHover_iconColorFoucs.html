@@ -89,7 +89,7 @@
     </script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.3.39/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.3.40/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -139,10 +139,13 @@
             >w-timeday</span>
         </div>
         <div class="bk">
-            <div class="item">iconColor &amp; iconColorFoucs</div>
+            <div
+                class="item"
+            >iconColor &amp; iconColorHover &amp; iconColorFoucs</div>
 
             <w-timeday
                 :icon-color="'cyan lighten-2'"
+                :icon-color-hover="'cyan lighten-1'"
                 :icon-color-focus="'cyan darken-1'"
                 v-model="WTimeday.day"
             ></w-timeday>
