@@ -120,11 +120,12 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-timeday'"
-                    :casename="'iconColor & iconColorFoucs'"
+                    :casename="'iconColor & iconColorHover & iconColorFoucs'"
                 ></demolink>
 
                 <w-timeday
                     :iconColor="'cyan lighten-2'"
+                    :iconColorHover="'cyan lighten-1'"
                     :iconColorFocus="'cyan darken-1'"
                     v-model="WTimeday.day"
                 ></w-timeday>
@@ -192,6 +193,8 @@
                     :borderColor="'orange lighten-2'"
                     :borderColorHover="'orange'"
                     :borderColorFocus="'orange darken-2'"
+                    :backgroundColor="'white'"
+                    :backgroundColorHover="'white'"
                     :backgroundColorFocus="'orange lighten-5'"
                     v-model="WTimeday.day"
                 ></w-timeday>
@@ -209,6 +212,8 @@
                     :borderColor="'orange lighten-2'"
                     :borderColorHover="'orange'"
                     :borderColorFocus="'orange darken-2'"
+                    :backgroundColor="'white'"
+                    :backgroundColorHover="'white'"
                     :backgroundColorFocus="'orange lighten-5'"
                     :icon="''"
                     :paddingStyle="{v:0,h:8}"
@@ -229,6 +234,8 @@
                     :borderColor="'orange lighten-2'"
                     :borderColorHover="'orange'"
                     :borderColorFocus="'orange darken-2'"
+                    :backgroundColor="'white'"
+                    :backgroundColorHover="'white'"
                     :backgroundColorFocus="'orange lighten-5'"
                     :icon="''"
                     :paddingStyle="{v:0,h:8}"
@@ -250,6 +257,8 @@
                     :borderColor="'orange lighten-2'"
                     :borderColorHover="'orange'"
                     :borderColorFocus="'orange darken-2'"
+                    :backgroundColor="'white'"
+                    :backgroundColorHover="'white'"
                     :backgroundColorFocus="'orange lighten-5'"
                     :icon="''"
                     :paddingStyle="{v:4,h:15}"
@@ -269,6 +278,8 @@
                     :borderColor="'orange lighten-2'"
                     :borderColorHover="'orange'"
                     :borderColorFocus="'orange darken-2'"
+                    :backgroundColor="'white'"
+                    :backgroundColorHover="'white'"
                     :backgroundColorFocus="'orange lighten-5'"
                     :borderRadius="5"
                     v-model="WTimeday.day"
@@ -287,6 +298,8 @@
                     :borderColor="'orange lighten-2'"
                     :borderColorHover="'orange'"
                     :borderColorFocus="'orange darken-2'"
+                    :backgroundColor="'white'"
+                    :backgroundColorHover="'white'"
                     :backgroundColorFocus="'orange lighten-5'"
                     :icon="mdiCheckUnderlineCircle"
                     v-model="WTimeday.day"
@@ -305,6 +318,8 @@
                     :borderColor="'orange lighten-2'"
                     :borderColorHover="'orange'"
                     :borderColorFocus="'orange darken-2'"
+                    :backgroundColor="'white'"
+                    :backgroundColorHover="'white'"
                     :backgroundColorFocus="'orange lighten-5'"
                     :icon="'fas fa-clipboard-check'"
                     v-model="WTimeday.day"
@@ -315,15 +330,19 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-timeday'"
-                    :casename="'border & iconColor & iconColorFoucs & borderColor & borderColorFocus & backgroundColorFocus'"
+                    :casename="'border & iconColor & iconColorHover & iconColorFoucs & borderColor & borderColorHover & borderColorFocus & backgroundColor & backgroundColorHover & backgroundColorFocus'"
                 ></demolink>
 
                 <w-timeday
                     :shadow="false"
                     :borderColor="'cyan lighten-2'"
+                    :borderColorHover="'cyan lighten-1'"
                     :borderColorFocus="'cyan darken-1'"
+                    :backgroundColor="'white'"
+                    :backgroundColorHover="'white'"
                     :backgroundColorFocus="'cyan lighten-5'"
                     :iconColor="'cyan lighten-2'"
+                    :iconColorHover="'cyan lighten-1'"
                     :iconColorFocus="'cyan darken-1'"
                     v-model="WTimeday.day"
                 ></w-timeday>
@@ -341,6 +360,8 @@
                     :borderColor="'orange lighten-2'"
                     :borderColorHover="'orange'"
                     :borderColorFocus="'orange darken-2'"
+                    :backgroundColor="'white'"
+                    :backgroundColorHover="'white'"
                     :backgroundColorFocus="'orange lighten-5'"
                     :textColor="'orange darken-2'"
                     v-model="WTimeday.day"
@@ -359,6 +380,8 @@
                     :borderColor="'orange lighten-2'"
                     :borderColorHover="'orange'"
                     :borderColorFocus="'orange darken-2'"
+                    :backgroundColor="'white'"
+                    :backgroundColorHover="'white'"
                     :backgroundColorFocus="'orange lighten-5'"
                     :pickColor="'brown'"
                     v-model="WTimeday.day"
@@ -377,6 +400,8 @@
                     :borderColor="'orange lighten-2'"
                     :borderColorHover="'orange'"
                     :borderColorFocus="'orange darken-2'"
+                    :backgroundColor="'white'"
+                    :backgroundColorHover="'white'"
                     :backgroundColorFocus="'orange lighten-5'"
                     :icon="mdiCheckUnderlineCircle"
                     :iconTooltip="'show tooltip'"
@@ -396,6 +421,8 @@
                     :borderColor="'orange lighten-2'"
                     :borderColorHover="'orange'"
                     :borderColorFocus="'orange darken-2'"
+                    :backgroundColor="'white'"
+                    :backgroundColorHover="'white'"
                     :backgroundColorFocus="'orange lighten-5'"
                     :editable="false"
                     v-model="WTimeday.day"
