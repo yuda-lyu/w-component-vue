@@ -17,7 +17,11 @@
                 <w-panel-stripe style="width:600px;">
 
                     <template v-slot:icon>
-                        <v-icon style="margin-right:15px;" size="60">fab fa-angular</v-icon>
+                        <w-icon
+                            style="margin-right:15px;"
+                            :icon="'fab fa-angular'"
+                            :size="72"
+                        ></w-icon>
                     </template>
 
                     <template v-slot:title>
@@ -52,7 +56,11 @@
                 <w-panel-stripe style="width:600px;">
 
                     <template v-slot:icon>
-                        <v-icon style="margin-right:15px;" size="60">fas fa-allergies</v-icon>
+                        <w-icon
+                            style="margin-right:15px;"
+                            :icon="'fas fa-allergies'"
+                            :size="72"
+                        ></w-icon>
                     </template>
 
                     <template v-slot:title>
@@ -91,7 +99,11 @@
                 >
 
                     <template v-slot:icon>
-                        <v-icon style="margin-right:15px;" size="60">fab fa-angular</v-icon>
+                        <w-icon
+                            style="margin-right:15px;"
+                            :icon="'fab fa-angular'"
+                            :size="72"
+                        ></w-icon>
                     </template>
 
                     <template v-slot:title>
@@ -129,7 +141,11 @@
                 >
 
                     <template v-slot:icon>
-                        <v-icon style="margin-right:15px;" size="60">fab fa-angular</v-icon>
+                        <w-icon
+                            style="margin-right:15px;"
+                            :icon="'fab fa-angular'"
+                            :size="72"
+                        ></w-icon>
                     </template>
 
                     <template v-slot:title>
@@ -161,14 +177,18 @@
                     :casename="'with grey outer'"
                 ></demolink>
 
-                <div style="display:inline-block; padding:40px; background:#bbb;">
+                <div style="display:inline-block; padding:40px; background:#b2b2b2;">
 
                     <w-panel-stripe
                         style="width:520px;"
                     >
 
                         <template v-slot:icon>
-                            <v-icon style="margin-right:15px;" size="60">fab fa-angular</v-icon>
+                            <w-icon
+                            style="margin-right:15px;"
+                            :icon="'fab fa-angular'"
+                            :size="72"
+                        ></w-icon>
                         </template>
 
                         <template v-slot:title>
@@ -210,7 +230,11 @@
                     >
 
                         <template v-slot:icon>
-                            <v-icon style="margin-right:15px;" size="60">fab fa-angular</v-icon>
+                            <w-icon
+                            style="margin-right:15px;"
+                            :icon="'fab fa-angular'"
+                            :size="72"
+                        ></w-icon>
                         </template>
 
                         <template v-slot:title>
@@ -247,7 +271,11 @@
                 <w-panel-stripe style="width:600px;">
 
                     <template v-slot:icon>
-                        <v-icon style="margin-right:10px;" size="60">fab fa-angular</v-icon>
+                        <w-icon
+                            style="margin-right:10px;"
+                            :icon="'fas fa-allergies'"
+                            :size="72"
+                        ></w-icon>
                     </template>
 
                     <template v-slot:title>
@@ -308,7 +336,11 @@
                 >
 
                     <template v-slot:icon>
-                        <v-icon style="margin-right:10px;" size="44">fab fa-angular</v-icon>
+                        <w-icon
+                            style="margin-right:10px;"
+                            :icon="'fab fa-angular'"
+                            :size="52"
+                        ></w-icon>
                     </template>
 
                     <template v-slot:title>
@@ -343,7 +375,11 @@
                 <w-panel-stripe style="width:600px;">
 
                     <template v-slot:icon>
-                        <v-icon style="margin-right:15px;" size="60">fab fa-angular</v-icon>
+                        <w-icon
+                            style="margin-right:15px;"
+                            :icon="'fab fa-angular'"
+                            :size="72"
+                        ></w-icon>
                     </template>
 
                     <template v-slot:title>
@@ -384,7 +420,11 @@
                 >
 
                     <template v-slot:icon>
-                        <v-icon style="margin-right:15px;" size="60">fab fa-angular</v-icon>
+                        <w-icon
+                            style="margin-right:15px;"
+                            :icon="'fab fa-angular'"
+                            :size="72"
+                        ></w-icon>
                     </template>
 
                     <template v-slot:title>
@@ -422,7 +462,11 @@
                 >
 
                     <template v-slot:icon>
-                        <v-icon style="margin-right:15px;" size="60">fab fa-angular</v-icon>
+                        <w-icon
+                            style="margin-right:15px;"
+                            :icon="'fab fa-angular'"
+                            :size="72"
+                        ></w-icon>
                     </template>
 
                     <template v-slot:title>
@@ -457,7 +501,11 @@
                 <w-panel-stripe style="width:600px;">
 
                     <template v-slot:icon>
-                        <v-icon style="margin-right:15px;" size="60">fab fa-angular</v-icon>
+                        <w-icon
+                            style="margin-right:15px;"
+                            :icon="'fab fa-angular'"
+                            :size="72"
+                        ></w-icon>
                     </template>
 
                     <template v-slot:title>
@@ -500,7 +548,11 @@
                 <w-panel-stripe style="width:600px;">
 
                     <template v-slot:icon>
-                        <v-icon style="margin-right:15px;" size="60">fab fa-angular</v-icon>
+                        <w-icon
+                            style="margin-right:15px;"
+                            :icon="'fab fa-angular'"
+                            :size="72"
+                        ></w-icon>
                     </template>
 
                     <template v-slot:title>
@@ -568,12 +620,14 @@
 <script>
 import demolink from './components/demolink.vue'
 import WPanelStripe from './components/WPanelStripe.vue'
+import WIcon from './components/WIcon.vue'
 
 
 export default {
     components: {
         demolink,
         WPanelStripe,
+        WIcon,
     },
     props: {
     },

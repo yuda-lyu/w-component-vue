@@ -25,7 +25,6 @@ import WHighchartsVueDyn from './WHighchartsVueDyn.vue'
 import WHighstockVueDyn from './WHighstockVueDyn.vue'
 import WIcon from './WIcon.vue'
 import WIconLoading from './WIconLoading.vue'
-import WIconSvg from './WIconSvg.vue'
 import WImageCascadingDyn from './WImageCascadingDyn.vue'
 import WImageViewerDyn from './WImageViewerDyn.vue'
 import WInputCheckbox from './WInputCheckbox.vue'
@@ -109,7 +108,6 @@ let WComponentVue = {
         Vue.component('w-highstock-vue-dyn', WHighstockVueDyn)
         Vue.component('w-icon', WIcon)
         Vue.component('w-icon-loading', WIconLoading)
-        Vue.component('w-icon-svg', WIconSvg)
         Vue.component('w-image-cascading-dyn', WImageCascadingDyn)
         Vue.component('w-image-viewer-dyn', WImageViewerDyn)
         Vue.component('w-input-checkbox', WInputCheckbox)

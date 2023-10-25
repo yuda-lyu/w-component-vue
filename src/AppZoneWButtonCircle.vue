@@ -28,7 +28,7 @@
                 ></demolink>
 
                 <w-button-circle
-                    :icon="'fas fa-clipboard-check'"
+                    :icon="'fas fa-pause-circle'"
                 ></w-button-circle>
 
             </div>

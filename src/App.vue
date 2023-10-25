@@ -128,9 +128,9 @@
             ></AppZoneWPanelScale>
 
 
-            <AppZoneWIconSvg
-                v-if="useCmpName==='WIconSvg'"
-            ></AppZoneWIconSvg>
+            <AppZoneWIcon
+                v-if="useCmpName==='WIcon'"
+            ></AppZoneWIcon>
 
 
             <AppZoneWDropfiles
@@ -414,7 +414,7 @@ import AppZoneWPanelLabelItem from './AppZoneWPanelLabelItem.vue'
 import AppZoneWPanelDivideHorizontal from './AppZoneWPanelDivideHorizontal.vue'
 import AppZoneWPanelDivideVertical from './AppZoneWPanelDivideVertical.vue'
 import AppZoneWPanelScale from './AppZoneWPanelScale.vue'
-import AppZoneWIconSvg from './AppZoneWIconSvg.vue'
+import AppZoneWIcon from './AppZoneWIcon.vue'
 import AppZoneWDropfiles from './AppZoneWDropfiles.vue'
 import AppZoneWDialog from './AppZoneWDialog.vue'
 import AppZoneWConfirm from './AppZoneWConfirm.vue'
@@ -480,7 +480,7 @@ export default {
         AppZoneWPanelDivideHorizontal,
         AppZoneWPanelDivideVertical,
         AppZoneWPanelScale,
-        AppZoneWIconSvg,
+        AppZoneWIcon,
         AppZoneWDropfiles,
         AppZoneWDialog,
         AppZoneWConfirm,
@@ -551,7 +551,7 @@ export default {
                         { name: 'WBadge' },
                         { name: 'WSwitch' },
                         { name: 'WCheckbox' },
-                        { name: 'WIconSvg' },
+                        { name: 'WIcon' },
                         { name: 'WDropfiles' },
                         { name: 'WProgressBar' },
                         { name: 'WProgressCircle' },

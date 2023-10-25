@@ -8,7 +8,7 @@
         <div style="padding:0px;">
 
 
-            <div class="bk">
+            <div v-if="false" class="bk">
                 <demolink
                     :kbname="'w-tree'"
                     :casename="'default'"
@@ -22,7 +22,7 @@
             </div>
 
 
-            <div class="bk">
+            <div v-if="false" class="bk">
                 <demolink
                     :kbname="'w-tree'"
                     :casename="'iconSize(20)'"
@@ -37,7 +37,7 @@
             </div>
 
 
-            <div class="bk">
+            <div v-if="false" class="bk">
                 <demolink
                     :kbname="'w-tree'"
                     :casename="'iconSize(20) & defItemHeight(24)'"
@@ -53,7 +53,7 @@
             </div>
 
 
-            <div class="bk">
+            <div v-if="false" class="bk">
                 <demolink
                     :kbname="'w-tree'"
                     :casename="'iconSize(30) & defItemHeight(36)'"
@@ -69,7 +69,7 @@
             </div>
 
 
-            <div class="bk">
+            <div v-if="false" class="bk">
                 <demolink
                     :kbname="'w-tree'"
                     :casename="'viewHeightMax'"
@@ -84,7 +84,7 @@
             </div>
 
 
-            <div class="bk">
+            <div v-if="false" class="bk">
                 <demolink
                     :kbname="'w-tree'"
                     :casename="'no viewHeightMax'"
@@ -99,7 +99,7 @@
             </div>
 
 
-            <div class="bk">
+            <div v-if="false" class="bk">
                 <demolink
                     :kbname="'w-tree'"
                     :casename="'itemRippleColor'"
@@ -114,7 +114,7 @@
             </div>
 
 
-            <div class="bk">
+            <div v-if="false" class="bk">
                 <demolink
                     :kbname="'w-tree'"
                     :casename="'events'"
@@ -137,7 +137,7 @@
             </div>
 
 
-            <div class="bk">
+            <div v-if="false" class="bk">
                 <demolink
                     :kbname="'w-tree'"
                     :casename="'toggleItemsByFun'"
@@ -162,7 +162,7 @@
             </div>
 
 
-            <div class="bk">
+            <div v-if="false" class="bk">
                 <demolink
                     :kbname="'w-tree'"
                     :casename="'toggleItemsAll'"
@@ -185,7 +185,7 @@
             </div>
 
 
-            <div class="bk">
+            <div v-if="false" class="bk">
                 <demolink
                     :kbname="'w-tree'"
                     :casename="'defaultDisplayLevel'"
@@ -200,7 +200,7 @@
             </div>
 
 
-            <div class="bk">
+            <div v-if="false" class="bk">
                 <demolink
                     :kbname="'w-tree'"
                     :casename="'filterKeywords & noResultsText'"
@@ -224,7 +224,7 @@
             </div>
 
 
-            <div class="bk">
+            <div v-if="false" class="bk">
                 <demolink
                     :kbname="'w-tree'"
                     :casename="'filterKeywords & funFilter'"
@@ -248,7 +248,7 @@
             </div>
 
 
-            <div class="bk">
+            <div v-if="false" class="bk">
                 <demolink
                     :kbname="'w-tree'"
                     :casename="'itemTextColor & itemTextColorHover & itemBackgroundColor & itemBackgroundColorHover'"
@@ -266,7 +266,7 @@
             </div>
 
 
-            <div class="bk">
+            <div v-if="false" class="bk">
                 <demolink
                     :kbname="'w-tree'"
                     :casename="'activable & itemActive'"
@@ -285,7 +285,7 @@
             </div>
 
 
-            <div class="bk">
+            <div v-if="false" class="bk">
                 <demolink
                     :kbname="'w-tree'"
                     :casename="'activable & itemActive & funActive'"
@@ -305,7 +305,7 @@
             </div>
 
 
-            <div class="bk">
+            <div v-if="false" class="bk">
                 <demolink
                     :kbname="'w-tree'"
                     :casename="'activable & itemActive & itemTextColor & itemTextColorHover & itemTextColorActive & itemBackgroundColor & itemBackgroundColorHover & itemBackgroundColorActive'"
@@ -330,7 +330,7 @@
             </div>
 
 
-            <div class="bk">
+            <div v-if="false" class="bk">
                 <demolink
                     :kbname="'w-tree'"
                     :casename="'draggable'"
@@ -349,7 +349,7 @@
             </div>
 
 
-            <div class="bk">
+            <div v-if="false" class="bk">
                 <demolink
                     :kbname="'w-tree'"
                     :casename="'draggable & dgPreviewOpacity & dgPreviewBorderWidth & dgBelongBackgroundColor'"
@@ -370,7 +370,7 @@
             </div>
 
 
-            <div class="bk">
+            <div v-if="false" class="bk">
                 <demolink
                     :kbname="'w-tree'"
                     :casename="'draggable & dgInsertLineColor & dgInsertBackgroundColor & dgBelongBackgroundColor'"
@@ -390,7 +390,7 @@
             </div>
 
 
-            <div class="bk">
+            <div v-if="false" class="bk">
                 <demolink
                     :kbname="'w-tree'"
                     :casename="'draggable & dgTextDisabled & dgTextDisabledColor & dgTextDisabledPaddingLeft & dgTextDisabledFontSize & dgTextDisabledBackgroundColor'"
@@ -412,7 +412,7 @@
             </div>
 
 
-            <div class="bk">
+            <div v-if="false" class="bk">
                 <demolink
                     :kbname="'w-tree'"
                     :casename="'operatable'"
@@ -432,7 +432,7 @@
             </div>
 
 
-            <div class="bk">
+            <div v-if="false" class="bk">
                 <demolink
                     :kbname="'w-tree'"
                     :casename="'operatable & operateBtnTooltip & operateItemTextForRename & operateItemTextForInsertBefore & perateItemTextForInsertChild & operateItemTextForInsertAfter & operateItemTextForDelete'"
@@ -456,7 +456,7 @@
             </div>
 
 
-            <div class="bk">
+            <div v-if="false" class="bk">
                 <demolink
                     :kbname="'w-tree'"
                     :casename="'operatable & operatePanelWidth & operatePanelHeight & operateItemIconSize & operateItemPaddingStyle'"
@@ -478,7 +478,7 @@
             </div>
 
 
-            <div class="bk">
+            <div v-if="false" class="bk">
                 <demolink
                     :kbname="'w-tree'"
                     :casename="'operatable & operateItemHeight & operateItemIconSize & operateItemPaddingStyle'"
@@ -499,7 +499,7 @@
             </div>
 
 
-            <div class="bk">
+            <div v-if="false" class="bk">
                 <demolink
                     :kbname="'w-tree'"
                     :casename="'operatable & operateBtnIconSize & operateBtnBackgroundColor & operateBtnBackgroundColorHover & operateBtnBackgroundColorFocus'"
@@ -521,7 +521,7 @@
             </div>
 
 
-            <div class="bk">
+            <div v-if="false" class="bk">
                 <demolink
                     :kbname="'w-tree'"
                     :casename="'operatable & operateItemBackgroundColor & operateItemBackgroundColorHover & operateItemTextColor & operateItemTextColorHover & operateItemIconColor & operateItemIconColorHover'"
@@ -545,7 +545,7 @@
             </div>
 
 
-            <div class="bk">
+            <div v-if="false" class="bk">
                 <demolink
                     :kbname="'w-tree'"
                     :casename="'operatable & operateItemIconForRename & operateItemIconForInsertBefore & operateItemIconForInsertChild & operateItemIconForInsertAfter & operateItemIconForDelete'"
@@ -568,7 +568,7 @@
             </div>
 
 
-            <div class="bk">
+            <div v-if="false" class="bk">
                 <demolink
                     :kbname="'w-tree'"
                     :casename="'operatable & funOperateItem'"
@@ -587,7 +587,7 @@
             </div>
 
 
-            <div class="bk">
+            <div v-if="false" class="bk">
                 <demolink
                     :kbname="'w-tree'"
                     :casename="'operatable & editorRenameContentBackgroundColor & editorRenameFooterBackgroundColor'"
@@ -609,7 +609,7 @@
             </div>
 
 
-            <div class="bk">
+            <div v-if="false" class="bk">
                 <demolink
                     :kbname="'w-tree'"
                     :casename="'operatable & editorRenameInputTextColor & editorRenameInputTextBottomLineBorderColor & editorRenameInputTextBottomLineBorderColorHover & editorRenameInputTextBottomLineBorderColorFocus'"
@@ -633,7 +633,7 @@
             </div>
 
 
-            <div class="bk">
+            <div v-if="false" class="bk">
                 <demolink
                     :kbname="'w-tree'"
                     :casename="'operatable & editorRenameCancelBtnText & editorRenameCancelBtnTextColor & editorRenameCancelBtnTextColorHover'"
@@ -656,7 +656,7 @@
             </div>
 
 
-            <div class="bk">
+            <div v-if="false" class="bk">
                 <demolink
                     :kbname="'w-tree'"
                     :casename="'operatable & editorRenameCancelBtnIcon & editorRenameCancelBtnIconSize & editorRenameCancelBtnIconColor & editorRenameCancelBtnIconColorHover & editorRenameCancelBtnIconRippleColor'"
@@ -681,7 +681,7 @@
             </div>
 
 
-            <div class="bk">
+            <div v-if="false" class="bk">
                 <demolink
                     :kbname="'w-tree'"
                     :casename="'operatable & editorRenameCancelBtnBackgroundColor & editorRenameCancelBtnBackgroundColorHover'"
@@ -703,7 +703,7 @@
             </div>
 
 
-            <div class="bk">
+            <div v-if="false" class="bk">
                 <demolink
                     :kbname="'w-tree'"
                     :casename="'operatable & editorRenameSaveBtnText & editorRenameSaveBtnTextColor & editorRenameSaveBtnTextColorHover'"
@@ -726,7 +726,7 @@
             </div>
 
 
-            <div class="bk">
+            <div v-if="false" class="bk">
                 <demolink
                     :kbname="'w-tree'"
                     :casename="'operatable & editorRenameSaveBtnIcon & editorRenameSaveBtnIconSize & editorRenameSaveBtnIconColor & editorRenameSaveBtnIconColorHover & editorRenameSaveBtnIconRippleColor'"
@@ -751,7 +751,7 @@
             </div>
 
 
-            <div class="bk">
+            <div v-if="false" class="bk">
                 <demolink
                     :kbname="'w-tree'"
                     :casename="'operatable & editorRenameSaveBtnBackgroundColor & editorRenameSaveBtnBackgroundColorHover'"
@@ -773,7 +773,7 @@
             </div>
 
 
-            <div class="bk">
+            <div v-if="false" class="bk">
                 <demolink
                     :kbname="'w-tree'"
                     :casename="'operatable & draggable'"
@@ -794,7 +794,7 @@
             </div>
 
 
-            <div class="bk">
+            <div v-if="false" class="bk">
                 <demolink
                     :kbname="'w-tree'"
                     :casename="'paddingStyle'"
@@ -809,7 +809,7 @@
             </div>
 
 
-            <div class="bk">
+            <div v-if="false" class="bk">
                 <demolink
                     :kbname="'w-tree'"
                     :casename="'indent'"
@@ -824,7 +824,7 @@
             </div>
 
 
-            <div class="bk">
+            <div v-if="false" class="bk">
                 <demolink
                     :kbname="'w-tree'"
                     :casename="'iconToggleColor & iconToggleBackgroundColor & iconToggleBackgroundColorHover'"
@@ -841,7 +841,7 @@
             </div>
 
 
-            <div class="bk">
+            <div v-if="false" class="bk">
                 <demolink
                     :kbname="'w-tree'"
                     :casename="'keyPrimary & keyText & keyChildren'"
@@ -876,7 +876,13 @@
                             </div>
 
                             <div style="display:flex; align-items:center; padding-right:5px;" v-if="props.data.icon">
-                                <v-icon size="18" color="deep-orange">{{props.data.icon}}</v-icon>
+                                <w-icon
+                                    style="margin-right:10px;"
+                                    :icon="props.data.icon"
+                                    :color="'deep-orange'"
+                                    :colorHover="'deep-orange darken-1'"
+                                    :size="20"
+                                ></w-icon>
                             </div>
 
                             <div style="padding:5px 0px;">
@@ -896,7 +902,7 @@
             </div>
 
 
-            <div class="bk">
+            <div v-if="false" class="bk">
                 <demolink
                     :kbname="'w-tree'"
                     :casename="'slot & operatable'"
@@ -925,7 +931,7 @@
             </div>
 
 
-            <div class="bk">
+            <div v-if="false" class="bk">
                 <demolink
                     :kbname="'w-tree'"
                     :casename="'slot & edit-text'"
@@ -951,7 +957,7 @@
             </div>
 
 
-            <div class="bk" style="display:block;">
+            <div v-if="false" class="bk" style="display:block;">
                 <demolink
                     :kbname="'w-tree'"
                     :casename="'selectable'"
@@ -983,7 +989,7 @@
             </div>
 
 
-            <div class="bk" style="display:block;">
+            <div v-if="false" class="bk" style="display:block;">
                 <demolink
                     :kbname="'w-tree'"
                     :casename="'slot & selectable'"
@@ -1008,7 +1014,13 @@
                                     </div>
 
                                     <div style="display:flex; align-items:center; padding-right:5px;" v-if="props.data.icon">
-                                        <v-icon size="18" color="deep-orange">{{props.data.icon}}</v-icon>
+                                        <w-icon
+                                    style="margin-right:10px;"
+                                    :icon="props.data.icon"
+                                    :color="'deep-orange'"
+                                    :colorHover="'deep-orange darken-1'"
+                                    :size="20"
+                                ></w-icon>
                                     </div>
 
                                     <div style="padding:5px 0px;">
@@ -1043,7 +1055,7 @@
             </div>
 
 
-            <div class="bk" style="display:block;">
+            <div v-if="false" class="bk" style="display:block;">
                 <demolink
                     :kbname="'w-tree'"
                     :casename="'slot & selectable & iconSize(20) & defItemHeight(24)'"
@@ -1070,7 +1082,13 @@
                                     </div>
 
                                     <div style="display:flex; align-items:center; padding-right:5px;" v-if="props.data.icon">
-                                        <v-icon size="18" color="deep-orange">{{props.data.icon}}</v-icon>
+                                        <w-icon
+                                    style="margin-right:10px;"
+                                    :icon="props.data.icon"
+                                    :color="'deep-orange'"
+                                    :colorHover="'deep-orange darken-1'"
+                                    :size="20"
+                                ></w-icon>
                                     </div>
 
                                     <div style="">
@@ -1105,7 +1123,7 @@
             </div>
 
 
-            <div class="bk" style="display:block;">
+            <div v-if="false" class="bk" style="display:block;">
                 <demolink
                     :kbname="'w-tree'"
                     :casename="'selectable & draggable'"
@@ -1140,7 +1158,7 @@
             </div>
 
 
-            <div class="bk" style="display:block;">
+            <div v-if="false" class="bk" style="display:block;">
                 <demolink
                     :kbname="'w-tree'"
                     :casename="'slot & selectable & draggable'"
@@ -1168,7 +1186,13 @@
                                     </div>
 
                                     <div style="display:flex; align-items:center; padding-right:5px;" v-if="props.data.icon">
-                                        <v-icon size="18" color="deep-orange">{{props.data.icon}}</v-icon>
+                                        <w-icon
+                                    style="margin-right:10px;"
+                                    :icon="props.data.icon"
+                                    :color="'deep-orange'"
+                                    :colorHover="'deep-orange darken-1'"
+                                    :size="20"
+                                ></w-icon>
                                     </div>
 
                                     <div style="padding:5px 0px;">
@@ -1203,7 +1227,7 @@
             </div>
 
 
-            <div class="bk" style="display:block;">
+            <div v-if="false" class="bk" style="display:block;">
                 <demolink
                     :kbname="'w-tree'"
                     :casename="'filterKeywords & noResultsText & selectable'"
@@ -1238,7 +1262,13 @@
                                     </div>
 
                                     <div style="display:flex; align-items:center; padding-right:5px;" v-if="props.data.icon">
-                                        <v-icon size="18" color="deep-orange">{{props.data.icon}}</v-icon>
+                                        <w-icon
+                                    style="margin-right:10px;"
+                                    :icon="props.data.icon"
+                                    :color="'deep-orange'"
+                                    :colorHover="'deep-orange darken-1'"
+                                    :size="20"
+                                ></w-icon>
                                     </div>
 
                                     <div style="padding:5px 0px;">
@@ -1273,7 +1303,7 @@
             </div>
 
 
-            <div class="bk" style="display:block;">
+            <div v-if="false" class="bk" style="display:block;">
                 <demolink
                     :kbname="'w-tree'"
                     :casename="'slot & locked & selectable'"
@@ -1299,7 +1329,13 @@
                                     </div>
 
                                     <div style="display:flex; align-items:center; padding-right:5px;" v-if="props.data.icon">
-                                        <v-icon size="18" color="deep-orange">{{props.data.icon}}</v-icon>
+                                        <w-icon
+                                    style="margin-right:10px;"
+                                    :icon="props.data.icon"
+                                    :color="'deep-orange'"
+                                    :colorHover="'deep-orange darken-1'"
+                                    :size="20"
+                                ></w-icon>
                                     </div>
 
                                     <div style="padding:5px 0px;">
@@ -1334,7 +1370,7 @@
             </div>
 
 
-            <div class="bk" style="display:block;">
+            <div v-if="false" class="bk" style="display:block;">
                 <demolink
                     :kbname="'w-tree'"
                     :casename="'slot & iconUncheckedColor & iconUncheckedDisabledColor & iconCheckedColor & iconCheckedDisabledColor & iconCheckedPartiallyColor & iconCheckedPartiallyDisabledColor & locked & selectable'"
@@ -1366,7 +1402,13 @@
                                     </div>
 
                                     <div style="display:flex; align-items:center; padding-right:5px;" v-if="props.data.icon">
-                                        <v-icon size="18" color="deep-orange">{{props.data.icon}}</v-icon>
+                                        <w-icon
+                                    style="margin-right:10px;"
+                                    :icon="props.data.icon"
+                                    :color="'deep-orange'"
+                                    :colorHover="'deep-orange darken-1'"
+                                    :size="20"
+                                ></w-icon>
                                     </div>
 
                                     <div style="padding:5px 0px;">
@@ -1401,7 +1443,7 @@
             </div>
 
 
-            <div class="bk" style="display:block;">
+            <div v-if="false" class="bk" style="display:block;">
                 <demolink
                     :kbname="'w-tree'"
                     :casename="'slot & selectable & large data (100,000 items)'"
@@ -1455,6 +1497,7 @@ import { mdiCommentEditOutline, mdiChevronDoubleUp, mdiChevronDoubleRight, mdiCh
 import demolink from './components/demolink.vue'
 import WTree from './components/WTree.vue'
 import WPopupEditText from './components/WPopupEditText.vue'
+import WIcon from './components/WIcon.vue'
 
 
 // let data = (function (n) {
@@ -1484,6 +1527,7 @@ export default {
         demolink,
         WTree,
         WPopupEditText,
+        WIcon,
     },
     props: {
     },
