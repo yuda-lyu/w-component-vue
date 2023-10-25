@@ -1,47 +1,41 @@
 <template>
     <div class="item">
-        <!-- 因v-btn的icon與elevation屬性衝突, 使用elevation會導致color變成背景色, 故改由class設定按鈕陰影 -->
 
         <div style="display:inline-block;">
             {{casename}}
         </div>
 
-        <v-tooltip bottom transition="slide-y-transition">
-            <template v-slot:activator="{ on }">
-                <v-btn
-                    class="bx"
-                    style="margin-left:10px;"
-                    v-on="on"
-                    x-small
-                    icon
-                    color="red darken-1"
-                    target="_blank"
-                    rel="noreferrer noopener"
-                    :href="web"
-                >
-                    <v-icon small>{{mdiLaunch}}</v-icon>
-                </v-btn>
-            </template>
-            <span>example</span>
-        </v-tooltip>
+        <div style="padding-left:5px;"></div>
 
-        <v-tooltip bottom transition="slide-y-transition">
-            <template v-slot:activator="{ on }">
-                <v-btn
-                    class="bx"
-                    style="margin-left:10px;"
-                    v-on="on"
-                    x-small
-                    icon
-                    color="red darken-1"
-                    target="_blank" rel="noreferrer noopener"
-                    :href="src"
-                >
-                    <v-icon small>{{mdiUnfoldMoreVertical}}</v-icon>
-                </v-btn>
-            </template>
-            <span>code</span>
-        </v-tooltip>
+        <w-button-circle
+            :icon="mdiLaunch"
+            :iconSize="16"
+            :paddingStyle="{v:3,h:3}"
+            :iconColor="'red darken-1'"
+            :iconColorHover="'red darken-1'"
+            :iconColorFocus="'red darken-1'"
+            :backgroundColor="'#fff'"
+            :backgroundColorHover="'#fff5f5'"
+            :backgroundColorFocus="'#fff2f2'"
+            :tooltip="'example'"
+            @click="ckExample"
+        ></w-button-circle>
+
+        <div style="padding-left:5px;"></div>
+
+        <w-button-circle
+            :icon="mdiUnfoldMoreVertical"
+            :iconSize="16"
+            :paddingStyle="{v:3,h:3}"
+            :iconColor="'red darken-1'"
+            :iconColorHover="'red darken-1'"
+            :iconColorFocus="'red darken-1'"
+            :backgroundColor="'#fff'"
+            :backgroundColorHover="'#fff5f5'"
+            :backgroundColorFocus="'#fff2f2'"
+            :tooltip="'code'"
+            @click="ckCode"
+        ></w-button-circle>
 
     </div>
 </template>
@@ -49,9 +43,13 @@
 <script>
 import { mdiLaunch, mdiUnfoldMoreVertical } from '@mdi/js'
 import cvCasename from '../../toolg/cvCasename.mjs'
+import WButtonCircle from './WButtonCircle.vue'
 
 
 export default {
+    components: {
+        WButtonCircle,
+    },
     props: {
         kbname: {
             type: String,
@@ -75,12 +73,19 @@ export default {
             return `${this.kbname}_${cvCasename(fnc)}`
         },
 
-        web: function() {
-            return 'https://yuda-lyu.github.io/w-component-vue/examples/' + this.fn + '.html'
+    },
+    methods: {
+
+        ckExample: function() {
+            let vo = this
+            let url = 'https://yuda-lyu.github.io/w-component-vue/examples/' + vo.fn + '.html'
+            window.open(url, '_blank')
         },
 
-        src: function() {
-            return 'https://github.com/yuda-lyu/w-component-vue/blob/master/docs/examples/' + this.fn + '.html'
+        ckCode: function() {
+            let vo = this
+            let url = 'https://github.com/yuda-lyu/w-component-vue/blob/master/docs/examples/' + vo.fn + '.html'
+            window.open(url, '_blank')
         },
 
     },
@@ -96,8 +101,5 @@ export default {
     display: flex;
     justify-content: flex-start;
     align-items: center;
-}
-.bx {
-    box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
 }
 </style>
