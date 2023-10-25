@@ -31,7 +31,7 @@
 
     <!-- fontawesome -->
     <link
-        href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css"
+        href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.2/css/all.min.css"
         rel="stylesheet"
     />
 
@@ -89,7 +89,7 @@
     </script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.3.40/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.3.41/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -143,10 +143,11 @@
 
             <w-panel-stripe style="width:600px;">
                 <template v-slot:icon>
-                    <v-icon
+                    <w-icon
                         style="margin-right:15px;"
-                        size="60"
-                    >fas fa-allergies</v-icon>
+                        :icon="'fas fa-allergies'"
+                        :size="72"
+                    ></w-icon>
                 </template>
 
                 <template v-slot:title>

@@ -31,7 +31,7 @@
 
     <!-- fontawesome -->
     <link
-        href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css"
+        href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.2/css/all.min.css"
         rel="stylesheet"
     />
 
@@ -89,7 +89,7 @@
     </script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.3.40/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.3.41/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -138,7 +138,7 @@
                 onclick="window.open('//yuda-lyu.github.io/w-component-vue/examples/app.html?cmp='+this.innerText,'_blank')"
             >w-tree</span>
         </div>
-        <div class="bk" style="display:block;">
+        <div v-if="false" class="bk" style="display:block;">
             <div class="item">slot &amp; selectable</div>
 
             <!-- 用:style才能支援IE11因vue會自動把overflow-x:auto轉為-ms-overflow-x:auto -->
@@ -167,10 +167,13 @@
                                     style="display:flex; align-items:center; padding-right:5px;"
                                     v-if="props.data.icon"
                                 >
-                                    <v-icon
-                                        size="18"
-                                        color="deep-orange"
-                                    >{{props.data.icon}}</v-icon>
+                                    <w-icon
+                                        style="margin-right:10px;"
+                                        :icon="props.data.icon"
+                                        :color="'deep-orange'"
+                                        :color-hover="'deep-orange darken-1'"
+                                        :size="20"
+                                    ></w-icon>
                                 </div>
 
                                 <div style="padding:5px 0px;">
