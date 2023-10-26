@@ -31,6 +31,7 @@
                             :icon="contentIcon"
                             :size="contentIconSize"
                             :color="contentIconColor"
+                            :colorHover="contentIconColor"
                         ></WIcon>
                     </div>
 

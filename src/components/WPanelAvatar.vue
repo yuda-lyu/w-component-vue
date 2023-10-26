@@ -23,6 +23,7 @@
                                     :icon="avatarIcon"
                                     :size="avatarIconSize"
                                     :color="useAvatarIconColor"
+                                    :colorHover="useAvatarIconColor"
                                 ></WIcon>
                             </slot>
 

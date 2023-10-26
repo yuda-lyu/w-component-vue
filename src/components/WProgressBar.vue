@@ -23,6 +23,7 @@
                 <WIcon
                     :icon="status==='waiting'?iconWaiting:iconFinish"
                     :color="status==='waiting'?useIconWaitingColor:useIconFinishColor"
+                    :colorHover="status==='waiting'?useIconWaitingColor:useIconFinishColor"
                     :size="iconSize"
                     v-if="(enableIconWaiting && status==='waiting') || (enableIconFinish && status==='finish')"
                 ></WIcon>

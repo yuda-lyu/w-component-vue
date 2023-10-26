@@ -13,12 +13,14 @@
             <WIcon
                 :icon="checkedIcon"
                 :color="useCheckedIconColor"
+                :colorHover="useCheckedIconColor"
                 :size="iconSize"
                 v-if="b"
             ></WIcon>
             <WIcon
                 :icon="uncheckedIcon"
                 :color="useUncheckedIconColor"
+                :colorHover="useUncheckedIconColor"
                 :size="iconSize"
                 v-else
             ></WIcon>

@@ -60,6 +60,7 @@
                             <WIcon
                                 :icon="expansionIcon"
                                 :color="uesExpansionIconColor"
+                                :colorHover="uesExpansionIconColor"
                                 :size="expansionIconSize"
                             ></WIcon>
                         </div>

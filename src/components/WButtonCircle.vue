@@ -35,6 +35,7 @@
                         <WIcon
                             :icon="icon"
                             :color="useIconColor"
+                            :colorHover="useIconColor"
                             :size="iconSize"
                             v-if="!loadingTrans"
                         ></WIcon>

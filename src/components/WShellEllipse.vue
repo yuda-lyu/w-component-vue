@@ -47,6 +47,7 @@
                                 :icon="leftIcon"
                                 :size="leftIconSize"
                                 :color="useLeftIconColor"
+                                :colorHover="useLeftIconColor"
                             ></WIcon>
                         </div>
 
@@ -92,6 +93,7 @@
                                 :icon="rightIcon"
                                 :size="rightIconSize"
                                 :color="useRightIconColor"
+                                :colorHover="useRightIconColor"
                             ></WIcon>
                         </div>
 

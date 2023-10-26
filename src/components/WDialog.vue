@@ -105,6 +105,7 @@
                                             <WIcon
                                                 :icon="useHeaderIcon"
                                                 :color="headerIconColor"
+                                                :colorHover="headerIconColor"
                                             ></WIcon>
 
                                         </div>

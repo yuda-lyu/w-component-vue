@@ -131,6 +131,7 @@
                                     <WIcon
                                         :icon="treeFolderIcon"
                                         :color="getTreeFolderIconColor(props)"
+                                        :colorHover="getTreeFolderIconColor(props)"
                                         :size="treeFolderIconSize"
                                     ></WIcon>
                                 </div>
@@ -228,6 +229,7 @@
                                         <WIcon
                                             :icon="pathSepIcon"
                                             :color="pathSepIconColor"
+                                            :colorHover="pathSepIconColor"
                                             :size="pathSepIconSize"
                                         ></WIcon>
 
@@ -323,6 +325,7 @@
                                                     <WIcon
                                                         :icon="props.item.icon"
                                                         :color="getListItemIconColor(props)"
+                                                        :colorHover="getListItemIconColor(props)"
                                                         :size="listItemIconSize"
                                                     ></WIcon>
                                                 </div>

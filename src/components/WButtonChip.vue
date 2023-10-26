@@ -49,6 +49,7 @@
                                                 :style="`margin-left:-6px; margin-right:${hasText?5:-6}px;`"
                                                 :icon="icon"
                                                 :color="useIconColor"
+                                                :colorHover="useIconColor"
                                                 :size="iconSize"
                                                 v-if="hasIcon"
                                             ></WIcon>
@@ -75,6 +76,7 @@
                                     <WIcon
                                         :icon="mdiCloseCircle"
                                         :color="useIconColor"
+                                        :colorHover="useIconColor"
                                         :size="iconSize"
                                     ></WIcon>
                                 </div>

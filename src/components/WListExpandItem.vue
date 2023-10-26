@@ -18,6 +18,7 @@
                         <WIcon
                             :icon="expansionIcon"
                             :color="useExpansionIconColor"
+                            :colorHover="useExpansionIconColor"
                             :size="expansionIconSize"
                         ></WIcon>
                     </div>
@@ -33,6 +34,7 @@
                         style="margin-right:8px;"
                         :icon="icon"
                         :color="useIconColor"
+                        :colorHover="useIconColor"
                         :size="iconSize"
                         v-if="hasIcon"
                     ></WIcon>
