@@ -53,7 +53,7 @@
                         >
                             <slot
                                 name="item-header"
-                                :item="{...item,...props}"
+                                :item="getSlotItem(item,props)"
                             >
                             </slot>
                         </template>
@@ -63,7 +63,7 @@
                         >
                             <slot
                                 name="item-content"
-                                :item="{...item,...props}"
+                                :item="getSlotItem(item,props)"
                             >
                                 <div style="padding:10px; font-size:0.9rem;">
                                     {{getDsp(item)}}
@@ -357,19 +357,22 @@ export default {
             function add() {
                 if (vo.activeMode === 'one') {
                     itemActiveTemp = item
+                    // console.log('add0 itemActiveTemp', itemActiveTemp)
                 }
                 else if (vo.activeMode === 'multi') {
-                    // console.log('add itemActiveTemp', itemActiveTemp)
+                    // console.log('add1 itemActiveTemp', itemActiveTemp)
                     itemActiveTemp.push(cloneDeep(item))
+                    // console.log('add2 itemActiveTemp', cloneDeep(item))
                 }
             }
 
             function remove() {
                 if (vo.activeMode === 'one') {
                     itemActiveTemp = null
+                    // console.log('remove0 itemActiveTemp', itemActiveTemp)
                 }
                 else if (vo.activeMode === 'multi') {
-                    // console.log('remove itemActiveTemp 1', cloneDeep(itemActiveTemp), cloneDeep(item))
+                    // console.log('remove1 itemActiveTemp', cloneDeep(itemActiveTemp), cloneDeep(item))
                     let ts = []
                     each(itemActiveTemp, (v) => {
                         if (!isEqual(item, v)) {
@@ -377,7 +380,7 @@ export default {
                         }
                     })
                     itemActiveTemp = ts
-                    // console.log('remove itemActiveTemp 2', cloneDeep(itemActiveTemp), cloneDeep(item))
+                    // console.log('remove2 itemActiveTemp', cloneDeep(itemActiveTemp), cloneDeep(item))
                 }
             }
 
@@ -391,19 +394,42 @@ export default {
                 // console.log('目前顯示, 點擊得隱藏')
                 remove()
             }
-            // console.log('itemActiveTemp', cloneDeep(itemActiveTemp))
 
             //update
             vo.itemActiveTrans = itemActiveTemp
+            // console.log('itemActiveTemp', cloneDeep(itemActiveTemp))
 
             //nextTick
             vo.$nextTick(() => {
 
                 //emit
                 vo.$emit('update:itemActive', cloneDeep(itemActiveTemp))
+                // console.log('itemActive', cloneDeep(itemActiveTemp))
 
             })
 
+        },
+
+        getSlotItem(item, props) {
+            // console.log('methods getSlotItem', item, props)
+
+            let vo = this
+
+            let msg = null
+            if (vo.isObjValue) {
+                msg = {
+                    ...item,
+                    ...props,
+                }
+            }
+            else {
+                msg = {
+                    item,
+                    ...props,
+                }
+            }
+
+            return msg
         },
 
         ckItem: function(item) {

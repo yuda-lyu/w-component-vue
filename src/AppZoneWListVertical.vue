@@ -103,6 +103,24 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-list-vertical'"
+                    :casename="'itemActive'"
+                ></demolink>
+
+                <div style="display:inline-block; border:1px dashed #ddd;">
+                    <w-list-vertical
+                        style="height:400px; width:250px;"
+                        :items="WListVertical.itemsObj"
+                        :itemActive.sync="WListVertical.itemActive"
+                    >
+                    </w-list-vertical>
+                </div>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-list-vertical'"
                     :casename="'string items'"
                 ></demolink>
 
@@ -120,17 +138,15 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-list-vertical'"
-                    :casename="'itemActive'"
+                    :casename="'string items & itemActive'"
                 ></demolink>
 
-                <div style="display:inline-block; border:1px dashed #ddd;">
-                    <w-list-vertical
-                        style="height:400px; width:250px;"
-                        :items="WListVertical.itemsObj"
-                        :itemActive.sync="WListVertical.itemActive"
-                    >
-                    </w-list-vertical>
-                </div>
+                <w-list-vertical
+                    style="height:400px; width:250px;"
+                    :items="WListVertical.itemsString"
+                    :itemActive.sync="WListVertical.itemsStringActive"
+                >
+                </w-list-vertical>
 
             </div>
 
@@ -412,6 +428,7 @@ export default {
                     'Settings',
                     'Actions',
                 ],
+                'itemsStringActive': 'Real-Time',
                 'itemsObj': [
                     {
                         text: 'Real-Time',

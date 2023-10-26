@@ -129,6 +129,42 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-list-expand'"
+                    :casename="'string items & slot item-content'"
+                ></demolink>
+
+                <div style="display:inline-block; border:1px dashed #ddd;">
+                    <w-list-expand
+                        style="height:400px; width:250px;"
+                        :items="WListExpand.itemsString"
+                        :itemActive.sync="WListExpand.itemsStringActive"
+                    >
+
+                        <template v-slot:item-content="props">
+                            <!-- 使用多層border-left會有無渲染間距, 導致看起來有白線, 暫時使用align-items:stretch呈現 -->
+                            <div style="display:flex; align-items:stretch; border-bottom:1px solid #eee;">
+
+                                <div style="padding-left:10px; background:#FFE0B2;">
+                                </div>
+
+                                <div style="padding-left:1px; background:#FFB74D;">
+                                </div>
+
+                                <div style="padding:10px; font-size:0.7rem; background:rgba(255, 243, 224, 0.2);">
+                                    {{props}}
+                                </div>
+
+                            </div>
+                        </template>
+
+                    </w-list-expand>
+                </div>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-list-expand'"
                     :casename="'itemBackgroundColor & itemBackgroundColorHover & itemBackgroundColorActive'"
                 ></demolink>
 
@@ -325,6 +361,15 @@ export default {
             mdiPencilOutline,
             mdiLightbulbOnOutline,
             'WListExpand': {
+                'itemsString': [
+                    'Real-Time',
+                    'Audience',
+                    'Conversions',
+                    'Management',
+                    'Settings',
+                    'Actions',
+                ],
+                'itemsStringActive': 'Real-Time',
                 'itemsObj': [
                     {
                         text: 'Real-Time',

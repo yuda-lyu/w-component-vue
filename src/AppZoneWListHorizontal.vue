@@ -163,6 +163,20 @@
 
                 <w-list-horizontal
                     :items="WListHorizontal.itemsString"
+                >
+                </w-list-horizontal>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-list-horizontal'"
+                    :casename="'string items & itemActive'"
+                ></demolink>
+
+                <w-list-horizontal
+                    :items="WListHorizontal.itemsString"
                     :itemActive.sync="WListHorizontal.itemsStringActive"
                 >
                 </w-list-horizontal>
@@ -393,6 +407,7 @@ export default {
                     'Settings',
                     'Actions',
                 ],
+                'itemsStringActive': 'Real-Time',
                 'itemsObj': [
                     {
                         text: 'Real-Time',
@@ -539,7 +554,6 @@ export default {
                         editable: true,
                     },
                 ],
-                'itemsStringActive': 'Real-Time',
                 'itemActive': {
                     text: 'Audience',
                     icon: mdiBookMusicOutline,

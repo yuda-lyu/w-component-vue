@@ -487,12 +487,23 @@ export default {
 
             //save itemActiveTrans
             vo.itemActiveTrans = item
+            // console.log('item', cloneDeep(item))
+
+            //msg
+            let msg = null
+            if (vo.isObjValue) {
+                msg = { ...item }
+            }
+            else {
+                msg = item
+            }
+            // console.log('msg', msg)
 
             //emit
-            vo.$emit('click', { ...item }, kitem)
+            vo.$emit('click', msg, kitem)
 
             //emit
-            vo.$emit('update:itemActive', { ...item })
+            vo.$emit('update:itemActive', msg)
 
         },
 

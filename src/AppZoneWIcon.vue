@@ -37,19 +37,6 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-icon'"
-                    :casename="'icon (fontawesome2)'"
-                ></demolink>
-
-                <w-icon
-                    :icon="'fab fa-angular'"
-                ></w-icon>
-
-            </div>
-
-
-            <div class="bk">
-                <demolink
-                    :kbname="'w-icon'"
                     :casename="'icon (material) & color & colorHover'"
                 ></demolink>
 
