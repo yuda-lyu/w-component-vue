@@ -915,7 +915,6 @@ export default {
 
             dbc: debounce(),
 
-            // mmkey: null,
             mmkey: genID(), //beforeMount內無法變更data, mounted內會晚於computed, 故優先放於data生成
             // mmkey: (() => {
             //     let id = genID()
@@ -1328,13 +1327,7 @@ export default {
                 }
 
                 //mmkey, 產生mmkey要放在資料變更的地方, 否則須放在beforeMount, 且於vue-cli編譯情況下會有部份情境有問題
-                if (vo.mmkey === null) {
-
-                    // //mmkey
-                    // vo.mmkey = genID()
-
-                }
-                else {
+                if (vo.mmkey !== null) {
 
                     //remove
                     gm.remove(vo.mmkey)

@@ -55,6 +55,7 @@ import WQuillVueDyn from './WQuillVueDyn.vue'
 import WSegmentsVertical from './WSegmentsVertical.vue'
 import WShellBottomLine from './WShellBottomLine.vue'
 import WShellEllipse from './WShellEllipse.vue'
+import WSlider from './WSlider.vue'
 import WSwitch from './WSwitch.vue'
 import WTableDyn from './WTableDyn.vue'
 import WText from './WText.vue'
@@ -138,6 +139,7 @@ let WComponentVue = {
         Vue.component('w-segments-vertical', WSegmentsVertical)
         Vue.component('w-shell-bottom-line', WShellBottomLine)
         Vue.component('w-shell-ellipse', WShellEllipse)
+        Vue.component('w-slider', WSlider)
         Vue.component('w-switch', WSwitch)
         Vue.component('w-table-dyn', WTableDyn)
         Vue.component('w-text', WText)

@@ -148,6 +148,11 @@
             ></AppZoneWButtonCircle>
 
 
+            <AppZoneWSlider
+                v-if="useCmpName==='WSlider'"
+            ></AppZoneWSlider>
+
+
             <AppZoneWProgressBar
                 v-if="useCmpName==='WProgressBar'"
             ></AppZoneWProgressBar>
@@ -424,6 +429,7 @@ import AppZoneWPopupEditText from './AppZoneWPopupEditText.vue'
 import AppZoneWDrawer from './AppZoneWDrawer.vue'
 import AppZoneWButtonChip from './AppZoneWButtonChip.vue'
 import AppZoneWButtonCircle from './AppZoneWButtonCircle.vue'
+import AppZoneWSlider from './AppZoneWSlider.vue'
 import AppZoneWProgressBar from './AppZoneWProgressBar.vue'
 import AppZoneWProgressCircle from './AppZoneWProgressCircle.vue'
 import AppZoneWSwitch from './AppZoneWSwitch.vue'
@@ -490,6 +496,7 @@ export default {
         AppZoneWDrawer,
         AppZoneWButtonChip,
         AppZoneWButtonCircle,
+        AppZoneWSlider,
         AppZoneWProgressBar,
         AppZoneWProgressCircle,
         AppZoneWSwitch,
@@ -553,6 +560,7 @@ export default {
                         { name: 'WCheckbox' },
                         { name: 'WIcon' },
                         { name: 'WDropfiles' },
+                        { name: 'WSlider' },
                         { name: 'WProgressBar' },
                         { name: 'WProgressCircle' },
                     ]
