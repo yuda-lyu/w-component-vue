@@ -104,13 +104,13 @@ import hide from '@popperjs/core/lib/modifiers/hide.js'
  * @vue-prop {Number} [valueDecimal=0] 輸入值取小數位數字，用於可拖選值具有小數時，預設0
  * @vue-prop {Number} [progBorderRadius=5] 輸入值域條框圓角度數字，單位為px，預設5
  * @vue-prop {Number} [progHeight=4] 輸入值域條高度數字，單位為px，預設4
- * @vue-prop {String} [progColor='#42A5F5'] 輸入值域條顏色字串，預設'#42A5F5'
- * @vue-prop {String} [progColorDisabled='#c2c2c2'] 輸入不可編輯時值域條顏色字串，預設'#c2c2c2'
+ * @vue-prop {String} [progColor='#74a4d9'] 輸入值域條顏色字串，預設'#74a4d9'
+ * @vue-prop {String} [progColorDisabled='#c5c5c5'] 輸入不可編輯時值域條顏色字串，預設'#c5c5c5'
  * @vue-prop {String} [progBackgroundColor='#eee'] 輸入值域條背景顏色字串，預設'#eee'
  * @vue-prop {String} [progBackgroundColorDisabled='#f2f2f2'] 輸入不可編輯時值域條背景顏色字串，預設'#f2f2f2'
  * @vue-prop {Number} [sliderSize=20] 輸入拖曳球尺寸數字，單位為px，預設20
- * @vue-prop {String} [sliderBackgroundColor='#1E88E5'] 輸入拖曳球背景顏色字串，預設'#1E88E5'
- * @vue-prop {String} [sliderBackgroundColorHover='#42A5F5'] 輸入滑鼠移入時拖曳球背景顏色字串，預設'#42A5F5'
+ * @vue-prop {String} [sliderBackgroundColor='blue darken-3'] 輸入拖曳球背景顏色字串，預設'blue darken-3'
+ * @vue-prop {String} [sliderBackgroundColorHover='blue darken-2'] 輸入滑鼠移入時拖曳球背景顏色字串，預設'blue darken-2'
  * @vue-prop {String} [sliderBackgroundColorDisabled='#aaa'] 輸入不可編輯時拖曳球背景顏色字串，預設'#aaa'
  * @vue-prop {Number} [cmpZIndex=3000] 輸入提示窗使用z-index數字，預設3000
  * @vue-prop {Number} [tooltipPlacementDist=5] 輸入提示窗距離觸發元素距離數字，單位為px，預設5
@@ -157,11 +157,11 @@ export default {
         },
         progColor: {
             type: String,
-            default: '#42A5F5',
+            default: '#74a4d9',
         },
         progColorDisabled: {
             type: String,
-            default: '#c2c2c2',
+            default: '#c5c5c5',
         },
         progBackgroundColor: {
             type: String,
@@ -177,11 +177,11 @@ export default {
         },
         sliderBackgroundColor: {
             type: String,
-            default: '#1E88E5',
+            default: 'blue darken-3',
         },
         sliderBackgroundColorHover: {
             type: String,
-            default: '#42A5F5',
+            default: 'blue darken-2',
         },
         sliderBackgroundColorDisabled: {
             type: String,

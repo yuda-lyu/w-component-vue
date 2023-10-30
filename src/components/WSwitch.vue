@@ -51,8 +51,8 @@ import color2hex from '../js/vuetifyColor.mjs'
  * @vue-prop {String} [uncheckedSwitchCircleColor='#8ad'] 輸入可編輯時，無效(false|'n')切換器鈕扣區顏色字串，預設'#8ad'
  * @vue-prop {String} [uncheckedSwitchCircleColorHover='#9bd'] 輸入滑鼠移入時可編輯時，無效(false|'n')切換器鈕扣區顏色字串，預設'#9bd'
  * @vue-prop {String} [uncheckedSwitchCircleColorDisabled='#bbb'] 輸入不可編輯時，無效(false|'n')切換器鈕扣區顏色字串，預設'#bbb'
- * @vue-prop {String} [checkedSwitchBarColor='blue darken-3'] 輸入可編輯時，有效(true|'y')切換器滑動區顏色字串，預設'blue darken-3'
- * @vue-prop {String} [checkedSwitchBarColorHover='blue darken-2'] 輸入滑鼠移入時可編輯時，有效(true|'y')切換器滑動區顏色字串，預設'blue darken-2'
+ * @vue-prop {String} [checkedSwitchBarColor='#74a4d9'] 輸入可編輯時，有效(true|'y')切換器滑動區顏色字串，預設'#74a4d9'
+ * @vue-prop {String} [checkedSwitchBarColorHover='#8bb3df'] 輸入滑鼠移入時可編輯時，有效(true|'y')切換器滑動區顏色字串，預設'#8bb3df'
  * @@vue-prop {String} [checkedSwitchBarColorDisabled='grey'] 輸入不可編輯時，有效(true|'y')切換器滑動區顏色字串，預設'grey'
  * @vue-prop {String} [uncheckedSwitchBarColor='#8ad'] 輸入可編輯時，無效(false|'n')切換器滑動區顏色字串，預設'#8ad'
  * @vue-prop {String} [uncheckedSwitchBarColorHover='#9bd'] 輸入滑鼠移入時可編輯時，無效(false|'n')切換器滑動區顏色字串，預設'#9bd'
@@ -111,11 +111,11 @@ export default {
         },
         checkedSwitchBarColor: {
             type: String,
-            default: 'rgba(24, 103, 192, 0.6)',
+            default: '#74a4d9',
         },
         checkedSwitchBarColorHover: {
             type: String,
-            default: 'rgba(24, 103, 192, 0.5)',
+            default: '#8bb3df',
         },
         checkedSwitchBarColorDisabled: {
             type: String,
