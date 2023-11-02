@@ -7,14 +7,14 @@
         @domresize="resizePanel"
     >
 
-        <!-- 因拖曳寬度bar現放置於divPanel下並且浮動定位, 左右側之拖曳區會超出divPanel, 故須使用overflow-x:hidden -->
+        <!-- 因拖曳寬度bar現放置於divPanel下並且浮動定位, 左右側之拖曳區會超出divPanel, 故須使用overflow:hidden -->
         <div
             ref="divPanel"
-            style="position:relative; width:100%; height:100%; overflow-x:hidden;"
+            style="position:relative; width:100%; height:100%; overflow:hidden;"
         >
 
-            <!-- 因右側抽屜會無法被內容區裁切遮蔽, 故須使用overflow-x:hidden -->
-            <div style="width:100%; height:100%; display:flex; overflow-x:hidden;">
+            <!-- 因右側抽屜會無法被內容區裁切遮蔽, 故須使用overflow:hidden -->
+            <div style="width:100%; height:100%; display:flex; overflow:hidden;">
 
                 <!-- 撐開區, 需使用min-width避免被壓縮 -->
                 <div
@@ -23,7 +23,7 @@
                     v-if="isAtLeft"
                 ></div>
 
-                <!-- 因外層使用overflow-x:hidden且內容區具有無法崩塌元素, 故也須使用overflow:hidden進行裁切 -->
+                <!-- 因內容區具有無法崩塌元素, 故也須使用overflow:hidden進行裁切 -->
                 <div :style="`width:100%; height:100%; overflow:hidden;`">
 
                     <slot
