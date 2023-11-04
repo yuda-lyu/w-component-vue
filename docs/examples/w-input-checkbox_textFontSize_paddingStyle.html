@@ -89,7 +89,7 @@
     </script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.3.47/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.3.48/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -139,13 +139,13 @@
             >w-input-checkbox</span>
         </div>
         <div class="bk">
-            <div class="item">arrange &amp; marginStyle</div>
+            <div class="item">textFontSize &amp; paddingStyle</div>
 
             <w-input-checkbox
                 :items="WInputCheckbox.object.items"
                 v-model="WInputCheckbox.object.selects"
-                :arrange="'horizontal'"
-                :margin-style="{top:0,right:10,bottom:0,left:0}"
+                :text-font-size="'0.75rem'"
+                :padding-style="{top:0,right:0,bottom:5,left:0}"
             ></w-input-checkbox>
         </div>
     </v-app>

@@ -55,44 +55,13 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-input-checkbox'"
-                    :casename="'marginStyle'"
-                ></demolink>
-
-                <w-input-checkbox
-                    :items="WInputCheckbox.object.items"
-                    v-model="WInputCheckbox.object.selects"
-                    :marginStyle="{top:5,right:0,bottom:5,left:0}"
-                ></w-input-checkbox>
-
-            </div>
-
-
-            <div class="bk">
-                <demolink
-                    :kbname="'w-input-checkbox'"
                     :casename="'paddingStyle'"
                 ></demolink>
 
                 <w-input-checkbox
                     :items="WInputCheckbox.object.items"
                     v-model="WInputCheckbox.object.selects"
-                    :paddingStyle="{top:5,right:0,bottom:5,left:0}"
-                ></w-input-checkbox>
-
-            </div>
-
-
-            <div class="bk">
-                <demolink
-                    :kbname="'w-input-checkbox'"
-                    :casename="'arrange & marginStyle'"
-                ></demolink>
-
-                <w-input-checkbox
-                    :items="WInputCheckbox.object.items"
-                    v-model="WInputCheckbox.object.selects"
-                    :arrange="'horizontal'"
-                    :marginStyle="{top:0,right:10,bottom:0,left:0}"
+                    :paddingStyle="{top:0,right:0,bottom:5,left:0}"
                 ></w-input-checkbox>
 
             </div>
@@ -109,6 +78,22 @@
                     v-model="WInputCheckbox.object.selects"
                     :arrange="'horizontal'"
                     :paddingStyle="{top:0,right:10,bottom:0,left:0}"
+                ></w-input-checkbox>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-input-checkbox'"
+                    :casename="'textFontSize & paddingStyle'"
+                ></demolink>
+
+                <w-input-checkbox
+                    :items="WInputCheckbox.object.items"
+                    v-model="WInputCheckbox.object.selects"
+                    :textFontSize="'0.75rem'"
+                    :paddingStyle="{top:0,right:0,bottom:5,left:0}"
                 ></w-input-checkbox>
 
             </div>
@@ -134,7 +119,7 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-input-checkbox'"
-                    :casename="'slot & paddingStyle & verticalAlign & inputHeight'"
+                    :casename="'slot & paddingStyle & verticalAlign & inputSize & inputShiftTop'"
                 ></demolink>
 
                 <w-input-checkbox
@@ -142,7 +127,8 @@
                     v-model="WInputCheckbox.object.selects"
                     :paddingStyle="{top:5,right:0,bottom:5,left:0}"
                     :verticalAlign="'top'"
-                    :inputHeight="22"
+                    :inputSize="18"
+                    :inputShiftTop="2"
                 >
                     <template v-slot="props">
                         <div style="padding-left:8px; cursor:pointer;">
@@ -156,7 +142,7 @@
                                     :color="props.isActive?'#3949AB':props.isHover?'#7E57C2':'#aaa'"
                                 ></w-icon>
 
-                                <div style="font-size:0.9rem;">
+                                <div :style="`font-size:0.9rem; color:${props.isActive?'#5E35B1':'#666'};`">
                                     {{props.item.data.text}}
                                 </div>
 
@@ -164,7 +150,7 @@
 
                             <div style="padding-left:26px;">
 
-                                <div style="font-size:0.7rem; color:#999;">
+                                <div :style="`font-size:0.7rem; color:${props.isActive?'#EC407A':'#999'};`">
                                     {{props.item.data.dsp}}
                                 </div>
 
@@ -187,6 +173,22 @@
                     :items="WInputCheckbox.object.items"
                     v-model="WInputCheckbox.object.selects"
                     :editable="false"
+                ></w-input-checkbox>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-input-checkbox'"
+                    :casename="'not editable & textColorDisabled'"
+                ></demolink>
+
+                <w-input-checkbox
+                    :items="WInputCheckbox.object.items"
+                    v-model="WInputCheckbox.object.selects"
+                    :editable="false"
+                    :textColorDisabled="'#FFB74D'"
                 ></w-input-checkbox>
 
             </div>

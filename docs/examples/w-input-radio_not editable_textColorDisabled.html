@@ -89,7 +89,7 @@
     </script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.3.47/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.3.48/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -139,12 +139,13 @@
             >w-input-radio</span>
         </div>
         <div class="bk">
-            <div class="item">marginStyle</div>
+            <div class="item">not editable &amp; textColorDisabled</div>
 
             <w-input-radio
                 :items="WInputRadio.object.items"
                 v-model="WInputRadio.object.select"
-                :margin-style="{top:5,right:0,bottom:5,left:0}"
+                :editable="false"
+                :text-color-disabled="'#FFB74D'"
             ></w-input-radio>
         </div>
     </v-app>

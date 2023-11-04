@@ -89,7 +89,7 @@
     </script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.3.47/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.3.48/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -136,43 +136,17 @@
                 style="cursor:pointer;"
                 title="open for copy link to view component"
                 onclick="window.open('//yuda-lyu.github.io/w-component-vue/examples/app.html?cmp='+this.innerText,'_blank')"
-            >w-input-checkbox</span>
+            >w-input-radio</span>
         </div>
         <div class="bk">
-            <div
-                class="item"
-            >slot &amp; paddingStyle &amp; verticalAlign &amp; inputHeight</div>
+            <div class="item">textFontSize &amp; paddingStyle</div>
 
-            <w-input-checkbox
-                :items="WInputCheckbox.object.items"
-                v-model="WInputCheckbox.object.selects"
-                :padding-style="{top:5,right:0,bottom:5,left:0}"
-                :vertical-align="'top'"
-                :input-height="22"
-            >
-                <template v-slot="props">
-                    <div style="padding-left:8px; cursor:pointer;">
-                        <div style="display:flex; align-items:center;">
-                            <w-icon
-                                :icon="props.item.data.icon"
-                                style="margin-right:5px;"
-                                :size="20"
-                                :color="props.isActive?'#3949AB':props.isHover?'#7E57C2':'#aaa'"
-                            ></w-icon>
-
-                            <div
-                                style="font-size:0.9rem;"
-                            >{{props.item.data.text}}</div>
-                        </div>
-
-                        <div style="padding-left:26px;">
-                            <div
-                                style="font-size:0.7rem; color:#999;"
-                            >{{props.item.data.dsp}}</div>
-                        </div>
-                    </div>
-                </template>
-            </w-input-checkbox>
+            <w-input-radio
+                :items="WInputRadio.object.items"
+                v-model="WInputRadio.object.select"
+                :text-font-size="'0.75rem'"
+                :padding-style="{top:0,right:0,bottom:5,left:0}"
+            ></w-input-radio>
         </div>
     </v-app>
 
@@ -186,7 +160,7 @@
     vuetify: new Vuetify(),
     data: function() {
       return {
-        WInputCheckbox: {
+        WInputRadio: {
           string: {
             items: [
               "Dashboard",
@@ -196,7 +170,7 @@
               "Apple",
               "橘子"
             ],
-            selects: ["Dashboard", "Apple"]
+            select: "Apple"
           },
           object: {
             items: [
@@ -226,18 +200,10 @@
                 dsp: "From being turned in as evidence or by abandonment."
               }
             ],
-            selects: [
-              {
-                text: "Dashboard",
-                icon: "mdi-view-dashboard",
-                dsp: "Estimate how felon enfranchisement."
-              },
-              {
-                text: "蘋果",
-                icon: "mdi-apple",
-                dsp: "From being turned in as evidence or by abandonment."
-              }
-            ]
+            select: {
+              text: "Dashboard",
+              icon: "mdi-view-dashboard"
+            }
           },
           objectName: {
             items: [
@@ -262,12 +228,10 @@
                 icon: "mdi-apple"
               }
             ],
-            selects: [
-              {
-                name: "Dashboard",
-                icon: "mdi-view-dashboard"
-              }
-            ]
+            select: {
+              name: "Dashboard",
+              icon: "mdi-view-dashboard"
+            }
           }
         },
         actions: []
