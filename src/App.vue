@@ -173,6 +173,11 @@
             ></AppZoneWCheckbox>
 
 
+            <AppZoneWLevelGrade
+                v-if="useCmpName==='WLevelGrade'"
+            ></AppZoneWLevelGrade>
+
+
             <AppZoneWAlert
                 v-if="useCmpName==='WAlert'"
             ></AppZoneWAlert>
@@ -434,6 +439,7 @@ import AppZoneWProgressBar from './AppZoneWProgressBar.vue'
 import AppZoneWProgressCircle from './AppZoneWProgressCircle.vue'
 import AppZoneWSwitch from './AppZoneWSwitch.vue'
 import AppZoneWCheckbox from './AppZoneWCheckbox.vue'
+import AppZoneWLevelGrade from './AppZoneWLevelGrade.vue'
 import AppZoneWAlert from './AppZoneWAlert.vue'
 import AppZoneWGroupTags from './AppZoneWGroupTags.vue'
 import AppZoneWGroupDragdrop from './AppZoneWGroupDragdrop.vue'
@@ -501,6 +507,7 @@ export default {
         AppZoneWProgressCircle,
         AppZoneWSwitch,
         AppZoneWCheckbox,
+        AppZoneWLevelGrade,
         AppZoneWAlert,
         AppZoneWGroupTags,
         AppZoneWGroupDragdrop,
@@ -563,6 +570,12 @@ export default {
                         { name: 'WSlider' },
                         { name: 'WProgressBar' },
                         { name: 'WProgressCircle' },
+                    ]
+                },
+                {
+                    name: 'special',
+                    cmps: [
+                        { name: 'WLevelGrade' },
                     ]
                 },
                 {

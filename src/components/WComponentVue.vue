@@ -31,6 +31,7 @@ import WInputCheckbox from './WInputCheckbox.vue'
 import WInputRadio from './WInputRadio.vue'
 import WJsonView from './WJsonView.vue'
 import WLeafletVueDyn from './WLeafletVueDyn.vue'
+import WLevelGrade from './WLevelGrade.vue'
 import WListCheck from './WListCheck.vue'
 import WListExpand from './WListExpand.vue'
 import WListExpandItem from './WListExpandItem.vue'
@@ -115,6 +116,7 @@ let WComponentVue = {
         Vue.component('w-input-radio', WInputRadio)
         Vue.component('w-json-view', WJsonView)
         Vue.component('w-leaflet-vue-dyn', WLeafletVueDyn)
+        Vue.component('w-level-grade', WLevelGrade)
         Vue.component('w-list-check', WListCheck)
         Vue.component('w-list-expand', WListExpand)
         Vue.component('w-list-expand-item', WListExpandItem)
