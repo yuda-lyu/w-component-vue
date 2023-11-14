@@ -136,7 +136,7 @@ export default {
             type: Array,
             default: () => [
                 //現在w-leaflet-vue已依賴w-component-vue故為循環引用, 但使用dyn則為脫勾, 故仍需人工更新此處版本
-                'https://cdn.jsdelivr.net/npm/w-leaflet-vue@1.0.46/dist/w-leaflet-vue.umd.js',
+                'https://cdn.jsdelivr.net/npm/w-leaflet-vue@1.0.47/dist/w-leaflet-vue.umd.js',
             ],
         },
         opt: {
