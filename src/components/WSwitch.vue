@@ -24,7 +24,12 @@
             </div>
 
             <div class="ts" :style="`text-transform:none; padding-left:5px; color:${useTextColor}; ${useTextFontSize}`" v-if="text!==''">
-                {{text}}
+                <slot
+                    name="text"
+                    :text="text"
+                >
+                    {{text}}
+                </slot>
             </div>
 
         </div>

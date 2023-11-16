@@ -1,5 +1,5 @@
 # w-component-vue
-A combination for vue(vue2) component.
+A simple component for vue(vue2).
 
 ![language](https://img.shields.io/badge/language-JavaScript-orange.svg) 
 [![language](https://img.shields.io/badge/vue-2.x-brightgreen.svg)](https://github.com/vuejs/vue) 
@@ -83,7 +83,7 @@ export default {
 ```
 [Necessary] Add script for w-component-vue.
 ```alias
-<script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.3.53/dist/w-component-vue.umd.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.3.54/dist/w-component-vue.umd.js"></script>
 ```
 Directly use:
 ```alias

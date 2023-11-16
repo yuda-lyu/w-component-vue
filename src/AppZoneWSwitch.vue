@@ -137,6 +137,23 @@
             </div>
 
 
+            <div class="bk">
+                <demolink
+                    :kbname="'w-switch'"
+                    :casename="'slot'"
+                ></demolink>
+
+                <w-switch
+                    :text="'應力(kN/m<sup>3</sup>)'"
+                    v-model="WSwitch.valueBol"
+                >
+                    <template v-slot:text="props">
+                        <span v-html="props.text"></span>
+                    </template>
+                </w-switch>
+            </div>
+
+
         </div>
 
 

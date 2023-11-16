@@ -133,6 +133,23 @@
             </div>
 
 
+            <div class="bk">
+                <demolink
+                    :kbname="'w-checkbox'"
+                    :casename="'slot'"
+                ></demolink>
+
+                <w-checkbox
+                    :text="'應力(kN/m<sup>3</sup>)'"
+                    v-model="WCheckbox.valueBol"
+                >
+                    <template v-slot:text="props">
+                        <span v-html="props.text"></span>
+                    </template>
+                </w-checkbox>
+            </div>
+
+
         </div>
 
 

@@ -26,7 +26,12 @@
             ></WIcon>
 
             <div :style="`transition:all 0.3s; text-transform:none; padding-left:5px; color:${useTextColor}; ${useTextFontSize}`" v-if="text!==''">
-                {{text}}
+                <slot
+                    name="text"
+                    :text="text"
+                >
+                    {{text}}
+                </slot>
             </div>
 
         </div>
