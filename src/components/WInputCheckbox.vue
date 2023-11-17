@@ -11,6 +11,7 @@
                 :style="`transition:all 0.3s; display:flex; ${useVerticalAlign}; color:${getTextColor(item,kitem)};`"
                 @mouseenter="mouseenter(item,kitem)"
                 @mouseleave="mouseleave(item,kitem)"
+                @click="toggleState(item)"
             >
 
                 <div :style="`display:flex; height:${inputSize+inputShiftTop}px; padding-top:${inputShiftTop}px;`">
@@ -25,7 +26,6 @@
 
                 <div
                     :style="``"
-                    @click="toggleState(item)"
                 >
 
                     <slot
