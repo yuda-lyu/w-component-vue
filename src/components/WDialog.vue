@@ -10,7 +10,7 @@
             ref="divShield"
             :style="`
                 position:fixed; left:0px; top:0px;
-                width:calc( 100vw + ${nativeBarWidth+1}px ); height:100vh; overflow-x:hidden; overflow-y:scroll;
+                width:calc( 100vw + ${nativeBarWidth+1}px ); height:100svh; overflow-x:hidden; overflow-y:scroll;
                 z-index:${useDialogZIndex};
                 overscroll-behavior:contain;
                 user-select:none;
@@ -21,7 +21,7 @@
             <!-- 屏蔽層內之撐開層, 額外撐開高度使用nativeBarWidth+1 -->
             <div
                 :style="`
-                    width:100vw; height:calc( 100vh + ${nativeBarWidth+1}px );
+                    width:100vw; height:calc( 100svh + ${nativeBarWidth+1}px );
                 `"
             >
 
@@ -30,7 +30,7 @@
                     ref="divOverlay"
                     :style="`
                         position:sticky; top:0px;
-                        width:100vw; height:100vh;
+                        width:100vw; height:100svh;
                         display:flex; align-items:center; justify-content:center;
                         ${overlayStyleShow}
                         background:${useOverlayColor};
