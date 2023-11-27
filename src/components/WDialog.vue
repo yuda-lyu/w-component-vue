@@ -117,10 +117,10 @@
                                                 display:table-cell; vertical-align:middle;
                                             "
                                         >
-                                            <div style="display:flex; align-items:center;">
+                                            <div :style="`display:flex; align-items:center;`">
 
                                                 <div
-                                                    :style="`width:${titleWidth}px; ${useTitleFontSize} color:${useTitleColor}; text-overflow:ellipsis; white-space:nowrap; overflow-x:hidden;`"
+                                                    :style="`max-width:${titleWidth}px; ${useTitleFontSize} color:${useTitleColor}; text-overflow:ellipsis; white-space:nowrap; overflow-x:hidden;`"
                                                 >
                                                     {{title}}
                                                 </div>
