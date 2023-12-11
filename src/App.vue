@@ -415,6 +415,7 @@ import get from 'lodash/get'
 import kebabCase from 'lodash/kebabCase'
 import each from 'lodash/each'
 import urlParse from 'wsemi/src/urlParse.mjs'
+// import WListHorizontal from './components/WListHorizontal.vue'
 import AppZoneWBadge from './AppZoneWBadge.vue'
 import AppZoneWPanelStripe from './AppZoneWPanelStripe.vue'
 import AppZoneWPanelBulge from './AppZoneWPanelBulge.vue'
@@ -483,6 +484,7 @@ import AppZoneWExplorer from './AppZoneWExplorer.vue'
 
 export default {
     components: {
+        // WListHorizontal,
         AppZoneWBadge,
         AppZoneWPanelStripe,
         AppZoneWPanelBulge,
