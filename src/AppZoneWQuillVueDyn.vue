@@ -121,11 +121,11 @@ export default {
                     },
                 },
                 // 'opt1': {
-                //     keys: keys,
+                //     keys,
                 //     rows: rows,
                 // },
                 // 'opt2': {
-                //     keys: keys,
+                //     keys,
                 //     rows: rows,
                 //     defCellEditable: true,
                 // },

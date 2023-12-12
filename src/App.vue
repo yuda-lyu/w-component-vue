@@ -411,9 +411,9 @@
 
 <script>
 import { mdiCheckCircle, mdiCheckboxBlankCircleOutline } from '@mdi/js'
-import get from 'lodash/get'
-import kebabCase from 'lodash/kebabCase'
-import each from 'lodash/each'
+import get from 'lodash-es/get'
+import kebabCase from 'lodash-es/kebabCase'
+import each from 'lodash-es/each'
 import urlParse from 'wsemi/src/urlParse.mjs'
 // import WListHorizontal from './components/WListHorizontal.vue'
 import AppZoneWBadge from './AppZoneWBadge.vue'

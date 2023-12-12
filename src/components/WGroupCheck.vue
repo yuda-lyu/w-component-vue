@@ -56,11 +56,11 @@
 </template>
 
 <script>
-import get from 'lodash/get'
-import map from 'lodash/map'
-import each from 'lodash/each'
-import isEqual from 'lodash/isEqual'
-import cloneDeep from 'lodash/cloneDeep'
+import get from 'lodash-es/get'
+import map from 'lodash-es/map'
+import each from 'lodash-es/each'
+import isEqual from 'lodash-es/isEqual'
+import cloneDeep from 'lodash-es/cloneDeep'
 import arrHas from 'wsemi/src/arrHas.mjs'
 import WButtonChip from './WButtonChip.vue'
 import parseSpace from '../js/parseSpace.mjs'

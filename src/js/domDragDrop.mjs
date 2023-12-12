@@ -1,4 +1,4 @@
-import get from 'lodash/get'
+import get from 'lodash-es/get'
 import isestr from 'wsemi/src/isestr.mjs'
 import iseobj from 'wsemi/src/iseobj.mjs'
 import genID from 'wsemi/src/genID.mjs'

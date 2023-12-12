@@ -1,6 +1,6 @@
-import size from 'lodash/size'
-import filter from 'lodash/filter'
-import maxBy from 'lodash/maxBy'
+import size from 'lodash-es/size'
+import filter from 'lodash-es/filter'
+import maxBy from 'lodash-es/maxBy'
 
 
 /**

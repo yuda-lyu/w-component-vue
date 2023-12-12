@@ -124,7 +124,7 @@ import WAggridVueDyn from './components/WAggridVueDyn.vue'
 //         rows.push(r)
 //     }
 //     return {
-//         keys: keys,
+//         keys,
 //         rows: rows,
 //     }
 // })(100, 1000)
@@ -158,17 +158,17 @@ export default {
         return {
             'WAggridVueDyn': {
                 'opt1': {
-                    keys: keys,
-                    rows: rows,
+                    keys,
+                    rows,
                 },
                 'opt2': {
-                    keys: keys,
-                    rows: rows,
+                    keys,
+                    rows,
                     defCellEditable: true,
                 },
                 'opt3': {
-                    keys: keys,
-                    rows: rows,
+                    keys,
+                    rows,
                     kpHeadTooltip: {
                         make: function(v) {
                             return (
@@ -205,8 +205,8 @@ export default {
                     },
                 },
                 'opt4': {
-                    keys: keys,
-                    rows: rows,
+                    keys,
+                    rows,
                     kpCellEditable: {
                         //default: false
                         price: true

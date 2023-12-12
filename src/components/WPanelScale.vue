@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import get from 'lodash/get'
+import get from 'lodash-es/get'
 import isEle from 'wsemi/src/isEle.mjs'
 import domResize from '../js/domResize.mjs'
 import domMutation from '../js/domMutation.mjs'

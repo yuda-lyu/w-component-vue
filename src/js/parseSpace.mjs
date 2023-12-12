@@ -1,4 +1,4 @@
-import get from 'lodash/get'
+import get from 'lodash-es/get'
 import isbol from 'wsemi/src/isbol.mjs'
 import iseobj from 'wsemi/src/iseobj.mjs'
 import parseDirection from './parseDirection.mjs'

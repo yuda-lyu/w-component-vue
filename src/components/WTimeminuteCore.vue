@@ -44,12 +44,12 @@
 
 <script>
 import { mdiPlay } from '@mdi/js'
-import split from 'lodash/split'
-import get from 'lodash/get'
-import map from 'lodash/map'
-import range from 'lodash/range'
-import flattenDeep from 'lodash/flattenDeep'
-import filter from 'lodash/filter'
+import split from 'lodash-es/split'
+import get from 'lodash-es/get'
+import map from 'lodash-es/map'
+import range from 'lodash-es/range'
+import flattenDeep from 'lodash-es/flattenDeep'
+import filter from 'lodash-es/filter'
 import strleft from 'wsemi/src/strleft.mjs'
 import isarr from 'wsemi/src/isarr.mjs'
 import istime from 'wsemi/src/istime.mjs'

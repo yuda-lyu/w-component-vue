@@ -62,20 +62,20 @@
 </template>
 
 <script>
-// import each from 'lodash/each'
-// import map from 'lodash/map'
-// import get from 'lodash/get'
-import size from 'lodash/size'
-// import keys from 'lodash/keys'
-// import last from 'lodash/last'
-import cloneDeep from 'lodash/cloneDeep'
-import isNumber from 'lodash/isNumber'
-// import isString from 'lodash/isString'
-// import isBoolean from 'lodash/isBoolean'
-// import isArray from 'lodash/isArray' //會誤判function為array
-// import isObject from 'lodash/isObject' //會誤判function為object
-// import isFunction from 'lodash/isFunction'
-// import toString from 'lodash/toString'
+// import each from 'lodash-es/each'
+// import map from 'lodash-es/map'
+// import get from 'lodash-es/get'
+import size from 'lodash-es/size'
+// import keys from 'lodash-es/keys'
+// import last from 'lodash-es/last'
+import cloneDeep from 'lodash-es/cloneDeep'
+import isNumber from 'lodash-es/isNumber'
+// import isString from 'lodash-es/isString'
+// import isBoolean from 'lodash-es/isBoolean'
+// import isArray from 'lodash-es/isArray' //會誤判function為array
+// import isObject from 'lodash-es/isObject' //會誤判function為object
+// import isFunction from 'lodash-es/isFunction'
+// import toString from 'lodash-es/toString'
 // import cint from 'wsemi/src/cint.mjs'
 import isarr from 'wsemi/src/isarr.mjs'
 import isobj from 'wsemi/src/isobj.mjs'

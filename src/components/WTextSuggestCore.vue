@@ -118,8 +118,8 @@
 
 <script>
 import { mdiPlay } from '@mdi/js'
-import get from 'lodash/get'
-import size from 'lodash/size'
+import get from 'lodash-es/get'
+import size from 'lodash-es/size'
 import isobj from 'wsemi/src/isobj.mjs'
 import isbol from 'wsemi/src/isbol.mjs'
 import replace from 'wsemi/src/replace.mjs'

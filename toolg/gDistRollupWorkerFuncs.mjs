@@ -1,5 +1,5 @@
 import path from 'path'
-// import _ from 'lodash'
+// import _ from 'lodash-es'
 import rollupWorkerCore from 'w-package-tools/src/rollupWorkerCore.mjs'
 
 

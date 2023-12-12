@@ -1,8 +1,8 @@
-import get from 'lodash/get'
-import isNumber from 'lodash/isNumber'
-import values from 'lodash/values'
-import size from 'lodash/size'
-import max from 'lodash/max'
+import get from 'lodash-es/get'
+import isNumber from 'lodash-es/isNumber'
+import values from 'lodash-es/values'
+import size from 'lodash-es/size'
+import max from 'lodash-es/max'
 import haskey from 'wsemi/src/haskey.mjs'
 
 

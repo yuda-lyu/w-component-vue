@@ -1,4 +1,4 @@
-import get from 'lodash/get'
+import get from 'lodash-es/get'
 import isestr from 'wsemi/src/isestr.mjs'
 import isnum from 'wsemi/src/isnum.mjs'
 import iseobj from 'wsemi/src/iseobj.mjs'

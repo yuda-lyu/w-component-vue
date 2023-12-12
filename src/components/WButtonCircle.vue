@@ -73,9 +73,9 @@
 </template>
 
 <script>
-import map from 'lodash/map'
-import join from 'lodash/join'
-import split from 'lodash/split'
+import map from 'lodash-es/map'
+import join from 'lodash-es/join'
+import split from 'lodash-es/split'
 import isnum from 'wsemi/src/isnum.mjs'
 import isestr from 'wsemi/src/isestr.mjs'
 import cdbl from 'wsemi/src/cdbl.mjs'

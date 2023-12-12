@@ -72,8 +72,8 @@
 
 <script>
 import { mdiPlay } from '@mdi/js'
-import get from 'lodash/get'
-import isNumber from 'lodash/isNumber'
+import get from 'lodash-es/get'
+import isNumber from 'lodash-es/isNumber'
 import replace from 'wsemi/src/replace.mjs'
 import waitFun from 'wsemi/src/waitFun.mjs'
 import domRipple from '../js/domRipple.mjs'

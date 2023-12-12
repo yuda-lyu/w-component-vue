@@ -40,8 +40,8 @@
 
 <script>
 import { mdiChevronLeft, mdiChevronRight } from '@mdi/js'
-import split from 'lodash/split'
-import get from 'lodash/get'
+import split from 'lodash-es/split'
+import get from 'lodash-es/get'
 import isday from 'wsemi/src/isday.mjs'
 import cint from 'wsemi/src/cint.mjs'
 import replace from 'wsemi/src/replace.mjs'

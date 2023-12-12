@@ -1,6 +1,6 @@
 import fs from 'fs'
 import * as cheerio from 'cheerio'
-import _ from 'lodash'
+import _ from 'lodash-es'
 import w from 'wsemi'
 import getFiles from 'w-package-tools/src/getFiles.mjs'
 import cleanFolder from 'w-package-tools/src/cleanFolder.mjs'

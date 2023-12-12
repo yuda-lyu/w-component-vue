@@ -19,7 +19,6 @@
                 <div :style="`display:flex; align-items:center; justify-content:center;`" v-if="mode==='checked'">
                     <span style="display:flex;">
                         <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" :fill="useCheckedColor" width="24px" height="24px" viewBox="0 -1 24 23">
-                            <path v-if="false" d="M19,19H5V5H15V3H5C3.89,3 3,3.89 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V11H19M7.91,10.08L6.5,11.5L11,16L21,6L19.59,4.58L11,13.17L7.91,10.08Z"></path>
                             <path d="M10,17L5,12L6.41,10.58L10,14.17L17.59,6.58L19,8M19,3H5C3.89,3 3,3.89 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5C21,3.89 20.1,3 19,3Z"></path>
                         </svg>
                     </span>
@@ -28,7 +27,6 @@
                 <div :style="`display:flex; align-items:center; justify-content:center;`" v-if="mode==='checkedPartially'">
                     <span style="display:flex;">
                         <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" :fill="useCheckedPartiallyColor" width="24px" height="24px" viewBox="0 -1 24 23">
-                            <path v-if="false" d="M19,19V5H5V19H19M19,3A2,2 0 0,1 21,5V19A2,2 0 0,1 19,21H5A2,2 0 0,1 3,19V5C3,3.89 3.9,3 5,3H19M17,11V13H7V11H17Z"></path>
                             <path d="M17,13H7V11H17M19,3H5C3.89,3 3,3.89 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5C21,3.89 20.1,3 19,3Z"></path>
                         </svg>
                     </span>

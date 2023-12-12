@@ -1,4 +1,4 @@
-import _ from 'lodash'
+import _ from 'lodash-es'
 import { build, test } from 'w-puppeteer-uitest/src/exp.mjs'
 import readJson from 'w-puppeteer-uitest/src/readJson.mjs'
 

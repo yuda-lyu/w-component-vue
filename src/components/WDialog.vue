@@ -286,9 +286,9 @@
 
 <script>
 import { mdiCheckCircle, mdiClose, mdiCheckerboard } from '@mdi/js'
-import get from 'lodash/get'
-import isEqual from 'lodash/isEqual'
-import cloneDeep from 'lodash/cloneDeep'
+import get from 'lodash-es/get'
+import isEqual from 'lodash-es/isEqual'
+import cloneDeep from 'lodash-es/cloneDeep'
 import genID from 'wsemi/src/genID.mjs'
 import genPm from 'wsemi/src/genPm.mjs'
 import replace from 'wsemi/src/replace.mjs'

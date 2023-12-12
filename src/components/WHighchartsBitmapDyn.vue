@@ -6,8 +6,8 @@
 </template>
 
 <script>
-import get from 'lodash/get'
-import isNumber from 'lodash/isNumber'
+import get from 'lodash-es/get'
+import isNumber from 'lodash-es/isNumber'
 import waitFun from 'wsemi/src/waitFun.mjs'
 import iseobj from 'wsemi/src/iseobj.mjs'
 import isfun from 'wsemi/src/isfun.mjs'

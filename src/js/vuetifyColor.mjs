@@ -1,7 +1,7 @@
-import camelCase from 'lodash/camelCase'
-import split from 'lodash/split'
-import size from 'lodash/size'
-import get from 'lodash/get'
+import camelCase from 'lodash-es/camelCase'
+import split from 'lodash-es/split'
+import size from 'lodash-es/size'
+import get from 'lodash-es/get'
 import isestr from 'wsemi/src/isestr.mjs'
 
 

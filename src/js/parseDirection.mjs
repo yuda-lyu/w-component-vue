@@ -1,5 +1,5 @@
-import isNumber from 'lodash/isNumber'
-import get from 'lodash/get'
+import isNumber from 'lodash-es/isNumber'
+import get from 'lodash-es/get'
 import isstr from 'wsemi/src/isstr.mjs'
 
 

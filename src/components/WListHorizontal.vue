@@ -106,11 +106,11 @@
 </template>
 
 <script>
-import get from 'lodash/get'
-import size from 'lodash/size'
-import each from 'lodash/each'
-import every from 'lodash/every'
-import isEqual from 'lodash/isEqual'
+import get from 'lodash-es/get'
+import size from 'lodash-es/size'
+import each from 'lodash-es/each'
+import every from 'lodash-es/every'
+import isEqual from 'lodash-es/isEqual'
 import isobj from 'wsemi/src/isobj.mjs'
 import domResize from '../js/domResize.mjs'
 import color2hex from '../js/vuetifyColor.mjs'
