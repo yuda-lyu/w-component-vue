@@ -78,7 +78,7 @@
     ></script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.3.60/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.3.61/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -166,17 +166,17 @@
       return {
         WAggridVueDyn: {
           opt1: {
-            keys: keys,
-            rows: rows
+            keys,
+            rows
           },
           opt2: {
-            keys: keys,
-            rows: rows,
+            keys,
+            rows,
             defCellEditable: true
           },
           opt3: {
-            keys: keys,
-            rows: rows,
+            keys,
+            rows,
             kpHeadTooltip: {
               make: function(v) {
                 return (
@@ -221,8 +221,8 @@
             }
           },
           opt4: {
-            keys: keys,
-            rows: rows,
+            keys,
+            rows,
             kpCellEditable: {
               //default: false
               price: true
