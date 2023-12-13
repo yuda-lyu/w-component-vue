@@ -21,10 +21,10 @@ export default {
         pathItems: {
             type: Array,
             default: () => [
-                'https://cdn.jsdelivr.net/npm/highcharts@11.2.0/highcharts.js',
-                'https://cdn.jsdelivr.net/npm/highcharts@11.2.0/highcharts-more.js',
-                'https://cdn.jsdelivr.net/npm/highcharts@11.2.0/modules/stock.js',
-                'https://cdn.jsdelivr.net/npm/highcharts@11.2.0/modules/annotations.js',
+                'https://code.highcharts.com/11/highcharts.js',
+                'https://code.highcharts.com/11/highcharts-more.js',
+                'https://code.highcharts.com/11/modules/stock.js',
+                'https://code.highcharts.com/11/modules/annotations.js',
                 'https://cdn.jsdelivr.net/npm/vue-highcharts@0.1.0/dist/vue-highcharts.min.js', //for vue2
                 //'https://cdn.jsdelivr.net/npm/vue-highcharts@0.2.0/dist/vue-highcharts.min.js',
                 'https://cdn.jsdelivr.net/npm/w-highcharts/dist/w-highcharts.umd.js', //使用最新版
