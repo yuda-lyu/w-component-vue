@@ -1,5 +1,8 @@
 <template>
-    <v-app style="font-family:inherit;">
+    <v-app
+        style="font-family:inherit;"
+        :changeMenus="changeMenus"
+    >
 
 
         <template v-if="!isNarrow">
@@ -9,73 +12,70 @@
         </template>
 
 
-        <div>
+        <div style="background:#f5f5f5;">
 
-
-            <v-tabs
-                v-model="io1"
-                background-color="grey lighten-3"
-                color="grey darken-4"
-                slider-color="red"
-            >
-                <v-tab
-                    v-for="(o1,ko1) in sCmps"
-                    :key="'l1'+ko1"
-                    @click="clickMenu1(ko1)"
+            <div style="width:calc( 100vw - 20px ); overflow-x:auto;" v-if="cmpsL1 && cmpsL1.length>0">
+                <WListHorizontal
+                    :items="cmpsL1"
+                    :itemActive.sync="cmpP1"
+                    :itemBackgroundColor="'transparent'"
+                    :itemBackgroundColorHover="'#eee'"
+                    :itemBackgroundColorActive="'#eee'"
+                    :keyText="'name'"
+                    :paddingStyle="{v:12,h:20}"
+                    @update:itemActive="(v)=>{indP3=0;indP2=0;indP1=getInd(v,cmpsL1)}"
                 >
-                    <span style="text-transform:none">
-                        {{kebabCase(o1.name)}}
-                    </span>
-                </v-tab>
-            </v-tabs>
-            <div style="padding-top:5px;"></div>
+                    <template v-slot:item="props">
+                        <div style="">
+                            {{kebabCase(props.item.name)}}
+                        </div>
+                    </template>
+                </WListHorizontal>
+                <div style="height:1px; background:#ddd;"></div>
+            </div>
 
 
-            <template v-if="useL2Cmps">
-
-                <v-tabs
-                    v-model="io2"
-                    background-color="grey lighten-3"
-                    color="grey darken-4"
-                    slider-color="red"
+            <div style="width:calc( 100vw - 20px ); overflow-x:auto;" v-if="cmpsL2 && cmpsL2.length>0">
+                <div style="height:3px; background:#fff;"></div>
+                <WListHorizontal
+                    :items="cmpsL2"
+                    :itemActive.sync="cmpP2"
+                    :itemBackgroundColor="'transparent'"
+                    :itemBackgroundColorHover="'#eee'"
+                    :itemBackgroundColorActive="'#eee'"
+                    :keyText="'name'"
+                    :paddingStyle="{v:12,h:20}"
+                    @update:itemActive="(v)=>{indP3=0;indP2=getInd(v,cmpsL2)}"
                 >
-                    <v-tab
-                        v-for="(o2,ko2) in useL2Cmps"
-                        :key="'l2'+ko2"
-                        @click="clickMenu2(ko2)"
-                    >
-                        <span style="text-transform:none">
-                            {{kebabCase(o2.name)}}
-                        </span>
-                    </v-tab>
-                </v-tabs>
-                <div style="padding-top:5px;"></div>
+                    <template v-slot:item="props">
+                        <div style="">
+                            {{kebabCase(props.item.name)}}
+                        </div>
+                    </template>
+                </WListHorizontal>
+                <div style="height:1px; background:#ddd;"></div>
+            </div>
 
-            </template>
-
-
-            <template v-if="useL3Cmps">
-
-                <v-tabs
-                    v-model="io3"
-                    background-color="grey lighten-3"
-                    color="grey darken-4"
-                    slider-color="red"
+            <div style="width:calc( 100vw - 20px ); overflow-x:auto;" v-if="cmpsL3 && cmpsL3.length>0">
+                <div style="height:3px; background:#fff;"></div>
+                <WListHorizontal
+                    :items="cmpsL3"
+                    :itemActive.sync="cmpP3"
+                    :itemBackgroundColor="'transparent'"
+                    :itemBackgroundColorHover="'#eee'"
+                    :itemBackgroundColorActive="'#eee'"
+                    :keyText="'name'"
+                    :paddingStyle="{v:12,h:20}"
+                    @update:itemActive="(v)=>{indP3=getInd(v,cmpsL3)}"
                 >
-                    <v-tab
-                        v-for="(o3,ko3) in useL3Cmps"
-                        :key="'l3'+ko3"
-                        @click="clickMenu3(ko3)"
-                    >
-                        <span style="text-transform:none">
-                            {{kebabCase(o3.name)}}
-                        </span>
-                    </v-tab>
-                </v-tabs>
-                <div style="padding-top:5px;"></div>
-
-            </template>
-
+                    <template v-slot:item="props">
+                        <div style="">
+                            {{kebabCase(props.item.name)}}
+                        </div>
+                    </template>
+                </WListHorizontal>
+                <div style="height:1px; background:#ddd;"></div>
+            </div>
 
         </div>
 
@@ -84,322 +84,322 @@
 
 
             <AppZoneWBadge
-                v-if="useCmpName==='WBadge'"
+                v-if="cmpPick==='WBadge'"
             ></AppZoneWBadge>
 
 
             <AppZoneWPanelStripe
-                v-if="useCmpName==='WPanelStripe'"
+                v-if="cmpPick==='WPanelStripe'"
             ></AppZoneWPanelStripe>
 
 
             <AppZoneWPanelBulge
-                v-if="useCmpName==='WPanelBulge'"
+                v-if="cmpPick==='WPanelBulge'"
             ></AppZoneWPanelBulge>
 
 
             <AppZoneWPanelAvatar
-                v-if="useCmpName==='WPanelAvatar'"
+                v-if="cmpPick==='WPanelAvatar'"
             ></AppZoneWPanelAvatar>
 
 
             <AppZoneWPanelScrolly
-                v-if="useCmpName==='WPanelScrolly'"
+                v-if="cmpPick==='WPanelScrolly'"
             ></AppZoneWPanelScrolly>
 
 
             <AppZoneWPanelLabelItem
-                v-if="useCmpName==='WPanelLabelItem'"
+                v-if="cmpPick==='WPanelLabelItem'"
             ></AppZoneWPanelLabelItem>
 
 
             <AppZoneWPanelDivideHorizontal
-                v-if="useCmpName==='WPanelDivideHorizontal'"
+                v-if="cmpPick==='WPanelDivideHorizontal'"
             ></AppZoneWPanelDivideHorizontal>
 
 
             <AppZoneWPanelDivideVertical
-                v-if="useCmpName==='WPanelDivideVertical'"
+                v-if="cmpPick==='WPanelDivideVertical'"
             ></AppZoneWPanelDivideVertical>
 
 
             <AppZoneWPanelScale
-                v-if="useCmpName==='WPanelScale'"
+                v-if="cmpPick==='WPanelScale'"
             ></AppZoneWPanelScale>
 
 
             <AppZoneWIcon
-                v-if="useCmpName==='WIcon'"
+                v-if="cmpPick==='WIcon'"
             ></AppZoneWIcon>
 
 
             <AppZoneWDropfiles
-                v-if="useCmpName==='WDropfiles'"
+                v-if="cmpPick==='WDropfiles'"
             ></AppZoneWDropfiles>
 
 
             <AppZoneWButtonChip
-                v-if="useCmpName==='WButtonChip'"
+                v-if="cmpPick==='WButtonChip'"
             ></AppZoneWButtonChip>
 
 
             <AppZoneWButtonCircle
-                v-if="useCmpName==='WButtonCircle'"
+                v-if="cmpPick==='WButtonCircle'"
             ></AppZoneWButtonCircle>
 
 
             <AppZoneWSlider
-                v-if="useCmpName==='WSlider'"
+                v-if="cmpPick==='WSlider'"
             ></AppZoneWSlider>
 
 
             <AppZoneWProgressBar
-                v-if="useCmpName==='WProgressBar'"
+                v-if="cmpPick==='WProgressBar'"
             ></AppZoneWProgressBar>
 
 
             <AppZoneWProgressCircle
-                v-if="useCmpName==='WProgressCircle'"
+                v-if="cmpPick==='WProgressCircle'"
             ></AppZoneWProgressCircle>
 
 
             <AppZoneWSwitch
-                v-if="useCmpName==='WSwitch'"
+                v-if="cmpPick==='WSwitch'"
             ></AppZoneWSwitch>
 
 
             <AppZoneWCheckbox
-                v-if="useCmpName==='WCheckbox'"
+                v-if="cmpPick==='WCheckbox'"
             ></AppZoneWCheckbox>
 
 
             <AppZoneWLevelGrade
-                v-if="useCmpName==='WLevelGrade'"
+                v-if="cmpPick==='WLevelGrade'"
             ></AppZoneWLevelGrade>
 
 
             <AppZoneWAlert
-                v-if="useCmpName==='WAlert'"
+                v-if="cmpPick==='WAlert'"
             ></AppZoneWAlert>
 
 
             <AppZoneWDialog
-                v-if="useCmpName==='WDialog'"
+                v-if="cmpPick==='WDialog'"
             ></AppZoneWDialog>
 
 
             <AppZoneWConfirm
-                v-if="useCmpName==='WConfirm'"
+                v-if="cmpPick==='WConfirm'"
             ></AppZoneWConfirm>
 
 
             <AppZoneWTooltip
-                v-if="useCmpName==='WTooltip'"
+                v-if="cmpPick==='WTooltip'"
             ></AppZoneWTooltip>
 
 
             <AppZoneWPopup
-                v-if="useCmpName==='WPopup'"
+                v-if="cmpPick==='WPopup'"
             ></AppZoneWPopup>
 
 
             <AppZoneWPopupEditText
-                v-if="useCmpName==='WPopupEditText'"
+                v-if="cmpPick==='WPopupEditText'"
             ></AppZoneWPopupEditText>
 
 
             <AppZoneWDrawer
-                v-if="useCmpName==='WDrawer'"
+                v-if="cmpPick==='WDrawer'"
             ></AppZoneWDrawer>
 
 
             <AppZoneWGroupTags
-                v-if="useCmpName==='WGroupTags'"
+                v-if="cmpPick==='WGroupTags'"
             ></AppZoneWGroupTags>
 
 
             <AppZoneWGroupDragdrop
-                v-if="useCmpName==='WGroupDragdrop'"
+                v-if="cmpPick==='WGroupDragdrop'"
             ></AppZoneWGroupDragdrop>
 
 
             <AppZoneWGroupBaggage
-                v-if="useCmpName==='WGroupBaggage'"
+                v-if="cmpPick==='WGroupBaggage'"
             ></AppZoneWGroupBaggage>
 
 
             <AppZoneWListVertical
-                v-if="useCmpName==='WListVertical'"
+                v-if="cmpPick==='WListVertical'"
             ></AppZoneWListVertical>
 
 
             <AppZoneWListHorizontal
-                v-if="useCmpName==='WListHorizontal'"
+                v-if="cmpPick==='WListHorizontal'"
             ></AppZoneWListHorizontal>
 
 
             <AppZoneWInputRadio
-                v-if="useCmpName==='WInputRadio'"
+                v-if="cmpPick==='WInputRadio'"
             ></AppZoneWInputRadio>
 
 
             <AppZoneWInputCheckbox
-                v-if="useCmpName==='WInputCheckbox'"
+                v-if="cmpPick==='WInputCheckbox'"
             ></AppZoneWInputCheckbox>
 
 
             <AppZoneWListExpand
-                v-if="useCmpName==='WListExpand'"
+                v-if="cmpPick==='WListExpand'"
             ></AppZoneWListExpand>
 
 
             <AppZoneWListRadio
-                v-if="useCmpName==='WListRadio'"
+                v-if="cmpPick==='WListRadio'"
             ></AppZoneWListRadio>
 
 
             <AppZoneWListCheck
-                v-if="useCmpName==='WListCheck'"
+                v-if="cmpPick==='WListCheck'"
             ></AppZoneWListCheck>
 
 
             <AppZoneWGroupRadio
-                v-if="useCmpName==='WGroupRadio'"
+                v-if="cmpPick==='WGroupRadio'"
             ></AppZoneWGroupRadio>
 
 
             <AppZoneWGroupCheck
-                v-if="useCmpName==='WGroupCheck'"
+                v-if="cmpPick==='WGroupCheck'"
             ></AppZoneWGroupCheck>
 
 
             <AppZoneWText
-                v-if="useCmpName==='WText'"
+                v-if="cmpPick==='WText'"
             ></AppZoneWText>
 
 
             <AppZoneWTextInt
-                v-if="useCmpName==='WTextInt'"
+                v-if="cmpPick==='WTextInt'"
             ></AppZoneWTextInt>
 
 
             <AppZoneWTextarea
-                v-if="useCmpName==='WTextarea'"
+                v-if="cmpPick==='WTextarea'"
             ></AppZoneWTextarea>
 
 
             <AppZoneWTextSelect
-                v-if="useCmpName==='WTextSelect'"
+                v-if="cmpPick==='WTextSelect'"
             ></AppZoneWTextSelect>
 
 
             <AppZoneWTextSuggest
-                v-if="useCmpName==='WTextSuggest'"
+                v-if="cmpPick==='WTextSuggest'"
             ></AppZoneWTextSuggest>
 
 
             <AppZoneWTimeday
-                v-if="useCmpName==='WTimeday'"
+                v-if="cmpPick==='WTimeday'"
             ></AppZoneWTimeday>
 
 
             <AppZoneWTimeminute
-                v-if="useCmpName==='WTimeminute'"
+                v-if="cmpPick==='WTimeminute'"
             ></AppZoneWTimeminute>
 
 
             <AppZoneWTimedayRange
-                v-if="useCmpName==='WTimedayRange'"
+                v-if="cmpPick==='WTimedayRange'"
             ></AppZoneWTimedayRange>
 
 
             <AppZoneWTimeminuteRange
-                v-if="useCmpName==='WTimeminuteRange'"
+                v-if="cmpPick==='WTimeminuteRange'"
             ></AppZoneWTimeminuteRange>
 
 
             <AppZoneWDynamicList
-                v-if="useCmpName==='WDynamicList'"
+                v-if="cmpPick==='WDynamicList'"
             ></AppZoneWDynamicList>
 
 
             <AppZoneWSegmentsVertical
-                v-if="useCmpName==='WSegmentsVertical'"
+                v-if="cmpPick==='WSegmentsVertical'"
             ></AppZoneWSegmentsVertical>
 
 
             <AppZoneWJsonView
-                v-if="useCmpName==='WJsonView'"
+                v-if="cmpPick==='WJsonView'"
             ></AppZoneWJsonView>
 
 
             <AppZoneWTree
-                v-if="useCmpName==='WTree'"
+                v-if="cmpPick==='WTree'"
             ></AppZoneWTree>
 
 
             <AppZoneWHighchartsVueDyn
-                v-if="useCmpName==='WHighchartsVueDyn'"
+                v-if="cmpPick==='WHighchartsVueDyn'"
             ></AppZoneWHighchartsVueDyn>
 
 
             <AppZoneWHighchartsBitmapDyn
-                v-if="useCmpName==='WHighchartsBitmapDyn'"
+                v-if="cmpPick==='WHighchartsBitmapDyn'"
             ></AppZoneWHighchartsBitmapDyn>
 
 
             <AppZoneWHighstockVueDyn
-                v-if="useCmpName==='WHighstockVueDyn'"
+                v-if="cmpPick==='WHighstockVueDyn'"
             ></AppZoneWHighstockVueDyn>
 
 
             <AppZoneWEchartsVueDyn
-                v-if="useCmpName==='WEchartsVueDyn'"
+                v-if="cmpPick==='WEchartsVueDyn'"
             ></AppZoneWEchartsVueDyn>
 
 
             <AppZoneWAggridVueDyn
-                v-if="useCmpName==='WAggridVueDyn'"
+                v-if="cmpPick==='WAggridVueDyn'"
             ></AppZoneWAggridVueDyn>
 
 
             <AppZoneWTableDyn
-                v-if="useCmpName==='WTableDyn'"
+                v-if="cmpPick==='WTableDyn'"
             ></AppZoneWTableDyn>
 
 
             <AppZoneWImageViewerDyn
-                v-if="useCmpName==='WImageViewerDyn'"
+                v-if="cmpPick==='WImageViewerDyn'"
             ></AppZoneWImageViewerDyn>
 
 
             <AppZoneWImageCascadingDyn
-                v-if="useCmpName==='WImageCascadingDyn'"
+                v-if="cmpPick==='WImageCascadingDyn'"
             ></AppZoneWImageCascadingDyn>
 
 
             <AppZoneWCkeditorVueDyn
-                v-if="useCmpName==='WCkeditorVueDyn'"
+                v-if="cmpPick==='WCkeditorVueDyn'"
             ></AppZoneWCkeditorVueDyn>
 
 
             <AppZoneWTinymceVueDyn
-                v-if="useCmpName==='WTinymceVueDyn'"
+                v-if="cmpPick==='WTinymceVueDyn'"
             ></AppZoneWTinymceVueDyn>
 
 
             <AppZoneWQuillVueDyn
-                v-if="useCmpName==='WQuillVueDyn'"
+                v-if="cmpPick==='WQuillVueDyn'"
             ></AppZoneWQuillVueDyn>
 
 
             <AppZoneWLeafletVueDyn
-                v-if="useCmpName==='WLeafletVueDyn'"
+                v-if="cmpPick==='WLeafletVueDyn'"
             ></AppZoneWLeafletVueDyn>
 
 
             <AppZoneWExplorer
-                v-if="useCmpName==='WExplorer'"
+                v-if="cmpPick==='WExplorer'"
             ></AppZoneWExplorer>
 
 
@@ -410,12 +410,12 @@
 </template>
 
 <script>
-import { mdiCheckCircle, mdiCheckboxBlankCircleOutline } from '@mdi/js'
 import get from 'lodash-es/get'
 import kebabCase from 'lodash-es/kebabCase'
 import each from 'lodash-es/each'
+// import cloneDeep from 'lodash-es/cloneDeep'
 import urlParse from 'wsemi/src/urlParse.mjs'
-// import WListHorizontal from './components/WListHorizontal.vue'
+import WListHorizontal from './components/WListHorizontal.vue'
 import AppZoneWBadge from './AppZoneWBadge.vue'
 import AppZoneWPanelStripe from './AppZoneWPanelStripe.vue'
 import AppZoneWPanelBulge from './AppZoneWPanelBulge.vue'
@@ -484,7 +484,7 @@ import AppZoneWExplorer from './AppZoneWExplorer.vue'
 
 export default {
     components: {
-        // WListHorizontal,
+        WListHorizontal,
         AppZoneWBadge,
         AppZoneWPanelStripe,
         AppZoneWPanelBulge,
@@ -551,277 +551,312 @@ export default {
         AppZoneWExplorer,
     },
     data: function() {
+        let cmps = [
+            {
+                name: 'basic',
+                cmps: [
+                    { name: 'WBadge' },
+                    { name: 'WSwitch' },
+                    { name: 'WCheckbox' },
+                    { name: 'WIcon' },
+                    { name: 'WDropfiles' },
+                    { name: 'WSlider' },
+                    { name: 'WProgressBar' },
+                    { name: 'WProgressCircle' },
+                ]
+            },
+            {
+                name: 'special',
+                cmps: [
+                    { name: 'WLevelGrade' },
+                ]
+            },
+            {
+                name: 'panel',
+                cmps: [
+                    { name: 'WPanelStripe' },
+                    { name: 'WPanelBulge' },
+                    { name: 'WPanelAvatar' },
+                    { name: 'WPanelScrolly' },
+                    { name: 'WPanelLabelItem' },
+                    { name: 'WPanelDivideHorizontal' },
+                    { name: 'WPanelDivideVertical' },
+                    { name: 'WPanelScale' },
+                ]
+            },
+            {
+                name: 'button',
+                cmps: [
+                    { name: 'WButtonChip' },
+                    { name: 'WButtonCircle' },
+                ]
+            },
+            {
+                name: 'group',
+                cmps: [
+                    { name: 'WInputCheckbox' },
+                    { name: 'WGroupCheck' },
+                    { name: 'WInputRadio' },
+                    { name: 'WGroupRadio' },
+                    { name: 'WGroupTags' },
+                    { name: 'WGroupDragdrop' },
+                    { name: 'WGroupBaggage' },
+                ]
+            },
+            {
+                name: 'list',
+                cmps: [
+                    { name: 'WListHorizontal' },
+                    { name: 'WListVertical' },
+                    { name: 'WListExpand' },
+                    { name: 'WListRadio' },
+                    { name: 'WListCheck' },
+                    { name: 'WDynamicList' },
+                    { name: 'WSegmentsVertical' },
+                ]
+            },
+            {
+                name: 'text',
+                cmps: [
+                    { name: 'WText' },
+                    { name: 'WTextarea' },
+                    { name: 'WTextInt' },
+                    { name: 'WTextSelect' },
+                    { name: 'WTextSuggest' },
+                ]
+            },
+            {
+                name: 'time',
+                cmps: [
+                    { name: 'WTimeday' },
+                    { name: 'WTimeminute' },
+                    { name: 'WTimedayRange' },
+                    { name: 'WTimeminuteRange' },
+                ]
+            },
+            {
+                name: 'tree',
+                cmps: [
+                    { name: 'WTree' },
+                    { name: 'WExplorer' },
+                    { name: 'WJsonView' },
+                ]
+            },
+            {
+                name: 'window',
+                cmps: [
+                    { name: 'WAlert' },
+                    { name: 'WDialog' },
+                    { name: 'WConfirm' },
+                    { name: 'WTooltip' },
+                    { name: 'WPopup' },
+                    { name: 'WPopupEditText' },
+                    { name: 'WDrawer' },
+                ]
+            },
+            {
+                name: 'dynamic',
+                cmps: [
+                    {
+                        name: 'plot',
+                        cmps: [
+                            { name: 'WHighchartsVueDyn' },
+                            { name: 'WHighchartsBitmapDyn' },
+                            { name: 'WHighstockVueDyn' },
+                            { name: 'WEchartsVueDyn' },
+                        ],
+                    },
+                    {
+                        name: 'table',
+                        cmps: [
+                            { name: 'WAggridVueDyn' },
+                            { name: 'WTableDyn' },
+                        ],
+                    },
+                    {
+                        name: 'map',
+                        cmps: [
+                            { name: 'WLeafletVueDyn' },
+                        ],
+                    },
+                    {
+                        name: 'imageViewer',
+                        cmps: [
+                            { name: 'WImageViewerDyn' },
+                            { name: 'WImageCascadingDyn' },
+                        ],
+                    },
+                    {
+                        name: 'editor',
+                        cmps: [
+                            { name: 'WTinymceVueDyn' },
+                            { name: 'WCkeditorVueDyn' },
+                            { name: 'WQuillVueDyn' },
+                        ],
+                    },
+                ],
+            },
+        ]
         return {
-            get,
+            // get,
             kebabCase,
 
-            mdiCheckCircle,
-            mdiCheckboxBlankCircleOutline,
-            io1: 0,
-            io2: 0,
-            io3: 0,
-            sCmps: [
-                {
-                    name: 'basic',
-                    cmps: [
-                        { name: 'WBadge' },
-                        { name: 'WSwitch' },
-                        { name: 'WCheckbox' },
-                        { name: 'WIcon' },
-                        { name: 'WDropfiles' },
-                        { name: 'WSlider' },
-                        { name: 'WProgressBar' },
-                        { name: 'WProgressCircle' },
-                    ]
-                },
-                {
-                    name: 'special',
-                    cmps: [
-                        { name: 'WLevelGrade' },
-                    ]
-                },
-                {
-                    name: 'panel',
-                    cmps: [
-                        { name: 'WPanelStripe' },
-                        { name: 'WPanelBulge' },
-                        { name: 'WPanelAvatar' },
-                        { name: 'WPanelScrolly' },
-                        { name: 'WPanelLabelItem' },
-                        { name: 'WPanelDivideHorizontal' },
-                        { name: 'WPanelDivideVertical' },
-                        { name: 'WPanelScale' },
-                    ]
-                },
-                {
-                    name: 'button',
-                    cmps: [
-                        { name: 'WButtonChip' },
-                        { name: 'WButtonCircle' },
-                    ]
-                },
-                {
-                    name: 'group',
-                    cmps: [
-                        { name: 'WInputCheckbox' },
-                        { name: 'WGroupCheck' },
-                        { name: 'WInputRadio' },
-                        { name: 'WGroupRadio' },
-                        { name: 'WGroupTags' },
-                        { name: 'WGroupDragdrop' },
-                        { name: 'WGroupBaggage' },
-                    ]
-                },
-                {
-                    name: 'list',
-                    cmps: [
-                        { name: 'WListHorizontal' },
-                        { name: 'WListVertical' },
-                        { name: 'WListExpand' },
-                        { name: 'WListRadio' },
-                        { name: 'WListCheck' },
-                        { name: 'WDynamicList' },
-                        { name: 'WSegmentsVertical' },
-                    ]
-                },
-                {
-                    name: 'text',
-                    cmps: [
-                        { name: 'WText' },
-                        { name: 'WTextarea' },
-                        { name: 'WTextInt' },
-                        { name: 'WTextSelect' },
-                        { name: 'WTextSuggest' },
-                    ]
-                },
-                {
-                    name: 'time',
-                    cmps: [
-                        { name: 'WTimeday' },
-                        { name: 'WTimeminute' },
-                        { name: 'WTimedayRange' },
-                        { name: 'WTimeminuteRange' },
-                    ]
-                },
-                {
-                    name: 'tree',
-                    cmps: [
-                        { name: 'WTree' },
-                        { name: 'WExplorer' },
-                        { name: 'WJsonView' },
-                    ]
-                },
-                {
-                    name: 'window',
-                    cmps: [
-                        { name: 'WAlert' },
-                        { name: 'WDialog' },
-                        { name: 'WConfirm' },
-                        { name: 'WTooltip' },
-                        { name: 'WPopup' },
-                        { name: 'WPopupEditText' },
-                        { name: 'WDrawer' },
-                    ]
-                },
-                {
-                    name: 'dynamic',
-                    cmps: [
-                        {
-                            name: 'plot',
-                            cmps: [
-                                { name: 'WHighchartsVueDyn' },
-                                { name: 'WHighchartsBitmapDyn' },
-                                { name: 'WHighstockVueDyn' },
-                                { name: 'WEchartsVueDyn' },
-                            ],
-                        },
-                        {
-                            name: 'table',
-                            cmps: [
-                                { name: 'WAggridVueDyn' },
-                                { name: 'WTableDyn' },
-                            ],
-                        },
-                        {
-                            name: 'map',
-                            cmps: [
-                                { name: 'WLeafletVueDyn' },
-                            ],
-                        },
-                        {
-                            name: 'imageViewer',
-                            cmps: [
-                                { name: 'WImageViewerDyn' },
-                                { name: 'WImageCascadingDyn' },
-                            ],
-                        },
-                        {
-                            name: 'editor',
-                            cmps: [
-                                { name: 'WTinymceVueDyn' },
-                                { name: 'WCkeditorVueDyn' },
-                                { name: 'WQuillVueDyn' },
-                            ],
-                        },
-                    ],
-                },
-            ],
+            // mdiCheckCircle,
+            // mdiCheckboxBlankCircleOutline,
+            // io1: 0,
+            // io2: 0,
+            // io3: 0,
+
+            cmpsL1: cmps,
+            indP1: null,
+            cmpP1: null,
+
+            cmpsL2: null,
+            indP2: null,
+            cmpP2: null,
+
+            cmpsL3: null,
+            indP3: null,
+            cmpP3: null,
+
+            cmpsL4: null,
+
+            cmpPick: '',
+
         }
     },
     mounted: function() {
         let vo = this
 
-        let getCmpLoc = (cmpName) => {
-            // console.log('getCmpLoc', cmpName)
-            let mt = {
-                io1: 0,
-                io2: 0,
-                io3: 0,
-            }
-            let done = false
-            each(vo.sCmps, (v, k) => {
-                // console.log('l1', kebabCase(v.name), k)
-                if (cmpName === kebabCase(v.name)) {
-                    mt = {
-                        io1: k,
-                        io2: 0,
-                        io3: 0,
-                    }
-                    done = true
-                    return false
-                }
-                if (get(v, 'cmps')) {
-                    each(v.cmps, (vv, kk) => {
-                        // console.log('l2', kebabCase(vv.name), kk)
-                        if (cmpName === kebabCase(vv.name)) {
-                            mt = {
-                                io1: k,
-                                io2: kk,
-                                io3: 0,
-                            }
-                            done = true
-                            return false
-                        }
-                        if (get(vv, 'cmps')) {
-                            each(vv.cmps, (vvv, kkk) => {
-                                // console.log('l3', kebabCase(vvv.name), kkk)
-                                if (cmpName === kebabCase(vvv.name)) {
-                                    mt = {
-                                        io1: k,
-                                        io2: kk,
-                                        io3: kkk,
-                                    }
-                                    done = true
-                                    return false
-                                }
-                                // if (done) {
-                                //     return false
-                                // }
-                            })
-                        }
-                        if (done) {
-                            return false
-                        }
-                    })
-                }
-                if (done) {
-                    return false
-                }
-            })
-            return mt
-        }
+        // let getCmpLoc = (cmpName) => {
+        //     // console.log('getCmpLoc', cmpName)
+        //     let mt = {
+        //         io1: 0,
+        //         io2: 0,
+        //         io3: 0,
+        //     }
+        //     let done = false
+        //     each(vo.sCmps, (v, k) => {
+        //         // console.log('l1', kebabCase(v.name), k)
+        //         if (cmpName === kebabCase(v.name)) {
+        //             mt = {
+        //                 io1: k,
+        //                 io2: 0,
+        //                 io3: 0,
+        //             }
+        //             done = true
+        //             return false
+        //         }
+        //         if (get(v, 'cmps')) {
+        //             each(v.cmps, (vv, kk) => {
+        //                 // console.log('l2', kebabCase(vv.name), kk)
+        //                 if (cmpName === kebabCase(vv.name)) {
+        //                     mt = {
+        //                         io1: k,
+        //                         io2: kk,
+        //                         io3: 0,
+        //                     }
+        //                     done = true
+        //                     return false
+        //                 }
+        //                 if (get(vv, 'cmps')) {
+        //                     each(vv.cmps, (vvv, kkk) => {
+        //                         // console.log('l3', kebabCase(vvv.name), kkk)
+        //                         if (cmpName === kebabCase(vvv.name)) {
+        //                             mt = {
+        //                                 io1: k,
+        //                                 io2: kk,
+        //                                 io3: kkk,
+        //                             }
+        //                             done = true
+        //                             return false
+        //                         }
+        //                         // if (done) {
+        //                         //     return false
+        //                         // }
+        //                     })
+        //                 }
+        //                 if (done) {
+        //                     return false
+        //                 }
+        //             })
+        //         }
+        //         if (done) {
+        //             return false
+        //         }
+        //     })
+        //     return mt
+        // }
 
-        let autoViewCmp = () => {
+        // let autoViewCmp = () => {
 
-            ////yuda-lyu.github.io/w-component-vue/examples/app.html?level1=basic&level2=w-switch
-            ////yuda-lyu.github.io/w-component-vue/examples/app.html?level1=dynamic&level2=editor&level3=w-quill-vue-dyn
-            ////yuda-lyu.github.io/w-component-vue/examples/app.html?cmp=w-switch
-            ////yuda-lyu.github.io/w-component-vue/examples/app.html?cmp=w-quill-vue-dyn
+        //     //yuda-lyu.github.io/w-component-vue/examples/app.html?level1=basic&level2=w-switch
+        //     //yuda-lyu.github.io/w-component-vue/examples/app.html?level1=dynamic&level2=editor&level3=w-quill-vue-dyn
+        //     //yuda-lyu.github.io/w-component-vue/examples/app.html?cmp=w-switch
+        //     //yuda-lyu.github.io/w-component-vue/examples/app.html?cmp=w-quill-vue-dyn
 
-            //urlParse
-            let p = urlParse(location.href)
-            // console.log('p', p)
+        //     //urlParse
+        //     let p = urlParse(location.href)
+        //     // console.log('p', p)
 
-            let mt = getCmpLoc(p.cmp)
-            // console.log('mt', mt)
+        //     let mt = getCmpLoc(p.cmp)
+        //     // console.log('mt', mt)
 
-            vo.io1 = mt.io1
-            vo.io2 = mt.io2
-            vo.io3 = mt.io3
+        //     vo.io1 = mt.io1
+        //     vo.io2 = mt.io2
+        //     vo.io3 = mt.io3
 
-        }
-        autoViewCmp()
+        // }
+        // autoViewCmp()
+
+        //default
+        vo.indP1 = 0
+        vo.indP2 = 0
+        vo.indP3 = 0
+
+        //urlParse, http://localhost:8080/?cmp=w-pie
+        let p = urlParse(location.href)
+        // console.log('p', p)
+
+        //viewPick
+        vo.viewPick(get(p, 'cmp', ''))
 
     },
     computed: {
 
-        useL2Cmps: function() {
+        changeMenus: function() {
             let vo = this
-            return get(vo, `sCmps.${vo.io1}.cmps`)
+            vo.modifyMenus(vo.indP1, vo.indP2, vo.indP3)
+            return ''
         },
 
-        useL3Cmps: function() {
-            let vo = this
-            return get(vo, `sCmps.${vo.io1}.cmps.${vo.io2}.cmps`)
-        },
+        // useL2Cmps: function() {
+        //     let vo = this
+        //     return get(vo, `sCmps.${vo.io1}.cmps`)
+        // },
 
-        useCmpName: function () {
-            let vo = this
-            let name = 'unknow'
-            name = get(vo, `sCmps.${vo.io1}.cmps.${vo.io2}.cmps.${vo.io3}.name`)
-            if (name) {
-                return name
-            }
-            name = get(vo, `sCmps.${vo.io1}.cmps.${vo.io2}.name`)
-            if (name) {
-                return name
-            }
-            name = get(vo, `sCmps.${vo.io1}.name`)
-            if (name) {
-                return name
-            }
-            return name
-        },
+        // useL3Cmps: function() {
+        //     let vo = this
+        //     return get(vo, `sCmps.${vo.io1}.cmps.${vo.io2}.cmps`)
+        // },
+
+        // cmpPick: function () {
+        //     let vo = this
+        //     let name = 'unknow'
+        //     name = get(vo, `sCmps.${vo.io1}.cmps.${vo.io2}.cmps.${vo.io3}.name`)
+        //     if (name) {
+        //         return name
+        //     }
+        //     name = get(vo, `sCmps.${vo.io1}.cmps.${vo.io2}.name`)
+        //     if (name) {
+        //         return name
+        //     }
+        //     name = get(vo, `sCmps.${vo.io1}.name`)
+        //     if (name) {
+        //         return name
+        //     }
+        //     return name
+        // },
 
         isNarrow: function() {
             return window.innerWidth < 1000
@@ -830,41 +865,145 @@ export default {
     },
     methods: {
 
-        resetUrl: function() {
-            try {
-                //開發端是localhost無法刷history至不同網站(因此為正式網站位址)
-                window.history.replaceState({}, '', '//yuda-lyu.github.io/w-component-vue/examples/app.html')
+        // resetUrl: function() {
+        //     try {
+        //         //開發端是localhost無法刷history至不同網站(因此為正式網站位址)
+        //         window.history.replaceState({}, '', '//yuda-lyu.github.io/w-component-vue/examples/app.html')
+        //     }
+        //     catch (err) {
+        //         // console.log(err)
+        //     }
+        // },
+
+        // clickMenu1: function (io1) {
+        //     let vo = this
+        //     vo.resetUrl()
+        //     vo.$nextTick(() => {
+        //         vo.io1 = io1
+        //         vo.io2 = 0
+        //         vo.io3 = 0
+        //     })
+        // },
+
+        // clickMenu2: function (io2) {
+        //     let vo = this
+        //     vo.resetUrl()
+        //     vo.$nextTick(() => {
+        //         vo.io2 = io2
+        //         vo.io3 = 0
+        //     })
+        // },
+
+        // clickMenu3: function (io3) {
+        //     let vo = this
+        //     vo.resetUrl()
+        //     vo.$nextTick(() => {
+        //         vo.io3 = io3
+        //     })
+        // },
+
+        modifyMenus: function() {
+            let vo = this
+
+            let cmpPick = ''
+
+            setTimeout(() => {
+
+                // console.log('call P1')
+                vo.cmpP1 = get(vo.cmpsL1, vo.indP1, {})
+                vo.cmpsL2 = get(vo.cmpP1, `cmps`, [])
+                let _cmpPick = get(vo.cmpP1, `name`, '')
+                if (_cmpPick) {
+                    cmpPick = _cmpPick
+                }
+                // console.log('vo.cmpP1', cloneDeep(vo.cmpP1))
+                // console.log('vo.cmpsL2', cloneDeep(vo.cmpsL2))
+
+            }, 50)
+
+            setTimeout(() => {
+
+                // console.log('call P2')
+                let cmps = get(vo.cmpP1, `cmps`, [])
+                vo.cmpP2 = get(cmps, vo.indP2, {})
+                vo.cmpsL3 = get(vo.cmpP2, `cmps`, [])
+                let _cmpPick = get(vo.cmpP2, `name`, '')
+                if (_cmpPick) {
+                    cmpPick = _cmpPick
+                }
+                // console.log('vo.cmpP2', cloneDeep(vo.cmpP2))
+                // console.log('vo.cmpsL3', cloneDeep(vo.cmpsL3))
+
+            }, 100)
+
+            setTimeout(() => {
+
+                // console.log('call P3')
+                let cmps = get(vo.cmpP2, `cmps`, [])
+                vo.cmpP3 = get(cmps, vo.indP3, {})
+                vo.cmpsL4 = get(vo.cmpP3, `cmps`, [])
+                let _cmpPick = get(vo.cmpP3, `name`, '')
+                if (_cmpPick) {
+                    cmpPick = _cmpPick
+                }
+                // console.log('vo.cmpP3', cloneDeep(vo.cmpP3))
+                // console.log('vo.cmpsL4', cloneDeep(vo.cmpsL4))
+
+                //update
+                vo.cmpPick = cmpPick
+                // console.log('cmpPick', cmpPick)
+
+            }, 150)
+
+        },
+
+        getInd: function(item, items) {
+            // let vo = this
+            let ind = -1
+            each(items, (v, k) => {
+                if (item.name === v.name) {
+                    ind = k
+                    return false //跳出
+                }
+            })
+            return ind
+        },
+
+        viewPick: function(cmpPick) {
+            let vo = this
+            let _cmpPick = kebabCase(cmpPick)
+            let r = ''
+            let rs = []
+            let ls = []
+            let l = 0
+            let pv = (ts) => {
+                each(ts, (v, k) => {
+                    let name = get(v, `name`, '')
+                    let _name = kebabCase(name)
+                    let cmps = get(v, `cmps`, [])
+                    if (cmps.length > 0) {
+                        ls.push(l)
+                        l++
+                        pv(cmps)
+                        l--
+                        ls.pop()
+                    }
+                    let lst = [...ls, k]
+                    rs.push({
+                        clst: lst.join('.'),
+                        name,
+                    })
+                    if (_name === _cmpPick) {
+                        r = lst
+                    }
+                })
             }
-            catch (err) {
-                // console.log(err)
-            }
-        },
-
-        clickMenu1: function (io1) {
-            let vo = this
-            vo.resetUrl()
-            vo.$nextTick(() => {
-                vo.io1 = io1
-                vo.io2 = 0
-                vo.io3 = 0
-            })
-        },
-
-        clickMenu2: function (io2) {
-            let vo = this
-            vo.resetUrl()
-            vo.$nextTick(() => {
-                vo.io2 = io2
-                vo.io3 = 0
-            })
-        },
-
-        clickMenu3: function (io3) {
-            let vo = this
-            vo.resetUrl()
-            vo.$nextTick(() => {
-                vo.io3 = io3
-            })
+            pv(vo.cmpsL1)
+            // console.log('rs', rs)
+            // console.log('r', r)
+            vo.indP1 = get(r, 0, 0)
+            vo.indP2 = get(r, 1, 0)
+            vo.indP3 = get(r, 2, 0)
         },
 
     }
