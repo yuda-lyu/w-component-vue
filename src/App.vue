@@ -698,14 +698,7 @@ export default {
             },
         ]
         return {
-            // get,
             kebabCase,
-
-            // mdiCheckCircle,
-            // mdiCheckboxBlankCircleOutline,
-            // io1: 0,
-            // io2: 0,
-            // io3: 0,
 
             cmpsL1: cmps,
             indP1: null,
@@ -728,93 +721,12 @@ export default {
     mounted: function() {
         let vo = this
 
-        // let getCmpLoc = (cmpName) => {
-        //     // console.log('getCmpLoc', cmpName)
-        //     let mt = {
-        //         io1: 0,
-        //         io2: 0,
-        //         io3: 0,
-        //     }
-        //     let done = false
-        //     each(vo.sCmps, (v, k) => {
-        //         // console.log('l1', kebabCase(v.name), k)
-        //         if (cmpName === kebabCase(v.name)) {
-        //             mt = {
-        //                 io1: k,
-        //                 io2: 0,
-        //                 io3: 0,
-        //             }
-        //             done = true
-        //             return false
-        //         }
-        //         if (get(v, 'cmps')) {
-        //             each(v.cmps, (vv, kk) => {
-        //                 // console.log('l2', kebabCase(vv.name), kk)
-        //                 if (cmpName === kebabCase(vv.name)) {
-        //                     mt = {
-        //                         io1: k,
-        //                         io2: kk,
-        //                         io3: 0,
-        //                     }
-        //                     done = true
-        //                     return false
-        //                 }
-        //                 if (get(vv, 'cmps')) {
-        //                     each(vv.cmps, (vvv, kkk) => {
-        //                         // console.log('l3', kebabCase(vvv.name), kkk)
-        //                         if (cmpName === kebabCase(vvv.name)) {
-        //                             mt = {
-        //                                 io1: k,
-        //                                 io2: kk,
-        //                                 io3: kkk,
-        //                             }
-        //                             done = true
-        //                             return false
-        //                         }
-        //                         // if (done) {
-        //                         //     return false
-        //                         // }
-        //                     })
-        //                 }
-        //                 if (done) {
-        //                     return false
-        //                 }
-        //             })
-        //         }
-        //         if (done) {
-        //             return false
-        //         }
-        //     })
-        //     return mt
-        // }
-
-        // let autoViewCmp = () => {
-
-        //     //yuda-lyu.github.io/w-component-vue/examples/app.html?level1=basic&level2=w-switch
-        //     //yuda-lyu.github.io/w-component-vue/examples/app.html?level1=dynamic&level2=editor&level3=w-quill-vue-dyn
-        //     //yuda-lyu.github.io/w-component-vue/examples/app.html?cmp=w-switch
-        //     //yuda-lyu.github.io/w-component-vue/examples/app.html?cmp=w-quill-vue-dyn
-
-        //     //urlParse
-        //     let p = urlParse(location.href)
-        //     // console.log('p', p)
-
-        //     let mt = getCmpLoc(p.cmp)
-        //     // console.log('mt', mt)
-
-        //     vo.io1 = mt.io1
-        //     vo.io2 = mt.io2
-        //     vo.io3 = mt.io3
-
-        // }
-        // autoViewCmp()
-
         //default
         vo.indP1 = 0
         vo.indP2 = 0
         vo.indP3 = 0
 
-        //urlParse, http://localhost:8080/?cmp=w-pie
+        //urlParse, http://localhost:8080/?cmp=w-ckeditor-vue-dyn
         let p = urlParse(location.href)
         // console.log('p', p)
 
@@ -830,77 +742,12 @@ export default {
             return ''
         },
 
-        // useL2Cmps: function() {
-        //     let vo = this
-        //     return get(vo, `sCmps.${vo.io1}.cmps`)
-        // },
-
-        // useL3Cmps: function() {
-        //     let vo = this
-        //     return get(vo, `sCmps.${vo.io1}.cmps.${vo.io2}.cmps`)
-        // },
-
-        // cmpPick: function () {
-        //     let vo = this
-        //     let name = 'unknow'
-        //     name = get(vo, `sCmps.${vo.io1}.cmps.${vo.io2}.cmps.${vo.io3}.name`)
-        //     if (name) {
-        //         return name
-        //     }
-        //     name = get(vo, `sCmps.${vo.io1}.cmps.${vo.io2}.name`)
-        //     if (name) {
-        //         return name
-        //     }
-        //     name = get(vo, `sCmps.${vo.io1}.name`)
-        //     if (name) {
-        //         return name
-        //     }
-        //     return name
-        // },
-
         isNarrow: function() {
             return window.innerWidth < 1000
         },
 
     },
     methods: {
-
-        // resetUrl: function() {
-        //     try {
-        //         //開發端是localhost無法刷history至不同網站(因此為正式網站位址)
-        //         window.history.replaceState({}, '', '//yuda-lyu.github.io/w-component-vue/examples/app.html')
-        //     }
-        //     catch (err) {
-        //         // console.log(err)
-        //     }
-        // },
-
-        // clickMenu1: function (io1) {
-        //     let vo = this
-        //     vo.resetUrl()
-        //     vo.$nextTick(() => {
-        //         vo.io1 = io1
-        //         vo.io2 = 0
-        //         vo.io3 = 0
-        //     })
-        // },
-
-        // clickMenu2: function (io2) {
-        //     let vo = this
-        //     vo.resetUrl()
-        //     vo.$nextTick(() => {
-        //         vo.io2 = io2
-        //         vo.io3 = 0
-        //     })
-        // },
-
-        // clickMenu3: function (io3) {
-        //     let vo = this
-        //     vo.resetUrl()
-        //     vo.$nextTick(() => {
-        //         vo.io3 = io3
-        //     })
-        // },
 
         modifyMenus: function() {
             let vo = this
@@ -975,27 +822,37 @@ export default {
             let r = ''
             let rs = []
             let ls = []
-            let l = 0
             let pv = (ts) => {
                 each(ts, (v, k) => {
+                    ls.push(k)
+
+                    //name, _name
                     let name = get(v, `name`, '')
                     let _name = kebabCase(name)
+
+                    //cmps
                     let cmps = get(v, `cmps`, [])
-                    if (cmps.length > 0) {
-                        ls.push(l)
-                        l++
-                        pv(cmps)
-                        l--
-                        ls.pop()
-                    }
-                    let lst = [...ls, k]
+
+                    //push
+                    let cls = ls.join('.')
+                    let b = _name === _cmpPick
                     rs.push({
-                        clst: lst.join('.'),
+                        cls,
                         name,
+                        b,
                     })
-                    if (_name === _cmpPick) {
-                        r = lst
+
+                    //save
+                    if (b) {
+                        r = JSON.parse(JSON.stringify(ls))
                     }
+
+                    //遞迴pv
+                    if (cmps.length > 0) {
+                        pv(cmps)
+                    }
+
+                    ls.pop()
                 })
             }
             pv(vo.cmpsL1)
