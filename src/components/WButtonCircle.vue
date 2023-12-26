@@ -2,6 +2,7 @@
     <div
         style="display:inline-block; vertical-align:middle; outline:none; user-select:none;"
         :role="editable?role:''"
+        :changeActive="changeActive"
         :changeLoading="changeLoading"
     >
 
@@ -99,15 +100,18 @@ import WTooltip from './WTooltip.vue'
  * @vue-prop {String} [iconColor='grey darken-1'] 輸入按鈕圖標顏色字串，預設'grey darken-1'
  * @vue-prop {String} [iconColorHover='grey darken-2'] 輸入滑鼠移入時按鈕圖標顏色字串，預設'grey darken-2'
  * @vue-prop {String} [iconColorFocus='grey darken-3'] 輸入取得焦點時按鈕圖標顏色字串，預設'grey darken-3'
+ * @vue-prop {String} [iconColorActive='grey darken-3'] 輸入主動模式時按鈕圖標顏色字串，預設'grey darken-3'
  * @vue-prop {Number|String} [borderRadius='50%'] 輸入框圓角度數字或字串，若給予數字時單位為px，預設'50%'
  * @vue-prop {Object} [borderRadiusStyle={left:true,right:true}] 輸入框圓角設定物件，可用鍵值為left、right、top、bottom、top-left、bottom-left、top-right、bottom-right，left代表設定top-left與bottom-left，right代表設定top-right與bottom-right，top代表設定top-left與top-right，bottom代表設定bottom-left與bottom-right，若有重複設定時後面鍵值會覆蓋前面，各鍵值為布林值，預設{left:true,right:true}
  * @vue-prop {Number} [borderWidth=0] 輸入框線寬度數字，單位為px，預設0
  * @vue-prop {String} [borderColor='transparent'] 輸入按鈕框線顏色字串，預設'transparent'
  * @vue-prop {String} [borderColorHover='transparent'] 輸入滑鼠移入時按鈕框線顏色字串，預設'transparent'
  * @vue-prop {String} [borderColorFocus='transparent'] 輸入取得焦點時按鈕框線顏色字串，預設'transparent'
+ * @vue-prop {String} [borderColorActive='transparent'] 輸入主動模式時按鈕框線顏色字串，預設'transparent'
  * @vue-prop {String} [backgroundColor='rgb(241,241,241)'] 輸入按鈕背景顏色字串，預設'rgb(241,241,241)'
  * @vue-prop {String} [backgroundColorHover='rgb(236,236,236)'] 輸入滑鼠移入時按鈕背景顏色字串，預設'rgb(236,236,236)'
  * @vue-prop {String} [backgroundColorFocus='rgb(230,230,230)'] 輸入取得焦點時按鈕背景顏色字串，預設'rgb(230,230,230)'
+ * @vue-prop {String} [backgroundColorActive='rgb(230,230,230)'] 輸入主動模式時按鈕背景顏色字串，預設'rgb(230,230,230)'
  * @vue-prop {Number} [tooltipBorderRadius=4] 輸入提示文字框圓角度數字，單位為px，預設4
  * @vue-prop {Object} [tooltipPaddingStyle={v:5,h:8}] 輸入提示文字內寬距離設定物件，可用鍵值為v、h、left、right、top、bottom，v代表同時設定top與bottom，h代表設定left與right，若有重複設定時後面鍵值會覆蓋前面，各鍵值為寬度數字，單位為px，預設{v:5,h:8}
  * @vue-prop {String} [tooltipTextFontSize='0.85rem'] 輸入提示文字字型大小字串，預設'0.85rem'
@@ -117,6 +121,7 @@ import WTooltip from './WTooltip.vue'
  * @vue-prop {Object} [paddingStyle={v:4,h:4}] 輸入內寬距離設定物件，可用鍵值為v、h、left、right、top、bottom，v代表同時設定top與bottom，h代表設定left與right，若有重複設定時後面鍵值會覆蓋前面，各鍵值為寬度數字，單位為px，預設{v:4,h:4}
  * @vue-prop {Boolean} [shadow=true] 輸入是否為陰影模式，預設true
  * @vue-prop {String} [shadowStyle=''] 輸入陰影顏色字串，預設值詳見props
+ * @vue-prop {Boolean} [active=false] 輸入是否為主動模式布林值，預設false
  * @vue-prop {Boolean} [cursorPointer=true] 輸入是否滑鼠移入顯示pointer樣式，預設true
  * @vue-prop {Boolean} [loading=false] 輸入是否為載入模式，預設false
  * @vue-prop {String} [loadingColor='grey darken-2'] 輸入載入圖標顏色字串，預設'grey darken-2'
@@ -156,6 +161,10 @@ export default {
             type: String,
             default: 'grey darken-3',
         },
+        iconColorActive: {
+            type: String,
+            default: 'grey darken-3',
+        },
         borderRadius: {
             type: [Number, String],
             default: '50%',
@@ -185,6 +194,10 @@ export default {
             type: String,
             default: 'transparent',
         },
+        borderColorActive: {
+            type: String,
+            default: 'transparent',
+        },
         backgroundColor: {
             type: String,
             default: 'rgb(241,241,241)',
@@ -194,6 +207,10 @@ export default {
             default: 'rgb(236,236,236)',
         },
         backgroundColorFocus: {
+            type: String,
+            default: 'rgb(230,230,230)',
+        },
+        backgroundColorActive: {
             type: String,
             default: 'rgb(230,230,230)',
         },
@@ -245,6 +262,10 @@ export default {
                 }
             },
         },
+        active: {
+            type: Boolean,
+            default: false,
+        },
         cursorPointer: {
             type: Boolean,
             default: true,
@@ -276,14 +297,28 @@ export default {
     },
     data: function() {
         return {
-            loadingTrans: false,
+
+            activeTrans: false,
             hoverTrans: false,
             focusTrans: false,
+            loadingTrans: false,
+
         }
     },
     mounted: function() {
     },
     computed: {
+
+        changeActive: function() {
+            //console.log('computed changeActive')
+
+            let vo = this
+
+            //save
+            vo.activeTrans = vo.active
+
+            return ''
+        },
 
         changeLoading: function() {
             //console.log('computed changeLoading')
@@ -311,16 +346,28 @@ export default {
             return color2hex(vo.iconColorFocus)
         },
 
+        effIconColorActive: function() {
+            let vo = this
+            return color2hex(vo.iconColorActive)
+        },
+
         useIconColor: function() {
             let vo = this
             let r
             if (vo.loadingTrans) {
                 return vo.effIconColor
             }
-            r = vo.focusTrans ? vo.effIconColorFocus : vo.hoverTrans ? vo.effIconColorHover : vo.effIconColor
+            r = vo.activeTrans
+                ? vo.effIconColorActive
+                : vo.focusTrans
+                    ? vo.effIconColorFocus
+                    : vo.hoverTrans
+                        ? vo.effIconColorHover
+                        : vo.effIconColor
             if (!vo.editable) {
-                // r = vo.focusTrans ? vo.effIconColorFocus : vo.effIconColor
-                r = vo.effIconColor
+                r = vo.activeTrans
+                    ? vo.effIconColorActive
+                    : vo.effIconColor
             }
             return r
         },
@@ -395,15 +442,28 @@ export default {
             return color2hex(vo.borderColorFocus)
         },
 
+        effBorderColorActive: function() {
+            let vo = this
+            return color2hex(vo.borderColorActive)
+        },
+
         useBorderColor: function() {
             let vo = this
             let r
             if (vo.loadingTrans) {
                 return vo.effBorderColor
             }
-            r = vo.focusTrans ? vo.effBorderColorFocus : vo.hoverTrans ? vo.effBorderColorHover : vo.effBorderColor
+            r = vo.activeTrans
+                ? vo.effBorderColorActive
+                : vo.focusTrans
+                    ? vo.effBorderColorFocus
+                    : vo.hoverTrans
+                        ? vo.effBorderColorHover
+                        : vo.effBorderColor
             if (!vo.editable) {
-                r = vo.focusTrans ? vo.effBorderColorFocus : vo.effBorderColor
+                r = vo.activeTrans
+                    ? vo.effBorderColorActive
+                    : vo.effBorderColor
             }
             return r
         },
@@ -423,15 +483,28 @@ export default {
             return color2hex(vo.backgroundColorFocus)
         },
 
+        effBackgroundColorActive: function() {
+            let vo = this
+            return color2hex(vo.backgroundColorActive)
+        },
+
         useBackgroundColor: function() {
             let vo = this
             let r
             if (vo.loadingTrans) {
                 return vo.effBackgroundColor
             }
-            r = vo.focusTrans ? vo.effBackgroundColorFocus : vo.hoverTrans ? vo.effBackgroundColorHover : vo.effBackgroundColor
+            r = vo.activeTrans
+                ? vo.effBackgroundColorActive
+                : vo.focusTrans
+                    ? vo.effBackgroundColorFocus
+                    : vo.hoverTrans
+                        ? vo.effBackgroundColorHover
+                        : vo.effBackgroundColor
             if (!vo.editable) {
-                r = vo.focusTrans ? vo.effBackgroundColorFocus : vo.effBackgroundColor
+                r = vo.activeTrans
+                    ? vo.effBackgroundColorActive
+                    : vo.effBackgroundColor
             }
             return r
         },

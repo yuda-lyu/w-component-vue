@@ -231,6 +231,63 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-button-circle'"
+                    :casename="'active & iconColor & iconColorHover & iconColorFocus & iconColorActive'"
+                ></demolink>
+
+                <w-button-circle
+                    :icon="mdiCheckUnderlineCircle"
+                    :active="true"
+                    :iconColor="'rgba(244, 81, 30, 0.7)'"
+                    :iconColorHover="'rgba(244, 81, 30, 0.8)'"
+                    :iconColorFocus="'rgba(244, 81, 30, 1)'"
+                    :iconColorActive="'#f26'"
+                ></w-button-circle>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-button-circle'"
+                    :casename="'active & borderWidth & borderColor & borderColorHover & borderColorFocus & borderColorActive'"
+                ></demolink>
+
+                <div style="display:inline-block; padding:15px; background:#888;">
+                    <w-button-circle
+                        :icon="mdiCheckUnderlineCircle"
+                        :active="true"
+                        :borderWidth="1"
+                        :borderColor="'#aaa'"
+                        :borderColorHover="'#ccc'"
+                        :borderColorFocus="'#eee'"
+                        :borderColorActive="'#fff'"
+                    ></w-button-circle>
+                </div>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-button-circle'"
+                    :casename="'active & backgroundColor & backgroundColorHover & backgroundColorFocus & backgroundColorActive'"
+                ></demolink>
+
+                <w-button-circle
+                    :icon="mdiCheckUnderlineCircle"
+                    :active="true"
+                    :backgroundColor="'rgba(225, 190, 231, 0.5)'"
+                    :backgroundColorHover="'rgba(225, 190, 231, 0.75)'"
+                    :backgroundColorFocus="'rgba(225, 190, 231, 1)'"
+                    :backgroundColorActive="'#FFF3E0'"
+                ></w-button-circle>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-button-circle'"
                     :casename="'rippleColor'"
                 ></demolink>
 

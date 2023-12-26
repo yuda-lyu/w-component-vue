@@ -524,7 +524,11 @@ export default {
             if (vo.loadingTrans || vo.isProging) {
                 return vo.effIconColor
             }
-            r = vo.activeTrans ? vo.effIconColorActive : vo.hoverTrans ? vo.effIconColorHover : vo.effIconColor
+            r = vo.activeTrans
+                ? vo.effIconColorActive
+                : vo.hoverTrans
+                    ? vo.effIconColorHover
+                    : vo.effIconColor
             if (!vo.editable) {
                 r = vo.activeTrans ? vo.effIconColorActive : vo.effIconColor
             }
@@ -771,7 +775,7 @@ export default {
             }
 
             //shadowActive
-            if (vo.active && vo.shadowActive) {
+            if (vo.activeTrans && vo.shadowActive) {
                 if (isestr(vo.shadowActiveStyle)) {
                     return repColor(vo.shadowActiveStyle, 'backgroundColorActiveAlpha', vo.backgroundColorActive)
                 }
