@@ -530,7 +530,9 @@ export default {
                     ? vo.effIconColorHover
                     : vo.effIconColor
             if (!vo.editable) {
-                r = vo.activeTrans ? vo.effIconColorActive : vo.effIconColor
+                r = vo.activeTrans
+                    ? vo.effIconColorActive
+                    : vo.effIconColor
             }
             return r
         },
@@ -571,9 +573,15 @@ export default {
             if (vo.loadingTrans || vo.isProging) {
                 return vo.effTextColor
             }
-            r = vo.activeTrans ? vo.effTextColorActive : vo.hoverTrans ? vo.effTextColorHover : vo.effTextColor
+            r = vo.activeTrans
+                ? vo.effTextColorActive
+                : vo.hoverTrans
+                    ? vo.effTextColorHover
+                    : vo.effTextColor
             if (!vo.editable) {
-                r = vo.activeTrans ? vo.effTextColorActive : vo.effTextColor
+                r = vo.activeTrans
+                    ? vo.effTextColorActive
+                    : vo.effTextColor
             }
             return r
         },
@@ -608,9 +616,15 @@ export default {
             if (vo.loadingTrans || vo.isProging) {
                 r = vo.effBorderColor //不能直接return, 得由後面join產生border樣式字串
             }
-            r = vo.activeTrans ? vo.effBorderColorActive : vo.hoverTrans ? vo.effBorderColorHover : vo.effBorderColor
+            r = vo.activeTrans
+                ? vo.effBorderColorActive
+                : vo.hoverTrans
+                    ? vo.effBorderColorHover
+                    : vo.effBorderColor
             if (!vo.editable) {
-                r = vo.activeTrans ? vo.effBorderColorActive : vo.effBorderColor
+                r = vo.activeTrans
+                    ? vo.effBorderColorActive
+                    : vo.effBorderColor
             }
 
             //useBorderUsed
@@ -736,9 +750,15 @@ export default {
             if (vo.loadingTrans || vo.isProging) {
                 return vo.effBackgroundColor
             }
-            r = vo.activeTrans ? vo.effBackgroundColorActive : vo.hoverTrans ? vo.effBackgroundColorHover : vo.effBackgroundColor
+            r = vo.activeTrans
+                ? vo.effBackgroundColorActive
+                : vo.hoverTrans
+                    ? vo.effBackgroundColorHover
+                    : vo.effBackgroundColor
             if (!vo.editable) {
-                r = vo.activeTrans ? vo.effBackgroundColorActive : vo.effBackgroundColor
+                r = vo.activeTrans
+                    ? vo.effBackgroundColorActive
+                    : vo.effBackgroundColor
             }
             return r
         },
