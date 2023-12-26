@@ -163,6 +163,74 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-button-circle'"
+                    :casename="'borderRadius'"
+                ></demolink>
+
+                <w-button-circle
+                    :icon="mdiCheckUnderlineCircle"
+                    :borderRadius="4"
+                ></w-button-circle>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-button-circle'"
+                    :casename="'borderRadiusStyle(horizontal btns)'"
+                ></demolink>
+
+                <div style="display:inline-block; border-radius:8px; box-shadow:0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12)">
+                    <div style="display:flex;">
+                        <w-button-circle
+                            :icon="mdiCheckUnderlineCircle"
+                            :borderRadius="8"
+                            :borderRadiusStyle="{topLeft:true,bottomLeft:true,topRight:false,bottomRight:false}"
+                            :shadow="false"
+                        ></w-button-circle>
+                        <div style="border-left:1px solid #ddd;"></div>
+                        <w-button-circle
+                            :icon="mdiCheckUnderlineCircle"
+                            :borderRadius="8"
+                            :borderRadiusStyle="{topLeft:false,bottomLeft:false,topRight:true,bottomRight:true}"
+                            :shadow="false"
+                        ></w-button-circle>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-button-circle'"
+                    :casename="'borderRadiusStyle(vertical btns)'"
+                ></demolink>
+
+                <div style="display:inline-block; border-radius:8px; box-shadow:0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12)">
+                    <div style="display:flex; flex-direction:column;">
+                        <w-button-circle
+                            :icon="mdiCheckUnderlineCircle"
+                            :borderRadius="8"
+                            :borderRadiusStyle="{topLeft:true,bottomLeft:false,topRight:true,bottomRight:false}"
+                            :shadow="false"
+                        ></w-button-circle>
+                        <div style="border-top:1px solid #ddd;"></div>
+                        <w-button-circle
+                            :icon="mdiCheckUnderlineCircle"
+                            :borderRadius="8"
+                            :borderRadiusStyle="{topLeft:false,bottomLeft:true,topRight:false,bottomRight:true}"
+                            :shadow="false"
+                        ></w-button-circle>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-button-circle'"
                     :casename="'rippleColor'"
                 ></demolink>
 

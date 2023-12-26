@@ -24,7 +24,7 @@
 
                     <!-- 使用overflow:hidden預先測試, 因ripple會自行添加, 先行測試添加後狀態 -->
                     <div
-                        :style="`transition:all 0.3s; ${useBorderRadiusStyle} background:${useBackgroundColor}; ${editable&&cursorPointer?'cursor:pointer;':''} box-shadow:${useShadow}; outline:none; user-select:none; overflow:hidden;`"
+                        :style="`transition:all 0.3s; ${useBorderRadius} background:${useBackgroundColor}; ${editable&&cursorPointer?'cursor:pointer;':''} box-shadow:${useShadow}; outline:none; user-select:none; overflow:hidden;`"
                         tabindex="0"
                         v-domripple="useRipple"
                         @mouseenter="hoverTrans=true;$emit('mouseenter',$event)"
@@ -35,7 +35,7 @@
 
                         <!-- 為了讓transition-group能抓到可拖曳對象, 本層多設定tabindex, 本層設定為1 -->
                         <div
-                            :style="`transition:all 0.3s; ${usePadding} ${useBorderRadiusStyle} ${useBorderWidth} ${useBorderColor} border-style:solid; outline:none; user-select:none;`"
+                            :style="`transition:all 0.3s; ${usePadding} ${useBorderRadius} ${useBorderWidth} ${useBorderColor} border-style:solid; outline:none; user-select:none;`"
                             tabindex="1"
                         >
 
@@ -99,7 +99,7 @@
                 style="position:absolute; left:0; right:0; top:0; bottom:0;"
                 v-if="isProging"
             >
-                <div :style="`${useBorderRadiusStyle} overflow:hidden; width:100%; height:100%;`">
+                <div :style="`${useBorderRadius} overflow:hidden; width:100%; height:100%;`">
                     <div :style="`background:${effProgBackgroundColor}; height:100%;`">
                         <div :style="`background:${effProgColor}; width:${useProg}%; height:100%;`"></div>
                     </div>
@@ -110,7 +110,7 @@
                 style="position:absolute; left:0; right:0; top:0; bottom:0;"
                 v-if="!editable || loadingTrans"
             >
-                <div :style="`${useBorderRadiusStyle} overflow:hidden; width:100%; height:100%;`">
+                <div :style="`${useBorderRadius} overflow:hidden; width:100%; height:100%;`">
                     <div :style="`background:${effDisabledColor}; height:100%;`">
                     </div>
                 </div>
@@ -666,8 +666,8 @@ export default {
             return borderWidth
         },
 
-        useBorderRadiusStyle: function() {
-            //console.log('useBorderRadiusStyle')
+        useBorderRadius: function() {
+            //console.log('useBorderRadius')
 
             let vo = this
 

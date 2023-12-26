@@ -20,7 +20,7 @@
 
                 <!-- 使用overflow:hidden預先測試, 因ripple會自行添加, 先行測試添加後狀態 -->
                 <div
-                    :style="`position:relative; transition:all 0.3s; ${usePadding} border-radius:50%; border:${borderWidth}px solid ${useBorderColor}; background:${useBackgroundColor}; ${editable&&cursorPointer?'cursor:pointer;':''} box-shadow:${useShadow}; outline:none; user-select:none; overflow:hidden;`"
+                    :style="`position:relative; transition:all 0.3s; ${usePadding} ${useBorderRadius} border:${borderWidth}px solid ${useBorderColor}; background:${useBackgroundColor}; ${editable&&cursorPointer?'cursor:pointer;':''} box-shadow:${useShadow}; outline:none; user-select:none; overflow:hidden;`"
                     tabindex="0"
                     @mouseenter="hoverTrans=true;$emit('mouseenter',$event)"
                     @mouseleave="hoverTrans=false;$emit('mouseleave',$event)"
@@ -73,6 +73,7 @@
 </template>
 
 <script>
+import get from 'lodash-es/get'
 import map from 'lodash-es/map'
 import join from 'lodash-es/join'
 import split from 'lodash-es/split'
@@ -98,6 +99,8 @@ import WTooltip from './WTooltip.vue'
  * @vue-prop {String} [iconColor='grey darken-1'] 輸入按鈕圖標顏色字串，預設'grey darken-1'
  * @vue-prop {String} [iconColorHover='grey darken-2'] 輸入滑鼠移入時按鈕圖標顏色字串，預設'grey darken-2'
  * @vue-prop {String} [iconColorFocus='grey darken-3'] 輸入取得焦點時按鈕圖標顏色字串，預設'grey darken-3'
+ * @vue-prop {Number|String} [borderRadius='50%'] 輸入框圓角度數字或字串，若給予數字時單位為px，預設'50%'
+ * @vue-prop {Object} [borderRadiusStyle={left:true,right:true}] 輸入框圓角設定物件，可用鍵值為left、right、top、bottom、top-left、bottom-left、top-right、bottom-right，left代表設定top-left與bottom-left，right代表設定top-right與bottom-right，top代表設定top-left與top-right，bottom代表設定bottom-left與bottom-right，若有重複設定時後面鍵值會覆蓋前面，各鍵值為布林值，預設{left:true,right:true}
  * @vue-prop {Number} [borderWidth=0] 輸入框線寬度數字，單位為px，預設0
  * @vue-prop {String} [borderColor='transparent'] 輸入按鈕框線顏色字串，預設'transparent'
  * @vue-prop {String} [borderColorHover='transparent'] 輸入滑鼠移入時按鈕框線顏色字串，預設'transparent'
@@ -152,6 +155,19 @@ export default {
         iconColorFocus: {
             type: String,
             default: 'grey darken-3',
+        },
+        borderRadius: {
+            type: [Number, String],
+            default: '50%',
+        },
+        borderRadiusStyle: {
+            type: Object,
+            default: () => {
+                return {
+                    left: true,
+                    right: true,
+                }
+            },
         },
         borderWidth: {
             type: Number,
@@ -307,6 +323,61 @@ export default {
                 r = vo.effIconColor
             }
             return r
+        },
+
+        useBorderRadius: function() {
+            //console.log('useBorderRadius')
+
+            let vo = this
+
+            //bdr
+            let bdr = '0px'
+            if (isnum(vo.borderRadius)) {
+                let r = cdbl(vo.borderRadius)
+                bdr = `${r}px;`
+            }
+            else if (isestr(vo.borderRadius)) {
+                bdr = vo.borderRadius
+            }
+
+            //四方向radius
+            let tl = ''
+            let tr = ''
+            let bl = ''
+            let br = ''
+            if (get(vo, 'borderRadiusStyle.left') === true) {
+                tl = bdr
+                bl = bdr
+            }
+            if (get(vo, 'borderRadiusStyle.right') === true) {
+                tr = bdr
+                br = bdr
+            }
+            if (get(vo, 'borderRadiusStyle.top') === true) {
+                tl = bdr
+                tr = bdr
+            }
+            if (get(vo, 'borderRadiusStyle.bottom') === true) {
+                bl = bdr
+                br = bdr
+            }
+            if (get(vo, 'borderRadiusStyle.topLeft') === true || get(vo, 'borderRadiusStyle.top-left') === true) {
+                tl = bdr
+            }
+            if (get(vo, 'borderRadiusStyle.topRight') === true || get(vo, 'borderRadiusStyle.top-right') === true) {
+                tr = bdr
+            }
+            if (get(vo, 'borderRadiusStyle.bottomLeft') === true || get(vo, 'borderRadiusStyle.bottom-left') === true) {
+                bl = bdr
+            }
+            if (get(vo, 'borderRadiusStyle.bottomRight') === true || get(vo, 'borderRadiusStyle.bottom-right') === true) {
+                br = bdr
+            }
+
+            //borderRadius
+            let borderRadius = `border-top-left-radius:${tl}; border-top-right-radius:${tr}; border-bottom-left-radius:${bl}; border-bottom-right-radius:${br};`
+
+            return borderRadius
         },
 
         effBorderColor: function() {
