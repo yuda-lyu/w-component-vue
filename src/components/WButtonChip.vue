@@ -24,7 +24,7 @@
 
                     <!-- 使用overflow:hidden預先測試, 因ripple會自行添加, 先行測試添加後狀態 -->
                     <div
-                        :style="`transition:all 0.3s; ${useBorderRadius} background:${useBackgroundColor}; ${editable&&cursorPointer?'cursor:pointer;':''} box-shadow:${useShadow}; outline:none; user-select:none; overflow:hidden;`"
+                        :style="`transition:all 0.3s; ${useBorderRadius} background:${useBackgroundColor}; ${editable&&cursorPointer?'cursor:pointer;':''} ${useShadow}; outline:none; user-select:none; overflow:hidden;`"
                         tabindex="0"
                         v-domripple="useRipple"
                         @mouseenter="hoverTrans=true;$emit('mouseenter',$event)"
@@ -149,7 +149,7 @@ import sep from 'wsemi/src/sep.mjs'
 import genPm from 'wsemi/src/genPm.mjs'
 import oc from 'wsemi/src/color.mjs'
 import domCancelEvent from 'wsemi/src/domCancelEvent.mjs'
-import color2hex from '../js/vuetifyColor.mjs'
+import color2hex from '../js/color2hex.mjs'
 import parseSpace from '../js/parseSpace.mjs'
 import domRipple from '../js/domRipple.mjs'
 import WIcon from './WIcon.vue'
@@ -185,7 +185,7 @@ import WTooltip from './WTooltip.vue'
  * @vue-prop {Number} [tooltipBorderRadius=4] 輸入提示文字框圓角度數字，單位為px，預設4
  * @vue-prop {Object} [tooltipPaddingStyle={v:5,h:8}] 輸入提示文字內寬距離設定物件，可用鍵值為v、h、left、right、top、bottom，v代表同時設定top與bottom，h代表設定left與right，若有重複設定時後面鍵值會覆蓋前面，各鍵值為寬度數字，單位為px，預設{v:5,h:8}
  * @vue-prop {String} [tooltipTextFontSize='0.85rem'] 輸入提示文字字型大小字串，預設'0.85rem'
- * @vue-prop {String} [tooltipTextColor='black'] 輸入提示文字顏色字串，預設'white'
+ * @vue-prop {String} [tooltipTextColor='white'] 輸入提示文字顏色字串，預設'white'
  * @vue-prop {String} [tooltipBackgroundColor='rgba(60,60,60,0.75)'] 輸入背景顏色字串，預設'rgba(60,60,60,0.75)'
  * @vue-prop {Boolean} [shadow=false] 輸入是否顯示陰影布林值，預設false
  * @vue-prop {String} [shadowStyle=''] 輸入陰影顏色字串，預設值詳見props
@@ -797,7 +797,7 @@ export default {
             //shadowActive
             if (vo.activeTrans && vo.shadowActive) {
                 if (isestr(vo.shadowActiveStyle)) {
-                    return repColor(vo.shadowActiveStyle, 'backgroundColorActiveAlpha', vo.backgroundColorActive)
+                    return 'box-shadow:' + repColor(vo.shadowActiveStyle, 'backgroundColorActiveAlpha', vo.backgroundColorActive)
                 }
                 return ''
             }
@@ -805,7 +805,7 @@ export default {
             //shadow
             if (vo.shadow) {
                 if (isestr(vo.shadowStyle)) {
-                    return repColor(vo.shadowStyle, 'backgroundColorAlpha', vo.backgroundColor)
+                    return 'box-shadow:' + repColor(vo.shadowStyle, 'backgroundColorAlpha', vo.backgroundColor)
                 }
                 return ''
             }

@@ -16,9 +16,11 @@ import WEchartsVueDyn from './WEchartsVueDyn.vue'
 import WExplorer from './WExplorer.vue'
 import WGroupBaggage from './WGroupBaggage.vue'
 import WGroupBaggageItem from './WGroupBaggageItem.vue'
-import WGroupCheck from './WGroupCheck.vue'
+import WGroupChipCheck from './WGroupChipCheck.vue'
+import WGroupChipRadio from './WGroupChipRadio.vue'
 import WGroupDragdrop from './WGroupDragdrop.vue'
-import WGroupRadio from './WGroupRadio.vue'
+import WGroupIconCheck from './WGroupIconCheck.vue'
+import WGroupIconRadio from './WGroupIconRadio.vue'
 import WGroupTags from './WGroupTags.vue'
 import WHighchartsBitmapDyn from './WHighchartsBitmapDyn.vue'
 import WHighchartsVueDyn from './WHighchartsVueDyn.vue'
@@ -101,9 +103,11 @@ let WComponentVue = {
         Vue.component('w-explorer', WExplorer)
         Vue.component('w-group-baggage', WGroupBaggage)
         Vue.component('w-group-baggage-item', WGroupBaggageItem)
-        Vue.component('w-group-check', WGroupCheck)
+        Vue.component('w-group-chip-check', WGroupChipCheck)
+        Vue.component('w-group-chip-radio', WGroupChipRadio)
         Vue.component('w-group-dragdrop', WGroupDragdrop)
-        Vue.component('w-group-radio', WGroupRadio)
+        Vue.component('w-group-icon-check', WGroupIconCheck)
+        Vue.component('w-group-icon-radio', WGroupIconRadio)
         Vue.component('w-group-tags', WGroupTags)
         Vue.component('w-highcharts-bitmap-dyn', WHighchartsBitmapDyn)
         Vue.component('w-highcharts-vue-dyn', WHighchartsVueDyn)

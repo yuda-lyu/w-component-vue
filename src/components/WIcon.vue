@@ -58,7 +58,7 @@
 </template>
 
 <script>
-import color2hex from '../js/vuetifyColor.mjs'
+import color2hex from '../js/color2hex.mjs'
 import isearr from 'wsemi/src/isearr.mjs'
 import isestr from 'wsemi/src/isestr.mjs'
 

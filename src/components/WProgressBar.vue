@@ -54,7 +54,7 @@ import { mdiCheck, mdiOrbitVariant } from '@mdi/js'
 import isestr from 'wsemi/src/isestr.mjs'
 import dig from 'wsemi/src/dig.mjs'
 import replace from 'wsemi/src/replace.mjs'
-import color2hex from '../js/vuetifyColor.mjs'
+import color2hex from '../js/color2hex.mjs'
 import WIcon from './WIcon.vue'
 
 

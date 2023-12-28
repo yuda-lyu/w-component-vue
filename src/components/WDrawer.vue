@@ -124,7 +124,7 @@ import domIsClientXYIn from 'wsemi/src/domIsClientXYIn.mjs'
 import domGetWindowSize from 'wsemi/src/domGetWindowSize.mjs'
 import domDragBarAndScroll from 'wsemi/src/domDragBarAndScroll.mjs'
 import domResize from '../js/domResize.mjs'
-import color2hex from '../js/vuetifyColor.mjs'
+import color2hex from '../js/color2hex.mjs'
 
 
 /**

@@ -37,7 +37,7 @@
 
 <script>
 import replace from 'wsemi/src/replace.mjs'
-import color2hex from '../js/vuetifyColor.mjs'
+import color2hex from '../js/color2hex.mjs'
 import WTimedayCore from './WTimedayCore.vue'
 
 

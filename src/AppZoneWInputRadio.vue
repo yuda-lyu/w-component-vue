@@ -201,7 +201,7 @@
 </template>
 
 <script>
-import { mdiAccountSupervisorCircle, mdiViewDashboard, mdiClockTimeEightOutline, mdiBlenderSoftware, mdiApple, mdiSpoonSugar } from '@mdi/js'
+import { mdiViewDashboard, mdiClockTimeEightOutline, mdiBlenderSoftware, mdiApple, mdiSpoonSugar } from '@mdi/js'
 import demolink from './components/demolink.vue'
 import WInputRadio from './components/WInputRadio.vue'
 import WIcon from './components/WIcon.vue'
@@ -217,7 +217,6 @@ export default {
     },
     data: function() {
         return {
-            mdiAccountSupervisorCircle,
             'WInputRadio': {
                 'string': {
                     'items': [

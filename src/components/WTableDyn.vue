@@ -253,7 +253,7 @@ import WButtonChip from './WButtonChip.vue'
 import WAggridVueDyn from './WAggridVueDyn.vue'
 import domResize from '../js/domResize.mjs'
 import parseSpace from '../js/parseSpace.mjs'
-import color2hex from '../js/vuetifyColor.mjs'
+import color2hex from '../js/color2hex.mjs'
 
 
 /**

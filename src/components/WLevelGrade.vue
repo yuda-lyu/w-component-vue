@@ -90,7 +90,7 @@ import isnum from 'wsemi/src/isnum.mjs'
 import isp0int from 'wsemi/src/isp0int.mjs'
 import cdbl from 'wsemi/src/cdbl.mjs'
 import dig from 'wsemi/src/dig.mjs'
-import color2hex from '../js/vuetifyColor.mjs'
+import color2hex from '../js/color2hex.mjs'
 import WIcon from './WIcon.vue'
 
 

@@ -61,7 +61,7 @@ import cloneDeep from 'lodash-es/cloneDeep'
 import replace from 'wsemi/src/replace.mjs'
 import arrHas from 'wsemi/src/arrHas.mjs'
 import parseSpace from '../js/parseSpace.mjs'
-import color2hex from '../js/vuetifyColor.mjs'
+import color2hex from '../js/color2hex.mjs'
 
 
 /**

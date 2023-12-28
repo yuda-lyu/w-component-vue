@@ -113,7 +113,7 @@ import every from 'lodash-es/every'
 import isEqual from 'lodash-es/isEqual'
 import isobj from 'wsemi/src/isobj.mjs'
 import domResize from '../js/domResize.mjs'
-import color2hex from '../js/vuetifyColor.mjs'
+import color2hex from '../js/color2hex.mjs'
 import WListItem from './WListItem.vue'
 
 

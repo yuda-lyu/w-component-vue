@@ -88,7 +88,7 @@
 
 <script>
 import { mdiAlert, mdiCheckboxMarkedCircle, mdiCloseCircle } from '@mdi/js'
-import color2hex from '../js/vuetifyColor.mjs'
+import color2hex from '../js/color2hex.mjs'
 import WButtonChip from './WButtonChip.vue'
 import WIcon from './WIcon.vue'
 import WDialog from './WDialog.vue'

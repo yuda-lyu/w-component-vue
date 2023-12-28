@@ -44,7 +44,7 @@
 
 <script>
 import isnum from 'wsemi/src/isnum.mjs'
-import color2hex from '../js/vuetifyColor.mjs'
+import color2hex from '../js/color2hex.mjs'
 import parseSpace from '../js/parseSpace.mjs'
 import domResize from '../js/domResize.mjs'
 

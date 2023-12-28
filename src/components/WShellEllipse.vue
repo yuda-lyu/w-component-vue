@@ -114,7 +114,7 @@
 
 <script>
 import isestr from 'wsemi/src/isestr.mjs'
-import color2hex from '../js/vuetifyColor.mjs'
+import color2hex from '../js/color2hex.mjs'
 import parseSpace from '../js/parseSpace.mjs'
 import WIcon from './WIcon.vue'
 import WTooltip from './WTooltip.vue'
@@ -148,7 +148,7 @@ import WTooltip from './WTooltip.vue'
  * @vue-prop {Number} [tooltipBorderRadius=4] 輸入提示文字框圓角度數字，單位為px，預設4
  * @vue-prop {Object} [tooltipPaddingStyle={v:5,h:8}] 輸入提示文字內寬距離設定物件，可用鍵值為v、h、left、right、top、bottom，v代表同時設定top與bottom，h代表設定left與right，若有重複設定時後面鍵值會覆蓋前面，各鍵值為寬度數字，單位為px，預設{v:5,h:8}
  * @vue-prop {String} [tooltipTextFontSize='0.85rem'] 輸入提示文字字型大小字串，預設'0.85rem'
- * @vue-prop {String} [tooltipTextColor='black'] 輸入提示文字顏色字串，預設'white'
+ * @vue-prop {String} [tooltipTextColor='white'] 輸入提示文字顏色字串，預設'white'
  * @vue-prop {String} [tooltipBackgroundColor='rgba(60,60,60,0.75)'] 輸入背景顏色字串，預設'rgba(60,60,60,0.75)'
  * @vue-prop {String} [verticalAlign='center'] 輸入input與文字之垂直對齊字串，可選'top'、'center'、'bottom'，預設'center'
  * @vue-prop {Boolean} [editable=true] 輸入是否為編輯模式，預設true

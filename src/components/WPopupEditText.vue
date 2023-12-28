@@ -77,7 +77,7 @@
 <script>
 import { mdiSquareEditOutline, mdiCheckboxMarkedCircle } from '@mdi/js'
 import replace from 'wsemi/src/replace.mjs'
-import color2hex from '../js/vuetifyColor.mjs'
+import color2hex from '../js/color2hex.mjs'
 import WPopup from './WPopup.vue'
 import WText from './WText.vue'
 import WButtonChip from './WButtonChip.vue'

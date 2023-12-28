@@ -74,7 +74,7 @@
 <script>
 import replace from 'wsemi/src/replace.mjs'
 import domRipple from '../js/domRipple.mjs'
-import color2hex from '../js/vuetifyColor.mjs'
+import color2hex from '../js/color2hex.mjs'
 import parseSpace from '../js/parseSpace.mjs'
 import WIcon from './WIcon.vue'
 

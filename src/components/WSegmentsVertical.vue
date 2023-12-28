@@ -161,7 +161,7 @@ import replace from 'wsemi/src/replace.mjs'
 import WPopup from './WPopup.vue'
 import parseSpace from '../js/parseSpace.mjs'
 import parseDirection from '../js/parseDirection.mjs'
-import color2hex from '../js/vuetifyColor.mjs'
+import color2hex from '../js/color2hex.mjs'
 
 
 /**

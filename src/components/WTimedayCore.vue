@@ -45,7 +45,7 @@ import get from 'lodash-es/get'
 import isday from 'wsemi/src/isday.mjs'
 import cint from 'wsemi/src/cint.mjs'
 import replace from 'wsemi/src/replace.mjs'
-import color2hex from '../js/vuetifyColor.mjs'
+import color2hex from '../js/color2hex.mjs'
 
 
 /**

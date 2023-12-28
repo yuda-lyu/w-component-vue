@@ -153,7 +153,7 @@
                 >
                     <template v-slot:header>
 
-                        <w-group-radio
+                        <w-group-chip-radio
                             style="margin:0px 10px;"
                             :items="WPanelBulge.menu.items"
                             v-model="WPanelBulge.menu.select"
@@ -169,7 +169,7 @@
                             :backgroundColorHover="'rgba(255,255,255,0)'"
                             :backgroundColorActive="'rgba(255,255,255,0.15)'"
                             :shadowActive="false"
-                        ></w-group-radio>
+                        ></w-group-chip-radio>
 
                     </template>
 
@@ -189,14 +189,14 @@
 import { mdiViewDashboard, mdiClockTimeEightOutline, mdiBlenderSoftware, mdiApple, mdiSpoonSugar } from '@mdi/js'
 import demolink from './components/demolink.vue'
 import WPanelBulge from './components/WPanelBulge.vue'
-import WGroupRadio from './components/WGroupRadio.vue'
+import WGroupChipRadio from './components/WGroupChipRadio.vue'
 
 
 export default {
     components: {
         demolink,
         WPanelBulge,
-        WGroupRadio,
+        WGroupChipRadio,
     },
     props: {
     },

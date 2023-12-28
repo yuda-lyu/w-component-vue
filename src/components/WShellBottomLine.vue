@@ -26,7 +26,7 @@
 </template>
 
 <script>
-import color2hex from '../js/vuetifyColor.mjs'
+import color2hex from '../js/color2hex.mjs'
 
 
 /**

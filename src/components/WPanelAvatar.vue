@@ -78,7 +78,7 @@
 
 <script>
 import { mdiForest } from '@mdi/js'
-import color2hex from '../js/vuetifyColor.mjs'
+import color2hex from '../js/color2hex.mjs'
 import domResize from '../js/domResize.mjs'
 import WIcon from './WIcon.vue'
 

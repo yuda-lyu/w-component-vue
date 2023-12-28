@@ -43,7 +43,7 @@
 import { mdiCheckboxMarked, mdiCheckboxBlankOutline } from '@mdi/js/mdi.js'
 import isbol from 'wsemi/src/isbol.mjs'
 import replace from 'wsemi/src/replace.mjs'
-import color2hex from '../js/vuetifyColor.mjs'
+import color2hex from '../js/color2hex.mjs'
 import WIcon from './WIcon.vue'
 
 

@@ -99,7 +99,7 @@ import get from 'lodash-es/get'
 import isNumber from 'lodash-es/isNumber'
 import replace from 'wsemi/src/replace.mjs'
 import parseSpace from '../js/parseSpace.mjs'
-import color2hex from '../js/vuetifyColor.mjs'
+import color2hex from '../js/color2hex.mjs'
 import WGroupBaggageItem from './WGroupBaggageItem.vue'
 
 

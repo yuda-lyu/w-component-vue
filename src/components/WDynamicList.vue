@@ -93,7 +93,7 @@ import debounce from 'wsemi/src/debounce.mjs'
 import pmThrottle from 'wsemi/src/pmThrottle.mjs'
 import binarySearch from '../js/binarySearch.mjs'
 import globalMemory from '../js/globalMemory.mjs'
-// import color2hex from '../js/vuetifyColor.mjs'
+// import color2hex from '../js/color2hex.mjs'
 import WPanelScrollyCore from './WPanelScrollyCore.vue'
 
 

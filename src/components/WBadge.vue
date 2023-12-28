@@ -29,7 +29,7 @@
 <script>
 import get from 'lodash-es/get'
 import replace from 'wsemi/src/replace.mjs'
-import color2hex from '../js/vuetifyColor.mjs'
+import color2hex from '../js/color2hex.mjs'
 import domResize from '../js/domResize.mjs'
 
 

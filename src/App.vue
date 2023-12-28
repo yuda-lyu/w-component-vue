@@ -263,14 +263,24 @@
             ></AppZoneWListCheck>
 
 
-            <AppZoneWGroupRadio
-                v-if="cmpPick==='WGroupRadio'"
-            ></AppZoneWGroupRadio>
+            <AppZoneWGroupChipCheck
+                v-if="cmpPick==='WGroupChipCheck'"
+            ></AppZoneWGroupChipCheck>
 
 
-            <AppZoneWGroupCheck
-                v-if="cmpPick==='WGroupCheck'"
-            ></AppZoneWGroupCheck>
+            <AppZoneWGroupChipRadio
+                v-if="cmpPick==='WGroupChipRadio'"
+            ></AppZoneWGroupChipRadio>
+
+
+            <AppZoneWGroupIconCheck
+                v-if="cmpPick==='WGroupIconCheck'"
+            ></AppZoneWGroupIconCheck>
+
+
+            <AppZoneWGroupIconRadio
+                v-if="cmpPick==='WGroupIconRadio'"
+            ></AppZoneWGroupIconRadio>
 
 
             <AppZoneWText
@@ -451,9 +461,11 @@ import AppZoneWListExpand from './AppZoneWListExpand.vue'
 import AppZoneWListRadio from './AppZoneWListRadio.vue'
 import AppZoneWListCheck from './AppZoneWListCheck.vue'
 import AppZoneWInputCheckbox from './AppZoneWInputCheckbox.vue'
-import AppZoneWGroupCheck from './AppZoneWGroupCheck.vue'
 import AppZoneWInputRadio from './AppZoneWInputRadio.vue'
-import AppZoneWGroupRadio from './AppZoneWGroupRadio.vue'
+import AppZoneWGroupChipCheck from './AppZoneWGroupChipCheck.vue'
+import AppZoneWGroupChipRadio from './AppZoneWGroupChipRadio.vue'
+import AppZoneWGroupIconCheck from './AppZoneWGroupIconCheck.vue'
+import AppZoneWGroupIconRadio from './AppZoneWGroupIconRadio.vue'
 import AppZoneWText from './AppZoneWText.vue'
 import AppZoneWTextInt from './AppZoneWTextInt.vue'
 import AppZoneWTextarea from './AppZoneWTextarea.vue'
@@ -520,9 +532,11 @@ export default {
         AppZoneWListRadio,
         AppZoneWListCheck,
         AppZoneWInputCheckbox,
-        AppZoneWGroupCheck,
         AppZoneWInputRadio,
-        AppZoneWGroupRadio,
+        AppZoneWGroupChipCheck,
+        AppZoneWGroupChipRadio,
+        AppZoneWGroupIconCheck,
+        AppZoneWGroupIconRadio,
         AppZoneWText,
         AppZoneWTextInt,
         AppZoneWTextarea,
@@ -595,9 +609,11 @@ export default {
                 name: 'group',
                 cmps: [
                     { name: 'WInputCheckbox' },
-                    { name: 'WGroupCheck' },
                     { name: 'WInputRadio' },
-                    { name: 'WGroupRadio' },
+                    { name: 'WGroupChipCheck' },
+                    { name: 'WGroupChipRadio' },
+                    { name: 'WGroupIconCheck' },
+                    { name: 'WGroupIconRadio' },
                     { name: 'WGroupTags' },
                     { name: 'WGroupDragdrop' },
                     { name: 'WGroupBaggage' },
