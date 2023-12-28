@@ -237,6 +237,20 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-group-icon-check'"
+                    :casename="'one'"
+                ></demolink>
+
+                <w-group-icon-check
+                    :items="WGroupIconCheck.objectOne.items"
+                    v-model="WGroupIconCheck.objectOne.selects"
+                ></w-group-icon-check>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-group-icon-check'"
                     :casename="'seplineColor'"
                 ></demolink>
 
@@ -548,6 +562,21 @@
                     v-model="WGroupIconCheck.object.selects"
                     :dir="'vertical'"
                     :seplineWidth="0"
+                ></w-group-icon-check>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-group-icon-check'"
+                    :casename="'dir(vertical) & one'"
+                ></demolink>
+
+                <w-group-icon-check
+                    :items="WGroupIconCheck.objectOne.items"
+                    v-model="WGroupIconCheck.objectOne.selects"
+                    :dir="'vertical'"
                 ></w-group-icon-check>
 
             </div>

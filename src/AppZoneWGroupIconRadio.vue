@@ -237,6 +237,20 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-group-icon-radio'"
+                    :casename="'one'"
+                ></demolink>
+
+                <w-group-icon-radio
+                    :items="WGroupIconRadio.objectOne.items"
+                    v-model="WGroupIconRadio.objectOne.select"
+                ></w-group-icon-radio>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-group-icon-radio'"
                     :casename="'seplineColor'"
                 ></demolink>
 
@@ -548,6 +562,21 @@
                     v-model="WGroupIconRadio.object.select"
                     :dir="'vertical'"
                     :seplineWidth="0"
+                ></w-group-icon-radio>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-group-icon-radio'"
+                    :casename="'dir(vertical) & one'"
+                ></demolink>
+
+                <w-group-icon-radio
+                    :items="WGroupIconRadio.objectOne.items"
+                    v-model="WGroupIconRadio.objectOne.select"
+                    :dir="'vertical'"
                 ></w-group-icon-radio>
 
             </div>

@@ -407,18 +407,18 @@ export default {
             let obj = {}
             if (vo.dir === 'horizontal') {
                 if (k === 0) {
-                    obj = { topLeft: true, bottomLeft: true, topRight: false, bottomRight: false }
+                    obj = { ...obj, topLeft: true, bottomLeft: true, }
                 }
-                else if (k === up) {
-                    obj = { topLeft: false, bottomLeft: false, topRight: true, bottomRight: true }
+                if (k === up) { //有可能僅1個故不能用elseif
+                    obj = { ...obj, topRight: true, bottomRight: true }
                 }
             }
             else {
                 if (k === 0) {
-                    obj = { topLeft: true, bottomLeft: false, topRight: true, bottomRight: false }
+                    obj = { ...obj, topLeft: true, topRight: true }
                 }
-                else if (k === up) {
-                    obj = { topLeft: false, bottomLeft: true, topRight: false, bottomRight: true }
+                if (k === up) { //有可能僅1個故不能用elseif
+                    obj = { ...obj, bottomLeft: true, bottomRight: true }
                 }
             }
             return obj
