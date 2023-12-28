@@ -78,7 +78,7 @@
     ></script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.3.67/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.3.68/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -138,7 +138,7 @@
                 :header-background-color="'linear-gradient(60deg,#ab47bc,#7b1fa2)'"
             >
                 <template v-slot:header>
-                    <w-group-radio
+                    <w-group-chip-radio
                         style="margin:0px 10px;"
                         :items="WPanelBulge.menu.items"
                         v-model="WPanelBulge.menu.select"
@@ -154,7 +154,7 @@
                         :background-color-hover="'rgba(255,255,255,0)'"
                         :background-color-active="'rgba(255,255,255,0.15)'"
                         :shadow-active="false"
-                    ></w-group-radio>
+                    ></w-group-chip-radio>
                 </template>
 
                 <div style="padding:20px;" v-html="WPanelBulge.table"></div>

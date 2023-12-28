@@ -1,0 +1,251 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-tw">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui"
+    />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>w-component-vue</title>
+
+    <!-- @babel/polyfill -->
+    <script
+        nomodule
+        src="https://cdn.jsdelivr.net/npm/@babel/polyfill/dist/polyfill.min.js"
+    ></script>
+
+    <!-- vue -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.min.js"></script>
+
+    <!-- extractHtml已自動添加@babel/polyfill與vue -->
+
+    <!-- vuetify -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/vuetify@2.6.14/dist/vuetify.min.css"
+        rel="stylesheet"
+    />
+    <script
+        src="https://cdn.jsdelivr.net/npm/vuetify@2.6.14/dist/vuetify.min.js"
+    ></script>
+
+    <!-- fontawesome -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.2/css/all.min.css"
+        rel="stylesheet"
+    />
+
+    <!-- mdi, 各組件使用mdi/js會於轉單頁時改為mdi icon, 故需引用mdi/css -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/@mdi/font@7.2.96/css/materialdesignicons.min.css"
+        rel="stylesheet"
+    />
+
+    <!-- google, 各組件使用mdi/js故不需引用 -->
+    <link
+        _href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900"
+        rel="stylesheet"
+    />
+    <link
+        _href="https://fonts.googleapis.com/css?family=Material+Icons"
+        rel="stylesheet"
+    />
+
+    <!-- data -->
+    <script
+        src="https://cdn.jsdelivr.net/npm/w-demores@1.0.23/res/data/dataAAPL.js"
+    ></script>
+    <script
+        src="https://cdn.jsdelivr.net/npm/w-demores@1.0.23/res/data/dataUSD2EUR.js"
+    ></script>
+    <script
+        src="https://cdn.jsdelivr.net/npm/w-demores@1.0.23/res/data/dataTemperature.js"
+    ></script>
+    <script
+        src="https://cdn.jsdelivr.net/npm/w-demores@1.0.23/res/data/dataHousePriceArea.js"
+    ></script>
+    <script
+        src="https://cdn.jsdelivr.net/npm/w-demores@1.0.23/res/data/dataFlare.js"
+    ></script>
+    <script
+        src="https://cdn.jsdelivr.net/npm/w-demores@1.0.23/res/data/dataRain.js"
+    ></script>
+    <script
+        src="https://cdn.jsdelivr.net/npm/w-demores@1.0.23/res/data/dataRainClip.js"
+    ></script>
+    <script
+        src="https://cdn.jsdelivr.net/npm/w-demores@1.0.23/res/data/dataCivilSoilCodeIcon.js"
+    ></script>
+
+    <!-- w-component-vue -->
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.3.68/dist/w-component-vue.umd.js"></script>
+
+    <style>
+  .v-application--wrap {
+    /* width與max-width fix for IE11, 其外不能使用padding或margin避免失效 */
+    width: 100vw;
+    max-width: 100vw;
+    font-family: inherit;
+    background: #fff;
+  }
+  .item {
+    /* 因item位於demolink, 提取各範例html後會刪除demolink, 故得額外補上 */
+    border-left: 3px solid #ffba75;
+    margin: 5px 5px 8px 0px;
+    padding: 3px 3px 5px 10px;
+    font-size: 0.9rem;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
+  .head1 {
+    margin: 0px;
+    padding: 0px 0px 20px 0px;
+    font-size: 2.5rem;
+  }
+  .bk {
+    vertical-align: top;
+    padding: 10px 0px 60px 0px;
+  }
+  @media screen and (min-width: 1000px) {
+    /* 寬版 */
+    .bk {
+      display: inline-block;
+      margin: 0px 80px 0px 0px;
+    }
+  }
+    </style>
+</head>
+<body
+    style="font-family:'Microsoft JhengHei','Avenir','Helvetica'; padding:0px; margin:0px;"
+>
+    <v-app id="app" style="font-family:inherit; padding:0px 30px;">
+        <div class="head1">
+            <span
+                style="cursor:pointer;"
+                title="open for copy link to view component"
+                onclick="window.open('//yuda-lyu.github.io/w-component-vue/examples/app.html?cmp='+this.innerText,'_blank')"
+            >w-group-icon-radio</span>
+        </div>
+        <div class="bk">
+            <div class="item">tooltip &amp; tooltipBorderRadius</div>
+
+            <w-group-icon-radio
+                :items="WGroupIconRadio.objectTP.items"
+                v-model="WGroupIconRadio.objectTP.select"
+                :tooltip="'測試中文tooltip'"
+                :tooltip-border-radius="10"
+            ></w-group-icon-radio>
+        </div>
+    </v-app>
+
+    <script>
+  //install
+  Vue.use(window["w-component-vue"]);
+
+  //initialize
+  new Vue({
+    el: "#app",
+    vuetify: new Vuetify(),
+    data: function() {
+      return {
+        WGroupIconRadio: {
+          object: {
+            items: [
+              {
+                icon: "mdi-view-dashboard"
+              },
+              {
+                icon: "mdi-clock-time-eight-outline"
+              },
+              {
+                icon: "mdi-blender-software"
+              },
+              {
+                icon: "mdi-spoon-sugar"
+              },
+              {
+                icon: "mdi-apple"
+              }
+            ],
+            select: {
+              icon: "mdi-view-dashboard"
+            }
+          },
+          objectOne: {
+            items: [
+              {
+                icon: "mdi-view-dashboard"
+              }
+            ],
+            select: {
+              icon: "mdi-view-dashboard"
+            }
+          },
+          objectTP: {
+            items: [
+              {
+                icon: "mdi-view-dashboard",
+                tooltip: "tooltip for Dashboard"
+              },
+              {
+                icon: "mdi-clock-time-eight-outline",
+                tooltip: "tooltip for Schedule"
+              },
+              {
+                icon: "mdi-blender-software",
+                tooltip: "tooltip for Profile"
+              },
+              {
+                icon: "mdi-spoon-sugar",
+                tooltip: "tooltip for History"
+              },
+              {
+                icon: "mdi-apple",
+                tooltip: "tooltip for 蘋果"
+              }
+            ],
+            select: {
+              icon: "mdi-view-dashboard",
+              tooltip: "tooltip for Dashboard"
+            }
+          },
+          objectFA: {
+            items: [
+              {
+                icon: "fa fa-address-book"
+              },
+              {
+                icon: "fa fa-address-card"
+              },
+              {
+                icon: "fa fa-american-sign-language-interpreting"
+              },
+              {
+                icon: "fa fa-balance-scale"
+              },
+              {
+                icon: "fa fa-heartbeat"
+              }
+            ],
+            select: {
+              icon: "fa fa-address-book"
+            }
+          }
+        },
+        actions: []
+      };
+    },
+    mounted: function() {
+      return {};
+    },
+    computed: {},
+    methods: {
+      ckBtn: function(item, mode) {
+        console.log(item, mode);
+      }
+    }
+  });
+    </script>
+</body>
+</html>
