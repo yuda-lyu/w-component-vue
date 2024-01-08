@@ -99,7 +99,7 @@ import get from 'lodash-es/get'
 import isNumber from 'lodash-es/isNumber'
 import replace from 'wsemi/src/replace.mjs'
 import parseSpace from '../js/parseSpace.mjs'
-import color2hex from '../js/color2hex.mjs'
+import convertColor from '../js/convertColor.mjs'
 import WGroupBaggageItem from './WGroupBaggageItem.vue'
 
 
@@ -279,37 +279,37 @@ export default {
 
         effConnLineColor: function() {
             let vo = this
-            return color2hex(vo.connLineColor)
+            return convertColor(vo.connLineColor)
         },
 
         effTagTextColor: function() {
             let vo = this
-            return color2hex(vo.tagTextColor)
+            return convertColor(vo.tagTextColor)
         },
 
         effTagTextColorHover: function() {
             let vo = this
-            return color2hex(vo.tagTextColorHover)
+            return convertColor(vo.tagTextColorHover)
         },
 
         effTagBorderColor: function() {
             let vo = this
-            return color2hex(vo.tagBorderColor)
+            return convertColor(vo.tagBorderColor)
         },
 
         effTagBorderColorHover: function() {
             let vo = this
-            return color2hex(vo.tagBorderColorHover)
+            return convertColor(vo.tagBorderColorHover)
         },
 
         effTagBackgroundColor: function() {
             let vo = this
-            return color2hex(vo.tagBackgroundColor)
+            return convertColor(vo.tagBackgroundColor)
         },
 
         effTagBackgroundColorHover: function() {
             let vo = this
-            return color2hex(vo.tagBackgroundColorHover)
+            return convertColor(vo.tagBackgroundColorHover)
         },
 
         useTagPaddingStyle: function() {
@@ -335,32 +335,32 @@ export default {
 
         effContentTextColor: function() {
             let vo = this
-            return color2hex(vo.contentTextColor)
+            return convertColor(vo.contentTextColor)
         },
 
         effContentTextColorHover: function() {
             let vo = this
-            return color2hex(vo.contentTextColorHover)
+            return convertColor(vo.contentTextColorHover)
         },
 
         effContentBorderColor: function() {
             let vo = this
-            return color2hex(vo.contentBorderColor)
+            return convertColor(vo.contentBorderColor)
         },
 
         effContentBorderColorHover: function() {
             let vo = this
-            return color2hex(vo.contentBorderColorHover)
+            return convertColor(vo.contentBorderColorHover)
         },
 
         effContentBackgroundColor: function() {
             let vo = this
-            return color2hex(vo.contentBackgroundColor)
+            return convertColor(vo.contentBackgroundColor)
         },
 
         effContentBackgroundColorHover: function() {
             let vo = this
-            return color2hex(vo.contentBackgroundColorHover)
+            return convertColor(vo.contentBackgroundColorHover)
         },
 
         useContentPaddingStyle: function() {

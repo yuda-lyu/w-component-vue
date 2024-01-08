@@ -114,7 +114,7 @@
 
 <script>
 import isestr from 'wsemi/src/isestr.mjs'
-import color2hex from '../js/color2hex.mjs'
+import convertColor from '../js/convertColor.mjs'
 import parseSpace from '../js/parseSpace.mjs'
 import WIcon from './WIcon.vue'
 import WTooltip from './WTooltip.vue'
@@ -333,14 +333,14 @@ export default {
 
             let s = {}
             if (vo.focusedTrans) {
-                s['background-color'] = color2hex(vo.backgroundColorFocus)
+                s['background-color'] = convertColor(vo.backgroundColorFocus)
                 return s
             }
             if (vo.hoveredTrans) {
-                s['background-color'] = color2hex(vo.backgroundColorHover)
+                s['background-color'] = convertColor(vo.backgroundColorHover)
                 return s
             }
-            s['background-color'] = color2hex(vo.backgroundColor)
+            s['background-color'] = convertColor(vo.backgroundColor)
             return s
         },
 
@@ -351,14 +351,14 @@ export default {
 
             let s = {}
             if (vo.focusedTrans) {
-                s['border'] = `${vo.borderWidth}px solid ${color2hex(vo.borderColorFocus)}`
+                s['border'] = `${vo.borderWidth}px solid ${convertColor(vo.borderColorFocus)}`
                 return s
             }
             if (vo.hoveredTrans) {
-                s['border'] = `${vo.borderWidth}px solid ${color2hex(vo.borderColorHover)}`
+                s['border'] = `${vo.borderWidth}px solid ${convertColor(vo.borderColorHover)}`
                 return s
             }
-            s['border'] = `${vo.borderWidth}px solid ${color2hex(vo.borderColor)}`
+            s['border'] = `${vo.borderWidth}px solid ${convertColor(vo.borderColor)}`
             return s
         },
 
@@ -380,12 +380,12 @@ export default {
             let vo = this
 
             if (vo.hoveredTrans) {
-                return color2hex(vo.leftIconColorHover)
+                return convertColor(vo.leftIconColorHover)
             }
             else if (vo.focusedTrans) {
-                return color2hex(vo.leftIconColorFocus)
+                return convertColor(vo.leftIconColorFocus)
             }
-            return color2hex(vo.leftIconColor)
+            return convertColor(vo.leftIconColor)
         },
 
         useRightIconColor: function() {
@@ -394,12 +394,12 @@ export default {
             let vo = this
 
             if (vo.hoveredTrans) {
-                return color2hex(vo.rightIconColorHover)
+                return convertColor(vo.rightIconColorHover)
             }
             else if (vo.focusedTrans) {
-                return color2hex(vo.rightIconColorFocus)
+                return convertColor(vo.rightIconColorFocus)
             }
-            return color2hex(vo.rightIconColor)
+            return convertColor(vo.rightIconColor)
         },
 
         useTitleColor: function() {
@@ -408,7 +408,7 @@ export default {
             let vo = this
 
             let s = {}
-            s['color'] = color2hex(vo.titleColor)
+            s['color'] = convertColor(vo.titleColor)
             return s
         },
 

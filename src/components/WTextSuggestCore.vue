@@ -1,6 +1,6 @@
 <template>
     <WPopup
-        style="display:block;"
+        :displayType="'line'"
         :minWidth="minWidth"
         :maxWidth="maxWidth"
         :autoFitMinWidth="autoFitMinWidth"
@@ -22,7 +22,7 @@
 
                     <!-- 不能使用tabindex=0禁用駐點, 會導致點擊無法觸發windowMousedown與windowMouseup事件, 進而導致無法自動取消popup -->
                     <div
-                        :style="`width:100%; _height:${height}px; _line-height:${height}px; color:${useTextColor}; ${useTextFontSize} vertical-align:middle; white-space:nowrap; text-overflow:ellipsis; cursor:pointer; outline:none;`"
+                        :style="`width:100%; color:${useTextColor}; ${useTextFontSize} vertical-align:middle; white-space:nowrap; text-overflow:ellipsis; cursor:pointer; outline:none;`"
                         _tabindex="0"
                         @focus="focusText"
                         v-if="mode==='select'"
@@ -123,7 +123,7 @@ import size from 'lodash-es/size'
 import isobj from 'wsemi/src/isobj.mjs'
 import isbol from 'wsemi/src/isbol.mjs'
 import replace from 'wsemi/src/replace.mjs'
-import color2hex from '../js/color2hex.mjs'
+import convertColor from '../js/convertColor.mjs'
 import parseSpace from '../js/parseSpace.mjs'
 import WPopup from './WPopup.vue'
 import WTextCore from './WTextCore.vue'
@@ -366,7 +366,7 @@ export default {
 
             let vo = this
 
-            return color2hex(vo.textColor)
+            return convertColor(vo.textColor)
         },
 
         useItemBackgroundColor: function() {
@@ -374,7 +374,7 @@ export default {
 
             let vo = this
 
-            return color2hex(vo.itemBackgroundColor)
+            return convertColor(vo.itemBackgroundColor)
         },
 
         useItemBackgroundColorHover: function() {
@@ -382,7 +382,7 @@ export default {
 
             let vo = this
 
-            return color2hex(vo.itemBackgroundColorHover)
+            return convertColor(vo.itemBackgroundColorHover)
         },
 
         useItemTextFontSize: function() {
@@ -397,7 +397,7 @@ export default {
 
             let vo = this
 
-            return color2hex(vo.itemTextColor)
+            return convertColor(vo.itemTextColor)
         },
 
         useItemTextColorHover: function() {
@@ -405,7 +405,7 @@ export default {
 
             let vo = this
 
-            return color2hex(vo.itemTextColorHover)
+            return convertColor(vo.itemTextColorHover)
         },
 
         useItemPadding: function() {
@@ -427,7 +427,7 @@ export default {
 
             let vo = this
 
-            return color2hex(vo.expansionIconColor)
+            return convertColor(vo.expansionIconColor)
         },
 
         useRotateDeg: function() {

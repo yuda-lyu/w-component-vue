@@ -54,7 +54,7 @@ import { mdiCheck, mdiOrbitVariant } from '@mdi/js'
 import isestr from 'wsemi/src/isestr.mjs'
 import dig from 'wsemi/src/dig.mjs'
 import replace from 'wsemi/src/replace.mjs'
-import color2hex from '../js/color2hex.mjs'
+import convertColor from '../js/convertColor.mjs'
 import WIcon from './WIcon.vue'
 
 
@@ -249,32 +249,32 @@ export default {
 
         useProgColor: function() {
             let vo = this
-            return color2hex(vo.progColor)
+            return convertColor(vo.progColor)
         },
 
         useProgBackgroundColor: function() {
             let vo = this
-            return color2hex(vo.progBackgroundColor)
+            return convertColor(vo.progBackgroundColor)
         },
 
         useTitleTextColor: function() {
             let vo = this
-            return color2hex(vo.titleTextColor)
+            return convertColor(vo.titleTextColor)
         },
 
         useIconWaitingColor: function() {
             let vo = this
-            return color2hex(vo.iconWaitingColor)
+            return convertColor(vo.iconWaitingColor)
         },
 
         useIconFinishColor: function() {
             let vo = this
-            return color2hex(vo.iconFinishColor)
+            return convertColor(vo.iconFinishColor)
         },
 
         useValueTextColor: function() {
             let vo = this
-            return color2hex(vo.valueTextColor)
+            return convertColor(vo.valueTextColor)
         },
 
         useValueTextFontSize: function() {

@@ -23,11 +23,11 @@ import isnum from 'wsemi/src/isnum.mjs'
 import isestr from 'wsemi/src/isestr.mjs'
 import verifyValue from 'wsemi/src/verifyValue.mjs'
 import replace from 'wsemi/src/replace.mjs'
-import color2hex from '../js/color2hex.mjs'
+import convertColor from '../js/convertColor.mjs'
 
 
 /**
- * @vue-prop {String} [type='any'] 輸入文字框類型字串，預設'any'
+ * @vue-prop {String|Function} [type='any'] 輸入文字框類型字串，預設'any'
  * @vue-prop {String|Number} [value=''] 輸入文字框值字串或數字，預設''
  * @vue-prop {String} [textFontSize='1rem'] 輸入文字大小字串，預設'1rem'
  * @vue-prop {String} [textColor='black'] 輸入文字顏色字串，預設'black'
@@ -40,7 +40,7 @@ import color2hex from '../js/color2hex.mjs'
 export default {
     props: {
         type: {
-            type: String,
+            type: [String, Function],
             default: 'any',
         },
         value: {
@@ -128,7 +128,7 @@ export default {
 
             let vo = this
 
-            return color2hex(vo.textColor)
+            return convertColor(vo.textColor)
         },
 
     },

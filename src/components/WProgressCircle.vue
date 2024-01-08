@@ -74,7 +74,7 @@
 
 <script>
 import isestr from 'wsemi/src/isestr.mjs'
-import color2hex from '../js/color2hex.mjs'
+import convertColor from '../js/convertColor.mjs'
 import WTooltip from './WTooltip.vue'
 
 
@@ -251,17 +251,17 @@ export default {
 
         useColor: function() {
             let vo = this
-            return color2hex(vo.color)
+            return convertColor(vo.color)
         },
 
         useTrackColor: function() {
             let vo = this
-            return color2hex(vo.trackColor)
+            return convertColor(vo.trackColor)
         },
 
         useTextColor: function() {
             let vo = this
-            return color2hex(vo.textColor)
+            return convertColor(vo.textColor)
         },
 
         hasTooltop: function() {

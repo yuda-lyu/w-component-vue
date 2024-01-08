@@ -58,7 +58,7 @@
 </template>
 
 <script>
-import color2hex from '../js/color2hex.mjs'
+import convertColor from '../js/convertColor.mjs'
 import isearr from 'wsemi/src/isearr.mjs'
 import isestr from 'wsemi/src/isestr.mjs'
 
@@ -188,7 +188,7 @@ export default {
 
             let vo = this
 
-            return vo.mouseEnter ? color2hex(vo.colorHover) : color2hex(vo.color)
+            return vo.mouseEnter ? convertColor(vo.colorHover) : convertColor(vo.color)
         },
 
         useStyleSize: function () {

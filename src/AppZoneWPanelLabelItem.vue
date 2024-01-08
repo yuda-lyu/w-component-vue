@@ -2,7 +2,7 @@
     <div>
 
 
-        <div class="head1"><span style="cursor:pointer;" title="open for copy link to view component" onclick="window.open('//yuda-lyu.github.io/w-component-vue/examples/app.html?cmp='+this.innerText,'_blank')">w-panel-label-Item</span></div>
+        <div class="head1"><span style="cursor:pointer;" title="open for copy link to view component" onclick="window.open('//yuda-lyu.github.io/w-component-vue/examples/app.html?cmp='+this.innerText,'_blank')">w-panel-label-item</span></div>
 
 
         <div style="padding:0px;">
@@ -10,11 +10,11 @@
 
             <div class="bk">
                 <demolink
-                    :kbname="'w-panel-label-Item'"
+                    :kbname="'w-panel-label-item'"
                     :casename="'with text'"
                 ></demolink>
 
-                <w-panel-label-Item
+                <w-panel-label-item
                     :label="'Name'"
                 >
                     <template v-slot:item>
@@ -23,18 +23,18 @@
                             :textFontSize="'0.85rem'"
                         ></w-text>
                     </template>
-                </w-panel-label-Item>
+                </w-panel-label-item>
 
             </div>
 
 
             <div class="bk">
                 <demolink
-                    :kbname="'w-panel-label-Item'"
+                    :kbname="'w-panel-label-item'"
                     :casename="'with select'"
                 ></demolink>
 
-                <w-panel-label-Item
+                <w-panel-label-item
                     :label="'Fruit'"
                 >
                     <template v-slot:item>
@@ -44,18 +44,18 @@
                             v-model="WPanelLabelItem.objValue"
                         ></w-text-select>
                     </template>
-                </w-panel-label-Item>
+                </w-panel-label-item>
 
             </div>
 
 
             <div class="bk">
                 <demolink
-                    :kbname="'w-panel-label-Item'"
+                    :kbname="'w-panel-label-item'"
                     :casename="'labelVerticalAlign'"
                 ></demolink>
 
-                <w-panel-label-Item
+                <w-panel-label-item
                     :label="'Remark'"
                     :labelVerticalAlign="'top'"
                 >
@@ -72,18 +72,18 @@
                             </div>
                         </div>
                     </template>
-                </w-panel-label-Item>
+                </w-panel-label-item>
 
             </div>
 
 
             <div class="bk">
                 <demolink
-                    :kbname="'w-panel-label-Item'"
+                    :kbname="'w-panel-label-item'"
                     :casename="'with textarea & labelVerticalAlign'"
                 ></demolink>
 
-                <w-panel-label-Item
+                <w-panel-label-item
                     :label="'Fruit'"
                     :labelVerticalAlign="'top'"
                 >
@@ -94,18 +94,18 @@
                             v-model="WPanelLabelItem.text"
                         ></w-textarea>
                     </template>
-                </w-panel-label-Item>
+                </w-panel-label-item>
 
             </div>
 
 
             <div class="bk">
                 <demolink
-                    :kbname="'w-panel-label-Item'"
+                    :kbname="'w-panel-label-item'"
                     :casename="'with group-tags & labelVerticalAlign & labelShiftTop'"
                 ></demolink>
 
-                <w-panel-label-Item
+                <w-panel-label-item
                     :label="'Fruit'"
                     :labelVerticalAlign="'top'"
                     :labelShiftTop="15"
@@ -117,20 +117,20 @@
                             v-model="WPanelLabelItem.strItems"
                         ></w-group-tags>
                     </template>
-                </w-panel-label-Item>
+                </w-panel-label-item>
 
             </div>
 
 
             <div class="bk">
                 <demolink
-                    :kbname="'w-panel-label-Item'"
+                    :kbname="'w-panel-label-item'"
                     :casename="'labelWidth'"
                 ></demolink>
 
                 <div style="">
 
-                    <w-panel-label-Item
+                    <w-panel-label-item
                         :label="'Styles'"
                         :labelWidth="100"
                     >
@@ -140,11 +140,11 @@
                                 :textFontSize="'0.85rem'"
                             ></w-text>
                         </template>
-                    </w-panel-label-Item>
+                    </w-panel-label-item>
 
                     <div style="padding-top:5px;"></div>
 
-                    <w-panel-label-Item
+                    <w-panel-label-item
                         :label="'Components'"
                         :labelWidth="100"
                     >
@@ -154,7 +154,7 @@
                                 :textFontSize="'0.85rem'"
                             ></w-text>
                         </template>
-                    </w-panel-label-Item>
+                    </w-panel-label-item>
 
                 </div>
 
@@ -163,13 +163,13 @@
 
             <div class="bk">
                 <demolink
-                    :kbname="'w-panel-label-Item'"
+                    :kbname="'w-panel-label-item'"
                     :casename="'labelWidth & labelHorizontalAlign'"
                 ></demolink>
 
                 <div style="">
 
-                    <w-panel-label-Item
+                    <w-panel-label-item
                         :label="'Styles'"
                         :labelWidth="100"
                         :labelHorizontalAlign="'right'"
@@ -180,11 +180,11 @@
                                 :textFontSize="'0.85rem'"
                             ></w-text>
                         </template>
-                    </w-panel-label-Item>
+                    </w-panel-label-item>
 
                     <div style="padding-top:5px;"></div>
 
-                    <w-panel-label-Item
+                    <w-panel-label-item
                         :label="'Components'"
                         :labelWidth="100"
                         :labelHorizontalAlign="'right'"
@@ -195,7 +195,7 @@
                                 :textFontSize="'0.85rem'"
                             ></w-text>
                         </template>
-                    </w-panel-label-Item>
+                    </w-panel-label-item>
 
                 </div>
 
@@ -204,11 +204,11 @@
 
             <div class="bk">
                 <demolink
-                    :kbname="'w-panel-label-Item'"
+                    :kbname="'w-panel-label-item'"
                     :casename="'labelColor'"
                 ></demolink>
 
-                <w-panel-label-Item
+                <w-panel-label-item
                     :label="'Name'"
                     :labelColor="'#EF6C00'"
                 >
@@ -218,18 +218,18 @@
                             :textFontSize="'0.85rem'"
                         ></w-text>
                     </template>
-                </w-panel-label-Item>
+                </w-panel-label-item>
 
             </div>
 
 
             <div class="bk">
                 <demolink
-                    :kbname="'w-panel-label-Item'"
+                    :kbname="'w-panel-label-item'"
                     :casename="'labelFontSize'"
                 ></demolink>
 
-                <w-panel-label-Item
+                <w-panel-label-item
                     :label="'Name'"
                     :labelFontSize="'0.75rem'"
                 >
@@ -239,18 +239,18 @@
                             :textFontSize="'0.85rem'"
                         ></w-text>
                     </template>
-                </w-panel-label-Item>
+                </w-panel-label-item>
 
             </div>
 
 
             <div class="bk">
                 <demolink
-                    :kbname="'w-panel-label-Item'"
+                    :kbname="'w-panel-label-item'"
                     :casename="'space'"
                 ></demolink>
 
-                <w-panel-label-Item
+                <w-panel-label-item
                     :label="'Name'"
                     :space="12"
                 >
@@ -260,18 +260,18 @@
                             :textFontSize="'0.85rem'"
                         ></w-text>
                     </template>
-                </w-panel-label-Item>
+                </w-panel-label-item>
 
             </div>
 
 
             <div class="bk">
                 <demolink
-                    :kbname="'w-panel-label-Item'"
+                    :kbname="'w-panel-label-item'"
                     :casename="'slot label'"
                 ></demolink>
 
-                <w-panel-label-Item
+                <w-panel-label-item
                     :label="'Name'"
                 >
                     <template v-slot:label>
@@ -291,19 +291,19 @@
                             :textFontSize="'0.85rem'"
                         ></w-text>
                     </template>
-                </w-panel-label-Item>
+                </w-panel-label-item>
 
             </div>
 
 
             <div class="bk">
                 <demolink
-                    :kbname="'w-panel-label-Item'"
+                    :kbname="'w-panel-label-item'"
                     :casename="'slot item-sub'"
                 ></demolink>
 
                 <div style="border:1px dashed #ddd;">
-                    <w-panel-label-Item
+                    <w-panel-label-item
                         :label="'Name'"
                     >
                         <template v-slot:item>
@@ -317,7 +317,7 @@
                                 Please fill in data.
                             </div>
                         </template>
-                    </w-panel-label-Item>
+                    </w-panel-label-item>
                 </div>
 
             </div>
@@ -325,12 +325,12 @@
 
             <div class="bk">
                 <demolink
-                    :kbname="'w-panel-label-Item'"
+                    :kbname="'w-panel-label-item'"
                     :casename="'slot item-sub & floatForItemSub'"
                 ></demolink>
 
                 <div style="border:1px dashed #ddd;">
-                    <w-panel-label-Item
+                    <w-panel-label-item
                         :label="'Name'"
                         :floatForItemSub="false"
                     >
@@ -345,7 +345,7 @@
                                 Please fill in data.
                             </div>
                         </template>
-                    </w-panel-label-Item>
+                    </w-panel-label-item>
                 </div>
 
             </div>
@@ -353,11 +353,11 @@
 
             <div class="bk">
                 <demolink
-                    :kbname="'w-panel-label-Item'"
+                    :kbname="'w-panel-label-item'"
                     :casename="'with text & seplines'"
                 ></demolink>
 
-                <w-panel-label-Item
+                <w-panel-label-item
                     :seplines="true"
                     :label="'Name'"
                 >
@@ -367,18 +367,18 @@
                             :textFontSize="'0.85rem'"
                         ></w-text>
                     </template>
-                </w-panel-label-Item>
+                </w-panel-label-item>
 
             </div>
 
 
             <div class="bk">
                 <demolink
-                    :kbname="'w-panel-label-Item'"
+                    :kbname="'w-panel-label-item'"
                     :casename="'with select & seplines'"
                 ></demolink>
 
-                <w-panel-label-Item
+                <w-panel-label-item
                     :seplines="true"
                     :label="'Fruit'"
                 >
@@ -389,18 +389,18 @@
                             v-model="WPanelLabelItem.objValue"
                         ></w-text-select>
                     </template>
-                </w-panel-label-Item>
+                </w-panel-label-item>
 
             </div>
 
 
             <div class="bk">
                 <demolink
-                    :kbname="'w-panel-label-Item'"
+                    :kbname="'w-panel-label-item'"
                     :casename="'with textarea & seplines'"
                 ></demolink>
 
-                <w-panel-label-Item
+                <w-panel-label-item
                     :seplines="true"
                     :label="'Fruit'"
                 >
@@ -411,20 +411,20 @@
                             v-model="WPanelLabelItem.text"
                         ></w-textarea>
                     </template>
-                </w-panel-label-Item>
+                </w-panel-label-item>
 
             </div>
 
 
             <div class="bk">
                 <demolink
-                    :kbname="'w-panel-label-Item'"
+                    :kbname="'w-panel-label-item'"
                     :casename="'seplines & labelWidth'"
                 ></demolink>
 
                 <div style="">
 
-                    <w-panel-label-Item
+                    <w-panel-label-item
                         :seplines="true"
                         :label="'Styles'"
                         :labelWidth="100"
@@ -435,11 +435,11 @@
                                 :textFontSize="'0.85rem'"
                             ></w-text>
                         </template>
-                    </w-panel-label-Item>
+                    </w-panel-label-item>
 
                     <div style="padding-top:20px;"></div>
 
-                    <w-panel-label-Item
+                    <w-panel-label-item
                         :seplines="true"
                         :label="'Components'"
                         :labelWidth="100"
@@ -450,7 +450,7 @@
                                 :textFontSize="'0.85rem'"
                             ></w-text>
                         </template>
-                    </w-panel-label-Item>
+                    </w-panel-label-item>
 
                 </div>
 
@@ -459,13 +459,13 @@
 
             <div class="bk">
                 <demolink
-                    :kbname="'w-panel-label-Item'"
+                    :kbname="'w-panel-label-item'"
                     :casename="'seplines & labelWidth & labelHorizontalAlign'"
                 ></demolink>
 
                 <div style="">
 
-                    <w-panel-label-Item
+                    <w-panel-label-item
                         :seplines="true"
                         :label="'Styles'"
                         :labelWidth="220"
@@ -478,11 +478,11 @@
                                 :textFontSize="'0.85rem'"
                             ></w-text>
                         </template>
-                    </w-panel-label-Item>
+                    </w-panel-label-item>
 
                     <div style="padding-top:20px;"></div>
 
-                    <w-panel-label-Item
+                    <w-panel-label-item
                         :seplines="true"
                         :label="'Components'"
                         :labelWidth="220"
@@ -495,7 +495,7 @@
                                 :textFontSize="'0.85rem'"
                             ></w-text>
                         </template>
-                    </w-panel-label-Item>
+                    </w-panel-label-item>
 
                 </div>
 
@@ -504,11 +504,11 @@
 
             <div class="bk">
                 <demolink
-                    :kbname="'w-panel-label-Item'"
+                    :kbname="'w-panel-label-item'"
                     :casename="'seplines & labelColor'"
                 ></demolink>
 
-                <w-panel-label-Item
+                <w-panel-label-item
                     :seplines="true"
                     :label="'Name'"
                     :labelColor="'#EF6C00'"
@@ -519,18 +519,18 @@
                             :textFontSize="'0.85rem'"
                         ></w-text>
                     </template>
-                </w-panel-label-Item>
+                </w-panel-label-item>
 
             </div>
 
 
             <div class="bk">
                 <demolink
-                    :kbname="'w-panel-label-Item'"
+                    :kbname="'w-panel-label-item'"
                     :casename="'seplines & labelFontSize'"
                 ></demolink>
 
-                <w-panel-label-Item
+                <w-panel-label-item
                     :seplines="true"
                     :label="'Name'"
                     :labelFontSize="'0.75rem'"
@@ -541,18 +541,18 @@
                             :textFontSize="'0.85rem'"
                         ></w-text>
                     </template>
-                </w-panel-label-Item>
+                </w-panel-label-item>
 
             </div>
 
 
             <div class="bk">
                 <demolink
-                    :kbname="'w-panel-label-Item'"
+                    :kbname="'w-panel-label-item'"
                     :casename="'seplines & space'"
                 ></demolink>
 
-                <w-panel-label-Item
+                <w-panel-label-item
                     :seplines="true"
                     :label="'Name'"
                     :space="12"
@@ -563,18 +563,18 @@
                             :textFontSize="'0.85rem'"
                         ></w-text>
                     </template>
-                </w-panel-label-Item>
+                </w-panel-label-item>
 
             </div>
 
 
             <div class="bk">
                 <demolink
-                    :kbname="'w-panel-label-Item'"
+                    :kbname="'w-panel-label-item'"
                     :casename="'seplines & slot label'"
                 ></demolink>
 
-                <w-panel-label-Item
+                <w-panel-label-item
                     :seplines="true"
                     :label="'Name'"
                 >
@@ -595,19 +595,19 @@
                             :textFontSize="'0.85rem'"
                         ></w-text>
                     </template>
-                </w-panel-label-Item>
+                </w-panel-label-item>
 
             </div>
 
 
             <div class="bk">
                 <demolink
-                    :kbname="'w-panel-label-Item'"
+                    :kbname="'w-panel-label-item'"
                     :casename="'seplines & slot item-sub'"
                 ></demolink>
 
                 <div style="border:1px dashed #ddd;">
-                    <w-panel-label-Item
+                    <w-panel-label-item
                         :seplines="true"
                         :label="'Name'"
                     >
@@ -622,7 +622,7 @@
                                 Please fill in data.
                             </div>
                         </template>
-                    </w-panel-label-Item>
+                    </w-panel-label-item>
                 </div>
 
             </div>
@@ -630,12 +630,12 @@
 
             <div class="bk">
                 <demolink
-                    :kbname="'w-panel-label-Item'"
+                    :kbname="'w-panel-label-item'"
                     :casename="'seplines & slot item-sub & floatForItemSub'"
                 ></demolink>
 
                 <div style="border:1px dashed #ddd;">
-                    <w-panel-label-Item
+                    <w-panel-label-item
                         :seplines="true"
                         :label="'Name'"
                         :floatForItemSub="false"
@@ -651,7 +651,7 @@
                                 Please fill in data.
                             </div>
                         </template>
-                    </w-panel-label-Item>
+                    </w-panel-label-item>
                 </div>
 
             </div>

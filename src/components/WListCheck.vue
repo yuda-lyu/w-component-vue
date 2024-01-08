@@ -163,7 +163,7 @@ import o2j from 'wsemi/src/o2j.mjs'
 import cstr from 'wsemi/src/cstr.mjs'
 import strleft from 'wsemi/src/strleft.mjs'
 import domResize from '../js/domResize.mjs'
-import color2hex from '../js/color2hex.mjs'
+import convertColor from '../js/convertColor.mjs'
 import parseSpace from '../js/parseSpace.mjs'
 import WCheckbox from './WCheckbox.vue'
 import WText from './WText.vue'
@@ -625,7 +625,7 @@ export default {
 
         effSepLineColor: function() {
             let vo = this
-            return color2hex(vo.querySepLineColor)
+            return convertColor(vo.querySepLineColor)
         },
 
     },

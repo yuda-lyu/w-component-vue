@@ -29,7 +29,7 @@
 <script>
 import get from 'lodash-es/get'
 import replace from 'wsemi/src/replace.mjs'
-import color2hex from '../js/color2hex.mjs'
+import convertColor from '../js/convertColor.mjs'
 import domResize from '../js/domResize.mjs'
 
 
@@ -130,17 +130,17 @@ export default {
 
         useTextColor: function() {
             let vo = this
-            return color2hex(vo.textColor)
+            return convertColor(vo.textColor)
         },
 
         useBackgroundColor: function() {
             let vo = this
-            return color2hex(vo.backgroundColor)
+            return convertColor(vo.backgroundColor)
         },
 
         useBorderColor: function() {
             let vo = this
-            return color2hex(vo.borderColor)
+            return convertColor(vo.borderColor)
         },
 
     },

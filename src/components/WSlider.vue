@@ -86,7 +86,7 @@ import cdbl from 'wsemi/src/cdbl.mjs'
 import replace from 'wsemi/src/replace.mjs'
 import domDragBarAndScroll from 'wsemi/src/domDragBarAndScroll.mjs'
 import domResize from '../js/domResize.mjs'
-import color2hex from '../js/color2hex.mjs'
+import convertColor from '../js/convertColor.mjs'
 import { createPopper } from '@popperjs/core/lib/popper-lite.js' //不用安裝@popperjs/core, 因wsemi安裝tippy.js內有依賴@popperjs/core
 import flip from '@popperjs/core/lib/modifiers/flip.js'
 import offset from '@popperjs/core/lib/modifiers/offset.js'
@@ -342,12 +342,12 @@ export default {
 
         effProgColor: function() {
             let vo = this
-            return color2hex(vo.progColor)
+            return convertColor(vo.progColor)
         },
 
         effProgColorDisabled: function() {
             let vo = this
-            return color2hex(vo.progColorDisabled)
+            return convertColor(vo.progColorDisabled)
         },
 
         useProgColor: function() {
@@ -360,12 +360,12 @@ export default {
 
         effProgBackgroundColor: function() {
             let vo = this
-            return color2hex(vo.progBackgroundColor)
+            return convertColor(vo.progBackgroundColor)
         },
 
         effProgBackgroundColorDisabled: function() {
             let vo = this
-            return color2hex(vo.progBackgroundColorDisabled)
+            return convertColor(vo.progBackgroundColorDisabled)
         },
 
         useProgBackgroundColor: function() {
@@ -378,17 +378,17 @@ export default {
 
         effSliderBackgroundColor: function() {
             let vo = this
-            return color2hex(vo.sliderBackgroundColor)
+            return convertColor(vo.sliderBackgroundColor)
         },
 
         effSliderBackgroundColorHover: function() {
             let vo = this
-            return color2hex(vo.sliderBackgroundColorHover)
+            return convertColor(vo.sliderBackgroundColorHover)
         },
 
         effSliderBackgroundColorDisabled: function() {
             let vo = this
-            return color2hex(vo.sliderBackgroundColorDisabled)
+            return convertColor(vo.sliderBackgroundColorDisabled)
         },
 
         useSliderBackgroundColor: function() {
@@ -425,7 +425,7 @@ export default {
 
             let vo = this
 
-            return color2hex(vo.tooltipTextColor)
+            return convertColor(vo.tooltipTextColor)
         },
 
         useTooltipBackgroundColor: function() {
@@ -433,7 +433,7 @@ export default {
 
             let vo = this
 
-            return color2hex(vo.tooltipBackgroundColor)
+            return convertColor(vo.tooltipBackgroundColor)
         },
 
         valueDig: function() {

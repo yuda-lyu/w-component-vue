@@ -61,7 +61,7 @@ import cloneDeep from 'lodash-es/cloneDeep'
 import replace from 'wsemi/src/replace.mjs'
 import arrHas from 'wsemi/src/arrHas.mjs'
 import parseSpace from '../js/parseSpace.mjs'
-import color2hex from '../js/color2hex.mjs'
+import convertColor from '../js/convertColor.mjs'
 
 
 /**
@@ -273,22 +273,22 @@ export default {
 
         effTextColor: function() {
             let vo = this
-            return color2hex(vo.textColor)
+            return convertColor(vo.textColor)
         },
 
         effTextColorHover: function() {
             let vo = this
-            return color2hex(vo.textColorHover)
+            return convertColor(vo.textColorHover)
         },
 
         effTextColorActive: function() {
             let vo = this
-            return color2hex(vo.textColorActive)
+            return convertColor(vo.textColorActive)
         },
 
         effTextColorDisabled: function() {
             let vo = this
-            return color2hex(vo.textColorDisabled)
+            return convertColor(vo.textColorDisabled)
         },
 
     },

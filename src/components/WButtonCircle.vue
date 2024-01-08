@@ -86,7 +86,7 @@ import sep from 'wsemi/src/sep.mjs'
 import genPm from 'wsemi/src/genPm.mjs'
 import domRipple from 'wsemi/src/domRipple.mjs'
 import oc from 'wsemi/src/color.mjs'
-import color2hex from '../js/color2hex.mjs'
+import convertColor from '../js/convertColor.mjs'
 import parseSpace from '../js/parseSpace.mjs'
 import WIcon from './WIcon.vue'
 import WIconLoading from './WIconLoading.vue'
@@ -333,22 +333,22 @@ export default {
 
         effIconColor: function() {
             let vo = this
-            return color2hex(vo.iconColor)
+            return convertColor(vo.iconColor)
         },
 
         effIconColorHover: function() {
             let vo = this
-            return color2hex(vo.iconColorHover)
+            return convertColor(vo.iconColorHover)
         },
 
         effIconColorFocus: function() {
             let vo = this
-            return color2hex(vo.iconColorFocus)
+            return convertColor(vo.iconColorFocus)
         },
 
         effIconColorActive: function() {
             let vo = this
-            return color2hex(vo.iconColorActive)
+            return convertColor(vo.iconColorActive)
         },
 
         useIconColor: function() {
@@ -429,22 +429,22 @@ export default {
 
         effBorderColor: function() {
             let vo = this
-            return color2hex(vo.borderColor)
+            return convertColor(vo.borderColor)
         },
 
         effBorderColorHover: function() {
             let vo = this
-            return color2hex(vo.borderColorHover)
+            return convertColor(vo.borderColorHover)
         },
 
         effBorderColorFocus: function() {
             let vo = this
-            return color2hex(vo.borderColorFocus)
+            return convertColor(vo.borderColorFocus)
         },
 
         effBorderColorActive: function() {
             let vo = this
-            return color2hex(vo.borderColorActive)
+            return convertColor(vo.borderColorActive)
         },
 
         useBorderColor: function() {
@@ -470,22 +470,22 @@ export default {
 
         effBackgroundColor: function() {
             let vo = this
-            return color2hex(vo.backgroundColor)
+            return convertColor(vo.backgroundColor)
         },
 
         effBackgroundColorHover: function() {
             let vo = this
-            return color2hex(vo.backgroundColorHover)
+            return convertColor(vo.backgroundColorHover)
         },
 
         effBackgroundColorFocus: function() {
             let vo = this
-            return color2hex(vo.backgroundColorFocus)
+            return convertColor(vo.backgroundColorFocus)
         },
 
         effBackgroundColorActive: function() {
             let vo = this
-            return color2hex(vo.backgroundColorActive)
+            return convertColor(vo.backgroundColorActive)
         },
 
         useBackgroundColor: function() {
@@ -511,17 +511,17 @@ export default {
 
         effRippleColor: function() {
             let vo = this
-            return color2hex(vo.rippleColor)
+            return convertColor(vo.rippleColor)
         },
 
         effLoadingColor: function() {
             let vo = this
-            return color2hex(vo.loadingColor)
+            return convertColor(vo.loadingColor)
         },
 
         effDisabledColor: function() {
             let vo = this
-            return color2hex(vo.disabledColor)
+            return convertColor(vo.disabledColor)
         },
 
         usePadding: function() {
@@ -542,7 +542,7 @@ export default {
             let vo = this
 
             function genShadow(c, alpha) {
-                let r = color2hex(c)
+                let r = convertColor(c)
                 let rgba = oc.toRgba(r)
                 rgba.a = alpha
                 let s = oc.toRgbaString(rgba)

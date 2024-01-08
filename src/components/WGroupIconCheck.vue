@@ -78,7 +78,7 @@ import replace from 'wsemi/src/replace.mjs'
 import sep from 'wsemi/src/sep.mjs'
 import oc from 'wsemi/src/color.mjs'
 import WButtonCircle from './WButtonCircle.vue'
-import color2hex from '../js/color2hex.mjs'
+import convertColor from '../js/convertColor.mjs'
 
 
 /**
@@ -353,14 +353,14 @@ export default {
 
         useSeplineColor: function() {
             let vo = this
-            return color2hex(vo.seplineColor)
+            return convertColor(vo.seplineColor)
         },
 
         useShadow: function() {
             let vo = this
 
             function genShadow(c, alpha) {
-                let r = color2hex(c)
+                let r = convertColor(c)
                 let rgba = oc.toRgba(r)
                 rgba.a = alpha
                 let s = oc.toRgbaString(rgba)

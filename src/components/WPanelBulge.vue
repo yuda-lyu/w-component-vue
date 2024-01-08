@@ -44,7 +44,7 @@
 
 <script>
 import isnum from 'wsemi/src/isnum.mjs'
-import color2hex from '../js/color2hex.mjs'
+import convertColor from '../js/convertColor.mjs'
 import parseSpace from '../js/parseSpace.mjs'
 import domResize from '../js/domResize.mjs'
 
@@ -138,7 +138,7 @@ export default {
 
             let vo = this
 
-            return color2hex(vo.headerTextColor)
+            return convertColor(vo.headerTextColor)
         },
 
         useHeaderBackgroundColor: function() {
@@ -146,7 +146,7 @@ export default {
 
             let vo = this
 
-            return color2hex(vo.headerBackgroundColor)
+            return convertColor(vo.headerBackgroundColor)
         },
 
         useContentBackgroundColor: function() {
@@ -154,7 +154,7 @@ export default {
 
             let vo = this
 
-            return color2hex(vo.contentBackgroundColor)
+            return convertColor(vo.contentBackgroundColor)
         },
 
         useContentPadding: function() {

@@ -113,7 +113,7 @@ import every from 'lodash-es/every'
 import isEqual from 'lodash-es/isEqual'
 import isobj from 'wsemi/src/isobj.mjs'
 import domResize from '../js/domResize.mjs'
-import color2hex from '../js/color2hex.mjs'
+import convertColor from '../js/convertColor.mjs'
 import WListItem from './WListItem.vue'
 
 
@@ -325,7 +325,7 @@ export default {
 
         effBorderBottomColor: function() {
             let vo = this
-            return color2hex(vo.borderBottomColor)
+            return convertColor(vo.borderBottomColor)
         },
 
     },

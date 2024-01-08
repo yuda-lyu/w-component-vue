@@ -124,7 +124,7 @@ import domIsClientXYIn from 'wsemi/src/domIsClientXYIn.mjs'
 import domGetWindowSize from 'wsemi/src/domGetWindowSize.mjs'
 import domDragBarAndScroll from 'wsemi/src/domDragBarAndScroll.mjs'
 import domResize from '../js/domResize.mjs'
-import color2hex from '../js/color2hex.mjs'
+import convertColor from '../js/convertColor.mjs'
 
 
 /**
@@ -390,7 +390,7 @@ export default {
             if (!this.afloatTrans) {
                 return 'transparent'
             }
-            return color2hex(this.overlayColor)
+            return convertColor(this.overlayColor)
         },
 
         useOverlayPosition: function() {
@@ -441,11 +441,11 @@ export default {
         },
 
         useDrawerBarColor: function() {
-            return color2hex(this.drawerBarColor)
+            return convertColor(this.drawerBarColor)
         },
 
         useDrawerBarBorderColor: function() {
-            return color2hex(this.drawerBarBorderColor)
+            return convertColor(this.drawerBarBorderColor)
         },
 
     },

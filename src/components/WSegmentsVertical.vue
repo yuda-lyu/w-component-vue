@@ -161,7 +161,7 @@ import replace from 'wsemi/src/replace.mjs'
 import WPopup from './WPopup.vue'
 import parseSpace from '../js/parseSpace.mjs'
 import parseDirection from '../js/parseDirection.mjs'
-import color2hex from '../js/color2hex.mjs'
+import convertColor from '../js/convertColor.mjs'
 
 
 /**
@@ -703,22 +703,22 @@ export default {
 
         useTitleColor: function() {
             let vo = this
-            return color2hex(vo.titleColor)
+            return convertColor(vo.titleColor)
         },
 
         useAxisColor: function() {
             let vo = this
-            return color2hex(vo.axisColor)
+            return convertColor(vo.axisColor)
         },
 
         useTickColor: function() {
             let vo = this
-            return color2hex(vo.tickColor)
+            return convertColor(vo.tickColor)
         },
 
         useTickLabelColor: function() {
             let vo = this
-            return color2hex(vo.tickLabelColor)
+            return convertColor(vo.tickLabelColor)
         },
 
         useSegmentCursor: function() {
@@ -769,12 +769,12 @@ export default {
 
         useTextColor: function() {
             let vo = this
-            return color2hex(vo.textColor)
+            return convertColor(vo.textColor)
         },
 
         useTextBackgroundColor: function() {
             let vo = this
-            return color2hex(vo.textBackgroundColor)
+            return convertColor(vo.textBackgroundColor)
         },
 
         useTextCursor: function() {
@@ -829,8 +829,8 @@ export default {
         getSegmentBackgroundColor: function(k) {
             let vo = this
 
-            //color2hex
-            let c = color2hex(vo.segmentBackgroundColor)
+            //convertColor
+            let c = convertColor(vo.segmentBackgroundColor)
 
             //check
             if (isfun(vo.funSegmentBackgroundColor)) {
@@ -872,8 +872,8 @@ export default {
             //cv
             let cv = (color) => {
 
-                //color2hex
-                let c = color2hex(color)
+                //convertColor
+                let c = convertColor(color)
 
                 //check
                 if (isfun(vo.funSegmentBorderColor)) {

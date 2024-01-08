@@ -419,7 +419,7 @@ import arrSort from 'wsemi/src/arrSort.mjs'
 import filepathToTree from 'wsemi/src/filepathToTree.mjs'
 // import filepathToTreeWk from '../js/filepathToTreeWk.wk.umd.js'
 import parseSpace from '../js/parseSpace.mjs'
-import color2hex from '../js/color2hex.mjs'
+import convertColor from '../js/convertColor.mjs'
 import domResize from '../js/domResize.mjs'
 import WIcon from './WIcon.vue'
 import WTree from './WTree.vue'
@@ -1213,37 +1213,37 @@ export default {
 
         effTreeBackgroundColor: function() {
             let vo = this
-            return color2hex(vo.treeBackgroundColor)
+            return convertColor(vo.treeBackgroundColor)
         },
 
         effListBackgroundColor: function() {
             let vo = this
-            return color2hex(vo.listBackgroundColor)
+            return convertColor(vo.listBackgroundColor)
         },
 
         effPathBackgroundColor: function() {
             let vo = this
-            return color2hex(vo.pathBackgroundColor)
+            return convertColor(vo.pathBackgroundColor)
         },
 
         effLineBetweenPathAndListColor: function() {
             let vo = this
-            return color2hex(vo.lineBetweenPathAndListColor)
+            return convertColor(vo.lineBetweenPathAndListColor)
         },
 
         effTreeFolderIconColor: function() {
             let vo = this
-            return color2hex(vo.treeFolderIconColor)
+            return convertColor(vo.treeFolderIconColor)
         },
 
         effTreeFolderIconColorHover: function() {
             let vo = this
-            return color2hex(vo.treeFolderIconColorHover)
+            return convertColor(vo.treeFolderIconColorHover)
         },
 
         effTreeFolderIconColorActive: function() {
             let vo = this
-            return color2hex(vo.treeFolderIconColorActive)
+            return convertColor(vo.treeFolderIconColorActive)
         },
 
         useTreeItemTextFontSize: function() {
@@ -1262,17 +1262,17 @@ export default {
 
         effListItemIconColor: function() {
             let vo = this
-            return color2hex(vo.listItemIconColor)
+            return convertColor(vo.listItemIconColor)
         },
 
         effListItemIconColorHover: function() {
             let vo = this
-            return color2hex(vo.listItemIconColorHover)
+            return convertColor(vo.listItemIconColorHover)
         },
 
         effListItemIconColorActive: function() {
             let vo = this
-            return color2hex(vo.listItemIconColorActive)
+            return convertColor(vo.listItemIconColorActive)
         },
 
         usePathBtnTextFontSize: function() {
@@ -1284,7 +1284,7 @@ export default {
 
         effPathBtnTextColor: function() {
             let vo = this
-            return color2hex(vo.pathBtnTextColor)
+            return convertColor(vo.pathBtnTextColor)
         },
 
         listHeight: function() {

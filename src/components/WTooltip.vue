@@ -49,15 +49,15 @@ import isNumber from 'lodash-es/isNumber'
 import genID from 'wsemi/src/genID.mjs'
 import replace from 'wsemi/src/replace.mjs'
 import domIsClientXYIn from 'wsemi/src/domIsClientXYIn.mjs'
-import color2hex from '../js/color2hex.mjs'
+import convertColor from '../js/convertColor.mjs'
 import parseSpace from '../js/parseSpace.mjs'
 import domResize from '../js/domResize.mjs'
 import { createPopper } from '@popperjs/core/lib/popper-lite.js' //不用安裝@popperjs/core, 因wsemi安裝tippy.js內有依賴@popperjs/core
 import flip from '@popperjs/core/lib/modifiers/flip.js'
 import offset from '@popperjs/core/lib/modifiers/offset.js'
 import hide from '@popperjs/core/lib/modifiers/hide.js'
-//import preventOverflow from '@popperjs/core/lib/modifiers/preventOverflow.js'
-//import computeStyles from '@popperjs/core/lib/modifiers/computeStyles'
+import preventOverflow from '@popperjs/core/lib/modifiers/preventOverflow.js'
+import computeStyles from '@popperjs/core/lib/modifiers/computeStyles'
 
 
 //tootip與popup不共用已出現項目清單, 避免互相影響
@@ -368,6 +368,7 @@ export default {
         //console.log('beforeDestroy')
 
         let vo = this
+
         //window remove mousemove, mousedown, mouseup, scroll
         window.removeEventListener('mousemove', vo.windowMousemove, false)
         window.removeEventListener('mousedown', vo.windowMousedown, false)
@@ -462,7 +463,7 @@ export default {
 
             let vo = this
 
-            return color2hex(vo.textColor)
+            return convertColor(vo.textColor)
         },
 
         useBackgroundColor: function() {
@@ -470,7 +471,7 @@ export default {
 
             let vo = this
 
-            return color2hex(vo.backgroundColor)
+            return convertColor(vo.backgroundColor)
         },
 
         usePadding: function() {
@@ -567,45 +568,46 @@ export default {
                 strategy: 'fixed', //盡量使用'fixed'而不用'absolute', 否則位於多層dialog或多層drawer內popup顯示會異常
                 placement: vo.placement,
                 modifiers: [
-                    // preventOverflow,
-                    // computeStyles,
-                    // {
-                    //     name: 'computeStyles',
-                    //     options: {
-                    //         gpuAcceleration: false, //預設true, 可關閉GPU加速
-                    //     },
-                    // },
+                    preventOverflow,
+                    computeStyles,
+                    {
+                        name: 'computeStyles',
+                        options: {
+                            gpuAcceleration: false, //預設true, 可關閉GPU加速
+                        },
+                    },
                     flip,
                     {
                         name: 'flip',
                         options: {
-                            fallbackPlacements: ['bottom-start', 'bottom-end', 'top', 'top-start', 'top-end'],
+                            fallbackPlacements: ['bottom-start', 'bottom-end', 'top-start', 'top-end', 'top', 'right-start', 'right-end', 'right', 'left-start', 'left-end', 'left'],
                         },
                     },
                     offset,
                     {
                         name: 'offset',
                         options: {
-                            //offset: [0, 5], //因popperjs會自動調位置, 故得通過callback函數處理指定位置時的偏移量
-                            offset: ({ placement, reference, popper }) => {
-                                // console.log('offset', placement, reference, popper, vo.placementDist)
-                                // if (placement === 'bottom-start' || placement === 'bottom' || placement === 'bottom-end') {
-                                //     return [0, vo.placementDist]
-                                // }
-                                // else if (placement === 'top-start' || placement === 'top' || placement === 'top-end') {
-                                //     return [0, vo.placementDist]
-                                // }
-                                // else if (placement === 'left-start' || placement === 'left' || placement === 'left-end') {
-                                //     return [0, vo.placementDist]
-                                // }
-                                // else if (placement === 'right-start' || placement === 'right' || placement === 'right-end') {
-                                //     return [0, vo.placementDist]
-                                // }
-                                // else {
-                                //     return []
-                                // }
-                                return [0, vo.placementDist] //[Skidding, Distance]
-                            },
+                            offset: [0, vo.placementDist],
+                            //因popperjs會自動調位置, 故得通過callback函數處理指定位置時的偏移量
+                            // offset: ({ placement, reference, popper }) => {
+                            //     console.log('offset', placement, reference, popper, vo.placementDist)
+                            //     if (placement === 'bottom-start' || placement === 'bottom' || placement === 'bottom-end') {
+                            //         return [0, vo.placementDist]
+                            //     }
+                            //     else if (placement === 'top-start' || placement === 'top' || placement === 'top-end') {
+                            //         return [0, vo.placementDist]
+                            //     }
+                            //     else if (placement === 'left-start' || placement === 'left' || placement === 'left-end') {
+                            //         return [0, vo.placementDist]
+                            //     }
+                            //     else if (placement === 'right-start' || placement === 'right' || placement === 'right-end') {
+                            //         return [0, vo.placementDist]
+                            //     }
+                            //     else {
+                            //         return []
+                            //     }
+                            //     // return [0, vo.placementDist] //[Skidding, Distance]
+                            // },
                         },
                     },
                     hide,

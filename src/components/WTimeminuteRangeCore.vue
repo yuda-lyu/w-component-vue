@@ -52,7 +52,7 @@
 <script>
 import { mdiPlay } from '@mdi/js'
 import replace from 'wsemi/src/replace.mjs'
-import color2hex from '../js/color2hex.mjs'
+import convertColor from '../js/convertColor.mjs'
 import WTimeminuteCore from './WTimeminuteCore.vue'
 
 
@@ -159,7 +159,7 @@ export default {
 
             let vo = this
 
-            return color2hex(vo.textColor)
+            return convertColor(vo.textColor)
         },
 
     },

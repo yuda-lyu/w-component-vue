@@ -90,7 +90,7 @@ import isnum from 'wsemi/src/isnum.mjs'
 import isp0int from 'wsemi/src/isp0int.mjs'
 import cdbl from 'wsemi/src/cdbl.mjs'
 import dig from 'wsemi/src/dig.mjs'
-import color2hex from '../js/color2hex.mjs'
+import convertColor from '../js/convertColor.mjs'
 import WIcon from './WIcon.vue'
 
 
@@ -181,7 +181,7 @@ export default {
 
         useGradeTextColor: function() {
             let vo = this
-            return color2hex(vo.gradeTextColor)
+            return convertColor(vo.gradeTextColor)
         },
 
         indValue: function() {
@@ -205,7 +205,7 @@ export default {
     methods: {
 
         getColor: function(c) {
-            return color2hex(c)
+            return convertColor(c)
         },
 
         getTick: function(v) {

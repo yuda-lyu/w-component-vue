@@ -118,7 +118,7 @@
 <script>
 import isnum from 'wsemi/src/isnum.mjs'
 import cdbl from 'wsemi/src/cdbl.mjs'
-import color2hex from '../js/color2hex.mjs'
+import convertColor from '../js/convertColor.mjs'
 
 
 /**
@@ -230,7 +230,7 @@ export default {
 
             let vo = this
 
-            return color2hex(vo.labelColor)
+            return convertColor(vo.labelColor)
         },
 
     },

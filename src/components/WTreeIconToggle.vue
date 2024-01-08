@@ -66,7 +66,7 @@
 
 <script>
 import get from 'lodash-es/get'
-import color2hex from '../js/color2hex.mjs'
+import convertColor from '../js/convertColor.mjs'
 
 
 /**
@@ -142,9 +142,9 @@ export default {
             let vo = this
 
             if (vo.editable) {
-                return color2hex(vo.iconColor)
+                return convertColor(vo.iconColor)
             }
-            return color2hex(vo.iconDisabledColor)
+            return convertColor(vo.iconDisabledColor)
         },
 
         useIconBackgroundColor: function() {
@@ -152,7 +152,7 @@ export default {
 
             let vo = this
 
-            return color2hex(vo.iconBackgroundColor)
+            return convertColor(vo.iconBackgroundColor)
         },
 
         useIconBackgroundColorHover: function() {
@@ -160,7 +160,7 @@ export default {
 
             let vo = this
 
-            return color2hex(vo.iconBackgroundColorHover)
+            return convertColor(vo.iconBackgroundColorHover)
         },
 
     },

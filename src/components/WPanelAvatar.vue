@@ -78,7 +78,7 @@
 
 <script>
 import { mdiForest } from '@mdi/js'
-import color2hex from '../js/color2hex.mjs'
+import convertColor from '../js/convertColor.mjs'
 import domResize from '../js/domResize.mjs'
 import WIcon from './WIcon.vue'
 
@@ -241,7 +241,7 @@ export default {
 
             let vo = this
 
-            return color2hex(vo.avatarIconColor)
+            return convertColor(vo.avatarIconColor)
         },
 
         useAvatarBorderColor: function() {
@@ -249,7 +249,7 @@ export default {
 
             let vo = this
 
-            return color2hex(vo.avatarBorderColor)
+            return convertColor(vo.avatarBorderColor)
         },
 
         useAvatarBackgroundColor: function() {
@@ -257,7 +257,7 @@ export default {
 
             let vo = this
 
-            return color2hex(vo.avatarBackgroundColor)
+            return convertColor(vo.avatarBackgroundColor)
         },
 
         useHeaderVerticalAlign: function() {
@@ -285,7 +285,7 @@ export default {
 
             let vo = this
 
-            return color2hex(vo.headerTextColor)
+            return convertColor(vo.headerTextColor)
         },
 
         useSubHeaderTextColor: function() {
@@ -293,7 +293,7 @@ export default {
 
             let vo = this
 
-            return color2hex(vo.subHeaderTextColor)
+            return convertColor(vo.subHeaderTextColor)
         },
 
         useSepLineColor: function() {
@@ -301,7 +301,7 @@ export default {
 
             let vo = this
 
-            return color2hex(vo.sepLineColor)
+            return convertColor(vo.sepLineColor)
         },
 
         useContentBackgroundColor: function() {
@@ -309,7 +309,7 @@ export default {
 
             let vo = this
 
-            return color2hex(vo.contentBackgroundColor)
+            return convertColor(vo.contentBackgroundColor)
         },
 
     },

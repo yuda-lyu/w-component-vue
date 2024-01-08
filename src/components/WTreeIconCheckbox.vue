@@ -50,7 +50,7 @@
 </template>
 
 <script>
-import color2hex from '../js/color2hex.mjs'
+import convertColor from '../js/convertColor.mjs'
 
 
 /**
@@ -122,12 +122,12 @@ export default {
             let vo = this
 
             if (vo.mode === 'checked') {
-                return color2hex(vo.checkedDisabledColor)
+                return convertColor(vo.checkedDisabledColor)
             }
             else if (vo.mode === 'unchecked') {
-                return color2hex(vo.uncheckedDisabledColor)
+                return convertColor(vo.uncheckedDisabledColor)
             }
-            return color2hex(vo.checkedPartiallyDisabledColor)
+            return convertColor(vo.checkedPartiallyDisabledColor)
         },
 
         useUncheckedColor: function() {
@@ -136,9 +136,9 @@ export default {
             let vo = this
 
             if (vo.editable) {
-                return color2hex(vo.uncheckedColor)
+                return convertColor(vo.uncheckedColor)
             }
-            return color2hex(vo.uncheckedDisabledColor)
+            return convertColor(vo.uncheckedDisabledColor)
         },
 
         useCheckedColor: function() {
@@ -147,9 +147,9 @@ export default {
             let vo = this
 
             if (vo.editable) {
-                return color2hex(vo.checkedColor)
+                return convertColor(vo.checkedColor)
             }
-            return color2hex(vo.checkedDisabledColor)
+            return convertColor(vo.checkedDisabledColor)
         },
 
         useCheckedPartiallyColor: function() {
@@ -158,9 +158,9 @@ export default {
             let vo = this
 
             if (vo.editable) {
-                return color2hex(vo.checkedPartiallyColor)
+                return convertColor(vo.checkedPartiallyColor)
             }
-            return color2hex(vo.checkedPartiallyDisabledColor)
+            return convertColor(vo.checkedPartiallyDisabledColor)
         },
 
     },

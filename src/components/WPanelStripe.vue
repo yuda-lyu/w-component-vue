@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import color2hex from '../js/color2hex.mjs'
+import convertColor from '../js/convertColor.mjs'
 
 
 /**
@@ -83,7 +83,7 @@ export default {
             let vo = this
 
             let s = {}
-            s['background-color'] = color2hex(vo.contentBackgroundColor)
+            s['background-color'] = convertColor(vo.contentBackgroundColor)
             s['border-radius'] = `${vo.borderRadius}px`
 
             return s
@@ -97,7 +97,7 @@ export default {
             let s = {}
             s['padding'] = `${vo.padding}px`
             s['border-bottom'] = '1px solid #ddd'
-            s['background-color'] = color2hex(vo.headerBackgroundColor)
+            s['background-color'] = convertColor(vo.headerBackgroundColor)
             s['border-radius'] = `${vo.borderRadius}px ${vo.borderRadius}px 0 0`
             s['display'] = 'flex'
             s['justify-content'] = 'flex-start'
@@ -133,7 +133,7 @@ export default {
             let s = {}
             s['padding'] = `${vo.padding}px`
             s['border-top'] = '1px solid #ddd'
-            s['background-color'] = color2hex(vo.footerBackgroundColor)
+            s['background-color'] = convertColor(vo.footerBackgroundColor)
             s['border-radius'] = `0 0 ${vo.borderRadius}px ${vo.borderRadius}px`
 
             return s

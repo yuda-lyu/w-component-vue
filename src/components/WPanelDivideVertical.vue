@@ -44,7 +44,7 @@
 import isNumber from 'lodash-es/isNumber'
 import domDragBarAndScroll from 'wsemi/src/domDragBarAndScroll.mjs'
 import domResize from '../js/domResize.mjs'
-import color2hex from '../js/color2hex.mjs'
+import convertColor from '../js/convertColor.mjs'
 
 
 /**
@@ -170,11 +170,11 @@ export default {
         },
 
         useBarColor: function() {
-            return color2hex(this.barColor)
+            return convertColor(this.barColor)
         },
 
         useBarBorderColor: function() {
-            return color2hex(this.barBorderColor)
+            return convertColor(this.barBorderColor)
         },
 
     },

@@ -77,7 +77,7 @@ import isNumber from 'lodash-es/isNumber'
 import replace from 'wsemi/src/replace.mjs'
 import waitFun from 'wsemi/src/waitFun.mjs'
 import domRipple from '../js/domRipple.mjs'
-import color2hex from '../js/color2hex.mjs'
+import convertColor from '../js/convertColor.mjs'
 import parseSpace from '../js/parseSpace.mjs'
 import WIcon from './WIcon.vue'
 
@@ -246,17 +246,17 @@ export default {
 
         effBackgroundColor: function() {
             let vo = this
-            return color2hex(vo.backgroundColor)
+            return convertColor(vo.backgroundColor)
         },
 
         effBackgroundColorHover: function() {
             let vo = this
-            return color2hex(vo.backgroundColorHover)
+            return convertColor(vo.backgroundColorHover)
         },
 
         effBackgroundActive: function() {
             let vo = this
-            return color2hex(vo.backgroundColorActive)
+            return convertColor(vo.backgroundColorActive)
         },
 
         useBackgroundColor: function() {
@@ -269,17 +269,17 @@ export default {
 
         effTextColor: function() {
             let vo = this
-            return color2hex(vo.textColor)
+            return convertColor(vo.textColor)
         },
 
         effTextColorHover: function() {
             let vo = this
-            return color2hex(vo.textColorHover)
+            return convertColor(vo.textColorHover)
         },
 
         effTextActive: function() {
             let vo = this
-            return color2hex(vo.textColorActive)
+            return convertColor(vo.textColorActive)
         },
 
         useTextColor: function() {
@@ -292,17 +292,17 @@ export default {
 
         effIconColor: function() {
             let vo = this
-            return color2hex(vo.iconColor)
+            return convertColor(vo.iconColor)
         },
 
         effIconColorHover: function() {
             let vo = this
-            return color2hex(vo.iconColorHover)
+            return convertColor(vo.iconColorHover)
         },
 
         effIconActive: function() {
             let vo = this
-            return color2hex(vo.iconColorActive)
+            return convertColor(vo.iconColorActive)
         },
 
         useIconColor: function() {
@@ -318,7 +318,7 @@ export default {
 
             let vo = this
 
-            return color2hex(vo.expansionIconColor)
+            return convertColor(vo.expansionIconColor)
         },
 
         effExpansionIconColorHover: function() {
@@ -326,7 +326,7 @@ export default {
 
             let vo = this
 
-            return color2hex(vo.expansionIconColorHover)
+            return convertColor(vo.expansionIconColorHover)
         },
 
         effExpansionIconColorActive: function() {
@@ -334,7 +334,7 @@ export default {
 
             let vo = this
 
-            return color2hex(vo.expansionIconColorActive)
+            return convertColor(vo.expansionIconColorActive)
         },
 
         useExpansionIconColor: function() {

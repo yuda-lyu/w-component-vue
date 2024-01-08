@@ -335,6 +335,33 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-textarea'"
+                    :casename="'border & textFontSize'"
+                ></demolink>
+
+                <w-textarea
+                    style="width:350px;"
+                    :shadow="false"
+                    :bottomLineBorderColor="'transparent'"
+                    :bottomLineBorderColorHover="'transparent'"
+                    :bottomLineBorderColorFocus="'transparent'"
+                    :paddingStyle="{v:5,h:8}"
+                    :iconShiftOuter="0"
+                    :iconShiftInner="0"
+                    :borderColor="'blue lighten-2'"
+                    :borderColorHover="'blue'"
+                    :borderColorFocus="'blue darken-2'"
+                    :backgroundColor="'white'"
+                    :backgroundColorHover="'rgba(237, 247, 255, 1)'"
+                    :backgroundColorFocus="'blue lighten-5'"
+                    :textFontSize="'0.85rem'"
+                    v-model="WTextarea.text"
+                ></w-textarea>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-textarea'"
                     :casename="'border & borderRadius & paddingStyle'"
                 ></demolink>
 

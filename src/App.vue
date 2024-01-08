@@ -413,6 +413,61 @@
             ></AppZoneWExplorer>
 
 
+            <AppZoneWColorPickHexagon
+                v-if="cmpPick==='WColorPickHexagon'"
+            ></AppZoneWColorPickHexagon>
+
+
+            <AppZoneWColorPickHexagonGray
+                v-if="cmpPick==='WColorPickHexagonGray'"
+            ></AppZoneWColorPickHexagonGray>
+
+
+            <AppZoneWColorPickHsv
+                v-if="cmpPick==='WColorPickHsv'"
+            ></AppZoneWColorPickHsv>
+
+
+            <AppZoneWColorPickHue
+                v-if="cmpPick==='WColorPickHue'"
+            ></AppZoneWColorPickHue>
+
+
+            <AppZoneWColorPickAlpha
+                v-if="cmpPick==='WColorPickAlpha'"
+            ></AppZoneWColorPickAlpha>
+
+
+            <AppZoneWColorPickStripe
+                v-if="cmpPick==='WColorPickStripe'"
+            ></AppZoneWColorPickStripe>
+
+
+            <AppZoneWColorSelectPanelBlock
+                v-if="cmpPick==='WColorSelectPanelBlock'"
+            ></AppZoneWColorSelectPanelBlock>
+
+
+            <AppZoneWColorSelectPanelHsva
+                v-if="cmpPick==='WColorSelectPanelHsva'"
+            ></AppZoneWColorSelectPanelHsva>
+
+
+            <AppZoneWColorSelectPanel
+                v-if="cmpPick==='WColorSelectPanel'"
+            ></AppZoneWColorSelectPanel>
+
+
+            <AppZoneWColorSelectInput
+                v-if="cmpPick==='WColorSelectInput'"
+            ></AppZoneWColorSelectInput>
+
+
+            <AppZoneWColorSelect
+                v-if="cmpPick==='WColorSelect'"
+            ></AppZoneWColorSelect>
+
+
         </div>
 
 
@@ -492,6 +547,17 @@ import AppZoneWTinymceVueDyn from './AppZoneWTinymceVueDyn.vue'
 import AppZoneWQuillVueDyn from './AppZoneWQuillVueDyn.vue'
 import AppZoneWLeafletVueDyn from './AppZoneWLeafletVueDyn.vue'
 import AppZoneWExplorer from './AppZoneWExplorer.vue'
+import AppZoneWColorPickHexagon from './AppZoneWColorPickHexagon.vue'
+import AppZoneWColorPickHexagonGray from './AppZoneWColorPickHexagonGray.vue'
+import AppZoneWColorPickHsv from './AppZoneWColorPickHsv.vue'
+import AppZoneWColorPickHue from './AppZoneWColorPickHue.vue'
+import AppZoneWColorPickAlpha from './AppZoneWColorPickAlpha.vue'
+import AppZoneWColorPickStripe from './AppZoneWColorPickStripe.vue'
+import AppZoneWColorSelectPanelBlock from './AppZoneWColorSelectPanelBlock.vue'
+import AppZoneWColorSelectPanelHsva from './AppZoneWColorSelectPanelHsva.vue'
+import AppZoneWColorSelectPanel from './AppZoneWColorSelectPanel.vue'
+import AppZoneWColorSelectInput from './AppZoneWColorSelectInput.vue'
+import AppZoneWColorSelect from './AppZoneWColorSelect.vue'
 
 
 export default {
@@ -563,6 +629,17 @@ export default {
         AppZoneWQuillVueDyn,
         AppZoneWLeafletVueDyn,
         AppZoneWExplorer,
+        AppZoneWColorPickHexagon,
+        AppZoneWColorPickHexagonGray,
+        AppZoneWColorPickHsv,
+        AppZoneWColorPickHue,
+        AppZoneWColorPickAlpha,
+        AppZoneWColorPickStripe,
+        AppZoneWColorSelectPanelBlock,
+        AppZoneWColorSelectPanelHsva,
+        AppZoneWColorSelectPanel,
+        AppZoneWColorSelectInput,
+        AppZoneWColorSelect,
     },
     data: function() {
         let cmps = [
@@ -648,6 +725,32 @@ export default {
                     { name: 'WTimeminute' },
                     { name: 'WTimedayRange' },
                     { name: 'WTimeminuteRange' },
+                ]
+            },
+            {
+                name: 'color',
+                cmps: [
+                    {
+                        name: 'pick',
+                        cmps: [
+                            { name: 'WColorPickHexagon' },
+                            { name: 'WColorPickHexagonGray' },
+                            { name: 'WColorPickHsv' },
+                            { name: 'WColorPickHue' },
+                            { name: 'WColorPickAlpha' },
+                            { name: 'WColorPickStripe' },
+                        ]
+                    },
+                    {
+                        name: 'select',
+                        cmps: [
+                            { name: 'WColorSelectPanelBlock' },
+                            { name: 'WColorSelectPanelHsva' },
+                            { name: 'WColorSelectPanel' },
+                            { name: 'WColorSelectInput' },
+                            { name: 'WColorSelect' },
+                        ]
+                    },
                 ]
             },
             {

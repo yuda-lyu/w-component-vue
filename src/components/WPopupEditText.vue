@@ -77,7 +77,7 @@
 <script>
 import { mdiSquareEditOutline, mdiCheckboxMarkedCircle } from '@mdi/js'
 import replace from 'wsemi/src/replace.mjs'
-import color2hex from '../js/color2hex.mjs'
+import convertColor from '../js/convertColor.mjs'
 import WPopup from './WPopup.vue'
 import WText from './WText.vue'
 import WButtonChip from './WButtonChip.vue'
@@ -244,22 +244,22 @@ export default {
 
         useTitleColor: function() {
             let vo = this
-            return color2hex(vo.titleColor)
+            return convertColor(vo.titleColor)
         },
 
         useHeaderBackgroundColor: function() {
             let vo = this
-            return color2hex(vo.headerBackgroundColor)
+            return convertColor(vo.headerBackgroundColor)
         },
 
         useContentBackgroundColor: function() {
             let vo = this
-            return color2hex(vo.contentBackgroundColor)
+            return convertColor(vo.contentBackgroundColor)
         },
 
         useFooterBackgroundColor: function() {
             let vo = this
-            return color2hex(vo.footerBackgroundColor)
+            return convertColor(vo.footerBackgroundColor)
         },
 
     },

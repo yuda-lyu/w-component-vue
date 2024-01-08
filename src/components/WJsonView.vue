@@ -92,7 +92,7 @@ import isfun from 'wsemi/src/isfun.mjs'
 import waitFun from 'wsemi/src/waitFun.mjs'
 // import debounce from 'wsemi/src/debounce.mjs'
 import haskey from 'wsemi/src/haskey.mjs'
-import color2hex from '../js/color2hex.mjs'
+import convertColor from '../js/convertColor.mjs'
 // import binarySearch from '../js/binarySearch.mjs'
 // import globalMemory from '../js/globalMemory.mjs'
 import convertToTreeWk from '../js/convertToTreeWk.wk.umd.js'
@@ -329,13 +329,13 @@ export default {
 
             //useColors
             let useColors = {
-                numColor: color2hex(vo.numColor),
-                strColor: color2hex(vo.strColor),
-                bolColor: color2hex(vo.bolColor),
-                funColor: color2hex(vo.funColor),
-                defaultColor: color2hex(vo.defaultColor),
-                keyColor: color2hex(vo.keyColor),
-                keyNumbersColor: color2hex(vo.keyNumbersColor),
+                numColor: convertColor(vo.numColor),
+                strColor: convertColor(vo.strColor),
+                bolColor: convertColor(vo.bolColor),
+                funColor: convertColor(vo.funColor),
+                defaultColor: convertColor(vo.defaultColor),
+                keyColor: convertColor(vo.keyColor),
+                keyNumbersColor: convertColor(vo.keyNumbersColor),
             }
 
             //save

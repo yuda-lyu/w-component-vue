@@ -5,7 +5,7 @@ import iseobj from 'wsemi/src/iseobj.mjs'
 import cdbl from 'wsemi/src/cdbl.mjs'
 import genID from 'wsemi/src/genID.mjs'
 import rp from 'wsemi/src/domRipple.mjs'
-import color2hex from './color2hex.mjs'
+import convertColor from './convertColor.mjs'
 
 
 function domRipple(opt = {}) {
@@ -65,7 +65,7 @@ function domRipple(opt = {}) {
             // color = 'rgba(255, 255, 255, 0.5)'
             return //若不給顏色則不使用
         }
-        color = color2hex(color)
+        color = convertColor(color)
 
         //timeDuration
         let timeDuration = get(binding, 'value.timeDuration')

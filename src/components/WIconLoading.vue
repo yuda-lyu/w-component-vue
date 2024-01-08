@@ -49,7 +49,7 @@
 </template>
 
 <script>
-import color2hex from '../js/color2hex.mjs'
+import convertColor from '../js/convertColor.mjs'
 
 
 /**
@@ -81,7 +81,7 @@ export default {
 
         effColor: function() {
             let vo = this
-            return color2hex(vo.color)
+            return convertColor(vo.color)
         },
 
     },

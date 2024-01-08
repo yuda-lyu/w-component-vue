@@ -88,7 +88,7 @@
 
 <script>
 import { mdiAlert, mdiCheckboxMarkedCircle, mdiCloseCircle } from '@mdi/js'
-import color2hex from '../js/color2hex.mjs'
+import convertColor from '../js/convertColor.mjs'
 import WButtonChip from './WButtonChip.vue'
 import WIcon from './WIcon.vue'
 import WDialog from './WDialog.vue'
@@ -254,10 +254,10 @@ export default {
 
             let s = {}
             s['padding'] = '15px 20px'
-            s['background-color'] = color2hex(vo.headerBackgroundColor)
+            s['background-color'] = convertColor(vo.headerBackgroundColor)
             s['border-bottom'] = '1px solid #ddd'
             s['font-size'] = '1.2rem'
-            s['color'] = color2hex(vo.titleColor)
+            s['color'] = convertColor(vo.titleColor)
             return s
         },
 
@@ -268,11 +268,11 @@ export default {
 
             let s = {}
             s['padding'] = '20px 15px'
-            s['background-color'] = color2hex(vo.contentBackgroundColor)
+            s['background-color'] = convertColor(vo.contentBackgroundColor)
             s['display'] = 'table'
             s['width'] = '100%'
             //s['align-items'] = 'center'
-            s['color'] = color2hex(vo.contentColor)
+            s['color'] = convertColor(vo.contentColor)
             s['overflow-y'] = 'auto'
             return s
         },
@@ -284,7 +284,7 @@ export default {
 
             let s = {}
             s['padding'] = '15px'
-            s['background-color'] = color2hex(vo.footerBackgroundColor)
+            s['background-color'] = convertColor(vo.footerBackgroundColor)
             s['border-top'] = '1px solid #ddd'
             s['text-align'] = 'right'
             return s

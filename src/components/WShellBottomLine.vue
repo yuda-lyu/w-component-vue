@@ -26,7 +26,7 @@
 </template>
 
 <script>
-import color2hex from '../js/color2hex.mjs'
+import convertColor from '../js/convertColor.mjs'
 
 
 /**
@@ -107,9 +107,9 @@ export default {
             let vo = this
 
             if (vo.hoverTrans) {
-                return color2hex(vo.borderColorHover)
+                return convertColor(vo.borderColorHover)
             }
-            return color2hex(vo.borderColor)
+            return convertColor(vo.borderColor)
         },
 
         useBorderColorFocus: function() {
@@ -117,7 +117,7 @@ export default {
 
             let vo = this
 
-            return color2hex(vo.borderColorFocus)
+            return convertColor(vo.borderColorFocus)
         },
 
     },

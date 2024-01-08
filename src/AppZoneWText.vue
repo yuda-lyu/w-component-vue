@@ -36,6 +36,20 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-text'"
+                    :casename="'height & textFontSize'"
+                ></demolink>
+
+                <w-text
+                    :height="20"
+                    :textFontSize="'0.85rem'"
+                    v-model="WText.text"
+                ></w-text>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-text'"
                     :casename="'textColor'"
                 ></demolink>
 
@@ -300,6 +314,58 @@
                     :backgroundColor="'white'"
                     :backgroundColorHover="'rgba(237, 247, 255, 1)'"
                     :backgroundColorFocus="'blue lighten-5'"
+                    v-model="WText.text"
+                ></w-text>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-text'"
+                    :casename="'border & textFontSize'"
+                ></demolink>
+
+                <w-text
+                    :shadow="false"
+                    :bottomLineBorderColor="'transparent'"
+                    :bottomLineBorderColorHover="'transparent'"
+                    :bottomLineBorderColorFocus="'transparent'"
+                    :paddingStyle="{h:15}"
+                    :iconShiftOuter="-10"
+                    :borderColor="'blue lighten-2'"
+                    :borderColorHover="'blue'"
+                    :borderColorFocus="'blue darken-2'"
+                    :backgroundColor="'white'"
+                    :backgroundColorHover="'rgba(237, 247, 255, 1)'"
+                    :backgroundColorFocus="'blue lighten-5'"
+                    :textFontSize="'0.85rem'"
+                    v-model="WText.text"
+                ></w-text>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-text'"
+                    :casename="'border & height & textFontSize & paddingStyle'"
+                ></demolink>
+
+                <w-text
+                    :shadow="false"
+                    :bottomLineBorderColor="'transparent'"
+                    :bottomLineBorderColorHover="'transparent'"
+                    :bottomLineBorderColorFocus="'transparent'"
+                    _paddingStyle="{h:15}"
+                    :iconShiftOuter="-10"
+                    :borderColor="'blue lighten-2'"
+                    :borderColorHover="'blue'"
+                    :borderColorFocus="'blue darken-2'"
+                    :backgroundColor="'white'"
+                    :backgroundColorHover="'rgba(237, 247, 255, 1)'"
+                    :backgroundColorFocus="'blue lighten-5'"
+                    :height="20"
+                    :textFontSize="'0.85rem'"
+                    :paddingStyle="{h:10}"
                     v-model="WText.text"
                 ></w-text>
             </div>

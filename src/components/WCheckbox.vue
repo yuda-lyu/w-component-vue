@@ -43,7 +43,7 @@
 import { mdiCheckboxMarked, mdiCheckboxBlankOutline } from '@mdi/js/mdi.js'
 import isbol from 'wsemi/src/isbol.mjs'
 import replace from 'wsemi/src/replace.mjs'
-import color2hex from '../js/color2hex.mjs'
+import convertColor from '../js/convertColor.mjs'
 import WIcon from './WIcon.vue'
 
 
@@ -162,12 +162,12 @@ export default {
 
         effTextColor: function() {
             let vo = this
-            return color2hex(vo.textColor)
+            return convertColor(vo.textColor)
         },
 
         effTextColorHover: function() {
             let vo = this
-            return color2hex(vo.textColorHover)
+            return convertColor(vo.textColorHover)
         },
 
         useTextColor: function() {
@@ -189,17 +189,17 @@ export default {
 
         effCheckedIconColor: function() {
             let vo = this
-            return color2hex(vo.checkedIconColor)
+            return convertColor(vo.checkedIconColor)
         },
 
         effCheckedIconColorHover: function() {
             let vo = this
-            return color2hex(vo.checkedIconColorHover)
+            return convertColor(vo.checkedIconColorHover)
         },
 
         effCheckedIconColorDisabled: function() {
             let vo = this
-            return color2hex(vo.checkedIconColorDisabled)
+            return convertColor(vo.checkedIconColorDisabled)
         },
 
         useCheckedIconColor: function() {
@@ -212,17 +212,17 @@ export default {
 
         effUncheckedIconColor: function() {
             let vo = this
-            return color2hex(vo.uncheckedIconColor)
+            return convertColor(vo.uncheckedIconColor)
         },
 
         effUncheckedIconColorHover: function() {
             let vo = this
-            return color2hex(vo.uncheckedIconColorHover)
+            return convertColor(vo.uncheckedIconColorHover)
         },
 
         effUncheckedIconColorDisabled: function() {
             let vo = this
-            return color2hex(vo.uncheckedIconColorDisabled)
+            return convertColor(vo.uncheckedIconColorDisabled)
         },
 
         useUncheckedIconColor: function() {

@@ -149,7 +149,7 @@ import sep from 'wsemi/src/sep.mjs'
 import genPm from 'wsemi/src/genPm.mjs'
 import oc from 'wsemi/src/color.mjs'
 import domCancelEvent from 'wsemi/src/domCancelEvent.mjs'
-import color2hex from '../js/color2hex.mjs'
+import convertColor from '../js/convertColor.mjs'
 import parseSpace from '../js/parseSpace.mjs'
 import domRipple from '../js/domRipple.mjs'
 import WIcon from './WIcon.vue'
@@ -495,17 +495,17 @@ export default {
 
         effIconColor: function() {
             let vo = this
-            return color2hex(vo.iconColor)
+            return convertColor(vo.iconColor)
         },
 
         effIconColorHover: function() {
             let vo = this
-            return color2hex(vo.iconColorHover)
+            return convertColor(vo.iconColorHover)
         },
 
         effIconColorActive: function() {
             let vo = this
-            return color2hex(vo.iconColorActive)
+            return convertColor(vo.iconColorActive)
         },
 
         hasIcon: function() {
@@ -539,32 +539,32 @@ export default {
 
         effDisabledColor: function() {
             let vo = this
-            return color2hex(vo.disabledColor)
+            return convertColor(vo.disabledColor)
         },
 
         effProgColor: function() {
             let vo = this
-            return color2hex(vo.progColor)
+            return convertColor(vo.progColor)
         },
 
         effProgBackgroundColor: function() {
             let vo = this
-            return color2hex(vo.progBackgroundColor)
+            return convertColor(vo.progBackgroundColor)
         },
 
         effTextColor: function() {
             let vo = this
-            return color2hex(vo.textColor)
+            return convertColor(vo.textColor)
         },
 
         effTextColorHover: function() {
             let vo = this
-            return color2hex(vo.textColorHover)
+            return convertColor(vo.textColorHover)
         },
 
         effTextColorActive: function() {
             let vo = this
-            return color2hex(vo.textColorActive)
+            return convertColor(vo.textColorActive)
         },
 
         useTextColor: function() {
@@ -595,17 +595,17 @@ export default {
 
         effBorderColor: function() {
             let vo = this
-            return color2hex(vo.borderColor)
+            return convertColor(vo.borderColor)
         },
 
         effBorderColorHover: function() {
             let vo = this
-            return color2hex(vo.borderColorHover)
+            return convertColor(vo.borderColorHover)
         },
 
         effBorderColorActive: function() {
             let vo = this
-            return color2hex(vo.borderColorActive)
+            return convertColor(vo.borderColorActive)
         },
 
         useBorderColor: function() {
@@ -731,17 +731,17 @@ export default {
 
         effBackgroundColor: function() {
             let vo = this
-            return color2hex(vo.backgroundColor)
+            return convertColor(vo.backgroundColor)
         },
 
         effBackgroundColorHover: function() {
             let vo = this
-            return color2hex(vo.backgroundColorHover)
+            return convertColor(vo.backgroundColorHover)
         },
 
         effBackgroundColorActive: function() {
             let vo = this
-            return color2hex(vo.backgroundColorActive)
+            return convertColor(vo.backgroundColorActive)
         },
 
         useBackgroundColor: function() {
@@ -767,7 +767,7 @@ export default {
             let vo = this
 
             function genShadow(c, alpha) {
-                let r = color2hex(c)
+                let r = convertColor(c)
                 let rgba = oc.toRgba(r)
                 rgba.a = alpha
                 let s = oc.toRgbaString(rgba)
@@ -833,7 +833,7 @@ export default {
 
         effLoadingColor: function() {
             let vo = this
-            return color2hex(vo.loadingColor)
+            return convertColor(vo.loadingColor)
         },
 
         useRipple: function() {

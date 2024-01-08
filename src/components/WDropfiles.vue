@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import color2hex from '../js/color2hex.mjs'
+import convertColor from '../js/convertColor.mjs'
 import domDropFiles from 'wsemi/src/domDropFiles.mjs'
 
 
@@ -114,12 +114,12 @@ export default {
             let vo = this
 
             if (vo.bDropIn) {
-                return color2hex(vo.borderColorDropIn)
+                return convertColor(vo.borderColorDropIn)
             }
             if (vo.bMouseIn) {
-                return color2hex(vo.borderColorHover)
+                return convertColor(vo.borderColorHover)
             }
-            return color2hex(vo.borderColor)
+            return convertColor(vo.borderColor)
         },
 
         useBackgroundColor: function() {
@@ -128,12 +128,12 @@ export default {
             let vo = this
 
             if (vo.bDropIn) {
-                return color2hex(vo.backgroundColorDropIn)
+                return convertColor(vo.backgroundColorDropIn)
             }
             if (vo.bMouseIn) {
-                return color2hex(vo.backgroundColorHover)
+                return convertColor(vo.backgroundColorHover)
             }
-            return color2hex(vo.backgroundColor)
+            return convertColor(vo.backgroundColor)
         },
 
     },

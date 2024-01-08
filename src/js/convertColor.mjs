@@ -1,51 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    
-    <meta charset="utf-8">
-    <title>color2hex.mjs - Documentation</title>
-    
-    
-    <script src="scripts/prettify/prettify.js"></script>
-    <script src="scripts/prettify/lang-css.js"></script>
-    <!--[if lt IE 9]>
-      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
-    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
-    <script src="scripts/nav.js" defer></script>
-    
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-</head>
-<body>
-
-<input type="checkbox" id="nav-trigger" class="nav-trigger" />
-<label for="nav-trigger" class="navicon-button x">
-  <div class="navicon"></div>
-</label>
-
-<label for="nav-trigger" class="overlay"></label>
-
-<nav >
-    
-    
-    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-WAggridVueDyn.html">WAggridVueDyn</a></li><li><a href="module-WBadge.html">WBadge</a></li><li><a href="module-WButtonChip.html">WButtonChip</a></li><li><a href="module-WButtonCircle.html">WButtonCircle</a></li><li><a href="module-WCheckbox.html">WCheckbox</a></li><li><a href="module-WCkeditorVueDyn.html">WCkeditorVueDyn</a></li><li><a href="module-WConfirm.html">WConfirm</a></li><li><a href="module-WDialog.html">WDialog</a></li><li><a href="module-WDrawer.html">WDrawer</a></li><li><a href="module-WDropfiles.html">WDropfiles</a></li><li><a href="module-WDynamicList.html">WDynamicList</a></li><li><a href="module-WEchartsVueDyn.html">WEchartsVueDyn</a></li><li><a href="module-WExplorer.html">WExplorer</a></li><li><a href="module-WGroupBaggage.html">WGroupBaggage</a></li><li><a href="module-WGroupChipCheck.html">WGroupChipCheck</a></li><li><a href="module-WGroupChipRadio.html">WGroupChipRadio</a></li><li><a href="module-WGroupDragdrop.html">WGroupDragdrop</a></li><li><a href="module-WGroupIconCheck.html">WGroupIconCheck</a></li><li><a href="module-WGroupIconRadio.html">WGroupIconRadio</a></li><li><a href="module-WGroupTags.html">WGroupTags</a></li><li><a href="module-WHighchartsBitmapDyn.html">WHighchartsBitmapDyn</a></li><li><a href="module-WHighchartsVueDyn.html">WHighchartsVueDyn</a></li><li><a href="module-WHighstockVueDyn.html">WHighstockVueDyn</a></li><li><a href="module-WIcon.html">WIcon</a></li><li><a href="module-WIconLoading.html">WIconLoading</a></li><li><a href="module-WImageCascadingDyn.html">WImageCascadingDyn</a></li><li><a href="module-WImageViewerDyn.html">WImageViewerDyn</a></li><li><a href="module-WInputCheckbox.html">WInputCheckbox</a></li><li><a href="module-WInputRadio.html">WInputRadio</a></li><li><a href="module-WJsonView.html">WJsonView</a></li><li><a href="module-WLeafletVueDyn.html">WLeafletVueDyn</a></li><li><a href="module-WLevelGrade.html">WLevelGrade</a></li><li><a href="module-WListCheck.html">WListCheck</a></li><li><a href="module-WListExpand.html">WListExpand</a></li><li><a href="module-WListExpandItem.html">WListExpandItem</a></li><li><a href="module-WListHorizontal.html">WListHorizontal</a></li><li><a href="module-WListItem.html">WListItem</a></li><li><a href="module-WListRadio.html">WListRadio</a></li><li><a href="module-WListVertical.html">WListVertical</a></li><li><a href="module-WPanelAvatar.html">WPanelAvatar</a></li><li><a href="module-WPanelBulge.html">WPanelBulge</a></li><li><a href="module-WPanelDivideHorizontal.html">WPanelDivideHorizontal</a></li><li><a href="module-WPanelDivideVertical.html">WPanelDivideVertical</a></li><li><a href="module-WPanelLabelItem.html">WPanelLabelItem</a></li><li><a href="module-WPanelScale.html">WPanelScale</a></li><li><a href="module-WPanelScrolly.html">WPanelScrolly</a></li><li><a href="module-WPanelScrollyCore.html">WPanelScrollyCore</a></li><li><a href="module-WPanelStripe.html">WPanelStripe</a></li><li><a href="module-WPopup.html">WPopup</a></li><li><a href="module-WPopupEditText.html">WPopupEditText</a></li><li><a href="module-WProgressBar.html">WProgressBar</a></li><li><a href="module-WProgressCircle.html">WProgressCircle</a></li><li><a href="module-WQuillVueDyn.html">WQuillVueDyn</a></li><li><a href="module-WSegmentsVertical.html">WSegmentsVertical</a></li><li><a href="module-WShellBottomLine.html">WShellBottomLine</a></li><li><a href="module-WShellEllipse.html">WShellEllipse</a></li><li><a href="module-WSlider.html">WSlider</a></li><li><a href="module-WSwitch.html">WSwitch</a></li><li><a href="module-WTableDyn.html">WTableDyn</a></li><li><a href="module-WText.html">WText</a></li><li><a href="module-WTextCore.html">WTextCore</a></li><li><a href="module-WTextInt.html">WTextInt</a></li><li><a href="module-WTextIntCore.html">WTextIntCore</a></li><li><a href="module-WTextSelect.html">WTextSelect</a></li><li><a href="module-WTextSuggest.html">WTextSuggest</a></li><li><a href="module-WTextSuggestCore.html">WTextSuggestCore</a></li><li><a href="module-WTextarea.html">WTextarea</a></li><li><a href="module-WTextareaCore.html">WTextareaCore</a></li><li><a href="module-WTimeday.html">WTimeday</a></li><li><a href="module-WTimedayCore.html">WTimedayCore</a></li><li><a href="module-WTimedayRange.html">WTimedayRange</a></li><li><a href="module-WTimedayRangeCore.html">WTimedayRangeCore</a></li><li><a href="module-WTimeminute.html">WTimeminute</a></li><li><a href="module-WTimeminuteCore.html">WTimeminuteCore</a></li><li><a href="module-WTimeminuteRange.html">WTimeminuteRange</a></li><li><a href="module-WTimeminuteRangeCore.html">WTimeminuteRangeCore</a></li><li><a href="module-WTinymceVueDyn.html">WTinymceVueDyn</a></li><li><a href="module-WTooltip.html">WTooltip</a></li><li><a href="module-WTree.html">WTree</a></li><li><a href="module-WTreeIconCheckbox.html">WTreeIconCheckbox</a></li><li><a href="module-WTreeIconToggle.html">WTreeIconToggle</a></li></ul><h3>Global</h3><ul><li><a href="global.html#binarySearch">binarySearch</a></li><li><a href="global.html#color2hex">color2hex</a></li></ul>
-    
-</nav>
-
-<div id="main">
-    
-    <h1 class="page-title">color2hex.mjs</h1>
-    
-
-    
-
-
-
-    
-    <section>
-        <article>
-            <pre class="prettyprint source linenums"><code>import camelCase from 'lodash-es/camelCase'
+import camelCase from 'lodash-es/camelCase'
 import split from 'lodash-es/split'
 import size from 'lodash-es/size'
 import get from 'lodash-es/get'
@@ -104,7 +57,7 @@ function getHexColor(key0, key1, def) {
  * @param {String} color 輸入vuetify顏色字串
  * @returns {String} hex 回傳hex顏色字串
  */
-function color2hex(color) {
+function convertColor(color) {
 
     //speed
     if (color === 'white') {
@@ -132,29 +85,4 @@ function color2hex(color) {
 }
 
 
-export default color2hex
-</code></pre>
-        </article>
-    </section>
-
-
-
-
-    
-    
-</div>
-
-<br class="clear">
-
-<footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.2</a> on Fri Dec 29 2023 00:06:07 GMT+0800 (台北標準時間) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
-</footer>
-
-<script>prettyPrint();</script>
-<script src="scripts/polyfill.js"></script>
-<script src="scripts/linenumber.js"></script>
-
-
-
-</body>
-</html>
+export default convertColor

@@ -7,6 +7,17 @@ import WButtonChip from './WButtonChip.vue'
 import WButtonCircle from './WButtonCircle.vue'
 import WCheckbox from './WCheckbox.vue'
 import WCkeditorVueDyn from './WCkeditorVueDyn.vue'
+import WColorPickAlpha from './WColorPickAlpha.vue'
+import WColorPickHexagon from './WColorPickHexagon.vue'
+import WColorPickHexagonGray from './WColorPickHexagonGray.vue'
+import WColorPickHsv from './WColorPickHsv.vue'
+import WColorPickHue from './WColorPickHue.vue'
+import WColorPickStripe from './WColorPickStripe.vue'
+import WColorSelect from './WColorSelect.vue'
+import WColorSelectInput from './WColorSelectInput.vue'
+import WColorSelectPanel from './WColorSelectPanel.vue'
+import WColorSelectPanelBlock from './WColorSelectPanelBlock.vue'
+import WColorSelectPanelHsva from './WColorSelectPanelHsva.vue'
 import WConfirm from './WConfirm.vue'
 import WDialog from './WDialog.vue'
 import WDrawer from './WDrawer.vue'
@@ -94,6 +105,17 @@ let WComponentVue = {
         Vue.component('w-button-circle', WButtonCircle)
         Vue.component('w-checkbox', WCheckbox)
         Vue.component('w-ckeditor-vue-dyn', WCkeditorVueDyn)
+        Vue.component('w-color-pick-alpha', WColorPickAlpha)
+        Vue.component('w-color-pick-hexagon', WColorPickHexagon)
+        Vue.component('w-color-pick-hexagon-gray', WColorPickHexagonGray)
+        Vue.component('w-color-pick-hsv', WColorPickHsv)
+        Vue.component('w-color-pick-hue', WColorPickHue)
+        Vue.component('w-color-pick-stripe', WColorPickStripe)
+        Vue.component('w-color-select', WColorSelect)
+        Vue.component('w-color-select-input', WColorSelectInput)
+        Vue.component('w-color-select-panel', WColorSelectPanel)
+        Vue.component('w-color-select-panel-block', WColorSelectPanelBlock)
+        Vue.component('w-color-select-panel-hsva', WColorSelectPanelHsva)
         Vue.component('w-confirm', WConfirm)
         Vue.component('w-dialog', WDialog)
         Vue.component('w-drawer', WDrawer)

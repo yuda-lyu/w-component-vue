@@ -293,7 +293,7 @@ import genID from 'wsemi/src/genID.mjs'
 import genPm from 'wsemi/src/genPm.mjs'
 import replace from 'wsemi/src/replace.mjs'
 import domIsClientXYIn from 'wsemi/src/domIsClientXYIn.mjs'
-import color2hex from '../js/color2hex.mjs'
+import convertColor from '../js/convertColor.mjs'
 import domResize from '../js/domResize.mjs'
 import domZIndex from '../js/domZIndex.mjs'
 import WButtonCircle from './WButtonCircle.vue'
@@ -609,7 +609,7 @@ export default {
 
         useOverlayColor: function() {
             let vo = this
-            return color2hex(vo.overlayColor)
+            return convertColor(vo.overlayColor)
         },
 
         usePanelShadowStyle: function() {
@@ -630,12 +630,12 @@ export default {
 
         useTitleColor: function () {
             let vo = this
-            return color2hex(vo.titleColor)
+            return convertColor(vo.titleColor)
         },
 
         useHeaderBackgroundColor: function() {
             let vo = this
-            return color2hex(vo.headerBackgroundColor)
+            return convertColor(vo.headerBackgroundColor)
         },
 
         useHeaderShadowStyle: function() {
@@ -649,12 +649,12 @@ export default {
 
         useContentTextColor: function () {
             let vo = this
-            return color2hex(vo.contentTextColor)
+            return convertColor(vo.contentTextColor)
         },
 
         useContentBackgroundColor: function () {
             let vo = this
-            return color2hex(vo.contentBackgroundColor)
+            return convertColor(vo.contentBackgroundColor)
         },
 
     },

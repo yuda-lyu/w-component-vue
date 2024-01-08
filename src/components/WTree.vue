@@ -319,7 +319,7 @@ import debounce from 'wsemi/src/debounce.mjs'
 import flattenTreeWk from '../js/flattenTreeWk.wk.umd.js'
 import globalMemory from '../js/globalMemory.mjs'
 import parseSpace from '../js/parseSpace.mjs'
-import color2hex from '../js/color2hex.mjs'
+import convertColor from '../js/convertColor.mjs'
 import domDragDrop from '../js/domDragDrop.mjs'
 import domRipple from '../js/domRipple.mjs'
 import WDynamicList from './WDynamicList.vue'
@@ -1111,7 +1111,7 @@ export default {
 
             let vo = this
 
-            return color2hex(vo.itemTextColor)
+            return convertColor(vo.itemTextColor)
         },
 
         useItemBackgroundColor: function() {
@@ -1119,7 +1119,7 @@ export default {
 
             let vo = this
 
-            return color2hex(vo.itemBackgroundColor)
+            return convertColor(vo.itemBackgroundColor)
         },
 
         useItemTextColorHover: function() {
@@ -1127,7 +1127,7 @@ export default {
 
             let vo = this
 
-            return color2hex(vo.itemTextColorHover)
+            return convertColor(vo.itemTextColorHover)
         },
 
         useItemBackgroundColorHover: function() {
@@ -1135,7 +1135,7 @@ export default {
 
             let vo = this
 
-            return color2hex(vo.itemBackgroundColorHover)
+            return convertColor(vo.itemBackgroundColorHover)
         },
 
         useItemTextColorActive: function() {
@@ -1143,7 +1143,7 @@ export default {
 
             let vo = this
 
-            return color2hex(vo.itemTextColorActive)
+            return convertColor(vo.itemTextColorActive)
         },
 
         useItemBackgroundColorActive: function() {
@@ -1151,7 +1151,7 @@ export default {
 
             let vo = this
 
-            return color2hex(vo.itemBackgroundColorActive)
+            return convertColor(vo.itemBackgroundColorActive)
         },
 
         useDgTextDisabledColor: function() {
@@ -1159,7 +1159,7 @@ export default {
 
             let vo = this
 
-            return color2hex(vo.dgTextDisabledColor)
+            return convertColor(vo.dgTextDisabledColor)
         },
 
         useDgTextDisabledBackgroundColor: function() {
@@ -1167,7 +1167,7 @@ export default {
 
             let vo = this
 
-            return color2hex(vo.dgTextDisabledBackgroundColor)
+            return convertColor(vo.dgTextDisabledBackgroundColor)
         },
 
         useDgInsertLineColor: function() {
@@ -1175,7 +1175,7 @@ export default {
 
             let vo = this
 
-            return color2hex(vo.dgInsertLineColor)
+            return convertColor(vo.dgInsertLineColor)
         },
 
         useDgInsertBackgroundColor: function() {
@@ -1183,7 +1183,7 @@ export default {
 
             let vo = this
 
-            return color2hex(vo.dgInsertBackgroundColor)
+            return convertColor(vo.dgInsertBackgroundColor)
         },
 
         uesDgBelongBackgroundColor: function() {
@@ -1191,7 +1191,7 @@ export default {
 
             let vo = this
 
-            return color2hex(vo.dgBelongBackgroundColor)
+            return convertColor(vo.dgBelongBackgroundColor)
         },
 
         operateItems: function() {
@@ -1244,12 +1244,12 @@ export default {
 
         useEditorContentBackgroundColor: function() {
             let vo = this
-            return color2hex(vo.editorRenameContentBackgroundColor)
+            return convertColor(vo.editorRenameContentBackgroundColor)
         },
 
         useEditorFooterBackgroundColor: function() {
             let vo = this
-            return color2hex(vo.editorRenameFooterBackgroundColor)
+            return convertColor(vo.editorRenameFooterBackgroundColor)
         },
 
     },

@@ -40,7 +40,7 @@
 <script>
 import isbol from 'wsemi/src/isbol.mjs'
 import replace from 'wsemi/src/replace.mjs'
-import color2hex from '../js/color2hex.mjs'
+import convertColor from '../js/convertColor.mjs'
 
 
 /**
@@ -202,12 +202,12 @@ export default {
 
         effTextColor: function() {
             let vo = this
-            return color2hex(vo.textColor)
+            return convertColor(vo.textColor)
         },
 
         effTextColorHover: function() {
             let vo = this
-            return color2hex(vo.textColorHover)
+            return convertColor(vo.textColorHover)
         },
 
         useTextColor: function() {
@@ -229,17 +229,17 @@ export default {
 
         effCheckedSwitchCircleColor: function() {
             let vo = this
-            return color2hex(vo.checkedSwitchCircleColor)
+            return convertColor(vo.checkedSwitchCircleColor)
         },
 
         effCheckedSwitchCircleColorHover: function() {
             let vo = this
-            return color2hex(vo.checkedSwitchCircleColorHover)
+            return convertColor(vo.checkedSwitchCircleColorHover)
         },
 
         effCheckedSwitchCircleColorDisabled: function() {
             let vo = this
-            return color2hex(vo.checkedSwitchCircleColorDisabled)
+            return convertColor(vo.checkedSwitchCircleColorDisabled)
         },
 
         useCheckedSwitchCircleColor: function() {
@@ -252,17 +252,17 @@ export default {
 
         effUncheckedSwitchCircleColor: function() {
             let vo = this
-            return color2hex(vo.uncheckedSwitchCircleColor)
+            return convertColor(vo.uncheckedSwitchCircleColor)
         },
 
         effUncheckedSwitchCircleColorHover: function() {
             let vo = this
-            return color2hex(vo.uncheckedSwitchCircleColorHover)
+            return convertColor(vo.uncheckedSwitchCircleColorHover)
         },
 
         effUncheckedSwitchCircleColorDisabled: function() {
             let vo = this
-            return color2hex(vo.uncheckedSwitchCircleColorDisabled)
+            return convertColor(vo.uncheckedSwitchCircleColorDisabled)
         },
 
         useUncheckedSwitchCircleColor: function() {
@@ -280,17 +280,17 @@ export default {
 
         effCheckedSwitchBarColor: function() {
             let vo = this
-            return color2hex(vo.checkedSwitchBarColor)
+            return convertColor(vo.checkedSwitchBarColor)
         },
 
         effCheckedSwitchBarColorHover: function() {
             let vo = this
-            return color2hex(vo.checkedSwitchBarColorHover)
+            return convertColor(vo.checkedSwitchBarColorHover)
         },
 
         effCheckedSwitchBarColorDisabled: function() {
             let vo = this
-            return color2hex(vo.checkedSwitchBarColorDisabled)
+            return convertColor(vo.checkedSwitchBarColorDisabled)
         },
 
         useCheckedSwitchBarColor: function() {
@@ -303,17 +303,17 @@ export default {
 
         effUncheckedSwitchBarColor: function() {
             let vo = this
-            return color2hex(vo.uncheckedSwitchBarColor)
+            return convertColor(vo.uncheckedSwitchBarColor)
         },
 
         effUncheckedSwitchBarColorHover: function() {
             let vo = this
-            return color2hex(vo.uncheckedSwitchBarColorHover)
+            return convertColor(vo.uncheckedSwitchBarColorHover)
         },
 
         effUncheckedSwitchBarColorDisabled: function() {
             let vo = this
-            return color2hex(vo.uncheckedSwitchBarColorDisabled)
+            return convertColor(vo.uncheckedSwitchBarColorDisabled)
         },
 
         useUncheckedSwitchBarColor: function() {
