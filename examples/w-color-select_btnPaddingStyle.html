@@ -78,7 +78,7 @@
     ></script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.3.72/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.3.73/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -131,7 +131,7 @@
             <div class="item">btnPaddingStyle</div>
 
             <w-color-select
-                v-model="WColorSelect.colorPick14"
+                v-model="WColorSelect.colorPick15"
                 :btn-padding-style="{v:1,h:4}"
             ></w-color-select>
         </div>
@@ -148,6 +148,7 @@
     data: function() {
       return {
         WColorSelect: {
+          displayColorText: "show",
           colorPick1: "rgba(121, 51, 255, 0.53)",
           colorPick2: "rgba(121, 51, 255, 0.53)",
           colorPick3: "rgba(121, 51, 255, 0.53)",
@@ -181,7 +182,8 @@
           colorPick31: "rgba(121, 51, 255, 0.53)",
           colorPick32: "rgba(121, 51, 255, 0.53)",
           colorPick33: "rgba(121, 51, 255, 0.53)",
-          colorPick34: "rgba(121, 51, 255, 0.53)"
+          colorPick34: "rgba(121, 51, 255, 0.53)",
+          colorPick35: "rgba(121, 51, 255, 0.53)"
         },
         actions: []
       };
