@@ -80,11 +80,34 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-color-select'"
+                    :casename="'showColorText'"
+                ></demolink>
+
+                <div style="padding:5px 0px;">
+                    <w-input-radio
+                        :arrange="'horizontal'"
+                        :paddingStyle="{top:0,right:10,bottom:0,left:0}"
+                        :items="['show','hide']"
+                        v-model="WColorSelect.displayColorText"
+                    ></w-input-radio>
+                </div>
+
+                <w-color-select
+                    v-model="WColorSelect.colorPick6"
+                    :showColorText="WColorSelect.displayColorText==='show'"
+                ></w-color-select>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-color-select'"
                     :casename="'colorTextColor'"
                 ></demolink>
 
                 <w-color-select
-                    v-model="WColorSelect.colorPick6"
+                    v-model="WColorSelect.colorPick7"
                     :colorTextColor="'#66a'"
                 ></w-color-select>
 
@@ -98,7 +121,7 @@
                 ></demolink>
 
                 <w-color-select
-                    v-model="WColorSelect.colorPick7"
+                    v-model="WColorSelect.colorPick8"
                     :colorTextFontSize="'0.75rem'"
                 ></w-color-select>
 
@@ -112,7 +135,7 @@
                 ></demolink>
 
                 <w-color-select
-                    v-model="WColorSelect.colorPick8"
+                    v-model="WColorSelect.colorPick9"
                     :panelBackgroundColor="'#e5e5e5'"
                 ></w-color-select>
 
@@ -126,7 +149,7 @@
                 ></demolink>
 
                 <w-color-select
-                    v-model="WColorSelect.colorPick9"
+                    v-model="WColorSelect.colorPick10"
                     :toolBackgroundColor="'#f2f2f2'"
                 ></w-color-select>
 
@@ -140,7 +163,7 @@
                 ></demolink>
 
                 <w-color-select
-                    v-model="WColorSelect.colorPick10"
+                    v-model="WColorSelect.colorPick11"
                     :menuIconLump="mdiHexagonOutline"
                     :menuIconHsva="mdiGradientHorizontal"
                     :menuIconEyeDropper="mdiRouter"
@@ -156,7 +179,7 @@
                 ></demolink>
 
                 <w-color-select
-                    v-model="WColorSelect.colorPick11"
+                    v-model="WColorSelect.colorPick12"
                     :menuIconColor="'#ccc'"
                     :menuIconColorHover="'#aaa'"
                     :menuIconColorActive="'rgb(70, 103, 181)'"
@@ -172,7 +195,7 @@
                 ></demolink>
 
                 <w-color-select
-                    v-model="WColorSelect.colorPick12"
+                    v-model="WColorSelect.colorPick13"
                     :menuIconSize="24"
                 ></w-color-select>
 
@@ -186,7 +209,7 @@
                 ></demolink>
 
                 <w-color-select
-                    v-model="WColorSelect.colorPick13"
+                    v-model="WColorSelect.colorPick14"
                     :btnText="'Save'"
                 ></w-color-select>
 
@@ -200,7 +223,7 @@
                 ></demolink>
 
                 <w-color-select
-                    v-model="WColorSelect.colorPick14"
+                    v-model="WColorSelect.colorPick15"
                     :btnPaddingStyle="{v:1,h:4}"
                 ></w-color-select>
 
@@ -214,7 +237,7 @@
                 ></demolink>
 
                 <w-color-select
-                    v-model="WColorSelect.colorPick15"
+                    v-model="WColorSelect.colorPick16"
                     :btnTextColor="'#777'"
                     :btnTextColorHover="'#666'"
                     :btnTextColorActive="'#666'"
@@ -230,7 +253,7 @@
                 ></demolink>
 
                 <w-color-select
-                    v-model="WColorSelect.colorPick16"
+                    v-model="WColorSelect.colorPick17"
                     :btnTextFontSize="'0.75rem'"
                 ></w-color-select>
 
@@ -244,7 +267,7 @@
                 ></demolink>
 
                 <w-color-select
-                    v-model="WColorSelect.colorPick17"
+                    v-model="WColorSelect.colorPick18"
                     :btnBorderRadius="0"
                 ></w-color-select>
 
@@ -258,7 +281,7 @@
                 ></demolink>
 
                 <w-color-select
-                    v-model="WColorSelect.colorPick18"
+                    v-model="WColorSelect.colorPick19"
                     :btnBackgroundColor="'#f2f2f2'"
                     :btnBackgroundColorHover="'#fff'"
                     :btnBackgroundColorActive="'#fff'"
@@ -274,7 +297,7 @@
                 ></demolink>
 
                 <w-color-select
-                    v-model="WColorSelect.colorPick19"
+                    v-model="WColorSelect.colorPick20"
                     :menuTextColor="'#888'"
                     :menuTextColorHover="'#666'"
                     :menuTextColorActive="'rgb(70, 103, 181)'"
@@ -290,7 +313,7 @@
                 ></demolink>
 
                 <w-color-select
-                    v-model="WColorSelect.colorPick20"
+                    v-model="WColorSelect.colorPick21"
                     :menuTextFontSize="'0.75rem'"
                 ></w-color-select>
 
@@ -304,7 +327,7 @@
                 ></demolink>
 
                 <w-color-select
-                    v-model="WColorSelect.colorPick21"
+                    v-model="WColorSelect.colorPick22"
                     :menuBorderRadius="0"
                 ></w-color-select>
 
@@ -318,7 +341,7 @@
                 ></demolink>
 
                 <w-color-select
-                    v-model="WColorSelect.colorPick22"
+                    v-model="WColorSelect.colorPick23"
                     :menuBackgroundColor="'transparent'"
                     :menuBackgroundColorHover="'rgba(255,255,255,0.2)'"
                     :menuBackgroundColorActive="'rgba(70, 103, 181, 0.2)'"
@@ -334,7 +357,7 @@
                 ></demolink>
 
                 <w-color-select
-                    v-model="WColorSelect.colorPick23"
+                    v-model="WColorSelect.colorPick24"
                     :inputBorderRadius="0"
                 ></w-color-select>
 
@@ -348,7 +371,7 @@
                 ></demolink>
 
                 <w-color-select
-                    v-model="WColorSelect.colorPick24"
+                    v-model="WColorSelect.colorPick25"
                     :inputBorderColor="'#aaa'"
                     :inputBorderColorHover="'#999'"
                     :inputBorderColorActive="'rgb(70, 103, 181)'"
@@ -364,7 +387,7 @@
                 ></demolink>
 
                 <w-color-select
-                    v-model="WColorSelect.colorPick25"
+                    v-model="WColorSelect.colorPick26"
                     :inputBackgroundColor="'#fff'"
                     :inputBackgroundColorHover="'#f2f2ff'"
                     :inputBackgroundColorActive="'#eeeeff'"
@@ -380,7 +403,7 @@
                 ></demolink>
 
                 <w-color-select
-                    v-model="WColorSelect.colorPick26"
+                    v-model="WColorSelect.colorPick27"
                     :inputTextColor="'#329'"
                 ></w-color-select>
 
@@ -394,7 +417,7 @@
                 ></demolink>
 
                 <w-color-select
-                    v-model="WColorSelect.colorPick27"
+                    v-model="WColorSelect.colorPick28"
                     :inputTextFontSize="'0.75rem'"
                     :inputTextWidth="36"
                     :inputTextHeight="16"
@@ -410,7 +433,7 @@
                 ></demolink>
 
                 <w-color-select
-                    v-model="WColorSelect.colorPick28"
+                    v-model="WColorSelect.colorPick29"
                     :inputLabelColor="'#f26'"
                 ></w-color-select>
 
@@ -424,7 +447,7 @@
                 ></demolink>
 
                 <w-color-select
-                    v-model="WColorSelect.colorPick29"
+                    v-model="WColorSelect.colorPick30"
                     :inputLabelWidth="10"
                     :inputLabelFontSize="'0.75rem'"
                 ></w-color-select>
@@ -439,7 +462,7 @@
                 ></demolink>
 
                 <w-color-select
-                    v-model="WColorSelect.colorPick30"
+                    v-model="WColorSelect.colorPick31"
                     :barProgHeight="6"
                 ></w-color-select>
 
@@ -453,7 +476,7 @@
                 ></demolink>
 
                 <w-color-select
-                    v-model="WColorSelect.colorPick31"
+                    v-model="WColorSelect.colorPick32"
                     :barProgColor="'#F48FB1'"
                     :barProgBackgroundColor="'#FCE4EC'"
                     :barSliderBackgroundColor="'#E91E63'"
@@ -470,7 +493,7 @@
                 ></demolink>
 
                 <w-color-select
-                    v-model="WColorSelect.colorPick32"
+                    v-model="WColorSelect.colorPick33"
                     :barSliderSize="14"
                 ></w-color-select>
 
@@ -485,7 +508,7 @@
 
                 <div style="display:flex; padding:20px; background:#222;">
                     <w-color-select
-                        v-model="WColorSelect.colorPick33"
+                        v-model="WColorSelect.colorPick34"
                         :colorBlockBorderColor="'#888'"
                         :colorTextColor="'#ddd'"
                         :panelBackgroundColor="'#111'"
@@ -535,7 +558,7 @@
                 ></demolink>
 
                 <w-color-select
-                    v-model="WColorSelect.colorPick34"
+                    v-model="WColorSelect.colorPick35"
                     :editable="false"
                 ></w-color-select>
 
@@ -551,12 +574,14 @@
 <script>
 import { mdiHexagonOutline, mdiGradientHorizontal, mdiRouter } from '@mdi/js'
 import demolink from './components/demolink.vue'
+import WInputRadio from './components/WInputRadio.vue'
 import WColorSelect from './components/WColorSelect.vue'
 
 
 export default {
     components: {
         demolink,
+        WInputRadio,
         WColorSelect,
     },
     props: {
@@ -567,6 +592,7 @@ export default {
             mdiGradientHorizontal,
             mdiRouter,
             'WColorSelect': {
+                'displayColorText': 'show',
                 'colorPick1': 'rgba(121, 51, 255, 0.53)',
                 'colorPick2': 'rgba(121, 51, 255, 0.53)',
                 'colorPick3': 'rgba(121, 51, 255, 0.53)',
@@ -601,6 +627,7 @@ export default {
                 'colorPick32': 'rgba(121, 51, 255, 0.53)',
                 'colorPick33': 'rgba(121, 51, 255, 0.53)',
                 'colorPick34': 'rgba(121, 51, 255, 0.53)',
+                'colorPick35': 'rgba(121, 51, 255, 0.53)',
             },
             'actions': [
             ],

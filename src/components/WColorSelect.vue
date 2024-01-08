@@ -24,11 +24,15 @@
 
                     <div :style="`border:${colorBlockBorderWidth}px solid ${useColorBlockBorderColor}; width:${colorBlockSize}px; height:${colorBlockSize}px; background:${valueOri};`"></div>
 
-                    <div :style="`padding-left:5px;`"></div>
+                    <template v-if="showColorText">
 
-                    <div :style="`font-size:${colorTextFontSize}; color:${useColorTextColor};`">
-                        {{valueOri}}
-                    </div>
+                        <div :style="`padding-left:5px;`"></div>
+
+                        <div :style="`font-size:${colorTextFontSize}; color:${useColorTextColor};`">
+                            {{valueOri}}
+                        </div>
+
+                    </template>
 
                 </div>
             </div>
@@ -221,6 +225,7 @@ import WIcon from './WIcon.vue'
  * @vue-prop {Number} [colorBlockSize=20] 輸入色塊長與寬度數字，單位px，預設20
  * @vue-prop {Number} [colorBlockBorderWidth=1] 輸入色塊框線寬度數字，單位px，預設1
  * @vue-prop {String} [colorBlockBorderColor='#ddd'] 輸入色塊框線顏色字串，預設'#ddd'
+ * @vue-prop {Boolean} [showColorText=true] 輸入是否顯示當前RGBA顏色文字布林值，預設true
  * @vue-prop {String} [colorTextColor='#000'] 輸入當前RGBA顏色文字顏色字串，預設'#000'
  * @vue-prop {String} [colorTextFontSize='0.8rem'] 輸入當前RGBA顏色文字字型大小字串，預設'0.8rem'
  * @vue-prop {String} [panelBackgroundColor='#fff'] 輸入彈窗背景顏色字串，預設'#fff'
@@ -317,6 +322,10 @@ export default {
         colorBlockBorderColor: {
             type: String,
             default: '#ddd',
+        },
+        showColorText: {
+            type: Boolean,
+            default: true,
         },
         colorTextColor: {
             type: String,
