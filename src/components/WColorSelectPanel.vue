@@ -9,7 +9,7 @@
 
             <div
                 style="display:flex;"
-                v-show="typeTrans==='LUMP'"
+                v-if="typeTrans==='LUMP'"
             >
                 <WColorSelectPanelBlock
                     :size="size"
@@ -23,7 +23,7 @@
 
             <div
                 style="display:flex;"
-                v-show="typeTrans==='HSVA'"
+                v-if="typeTrans==='HSVA'"
             >
                 <WColorSelectPanelHsva
                     _size="size*0.8875"
