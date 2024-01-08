@@ -8,6 +8,7 @@
         :editable="editable"
         v-model="show"
         :changeValue="changeValue"
+        :changeType="changeType"
         v-domresize
         @domresize="resize"
     >
@@ -214,6 +215,7 @@ import WIcon from './WIcon.vue'
 
 /**
  * @vue-prop {String} [value='#FFFFFF'] 輸入顏色字串，預設'#FFFFFF'
+ * @vue-prop {String} [type='HSVA'] 輸入選擇顏色方式字串，可選'LUMP'、'HSVA'，預設'HSVA'
  * @vue-prop {Number} [size=200] 輸入尺寸數字，代表組件基礎寬度與將自動計算高度，單位px，預設200
  * @vue-prop {Number} [space=10] 輸入子組件間距數字，單位px，預設10
  * @vue-prop {Number} [colorBlockSize=20] 輸入色塊長與寬度數字，單位px，預設20
@@ -292,6 +294,10 @@ export default {
             type: String,
             default: '#FFFFFF',
         },
+        type: {
+            type: String,
+            default: 'HSVA',
+        },
         size: {
             type: Number,
             default: 200,
@@ -356,7 +362,6 @@ export default {
             type: Number,
             default: 20,
         },
-
         borderColor: {
             type: String,
             default: '#ddd',
@@ -572,6 +577,12 @@ export default {
             let vo = this
             vo.valueOri = convertColor(vo.value)
             vo.valueNew = vo.valueOri
+            return ''
+        },
+
+        changeType: function() {
+            let vo = this
+            vo.typeTrans = vo.type
             return ''
         },
 
