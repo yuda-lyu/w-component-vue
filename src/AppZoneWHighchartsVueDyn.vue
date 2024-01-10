@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="bkh">
 
 
         <div class="head1"><span style="cursor:pointer;" title="open for copy link to view component" onclick="window.open('//yuda-lyu.github.io/w-component-vue/examples/app.html?cmp='+this.innerText,'_blank')">w-highcharts-vue-dyn</span></div>
@@ -15,7 +15,7 @@
         </div>
 
 
-        <div style="padding:0px;">
+        <div>
 
 
             <div class="bk">

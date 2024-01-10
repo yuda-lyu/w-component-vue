@@ -120,25 +120,39 @@ function writeHtml(v) {
                 align-items: center;
             }
             .head1 {
-                margin: 0px;
                 padding: 0px 0px 20px 0px;
                 font-size: 2.5rem;
             }
-            .bk {
-                vertical-align: top;
-                padding: 10px 0px 60px 0px;
+            .bkh { /* 寬 */
+                padding:20px;
             }
-            @media screen and (min-width:1000px){ /* 寬版 */
+            @media screen and (max-width:800px){ /* 中 */
+                .bkh {
+                    padding:10px;
+                }
+            }
+            @media screen and (max-width:400px){ /* 窄 */
+                .bkh {
+                    padding:5px;
+                }
+            }
+            .bk { /* 寬 */
+                display: inline-block;
+                vertical-align: top;
+                padding: 0px 80px 60px 0px;
+            }
+            @media screen and (max-width:1000px){ /* 中窄 */
                 .bk {
-                    display: inline-block;
-                    margin: 0px 80px 0px 0px;
+                    display: block;
+                    padding: 0px 0px 50px 0px;
                 }
             }
         </style>
     
         `,
         appTag: `v-app`,
-        appStyle: `font-family:inherit; padding:0px 30px;`,
+        appClass: `bkh`,
+        appStyle: `font-family:inherit;`,
         appTmp: getAppTmp(),
         installVue: `Vue.use(window['w-component-vue'])`,
         newVue: `vuetify: new Vuetify()`,

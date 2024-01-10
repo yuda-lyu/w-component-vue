@@ -1,6 +1,6 @@
 {
   "name": "w-component-vue",
-  "version": "2.3.73",
+  "version": "2.3.74",
   "main": "dist/w-component-vue.umd.js",
   "dependencies": {
     "@mdi/js": "^7.2.96",
@@ -26,7 +26,7 @@
     "vue-cli-plugin-vuetify": "^2.5.8",
     "vuetify": "^2.6.14",
     "vuetify-loader": "^1.9.2",
-    "w-package-tools": "^1.0.71"
+    "w-package-tools": "^1.0.72"
   },
   "scripts": {
     "serve": "vue-cli-service serve",

@@ -34,7 +34,6 @@
                 <div style="height:1px; background:#ddd;"></div>
             </div>
 
-
             <div style="width:calc( 100vw - 20px ); overflow-x:auto;" v-if="cmpsL2 && cmpsL2.length>0">
                 <div style="height:3px; background:#fff;"></div>
                 <WListHorizontal
@@ -80,392 +79,161 @@
         </div>
 
 
-        <div style="padding:20px;">
+        <div>
 
+            <AppZoneWBadge v-if="cmpPick==='WBadge'"></AppZoneWBadge>
 
-            <AppZoneWBadge
-                v-if="cmpPick==='WBadge'"
-            ></AppZoneWBadge>
+            <AppZoneWPanelStripe v-if="cmpPick==='WPanelStripe'"></AppZoneWPanelStripe>
 
+            <AppZoneWPanelBulge v-if="cmpPick==='WPanelBulge'"></AppZoneWPanelBulge>
 
-            <AppZoneWPanelStripe
-                v-if="cmpPick==='WPanelStripe'"
-            ></AppZoneWPanelStripe>
+            <AppZoneWPanelAvatar v-if="cmpPick==='WPanelAvatar'"></AppZoneWPanelAvatar>
 
+            <AppZoneWPanelScrolly v-if="cmpPick==='WPanelScrolly'"></AppZoneWPanelScrolly>
 
-            <AppZoneWPanelBulge
-                v-if="cmpPick==='WPanelBulge'"
-            ></AppZoneWPanelBulge>
+            <AppZoneWPanelLabelItem v-if="cmpPick==='WPanelLabelItem'"></AppZoneWPanelLabelItem>
 
+            <AppZoneWPanelDivideHorizontal v-if="cmpPick==='WPanelDivideHorizontal'"></AppZoneWPanelDivideHorizontal>
 
-            <AppZoneWPanelAvatar
-                v-if="cmpPick==='WPanelAvatar'"
-            ></AppZoneWPanelAvatar>
+            <AppZoneWPanelDivideVertical v-if="cmpPick==='WPanelDivideVertical'"></AppZoneWPanelDivideVertical>
 
+            <AppZoneWPanelScale v-if="cmpPick==='WPanelScale'"></AppZoneWPanelScale>
 
-            <AppZoneWPanelScrolly
-                v-if="cmpPick==='WPanelScrolly'"
-            ></AppZoneWPanelScrolly>
+            <AppZoneWIcon v-if="cmpPick==='WIcon'"></AppZoneWIcon>
 
+            <AppZoneWDropfiles v-if="cmpPick==='WDropfiles'"></AppZoneWDropfiles>
 
-            <AppZoneWPanelLabelItem
-                v-if="cmpPick==='WPanelLabelItem'"
-            ></AppZoneWPanelLabelItem>
+            <AppZoneWButtonChip v-if="cmpPick==='WButtonChip'"></AppZoneWButtonChip>
 
+            <AppZoneWButtonCircle v-if="cmpPick==='WButtonCircle'"></AppZoneWButtonCircle>
 
-            <AppZoneWPanelDivideHorizontal
-                v-if="cmpPick==='WPanelDivideHorizontal'"
-            ></AppZoneWPanelDivideHorizontal>
+            <AppZoneWSlider v-if="cmpPick==='WSlider'"></AppZoneWSlider>
 
+            <AppZoneWProgressBar v-if="cmpPick==='WProgressBar'"></AppZoneWProgressBar>
 
-            <AppZoneWPanelDivideVertical
-                v-if="cmpPick==='WPanelDivideVertical'"
-            ></AppZoneWPanelDivideVertical>
+            <AppZoneWProgressCircle v-if="cmpPick==='WProgressCircle'"></AppZoneWProgressCircle>
 
+            <AppZoneWSwitch v-if="cmpPick==='WSwitch'"></AppZoneWSwitch>
 
-            <AppZoneWPanelScale
-                v-if="cmpPick==='WPanelScale'"
-            ></AppZoneWPanelScale>
+            <AppZoneWCheckbox v-if="cmpPick==='WCheckbox'"></AppZoneWCheckbox>
 
+            <AppZoneWLevelGrade v-if="cmpPick==='WLevelGrade'"></AppZoneWLevelGrade>
 
-            <AppZoneWIcon
-                v-if="cmpPick==='WIcon'"
-            ></AppZoneWIcon>
+            <AppZoneWAlert v-if="cmpPick==='WAlert'"></AppZoneWAlert>
 
+            <AppZoneWDialog v-if="cmpPick==='WDialog'"></AppZoneWDialog>
 
-            <AppZoneWDropfiles
-                v-if="cmpPick==='WDropfiles'"
-            ></AppZoneWDropfiles>
+            <AppZoneWConfirm v-if="cmpPick==='WConfirm'"></AppZoneWConfirm>
 
+            <AppZoneWTooltip v-if="cmpPick==='WTooltip'"></AppZoneWTooltip>
 
-            <AppZoneWButtonChip
-                v-if="cmpPick==='WButtonChip'"
-            ></AppZoneWButtonChip>
+            <AppZoneWPopup v-if="cmpPick==='WPopup'"></AppZoneWPopup>
 
+            <AppZoneWPopupEditText v-if="cmpPick==='WPopupEditText'"></AppZoneWPopupEditText>
 
-            <AppZoneWButtonCircle
-                v-if="cmpPick==='WButtonCircle'"
-            ></AppZoneWButtonCircle>
+            <AppZoneWDrawer v-if="cmpPick==='WDrawer'"></AppZoneWDrawer>
 
+            <AppZoneWGroupTags v-if="cmpPick==='WGroupTags'"></AppZoneWGroupTags>
 
-            <AppZoneWSlider
-                v-if="cmpPick==='WSlider'"
-            ></AppZoneWSlider>
+            <AppZoneWGroupDragdrop v-if="cmpPick==='WGroupDragdrop'"></AppZoneWGroupDragdrop>
 
+            <AppZoneWGroupBaggage v-if="cmpPick==='WGroupBaggage'"></AppZoneWGroupBaggage>
 
-            <AppZoneWProgressBar
-                v-if="cmpPick==='WProgressBar'"
-            ></AppZoneWProgressBar>
+            <AppZoneWListVertical v-if="cmpPick==='WListVertical'"></AppZoneWListVertical>
 
+            <AppZoneWListHorizontal v-if="cmpPick==='WListHorizontal'"></AppZoneWListHorizontal>
 
-            <AppZoneWProgressCircle
-                v-if="cmpPick==='WProgressCircle'"
-            ></AppZoneWProgressCircle>
+            <AppZoneWInputRadio v-if="cmpPick==='WInputRadio'"></AppZoneWInputRadio>
 
+            <AppZoneWInputCheckbox v-if="cmpPick==='WInputCheckbox'"></AppZoneWInputCheckbox>
 
-            <AppZoneWSwitch
-                v-if="cmpPick==='WSwitch'"
-            ></AppZoneWSwitch>
+            <AppZoneWListExpand v-if="cmpPick==='WListExpand'"></AppZoneWListExpand>
 
+            <AppZoneWListRadio v-if="cmpPick==='WListRadio'"></AppZoneWListRadio>
 
-            <AppZoneWCheckbox
-                v-if="cmpPick==='WCheckbox'"
-            ></AppZoneWCheckbox>
+            <AppZoneWListCheck v-if="cmpPick==='WListCheck'"></AppZoneWListCheck>
 
+            <AppZoneWGroupChipCheck v-if="cmpPick==='WGroupChipCheck'"></AppZoneWGroupChipCheck>
 
-            <AppZoneWLevelGrade
-                v-if="cmpPick==='WLevelGrade'"
-            ></AppZoneWLevelGrade>
+            <AppZoneWGroupChipRadio v-if="cmpPick==='WGroupChipRadio'"></AppZoneWGroupChipRadio>
 
+            <AppZoneWGroupIconCheck v-if="cmpPick==='WGroupIconCheck'"></AppZoneWGroupIconCheck>
 
-            <AppZoneWAlert
-                v-if="cmpPick==='WAlert'"
-            ></AppZoneWAlert>
+            <AppZoneWGroupIconRadio v-if="cmpPick==='WGroupIconRadio'"></AppZoneWGroupIconRadio>
 
+            <AppZoneWText v-if="cmpPick==='WText'"></AppZoneWText>
 
-            <AppZoneWDialog
-                v-if="cmpPick==='WDialog'"
-            ></AppZoneWDialog>
+            <AppZoneWTextInt v-if="cmpPick==='WTextInt'"></AppZoneWTextInt>
 
+            <AppZoneWTextarea v-if="cmpPick==='WTextarea'"></AppZoneWTextarea>
 
-            <AppZoneWConfirm
-                v-if="cmpPick==='WConfirm'"
-            ></AppZoneWConfirm>
+            <AppZoneWTextSelect v-if="cmpPick==='WTextSelect'"></AppZoneWTextSelect>
 
+            <AppZoneWTextSuggest v-if="cmpPick==='WTextSuggest'"></AppZoneWTextSuggest>
 
-            <AppZoneWTooltip
-                v-if="cmpPick==='WTooltip'"
-            ></AppZoneWTooltip>
+            <AppZoneWTimeday v-if="cmpPick==='WTimeday'"></AppZoneWTimeday>
 
+            <AppZoneWTimeminute v-if="cmpPick==='WTimeminute'"></AppZoneWTimeminute>
 
-            <AppZoneWPopup
-                v-if="cmpPick==='WPopup'"
-            ></AppZoneWPopup>
+            <AppZoneWTimedayRange v-if="cmpPick==='WTimedayRange'"></AppZoneWTimedayRange>
 
+            <AppZoneWTimeminuteRange v-if="cmpPick==='WTimeminuteRange'"></AppZoneWTimeminuteRange>
 
-            <AppZoneWPopupEditText
-                v-if="cmpPick==='WPopupEditText'"
-            ></AppZoneWPopupEditText>
+            <AppZoneWDynamicList v-if="cmpPick==='WDynamicList'"></AppZoneWDynamicList>
 
+            <AppZoneWSegmentsVertical v-if="cmpPick==='WSegmentsVertical'"></AppZoneWSegmentsVertical>
 
-            <AppZoneWDrawer
-                v-if="cmpPick==='WDrawer'"
-            ></AppZoneWDrawer>
+            <AppZoneWJsonView v-if="cmpPick==='WJsonView'"></AppZoneWJsonView>
 
+            <AppZoneWTree v-if="cmpPick==='WTree'"></AppZoneWTree>
 
-            <AppZoneWGroupTags
-                v-if="cmpPick==='WGroupTags'"
-            ></AppZoneWGroupTags>
+            <AppZoneWHighchartsVueDyn v-if="cmpPick==='WHighchartsVueDyn'"></AppZoneWHighchartsVueDyn>
 
+            <AppZoneWHighchartsBitmapDyn v-if="cmpPick==='WHighchartsBitmapDyn'"></AppZoneWHighchartsBitmapDyn>
 
-            <AppZoneWGroupDragdrop
-                v-if="cmpPick==='WGroupDragdrop'"
-            ></AppZoneWGroupDragdrop>
+            <AppZoneWHighstockVueDyn v-if="cmpPick==='WHighstockVueDyn'"></AppZoneWHighstockVueDyn>
 
+            <AppZoneWEchartsVueDyn v-if="cmpPick==='WEchartsVueDyn'"></AppZoneWEchartsVueDyn>
 
-            <AppZoneWGroupBaggage
-                v-if="cmpPick==='WGroupBaggage'"
-            ></AppZoneWGroupBaggage>
+            <AppZoneWAggridVueDyn v-if="cmpPick==='WAggridVueDyn'"></AppZoneWAggridVueDyn>
 
+            <AppZoneWTableDyn v-if="cmpPick==='WTableDyn'"></AppZoneWTableDyn>
 
-            <AppZoneWListVertical
-                v-if="cmpPick==='WListVertical'"
-            ></AppZoneWListVertical>
+            <AppZoneWImageViewerDyn v-if="cmpPick==='WImageViewerDyn'"></AppZoneWImageViewerDyn>
 
+            <AppZoneWImageCascadingDyn v-if="cmpPick==='WImageCascadingDyn'"></AppZoneWImageCascadingDyn>
 
-            <AppZoneWListHorizontal
-                v-if="cmpPick==='WListHorizontal'"
-            ></AppZoneWListHorizontal>
+            <AppZoneWCkeditorVueDyn v-if="cmpPick==='WCkeditorVueDyn'"></AppZoneWCkeditorVueDyn>
 
+            <AppZoneWTinymceVueDyn v-if="cmpPick==='WTinymceVueDyn'"></AppZoneWTinymceVueDyn>
 
-            <AppZoneWInputRadio
-                v-if="cmpPick==='WInputRadio'"
-            ></AppZoneWInputRadio>
+            <AppZoneWQuillVueDyn v-if="cmpPick==='WQuillVueDyn'"></AppZoneWQuillVueDyn>
 
+            <AppZoneWLeafletVueDyn v-if="cmpPick==='WLeafletVueDyn'"></AppZoneWLeafletVueDyn>
 
-            <AppZoneWInputCheckbox
-                v-if="cmpPick==='WInputCheckbox'"
-            ></AppZoneWInputCheckbox>
+            <AppZoneWExplorer v-if="cmpPick==='WExplorer'"></AppZoneWExplorer>
 
+            <AppZoneWColorPickHexagon v-if="cmpPick==='WColorPickHexagon'"></AppZoneWColorPickHexagon>
 
-            <AppZoneWListExpand
-                v-if="cmpPick==='WListExpand'"
-            ></AppZoneWListExpand>
+            <AppZoneWColorPickHexagonGray v-if="cmpPick==='WColorPickHexagonGray'"></AppZoneWColorPickHexagonGray>
 
+            <AppZoneWColorPickHsv v-if="cmpPick==='WColorPickHsv'"></AppZoneWColorPickHsv>
 
-            <AppZoneWListRadio
-                v-if="cmpPick==='WListRadio'"
-            ></AppZoneWListRadio>
+            <AppZoneWColorPickHue v-if="cmpPick==='WColorPickHue'"></AppZoneWColorPickHue>
 
+            <AppZoneWColorPickAlpha v-if="cmpPick==='WColorPickAlpha'"></AppZoneWColorPickAlpha>
 
-            <AppZoneWListCheck
-                v-if="cmpPick==='WListCheck'"
-            ></AppZoneWListCheck>
+            <AppZoneWColorPickStripe v-if="cmpPick==='WColorPickStripe'"></AppZoneWColorPickStripe>
 
+            <AppZoneWColorSelectPanelBlock v-if="cmpPick==='WColorSelectPanelBlock'"></AppZoneWColorSelectPanelBlock>
 
-            <AppZoneWGroupChipCheck
-                v-if="cmpPick==='WGroupChipCheck'"
-            ></AppZoneWGroupChipCheck>
+            <AppZoneWColorSelectPanelHsva v-if="cmpPick==='WColorSelectPanelHsva'"></AppZoneWColorSelectPanelHsva>
 
+            <AppZoneWColorSelectPanel v-if="cmpPick==='WColorSelectPanel'"></AppZoneWColorSelectPanel>
 
-            <AppZoneWGroupChipRadio
-                v-if="cmpPick==='WGroupChipRadio'"
-            ></AppZoneWGroupChipRadio>
+            <AppZoneWColorSelectInput v-if="cmpPick==='WColorSelectInput'"></AppZoneWColorSelectInput>
 
-
-            <AppZoneWGroupIconCheck
-                v-if="cmpPick==='WGroupIconCheck'"
-            ></AppZoneWGroupIconCheck>
-
-
-            <AppZoneWGroupIconRadio
-                v-if="cmpPick==='WGroupIconRadio'"
-            ></AppZoneWGroupIconRadio>
-
-
-            <AppZoneWText
-                v-if="cmpPick==='WText'"
-            ></AppZoneWText>
-
-
-            <AppZoneWTextInt
-                v-if="cmpPick==='WTextInt'"
-            ></AppZoneWTextInt>
-
-
-            <AppZoneWTextarea
-                v-if="cmpPick==='WTextarea'"
-            ></AppZoneWTextarea>
-
-
-            <AppZoneWTextSelect
-                v-if="cmpPick==='WTextSelect'"
-            ></AppZoneWTextSelect>
-
-
-            <AppZoneWTextSuggest
-                v-if="cmpPick==='WTextSuggest'"
-            ></AppZoneWTextSuggest>
-
-
-            <AppZoneWTimeday
-                v-if="cmpPick==='WTimeday'"
-            ></AppZoneWTimeday>
-
-
-            <AppZoneWTimeminute
-                v-if="cmpPick==='WTimeminute'"
-            ></AppZoneWTimeminute>
-
-
-            <AppZoneWTimedayRange
-                v-if="cmpPick==='WTimedayRange'"
-            ></AppZoneWTimedayRange>
-
-
-            <AppZoneWTimeminuteRange
-                v-if="cmpPick==='WTimeminuteRange'"
-            ></AppZoneWTimeminuteRange>
-
-
-            <AppZoneWDynamicList
-                v-if="cmpPick==='WDynamicList'"
-            ></AppZoneWDynamicList>
-
-
-            <AppZoneWSegmentsVertical
-                v-if="cmpPick==='WSegmentsVertical'"
-            ></AppZoneWSegmentsVertical>
-
-
-            <AppZoneWJsonView
-                v-if="cmpPick==='WJsonView'"
-            ></AppZoneWJsonView>
-
-
-            <AppZoneWTree
-                v-if="cmpPick==='WTree'"
-            ></AppZoneWTree>
-
-
-            <AppZoneWHighchartsVueDyn
-                v-if="cmpPick==='WHighchartsVueDyn'"
-            ></AppZoneWHighchartsVueDyn>
-
-
-            <AppZoneWHighchartsBitmapDyn
-                v-if="cmpPick==='WHighchartsBitmapDyn'"
-            ></AppZoneWHighchartsBitmapDyn>
-
-
-            <AppZoneWHighstockVueDyn
-                v-if="cmpPick==='WHighstockVueDyn'"
-            ></AppZoneWHighstockVueDyn>
-
-
-            <AppZoneWEchartsVueDyn
-                v-if="cmpPick==='WEchartsVueDyn'"
-            ></AppZoneWEchartsVueDyn>
-
-
-            <AppZoneWAggridVueDyn
-                v-if="cmpPick==='WAggridVueDyn'"
-            ></AppZoneWAggridVueDyn>
-
-
-            <AppZoneWTableDyn
-                v-if="cmpPick==='WTableDyn'"
-            ></AppZoneWTableDyn>
-
-
-            <AppZoneWImageViewerDyn
-                v-if="cmpPick==='WImageViewerDyn'"
-            ></AppZoneWImageViewerDyn>
-
-
-            <AppZoneWImageCascadingDyn
-                v-if="cmpPick==='WImageCascadingDyn'"
-            ></AppZoneWImageCascadingDyn>
-
-
-            <AppZoneWCkeditorVueDyn
-                v-if="cmpPick==='WCkeditorVueDyn'"
-            ></AppZoneWCkeditorVueDyn>
-
-
-            <AppZoneWTinymceVueDyn
-                v-if="cmpPick==='WTinymceVueDyn'"
-            ></AppZoneWTinymceVueDyn>
-
-
-            <AppZoneWQuillVueDyn
-                v-if="cmpPick==='WQuillVueDyn'"
-            ></AppZoneWQuillVueDyn>
-
-
-            <AppZoneWLeafletVueDyn
-                v-if="cmpPick==='WLeafletVueDyn'"
-            ></AppZoneWLeafletVueDyn>
-
-
-            <AppZoneWExplorer
-                v-if="cmpPick==='WExplorer'"
-            ></AppZoneWExplorer>
-
-
-            <AppZoneWColorPickHexagon
-                v-if="cmpPick==='WColorPickHexagon'"
-            ></AppZoneWColorPickHexagon>
-
-
-            <AppZoneWColorPickHexagonGray
-                v-if="cmpPick==='WColorPickHexagonGray'"
-            ></AppZoneWColorPickHexagonGray>
-
-
-            <AppZoneWColorPickHsv
-                v-if="cmpPick==='WColorPickHsv'"
-            ></AppZoneWColorPickHsv>
-
-
-            <AppZoneWColorPickHue
-                v-if="cmpPick==='WColorPickHue'"
-            ></AppZoneWColorPickHue>
-
-
-            <AppZoneWColorPickAlpha
-                v-if="cmpPick==='WColorPickAlpha'"
-            ></AppZoneWColorPickAlpha>
-
-
-            <AppZoneWColorPickStripe
-                v-if="cmpPick==='WColorPickStripe'"
-            ></AppZoneWColorPickStripe>
-
-
-            <AppZoneWColorSelectPanelBlock
-                v-if="cmpPick==='WColorSelectPanelBlock'"
-            ></AppZoneWColorSelectPanelBlock>
-
-
-            <AppZoneWColorSelectPanelHsva
-                v-if="cmpPick==='WColorSelectPanelHsva'"
-            ></AppZoneWColorSelectPanelHsva>
-
-
-            <AppZoneWColorSelectPanel
-                v-if="cmpPick==='WColorSelectPanel'"
-            ></AppZoneWColorSelectPanel>
-
-
-            <AppZoneWColorSelectInput
-                v-if="cmpPick==='WColorSelectInput'"
-            ></AppZoneWColorSelectInput>
-
-
-            <AppZoneWColorSelect
-                v-if="cmpPick==='WColorSelect'"
-            ></AppZoneWColorSelect>
+            <AppZoneWColorSelect v-if="cmpPick==='WColorSelect'"></AppZoneWColorSelect>
 
 
         </div>
@@ -995,18 +763,31 @@ export default {
     background: #fff;
 }
 .head1 {
-    margin: 0px;
-    padding: 0px 0px 10px 0px;
+    padding: 0px 0px 20px 0px;
     font-size: 2.5rem;
 }
-.bk {
-    vertical-align: top;
-    padding: 10px 0px 60px 0px;
+.bkh { /* 寬 */
+    padding:20px;
 }
-@media screen and (min-width:1000px){ /* 寬版 */
+@media screen and (max-width:800px){ /* 中 */
+    .bkh {
+        padding:10px;
+    }
+}
+@media screen and (max-width:400px){ /* 窄 */
+    .bkh {
+        padding:5px;
+    }
+}
+.bk { /* 寬 */
+    display: inline-block;
+    vertical-align: top;
+    padding: 0px 80px 60px 0px;
+}
+@media screen and (max-width:1000px){ /* 中窄 */
     .bk {
-        display: inline-block;
-        margin: 0px 80px 0px 0px;
+        display: block;
+        padding: 0px 0px 50px 0px;
     }
 }
 </style>

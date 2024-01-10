@@ -1,11 +1,11 @@
 <template>
-    <div>
+    <div class="bkh">
 
 
         <div class="head1"><span style="cursor:pointer;" title="open for copy link to view component" onclick="window.open('//yuda-lyu.github.io/w-component-vue/examples/app.html?cmp='+this.innerText,'_blank')">w-alert</span></div>
 
 
-        <div style="padding:0px;">
+        <div>
 
 
             <div class="bk">
@@ -226,7 +226,10 @@ export default {
         }
     },
     mounted: function() {
-        this.$alert = WAlert
+        try {
+            this.$alert = WAlert
+        }
+        catch (err) {}
     },
     methods: {
         receiveCloseEvent: function() {
