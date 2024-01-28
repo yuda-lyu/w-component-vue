@@ -70,7 +70,7 @@ export default {
                     }
 
                     //use
-                    getVue().use(cmp)
+                    getVue().use(cmp) //, { Highcharts }
 
                 }
                 vo.cmpName = 'Highstock'

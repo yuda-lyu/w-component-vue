@@ -1,6 +1,6 @@
 <template>
-    <component ref="$self" :is="cmpName" :settings="settings" :height="height" :editable="editable" :value="value" @input="(v)=>{$emit('input',v)}"></component>
     <!-- ref=$self為供外部存取組件之用 -->
+    <component ref="$self" :is="cmpName" :settings="settings" :height="height" :editable="editable" :value="value" @input="(v)=>{$emit('input',v)}"></component>
 </template>
 
 <script>

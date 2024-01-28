@@ -81,6 +81,7 @@ import WTextIntCore from './WTextIntCore.vue'
 import WTextSelect from './WTextSelect.vue'
 import WTextSuggest from './WTextSuggest.vue'
 import WTextSuggestCore from './WTextSuggestCore.vue'
+import WThreejsVueDyn from './WThreejsVueDyn.vue'
 import WTimeday from './WTimeday.vue'
 import WTimedayCore from './WTimedayCore.vue'
 import WTimedayRange from './WTimedayRange.vue'
@@ -179,6 +180,7 @@ let WComponentVue = {
         Vue.component('w-text-select', WTextSelect)
         Vue.component('w-text-suggest', WTextSuggest)
         Vue.component('w-text-suggest-core', WTextSuggestCore)
+        Vue.component('w-threejs-vue-dyn', WThreejsVueDyn)
         Vue.component('w-timeday', WTimeday)
         Vue.component('w-timeday-core', WTimedayCore)
         Vue.component('w-timeday-range', WTimedayRange)

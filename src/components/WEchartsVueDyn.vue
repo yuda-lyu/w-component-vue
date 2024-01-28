@@ -63,7 +63,6 @@ export default {
                     }
 
                     //use
-                    // getVue().use(VueCompositionAPI)
                     getVue().component('v-chart', cmp)
 
                 }
