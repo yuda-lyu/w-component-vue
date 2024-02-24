@@ -36,7 +36,7 @@ export default {
                 'https://code.highcharts.com/11/modules/heatmap.js',
                 'https://code.highcharts.com/11/modules/boost.js',
                 'https://code.highcharts.com/11/modules/boost-canvas.js',
-                'https://cdn.jsdelivr.net/npm/w-highcharts/dist/w-highcharts.umd.js', //使用最新版
+                'https://cdn.jsdelivr.net/npm/w-highcharts@1.0.2/dist/w-highcharts.umd.js', //使用最新版
             ],
         },
         options: {

@@ -31,7 +31,7 @@ export default {
                 'https://code.highcharts.com/11/modules/boost-canvas.js',
                 'https://cdn.jsdelivr.net/npm/vue-highcharts@0.1.0/dist/vue-highcharts.min.js', //for vue2
                 //'https://cdn.jsdelivr.net/npm/vue-highcharts@0.2.0/dist/vue-highcharts.min.js',
-                'https://cdn.jsdelivr.net/npm/w-highcharts/dist/w-highcharts.umd.js', //使用最新版
+                'https://cdn.jsdelivr.net/npm/w-highcharts@1.0.2/dist/w-highcharts.umd.js', //使用最新版
             ],
         },
         options: {
