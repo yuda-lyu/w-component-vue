@@ -26,7 +26,7 @@ export default {
             default: () => [
                 'https://cdn.jsdelivr.net/npm/quill@1.3.7/dist/quill.min.js',
                 'https://cdn.jsdelivr.net/npm/quill@1.3.7/dist/quill.snow.min.css',
-                'https://cdn.jsdelivr.net/npm/w-quill-vue@2.0.4/dist/w-quill-vue.umd.js',
+                'https://cdn.jsdelivr.net/npm/w-quill-vue@2.0.5/dist/w-quill-vue.umd.js',
             ],
         },
         value: {

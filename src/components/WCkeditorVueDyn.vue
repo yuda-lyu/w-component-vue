@@ -25,7 +25,7 @@ export default {
             type: Array,
             default: () => [
                 'https://cdn.jsdelivr.net/npm/w-ckeditor-vue/dist/ckeditor.js',
-                'https://cdn.jsdelivr.net/npm/w-ckeditor-vue@2.0.4/dist/w-ckeditor-vue.umd.js',
+                'https://cdn.jsdelivr.net/npm/w-ckeditor-vue@2.0.5/dist/w-ckeditor-vue.umd.js',
             ],
         },
         value: {
