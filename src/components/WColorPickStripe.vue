@@ -60,7 +60,7 @@
 </template>
 
 <script>
-import each from 'lodash-es/each'
+import each from 'lodash-es/each.js'
 import oc from 'wsemi/src/color.mjs'
 import getImgAlpha from '../js/getImgAlpha.mjs'
 import convertColor from '../js/convertColor.mjs'

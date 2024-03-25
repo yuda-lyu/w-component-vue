@@ -83,8 +83,8 @@
 
 <script>
 import { mdiTriangleDown } from '@mdi/js'
-import get from 'lodash-es/get'
-import each from 'lodash-es/each'
+import get from 'lodash-es/get.js'
+import each from 'lodash-es/each.js'
 import replace from 'wsemi/src/replace.mjs'
 import isnum from 'wsemi/src/isnum.mjs'
 import isp0int from 'wsemi/src/isp0int.mjs'

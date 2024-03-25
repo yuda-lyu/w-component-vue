@@ -25,9 +25,9 @@
 </template>
 
 <script>
-import each from 'lodash-es/each'
-import get from 'lodash-es/get'
-import merge from 'lodash-es/merge'
+import each from 'lodash-es/each.js'
+import get from 'lodash-es/get.js'
+import merge from 'lodash-es/merge.js'
 import importResources from 'wsemi/src/importResources.mjs'
 import domShowImagesDyn from 'wsemi/src/domShowImagesDyn.mjs'
 import domFadeIn from 'wsemi/src/domFadeIn.mjs'

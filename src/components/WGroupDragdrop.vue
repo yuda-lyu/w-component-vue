@@ -24,10 +24,10 @@
 </template>
 
 <script>
-import cloneDeep from 'lodash-es/cloneDeep'
-import every from 'lodash-es/every'
-import pullAt from 'lodash-es/pullAt'
-import size from 'lodash-es/size'
+import cloneDeep from 'lodash-es/cloneDeep.js'
+import every from 'lodash-es/every.js'
+import pullAt from 'lodash-es/pullAt.js'
+import size from 'lodash-es/size.js'
 import genID from 'wsemi/src/genID.mjs'
 import o2j from 'wsemi/src/o2j.mjs'
 import isobj from 'wsemi/src/isobj.mjs'

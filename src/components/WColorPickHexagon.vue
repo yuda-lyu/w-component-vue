@@ -40,11 +40,11 @@
 </template>
 
 <script>
-import map from 'lodash-es/map'
-import each from 'lodash-es/each'
-import min from 'lodash-es/min'
-import max from 'lodash-es/max'
-import join from 'lodash-es/join'
+import map from 'lodash-es/map.js'
+import each from 'lodash-es/each.js'
+import min from 'lodash-es/min.js'
+import max from 'lodash-es/max.js'
+import join from 'lodash-es/join.js'
 import isestr from 'wsemi/src/isestr.mjs'
 import oc from 'wsemi/src/color.mjs'
 import convertColor from '../js/convertColor.mjs'

@@ -42,10 +42,10 @@
 </template>
 
 <script>
-import get from 'lodash-es/get'
-import last from 'lodash-es/last'
-import pull from 'lodash-es/pull'
-import isNumber from 'lodash-es/isNumber'
+import get from 'lodash-es/get.js'
+import last from 'lodash-es/last.js'
+import pull from 'lodash-es/pull.js'
+import isNumber from 'lodash-es/isNumber.js'
 import genID from 'wsemi/src/genID.mjs'
 import replace from 'wsemi/src/replace.mjs'
 import domIsClientXYIn from 'wsemi/src/domIsClientXYIn.mjs'

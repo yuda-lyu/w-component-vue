@@ -65,7 +65,7 @@
 </template>
 
 <script>
-import get from 'lodash-es/get'
+import get from 'lodash-es/get.js'
 import convertColor from '../js/convertColor.mjs'
 
 

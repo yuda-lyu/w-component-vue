@@ -136,10 +136,10 @@
 
 <script>
 import { mdiCloseCircle } from '@mdi/js'
-import map from 'lodash-es/map'
-import join from 'lodash-es/join'
-import get from 'lodash-es/get'
-import split from 'lodash-es/split'
+import map from 'lodash-es/map.js'
+import join from 'lodash-es/join.js'
+import get from 'lodash-es/get.js'
+import split from 'lodash-es/split.js'
 import isnum from 'wsemi/src/isnum.mjs'
 import isbol from 'wsemi/src/isbol.mjs'
 import isestr from 'wsemi/src/isestr.mjs'

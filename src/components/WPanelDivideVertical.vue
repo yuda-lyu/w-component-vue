@@ -41,7 +41,7 @@
 </template>
 
 <script>
-import isNumber from 'lodash-es/isNumber'
+import isNumber from 'lodash-es/isNumber.js'
 import domDragBarAndScroll from 'wsemi/src/domDragBarAndScroll.mjs'
 import domResize from '../js/domResize.mjs'
 import convertColor from '../js/convertColor.mjs'

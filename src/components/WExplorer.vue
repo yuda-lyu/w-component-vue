@@ -401,12 +401,12 @@
 
 <script>
 import { mdiFolder, mdiFileOutline, mdiChevronRight, mdiArrowLeftBoldHexagonOutline, mdiArrowRightBoldHexagonOutline, mdiFolderPlusOutline, mdiFolderRemoveOutline, mdiRenameOutline, mdiCloseCircleOutline, mdiCloudUploadOutline } from '@mdi/js'
-import get from 'lodash-es/get'
-import each from 'lodash-es/each'
-import map from 'lodash-es/map'
-import size from 'lodash-es/size'
-import join from 'lodash-es/join'
-import cloneDeep from 'lodash-es/cloneDeep'
+import get from 'lodash-es/get.js'
+import each from 'lodash-es/each.js'
+import map from 'lodash-es/map.js'
+import size from 'lodash-es/size.js'
+import join from 'lodash-es/join.js'
+import cloneDeep from 'lodash-es/cloneDeep.js'
 import isbol from 'wsemi/src/isbol.mjs'
 import isestr from 'wsemi/src/isestr.mjs'
 import isfun from 'wsemi/src/isfun.mjs'

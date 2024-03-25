@@ -109,11 +109,11 @@
 </template>
 
 <script>
-import get from 'lodash-es/get'
-import size from 'lodash-es/size'
-import every from 'lodash-es/every'
-import isEqual from 'lodash-es/isEqual'
-import cloneDeep from 'lodash-es/cloneDeep'
+import get from 'lodash-es/get.js'
+import size from 'lodash-es/size.js'
+import every from 'lodash-es/every.js'
+import isEqual from 'lodash-es/isEqual.js'
+import cloneDeep from 'lodash-es/cloneDeep.js'
 import isEle from 'wsemi/src/isEle.mjs'
 import isobj from 'wsemi/src/isobj.mjs'
 import isestr from 'wsemi/src/isestr.mjs'

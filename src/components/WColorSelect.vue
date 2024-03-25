@@ -205,7 +205,7 @@
 
 <script>
 import { mdiHexagonSlice6, mdiViewParallel, mdiEyedropper, mdiLoading } from '@mdi/js'
-import get from 'lodash-es/get'
+import get from 'lodash-es/get.js'
 import isfun from 'wsemi/src/isfun.mjs'
 import domGetBoudRect from 'wsemi/src/domGetBoudRect.mjs'
 import convertColor from '../js/convertColor.mjs'

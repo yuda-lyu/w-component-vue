@@ -1,10 +1,10 @@
-import map from 'lodash-es/map'
-import trim from 'lodash-es/trim'
-import filter from 'lodash-es/filter'
-import toUpper from 'lodash-es/toUpper'
-import split from 'lodash-es/split'
-import size from 'lodash-es/size'
-import join from 'lodash-es/join'
+import map from 'lodash-es/map.js'
+import trim from 'lodash-es/trim.js'
+import filter from 'lodash-es/filter.js'
+import toUpper from 'lodash-es/toUpper.js'
+import split from 'lodash-es/split.js'
+import size from 'lodash-es/size.js'
+import join from 'lodash-es/join.js'
 
 
 function seCut(str) {

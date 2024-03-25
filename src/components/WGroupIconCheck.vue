@@ -62,15 +62,15 @@
 </template>
 
 <script>
-import get from 'lodash-es/get'
-import map from 'lodash-es/map'
-import each from 'lodash-es/each'
-import size from 'lodash-es/size'
-import isEqual from 'lodash-es/isEqual'
-import cloneDeep from 'lodash-es/cloneDeep'
+import get from 'lodash-es/get.js'
+import map from 'lodash-es/map.js'
+import each from 'lodash-es/each.js'
+import size from 'lodash-es/size.js'
+import isEqual from 'lodash-es/isEqual.js'
+import cloneDeep from 'lodash-es/cloneDeep.js'
 import arrHas from 'wsemi/src/arrHas.mjs'
-import join from 'lodash-es/join'
-import split from 'lodash-es/split'
+import join from 'lodash-es/join.js'
+import split from 'lodash-es/split.js'
 import isnum from 'wsemi/src/isnum.mjs'
 import isestr from 'wsemi/src/isestr.mjs'
 import cdbl from 'wsemi/src/cdbl.mjs'

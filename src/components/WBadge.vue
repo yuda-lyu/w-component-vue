@@ -27,7 +27,7 @@
 </template>
 
 <script>
-import get from 'lodash-es/get'
+import get from 'lodash-es/get.js'
 import replace from 'wsemi/src/replace.mjs'
 import convertColor from '../js/convertColor.mjs'
 import domResize from '../js/domResize.mjs'

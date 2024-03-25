@@ -16,7 +16,7 @@
 </template>
 
 <script>
-// import get from 'lodash-es/get'
+// import get from 'lodash-es/get.js'
 import WPanelScrollyCore from './WPanelScrollyCore.vue'
 import domResize from '../js/domResize.mjs'
 

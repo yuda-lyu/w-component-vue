@@ -78,8 +78,8 @@
 </template>
 
 <script>
-import get from 'lodash-es/get'
-import isNumber from 'lodash-es/isNumber'
+import get from 'lodash-es/get.js'
+import isNumber from 'lodash-es/isNumber.js'
 import dig from 'wsemi/src/dig.mjs'
 import round from 'wsemi/src/round.mjs'
 import cdbl from 'wsemi/src/cdbl.mjs'

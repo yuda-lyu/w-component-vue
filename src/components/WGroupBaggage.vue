@@ -95,8 +95,8 @@
 </template>
 
 <script>
-import get from 'lodash-es/get'
-import isNumber from 'lodash-es/isNumber'
+import get from 'lodash-es/get.js'
+import isNumber from 'lodash-es/isNumber.js'
 import replace from 'wsemi/src/replace.mjs'
 import parseSpace from '../js/parseSpace.mjs'
 import convertColor from '../js/convertColor.mjs'

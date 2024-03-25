@@ -68,12 +68,12 @@
 </template>
 
 <script>
-import each from 'lodash-es/each'
-import map from 'lodash-es/map'
-import get from 'lodash-es/get'
-import times from 'lodash-es/times'
-import size from 'lodash-es/size'
-import isNumber from 'lodash-es/isNumber'
+import each from 'lodash-es/each.js'
+import map from 'lodash-es/map.js'
+import get from 'lodash-es/get.js'
+import times from 'lodash-es/times.js'
+import size from 'lodash-es/size.js'
+import isNumber from 'lodash-es/isNumber.js'
 import importResources from 'wsemi/src/importResources.mjs'
 import domShowImagesDyn from 'wsemi/src/domShowImagesDyn.mjs'
 import ispint from 'wsemi/src/ispint.mjs'

@@ -53,11 +53,11 @@
 </template>
 
 <script>
-import get from 'lodash-es/get'
-import map from 'lodash-es/map'
-import each from 'lodash-es/each'
-import isEqual from 'lodash-es/isEqual'
-import cloneDeep from 'lodash-es/cloneDeep'
+import get from 'lodash-es/get.js'
+import map from 'lodash-es/map.js'
+import each from 'lodash-es/each.js'
+import isEqual from 'lodash-es/isEqual.js'
+import cloneDeep from 'lodash-es/cloneDeep.js'
 import replace from 'wsemi/src/replace.mjs'
 import arrHas from 'wsemi/src/arrHas.mjs'
 import parseSpace from '../js/parseSpace.mjs'

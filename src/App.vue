@@ -245,10 +245,10 @@
 </template>
 
 <script>
-import get from 'lodash-es/get'
-import kebabCase from 'lodash-es/kebabCase'
-import each from 'lodash-es/each'
-// import cloneDeep from 'lodash-es/cloneDeep'
+import get from 'lodash-es/get.js'
+import kebabCase from 'lodash-es/kebabCase.js'
+import each from 'lodash-es/each.js'
+// import cloneDeep from 'lodash-es/cloneDeep.js'
 import urlParse from 'wsemi/src/urlParse.mjs'
 import WListHorizontal from './components/WListHorizontal.vue'
 import AppZoneWBadge from './AppZoneWBadge.vue'

@@ -66,9 +66,9 @@
 </template>
 
 <script>
-import get from 'lodash-es/get'
-import isEqual from 'lodash-es/isEqual'
-// import cloneDeep from 'lodash-es/cloneDeep'
+import get from 'lodash-es/get.js'
+import isEqual from 'lodash-es/isEqual.js'
+// import cloneDeep from 'lodash-es/cloneDeep.js'
 import waitFun from 'wsemi/src/waitFun.mjs'
 import debounce from 'wsemi/src/debounce.mjs'
 import domResize from '../js/domResize.mjs'

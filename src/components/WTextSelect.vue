@@ -102,7 +102,7 @@
 </template>
 
 <script>
-import get from 'lodash-es/get'
+import get from 'lodash-es/get.js'
 import isobj from 'wsemi/src/isobj.mjs'
 import parseSpace from '../js/parseSpace.mjs'
 import domResize from '../js/domResize.mjs'
