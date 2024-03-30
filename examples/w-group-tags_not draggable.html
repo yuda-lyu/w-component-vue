@@ -78,7 +78,7 @@
     ></script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.3.80/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.3.81/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -463,7 +463,24 @@
             backgroundColorHover: "white",
             backgroundColorActive: "pink accent-3"
           },
-          suggests: ["apple", "orange", "banana"],
+          suggestsStrings: ["Apple", "Orange", "Banana"],
+          suggestsObjects: [
+            {
+              id: "id-Apple",
+              text: "Apple",
+              kind: "Fruit"
+            },
+            {
+              id: "id-Monkey",
+              text: "Monkey",
+              kind: "Animal"
+            },
+            {
+              id: "id-Tulip",
+              text: "Tulip",
+              kind: "Plant"
+            }
+          ],
           empty: []
         },
         actions: []
@@ -579,6 +596,10 @@
         setTimeout(function() {
           msg.setLoading(false);
         }, 2000);
+      },
+      ckInputAdd: function(msg) {
+        console.log("ckInputAdd", msg);
+        this.WGroupTags.objects.push(msg);
       }
     }
   });
