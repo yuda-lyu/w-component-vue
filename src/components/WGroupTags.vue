@@ -52,7 +52,7 @@
                         @click-close="clickRemoveBtn(item,kitem)"
                     >
                         <slot
-                            name="items"
+                            name="item"
                             :item="item"
                             :kitem="kitem"
                             :active="isActive(item)"
@@ -99,7 +99,7 @@
                 _click-close="clickRemoveBtn(item,kitem)"
             >
                 <slot
-                    name="items"
+                    name="item"
                     :item="null"
                     :kitem="null"
                     :active="false"
@@ -111,7 +111,7 @@
         <div :style="`display:inline-block; vertical-align:middle;`" v-if="editable && editableInput">
             <slot name="input">
 
-                <template v-if="isObjValue">
+                <template v-if="useMode==='button'">
                     <WButtonChip
                         :style="`${useMarginStyle}`"
                         :icon="addButtonIcon"
@@ -159,7 +159,21 @@
                         v-model="userinput"
                         @enter="clickAddBtn"
                         @click-right="clickAddBtn"
-                    ></WTextSuggest>
+                    >
+
+                        <template v-slot:item="props">
+
+                            <slot
+                                name="suggest"
+                                :item="props.item"
+                                :index="props.index"
+                            >
+                                <div>{{getSuggestText(props.item)}}</div>
+                            </slot>
+
+                        </template>
+
+                    </WTextSuggest>
                 </template>
 
             </slot>
@@ -193,10 +207,10 @@ import domDragDrop from '../js/domDragDrop.mjs'
  * @vue-prop {Array} [value=[]] 輸入項目的字串陣列或物件陣列，預設[]
  * @vue-prop {Boolean} [enableActive=false] 輸入項目是否使用點擊成為活耀狀態布林值，預設false
  * @vue-prop {Object} [valueActive=null] 輸入活耀項目物件，預設null
- * @vue-prop {String} [keyText='text'] 輸入項目為物件時，存放顯示文字之欄位字串，預設'text'
- * @vue-prop {String} [keyIcon='icon'] 輸入項目為物件時，存放圖標之欄位字串，預設'icon'
- * @vue-prop {String} [keyTooltip='tooltip'] 輸入項目為物件時，存放提示之欄位字串，預設'tooltip'
- * @vue-prop {Boolean} [enableColorsFromItem=false] 輸入當項目為物件時是否使用其內相關顏色設定用以覆蓋預設值布林值，預設false
+ * @vue-prop {String} [keyText='text'] 輸入當項目為物件時，存放顯示文字之欄位字串，預設'text'
+ * @vue-prop {String} [keyIcon='icon'] 輸入當項目為物件時，存放圖標之欄位字串，預設'icon'
+ * @vue-prop {String} [keyTooltip='tooltip'] 輸入當項目為物件時，存放提示之欄位字串，預設'tooltip'
+ * @vue-prop {Boolean} [enableColorsFromItem=false] 輸入當當項目為物件時是否使用其內相關顏色設定用以覆蓋預設值布林值，預設false
  * @vue-prop {String} [icon=''] 輸入左側圖標字串，預設''
  * @vue-prop {String} [iconColor='black'] 輸入圖標顏色字串，預設'black'
  * @vue-prop {String} [iconColorHover='grey darken-3'] 輸入滑鼠移入時圖標顏色字串，預設'grey darken-3'
@@ -224,8 +238,10 @@ import domDragDrop from '../js/domDragDrop.mjs'
  * @vue-prop {Number} [shiftLeft=0] 輸入左側內寬平移距離數字，會對paddingStyle設定再添加，可調整例如圖標與左側邊框距離，單位px，預設0
  * @vue-prop {Number} [shiftRight=0] 輸入右側內寬平移距離數字，會對paddingStyle設定再添加，可調整例如關閉圖標與右側邊框距離，單位px，預設0
  * @vue-prop {Array} [suggests=[]] 輸入可選(建議)項目陣列，預設[]
+ * @vue-prop {String} [keySuggestText='text'] 輸入當可選(建議)項目為物件時，存放顯示文字之欄位字串，預設'text'
  * @vue-prop {String} [placeholder=''] 輸入無文字時的替代字符字串，預設''
  * @vue-prop {String} [noResultsText='No results'] 輸入無過濾結果字串，預設'No results'
+ * @vue-prop {String} [addMode='auto'] 輸入新增模式字串，可使用'auto'、'input'、'button'，預設'auto'
  * @vue-prop {Number} [inputTextWidth=150] 輸入新增按鈕或輸入框區寬度數字，單位px，預設150
  * @vue-prop {String} [inputTextColor='black'] 輸入文字顏色字串，預設'black'
  * @vue-prop {String} [inputTextBackgroundColor='white'] 輸入輸入框背景顏色字串，預設'white'
@@ -423,6 +439,10 @@ export default {
             type: Array,
             default: () => [],
         },
+        keySuggestText: {
+            type: String,
+            default: 'text',
+        },
         placeholder: {
             type: String,
             default: '',
@@ -430,6 +450,10 @@ export default {
         noResultsText: {
             type: String,
             default: 'No results',
+        },
+        addMode: {
+            type: String,
+            default: 'auto', //auto, input, button
         },
         inputTextWidth: {
             type: Number,
@@ -619,6 +643,25 @@ export default {
             })
         },
 
+        useMode: function() {
+            //console.log('computed useMode')
+
+            let vo = this
+
+            let mode = ''
+            if (vo.addMode === 'auto') {
+                mode = vo.isObjValue ? 'button' : 'input'
+            }
+            else if (vo.addMode === 'button') {
+                mode = 'button'
+            }
+            else {
+                mode = 'input'
+            }
+
+            return mode
+        },
+
         isDraggable: function() {
             //console.log('computed isDraggable')
 
@@ -762,6 +805,21 @@ export default {
 
         },
 
+        getSuggestText: function(value) {
+            //console.log('methods getSuggestText', getSuggestText)
+
+            let vo = this
+
+            //valueTrans
+            if (isobj(value)) {
+                return value[vo.keySuggestText]
+            }
+            else {
+                return value
+            }
+
+        },
+
         clickChip: function(msgTemp, item, kitem) {
             //console.log('methods clickChip', msgTemp, item, kitem)
 
@@ -797,8 +855,9 @@ export default {
 
             let vo = this
 
-            //isObjValue
-            if (vo.isObjValue) {
+            //useMode
+            if (vo.useMode === 'button') {
+                //交由外部自行處理push
 
                 //$nextTick
                 vo.$nextTick(() => {
@@ -816,42 +875,62 @@ export default {
                     return
                 }
 
-                //check
-                let r = filter(vo.itemsTrans, (v) => {
-                    return isEqual(v, vo.userinput)
-                })
-                if (size(r) >= 1) {
+                //isObjValue
+                if (vo.isObjValue) {
+                    //若為obj, 則須交由外部自行處理push
 
                     //$nextTick
                     vo.$nextTick(() => {
 
                         //emit
-                        vo.$emit('error', 'disable duplicate values')
+                        vo.$emit('click-add', vo.userinput)
 
                         //clear
                         vo.userinput = ''
 
                     })
 
-                    return
                 }
+                else {
 
-                //$nextTick
-                vo.$nextTick(() => {
+                    //check
+                    let r = filter(vo.itemsTrans, (v) => {
+                        return isEqual(v, vo.userinput)
+                    })
+                    if (size(r) >= 1) {
 
-                    //push
-                    vo.itemsTrans.push(trim(vo.userinput))
+                        //$nextTick
+                        vo.$nextTick(() => {
 
-                    //emit
-                    vo.$emit('input', vo.itemsTrans)
+                            //emit
+                            vo.$emit('error', 'duplicate values')
 
-                    //emit
-                    vo.$emit('click-add', vo.userinput)
+                            //clear
+                            vo.userinput = ''
 
-                    //clear
-                    vo.userinput = ''
+                        })
 
-                })
+                        return
+                    }
+
+                    //$nextTick
+                    vo.$nextTick(() => {
+
+                        //push
+                        vo.itemsTrans.push(trim(vo.userinput))
+
+                        //emit
+                        vo.$emit('input', vo.itemsTrans)
+
+                        //emit
+                        vo.$emit('click-add', vo.userinput)
+
+                        //clear
+                        vo.userinput = ''
+
+                    })
+
+                }
 
             }
 

@@ -78,7 +78,7 @@
     ></script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.3.80/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.3.81/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -147,7 +147,7 @@
         <div class="bk" style="display:block;">
             <div
                 class="item"
-            >object items &amp; slot items &amp; enableColorsFromItem &amp; editableInput(no input button) &amp; no shadow &amp; no shadowActive &amp; enableActive &amp; valueActive &amp; paddingStyle</div>
+            >object items &amp; slot item &amp; enableColorsFromItem &amp; editableInput(no input button) &amp; no shadow &amp; no shadowActive &amp; enableActive &amp; valueActive &amp; paddingStyle</div>
 
             <w-group-tags
                 v-model="WGroupTags.objectsColor"
@@ -159,7 +159,7 @@
                 :padding-style="{v:1,h:12}"
                 :enable-colors-from-item="true"
             >
-                <template v-slot:items="props">
+                <template v-slot:item="props">
                     <div style="display:flex; align-items:center;">
                         <div
                             :style="`margin-left:-9px; display:inline-block; border-radius:10px; font-size:0.85rem; user-select:none; padding:0px 12px; ${props.active?'color:#263238; background:rgba(255,255,255,0.7);':'color:#888; background:rgba(100,100,100,0.1);'}`"
@@ -472,7 +472,24 @@
             backgroundColorHover: "white",
             backgroundColorActive: "pink accent-3"
           },
-          suggests: ["apple", "orange", "banana"],
+          suggestsStrings: ["Apple", "Orange", "Banana"],
+          suggestsObjects: [
+            {
+              id: "id-Apple",
+              text: "Apple",
+              kind: "Fruit"
+            },
+            {
+              id: "id-Monkey",
+              text: "Monkey",
+              kind: "Animal"
+            },
+            {
+              id: "id-Tulip",
+              text: "Tulip",
+              kind: "Plant"
+            }
+          ],
           empty: []
         },
         actions: []
@@ -588,6 +605,10 @@
         setTimeout(function() {
           msg.setLoading(false);
         }, 2000);
+      },
+      ckInputAdd: function(msg) {
+        console.log("ckInputAdd", msg);
+        this.WGroupTags.objects.push(msg);
       }
     }
   });

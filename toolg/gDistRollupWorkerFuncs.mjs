@@ -57,4 +57,4 @@ core()
         console.log(err)
     })
 
-//node --experimental-modules --es-module-specifier-resolution=node toolg/gDistRollupWorkerFuncs.mjs
+//node --experimental-modules toolg/gDistRollupWorkerFuncs.mjs

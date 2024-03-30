@@ -123,7 +123,7 @@
 
                 <w-group-tags
                     v-model="WGroupTags.strings"
-                    :suggests="WGroupTags.suggests"
+                    :suggests="WGroupTags.suggestsStrings"
                 ></w-group-tags>
 
                 <div style="padding-left:5px; font-size:0.9rem; color:#ea6;">binding: strings</div>
@@ -138,7 +138,7 @@
 
                 <w-group-tags
                     v-model="WGroupTags.strings"
-                    :suggests="WGroupTags.suggests"
+                    :suggests="WGroupTags.suggestsStrings"
                     :placeholder="'請輸入關鍵字'"
                     :noResultsText="'無符合項目'"
                 ></w-group-tags>
@@ -155,7 +155,7 @@
 
                 <w-group-tags
                     v-model="WGroupTags.strings"
-                    :suggests="WGroupTags.suggests"
+                    :suggests="WGroupTags.suggestsStrings"
                     :inputTextColor="'orange darken-2'"
                     :inputExpansionIconColor="'orange'"
                 ></w-group-tags>
@@ -172,7 +172,7 @@
 
                 <w-group-tags
                     v-model="WGroupTags.strings"
-                    :suggests="WGroupTags.suggests"
+                    :suggests="WGroupTags.suggestsStrings"
                     :suggectItemFontSize="'0.8rem'"
                     :suggectItemTextColor="'orange darken-2'"
                     :suggectItemTextColorHover="'white'"
@@ -181,6 +181,28 @@
                 ></w-group-tags>
 
                 <div style="padding-left:5px; font-size:0.9rem; color:#ea6;">binding: strings</div>
+            </div>
+
+
+            <div class="bk" style="display:block;">
+                <demolink
+                    :kbname="'w-group-tags'"
+                    :casename="'suggests & slot suggest & addMode'"
+                ></demolink>
+
+                <w-group-tags
+                    v-model="WGroupTags.objects"
+                    :suggests="WGroupTags.suggestsObjects"
+                    :addMode="'input'"
+                    @click-add="ckInputAdd"
+                >
+                    <template v-slot:suggest="props">
+                        <div style="color:#888; font-size:0.70rem;">{{props.item.kind}}</div>
+                        <div style="color:#000; font-size:0.85rem;">{{props.item.text}}</div>
+                    </template>
+                </w-group-tags>
+
+                <div style="padding-left:5px; font-size:0.9rem; color:#ea6;">binding: objects</div>
             </div>
 
 
@@ -314,7 +336,7 @@
             <div class="bk" style="display:block;">
                 <demolink
                     :kbname="'w-group-tags'"
-                    :casename="'slot items'"
+                    :casename="'slot item'"
                 ></demolink>
 
                 <w-group-tags
@@ -322,7 +344,7 @@
                     @click="ckBtn"
                     @click-close="ckBtnClose"
                 >
-                    <template v-slot:items="props">
+                    <template v-slot:item="props">
                         <div style="display:flex; align-items:center;">
                             <div style="margin-left:-9px; margin-right:5px; display:flex;">
                                 <w-button-chip
@@ -359,7 +381,7 @@
             <div class="bk" style="display:block;">
                 <demolink
                     :kbname="'w-group-tags'"
-                    :casename="'object items & slot items'"
+                    :casename="'object items & slot item'"
                 ></demolink>
 
                 <w-group-tags
@@ -368,7 +390,7 @@
                     @click-close="ckBtnClose"
                     @click-add="ckBtnAddObjSlotText"
                 >
-                    <template v-slot:items="props">
+                    <template v-slot:item="props">
                         <div style="display:flex; align-items:center;">
                             <div style="margin-left:-9px; margin-right:5px; display:flex;">
                                 <w-button-chip
@@ -882,7 +904,7 @@
             <div class="bk" style="display:block;">
                 <demolink
                     :kbname="'w-group-tags'"
-                    :casename="'slot items & enableActive & valueActive & paddingStyle & textColor & textColorHover & textColorActive & backgroundColor & backgroundColorActive & shadowActiveStyle'"
+                    :casename="'slot item & enableActive & valueActive & paddingStyle & textColor & textColorHover & textColorActive & backgroundColor & backgroundColorActive & shadowActiveStyle'"
                 ></demolink>
 
                 <w-group-tags
@@ -897,7 +919,7 @@
                     :backgroundColorActive="'pink lighten-1'"
                     :shadowActiveStyle="'0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12)'"
                 >
-                    <template v-slot:items="props">
+                    <template v-slot:item="props">
                         <div style="display:flex; align-items:center;">
 
                             <div :style="`margin-left:-9px; display:inline-block; border-radius:10px; font-size:0.85rem; user-select:none; padding:0px 12px; ${props.active?'color:#263238; background:rgba(255,255,255,0.7);':'color:#888; background:rgba(100,100,100,0.1);'}`">
@@ -919,7 +941,7 @@
             <div class="bk" style="display:block;">
                 <demolink
                     :kbname="'w-group-tags'"
-                    :casename="'object items & slot items & editableInput(no input button) & enableActive & valueActive & paddingStyle & textColor & textColorHover & textColorActive & backgroundColor & backgroundColorActive & shadowActiveStyle'"
+                    :casename="'object items & slot item & editableInput(no input button) & enableActive & valueActive & paddingStyle & textColor & textColorHover & textColorActive & backgroundColor & backgroundColorActive & shadowActiveStyle'"
                 ></demolink>
 
                 <w-group-tags
@@ -935,7 +957,7 @@
                     :backgroundColorActive="'pink lighten-1'"
                     :shadowActiveStyle="'0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12)'"
                 >
-                    <template v-slot:items="props">
+                    <template v-slot:item="props">
                         <div style="display:flex; align-items:center;">
 
                             <div :style="`margin-left:-9px; display:inline-block; border-radius:10px; font-size:0.85rem; user-select:none; padding:0px 12px; ${props.active?'color:#263238; background:rgba(255,255,255,0.7);':'color:#888; background:rgba(100,100,100,0.1);'}`">
@@ -957,7 +979,7 @@
             <div class="bk" style="display:block;">
                 <demolink
                     :kbname="'w-group-tags'"
-                    :casename="'object items & slot items & enableColorsFromItem & editableInput(no input button) & no shadow & no shadowActive & enableActive & valueActive & paddingStyle'"
+                    :casename="'object items & slot item & enableColorsFromItem & editableInput(no input button) & no shadow & no shadowActive & enableActive & valueActive & paddingStyle'"
                 ></demolink>
 
                 <w-group-tags
@@ -970,7 +992,7 @@
                     :paddingStyle="{v:1,h:12}"
                     :enableColorsFromItem="true"
                 >
-                    <template v-slot:items="props">
+                    <template v-slot:item="props">
                         <div style="display:flex; align-items:center;">
 
                             <div :style="`margin-left:-9px; display:inline-block; border-radius:10px; font-size:0.85rem; user-select:none; padding:0px 12px; ${props.active?'color:#263238; background:rgba(255,255,255,0.7);':'color:#888; background:rgba(100,100,100,0.1);'}`">
@@ -1301,7 +1323,24 @@ export default {
                     backgroundColorHover: 'white',
                     backgroundColorActive: 'pink accent-3',
                 },
-                'suggests': ['apple', 'orange', 'banana'],
+                'suggestsStrings': ['Apple', 'Orange', 'Banana'],
+                'suggestsObjects': [
+                    {
+                        id: 'id-Apple',
+                        text: 'Apple',
+                        kind: 'Fruit',
+                    },
+                    {
+                        id: 'id-Monkey',
+                        text: 'Monkey',
+                        kind: 'Animal',
+                    },
+                    {
+                        id: 'id-Tulip',
+                        text: 'Tulip',
+                        kind: 'Plant',
+                    },
+                ],
                 'empty': [],
             },
             'actions': [
@@ -1401,6 +1440,10 @@ export default {
             setTimeout(function() {
                 msg.setLoading(false)
             }, 2000)
+        },
+        ckInputAdd: function(msg) {
+            console.log('ckInputAdd', msg)
+            this.WGroupTags.objects.push(msg)
         },
     },
 }
