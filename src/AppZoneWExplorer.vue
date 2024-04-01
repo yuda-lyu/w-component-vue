@@ -889,6 +889,48 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-explorer'"
+                    :casename="'slot folder-item'"
+                ></demolink>
+
+                <w-explorer
+                    style="width:600px; height:250px;"
+                    :items="WExplorer.fps"
+                >
+
+                    <template v-slot:folder-item="props">
+                        <div style="display:flex; align-items:center;">
+
+                            <div
+                                style="padding-right:5px; cursor:pointer;"
+                                @click="props.funClickFolderItem()"
+                            >
+                                <w-icon
+                                    :icon="props.item.icon"
+                                    _color="props.item.iconColor"
+                                    :color="'#d7a72b'"
+                                    :size="props.item.iconSize"
+                                ></w-icon>
+                            </div>
+
+                            <div
+                                style=" cursor:pointer;"
+                                @click="props.funClickFolderItem()"
+                            >
+                                <div style="display:none;">{{props.item}}</div>
+                                {{props.item.text}}
+                            </div>
+
+                        </div>
+                    </template>
+
+                </w-explorer>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-explorer'"
                     :casename="'slot list-item-cover'"
                 ></demolink>
 

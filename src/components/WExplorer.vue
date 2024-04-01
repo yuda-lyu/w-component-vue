@@ -122,26 +122,50 @@
                         _render="render"
                     >
                         <template v-slot:item="props">
-                            <div
-                                :style="`display:flex; min-height:${treeDefItemHeight}px;`"
-                                @click="ckTreeFolder(props)"
-                            >
 
-                                <div :style="`height:${treeDefItemHeight}px; padding-right:4px; display:flex; align-items:center;`">
-                                    <WIcon
-                                        :icon="treeFolderIcon"
-                                        :color="getTreeFolderIconColor(props)"
-                                        :colorHover="getTreeFolderIconColor(props)"
-                                        :size="treeFolderIconSize"
-                                    ></WIcon>
-                                </div>
+                            <!-- 由slot外側提供預設字型設定, 須使用line-height使多行文字時依然能置頂對齊, 字型顏色設定由更外側WListVertical組件提供 -->
+                            <div :style="`${useTreeItemTextFontSize} min-height:${treeDefItemHeight}px; line-height:${treeDefItemHeight}px;`">
 
-                                <!-- 文字一般、hover與active顏色可由tree組件由item殼設定提供, 故slot內可不用自行封裝取得文字顏色功能 -->
-                                <div :style="`min-height:${treeDefItemHeight}px; line-height:${treeDefItemHeight}px; ${useTreeItemTextFontSize}`">
-                                    {{props.data.text}}
-                                </div>
+                                <slot
+                                    name="folder-item"
+                                    :item="{
+                                        ...props.data,
+                                        icon:treeFolderIcon,
+                                        iconColor:getTreeFolderIconColor(props),
+                                        iconSize:treeFolderIconSize,
+                                    }"
+                                    :isHover="props.isHover"
+                                    :isActive="props.isActive"
+                                    :funClickFolderItem="()=>{ckTreeFolder(props)}"
+                                >
+
+                                    <div :style="`display:flex;`">
+
+                                        <div
+                                            :style="`height:${treeDefItemHeight}px; padding-right:4px; display:flex; align-items:center;`"
+                                            @click="ckTreeFolder(props)"
+                                        >
+                                            <WIcon
+                                                :icon="treeFolderIcon"
+                                                :color="getTreeFolderIconColor(props)"
+                                                :colorHover="getTreeFolderIconColor(props)"
+                                                :size="treeFolderIconSize"
+                                            ></WIcon>
+                                        </div>
+
+                                        <div
+                                            :style="`cursor:pointer; user-select:none;`"
+                                            @click="ckTreeFolder(props)"
+                                        >
+                                            {{props.data.text}}
+                                        </div>
+
+                                    </div>
+
+                                </slot>
 
                             </div>
+
                         </template>
                     </WTree>
 
@@ -298,65 +322,62 @@
 
                             <template v-slot:item="props">
 
-                                <!-- 使用line-height使多行文字時依然能置頂對齊 -->
-                                <div :style="`position:relative; min-height:${listDefItemHeight}px; line-height:${listDefItemHeight}px;`">
+                                <!-- 由slot外側提供預設字型設定, 須使用line-height使多行文字時依然能置頂對齊, 字型顏色設定由更外側WListVertical組件提供 -->
+                                <div :style="`position:relative; ${useListItemTextFontSize} min-height:${listDefItemHeight}px; line-height:${listDefItemHeight}px;`">
 
-                                    <!-- 由slot外側提供預設字型設定, 而字型顏色設定由更外側WListVertical組件提供 -->
-                                    <div :style="`${useListItemTextFontSize}`">
-                                        <slot
-                                            name="list-item"
-                                            :item="{
-                                                ...props.item,
-                                                iconColor:getListItemIconColor(props),
-                                                iconSize:listItemIconSize,
-                                            }"
-                                            :isHover="props.isHover"
-                                            :isActive="props.isActive"
-                                            :funClickListItem="()=>{ckListItem(props)}"
-                                        >
+                                    <slot
+                                        name="list-item"
+                                        :item="{
+                                            ...props.item,
+                                            iconColor:getListItemIconColor(props),
+                                            iconSize:listItemIconSize,
+                                        }"
+                                        :isHover="props.isHover"
+                                        :isActive="props.isActive"
+                                        :funClickListItem="()=>{ckListItem(props)}"
+                                    >
 
-                                            <!-- 僅使用display:flex使多行文字置頂對齊 -->
-                                            <div :style="`display:flex;`">
+                                        <!-- 僅使用display:flex使多行文字置頂對齊 -->
+                                        <div :style="`display:flex;`">
 
-                                                <div
-                                                    :style="`height:${listDefItemHeight}px; padding-right:4px; display:flex; align-items:center; cursor:pointer;`"
-                                                    @click="ckListItem(props)"
-                                                >
-                                                    <WIcon
-                                                        :icon="props.item.icon"
-                                                        :color="getListItemIconColor(props)"
-                                                        :colorHover="getListItemIconColor(props)"
-                                                        :size="listItemIconSize"
-                                                    ></WIcon>
-                                                </div>
-
-                                                <slot
-                                                    name="list-item-text-left"
-                                                    :item="props.item"
-                                                    :isHover="props.isHover"
-                                                    :isActive="props.isActive"
-                                                >
-                                                </slot>
-
-                                                <div
-                                                    :style="`${useListItemTextFontSize} cursor:pointer; user-select:none;`"
-                                                    @click="ckListItem(props)"
-                                                >
-                                                    {{props.item.text}}
-                                                </div>
-
-                                                <slot
-                                                    name="list-item-text-right"
-                                                    :item="props.item"
-                                                    :isHover="props.isHover"
-                                                    :isActive="props.isActive"
-                                                >
-                                                </slot>
-
+                                            <div
+                                                :style="`height:${listDefItemHeight}px; padding-right:4px; display:flex; align-items:center; cursor:pointer;`"
+                                                @click="ckListItem(props)"
+                                            >
+                                                <WIcon
+                                                    :icon="props.item.icon"
+                                                    :color="getListItemIconColor(props)"
+                                                    :colorHover="getListItemIconColor(props)"
+                                                    :size="listItemIconSize"
+                                                ></WIcon>
                                             </div>
 
-                                        </slot>
-                                    </div>
+                                            <slot
+                                                name="list-item-text-left"
+                                                :item="props.item"
+                                                :isHover="props.isHover"
+                                                :isActive="props.isActive"
+                                            >
+                                            </slot>
+
+                                            <div
+                                                :style="`cursor:pointer; user-select:none;`"
+                                                @click="ckListItem(props)"
+                                            >
+                                                {{props.item.text}}
+                                            </div>
+
+                                            <slot
+                                                name="list-item-text-right"
+                                                :item="props.item"
+                                                :isHover="props.isHover"
+                                                :isActive="props.isActive"
+                                            >
+                                            </slot>
+
+                                        </div>
+
+                                    </slot>
 
                                     <div :style="`position:absolute; top:0px; right:0px;`">
                                         <slot
