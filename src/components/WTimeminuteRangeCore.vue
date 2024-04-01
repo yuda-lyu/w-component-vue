@@ -16,6 +16,7 @@
                 :expansionIconSize="expansionIconSize"
                 :expansionIconColor="expansionIconColor"
                 :placementDist="placementDist"
+                :textEmpty="textEmpty"
                 :editable="editable"
                 :value="minuteStart"
                 @update:focused="(v)=>{focused_start=v;changeFocused()}"
@@ -39,6 +40,7 @@
                 :expansionIconSize="expansionIconSize"
                 :expansionIconColor="expansionIconColor"
                 :placementDist="placementDist"
+                :textEmpty="textEmpty"
                 :editable="editable"
                 :value="minuteEnd"
                 @update:focused="(v)=>{focused_end=v;changeFocused()}"
@@ -71,6 +73,7 @@ import WTimeminuteCore from './WTimeminuteCore.vue'
  * @vue-prop {Number} [expansionIconSize=18] 輸入顯隱圖標尺寸數字，單位為px，預設18
  * @vue-prop {String} [expansionIconColor='grey'] 輸入顯隱圖標顏色字串，預設'grey'
  * @vue-prop {Number} [placementDist=7] 輸入日期彈窗y向下平移數字，預設7
+ * @vue-prop {String} [textEmpty='Select a date'] 輸入尚未輸入日期之顯示文字字串，預設'Select a date'
  * @vue-prop {Boolean} [editable=true] 輸入是否為編輯模式，預設true
  */
 export default {
@@ -133,6 +136,10 @@ export default {
         placementDist: {
             type: Number,
             default: 7,
+        },
+        textEmpty: {
+            type: String,
+            default: 'Select a date',
         },
         editable: {
             type: Boolean,

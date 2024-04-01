@@ -202,6 +202,33 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-timeday-range'"
+                    :casename="'empty'"
+                ></demolink>
+
+                <w-timeday-range
+                    :dayStart.sync="WTimedayRange.dayStartEmpty"
+                    :dayEnd.sync="WTimedayRange.dayEndEmpty"
+                ></w-timeday-range>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-timeday-range'"
+                    :casename="'empty & textEmpty'"
+                ></demolink>
+
+                <w-timeday-range
+                    :textEmpty="'請選擇日期'"
+                    :dayStart.sync="WTimedayRange.dayStartEmpty"
+                    :dayEnd.sync="WTimedayRange.dayEndEmpty"
+                ></w-timeday-range>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-timeday-range'"
                     :casename="'not editable'"
                 ></demolink>
 
@@ -475,6 +502,47 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-timeday-range'"
+                    :casename="'border & empty'"
+                ></demolink>
+
+                <w-timeday-range
+                    :shadow="false"
+                    :borderColor="'orange lighten-2'"
+                    :borderColorHover="'orange'"
+                    :borderColorFocus="'orange darken-2'"
+                    :backgroundColor="'white'"
+                    :backgroundColorHover="'white'"
+                    :backgroundColorFocus="'orange lighten-5'"
+                    :dayStart.sync="WTimedayRange.dayStartEmpty"
+                    :dayEnd.sync="WTimedayRange.dayEndEmpty"
+                ></w-timeday-range>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-timeday-range'"
+                    :casename="'border & empty & textEmpty'"
+                ></demolink>
+
+                <w-timeday-range
+                    :shadow="false"
+                    :borderColor="'orange lighten-2'"
+                    :borderColorHover="'orange'"
+                    :borderColorFocus="'orange darken-2'"
+                    :backgroundColor="'white'"
+                    :backgroundColorHover="'white'"
+                    :backgroundColorFocus="'orange lighten-5'"
+                    :textEmpty="'請選擇日期'"
+                    :dayStart.sync="WTimedayRange.dayStartEmpty"
+                    :dayEnd.sync="WTimedayRange.dayEndEmpty"
+                ></w-timeday-range>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-timeday-range'"
                     :casename="'border & not editable'"
                 ></demolink>
 
@@ -517,8 +585,10 @@ export default {
             mdiCheckUnderlineCircle,
             mdiPaw,
             'WTimedayRange': {
-                dayStart: '2019-01-01',
-                dayEnd: '2019-02-01',
+                'dayStart': '2019-01-01',
+                'dayEnd': '2019-02-01',
+                'dayStartEmpty': '',
+                'dayEndEmpty': '',
             },
             'actions': [
                 //pickColor測試不到

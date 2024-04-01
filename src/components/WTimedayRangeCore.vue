@@ -9,6 +9,7 @@
                 :textColor="textColor"
                 :pickColor="pickColor"
                 :placementDist="placementDist"
+                :textEmpty="textEmpty"
                 :editable="editable"
                 :value="dayStart"
                 @update:focused="(v)=>{focused_start=v;changeFocused()}"
@@ -25,6 +26,7 @@
                 :textColor="textColor"
                 :pickColor="pickColor"
                 :placementDist="placementDist"
+                :textEmpty="textEmpty"
                 :editable="editable"
                 :value="dayEnd"
                 @update:focused="(v)=>{focused_end=v;changeFocused()}"
@@ -49,6 +51,7 @@ import WTimedayCore from './WTimedayCore.vue'
  * @vue-prop {String} [textColor='black'] 輸入文字顏色字串，預設'black'
  * @vue-prop {String} [pickColor='deep-orange darken-1'] 輸入日期彈窗中選擇指定日期之顏色字串，預設'deep-orange darken-1'
  * @vue-prop {Number} [placementDist=7] 輸入日期彈窗y向下平移數字，預設7
+ * @vue-prop {String} [textEmpty='Select a date'] 輸入尚未輸入日期之顯示文字字串，預設'Select a date'
  * @vue-prop {Boolean} [editable=true] 輸入是否為編輯模式，預設true
  */
 export default {
@@ -83,6 +86,10 @@ export default {
         placementDist: {
             type: Number,
             default: 7,
+        },
+        textEmpty: {
+            type: String,
+            default: 'Select a date',
         },
         editable: {
             type: Boolean,

@@ -14,7 +14,7 @@
                     :casename="'default'"
                 ></demolink>
 
-                <w-timeminute v-model="WTimeminute.value"></w-timeminute>
+                <w-timeminute v-model="WTimeminute.time"></w-timeminute>
             </div>
 
 
@@ -28,7 +28,7 @@
                     :icon="''"
                     :paddingStyle="{v:0,h:8}"
                     :placementDist="3"
-                    v-model="WTimeminute.value"
+                    v-model="WTimeminute.time"
                 ></w-timeminute>
             </div>
 
@@ -44,7 +44,7 @@
                     :paddingStyle="{v:0,h:8}"
                     :textFontSize="'0.7rem'"
                     :placementDist="3"
-                    v-model="WTimeminute.value"
+                    v-model="WTimeminute.time"
                 ></w-timeminute>
             </div>
 
@@ -58,7 +58,7 @@
                 <w-timeminute
                     :icon="''"
                     :paddingStyle="{v:4,h:15}"
-                    v-model="WTimeminute.value"
+                    v-model="WTimeminute.time"
                 ></w-timeminute>
             </div>
 
@@ -71,7 +71,7 @@
 
                 <w-timeminute
                     :borderRadius="5"
-                    v-model="WTimeminute.value"
+                    v-model="WTimeminute.time"
                 ></w-timeminute>
             </div>
 
@@ -84,7 +84,7 @@
 
                 <w-timeminute
                     :icon="mdiCheckUnderlineCircle"
-                    v-model="WTimeminute.value"
+                    v-model="WTimeminute.time"
                 ></w-timeminute>
             </div>
 
@@ -97,7 +97,7 @@
 
                 <w-timeminute
                     :icon="'fas fa-clipboard-check'"
-                    v-model="WTimeminute.value"
+                    v-model="WTimeminute.time"
                 ></w-timeminute>
             </div>
 
@@ -112,7 +112,7 @@
                     :icon="mdiCheckUnderlineCircle"
                     :iconSize="20"
                     :placementDist="6"
-                    v-model="WTimeminute.value"
+                    v-model="WTimeminute.time"
                 ></w-timeminute>
             </div>
 
@@ -127,7 +127,7 @@
                     :iconColor="'cyan lighten-2'"
                     :iconColorHover="'cyan lighten-1'"
                     :iconColorFocus="'cyan darken-1'"
-                    v-model="WTimeminute.value"
+                    v-model="WTimeminute.time"
                 ></w-timeminute>
             </div>
 
@@ -141,7 +141,7 @@
                 <w-timeminute
                     :textColor="'orange darken-2'"
                     :expansionIconColor="'orange lighten-1'"
-                    v-model="WTimeminute.value"
+                    v-model="WTimeminute.time"
                 ></w-timeminute>
             </div>
 
@@ -154,7 +154,7 @@
 
                 <w-timeminute
                     :pickColor="'brown'"
-                    v-model="WTimeminute.value"
+                    v-model="WTimeminute.time"
                 ></w-timeminute>
             </div>
 
@@ -168,7 +168,32 @@
                 <w-timeminute
                     :icon="mdiCheckUnderlineCircle"
                     :iconTooltip="'show tooltip'"
-                    v-model="WTimeminute.value"
+                    v-model="WTimeminute.time"
+                ></w-timeminute>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-timeminute'"
+                    :casename="'empty'"
+                ></demolink>
+
+                <w-timeminute
+                    v-model="WTimeminute.timeEmpty"
+                ></w-timeminute>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-timeminute'"
+                    :casename="'empty & textEmpty'"
+                ></demolink>
+
+                <w-timeminute
+                    :textEmpty="'請選擇日期'"
+                    v-model="WTimeminute.timeEmpty"
                 ></w-timeminute>
             </div>
 
@@ -181,7 +206,7 @@
 
                 <w-timeminute
                     :editable="false"
-                    v-model="WTimeminute.value"
+                    v-model="WTimeminute.time"
                 ></w-timeminute>
             </div>
 
@@ -195,7 +220,7 @@
                 <w-timeminute
                     :hourMin="9"
                     :hourMax="12"
-                    v-model="WTimeminute.value"
+                    v-model="WTimeminute.time"
                 ></w-timeminute>
             </div>
 
@@ -208,7 +233,7 @@
 
                 <w-timeminute
                     :minuteInter="10"
-                    v-model="WTimeminute.value"
+                    v-model="WTimeminute.time"
                 ></w-timeminute>
             </div>
 
@@ -221,7 +246,7 @@
 
                 <w-timeminute
                     :minutesCustom="['10:00','10:30','11:15','12:00']"
-                    v-model="WTimeminute.value"
+                    v-model="WTimeminute.time"
                 ></w-timeminute>
             </div>
 
@@ -240,7 +265,7 @@
                     :backgroundColor="'white'"
                     :backgroundColorHover="'white'"
                     :backgroundColorFocus="'orange lighten-5'"
-                    v-model="WTimeminute.value"
+                    v-model="WTimeminute.time"
                 ></w-timeminute>
             </div>
 
@@ -262,7 +287,7 @@
                     :icon="''"
                     :paddingStyle="{v:0,h:8}"
                     :placementDist="3"
-                    v-model="WTimeminute.value"
+                    v-model="WTimeminute.time"
                 ></w-timeminute>
             </div>
 
@@ -285,7 +310,7 @@
                     :paddingStyle="{v:0,h:8}"
                     :textFontSize="'0.7rem'"
                     :placementDist="3"
-                    v-model="WTimeminute.value"
+                    v-model="WTimeminute.time"
                 ></w-timeminute>
             </div>
 
@@ -306,7 +331,7 @@
                     :backgroundColorFocus="'orange lighten-5'"
                     :icon="''"
                     :paddingStyle="{v:4,h:15}"
-                    v-model="WTimeminute.value"
+                    v-model="WTimeminute.time"
                 ></w-timeminute>
             </div>
 
@@ -326,7 +351,7 @@
                     :backgroundColorHover="'white'"
                     :backgroundColorFocus="'orange lighten-5'"
                     :borderRadius="5"
-                    v-model="WTimeminute.value"
+                    v-model="WTimeminute.time"
                 ></w-timeminute>
             </div>
 
@@ -346,7 +371,7 @@
                     :backgroundColorHover="'white'"
                     :backgroundColorFocus="'orange lighten-5'"
                     :icon="mdiCheckUnderlineCircle"
-                    v-model="WTimeminute.value"
+                    v-model="WTimeminute.time"
                 ></w-timeminute>
             </div>
 
@@ -366,7 +391,7 @@
                     :backgroundColorHover="'white'"
                     :backgroundColorFocus="'orange lighten-5'"
                     :icon="'fas fa-clipboard-check'"
-                    v-model="WTimeminute.value"
+                    v-model="WTimeminute.time"
                 ></w-timeminute>
             </div>
 
@@ -388,7 +413,7 @@
                     :iconColor="'cyan lighten-2'"
                     :iconColorHover="'cyan lighten-1'"
                     :iconColorFocus="'cyan darken-1'"
-                    v-model="WTimeminute.value"
+                    v-model="WTimeminute.time"
                 ></w-timeminute>
             </div>
 
@@ -409,7 +434,7 @@
                     :backgroundColorFocus="'orange lighten-5'"
                     :textColor="'orange darken-2'"
                     :expansionIconColor="'orange lighten-1'"
-                    v-model="WTimeminute.value"
+                    v-model="WTimeminute.time"
                 ></w-timeminute>
             </div>
 
@@ -429,7 +454,7 @@
                     :backgroundColorHover="'white'"
                     :backgroundColorFocus="'orange lighten-5'"
                     :pickColor="'brown'"
-                    v-model="WTimeminute.value"
+                    v-model="WTimeminute.time"
                 ></w-timeminute>
             </div>
 
@@ -450,7 +475,46 @@
                     :backgroundColorFocus="'orange lighten-5'"
                     :icon="mdiCheckUnderlineCircle"
                     :iconTooltip="'show tooltip'"
-                    v-model="WTimeminute.value"
+                    v-model="WTimeminute.time"
+                ></w-timeminute>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-timeminute'"
+                    :casename="'border & empty'"
+                ></demolink>
+
+                <w-timeminute
+                    :shadow="false"
+                    :borderColor="'orange lighten-2'"
+                    :borderColorHover="'orange'"
+                    :borderColorFocus="'orange darken-2'"
+                    :backgroundColor="'white'"
+                    :backgroundColorHover="'white'"
+                    :backgroundColorFocus="'orange lighten-5'"
+                    v-model="WTimeminute.timeEmpty"
+                ></w-timeminute>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-timeminute'"
+                    :casename="'border & empty & textEmpty'"
+                ></demolink>
+
+                <w-timeminute
+                    :shadow="false"
+                    :borderColor="'orange lighten-2'"
+                    :borderColorHover="'orange'"
+                    :borderColorFocus="'orange darken-2'"
+                    :backgroundColor="'white'"
+                    :backgroundColorHover="'white'"
+                    :backgroundColorFocus="'orange lighten-5'"
+                    :textEmpty="'請選擇日期'"
+                    v-model="WTimeminute.timeEmpty"
                 ></w-timeminute>
             </div>
 
@@ -470,7 +534,7 @@
                     :backgroundColorHover="'white'"
                     :backgroundColorFocus="'orange lighten-5'"
                     :editable="false"
-                    v-model="WTimeminute.value"
+                    v-model="WTimeminute.time"
                 ></w-timeminute>
             </div>
 
@@ -491,7 +555,7 @@
                     :backgroundColorFocus="'orange lighten-5'"
                     :hourMin="9"
                     :hourMax="12"
-                    v-model="WTimeminute.value"
+                    v-model="WTimeminute.time"
                 ></w-timeminute>
             </div>
 
@@ -511,7 +575,7 @@
                     :backgroundColorHover="'white'"
                     :backgroundColorFocus="'orange lighten-5'"
                     :minuteInter="10"
-                    v-model="WTimeminute.value"
+                    v-model="WTimeminute.time"
                 ></w-timeminute>
             </div>
 
@@ -531,7 +595,7 @@
                     :backgroundColorHover="'white'"
                     :backgroundColorFocus="'orange lighten-5'"
                     :minutesCustom="['10:00','10:30','11:15','12:00']"
-                    v-model="WTimeminute.value"
+                    v-model="WTimeminute.time"
                 ></w-timeminute>
             </div>
 
@@ -560,7 +624,8 @@ export default {
             mdiCheckUnderlineCircle,
             mdiPaw,
             'WTimeminute': {
-                value: '2019-01-01T10:00:00',
+                'time': '2019-01-01T10:00:00',
+                'timeEmpty': '',
             },
             'actions': [
                 //pickColor測試不到

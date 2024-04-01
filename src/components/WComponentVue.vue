@@ -84,6 +84,7 @@ import WTextSuggestCore from './WTextSuggestCore.vue'
 import WThreejsVueDyn from './WThreejsVueDyn.vue'
 import WTimeday from './WTimeday.vue'
 import WTimedayCore from './WTimedayCore.vue'
+import WTimedayCoreRe from './WTimedayCoreRe.vue'
 import WTimedayRange from './WTimedayRange.vue'
 import WTimedayRangeCore from './WTimedayRangeCore.vue'
 import WTimeminute from './WTimeminute.vue'
@@ -183,6 +184,7 @@ let WComponentVue = {
         Vue.component('w-threejs-vue-dyn', WThreejsVueDyn)
         Vue.component('w-timeday', WTimeday)
         Vue.component('w-timeday-core', WTimedayCore)
+        Vue.component('w-timeday-core-re', WTimedayCoreRe)
         Vue.component('w-timeday-range', WTimedayRange)
         Vue.component('w-timeday-range-core', WTimedayRangeCore)
         Vue.component('w-timeminute', WTimeminute)

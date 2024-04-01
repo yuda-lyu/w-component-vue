@@ -203,6 +203,33 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-timeminute-range'"
+                    :casename="'empty'"
+                ></demolink>
+
+                <w-timeminute-range
+                    :minuteStart.sync="WTimeminuteRange.minuteStartEmpty"
+                    :minuteEnd.sync="WTimeminuteRange.minuteEndEmpty"
+                ></w-timeminute-range>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-timeminute-range'"
+                    :casename="'empty & textEmpty'"
+                ></demolink>
+
+                <w-timeminute-range
+                    :textEmpty="'請選擇日期'"
+                    :minuteStart.sync="WTimeminuteRange.minuteStartEmpty"
+                    :minuteEnd.sync="WTimeminuteRange.minuteEndEmpty"
+                ></w-timeminute-range>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-timeminute-range'"
                     :casename="'not editable'"
                 ></demolink>
 
@@ -520,6 +547,47 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-timeminute-range'"
+                    :casename="'empty'"
+                ></demolink>
+
+                <w-timeminute-range
+                    :shadow="false"
+                    :borderColor="'orange lighten-2'"
+                    :borderColorHover="'orange'"
+                    :borderColorFocus="'orange darken-2'"
+                    :backgroundColor="'white'"
+                    :backgroundColorHover="'white'"
+                    :backgroundColorFocus="'orange lighten-5'"
+                    :minuteStart.sync="WTimeminuteRange.minuteStartEmpty"
+                    :minuteEnd.sync="WTimeminuteRange.minuteEndEmpty"
+                ></w-timeminute-range>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-timeminute-range'"
+                    :casename="'empty & textEmpty'"
+                ></demolink>
+
+                <w-timeminute-range
+                    :shadow="false"
+                    :borderColor="'orange lighten-2'"
+                    :borderColorHover="'orange'"
+                    :borderColorFocus="'orange darken-2'"
+                    :backgroundColor="'white'"
+                    :backgroundColorHover="'white'"
+                    :backgroundColorFocus="'orange lighten-5'"
+                    :textEmpty="'請選擇日期'"
+                    :minuteStart.sync="WTimeminuteRange.minuteStartEmpty"
+                    :minuteEnd.sync="WTimeminuteRange.minuteEndEmpty"
+                ></w-timeminute-range>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-timeminute-range'"
                     :casename="'border & not editable'"
                 ></demolink>
 
@@ -626,8 +694,10 @@ export default {
             mdiCheckUnderlineCircle,
             mdiPaw,
             'WTimeminuteRange': {
-                minuteStart: '2019-01-01T10:00:00',
-                minuteEnd: '2019-02-01T12:00:00',
+                'minuteStart': '2019-01-01T10:00:00',
+                'minuteEnd': '2019-02-01T12:00:00',
+                'minuteStartEmpty': '',
+                'minuteEndEmpty': '',
             },
             'actions': [
                 //pickColor測試不到

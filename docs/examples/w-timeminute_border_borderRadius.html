@@ -78,7 +78,7 @@
     ></script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.3.81/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.3.82/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -156,7 +156,7 @@
                 :background-color-hover="'white'"
                 :background-color-focus="'orange lighten-5'"
                 :border-radius="5"
-                v-model="WTimeminute.value"
+                v-model="WTimeminute.time"
             ></w-timeminute>
         </div>
     </v-app>
@@ -172,7 +172,8 @@
     data: function() {
       return {
         WTimeminute: {
-          value: "2019-01-01T10:00:00"
+          time: "2019-01-01T10:00:00",
+          timeEmpty: ""
         },
         actions: [
           //pickColor測試不到

@@ -13,10 +13,11 @@
                 :textColor="textColor"
                 :pickColor="pickColor"
                 :placementDist="placementDist"
+                :textEmpty="textEmpty"
                 :editable="editable"
-                :value="value_day"
-                @update:focused="(v)=>{focused_day=v;changeFocused()}"
-                @input="ch_day"
+                :value="valueDay"
+                @update:focused="(v)=>{focusedDay=v;changeFocused()}"
+                @input="modifyDay"
             ></WTimedayCore>
 
             <div style="margin-right:-3px;">
@@ -32,9 +33,9 @@
                     :expansionIconColor="expansionIconColor"
                     :editable="editable"
                     :items="getUseMinutes"
-                    :value="value_time"
-                    @update:focused="(v)=>{focused_time=v;changeFocused()}"
-                    @input="ch_time"
+                    :value="valueTime"
+                    @update:focused="(v)=>{focusedTime=v;changeFocused()}"
+                    @input="modifyTime"
                 ></WTextSuggestCore>
             </div>
 
@@ -51,9 +52,12 @@ import range from 'lodash-es/range.js'
 import flattenDeep from 'lodash-es/flattenDeep.js'
 import filter from 'lodash-es/filter.js'
 import strleft from 'wsemi/src/strleft.mjs'
+import strright from 'wsemi/src/strright.mjs'
+import isp0int from 'wsemi/src/isp0int.mjs'
 import isarr from 'wsemi/src/isarr.mjs'
 import istime from 'wsemi/src/istime.mjs'
 import ispint from 'wsemi/src/ispint.mjs'
+import isday from 'wsemi/src/isday.mjs'
 import WTimedayCore from './WTimedayCore.vue'
 import WTextSuggestCore from './WTextSuggestCore.vue'
 
@@ -71,6 +75,7 @@ import WTextSuggestCore from './WTextSuggestCore.vue'
  * @vue-prop {Number} [expansionIconSize=18] 輸入顯隱圖標尺寸數字，單位為px，預設18
  * @vue-prop {String} [expansionIconColor='grey'] 輸入顯隱圖標顏色字串，預設'grey'
  * @vue-prop {Number} [placementDist=7] 輸入日期彈窗y向下平移數字，預設7
+ * @vue-prop {String} [textEmpty='Select a date'] 輸入尚未輸入日期之顯示文字字串，預設'Select a date'
  * @vue-prop {Boolean} [editable=true] 輸入是否為編輯模式，預設true
  */
 export default {
@@ -127,6 +132,10 @@ export default {
             type: Number,
             default: 7,
         },
+        textEmpty: {
+            type: String,
+            default: 'Select a date',
+        },
         editable: {
             type: Boolean,
             default: true,
@@ -134,10 +143,10 @@ export default {
     },
     data: function() {
         return {
-            value_day: '',
-            value_time: '',
-            focused_day: false,
-            focused_time: false,
+            valueDay: '',
+            valueTime: '',
+            focusedDay: false,
+            focusedTime: false,
         }
     },
     mounted: function() {
@@ -156,10 +165,26 @@ export default {
             let s = split(value, 'T')
 
             //day
-            vo.value_day = get(s, 0)
+            let valueDay = get(s, 0, '')
+            if (!isday(valueDay)) {
+                valueDay = '' //預設空字串, 顯示textEmpty
+            }
 
-            //time
-            vo.value_time = strleft(get(s, 1), 5)
+            //time, 外部傳入2019-01-01T10:00:00時, 只取10:00共5字元長度來處理, 代表不處理秒, 預設為00秒
+            let valueTime = strleft(get(s, 1), 5)
+            let bt1 = strleft(valueTime, 2)
+            bt1 = isp0int(bt1)
+            let bt2 = strright(valueTime, 2)
+            bt2 = isp0int(bt2)
+            let bt3 = strright(strleft(valueTime, 3), 1)
+            bt3 = bt3 === ':'
+            if (!(bt1 && bt2 && bt3)) {
+                valueTime = '00:00' //預設0時0分
+            }
+
+            //save
+            vo.valueDay = valueDay
+            vo.valueTime = valueTime
 
             return ''
         },
@@ -215,26 +240,26 @@ export default {
     },
     methods: {
 
-        ch_day: function(v) {
-            //console.log('methods ch_day',v)
+        modifyDay: function(v) {
+            //console.log('methods modifyDay',v)
 
             let vo = this
 
             //save
-            vo.value_day = v
+            vo.valueDay = v
 
             //changeContent
             vo.changeContent()
 
         },
 
-        ch_time: function(v) {
-            //console.log('methods ch_time',v)
+        modifyTime: function(v) {
+            //console.log('methods modifyTime',v)
 
             let vo = this
 
             //save
-            vo.value_time = v
+            vo.valueTime = v
 
             //changeContent
             vo.changeContent()
@@ -247,7 +272,7 @@ export default {
             let vo = this
 
             //value
-            let value = vo.value_day + 'T' + vo.value_time + ':00'
+            let value = vo.valueDay + 'T' + vo.valueTime + ':00'
 
             //check
             if (!istime(value)) {
@@ -270,7 +295,7 @@ export default {
             let vo = this
 
             //focused
-            let focused = vo.focused_day || vo.focused_time
+            let focused = vo.focusedDay || vo.focusedTime
 
             //$nextTick
             vo.$nextTick(() => {

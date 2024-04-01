@@ -15,22 +15,28 @@
             <template v-slot:activator="{ on }">
                 <div
                     TimedayCore="day"
-                    :style="`_width:83px; color:${useTextColor}; ${useTextFontSize}`"
+                    :style="`color:${useTextColor}; ${useTextFontSize}`"
                     v-on="on"
                 >
-                    {{getShowTime}}
+                    <template v-if="!emptyDay">
+                        {{valueDay}}
+                    </template>
+                    <template v-else>
+                        {{textEmpty}}
+                    </template>
                 </div>
             </template>
 
             <v-date-picker
+                :style="`min-width:83px;`"
                 no-title
                 locale="zh-tw"
                 :prev-icon="mdiChevronLeft"
                 :next-icon="mdiChevronRight"
                 :color="pickColor"
                 :day-format="getDay"
-                :value="value_day"
-                @input="ch_day"
+                :value="valueDay"
+                @input="modifyDay"
             ></v-date-picker>
 
         </v-menu>
@@ -45,6 +51,8 @@ import get from 'lodash-es/get.js'
 import isday from 'wsemi/src/isday.mjs'
 import cint from 'wsemi/src/cint.mjs'
 import replace from 'wsemi/src/replace.mjs'
+import now2str from 'wsemi/src/now2str.mjs'
+import strleft from 'wsemi/src/strleft.mjs'
 import convertColor from '../js/convertColor.mjs'
 
 
@@ -54,6 +62,7 @@ import convertColor from '../js/convertColor.mjs'
  * @vue-prop {String} [textColor='black'] 輸入文字顏色字串，預設'black'
  * @vue-prop {String} [pickColor='deep-orange darken-1'] 輸入日期彈窗中選擇指定日期之顏色字串，預設'deep-orange darken-1'
  * @vue-prop {Number} [placementDist=7] 輸入日期彈窗y向下平移數字，預設7
+ * @vue-prop {String} [textEmpty='Select a date'] 輸入尚未輸入日期之顯示文字字串，預設'Select a date'
  * @vue-prop {Boolean} [editable=true] 輸入是否為編輯模式，預設true
  */
 export default {
@@ -78,6 +87,10 @@ export default {
             type: Number,
             default: 7,
         },
+        textEmpty: {
+            type: String,
+            default: 'Select a date',
+        },
         editable: {
             type: Boolean,
             default: true,
@@ -89,7 +102,8 @@ export default {
             mdiChevronRight,
 
             show: false,
-            value_day: '',
+            emptyDay: false,
+            valueDay: '',
         }
     },
     mounted: function() {
@@ -119,20 +133,15 @@ export default {
 
             //check
             if (isday(value)) {
-                vo.value_day = value
+                vo.emptyDay = false
+                vo.valueDay = value
             }
             else {
-                vo.value_day = ''
+                vo.emptyDay = true
+                vo.valueDay = strleft(now2str(), 10) //預設給今日避免vuetify組件消失無法點擊
             }
 
             return ''
-        },
-
-        getShowTime: function () {
-            //console.log('computed getShowTime')
-
-            let vo = this
-            return vo.value_day
         },
 
         useTextFontSize: function() {
@@ -162,18 +171,18 @@ export default {
             return s
         },
 
-        ch_day: function (d) {
-            //console.log('methods ch_day', d)
+        modifyDay: function (d) {
+            //console.log('methods modifyDay', d)
 
             let vo = this
 
-            //value_day
-            let value_day = d
+            //valueDay
+            let valueDay = d
 
             //check
             let value = ''
-            if (isday(value_day)) {
-                value = value_day
+            if (isday(valueDay)) {
+                value = valueDay
             }
 
             //hide

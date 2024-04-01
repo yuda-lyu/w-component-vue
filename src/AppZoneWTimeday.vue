@@ -175,10 +175,38 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-timeday'"
+                    :casename="'empty'"
+                ></demolink>
+
+                <w-timeday
+                    v-model="WTimeday.dayEmpty"
+                ></w-timeday>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-timeday'"
+                    :casename="'empty & textEmpty'"
+                ></demolink>
+
+                <w-timeday
+                    :textEmpty="'請選擇日期'"
+                    v-model="WTimeday.dayEmpty"
+                ></w-timeday>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-timeday'"
                     :casename="'not editable'"
                 ></demolink>
 
-                <w-timeday :editable="false" v-model="WTimeday.day"></w-timeday>
+                <w-timeday
+                    :editable="false"
+                    v-model="WTimeday.day"
+                ></w-timeday>
             </div>
 
 
@@ -413,6 +441,45 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-timeday'"
+                    :casename="'border & empty'"
+                ></demolink>
+
+                <w-timeday
+                    :shadow="false"
+                    :borderColor="'orange lighten-2'"
+                    :borderColorHover="'orange'"
+                    :borderColorFocus="'orange darken-2'"
+                    :backgroundColor="'white'"
+                    :backgroundColorHover="'white'"
+                    :backgroundColorFocus="'orange lighten-5'"
+                    v-model="WTimeday.dayEmpty"
+                ></w-timeday>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-timeday'"
+                    :casename="'border & empty & textEmpty'"
+                ></demolink>
+
+                <w-timeday
+                    :shadow="false"
+                    :borderColor="'orange lighten-2'"
+                    :borderColorHover="'orange'"
+                    :borderColorFocus="'orange darken-2'"
+                    :backgroundColor="'white'"
+                    :backgroundColorHover="'white'"
+                    :backgroundColorFocus="'orange lighten-5'"
+                    :textEmpty="'請選擇日期'"
+                    v-model="WTimeday.dayEmpty"
+                ></w-timeday>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-timeday'"
                     :casename="'border & not editable'"
                 ></demolink>
 
@@ -454,7 +521,8 @@ export default {
             mdiCheckUnderlineCircle,
             mdiPaw,
             'WTimeday': {
-                'day': '2019-01-01'
+                'day': '2019-01-01',
+                'dayEmpty': '',
             },
             'actions': [
                 //pickColor測試不到
