@@ -916,7 +916,6 @@
                                 style=" cursor:pointer;"
                                 @click="props.funClickFolderItem()"
                             >
-                                <div style="display:none;">{{props.item}}</div>
                                 {{props.item.text}}
                             </div>
 
