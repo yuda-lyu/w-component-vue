@@ -6,10 +6,11 @@
             <div :style="`position:relative; width:${plotWidth}px; height:${plotHeight}px; border-left:1px solid ${useAxisColor};`">
 
                 <div
-                    :style="`position:absolute; top:50%; left:0%; width:${100}px; color:${useTitleColor}; font-size:${titleFontSize}; text-align:center; transform-origin:center; transform:translate(-50%,-50%) rotate(-90deg) translateY(${useTitleShift}px);`"
+                    :style="`position:absolute; top:50%; left:0%; color:${useTitleColor}; font-size:${titleFontSize}; text-align:center; transform-origin:center; transform:translate(-50%,-50%) rotate(-90deg) translateY(${useTitleShift}px);`"
                     v-if="title"
                 >
-                    {{title}}
+                    <div>{{title}}</div>
+                    <!-- <div>{{titleSub}}</div> -->
                 </div>
 
                 <div
