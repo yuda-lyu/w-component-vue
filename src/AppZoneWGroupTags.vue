@@ -209,11 +209,35 @@
             <div class="bk" style="display:block;">
                 <demolink
                     :kbname="'w-group-tags'"
-                    :casename="'inputTextColor & inputTextBorderColor & inputTextBorderColorHover & inputTextBorderColorFocus & inputTextButtonIcon & inputTextButtonColor & inputTextButtonColorHover & inputTextButtonColorHover & inputTextBackgroundColor & inputTextBackgroundColorHover & inputTextBackgroundColorFocus'"
+                    :casename="'suggests & slot suggest & addMode & inputKeyText'"
+                ></demolink>
+
+                <w-group-tags
+                    v-model="WGroupTags.objects"
+                    :suggests="WGroupTags.suggestsObjectsName"
+                    :addMode="'input'"
+                    :inputKeyText="'name'"
+                    @click-add="ckInputAdd"
+                >
+                    <template v-slot:suggest="props">
+                        <div style="color:#888; font-size:0.70rem;">{{props.item.kind}}</div>
+                        <div style="color:#000; font-size:0.85rem;">{{props.item.name}}</div>
+                    </template>
+                </w-group-tags>
+
+                <div style="padding-left:5px; font-size:0.9rem; color:#ea6;">binding: objects</div>
+            </div>
+
+
+            <div class="bk" style="display:block;">
+                <demolink
+                    :kbname="'w-group-tags'"
+                    :casename="'inputTextFontSize & inputTextColor & inputTextBorderColor & inputTextBorderColorHover & inputTextBorderColorFocus & inputTextButtonIcon & inputTextButtonColor & inputTextButtonColorHover & inputTextButtonColorHover & inputTextBackgroundColor & inputTextBackgroundColorHover & inputTextBackgroundColorFocus'"
                 ></demolink>
 
                 <w-group-tags
                     v-model="WGroupTags.strings"
+                    :inputTextFontSize="'0.8rem'"
                     :inputTextColor="'indigo darken-1'"
                     :inputTextBorderColor="'indigo darken-1'"
                     :inputTextBorderColorHover="'indigo darken-1'"
@@ -1338,6 +1362,23 @@ export default {
                     {
                         id: 'id-Tulip',
                         text: 'Tulip',
+                        kind: 'Plant',
+                    },
+                ],
+                'suggestsObjectsName': [
+                    {
+                        id: 'id-Apple',
+                        name: 'Apple',
+                        kind: 'Fruit',
+                    },
+                    {
+                        id: 'id-Monkey',
+                        name: 'Monkey',
+                        kind: 'Animal',
+                    },
+                    {
+                        id: 'id-Tulip',
+                        name: 'Tulip',
                         kind: 'Plant',
                     },
                 ],

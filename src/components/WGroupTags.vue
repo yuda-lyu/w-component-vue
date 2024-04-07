@@ -133,8 +133,10 @@
                 <template v-else>
                     <WTextSuggest
                         :style="`${useMarginStyle} width:${inputTextWidth}px;`"
-                        :textColor="inputTextColor"
                         :expansionIconColor="inputExpansionIconColor"
+                        :keyText="inputKeyText"
+                        :textFontSize="inputTextFontSize"
+                        :textColor="inputTextColor"
                         :itemTextColor="suggectItemTextColor"
                         :itemTextColorHover="suggectItemTextColorHover"
                         :itemFontSize="suggectItemFontSize"
@@ -243,7 +245,9 @@ import domDragDrop from '../js/domDragDrop.mjs'
  * @vue-prop {String} [noResultsText='No results'] 輸入無過濾結果字串，預設'No results'
  * @vue-prop {String} [addMode='auto'] 輸入新增模式字串，可使用'auto'、'input'、'button'，預設'auto'
  * @vue-prop {Number} [inputTextWidth=150] 輸入新增按鈕或輸入框區寬度數字，單位px，預設150
- * @vue-prop {String} [inputTextColor='black'] 輸入文字顏色字串，預設'black'
+ * @vue-prop {String} [inputKeyText='text'] 輸入若可選(建議)項目為元素陣列時，輸入框之提取選擇項目物件內鍵值字串，預設'text'
+ * @vue-prop {String} [inputTextFontSize='0.85rem'] 輸入輸入框文字大小字串，預設'0.85rem'
+ * @vue-prop {String} [inputTextColor='black'] 輸入輸入框文字顏色字串，預設'black'
  * @vue-prop {String} [inputTextBackgroundColor='white'] 輸入輸入框背景顏色字串，預設'white'
  * @vue-prop {String} [inputTextBackgroundColorHover='white'] 輸入滑鼠移入時輸入框背景顏色字串，預設'white'
  * @vue-prop {String} [inputTextBackgroundColorFocus='grey lighten-5'] 輸入取得焦點時輸入框背景顏色字串，預設'grey lighten-5'
@@ -458,6 +462,14 @@ export default {
         inputTextWidth: {
             type: Number,
             default: 150,
+        },
+        inputKeyText: {
+            type: String,
+            default: 'text',
+        },
+        inputTextFontSize: {
+            type: String,
+            default: '0.85rem',
         },
         inputTextColor: {
             type: String,
