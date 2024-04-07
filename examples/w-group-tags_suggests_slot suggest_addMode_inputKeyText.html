@@ -78,7 +78,7 @@
     ></script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.3.84/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.3.85/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -147,26 +147,28 @@
         <div class="bk" style="display:block;">
             <div
                 class="item"
-            >inputTextColor &amp; inputTextBorderColor &amp; inputTextBorderColorHover &amp; inputTextBorderColorFocus &amp; inputTextButtonIcon &amp; inputTextButtonColor &amp; inputTextButtonColorHover &amp; inputTextButtonColorHover &amp; inputTextBackgroundColor &amp; inputTextBackgroundColorHover &amp; inputTextBackgroundColorFocus</div>
+            >suggests &amp; slot suggest &amp; addMode &amp; inputKeyText</div>
 
             <w-group-tags
-                v-model="WGroupTags.strings"
-                :input-text-color="'indigo darken-1'"
-                :input-text-border-color="'indigo darken-1'"
-                :input-text-border-color-hover="'indigo darken-1'"
-                :input-text-border-color-focus="'indigo darken-2'"
-                :input-text-button-icon="'mdi-cloud-plus'"
-                :input-text-button-color="'indigo'"
-                :input-text-button-color-hover="'indigo'"
-                :input-text-button-color-focus="'indigo darken-1'"
-                :input-text-background-color="'white'"
-                :input-text-background-color-hover="'#fafaff'"
-                :input-text-background-color-focus="'#f2f2ff'"
-            ></w-group-tags>
+                v-model="WGroupTags.objects"
+                :suggests="WGroupTags.suggestsObjectsName"
+                :add-mode="'input'"
+                :input-key-text="'name'"
+                @click-add="ckInputAdd"
+            >
+                <template v-slot:suggest="props">
+                    <div
+                        style="color:#888; font-size:0.70rem;"
+                    >{{props.item.kind}}</div>
+                    <div
+                        style="color:#000; font-size:0.85rem;"
+                    >{{props.item.name}}</div>
+                </template>
+            </w-group-tags>
 
             <div
                 style="padding-left:5px; font-size:0.9rem; color:#ea6;"
-            >binding: strings</div>
+            >binding: objects</div>
         </div>
     </v-app>
 
@@ -479,6 +481,23 @@
             {
               id: "id-Tulip",
               text: "Tulip",
+              kind: "Plant"
+            }
+          ],
+          suggestsObjectsName: [
+            {
+              id: "id-Apple",
+              name: "Apple",
+              kind: "Fruit"
+            },
+            {
+              id: "id-Monkey",
+              name: "Monkey",
+              kind: "Animal"
+            },
+            {
+              id: "id-Tulip",
+              name: "Tulip",
               kind: "Plant"
             }
           ],
