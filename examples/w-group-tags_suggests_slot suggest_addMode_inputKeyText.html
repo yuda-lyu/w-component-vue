@@ -78,7 +78,7 @@
     ></script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.3.85/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.3.86/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -147,14 +147,15 @@
         <div class="bk" style="display:block;">
             <div
                 class="item"
-            >suggests &amp; slot suggest &amp; addMode &amp; inputKeyText</div>
+            >suggests &amp; slot suggest &amp; addMode &amp; inputKeyText &amp; addWhenInputByOutside</div>
 
             <w-group-tags
-                v-model="WGroupTags.objects"
+                v-model="WGroupTags.strings"
                 :suggests="WGroupTags.suggestsObjectsName"
                 :add-mode="'input'"
                 :input-key-text="'name'"
-                @click-add="ckInputAdd"
+                :add-when-input-by-outside="true"
+                @click-add="(msg)=>{ckInputAddForString(msg,'name')}"
             >
                 <template v-slot:suggest="props">
                     <div
@@ -168,7 +169,7 @@
 
             <div
                 style="padding-left:5px; font-size:0.9rem; color:#ea6;"
-            >binding: objects</div>
+            >binding: strings</div>
         </div>
     </v-app>
 
@@ -617,9 +618,13 @@
           msg.setLoading(false);
         }, 2000);
       },
-      ckInputAdd: function(msg) {
-        console.log("ckInputAdd", msg);
+      ckInputAddForObject: function(msg) {
+        console.log("ckInputAddForObject", msg);
         this.WGroupTags.objects.push(msg);
+      },
+      ckInputAddForString: function(msg, key) {
+        console.log("ckInputAddForString", msg, key);
+        this.WGroupTags.strings.push(msg[key]);
       }
     }
   });

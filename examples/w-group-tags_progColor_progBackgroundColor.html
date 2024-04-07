@@ -78,7 +78,7 @@
     ></script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.3.85/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.3.86/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -606,9 +606,13 @@
           msg.setLoading(false);
         }, 2000);
       },
-      ckInputAdd: function(msg) {
-        console.log("ckInputAdd", msg);
+      ckInputAddForObject: function(msg) {
+        console.log("ckInputAddForObject", msg);
         this.WGroupTags.objects.push(msg);
+      },
+      ckInputAddForString: function(msg, key) {
+        console.log("ckInputAddForString", msg, key);
+        this.WGroupTags.strings.push(msg[key]);
       }
     }
   });
