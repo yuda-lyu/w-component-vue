@@ -194,7 +194,7 @@
                     v-model="WGroupTags.objects"
                     :suggests="WGroupTags.suggestsObjects"
                     :addMode="'input'"
-                    @click-add="ckInputAdd"
+                    @click-add="ckInputAddForObject"
                 >
                     <template v-slot:suggest="props">
                         <div style="color:#888; font-size:0.70rem;">{{props.item.kind}}</div>
@@ -209,6 +209,29 @@
             <div class="bk" style="display:block;">
                 <demolink
                     :kbname="'w-group-tags'"
+                    :casename="'suggests & slot suggest & addMode & addWhenInputByOutside'"
+                ></demolink>
+
+                <w-group-tags
+                    v-model="WGroupTags.strings"
+                    :suggests="WGroupTags.suggestsObjects"
+                    :addMode="'input'"
+                    :addWhenInputByOutside="true"
+                    @click-add="(msg)=>{ckInputAddForString(msg,'text')}"
+                >
+                    <template v-slot:suggest="props">
+                        <div style="color:#888; font-size:0.70rem;">{{props.item.kind}}</div>
+                        <div style="color:#000; font-size:0.85rem;">{{props.item.text}}</div>
+                    </template>
+                </w-group-tags>
+
+                <div style="padding-left:5px; font-size:0.9rem; color:#ea6;">binding: strings</div>
+            </div>
+
+
+            <div class="bk" style="display:block;">
+                <demolink
+                    :kbname="'w-group-tags'"
                     :casename="'suggests & slot suggest & addMode & inputKeyText'"
                 ></demolink>
 
@@ -217,7 +240,7 @@
                     :suggests="WGroupTags.suggestsObjectsName"
                     :addMode="'input'"
                     :inputKeyText="'name'"
-                    @click-add="ckInputAdd"
+                    @click-add="ckInputAddForObject"
                 >
                     <template v-slot:suggest="props">
                         <div style="color:#888; font-size:0.70rem;">{{props.item.kind}}</div>
@@ -226,6 +249,30 @@
                 </w-group-tags>
 
                 <div style="padding-left:5px; font-size:0.9rem; color:#ea6;">binding: objects</div>
+            </div>
+
+
+            <div class="bk" style="display:block;">
+                <demolink
+                    :kbname="'w-group-tags'"
+                    :casename="'suggests & slot suggest & addMode & inputKeyText & addWhenInputByOutside'"
+                ></demolink>
+
+                <w-group-tags
+                    v-model="WGroupTags.strings"
+                    :suggests="WGroupTags.suggestsObjectsName"
+                    :addMode="'input'"
+                    :inputKeyText="'name'"
+                    :addWhenInputByOutside="true"
+                    @click-add="(msg)=>{ckInputAddForString(msg,'name')}"
+                >
+                    <template v-slot:suggest="props">
+                        <div style="color:#888; font-size:0.70rem;">{{props.item.kind}}</div>
+                        <div style="color:#000; font-size:0.85rem;">{{props.item.name}}</div>
+                    </template>
+                </w-group-tags>
+
+                <div style="padding-left:5px; font-size:0.9rem; color:#ea6;">binding: strings</div>
             </div>
 
 
@@ -1482,9 +1529,13 @@ export default {
                 msg.setLoading(false)
             }, 2000)
         },
-        ckInputAdd: function(msg) {
-            console.log('ckInputAdd', msg)
+        ckInputAddForObject: function(msg) {
+            console.log('ckInputAddForObject', msg)
             this.WGroupTags.objects.push(msg)
+        },
+        ckInputAddForString: function(msg, key) {
+            console.log('ckInputAddForString', msg, key)
+            this.WGroupTags.strings.push(msg[key])
         },
     },
 }

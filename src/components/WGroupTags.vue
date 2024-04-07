@@ -158,7 +158,7 @@
                         :items="suggests"
                         :placeholder="placeholder"
                         :noResultsText="noResultsText"
-                        v-model="userinput"
+                        v-model="userInput"
                         @enter="clickAddBtn"
                         @click-right="clickAddBtn"
                     >
@@ -274,6 +274,7 @@ import domDragDrop from '../js/domDragDrop.mjs'
  * @vue-prop {String} [addButtonBackgroundColor='white'] 輸入新增按鈕背景顏色字串，預設'white'
  * @vue-prop {String} [addButtonBackgroundColorHover='white'] 輸入滑鼠移入時新增按鈕背景顏色字串，預設'white'
  * @vue-prop {String} [addButtonTooltip='Add'] 輸入新增按鈕提示文字字串，預設'Add'
+ * @vue-prop {Boolean} [addWhenInputByOutside=false] 輸入當指定或自動使用input並新增時，是否強制使用click-add事件進行新增處理布林值，預設false
  * @vue-prop {Boolean} [closeWithInterceptor=false] 輸入是否通過攔截器來決定是否進行關閉布林值，此處之攔截器係用promise來控制，當使用者點擊關閉時可先行確認或提示。當closeWithInterceptor=true時，於click-close事件所接收物件資訊中的pm，使用pm.resolve()則代表確定關閉，反之pm.reject()則取消關閉事件，預設false
  * @vue-prop {Boolean} [draggable=true] 輸入是否可拖曳模式布林值，預設true
  * @vue-prop {Boolean} [editable=true] 輸入是否為編輯模式布林值，預設true
@@ -579,6 +580,10 @@ export default {
             type: String,
             default: 'Add',
         },
+        addWhenInputByOutside: {
+            type: Boolean,
+            default: false,
+        },
         closeWithInterceptor: {
             type: Boolean,
             default: false,
@@ -623,7 +628,7 @@ export default {
 
             itemsTrans: [],
             itemActiveTrans: null,
-            userinput: '',
+            userInput: '',
 
         }
     },
@@ -880,25 +885,25 @@ export default {
                 })
 
             }
-            else {
+            else { //vo.useMode === 'input'
 
                 //check
-                if (trim(vo.userinput) === '') {
+                if (trim(vo.userInput) === '') {
                     return
                 }
 
-                //isObjValue
-                if (vo.isObjValue) {
-                    //若為obj, 則須交由外部自行處理push
+                //addWhenInputByOutside || isObjValue
+                if (vo.addWhenInputByOutside || vo.isObjValue) {
+                    //若指定由外部處理push, 或若為obj則須交由外部處理push
 
                     //$nextTick
                     vo.$nextTick(() => {
 
                         //emit
-                        vo.$emit('click-add', vo.userinput)
+                        vo.$emit('click-add', vo.userInput)
 
                         //clear
-                        vo.userinput = ''
+                        vo.userInput = ''
 
                     })
 
@@ -907,7 +912,7 @@ export default {
 
                     //check
                     let r = filter(vo.itemsTrans, (v) => {
-                        return isEqual(v, vo.userinput)
+                        return isEqual(v, vo.userInput)
                     })
                     if (size(r) >= 1) {
 
@@ -918,7 +923,7 @@ export default {
                             vo.$emit('error', 'duplicate values')
 
                             //clear
-                            vo.userinput = ''
+                            vo.userInput = ''
 
                         })
 
@@ -929,16 +934,16 @@ export default {
                     vo.$nextTick(() => {
 
                         //push
-                        vo.itemsTrans.push(trim(vo.userinput))
+                        vo.itemsTrans.push(trim(vo.userInput))
 
                         //emit
                         vo.$emit('input', vo.itemsTrans)
 
                         //emit
-                        vo.$emit('click-add', vo.userinput)
+                        vo.$emit('click-add', vo.userInput)
 
                         //clear
-                        vo.userinput = ''
+                        vo.userInput = ''
 
                     })
 
