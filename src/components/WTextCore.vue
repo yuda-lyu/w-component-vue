@@ -3,7 +3,7 @@
         <!-- 要設定display:block否則input會有最小高度 -->
         <input
             ref="inp"
-            type="text"
+            :type="password?'password':`text`"
             :style="`transition:all 0.3s; display:block; outline:none; width:100%; box-sizing:border-box; border-style:none; background:transparent; color:${useTextColor}; ${useHeight} text-align:${textAlign}; ${useTextFontSize} opacity:${(valueTrans==='' && !focused)?0.6:1};`"
             :readonly="!editable"
             :placeholder="placeholder"
@@ -34,8 +34,9 @@ import convertColor from '../js/convertColor.mjs'
  * @vue-prop {String} [textAlign='left'] 輸入文字左右對齊字串，預設'left'
  * @vue-prop {String} [placeholder=''] 輸入無文字時的替代字符字串，預設''
  * @vue-prop {Number|String} [height=''] 輸入高度數字或字串，數字單位為px，預設''
- * @vue-prop {Boolean} [editable=true] 輸入是否為編輯模式，預設true
- * @vue-prop {Boolean} [focused=false] 輸入是否為取得焦點狀態，預設false
+ * @vue-prop {Boolean} [password=false] 輸入是否輸入密碼狀態布林值，預設false
+ * @vue-prop {Boolean} [editable=true] 輸入是否為編輯模式布林值，預設true
+ * @vue-prop {Boolean} [focused=false] 輸入是否為取得焦點狀態布林值，預設false
  */
 export default {
     props: {
@@ -66,6 +67,10 @@ export default {
         height: {
             type: [Number, String],
             default: '',
+        },
+        password: {
+            type: Boolean,
+            default: false,
         },
         editable: {
             type: Boolean,

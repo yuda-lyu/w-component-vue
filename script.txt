@@ -1,18 +1,18 @@
-#node --experimental-modules --es-module-specifier-resolution=node toolg/addVersion.mjs
-node --experimental-modules --es-module-specifier-resolution=node toolg/modifyReadme.mjs
+#node --experimental-modules toolg/addVersion.mjs
+node --experimental-modules toolg/modifyReadme.mjs
 
-node --experimental-modules --es-module-specifier-resolution=node toolg/cleanFolder.mjs
+node --experimental-modules toolg/cleanFolder.mjs
 ./node_modules/.bin/jsdoc -c .jsdoc
 
-node --experimental-modules --es-module-specifier-resolution=node toolg/gDistApp.mjs
+node --experimental-modules toolg/gDistApp.mjs
 
-node --experimental-modules --es-module-specifier-resolution=node toolg/gExtractHtml.mjs
-node --experimental-modules --es-module-specifier-resolution=node toolg/gDocExams.mjs
+node --experimental-modules toolg/gExtractHtml.mjs
+node --experimental-modules toolg/gDocExams.mjs
 
-node --experimental-modules --es-module-specifier-resolution=node toolg/gMergeComps.mjs
+node --experimental-modules toolg/gMergeComps.mjs
 
-node --experimental-modules --es-module-specifier-resolution=node toolg/gDistRollupWorkerFuncs.mjs
-node --experimental-modules --es-module-specifier-resolution=node toolg/gDistRollupComps.mjs
+node --experimental-modules toolg/gDistRollupWorkerFuncs.mjs
+node --experimental-modules toolg/gDistRollupComps.mjs
 
 git add .  -A
 git commit -m 'modify: '
@@ -23,6 +23,6 @@ npm run deploy
 #npm test
 
 #rm -r test-screenshot
-#node --experimental-modules --es-module-specifier-resolution=node gUITest.mjs
+#node --experimental-modules gUITest.mjs
 
 #npm publish

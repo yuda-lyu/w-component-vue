@@ -56,7 +56,7 @@ import convertColor from '../js/convertColor.mjs'
 /**
  * @vue-prop {String} [mode='unchecked'] 輸入勾選模式字串，可選'unchecked'、'checked'、'checkedPartially'，預設'unchecked'
  * @vue-prop {Number} [iconSize=24] 輸入顯隱icon按鈕高度數字，預設24
- * @vue-prop {Boolean} [editable=true] 輸入是否為編輯模式，預設true
+ * @vue-prop {Boolean} [editable=true] 輸入是否為編輯模式布林值，預設true
  * @vue-prop {String} [uncheckedColor='grey darken-2'] 輸入未勾選時顏色字串，預設'grey darken-2'
  * @vue-prop {String} [uncheckedDisabledColor='grey'] 輸入禁用時未勾選時顏色字串，預設'grey'
  * @vue-prop {String} [checkedColor='blue darken-3'] 輸入勾選時顏色字串，預設'blue darken-3'

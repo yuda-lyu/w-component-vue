@@ -151,7 +151,7 @@ import WTooltip from './WTooltip.vue'
  * @vue-prop {String} [tooltipTextColor='white'] 輸入提示文字顏色字串，預設'white'
  * @vue-prop {String} [tooltipBackgroundColor='rgba(60,60,60,0.75)'] 輸入背景顏色字串，預設'rgba(60,60,60,0.75)'
  * @vue-prop {String} [verticalAlign='center'] 輸入input與文字之垂直對齊字串，可選'top'、'center'、'bottom'，預設'center'
- * @vue-prop {Boolean} [editable=true] 輸入是否為編輯模式，預設true
+ * @vue-prop {Boolean} [editable=true] 輸入是否為編輯模式布林值，預設true
  * @vue-prop {Boolean} [hovered=false] 輸入是否為滑鼠移入狀態，預設false
  * @vue-prop {Boolean} [focused=false] 輸入是否為取得焦點狀態，預設false
  */

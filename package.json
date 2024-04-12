@@ -1,6 +1,6 @@
 {
   "name": "w-component-vue",
-  "version": "2.3.86",
+  "version": "2.3.87",
   "main": "dist/w-component-vue.umd.js",
   "dependencies": {
     "@mdi/js": "^7.4.47",
@@ -31,7 +31,7 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "test": "mocha --parallel --timeout 60000 --experimental-modules --es-module-specifier-resolution=node",
+    "test": "mocha --parallel --timeout 60000 --experimental-modules",
     "lint": "vue-cli-service lint",
     "deploy": "gh-pages -d docs"
   },

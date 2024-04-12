@@ -76,7 +76,7 @@ import convertColor from '../js/convertColor.mjs'
  * @vue-prop {String} [iconDisabledColor='grey lighten-1'] 輸入顯隱icon按鈕禁用時顏色字串，預設'grey lighten-1'
  * @vue-prop {String} [iconBackgroundColor='transparent'] 輸入顯隱icon按鈕背景顏色字串，預設'transparent'
  * @vue-prop {String} [iconBackgroundColorHover='rgba(128,128,128,0.15)'] 輸入滑鼠移入時顯隱icon按鈕背景顏色字串，預設'rgba(128,128,128,0.15)'
- * @vue-prop {Boolean} [editable=true] 輸入是否為編輯模式，預設true
+ * @vue-prop {Boolean} [editable=true] 輸入是否為編輯模式布林值，預設true
  */
 export default {
     components: {

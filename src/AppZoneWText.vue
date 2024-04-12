@@ -260,6 +260,20 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-text'"
+                    :casename="'password'"
+                ></demolink>
+
+                <w-text
+                    :leftIcon="mdiCheckUnderlineCircle"
+                    :password="true"
+                    v-model="WText.text"
+                ></w-text>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-text'"
                     :casename="'not editable'"
                 ></demolink>
 
@@ -662,6 +676,32 @@
                     :backgroundColorHover="'rgba(237, 247, 255, 1)'"
                     :backgroundColorFocus="'blue lighten-5'"
                     :leftIcon="mdiArrowRightDropCircleOutline"
+                    v-model="WText.text"
+                ></w-text>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-text'"
+                    :casename="'border & password'"
+                ></demolink>
+
+                <w-text
+                    :shadow="false"
+                    :bottomLineBorderColor="'transparent'"
+                    :bottomLineBorderColorHover="'transparent'"
+                    :bottomLineBorderColorFocus="'transparent'"
+                    :paddingStyle="{h:15}"
+                    :iconShiftOuter="-10"
+                    :borderColor="'blue lighten-2'"
+                    :borderColorHover="'blue'"
+                    :borderColorFocus="'blue darken-2'"
+                    :backgroundColor="'white'"
+                    :backgroundColorHover="'rgba(237, 247, 255, 1)'"
+                    :backgroundColorFocus="'blue lighten-5'"
+                    :leftIcon="mdiCheckUnderlineCircle"
+                    :password="true"
                     v-model="WText.text"
                 ></w-text>
             </div>

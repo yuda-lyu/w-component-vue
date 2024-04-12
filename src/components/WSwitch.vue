@@ -62,7 +62,7 @@ import convertColor from '../js/convertColor.mjs'
  * @vue-prop {String} [uncheckedSwitchBarColor='#8ad'] 輸入可編輯時，無效(false|'n')切換器滑動區顏色字串，預設'#8ad'
  * @vue-prop {String} [uncheckedSwitchBarColorHover='#9bd'] 輸入滑鼠移入時可編輯時，無效(false|'n')切換器滑動區顏色字串，預設'#9bd'
  * @vue-prop {String} [uncheckedSwitchBarColorDisabled='#bbb'] 輸入不可編輯時，無效(false|'n')切換器滑動區顏色字串，預設'#bbb'
- * @vue-prop {Boolean} [editable=true] 輸入是否為編輯模式，預設true
+ * @vue-prop {Boolean} [editable=true] 輸入是否為編輯模式布林值，預設true
  */
 export default {
     props: {

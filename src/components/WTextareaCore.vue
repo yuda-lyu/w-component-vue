@@ -50,7 +50,7 @@ import convertColor from '../js/convertColor.mjs'
  * @vue-prop {String} [textAlign='left'] 輸入文字左右對齊字串，預設'left'
  * @vue-prop {String} [placeholder=''] 輸入無文字時的替代字符字串，預設''
  * @vue-prop {Number|String} [height=null] 輸入高度數字或字串，數字單位為px，若給予非有效值則代表自動更新高度，預設null
- * @vue-prop {Boolean} [editable=true] 輸入是否為編輯模式，預設true
+ * @vue-prop {Boolean} [editable=true] 輸入是否為編輯模式布林值，預設true
  * @vue-prop {Boolean} [focused=false] 輸入是否為取得焦點狀態，預設false
  */
 export default {

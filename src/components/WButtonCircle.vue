@@ -127,7 +127,7 @@ import WTooltip from './WTooltip.vue'
  * @vue-prop {String} [loadingColor='grey darken-2'] 輸入載入圖標顏色字串，預設'grey darken-2'
  * @vue-prop {Boolean} [promiseUnlock=false] 輸入是否點擊後自動設定為loading為true並需使用promise解鎖布林值，預設false
  * @vue-prop {String} [role='button'] 輸入角色字串，預設'button'
- * @vue-prop {Boolean} [editable=true] 輸入是否為編輯模式，預設true
+ * @vue-prop {Boolean} [editable=true] 輸入是否為編輯模式布林值，預設true
  * @vue-prop {String} [disabledColor='rgba(255,255,255,0.5)'] 輸入非編輯模式時遮罩顏色字串，預設'rgba(255,255,255,0.5)'
  */
 export default {

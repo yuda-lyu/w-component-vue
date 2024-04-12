@@ -118,7 +118,7 @@ import hide from '@popperjs/core/lib/modifiers/hide.js'
  * @vue-prop {String} [tooltipTextFontSize='0.85rem'] 輸入提示窗框文字字型大小字串，預設'0.85rem'
  * @vue-prop {String} [tooltipTextColor='white'] 輸入提示窗框文字顏色字串，預設'white'
  * @vue-prop {String} [tooltipBackgroundColor='#666'] 輸入值域條背景顏色字串，預設'#666'
- * @vue-prop {Boolean} [editable=true] 輸入是否為編輯模式，預設true
+ * @vue-prop {Boolean} [editable=true] 輸入是否為編輯模式布林值，預設true
  */
 export default {
     directives: {

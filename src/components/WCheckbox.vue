@@ -62,7 +62,7 @@ import WIcon from './WIcon.vue'
  * @vue-prop {String} [uncheckedIconColor='blue darken-3'] 輸入可編輯時，無效(false|'n')圖標顏色字串，預設'blue darken-3'
  * @vue-prop {String} [uncheckedIconColorHover='blue darken-2'] 輸入滑鼠移入時可編輯時，無效(false|'n')圖標顏色字串，預設'blue darken-2'
  * @@vue-prop {String} [uncheckedIconColorDisabled='grey'] 輸入不可編輯時，無效(false|'n')圖標顏色字串，預設'grey'
- * @vue-prop {Boolean} [editable=true] 輸入是否為編輯模式，預設true
+ * @vue-prop {Boolean} [editable=true] 輸入是否為編輯模式布林值，預設true
  */
 export default {
     components: {

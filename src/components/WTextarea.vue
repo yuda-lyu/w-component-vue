@@ -107,7 +107,7 @@ import WTextareaCore from './WTextareaCore.vue'
  * @vue-prop {String} [placeholder=''] 輸入無文字時的替代字符字串，預設''
  * @vue-prop {Number|String} [height=null] 輸入高度數字或字串，數字單位為px，若給予非有效值則代表自動更新高度，預設null
  * @vue-prop {String} [verticalAlign='top'] 輸入input與文字之垂直對齊字串，可選'top'、'center'、'bottom'，預設'top'
- * @vue-prop {Boolean} [editable=true] 輸入是否為編輯模式，預設true
+ * @vue-prop {Boolean} [editable=true] 輸入是否為編輯模式布林值，預設true
  * @vue-prop {Boolean} [focused=false] 輸入是否為取得焦點狀態，預設false
  */
 export default {
