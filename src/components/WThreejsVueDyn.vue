@@ -22,7 +22,7 @@ export default {
         pathItems: {
             type: Array,
             default: () => [
-                'https://cdn.jsdelivr.net/npm/w-threejs-vue@1.0.7/dist/w-threejs-vue.umd.js', //使用最新版
+                'https://cdn.jsdelivr.net/npm/w-threejs-vue@1.0.9/dist/w-threejs-vue.umd.js', //使用最新版
             ],
         },
         opt: {

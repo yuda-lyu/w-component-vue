@@ -5,7 +5,6 @@ A simple component for vue(vue2).
 [![language](https://img.shields.io/badge/vue-2.x-brightgreen.svg)](https://github.com/vuejs/vue) 
 [![npm version](http://img.shields.io/npm/v/w-component-vue.svg?style=flat)](https://npmjs.org/package/w-component-vue) 
 [![license](https://img.shields.io/npm/l/w-component-vue.svg?style=flat)](https://npmjs.org/package/w-component-vue) 
-[![gzip file size](http://img.badgesize.io/yuda-lyu/w-component-vue/master/dist/w-component-vue.umd.js.svg?compression=gzip)](https://github.com/yuda-lyu/w-component-vue)
 [![npm download](https://img.shields.io/npm/dt/w-component-vue.svg)](https://npmjs.org/package/w-component-vue) 
 [![npm download](https://img.shields.io/npm/dm/w-component-vue.svg)](https://npmjs.org/package/w-component-vue)
 [![jsdelivr download](https://img.shields.io/jsdelivr/npm/hm/w-component-vue.svg)](https://www.jsdelivr.com/package/npm/w-component-vue)
@@ -84,7 +83,7 @@ export default {
 ```
 [Necessary] Add script for w-component-vue.
 ```alias
-<script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.3.87/dist/w-component-vue.umd.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.3.88/dist/w-component-vue.umd.js"></script>
 ```
 Directly use:
 ```alias
