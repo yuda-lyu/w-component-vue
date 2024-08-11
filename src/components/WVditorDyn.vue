@@ -415,7 +415,7 @@ export default {
                         // console.log('hint.extend hint', value)
                         let ts = [
                             {
-                                html: `<div style="display:none;"></div>`,
+                                html: `<div name="tar" style="display:none;"></div>`,
                                 value: '',
                             },
                         ]
@@ -650,7 +650,7 @@ export default {
                     }
 
                     //完全透明
-                    // divTrigger.style.opacity = 0 //因顯示之後再偵測會有顯隱, 改為給予css強制隱藏
+                    // divTrigger.style.opacity = 0 //因顯示之後再偵測隱藏會有顯隱問題, 使用者體驗不佳, 改為使用css強制隱藏
 
                     //evShow
                     vo.evShow('click', 'call')
@@ -729,7 +729,7 @@ export default {
     visibility: hidden;
     pointer-events: none;
 }
-.WVditor-Panel >>> div.vditor-hint { /* 使觸發區divTrigger(原本彈窗)完全透明 */
+.WVditor-Panel >>> div.vditor-hint:has(div[name="tar"]) { /* 使觸發區divTrigger(原本彈窗)完全透明 */
     visibility: hidden;
     pointer-events: none;
     outline: none;
