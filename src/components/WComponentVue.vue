@@ -96,6 +96,7 @@ import WTooltip from './WTooltip.vue'
 import WTree from './WTree.vue'
 import WTreeIconCheckbox from './WTreeIconCheckbox.vue'
 import WTreeIconToggle from './WTreeIconToggle.vue'
+import WVditorDyn from './WVditorDyn.vue'
 
 let WComponentVue = {
     install: function(Vue) {
@@ -196,6 +197,7 @@ let WComponentVue = {
         Vue.component('w-tree', WTree)
         Vue.component('w-tree-icon-checkbox', WTreeIconCheckbox)
         Vue.component('w-tree-icon-toggle', WTreeIconToggle)
+        Vue.component('w-vditor-dyn', WVditorDyn)
     }
 }
 

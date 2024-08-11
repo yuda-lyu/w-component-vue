@@ -24,13 +24,13 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-timeminute-range'"
-                    :casename="'paddingStyle (thin style) & placementDist'"
+                    :casename="'paddingStyle (thin style) & placementDistY'"
                 ></demolink>
 
                 <w-timeminute-range
                     :icon="''"
                     :paddingStyle="{v:0,h:8}"
-                    :placementDist="3"
+                    :placementDistY="3"
                     :minuteStart.sync="WTimeminuteRange.minuteStart"
                     :minuteEnd.sync="WTimeminuteRange.minuteEnd"
                 ></w-timeminute-range>
@@ -40,14 +40,14 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-timeminute-range'"
-                    :casename="'paddingStyle (thin style) & textFontSize & placementDist'"
+                    :casename="'paddingStyle (thin style) & textFontSize & placementDistY'"
                 ></demolink>
 
                 <w-timeminute-range
                     :icon="''"
                     :paddingStyle="{v:0,h:8}"
                     :textFontSize="'0.7rem'"
-                    :placementDist="3"
+                    :placementDistY="3"
                     :minuteStart.sync="WTimeminuteRange.minuteStart"
                     :minuteEnd.sync="WTimeminuteRange.minuteEnd"
                 ></w-timeminute-range>
@@ -128,13 +128,13 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-timeminute-range'"
-                    :casename="'icon & iconSize & placementDist'"
+                    :casename="'icon & iconSize & placementDistY'"
                 ></demolink>
 
                 <w-timeminute-range
                     :icon="mdiCheckUnderlineCircle"
                     :iconSize="20"
-                    :placementDist="6"
+                    :placementDistY="6"
                     :minuteStart.sync="WTimeminuteRange.minuteStart"
                     :minuteEnd.sync="WTimeminuteRange.minuteEnd"
                 ></w-timeminute-range>
@@ -307,7 +307,7 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-timeminute-range'"
-                    :casename="'border & paddingStyle (thin style) & placementDist'"
+                    :casename="'border & paddingStyle (thin style) & placementDistY'"
                 ></demolink>
 
                 <w-timeminute-range
@@ -320,7 +320,7 @@
                     :backgroundColorFocus="'orange lighten-5'"
                     :icon="''"
                     :paddingStyle="{v:0,h:8}"
-                    :placementDist="3"
+                    :placementDistY="3"
                     :minuteStart.sync="WTimeminuteRange.minuteStart"
                     :minuteEnd.sync="WTimeminuteRange.minuteEnd"
                 ></w-timeminute-range>
@@ -330,7 +330,7 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-timeminute-range'"
-                    :casename="'border & paddingStyle (thin style) & textFontSize & placementDist'"
+                    :casename="'border & paddingStyle (thin style) & textFontSize & placementDistY'"
                 ></demolink>
 
                 <w-timeminute-range
@@ -344,7 +344,7 @@
                     :icon="''"
                     :paddingStyle="{v:0,h:8}"
                     :textFontSize="'0.7rem'"
-                    :placementDist="3"
+                    :placementDistY="3"
                     :minuteStart.sync="WTimeminuteRange.minuteStart"
                     :minuteEnd.sync="WTimeminuteRange.minuteEnd"
                 ></w-timeminute-range>

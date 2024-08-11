@@ -211,6 +211,8 @@
 
             <AppZoneWQuillVueDyn v-if="cmpPick==='WQuillVueDyn'"></AppZoneWQuillVueDyn>
 
+            <AppZoneWVditorDyn v-if="cmpPick==='WVditorDyn'"></AppZoneWVditorDyn>
+
             <AppZoneWLeafletVueDyn v-if="cmpPick==='WLeafletVueDyn'"></AppZoneWLeafletVueDyn>
 
             <AppZoneWExplorer v-if="cmpPick==='WExplorer'"></AppZoneWExplorer>
@@ -316,6 +318,7 @@ import AppZoneWImageCascadingDyn from './AppZoneWImageCascadingDyn.vue'
 import AppZoneWCkeditorVueDyn from './AppZoneWCkeditorVueDyn.vue'
 import AppZoneWTinymceVueDyn from './AppZoneWTinymceVueDyn.vue'
 import AppZoneWQuillVueDyn from './AppZoneWQuillVueDyn.vue'
+import AppZoneWVditorDyn from './AppZoneWVditorDyn.vue'
 import AppZoneWLeafletVueDyn from './AppZoneWLeafletVueDyn.vue'
 import AppZoneWExplorer from './AppZoneWExplorer.vue'
 import AppZoneWColorPickHexagon from './AppZoneWColorPickHexagon.vue'
@@ -399,6 +402,7 @@ export default {
         AppZoneWCkeditorVueDyn,
         AppZoneWTinymceVueDyn,
         AppZoneWQuillVueDyn,
+        AppZoneWVditorDyn,
         AppZoneWLeafletVueDyn,
         AppZoneWExplorer,
         AppZoneWColorPickHexagon,
@@ -584,6 +588,7 @@ export default {
                             { name: 'WTinymceVueDyn' },
                             { name: 'WCkeditorVueDyn' },
                             { name: 'WQuillVueDyn' },
+                            { name: 'WVditorDyn' },
                         ],
                     },
                 ],

@@ -4,7 +4,7 @@
         :maxWidth="null"
         :autoFitMinWidth="false"
         :autoFitMaxWidth="false"
-        :placementDist="popupPlacementDist"
+        :placementDistY="popupPlacementDist"
         :editable="editable"
         v-model="show"
         :changeValue="changeValue"

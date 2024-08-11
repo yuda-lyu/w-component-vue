@@ -24,13 +24,13 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-timeday-range'"
-                    :casename="'paddingStyle (thin style) & placementDist'"
+                    :casename="'paddingStyle (thin style) & placementDistY'"
                 ></demolink>
 
                 <w-timeday-range
                     :icon="''"
                     :paddingStyle="{v:0,h:8}"
-                    :placementDist="3"
+                    :placementDistY="3"
                     :dayStart.sync="WTimedayRange.dayStart"
                     :dayEnd.sync="WTimedayRange.dayEnd"
                 ></w-timeday-range>
@@ -40,14 +40,14 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-timeday-range'"
-                    :casename="'paddingStyle (thin style) & textFontSize & placementDist'"
+                    :casename="'paddingStyle (thin style) & textFontSize & placementDistY'"
                 ></demolink>
 
                 <w-timeday-range
                     :icon="''"
                     :paddingStyle="{v:0,h:8}"
                     :textFontSize="'0.7rem'"
-                    :placementDist="3"
+                    :placementDistY="3"
                     :dayStart.sync="WTimedayRange.dayStart"
                     :dayEnd.sync="WTimedayRange.dayEnd"
                 ></w-timeday-range>
@@ -128,13 +128,13 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-timeday-range'"
-                    :casename="'icon & iconSize & placementDist'"
+                    :casename="'icon & iconSize & placementDistY'"
                 ></demolink>
 
                 <w-timeday-range
                     :icon="mdiCheckUnderlineCircle"
                     :iconSize="20"
-                    :placementDist="6"
+                    :placementDistY="6"
                     :dayStart.sync="WTimedayRange.dayStart"
                     :dayEnd.sync="WTimedayRange.dayEnd"
                 ></w-timeday-range>
@@ -263,7 +263,7 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-timeday-range'"
-                    :casename="'border & paddingStyle (thin style) & placementDist'"
+                    :casename="'border & paddingStyle (thin style) & placementDistY'"
                 ></demolink>
 
                 <w-timeday-range
@@ -276,7 +276,7 @@
                     :backgroundColorFocus="'orange lighten-5'"
                     :icon="''"
                     :paddingStyle="{v:0,h:8}"
-                    :placementDist="3"
+                    :placementDistY="3"
                     :dayStart.sync="WTimedayRange.dayStart"
                     :dayEnd.sync="WTimedayRange.dayEnd"
                 ></w-timeday-range>
@@ -286,7 +286,7 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-timeday-range'"
-                    :casename="'border & paddingStyle (thin style) & textFontSize & placementDist'"
+                    :casename="'border & paddingStyle (thin style) & textFontSize & placementDistY'"
                 ></demolink>
 
                 <w-timeday-range
@@ -300,7 +300,7 @@
                     :icon="''"
                     :paddingStyle="{v:0,h:8}"
                     :textFontSize="'0.7rem'"
-                    :placementDist="3"
+                    :placementDistY="3"
                     :dayStart.sync="WTimedayRange.dayStart"
                     :dayEnd.sync="WTimedayRange.dayEnd"
                 ></w-timeday-range>

@@ -31,7 +31,8 @@ import WTooltip from './WTooltip.vue'
  * @vue-prop {Boolean} [autoFitMinWidth=false] 輸入是否使用驅動區寬度作為彈窗之最小寬度布林值，預設false
  * @vue-prop {Boolean} [autoFitMaxWidth=false] 輸入是否使用驅動區寬度作為彈窗之最大寬度布林值，預設false
  * @vue-prop {String} [placement='bottom'] 輸入彈窗出現位置字串，可選'top-start'、'top'、'top-end'、'bottom-start'、'bottom'、'bottom-end'、'left-start'、'left'、'left-end'、'right-start'、'right'、'right-end'、，預設'bottom'
- * @vue-prop {Number} [placementDist=5] 輸入彈窗距離觸發元素距離數字，單位為px，預設5
+ * @vue-prop {Number} [placementDistX=0] 輸入彈窗距離觸發元素之水平向右平移數字，單位為px，預設0
+ * @vue-prop {Number} [placementDistY=5] 輸入彈窗距離觸發元素之垂直向下平移數字，單位為px，預設5
  * @vue-prop {Number} [borderRadius=4] 輸入彈窗框圓角度數字，單位為px，預設4
  * @vue-prop {String} [textFontSize='0.85rem'] 輸入彈窗文字字型大小字串，預設'0.85rem'
  * @vue-prop {String} [textColor='white'] 輸入彈窗文字顏色字串，預設'white'
@@ -83,7 +84,11 @@ export default {
             type: String,
             default: 'bottom-start',
         },
-        placementDist: {
+        placementDistX: {
+            type: Number,
+            default: 0,
+        },
+        placementDistY: {
             type: Number,
             default: 5,
         },

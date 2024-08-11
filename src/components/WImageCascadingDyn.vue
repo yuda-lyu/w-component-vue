@@ -11,7 +11,7 @@
 
         <WIconLoading v-if="loading"></WIconLoading>
 
-        <div v-else>
+        <div :style="`${loading?'heigh:0px; max-height:0px; overflow-y:hidden;':''}`">
 
             <div
                 :style="`display:table-cell; vertical-align:top; margin:0; padding-left:${kimgs>0?space:0}px;`"

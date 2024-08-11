@@ -183,11 +183,11 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-tooltip'"
-                    :casename="'placementDist'"
+                    :casename="'placementDistY'"
                 ></demolink>
 
                 <w-tooltip
-                    :placementDist="10"
+                    :placementDistY="10"
                     v-model="WTooltip.bShow7"
                     @show="evShow"
                     @hide="evHide"

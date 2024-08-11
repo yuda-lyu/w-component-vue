@@ -78,7 +78,7 @@
     ></script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.3.88/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.3.89/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -142,17 +142,18 @@
                 style="cursor:pointer;"
                 title="open for copy link to view component"
                 onclick="window.open('//yuda-lyu.github.io/w-component-vue/examples/app.html?cmp='+this.innerText,'_blank')"
-            >w-timeday</span>
+            >w-timeday-range</span>
         </div>
         <div class="bk">
-            <div class="item">paddingStyle (thin style) &amp; placementDist</div>
+            <div class="item">paddingStyle (thin style) &amp; placementDistY</div>
 
-            <w-timeday
+            <w-timeday-range
                 :icon="''"
                 :padding-style="{v:0,h:8}"
-                :placement-dist="3"
-                v-model="WTimeday.day"
-            ></w-timeday>
+                :placement-dist-y="3"
+                :day-start.sync="WTimedayRange.dayStart"
+                :day-end.sync="WTimedayRange.dayEnd"
+            ></w-timeday-range>
         </div>
     </v-app>
 
@@ -166,21 +167,39 @@
     vuetify: new Vuetify(),
     data: function() {
       return {
-        WTimeday: {
-          day: "2019-01-01",
-          dayEmpty: ""
+        WTimedayRange: {
+          dayStart: "2019-01-01",
+          dayEnd: "2019-02-01",
+          dayStartEmpty: "",
+          dayEndEmpty: ""
         },
         actions: [
           //pickColor測試不到
+
+          //起始時間
           {
             mode: "eleclick",
-            selector: 'div[TimedayCore="day"]'
+            selector: 'div[TimedayCore="day"]',
+            nth: 0
           },
           {
             mode: "eleclick",
             selector: 'button[type="button"]',
             nth: 11
           },
+
+          //結束時間
+          {
+            mode: "eleclick",
+            selector: 'div[TimedayCore="day"]',
+            nth: 1
+          },
+          {
+            mode: "eleclick",
+            selector: 'button[type="button"]',
+            nth: 14
+          },
+
           {
             mode: "elemove",
             selector: 'div[ShellEllipse="leftIcon"]',

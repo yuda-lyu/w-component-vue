@@ -15,7 +15,8 @@
                 :expansionIcon="expansionIcon"
                 :expansionIconSize="expansionIconSize"
                 :expansionIconColor="expansionIconColor"
-                :placementDist="placementDist"
+                :placementDistX="placementDistX"
+                :placementDistY="placementDistY"
                 :textEmpty="textEmpty"
                 :editable="editable"
                 :value="minuteStart"
@@ -39,7 +40,8 @@
                 :expansionIcon="expansionIcon"
                 :expansionIconSize="expansionIconSize"
                 :expansionIconColor="expansionIconColor"
-                :placementDist="placementDist"
+                :placementDistX="placementDistX"
+                :placementDistY="placementDistY"
                 :textEmpty="textEmpty"
                 :editable="editable"
                 :value="minuteEnd"
@@ -72,7 +74,8 @@ import WTimeminuteCore from './WTimeminuteCore.vue'
  * @vue-prop {String} [expansionIcon=mdiPlay] 輸入顯隱圖標字串，可為mdi,md,fa代號或mdi/js路徑，預設使用mdi的圖標(mdiPlay)
  * @vue-prop {Number} [expansionIconSize=18] 輸入顯隱圖標尺寸數字，單位為px，預設18
  * @vue-prop {String} [expansionIconColor='grey'] 輸入顯隱圖標顏色字串，預設'grey'
- * @vue-prop {Number} [placementDist=7] 輸入日期彈窗y向下平移數字，預設7
+ * @vue-prop {Number} [placementDistX=0] 輸入日期彈窗之水平向右平移數字，單位為px，預設0
+ * @vue-prop {Number} [placementDistY=7] 輸入日期彈窗之垂直向下平移數字，單位為px，預設7
  * @vue-prop {String} [textEmpty='Select a date'] 輸入尚未輸入日期之顯示文字字串，預設'Select a date'
  * @vue-prop {Boolean} [editable=true] 輸入是否為編輯模式布林值，預設true
  */
@@ -133,7 +136,11 @@ export default {
             type: String,
             default: 'grey',
         },
-        placementDist: {
+        placementDistX: {
+            type: Number,
+            default: 0,
+        },
+        placementDistY: {
             type: Number,
             default: 7,
         },

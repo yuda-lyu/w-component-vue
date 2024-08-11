@@ -58,7 +58,7 @@
                     :maxWidth="maxWidth"
                     :autoFitMinWidth="autoFitMinWidth"
                     :autoFitMaxWidth="autoFitMaxWidth"
-                    :placementDist="useDistY"
+                    :placementDistY="useDistY"
                     :defItemHeight="defItemHeight"
                     :editable="editable"
                     :focused="focusedTrans"

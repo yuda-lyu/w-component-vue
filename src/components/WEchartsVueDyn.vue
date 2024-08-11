@@ -5,8 +5,8 @@
 
 <script>
 import importResources from 'wsemi/src/importResources.mjs'
-import WIconLoading from './WIconLoading.vue'
 import getVue from '../js/getVue.mjs'
+import WIconLoading from './WIconLoading.vue'
 // import VueCompositionAPI from '@vue/composition-api'
 
 

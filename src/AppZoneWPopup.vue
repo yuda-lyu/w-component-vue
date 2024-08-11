@@ -190,11 +190,11 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-popup'"
-                    :casename="'placementDist'"
+                    :casename="'placementDistY'"
                 ></demolink>
 
                 <w-popup
-                    :placementDist="10"
+                    :placementDistY="10"
                     v-model="WPopup.bShow7"
                     @show="evShow"
                     @hide="evHide"

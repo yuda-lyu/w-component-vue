@@ -78,7 +78,7 @@
     ></script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.3.88/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.3.89/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -145,12 +145,12 @@
             >w-timeday-range</span>
         </div>
         <div class="bk">
-            <div class="item">paddingStyle (thin style) &amp; placementDist</div>
+            <div class="item">icon &amp; iconSize &amp; placementDistY</div>
 
             <w-timeday-range
-                :icon="''"
-                :padding-style="{v:0,h:8}"
-                :placement-dist="3"
+                :icon="'mdi-check-underline-circle'"
+                :icon-size="20"
+                :placement-dist-y="6"
                 :day-start.sync="WTimedayRange.dayStart"
                 :day-end.sync="WTimedayRange.dayEnd"
             ></w-timeday-range>

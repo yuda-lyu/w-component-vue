@@ -5,7 +5,8 @@
         :maxWidth="maxWidth"
         :autoFitMinWidth="autoFitMinWidth"
         :autoFitMaxWidth="autoFitMaxWidth"
-        :placementDist="placementDist"
+        :placementDistX="placementDistX"
+        :placementDistY="placementDistY"
         :editable="editable"
         :value="showPanelTrans"
         @input="(v)=>{updateShowPanel(v,'WPopup')}"
@@ -154,7 +155,8 @@ import WIcon from './WIcon.vue'
  * @vue-prop {Number} [maxWidth=null] 輸入最大寬度，單位為px，預設null
  * @vue-prop {Boolean} [autoFitMinWidth=true] 輸入是否使用驅動區寬度作為內容區之最小寬度布林值，預設true
  * @vue-prop {Boolean} [autoFitMaxWidth=true] 輸入是否使用驅動區寬度作為內容區之最大寬度布林值，預設true
- * @vue-prop {Number} [placementDist=5] 輸入彈窗距離觸發元素距離數字，單位為px，預設5
+ * @vue-prop {Number} [placementDistX=0] 輸入彈窗距離觸發元素之水平向右平移數字，單位為px，預設0
+ * @vue-prop {Number} [placementDistY=5] 輸入彈窗距離觸發元素之垂直向下平移數字，單位為px，預設5
  * @vue-prop {String} [placeholder=''] 輸入無文字時的替代字符字串，預設''
  * @vue-prop {String} [loadingText='Loading...'] 輸入載入中字串，預設'Loading...'
  * @vue-prop {String} [noResultsText='No results'] 輸入無過濾結果字串，預設'No results'
@@ -265,7 +267,11 @@ export default {
             type: Boolean,
             default: true,
         },
-        placementDist: {
+        placementDistX: {
+            type: Number,
+            default: 0,
+        },
+        placementDistY: {
             type: Number,
             default: 5,
         },

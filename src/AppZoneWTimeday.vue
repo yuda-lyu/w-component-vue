@@ -21,13 +21,13 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-timeday'"
-                    :casename="'paddingStyle (thin style) & placementDist'"
+                    :casename="'paddingStyle (thin style) & placementDistY'"
                 ></demolink>
 
                 <w-timeday
                     :icon="''"
                     :paddingStyle="{v:0,h:8}"
-                    :placementDist="3"
+                    :placementDistY="3"
                     v-model="WTimeday.day"
                 ></w-timeday>
             </div>
@@ -36,14 +36,14 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-timeday'"
-                    :casename="'paddingStyle (thin style) & textFontSize & placementDist'"
+                    :casename="'paddingStyle (thin style) & textFontSize & placementDistY'"
                 ></demolink>
 
                 <w-timeday
                     :icon="''"
                     :paddingStyle="{v:0,h:8}"
                     :textFontSize="'0.7rem'"
-                    :placementDist="3"
+                    :placementDistY="3"
                     v-model="WTimeday.day"
                 ></w-timeday>
             </div>
@@ -105,13 +105,13 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-timeday'"
-                    :casename="'icon & iconSize & placementDist'"
+                    :casename="'icon & iconSize & placementDistY'"
                 ></demolink>
 
                 <w-timeday
                     :icon="mdiCheckUnderlineCircle"
                     :iconSize="20"
-                    :placementDist="6"
+                    :placementDistY="6"
                     v-model="WTimeday.day"
                 ></w-timeday>
             </div>
@@ -232,7 +232,7 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-timeday'"
-                    :casename="'border & paddingStyle (thin style) & placementDist'"
+                    :casename="'border & paddingStyle (thin style) & placementDistY'"
                 ></demolink>
 
                 <w-timeday
@@ -245,7 +245,7 @@
                     :backgroundColorFocus="'orange lighten-5'"
                     :icon="''"
                     :paddingStyle="{v:0,h:8}"
-                    :placementDist="3"
+                    :placementDistY="3"
                     v-model="WTimeday.day"
                 ></w-timeday>
             </div>
@@ -254,7 +254,7 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-timeday'"
-                    :casename="'border & paddingStyle (thin style) & textFontSize & placementDist'"
+                    :casename="'border & paddingStyle (thin style) & textFontSize & placementDistY'"
                 ></demolink>
 
                 <w-timeday
@@ -268,7 +268,7 @@
                     :icon="''"
                     :paddingStyle="{v:0,h:8}"
                     :textFontSize="'0.7rem'"
-                    :placementDist="3"
+                    :placementDistY="3"
                     v-model="WTimeday.day"
                 ></w-timeday>
             </div>

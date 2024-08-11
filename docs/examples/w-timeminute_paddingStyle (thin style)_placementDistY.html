@@ -78,7 +78,7 @@
     ></script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.3.88/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.3.89/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -145,21 +145,12 @@
             >w-timeminute</span>
         </div>
         <div class="bk">
-            <div
-                class="item"
-            >border &amp; paddingStyle (thin style) &amp; placementDist</div>
+            <div class="item">paddingStyle (thin style) &amp; placementDistY</div>
 
             <w-timeminute
-                :shadow="false"
-                :border-color="'orange lighten-2'"
-                :border-color-hover="'orange'"
-                :border-color-focus="'orange darken-2'"
-                :background-color="'white'"
-                :background-color-hover="'white'"
-                :background-color-focus="'orange lighten-5'"
                 :icon="''"
                 :padding-style="{v:0,h:8}"
-                :placement-dist="3"
+                :placement-dist-y="3"
                 v-model="WTimeminute.time"
             ></w-timeminute>
         </div>

@@ -17,7 +17,8 @@
                     :mode="'select'"
                     :textFontSize="textFontSize"
                     :textColor="textColor"
-                    :placementDist="placementDist"
+                    :placementDistX="placementDistX"
+                    :placementDistY="placementDistY"
                     :minWidth="70"
                     :expansionIcon="expansionIcon"
                     :expansionIconSize="expansionIconSize"
@@ -37,7 +38,7 @@
 
         <v-menu
             offset-y
-            :nudge-bottom="placementDist"
+            :nudge-bottom="placementDistY"
             :close-on-content-click="false"
             :disabled="!editable"
             v-model="show"
@@ -108,7 +109,8 @@ function daysMonth(month, year) {
  * @vue-prop {String} [textFontSize='0.85rem'] 輸入文字大小字串，預設'0.85rem'
  * @vue-prop {String} [textColor='black'] 輸入文字顏色字串，預設'black'
  * @vue-prop {String} [pickColor='deep-orange darken-1'] 輸入日期彈窗中選擇指定日期之顏色字串，預設'deep-orange darken-1'
- * @vue-prop {Number} [placementDist=7] 輸入日期彈窗y向下平移數字，預設7
+ * @vue-prop {Number} [placementDistX=0] 輸入日期彈窗之水平向右平移數字，單位為px，預設0
+ * @vue-prop {Number} [placementDistY=7] 輸入日期彈窗之垂直向下平移數字，單位為px，預設7
  * @vue-prop {Boolean} [editable=true] 輸入是否為編輯模式布林值，預設true
  */
 export default {

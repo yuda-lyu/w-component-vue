@@ -3,7 +3,11 @@
 
         <WIconLoading v-if="loading"></WIconLoading>
 
-        <div ref="wig" v-else>
+        <div
+            ref="wig"
+            :style="`${loading?'heigh:0px; max-height:0px; overflow-y:hidden;':''}`"
+        >
+
             <!-- 為了使用fade-in故opacity給0 -->
             <div
                 ref="wiv"
@@ -19,6 +23,7 @@
                     :src="image"
                 >
             </div>
+
         </div>
 
     </div>
