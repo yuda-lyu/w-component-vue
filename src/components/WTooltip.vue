@@ -21,7 +21,7 @@
         <!-- 若使用minWidth, 會使popupjs重算給予minWidth用以自動撐開彈窗寬度失效, 若於其內slot外添加div給予minWidth, 亦會使popupjs給予minWidth機制失效, 待研究 -->
         <div
             ref="divContent"
-            class="WPopup-Content"
+            class="WPopperFix"
             :style="`z-index:${cmpZIndex};`"
             v-show="valueTrans"
             v-domresize
@@ -422,7 +422,7 @@ export default {
 </script>
 
 <style scoped>
-.WPopup-Content[data-popper-reference-hidden] {
+.WPopperFix[data-popper-reference-hidden] {
     visibility: hidden;
     pointer-events: none;
 }

@@ -8,7 +8,7 @@
         <WIconLoading v-if="loading"></WIconLoading>
 
         <div
-            class="WVditor-Panel"
+            class="WVditorFix"
             :style="`${loading?'heigh:0px; max-height:0px; overflow-y:hidden;':''}`"
         >
 
@@ -16,7 +16,7 @@
 
             <div
                 ref="divContent"
-                class="WPopup-Content"
+                class="WPopperFix"
                 :style="`z-index:${cmpZIndex};`"
                 v-show="showPopper"
                 v-domresize
@@ -725,11 +725,15 @@ export default {
 </script>
 
 <style scoped>
-.WPopup-Content[data-popper-reference-hidden] {
+.WPopperFix[data-popper-reference-hidden] {
     visibility: hidden;
     pointer-events: none;
 }
-.WVditor-Panel >>> div.vditor-hint:has(div[name="tar"]) { /* 使觸發區divTrigger(原本彈窗)完全透明 */
+.WVditorFix >>> .vditor-reset {
+    font-size: inherit;
+}
+
+.WVditorFix >>> div.vditor-hint:has(div[name="tar"]) { /* 使觸發區divTrigger(原本彈窗)完全透明 */
     visibility: hidden;
     pointer-events: none;
     outline: none;

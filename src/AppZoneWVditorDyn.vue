@@ -48,6 +48,20 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-vditor-dyn'"
+                    :casename="'fontSize'"
+                ></demolink>
+
+                <w-vditor-dyn
+                    style="width:620px; font-size:0.85rem;"
+                    v-model="WVditorDyn.content"
+                ></w-vditor-dyn>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-vditor-dyn'"
                     :casename="'slot & keyHint'"
                 ></demolink>
 
