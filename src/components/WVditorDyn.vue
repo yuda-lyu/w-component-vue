@@ -125,16 +125,16 @@ let def_settings = {
         // 'content-theme',
         // 'code-theme',
         'export',
-        {
-            name: 'more',
-            toolbar: [
-                'fullscreen',
-                'both',
-                'preview',
-                // 'info',
-                // 'help',
-            ],
-        },
+        // {
+        //     name: 'more',
+        //     toolbar: [
+        //         'fullscreen',
+        //         'both',
+        //         // 'preview',
+        //         // 'info',
+        //         // 'help',
+        //     ],
+        // },
         // {
         //     hotkey: '⇧⌘S',
         //     name: 'sponsor',
@@ -174,8 +174,9 @@ let def_settings = {
     //     console.log('input', msg)
     // },
     preview: {
+        maxWidth: 1e10,
         delay: 0,
-        actions: [], //['desktop', 'tablet', 'mobile', 'mp-wechat', 'zhihu']
+        actions: [], //['desktop', 'tablet', 'mobile', 'mp-wechat', 'zhihu'] //移除分享按鈕
         hljs: {
             style: 'monokai',
             lineNumber: true

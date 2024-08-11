@@ -59,6 +59,20 @@
             </div>
 
 
+            <div class="bk" style="display:block;">
+                <demolink
+                    :kbname="'w-vditor-dyn'"
+                    :casename="'fullwidth'"
+                ></demolink>
+
+                <w-vditor-dyn
+                    style="font-size:0.85rem;"
+                    v-model="WVditorDyn.content"
+                ></w-vditor-dyn>
+
+            </div>
+
+
             <div class="bk">
                 <demolink
                     :kbname="'w-vditor-dyn'"
