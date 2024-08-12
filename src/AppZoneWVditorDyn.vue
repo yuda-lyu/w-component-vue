@@ -265,21 +265,4 @@ export default {
 </script>
 
 <style scoped>
-.cpitem {
-    transition: all 0.3s;
-    padding: 5px 15px;
-    cursor: pointer;
-}
-.cpitem-white {
-    background: #fff;
-}
-.cpitem-white:hover {
-    background: #eee;
-}
-.cpitem-black {
-    background: #333;
-}
-.cpitem-black:hover {
-    background: #555;
-}
 </style>

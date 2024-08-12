@@ -110,6 +110,7 @@ function writeHtml(v) {
                 font-family: inherit;
                 background: #fff;
             }
+            /* 組件所須全域樣式 */
             .item { /* 因item位於demolink, 提取各範例html後會刪除demolink, 故得額外補上 */
                 border-left: 3px solid #ffba75;
                 margin: 5px 5px 8px 0px;
@@ -146,6 +147,23 @@ function writeHtml(v) {
                     display: block;
                     padding: 0px 0px 50px 0px;
                 }
+            }
+            .cpitem {
+                transition: all 0.3s;
+                padding: 5px 15px;
+                cursor: pointer;
+            }
+            .cpitem-white {
+                background: #fff;
+            }
+            .cpitem-white:hover {
+                background: #eee;
+            }
+            .cpitem-black {
+                background: #333;
+            }
+            .cpitem-black:hover {
+                background: #555;
             }
         </style>
     

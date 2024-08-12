@@ -93,6 +93,7 @@ export default {
 </script>
 
 <style scoped>
+/* 組件所須全域樣式 */
 .item {
     border-left: 3px solid #ffba75;
     margin: 5px 5px 8px 0px;
@@ -101,5 +102,22 @@ export default {
     display: flex;
     justify-content: flex-start;
     align-items: center;
+}
+.cpitem {
+    transition: all 0.3s;
+    padding: 5px 15px;
+    cursor: pointer;
+}
+.cpitem-white {
+    background: #fff;
+}
+.cpitem-white:hover {
+    background: #eee;
+}
+.cpitem-black {
+    background: #333;
+}
+.cpitem-black:hover {
+    background: #555;
 }
 </style>

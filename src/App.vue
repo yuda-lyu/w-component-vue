@@ -772,6 +772,7 @@ export default {
     font-family: inherit;
     background: #fff;
 }
+/* 組件所須全域樣式 */
 .head1 {
     padding: 0px 0px 20px 0px;
     font-size: 2.5rem;
@@ -799,5 +800,22 @@ export default {
         display: block;
         padding: 0px 0px 50px 0px;
     }
+}
+.cpitem {
+    transition: all 0.3s;
+    padding: 5px 15px;
+    cursor: pointer;
+}
+.cpitem-white {
+    background: #fff;
+}
+.cpitem-white:hover {
+    background: #eee;
+}
+.cpitem-black {
+    background: #333;
+}
+.cpitem-black:hover {
+    background: #555;
 }
 </style>
