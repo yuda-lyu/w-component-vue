@@ -78,7 +78,7 @@
     ></script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.3.92/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.3.93/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -145,7 +145,7 @@
             >w-vditor-dyn</span>
         </div>
         <div class="bk">
-            <div class="item">slot &amp; keyHint</div>
+            <div class="item">slot &amp; keyHint(string) &amp; hintBorderRadius</div>
 
             <div
                 style="color:#f26; font-size:0.8rem;"
@@ -154,14 +154,15 @@
             <w-vditor-dyn
                 style="width:620px;"
                 :key-hint="'ht'"
-                v-model="WVditorDyn.content"
+                :hint-border-radius="0"
+                v-model="WVditorDyn.content1"
             >
                 <template v-slot:content="props">
                     <div style="padding:4px 0px;">
                         <div
                             class="item item-white"
                             :key="kitem"
-                            v-for="(item,kitem) in WVditorDyn.items"
+                            v-for="(item,kitem) in WVditorDyn.items1"
                             @click="props.funInsert(item); props.funHide();"
                         >Item {{item}}</div>
                     </div>
@@ -181,8 +182,10 @@
     data: function() {
       return {
         WVditorDyn: {
-          content: "abc中文123",
-          items: ["foo", "bar", "fizz", "buzz"]
+          content1: "abc中文123",
+          content2: "[google](//www.google.com/)",
+          items1: ["foo", "bar", "fizz", "buzz"],
+          items2: ["class", "attr", "prop", "type"]
         },
         actions: []
       };
