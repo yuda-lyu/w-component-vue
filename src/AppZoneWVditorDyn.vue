@@ -90,7 +90,7 @@
                     <template v-slot:content="props">
                         <div style="padding:4px 0px;">
                             <div
-                                class="item item-white"
+                                class="cpitem cpitem-white"
                                 :key="kitem"
                                 v-for="(item,kitem) in WVditorDyn.items1"
                                 @click="props.funInsert(item); props.funHide();"
@@ -123,7 +123,7 @@
                     <template v-slot:content="props">
                         <div style="padding:4px 0px;">
                             <div
-                                class="item item-white"
+                                class="cpitem cpitem-white"
                                 :key="kitem"
                                 v-for="(item,kitem) in WVditorDyn.items1"
                                 @click="props.funInsert(item); props.funHide();"
@@ -156,7 +156,7 @@
                     <template v-slot:content="props">
                         <div style="padding:4px 0px;">
                             <div
-                                class="item item-black"
+                                class="cpitem cpitem-black"
                                 style="color:#fff;"
                                 :key="kitem"
                                 v-for="(item,kitem) in WVditorDyn.items1"
@@ -190,7 +190,7 @@
                         <div style="padding:4px 0px;">
                             <template v-if="props.hint==='ht'">
                                 <div
-                                    class="item item-white"
+                                    class="cpitem cpitem-white"
                                     :key="kitem"
                                     v-for="(item,kitem) in WVditorDyn.items1"
                                     @click="props.funInsert(item); props.funHide();"
@@ -200,7 +200,7 @@
                             </template>
                             <template v-if="props.hint==='kw'">
                                 <div
-                                    class="item item-white"
+                                    class="cpitem cpitem-white"
                                     :key="kitem"
                                     v-for="(item,kitem) in WVditorDyn.items2"
                                     @click="props.funInsert(item); props.funHide();"
@@ -265,21 +265,21 @@ export default {
 </script>
 
 <style scoped>
-.item {
+.cpitem {
     transition: all 0.3s;
     padding: 5px 15px;
     cursor: pointer;
 }
-.item-white {
+.cpitem-white {
     background: #fff;
 }
-.item-white:hover {
+.cpitem-white:hover {
     background: #eee;
 }
-.item-black {
+.cpitem-black {
     background: #333;
 }
-.item-black:hover {
+.cpitem-black:hover {
     background: #555;
 }
 </style>
