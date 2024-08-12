@@ -28,6 +28,7 @@
                 >
                     <slot
                         name="content"
+                        :hint="useHint"
                         :funInsert="(v)=>{insertValue(v,'slot')}"
                         :funHide="()=>{updateValue(false,'slot')}"
                     ></slot>
@@ -41,6 +42,7 @@
 
 <script>
 import get from 'lodash-es/get.js'
+import each from 'lodash-es/each.js'
 import last from 'lodash-es/last.js'
 import pull from 'lodash-es/pull.js'
 import isNumber from 'lodash-es/isNumber.js'
@@ -51,6 +53,7 @@ import waitFun from 'wsemi/src/waitFun.mjs'
 import isfun from 'wsemi/src/isfun.mjs'
 import isestr from 'wsemi/src/isestr.mjs'
 import iseobj from 'wsemi/src/iseobj.mjs'
+import isearr from 'wsemi/src/isearr.mjs'
 import isEle from 'wsemi/src/isEle.mjs'
 import importResources from 'wsemi/src/importResources.mjs'
 import convertColor from '../js/convertColor.mjs'
@@ -198,7 +201,7 @@ let def_settings = {
  * @vue-prop {String} [value=''] 輸入富文本字串，預設為''
  * @vue-prop {Number} [height=250] 輸入高度數字，單位為px，預設為250
  * @vue-prop {Object} [settings={}] 輸入vditor設定物件，預設值為{}，內部預設值詳見vditor原始碼
- * @vue-prop {String} [keyHint=''] 輸入打字時調用提示區字串，例如若給予'ht'，則輸入「/ ht」或「@ ht」則可顯示提示區，預設為''
+ * @vue-prop {String|Array} [keyHint=''] 輸入打字時調用提示區字串或陣列，例如若給予'ht'，則輸入「/ ht」或「@ ht」則可顯示提示區，或給予['ht','kw']陣列，預設為''
  * @vue-prop {Number} [hintBorderRadius=4] 輸入提示窗框圓角度數字，單位為px，預設4
  * @vue-prop {String} [hintBackgroundColor='rgba(60,60,60,0.75)'] 輸入提示窗背景顏色字串，預設'rgba(60,60,60,0.75)'
  * @vue-prop {Boolean} [hintShadow=true] 輸入提示窗是否顯示陰影布林值，預設true
@@ -234,7 +237,7 @@ export default {
             default: () => {},
         },
         keyHint: {
-            type: String,
+            type: [String, Array],
             default: '',
         },
         hintBorderRadius: {
@@ -291,6 +294,8 @@ export default {
             placementDistY: -15,
 
             valueTrans: '',
+
+            useHint: '',
 
         }
     },
@@ -371,6 +376,14 @@ export default {
                 removeTriggerMode,
             })
 
+        //監聽evNameValue
+        vo.bp.on(evNameValue, (showPopper) => {
+            // console.log(vo.mmkey, 'bp.on', evNameValue, showPopper)
+            if (!showPopper) { //僅處理隱藏事件
+                vo.useHint = '' //隱藏時清空useHint
+            }
+        })
+
         //mounted
         vo.bp.mounted()
 
@@ -394,6 +407,19 @@ export default {
     },
     computed: {
 
+        keyHints: function() {
+            let vo = this
+
+            //hts
+            let hts = vo.keyHint
+            if (isestr(vo.keyHint)) {
+                hts = [vo.keyHint]
+            }
+            // console.log('hts', hts)
+
+            return hts
+        },
+
         useSettings: function() {
             //console.log('computed useSettings')
 
@@ -408,23 +434,29 @@ export default {
             //add height
             st.height = vo.height
 
-            //add hint
-            if (isestr(vo.keyHint)) {
+            //extend
+            let extend = []
+            each(vo.keyHints, (v) => {
+                if (!isestr(v)) {
+                    return true //跳出換下一個
+                }
                 let ht = {
-                    key: vo.keyHint,
+                    key: v,
                     hint: async (value) => {
                         // console.log('hint.extend hint', value)
                         let ts = [
                             {
-                                html: `<div name="tar" style="display:none;"></div>`,
+                                html: `<div name="tar" tpht="${v}" style="display:none;"></div>`,
                                 value: '',
                             },
                         ]
                         return ts
                     },
                 }
-                st.hint.extend.push(ht)
-            }
+                extend.push(ht)
+            })
+            st.hint.extend = extend
+            // console.log('st.hint.extend', st.hint.extend)
 
             //add input
             st.input = (value) => {
@@ -591,6 +623,8 @@ export default {
             let vo = this
             let divTrigger = null
             try {
+                // let eles = vo.$el.querySelectorAll('[class="vditor-hint"]')
+                // divTrigger = eles[0]
                 divTrigger = vo.$el.querySelector('[class="vditor-hint"]')
             }
             catch (err) {}
@@ -632,11 +666,24 @@ export default {
             return pm
         },
 
+        getUseHint: function(divTrigger) {
+            // let vo = this
+
+            //tpht
+            let tpht = ''
+            try {
+                tpht = divTrigger.querySelector('div[name="tar"]').getAttribute('tpht')
+            }
+            catch (err) {}
+
+            return tpht
+        },
+
         detectAndShowHint: function(v) {
             let vo = this
 
             //check
-            if (!isestr(vo.keyHint)) {
+            if (!isearr(vo.keyHints)) {
                 return
             }
 
@@ -649,12 +696,20 @@ export default {
                     if (divTrigger.style.display === 'none') {
                         return
                     }
+                    // console.log('divTrigger', divTrigger)
 
                     //完全透明
                     // divTrigger.style.opacity = 0 //因顯示之後再偵測隱藏會有顯隱問題, 使用者體驗不佳, 改為使用css強制隱藏
 
+                    //顯示時取得與儲存useHint
+                    vo.useHint = vo.getUseHint(divTrigger)
+                    // console.log('divTrigger', divTrigger, 'useHint', vo.useHint)
+
                     //evShow
                     vo.evShow('click', 'call')
+
+                    //blur, 編輯器移除焦點, 避免使用者此時通過鍵盤刪除或再變更
+                    vo.contentEditor.blur()
 
                 })
                 .catch((err) => {
@@ -707,7 +762,11 @@ export default {
                 let value = vo.contentEditor.getValue()
 
                 //取代hint符號
-                value = value.replaceAll(`/ ${vo.keyHint}`, '')
+                // console.log('value(ori)', value)
+                each(vo.keyHints, (keyHint) => {
+                    value = value.replaceAll(`/ ${keyHint}`, '')
+                })
+                // console.log('value(replace)', value)
 
                 //update valueTrans, 由組件內insertValue觸發, 故直接更新valueTrans, 避免emit出去再進來更新
                 vo.valueTrans = vo.value
@@ -733,7 +792,6 @@ export default {
 .WVditorFix >>> .vditor-reset {
     font-size: inherit;
 }
-
 .WVditorFix >>> div.vditor-hint:has(div[name="tar"]) { /* 使觸發區divTrigger(原本彈窗)完全透明 */
     visibility: hidden;
     pointer-events: none;

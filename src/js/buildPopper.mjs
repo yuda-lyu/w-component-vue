@@ -3,6 +3,7 @@ import each from 'lodash-es/each.js'
 import haskey from 'wsemi/src/haskey.mjs'
 import isfun from 'wsemi/src/isfun.mjs'
 import isEle from 'wsemi/src/isEle.mjs'
+import evem from 'wsemi/src/evem.mjs'
 import domIsClientXYIn from 'wsemi/src/domIsClientXYIn.mjs'
 import { createPopper } from '@popperjs/core/lib/popper-lite.js' //不用安裝@popperjs/core, 因wsemi安裝tippy.js內有依賴@popperjs/core
 import flip from '@popperjs/core/lib/modifiers/flip.js'
@@ -13,6 +14,9 @@ import computeStyles from '@popperjs/core/lib/modifiers/computeStyles'
 
 
 function buildPopper(vo, funGetDivTrigger, funGetDivContent, keyShow, evNameValue, opt = {}) {
+
+    //ev
+    let ev = evem()
 
     //check, vo須預先宣告參數
     let _keys = [
@@ -353,6 +357,7 @@ function buildPopper(vo, funGetDivTrigger, funGetDivContent, keyShow, evNameValu
 
         //emit
         vo.$emit('resize', msg)
+        ev.emit('resize', msg)
 
     }
 
@@ -381,6 +386,7 @@ function buildPopper(vo, funGetDivTrigger, funGetDivContent, keyShow, evNameValu
                 showPopper('displayPopper')
                 _vo.popperShow = true
                 vo.$emit('show')
+                ev.emit('show')
                 // console.log('emit show')
 
                 //contentStyle, 顯示才給予transition用以驅動動畫, 動畫期間使用pointer-events:none避免彈出區遮蔽驅動區導致觸發隱藏
@@ -400,6 +406,7 @@ function buildPopper(vo, funGetDivTrigger, funGetDivContent, keyShow, evNameValu
                 hidePopper('displayPopper')
                 _vo.popperShow = false
                 vo.$emit('hide')
+                ev.emit('hide')
                 // console.log('emit hide')
 
             }
@@ -444,6 +451,7 @@ function buildPopper(vo, funGetDivTrigger, funGetDivContent, keyShow, evNameValu
 
             //emit
             vo.$emit(evNameValue, value)
+            ev.emit(evNameValue, value)
 
         })
 
@@ -493,18 +501,19 @@ function buildPopper(vo, funGetDivTrigger, funGetDivContent, keyShow, evNameValu
 
     }
 
-    return {
-        mounted,
-        destroy,
-        showPopper,
-        hidePopper,
-        updatePopper,
-        displayPopper,
-        updateValue,
-        triggerEvent,
-        evShow,
-        evHide,
-    }
+    //save
+    ev.mounted = mounted
+    ev.destroy = destroy
+    ev.showPopper = showPopper
+    ev.hidePopper = hidePopper
+    ev.updatePopper = updatePopper
+    ev.displayPopper = displayPopper
+    ev.updateValue = updateValue
+    ev.triggerEvent = triggerEvent
+    ev.evShow = evShow
+    ev.evHide = evHide
+
+    return ev
 }
 
 
