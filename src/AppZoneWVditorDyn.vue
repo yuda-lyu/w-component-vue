@@ -24,7 +24,7 @@
 
                 <w-vditor-dyn
                     style="width:620px;"
-                    v-model="WVditorDyn.content1"
+                    v-model="WVditorDyn.content"
                 ></w-vditor-dyn>
 
             </div>
@@ -39,7 +39,7 @@
                 <w-vditor-dyn
                     style="width:620px;"
                     :height="400"
-                    v-model="WVditorDyn.content1"
+                    v-model="WVditorDyn.content"
                 ></w-vditor-dyn>
 
             </div>
@@ -53,7 +53,7 @@
 
                 <w-vditor-dyn
                     style="width:620px; font-size:0.85rem;"
-                    v-model="WVditorDyn.content1"
+                    v-model="WVditorDyn.content"
                 ></w-vditor-dyn>
 
             </div>
@@ -67,7 +67,7 @@
 
                 <w-vditor-dyn
                     style="font-size:0.85rem;"
-                    v-model="WVditorDyn.content1"
+                    v-model="WVditorDyn.content"
                 ></w-vditor-dyn>
 
             </div>
@@ -84,7 +84,7 @@
                 <w-vditor-dyn
                     style="width:620px;"
                     :keyHint="'ht'"
-                    v-model="WVditorDyn.content1"
+                    v-model="WVditorDyn.content"
                 >
 
                     <template v-slot:content="props">
@@ -117,7 +117,7 @@
                     style="width:620px;"
                     :keyHint="'ht'"
                     :hintBorderRadius="0"
-                    v-model="WVditorDyn.content1"
+                    v-model="WVditorDyn.content"
                 >
 
                     <template v-slot:content="props">
@@ -150,7 +150,7 @@
                     style="width:620px;"
                     :keyHint="'ht'"
                     :hintBackgroundColor="'#333'"
-                    v-model="WVditorDyn.content1"
+                    v-model="WVditorDyn.content"
                 >
 
                     <template v-slot:content="props">
@@ -183,7 +183,7 @@
                 <w-vditor-dyn
                     style="width:620px;"
                     :keyHint="['ht','kw']"
-                    v-model="WVditorDyn.content1"
+                    v-model="WVditorDyn.content"
                 >
 
                     <template v-slot:content="props">
@@ -225,7 +225,7 @@
                 <w-vditor-dyn
                     style="width:620px;"
                     :editable="false"
-                    v-model="WVditorDyn.content1"
+                    v-model="WVditorDyn.content"
                 ></w-vditor-dyn>
 
             </div>
@@ -252,8 +252,8 @@ export default {
     data: function() {
         return {
             'WVditorDyn': {
-                'content1': 'abc中文123',
-                'content2': '[google](//www.google.com/)',
+                // 'content': 'abc中文123',
+                'content': 'abc中文123\n[google](//www.google.com/)',
                 'items1': ['foo', 'bar', 'fizz', 'buzz'],
                 'items2': ['class', 'attr', 'prop', 'type'],
             },
