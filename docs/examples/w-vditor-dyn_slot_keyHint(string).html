@@ -78,7 +78,7 @@
     ></script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.3.95/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.3.96/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -172,7 +172,7 @@
             <w-vditor-dyn
                 style="width:620px;"
                 :key-hint="'ht'"
-                v-model="WVditorDyn.content1"
+                v-model="WVditorDyn.content"
             >
                 <template v-slot:content="props">
                     <div style="padding:4px 0px;">
@@ -199,8 +199,8 @@
     data: function() {
       return {
         WVditorDyn: {
-          content1: "abc中文123",
-          content2: "[google](//www.google.com/)",
+          // 'content': 'abc中文123',
+          content: "abc中文123\n[google](//www.google.com/)",
           items1: ["foo", "bar", "fizz", "buzz"],
           items2: ["class", "attr", "prop", "type"]
         },
