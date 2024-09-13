@@ -103,6 +103,25 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-list-vertical'"
+                    :casename="'itemIconSize & itemTextFontSize'"
+                ></demolink>
+
+                <div style="display:inline-block; border:1px dashed #ddd;">
+                    <w-list-vertical
+                        style="height:400px; width:250px;"
+                        :items="WListVertical.itemsObj"
+                        :itemIconSize="20"
+                        :itemTextFontSize="'0.85rem'"
+                    >
+                    </w-list-vertical>
+                </div>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-list-vertical'"
                     :casename="'itemActive'"
                 ></demolink>
 

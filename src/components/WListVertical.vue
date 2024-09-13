@@ -133,11 +133,11 @@ import WListItem from './WListItem.vue'
  * @vue-prop {String} [keyText='text'] 輸入項目為物件時，存放顯示文字之欄位字串，預設'text'
  * @vue-prop {String} [keyIcon='icon'] 輸入項目為物件時，存放圖標之欄位字串，預設'icon'
  * @vue-prop {Object} [paddingStyle={v:10,h:12}] 輸入內寬距離設定物件，可用鍵值為v、h、left、right、top、bottom，v代表同時設定top與bottom，h代表設定left與right，若有重複設定時後面鍵值會覆蓋前面，各鍵值為寬度數字，單位為px，預設{v:10,h:12}
- * @vue-prop {String} [itemTextFontSize='1rem'] 輸入文字字型大小字串，預設'1rem'
  * @vue-prop {String} [itemBackgroundColor='white'] 輸入背景顏色字串，預設'white'
  * @vue-prop {String} [itemBackgroundColorHover='rgba(200,200,200,0.2)'] 輸入滑鼠移入時背景顏色字串，預設'rgba(200,200,200,0.2)'
  * @vue-prop {String} [itemBackgroundColorActive='orange lighten-1'] 輸入主動模式時背景顏色字串，預設'orange lighten-1'
  * @vue-prop {String} [itemBackgroundColorDisabled='white'] 輸入非啟用模式時背景顏色字串，預設'white'
+ * @vue-prop {String} [itemTextFontSize='1rem'] 輸入文字字型大小字串，預設'1rem'
  * @vue-prop {String} [itemTextColor='#444'] 輸入文字顏色字串，預設'#444'
  * @vue-prop {String} [itemTextColorHover='#222'] 輸入滑鼠移入時文字顏色字串，預設'#222'
  * @vue-prop {String} [itemTextColorActive='white'] 輸入主動模式時文字顏色字串，預設'white'
@@ -190,10 +190,6 @@ export default {
                 }
             },
         },
-        itemTextFontSize: {
-            type: String,
-            default: '1rem',
-        },
         itemBackgroundColor: {
             type: String,
             default: 'white',
@@ -209,6 +205,10 @@ export default {
         itemBackgroundColorDisabled: {
             type: String,
             default: 'white',
+        },
+        itemTextFontSize: {
+            type: String,
+            default: '1rem',
         },
         itemTextColor: {
             type: String,
