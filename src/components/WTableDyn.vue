@@ -320,8 +320,8 @@ import convertColor from '../js/convertColor.mjs'
  * @vue-prop {Object} [opt.kpRowStyle={}] 輸入key對應row style之物件，可設定各key欄之函數，函數給予cell值需回傳之row style，預設各key值為undefined
  * @vue-prop {Object} [opt.kpRowDrag={}] 輸入key對應col之是否能拖曳排序物件，預設各key值為false
  * @vue-prop {Object} [opt.kpColStyle={}] 輸入key對應row style之物件，可設定各key欄之col style，預設各key值為undefined
- * @vue-prop {Number} [opt.defCellMinWidth=null] 輸入cell預設最小寬度數字，預設為null
- * @vue-prop {Object} [opt.kpCellWidth={}] 輸入key對應cell之寬度物件，預設各key值為undefined
+ * @vue-prop {Number} [opt.defHeadMinWidth=null] 輸入cell預設最小寬度數字，預設為null
+ * @vue-prop {Object} [opt.kpHeadWidth={}] 輸入key對應cell之寬度物件，預設各key值為undefined
  * @vue-prop {Object} [opt.kpCellRender={}] 輸入key對應cell之渲染函數物件，預設各key值為undefined
  * @vue-prop {Object} [opt.kpCellTooltip={}] 輸入key對應cell之tooltip的html字串物件，於各cell處滑鼠移入時觸發，預設各key值為undefined
  * @vue-prop {String} [opt.defCellAlighH='center'] 輸入cell預設之左右對齊字串，預設為'center'

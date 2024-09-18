@@ -1,11 +1,11 @@
 {
   "name": "w-component-vue",
-  "version": "2.3.97",
+  "version": "2.4.0",
   "main": "dist/w-component-vue.umd.js",
   "dependencies": {
     "@mdi/js": "^7.4.47",
     "lodash-es": "^4.17.21",
-    "wsemi": "^1.7.58"
+    "wsemi": "^1.7.60"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^5.0.8",
@@ -26,7 +26,7 @@
     "vue-cli-plugin-vuetify": "^2.5.8",
     "vuetify": "^2.6.14",
     "vuetify-loader": "^1.9.2",
-    "w-package-tools": "^1.0.75"
+    "w-package-tools": "^1.0.76"
   },
   "scripts": {
     "serve": "vue-cli-service serve",
