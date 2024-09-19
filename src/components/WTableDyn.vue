@@ -953,15 +953,15 @@ export default {
                 //nextTick, 變更數據後頁面會先渲染, nextTick後才能調捲軸, 否則太快執行會被頁面渲染蓋掉
                 vo.$nextTick(() => {
 
-                    //getInstance
-                    let getInstance = get(vo, `$refs.cmp.$refs.$self.getInstance`)
+                    //getApi
+                    let getApi = get(vo, `$refs.cmp.$refs.$self.getApi`)
 
                     //check
-                    if (isfun(getInstance)) {
+                    if (isfun(getApi)) {
 
                         //ensureIndexVisible, scrollTo(index)
-                        let o = getInstance()
-                        o.api.ensureIndexVisible(vo.useOpt.rows.length - 1, 'bottom') //捲到最下
+                        let api = getApi()
+                        api.ensureIndexVisible(vo.useOpt.rows.length - 1, 'bottom') //捲到最下
 
                     }
 
