@@ -24,7 +24,7 @@ import WInputCheckbox from './WInputCheckbox.vue'
  * @vue-prop {String} [keyText='text'] 輸入可選項目為物件時，存放顯示文字之欄位字串，預設'text'
  * @vue-prop {String} [arrange='vertical'] 輸入可選項目排列字串，可選'vertical'、'horizontal'，預設'vertical'
  * @vue-prop {Number} [inputSize=16] 輸入input寬度與高度數字，單位為px，預設16
- * @vue-prop {Number} [inputShiftTop=1] 輸入input上方平移數離數字，單位為px，預設1
+ * @vue-prop {Number} [inputShiftTop=0] 輸入input上方平移數離數字，單位為px，預設0
  * @vue-prop {String} [textColor='#222'] 輸入文字顏色字串，預設'#222'
  * @vue-prop {String} [textColorHover='#888'] 輸入滑鼠移入時文字顏色字串，預設'#888'
  * @vue-prop {String} [textColorActive='#222'] 輸入主動模式時文字顏色字串，預設'#222'
@@ -60,7 +60,7 @@ export default {
         },
         inputShiftTop: {
             type: Number,
-            default: 1,
+            default: 0,
         },
         textColor: {
             type: String,
