@@ -78,7 +78,7 @@ export default {
                 'https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js', //w-aggrid-vue的download與upload會使用, 一併預載
                 'https://cdn.jsdelivr.net/npm/ag-grid-community@31.3.4/dist/ag-grid-community.min.noStyle.js',
                 'https://cdn.jsdelivr.net/npm/ag-grid-vue@31.3.4/dist/ag-grid-vue.umd.min.js', //於es5內載入時, AgGridVue會出現在window['ag-grid-vue'].AgGridVue
-                'https://cdn.jsdelivr.net/npm/w-aggrid-vue@2.0.53/dist/w-aggrid-vue.umd.js',
+                'https://cdn.jsdelivr.net/npm/w-aggrid-vue@2.0.54/dist/w-aggrid-vue.umd.js',
             ],
         },
         opt: {
