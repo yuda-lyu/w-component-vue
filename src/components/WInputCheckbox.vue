@@ -8,40 +8,44 @@
         >
 
             <div
-                :style="`transition:all 0.3s; display:flex; ${useVerticalAlign}; color:${getTextColor(item,kitem)};`"
+                :style="`display:inline-block; transition:all 0.3s; color:${getTextColor(item,kitem)};`"
                 @mouseenter="mouseenter(item,kitem)"
                 @mouseleave="mouseleave(item,kitem)"
                 @click="toggleState(item)"
             >
 
-                <div :style="`display:flex; align-items:center; height:${inputSize+inputShiftTop}px; padding-top:${inputShiftTop}px;`">
-                    <input
-                        :style="`width:${inputSize}px; height:${inputSize}px; padding:0px; cursor:pointer;`"
-                        :type="multiCheck?'checkbox':'radio'"
-                        :value="item.id"
-                        v-model="dataActive"
-                        :disabled="!editable"
-                    >
-                </div>
+                <div :style="`display:flex; ${useVerticalAlign};`">
 
-                <div
-                    :style="``"
-                >
-
-                    <slot
-                        :item="item"
-                        :kitem="kitem"
-                        :isHover="item.hover"
-                        :isActive="item.active"
-                    >
-
-                        <div
-                            :style="`margin:0px 0px 0px 5px; ${useTextFontSize} cursor:pointer;`"
+                    <div :style="`display:flex; align-items:center; height:${inputSize+inputShiftTop}px; padding-top:${inputShiftTop}px;`">
+                        <input
+                            :style="`width:${inputSize}px; height:${inputSize}px; padding:0px; cursor:pointer;`"
+                            :type="multiCheck?'checkbox':'radio'"
+                            :value="item.id"
+                            v-model="dataActive"
+                            :disabled="!editable"
                         >
-                            {{getText(item)}}
-                        </div>
+                    </div>
 
-                    </slot>
+                    <div
+                        :style="``"
+                    >
+
+                        <slot
+                            :item="item"
+                            :kitem="kitem"
+                            :isHover="item.hover"
+                            :isActive="item.active"
+                        >
+
+                            <div
+                                :style="`margin:0px 0px 0px 5px; ${useTextFontSize} cursor:pointer;`"
+                            >
+                                {{getText(item)}}
+                            </div>
+
+                        </slot>
+
+                    </div>
 
                 </div>
 
