@@ -44,7 +44,7 @@ function domVisible() {
                 })
                 .catch(() => {})
 
-        }, 20)
+        }, 50)
 
         //save timer
         kpDv[id] = timer

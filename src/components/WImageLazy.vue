@@ -53,7 +53,7 @@ export default {
     data: function() {
         return {
 
-            t: null,
+            ev: null,
 
             loaded: false,
 
@@ -65,28 +65,38 @@ export default {
     mounted: function() {
         let vo = this
 
-        vo.t = setInterval(async() => {
+        //ev
+        vo.ev = domIsVisible(vo.$el)
 
-            //detect
-            // let b = vo.$el.checkVisibility() //無法於彈窗內偵測
-            let b = await domIsVisible(vo.$el)
-            // console.log('vo.$el', vo.$el)
-            // console.log('b', vo.url, b)
+        //create
+        vo.ev.create()
 
-            //check
+        //on
+        vo.ev.on('visible', (b) => {
+            // console.log('visible', b)
             if (b) {
-                clearInterval(vo.t)
-                vo.loaded = true
-            }
 
-        }, 1000)
+                //dispose
+                try {
+                    vo.ev.dispose()
+                }
+                catch (err) {}
+
+                //loaded
+                vo.loaded = true
+
+            }
+        })
 
     },
     beforeDestroy: function() {
         let vo = this
 
-        //clearInterval
-        clearInterval(vo.t)
+        //dispose
+        try {
+            vo.ev.dispose()
+        }
+        catch (err) {}
 
     },
     computed: {
