@@ -4,13 +4,14 @@
         :changeParams="changeParams"
     >
 
-        <img
-            :style="`width:${useWidth}px; height:${useHeight}px;`"
-            :src="url"
-            v-if="loaded"
-        >
+        <WIconLoading v-if="!showed || !loaded"></WIconLoading>
 
-        <WIconLoading v-else></WIconLoading>
+        <img
+            :style="`width:${useWidth}px; height:${useHeight}px; opacity:${loaded?1:0};`"
+            :src="url"
+            @load="load"
+            v-if="showed"
+        >
 
     </div>
 </template>
@@ -60,6 +61,7 @@ export default {
 
             ev: null,
 
+            showed: false,
             loaded: false,
 
             useWidth: 0,
@@ -86,9 +88,9 @@ export default {
                     //dispose
                     vo.ev.dispose()
 
-                    //loaded
+                    //showed
                     setTimeout(() => {
-                        vo.loaded = true
+                        vo.showed = true
                     }, vo.delay)
 
                 }
@@ -152,6 +154,16 @@ export default {
 
     },
     methods: {
+
+        load: function(ev) {
+            // console.log('methods load', ev)
+
+            let vo = this
+
+            //loaded
+            vo.loaded = true
+
+        },
 
     }
 }
