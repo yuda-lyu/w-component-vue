@@ -1,6 +1,6 @@
 <template>
     <div
-        :style="`display:inline-block; width:${useWidth}px; height:${useHeight}px; vertical-align:top;`"
+        :style="`display:inline-block; width:${useWidth}px; height:${useHeight}px; overflow:hidden; vertical-align:top;`"
         :changeParams="changeParams"
     >
 
