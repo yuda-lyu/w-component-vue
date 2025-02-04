@@ -39,6 +39,7 @@ import WHighstockVueDyn from './WHighstockVueDyn.vue'
 import WIcon from './WIcon.vue'
 import WIconLoading from './WIconLoading.vue'
 import WImageCascadingDyn from './WImageCascadingDyn.vue'
+import WImageLazy from './WImageLazy.vue'
 import WImageViewerDyn from './WImageViewerDyn.vue'
 import WInputCheckbox from './WInputCheckbox.vue'
 import WInputRadio from './WInputRadio.vue'
@@ -140,6 +141,7 @@ let WComponentVue = {
         Vue.component('w-icon', WIcon)
         Vue.component('w-icon-loading', WIconLoading)
         Vue.component('w-image-cascading-dyn', WImageCascadingDyn)
+        Vue.component('w-image-lazy', WImageLazy)
         Vue.component('w-image-viewer-dyn', WImageViewerDyn)
         Vue.component('w-input-checkbox', WInputCheckbox)
         Vue.component('w-input-radio', WInputRadio)
