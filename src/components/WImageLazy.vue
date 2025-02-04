@@ -76,14 +76,16 @@ export default {
             // console.log('visible', b)
             if (b) {
 
-                //dispose
                 try {
+
+                    //dispose
                     vo.ev.dispose()
+
+                    //loaded
+                    vo.loaded = true
+
                 }
                 catch (err) {}
-
-                //loaded
-                vo.loaded = true
 
             }
         })
@@ -92,9 +94,11 @@ export default {
     beforeDestroy: function() {
         let vo = this
 
-        //dispose
         try {
+
+            //dispose
             vo.ev.dispose()
+
         }
         catch (err) {}
 
