@@ -5,7 +5,7 @@
     >
 
         <img
-            :style="`width:${useWidth}px; height:${useHeight}px;;`"
+            :style="`width:${useWidth}px; height:${useHeight}px;`"
             :src="url"
             v-if="loaded"
         >
@@ -27,6 +27,7 @@ import WIconLoading from './WIconLoading.vue'
  * @vue-prop {Number} [height=null] 輸入圖片高度浮點數，寬度、高度與比例(寬度/高度)3個須至少提供2個，若都提供則優先使用寬度與高度。預設null
  * @vue-prop {Number} [ratio=null] 輸入圖片比例(寬度/高度)浮點數，寬度、高度與比例(寬度/高度)3個須至少提供2個，若都提供則優先使用寬度與高度。預設null
  * @vue-prop {String} [url=''] 輸入圖片網址字串，預設''
+ * @vue-prop {Number} [delay=300] 輸入延時載入正整數，單位為ms，預設300
  */
 export default {
     components: {
@@ -49,6 +50,10 @@ export default {
             type: String,
             default: '',
         },
+        delay: {
+            type: Number,
+            default: 300,
+        },
     },
     data: function() {
         return {
@@ -66,7 +71,7 @@ export default {
         let vo = this
 
         //ev
-        vo.ev = domIsVisible(vo.$el)
+        vo.ev = domIsVisible(vo.$el, { mode: 'event' })
 
         //create
         vo.ev.create()
@@ -82,7 +87,9 @@ export default {
                     vo.ev.dispose()
 
                     //loaded
-                    vo.loaded = true
+                    setTimeout(() => {
+                        vo.loaded = true
+                    }, vo.delay)
 
                 }
                 catch (err) {}

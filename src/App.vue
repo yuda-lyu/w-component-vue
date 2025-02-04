@@ -101,6 +101,8 @@
 
             <AppZoneWIcon v-if="cmpPick==='WIcon'"></AppZoneWIcon>
 
+            <AppZoneWImageLazy v-if="cmpPick==='WImageLazy'"></AppZoneWImageLazy>
+
             <AppZoneWDropfiles v-if="cmpPick==='WDropfiles'"></AppZoneWDropfiles>
 
             <AppZoneWButtonChip v-if="cmpPick==='WButtonChip'"></AppZoneWButtonChip>
@@ -263,6 +265,7 @@ import AppZoneWPanelDivideHorizontal from './AppZoneWPanelDivideHorizontal.vue'
 import AppZoneWPanelDivideVertical from './AppZoneWPanelDivideVertical.vue'
 import AppZoneWPanelScale from './AppZoneWPanelScale.vue'
 import AppZoneWIcon from './AppZoneWIcon.vue'
+import AppZoneWImageLazy from './AppZoneWImageLazy.vue'
 import AppZoneWDropfiles from './AppZoneWDropfiles.vue'
 import AppZoneWDialog from './AppZoneWDialog.vue'
 import AppZoneWConfirm from './AppZoneWConfirm.vue'
@@ -347,6 +350,7 @@ export default {
         AppZoneWPanelDivideVertical,
         AppZoneWPanelScale,
         AppZoneWIcon,
+        AppZoneWImageLazy,
         AppZoneWDropfiles,
         AppZoneWDialog,
         AppZoneWConfirm,
@@ -426,6 +430,7 @@ export default {
                     { name: 'WSwitch' },
                     { name: 'WCheckbox' },
                     { name: 'WIcon' },
+                    { name: 'WImageLazy' },
                     { name: 'WDropfiles' },
                     { name: 'WSlider' },
                     { name: 'WProgressBar' },
