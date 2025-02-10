@@ -1,0 +1,427 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-tw">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui"
+    />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>w-component-vue</title>
+
+    <!-- @babel/polyfill -->
+    <script
+        nomodule
+        src="https://cdn.jsdelivr.net/npm/@babel/polyfill/dist/polyfill.min.js"
+    ></script>
+
+    <!-- vue -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.min.js"></script>
+
+    <!-- extractHtml已自動添加@babel/polyfill與vue -->
+
+    <!-- vuetify -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/vuetify@2.6.14/dist/vuetify.min.css"
+        rel="stylesheet"
+    />
+    <script
+        src="https://cdn.jsdelivr.net/npm/vuetify@2.6.14/dist/vuetify.min.js"
+    ></script>
+
+    <!-- fontawesome -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.2/css/all.min.css"
+        rel="stylesheet"
+    />
+
+    <!-- mdi, 各組件使用mdi/js會於轉單頁時改為mdi icon, 故需引用mdi/css -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/@mdi/font@7.2.96/css/materialdesignicons.min.css"
+        rel="stylesheet"
+    />
+
+    <!-- google, 各組件使用mdi/js故不需引用 -->
+    <link
+        _href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900"
+        rel="stylesheet"
+    />
+    <link
+        _href="https://fonts.googleapis.com/css?family=Material+Icons"
+        rel="stylesheet"
+    />
+
+    <!-- data -->
+    <script
+        src="https://cdn.jsdelivr.net/npm/w-demores@1.0.23/res/data/dataAAPL.js"
+    ></script>
+    <script
+        src="https://cdn.jsdelivr.net/npm/w-demores@1.0.23/res/data/dataUSD2EUR.js"
+    ></script>
+    <script
+        src="https://cdn.jsdelivr.net/npm/w-demores@1.0.23/res/data/dataTemperature.js"
+    ></script>
+    <script
+        src="https://cdn.jsdelivr.net/npm/w-demores@1.0.23/res/data/dataHousePriceArea.js"
+    ></script>
+    <script
+        src="https://cdn.jsdelivr.net/npm/w-demores@1.0.23/res/data/dataFlare.js"
+    ></script>
+    <script
+        src="https://cdn.jsdelivr.net/npm/w-demores@1.0.23/res/data/dataRain.js"
+    ></script>
+    <script
+        src="https://cdn.jsdelivr.net/npm/w-demores@1.0.23/res/data/dataRainClip.js"
+    ></script>
+    <script
+        src="https://cdn.jsdelivr.net/npm/w-demores@1.0.23/res/data/dataCivilSoilCodeIcon.js"
+    ></script>
+
+    <!-- w-component-vue -->
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.4.12/dist/w-component-vue.umd.js"></script>
+
+    <style>
+  .v-application--wrap {
+    /* width與max-width fix for IE11, 其外不能使用padding或margin避免失效 */
+    width: 100vw;
+    max-width: 100vw;
+    font-family: inherit;
+    background: #fff;
+  }
+  /* 組件所須全域樣式 */
+  .item {
+    /* 因item位於demolink, 提取各範例html後會刪除demolink, 故得額外補上 */
+    border-left: 3px solid #ffba75;
+    margin: 5px 5px 8px 0px;
+    padding: 3px 3px 5px 10px;
+    font-size: 0.9rem;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
+  .head1 {
+    padding: 0px 0px 20px 0px;
+    font-size: 2.5rem;
+  }
+  .bkh {
+    /* 寬 */
+    padding: 20px;
+  }
+  @media screen and (max-width: 800px) {
+    /* 中 */
+    .bkh {
+      padding: 10px;
+    }
+  }
+  @media screen and (max-width: 400px) {
+    /* 窄 */
+    .bkh {
+      padding: 5px;
+    }
+  }
+  .bk {
+    /* 寬 */
+    display: inline-block;
+    vertical-align: top;
+    padding: 0px 80px 60px 0px;
+  }
+  @media screen and (max-width: 1000px) {
+    /* 中窄 */
+    .bk {
+      display: block;
+      padding: 0px 0px 50px 0px;
+    }
+  }
+  .cpitem {
+    transition: all 0.3s;
+    padding: 5px 15px;
+    cursor: pointer;
+  }
+  .cpitem-white {
+    background: #fff;
+  }
+  .cpitem-white:hover {
+    background: #eee;
+  }
+  .cpitem-black {
+    background: #333;
+  }
+  .cpitem-black:hover {
+    background: #555;
+  }
+    </style>
+</head>
+<body
+    style="font-family:'Microsoft JhengHei','Avenir','Helvetica'; padding:0px; margin:0px;"
+>
+    <v-app id="app" class="bkh" style="font-family:inherit;">
+        <div class="head1">
+            <span
+                style="cursor:pointer;"
+                title="open for copy link to view component"
+                onclick="window.open('//yuda-lyu.github.io/w-component-vue/examples/app.html?cmp='+this.innerText,'_blank')"
+            >w-dynamic-list</span>
+        </div>
+        <div class="bk">
+            <div class="item">change slot</div>
+
+            <div style="margin-bottom:10px;">
+                <v-btn
+                    style="margin:5px;"
+                    depressed
+                    small
+                    elevation="2"
+                    @click="WDynamicList.changeSlot=false"
+                >original slot</v-btn>
+                <v-btn
+                    style="margin:5px;"
+                    depressed
+                    small
+                    elevation="2"
+                    @click="WDynamicList.changeSlot=true"
+                >other slot</v-btn>
+            </div>
+
+            <w-dynamic-list
+                style="width:400px; border:1px solid #ddd;"
+                :rows="WDynamicList.data1"
+            >
+                <template v-slot="props">
+                    <div
+                        style="display:flex; align-items:flex-start; padding:5px 15px;"
+                        v-if="!WDynamicList.changeSlot"
+                    >
+                        <div style="color:#f26;">{{props.index+1}}</div>
+
+                        <div style="padding-right:10px;">:</div>
+
+                        <div style="color:#999;">{{props.row}}</div>
+                    </div>
+
+                    <div style="padding:10px 20px;" v-else>
+                        <div>
+                            <span
+                                style="color:#99f; font-size:0.7rem; margin-right:5px;"
+                            >Number:</span>
+                            <span
+                                style="color:#f26; font-size:0.7rem;"
+                            >{{props.index+1}}</span>
+                        </div>
+
+                        <div style="color:#999;">{{props.row}}</div>
+                    </div>
+                </template>
+            </w-dynamic-list>
+        </div>
+    </v-app>
+
+    <script>
+  //install
+  Vue.use(window["w-component-vue"]);
+
+  //initialize
+  new Vue({
+    el: "#app",
+    vuetify: new Vuetify(),
+    data: function() {
+      let ts1 = [
+        "Examine trends in the movement of guns across different states.",
+        "Code of Federal Regulations - Alcohol, Tobacco Products and Firearms",
+        "1980-2014 November General Election Turnout and Registration",
+        "Reported Voting and Registration, by Sex and Single Years of Age: November 2016",
+        "felon-disenfranchisement",
+        "623e708e-574e-45a2-9dc9-b53178903325",
+        "https://assembly-public-spotlight.s3.amazonaws.com/assets/images/public-welcome/card_disenfranchisement.jpg",
+        "Disenfranchisement patterns by General Election.",
+        "Estimate how felon enfranchisement could affect close elections. Track how disenfranchisement has varied over time. an American non-profit journalism outlet dedicated to expanding media coverage on the state of guns in the U.S., spent 11 months amassing data on stolen and recovered guns. They filed hundreds of public record requests to over 1,000 law enforcement agencies in 36 states to investigate what happens to guns when they are reported stolen. The data reveals that guns were recovered by a variety of means, from being turned in as evidence or by abandonment.",
+        "Vivien Ngo, Data Journalism Fellow."
+      ];
+      let ts2 = [
+        "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.",
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+        "But I must explain to you how all this mistaken idea of denouncing.",
+        "It is pain, but because occasionally circumstances occur in which toil and pain can procure him some great pleasure. To take a trivial example, which of us ever undertakes laborious physical exercise, except to obtain some advantage from it? But who has any right to find fault with a man who chooses to enjoy a pleasure that has no annoying consequences",
+        "On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying through shrinking from toil and pain. These cases are perfectly simple.",
+        "Tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat."
+      ];
+      return {
+        WDynamicList: {
+          viewHeightMax: 250,
+          keywords: "fede 80",
+          changeText: false,
+          changeSlot: false,
+          data1: ts1,
+          data2: ts2,
+          data3: (function(a) {
+            a /= 5;
+            let b = [
+              {
+                name: "Jason Oner",
+                msg:
+                  "Boost campaign performance by targeting specific user groups.",
+                avatar: "https://cdn.vuetifyjs.com/images/lists/1.jpg"
+              },
+              {
+                name: "Travis Howard",
+                msg:
+                  "Determine the exact users you'd like to target with a message or an experiment, based on behavioral data, like watching a video, or abandoning a cart, and demographic data, like age or location.",
+                avatar: "https://cdn.vuetifyjs.com/images/lists/2.jpg"
+              },
+              {
+                name: "Ali Connors",
+                msg:
+                  "Integer porttitor urna ultricies justo iaculis vulputate ac non neque. Etiam iaculis est quis urna consequat ornare. Suspendisse a augue sit amet urna tincidunt rhoncus sed non tellus. Mauris ultricies lectus sit amet tellus egestas, in interdum elit rhoncus. Nullam viverra lectus mattis felis semper, in vulputate lorem tincidunt. Suspendisse dapibus arcu id nunc blandit, ut egestas nisi pulvinar. Examine trends in the movement of guns across different states. Code of Federal Regulations - Alcohol, Tobacco Products and Firearms 1980-2014 November General Election Turnout and Registration. Reported Voting and Registration, by Sex and Single Years of Age: November 2016. Map felon disenfranchisement patterns by state.",
+                avatar: "https://cdn.vuetifyjs.com/images/lists/3.jpg"
+              },
+              {
+                name: "Cindy Baker",
+                msg:
+                  "Easily build highly personalized messages, and test multiple versions to see what works\u2014all in Mixpanel, no code required.",
+                avatar: "https://cdn.vuetifyjs.com/images/lists/4.jpg"
+              },
+              {
+                name: "Deborah Lee",
+                msg:
+                  "Set detailed behavioral triggers, sequences, and rate limits for messages, to ensure that each campaign is relevant, timely, and delivered at the right pace.",
+                avatar: "https://cdn.vuetifyjs.com/images/lists/5.jpg"
+              }
+            ];
+            let c = [];
+            for (let d = 0; d < a; d++)
+              for (let a = 0; a < b.length; a++) c.push(b[a]);
+            return c;
+          })(100),
+          data4: (function(a) {
+            a /= 5;
+            let b = [
+              {
+                name: "Jason Oner",
+                msg:
+                  "Boost campaign performance by targeting specific user groups.",
+                avatar: "https://cdn.vuetifyjs.com/images/lists/1.jpg"
+              },
+              {
+                name: "Travis Howard",
+                msg:
+                  "Determine the exact users you'd like to target with a message or an experiment, based on behavioral data, like watching a video, or abandoning a cart, and demographic data, like age or location.",
+                avatar: "https://cdn.vuetifyjs.com/images/lists/2.jpg"
+              },
+              {
+                name: "Ali Connors",
+                msg:
+                  "Integer porttitor urna ultricies justo iaculis vulputate ac non neque. Etiam iaculis est quis urna consequat ornare. Suspendisse a augue sit amet urna tincidunt rhoncus sed non tellus. Mauris ultricies lectus sit amet tellus egestas, in interdum elit rhoncus. Nullam viverra lectus mattis felis semper, in vulputate lorem tincidunt. Suspendisse dapibus arcu id nunc blandit, ut egestas nisi pulvinar. Examine trends in the movement of guns across different states. Code of Federal Regulations - Alcohol, Tobacco Products and Firearms 1980-2014 November General Election Turnout and Registration. Reported Voting and Registration, by Sex and Single Years of Age: November 2016. Map felon disenfranchisement patterns by state.",
+                avatar: "https://cdn.vuetifyjs.com/images/lists/3.jpg"
+              },
+              {
+                name: "Cindy Baker",
+                msg:
+                  "Easily build highly personalized messages, and test multiple versions to see what works\u2014all in Mixpanel, no code required.",
+                avatar: "https://cdn.vuetifyjs.com/images/lists/4.jpg"
+              },
+              {
+                name: "Deborah Lee",
+                msg:
+                  "Set detailed behavioral triggers, sequences, and rate limits for messages, to ensure that each campaign is relevant, timely, and delivered at the right pace.",
+                avatar: "https://cdn.vuetifyjs.com/images/lists/5.jpg"
+              }
+            ];
+            let c = [];
+            for (let d = 0; d < a; d++)
+              for (let a = 0; a < b.length; a++) c.push(b[a]);
+            return c;
+          })(100),
+          data5: (function(a) {
+            a /= 5;
+            let b = [
+              {
+                name: "Jason Oner",
+                msg:
+                  "Boost campaign performance by targeting specific user groups.",
+                avatar: "https://cdn.vuetifyjs.com/images/lists/1.jpg"
+              },
+              {
+                name: "Travis Howard",
+                msg:
+                  "Determine the exact users you'd like to target with a message or an experiment, based on behavioral data, like watching a video, or abandoning a cart, and demographic data, like age or location.",
+                avatar: "https://cdn.vuetifyjs.com/images/lists/2.jpg"
+              },
+              {
+                name: "Ali Connors",
+                msg:
+                  "Integer porttitor urna ultricies justo iaculis vulputate ac non neque. Etiam iaculis est quis urna consequat ornare. Suspendisse a augue sit amet urna tincidunt rhoncus sed non tellus. Mauris ultricies lectus sit amet tellus egestas, in interdum elit rhoncus. Nullam viverra lectus mattis felis semper, in vulputate lorem tincidunt. Suspendisse dapibus arcu id nunc blandit, ut egestas nisi pulvinar. Examine trends in the movement of guns across different states. Code of Federal Regulations - Alcohol, Tobacco Products and Firearms 1980-2014 November General Election Turnout and Registration. Reported Voting and Registration, by Sex and Single Years of Age: November 2016. Map felon disenfranchisement patterns by state.",
+                avatar: "https://cdn.vuetifyjs.com/images/lists/3.jpg"
+              },
+              {
+                name: "Cindy Baker",
+                msg:
+                  "Easily build highly personalized messages, and test multiple versions to see what works\u2014all in Mixpanel, no code required.",
+                avatar: "https://cdn.vuetifyjs.com/images/lists/4.jpg"
+              },
+              {
+                name: "Deborah Lee",
+                msg:
+                  "Set detailed behavioral triggers, sequences, and rate limits for messages, to ensure that each campaign is relevant, timely, and delivered at the right pace.",
+                avatar: "https://cdn.vuetifyjs.com/images/lists/5.jpg"
+              }
+            ];
+            let c = [];
+            for (let d = 0; d < a; d++)
+              for (let a = 0; a < b.length; a++) c.push(b[a]);
+            return c;
+          })(1000000) //20000000 1000000 500000 100000 50000 1000
+        },
+        actions: []
+      };
+    },
+    mounted: function() {
+      return {};
+    },
+    computed: {},
+    methods: {
+      processItemsByFun: function() {
+        let vo = this;
+        let opt = {
+          fun: function(items) {
+            //可支援sync函數
+            for (let i = 0; i < items.length; i++) {
+              items[i].displayShow = i % 10 === 0;
+            }
+          }
+          // fun: async function(items) { //可支援async函數
+          //     for (let i = 0; i < items.length; i++) {
+          //         items[i].displayShow = (i % 10 === 0)
+          //     }
+          // },
+        };
+        vo.$refs.wdl.processItems(opt);
+      },
+      processItemsByInd: function() {
+        let vo = this;
+        let opt;
+        opt = {
+          indStart: 0,
+          indEnd: 99,
+          displayShow: true
+        };
+        vo.$refs.wdl.processItems(opt);
+        opt = {
+          indStart: 0,
+          indEnd: 5,
+          displayShow: false
+        };
+        vo.$refs.wdl.processItems(opt);
+        opt = {
+          indStart: 8,
+          indEnd: 97,
+          displayShow: false
+        };
+        vo.$refs.wdl.processItems(opt);
+      },
+      render: function(msg) {
+        console.log("render", msg);
+      }
+    }
+  });
+    </script>
+</body>
+</html>

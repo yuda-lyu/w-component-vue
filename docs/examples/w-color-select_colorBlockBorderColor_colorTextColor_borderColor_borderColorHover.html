@@ -1,0 +1,273 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-tw">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui"
+    />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>w-component-vue</title>
+
+    <!-- @babel/polyfill -->
+    <script
+        nomodule
+        src="https://cdn.jsdelivr.net/npm/@babel/polyfill/dist/polyfill.min.js"
+    ></script>
+
+    <!-- vue -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.min.js"></script>
+
+    <!-- extractHtml已自動添加@babel/polyfill與vue -->
+
+    <!-- vuetify -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/vuetify@2.6.14/dist/vuetify.min.css"
+        rel="stylesheet"
+    />
+    <script
+        src="https://cdn.jsdelivr.net/npm/vuetify@2.6.14/dist/vuetify.min.js"
+    ></script>
+
+    <!-- fontawesome -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.2/css/all.min.css"
+        rel="stylesheet"
+    />
+
+    <!-- mdi, 各組件使用mdi/js會於轉單頁時改為mdi icon, 故需引用mdi/css -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/@mdi/font@7.2.96/css/materialdesignicons.min.css"
+        rel="stylesheet"
+    />
+
+    <!-- google, 各組件使用mdi/js故不需引用 -->
+    <link
+        _href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900"
+        rel="stylesheet"
+    />
+    <link
+        _href="https://fonts.googleapis.com/css?family=Material+Icons"
+        rel="stylesheet"
+    />
+
+    <!-- data -->
+    <script
+        src="https://cdn.jsdelivr.net/npm/w-demores@1.0.23/res/data/dataAAPL.js"
+    ></script>
+    <script
+        src="https://cdn.jsdelivr.net/npm/w-demores@1.0.23/res/data/dataUSD2EUR.js"
+    ></script>
+    <script
+        src="https://cdn.jsdelivr.net/npm/w-demores@1.0.23/res/data/dataTemperature.js"
+    ></script>
+    <script
+        src="https://cdn.jsdelivr.net/npm/w-demores@1.0.23/res/data/dataHousePriceArea.js"
+    ></script>
+    <script
+        src="https://cdn.jsdelivr.net/npm/w-demores@1.0.23/res/data/dataFlare.js"
+    ></script>
+    <script
+        src="https://cdn.jsdelivr.net/npm/w-demores@1.0.23/res/data/dataRain.js"
+    ></script>
+    <script
+        src="https://cdn.jsdelivr.net/npm/w-demores@1.0.23/res/data/dataRainClip.js"
+    ></script>
+    <script
+        src="https://cdn.jsdelivr.net/npm/w-demores@1.0.23/res/data/dataCivilSoilCodeIcon.js"
+    ></script>
+
+    <!-- w-component-vue -->
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.4.12/dist/w-component-vue.umd.js"></script>
+
+    <style>
+  .v-application--wrap {
+    /* width與max-width fix for IE11, 其外不能使用padding或margin避免失效 */
+    width: 100vw;
+    max-width: 100vw;
+    font-family: inherit;
+    background: #fff;
+  }
+  /* 組件所須全域樣式 */
+  .item {
+    /* 因item位於demolink, 提取各範例html後會刪除demolink, 故得額外補上 */
+    border-left: 3px solid #ffba75;
+    margin: 5px 5px 8px 0px;
+    padding: 3px 3px 5px 10px;
+    font-size: 0.9rem;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
+  .head1 {
+    padding: 0px 0px 20px 0px;
+    font-size: 2.5rem;
+  }
+  .bkh {
+    /* 寬 */
+    padding: 20px;
+  }
+  @media screen and (max-width: 800px) {
+    /* 中 */
+    .bkh {
+      padding: 10px;
+    }
+  }
+  @media screen and (max-width: 400px) {
+    /* 窄 */
+    .bkh {
+      padding: 5px;
+    }
+  }
+  .bk {
+    /* 寬 */
+    display: inline-block;
+    vertical-align: top;
+    padding: 0px 80px 60px 0px;
+  }
+  @media screen and (max-width: 1000px) {
+    /* 中窄 */
+    .bk {
+      display: block;
+      padding: 0px 0px 50px 0px;
+    }
+  }
+  .cpitem {
+    transition: all 0.3s;
+    padding: 5px 15px;
+    cursor: pointer;
+  }
+  .cpitem-white {
+    background: #fff;
+  }
+  .cpitem-white:hover {
+    background: #eee;
+  }
+  .cpitem-black {
+    background: #333;
+  }
+  .cpitem-black:hover {
+    background: #555;
+  }
+    </style>
+</head>
+<body
+    style="font-family:'Microsoft JhengHei','Avenir','Helvetica'; padding:0px; margin:0px;"
+>
+    <v-app id="app" class="bkh" style="font-family:inherit;">
+        <div class="head1">
+            <span
+                style="cursor:pointer;"
+                title="open for copy link to view component"
+                onclick="window.open('//yuda-lyu.github.io/w-component-vue/examples/app.html?cmp='+this.innerText,'_blank')"
+            >w-color-select</span>
+        </div>
+        <div class="bk">
+            <div
+                class="item"
+            >colorBlockBorderColor &amp; colorTextColor &amp; borderColor &amp; borderColorHover &amp; borderColorActive &amp; menuBackgroundColor &amp; menuBackgroundColorHover &amp; menuBackgroundColorActive &amp; menuTextColor &amp; menuTextColorHover &amp; menuTextColorActive &amp; menuTextFontSize &amp; inputBorderColor &amp; inputBorderColorHover &amp; inputBorderColorActive &amp; inputBackgroundColor &amp; inputBackgroundColorHover &amp; inputBackgroundColorActive &amp; inputTextColor &amp; inputLabelColor &amp; barProgColor &amp; barProgBackgroundColor &amp; barSliderBackgroundColor &amp; barSliderBackgroundColorHover &amp; btnTextColor &amp; btnTextColorHover &amp; btnTextColorActive &amp; btnBackgroundColor &amp; btnBackgroundColorHover &amp; btnBackgroundColorActive</div>
+
+            <div style="display:flex; padding:20px; background:#222;">
+                <w-color-select
+                    v-model="WColorSelect.colorPick34"
+                    :color-block-border-color="'#888'"
+                    :color-text-color="'#ddd'"
+                    :panel-background-color="'#111'"
+                    :tool-background-color="'#222'"
+                    :menu-icon-color="'#666'"
+                    :menu-icon-color-hover="'#777'"
+                    :menu-icon-color-active="'#ddd'"
+                    :border-color="'#333'"
+                    :border-color-hover="'#333'"
+                    :border-color-active="'#444'"
+                    :background-color="'#111'"
+                    :menu-background-color="'#111'"
+                    :menu-background-color-hover="'#222'"
+                    :menu-background-color-active="'#333'"
+                    :menu-text-color="'#b2b2b2'"
+                    :menu-text-color-hover="'#ccc'"
+                    :menu-text-color-active="'#ddd'"
+                    :menu-text-font-size="'0.75rem'"
+                    :input-border-color="'#444'"
+                    :input-border-color-hover="'#555'"
+                    :input-border-color-active="'#666'"
+                    :input-background-color="'#000'"
+                    :input-background-color-hover="'#111'"
+                    :input-background-color-active="'#222'"
+                    :input-text-color="'#999'"
+                    :input-label-color="'#888'"
+                    :bar-prog-color="'#888'"
+                    :bar-prog-background-color="'#222'"
+                    :bar-slider-background-color="'#ccc'"
+                    :bar-slider-background-color-hover="'#ddd'"
+                    :btn-text-color="'#eee'"
+                    :btn-text-color-hover="'#fff'"
+                    :btn-text-color-active="'#fff'"
+                    :btn-background-color="'#444'"
+                    :btn-background-color-hover="'#555'"
+                    :btn-background-color-active="'#555'"
+                ></w-color-select>
+            </div>
+        </div>
+    </v-app>
+
+    <script>
+  //install
+  Vue.use(window["w-component-vue"]);
+
+  //initialize
+  new Vue({
+    el: "#app",
+    vuetify: new Vuetify(),
+    data: function() {
+      return {
+        WColorSelect: {
+          displayColorText: "show",
+          colorPick1: "rgba(121, 51, 255, 0.53)",
+          colorPick2: "rgba(121, 51, 255, 0.53)",
+          colorPick3: "rgba(121, 51, 255, 0.53)",
+          colorPick4: "rgba(121, 51, 255, 0.53)",
+          colorPick5: "rgba(121, 51, 255, 0.53)",
+          colorPick6: "rgba(121, 51, 255, 0.53)",
+          colorPick7: "rgba(121, 51, 255, 0.53)",
+          colorPick8: "rgba(121, 51, 255, 0.53)",
+          colorPick9: "rgba(121, 51, 255, 0.53)",
+          colorPick10: "rgba(121, 51, 255, 0.53)",
+          colorPick11: "rgba(121, 51, 255, 0.53)",
+          colorPick12: "rgba(121, 51, 255, 0.53)",
+          colorPick13: "rgba(121, 51, 255, 0.53)",
+          colorPick14: "rgba(121, 51, 255, 0.53)",
+          colorPick15: "rgba(121, 51, 255, 0.53)",
+          colorPick16: "rgba(121, 51, 255, 0.53)",
+          colorPick17: "rgba(121, 51, 255, 0.53)",
+          colorPick18: "rgba(121, 51, 255, 0.53)",
+          colorPick19: "rgba(121, 51, 255, 0.53)",
+          colorPick20: "rgba(121, 51, 255, 0.53)",
+          colorPick21: "rgba(121, 51, 255, 0.53)",
+          colorPick22: "rgba(121, 51, 255, 0.53)",
+          colorPick23: "rgba(121, 51, 255, 0.53)",
+          colorPick24: "rgba(121, 51, 255, 0.53)",
+          colorPick25: "rgba(121, 51, 255, 0.53)",
+          colorPick26: "rgba(121, 51, 255, 0.53)",
+          colorPick27: "rgba(121, 51, 255, 0.53)",
+          colorPick28: "rgba(121, 51, 255, 0.53)",
+          colorPick29: "rgba(121, 51, 255, 0.53)",
+          colorPick30: "rgba(121, 51, 255, 0.53)",
+          colorPick31: "rgba(121, 51, 255, 0.53)",
+          colorPick32: "rgba(121, 51, 255, 0.53)",
+          colorPick33: "rgba(121, 51, 255, 0.53)",
+          colorPick34: "rgba(121, 51, 255, 0.53)",
+          colorPick35: "rgba(121, 51, 255, 0.53)"
+        },
+        actions: []
+      };
+    },
+    mounted: function() {
+      return {};
+    },
+    computed: {},
+    methods: {}
+  });
+    </script>
+</body>
+</html>
