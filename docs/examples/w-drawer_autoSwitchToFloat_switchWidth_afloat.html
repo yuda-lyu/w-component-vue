@@ -78,7 +78,7 @@
     ></script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.4.12/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.4.13/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -163,49 +163,63 @@
             >w-drawer</span>
         </div>
         <div class="bk" style="display:block;">
-            <div class="item">autoSwitch &amp; switchWidth</div>
+            <div class="item">autoSwitchToFloat &amp; switchWidth &amp; afloat</div>
 
             <div style="padding-bottom:10px;">
                 <v-btn
                     depressed
                     small
                     elevation="2"
-                    @click="WDrawer.bShow121=!WDrawer.bShow121"
-                >Show({{WDrawer.bShow121}})</v-btn>
+                    @click="WDrawer.bShow123=!WDrawer.bShow123"
+                >Show({{WDrawer.bShow123}})</v-btn>
+                <v-btn
+                    depressed
+                    small
+                    elevation="2"
+                    @click="WDrawer.bAfloat123=!WDrawer.bAfloat123"
+                >afloat({{WDrawer.bAfloat123}})</v-btn>
             </div>
 
-            <w-panel-divide-horizontal
-                style="width:100%; height:400px; border:1px dashed #ec596b;"
-                :bar-color="'#f26'"
-            >
-                <template v-slot:left="props">
-                    <w-drawer
-                        :style="`width:${props.width}px; height:400px; border:1px solid #ddd;`"
-                        v-model="WDrawer.bShow121"
-                        :auto-switch="true"
-                        :switch-width="WDrawer.drawerWidth*2"
-                    >
-                        <template v-slot:drawer>
-                            <w-list-vertical
-                                style="height:100%; border-right:1px solid #ddd;"
-                                :items="WDrawer.listItems"
-                                :item-active.sync="WDrawer.listItemActive"
-                            ></w-list-vertical>
-                        </template>
+            <div style="position:relative;">
+                <w-panel-divide-horizontal
+                    style="width:100%; height:400px; border:1px dashed #ec596b;"
+                    :bar-color="'#f26'"
+                >
+                    <template v-slot:left="props">
+                        <w-drawer
+                            :style="`width:${props.width}px; height:400px; border:1px solid #ddd;`"
+                            v-model="WDrawer.bShow123"
+                            :auto-switch-to-float="true"
+                            _switchwidth="WDrawer.drawerWidth*2"
+                            :switch-width="600"
+                            :afloat.sync="WDrawer.bAfloat123"
+                        >
+                            <template v-slot:drawer>
+                                <w-list-vertical
+                                    style="height:100%; border-right:1px solid #ddd;"
+                                    :items="WDrawer.listItems"
+                                    :item-active.sync="WDrawer.listItemActive"
+                                ></w-list-vertical>
+                            </template>
 
-                        <template v-slot:content>
-                            <div style="height:100%; overflow-y:auto;">
-                                <div
-                                    style="padding:10px; font-size:1.2rem;"
-                                >{{WDrawer.title}}</div>
-                                <div
-                                    style="padding:0px 10px 10px 10px; font-size:0.9rem;"
-                                >{{WDrawer.content}}</div>
-                            </div>
-                        </template>
-                    </w-drawer>
-                </template>
-            </w-panel-divide-horizontal>
+                            <template v-slot:content>
+                                <div style="height:100%; overflow-y:auto;">
+                                    <div
+                                        style="padding:10px; font-size:1.2rem;"
+                                    >{{WDrawer.title}}</div>
+                                    <div
+                                        style="padding:0px 10px 10px 10px; font-size:0.9rem;"
+                                    >{{WDrawer.content}}</div>
+                                </div>
+                            </template>
+                        </w-drawer>
+                    </template>
+                </w-panel-divide-horizontal>
+
+                <div
+                    :style="`position:absolute; top:0; left:600px; height:400px; border-right:1px dashed #62f;`"
+                ></div>
+            </div>
         </div>
     </v-app>
 
@@ -313,7 +327,10 @@
           bShow118: false,
           bShow119: false,
           bShow120: false,
-          bShow121: false
+          bShow121: false,
+          bShow122: false,
+          bShow123: true,
+          bAfloat123: false
         },
         actions: [{}]
       };

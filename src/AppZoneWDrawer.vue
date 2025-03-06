@@ -844,43 +844,154 @@
             <div class="bk" style="display:block;">
                 <demolink
                     :kbname="'w-drawer'"
-                    :casename="'autoSwitch & switchWidth'"
+                    :casename="'autoSwitchToHide & switchWidth'"
                 ></demolink>
 
                 <div style="padding-bottom:10px;">
                     <v-btn depressed small elevation="2" @click="WDrawer.bShow121=!WDrawer.bShow121">Show({{WDrawer.bShow121}})</v-btn>
                 </div>
 
-                <w-panel-divide-horizontal
-                    style="width:100%; height:400px; border:1px dashed #ec596b;"
-                    :barColor="'#f26'"
-                >
-                    <template v-slot:left="props">
-                        <w-drawer
-                            :style="`width:${props.width}px; height:400px; border:1px solid #ddd;`"
-                            v-model="WDrawer.bShow121"
-                            :autoSwitch="true"
-                            :switchWidth="WDrawer.drawerWidth*2"
-                        >
+                <div style="position:relative;">
 
-                            <template v-slot:drawer>
-                                <w-list-vertical
-                                    style="height:100%; border-right:1px solid #ddd;"
-                                    :items="WDrawer.listItems"
-                                    :itemActive.sync="WDrawer.listItemActive"
-                                ></w-list-vertical>
-                            </template>
+                    <w-panel-divide-horizontal
+                        style="width:100%; height:400px; border:1px dashed #ec596b;"
+                        :barColor="'#f26'"
+                    >
+                        <template v-slot:left="props">
+                            <w-drawer
+                                :style="`width:${props.width}px; height:400px; border:1px solid #ddd;`"
+                                v-model="WDrawer.bShow121"
+                                :autoSwitchToHide="true"
+                                _switchWidth="WDrawer.drawerWidth*2"
+                                :switchWidth="600"
+                            >
 
-                            <template v-slot:content>
-                                <div style="height:100%; overflow-y:auto;">
-                                    <div style="padding:10px; font-size:1.2rem;">{{WDrawer.title}}</div>
-                                    <div style="padding:0px 10px 10px 10px; font-size:0.9rem;">{{WDrawer.content}}</div>
-                                </div>
-                            </template>
+                                <template v-slot:drawer>
+                                    <w-list-vertical
+                                        style="height:100%; border-right:1px solid #ddd;"
+                                        :items="WDrawer.listItems"
+                                        :itemActive.sync="WDrawer.listItemActive"
+                                    ></w-list-vertical>
+                                </template>
 
-                        </w-drawer>
-                    </template>
-                </w-panel-divide-horizontal>
+                                <template v-slot:content>
+                                    <div style="height:100%; overflow-y:auto;">
+                                        <div style="padding:10px; font-size:1.2rem;">{{WDrawer.title}}</div>
+                                        <div style="padding:0px 10px 10px 10px; font-size:0.9rem;">{{WDrawer.content}}</div>
+                                    </div>
+                                </template>
+
+                            </w-drawer>
+                        </template>
+                    </w-panel-divide-horizontal>
+
+                    <div :style="`position:absolute; top:0; left:600px; height:400px; border-right:1px dashed #62f;`"></div>
+
+                </div>
+
+            </div>
+
+
+            <div class="bk" style="display:block;">
+                <demolink
+                    :kbname="'w-drawer'"
+                    :casename="'autoSwitchToShow & switchWidth'"
+                ></demolink>
+
+                <div style="padding-bottom:10px;">
+                    <v-btn depressed small elevation="2" @click="WDrawer.bShow122=!WDrawer.bShow122">Show({{WDrawer.bShow122}})</v-btn>
+                </div>
+
+                <div style="position:relative;">
+
+                    <w-panel-divide-horizontal
+                        style="width:100%; height:400px; border:1px dashed #ec596b;"
+                        :barColor="'#f26'"
+                    >
+                        <template v-slot:left="props">
+                            <w-drawer
+                                :style="`width:${props.width}px; height:400px; border:1px solid #ddd;`"
+                                v-model="WDrawer.bShow122"
+                                :autoSwitchToShow="true"
+                                _switchWidth="WDrawer.drawerWidth*2"
+                                :switchWidth="600"
+                            >
+
+                                <template v-slot:drawer>
+                                    <w-list-vertical
+                                        style="height:100%; border-right:1px solid #ddd;"
+                                        :items="WDrawer.listItems"
+                                        :itemActive.sync="WDrawer.listItemActive"
+                                    ></w-list-vertical>
+                                </template>
+
+                                <template v-slot:content>
+                                    <div style="height:100%; overflow-y:auto;">
+                                        <div style="padding:10px; font-size:1.2rem;">{{WDrawer.title}}</div>
+                                        <div style="padding:0px 10px 10px 10px; font-size:0.9rem;">{{WDrawer.content}}</div>
+                                    </div>
+                                </template>
+
+                            </w-drawer>
+                        </template>
+                    </w-panel-divide-horizontal>
+
+                    <div :style="`position:absolute; top:0; left:600px; height:400px; border-right:1px dashed #62f;`"></div>
+
+                </div>
+
+            </div>
+
+
+            <div class="bk" style="display:block;">
+                <demolink
+                    :kbname="'w-drawer'"
+                    :casename="'autoSwitchToFloat & switchWidth & afloat'"
+                ></demolink>
+
+                <div style="padding-bottom:10px;">
+                    <v-btn depressed small elevation="2" @click="WDrawer.bShow123=!WDrawer.bShow123">Show({{WDrawer.bShow123}})</v-btn>
+                    <v-btn depressed small elevation="2" @click="WDrawer.bAfloat123=!WDrawer.bAfloat123">afloat({{WDrawer.bAfloat123}})</v-btn>
+                </div>
+
+                <div style="position:relative;">
+
+                    <w-panel-divide-horizontal
+                        style="width:100%; height:400px; border:1px dashed #ec596b;"
+                        :barColor="'#f26'"
+                    >
+                        <template v-slot:left="props">
+                            <w-drawer
+                                :style="`width:${props.width}px; height:400px; border:1px solid #ddd;`"
+                                v-model="WDrawer.bShow123"
+                                :autoSwitchToFloat="true"
+                                _switchWidth="WDrawer.drawerWidth*2"
+                                :switchWidth="600"
+                                :afloat.sync="WDrawer.bAfloat123"
+                            >
+
+                                <template v-slot:drawer>
+                                    <w-list-vertical
+                                        style="height:100%; border-right:1px solid #ddd;"
+                                        :items="WDrawer.listItems"
+                                        :itemActive.sync="WDrawer.listItemActive"
+                                    ></w-list-vertical>
+                                </template>
+
+                                <template v-slot:content>
+                                    <div style="height:100%; overflow-y:auto;">
+                                        <div style="padding:10px; font-size:1.2rem;">{{WDrawer.title}}</div>
+                                        <div style="padding:0px 10px 10px 10px; font-size:0.9rem;">{{WDrawer.content}}</div>
+                                    </div>
+                                </template>
+
+                            </w-drawer>
+                        </template>
+                    </w-panel-divide-horizontal>
+
+                    <div :style="`position:absolute; top:0; left:600px; height:400px; border-right:1px dashed #62f;`"></div>
+
+                </div>
 
             </div>
 
@@ -1003,6 +1114,9 @@ export default {
                 'bShow119': false,
                 'bShow120': false,
                 'bShow121': false,
+                'bShow122': false,
+                'bShow123': true,
+                'bAfloat123': false,
             },
             'actions': [
                 {

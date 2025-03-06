@@ -143,7 +143,9 @@ import convertColor from '../js/convertColor.mjs'
  * @vue-prop {Number} [drawerBarSize=2] 輸入分隔條尺寸數字，為分隔條寬度，單位為px，預設2
  * @vue-prop {String} [drawerBarBorderColor='transparent'] 輸入分隔條框線顏色字串，預設'transparent'
  * @vue-prop {Number} [drawerBarBorderSize=3] 輸入分隔條框線寬度數字，單位為px，預設3，通常配合barBorderColor='transparent'使可拖曳區加大又不遮蔽可視區
- * @vue-prop {Boolean} [autoSwitch=false] 輸入是否自動顯隱布林值，設為true時當組件寬度過小時則隱藏抽屜且改為浮動顯示，反之則恢復顯示且改為佔版顯示，預設false
+ * @vue-prop {Boolean} [autoSwitchToHide=false] 輸入是否自動切換至隱藏布林值，當抽屜顯示時且組件寬度過小時則隱藏，預設false
+ * @vue-prop {Boolean} [autoSwitchToFloat=false] 輸入是否自動切換至浮動布林值，當抽屜顯示時且組件寬度過小時則浮動，預設false
+ * @vue-prop {Boolean} [autoSwitchToShow=false] 輸入是否自動切換至顯示布林值，當抽屜隱藏時且組件寬度過大時則顯示，預設false
  * @vue-prop {Number} [switchWidth=340] 輸入當自動顯隱時判斷組件寬度過小之門檻寬度數字，單位為px，預設340
  */
 export default {
@@ -211,7 +213,15 @@ export default {
             type: Number,
             default: 3,
         },
-        autoSwitch: {
+        autoSwitchToHide: {
+            type: Boolean,
+            default: false,
+        },
+        autoSwitchToFloat: {
+            type: Boolean,
+            default: false,
+        },
+        autoSwitchToShow: {
             type: Boolean,
             default: false,
         },
@@ -477,18 +487,16 @@ export default {
             // console.log('vo.panelWidth', vo.panelWidth)
             // console.log('vo.panelHeight', vo.panelHeight)
 
-            //autoSwitch
-            if (vo.autoSwitch) {
+            //wl
+            let wl = vo.switchWidth
+            // console.log('wl', wl)
 
-                //wl
-                let wl = vo.switchWidth
-                // console.log('wl', wl)
+            //mw
+            let mw = get(msg, 'smode.width', '')
 
-                //mw
-                let mw = get(msg, 'smode.width', '')
-
-                //switch
-                if (vo.valueTrans && mw === 'smaller' && vo.panelWidth < wl) { //已開啟抽屜且為變窄時才偵測
+            //autoSwitchToHide
+            if (vo.autoSwitchToHide) {
+                if (vo.valueTrans && mw === 'smaller' && vo.panelWidth < wl) { //已開啟抽屜且為變窄時才隱藏
 
                     //toggleValue
                     vo.toggleValue(false)
@@ -497,7 +505,11 @@ export default {
                     vo.$emit('input', false)
 
                 }
-                else if (!vo.valueTrans && mw === 'larger' && vo.panelWidth >= wl) { //已隱藏抽屜且為變寬時才偵測
+            }
+
+            //autoSwitchToShow
+            if (vo.autoSwitchToShow) {
+                if (!vo.valueTrans && mw === 'larger' && vo.panelWidth >= wl) { //已隱藏抽屜且為變寬時才顯示
 
                     //toggleValue
                     vo.toggleValue(true)
@@ -506,16 +518,19 @@ export default {
                     vo.$emit('input', true)
 
                 }
+            }
 
-                //afloatTrans
-                let afloatTrans = vo.panelWidth < wl
+            //autoSwitchToFloat
+            if (vo.autoSwitchToFloat) {
+                if (vo.valueTrans && !vo.afloatTrans && mw === 'smaller' && vo.panelWidth < wl) { //已開啟抽屜且為佔版模式且為變窄時才浮動
 
-                //save afloatTrans
-                vo.afloatTrans = afloatTrans
+                    //save afloatTrans
+                    vo.afloatTrans = true
 
-                //emit
-                vo.$emit('update:afloat', afloatTrans)
+                    //emit
+                    vo.$emit('update:afloat', true)
 
+                }
             }
 
             //emit
