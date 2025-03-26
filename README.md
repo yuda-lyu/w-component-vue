@@ -19,8 +19,6 @@ To view some examples for more understanding, visit examples:
 
 ## Installation
 ### Using npm(ES6 module):
-> **Note:** w-component-vue is mainly dependent on `vuetify` and `@mdi/js`.
-
 ```alias
 npm i w-component-vue
 ```
@@ -61,8 +59,6 @@ export default {
 ```
 
 ### In a browser(UMD module):
-> **Note:** umd file of `w-component-vue` is mainly dependent on `vue` and `vuetify`.
-
 [Optional] Add script with nomodule for IE11.
 ```alias
 <script nomodule src="https://cdn.jsdelivr.net/npm/@babel/polyfill/dist/polyfill.min.js"></script>
@@ -83,7 +79,7 @@ export default {
 ```
 [Necessary] Add script for w-component-vue.
 ```alias
-<script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.4.13/dist/w-component-vue.umd.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.4.14/dist/w-component-vue.umd.js"></script>
 ```
 Directly use:
 ```alias
