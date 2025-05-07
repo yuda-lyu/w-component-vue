@@ -1,18 +1,18 @@
-#node --experimental-modules toolg/addVersion.mjs
-node --experimental-modules toolg/modifyReadme.mjs
+#node toolg/addVersion.mjs
+node toolg/modifyReadme.mjs
 
-node --experimental-modules toolg/cleanFolder.mjs
+node toolg/cleanFolder.mjs
 ./node_modules/.bin/jsdoc -c .jsdoc
 
-node --experimental-modules toolg/gDistApp.mjs
+node toolg/gDistApp.mjs
 
-node --experimental-modules toolg/gExtractHtml.mjs
-node --experimental-modules toolg/gDocExams.mjs
+node toolg/gExtractHtml.mjs
+node toolg/gDocExams.mjs
 
-node --experimental-modules toolg/gMergeComps.mjs
+node toolg/gMergeComps.mjs
 
-node --experimental-modules toolg/gDistRollupWorkerFuncs.mjs
-node --experimental-modules toolg/gDistRollupComps.mjs
+node toolg/gDistRollupWorkerFuncs.mjs
+node toolg/gDistRollupComps.mjs
 
 git add .  -A
 git commit -m 'modify: '
@@ -23,6 +23,6 @@ npm run deploy
 #npm test
 
 #rm -r test-screenshot
-#node --experimental-modules gUITest.mjs
+#node gUITest.mjs
 
 #npm publish

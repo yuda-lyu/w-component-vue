@@ -57,4 +57,4 @@ core()
         console.log(err)
     })
 
-//node --experimental-modules toolg/gDistRollupWorkerFuncs.mjs
+//node toolg/gDistRollupWorkerFuncs.mjs
