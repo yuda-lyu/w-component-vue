@@ -86,10 +86,17 @@
                                                         :style="`display:flex; ${useTextCursor}`"
                                                         @click="(ev)=>{clickText(ev,s.data)}"
                                                     >
+
+                                                        <!-- 三角形 -->
                                                         <div :style="`width:0; height:0; border-top:${useTextTriangularSizeHalf}px solid transparent; border-right:${useTextTriangularSizeHalf*textTriangularRatio}px solid ${useTextBackgroundColor}; border-bottom:${useTextTriangularSizeHalf}px solid transparent;`"></div>
-                                                        <div :style="`padding-right:5px; background:${useTextBackgroundColor};`">
+
+                                                        <!-- 文字區 -->
+                                                        <div :style="`padding-right:5px; max-width:${useTextWidthMax}px; background:${useTextBackgroundColor};`">
                                                             <div :style="`height:100%; display:flex; align-items:center;`">
-                                                                <div :style="`color:${useTextColor}; font-size:${textFontSize}; white-space:nowrap;`">
+                                                                <div
+                                                                    :style="`color:${useTextColor}; font-size:${textFontSize}; white-space:nowrap; text-overflow:ellipsis; overflow:hidden;`"
+                                                                    :title="s.text"
+                                                                >
                                                                     {{s.text}}
                                                                 </div>
                                                             </div>
@@ -116,10 +123,17 @@
                                             :style="`display:flex; ${useTextCursor}`"
                                             @click="(ev)=>{clickText(ev,s.data)}"
                                         >
+
+                                            <!-- 三角形 -->
                                             <div :style="`width:0; height:0; border-top:${useTextTriangularSizeHalf}px solid transparent; border-right:${useTextTriangularSizeHalf*textTriangularRatio}px solid ${useTextBackgroundColor}; border-bottom:${useTextTriangularSizeHalf}px solid transparent;`"></div>
-                                            <div :style="`padding-right:5px; background:${useTextBackgroundColor};`">
+
+                                            <!-- 文字區 -->
+                                            <div :style="`padding-right:5px; max-width:${useTextWidthMax}px; background:${useTextBackgroundColor};`">
                                                 <div :style="`height:100%; display:flex; align-items:center;`">
-                                                    <div :style="`color:${useTextColor}; font-size:${textFontSize}; white-space:nowrap;`">
+                                                    <div
+                                                        :style="`color:${useTextColor}; font-size:${textFontSize}; white-space:nowrap; text-overflow:ellipsis; overflow:hidden;`"
+                                                        :title="s.text"
+                                                    >
                                                         {{s.text}}
                                                     </div>
                                                 </div>
@@ -766,6 +780,19 @@ export default {
             }
 
             return s
+        },
+
+        useTextWidthMax: function() {
+            let vo = this
+
+            //w, 14.4是三角形理論寬度, -1是plot區左側為垂直線軸使用邊線1px
+            let w = vo.plotWidth - vo.useTextShift - 14.4 - 1
+            w = Math.max(w, 0)
+            // console.log('vo.plotWidth', vo.plotWidth)
+            // console.log('vo.useTextShift', vo.useTextShift)
+            // console.log('w', w)
+
+            return w
         },
 
         useTextColor: function() {

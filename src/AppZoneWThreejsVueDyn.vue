@@ -125,12 +125,12 @@ export default {
                     height: 600,
                     items: [
                         {
-                            url: 'https://cdn.jsdelivr.net/npm/w-demores@1.0.25/res/model/stl/3d_wheel-hub.stl',
+                            url: 'https://cdn.jsdelivr.net/npm/w-demores@1.0.27/res/model/stl/3d_wheel-hub.stl',
                             name: 'Wheel Hub',
                             color: 'rgba(214, 92, 92, 0.9)',
                         },
                         {
-                            url: 'https://cdn.jsdelivr.net/npm/w-demores@1.0.25/res/model/stl/3d_ushape-connector.stl',
+                            url: 'https://cdn.jsdelivr.net/npm/w-demores@1.0.27/res/model/stl/3d_ushape-connector.stl',
                             name: 'Ushape Connector',
                             color: 'rgba(214, 214, 92, 0.9)',
                         },
@@ -141,12 +141,12 @@ export default {
                     height: 600,
                     items: [
                         {
-                            url: 'https://cdn.jsdelivr.net/npm/w-demores@1.0.25/res/model/stl/3d_wheel-hub.stl',
+                            url: 'https://cdn.jsdelivr.net/npm/w-demores@1.0.27/res/model/stl/3d_wheel-hub.stl',
                             name: 'Wheel Hub',
                             color: 'rgba(214, 92, 92, 0.9)',
                         },
                         {
-                            url: 'https://cdn.jsdelivr.net/npm/w-demores@1.0.25/res/model/stl/3d_ushape-connector.stl',
+                            url: 'https://cdn.jsdelivr.net/npm/w-demores@1.0.27/res/model/stl/3d_ushape-connector.stl',
                             name: 'Ushape Connector',
                             color: 'rgba(214, 214, 92, 0.9)',
                         },

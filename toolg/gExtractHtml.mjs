@@ -90,14 +90,14 @@ function writeHtml(v) {
         <link _href="https://fonts.googleapis.com/css?family=Material+Icons" rel="stylesheet">
     
         <!-- data -->
-        <script src="https://cdn.jsdelivr.net/npm/w-demores@1.0.23/res/data/dataAAPL.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/w-demores@1.0.23/res/data/dataUSD2EUR.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/w-demores@1.0.23/res/data/dataTemperature.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/w-demores@1.0.23/res/data/dataHousePriceArea.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/w-demores@1.0.23/res/data/dataFlare.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/w-demores@1.0.23/res/data/dataRain.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/w-demores@1.0.23/res/data/dataRainClip.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/w-demores@1.0.23/res/data/dataCivilSoilCodeIcon.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/w-demores@1.0.27/res/data/dataAAPL.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/w-demores@1.0.27/res/data/dataUSD2EUR.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/w-demores@1.0.27/res/data/dataTemperature.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/w-demores@1.0.27/res/data/dataHousePriceArea.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/w-demores@1.0.27/res/data/dataFlare.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/w-demores@1.0.27/res/data/dataRain.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/w-demores@1.0.27/res/data/dataRainClip.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/w-demores@1.0.27/res/data/dataCivilSoilCodeIcon.js"></script>
       
         <!-- w-component-vue -->
         <script src="../dist/w-component-vue.umd.js"></script>
