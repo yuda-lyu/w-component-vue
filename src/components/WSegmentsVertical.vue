@@ -91,7 +91,7 @@
                                                         <div :style="`width:0; height:0; border-top:${useTextTriangularSizeHalf}px solid transparent; border-right:${useTextTriangularSizeHalf*textTriangularRatio}px solid ${useTextBackgroundColor}; border-bottom:${useTextTriangularSizeHalf}px solid transparent;`"></div>
 
                                                         <!-- 文字區 -->
-                                                        <div :style="`padding-right:5px; max-width:${useTextWidthMax}px; background:${useTextBackgroundColor};`">
+                                                        <div :style="`padding-right:5px; max-width:${useTextWidthMax}px; box-sizing:border-box; background:${useTextBackgroundColor};`">
                                                             <div :style="`height:100%; display:flex; align-items:center;`">
                                                                 <div
                                                                     :style="`color:${useTextColor}; font-size:${textFontSize}; white-space:nowrap; text-overflow:ellipsis; overflow:hidden;`"
@@ -128,7 +128,7 @@
                                             <div :style="`width:0; height:0; border-top:${useTextTriangularSizeHalf}px solid transparent; border-right:${useTextTriangularSizeHalf*textTriangularRatio}px solid ${useTextBackgroundColor}; border-bottom:${useTextTriangularSizeHalf}px solid transparent;`"></div>
 
                                             <!-- 文字區 -->
-                                            <div :style="`padding-right:5px; max-width:${useTextWidthMax}px; background:${useTextBackgroundColor};`">
+                                            <div :style="`padding-right:5px; max-width:${useTextWidthMax}px; box-sizing:border-box; background:${useTextBackgroundColor};`">
                                                 <div :style="`height:100%; display:flex; align-items:center;`">
                                                     <div
                                                         :style="`color:${useTextColor}; font-size:${textFontSize}; white-space:nowrap; text-overflow:ellipsis; overflow:hidden;`"
