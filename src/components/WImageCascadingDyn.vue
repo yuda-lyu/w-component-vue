@@ -74,7 +74,7 @@ import get from 'lodash-es/get.js'
 import times from 'lodash-es/times.js'
 import size from 'lodash-es/size.js'
 import isNumber from 'lodash-es/isNumber.js'
-import importResources from 'wsemi/src/importResources.mjs'
+import importResExt from '../js/importResExt.mjs'
 import domShowImagesDyn from 'wsemi/src/domShowImagesDyn.mjs'
 import ispint from 'wsemi/src/ispint.mjs'
 import cint from 'wsemi/src/cint.mjs'
@@ -122,8 +122,8 @@ export default {
         pathItems: {
             type: Array,
             default: () => [ //預設值詳見 wsemi/src/domShowImagesDyn.mjs, 因此處有預載, 故所使用viewerjs的版本得相同
-                'https://cdn.jsdelivr.net/npm/viewerjs@1.10.5/dist/viewer.min.css',
-                'https://cdn.jsdelivr.net/npm/viewerjs@1.10.5/dist/viewer.min.js',
+                'https://cdn.jsdelivr.net/npm/viewerjs@1.11.7/dist/viewer.min.css',
+                'https://cdn.jsdelivr.net/npm/viewerjs@1.11.7/dist/viewer.min.js',
             ],
         },
         images: {
@@ -186,8 +186,8 @@ export default {
 
         let vo = this
 
-        //importResources
-        importResources(vo.pathItems)
+        //importResExt
+        importResExt(vo.pathItems)
             .then((res) => {
                 //console.log('res', res)
 

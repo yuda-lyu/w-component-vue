@@ -4,7 +4,7 @@
 </template>
 
 <script>
-import importResources from 'wsemi/src/importResources.mjs'
+import importResExt from '../js/importResExt.mjs'
 import getVue from '../js/getVue.mjs'
 import WIconLoading from './WIconLoading.vue'
 
@@ -135,8 +135,7 @@ export default {
         pathItems: {
             type: Array,
             default: () => [
-                //現在w-leaflet-vue已依賴w-component-vue故為循環引用, 但使用dyn則為脫勾, 故仍需人工更新此處版本
-                'https://cdn.jsdelivr.net/npm/w-leaflet-vue@1.0.54/dist/w-leaflet-vue.umd.js',
+                'base:w-leaflet-vue',
             ],
         },
         opt: {
@@ -154,8 +153,8 @@ export default {
 
         let vo = this
 
-        //importResources
-        importResources(vo.pathItems)
+        //importResExt
+        importResExt(vo.pathItems)
             .then((res) => {
                 //console.log('res', res)
                 if (res !== 'loaded') {

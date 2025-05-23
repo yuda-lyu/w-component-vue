@@ -55,7 +55,7 @@ import isestr from 'wsemi/src/isestr.mjs'
 import iseobj from 'wsemi/src/iseobj.mjs'
 import isearr from 'wsemi/src/isearr.mjs'
 import isEle from 'wsemi/src/isEle.mjs'
-import importResources from 'wsemi/src/importResources.mjs'
+import importResExt from '../js/importResExt.mjs'
 import convertColor from '../js/convertColor.mjs'
 import domResize from '../js/domResize.mjs'
 import BuildPopper from '../js/buildPopper.mjs'
@@ -311,8 +311,8 @@ export default {
                 return vo.$el !== undefined
             })
 
-            //importResources
-            await importResources(vo.pathItems)
+            //importResExt
+            await importResExt(vo.pathItems)
             // console.log('res', res)
 
             //Vditor

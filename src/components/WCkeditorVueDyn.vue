@@ -4,7 +4,7 @@
 </template>
 
 <script>
-import importResources from 'wsemi/src/importResources.mjs'
+import importResExt from '../js/importResExt.mjs'
 import getVue from '../js/getVue.mjs'
 import WIconLoading from './WIconLoading.vue'
 
@@ -24,8 +24,10 @@ export default {
         pathItems: {
             type: Array,
             default: () => [
-                'https://cdn.jsdelivr.net/npm/w-ckeditor-vue/dist/ckeditor.js',
-                'https://cdn.jsdelivr.net/npm/w-ckeditor-vue@2.0.5/dist/w-ckeditor-vue.umd.js',
+                // 'https://cdn.jsdelivr.net/npm/w-ckeditor-vue@2.0.5/dist/ckeditor.js', //bbb
+                // 'https://cdn.jsdelivr.net/npm/w-ckeditor-vue@2.0.5/dist/w-ckeditor-vue.umd.js',
+                'base:w-ckeditor-vue|file:ckeditor.js',
+                'base:w-ckeditor-vue',
             ],
         },
         value: {
@@ -55,8 +57,8 @@ export default {
 
         let vo = this
 
-        //importResources
-        importResources(vo.pathItems)
+        //importResExt
+        importResExt(vo.pathItems)
             .then((res) => {
                 //console.log('res', res)
                 if (res !== 'loaded') {

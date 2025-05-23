@@ -4,7 +4,7 @@
 </template>
 
 <script>
-import importResources from 'wsemi/src/importResources.mjs'
+import importResExt from '../js/importResExt.mjs'
 import getVue from '../js/getVue.mjs'
 import WIconLoading from './WIconLoading.vue'
 
@@ -32,7 +32,9 @@ export default {
 
                 'https://cdn.jsdelivr.net/npm/vue-highcharts@0.1.0/dist/vue-highcharts.min.js', //for vue2
                 //'https://cdn.jsdelivr.net/npm/vue-highcharts@0.2.0/dist/vue-highcharts.min.js',
-                'https://cdn.jsdelivr.net/npm/w-highcharts@1.0.2/dist/w-highcharts.umd.js', //使用最新版
+
+                // 'https://cdn.jsdelivr.net/npm/w-highcharts@1.0.2/dist/w-highcharts.umd.js', //bbb
+                'base:w-highcharts',
 
             ],
         },
@@ -51,8 +53,8 @@ export default {
 
         let vo = this
 
-        //importResources
-        importResources(vo.pathItems)
+        //importResExt
+        importResExt(vo.pathItems)
             .then((res) => {
                 //console.log('res', res)
                 if (res !== 'loaded') {

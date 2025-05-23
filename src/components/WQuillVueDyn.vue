@@ -4,7 +4,7 @@
 </template>
 
 <script>
-import importResources from 'wsemi/src/importResources.mjs'
+import importResExt from '../js/importResExt.mjs'
 import getVue from '../js/getVue.mjs'
 import WIconLoading from './WIconLoading.vue'
 
@@ -26,7 +26,8 @@ export default {
             default: () => [
                 'https://cdn.jsdelivr.net/npm/quill@1.3.7/dist/quill.min.js',
                 'https://cdn.jsdelivr.net/npm/quill@1.3.7/dist/quill.snow.min.css',
-                'https://cdn.jsdelivr.net/npm/w-quill-vue@2.0.5/dist/w-quill-vue.umd.js',
+                // 'https://cdn.jsdelivr.net/npm/w-quill-vue@2.0.5/dist/w-quill-vue.umd.js', //bbb
+                'base:w-quill-vue',
             ],
         },
         value: {
@@ -56,8 +57,8 @@ export default {
 
         let vo = this
 
-        //importResources
-        importResources(vo.pathItems)
+        //importResExt
+        importResExt(vo.pathItems)
             .then((res) => {
                 //console.log('res', res)
                 if (res !== 'loaded') {

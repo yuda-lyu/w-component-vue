@@ -4,7 +4,7 @@
 </template>
 
 <script>
-import importResources from 'wsemi/src/importResources.mjs'
+import importResExt from '../js/importResExt.mjs'
 import getVue from '../js/getVue.mjs'
 import WIconLoading from './WIconLoading.vue'
 // import VueCompositionAPI from '@vue/composition-api'
@@ -23,16 +23,19 @@ export default {
         pathItems: {
             type: Array,
             default: () => [
-                'https://cdn.jsdelivr.net/npm/echarts@5.1.2/dist/echarts.min.js',
-                'https://cdn.jsdelivr.net/npm/echarts@5.1.2/i18n/langEN.js',
-                'https://cdn.jsdelivr.net/npm/echarts-gl@2.0.5/dist/echarts-gl.min.js',
-                'https://cdn.jsdelivr.net/npm/vue-echarts@4.1.0/dist/vue-echarts.min.js',
+
                 //vue-echarts 6版使用vue2 composition api, 仍有問題
                 // 'https://cdn.jsdelivr.net/npm/@vue/composition-api@1.4.3/dist/vue-composition-api.min.js',
                 // 'https://cdn.jsdelivr.net/npm/echarts@5.2.2/dist/echarts.min.js',
                 // 'https://cdn.jsdelivr.net/npm/echarts@5.2.2/i18n/langEN.js',
                 // 'https://cdn.jsdelivr.net/npm/echarts-gl@2.0.9/dist/echarts-gl.min.js',
                 // 'https://cdn.jsdelivr.net/npm/vue-echarts@6.0.2/dist/index.umd.min.js',
+
+                'https://cdn.jsdelivr.net/npm/echarts@5.1.2/dist/echarts.min.js',
+                'https://cdn.jsdelivr.net/npm/echarts@5.1.2/i18n/langEN.js',
+                'https://cdn.jsdelivr.net/npm/echarts-gl@2.0.5/dist/echarts-gl.min.js',
+                'https://cdn.jsdelivr.net/npm/vue-echarts@4.1.0/dist/vue-echarts.min.js',
+
             ],
         },
         options: {
@@ -50,8 +53,8 @@ export default {
 
         let vo = this
 
-        //importResources
-        importResources(vo.pathItems)
+        //importResExt
+        importResExt(vo.pathItems)
             .then((res) => {
                 //console.log('res', res)
                 if (res !== 'loaded') {

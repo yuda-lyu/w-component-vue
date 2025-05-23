@@ -11,7 +11,7 @@ import isNumber from 'lodash-es/isNumber.js'
 import waitFun from 'wsemi/src/waitFun.mjs'
 import iseobj from 'wsemi/src/iseobj.mjs'
 import isfun from 'wsemi/src/isfun.mjs'
-import importResources from 'wsemi/src/importResources.mjs'
+import importResExt from '../js/importResExt.mjs'
 import WIconLoading from './WIconLoading.vue'
 
 
@@ -41,7 +41,8 @@ export default {
                 'https://cdn.jsdelivr.net/npm/highcharts@11.4.8/modules/boost.js',
                 'https://cdn.jsdelivr.net/npm/highcharts@11.4.8/modules/boost-canvas.js',
 
-                'https://cdn.jsdelivr.net/npm/w-highcharts@1.0.2/dist/w-highcharts.umd.js', //使用最新版
+                // 'https://cdn.jsdelivr.net/npm/w-highcharts@1.0.2/dist/w-highcharts.umd.js', //bbb
+                'base:w-highcharts',
 
             ],
         },
@@ -72,8 +73,8 @@ export default {
 
         let vo = this
 
-        //importResources
-        importResources(vo.pathItems)
+        //importResExt
+        importResExt(vo.pathItems)
             .then((res) => {
                 //console.log('res', res)
                 if (res !== 'loaded') {

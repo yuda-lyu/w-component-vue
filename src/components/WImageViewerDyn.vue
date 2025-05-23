@@ -33,7 +33,7 @@
 import each from 'lodash-es/each.js'
 import get from 'lodash-es/get.js'
 import merge from 'lodash-es/merge.js'
-import importResources from 'wsemi/src/importResources.mjs'
+import importResExt from '../js/importResExt.mjs'
 import domShowImagesDyn from 'wsemi/src/domShowImagesDyn.mjs'
 import domFadeIn from 'wsemi/src/domFadeIn.mjs'
 import WIconLoading from './WIconLoading.vue'
@@ -54,8 +54,8 @@ export default {
         pathItems: {
             type: Array,
             default: () => [ //預設值詳見 wsemi/src/domShowImagesDyn.mjs, 因此處有預載, 故所使用viewerjs的版本得相同
-                'https://cdn.jsdelivr.net/npm/viewerjs@1.10.5/dist/viewer.min.css',
-                'https://cdn.jsdelivr.net/npm/viewerjs@1.10.5/dist/viewer.min.js',
+                'https://cdn.jsdelivr.net/npm/viewerjs@1.11.7/dist/viewer.min.css',
+                'https://cdn.jsdelivr.net/npm/viewerjs@1.11.7/dist/viewer.min.js',
             ],
         },
         images: {
@@ -85,8 +85,8 @@ export default {
 
         let vo = this
 
-        //importResources
-        importResources(vo.pathItems)
+        //importResExt
+        importResExt(vo.pathItems)
             .then((res) => {
                 //console.log('res', res)
 
