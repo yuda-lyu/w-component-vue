@@ -105,8 +105,8 @@ function writeHtml(v) {
         <style>
             .v-application--wrap {
                 /* width與max-width fix for IE11, 其外不能使用padding或margin避免失效 */
-                width: 100vw;
-                max-width: 100vw;
+                width: 100svw;
+                max-width: 100svw;
                 font-family: inherit;
                 background: #fff;
             }

@@ -4,24 +4,24 @@
         :changeParam="changeParam"
     >
 
-        <!-- 屏蔽層通過overscroll-behavior:contain吃掉捲軸或平板拖曳事件, 避免觸發dialog外部捲軸或拖曳事件 -->
+        <!-- 屏蔽層通過overscroll-behavior:none吃掉滾動邊界時向父層捲動或平板拖曳事件, 避免觸發dialog外部捲軸或拖曳事件 -->
         <!-- 快速點擊陰影會變成文字選擇, 故使用user-select:none屏蔽 -->
         <div
             ref="divShield"
             :style="`
                 position:fixed; left:0px; top:0px;
-                width:calc( 100vw + ${nativeBarWidth+1}px ); height:100svh; overflow-x:hidden; overflow-y:scroll;
+                width:calc( 100svw + ${nativeBarWidth}px ); height:100svh; overflow-x:hidden; overflow-y:scroll;
                 z-index:${useDialogZIndex};
-                overscroll-behavior:contain;
+                overscroll-behavior:none;
                 user-select:none;
             `"
             v-if="showTrans"
         >
 
-            <!-- 屏蔽層內之撐開層, 額外撐開高度使用nativeBarWidth+1 -->
+            <!-- 屏蔽層內之撐開層, 寬度須使用nativeBarWidth+1使divShield能出現水平捲軸, 進而能更新nativeBarWidth -->
             <div
                 :style="`
-                    width:100vw; height:calc( 100svh + ${nativeBarWidth+1}px );
+                    width:calc( 100svw + ${nativeBarWidth+1}px ); height:100svh;
                 `"
             >
 
@@ -29,8 +29,8 @@
                 <div
                     ref="divOverlay"
                     :style="`
-                        position:sticky; top:0px;
-                        width:100vw; height:100svh;
+                        position:sticky; left:0px; top:0px;
+                        width:100svw; height:100svh;
                         display:flex; align-items:center; justify-content:center;
                         ${overlayStyleShow}
                         background:${useOverlayColor};
@@ -587,7 +587,7 @@ export default {
         useWidth: function() {
             let vo = this
             if (vo.useFullscreen) {
-                return `width:100vw; max-width:100vw;` //得要添加max-width, 否則transition無法偵測對應變更出現resize動畫
+                return `width:100svw; max-width:100svw;` //得要添加max-width, 否則transition無法偵測對應變更出現resize動畫
             }
             else {
                 return `min-width:${vo.minWidth}px; max-width:${vo.maxWidth}px;`
@@ -603,7 +603,7 @@ export default {
             else {
                 ch = 'max-height'
             }
-            ch = `${ch}:${vo.useRatioHeight * 100}vh;`
+            ch = `${ch}:${vo.useRatioHeight * 100}svh;`
             return ch
         },
 
@@ -700,15 +700,16 @@ export default {
             }
 
             //nativeBarWidth
-            let divDetect = get(vo, '$refs.divDetect')
-            if (divDetect) {
+            let divShield = get(vo, '$refs.divShield')
+            if (divShield) {
 
                 //save nativeBarWidth
-                let w = divDetect.offsetWidth - divDetect.clientWidth
+                let w = divShield.offsetWidth - divShield.clientWidth
                 if (vo.nativeBarWidth !== w) {
                     // console.log('resizePanel 需更新nativeBarWidth', w, '<-', vo.nativeBarWidth)
                     vo.nativeBarWidth = w
                 }
+                // console.log('vo.nativeBarWidth', vo.nativeBarWidth)
 
             }
 
