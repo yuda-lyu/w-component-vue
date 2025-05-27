@@ -3,6 +3,7 @@ import get from 'lodash-es/get.js'
 import haskey from 'wsemi/src/haskey.mjs'
 import genPm from 'wsemi/src/genPm.mjs'
 import isestr from 'wsemi/src/isestr.mjs'
+import isbol from 'wsemi/src/isbol.mjs'
 import pmSeries from 'wsemi/src/pmSeries.mjs'
 import replace from 'wsemi/src/replace.mjs'
 import sep from 'wsemi/src/sep.mjs'
@@ -11,7 +12,7 @@ import importResources from 'wsemi/src/importResources.mjs'
 
 
 let kbUrl = {}
-let fetchUrl = async(url) => {
+let fetchUrl = async(url, opt = {}) => {
 
     //check
     if (haskey(kbUrl, url)) {
@@ -19,12 +20,23 @@ let fetchUrl = async(url) => {
         return pkg
     }
 
+    //useCache
+    let useCache = get(opt, 'useCache')
+    if (!isbol(useCache)) {
+        useCache = false
+    }
+
     //預先save pm
     let pm = genPm()
     kbUrl[url] = pm
 
+    //optFetch
+    let optFetch = {
+        cache: useCache ? 'force-cache' : 'reload'
+    }
+
     //res
-    let res = await fetch(url)
+    let res = await fetch(url, optFetch)
 
     //check
     if (!res.ok) {
