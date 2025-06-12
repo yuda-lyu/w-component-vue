@@ -1,6 +1,6 @@
 <template>
     <div
-        :style="`position:relative; transition:all 0.3s; border-top-left-radius:${borderRadius}px; border-top-right-radius:${borderRadius}px; ${usePadding} background:${useBackgroundColor}; ${editable&&cursorPointer?'cursor:pointer;':''}`"
+        :style="`position:relative; transition:all 0.3s; border-top-left-radius:${borderRadius}px; border-top-right-radius:${borderRadius}px; ${usePadding} background:${useBackgroundColor}; ${editable&&cursorPointer?'cursor:pointer;':'cursor:context-menu;'}`"
         v-domripple="{color:rippleColor}"
         @mouseenter="mouseEnter=true"
         @mouseleave="mouseEnter=false"

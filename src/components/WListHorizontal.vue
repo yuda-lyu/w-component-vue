@@ -46,7 +46,7 @@
                         :rippleColor="getEditable(item)?itemRippleColor:null"
                         :editable="getEditable(item)"
                         :disabledColor="itemDisabledColor"
-                        :cursorPointer="itemCursorPointer"
+                        :cursorPointer="getActive(item)?false:itemCursorPointer"
                         @click="ckItem(item,kitem)"
                     >
 
