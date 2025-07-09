@@ -78,7 +78,7 @@
     ></script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.4.21/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.4.22/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -195,14 +195,15 @@
           data.push(v[1]);
         }
         return {
-          date: date,
-          data: data
+          date,
+          data
         };
       };
       let rDataAAPL = df(window.dataAAPL);
       let rDataUSD2EUR = df(window.dataUSD2EUR);
       return {
         WEchartsVueDyn: {
+          widthOptions1: 620,
           options1: {
             tooltip: {
               trigger: "axis",
