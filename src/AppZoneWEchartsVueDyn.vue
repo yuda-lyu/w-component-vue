@@ -25,7 +25,26 @@
                 ></demolink>
 
                 <w-echarts-vue-dyn
-                    style="width:620px; height:300px;"
+                    :style="`width:620px; height:300px;`"
+                    :options="WEchartsVueDyn.options1"
+                ></w-echarts-vue-dyn>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-echarts-vue-dyn'"
+                    :casename="'resize'"
+                ></demolink>
+
+                <div style="padding-bottom:10px;">
+                    <v-btn depressed small elevation="2" @click="WEchartsVueDyn.widthOptions1=620">620px(default)</v-btn>
+                    <v-btn depressed small elevation="2" @click="WEchartsVueDyn.widthOptions1=310">310px</v-btn>
+                </div>
+
+                <w-echarts-vue-dyn
+                    :style="`width:${WEchartsVueDyn.widthOptions1}px; height:300px;`"
                     :options="WEchartsVueDyn.options1"
                 ></w-echarts-vue-dyn>
 
@@ -263,14 +282,15 @@ export default {
                 data.push(v[1])
             }
             return {
-                date: date,
-                data: data,
+                date,
+                data,
             }
         }
         let rDataAAPL = df(window.dataAAPL)
         let rDataUSD2EUR = df(window.dataUSD2EUR)
         return {
             'WEchartsVueDyn': {
+                'widthOptions1': 620,
                 'options1': {
                     tooltip: {
                         trigger: 'axis',

@@ -1,6 +1,6 @@
 <template>
     <!-- ref=$self為供外部存取組件之用 -->
-    <component ref="$self" :is="cmpName" :options="options"></component>
+    <component ref="$self" :is="cmpName" :options="options" autoresize></component>
 </template>
 
 <script>
@@ -24,17 +24,10 @@ export default {
             type: Array,
             default: () => [
 
-                //vue-echarts 6版使用vue2 composition api, 仍有問題
-                // 'https://cdn.jsdelivr.net/npm/@vue/composition-api@1.4.3/dist/vue-composition-api.min.js',
-                // 'https://cdn.jsdelivr.net/npm/echarts@5.2.2/dist/echarts.min.js',
-                // 'https://cdn.jsdelivr.net/npm/echarts@5.2.2/i18n/langEN.js',
-                // 'https://cdn.jsdelivr.net/npm/echarts-gl@2.0.9/dist/echarts-gl.min.js',
-                // 'https://cdn.jsdelivr.net/npm/vue-echarts@6.0.2/dist/index.umd.min.js',
-
-                'https://cdn.jsdelivr.net/npm/echarts@5.1.2/dist/echarts.min.js',
-                'https://cdn.jsdelivr.net/npm/echarts@5.1.2/i18n/langEN.js',
-                'https://cdn.jsdelivr.net/npm/echarts-gl@2.0.5/dist/echarts-gl.min.js',
-                'https://cdn.jsdelivr.net/npm/vue-echarts@4.1.0/dist/vue-echarts.min.js',
+                'https://cdn.jsdelivr.net/npm/echarts@5.6.0/dist/echarts.min.js',
+                'https://cdn.jsdelivr.net/npm/echarts@5.6.0/i18n/langEN.js',
+                'https://cdn.jsdelivr.net/npm/echarts-gl@2.0.9/dist/echarts-gl.min.js',
+                'https://cdn.jsdelivr.net/npm/vue-echarts@4.1.0/dist/vue-echarts.min.js', //只能用4.1.0版, 沒有5版, 從6版之後就依賴composition-api
 
             ],
         },
@@ -58,6 +51,13 @@ export default {
             .then((res) => {
                 //console.log('res', res)
                 if (res !== 'loaded') {
+
+                    //注意: importResExt得要先能讓Vue註冊VueCompositionAPI, 才能再import vue-echarts 6版, 否則6版內使用defineComponent會直接報錯
+                    // //cmpAPI
+                    // let cmpAPI = window['VueCompositionAPI']
+                    // console.log('cmpAPI', cmpAPI)
+                    // //use
+                    // getVue().use(cmpAPI)
 
                     //cmp
                     let cmp = window['VueECharts']
