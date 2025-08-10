@@ -32,7 +32,25 @@
                 <w-leaflet-vue-dyn
                     style="width:100%; height:600px;"
                     :opt="WLeafletVueDyn.pointSets"
-                ></w-leaflet-vue-dyn>
+                >
+
+                    <template v-slot:point-popup="props">
+                        <div style="padding:15px; width:300px;">
+                            <div style="padding-bottom:8px;">
+                                <div style="font-size:0.90rem; color:#f26;">[Popup]</div>
+                            </div>
+                            <div style="padding-bottom:5px;">
+                                <div style="font-size:0.80rem; color:#aa2df4;">[PointSet: {{ props.pointSet.title }}]</div>
+                                <div style="font-size:0.70rem; color:#777;">{{ props.pointSet.msg }}</div>
+                            </div>
+                            <div style="">
+                                <div style="font-size:0.70rem;color:#4347de;">[Point: {{ props.point.title }}]</div>
+                                <div style="font-size:0.70rem;color:#777;">{{ props.point.msg }}</div>
+                            </div>
+                        </div>
+                    </template>
+
+                </w-leaflet-vue-dyn>
 
             </div>
 
@@ -47,7 +65,21 @@
                 <w-leaflet-vue-dyn
                     style="width:100%; height:600px;"
                     :opt="WLeafletVueDyn.polygonSets"
-                ></w-leaflet-vue-dyn>
+                >
+
+                    <template v-slot:polygon-popup="props">
+                        <div style="padding:15px; width:300px;">
+                            <div style="padding-bottom:8px;">
+                                <div style="font-size:0.90rem; color:#f26;">[Popup]</div>
+                            </div>
+                            <div style="padding-bottom:5px;">
+                                <div style="font-size:0.80rem; color:#aa2df4;">[PolygonSet: {{ props.polygonSet.title }}]</div>
+                                <div style="font-size:0.70rem; color:#777;">{{ props.polygonSet.msg }}</div>
+                            </div>
+                        </div>
+                    </template>
+
+                </w-leaflet-vue-dyn>
 
             </div>
 
@@ -62,7 +94,21 @@
                 <w-leaflet-vue-dyn
                     style="width:100%; height:600px;"
                     :opt="WLeafletVueDyn.contourSets"
-                ></w-leaflet-vue-dyn>
+                >
+
+                    <template v-slot:contour-popup="props">
+                        <div style="padding:15px; width:300px;">
+                            <div style="padding-bottom:8px;">
+                                <div style="font-size:0.90rem; color:#f26;">[Popup]</div>
+                            </div>
+                            <div style="padding-bottom:5px;">
+                                <div style="font-size:0.80rem; color:#aa2df4;">[ContourSet: {{ props.contourSet.title }}]</div>
+                                <div style="font-size:0.70rem; color:#777;">{{ props.contourSet.msg }}</div>
+                            </div>
+                        </div>
+                    </template>
+
+                </w-leaflet-vue-dyn>
 
             </div>
 
@@ -77,7 +123,21 @@
                 <w-leaflet-vue-dyn
                     style="width:100%; height:600px;"
                     :opt="WLeafletVueDyn.largeSet"
-                ></w-leaflet-vue-dyn>
+                >
+
+                    <template v-slot:contour-popup="props">
+                        <div style="padding:15px; width:300px;">
+                            <div style="padding-bottom:8px;">
+                                <div style="font-size:0.90rem; color:#f26;">[Popup]</div>
+                            </div>
+                            <div style="padding-bottom:5px;">
+                                <div style="font-size:0.80rem; color:#aa2df4;">[ContourSet: {{ props.contourSet.title }}]</div>
+                                <div style="font-size:0.70rem; color:#777;">{{ props.contourSet.msg }}</div>
+                            </div>
+                        </div>
+                    </template>
+
+                </w-leaflet-vue-dyn>
 
             </div>
 

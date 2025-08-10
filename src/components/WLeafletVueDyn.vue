@@ -1,6 +1,49 @@
 <template>
     <!-- ref=$self為供外部存取組件之用 -->
-    <component ref="$self" :is="cmpName" :opt="opt"></component>
+    <component ref="$self" :is="cmpName" :opt="opt">
+
+        <!-- contour -->
+        <template v-slot:contour-tooltip="props">
+            <slot name="contour-tooltip" v-bind="props"></slot>
+        </template>
+        <template v-slot:contour-popup="props">
+            <slot name="contour-popup" v-bind="props"></slot>
+        </template>
+
+        <!-- geojson -->
+        <template v-slot:geojson-tooltip="props">
+            <slot name="geojson-tooltip" v-bind="props"></slot>
+        </template>
+        <template v-slot:geojson-popup="props">
+            <slot name="geojson-popup" v-bind="props"></slot>
+        </template>
+
+        <!-- polygon -->
+        <template v-slot:polygon-tooltip="props">
+            <slot name="polygon-tooltip" v-bind="props"></slot>
+        </template>
+        <template v-slot:polygon-popup="props">
+            <slot name="polygon-popup" v-bind="props"></slot>
+        </template>
+
+        <!-- polyline -->
+        <template v-slot:polyline-tooltip="props">
+            <slot name="polyline-tooltip" v-bind="props"></slot>
+        </template>
+        <template v-slot:polyline-popup="props">
+            <slot name="polyline-popup" v-bind="props"></slot>
+        </template>
+
+        <!-- point -->
+        <template v-slot:point-tooltip="props">
+            <slot name="point-tooltip" v-bind="props"></slot>
+        </template>
+        <template v-slot:point-popup="props">
+            <slot name="point-popup" v-bind="props"></slot>
+        </template>
+
+
+    </component>
 </template>
 
 <script>
