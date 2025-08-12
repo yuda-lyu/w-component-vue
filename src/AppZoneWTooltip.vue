@@ -112,7 +112,7 @@
                 ></demolink>
 
                 <w-tooltip
-                    :maxWidth="500"
+                    :maxWidth="300"
                     v-model="WTooltip.bShow4"
                     @show="evShow"
                     @hide="evHide"

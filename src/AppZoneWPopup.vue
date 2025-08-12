@@ -115,7 +115,7 @@
                 ></demolink>
 
                 <w-popup
-                    :maxWidth="500"
+                    :maxWidth="300"
                     v-model="WPopup.bShow4"
                     @show="evShow"
                     @hide="evHide"

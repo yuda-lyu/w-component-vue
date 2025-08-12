@@ -19,24 +19,26 @@
 
         <!-- 不能給予position因會被popupjs洗掉, 但可給z-index, 且popupjs會改用transform:translate定位 -->
         <!-- 若使用minWidth, 會使popupjs重算給予minWidth用以自動撐開彈窗寬度失效, 若於其內slot外添加div給予minWidth, 亦會使popupjs給予minWidth機制失效, 待研究 -->
-        <div
-            ref="divContent"
-            class="WPopperFix"
-            :style="`z-index:${cmpZIndex};`"
-            v-show="valueTrans"
-            v-domresize
-            @domresize="updatePopper"
-        >
+        <Teleport to="body">
             <div
-                :style="`${contentStyle} ${usePadding} ${useTextFontSize} color:${useTextColor}; background:${useBackgroundColor}; ${useMinWidth} ${useMaxWidth} ${useBorderRadius} ${useShadow}`"
-                v-if="valueTrans"
+                ref="divContent"
+                class="WPopperFix"
+                :style="`z-index:${cmpZIndex};`"
+                v-show="valueTrans"
+                v-domresize
+                @domresize="updatePopper"
             >
-                <slot
-                    name="content"
-                    :funHide="()=>{updateValue(false,'slot')}"
-                ></slot>
+                <div
+                    :style="`${contentStyle} ${usePadding} ${useTextFontSize} color:${useTextColor}; background:${useBackgroundColor}; ${useMinWidth} ${useMaxWidth} ${useBorderRadius} ${useShadow}`"
+                    v-if="valueTrans"
+                >
+                    <slot
+                        name="content"
+                        :funHide="()=>{updateValue(false,'slot')}"
+                    ></slot>
+                </div>
             </div>
-        </div>
+        </Teleport>
 
     </div>
 </template>
@@ -49,6 +51,7 @@ import isNumber from 'lodash-es/isNumber.js'
 import genID from 'wsemi/src/genID.mjs'
 import replace from 'wsemi/src/replace.mjs'
 import isfun from 'wsemi/src/isfun.mjs'
+import Teleport from './Teleport.vue'
 import convertColor from '../js/convertColor.mjs'
 import parseSpace from '../js/parseSpace.mjs'
 import domResize from '../js/domResize.mjs'
@@ -97,6 +100,9 @@ function removeTriggerMode(mode, mmkey) {
 export default {
     directives: {
         domresize: domResize(),
+    },
+    components: {
+        Teleport,
     },
     props: {
         mode: {
@@ -201,7 +207,7 @@ export default {
 
             valueTrans: false,
 
-            triggerWidth: null,
+            triggerWidth: null, //會由BuildPopper內更新
             contentStyle: '',
 
             bp: null,

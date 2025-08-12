@@ -14,47 +14,69 @@ export default {
         },
     },
     computed: {
+
         toEl: function() {
             let vo = this
-            let el = document.querySelector(vo.to)
+
+            //el
+            let el = null
+            try {
+                el = document.querySelector(vo.to)
+            }
+            catch (err) {}
             // console.log('to', vo.to)
             // console.log('el', el)
+
             return el
         },
+
     },
     watch: {
 
         toEl: function(value) {
             //console.log('watch toEl')
             let vo = this
+
+            //teleport
             vo.teleport()
+
         },
 
     },
     mounted: function() {
         let vo = this
+
+        //teleport
         vo.teleport()
+
     },
     destroyed: function() {
         let vo = this
+
+        //remove
         try {
             vo.$el.remove()
         }
         catch (err) {}
+
     },
     methods: {
 
         teleport: function() {
             let vo = this
-            if (vo.$el && vo.$el.parentElement !== vo.toEl) {
-                try {
+
+            //appendChild
+            try {
+                if (vo.$el && vo.$el.parentElement !== vo.toEl) {
                     vo.toEl.appendChild(vo.$el)
                 }
-                catch (err) {}
             }
+            catch (err) {}
+
         },
 
     },
+
     // render: function() {
     //     let vo = this
     //     let r = null
@@ -65,6 +87,7 @@ export default {
     //     catch (err) {}
     //     return r
     // },
+
 }
 
 </script>
