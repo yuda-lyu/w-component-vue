@@ -105,6 +105,20 @@
             </div>
 
 
+            <div class="bk" style="width:300px;">
+                <demolink
+                    :kbname="'w-checkbox'"
+                    :casename="'verticalAlign'"
+                ></demolink>
+
+                <w-checkbox
+                    :text="'Morbi mattis ullamcorper veli donec orci lectus'"
+                    :verticalAlign="'top'"
+                    v-model="WCheckbox.valueBol"
+                ></w-checkbox>
+            </div>
+
+
             <div class="bk">
                 <demolink
                     :kbname="'w-checkbox'"

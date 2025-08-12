@@ -8,7 +8,7 @@
         @mouseleave="hoverTrans=false;$emit('mouseleave',$event)"
     >
 
-        <div style="display:flex; align-items:center;">
+        <div :style="`display:flex; ${useVerticalAlign};`">
 
             <WIcon
                 :icon="checkedIcon"
@@ -57,11 +57,12 @@ import WIcon from './WIcon.vue'
  * @vue-prop {String} [checkedIcon=mdiCheckboxMarked] 輸入有效(true|'y')圖標字串，可為mdi,md,fa代號或mdi/js路徑，預設mdiCheckboxMarked
  * @vue-prop {String} [checkedIconColor='blue darken-3'] 輸入可編輯時，有效(true|'y')圖標顏色字串，預設'blue darken-3'
  * @vue-prop {String} [checkedIconColorHover='blue darken-2'] 輸入滑鼠移入時可編輯時，有效(true|'y')圖標顏色字串，預設'blue darken-2'
- * @@vue-prop {String} [checkedIconColorDisabled='grey'] 輸入不可編輯時，有效(true|'y')圖標顏色字串，預設'grey'
+ * @vue-prop {String} [checkedIconColorDisabled='grey'] 輸入不可編輯時，有效(true|'y')圖標顏色字串，預設'grey'
  * @vue-prop {String} [uncheckedIcon=mdiCheckboxBlankOutline] 輸入無效(false|'n')圖標字串，可為mdi,md,fa代號或mdi/js路徑，預設mdiCheckboxBlankOutline
  * @vue-prop {String} [uncheckedIconColor='blue darken-3'] 輸入可編輯時，無效(false|'n')圖標顏色字串，預設'blue darken-3'
  * @vue-prop {String} [uncheckedIconColorHover='blue darken-2'] 輸入滑鼠移入時可編輯時，無效(false|'n')圖標顏色字串，預設'blue darken-2'
- * @@vue-prop {String} [uncheckedIconColorDisabled='grey'] 輸入不可編輯時，無效(false|'n')圖標顏色字串，預設'grey'
+ * @vue-prop {String} [uncheckedIconColorDisabled='grey'] 輸入不可編輯時，無效(false|'n')圖標顏色字串，預設'grey'
+ * @vue-prop {String} [verticalAlign='center'] 輸入input與文字之垂直對齊字串，可選'top'、'center'、'bottom'，預設'center'
  * @vue-prop {Boolean} [editable=true] 輸入是否為編輯模式布林值，預設true
  */
 export default {
@@ -124,6 +125,10 @@ export default {
         uncheckedIconColorDisabled: {
             type: String,
             default: 'grey',
+        },
+        verticalAlign: {
+            type: String,
+            default: 'center',
         },
         editable: {
             type: Boolean,
@@ -231,6 +236,25 @@ export default {
                 return vo.effUncheckedIconColorDisabled
             }
             return vo.hoverTrans ? vo.effUncheckedIconColorHover : vo.effUncheckedIconColor
+        },
+
+        useVerticalAlign: function() {
+            //console.log('computed useVerticalAlign')
+
+            let vo = this
+
+            let c = ''
+            if (vo.verticalAlign === 'center') {
+                c = 'align-items:center;'
+            }
+            else if (vo.verticalAlign === 'top') {
+                c = 'align-items:flex-start;'
+            }
+            else if (vo.verticalAlign === 'bottom') {
+                c = 'align-items:flex-end;'
+            }
+
+            return c
         },
 
     },
