@@ -214,7 +214,7 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-table-dyn'"
-                    :casename="'slot btns'"
+                    :casename="'slot btns-left'"
                 ></demolink>
 
                 <w-table-dyn
@@ -225,7 +225,34 @@
                     @success="evSuccess"
                     @error="evError"
                 >
-                    <template v-slot:btns="props">
+                    <template v-slot:btns-left="props">
+                        <select style="padding:0px 10px; background:rgba(255,255,255,0.1); color:#666; font-size:0.7rem; border:1px solid rgba(0,0,0,0.3); border-radius:30px; outline:none;">
+                            <option style="color:#666; font-size:0.7rem;" value="0">Select Item</option>
+                            <option style="color:#666; font-size:0.7rem;" value="1">Quisquam</option>
+                            <option style="color:#666; font-size:0.7rem;" value="2">Dolorem</option>
+                            <option :style="`${props.editable?'color:#666;':'color:#aaa;'} font-size:0.7rem;`" value="3" :disabled="!props.editable">Ipsum</option>
+                        </select>
+                    </template>
+                </w-table-dyn>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-table-dyn'"
+                    :casename="'slot btns-right'"
+                ></demolink>
+
+                <w-table-dyn
+                    style="width:600px; height:400px;"
+                    :name="WTableDyn.name"
+                    :description="WTableDyn.description"
+                    :opt="WTableDyn.opt1"
+                    @success="evSuccess"
+                    @error="evError"
+                >
+                    <template v-slot:btns-right="props">
                         <select style="padding:0px 10px; background:rgba(255,255,255,0.1); color:#666; font-size:0.7rem; border:1px solid rgba(0,0,0,0.3); border-radius:30px; outline:none;">
                             <option style="color:#666; font-size:0.7rem;" value="0">Select Item</option>
                             <option style="color:#666; font-size:0.7rem;" value="1">Quisquam</option>
@@ -481,7 +508,7 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-table-dyn'"
-                    :casename="'editable & slot btns'"
+                    :casename="'editable & slot btns-right'"
                 ></demolink>
 
                 <w-table-dyn
@@ -493,7 +520,7 @@
                     @success="evSuccess"
                     @error="evError"
                 >
-                    <template v-slot:btns="props">
+                    <template v-slot:btns-right="props">
                         <select style="padding:0px 10px; background:rgba(255,255,255,0.1); color:#666; font-size:0.7rem; border:1px solid rgba(0,0,0,0.3); border-radius:30px; outline:none;">
                             <option style="color:#666; font-size:0.7rem;" value="0">Select Item</option>
                             <option style="color:#666; font-size:0.7rem;" value="1">Quisquam</option>

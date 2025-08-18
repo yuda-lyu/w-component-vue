@@ -78,7 +78,7 @@
     ></script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.4.25/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.4.26/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -163,18 +163,17 @@
             >w-table-dyn</span>
         </div>
         <div class="bk">
-            <div class="item">editable &amp; slot btns</div>
+            <div class="item">slot btns-left</div>
 
             <w-table-dyn
                 style="width:600px; height:400px;"
                 :name="WTableDyn.name"
                 :description="WTableDyn.description"
                 :opt="WTableDyn.opt1"
-                :editable="true"
                 @success="evSuccess"
                 @error="evError"
             >
-                <template v-slot:btns="props">
+                <template v-slot:btns-left="props">
                     <select
                         style="padding:0px 10px; background:rgba(255,255,255,0.1); color:#666; font-size:0.7rem; border:1px solid rgba(0,0,0,0.3); border-radius:30px; outline:none;"
                     >

@@ -50,6 +50,11 @@
                     >
                         <div style="display:flex; align-items:center;">
 
+                            <slot
+                                name="btns-left"
+                                :editable="editable"
+                            ></slot>
+
                             <WButtonCircle
                                 style="margin:5px;"
                                 :icon="mdiTextBoxPlusOutline"
@@ -136,7 +141,7 @@
                             </WPopup>
 
                             <slot
-                                name="btns"
+                                name="btns-right"
                                 :editable="editable"
                             ></slot>
 
@@ -155,6 +160,11 @@
                             v-if="enableMenu"
                         >
                             <div style="display:flex; align-items:center;">
+
+                                <slot
+                                    name="btns-left"
+                                    :editable="editable"
+                                ></slot>
 
                                 <WButtonCircle
                                     style="margin:5px;"
@@ -177,7 +187,7 @@
                                 ></WButtonCircle>
 
                                 <slot
-                                    name="btns"
+                                    name="btns-right"
                                     :editable="editable"
                                 ></slot>
 
