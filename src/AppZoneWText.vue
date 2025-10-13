@@ -105,6 +105,80 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-text'"
+                    :casename="'type (isnum)'"
+                ></demolink>
+
+                <w-text
+                    :leftIcon="mdiCheckUnderlineCircle"
+                    :type="'isnum'"
+                    v-model="WText.num"
+                ></w-text>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-text'"
+                    :casename="'type (isint)'"
+                ></demolink>
+
+                <w-text
+                    :leftIcon="mdiCheckUnderlineCircle"
+                    :type="'isint'"
+                    v-model="WText.int"
+                ></w-text>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-text'"
+                    :casename="'type (custom,0≤v≤5)'"
+                ></demolink>
+
+                <w-text
+                    :leftIcon="mdiCheckUnderlineCircle"
+                    :type="'custom'"
+                    :funVerify="(v)=>{
+                        let min = 0
+                        let max = 5
+                        if (!(!isNaN(parseFloat(v)) && isFinite(v))) {
+                            return {
+                                err: true,
+                                errmsg: `${v} is not a number`,
+                                value: min,
+                            }
+                        }
+                        if (v > max) {
+                            return {
+                                err: true,
+                                errmsg: `>${max}`,
+                                value: max,
+                            }
+                        }
+                        else if (v < min) {
+                            return {
+                                err: true,
+                                errmsg: `<${min}`,
+                                value: min,
+                            }
+                        }
+                        else {
+                            return {
+                                err: false,
+                                errmsg: '',
+                                value: v,
+                            }
+                        }
+                    }"
+                    v-model="WText.custom"
+                ></w-text>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-text'"
                     :casename="'bottomLineBorderColor & bottomLineBorderColorHover & bottomLineBorderColorFocus'"
                 ></demolink>
 
@@ -519,7 +593,114 @@
                     :backgroundColorHover="'rgba(237, 247, 255, 1)'"
                     :backgroundColorFocus="'blue lighten-5'"
                     :placeholder="'請輸入數據'"
-                    v-model="WText.text"
+                    v-model="WText.emptytext"
+                ></w-text>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-text'"
+                    :casename="'border & type (isnum)'"
+                ></demolink>
+
+                <w-text
+                    :shadow="false"
+                    :bottomLineBorderColor="'transparent'"
+                    :bottomLineBorderColorHover="'transparent'"
+                    :bottomLineBorderColorFocus="'transparent'"
+                    :paddingStyle="{h:15}"
+                    :iconShiftOuter="-10"
+                    :borderColor="'blue lighten-2'"
+                    :borderColorHover="'blue'"
+                    :borderColorFocus="'blue darken-2'"
+                    :backgroundColor="'white'"
+                    :backgroundColorHover="'rgba(237, 247, 255, 1)'"
+                    :backgroundColorFocus="'blue lighten-5'"
+                    :type="'isnum'"
+                    v-model="WText.num"
+                ></w-text>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-text'"
+                    :casename="'border & type (isint)'"
+                ></demolink>
+
+                <w-text
+                    :shadow="false"
+                    :bottomLineBorderColor="'transparent'"
+                    :bottomLineBorderColorHover="'transparent'"
+                    :bottomLineBorderColorFocus="'transparent'"
+                    :paddingStyle="{h:15}"
+                    :iconShiftOuter="-10"
+                    :borderColor="'blue lighten-2'"
+                    :borderColorHover="'blue'"
+                    :borderColorFocus="'blue darken-2'"
+                    :backgroundColor="'white'"
+                    :backgroundColorHover="'rgba(237, 247, 255, 1)'"
+                    :backgroundColorFocus="'blue lighten-5'"
+                    :type="'isint'"
+                    v-model="WText.int"
+                ></w-text>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-text'"
+                    :casename="'border & type (custom,0≤v≤5)'"
+                ></demolink>
+
+                <w-text
+                    :shadow="false"
+                    :bottomLineBorderColor="'transparent'"
+                    :bottomLineBorderColorHover="'transparent'"
+                    :bottomLineBorderColorFocus="'transparent'"
+                    :paddingStyle="{h:15}"
+                    :iconShiftOuter="-10"
+                    :borderColor="'blue lighten-2'"
+                    :borderColorHover="'blue'"
+                    :borderColorFocus="'blue darken-2'"
+                    :backgroundColor="'white'"
+                    :backgroundColorHover="'rgba(237, 247, 255, 1)'"
+                    :backgroundColorFocus="'blue lighten-5'"
+                    :type="'custom'"
+                    :funVerify="(v)=>{
+                        let min = 0
+                        let max = 5
+                        if (!(!isNaN(parseFloat(v)) && isFinite(v))) {
+                            return {
+                                err: true,
+                                errmsg: `${v} is not a number`,
+                                value: min,
+                            }
+                        }
+                        if (v > max) {
+                            return {
+                                err: true,
+                                errmsg: `>${max}`,
+                                value: max,
+                            }
+                        }
+                        else if (v < min) {
+                            return {
+                                err: true,
+                                errmsg: `<${min}`,
+                                value: min,
+                            }
+                        }
+                        else {
+                            return {
+                                err: false,
+                                errmsg: '',
+                                value: v,
+                            }
+                        }
+                    }"
+                    v-model="WText.custom"
                 ></w-text>
             </div>
 
@@ -796,7 +977,10 @@ export default {
             mdiChatProcessingOutline,
             'WText': {
                 'text': 'aBc數字123',
-                'emptytext': ''
+                'emptytext': '',
+                'num': 123.45,
+                'int': 15,
+                'custom': 3,
             },
             'actions': [
                 {

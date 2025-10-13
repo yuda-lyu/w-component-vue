@@ -27,7 +27,8 @@ import convertColor from '../js/convertColor.mjs'
 
 
 /**
- * @vue-prop {String|Function} [type='any'] 輸入文字框類型字串，預設'any'
+ * @vue-prop {String} [type='any'] 輸入文字框類型字串，可選'any'、'isnum'、'isint'等詳見verifyValue函數，預設'any'
+ * @vue-prop {Function} [funVerify=null] 輸入客製化校驗數值函數，回傳物件須包含鍵value為校驗後正確值、鍵err代表是否有錯誤布林值、鍵errmsg代表有錯誤時之錯誤訊息字串，預設null
  * @vue-prop {String|Number} [value=''] 輸入文字框值字串或數字，預設''
  * @vue-prop {String} [textFontSize='1rem'] 輸入文字大小字串，預設'1rem'
  * @vue-prop {String} [textColor='black'] 輸入文字顏色字串，預設'black'
@@ -41,8 +42,12 @@ import convertColor from '../js/convertColor.mjs'
 export default {
     props: {
         type: {
-            type: [String, Function],
+            type: String,
             default: 'any',
+        },
+        funVerify: {
+            type: Function,
+            default: null,
         },
         value: {
             type: [String, Number],
@@ -187,7 +192,7 @@ export default {
             let vo = this
 
             //verifyValue, 因為input觸發是得到新輸入的字串(ev.data), 故要完整檢核得拿v-model變更後vo.valueTrans
-            let r = verifyValue(vo.valueTrans, vo.type)
+            let r = verifyValue(vo.valueTrans, vo.type, { funCustom: vo.funVerify })
 
             //save
             vo.valueTrans = r.value

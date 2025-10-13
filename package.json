@@ -1,17 +1,17 @@
 {
   "name": "w-component-vue",
-  "version": "2.4.27",
+  "version": "2.4.28",
   "main": "dist/w-component-vue.umd.js",
   "dependencies": {
     "@mdi/js": "^7.4.47",
     "lodash-es": "^4.17.21",
-    "wsemi": "^1.8.21"
+    "wsemi": "^1.8.23"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^5.0.8",
     "@vue/cli-plugin-eslint": "^5.0.8",
     "@vue/cli-service": "^5.0.8",
-    "cheerio": "^1.0.0",
+    "cheerio": "^1.1.2",
     "eslint": "^8.37.0",
     "eslint-config-standard": "^17.0.0",
     "eslint-friendly-formatter": "^4.0.1",
