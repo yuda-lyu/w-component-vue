@@ -78,7 +78,7 @@
     ></script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.4.27/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.4.28/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -179,7 +179,7 @@
                 :background-color-hover="'rgba(237, 247, 255, 1)'"
                 :background-color-focus="'blue lighten-5'"
                 :placeholder="'請輸入數據'"
-                v-model="WText.text"
+                v-model="WText.emptytext"
             ></w-text>
         </div>
     </v-app>
@@ -196,7 +196,10 @@
       return {
         WText: {
           text: "aBc數字123",
-          emptytext: ""
+          emptytext: "",
+          num: 123.45,
+          int: 15,
+          custom: 3
         },
         actions: [
           {
