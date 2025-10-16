@@ -14,7 +14,7 @@
                     :casename="'default'"
                 ></demolink>
 
-                <div style="display:inline-block; padding:40px; background:#bbb;">
+                <div style="display:inline-block; padding:40px; background:#bababa;">
                     <w-panel-avatar
                         :subHeaderText="WPanelAvatar.subTitle"
                         :headerText="WPanelAvatar.title"
@@ -32,7 +32,7 @@
                     :casename="'avatarIcon (material)'"
                 ></demolink>
 
-                <div style="display:inline-block; padding:40px; background:#bbb;">
+                <div style="display:inline-block; padding:40px; background:#bababa;">
                     <w-panel-avatar
                         :subHeaderText="WPanelAvatar.subTitle"
                         :headerText="WPanelAvatar.title"
@@ -51,7 +51,7 @@
                     :casename="'avatarIcon (fontawesome)'"
                 ></demolink>
 
-                <div style="display:inline-block; padding:40px; background:#bbb;">
+                <div style="display:inline-block; padding:40px; background:#bababa;">
                     <w-panel-avatar
                         :subHeaderText="WPanelAvatar.subTitle"
                         :headerText="WPanelAvatar.title"
@@ -70,7 +70,7 @@
                     :casename="'avatarOuterPadding & avatarInnerPadding'"
                 ></demolink>
 
-                <div style="display:inline-block; padding:40px; background:#bbb;">
+                <div style="display:inline-block; padding:40px; background:#bababa;">
                     <w-panel-avatar
                         :subHeaderText="WPanelAvatar.subTitle"
                         :headerText="WPanelAvatar.title"
@@ -90,7 +90,7 @@
                     :casename="'avatarBackgroundColor'"
                 ></demolink>
 
-                <div style="display:inline-block; padding:40px; background:#bbb;">
+                <div style="display:inline-block; padding:40px; background:#bababa;">
                     <w-panel-avatar
                         :subHeaderText="WPanelAvatar.subTitle"
                         :headerText="WPanelAvatar.title"
@@ -109,7 +109,7 @@
                     :casename="'avatarBorderWidth & avatarBorderColor & avatarBackgroundColor'"
                 ></demolink>
 
-                <div style="display:inline-block; padding:40px; background:#bbb;">
+                <div style="display:inline-block; padding:40px; background:#bababa;">
                     <w-panel-avatar
                         :subHeaderText="WPanelAvatar.subTitle"
                         :headerText="WPanelAvatar.title"
@@ -130,7 +130,7 @@
                     :casename="'avatarBorderRadius'"
                 ></demolink>
 
-                <div style="display:inline-block; padding:40px; background:#bbb;">
+                <div style="display:inline-block; padding:40px; background:#bababa;">
                     <w-panel-avatar
                         :subHeaderText="WPanelAvatar.subTitle"
                         :headerText="WPanelAvatar.title"
@@ -149,7 +149,7 @@
                     :casename="'avatarIcon & avatarIconSize & avatarIconColor & avatarBackgroundColor'"
                 ></demolink>
 
-                <div style="display:inline-block; padding:40px; background:#bbb;">
+                <div style="display:inline-block; padding:40px; background:#bababa;">
                     <w-panel-avatar
                         :subHeaderText="WPanelAvatar.subTitle"
                         :headerText="WPanelAvatar.title"
@@ -171,7 +171,7 @@
                     :casename="'no avatarShadow'"
                 ></demolink>
 
-                <div style="display:inline-block; padding:40px; background:#bbb;">
+                <div style="display:inline-block; padding:40px; background:#bababa;">
                     <w-panel-avatar
                         :subHeaderText="WPanelAvatar.subTitle"
                         :headerText="WPanelAvatar.title"
@@ -190,7 +190,7 @@
                     :casename="'shiftVFromAvaterCenter'"
                 ></demolink>
 
-                <div style="display:inline-block; padding:40px; background:#bbb;">
+                <div style="display:inline-block; padding:40px; background:#bababa;">
                     <w-panel-avatar
                         :subHeaderText="WPanelAvatar.subTitle"
                         :headerText="WPanelAvatar.title"
@@ -209,7 +209,7 @@
                     :casename="'spaceHBetweenAvatarAndHeader & spaceVBetweenHeaderAndContent'"
                 ></demolink>
 
-                <div style="display:inline-block; padding:40px; background:#bbb;">
+                <div style="display:inline-block; padding:40px; background:#bababa;">
                     <w-panel-avatar
                         :subHeaderText="WPanelAvatar.subTitle"
                         :headerText="WPanelAvatar.title"
@@ -232,7 +232,7 @@
                     :casename="'headerVerticalAlign & spaceVBetweenHeaderAndContent'"
                 ></demolink>
 
-                <div style="display:inline-block; padding:0px 40px; background:#bbb;">
+                <div style="display:inline-block; padding:0px 40px; background:#bababa;">
 
                     <div style="padding:40px 0px;">
                         <w-panel-avatar
@@ -305,7 +305,7 @@
                     :casename="'headerPadding & headerTextColor & headerTextSize & subHeaderTextColor & subHeaderTextSize'"
                 ></demolink>
 
-                <div style="display:inline-block; padding:40px; background:#bbb;">
+                <div style="display:inline-block; padding:40px; background:#bababa;">
                     <w-panel-avatar
                         :subHeaderText="'Capture and storage'"
                         :headerText="'358,912'"
@@ -328,7 +328,7 @@
                     :casename="'contentBorderRadius'"
                 ></demolink>
 
-                <div style="display:inline-block; padding:40px; background:#bbb;">
+                <div style="display:inline-block; padding:40px; background:#bababa;">
                     <w-panel-avatar
                         :subHeaderText="WPanelAvatar.subTitle"
                         :headerText="WPanelAvatar.title"
@@ -347,7 +347,7 @@
                     :casename="'sepLineWidth & sepLineColor'"
                 ></demolink>
 
-                <div style="display:inline-block; padding:40px; background:#bbb;">
+                <div style="display:inline-block; padding:40px; background:#bababa;">
                     <w-panel-avatar
                         :subHeaderText="WPanelAvatar.subTitle"
                         :headerText="WPanelAvatar.title"
@@ -369,7 +369,7 @@
                     :casename="'contentBackgroundColor'"
                 ></demolink>
 
-                <div style="display:inline-block; padding:40px; background:#bbb;">
+                <div style="display:inline-block; padding:40px; background:#bababa;">
                     <w-panel-avatar
                         :subHeaderText="WPanelAvatar.subTitle"
                         :headerText="WPanelAvatar.title"
@@ -390,7 +390,7 @@
                     :casename="'contentShadow'"
                 ></demolink>
 
-                <div style="display:inline-block; padding:40px; background:#bbb;">
+                <div style="display:inline-block; padding:40px; background:#bababa;">
                     <w-panel-avatar
                         :subHeaderText="WPanelAvatar.subTitle"
                         :headerText="WPanelAvatar.title"
@@ -409,7 +409,7 @@
                     :casename="'slot avatar & avatarBackgroundColor'"
                 ></demolink>
 
-                <div style="display:inline-block; padding:40px; background:#bbb;">
+                <div style="display:inline-block; padding:40px; background:#bababa;">
                     <w-panel-avatar
                         :subHeaderText="WPanelAvatar.subTitle"
                         :headerText="WPanelAvatar.title"

@@ -946,19 +946,28 @@ export default {
 
             //newRow
             let newRow = arr2dt(vo.useKeys)
+            // console.log('newRow(ori)', newRow)
 
             //id
             newRow.id = genID()
+            // console.log('newRow(add id)', newRow)
 
             //beforeAddRow
             if (isfun(get(vo, 'opt.beforeAddRow'))) {
                 newRow = vo.opt.beforeAddRow(newRow)
+                // console.log('newRow(beforeAddRow)', newRow)
             }
 
             try {
 
+                //cloneDeep, 記憶體須脫勾
+                let rows = cloneDeep(vo.useOpt.rows)
+
                 //push
-                vo.useOpt.rows.push(newRow)
+                rows.push(newRow)
+
+                //save
+                vo.useOpt.rows = rows //儲存新rows才有辦法觸發ag-grid展示變更
 
                 //nextTick, 變更數據後頁面會先渲染, nextTick後才能調捲軸, 否則太快執行會被頁面渲染蓋掉
                 vo.$nextTick(() => {

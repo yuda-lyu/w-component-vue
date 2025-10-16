@@ -208,7 +208,7 @@
                     :keyColor="'#f6a'"
                     :keyNumbersColor="'#f26'"
                     :numColor="'#00f'"
-                    :strColor="'#bbb'"
+                    :strColor="'#bababa'"
                     :bolColor="'#c5f'"
                     :funColor="'#fa6'"
                 ></w-json-view>

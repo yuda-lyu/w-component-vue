@@ -41,7 +41,7 @@ export default {
                 'https://cdn.jsdelivr.net/npm/highcharts@11.4.8/modules/boost.js',
                 'https://cdn.jsdelivr.net/npm/highcharts@11.4.8/modules/boost-canvas.js',
 
-                // 'https://cdn.jsdelivr.net/npm/w-highcharts@1.0.2/dist/w-highcharts.umd.js', //bbb
+                // 'https://cdn.jsdelivr.net/npm/w-highcharts@1.0.2/dist/w-highcharts.umd.js',
                 'base:w-highcharts',
 
             ],

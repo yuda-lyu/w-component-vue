@@ -78,7 +78,7 @@
                     :casename="'with grey outer'"
                 ></demolink>
 
-                <div style="display:inline-block; padding:40px; background:#bbb;">
+                <div style="display:inline-block; padding:40px; background:#bababa;">
                     <w-panel-bulge
                         style="min-width:500px;"
                         :headerText="WPanelBulge.title"
