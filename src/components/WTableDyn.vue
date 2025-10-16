@@ -240,7 +240,6 @@ import each from 'lodash-es/each.js'
 import keys from 'lodash-es/keys.js'
 import sortBy from 'lodash-es/sortBy.js'
 import pull from 'lodash-es/pull.js'
-import pullAt from 'lodash-es/pullAt.js'
 import size from 'lodash-es/size.js'
 import every from 'lodash-es/every.js'
 import trim from 'lodash-es/trim.js'
@@ -254,6 +253,7 @@ import isbol from 'wsemi/src/isbol.mjs'
 import isobj from 'wsemi/src/isobj.mjs'
 import iseobj from 'wsemi/src/iseobj.mjs'
 import arr2dt from 'wsemi/src/arr2dt.mjs'
+import arrPullAt from 'wsemi/src/arrPullAt.mjs'
 import ltdtmapping from 'wsemi/src/ltdtmapping.mjs'
 import genID from 'wsemi/src/genID.mjs'
 import WButtonCircle from './WButtonCircle.vue'
@@ -868,7 +868,7 @@ export default {
                 defCellEditable: vo.editable,
                 kpHead: vo.useKpHead,
                 rowChecked: function(rs) {
-                    //console.log('rowChecked rs', rs)
+                    // console.log('rowChecked rs', rs)
 
                     //save
                     vo.rowsSelect = rs
@@ -892,6 +892,15 @@ export default {
                     }
 
                 },
+                // rowsChange: function(rs) { //暫時不需要額外處理rowsChange
+                //     // console.log('rowsChange', rs)
+
+                //     //call
+                //     if (isfun(get(vo.opt, 'filterChange'))) {
+                //         vo.opt.rowsChange(rs)
+                //     }
+
+                // },
             }
 
             //hideIds
@@ -1017,8 +1026,8 @@ export default {
                 return
             }
 
-            //pullAt
-            pullAt(rows, inds)
+            //arrPullAt, 內部記憶體已脫勾
+            rows = arrPullAt(rows, inds)
 
             //save
             try {
@@ -1148,9 +1157,6 @@ export default {
             fun(optForUploadData)
                 .then((rows) => {
                     // console.log('upload then', rows)
-
-                    // //save, w-aggrid-vue會自動更新vo.useOpt.rows, 需用cloneDeep斷開與外面記憶體共用問題
-                    // vo.useOpt.rows=rows
 
                     //check
                     if (size(rows) === 0) {
