@@ -1,7 +1,8 @@
 <template>
     <div
         :style="`display:inline-block; width:${useWidth}px; height:${useHeight}px; overflow:hidden; vertical-align:top;`"
-        :changeParams="changeParams"
+        :changeUrl="changeUrl"
+        :changeSize="changeSize"
     >
 
         <WIconLoading v-if="!showed || !loaded"></WIconLoading>
@@ -126,16 +127,21 @@ export default {
     },
     computed: {
 
-        changeParams: function() {
+        changeUrl: function() {
             let vo = this
 
             //reset
-            vo.showed = false
             vo.loaded = false
             vo.numRetry = 0
 
             //url
             vo.useUrl = vo.url
+
+            return ''
+        },
+
+        changeSize: function() {
+            let vo = this
 
             //width, height, ratio
             let width = vo.width
