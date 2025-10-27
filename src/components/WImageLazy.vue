@@ -8,9 +8,10 @@
 
         <img
             :style="`width:${useWidth}px; height:${useHeight}px; opacity:${loaded?1:0};`"
-            :src="url"
-            @load="load"
-            v-if="showed"
+            :src="useUrl"
+            @load="onLoad"
+            @error="onError"
+            v-if="useUrl && showed"
         >
 
     </div>
@@ -55,6 +56,10 @@ export default {
             type: Number,
             default: 300,
         },
+        numRetryMax: {
+            type: Number,
+            default: 3,
+        },
     },
     data: function() {
         return {
@@ -66,6 +71,11 @@ export default {
 
             useWidth: 0,
             useHeight: 0,
+            useUrl: '',
+
+            numRetry: 0,
+
+            t: null,
 
         }
     },
@@ -103,6 +113,8 @@ export default {
     beforeDestroy: function() {
         let vo = this
 
+        clearTimeout(vo.t)
+
         try {
 
             //dispose
@@ -116,6 +128,14 @@ export default {
 
         changeParams: function() {
             let vo = this
+
+            //reset
+            vo.showed = false
+            vo.loaded = false
+            vo.numRetry = 0
+
+            //url
+            vo.useUrl = vo.url
 
             //width, height, ratio
             let width = vo.width
@@ -155,13 +175,41 @@ export default {
     },
     methods: {
 
-        load: function(ev) {
-            // console.log('methods load', ev)
+        onLoad: function(ev) {
+            // console.log('methods onLoad', ev)
 
             let vo = this
 
+            //reset
+            vo.numRetry = 0
+
             //loaded
             vo.loaded = true
+
+        },
+
+        onError: function(ev) {
+            // console.log('methods onError', ev)
+
+            let vo = this
+
+            //reset
+            vo.loaded = false
+
+            //check
+            if (vo.numRetry >= vo.numRetryMax) {
+                console.log(`url[${vo.url}] can not load`)
+                return
+            }
+
+            //reset
+            vo.useUrl = ''
+            clearTimeout(vo.t)
+            vo.t = setTimeout(() => {
+                vo.numRetry++
+                vo.useUrl = vo.url
+                console.log(`url[${vo.url}] reload, numRetry[${vo.numRetry}]`)
+            }, 1000)
 
         },
 
