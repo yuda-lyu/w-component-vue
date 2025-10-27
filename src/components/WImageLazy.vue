@@ -207,8 +207,8 @@ export default {
             clearTimeout(vo.t)
             vo.t = setTimeout(() => {
                 vo.numRetry++
+                console.log(`url[${vo.url}] reload n=${vo.numRetry}...`)
                 vo.useUrl = vo.url
-                console.log(`url[${vo.url}] reload, numRetry[${vo.numRetry}]`)
             }, 1000)
 
         },
