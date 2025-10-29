@@ -18,6 +18,7 @@ To view some examples for more understanding, visit examples:
 > **all components:** [web](//yuda-lyu.github.io/w-component-vue/examples/app.html) [[source code](https://github.com/yuda-lyu/w-component-vue/blob/master/docs/examples/app.html)]
 
 ## Installation
+
 ### Using npm(ES6 module):
 ```alias
 npm i w-component-vue
@@ -59,28 +60,29 @@ export default {
 ```
 
 ### In a browser(UMD module):
-[Optional] Add script with nomodule for IE11.
-```alias
-<script nomodule src="https://cdn.jsdelivr.net/npm/@babel/polyfill/dist/polyfill.min.js"></script>
-```
-[Necessary] Add script for vue.
+
+Add script for vue.
 ```alias
 <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.min.js"></script>
 ```
+
 [Optional] Add link for icon.
 ```alias
 <link href="https://cdn.jsdelivr.net/npm/@mdi/font@7.2.96/css/materialdesignicons.min.css" rel="stylesheet">
 <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.2/css/all.min.css" rel="stylesheet">
 ```
-[Necessary] Add script and link for vuetify.
+
+ Add script and link for vuetify.
 ```alias
 <link href="https://cdn.jsdelivr.net/npm/vuetify@2.6.14/dist/vuetify.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/vuetify@2.6.14/dist/vuetify.min.js"></script>
 ```
-[Necessary] Add script for w-component-vue.
+
+Add script for w-component-vue.
 ```alias
 <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.4.32/dist/w-component-vue.umd.js"></script>
 ```
+
 Directly use:
 ```alias
 //app and component
