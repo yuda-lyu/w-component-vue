@@ -25,6 +25,7 @@
                             :height="180"
                             _ratio="16/9"
                             :url="url"
+                            @click="ckImg"
                         ></w-image-lazy>
                     </div>
 
@@ -52,6 +53,7 @@
                             _ratio="16/9"
                             :url="url"
                             :delay="1000"
+                            @click="ckImg"
                         ></w-image-lazy>
                     </div>
 
@@ -103,6 +105,11 @@ export default {
             'actions': [
             ],
         }
+    },
+    methods: {
+        ckImg: function(msg) {
+            console.log('ckImg', msg)
+        },
     },
 }
 </script>

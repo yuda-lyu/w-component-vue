@@ -12,6 +12,7 @@
             :src="useUrl"
             @load="onLoad"
             @error="onError"
+            @click="ckImg"
             v-if="useUrl && showed"
         >
 
@@ -217,6 +218,18 @@ export default {
                 console.log(`url[${vo.url}] reload n=${vo.numRetry}...`)
                 vo.useUrl = vo.url
             }, 2000)
+
+        },
+
+        ckImg: function(ev) {
+            // console.log('methods ckImg', ev)
+
+            let vo = this
+
+            //emit
+            let url = vo.url
+            let ele = ev.target
+            vo.$emit('click', { url, ele })
 
         },
 
