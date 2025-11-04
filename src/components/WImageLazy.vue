@@ -31,6 +31,7 @@ import WIconLoading from './WIconLoading.vue'
  * @vue-prop {Number} [ratio=null] 輸入圖片比例(寬度/高度)浮點數，寬度、高度與比例(寬度/高度)3個須至少提供2個，若都提供則優先使用寬度與高度。預設null
  * @vue-prop {String} [url=''] 輸入圖片網址字串，預設''
  * @vue-prop {Number} [delay=300] 輸入延時載入正整數，單位為ms，預設300
+ * @vue-prop {Number} [numRetryMax=10] 輸入失敗重試正整數，預設10
  */
 export default {
     components: {
@@ -59,7 +60,7 @@ export default {
         },
         numRetryMax: {
             type: Number,
-            default: 3,
+            default: 10,
         },
     },
     data: function() {
@@ -215,7 +216,7 @@ export default {
                 vo.numRetry++
                 console.log(`url[${vo.url}] reload n=${vo.numRetry}...`)
                 vo.useUrl = vo.url
-            }, 1000)
+            }, 2000)
 
         },
 
