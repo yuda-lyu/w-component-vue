@@ -78,7 +78,7 @@
     ></script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.4.33/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.4.34/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -178,6 +178,7 @@
                         _ratio="16/9"
                         :url="url"
                         :delay="1000"
+                        @click="ckImg"
                     ></w-image-lazy>
                 </div>
             </div>
@@ -220,7 +221,11 @@
       return {};
     },
     computed: {},
-    methods: {}
+    methods: {
+      ckImg: function(msg) {
+        console.log("ckImg", msg);
+      }
+    }
   });
     </script>
 </body>
