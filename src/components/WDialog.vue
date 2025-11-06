@@ -10,10 +10,12 @@
             ref="divShield"
             :style="`
                 position:fixed; left:0px; top:0px;
-                width:calc( 100svw + ${nativeBarWidth}px ); height:100svh; overflow-x:hidden; overflow-y:scroll;
+                width:calc( 100svw + ${nativeBarWidth}px ); height:100svh;
+                overflow:clip;
                 z-index:${useDialogZIndex};
                 overscroll-behavior:none;
                 user-select:none;
+                touch-action:none;
             `"
             v-if="showTrans"
         >
@@ -39,8 +41,8 @@
                     @click="clickOutside"
                 >
 
-                    <!-- 因toolbar陰影要顯示到content上, content給予background會遮蔽陰影, 故改由視窗本體提供content的background -->
-                    <!-- 因使用user-select:none屏蔽快速點擊, 故得於divPanel處恢復user-select:text提供選擇文字功能 -->
+                    <!-- 因toolbar陰影要顯示到content上, content給予background會遮蔽陰影, 須改由視窗本體提供content的background -->
+                    <!-- 因使用user-select:none屏蔽快速點擊, 得於divPanel處恢復user-select:text提供選擇文字功能 -->
                     <div
                         ref="divPanel"
                         :style="`
