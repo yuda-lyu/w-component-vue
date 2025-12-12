@@ -72,6 +72,21 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-tree'"
+                    :casename="'itemRippleColor'"
+                ></demolink>
+
+                <w-tree
+                    style="width:350px; border:1px solid #ddd;"
+                    :data="WTree.option.items"
+                    :itemRippleColor="'rgba(245,124,0,0.4)'"
+                ></w-tree>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-tree'"
                     :casename="'viewHeightMax'"
                 ></demolink>
 
@@ -102,13 +117,28 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-tree'"
-                    :casename="'itemRippleColor'"
+                    :casename="'paddingStyle'"
                 ></demolink>
 
                 <w-tree
                     style="width:350px; border:1px solid #ddd;"
                     :data="WTree.option.items"
-                    :itemRippleColor="'rgba(245,124,0,0.4)'"
+                    :paddingStyle="{v:5,h:5}"
+                ></w-tree>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-tree'"
+                    :casename="'indent'"
+                ></demolink>
+
+                <w-tree
+                    style="width:350px; border:1px solid #ddd;"
+                    :data="WTree.option.items"
+                    :indent="0.5"
                 ></w-tree>
 
             </div>
@@ -325,6 +355,40 @@
                     :itemBackgroundColorHover="'rgba(187, 119, 34, 0.6)'"
                     :itemBackgroundColorActive="'rgba(187, 119, 34, 0.8)'"
                     @click="clickActive"
+                ></w-tree>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-tree'"
+                    :casename="'iconToggleColor & iconToggleBackgroundColor & iconToggleBackgroundColorHover'"
+                ></demolink>
+
+                <w-tree
+                    style="width:350px; border:1px solid #ddd;"
+                    :data="WTree.option.items"
+                    :iconToggleColor="'#d39a70'"
+                    :iconToggleBackgroundColor="'rgba(211,154,112,0.1)'"
+                    :iconToggleBackgroundColorHover="'rgba(211,154,112,0.3)'"
+                ></w-tree>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-tree'"
+                    :casename="'keyPrimary & keyText & keyChildren'"
+                ></demolink>
+
+                <w-tree
+                    style="width:350px; border:1px solid #ddd;"
+                    :data="WTree.optionKeys.items"
+                    :keyPrimary="'sid'"
+                    :keyText="'name'"
+                    :keyChildren="'packages'"
                 ></w-tree>
 
             </div>
@@ -789,70 +853,6 @@
                     @click-operate-item="clickOperateItem"
                     @update:data="changeData"
                     @change-item="changeItem"
-                ></w-tree>
-
-            </div>
-
-
-            <div class="bk">
-                <demolink
-                    :kbname="'w-tree'"
-                    :casename="'paddingStyle'"
-                ></demolink>
-
-                <w-tree
-                    style="width:350px; border:1px solid #ddd;"
-                    :data="WTree.option.items"
-                    :paddingStyle="{v:5,h:5}"
-                ></w-tree>
-
-            </div>
-
-
-            <div class="bk">
-                <demolink
-                    :kbname="'w-tree'"
-                    :casename="'indent'"
-                ></demolink>
-
-                <w-tree
-                    style="width:350px; border:1px solid #ddd;"
-                    :data="WTree.option.items"
-                    :indent="0.5"
-                ></w-tree>
-
-            </div>
-
-
-            <div class="bk">
-                <demolink
-                    :kbname="'w-tree'"
-                    :casename="'iconToggleColor & iconToggleBackgroundColor & iconToggleBackgroundColorHover'"
-                ></demolink>
-
-                <w-tree
-                    style="width:350px; border:1px solid #ddd;"
-                    :data="WTree.option.items"
-                    :iconToggleColor="'#d39a70'"
-                    :iconToggleBackgroundColor="'rgba(211,154,112,0.1)'"
-                    :iconToggleBackgroundColorHover="'rgba(211,154,112,0.3)'"
-                ></w-tree>
-
-            </div>
-
-
-            <div class="bk">
-                <demolink
-                    :kbname="'w-tree'"
-                    :casename="'keyPrimary & keyText & keyChildren'"
-                ></demolink>
-
-                <w-tree
-                    style="width:350px; border:1px solid #ddd;"
-                    :data="WTree.optionKeys.items"
-                    :keyPrimary="'sid'"
-                    :keyText="'name'"
-                    :keyChildren="'packages'"
                 ></w-tree>
 
             </div>

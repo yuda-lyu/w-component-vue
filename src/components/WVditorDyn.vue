@@ -222,6 +222,8 @@ export default {
             default: () => [
                 'https://cdn.jsdelivr.net/npm/vditor@3.10.5/dist/index.css',
                 'https://cdn.jsdelivr.net/npm/vditor@3.10.5/dist/index.min.js',
+                // 'https://cdn.jsdelivr.net/npm/vditor@3.11.2/dist/index.css',
+                // 'https://cdn.jsdelivr.net/npm/vditor@3.11.2/dist/index.min.js', //此版有問題, 待之後新版更新
             ],
         },
         value: {
@@ -623,8 +625,6 @@ export default {
             let vo = this
             let divTrigger = null
             try {
-                // let eles = vo.$el.querySelectorAll('[class="vditor-hint"]')
-                // divTrigger = eles[0]
                 divTrigger = vo.$el.querySelector('[class="vditor-hint"]')
             }
             catch (err) {}

@@ -80,7 +80,7 @@ Add script for vue.
 
 Add script for w-component-vue.
 ```alias
-<script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.4.36/dist/w-component-vue.umd.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.4.37/dist/w-component-vue.umd.js"></script>
 ```
 
 Directly use:

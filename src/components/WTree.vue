@@ -922,7 +922,7 @@ export default {
             //     return id
             // })(),
 
-            viewHeightMaxTrans: 2, //預設給予>=2最小內容區高度, 使能觸發顯示渲染連動機制
+            viewHeightMaxTrans: 400, //預設給予viewHeightMax, 實際上可以更小, 但有可能隨chrome更新無法觸發顯示與渲染
 
             separation: 3,
             defIconSize: 24,
