@@ -10,7 +10,7 @@
 
                 <div :style="`display:flex; align-items:center; justify-content:center;`" v-if="mode==='unchecked'">
                     <span style="display:flex;">
-                        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" :fill="useUncheckedColor" width="24px" height="24px" viewBox="0 -1 24 23">
+                        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" :fill="useUncheckedColor" width="24px" height="24px" viewBox="0 0 24 24">
                             <path d="M19,3H5C3.89,3 3,3.89 3,5V19C3,20.1 3.9,21 5,21H19C20.1,21 21,20.1 21,19V5C21,3.89 20.1,3 19,3M19,5V19H5V5H19Z"></path>
                         </svg>
                     </span>
@@ -18,7 +18,7 @@
 
                 <div :style="`display:flex; align-items:center; justify-content:center;`" v-if="mode==='checked'">
                     <span style="display:flex;">
-                        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" :fill="useCheckedColor" width="24px" height="24px" viewBox="0 -1 24 23">
+                        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" :fill="useCheckedColor" width="24px" height="24px" viewBox="0 0 24 24">
                             <path d="M10,17L5,12L6.41,10.58L10,14.17L17.59,6.58L19,8M19,3H5C3.89,3 3,3.89 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5C21,3.89 20.1,3 19,3Z"></path>
                         </svg>
                     </span>
@@ -26,7 +26,7 @@
 
                 <div :style="`display:flex; align-items:center; justify-content:center;`" v-if="mode==='checkedPartially'">
                     <span style="display:flex;">
-                        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" :fill="useCheckedPartiallyColor" width="24px" height="24px" viewBox="0 -1 24 23">
+                        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" :fill="useCheckedPartiallyColor" width="24px" height="24px" viewBox="0 0 24 24">
                             <path d="M17,13H7V11H17M19,3H5C3.89,3 3,3.89 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5C21,3.89 20.1,3 19,3Z"></path>
                         </svg>
                     </span>

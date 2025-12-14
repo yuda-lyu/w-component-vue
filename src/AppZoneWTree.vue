@@ -1015,12 +1015,12 @@
 
                                     <div style="display:flex; align-items:center; padding-right:5px;" v-if="props.data.icon">
                                         <w-icon
-                                    style="margin-right:10px;"
-                                    :icon="props.data.icon"
-                                    :color="'deep-orange'"
-                                    :colorHover="'deep-orange darken-1'"
-                                    :size="20"
-                                ></w-icon>
+                                            style="margin-right:10px;"
+                                            :icon="props.data.icon"
+                                            :color="'deep-orange'"
+                                            :colorHover="'deep-orange darken-1'"
+                                            :size="20"
+                                        ></w-icon>
                                     </div>
 
                                     <div style="padding:5px 0px;">
@@ -1083,12 +1083,12 @@
 
                                     <div style="display:flex; align-items:center; padding-right:5px;" v-if="props.data.icon">
                                         <w-icon
-                                    style="margin-right:10px;"
-                                    :icon="props.data.icon"
-                                    :color="'deep-orange'"
-                                    :colorHover="'deep-orange darken-1'"
-                                    :size="20"
-                                ></w-icon>
+                                            style="margin-right:10px;"
+                                            :icon="props.data.icon"
+                                            :color="'deep-orange'"
+                                            :colorHover="'deep-orange darken-1'"
+                                            :size="20"
+                                        ></w-icon>
                                     </div>
 
                                     <div style="">
@@ -1187,12 +1187,12 @@
 
                                     <div style="display:flex; align-items:center; padding-right:5px;" v-if="props.data.icon">
                                         <w-icon
-                                    style="margin-right:10px;"
-                                    :icon="props.data.icon"
-                                    :color="'deep-orange'"
-                                    :colorHover="'deep-orange darken-1'"
-                                    :size="20"
-                                ></w-icon>
+                                            style="margin-right:10px;"
+                                            :icon="props.data.icon"
+                                            :color="'deep-orange'"
+                                            :colorHover="'deep-orange darken-1'"
+                                            :size="20"
+                                        ></w-icon>
                                     </div>
 
                                     <div style="padding:5px 0px;">
@@ -1263,12 +1263,12 @@
 
                                     <div style="display:flex; align-items:center; padding-right:5px;" v-if="props.data.icon">
                                         <w-icon
-                                    style="margin-right:10px;"
-                                    :icon="props.data.icon"
-                                    :color="'deep-orange'"
-                                    :colorHover="'deep-orange darken-1'"
-                                    :size="20"
-                                ></w-icon>
+                                            style="margin-right:10px;"
+                                            :icon="props.data.icon"
+                                            :color="'deep-orange'"
+                                            :colorHover="'deep-orange darken-1'"
+                                            :size="20"
+                                        ></w-icon>
                                     </div>
 
                                     <div style="padding:5px 0px;">
@@ -1330,12 +1330,12 @@
 
                                     <div style="display:flex; align-items:center; padding-right:5px;" v-if="props.data.icon">
                                         <w-icon
-                                    style="margin-right:10px;"
-                                    :icon="props.data.icon"
-                                    :color="'deep-orange'"
-                                    :colorHover="'deep-orange darken-1'"
-                                    :size="20"
-                                ></w-icon>
+                                            style="margin-right:10px;"
+                                            :icon="props.data.icon"
+                                            :color="'deep-orange'"
+                                            :colorHover="'deep-orange darken-1'"
+                                            :size="20"
+                                        ></w-icon>
                                     </div>
 
                                     <div style="padding:5px 0px;">
@@ -1403,12 +1403,12 @@
 
                                     <div style="display:flex; align-items:center; padding-right:5px;" v-if="props.data.icon">
                                         <w-icon
-                                    style="margin-right:10px;"
-                                    :icon="props.data.icon"
-                                    :color="'deep-orange'"
-                                    :colorHover="'deep-orange darken-1'"
-                                    :size="20"
-                                ></w-icon>
+                                            style="margin-right:10px;"
+                                            :icon="props.data.icon"
+                                            :color="'deep-orange'"
+                                            :colorHover="'deep-orange darken-1'"
+                                            :size="20"
+                                        ></w-icon>
                                     </div>
 
                                     <div style="padding:5px 0px;">
