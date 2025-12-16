@@ -1070,8 +1070,8 @@ export default {
             //save
             vo.filterKeywordsTrans = vo.filterKeywords
 
-            //filterKeyWordsDebounce
-            vo.filterKeyWordsDebounce()
+            //filterByKeywordsDebounce
+            vo.filterByKeywordsDebounce()
 
             return ''
         },
@@ -1364,7 +1364,7 @@ export default {
 
                 //filterKeywordsTransTemp
                 vo.filterKeywordsTransTemp = '' //需清空之前暫存關鍵字才能重新搜尋
-                vo.filterKeyWords()
+                vo.filterByKeywords()
 
             }
 
@@ -2610,20 +2610,23 @@ export default {
 
         },
 
-        filterKeyWordsCore: async function(items) {
-            // console.log('methods filterKeyWordsCore', items)
+        filterItemsCore: async function(items, funFilterForce) {
+            // console.log('methods filterItemsCore', items, funFilterForce)
 
             let vo = this
 
+            //bFunFilterForce
+            let bFunFilterForce = isfun(funFilterForce)
+
             //check useDraggableOrOperatable
-            if (vo.useDraggableOrOperatable) {
+            if (!bFunFilterForce && vo.useDraggableOrOperatable) {
                 // console.log('禁止過濾')
-                return Promise.resolve()
+                return
             }
 
             //check filterKeywordsTransTemp
-            if (vo.filterKeywordsTransTemp === vo.filterKeywordsTrans) {
-                return Promise.resolve()
+            if (!bFunFilterForce && vo.filterKeywordsTransTemp === vo.filterKeywordsTrans) {
+                return
             }
 
             //filterKeywordsTransTemp
@@ -2633,7 +2636,7 @@ export default {
             let searchingResults = 0 //儲存全部關鍵字是否有找到至少一個項目
 
             //check
-            if (size(vo.filterKeywordsTrans) === 0) {
+            if (!bFunFilterForce && size(vo.filterKeywordsTrans) === 0) {
 
                 //預設可見
                 for (let i = 0; i < items.length; i++) {
@@ -2656,8 +2659,20 @@ export default {
                     //預設不可見
                     let b = false
 
-                    //filter
-                    if (isfun(vo.funFilter)) {
+                    if (bFunFilterForce) {
+                        //使用強制函數過濾器
+
+                        //funFilterForce
+                        b = funFilterForce(items[i].row.item)
+
+                        //check
+                        if (ispm(b)) {
+                            b = await b
+                        }
+
+                    }
+                    else if (isfun(vo.funFilter)) {
+                        //使用函數過濾器
 
                         //funFilter
                         b = vo.funFilter(items[i].row.item, kws)
@@ -2669,6 +2684,7 @@ export default {
 
                     }
                     else {
+                        //使用內建關鍵字過濾器
 
                         //預設取得項目文字供關鍵字過濾
                         let c = vo.getText(items[i].row.item)
@@ -2733,8 +2749,8 @@ export default {
             return searchingResults
         },
 
-        filterKeyWords: function() {
-            // console.log('methods filterKeyWords')
+        filterItems: function(cb) {
+            // console.log('methods filterItems', cb)
 
             let vo = this
 
@@ -2758,8 +2774,8 @@ export default {
                 let opt = {
                     fun: async function(items) {
 
-                        //filterKeyWordsCore
-                        searchingResults = await vo.filterKeyWordsCore(items)
+                        //filterItemsCore
+                        searchingResults = await vo.filterItemsCore(items, cb)
 
                     }
                 }
@@ -2790,16 +2806,36 @@ export default {
 
         },
 
-        filterKeyWordsDebounce: function() {
-            //console.log('methods filterKeyWordsDebounce')
+        filterByFun: function(cb) {
+            // console.log('methods filterByFun')
+
+            let vo = this
+
+            //filterItems
+            vo.filterItems(cb)
+
+        },
+
+        filterByKeywords: function() {
+            // console.log('methods filterByKeywords')
+
+            let vo = this
+
+            //filterItems
+            vo.filterItems()
+
+        },
+
+        filterByKeywordsDebounce: function() {
+            //console.log('methods filterByKeywordsDebounce')
 
             let vo = this
 
             //dbc
             vo.dbc(() => {
 
-                //filterKeyWords
-                vo.filterKeyWords()
+                //filterByKeywords
+                vo.filterByKeywords()
 
             })
 

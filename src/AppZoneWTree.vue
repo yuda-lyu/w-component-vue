@@ -281,6 +281,27 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-tree'"
+                    :casename="'filterByFun'"
+                ></demolink>
+
+                <div>
+                    <v-btn style="margin:0px 5px 5px 0px;" small @click="filterByFun('all')">display all</v-btn>
+                    <v-btn style="margin:0px 5px 5px 0px;" small @click="filterByFun('abr')">filter by abr in text</v-btn>
+                    <v-btn style="margin:0px 5px 5px 0px;" small @click="filterByFun('id=15')">filter by id=15</v-btn>
+                </div>
+
+                <w-tree
+                    ref="ref_filterByFun"
+                    style="width:350px; border:1px solid #ddd;"
+                    :data="WTree.option.items"
+                ></w-tree>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-tree'"
                     :casename="'itemTextColor & itemTextColorHover & itemBackgroundColor & itemBackgroundColorHover'"
                 ></demolink>
 
@@ -1542,6 +1563,7 @@ export default {
                 'viewHeightMaxSync': 400,
                 'option': {
                     keywords: 'abr care att',
+                    // selections: [],
                     selections: [
                         { 'id': 5 },
                         { 'id': 9 },
@@ -1894,6 +1916,22 @@ export default {
             ],
         }
     },
+    mounted: function() {
+        let vo = this
+
+        // setTimeout(() => {
+
+        //     vo.WTree.option.selections = [
+        //         { 'id': 5 },
+        //         { 'id': 9 },
+        //         { 'id': 18 },
+        //     ]
+        //     console.log('vo.WTree.option.items', vo.WTree.option.items)
+        //     console.log('vo.WTree.option.selections', vo.WTree.option.selections)
+
+        // }, 2000)
+
+    },
     methods: {
         showSelection: function(selections) {
             let ss = {}
@@ -2001,12 +2039,14 @@ export default {
         },
         funFilter: function(item, kws) {
             console.log('funFilter', item, kws)
+
             let c = item.text.toLowerCase()
             let b = false
             for (let i = 0; i < kws.length; i++) {
                 let kw = kws[i]
                 b = b || c.indexOf(kw) >= 0
             }
+
             return b
         },
         toggleItemsByFun: function(ind, toUnfolding) {
@@ -2015,13 +2055,14 @@ export default {
             let vo = this
 
             //toggleItemsByFun
-            vo.$refs.ref_toggleItemsByFun.toggleItemsByFun((rows) => {
-                console.log('toggleItemsByFun rows', rows)
+            let cb = (rows) => {
+                console.log('toggleItemsByFun cb rows', rows)
                 return {
                     row: rows[ind],
                     toUnfolding,
                 }
-            })
+            }
+            vo.$refs.ref_toggleItemsByFun.toggleItemsByFun(cb)
 
         },
         toggleItemsAll: function(toUnfolding, toLevel) {
@@ -2031,6 +2072,29 @@ export default {
 
             //toggleItemsAll
             vo.$refs.ref_toggleItemsAll.toggleItemsAll(toUnfolding, toLevel)
+
+        },
+        filterByFun: function(mode) {
+            console.log('filterByFun', mode)
+
+            let vo = this
+
+            //filterByFun
+            let cb = async(item) => {
+                console.log('filterByFun cb item', item)
+                if (mode === 'all') {
+                    return true
+                }
+                else if (mode.indexOf('id=') >= 0) {
+                    let id = mode.replace('id=', '')
+                    id = parseInt(id)
+                    return item.id === id
+                }
+                else {
+                    return item.text.indexOf(mode) >= 0
+                }
+            }
+            vo.$refs.ref_filterByFun.filterByFun(cb)
 
         },
     },
