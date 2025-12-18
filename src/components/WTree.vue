@@ -303,6 +303,7 @@ import genID from 'wsemi/src/genID.mjs'
 import genPm from 'wsemi/src/genPm.mjs'
 import sep from 'wsemi/src/sep.mjs'
 import isarr from 'wsemi/src/isarr.mjs'
+import isp0int from 'wsemi/src/isp0int.mjs'
 import isobj from 'wsemi/src/isobj.mjs'
 import iseobj from 'wsemi/src/iseobj.mjs'
 import isfun from 'wsemi/src/isfun.mjs'
@@ -1626,7 +1627,7 @@ export default {
                             let ind = kpInd[pk]
 
                             //check
-                            if (ind) {
+                            if (isp0int(ind)) {
 
                                 //checked
                                 let checked = items[ind].row.checked
@@ -2370,7 +2371,7 @@ export default {
 
                     //modify checked
                     for (let i = ind + 1; i < items.length; i++) {
-                    //點擊節點後之各子節點
+                        //點擊節點後之各子節點
 
                         //levelNow
                         let levelNow = get(items, `${i}.row.item.level`, null)
