@@ -33,21 +33,21 @@
 
         </div>
 
-        <div style="padding:12px; font-size:0.8rem;" v-if="!disableLoadingText && lockFromSetRows">
+        <div :style="`${useStatePadding} font-size:0.8rem;`" v-if="!disableLoadingText && lockFromSetRows">
             {{loadingText}}
         </div>
 
         <template v-else>
 
             <!-- 因暫時還沒刷新需顯示項目(useItems.length=0), 又確定已有搜尋結果searchingResults>0, 才顯示searchingText -->
-            <div style="padding:12px; font-size:0.8rem;" v-if="useItems.length===0 && searchingResults>0">
+            <div :style="`${useStatePadding} font-size:0.8rem;`" v-if="useItems.length===0 && searchingResults>0">
                 {{searchingText}}
             </div>
 
             <template v-else>
 
                 <!-- 已確定無搜尋結果searchingResults=0, 才顯示noResultsText -->
-                <div style="padding:12px; font-size:0.8rem;" v-if="searchingResults===0 && noResultsText!==''">
+                <div :style="`${useStatePadding} font-size:0.8rem;`" v-if="searchingResults===0 && noResultsText!==''">
                     {{noResultsText}}
                 </div>
 
@@ -94,6 +94,7 @@ import pmThrottle from 'wsemi/src/pmThrottle.mjs'
 import binarySearch from '../js/binarySearch.mjs'
 import globalMemory from '../js/globalMemory.mjs'
 // import convertColor from '../js/convertColor.mjs'
+import parseSpace from '../js/parseSpace.mjs'
 import WPanelScrollyCore from './WPanelScrollyCore.vue'
 
 
@@ -110,6 +111,7 @@ let gm = globalMemory()
  * @vue-prop {String} [loadingText='Loading...'] 輸入載入中字串，預設'Loading...'
  * @vue-prop {String} [noResultsText='No results'] 輸入無過濾結果字串，預設'No results'
  * @vue-prop {String} [searchingText='Searching...'] 輸入搜索中字串，預設'Searching...'
+ * @vue-prop {Object} [statePaddingStyle={v:12,h:12}] 輸入狀態區內寬距離設定物件，可用鍵值為v、h、left、right、top、bottom，v代表同時設定top與bottom，h代表設定left與right，若有重複設定時後面鍵值會覆蓋前面，各鍵值為寬度數字，單位為px，預設{v:12,h:12}
  * @vue-prop {Boolean} [show=true] 輸入是否為顯示模式布林值，預設true，供組件嵌入popup時, 因先初始化但尚未顯示不需渲染, 可給予show=false避免無限偵測與重算高度問題
  */
 export default {
@@ -148,6 +150,15 @@ export default {
         searchingText: {
             type: String,
             default: 'Searching...',
+        },
+        statePaddingStyle: {
+            type: Object,
+            default: () => {
+                return {
+                    v: 12,
+                    h: 12,
+                }
+            },
         },
         show: {
             type: Boolean,
@@ -261,6 +272,20 @@ export default {
             vo.filterDebounce()
 
             return ft
+        },
+
+        useStatePadding: function() {
+            //console.log('computed useStatePadding')
+
+            let vo = this
+
+            //parseSpace
+            let cs = parseSpace(vo.statePaddingStyle, { ext: {} })
+
+            //padding
+            let padding = `padding:${cs};`
+
+            return padding
         },
 
     },

@@ -150,7 +150,7 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-dynamic-list'"
-                    :casename="'filterKeywords & noResultsText'"
+                    :casename="'filterKeywords & statePaddingStyle & noResultsText'"
                 ></demolink>
 
                 <div style="margin-bottom:10px;">
@@ -165,6 +165,7 @@
                     style="width:400px; border:1px solid #ddd;"
                     :filterKeywords="WDynamicList.keywords"
                     :noResultsText="'There are no items to show...'"
+                    :statePaddingStyle="{v:10,h:10}"
                     :rows="WDynamicList.data1"
                 >
                     <template v-slot="props">

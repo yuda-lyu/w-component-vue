@@ -233,7 +233,7 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-tree'"
-                    :casename="'filterKeywords & noResultsText'"
+                    :casename="'filterKeywords & statePaddingStyle & noResultsText'"
                 ></demolink>
 
                 <div style="margin-bottom:10px;">
@@ -249,6 +249,7 @@
                     :data="WTree.option.items"
                     :filterKeywords="WTree.option.keywords"
                     :noResultsText="'There are no items to show...'"
+                    :statePaddingStyle="{v:10,h:10}"
                 ></w-tree>
 
             </div>

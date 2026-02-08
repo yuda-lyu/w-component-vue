@@ -125,7 +125,7 @@ export default {
             let vo = this
 
             //parseSpace
-            let cs = parseSpace(vo.paddingStyle, { ext: { left: vo.shiftLeft, right: vo.shiftRight } })
+            let cs = parseSpace(vo.paddingStyle, { ext: {} })
 
             //padding
             let padding = `padding:${cs};`

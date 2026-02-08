@@ -17,6 +17,7 @@
             :loadingText="loadingText"
             :noResultsText="noResultsText"
             :searchingText="searchingText"
+            :statePaddingStyle="statePaddingStyle"
             :show="show"
             @render="(msg)=>{$emit('render',msg)}"
             @change-view-items="(msg)=>{updateOperateShow(false);$emit('change-view-items',msg)}"
@@ -370,6 +371,7 @@ let gm = globalMemory()
  * @vue-prop {String} [loadingText='Loading...'] 輸入載入中字串，預設'Loading...'
  * @vue-prop {String} [noResultsText='No results'] 輸入無過濾結果字串，預設'No results'
  * @vue-prop {String} [searchingText='Searching...'] 輸入搜索中字串，預設'Searching...'
+ * @vue-prop {Object} [statePaddingStyle={v:12,h:12}] 輸入狀態區內寬距離設定物件，可用鍵值為v、h、left、right、top、bottom，v代表同時設定top與bottom，h代表設定left與right，若有重複設定時後面鍵值會覆蓋前面，各鍵值為寬度數字，單位為px，預設{v:12,h:12}
  * @vue-prop {Number} [defItemHeight=34] 輸入按需顯示時各項目預設最小高度(min-height)值，給越準或給大部分項目的高度則渲染速度越快，單位為px，預設34
  * @vue-prop {Number} [itemsPreload=5] 輸入上下方預先載入元素數量，預設5
  * @vue-prop {String} [itemTextColor='#444'] 輸入文字顏色字串，預設'#444'
@@ -591,6 +593,15 @@ export default {
         searchingText: {
             type: String,
             default: 'Searching...',
+        },
+        statePaddingStyle: {
+            type: Object,
+            default: () => {
+                return {
+                    v: 12,
+                    h: 12,
+                }
+            },
         },
         defItemHeight: {
             type: Number,
