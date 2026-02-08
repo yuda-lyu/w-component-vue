@@ -78,7 +78,7 @@
     ></script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.4.42/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.4.43/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -163,7 +163,9 @@
             >w-tree</span>
         </div>
         <div class="bk">
-            <div class="item">filterKeywords &amp; noResultsText</div>
+            <div
+                class="item"
+            >filterKeywords &amp; statePaddingStyle &amp; noResultsText</div>
 
             <div style="margin-bottom:10px;">
                 <span style="padding-right:10px;">Search :</span>
@@ -178,6 +180,7 @@
                 :data="WTree.option.items"
                 :filter-keywords="WTree.option.keywords"
                 :no-results-text="'There are no items to show...'"
+                :state-padding-style="{v:10,h:10}"
             ></w-tree>
         </div>
     </v-app>
