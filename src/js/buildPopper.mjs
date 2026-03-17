@@ -59,6 +59,7 @@ function buildPopper(vo, funGetDivTrigger, funGetDivContent, keyShow, evNameValu
         clickContentInner: false,
         popperShow: false,
         popperInstance: null,
+        removeTriggerTimer: null,
     }
 
     let mounted = () => {
@@ -268,6 +269,12 @@ function buildPopper(vo, funGetDivTrigger, funGetDivContent, keyShow, evNameValu
             return
         }
 
+        //cancelRemoveTrigger, 若hidePopper的非同步removeTrigger尚未執行, 先取消以防止競態條件
+        if (_vo.removeTriggerTimer !== null) {
+            clearTimeout(_vo.removeTriggerTimer)
+            _vo.removeTriggerTimer = null
+        }
+
         //addTrigger, 採同步方式添加, popup顯示前就會mmkey就會進清單
         addTrigger()
 
@@ -339,7 +346,9 @@ function buildPopper(vo, funGetDivTrigger, funGetDivContent, keyShow, evNameValu
 
         //非同步移除用nextTick會太快, 得使用setTimeout
         //不管有沒有popperInstance都進行移除, 於開發階段避免熱更新問題
-        setTimeout(() => {
+        _vo.removeTriggerTimer = setTimeout(() => {
+
+            _vo.removeTriggerTimer = null
 
             //removeTrigger, 需採非同步移除, 避免window事件結束後, 此時會繼續觸發前面popup內的window事件, 若採同步移除就無法讓前面popup判斷是否需屏蔽
             removeTrigger()

@@ -46,7 +46,7 @@
 
                             <WText
                                 :style="`width:${inputTextWidth}px;`"
-                                :type="cki255"
+                                :funVerify="cki255"
                                 :shadow="false"
                                 :bottomLineBorderColor="'transparent'"
                                 :bottomLineBorderColorHover="'transparent'"
@@ -102,7 +102,7 @@
 
                             <WText
                                 :style="`width:${inputTextWidth}px;`"
-                                :type="cki255"
+                                :funVerify="cki255"
                                 :shadow="false"
                                 :bottomLineBorderColor="'transparent'"
                                 :bottomLineBorderColorHover="'transparent'"
@@ -158,7 +158,7 @@
 
                             <WText
                                 :style="`width:${inputTextWidth}px;`"
-                                :type="cki255"
+                                :funVerify="cki255"
                                 :shadow="false"
                                 :bottomLineBorderColor="'transparent'"
                                 :bottomLineBorderColorHover="'transparent'"
@@ -214,7 +214,7 @@
 
                             <WText
                                 :style="`width:${inputTextWidth}px;`"
-                                :type="ckd1"
+                                :funVerify="ckd1"
                                 :shadow="false"
                                 :bottomLineBorderColor="'transparent'"
                                 :bottomLineBorderColorHover="'transparent'"
@@ -275,7 +275,7 @@
 
                             <WText
                                 :style="`width:${inputTextWidth}px;`"
-                                :type="cki360"
+                                :funVerify="cki360"
                                 :shadow="false"
                                 :bottomLineBorderColor="'transparent'"
                                 :bottomLineBorderColorHover="'transparent'"
@@ -331,7 +331,7 @@
 
                             <WText
                                 :style="`width:${inputTextWidth}px;`"
-                                :type="ckd1"
+                                :funVerify="ckd1"
                                 :shadow="false"
                                 :bottomLineBorderColor="'transparent'"
                                 :bottomLineBorderColorHover="'transparent'"
@@ -387,7 +387,7 @@
 
                             <WText
                                 :style="`width:${inputTextWidth}px;`"
-                                :type="ckd1"
+                                :funVerify="ckd1"
                                 :shadow="false"
                                 :bottomLineBorderColor="'transparent'"
                                 :bottomLineBorderColorHover="'transparent'"
@@ -443,7 +443,7 @@
 
                             <WText
                                 :style="`width:${inputTextWidth}px;`"
-                                :type="ckd1"
+                                :funVerify="ckd1"
                                 :shadow="false"
                                 :bottomLineBorderColor="'transparent'"
                                 :bottomLineBorderColorHover="'transparent'"

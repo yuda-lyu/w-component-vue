@@ -100,27 +100,6 @@
 
                         </div>
 
-                        <div :style="`padding-left:${space}px;`"></div>
-
-                        <WButtonChip
-                            :text="btnText"
-                            :rippleColor="btnRippleColor"
-                            :paddingStyle="btnPaddingStyle"
-                            :textColor="btnTextColor"
-                            :textColorHover="btnTextColorHover"
-                            :textColorActive="btnTextColorActive"
-                            :textFontSize="btnTextFontSize"
-                            :borderRadius="btnBorderRadius"
-                            _borderColor="btnBorderColor"
-                            _borderColorHover="btnBorderColorHover"
-                            _borderColorActive="btnBorderColorActive"
-                            :backgroundColor="btnBackgroundColor"
-                            :backgroundColorHover="btnBackgroundColorHover"
-                            :backgroundColorActive="btnBackgroundColorActive"
-                            :shadow="btnShadow"
-                            @click="clickColor"
-                        ></WButtonChip>
-
                     </div>
 
                 </div>
@@ -192,6 +171,32 @@
                             :barSliderBackgroundColorHover="barSliderBackgroundColorHover"
                             v-model="valueNew"
                         ></WColorSelectInput>
+                    </div>
+
+                    <div :style="`height:${space}px;`"></div>
+
+                    <!-- 確認按鈕區 -->
+                    <div style="text-align:right;">
+
+                        <WButtonChip
+                            :text="btnText"
+                            :rippleColor="btnRippleColor"
+                            :paddingStyle="btnPaddingStyle"
+                            :textColor="btnTextColor"
+                            :textColorHover="btnTextColorHover"
+                            :textColorActive="btnTextColorActive"
+                            :textFontSize="btnTextFontSize"
+                            :borderRadius="btnBorderRadius"
+                            _borderColor="btnBorderColor"
+                            _borderColorHover="btnBorderColorHover"
+                            _borderColorActive="btnBorderColorActive"
+                            :backgroundColor="btnBackgroundColor"
+                            :backgroundColorHover="btnBackgroundColorHover"
+                            :backgroundColorActive="btnBackgroundColorActive"
+                            :shadow="btnShadow"
+                            @click="clickColor"
+                        ></WButtonChip>
+
                     </div>
 
                 </div>
@@ -269,7 +274,7 @@ import WIcon from './WIcon.vue'
  * @vue-prop {String} [barSliderBackgroundColor='#1565C0'] 輸入拖曳球背景顏色字串，預設'#1565C0'
  * @vue-prop {String} [barSliderBackgroundColorHover='#1976D2'] 輸入滑鼠移入時拖曳球背景顏色字串，預設'#1976D2'
  * @vue-prop {Number} [popupPlacementDist=5] 輸入彈窗距離觸發元素距離數字，單位為px，預設5
- * @vue-prop {String} [btnText='OK'] 輸入確認按鈕之文字字串，預設'OK'
+ * @vue-prop {String} [btnText='Confirm'] 輸入確認按鈕之文字字串，預設'Confirm'
  * @vue-prop {String} [btnRippleColor='rgba(255,255,255,0.4)'] 輸入確認按鈕之ripple效果顏色字串，預設'rgba(255,255,255,0.4)'
  * @vue-prop {Object} [btnPaddingStyle={v:1,h:5}] 輸入確認按鈕之內寬距離設定物件，可用鍵值為v、h、left、right、top、bottom，v代表同時設定top與bottom，h代表設定left與right，若有重複設定時後面鍵值會覆蓋前面，各鍵值為寬度數字，單位為px，預設{v:1,h:5}
  * @vue-prop {String} [btnTextColor='#000'] 輸入確認按鈕之文字顏色字串，預設'#000'
@@ -501,7 +506,7 @@ export default {
         },
         btnText: {
             type: String,
-            default: 'OK',
+            default: 'Confirm',
         },
         btnRippleColor: {
             type: String,
