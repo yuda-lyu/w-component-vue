@@ -539,7 +539,7 @@
                     :casename="'editable & checkId & opt.modifyDataWhenSave & save(call cmp. method) & errorMsgFromNoName & errorMsgFromNoData'"
                 ></demolink>
 
-                <v-btn depressed small elevation="2" @click="saveData">save data</v-btn>
+                <w-button-chip :text="'save data'" :borderRadius="4" @click="saveData"></w-button-chip>
 
                 <w-table-dyn
                     ref="table"
@@ -569,12 +569,14 @@
 <script>
 import demolink from './components/demolink.vue'
 import WTableDyn from './components/WTableDyn.vue'
+import WButtonChip from './components/WButtonChip.vue'
 
 
 export default {
     components: {
         demolink,
         WTableDyn,
+        WButtonChip,
     },
     props: {
     },

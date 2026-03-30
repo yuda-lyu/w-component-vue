@@ -20,15 +20,6 @@
 
     <!-- extractHtml已自動添加@babel/polyfill與vue -->
 
-    <!-- vuetify -->
-    <link
-        href="https://cdn.jsdelivr.net/npm/vuetify@2.6.14/dist/vuetify.min.css"
-        rel="stylesheet"
-    />
-    <script
-        src="https://cdn.jsdelivr.net/npm/vuetify@2.6.14/dist/vuetify.min.js"
-    ></script>
-
     <!-- fontawesome -->
     <link
         href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.2/css/all.min.css"
@@ -52,33 +43,27 @@
     />
 
     <!-- data -->
+    <script src="https://cdn.jsdelivr.net/npm/w-demores/res/data/dataAAPL.js"></script>
     <script
-        src="https://cdn.jsdelivr.net/npm/w-demores@1.0.27/res/data/dataAAPL.js"
+        src="https://cdn.jsdelivr.net/npm/w-demores/res/data/dataUSD2EUR.js"
     ></script>
     <script
-        src="https://cdn.jsdelivr.net/npm/w-demores@1.0.27/res/data/dataUSD2EUR.js"
+        src="https://cdn.jsdelivr.net/npm/w-demores/res/data/dataTemperature.js"
     ></script>
     <script
-        src="https://cdn.jsdelivr.net/npm/w-demores@1.0.27/res/data/dataTemperature.js"
+        src="https://cdn.jsdelivr.net/npm/w-demores/res/data/dataHousePriceArea.js"
+    ></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-demores/res/data/dataFlare.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-demores/res/data/dataRain.js"></script>
+    <script
+        src="https://cdn.jsdelivr.net/npm/w-demores/res/data/dataRainClip.js"
     ></script>
     <script
-        src="https://cdn.jsdelivr.net/npm/w-demores@1.0.27/res/data/dataHousePriceArea.js"
-    ></script>
-    <script
-        src="https://cdn.jsdelivr.net/npm/w-demores@1.0.27/res/data/dataFlare.js"
-    ></script>
-    <script
-        src="https://cdn.jsdelivr.net/npm/w-demores@1.0.27/res/data/dataRain.js"
-    ></script>
-    <script
-        src="https://cdn.jsdelivr.net/npm/w-demores@1.0.27/res/data/dataRainClip.js"
-    ></script>
-    <script
-        src="https://cdn.jsdelivr.net/npm/w-demores@1.0.27/res/data/dataCivilSoilCodeIcon.js"
+        src="https://cdn.jsdelivr.net/npm/w-demores/res/data/dataCivilSoilCodeIcon.js"
     ></script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.4.44/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.4.45/dist/w-component-vue.umd.js"></script>
 
     <style>
   .v-application--wrap {
@@ -180,11 +165,10 @@
                                 @hide="evHide"
                             >
                                 <template v-slot:trigger>
-                                    <v-btn
-                                        depressed
-                                        small
-                                        elevation="2"
-                                    >Show({{WTooltip.bShow16a}})</v-btn>
+                                    <w-button-chip
+                                        :text="'show('+WTooltip.bShow16a+')'"
+                                        :border-radius="4"
+                                    ></w-button-chip>
                                 </template>
 
                                 <template v-slot:content>
@@ -212,11 +196,10 @@
                                 @hide="evHide"
                             >
                                 <template v-slot:trigger>
-                                    <v-btn
-                                        depressed
-                                        small
-                                        elevation="2"
-                                    >Show({{WTooltip.bShow16b}})</v-btn>
+                                    <w-button-chip
+                                        :text="'show('+WTooltip.bShow16b+')'"
+                                        :border-radius="4"
+                                    ></w-button-chip>
                                 </template>
 
                                 <template v-slot:content>
@@ -244,11 +227,10 @@
                                 @hide="evHide"
                             >
                                 <template v-slot:trigger>
-                                    <v-btn
-                                        depressed
-                                        small
-                                        elevation="2"
-                                    >Show({{WTooltip.bShow16c}})</v-btn>
+                                    <w-button-chip
+                                        :text="'show('+WTooltip.bShow16c+')'"
+                                        :border-radius="4"
+                                    ></w-button-chip>
                                 </template>
 
                                 <template v-slot:content>
@@ -280,11 +262,10 @@
                                 @hide="evHide"
                             >
                                 <template v-slot:trigger>
-                                    <v-btn
-                                        depressed
-                                        small
-                                        elevation="2"
-                                    >Show({{WTooltip.bShow16d}})</v-btn>
+                                    <w-button-chip
+                                        :text="'show('+WTooltip.bShow16d+')'"
+                                        :border-radius="4"
+                                    ></w-button-chip>
                                 </template>
 
                                 <template v-slot:content>
@@ -312,11 +293,10 @@
                                 @hide="evHide"
                             >
                                 <template v-slot:trigger>
-                                    <v-btn
-                                        depressed
-                                        small
-                                        elevation="2"
-                                    >Show({{WTooltip.bShow16e}})</v-btn>
+                                    <w-button-chip
+                                        :text="'show('+WTooltip.bShow16e+')'"
+                                        :border-radius="4"
+                                    ></w-button-chip>
                                 </template>
 
                                 <template v-slot:content>
@@ -344,11 +324,10 @@
                                 @hide="evHide"
                             >
                                 <template v-slot:trigger>
-                                    <v-btn
-                                        depressed
-                                        small
-                                        elevation="2"
-                                    >Show({{WTooltip.bShow16f}})</v-btn>
+                                    <w-button-chip
+                                        :text="'show('+WTooltip.bShow16f+')'"
+                                        :border-radius="4"
+                                    ></w-button-chip>
                                 </template>
 
                                 <template v-slot:content>
@@ -378,11 +357,10 @@
                                 @hide="evHide"
                             >
                                 <template v-slot:trigger>
-                                    <v-btn
-                                        depressed
-                                        small
-                                        elevation="2"
-                                    >Show({{WTooltip.bShow16g}})</v-btn>
+                                    <w-button-chip
+                                        :text="'show('+WTooltip.bShow16g+')'"
+                                        :border-radius="4"
+                                    ></w-button-chip>
                                 </template>
 
                                 <template v-slot:content>
@@ -410,11 +388,10 @@
                                 @hide="evHide"
                             >
                                 <template v-slot:trigger>
-                                    <v-btn
-                                        depressed
-                                        small
-                                        elevation="2"
-                                    >Show({{WTooltip.bShow16h}})</v-btn>
+                                    <w-button-chip
+                                        :text="'show('+WTooltip.bShow16h+')'"
+                                        :border-radius="4"
+                                    ></w-button-chip>
                                 </template>
 
                                 <template v-slot:content>
@@ -442,11 +419,10 @@
                                 @hide="evHide"
                             >
                                 <template v-slot:trigger>
-                                    <v-btn
-                                        depressed
-                                        small
-                                        elevation="2"
-                                    >Show({{WTooltip.bShow16i}})</v-btn>
+                                    <w-button-chip
+                                        :text="'show('+WTooltip.bShow16i+')'"
+                                        :border-radius="4"
+                                    ></w-button-chip>
                                 </template>
 
                                 <template v-slot:content>
@@ -478,11 +454,10 @@
                                 @hide="evHide"
                             >
                                 <template v-slot:trigger>
-                                    <v-btn
-                                        depressed
-                                        small
-                                        elevation="2"
-                                    >Show({{WTooltip.bShow16j}})</v-btn>
+                                    <w-button-chip
+                                        :text="'show('+WTooltip.bShow16j+')'"
+                                        :border-radius="4"
+                                    ></w-button-chip>
                                 </template>
 
                                 <template v-slot:content>
@@ -510,11 +485,10 @@
                                 @hide="evHide"
                             >
                                 <template v-slot:trigger>
-                                    <v-btn
-                                        depressed
-                                        small
-                                        elevation="2"
-                                    >Show({{WTooltip.bShow16k}})</v-btn>
+                                    <w-button-chip
+                                        :text="'show('+WTooltip.bShow16k+')'"
+                                        :border-radius="4"
+                                    ></w-button-chip>
                                 </template>
 
                                 <template v-slot:content>
@@ -544,11 +518,10 @@
                                 @hide="evHide"
                             >
                                 <template v-slot:trigger>
-                                    <v-btn
-                                        depressed
-                                        small
-                                        elevation="2"
-                                    >Show({{WTooltip.bShow16l}})</v-btn>
+                                    <w-button-chip
+                                        :text="'show('+WTooltip.bShow16l+')'"
+                                        :border-radius="4"
+                                    ></w-button-chip>
                                 </template>
 
                                 <template v-slot:content>
@@ -579,7 +552,7 @@
   //initialize
   new Vue({
     el: "#app",
-    vuetify: new Vuetify(),
+
     data: function() {
       return {
         WTooltip: {
@@ -621,8 +594,8 @@
           bShow21b: false,
           bShow22: false,
           bShow23: false,
-          items: ["foo", "bar", "fizz", "buzz"],
-          itemsExpand: ["foo", "bar", "fizz", "buzz"],
+          items: ["Item foo", "Item bar", "Item fizz", "Item buzz"],
+          itemsExpand: ["Item foo", "Item bar", "Item fizz", "Item buzz"],
           text:
             "Lorem ipsum met consectetur adipisicing elit 中文測試 aquis praesentium cumque magnam odio iure quidem",
           textShort: "Lorem 中文測試",
@@ -663,7 +636,12 @@
           ];
         }, 1000);
         setTimeout(function() {
-          vo.WTooltip.itemsExpand = ["foo", "bar", "fizz", "buzz"];
+          vo.WTooltip.itemsExpand = [
+            "Item foo",
+            "Item bar",
+            "Item fizz",
+            "Item buzz"
+          ];
         }, 3000);
       }
     }

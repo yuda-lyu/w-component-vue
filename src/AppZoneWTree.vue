@@ -174,12 +174,12 @@
                 ></demolink>
 
                 <div>
-                    <v-btn style="margin:0px 5px 5px 0px;" small @click="toggleItemsByFun(0, true)">show(rows[0])</v-btn>
-                    <v-btn style="margin:0px 5px 5px 0px;" small @click="toggleItemsByFun(0, false)">hide(rows[0])</v-btn>
-                    <v-btn style="margin:0px 5px 5px 0px;" small @click="toggleItemsByFun(1, true)">show(rows[1])</v-btn>
-                    <v-btn style="margin:0px 5px 5px 0px;" small @click="toggleItemsByFun(1, false)">hide(rows[1])</v-btn>
-                    <v-btn style="margin:0px 5px 5px 0px;" small @click="toggleItemsByFun(2, true)">show(rows[2])</v-btn>
-                    <v-btn style="margin:0px 5px 5px 0px;" small @click="toggleItemsByFun(2, false)">hide(rows[2])</v-btn>
+                    <w-button-chip style="margin:0px 10px 5px 0px;" :text="'show(rows[0])'" :borderRadius="4" @click="toggleItemsByFun(0, true)"></w-button-chip>
+                    <w-button-chip style="margin:0px 10px 5px 0px;" :text="'hide(rows[0])'" :borderRadius="4" @click="toggleItemsByFun(0, false)"></w-button-chip>
+                    <w-button-chip style="margin:0px 10px 5px 0px;" :text="'show(rows[1])'" :borderRadius="4" @click="toggleItemsByFun(1, true)"></w-button-chip>
+                    <w-button-chip style="margin:0px 10px 5px 0px;" :text="'hide(rows[1])'" :borderRadius="4" @click="toggleItemsByFun(1, false)"></w-button-chip>
+                    <w-button-chip style="margin:0px 10px 5px 0px;" :text="'show(rows[2])'" :borderRadius="4" @click="toggleItemsByFun(2, true)"></w-button-chip>
+                    <w-button-chip style="margin:0px 10px 5px 0px;" :text="'hide(rows[2])'" :borderRadius="4" @click="toggleItemsByFun(2, false)"></w-button-chip>
                 </div>
 
                 <w-tree
@@ -199,10 +199,10 @@
                 ></demolink>
 
                 <div>
-                    <v-btn style="margin:0px 5px 5px 0px;" small @click="toggleItemsAll(true)">display all</v-btn>
-                    <v-btn style="margin:0px 5px 5px 0px;" small @click="toggleItemsAll(false)">hide all</v-btn>
-                    <v-btn style="margin:0px 5px 5px 0px;" small @click="toggleItemsAll(null,1)">display to level1</v-btn>
-                    <v-btn style="margin:0px 5px 5px 0px;" small @click="toggleItemsAll(null,2)">display to level2</v-btn>
+                    <w-button-chip style="margin:0px 10px 5px 0px;" :text="'display all'" :borderRadius="4" @click="toggleItemsAll(true)"></w-button-chip>
+                    <w-button-chip style="margin:0px 10px 5px 0px;" :text="'hide all'" :borderRadius="4" @click="toggleItemsAll(false)"></w-button-chip>
+                    <w-button-chip style="margin:0px 10px 5px 0px;" :text="'display to level1'" :borderRadius="4" @click="toggleItemsAll(null,1)"></w-button-chip>
+                    <w-button-chip style="margin:0px 10px 5px 0px;" :text="'display to level2'" :borderRadius="4" @click="toggleItemsAll(null,2)"></w-button-chip>
                 </div>
 
                 <w-tree
@@ -286,9 +286,9 @@
                 ></demolink>
 
                 <div>
-                    <v-btn style="margin:0px 5px 5px 0px;" small @click="filterByFun('all')">display all</v-btn>
-                    <v-btn style="margin:0px 5px 5px 0px;" small @click="filterByFun('abr')">filter by abr in text</v-btn>
-                    <v-btn style="margin:0px 5px 5px 0px;" small @click="filterByFun('id=15')">filter by id=15</v-btn>
+                    <w-button-chip style="margin:0px 10px 5px 0px;" :text="'display all'" :borderRadius="4" @click="filterByFun('all')"></w-button-chip>
+                    <w-button-chip style="margin:0px 10px 5px 0px;" :text="'filter by abr in text'" :borderRadius="4" @click="filterByFun('abr')"></w-button-chip>
+                    <w-button-chip style="margin:0px 10px 5px 0px;" :text="'filter by id=15'" :borderRadius="4" @click="filterByFun('id=15')"></w-button-chip>
                 </div>
 
                 <w-tree
@@ -985,7 +985,6 @@
                     :casename="'selectable'"
                 ></demolink>
 
-                <!-- 用:style才能支援IE11因vue會自動把overflow-x:auto轉為-ms-overflow-x:auto -->
                 <div :style="'overflow-x:auto;'">
 
                     <div style="display:table-cell; vertical-align:top;">
@@ -999,7 +998,6 @@
                     </div>
 
                     <div style="display:table-cell; vertical-align:top;">
-                        <!-- 用:style才能支援IE11因vue會自動把overflow-y:auto轉為-ms-overflow-y:auto -->
                         <div :style="'padding:10px 20px; height:402px; overflow-y:auto; border:1px solid #ddd; border-left-width:0px;'">
                             <div style="margin-bottom:5px;">selections: </div>
                             <pre style="font-size:0.7rem;">{{JSON.stringify(showSelection(WTree.option.selections),null,4)}}</pre>
@@ -1017,7 +1015,6 @@
                     :casename="'slot & selectable'"
                 ></demolink>
 
-                <!-- 用:style才能支援IE11因vue會自動把overflow-x:auto轉為-ms-overflow-x:auto -->
                 <div :style="'overflow-x:auto;'">
 
                     <div style="display:table-cell; vertical-align:top;">
@@ -1065,7 +1062,6 @@
                     </div>
 
                     <div style="display:table-cell; vertical-align:top;">
-                        <!-- 用:style才能支援IE11因vue會自動把overflow-y:auto轉為-ms-overflow-y:auto -->
                         <div :style="'padding:10px 20px; height:402px; overflow-y:auto; border:1px solid #ddd; border-left-width:0px;'">
                             <div style="margin-bottom:5px;">selections: </div>
                             <pre style="font-size:0.7rem;">{{JSON.stringify(showSelection(WTree.option.selections),null,4)}}</pre>
@@ -1083,7 +1079,6 @@
                     :casename="'slot & selectable & iconSize(20) & defItemHeight(24)'"
                 ></demolink>
 
-                <!-- 用:style才能支援IE11因vue會自動把overflow-x:auto轉為-ms-overflow-x:auto -->
                 <div :style="'overflow-x:auto;'">
 
                     <div style="display:table-cell; vertical-align:top;">
@@ -1133,7 +1128,6 @@
                     </div>
 
                     <div style="display:table-cell; vertical-align:top;">
-                        <!-- 用:style才能支援IE11因vue會自動把overflow-y:auto轉為-ms-overflow-y:auto -->
                         <div :style="'padding:10px 20px; height:402px; overflow-y:auto; border:1px solid #ddd; border-left-width:0px;'">
                             <div style="margin-bottom:5px;">selections: </div>
                             <pre style="font-size:0.7rem;">{{JSON.stringify(showSelection(WTree.option.selections),null,4)}}</pre>
@@ -1153,7 +1147,6 @@
 
                 <div style="margin-bottom:5px; color:#f26; font-size:0.8rem;">* Disable show and hide nodes when using draggable</div>
 
-                <!-- 用:style才能支援IE11因vue會自動把overflow-x:auto轉為-ms-overflow-x:auto -->
                 <div :style="'overflow-x:auto;'">
 
                     <div style="display:table-cell; vertical-align:top;">
@@ -1168,7 +1161,6 @@
                     </div>
 
                     <div style="display:table-cell; vertical-align:top;">
-                        <!-- 用:style才能支援IE11因vue會自動把overflow-y:auto轉為-ms-overflow-y:auto -->
                         <div :style="'padding:10px 20px; height:402px; overflow-y:auto; border:1px solid #ddd; border-left-width:0px;'">
                             <div style="margin-bottom:5px;">selections: </div>
                             <pre style="font-size:0.7rem;">{{JSON.stringify(showSelection(WTree.option.selections),null,4)}}</pre>
@@ -1188,7 +1180,6 @@
 
                 <div style="margin-bottom:5px; color:#f26; font-size:0.8rem;">* Disable show and hide nodes when using draggable</div>
 
-                <!-- 用:style才能支援IE11因vue會自動把overflow-x:auto轉為-ms-overflow-x:auto -->
                 <div :style="'overflow-x:auto;'">
 
                     <div style="display:table-cell; vertical-align:top;">
@@ -1237,7 +1228,6 @@
                     </div>
 
                     <div style="display:table-cell; vertical-align:top;">
-                        <!-- 用:style才能支援IE11因vue會自動把overflow-y:auto轉為-ms-overflow-y:auto -->
                         <div :style="'padding:10px 20px; height:402px; overflow-y:auto; border:1px solid #ddd; border-left-width:0px;'">
                             <div style="margin-bottom:5px;">selections: </div>
                             <pre style="font-size:0.7rem;">{{JSON.stringify(showSelection(WTree.option.selections),null,4)}}</pre>
@@ -1263,7 +1253,6 @@
                     />
                 </div>
 
-                <!-- 用:style才能支援IE11因vue會自動把overflow-x:auto轉為-ms-overflow-x:auto -->
                 <div :style="'overflow-x:auto;'">
 
                     <div style="display:table-cell; vertical-align:top;">
@@ -1313,7 +1302,6 @@
                     </div>
 
                     <div style="display:table-cell; vertical-align:top;">
-                        <!-- 用:style才能支援IE11因vue會自動把overflow-y:auto轉為-ms-overflow-y:auto -->
                         <div :style="'padding:10px 20px; height:402px; overflow-y:auto; border:1px solid #ddd; border-left-width:0px;'">
                             <div style="margin-bottom:5px;">selections: </div>
                             <pre style="font-size:0.7rem;">{{JSON.stringify(showSelection(WTree.option.selections),null,4)}}</pre>
@@ -1331,7 +1319,6 @@
                     :casename="'slot & locked & selectable'"
                 ></demolink>
 
-                <!-- 用:style才能支援IE11因vue會自動把overflow-x:auto轉為-ms-overflow-x:auto -->
                 <div :style="'overflow-x:auto;'">
 
                     <div style="display:table-cell; vertical-align:top;">
@@ -1380,7 +1367,6 @@
                     </div>
 
                     <div style="display:table-cell; vertical-align:top;">
-                        <!-- 用:style才能支援IE11因vue會自動把overflow-y:auto轉為-ms-overflow-y:auto -->
                         <div :style="'padding:10px 20px; height:402px; overflow-y:auto; border:1px solid #ddd; border-left-width:0px;'">
                             <div style="margin-bottom:5px;">selections: </div>
                             <pre style="font-size:0.7rem;">{{JSON.stringify(showSelection(WTree.optionLocked.selections),null,4)}}</pre>
@@ -1398,7 +1384,6 @@
                     :casename="'slot & iconUncheckedColor & iconUncheckedDisabledColor & iconCheckedColor & iconCheckedDisabledColor & iconCheckedPartiallyColor & iconCheckedPartiallyDisabledColor & locked & selectable'"
                 ></demolink>
 
-                <!-- 用:style才能支援IE11因vue會自動把overflow-x:auto轉為-ms-overflow-x:auto -->
                 <div :style="'overflow-x:auto;'">
 
                     <div style="display:table-cell; vertical-align:top;">
@@ -1453,7 +1438,6 @@
                     </div>
 
                     <div style="display:table-cell; vertical-align:top;">
-                        <!-- 用:style才能支援IE11因vue會自動把overflow-y:auto轉為-ms-overflow-y:auto -->
                         <div :style="'padding:10px 20px; height:402px; overflow-y:auto; border:1px solid #ddd; border-left-width:0px;'">
                             <div style="margin-bottom:5px;">selections: </div>
                             <pre style="font-size:0.7rem;">{{JSON.stringify(showSelection(WTree.optionLocked.selections),null,4)}}</pre>
@@ -1471,7 +1455,6 @@
                     :casename="'slot & selectable & large data (100,000 items)'"
                 ></demolink>
 
-                <!-- 用:style才能支援IE11因vue會自動把overflow-x:auto轉為-ms-overflow-x:auto -->
                 <div :style="'overflow-x:auto;'">
 
                     <div style="display:table-cell; vertical-align:top;">
@@ -1496,7 +1479,6 @@
                     </div>
 
                     <div style="display:table-cell; vertical-align:top;">
-                        <!-- 用:style才能支援IE11因vue會自動把overflow-y:auto轉為-ms-overflow-y:auto -->
                         <div :style="'padding:10px 20px; height:402px; overflow-y:auto; border:1px solid #ddd; border-left-width:0px;'">
                             <div style="margin-bottom:5px;">selections: </div>
                             <pre style="font-size:0.7rem;">{{JSON.stringify(showSelection(WTree.optionLarge.selections),null,4)}}</pre>
@@ -1520,28 +1502,7 @@ import demolink from './components/demolink.vue'
 import WTree from './components/WTree.vue'
 import WPopupEditText from './components/WPopupEditText.vue'
 import WIcon from './components/WIcon.vue'
-
-
-// let data = (function (n) {
-//     n /= 20
-//     let msg = 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis praesentium cumque magnam odio iure quidem, quod illum numquam possimus obcaecati commodi minima assumenda consectetur culpa fuga nulla ullam. In, libero.'
-//     let cItems = '{"id":"{n+1}","text":"Satisfied customers","avatar":"https://cdn.vuetifyjs.com/images/lists/1.jpg","children":[{"id":"{n+2}","text":"Good food","icon":"fas fa-utensils","children":[{"id":"{n+3}","text":"Quality ingredients","children":[{"id":"{n+4}","text":"Character","key":"Genus","msg":"{msg}"},{"id":"{n+5}","text":"Fabric","key":"Genus","msg":"{msg}"}]},{"id":"{n+6}","text":"Good recipe","key":"Family","msg":"{msg}"}]},{"id":"{n+7}","text":"Good service","icon":"fas fa-concierge-bell","children":[{"id":"{n+8}","text":"Prompt attention","key":"Order","msg":"{msg}"},{"id":"{n+9}","text":"Professional waiter","key":"Order","children":[{"id":"{n+10}","text":"Others customers","avatar":"https://cdn.vuetifyjs.com/images/lists/2.jpg","children":[{"id":"{n+11}","text":"Conformance to requirements","key":"Phylum"},{"id":"{n+12}","text":"Fitness for use","children":[{"id":"{n+13}","text":"Refers","key":"Expanded","msg":"{msg}"}]},{"id":"{n+14}","text":"Need to care","children":[{"id":"{n+15}","text":"Models","key":"Disables","msg":"{msg}"}]}]}]}]},{"id":"{n+16}","text":"Pleasant surroundings","icon":"fas fa-camera-retro","children":[{"id":"{n+17}","text":"Happy atmosphere","key":"Class","msg":"{msg}"},{"id":"{n+18}","text":"Good table presentation","key":"Class","msg":"{msg}"},{"id":"{n+19}","text":"Pleasing decor","key":"Class","msg":"{msg}"},{"id":"{n+20}","text":"Special experience","key":"Class","msg":"{msg}"}]}]}'
-//     function getOneObj(j) {
-//         let t = cItems
-//         t = t.replace(new RegExp('{msg}', 'g'), msg)
-//         for (let i = 1; i <= 20; i++) {
-//             t = t.replace(`{n+${i}}`, `${j + i}`)
-//         }
-//         return JSON.parse(t)
-//     }
-//     let rs = []
-//     for (let j = 0; j < n; j++) {
-//         let r = getOneObj(j * 20)
-//         rs.push(r)
-//     }
-//     return rs
-// })(100)
-// console.log(data)
+import WButtonChip from './components/WButtonChip.vue'
 
 
 export default {
@@ -1550,6 +1511,7 @@ export default {
         WTree,
         WPopupEditText,
         WIcon,
+        WButtonChip,
     },
     props: {
     },
@@ -1579,7 +1541,7 @@ export default {
                             id: 1,
                             text: 'Satisfied customers',
                             //  text: 'Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi',
-                            avatar: 'https://cdn.vuetifyjs.com/images/lists/1.jpg',
+                            avatar: 'https://cdn.jsdelivr.net/npm/w-demores/res/img/avatar/100.svg',
                             children: [
                                 {
                                     id: 2,
@@ -1661,7 +1623,7 @@ export default {
                         {
                             id: 14,
                             text: 'Others customers',
-                            avatar: 'https://cdn.vuetifyjs.com/images/lists/2.jpg',
+                            avatar: 'https://cdn.jsdelivr.net/npm/w-demores/res/img/avatar/101.svg',
                             children: [
                                 {
                                     id: 15,
@@ -1713,7 +1675,7 @@ export default {
                             packages: [
                                 {
                                     sid: 's6',
-                                    name: 'vuetify :',
+                                    name: 'coolstone :',
                                     packages: [
                                         {
                                             sid: 's7',
@@ -1781,7 +1743,7 @@ export default {
                         {
                             id: 1,
                             text: 'Satisfied customers',
-                            avatar: 'https://cdn.vuetifyjs.com/images/lists/1.jpg',
+                            avatar: 'https://cdn.jsdelivr.net/npm/w-demores/res/img/avatar/100.svg',
                             children: [
                                 {
                                     id: 2,
@@ -1865,7 +1827,7 @@ export default {
                         {
                             id: 14,
                             text: 'Others customers',
-                            avatar: 'https://cdn.vuetifyjs.com/images/lists/2.jpg',
+                            avatar: 'https://cdn.jsdelivr.net/npm/w-demores/res/img/avatar/101.svg',
                             children: [
                                 {
                                     id: 15,
@@ -1903,7 +1865,7 @@ export default {
                 'optionLarge': {
                     selections: [],
                     items: (function (n) {
-                        n /= 20; let msg = 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis praesentium cumque magnam odio iure quidem, quod illum numquam possimus obcaecati commodi minima assumenda consectetur culpa fuga nulla ullam. In, libero.'; let cItems = '{"id":"{n+1}","text":"Satisfied customers","avatar":"https://cdn.vuetifyjs.com/images/lists/1.jpg","children":[{"id":"{n+2}","text":"Good food","icon":"fas fa-utensils","children":[{"id":"{n+3}","text":"Quality ingredients","children":[{"id":"{n+4}","text":"Character","key":"Genus","msg":"{msg}"},{"id":"{n+5}","text":"Fabric","key":"Genus","msg":"{msg}"}]},{"id":"{n+6}","text":"Good recipe","key":"Family","msg":"{msg}"}]},{"id":"{n+7}","text":"Good service","icon":"fas fa-concierge-bell","children":[{"id":"{n+8}","text":"Prompt attention","key":"Order","msg":"{msg}"},{"id":"{n+9}","text":"Professional waiter","key":"Order","children":[{"id":"{n+10}","text":"Others customers","avatar":"https://cdn.vuetifyjs.com/images/lists/2.jpg","children":[{"id":"{n+11}","text":"Conformance to requirements","key":"Phylum"},{"id":"{n+12}","text":"Fitness for use","children":[{"id":"{n+13}","text":"Refers","key":"Expanded","msg":"{msg}"}]},{"id":"{n+14}","text":"Need to care","children":[{"id":"{n+15}","text":"Models","key":"Disables","msg":"{msg}"}]}]}]}]},{"id":"{n+16}","text":"Pleasant surroundings","icon":"fas fa-camera-retro","children":[{"id":"{n+17}","text":"Happy atmosphere","key":"Class","msg":"{msg}"},{"id":"{n+18}","text":"Good table presentation","key":"Class","msg":"{msg}"},{"id":"{n+19}","text":"Pleasing decor","key":"Class","msg":"{msg}"},{"id":"{n+20}","text":"Special experience","key":"Class","msg":"{msg}"}]}]}'; function getOneObj(j) {
+                        n /= 20; let msg = 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis praesentium cumque magnam odio iure quidem, quod illum numquam possimus obcaecati commodi minima assumenda consectetur culpa fuga nulla ullam. In, libero.'; let cItems = '{"id":"{n+1}","text":"Satisfied customers","avatar":"https://cdn.jsdelivr.net/npm/w-demores/res/img/avatar/100.svg","children":[{"id":"{n+2}","text":"Good food","icon":"fas fa-utensils","children":[{"id":"{n+3}","text":"Quality ingredients","children":[{"id":"{n+4}","text":"Character","key":"Genus","msg":"{msg}"},{"id":"{n+5}","text":"Fabric","key":"Genus","msg":"{msg}"}]},{"id":"{n+6}","text":"Good recipe","key":"Family","msg":"{msg}"}]},{"id":"{n+7}","text":"Good service","icon":"fas fa-concierge-bell","children":[{"id":"{n+8}","text":"Prompt attention","key":"Order","msg":"{msg}"},{"id":"{n+9}","text":"Professional waiter","key":"Order","children":[{"id":"{n+10}","text":"Others customers","avatar":"https://cdn.jsdelivr.net/npm/w-demores/res/img/avatar/101.svg","children":[{"id":"{n+11}","text":"Conformance to requirements","key":"Phylum"},{"id":"{n+12}","text":"Fitness for use","children":[{"id":"{n+13}","text":"Refers","key":"Expanded","msg":"{msg}"}]},{"id":"{n+14}","text":"Need to care","children":[{"id":"{n+15}","text":"Models","key":"Disables","msg":"{msg}"}]}]}]}]},{"id":"{n+16}","text":"Pleasant surroundings","icon":"fas fa-camera-retro","children":[{"id":"{n+17}","text":"Happy atmosphere","key":"Class","msg":"{msg}"},{"id":"{n+18}","text":"Good table presentation","key":"Class","msg":"{msg}"},{"id":"{n+19}","text":"Pleasing decor","key":"Class","msg":"{msg}"},{"id":"{n+20}","text":"Special experience","key":"Class","msg":"{msg}"}]}]}'; function getOneObj(j) {
                             let t = cItems; t = t.replace(new RegExp('{msg}', 'g'), msg); for (let i = 1; i <= 20; i++) {
                                 t = t.replace('{n+'.concat(i, '}'), ''.concat(j + i))
                             } return JSON.parse(t)

@@ -8,6 +8,10 @@
                 :textFontSize="textFontSize"
                 :textColor="textColor"
                 :pickColor="pickColor"
+                :hoverColor="hoverColor"
+                :funRenderYear="funRenderYear"
+                :funRenderMonth="funRenderMonth"
+                :funRenderDayOfWeek="funRenderDayOfWeek"
                 :placementDistX="placementDistX"
                 :placementDistY="placementDistY"
                 :textEmpty="textEmpty"
@@ -26,6 +30,10 @@
                 :textFontSize="textFontSize"
                 :textColor="textColor"
                 :pickColor="pickColor"
+                :hoverColor="hoverColor"
+                :funRenderYear="funRenderYear"
+                :funRenderMonth="funRenderMonth"
+                :funRenderDayOfWeek="funRenderDayOfWeek"
                 :placementDistX="placementDistX"
                 :placementDistY="placementDistY"
                 :textEmpty="textEmpty"
@@ -52,6 +60,10 @@ import WTimedayCore from './WTimedayCore.vue'
  * @vue-prop {String} [textFontSize='0.85rem'] 輸入文字大小字串，預設'0.85rem'
  * @vue-prop {String} [textColor='black'] 輸入文字顏色字串，預設'black'
  * @vue-prop {String} [pickColor='deep-orange darken-1'] 輸入日期彈窗中選擇指定日期之顏色字串，預設'deep-orange darken-1'
+ * @vue-prop {String} [hoverColor='#ddd'] 輸入日期彈窗中滑鼠移入時之背景顏色字串，預設'#ddd'
+ * @vue-prop {Function} [funRenderYear=null] 輸入渲染年份之函數，傳入年數值回傳顯示字串，預設null，未給時回傳'{年}y'
+ * @vue-prop {Function} [funRenderMonth=null] 輸入渲染月份之函數，傳入月數值回傳顯示字串，預設null，未給時回傳'{月}m'
+ * @vue-prop {Function} [funRenderDayOfWeek=null] 輸入渲染星期幾之函數，傳入星期幾數值(0=日)回傳顯示字串，預設null，未給時回傳對應英文縮寫
  * @vue-prop {Number} [placementDistX=0] 輸入日期彈窗之水平向右平移數字，單位為px，預設0
  * @vue-prop {Number} [placementDistY=7] 輸入日期彈窗之垂直向下平移數字，單位為px，預設7
  * @vue-prop {String} [textEmpty='Select a date'] 輸入尚未輸入日期之顯示文字字串，預設'Select a date'
@@ -85,6 +97,22 @@ export default {
         pickColor: {
             type: String,
             default: 'deep-orange darken-1',
+        },
+        hoverColor: {
+            type: String,
+            default: '#ddd',
+        },
+        funRenderYear: {
+            type: Function,
+            default: null,
+        },
+        funRenderMonth: {
+            type: Function,
+            default: null,
+        },
+        funRenderDayOfWeek: {
+            type: Function,
+            default: null,
         },
         placementDistX: {
             type: Number,

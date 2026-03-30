@@ -14,7 +14,7 @@
                     :casename="'title & content'"
                 ></demolink>
 
-                <v-btn depressed small elevation="2" @click="WConfirm.bShow1=!WConfirm.bShow1">Show({{WConfirm.bShow1}})</v-btn>
+                <w-button-chip :text="'show('+WConfirm.bShow1+')'" :borderRadius="4" @click="WConfirm.bShow1=!WConfirm.bShow1"></w-button-chip>
 
                 <w-confirm
                     :show.sync="WConfirm.bShow1"
@@ -33,7 +33,7 @@
                     :casename="'contentIcon (fontawesome)'"
                 ></demolink>
 
-                <v-btn depressed small elevation="2" @click="WConfirm.bShow2=!WConfirm.bShow2">Show({{WConfirm.bShow2}})</v-btn>
+                <w-button-chip :text="'show('+WConfirm.bShow2+')'" :borderRadius="4" @click="WConfirm.bShow2=!WConfirm.bShow2"></w-button-chip>
 
                 <w-confirm
                     :show.sync="WConfirm.bShow2"
@@ -53,7 +53,7 @@
                     :casename="'contentIconColor'"
                 ></demolink>
 
-                <v-btn depressed small elevation="2" @click="WConfirm.bShow3=!WConfirm.bShow3">Show({{WConfirm.bShow3}})</v-btn>
+                <w-button-chip :text="'show('+WConfirm.bShow3+')'" :borderRadius="4" @click="WConfirm.bShow3=!WConfirm.bShow3"></w-button-chip>
 
                 <w-confirm
                     :show.sync="WConfirm.bShow3"
@@ -73,7 +73,7 @@
                     :casename="'contentIconSize'"
                 ></demolink>
 
-                <v-btn depressed small elevation="2" @click="WConfirm.bShow4=!WConfirm.bShow4">Show({{WConfirm.bShow4}})</v-btn>
+                <w-button-chip :text="'show('+WConfirm.bShow4+')'" :borderRadius="4" @click="WConfirm.bShow4=!WConfirm.bShow4"></w-button-chip>
 
                 <w-confirm
                     :show.sync="WConfirm.bShow4"
@@ -93,7 +93,7 @@
                     :casename="'noBtnText & yesBtnText'"
                 ></demolink>
 
-                <v-btn depressed small elevation="2" @click="WConfirm.bShow5=!WConfirm.bShow5">Show({{WConfirm.bShow5}})</v-btn>
+                <w-button-chip :text="'show('+WConfirm.bShow5+')'" :borderRadius="4" @click="WConfirm.bShow5=!WConfirm.bShow5"></w-button-chip>
 
                 <w-confirm
                     :show.sync="WConfirm.bShow5"
@@ -114,7 +114,7 @@
                     :casename="'hasNoBtn & yesBtnText'"
                 ></demolink>
 
-                <v-btn depressed small elevation="2" @click="WConfirm.bShow6=!WConfirm.bShow6">Show({{WConfirm.bShow6}})</v-btn>
+                <w-button-chip :text="'show('+WConfirm.bShow6+')'" :borderRadius="4" @click="WConfirm.bShow6=!WConfirm.bShow6"></w-button-chip>
 
                 <w-confirm
                     :show.sync="WConfirm.bShow6"
@@ -134,7 +134,7 @@
                     :casename="'titleColor & headerBackgroundColor & footerBackgroundColor'"
                 ></demolink>
 
-                <v-btn depressed small elevation="2" @click="WConfirm.bShow7=!WConfirm.bShow7">Show({{WConfirm.bShow7}})</v-btn>
+                <w-button-chip :text="'show('+WConfirm.bShow7+')'" :borderRadius="4" @click="WConfirm.bShow7=!WConfirm.bShow7"></w-button-chip>
 
                 <w-confirm
                     :show.sync="WConfirm.bShow7"
@@ -156,7 +156,7 @@
                     :casename="'contentColor & contentIconColor & contentBackgroundColor'"
                 ></demolink>
 
-                <v-btn depressed small elevation="2" @click="WConfirm.bShow8=!WConfirm.bShow8">Show({{WConfirm.bShow8}})</v-btn>
+                <w-button-chip :text="'show('+WConfirm.bShow8+')'" :borderRadius="4" @click="WConfirm.bShow8=!WConfirm.bShow8"></w-button-chip>
 
                 <w-confirm
                     :show.sync="WConfirm.bShow8"
@@ -178,7 +178,7 @@
                     :casename="'noBtnTextColor & noBtnTextColorHover & noBtnBackgroundColor & noBtnBackgroundColorHover & yesBtnTextColor & yesBtnTextColorHover & yesBtnBackgroundColor & yesBtnBackgroundColorHover'"
                 ></demolink>
 
-                <v-btn depressed small elevation="2" @click="WConfirm.bShow9=!WConfirm.bShow9">Show({{WConfirm.bShow9}})</v-btn>
+                <w-button-chip :text="'show('+WConfirm.bShow9+')'" :borderRadius="4" @click="WConfirm.bShow9=!WConfirm.bShow9"></w-button-chip>
 
                 <w-confirm
                     :show.sync="WConfirm.bShow9"
@@ -205,7 +205,7 @@
                     :casename="'maxWidth'"
                 ></demolink>
 
-                <v-btn depressed small elevation="2" @click="WConfirm.bShow10=!WConfirm.bShow10">Show({{WConfirm.bShow10}})</v-btn>
+                <w-button-chip :text="'show('+WConfirm.bShow10+')'" :borderRadius="4" @click="WConfirm.bShow10=!WConfirm.bShow10"></w-button-chip>
 
                 <w-confirm
                     :show.sync="WConfirm.bShow10"
@@ -225,7 +225,7 @@
                     :casename="'slot header'"
                 ></demolink>
 
-                <v-btn depressed small elevation="2" @click="WConfirm.bShow11=!WConfirm.bShow11">Show({{WConfirm.bShow11}})</v-btn>
+                <w-button-chip :text="'show('+WConfirm.bShow11+')'" :borderRadius="4" @click="WConfirm.bShow11=!WConfirm.bShow11"></w-button-chip>
 
                 <w-confirm
                     :show.sync="WConfirm.bShow11"
@@ -255,7 +255,7 @@
                     :casename="'slot content'"
                 ></demolink>
 
-                <v-btn depressed small elevation="2" @click="WConfirm.bShow12=!WConfirm.bShow12">Show({{WConfirm.bShow12}})</v-btn>
+                <w-button-chip :text="'show('+WConfirm.bShow12+')'" :borderRadius="4" @click="WConfirm.bShow12=!WConfirm.bShow12"></w-button-chip>
 
                 <w-confirm
                     :show.sync="WConfirm.bShow12"
@@ -318,7 +318,7 @@
                     :casename="'slot footer'"
                 ></demolink>
 
-                <v-btn depressed small elevation="2" @click="WConfirm.bShow13=!WConfirm.bShow13">Show({{WConfirm.bShow13}})</v-btn>
+                <w-button-chip :text="'show('+WConfirm.bShow13+')'" :borderRadius="4" @click="WConfirm.bShow13=!WConfirm.bShow13"></w-button-chip>
 
                 <w-confirm
                     :show.sync="WConfirm.bShow13"
@@ -333,7 +333,7 @@
                                 Please confirm the message and then press the AGREE button.
                             </div>
                             <div style="">
-                                <v-btn depressed elevation="2" color="pink darken-1" dark @click="WConfirm.bShow13=false">Agree</v-btn>
+                                <w-button-chip :text="'agree'" :borderRadius="4" :textColor="'white'" :backgroundColor="'pink darken-1'" @click="WConfirm.bShow13=false"></w-button-chip>
                             </div>
                         </div>
                     </template>
@@ -348,7 +348,7 @@
                     :casename="'scrollable'"
                 ></demolink>
 
-                <v-btn depressed small elevation="2" @click="WConfirm.bShow14=!WConfirm.bShow14">Show({{WConfirm.bShow14}})</v-btn>
+                <w-button-chip :text="'show('+WConfirm.bShow14+')'" :borderRadius="4" @click="WConfirm.bShow14=!WConfirm.bShow14"></w-button-chip>
 
                 <w-confirm
                     :show.sync="WConfirm.bShow14"
@@ -367,7 +367,7 @@
                     :casename="'scrollable (slot content)'"
                 ></demolink>
 
-                <v-btn depressed small elevation="2" @click="WConfirm.bShow15=!WConfirm.bShow15">Show({{WConfirm.bShow15}})</v-btn>
+                <w-button-chip :text="'show('+WConfirm.bShow15+')'" :borderRadius="4" @click="WConfirm.bShow15=!WConfirm.bShow15"></w-button-chip>
 
                 <w-confirm
                     :show.sync="WConfirm.bShow15"
@@ -420,12 +420,14 @@
 <script>
 import demolink from './components/demolink.vue'
 import WConfirm from './components/WConfirm.vue'
+import WButtonChip from './components/WButtonChip.vue'
 
 
 export default {
     components: {
         demolink,
         WConfirm,
+        WButtonChip,
     },
     props: {
     },

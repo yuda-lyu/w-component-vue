@@ -39,8 +39,8 @@
                 ></demolink>
 
                 <div style="padding-bottom:10px;">
-                    <v-btn depressed small elevation="2" @click="WEchartsVueDyn.widthOptions1=620">620px(default)</v-btn>
-                    <v-btn depressed small elevation="2" @click="WEchartsVueDyn.widthOptions1=310">310px</v-btn>
+                    <w-button-chip style="margin:0px 10px 5px 0px;" :text="'620px(default)'" :borderRadius="4" @click="WEchartsVueDyn.widthOptions1=620"></w-button-chip>
+                    <w-button-chip style="margin:0px 10px 5px 0px;" :text="'310px'" :borderRadius="4" @click="WEchartsVueDyn.widthOptions1=310"></w-button-chip>
                 </div>
 
                 <w-echarts-vue-dyn
@@ -155,7 +155,6 @@
                     :casename="'tree'"
                 ></demolink>
 
-                <!-- 用:style才能支援IE11因vue會自動把overflow-y:auto轉為-ms-overflow-y:auto -->
                 <div :style="'overflow-y:auto; height:300px;'">
                     <!-- echarts要給寬度否則無法撐開 -->
                     <w-echarts-vue-dyn
@@ -261,12 +260,14 @@
 <script>
 import demolink from './components/demolink.vue'
 import WEchartsVueDyn from './components/WEchartsVueDyn.vue'
+import WButtonChip from './components/WButtonChip.vue'
 
 
 export default {
     components: {
         demolink,
         WEchartsVueDyn,
+        WButtonChip,
     },
     props: {
     },

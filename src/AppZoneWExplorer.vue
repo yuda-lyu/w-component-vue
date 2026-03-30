@@ -81,7 +81,7 @@
                 ></demolink>
 
                 <div style="padding-bottom:10px;">
-                    <v-btn style="margin:0px 5px 5px 0px;" small @click="WExplorer.bShowTree=!WExplorer.bShowTree">Show({{WExplorer.bShowTree}})</v-btn>
+                    <w-button-chip style="margin:0px 15px 5px 0px;" :text="'show('+WExplorer.bShowTree+')'" :borderRadius="4" @click="WExplorer.bShowTree=!WExplorer.bShowTree"></w-button-chip>
                 </div>
 
                 <w-explorer
@@ -782,12 +782,12 @@
                 ></demolink>
 
                 <div>
-                    <v-btn style="margin:0px 5px 5px 0px;" small @click="toggleTreeFoldersByFun(0, true)">show(rows[0])</v-btn>
-                    <v-btn style="margin:0px 5px 5px 0px;" small @click="toggleTreeFoldersByFun(0, false)">hide(rows[0])</v-btn>
-                    <v-btn style="margin:0px 5px 5px 0px;" small @click="toggleTreeFoldersByFun(1, true)">show(rows[1])</v-btn>
-                    <v-btn style="margin:0px 5px 5px 0px;" small @click="toggleTreeFoldersByFun(1, false)">hide(rows[1])</v-btn>
-                    <v-btn style="margin:0px 5px 5px 0px;" small @click="toggleTreeFoldersByFun(2, true)">show(rows[2])</v-btn>
-                    <v-btn style="margin:0px 5px 5px 0px;" small @click="toggleTreeFoldersByFun(2, false)">hide(rows[2])</v-btn>
+                    <w-button-chip style="margin:0px 15px 5px 0px;" :text="'show(rows[0])'" :borderRadius="4" @click="toggletreefoldersbyfun(0, true)"></w-button-chip>
+                    <w-button-chip style="margin:0px 15px 5px 0px;" :text="'hide(rows[0])'" :borderRadius="4" @click="toggletreefoldersbyfun(0, false)"></w-button-chip>
+                    <w-button-chip style="margin:0px 15px 5px 0px;" :text="'show(rows[1])'" :borderRadius="4" @click="toggletreefoldersbyfun(1, true)"></w-button-chip>
+                    <w-button-chip style="margin:0px 15px 5px 0px;" :text="'hide(rows[1])'" :borderRadius="4" @click="toggletreefoldersbyfun(1, false)"></w-button-chip>
+                    <w-button-chip style="margin:0px 15px 5px 0px;" :text="'show(rows[2])'" :borderRadius="4" @click="toggletreefoldersbyfun(2, true)"></w-button-chip>
+                    <w-button-chip style="margin:0px 15px 5px 0px;" :text="'hide(rows[2])'" :borderRadius="4" @click="toggletreefoldersbyfun(2, false)"></w-button-chip>
                 </div>
 
                 <w-explorer
@@ -807,10 +807,10 @@
                 ></demolink>
 
                 <div>
-                    <v-btn style="margin:0px 5px 5px 0px;" small @click="toggleTreeFoldersAll(true)">display all</v-btn>
-                    <v-btn style="margin:0px 5px 5px 0px;" small @click="toggleTreeFoldersAll(false)">hide all</v-btn>
-                    <v-btn style="margin:0px 5px 5px 0px;" small @click="toggleTreeFoldersAll(null,1)">display to level1</v-btn>
-                    <v-btn style="margin:0px 5px 5px 0px;" small @click="toggleTreeFoldersAll(null,2)">display to level2</v-btn>
+                    <w-button-chip style="margin:0px 15px 5px 0px;" :text="'display all'" :borderRadius="4" @click="toggletreefoldersall(true)"></w-button-chip>
+                    <w-button-chip style="margin:0px 15px 5px 0px;" :text="'hide all'" :borderRadius="4" @click="toggletreefoldersall(false)"></w-button-chip>
+                    <w-button-chip style="margin:0px 15px 5px 0px;" :text="'display to level1'" :borderRadius="4" @click="toggletreefoldersall(null,1)"></w-button-chip>
+                    <w-button-chip style="margin:0px 15px 5px 0px;" :text="'display to level2'" :borderRadius="4" @click="toggletreefoldersall(null,2)"></w-button-chip>
                 </div>
 
                 <w-explorer
@@ -830,8 +830,8 @@
                 ></demolink>
 
                 <div style="padding-bottom:10px;">
-                    <v-btn style="margin:0px 5px 5px 0px;" small @click="ckTriggerClickTreeFolderById('root')">click(root)</v-btn>
-                    <v-btn style="margin:0px 5px 5px 0px;" small @click="ckTriggerClickTreeFolderById('root❯Applications')">click(Applications)</v-btn>
+                    <w-button-chip style="margin:0px 15px 5px 0px;" :text="'click(root)'" :borderRadius="4" @click="cktriggerclicktreefolderbyid('root')"></w-button-chip>
+                    <w-button-chip style="margin:0px 15px 5px 0px;" :text="'click(applications)'" :borderRadius="4" @click="cktriggerclicktreefolderbyid('root❯applications')"></w-button-chip>
                 </div>
 
                 <w-explorer
@@ -851,8 +851,8 @@
                 ></demolink>
 
                 <div style="padding-bottom:10px;">
-                    <v-btn style="margin:0px 5px 5px 0px;" small @click="ckTriggerClickTreeFolderByFun('Applications')">click(Applications)</v-btn>
-                    <v-btn style="margin:0px 5px 5px 0px;" small @click="ckTriggerClickTreeFolderByFun('Webs')">click(Webs)</v-btn>
+                    <w-button-chip style="margin:0px 15px 5px 0px;" :text="'click(applications)'" :borderRadius="4" @click="cktriggerclicktreefolderbyfun('applications')"></w-button-chip>
+                    <w-button-chip style="margin:0px 15px 5px 0px;" :text="'click(webs)'" :borderRadius="4" @click="cktriggerclicktreefolderbyfun('webs')"></w-button-chip>
                 </div>
 
                 <w-explorer
@@ -872,8 +872,8 @@
                 ></demolink>
 
                 <div style="padding-bottom:10px;">
-                    <v-btn style="margin:0px 5px 5px 0px;" small @click="ckFunSortTree('funSortTree')">funSortTree(reverse)</v-btn>
-                    <v-btn style="margin:0px 5px 5px 0px;" small @click="ckFunSortTree('default')">default</v-btn>
+                    <w-button-chip style="margin:0px 15px 5px 0px;" :text="'funsorttree(reverse)'" :borderRadius="4" @click="ckfunsorttree('funsorttree')"></w-button-chip>
+                    <w-button-chip style="margin:0px 15px 5px 0px;" :text="'default'" :borderRadius="4" @click="ckfunsorttree('default')"></w-button-chip>
                 </div>
 
                 <w-explorer
@@ -1741,6 +1741,7 @@ import { mdiCommentEditOutline, mdiChevronDoubleRight, mdiDeleteVariant } from '
 import demolink from './components/demolink.vue'
 import WIcon from './components/WIcon.vue'
 import WExplorer from './components/WExplorer.vue'
+import WButtonChip from './components/WButtonChip.vue'
 
 
 export default {
@@ -1748,6 +1749,7 @@ export default {
         demolink,
         WIcon,
         WExplorer,
+        WButtonChip,
     },
     props: {
     },

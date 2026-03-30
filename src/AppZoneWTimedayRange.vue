@@ -188,11 +188,41 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-timeday-range'"
+                    :casename="'hoverColor'"
+                ></demolink>
+
+                <w-timeday-range
+                    :hoverColor="'#FFCDD2'"
+                    :dayStart.sync="WTimedayRange.dayStart"
+                    :dayEnd.sync="WTimedayRange.dayEnd"
+                ></w-timeday-range>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-timeday-range'"
                     :casename="'iconTooltip'"
                 ></demolink>
 
                 <w-timeday-range
                     :iconTooltip="'show tooltip'"
+                    :dayStart.sync="WTimedayRange.dayStart"
+                    :dayEnd.sync="WTimedayRange.dayEnd"
+                ></w-timeday-range>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-timeday-range'"
+                    :casename="'funRenderYear & funRenderMonth & funRenderDayOfWeek'"
+                ></demolink>
+
+                <w-timeday-range
+                    :funRenderYear="(y)=>`${y}年`"
+                    :funRenderMonth="(m)=>`${m}月`"
+                    :funRenderDayOfWeek="(d)=>['日','一','二','三','四','五','六'][d]"
                     :dayStart.sync="WTimedayRange.dayStart"
                     :dayEnd.sync="WTimedayRange.dayEnd"
                 ></w-timeday-range>
@@ -481,6 +511,27 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-timeday-range'"
+                    :casename="'border & hoverColor'"
+                ></demolink>
+
+                <w-timeday-range
+                    :shadow="false"
+                    :borderColor="'orange lighten-2'"
+                    :borderColorHover="'orange'"
+                    :borderColorFocus="'orange darken-2'"
+                    :backgroundColor="'white'"
+                    :backgroundColorHover="'white'"
+                    :backgroundColorFocus="'orange lighten-5'"
+                    :hoverColor="'#FFCDD2'"
+                    :dayStart.sync="WTimedayRange.dayStart"
+                    :dayEnd.sync="WTimedayRange.dayEnd"
+                ></w-timeday-range>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-timeday-range'"
                     :casename="'border & iconTooltip'"
                 ></demolink>
 
@@ -493,6 +544,29 @@
                     :backgroundColorHover="'white'"
                     :backgroundColorFocus="'orange lighten-5'"
                     :iconTooltip="'show tooltip'"
+                    :dayStart.sync="WTimedayRange.dayStart"
+                    :dayEnd.sync="WTimedayRange.dayEnd"
+                ></w-timeday-range>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-timeday-range'"
+                    :casename="'border & funRenderYear & funRenderMonth & funRenderDayOfWeek'"
+                ></demolink>
+
+                <w-timeday-range
+                    :shadow="false"
+                    :borderColor="'orange lighten-2'"
+                    :borderColorHover="'orange'"
+                    :borderColorFocus="'orange darken-2'"
+                    :backgroundColor="'white'"
+                    :backgroundColorHover="'white'"
+                    :backgroundColorFocus="'orange lighten-5'"
+                    :funRenderYear="(y)=>`${y}年`"
+                    :funRenderMonth="(m)=>`${m}月`"
+                    :funRenderDayOfWeek="(d)=>['日','一','二','三','四','五','六'][d]"
                     :dayStart.sync="WTimedayRange.dayStart"
                     :dayEnd.sync="WTimedayRange.dayEnd"
                 ></w-timeday-range>

@@ -17,7 +17,7 @@
                 <w-badge
                     :text="WBadge.number"
                 >
-                    <v-chip style="margin:0px;" label>{{WBadge.labelText}}</v-chip>
+                    <div style="padding:7px 10px; font-size:0.85rem; background:#ddd; text-align:center;">{{WBadge.labelText}}</div>
                 </w-badge>
 
             </div>
@@ -34,7 +34,7 @@
                     :text="WBadge.textLong"
                     :badgeAlign="'center'"
                 >
-                    <v-chip style="margin:0px;" label>{{WBadge.labelText}}</v-chip>
+                    <div style="padding:7px 10px; font-size:0.85rem; background:#ddd; text-align:center;">{{WBadge.labelText}}</div>
                 </w-badge>
 
                 <w-badge
@@ -42,7 +42,7 @@
                     :text="WBadge.textLong"
                     :badgeAlign="'left'"
                 >
-                    <v-chip style="margin:0px;" label>{{WBadge.labelText}}</v-chip>
+                    <div style="padding:7px 10px; font-size:0.85rem; background:#ddd; text-align:center;">{{WBadge.labelText}}</div>
                 </w-badge>
 
                 <w-badge
@@ -50,7 +50,7 @@
                     :text="WBadge.textLong"
                     :badgeAlign="'right'"
                 >
-                    <v-chip style="margin:0px;" label>{{WBadge.labelText}}</v-chip>
+                    <div style="padding:7px 10px; font-size:0.85rem; background:#ddd; text-align:center;">{{WBadge.labelText}}</div>
                 </w-badge>
 
             </div>
@@ -66,7 +66,7 @@
                     :text="WBadge.text"
                     :textFontSize="'0.9rem'"
                 >
-                    <v-chip style="margin:0px;" label>{{WBadge.labelText}}</v-chip>
+                    <div style="padding:7px 10px; font-size:0.85rem; background:#ddd; text-align:center;">{{WBadge.labelText}}</div>
                 </w-badge>
 
             </div>
@@ -82,7 +82,7 @@
                     :text="WBadge.text"
                     :backgroundColor="'purple'"
                 >
-                    <v-chip style="margin:0px;" label>{{WBadge.labelText}}</v-chip>
+                    <div style="padding:7px 10px; font-size:0.85rem; background:#ddd; text-align:center;">{{WBadge.labelText}}</div>
                 </w-badge>
 
             </div>
@@ -99,7 +99,7 @@
                     :textColor="'orange accent-4'"
                     :backgroundColor="'orange lighten-5'"
                 >
-                    <v-chip style="margin:0px;" label>{{WBadge.labelText}}</v-chip>
+                    <div style="padding:7px 10px; font-size:0.85rem; background:#ddd; text-align:center;">{{WBadge.labelText}}</div>
                 </w-badge>
 
             </div>
@@ -115,7 +115,7 @@
                     :text="WBadge.text"
                     :borderRadius="3"
                 >
-                    <v-chip style="margin:0px;" label>{{WBadge.labelText}}</v-chip>
+                    <div style="padding:7px 10px; font-size:0.85rem; background:#ddd; text-align:center;">{{WBadge.labelText}}</div>
                 </w-badge>
 
             </div>
@@ -133,7 +133,7 @@
                     :backgroundColor="'orange lighten-5'"
                     :borderColor="'deep-orange darken-1'"
                 >
-                    <v-chip style="margin:0px;" label>{{WBadge.labelText}}</v-chip>
+                    <div style="padding:7px 10px; font-size:0.85rem; background:#ddd; text-align:center;">{{WBadge.labelText}}</div>
                 </w-badge>
 
             </div>

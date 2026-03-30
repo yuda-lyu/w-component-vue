@@ -162,12 +162,40 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-timeminute'"
+                    :casename="'hoverColor'"
+                ></demolink>
+
+                <w-timeminute
+                    :hoverColor="'#FFCDD2'"
+                    v-model="WTimeminute.time"
+                ></w-timeminute>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-timeminute'"
                     :casename="'iconTooltip'"
                 ></demolink>
 
                 <w-timeminute
                     :icon="mdiCheckUnderlineCircle"
                     :iconTooltip="'show tooltip'"
+                    v-model="WTimeminute.time"
+                ></w-timeminute>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-timeminute'"
+                    :casename="'funRenderYear & funRenderMonth & funRenderDayOfWeek'"
+                ></demolink>
+
+                <w-timeminute
+                    :funRenderYear="(y)=>`${y}年`"
+                    :funRenderMonth="(m)=>`${m}月`"
+                    :funRenderDayOfWeek="(d)=>['日','一','二','三','四','五','六'][d]"
                     v-model="WTimeminute.time"
                 ></w-timeminute>
             </div>
@@ -462,6 +490,26 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-timeminute'"
+                    :casename="'border & hoverColor'"
+                ></demolink>
+
+                <w-timeminute
+                    :shadow="false"
+                    :borderColor="'orange lighten-2'"
+                    :borderColorHover="'orange'"
+                    :borderColorFocus="'orange darken-2'"
+                    :backgroundColor="'white'"
+                    :backgroundColorHover="'white'"
+                    :backgroundColorFocus="'orange lighten-5'"
+                    :hoverColor="'#FFCDD2'"
+                    v-model="WTimeminute.time"
+                ></w-timeminute>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-timeminute'"
                     :casename="'border & iconTooltip'"
                 ></demolink>
 
@@ -475,6 +523,28 @@
                     :backgroundColorFocus="'orange lighten-5'"
                     :icon="mdiCheckUnderlineCircle"
                     :iconTooltip="'show tooltip'"
+                    v-model="WTimeminute.time"
+                ></w-timeminute>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-timeminute'"
+                    :casename="'border & funRenderYear & funRenderMonth & funRenderDayOfWeek'"
+                ></demolink>
+
+                <w-timeminute
+                    :shadow="false"
+                    :borderColor="'orange lighten-2'"
+                    :borderColorHover="'orange'"
+                    :borderColorFocus="'orange darken-2'"
+                    :backgroundColor="'white'"
+                    :backgroundColorHover="'white'"
+                    :backgroundColorFocus="'orange lighten-5'"
+                    :funRenderYear="(y)=>`${y}年`"
+                    :funRenderMonth="(m)=>`${m}月`"
+                    :funRenderDayOfWeek="(d)=>['日','一','二','三','四','五','六'][d]"
                     v-model="WTimeminute.time"
                 ></w-timeminute>
             </div>

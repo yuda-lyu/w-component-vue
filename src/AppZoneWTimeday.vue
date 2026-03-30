@@ -161,12 +161,40 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-timeday'"
+                    :casename="'hoverColor'"
+                ></demolink>
+
+                <w-timeday
+                    :hoverColor="'#FFCDD2'"
+                    v-model="WTimeday.day"
+                ></w-timeday>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-timeday'"
                     :casename="'iconTooltip'"
                 ></demolink>
 
                 <w-timeday
                     :icon="mdiCheckUnderlineCircle"
                     :iconTooltip="'show tooltip'"
+                    v-model="WTimeday.day"
+                ></w-timeday>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-timeday'"
+                    :casename="'funRenderYear & funRenderMonth & funRenderDayOfWeek'"
+                ></demolink>
+
+                <w-timeday
+                    :funRenderYear="(y)=>`${y}年`"
+                    :funRenderMonth="(m)=>`${m}月`"
+                    :funRenderDayOfWeek="(d)=>['日','一','二','三','四','五','六'][d]"
                     v-model="WTimeday.day"
                 ></w-timeday>
             </div>
@@ -420,6 +448,26 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-timeday'"
+                    :casename="'border & hoverColor'"
+                ></demolink>
+
+                <w-timeday
+                    :shadow="false"
+                    :borderColor="'orange lighten-2'"
+                    :borderColorHover="'orange'"
+                    :borderColorFocus="'orange darken-2'"
+                    :backgroundColor="'white'"
+                    :backgroundColorHover="'white'"
+                    :backgroundColorFocus="'orange lighten-5'"
+                    :hoverColor="'#FFCDD2'"
+                    v-model="WTimeday.day"
+                ></w-timeday>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-timeday'"
                     :casename="'border & iconTooltip'"
                 ></demolink>
 
@@ -433,6 +481,28 @@
                     :backgroundColorFocus="'orange lighten-5'"
                     :icon="mdiCheckUnderlineCircle"
                     :iconTooltip="'show tooltip'"
+                    v-model="WTimeday.day"
+                ></w-timeday>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-timeday'"
+                    :casename="'border & funRenderYear & funRenderMonth & funRenderDayOfWeek'"
+                ></demolink>
+
+                <w-timeday
+                    :shadow="false"
+                    :borderColor="'orange lighten-2'"
+                    :borderColorHover="'orange'"
+                    :borderColorFocus="'orange darken-2'"
+                    :backgroundColor="'white'"
+                    :backgroundColorHover="'white'"
+                    :backgroundColorFocus="'orange lighten-5'"
+                    :funRenderYear="(y)=>`${y}年`"
+                    :funRenderMonth="(m)=>`${m}月`"
+                    :funRenderDayOfWeek="(d)=>['日','一','二','三','四','五','六'][d]"
                     v-model="WTimeday.day"
                 ></w-timeday>
             </div>

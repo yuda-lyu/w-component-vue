@@ -14,7 +14,7 @@
                     :casename="'default'"
                 ></demolink>
 
-                <v-btn depressed small elevation="2" @click="$alert(WAlert.textSuccess)">Success</v-btn>
+                <w-button-chip :text="'success'" :borderRadius="4" @click="$alert(WAlert.textSuccess)"></w-button-chip>
 
             </div>
 
@@ -25,7 +25,7 @@
                     :casename="'type infor'"
                 ></demolink>
 
-                <v-btn depressed small elevation="2" @click="$alert(WAlert.textInfor,{type:'infor'})">Infor</v-btn>
+                <w-button-chip :text="'infor'" :borderRadius="4" @click="$alert(WAlert.textInfor,{type:'infor'})"></w-button-chip>
 
             </div>
 
@@ -36,7 +36,7 @@
                     :casename="'type warning'"
                 ></demolink>
 
-                <v-btn depressed small elevation="2" @click="$alert(WAlert.textWarning,{type:'warning'})">Warning</v-btn>
+                <w-button-chip :text="'warning'" :borderRadius="4" @click="$alert(WAlert.textWarning,{type:'warning'})"></w-button-chip>
 
             </div>
 
@@ -47,7 +47,7 @@
                     :casename="'type error'"
                 ></demolink>
 
-                <v-btn depressed small elevation="2" @click="$alert(WAlert.textError,{type:'error'})">Error</v-btn>
+                <w-button-chip :text="'error'" :borderRadius="4" @click="$alert(WAlert.textError,{type:'error'})"></w-button-chip>
 
             </div>
 
@@ -58,17 +58,17 @@
                     :casename="'position'"
                 ></demolink>
 
-                <v-btn style="margin-right:10px;" depressed small elevation="2" @click="$alert(WAlert.text,{
+                <w-button-chip style="margin-right:10px;" :text="'bottom-right'" :borderRadius="4" @click="$alert(WAlert.text,{
                     position:'bottom-right'
-                })">bottom-right</v-btn>
+                })"></w-button-chip>
 
-                <v-btn style="margin-right:10px;" depressed small elevation="2" @click="$alert(WAlert.text,{
+                <w-button-chip style="margin-right:10px;" :text="'top-left'" :borderRadius="4" @click="$alert(WAlert.text,{
                     position:'top-left'
-                })">top-left</v-btn>
+                })"></w-button-chip>
 
-                <v-btn style="margin-right:10px;" depressed small elevation="2" @click="$alert(WAlert.text,{
+                <w-button-chip style="margin-right:10px;" :text="'bottom-left'" :borderRadius="4" @click="$alert(WAlert.text,{
                     position:'bottom-left'
-                })">bottom-left</v-btn>
+                })"></w-button-chip>
 
             </div>
 
@@ -79,9 +79,9 @@
                     :casename="'time (6s)'"
                 ></demolink>
 
-                <v-btn depressed small elevation="2" @click="$alert(WAlert.text,{
+                <w-button-chip :text="'show'" :borderRadius="4" @click="$alert(WAlert.text,{
                     time:6000
-                })">Show</v-btn>
+                })"></w-button-chip>
 
             </div>
 
@@ -92,9 +92,9 @@
                     :casename="'textColor'"
                 ></demolink>
 
-                <v-btn depressed small elevation="2" @click="$alert(WAlert.text,{
+                <w-button-chip :text="'show'" :borderRadius="4" @click="$alert(WAlert.text,{
                     textColor:'#f52'
-                })">Show</v-btn>
+                })"></w-button-chip>
 
             </div>
 
@@ -105,9 +105,9 @@
                     :casename="'backgroundColor'"
                 ></demolink>
 
-                <v-btn depressed small elevation="2" @click="$alert(WAlert.text,{
+                <w-button-chip :text="'show'" :borderRadius="4" @click="$alert(WAlert.text,{
                     backgroundColor:'linear-gradient(135deg,rgba(155,255,120,0.4),#fff)'
-                })">Show</v-btn>
+                })"></w-button-chip>
 
             </div>
 
@@ -118,9 +118,9 @@
                     :casename="'borderWidth'"
                 ></demolink>
 
-                <v-btn depressed small elevation="2" @click="$alert(WAlert.text,{
+                <w-button-chip :text="'show'" :borderRadius="4" @click="$alert(WAlert.text,{
                     borderWidth:15
-                })">Show</v-btn>
+                })"></w-button-chip>
 
             </div>
 
@@ -131,9 +131,9 @@
                     :casename="'borderColor'"
                 ></demolink>
 
-                <v-btn depressed small elevation="2" @click="$alert(WAlert.text,{
+                <w-button-chip :text="'show'" :borderRadius="4" @click="$alert(WAlert.text,{
                     borderColor:'#9f5'
-                })">Show</v-btn>
+                })"></w-button-chip>
 
             </div>
 
@@ -144,9 +144,9 @@
                     :casename="'borderRadius'"
                 ></demolink>
 
-                <v-btn depressed small elevation="2" @click="$alert(WAlert.text,{
+                <w-button-chip :text="'show'" :borderRadius="4" @click="$alert(WAlert.text,{
                     borderRadius:0
-                })">Show</v-btn>
+                })"></w-button-chip>
 
             </div>
 
@@ -157,9 +157,9 @@
                     :casename="'shadowStyle'"
                 ></demolink>
 
-                <v-btn depressed small elevation="2" @click="$alert(WAlert.text,{
+                <w-button-chip :text="'show'" :borderRadius="4" @click="$alert(WAlert.text,{
                     shadowStyle:'0px 3px 1px -2px rgba(0, 0, 0, 0.08), 0px 2px 2px 0px rgba(0, 0, 0, 0.09), 0px 1px 5px 0px rgba(0, 0, 0, 0.07)'
-                })">Show</v-btn>
+                })"></w-button-chip>
 
             </div>
 
@@ -170,9 +170,9 @@
                     :casename="'icon'"
                 ></demolink>
 
-                <v-btn depressed small elevation="2" @click="$alert(WAlert.text,{
+                <w-button-chip :text="'show'" :borderRadius="4" @click="$alert(WAlert.text,{
                     icon:WAlert.icon
-                })">Show</v-btn>
+                })"></w-button-chip>
 
             </div>
 
@@ -183,7 +183,7 @@
                     :casename="'recive closed event by promise'"
                 ></demolink>
 
-                <v-btn depressed small elevation="2" @click="receiveCloseEvent">Show</v-btn>
+                <w-button-chip :text="'show'" :borderRadius="4" @click="receiveCloseEvent"></w-button-chip>
 
             </div>
 
@@ -197,11 +197,13 @@
 <script>
 import demolink from './components/demolink.vue'
 import WAlert from './components/WAlert.mjs'
+import WButtonChip from './components/WButtonChip.vue'
 
 
 export default {
     components: {
         demolink,
+        WButtonChip,
     },
     props: {
     },

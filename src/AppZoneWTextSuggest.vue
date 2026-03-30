@@ -370,8 +370,8 @@
                 <div style="margin-bottom:5px;">
                     <div style="font-size:0.8rem;">focused={{WTextSuggest.focused}}, showPanel={{WTextSuggest.showPanel}}</div>
                     <div>
-                        <v-btn style="margin-right:5px;" small @click="WTextSuggest.showPanel=true">show panel</v-btn>
-                        <v-btn style="margin-right:5px;" small @click="WTextSuggest.showPanel=false">hide panel</v-btn>
+                        <w-button-chip style="margin-right:5px;" :text="'show panel'" :borderRadius="4" @click="WTextSuggest.showPanel=true"></w-button-chip>
+                        <w-button-chip style="margin-right:5px;" :text="'hide panel'" :borderRadius="4" @click="WTextSuggest.showPanel=false"></w-button-chip>
                     </div>
                 </div>
 
@@ -481,7 +481,7 @@
                 >
 
                     <template v-slot:trigger>
-                        <v-btn depressed small elevation="2">Show popup</v-btn>
+                        <w-button-chip :text="'show popup'" :borderRadius="4"></w-button-chip>
                     </template>
 
                     <template v-slot:content>
@@ -1037,8 +1037,8 @@
                 <div style="margin-bottom:5px;">
                     <div style="font-size:0.8rem;">focused={{WTextSuggest.focused}}, showPanel={{WTextSuggest.showPanel}}</div>
                     <div>
-                        <v-btn style="margin-right:5px;" small @click="WTextSuggest.showPanel=true">show panel</v-btn>
-                        <v-btn style="margin-right:5px;" small @click="WTextSuggest.showPanel=false">hide panel</v-btn>
+                        <w-button-chip style="margin-right:5px;" :text="'show panel'" :borderRadius="4" @click="WTextSuggest.showPanel=true"></w-button-chip>
+                        <w-button-chip style="margin-right:5px;" :text="'hide panel'" :borderRadius="4" @click="WTextSuggest.showPanel=false"></w-button-chip>
                     </div>
                 </div>
 
@@ -1178,7 +1178,7 @@
                 >
 
                     <template v-slot:trigger>
-                        <v-btn depressed small elevation="2">Show popup</v-btn>
+                        <w-button-chip :text="'show popup'" :borderRadius="4"></w-button-chip>
                     </template>
 
                     <template v-slot:content>
@@ -1262,6 +1262,7 @@ import { mdiCheckUnderlineCircle, mdiPaw } from '@mdi/js'
 import demolink from './components/demolink.vue'
 import WTextSuggest from './components/WTextSuggest.vue'
 import WPopup from './components/WPopup.vue'
+import WButtonChip from './components/WButtonChip.vue'
 
 
 export default {
@@ -1269,6 +1270,7 @@ export default {
         demolink,
         WTextSuggest,
         WPopup,
+        WButtonChip,
     },
     props: {
     },

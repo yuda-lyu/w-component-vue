@@ -42,9 +42,9 @@
                     :casename="'viewHeightMax'"
                 ></demolink>
 
-                <div style="margin-bottom:10px;">
-                    <v-btn style="margin:5px;" depressed small elevation="2" @click="WDynamicList.viewHeightMax=250">set height to 250px</v-btn>
-                    <v-btn style="margin:5px;" depressed small elevation="2" @click="WDynamicList.viewHeightMax=350">set height to 350px</v-btn>
+                <div style="margin-bottom:5px;">
+                    <w-button-chip style="margin:0px 10px 5px 0px;" :text="'set height to 250px'" :borderRadius="4" @click="WDynamicList.viewHeightMax=250"></w-button-chip>
+                    <w-button-chip style="margin:0px 10px 5px 0px;" :text="'set height to 350px'" :borderRadius="4" @click="WDynamicList.viewHeightMax=350"></w-button-chip>
                 </div>
 
                 <w-dynamic-list
@@ -76,9 +76,9 @@
                     :casename="'change rows'"
                 ></demolink>
 
-                <div style="margin-bottom:10px;">
-                    <v-btn style="margin:5px;" depressed small elevation="2" @click="WDynamicList.changeText=false">original set</v-btn>
-                    <v-btn style="margin:5px;" depressed small elevation="2" @click="WDynamicList.changeText=true">other set</v-btn>
+                <div style="margin-bottom:5px;">
+                    <w-button-chip style="margin:0px 10px 5px 0px;" :text="'original set'" :borderRadius="4" @click="WDynamicList.changeText=false"></w-button-chip>
+                    <w-button-chip style="margin:0px 10px 5px 0px;" :text="'other set'" :borderRadius="4" @click="WDynamicList.changeText=true"></w-button-chip>
                 </div>
 
                 <w-dynamic-list
@@ -109,9 +109,9 @@
                     :casename="'change slot'"
                 ></demolink>
 
-                <div style="margin-bottom:10px;">
-                    <v-btn style="margin:5px;" depressed small elevation="2" @click="WDynamicList.changeSlot=false">original slot</v-btn>
-                    <v-btn style="margin:5px;" depressed small elevation="2" @click="WDynamicList.changeSlot=true">other slot</v-btn>
+                <div style="margin-bottom:5px;">
+                    <w-button-chip style="margin:0px 10px 5px 0px;" :text="'original slot'" :borderRadius="4" @click="WDynamicList.changeSlot=false"></w-button-chip>
+                    <w-button-chip style="margin:0px 10px 5px 0px;" :text="'other slot'" :borderRadius="4" @click="WDynamicList.changeSlot=true"></w-button-chip>
                 </div>
 
                 <w-dynamic-list
@@ -153,7 +153,7 @@
                     :casename="'filterKeywords & statePaddingStyle & noResultsText'"
                 ></demolink>
 
-                <div style="margin-bottom:10px;">
+                <div style="margin-bottom:5px;">
                     <span style="padding-right:10px;">Search :</span>
                     <input
                         style="padding:2px 15px; color:#666; border:1px solid #fca; border-radius:30px; outline:none;"
@@ -258,9 +258,9 @@
                     :casename="'processItems'"
                 ></demolink>
 
-                <div style="margin-bottom:10px;">
-                    <v-btn style="margin:5px;" depressed small elevation="2" @click="processItemsByFun">hide items by fun</v-btn>
-                    <v-btn style="margin:5px;" depressed small elevation="2" @click="processItemsByInd">hide items by ind</v-btn>
+                <div style="margin-bottom:5px;">
+                    <w-button-chip style="margin:0px 10px 5px 0px;" :text="'hide items by fun'" :borderRadius="4" @click="processItemsByFun"></w-button-chip>
+                    <w-button-chip style="margin:0px 10px 5px 0px;" :text="'hide items by ind'" :borderRadius="4" @click="processItemsByInd"></w-button-chip>
                 </div>
 
                 <w-dynamic-list
@@ -341,52 +341,14 @@
 <script>
 import demolink from './components/demolink.vue'
 import WDynamicList from './components/WDynamicList.vue'
-
-
-// let data = (function(n) {
-//     n /= 5
-//     let tt = [
-//         {
-//             name: 'Jason Oner',
-//             msg: 'Boost campaign performance by targeting specific user groups.',
-//             avatar: 'https://cdn.vuetifyjs.com/images/lists/1.jpg'
-//         },
-//         {
-//             name: 'Travis Howard',
-//             msg: 'Determine the exact users you\'d like to target with a message or an experiment, based on behavioral data, like watching a video, or abandoning a cart, and demographic data, like age or location.',
-//             avatar: 'https://cdn.vuetifyjs.com/images/lists/2.jpg'
-//         },
-//         {
-//             name: 'Ali Connors',
-//             msg: 'Integer porttitor urna ultricies justo iaculis vulputate ac non neque. Etiam iaculis est quis urna consequat ornare. Suspendisse a augue sit amet urna tincidunt rhoncus sed non tellus. Mauris ultricies lectus sit amet tellus egestas, in interdum elit rhoncus. Nullam viverra lectus mattis felis semper, in vulputate lorem tincidunt. Suspendisse dapibus arcu id nunc blandit, ut egestas nisi pulvinar.',
-//             avatar: 'https://cdn.vuetifyjs.com/images/lists/3.jpg'
-//         },
-//         {
-//             name: 'Cindy Baker',
-//             msg: 'Easily build highly personalized messages, and test multiple versions to see what works—all in Mixpanel, no code required.',
-//             avatar: 'https://cdn.vuetifyjs.com/images/lists/4.jpg'
-//         },
-//         {
-//             name: 'Deborah Lee',
-//             msg: 'Set detailed behavioral triggers, sequences, and rate limits for messages, to ensure that each campaign is relevant, timely, and delivered at the right pace.',
-//             avatar: 'https://cdn.vuetifyjs.com/images/lists/5.jpg'
-//         },
-//     ]
-//     let r = []
-//     for (let i = 0; i < n; i++) {
-//         for (let j = 0; j < tt.length; j++) {
-//             r.push(tt[j])
-//         }
-//     }
-//     return r
-// })(100)
-// console.log(JSON.stringify(data))
+import WButtonChip from './components/WButtonChip.vue'
 
 
 export default {
     components: {
         demolink,
         WDynamicList,
+        WButtonChip,
     },
     props: {
     },
@@ -420,13 +382,13 @@ export default {
                 'data1': ts1,
                 'data2': ts2,
                 'data3': (function(a) {
-                    a /= 5; let b = [{ name: 'Jason Oner', msg: 'Boost campaign performance by targeting specific user groups.', avatar: 'https://cdn.vuetifyjs.com/images/lists/1.jpg' }, { name: 'Travis Howard', msg: 'Determine the exact users you\'d like to target with a message or an experiment, based on behavioral data, like watching a video, or abandoning a cart, and demographic data, like age or location.', avatar: 'https://cdn.vuetifyjs.com/images/lists/2.jpg' }, { name: 'Ali Connors', msg: 'Integer porttitor urna ultricies justo iaculis vulputate ac non neque. Etiam iaculis est quis urna consequat ornare. Suspendisse a augue sit amet urna tincidunt rhoncus sed non tellus. Mauris ultricies lectus sit amet tellus egestas, in interdum elit rhoncus. Nullam viverra lectus mattis felis semper, in vulputate lorem tincidunt. Suspendisse dapibus arcu id nunc blandit, ut egestas nisi pulvinar. Examine trends in the movement of guns across different states. Code of Federal Regulations - Alcohol, Tobacco Products and Firearms 1980-2014 November General Election Turnout and Registration. Reported Voting and Registration, by Sex and Single Years of Age: November 2016. Map felon disenfranchisement patterns by state.', avatar: 'https://cdn.vuetifyjs.com/images/lists/3.jpg' }, { name: 'Cindy Baker', msg: 'Easily build highly personalized messages, and test multiple versions to see what works\u2014all in Mixpanel, no code required.', avatar: 'https://cdn.vuetifyjs.com/images/lists/4.jpg' }, { name: 'Deborah Lee', msg: 'Set detailed behavioral triggers, sequences, and rate limits for messages, to ensure that each campaign is relevant, timely, and delivered at the right pace.', avatar: 'https://cdn.vuetifyjs.com/images/lists/5.jpg' }]; let c = []; for (let d = 0; d < a; d++) for (let a = 0; a < b.length; a++)c.push(b[a]); return c
+                    a /= 5; let b = [{ name: 'Jason Oner', msg: 'Boost campaign performance by targeting specific user groups.', avatar: 'https://cdn.jsdelivr.net/npm/w-demores/res/img/avatar/100.svg' }, { name: 'Travis Howard', msg: 'Determine the exact users you\'d like to target with a message or an experiment, based on behavioral data, like watching a video, or abandoning a cart, and demographic data, like age or location.', avatar: 'https://cdn.jsdelivr.net/npm/w-demores/res/img/avatar/101.svg' }, { name: 'Ali Connors', msg: 'Integer porttitor urna ultricies justo iaculis vulputate ac non neque. Etiam iaculis est quis urna consequat ornare. Suspendisse a augue sit amet urna tincidunt rhoncus sed non tellus. Mauris ultricies lectus sit amet tellus egestas, in interdum elit rhoncus. Nullam viverra lectus mattis felis semper, in vulputate lorem tincidunt. Suspendisse dapibus arcu id nunc blandit, ut egestas nisi pulvinar. Examine trends in the movement of guns across different states. Code of Federal Regulations - Alcohol, Tobacco Products and Firearms 1980-2014 November General Election Turnout and Registration. Reported Voting and Registration, by Sex and Single Years of Age: November 2016. Map felon disenfranchisement patterns by state.', avatar: 'https://cdn.jsdelivr.net/npm/w-demores/res/img/avatar/102.svg' }, { name: 'Cindy Baker', msg: 'Easily build highly personalized messages, and test multiple versions to see what works\u2014all in Mixpanel, no code required.', avatar: 'https://cdn.jsdelivr.net/npm/w-demores/res/img/avatar/103.svg' }, { name: 'Deborah Lee', msg: 'Set detailed behavioral triggers, sequences, and rate limits for messages, to ensure that each campaign is relevant, timely, and delivered at the right pace.', avatar: 'https://cdn.jsdelivr.net/npm/w-demores/res/img/avatar/104.svg' }]; let c = []; for (let d = 0; d < a; d++) for (let a = 0; a < b.length; a++)c.push(b[a]); return c
                 })(100),
                 'data4': (function(a) {
-                    a /= 5; let b = [{ name: 'Jason Oner', msg: 'Boost campaign performance by targeting specific user groups.', avatar: 'https://cdn.vuetifyjs.com/images/lists/1.jpg' }, { name: 'Travis Howard', msg: 'Determine the exact users you\'d like to target with a message or an experiment, based on behavioral data, like watching a video, or abandoning a cart, and demographic data, like age or location.', avatar: 'https://cdn.vuetifyjs.com/images/lists/2.jpg' }, { name: 'Ali Connors', msg: 'Integer porttitor urna ultricies justo iaculis vulputate ac non neque. Etiam iaculis est quis urna consequat ornare. Suspendisse a augue sit amet urna tincidunt rhoncus sed non tellus. Mauris ultricies lectus sit amet tellus egestas, in interdum elit rhoncus. Nullam viverra lectus mattis felis semper, in vulputate lorem tincidunt. Suspendisse dapibus arcu id nunc blandit, ut egestas nisi pulvinar. Examine trends in the movement of guns across different states. Code of Federal Regulations - Alcohol, Tobacco Products and Firearms 1980-2014 November General Election Turnout and Registration. Reported Voting and Registration, by Sex and Single Years of Age: November 2016. Map felon disenfranchisement patterns by state.', avatar: 'https://cdn.vuetifyjs.com/images/lists/3.jpg' }, { name: 'Cindy Baker', msg: 'Easily build highly personalized messages, and test multiple versions to see what works\u2014all in Mixpanel, no code required.', avatar: 'https://cdn.vuetifyjs.com/images/lists/4.jpg' }, { name: 'Deborah Lee', msg: 'Set detailed behavioral triggers, sequences, and rate limits for messages, to ensure that each campaign is relevant, timely, and delivered at the right pace.', avatar: 'https://cdn.vuetifyjs.com/images/lists/5.jpg' }]; let c = []; for (let d = 0; d < a; d++) for (let a = 0; a < b.length; a++)c.push(b[a]); return c
+                    a /= 5; let b = [{ name: 'Jason Oner', msg: 'Boost campaign performance by targeting specific user groups.', avatar: 'https://cdn.jsdelivr.net/npm/w-demores/res/img/avatar/100.svg' }, { name: 'Travis Howard', msg: 'Determine the exact users you\'d like to target with a message or an experiment, based on behavioral data, like watching a video, or abandoning a cart, and demographic data, like age or location.', avatar: 'https://cdn.jsdelivr.net/npm/w-demores/res/img/avatar/101.svg' }, { name: 'Ali Connors', msg: 'Integer porttitor urna ultricies justo iaculis vulputate ac non neque. Etiam iaculis est quis urna consequat ornare. Suspendisse a augue sit amet urna tincidunt rhoncus sed non tellus. Mauris ultricies lectus sit amet tellus egestas, in interdum elit rhoncus. Nullam viverra lectus mattis felis semper, in vulputate lorem tincidunt. Suspendisse dapibus arcu id nunc blandit, ut egestas nisi pulvinar. Examine trends in the movement of guns across different states. Code of Federal Regulations - Alcohol, Tobacco Products and Firearms 1980-2014 November General Election Turnout and Registration. Reported Voting and Registration, by Sex and Single Years of Age: November 2016. Map felon disenfranchisement patterns by state.', avatar: 'https://cdn.jsdelivr.net/npm/w-demores/res/img/avatar/102.svg' }, { name: 'Cindy Baker', msg: 'Easily build highly personalized messages, and test multiple versions to see what works\u2014all in Mixpanel, no code required.', avatar: 'https://cdn.jsdelivr.net/npm/w-demores/res/img/avatar/103.svg' }, { name: 'Deborah Lee', msg: 'Set detailed behavioral triggers, sequences, and rate limits for messages, to ensure that each campaign is relevant, timely, and delivered at the right pace.', avatar: 'https://cdn.jsdelivr.net/npm/w-demores/res/img/avatar/104.svg' }]; let c = []; for (let d = 0; d < a; d++) for (let a = 0; a < b.length; a++)c.push(b[a]); return c
                 })(100),
                 'data5': (function(a) {
-                    a /= 5; let b = [{ name: 'Jason Oner', msg: 'Boost campaign performance by targeting specific user groups.', avatar: 'https://cdn.vuetifyjs.com/images/lists/1.jpg' }, { name: 'Travis Howard', msg: 'Determine the exact users you\'d like to target with a message or an experiment, based on behavioral data, like watching a video, or abandoning a cart, and demographic data, like age or location.', avatar: 'https://cdn.vuetifyjs.com/images/lists/2.jpg' }, { name: 'Ali Connors', msg: 'Integer porttitor urna ultricies justo iaculis vulputate ac non neque. Etiam iaculis est quis urna consequat ornare. Suspendisse a augue sit amet urna tincidunt rhoncus sed non tellus. Mauris ultricies lectus sit amet tellus egestas, in interdum elit rhoncus. Nullam viverra lectus mattis felis semper, in vulputate lorem tincidunt. Suspendisse dapibus arcu id nunc blandit, ut egestas nisi pulvinar. Examine trends in the movement of guns across different states. Code of Federal Regulations - Alcohol, Tobacco Products and Firearms 1980-2014 November General Election Turnout and Registration. Reported Voting and Registration, by Sex and Single Years of Age: November 2016. Map felon disenfranchisement patterns by state.', avatar: 'https://cdn.vuetifyjs.com/images/lists/3.jpg' }, { name: 'Cindy Baker', msg: 'Easily build highly personalized messages, and test multiple versions to see what works\u2014all in Mixpanel, no code required.', avatar: 'https://cdn.vuetifyjs.com/images/lists/4.jpg' }, { name: 'Deborah Lee', msg: 'Set detailed behavioral triggers, sequences, and rate limits for messages, to ensure that each campaign is relevant, timely, and delivered at the right pace.', avatar: 'https://cdn.vuetifyjs.com/images/lists/5.jpg' }]; let c = []; for (let d = 0; d < a; d++) for (let a = 0; a < b.length; a++)c.push(b[a]); return c
+                    a /= 5; let b = [{ name: 'Jason Oner', msg: 'Boost campaign performance by targeting specific user groups.', avatar: 'https://cdn.jsdelivr.net/npm/w-demores/res/img/avatar/100.svg' }, { name: 'Travis Howard', msg: 'Determine the exact users you\'d like to target with a message or an experiment, based on behavioral data, like watching a video, or abandoning a cart, and demographic data, like age or location.', avatar: 'https://cdn.jsdelivr.net/npm/w-demores/res/img/avatar/101.svg' }, { name: 'Ali Connors', msg: 'Integer porttitor urna ultricies justo iaculis vulputate ac non neque. Etiam iaculis est quis urna consequat ornare. Suspendisse a augue sit amet urna tincidunt rhoncus sed non tellus. Mauris ultricies lectus sit amet tellus egestas, in interdum elit rhoncus. Nullam viverra lectus mattis felis semper, in vulputate lorem tincidunt. Suspendisse dapibus arcu id nunc blandit, ut egestas nisi pulvinar. Examine trends in the movement of guns across different states. Code of Federal Regulations - Alcohol, Tobacco Products and Firearms 1980-2014 November General Election Turnout and Registration. Reported Voting and Registration, by Sex and Single Years of Age: November 2016. Map felon disenfranchisement patterns by state.', avatar: 'https://cdn.jsdelivr.net/npm/w-demores/res/img/avatar/102.svg' }, { name: 'Cindy Baker', msg: 'Easily build highly personalized messages, and test multiple versions to see what works\u2014all in Mixpanel, no code required.', avatar: 'https://cdn.jsdelivr.net/npm/w-demores/res/img/avatar/103.svg' }, { name: 'Deborah Lee', msg: 'Set detailed behavioral triggers, sequences, and rate limits for messages, to ensure that each campaign is relevant, timely, and delivered at the right pace.', avatar: 'https://cdn.jsdelivr.net/npm/w-demores/res/img/avatar/104.svg' }]; let c = []; for (let d = 0; d < a; d++) for (let a = 0; a < b.length; a++)c.push(b[a]); return c
                 })(1000000), //20000000 1000000 500000 100000 50000 1000
             },
             'actions': [

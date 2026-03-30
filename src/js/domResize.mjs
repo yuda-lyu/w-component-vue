@@ -20,7 +20,7 @@ function domResize() {
         let id = `r${genID()}`
         el.setAttribute('ev-resize', id)
 
-        //de, 不能用vuetify的v-resize, 因是基於window resize無法偵測單純的元素尺寸變化
+        //de
         let de = domDetect(() => {
             return el
         })

@@ -294,9 +294,9 @@
                         :itemBackgroundColorActive="'rgba(100, 100, 140, 0.75)'"
                     >
                         <template v-slot:footer>
-                            <div style="padding:10px 15px; font-size:0.9rem; color:#fff; background:rgba(150,150,150,0.25); text-align:right;">
-                                <v-btn style="margin-left:8px;" small rounded>Save</v-btn>
-                                <v-btn style="margin-left:8px;" small rounded>Analysis</v-btn>
+                            <div style="padding:10px; font-size:0.9rem; color:#fff; background:rgba(150,150,150,0.25); text-align:right;">
+                                <w-button-chip style="margin-left:8px;" :text="'Save'" :borderRadius="4"></w-button-chip>
+                                <w-button-chip style="margin-left:8px;" :text="'Analysis'" :borderRadius="4"></w-button-chip>
                             </div>
                         </template>
                     </w-list-expand>
@@ -345,6 +345,7 @@ import demolink from './components/demolink.vue'
 import WButtonCircle from './components/WButtonCircle.vue'
 import WIcon from './components/WIcon.vue'
 import WListExpand from './components/WListExpand.vue'
+import WButtonChip from './components/WButtonChip.vue'
 
 
 export default {
@@ -353,6 +354,7 @@ export default {
         WButtonCircle,
         WIcon,
         WListExpand,
+        WButtonChip,
     },
     props: {
     },

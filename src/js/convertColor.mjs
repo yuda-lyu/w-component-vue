@@ -52,9 +52,9 @@ function getHexColor(key0, key1, def) {
 
 
 /**
- * 轉換vuetify color為hex顏色字串
+ * 轉換描述color為hex顏色字串
  *
- * @param {String} color 輸入vuetify顏色字串
+ * @param {String} color 輸入描述顏色字串
  * @returns {String} hex 回傳hex顏色字串
  */
 function convertColor(color) {

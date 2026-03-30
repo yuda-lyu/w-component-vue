@@ -189,11 +189,41 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-timeminute-range'"
+                    :casename="'hoverColor'"
+                ></demolink>
+
+                <w-timeminute-range
+                    :hoverColor="'#FFCDD2'"
+                    :minuteStart.sync="WTimeminuteRange.minuteStart"
+                    :minuteEnd.sync="WTimeminuteRange.minuteEnd"
+                ></w-timeminute-range>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-timeminute-range'"
                     :casename="'iconTooltip'"
                 ></demolink>
 
                 <w-timeminute-range
                     :iconTooltip="'show tooltip'"
+                    :minuteStart.sync="WTimeminuteRange.minuteStart"
+                    :minuteEnd.sync="WTimeminuteRange.minuteEnd"
+                ></w-timeminute-range>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-timeminute-range'"
+                    :casename="'funRenderYear & funRenderMonth & funRenderDayOfWeek'"
+                ></demolink>
+
+                <w-timeminute-range
+                    :funRenderYear="(y)=>`${y}年`"
+                    :funRenderMonth="(m)=>`${m}月`"
+                    :funRenderDayOfWeek="(d)=>['日','一','二','三','四','五','六'][d]"
                     :minuteStart.sync="WTimeminuteRange.minuteStart"
                     :minuteEnd.sync="WTimeminuteRange.minuteEnd"
                 ></w-timeminute-range>
@@ -526,6 +556,27 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-timeminute-range'"
+                    :casename="'border & hoverColor'"
+                ></demolink>
+
+                <w-timeminute-range
+                    :shadow="false"
+                    :borderColor="'orange lighten-2'"
+                    :borderColorHover="'orange'"
+                    :borderColorFocus="'orange darken-2'"
+                    :backgroundColor="'white'"
+                    :backgroundColorHover="'white'"
+                    :backgroundColorFocus="'orange lighten-5'"
+                    :hoverColor="'#FFCDD2'"
+                    :minuteStart.sync="WTimeminuteRange.minuteStart"
+                    :minuteEnd.sync="WTimeminuteRange.minuteEnd"
+                ></w-timeminute-range>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-timeminute-range'"
                     :casename="'border & iconTooltip'"
                 ></demolink>
 
@@ -538,6 +589,29 @@
                     :backgroundColorHover="'white'"
                     :backgroundColorFocus="'orange lighten-5'"
                     :iconTooltip="'show tooltip'"
+                    :minuteStart.sync="WTimeminuteRange.minuteStart"
+                    :minuteEnd.sync="WTimeminuteRange.minuteEnd"
+                ></w-timeminute-range>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-timeminute-range'"
+                    :casename="'border & funRenderYear & funRenderMonth & funRenderDayOfWeek'"
+                ></demolink>
+
+                <w-timeminute-range
+                    :shadow="false"
+                    :borderColor="'orange lighten-2'"
+                    :borderColorHover="'orange'"
+                    :borderColorFocus="'orange darken-2'"
+                    :backgroundColor="'white'"
+                    :backgroundColorHover="'white'"
+                    :backgroundColorFocus="'orange lighten-5'"
+                    :funRenderYear="(y)=>`${y}年`"
+                    :funRenderMonth="(m)=>`${m}月`"
+                    :funRenderDayOfWeek="(d)=>['日','一','二','三','四','五','六'][d]"
                     :minuteStart.sync="WTimeminuteRange.minuteStart"
                     :minuteEnd.sync="WTimeminuteRange.minuteEnd"
                 ></w-timeminute-range>

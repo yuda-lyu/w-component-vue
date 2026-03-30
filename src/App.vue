@@ -1,5 +1,5 @@
 <template>
-    <v-app
+    <div
         style=""
         :changeMenus="changeMenus"
     >
@@ -248,7 +248,7 @@
 
         </div>
 
-    </v-app>
+    </div>
 </template>
 
 <script>

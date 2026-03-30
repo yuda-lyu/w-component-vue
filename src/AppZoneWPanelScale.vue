@@ -8,15 +8,9 @@
         <div>
 
 
-            <v-slider
-                style="width:200px;"
-                min="0.5"
-                max="1.5"
-                step="0.05"
-                hide-details
-                v-model="WPanelScale.scale"
-                v-if="useGlobalSlider"
-            ></v-slider>
+            <div v-if="useGlobalSlider">
+                <input type="range" style="width:200px;" min="0.5" max="1.5" step="0.05" :value="WPanelScale.scale" @input="WPanelScale.scale=Number($event.target.value)" />
+            </div>
 
 
             <div class="bk">
@@ -25,15 +19,9 @@
                     :casename="'for v-btn'"
                 ></demolink>
 
-                <v-slider
-                    style="width:200px;"
-                    min="0.5"
-                    max="1.5"
-                    step="0.05"
-                    hide-details
-                    v-model="WPanelScale.scale"
-                    v-if="!useGlobalSlider"
-                ></v-slider>
+                <div v-if="!useGlobalSlider">
+                    <input type="range" style="width:200px;" min="0.5" max="1.5" step="0.05" :value="WPanelScale.scale" @input="WPanelScale.scale=Number($event.target.value)" />
+                </div>
 
                 <div style="color:#f26; font-size:0.8rem;">
                     * div使用display:inline-block且與其他元素有空白時, 照規範渲染時會出現textNode造成空隙問題
@@ -44,7 +32,7 @@
                         :scale="WPanelScale.scale"
                     >
 
-                        <v-btn>button</v-btn>
+                        <w-button-chip :text="'button'" :borderRadius="4"></w-button-chip>
 
                     </w-panel-scale>
                 </div>
@@ -70,15 +58,9 @@
                     :casename="'for w-panel-scrolly'"
                 ></demolink>
 
-                <v-slider
-                    style="width:200px;"
-                    min="0.5"
-                    max="1.5"
-                    step="0.05"
-                    hide-details
-                    v-model="WPanelScale.scale"
-                    v-if="!useGlobalSlider"
-                ></v-slider>
+                <div v-if="!useGlobalSlider">
+                    <input type="range" style="width:200px;" min="0.5" max="1.5" step="0.05" :value="WPanelScale.scale" @input="WPanelScale.scale=Number($event.target.value)" />
+                </div>
 
                 <div style="display:inline-block; padding:10px; border:1px dashed #999;">
                     <w-panel-scale
@@ -103,15 +85,9 @@
                     :casename="'for select'"
                 ></demolink>
 
-                <v-slider
-                    style="width:200px;"
-                    min="0.5"
-                    max="1.5"
-                    step="0.05"
-                    hide-details
-                    v-model="WPanelScale.scale"
-                    v-if="!useGlobalSlider"
-                ></v-slider>
+                <div v-if="!useGlobalSlider">
+                    <input type="range" style="width:200px;" min="0.5" max="1.5" step="0.05" :value="WPanelScale.scale" @input="WPanelScale.scale=Number($event.target.value)" />
+                </div>
 
                 <div style="display:inline-block; padding:10px; border:1px dashed #999;">
                     <w-panel-scale
@@ -137,15 +113,9 @@
                     :casename="'for w-text-suggest'"
                 ></demolink>
 
-                <v-slider
-                    style="width:200px;"
-                    min="0.5"
-                    max="1.5"
-                    step="0.05"
-                    hide-details
-                    v-model="WPanelScale.scale"
-                    v-if="!useGlobalSlider"
-                ></v-slider>
+                <div v-if="!useGlobalSlider">
+                    <input type="range" style="width:200px;" min="0.5" max="1.5" step="0.05" :value="WPanelScale.scale" @input="WPanelScale.scale=Number($event.target.value)" />
+                </div>
 
                 <div style="color:#f26; font-size:0.8rem;">
                     * transform scale縮放會造成popupjs定位偏移問題
@@ -179,15 +149,9 @@
                     :casename="'for w-panel-bulge'"
                 ></demolink>
 
-                <v-slider
-                    style="width:200px;"
-                    min="0.5"
-                    max="1.5"
-                    step="0.05"
-                    hide-details
-                    v-model="WPanelScale.scale"
-                    v-if="!useGlobalSlider"
-                ></v-slider>
+                <div v-if="!useGlobalSlider">
+                    <input type="range" style="width:200px;" min="0.5" max="1.5" step="0.05" :value="WPanelScale.scale" @input="WPanelScale.scale=Number($event.target.value)" />
+                </div>
 
                 <div style="display:inline-block; padding:10px; border:1px dashed #999;">
                     <w-panel-scale
@@ -219,6 +183,7 @@ import WPanelScale from './components/WPanelScale.vue'
 import WPanelScrolly from './components/WPanelScrolly.vue'
 import WTextSuggest from './components/WTextSuggest.vue'
 import WPanelBulge from './components/WPanelBulge.vue'
+import WButtonChip from './components/WButtonChip.vue'
 
 
 window.inAppZone = true
@@ -231,6 +196,7 @@ export default {
         WPanelScrolly,
         WTextSuggest,
         WPanelBulge,
+        WButtonChip,
     },
     props: {
     },

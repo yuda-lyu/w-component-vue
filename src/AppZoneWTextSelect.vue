@@ -446,7 +446,7 @@
                 >
 
                     <template v-slot:trigger>
-                        <v-btn depressed small elevation="2">Show popup</v-btn>
+                        <w-button-chip :text="'show popup'" :borderRadius="4"></w-button-chip>
                     </template>
 
                     <template v-slot:content>
@@ -1098,7 +1098,7 @@
                 >
 
                     <template v-slot:trigger>
-                        <v-btn depressed small elevation="2">Show popup</v-btn>
+                        <w-button-chip :text="'show popup'" :borderRadius="4"></w-button-chip>
                     </template>
 
                     <template v-slot:content>
@@ -1182,6 +1182,7 @@ import { mdiCheckUnderlineCircle, mdiPaw } from '@mdi/js'
 import demolink from './components/demolink.vue'
 import WTextSelect from './components/WTextSelect.vue'
 import WPopup from './components/WPopup.vue'
+import WButtonChip from './components/WButtonChip.vue'
 
 
 export default {
@@ -1189,6 +1190,7 @@ export default {
         demolink,
         WTextSelect,
         WPopup,
+        WButtonChip,
     },
     props: {
     },

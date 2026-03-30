@@ -15,7 +15,7 @@
                 ></demolink>
 
                 <div style="padding-bottom:10px;">
-                    <v-btn depressed small elevation="2" @click="WDrawer.bShow101=!WDrawer.bShow101">Show({{WDrawer.bShow101}})</v-btn>
+                    <w-button-chip :text="'show('+WDrawer.bShow101+')'" :borderRadius="4" @click="WDrawer.bShow101=!WDrawer.bShow101"></w-button-chip>
                 </div>
 
                 <w-drawer
@@ -50,7 +50,7 @@
                 ></demolink>
 
                 <div style="padding-bottom:10px;">
-                    <v-btn depressed small elevation="2" @click="WDrawer.bShow102=!WDrawer.bShow102">Show({{WDrawer.bShow102}})</v-btn>
+                    <w-button-chip :text="'show('+WDrawer.bShow102+')'" :borderRadius="4" @click="WDrawer.bShow102=!WDrawer.bShow102"></w-button-chip>
                 </div>
 
                 <w-drawer
@@ -88,7 +88,7 @@
                 <div style="padding-bottom:10px; display:flex; align-items:center;">
 
                     <div style="">
-                        <v-btn depressed small elevation="2" @click="WDrawer.bShow103=!WDrawer.bShow103">Show({{WDrawer.bShow103}})</v-btn>
+                        <w-button-chip :text="'show('+WDrawer.bShow103+')'" :borderRadius="4" @click="WDrawer.bShow103=!WDrawer.bShow103"></w-button-chip>
                     </div>
 
                     <div style="padding-left:10px; font-size:0.8rem;">drawerWidth: {{WDrawer.drawerWidth}}</div>
@@ -132,7 +132,7 @@
                 ></demolink>
 
                 <div style="padding-bottom:10px;">
-                    <v-btn depressed small elevation="2" @click="WDrawer.bShow104=!WDrawer.bShow104">Show({{WDrawer.bShow104}})</v-btn>
+                    <w-button-chip :text="'show('+WDrawer.bShow104+')'" :borderRadius="4" @click="WDrawer.bShow104=!WDrawer.bShow104"></w-button-chip>
                 </div>
 
                 <w-drawer
@@ -172,7 +172,7 @@
                 ></demolink>
 
                 <div style="padding-bottom:10px;">
-                    <v-btn depressed small elevation="2" @click="WDrawer.bShow105=!WDrawer.bShow105">Show({{WDrawer.bShow105}})</v-btn>
+                    <w-button-chip :text="'show('+WDrawer.bShow105+')'" :borderRadius="4" @click="WDrawer.bShow105=!WDrawer.bShow105"></w-button-chip>
                 </div>
 
                 <w-drawer
@@ -212,7 +212,7 @@
                 ></demolink>
 
                 <div style="padding-bottom:10px;">
-                    <v-btn depressed small elevation="2" @click="WDrawer.bShow106=!WDrawer.bShow106">Show({{WDrawer.bShow106}})</v-btn>
+                    <w-button-chip :text="'show('+WDrawer.bShow106+')'" :borderRadius="4" @click="WDrawer.bShow106=!WDrawer.bShow106"></w-button-chip>
                 </div>
 
                 <w-drawer
@@ -307,11 +307,11 @@
                                 <div style="height:100%; overflow-y:auto;">
 
                                     <div style="padding-bottom:10px;">
-                                        <v-btn depressed small elevation="2" @click="WDrawer.bShow107a=!WDrawer.bShow107a">Outer Show({{WDrawer.bShow107a}})</v-btn>
+                                        <w-button-chip :text="'outer show('+WDrawer.bShow107a+')'" :borderRadius="4" @click="WDrawer.bShow107a=!WDrawer.bShow107a"></w-button-chip>
                                     </div>
 
                                     <div style="padding-bottom:10px;">
-                                        <v-btn depressed small elevation="2" @click="WDrawer.bShow107b=!WDrawer.bShow107b">Inner Show({{WDrawer.bShow107b}})</v-btn>
+                                        <w-button-chip :text="'inner show('+WDrawer.bShow107b+')'" :borderRadius="4" @click="WDrawer.bShow107b=!WDrawer.bShow107b"></w-button-chip>
                                     </div>
 
                                     <div style="padding:10px; font-size:1.2rem;">{{WDrawer.title}}</div>
@@ -335,7 +335,7 @@
                 ></demolink>
 
                 <div style="padding-bottom:10px;">
-                    <v-btn depressed small elevation="2" @click="WDrawer.bShow108=!WDrawer.bShow108">Show({{WDrawer.bShow108}})</v-btn>
+                    <w-button-chip :text="'show('+WDrawer.bShow108+')'" :borderRadius="4" @click="WDrawer.bShow108=!WDrawer.bShow108"></w-button-chip>
                 </div>
 
                 <w-drawer
@@ -371,7 +371,7 @@
                 ></demolink>
 
                 <div style="padding-bottom:10px;">
-                    <v-btn depressed small elevation="2" @click="WDrawer.bShow109=!WDrawer.bShow109">Show({{WDrawer.bShow109}})</v-btn>
+                    <w-button-chip :text="'show('+WDrawer.bShow109+')'" :borderRadius="4" @click="WDrawer.bShow109=!WDrawer.bShow109"></w-button-chip>
                 </div>
 
                 <w-drawer
@@ -409,7 +409,7 @@
                 ></demolink>
 
                 <div style="padding-bottom:10px;">
-                    <v-btn depressed small elevation="2" @click="WDrawer.bShow110=!WDrawer.bShow110">Show({{WDrawer.bShow110}})</v-btn>
+                    <w-button-chip :text="'show('+WDrawer.bShow110+')'" :borderRadius="4" @click="WDrawer.bShow110=!WDrawer.bShow110"></w-button-chip>
                 </div>
 
                 <w-drawer
@@ -446,7 +446,7 @@
                 ></demolink>
 
                 <div style="padding-bottom:10px;">
-                    <v-btn depressed small elevation="2" @click="WDrawer.bShow111=!WDrawer.bShow111">Show({{WDrawer.bShow111}})</v-btn>
+                    <w-button-chip :text="'show('+WDrawer.bShow111+')'" :borderRadius="4" @click="WDrawer.bShow111=!WDrawer.bShow111"></w-button-chip>
                 </div>
 
                 <w-drawer
@@ -490,7 +490,7 @@
                 ></demolink>
 
                 <div style="padding-bottom:10px;">
-                    <v-btn depressed small elevation="2" @click="WDrawer.bShow112=!WDrawer.bShow112">Show({{WDrawer.bShow112}})</v-btn>
+                    <w-button-chip :text="'show('+WDrawer.bShow112+')'" :borderRadius="4" @click="WDrawer.bShow112=!WDrawer.bShow112"></w-button-chip>
                 </div>
 
                 <w-drawer
@@ -530,7 +530,7 @@
                 ></demolink>
 
                 <div style="padding-bottom:10px;">
-                    <v-btn depressed small elevation="2" @click="WDrawer.bShow113=!WDrawer.bShow113">Show({{WDrawer.bShow113}})</v-btn>
+                    <w-button-chip :text="'show('+WDrawer.bShow113+')'" :borderRadius="4" @click="WDrawer.bShow113=!WDrawer.bShow113"></w-button-chip>
                 </div>
 
                 <w-drawer
@@ -568,7 +568,7 @@
                 ></demolink>
 
                 <div style="padding-bottom:10px;">
-                    <v-btn depressed small elevation="2" @click="WDrawer.bShow114=!WDrawer.bShow114">Show({{WDrawer.bShow114}})</v-btn>
+                    <w-button-chip :text="'show('+WDrawer.bShow114+')'" :borderRadius="4" @click="WDrawer.bShow114=!WDrawer.bShow114"></w-button-chip>
                 </div>
 
                 <w-drawer
@@ -606,7 +606,7 @@
                 ></demolink>
 
                 <div style="padding-bottom:10px;">
-                    <v-btn depressed small elevation="2" @click="WDrawer.bShow115=!WDrawer.bShow115">Show({{WDrawer.bShow115}})</v-btn>
+                    <w-button-chip :text="'show('+WDrawer.bShow115+')'" :borderRadius="4" @click="WDrawer.bShow115=!WDrawer.bShow115"></w-button-chip>
                 </div>
 
                 <w-drawer
@@ -651,7 +651,7 @@
                 ></demolink>
 
                 <div style="padding-bottom:10px;">
-                    <v-btn depressed small elevation="2" @click="WDrawer.bShow116=!WDrawer.bShow116">Show({{WDrawer.bShow116}})</v-btn>
+                    <w-button-chip :text="'show('+WDrawer.bShow116+')'" :borderRadius="4" @click="WDrawer.bShow116=!WDrawer.bShow116"></w-button-chip>
                 </div>
 
                 <w-drawer
@@ -692,7 +692,7 @@
                 ></demolink>
 
                 <div style="padding-bottom:10px;">
-                    <v-btn depressed small elevation="2" @click="WDrawer.bShow117=!WDrawer.bShow117">Show({{WDrawer.bShow117}})</v-btn>
+                    <w-button-chip :text="'show('+WDrawer.bShow117+')'" :borderRadius="4" @click="WDrawer.bShow117=!WDrawer.bShow117"></w-button-chip>
                 </div>
 
                 <w-drawer
@@ -730,7 +730,7 @@
                 ></demolink>
 
                 <div style="padding-bottom:10px;">
-                    <v-btn depressed small elevation="2" @click="WDrawer.bShow118=!WDrawer.bShow118">Show({{WDrawer.bShow118}})</v-btn>
+                    <w-button-chip :text="'show('+WDrawer.bShow118+')'" :borderRadius="4" @click="WDrawer.bShow118=!WDrawer.bShow118"></w-button-chip>
                 </div>
 
                 <w-drawer
@@ -769,7 +769,7 @@
                 ></demolink>
 
                 <div style="padding-bottom:10px;">
-                    <v-btn depressed small elevation="2" @click="WDrawer.bShow119=!WDrawer.bShow119">Show({{WDrawer.bShow119}})</v-btn>
+                    <w-button-chip :text="'show('+WDrawer.bShow119+')'" :borderRadius="4" @click="WDrawer.bShow119=!WDrawer.bShow119"></w-button-chip>
                 </div>
 
                 <w-drawer
@@ -808,7 +808,7 @@
                 ></demolink>
 
                 <div style="padding-bottom:10px;">
-                    <v-btn depressed small elevation="2" @click="WDrawer.bShow120=!WDrawer.bShow120">Show({{WDrawer.bShow120}})</v-btn>
+                    <w-button-chip :text="'show('+WDrawer.bShow120+')'" :borderRadius="4" @click="WDrawer.bShow120=!WDrawer.bShow120"></w-button-chip>
                 </div>
 
                 <w-drawer
@@ -848,7 +848,7 @@
                 ></demolink>
 
                 <div style="padding-bottom:10px;">
-                    <v-btn depressed small elevation="2" @click="WDrawer.bShow121=!WDrawer.bShow121">Show({{WDrawer.bShow121}})</v-btn>
+                    <w-button-chip :text="'show('+WDrawer.bShow121+')'" :borderRadius="4" @click="WDrawer.bShow121=!WDrawer.bShow121"></w-button-chip>
                 </div>
 
                 <div style="position:relative;">
@@ -899,7 +899,7 @@
                 ></demolink>
 
                 <div style="padding-bottom:10px;">
-                    <v-btn depressed small elevation="2" @click="WDrawer.bShow122=!WDrawer.bShow122">Show({{WDrawer.bShow122}})</v-btn>
+                    <w-button-chip :text="'show('+WDrawer.bShow122+')'" :borderRadius="4" @click="WDrawer.bShow122=!WDrawer.bShow122"></w-button-chip>
                 </div>
 
                 <div style="position:relative;">
@@ -950,8 +950,8 @@
                 ></demolink>
 
                 <div style="padding-bottom:10px;">
-                    <v-btn depressed small elevation="2" @click="WDrawer.bShow123=!WDrawer.bShow123">Show({{WDrawer.bShow123}})</v-btn>
-                    <v-btn depressed small elevation="2" @click="WDrawer.bAfloat123=!WDrawer.bAfloat123">afloat({{WDrawer.bAfloat123}})</v-btn>
+                    <w-button-chip style="margin-right:15px;" :text="'show('+WDrawer.bShow123+')'" :borderRadius="4" @click="WDrawer.bShow123=!WDrawer.bShow123"></w-button-chip>
+                    <w-button-chip style="margin-right:15px;" :text="'afloat('+WDrawer.bAfloat123+')'" :borderRadius="4" @click="WDrawer.bAfloat123=!WDrawer.bAfloat123"></w-button-chip>
                 </div>
 
                 <div style="position:relative;">
@@ -1007,6 +1007,7 @@ import demolink from './components/demolink.vue'
 import WListVertical from './components/WListVertical.vue'
 import WDrawer from './components/WDrawer.vue'
 import WPanelDivideHorizontal from './components/WPanelDivideHorizontal.vue'
+import WButtonChip from './components/WButtonChip.vue'
 
 
 export default {
@@ -1015,6 +1016,7 @@ export default {
         WListVertical,
         WDrawer,
         WPanelDivideHorizontal,
+        WButtonChip,
     },
     props: {
     },
@@ -1023,7 +1025,7 @@ export default {
             'WDrawer': {
                 'drawerWidth': 300,
                 'title': 'Article Title',
-                'content': 'Here is an article content, texts are from Vuetify. There are three ways in which you can install Vuetify. The first (and recommended) way is to utilize the vuetify-loader or what we call automatic A-la-carte. This will ensure that your application only uses the features and styles from Vuetify that are needed, significantly reducing your application\'s compiled size. Keep in mind, when importing from vuetify/lib, the necessary styles are automatically imported for you.',
+                'content': 'Here is an article content, texts are from Vuetify. There are three ways in which you can install Vuetify. The first (and recommended) way is to utilize the loader or what we call automatic A-la-carte. This will ensure that your application only uses the features and styles from Vuetify that are needed, significantly reducing your application\'s compiled size. Keep in mind, when importing from lib, the necessary styles are automatically imported for you.',
                 'listItems': [
                     {
                         text: 'Interpreting',
@@ -1081,7 +1083,7 @@ export default {
                     },
                     {
                         text: 'Issue',
-                        icon: 'fa-box-tissue',
+                        icon: 'fa-solid fa-box-tissue',
                     },
                 ],
                 'listItemActive': {

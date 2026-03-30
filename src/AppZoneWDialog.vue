@@ -14,7 +14,7 @@
                     :casename="'slot content'"
                 ></demolink>
 
-                <v-btn depressed small elevation="2" @click="WDialog.bShow01=!WDialog.bShow01">Show({{WDialog.bShow01}})</v-btn>
+                <w-button-chip :text="'show('+WDialog.bShow01+')'" :borderRadius="4" @click="WDialog.bShow01=!WDialog.bShow01"></w-button-chip>
 
                 <w-dialog
                     :show.sync="WDialog.bShow01"
@@ -52,7 +52,7 @@
                     :casename="'icon (fontawesome)'"
                 ></demolink>
 
-                <v-btn depressed small elevation="2" @click="WDialog.bShow02=!WDialog.bShow02">Show({{WDialog.bShow02}})</v-btn>
+                <w-button-chip :text="'show('+WDialog.bShow02+')'" :borderRadius="4" @click="WDialog.bShow02=!WDialog.bShow02"></w-button-chip>
 
                 <w-dialog
                     :show.sync="WDialog.bShow02"
@@ -91,7 +91,7 @@
                     :casename="'title'"
                 ></demolink>
 
-                <v-btn depressed small elevation="2" @click="WDialog.bShow03=!WDialog.bShow03">Show({{WDialog.bShow03}})</v-btn>
+                <w-button-chip :text="'show('+WDialog.bShow03+')'" :borderRadius="4" @click="WDialog.bShow03=!WDialog.bShow03"></w-button-chip>
 
                 <w-dialog
                     :show.sync="WDialog.bShow03"
@@ -129,7 +129,7 @@
                     :casename="'long title'"
                 ></demolink>
 
-                <v-btn depressed small elevation="2" @click="WDialog.bShow04a=!WDialog.bShow04a">Show({{WDialog.bShow04a}})</v-btn>
+                <w-button-chip :text="'show('+WDialog.bShow04a+')'" :borderRadius="4" @click="WDialog.bShow04a=!WDialog.bShow04a"></w-button-chip>
 
                 <w-dialog
                     :show.sync="WDialog.bShow04a"
@@ -155,9 +155,9 @@
                                 {{WDialog.text4}}
                             </div>
 
-                            <v-btn style="margin-right:10px;" depressed small elevation="2" @click="WDialog.bShow04a=!WDialog.bShow04a">Hide Window</v-btn>
+                            <w-button-chip style="margin-right:10px;" :text="'hide window'" :borderRadius="4" @click="WDialog.bShow04a=!WDialog.bShow04a"></w-button-chip>
 
-                            <v-btn style="margin-right:10px;" depressed small elevation="2" @click="WDialog.bShow04b=!WDialog.bShow04b">Toggle to {{WDialog.bShow04b?'Normal Size':'Fullscreen'}}</v-btn>
+                            <w-button-chip style="margin-right:10px;" :text="'toggle to '+(WDialog.bShow04b?'normal size':'fullscreen')" :borderRadius="4" @click="WDialog.bShow04b=!WDialog.bShow04b"></w-button-chip>
 
                         </div>
                     </template>
@@ -173,7 +173,7 @@
                     :casename="'headerBackgroundColor'"
                 ></demolink>
 
-                <v-btn depressed small elevation="2" @click="WDialog.bShow05=!WDialog.bShow05">Show({{WDialog.bShow05}})</v-btn>
+                <w-button-chip :text="'show('+WDialog.bShow05+')'" :borderRadius="4" @click="WDialog.bShow05=!WDialog.bShow05"></w-button-chip>
 
                 <w-dialog
                     :show.sync="WDialog.bShow05"
@@ -212,7 +212,7 @@
                     :casename="'titleColor & headerIconColor & headerBackgroundColor'"
                 ></demolink>
 
-                <v-btn depressed small elevation="2" @click="WDialog.bShow06=!WDialog.bShow06">Show({{WDialog.bShow06}})</v-btn>
+                <w-button-chip :text="'show('+WDialog.bShow06+')'" :borderRadius="4" @click="WDialog.bShow06=!WDialog.bShow06"></w-button-chip>
 
                 <w-dialog
                     :show.sync="WDialog.bShow06"
@@ -253,7 +253,7 @@
                     :casename="'headerShadow (no shadow)'"
                 ></demolink>
 
-                <v-btn depressed small elevation="2" @click="WDialog.bShow07=!WDialog.bShow07">Show({{WDialog.bShow07}})</v-btn>
+                <w-button-chip :text="'show('+WDialog.bShow07+')'" :borderRadius="4" @click="WDialog.bShow07=!WDialog.bShow07"></w-button-chip>
 
                 <w-dialog
                     :show.sync="WDialog.bShow07"
@@ -292,7 +292,7 @@
                     :casename="'headerShadowStyle'"
                 ></demolink>
 
-                <v-btn depressed small elevation="2" @click="WDialog.bShow08=!WDialog.bShow08">Show({{WDialog.bShow08}})</v-btn>
+                <w-button-chip :text="'show('+WDialog.bShow08+')'" :borderRadius="4" @click="WDialog.bShow08=!WDialog.bShow08"></w-button-chip>
 
                 <w-dialog
                     :show.sync="WDialog.bShow08"
@@ -331,7 +331,7 @@
                     :casename="'headerBtns'"
                 ></demolink>
 
-                <v-btn depressed small elevation="2" @click="WDialog.bShow09=!WDialog.bShow09">Show({{WDialog.bShow09}})</v-btn>
+                <w-button-chip :text="'show('+WDialog.bShow09+')'" :borderRadius="4" @click="WDialog.bShow09=!WDialog.bShow09"></w-button-chip>
 
                 <w-dialog
                     :show.sync="WDialog.bShow09"
@@ -371,7 +371,7 @@
                     :casename="'slot header-left & header-right'"
                 ></demolink>
 
-                <v-btn depressed small elevation="2" @click="WDialog.bShow10=!WDialog.bShow10">Show({{WDialog.bShow10}})</v-btn>
+                <w-button-chip :text="'show('+WDialog.bShow10+')'" :borderRadius="4" @click="WDialog.bShow10=!WDialog.bShow10"></w-button-chip>
 
                 <w-dialog
                     :show.sync="WDialog.bShow10"
@@ -431,7 +431,7 @@
                     :casename="'saveBtnTooltip & closeBtnTooltip'"
                 ></demolink>
 
-                <v-btn depressed small elevation="2" @click="WDialog.bShow11=!WDialog.bShow11">Show({{WDialog.bShow11}})</v-btn>
+                <w-button-chip :text="'show('+WDialog.bShow11+')'" :borderRadius="4" @click="WDialog.bShow11=!WDialog.bShow11"></w-button-chip>
 
                 <w-dialog
                     :show.sync="WDialog.bShow11"
@@ -471,7 +471,7 @@
                     :casename="'hasSaveBtn (no save button)'"
                 ></demolink>
 
-                <v-btn depressed small elevation="2" @click="WDialog.bShow12=!WDialog.bShow12">Show({{WDialog.bShow12}})</v-btn>
+                <w-button-chip :text="'show('+WDialog.bShow12+')'" :borderRadius="4" @click="WDialog.bShow12=!WDialog.bShow12"></w-button-chip>
 
                 <w-dialog
                     :show.sync="WDialog.bShow12"
@@ -510,7 +510,7 @@
                     :casename="'isModal (not persistent)'"
                 ></demolink>
 
-                <v-btn depressed small elevation="2" @click="WDialog.bShow13=!WDialog.bShow13">Show({{WDialog.bShow13}})</v-btn>
+                <w-button-chip :text="'show('+WDialog.bShow13+')'" :borderRadius="4" @click="WDialog.bShow13=!WDialog.bShow13"></w-button-chip>
 
                 <w-dialog
                     :show.sync="WDialog.bShow13"
@@ -549,7 +549,7 @@
                     :casename="'hasSaveBtn & hasCloseBtn & isModal (no save and close button)'"
                 ></demolink>
 
-                <v-btn depressed small elevation="2" @click="WDialog.bShow14=!WDialog.bShow14">Show({{WDialog.bShow14}})</v-btn>
+                <w-button-chip :text="'show('+WDialog.bShow14+')'" :borderRadius="4" @click="WDialog.bShow14=!WDialog.bShow14"></w-button-chip>
 
                 <w-dialog
                     :show.sync="WDialog.bShow14"
@@ -590,7 +590,7 @@
                     :casename="'closeWithInterceptor'"
                 ></demolink>
 
-                <v-btn depressed small elevation="2" @click="WDialog.bShow15=!WDialog.bShow15">Show({{WDialog.bShow15}})</v-btn>
+                <w-button-chip :text="'show('+WDialog.bShow15+')'" :borderRadius="4" @click="WDialog.bShow15=!WDialog.bShow15"></w-button-chip>
 
                 <w-dialog
                     :show.sync="WDialog.bShow15"
@@ -629,7 +629,7 @@
                     :casename="'contentTextColor & contentBackgroundColor'"
                 ></demolink>
 
-                <v-btn depressed small elevation="2" @click="WDialog.bShow16=!WDialog.bShow16">Show({{WDialog.bShow16}})</v-btn>
+                <w-button-chip :text="'show('+WDialog.bShow16+')'" :borderRadius="4" @click="WDialog.bShow16=!WDialog.bShow16"></w-button-chip>
 
                 <w-dialog
                     :show.sync="WDialog.bShow16"
@@ -669,7 +669,7 @@
                     :casename="'maxWidth (narrow width)'"
                 ></demolink>
 
-                <v-btn depressed small elevation="2" @click="WDialog.bShow17=!WDialog.bShow17">Show({{WDialog.bShow17}})</v-btn>
+                <w-button-chip :text="'show('+WDialog.bShow17+')'" :borderRadius="4" @click="WDialog.bShow17=!WDialog.bShow17"></w-button-chip>
 
                 <w-dialog
                     :show.sync="WDialog.bShow17"
@@ -708,7 +708,7 @@
                     :casename="'fullscreen'"
                 ></demolink>
 
-                <v-btn depressed small elevation="2" @click="WDialog.bShow18a=!WDialog.bShow18a">Show({{WDialog.bShow18a}})</v-btn>
+                <w-button-chip :text="'show('+WDialog.bShow18a+')'" :borderRadius="4" @click="WDialog.bShow18a=!WDialog.bShow18a"></w-button-chip>
 
                 <w-dialog
                     :show.sync="WDialog.bShow18a"
@@ -734,9 +734,9 @@
                                 {{WDialog.text4}}
                             </div>
 
-                            <v-btn style="margin-right:10px;" depressed small elevation="2" @click="WDialog.bShow18a=!WDialog.bShow18a">Hide Window</v-btn>
+                            <w-button-chip style="margin-right:10px;" :text="'hide window'" :borderRadius="4" @click="WDialog.bShow18a=!WDialog.bShow18a"></w-button-chip>
 
-                            <v-btn style="margin-right:10px;" depressed small elevation="2" @click="WDialog.bShow18b=!WDialog.bShow18b">Toggle to {{WDialog.bShow18b?'Normal Size':'Fullscreen'}}</v-btn>
+                            <w-button-chip style="margin-right:10px;" :text="'toggle to '+(WDialog.bShow18b?'normal size':'fullscreen')" :borderRadius="4" @click="WDialog.bShow18b=!WDialog.bShow18b"></w-button-chip>
 
                         </div>
                     </template>
@@ -752,7 +752,7 @@
                     :casename="'panelBorderRadius'"
                 ></demolink>
 
-                <v-btn depressed small elevation="2" @click="WDialog.bShow19=!WDialog.bShow19">Show({{WDialog.bShow19}})</v-btn>
+                <w-button-chip :text="'show('+WDialog.bShow19+')'" :borderRadius="4" @click="WDialog.bShow19=!WDialog.bShow19"></w-button-chip>
 
                 <w-dialog
                     :show.sync="WDialog.bShow19"
@@ -791,7 +791,7 @@
                     :casename="'panelShadow (no shadow)'"
                 ></demolink>
 
-                <v-btn depressed small elevation="2" @click="WDialog.bShow20=!WDialog.bShow20">Show({{WDialog.bShow20}})</v-btn>
+                <w-button-chip :text="'show('+WDialog.bShow20+')'" :borderRadius="4" @click="WDialog.bShow20=!WDialog.bShow20"></w-button-chip>
 
                 <w-dialog
                     :show.sync="WDialog.bShow20"
@@ -830,7 +830,7 @@
                     :casename="'panelShadowStyle'"
                 ></demolink>
 
-                <v-btn depressed small elevation="2" @click="WDialog.bShow21=!WDialog.bShow21">Show({{WDialog.bShow21}})</v-btn>
+                <w-button-chip :text="'show('+WDialog.bShow21+')'" :borderRadius="4" @click="WDialog.bShow21=!WDialog.bShow21"></w-button-chip>
 
                 <w-dialog
                     :show.sync="WDialog.bShow21"
@@ -869,7 +869,7 @@
                     :casename="'scrollable'"
                 ></demolink>
 
-                <v-btn depressed small elevation="2" @click="WDialog.bShow22=!WDialog.bShow22">Show({{WDialog.bShow22}})</v-btn>
+                <w-button-chip :text="'show('+WDialog.bShow22+')'" :borderRadius="4" @click="WDialog.bShow22=!WDialog.bShow22"></w-button-chip>
 
                 <w-dialog
                     :show.sync="WDialog.bShow22"
@@ -910,7 +910,7 @@
                     :casename="'slot content (separate line)'"
                 ></demolink>
 
-                <v-btn depressed small elevation="2" @click="WDialog.bShow23=!WDialog.bShow23">Show({{WDialog.bShow23}})</v-btn>
+                <w-button-chip :text="'show('+WDialog.bShow23+')'" :borderRadius="4" @click="WDialog.bShow23=!WDialog.bShow23"></w-button-chip>
 
                 <w-dialog
                     :show.sync="WDialog.bShow23"
@@ -955,7 +955,7 @@
                     :casename="'slot content (table)'"
                 ></demolink>
 
-                <v-btn depressed small elevation="2" @click="WDialog.bShow24=!WDialog.bShow24">Show({{WDialog.bShow24}})</v-btn>
+                <w-button-chip :text="'show('+WDialog.bShow24+')'" :borderRadius="4" @click="WDialog.bShow24=!WDialog.bShow24"></w-button-chip>
 
                 <w-dialog
                     :show.sync="WDialog.bShow24"
@@ -1030,7 +1030,7 @@
                     :casename="'slot panel'"
                 ></demolink>
 
-                <v-btn depressed small elevation="2" @click="WDialog.bShow25=!WDialog.bShow25;delayClose()">Show({{WDialog.bShow25}})</v-btn>
+                <w-button-chip :text="'show('+WDialog.bShow25+')'" :borderRadius="4" @click="WDialog.bShow25=!WDialog.bShow25;delayClose()"></w-button-chip>
 
                 <w-dialog
                     :show.sync="WDialog.bShow25"
@@ -1070,7 +1070,7 @@
                     :casename="'multi dialogs'"
                 ></demolink>
 
-                <v-btn depressed small elevation="2" @click="WDialog.bShow26a=!WDialog.bShow26a">Show({{WDialog.bShow26a}})</v-btn>
+                <w-button-chip :text="'show('+WDialog.bShow26a+')'" :borderRadius="4" @click="WDialog.bShow26a=!WDialog.bShow26a"></w-button-chip>
 
                 <w-dialog
                     :show.sync="WDialog.bShow26c"
@@ -1109,7 +1109,7 @@
                                 Here is 2nd window.
                             </div>
 
-                            <v-btn depressed small elevation="2" @click="WDialog.bShow26c=!WDialog.bShow26c">Show({{WDialog.bShow26c}})</v-btn>
+                            <w-button-chip :text="'show('+WDialog.bShow26c+')'" :borderRadius="4" @click="WDialog.bShow26c=!WDialog.bShow26c"></w-button-chip>
 
                             <div style="height:80px;"></div>
 
@@ -1134,7 +1134,7 @@
                                 Here is 1st window.
                             </div>
 
-                            <v-btn depressed small elevation="2" @click="WDialog.bShow26b=!WDialog.bShow26b">Show({{WDialog.bShow26b}})</v-btn>
+                            <w-button-chip :text="'show('+WDialog.bShow26b+')'" :borderRadius="4" @click="WDialog.bShow26b=!WDialog.bShow26b"></w-button-chip>
 
                             <div style="height:160px;"></div>
 
@@ -1152,7 +1152,7 @@
                     :casename="'dialogZIndex'"
                 ></demolink>
 
-                <v-btn depressed small elevation="2" @click="WDialog.bShow27=!WDialog.bShow27">Show({{WDialog.bShow27}})</v-btn>
+                <w-button-chip :text="'show('+WDialog.bShow27+')'" :borderRadius="4" @click="WDialog.bShow27=!WDialog.bShow27"></w-button-chip>
 
                 <w-dialog
                     :show.sync="WDialog.bShow27"
@@ -1193,12 +1193,14 @@
 <script>
 import demolink from './components/demolink.vue'
 import WDialog from './components/WDialog.vue'
+import WButtonChip from './components/WButtonChip.vue'
 
 
 export default {
     components: {
         demolink,
         WDialog,
+        WButtonChip,
     },
     props: {
     },
@@ -1260,7 +1262,7 @@ export default {
                 'text1': 'Article Title',
                 'text2': 'Here is an article content, texts are from Vuetify.',
                 'text3': 'Vuetify is a progressive framework that attempts to push web development to the next level. In order to best accomplish this task, some sacrifices had to be made in terms of support for older versions of Internet Explorer. This is not an exhaustive list of compatible browsers, but the main targeted ones.',
-                'text4': 'There are three ways in which you can install Vuetify. The first (and recommended) way is to utilize the vuetify-loader or what we call automatic A-la-carte. This will ensure that your application only uses the features and styles from Vuetify that are needed, significantly reducing your application\'s compiled size. Keep in mind, when importing from vuetify/lib, the necessary styles are automatically imported for you.',
+                'text4': 'There are three ways in which you can install Vuetify. The first (and recommended) way is to utilize the loader or what we call automatic A-la-carte. This will ensure that your application only uses the features and styles from Vuetify that are needed, significantly reducing your application\'s compiled size. Keep in mind, when importing from lib, the necessary styles are automatically imported for you.',
                 'text5': 'End.',
             },
             'actions': [

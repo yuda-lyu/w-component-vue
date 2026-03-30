@@ -21,11 +21,17 @@
                 >
 
                     <template v-slot:trigger>
-                        <v-btn depressed small elevation="2">Show({{WPopup.bShow1}})</v-btn>
+                        <w-button-chip :text="'show('+WPopup.bShow1+')'" :borderRadius="4"></w-button-chip>
                     </template>
 
                     <template v-slot:content>
-                        <v-list style="background:transparent;"><v-list-item style="min-height:inherit; padding:5px 15px;" :key="kitem" @click="function(){}" v-for="(item,kitem) in WPopup.items">Item {{item}}</v-list-item></v-list>
+                        <w-list-vertical
+                            style="height:148px;"
+                            :paddingStyle="{v:8,h:15}"
+                            :itemBackgroundColor="'transparent'"
+                            :enableActive="false"
+                            :items="WPopup.items"
+                        ></w-list-vertical>
                     </template>
 
                 </w-popup>
@@ -45,13 +51,19 @@
                 >
 
                     <template v-slot:trigger>
-                        <v-btn depressed small elevation="2">Show</v-btn>
+                        <w-button-chip :text="'show'" :borderRadius="4"></w-button-chip>
                     </template>
 
                     <template v-slot:content="props">
-                        <v-list style="background:transparent;"><v-list-item style="min-height:inherit; padding:5px 15px;" :key="kitem" @click="function(){}" v-for="(item,kitem) in WPopup.items">Item {{item}}</v-list-item></v-list>
+                        <w-list-vertical
+                            style="height:148px;"
+                            :paddingStyle="{v:8,h:15}"
+                            :itemBackgroundColor="'transparent'"
+                            :enableActive="false"
+                            :items="WPopup.items"
+                        ></w-list-vertical>
                         <div style="padding:0px 5px 5px 5px;">
-                            <v-btn depressed small elevation="2" @click="props.funHide()">Hide in popup panel</v-btn>
+                            <w-button-chip :text="'hide in popup panel'" :borderRadius="4" @click="props.funHide()"></w-button-chip>
                         </div>
                     </template>
 
@@ -72,11 +84,18 @@
                 >
 
                     <template v-slot:trigger>
-                        <v-btn depressed small elevation="2">Show({{WPopup.bShow2}})</v-btn>
+                        <w-button-chip :text="'show('+WPopup.bShow2+')'" :borderRadius="4"></w-button-chip>
                     </template>
 
                     <template v-slot:content>
-                        <v-list style="background:transparent;"><v-list-item style="min-height:inherit; padding:5px 15px;" :key="kitem" @click="clickHide" v-for="(item,kitem) in WPopup.items">Item {{item}}</v-list-item></v-list>
+                        <w-list-vertical
+                            style="height:148px;"
+                            :paddingStyle="{v:8,h:15}"
+                            :itemBackgroundColor="'transparent'"
+                            :enableActive="false"
+                            :items="WPopup.items"
+                            @click="clickHide"
+                        ></w-list-vertical>
                     </template>
 
                 </w-popup>
@@ -97,11 +116,17 @@
                 >
 
                     <template v-slot:trigger>
-                        <v-btn depressed small elevation="2">Show({{WPopup.bShow3}})</v-btn>
+                        <w-button-chip :text="'show('+WPopup.bShow3+')'" :borderRadius="4"></w-button-chip>
                     </template>
 
                     <template v-slot:content>
-                        <v-list style="background:transparent;"><v-list-item style="min-height:inherit; padding:5px 15px;" :key="kitem" @click="function(){}" v-for="(item,kitem) in WPopup.items">Item {{item}}</v-list-item></v-list>
+                        <w-list-vertical
+                            style="height:148px;"
+                            :paddingStyle="{v:8,h:15}"
+                            :itemBackgroundColor="'transparent'"
+                            :enableActive="false"
+                            :items="WPopup.items"
+                        ></w-list-vertical>
                     </template>
 
                 </w-popup>
@@ -122,7 +147,7 @@
                 >
 
                     <template v-slot:trigger>
-                        <v-btn depressed small elevation="2">Show({{WPopup.bShow4}})</v-btn>
+                        <w-button-chip :text="'show('+WPopup.bShow4+')'" :borderRadius="4"></w-button-chip>
                     </template>
 
                     <template v-slot:content>
@@ -149,11 +174,17 @@
                 >
 
                     <template v-slot:trigger>
-                        <v-btn style="width:200px;" depressed small elevation="2">Show({{WPopup.bShow5}})</v-btn>
+                        <w-button-chip style="width:200px;" :text="'show('+WPopup.bShow5+')'" :borderRadius="4"></w-button-chip>
                     </template>
 
                     <template v-slot:content>
-                        <v-list style="background:transparent;"><v-list-item style="min-height:inherit; padding:5px 15px;" :key="kitem" @click="function(){}" v-for="(item,kitem) in WPopup.items">Item {{item}}</v-list-item></v-list>
+                        <w-list-vertical
+                            style="height:148px;"
+                            :paddingStyle="{v:8,h:15}"
+                            :itemBackgroundColor="'transparent'"
+                            :enableActive="false"
+                            :items="WPopup.items"
+                        ></w-list-vertical>
                     </template>
 
                 </w-popup>
@@ -174,7 +205,7 @@
                 >
 
                     <template v-slot:trigger>
-                        <v-btn style="width:200px;" depressed small elevation="2">Show({{WPopup.bShow6}})</v-btn>
+                        <w-button-chip style="width:200px;" :text="'show('+WPopup.bShow6+')'" :borderRadius="4"></w-button-chip>
                     </template>
 
                     <template v-slot:content>
@@ -201,11 +232,17 @@
                 >
 
                     <template v-slot:trigger>
-                        <v-btn depressed small elevation="2">Show({{WPopup.bShow7}})</v-btn>
+                        <w-button-chip :text="'show('+WPopup.bShow7+')'" :borderRadius="4"></w-button-chip>
                     </template>
 
                     <template v-slot:content>
-                        <v-list style="background:transparent;"><v-list-item style="min-height:inherit; padding:5px 15px;" :key="kitem" @click="function(){}" v-for="(item,kitem) in WPopup.items">Item {{item}}</v-list-item></v-list>
+                        <w-list-vertical
+                            style="height:148px;"
+                            :paddingStyle="{v:8,h:15}"
+                            :itemBackgroundColor="'transparent'"
+                            :enableActive="false"
+                            :items="WPopup.items"
+                        ></w-list-vertical>
                     </template>
 
                 </w-popup>
@@ -226,11 +263,17 @@
                 >
 
                     <template v-slot:trigger>
-                        <v-btn depressed small elevation="2">Show({{WPopup.bShow8}})</v-btn>
+                        <w-button-chip :text="'show('+WPopup.bShow8+')'" :borderRadius="4"></w-button-chip>
                     </template>
 
                     <template v-slot:content>
-                        <v-list style="background:transparent;"><v-list-item style="min-height:inherit; padding:5px 15px;" :key="kitem" @click="function(){}" v-for="(item,kitem) in WPopup.items">Item {{item}}</v-list-item></v-list>
+                        <w-list-vertical
+                            style="height:148px;"
+                            :paddingStyle="{v:8,h:15}"
+                            :itemBackgroundColor="'transparent'"
+                            :enableActive="false"
+                            :items="WPopup.items"
+                        ></w-list-vertical>
                     </template>
 
                 </w-popup>
@@ -253,11 +296,20 @@
                     >
 
                         <template v-slot:trigger>
-                            <v-btn depressed small elevation="2">Show({{WPopup.bShow9}})</v-btn>
+                            <w-button-chip :text="'show('+WPopup.bShow9+')'" :borderRadius="4"></w-button-chip>
                         </template>
 
                         <template v-slot:content>
-                            <v-list style="background:transparent;"><v-list-item style="min-height:inherit; padding:5px 15px;" dark :key="kitem" @click="function(){}" v-for="(item,kitem) in WPopup.items">Item {{item}}</v-list-item></v-list>
+                            <w-list-vertical
+                                style="height:148px;"
+                                :paddingStyle="{v:8,h:15}"
+                                :itemTextColor="'#fff'"
+                                :itemTextColorHover="'#fff'"
+                                :itemTextColorActive="'#fff'"
+                                :itemBackgroundColor="'transparent'"
+                                :enableActive="false"
+                                :items="WPopup.items"
+                            ></w-list-vertical>
                         </template>
 
                     </w-popup>
@@ -282,11 +334,20 @@
                 >
 
                     <template v-slot:trigger>
-                        <v-btn depressed small elevation="2">Show({{WPopup.bShow10}})</v-btn>
+                        <w-button-chip :text="'show('+WPopup.bShow10+')'" :borderRadius="4"></w-button-chip>
                     </template>
 
                     <template v-slot:content>
-                        <v-list style="background:transparent;"><v-list-item style="min-height:inherit; padding:5px 15px;" dark :key="kitem" @click="function(){}" v-for="(item,kitem) in WPopup.items">Item {{item}}</v-list-item></v-list>
+                        <w-list-vertical
+                            style="height:148px;"
+                            :paddingStyle="{v:8,h:15}"
+                            :itemTextColor="'#fff'"
+                            :itemTextColorHover="'#fff'"
+                            :itemTextColorActive="'#fff'"
+                            :itemBackgroundColor="'transparent'"
+                            :enableActive="false"
+                            :items="WPopup.items"
+                        ></w-list-vertical>
                     </template>
 
                 </w-popup>
@@ -308,11 +369,11 @@
                 >
 
                     <template v-slot:trigger>
-                        <v-btn depressed small elevation="2">Show({{WPopup.bShow11}})</v-btn>
+                        <w-button-chip :text="'show('+WPopup.bShow11+')'" :borderRadius="4"></w-button-chip>
                     </template>
 
                     <template v-slot:content>
-                        <v-list style="color:inherit; background:transparent;"><v-list-item style="color:inherit; min-height:inherit; padding:5px 15px;" :key="kitem" @click="function(){}" v-for="(item,kitem) in WPopup.items">Item {{item}}</v-list-item></v-list>
+                        <div style="width:200px; padding:10px;">{{ WPopup.text }}</div>
                     </template>
 
                 </w-popup>
@@ -333,11 +394,11 @@
                 >
 
                     <template v-slot:trigger>
-                        <v-btn depressed small elevation="2">Show({{WPopup.bShow12}})</v-btn>
+                        <w-button-chip :text="'show('+WPopup.bShow12+')'" :borderRadius="4"></w-button-chip>
                     </template>
 
                     <template v-slot:content>
-                        <v-list style="background:transparent;"><v-list-item style="min-height:inherit; padding:5px 15px;" :key="kitem" @click="function(){}" v-for="(item,kitem) in WPopup.items">Item {{item}}</v-list-item></v-list>
+                        <div style="width:200px; padding:10px;">{{ WPopup.text }}</div>
                     </template>
 
                 </w-popup>
@@ -358,11 +419,17 @@
                 >
 
                     <template v-slot:trigger>
-                        <v-btn depressed small elevation="2">Show({{WPopup.bShow13}})</v-btn>
+                        <w-button-chip :text="'show('+WPopup.bShow13+')'" :borderRadius="4"></w-button-chip>
                     </template>
 
                     <template v-slot:content>
-                        <v-list style="background:transparent;"><v-list-item style="min-height:inherit; padding:5px 15px;" :key="kitem" @click="function(){}" v-for="(item,kitem) in WPopup.items">Item {{item}}</v-list-item></v-list>
+                        <w-list-vertical
+                            style="height:148px;"
+                            :paddingStyle="{v:8,h:15}"
+                            :itemBackgroundColor="'transparent'"
+                            :enableActive="false"
+                            :items="WPopup.items"
+                        ></w-list-vertical>
                     </template>
 
                 </w-popup>
@@ -383,11 +450,17 @@
                 >
 
                     <template v-slot:trigger>
-                        <v-btn depressed small elevation="2">Show({{WPopup.bShow14}})</v-btn>
+                        <w-button-chip :text="'show('+WPopup.bShow14+')'" :borderRadius="4"></w-button-chip>
                     </template>
 
                     <template v-slot:content>
-                        <v-list style="background:transparent;"><v-list-item style="min-height:inherit; padding:5px 15px;" :key="kitem" @click="function(){}" v-for="(item,kitem) in WPopup.items">Item {{item}}</v-list-item></v-list>
+                        <w-list-vertical
+                            style="height:148px;"
+                            :paddingStyle="{v:8,h:15}"
+                            :itemBackgroundColor="'transparent'"
+                            :enableActive="false"
+                            :items="WPopup.items"
+                        ></w-list-vertical>
                     </template>
 
                 </w-popup>
@@ -408,11 +481,17 @@
                 >
 
                     <template v-slot:trigger>
-                        <v-btn depressed small elevation="2">Show({{WPopup.bShow15}})</v-btn>
+                        <w-button-chip :text="'show('+WPopup.bShow15+')'" :borderRadius="4"></w-button-chip>
                     </template>
 
                     <template v-slot:content>
-                        <v-list style="background:transparent;"><v-list-item style="min-height:inherit; padding:5px 15px;" :key="kitem" @click="function(){}" v-for="(item,kitem) in WPopup.items">Item {{item}}</v-list-item></v-list>
+                        <w-list-vertical
+                            style="height:148px;"
+                            :paddingStyle="{v:8,h:15}"
+                            :itemBackgroundColor="'transparent'"
+                            :enableActive="false"
+                            :items="WPopup.items"
+                        ></w-list-vertical>
                     </template>
 
                 </w-popup>
@@ -441,11 +520,17 @@
                             >
 
                                 <template v-slot:trigger>
-                                    <v-btn depressed small elevation="2">Show({{WPopup.bShow16a}})</v-btn>
+                                    <w-button-chip :text="'show('+WPopup.bShow16a+')'" :borderRadius="4"></w-button-chip>
                                 </template>
 
                                 <template v-slot:content>
-                                    <v-list style="background:transparent;"><v-list-item style="min-height:inherit; padding:5px 15px;" :key="kitem" @click="function(){}" v-for="(item,kitem) in WPopup.itemsL">{{item}}</v-list-item></v-list>
+                                    <w-list-vertical
+                                        style="height:148px;"
+                                        :paddingStyle="{v:8,h:15}"
+                                        :itemBackgroundColor="'transparent'"
+                                        :enableActive="false"
+                                        :items="WPopup.itemsL"
+                                    ></w-list-vertical>
                                 </template>
 
                             </w-popup>
@@ -465,11 +550,17 @@
                             >
 
                                 <template v-slot:trigger>
-                                    <v-btn depressed small elevation="2">Show({{WPopup.bShow16b}})</v-btn>
+                                    <w-button-chip :text="'show('+WPopup.bShow16b+')'" :borderRadius="4"></w-button-chip>
                                 </template>
 
                                 <template v-slot:content>
-                                    <v-list style="background:transparent;"><v-list-item style="min-height:inherit; padding:5px 15px;" :key="kitem" @click="function(){}" v-for="(item,kitem) in WPopup.itemsL">{{item}}</v-list-item></v-list>
+                                    <w-list-vertical
+                                        style="height:148px;"
+                                        :paddingStyle="{v:8,h:15}"
+                                        :itemBackgroundColor="'transparent'"
+                                        :enableActive="false"
+                                        :items="WPopup.itemsL"
+                                    ></w-list-vertical>
                                 </template>
 
                             </w-popup>
@@ -489,11 +580,17 @@
                             >
 
                                 <template v-slot:trigger>
-                                    <v-btn depressed small elevation="2">Show({{WPopup.bShow16c}})</v-btn>
+                                    <w-button-chip :text="'show('+WPopup.bShow16c+')'" :borderRadius="4"></w-button-chip>
                                 </template>
 
                                 <template v-slot:content>
-                                    <v-list style="background:transparent;"><v-list-item style="min-height:inherit; padding:5px 15px;" :key="kitem" @click="function(){}" v-for="(item,kitem) in WPopup.itemsL">{{item}}</v-list-item></v-list>
+                                    <w-list-vertical
+                                        style="height:148px;"
+                                        :paddingStyle="{v:8,h:15}"
+                                        :itemBackgroundColor="'transparent'"
+                                        :enableActive="false"
+                                        :items="WPopup.itemsL"
+                                    ></w-list-vertical>
                                 </template>
 
                             </w-popup>
@@ -515,11 +612,17 @@
                             >
 
                                 <template v-slot:trigger>
-                                    <v-btn depressed small elevation="2">Show({{WPopup.bShow16d}})</v-btn>
+                                    <w-button-chip :text="'show('+WPopup.bShow16d+')'" :borderRadius="4"></w-button-chip>
                                 </template>
 
                                 <template v-slot:content>
-                                    <v-list style="background:transparent;"><v-list-item style="min-height:inherit; padding:5px 15px;" :key="kitem" @click="function(){}" v-for="(item,kitem) in WPopup.itemsL">{{item}}</v-list-item></v-list>
+                                    <w-list-vertical
+                                        style="height:148px;"
+                                        :paddingStyle="{v:8,h:15}"
+                                        :itemBackgroundColor="'transparent'"
+                                        :enableActive="false"
+                                        :items="WPopup.itemsL"
+                                    ></w-list-vertical>
                                 </template>
 
                             </w-popup>
@@ -539,11 +642,17 @@
                             >
 
                                 <template v-slot:trigger>
-                                    <v-btn depressed small elevation="2">Show({{WPopup.bShow16e}})</v-btn>
+                                    <w-button-chip :text="'show('+WPopup.bShow16e+')'" :borderRadius="4"></w-button-chip>
                                 </template>
 
                                 <template v-slot:content>
-                                    <v-list style="background:transparent;"><v-list-item style="min-height:inherit; padding:5px 15px;" :key="kitem" @click="function(){}" v-for="(item,kitem) in WPopup.itemsL">{{item}}</v-list-item></v-list>
+                                    <w-list-vertical
+                                        style="height:148px;"
+                                        :paddingStyle="{v:8,h:15}"
+                                        :itemBackgroundColor="'transparent'"
+                                        :enableActive="false"
+                                        :items="WPopup.itemsL"
+                                    ></w-list-vertical>
                                 </template>
 
                             </w-popup>
@@ -563,11 +672,17 @@
                             >
 
                                 <template v-slot:trigger>
-                                    <v-btn depressed small elevation="2">Show({{WPopup.bShow16f}})</v-btn>
+                                    <w-button-chip :text="'show('+WPopup.bShow16f+')'" :borderRadius="4"></w-button-chip>
                                 </template>
 
                                 <template v-slot:content>
-                                    <v-list style="background:transparent;"><v-list-item style="min-height:inherit; padding:5px 15px;" :key="kitem" @click="function(){}" v-for="(item,kitem) in WPopup.itemsL">{{item}}</v-list-item></v-list>
+                                    <w-list-vertical
+                                        style="height:148px;"
+                                        :paddingStyle="{v:8,h:15}"
+                                        :itemBackgroundColor="'transparent'"
+                                        :enableActive="false"
+                                        :items="WPopup.itemsL"
+                                    ></w-list-vertical>
                                 </template>
 
                             </w-popup>
@@ -589,11 +704,17 @@
                             >
 
                                 <template v-slot:trigger>
-                                    <v-btn depressed small elevation="2">Show({{WPopup.bShow16g}})</v-btn>
+                                    <w-button-chip :text="'show('+WPopup.bShow16g+')'" :borderRadius="4"></w-button-chip>
                                 </template>
 
                                 <template v-slot:content>
-                                    <v-list style="background:transparent;"><v-list-item style="min-height:inherit; padding:5px 15px;" :key="kitem" @click="function(){}" v-for="(item,kitem) in WPopup.itemsL">{{item}}</v-list-item></v-list>
+                                    <w-list-vertical
+                                        style="height:148px;"
+                                        :paddingStyle="{v:8,h:15}"
+                                        :itemBackgroundColor="'transparent'"
+                                        :enableActive="false"
+                                        :items="WPopup.itemsL"
+                                    ></w-list-vertical>
                                 </template>
 
                             </w-popup>
@@ -613,11 +734,17 @@
                             >
 
                                 <template v-slot:trigger>
-                                    <v-btn depressed small elevation="2">Show({{WPopup.bShow16h}})</v-btn>
+                                    <w-button-chip :text="'show('+WPopup.bShow16h+')'" :borderRadius="4"></w-button-chip>
                                 </template>
 
                                 <template v-slot:content>
-                                    <v-list style="background:transparent;"><v-list-item style="min-height:inherit; padding:5px 15px;" :key="kitem" @click="function(){}" v-for="(item,kitem) in WPopup.itemsL">{{item}}</v-list-item></v-list>
+                                    <w-list-vertical
+                                        style="height:148px;"
+                                        :paddingStyle="{v:8,h:15}"
+                                        :itemBackgroundColor="'transparent'"
+                                        :enableActive="false"
+                                        :items="WPopup.itemsL"
+                                    ></w-list-vertical>
                                 </template>
 
                             </w-popup>
@@ -637,11 +764,17 @@
                             >
 
                                 <template v-slot:trigger>
-                                    <v-btn depressed small elevation="2">Show({{WPopup.bShow16i}})</v-btn>
+                                    <w-button-chip :text="'show('+WPopup.bShow16i+')'" :borderRadius="4"></w-button-chip>
                                 </template>
 
                                 <template v-slot:content>
-                                    <v-list style="background:transparent;"><v-list-item style="min-height:inherit; padding:5px 15px;" :key="kitem" @click="function(){}" v-for="(item,kitem) in WPopup.itemsL">{{item}}</v-list-item></v-list>
+                                    <w-list-vertical
+                                        style="height:148px;"
+                                        :paddingStyle="{v:8,h:15}"
+                                        :itemBackgroundColor="'transparent'"
+                                        :enableActive="false"
+                                        :items="WPopup.itemsL"
+                                    ></w-list-vertical>
                                 </template>
 
                             </w-popup>
@@ -663,11 +796,17 @@
                             >
 
                                 <template v-slot:trigger>
-                                    <v-btn depressed small elevation="2">Show({{WPopup.bShow16j}})</v-btn>
+                                    <w-button-chip :text="'show('+WPopup.bShow16j+')'" :borderRadius="4"></w-button-chip>
                                 </template>
 
                                 <template v-slot:content>
-                                    <v-list style="background:transparent;"><v-list-item style="min-height:inherit; padding:5px 15px;" :key="kitem" @click="function(){}" v-for="(item,kitem) in WPopup.itemsL">{{item}}</v-list-item></v-list>
+                                    <w-list-vertical
+                                        style="height:148px;"
+                                        :paddingStyle="{v:8,h:15}"
+                                        :itemBackgroundColor="'transparent'"
+                                        :enableActive="false"
+                                        :items="WPopup.itemsL"
+                                    ></w-list-vertical>
                                 </template>
 
                             </w-popup>
@@ -687,11 +826,17 @@
                             >
 
                                 <template v-slot:trigger>
-                                    <v-btn depressed small elevation="2">Show({{WPopup.bShow16k}})</v-btn>
+                                    <w-button-chip :text="'show('+WPopup.bShow16k+')'" :borderRadius="4"></w-button-chip>
                                 </template>
 
                                 <template v-slot:content>
-                                    <v-list style="background:transparent;"><v-list-item style="min-height:inherit; padding:5px 15px;" :key="kitem" @click="function(){}" v-for="(item,kitem) in WPopup.itemsL">{{item}}</v-list-item></v-list>
+                                    <w-list-vertical
+                                        style="height:148px;"
+                                        :paddingStyle="{v:8,h:15}"
+                                        :itemBackgroundColor="'transparent'"
+                                        :enableActive="false"
+                                        :items="WPopup.itemsL"
+                                    ></w-list-vertical>
                                 </template>
 
                             </w-popup>
@@ -711,11 +856,17 @@
                             >
 
                                 <template v-slot:trigger>
-                                    <v-btn depressed small elevation="2">Show({{WPopup.bShow16l}})</v-btn>
+                                    <w-button-chip :text="'show('+WPopup.bShow16l+')'" :borderRadius="4"></w-button-chip>
                                 </template>
 
                                 <template v-slot:content>
-                                    <v-list style="background:transparent;"><v-list-item style="min-height:inherit; padding:5px 15px;" :key="kitem" @click="function(){}" v-for="(item,kitem) in WPopup.itemsL">{{item}}</v-list-item></v-list>
+                                    <w-list-vertical
+                                        style="height:148px;"
+                                        :paddingStyle="{v:8,h:15}"
+                                        :itemBackgroundColor="'transparent'"
+                                        :enableActive="false"
+                                        :items="WPopup.itemsL"
+                                    ></w-list-vertical>
                                 </template>
 
                             </w-popup>
@@ -733,7 +884,6 @@
                     :casename="'in scroll panel'"
                 ></demolink>
 
-                <!-- 用:style才能支援IE11因vue會自動把overflow-y:auto轉為-ms-overflow-y:auto -->
                 <div :style="'width:200px; height:300px; border:1px solid #ddd; overflow-y:auto;'">
                     <div style="height:600px;">
 
@@ -746,11 +896,17 @@
                         >
 
                             <template v-slot:trigger>
-                                <v-btn depressed small elevation="2">Show({{WPopup.bShow17}})</v-btn>
+                                <w-button-chip :text="'show('+WPopup.bShow17+')'" :borderRadius="4"></w-button-chip>
                             </template>
 
                             <template v-slot:content>
-                                <v-list style="background:transparent;"><v-list-item style="min-height:inherit; padding:5px 15px;" :key="kitem" @click="function(){}" v-for="(item,kitem) in WPopup.items">Item {{item}}</v-list-item></v-list>
+                                <w-list-vertical
+                                    style="height:148px;"
+                                    :paddingStyle="{v:8,h:15}"
+                                    :itemBackgroundColor="'transparent'"
+                                    :enableActive="false"
+                                    :items="WPopup.items"
+                                ></w-list-vertical>
                             </template>
 
                         </w-popup>
@@ -770,7 +926,6 @@
                 ></demolink>
 
                 <div style="width:95vw; text-align:right;">
-                    <!-- 用:style才能支援IE11因vue會自動把overflow-y:auto轉為-ms-overflow-y:auto -->
                     <div :style="'display:inline-block; width:200px; height:300px; border:1px solid #ddd; overflow-y:auto;'">
                         <div style="text-align:left; height:600px;">
 
@@ -783,11 +938,17 @@
                             >
 
                                 <template v-slot:trigger>
-                                    <v-btn depressed small elevation="2" @click="expandItem">Show({{WPopup.bShow18}})</v-btn>
+                                    <w-button-chip :text="'show('+WPopup.bShow18+')'" :borderRadius="4" @click="expandItem"></w-button-chip>
                                 </template>
 
                                 <template v-slot:content>
-                                    <v-list style="background:transparent;"><v-list-item style="min-height:inherit; padding:5px 15px;" :key="kitem" @click="function(){}" v-for="(item,kitem) in WPopup.itemsExpand">Item {{item}}</v-list-item></v-list>
+                                    <w-list-vertical
+                                        style="height:148px;"
+                                        :paddingStyle="{v:8,h:15}"
+                                        :itemBackgroundColor="'transparent'"
+                                        :enableActive="false"
+                                        :items="WPopup.itemsExpand"
+                                    ></w-list-vertical>
                                 </template>
 
                             </w-popup>
@@ -814,7 +975,7 @@
                 >
 
                     <template v-slot:trigger>
-                        <v-btn depressed small elevation="2">Show({{WPopup.bShow19a}})</v-btn>
+                        <w-button-chip :text="'show('+WPopup.bShow19a+')'" :borderRadius="4"></w-button-chip>
                     </template>
 
                     <template v-slot:content>
@@ -829,7 +990,7 @@
                             >
 
                                 <template v-slot:trigger>
-                                    <v-btn depressed small elevation="2">Show({{WPopup.bShow19b}})</v-btn>
+                                    <w-button-chip :text="'show('+WPopup.bShow19b+')'" :borderRadius="4"></w-button-chip>
                                 </template>
 
                                 <template v-slot:content>
@@ -846,7 +1007,7 @@
                                         >
 
                                             <template v-slot:trigger>
-                                                <v-btn depressed small elevation="2">Show({{WPopup.bShow19c}})</v-btn>
+                                                <w-button-chip :text="'show('+WPopup.bShow19c+')'" :borderRadius="4"></w-button-chip>
                                             </template>
 
                                             <template v-slot:content>
@@ -854,7 +1015,13 @@
                                                     <div style="font-size:0.8rem; white-space:nowrap;">Here is 3rd pupop.</div>
                                                     <div style="font-size:0.7rem; white-space:nowrap; color:#f26;">It will close when click to the outside of the content of 1st or 2st pupop.</div>
                                                 </div>
-                                                <v-list style="background:transparent;"><v-list-item style="min-height:inherit; padding:5px 15px;" :key="kitem" @click="function(){}" v-for="(item,kitem) in WPopup.items">Item {{item}}</v-list-item></v-list>
+                                                <w-list-vertical
+                                                    style="height:148px;"
+                                                    :paddingStyle="{v:8,h:15}"
+                                                    :itemBackgroundColor="'transparent'"
+                                                    :enableActive="false"
+                                                    :items="WPopup.items"
+                                                ></w-list-vertical>
                                             </template>
 
                                         </w-popup>
@@ -877,7 +1044,7 @@
                     :casename="'auto flipping in dialog'"
                 ></demolink>
 
-                <v-btn depressed small elevation="2" @click="WPopup.bShow21a=!WPopup.bShow21a">Show({{WPopup.bShow21a}})</v-btn>
+                <w-button-chip :text="'show('+WPopup.bShow21a+')'" :borderRadius="4" @click="WPopup.bShow21a=!WPopup.bShow21a"></w-button-chip>
 
                 <w-dialog
                     :show.sync="WPopup.bShow21a"
@@ -898,11 +1065,17 @@
                             >
 
                                 <template v-slot:trigger>
-                                    <v-btn depressed small elevation="2" @click="expandItem">Show({{WPopup.bShow21b}})</v-btn>
+                                    <w-button-chip :text="'show('+WPopup.bShow21b+')'" :borderRadius="4" @click="expandItem"></w-button-chip>
                                 </template>
 
                                 <template v-slot:content>
-                                    <v-list style="background:transparent;"><v-list-item style="min-height:inherit; padding:5px 15px;" :key="kitem" @click="function(){}" v-for="(item,kitem) in WPopup.itemsExpand">Item {{item}}</v-list-item></v-list>
+                                    <w-list-vertical
+                                        style="height:148px;"
+                                        :paddingStyle="{v:8,h:15}"
+                                        :itemBackgroundColor="'transparent'"
+                                        :enableActive="false"
+                                        :items="WPopup.itemsExpand"
+                                    ></w-list-vertical>
                                 </template>
 
                             </w-popup>
@@ -931,7 +1104,7 @@
                 >
 
                     <template v-slot:trigger>
-                        <v-btn depressed small elevation="2">Show({{WPopup.bShow22}})</v-btn>
+                        <w-button-chip :text="'show('+WPopup.bShow22+')'" :borderRadius="4"></w-button-chip>
                     </template>
 
                     <template v-slot:content>
@@ -962,11 +1135,17 @@
                 >
 
                     <template v-slot:trigger>
-                        <v-btn depressed small elevation="2">Show({{WPopup.bShow23}})</v-btn>
+                        <w-button-chip :text="'show('+WPopup.bShow23+')'" :borderRadius="4"></w-button-chip>
                     </template>
 
                     <template v-slot:content>
-                        <v-list style="background:transparent;"><v-list-item style="min-height:inherit; padding:5px 15px;" :key="kitem" @click="function(){}" v-for="(item,kitem) in WPopup.items">Item {{item}}</v-list-item></v-list>
+                        <w-list-vertical
+                            style="height:148px;"
+                            :paddingStyle="{v:8,h:15}"
+                            :itemBackgroundColor="'transparent'"
+                            :enableActive="false"
+                            :items="WPopup.items"
+                        ></w-list-vertical>
                     </template>
 
                 </w-popup>
@@ -984,6 +1163,8 @@ import { mdiViewDashboard, mdiClockTimeEightOutline, mdiBlenderSoftware, mdiAppl
 import demolink from './components/demolink.vue'
 import WPopup from './components/WPopup.vue'
 import WDialog from './components/WDialog.vue'
+import WButtonChip from './components/WButtonChip.vue'
+import WListVertical from './components/WListVertical.vue'
 
 
 export default {
@@ -991,6 +1172,8 @@ export default {
         demolink,
         WPopup,
         WDialog,
+        WButtonChip,
+        WListVertical,
     },
     props: {
     },
@@ -1040,8 +1223,8 @@ export default {
                 'bShow21b': false,
                 'bShow22': false,
                 'bShow23': false,
-                'items': ['foo', 'bar', 'fizz', 'buzz'],
-                'itemsExpand': ['foo', 'bar', 'fizz', 'buzz'],
+                'items': ['Item foo', 'Item bar', 'Item fizz', 'Item buzz'],
+                'itemsExpand': ['Item foo', 'Item bar', 'Item fizz', 'Item buzz'],
                 'itemsL': ['Lorem ipsum', 'Met consectetur', 'Aquis praesentium', 'Quis praesentium'],
                 'text': 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis praesentium cumque magnam odio iure quidem, quod illum numquam possimus obcaecati commodi minima assumenda consectetur culpa fuga nulla ullam. In, libero.',
                 'table': '\n<table style="width:100%; font-size:0.7rem; border-collapse:collapse;">\n                        <thead>\n                            <tr>\n                                <th style="padding:2px 8px; text-align:left;">Dessert</th>\n                                <th style="padding:2px 8px; text-align:left;">Calories</th>\n                                <th style="padding:2px 8px; text-align:left;">Fat</th>\n                                <th style="padding:2px 8px; text-align:left;">Carbs</th>\n                            </tr>\n                        </thead>\n                        <tbody>\n                            <tr>\n                                <td style="padding:2px 8px; border-top:1px solid #ddd;">Frozen Yogurt</td>\n                                <td style="padding:2px 8px; border-top:1px solid #ddd;">159</td>\n                                <td style="padding:2px 8px; border-top:1px solid #ddd;">6</td>\n                                <td style="padding:2px 8px; border-top:1px solid #ddd;">24</td>\n                            </tr>\n                            <tr>\n                                <td style="padding:2px 8px; border-top:1px solid #ddd;">Ice cream sandwich</td>\n                                <td style="padding:2px 8px; border-top:1px solid #ddd;">237</td>\n                                <td style="padding:2px 8px; border-top:1px solid #ddd;">9</td>\n                                <td style="padding:2px 8px; border-top:1px solid #ddd;">37</td>\n                            </tr>\n                            <tr>\n                                <td style="padding:2px 8px; border-top:1px solid #ddd;">Eclair</td>\n                                <td style="padding:2px 8px; border-top:1px solid #ddd;">262</td>\n                                <td style="padding:2px 8px; border-top:1px solid #ddd;">16</td>\n                                <td style="padding:2px 8px; border-top:1px solid #ddd;">23</td>\n                            </tr>\n                        </tbody>\n                    </table>\n',
@@ -1069,7 +1252,7 @@ export default {
                 vo.WPopup.itemsExpand = ['Lorem ipsum dolor sit, amet consectetur', 'bar', 'fizz', 'buzz']
             }, 1000)
             setTimeout(function() {
-                vo.WPopup.itemsExpand = ['foo', 'bar', 'fizz', 'buzz']
+                vo.WPopup.itemsExpand = ['Item foo', 'Item bar', 'Item fizz', 'Item buzz']
             }, 3000)
         },
     },

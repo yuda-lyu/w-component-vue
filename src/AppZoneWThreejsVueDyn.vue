@@ -26,32 +26,32 @@
                     :casename="'basicSize'"
                 ></demolink>
 
-                <div>
+                <div style="margin-bottom:5px;">
 
                     <w-button-chip
-                        style="margin:0px 5px 5px 0px;"
-                        :paddingStyle="{v:0,h:8}"
+                        style="margin:0px 10px 5px 0px;"
+                        :borderRadius="4"
                         :text="'set width to 800'"
                         @click="setWidth(800)"
                     ></w-button-chip>
 
                     <w-button-chip
-                        style="margin:0px 5px 5px 0px;"
-                        :paddingStyle="{v:0,h:8}"
+                        style="margin:0px 10px 5px 0px;"
+                        :borderRadius="4"
                         :text="'set width to 300'"
                         @click="setWidth(300)"
                     ></w-button-chip>
 
                     <w-button-chip
-                        style="margin:0px 5px 5px 0px;"
-                        :paddingStyle="{v:0,h:8}"
+                        style="margin:0px 10px 5px 0px;"
+                        :borderRadius="4"
                         :text="'set height to 600'"
                         @click="setHeight(600)"
                     ></w-button-chip>
 
                     <w-button-chip
-                        style="margin:0px 5px 5px 0px;"
-                        :paddingStyle="{v:0,h:8}"
+                        style="margin:0px 10px 5px 0px;"
+                        :borderRadius="4"
                         :text="'set height to 300'"
                         @click="setHeight(300)"
                     ></w-button-chip>
@@ -71,18 +71,18 @@
                     :casename="'autoRotateDeg'"
                 ></demolink>
 
-                <div>
+                <div style="margin-bottom:5px;">
 
                     <w-button-chip
-                        style="margin:0px 5px 5px 0px;"
-                        :paddingStyle="{v:0,h:8}"
+                        style="margin:0px 10px 5px 0px;"
+                        :borderRadius="4"
                         :text="'set to 20'"
                         @click="setAutoRotateDeg(20)"
                     ></w-button-chip>
 
                     <w-button-chip
-                        style="margin:0px 5px 5px 0px;"
-                        :paddingStyle="{v:0,h:8}"
+                        style="margin:0px 10px 5px 0px;"
+                        :borderRadius="4"
                         :text="'set to -5'"
                         @click="setAutoRotateDeg(-5)"
                     ></w-button-chip>
@@ -125,12 +125,12 @@ export default {
                     height: 600,
                     items: [
                         {
-                            url: 'https://cdn.jsdelivr.net/npm/w-demores@1.0.27/res/model/stl/3d_wheel-hub.stl',
+                            url: 'https://cdn.jsdelivr.net/npm/w-demores/res/model/stl/3d_wheel-hub.stl',
                             name: 'Wheel Hub',
                             color: 'rgba(214, 92, 92, 0.9)',
                         },
                         {
-                            url: 'https://cdn.jsdelivr.net/npm/w-demores@1.0.27/res/model/stl/3d_ushape-connector.stl',
+                            url: 'https://cdn.jsdelivr.net/npm/w-demores/res/model/stl/3d_ushape-connector.stl',
                             name: 'Ushape Connector',
                             color: 'rgba(214, 214, 92, 0.9)',
                         },
@@ -141,12 +141,12 @@ export default {
                     height: 600,
                     items: [
                         {
-                            url: 'https://cdn.jsdelivr.net/npm/w-demores@1.0.27/res/model/stl/3d_wheel-hub.stl',
+                            url: 'https://cdn.jsdelivr.net/npm/w-demores/res/model/stl/3d_wheel-hub.stl',
                             name: 'Wheel Hub',
                             color: 'rgba(214, 92, 92, 0.9)',
                         },
                         {
-                            url: 'https://cdn.jsdelivr.net/npm/w-demores@1.0.27/res/model/stl/3d_ushape-connector.stl',
+                            url: 'https://cdn.jsdelivr.net/npm/w-demores/res/model/stl/3d_ushape-connector.stl',
                             name: 'Ushape Connector',
                             color: 'rgba(214, 214, 92, 0.9)',
                         },

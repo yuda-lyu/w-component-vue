@@ -49,7 +49,7 @@
                     <div :style="useFooterStyle">
 
                         <WButtonChip
-                            style="margin-left:20px;"
+                            style="margin-left:10px;"
                             :shiftLeft="-5"
                             :icon="mdiCloseCircle"
                             :iconColor="noBtnTextColor"
@@ -64,7 +64,7 @@
                         ></WButtonChip>
 
                         <WButtonChip
-                            style="margin-left:20px;"
+                            style="margin-left:10px;"
                             :shiftLeft="-5"
                             :icon="mdiCheckboxMarkedCircle"
                             :iconColor="yesBtnTextColor"

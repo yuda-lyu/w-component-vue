@@ -108,12 +108,12 @@
                 ></demolink>
 
                 <div>
-                    <v-btn style="margin:0px 5px 5px 0px;" small @click="toggleItemsByFun(0, true)">show(rows[0])</v-btn>
-                    <v-btn style="margin:0px 5px 5px 0px;" small @click="toggleItemsByFun(0, false)">hide(rows[0])</v-btn>
-                    <v-btn style="margin:0px 5px 5px 0px;" small @click="toggleItemsByFun(6, true)">show(rows[6])</v-btn>
-                    <v-btn style="margin:0px 5px 5px 0px;" small @click="toggleItemsByFun(6, false)">hide(rows[6])</v-btn>
-                    <v-btn style="margin:0px 5px 5px 0px;" small @click="toggleItemsByFun(9, true)">show(rows[9])</v-btn>
-                    <v-btn style="margin:0px 5px 5px 0px;" small @click="toggleItemsByFun(9, false)">hide(rows[9])</v-btn>
+                    <w-button-chip style="margin:0px 10px 5px 0px;" :text="'show(rows[0])'" :borderRadius="4" @click="toggleItemsByFun(0, true)"></w-button-chip>
+                    <w-button-chip style="margin:0px 10px 5px 0px;" :text="'hide(rows[0])'" :borderRadius="4" @click="toggleItemsByFun(0, false)"></w-button-chip>
+                    <w-button-chip style="margin:0px 10px 5px 0px;" :text="'show(rows[6])'" :borderRadius="4" @click="toggleItemsByFun(6, true)"></w-button-chip>
+                    <w-button-chip style="margin:0px 10px 5px 0px;" :text="'hide(rows[6])'" :borderRadius="4" @click="toggleItemsByFun(6, false)"></w-button-chip>
+                    <w-button-chip style="margin:0px 10px 5px 0px;" :text="'show(rows[9])'" :borderRadius="4" @click="toggleItemsByFun(9, true)"></w-button-chip>
+                    <w-button-chip style="margin:0px 10px 5px 0px;" :text="'hide(rows[9])'" :borderRadius="4" @click="toggleItemsByFun(9, false)"></w-button-chip>
                 </div>
 
                 <w-json-view
@@ -133,8 +133,8 @@
                 ></demolink>
 
                 <div>
-                    <v-btn style="margin:0px 5px 5px 0px;" small @click="toggleItemsAll(true)">show all</v-btn>
-                    <v-btn style="margin:0px 5px 5px 0px;" small @click="toggleItemsAll(false)">hide all</v-btn>
+                    <w-button-chip style="margin:0px 10px 5px 0px;" :text="'show all'" :borderRadius="4" @click="toggleItemsAll(true)"></w-button-chip>
+                    <w-button-chip style="margin:0px 10px 5px 0px;" :text="'hide all'" :borderRadius="4" @click="toggleItemsAll(false)"></w-button-chip>
                 </div>
 
                 <w-json-view
@@ -239,6 +239,7 @@
 <script>
 import demolink from './components/demolink.vue'
 import WJsonView from './components/WJsonView.vue'
+import WButtonChip from './components/WButtonChip.vue'
 
 // let data = (function(n) {
 //     n /= 200
@@ -314,6 +315,7 @@ export default {
     components: {
         demolink,
         WJsonView,
+        WButtonChip,
     },
     props: {
     },

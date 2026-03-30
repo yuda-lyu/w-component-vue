@@ -72,15 +72,9 @@ Add script for vue.
 <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.2/css/all.min.css" rel="stylesheet">
 ```
 
- Add script and link for vuetify.
-```alias
-<link href="https://cdn.jsdelivr.net/npm/vuetify@2.6.14/dist/vuetify.min.css" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/vuetify@2.6.14/dist/vuetify.min.js"></script>
-```
-
 Add script for w-component-vue.
 ```alias
-<script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.4.44/dist/w-component-vue.umd.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.4.45/dist/w-component-vue.umd.js"></script>
 ```
 
 Directly use:

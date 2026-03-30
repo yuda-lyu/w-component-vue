@@ -21,7 +21,7 @@
                 >
 
                     <template v-slot:trigger>
-                        <v-btn depressed small elevation="2">Show({{WTooltip.bShow1}})</v-btn>
+                        <w-button-chip :text="'show('+WTooltip.bShow1+')'" :borderRadius="4"></w-button-chip>
                     </template>
 
                     <template v-slot:content>
@@ -45,7 +45,7 @@
                 >
 
                     <template v-slot:trigger>
-                        <v-btn depressed small elevation="2">Show</v-btn>
+                        <w-button-chip :text="'show'" :borderRadius="4"></w-button-chip>
                     </template>
 
                     <template v-slot:content>
@@ -69,7 +69,7 @@
                 >
 
                     <template v-slot:trigger>
-                        <v-btn style="height:200px;" depressed small elevation="2">Show({{WTooltip.bShow2}})</v-btn>
+                        <w-button-chip :paddingStyle="{v:150,h:15}" :text="'show('+WTooltip.bShow2+')'" :borderRadius="4"></w-button-chip>
                     </template>
 
                     <template v-slot:content>
@@ -94,7 +94,7 @@
                 >
 
                     <template v-slot:trigger>
-                        <v-btn depressed small elevation="2">Show({{WTooltip.bShow3}})</v-btn>
+                        <w-button-chip :text="'show('+WTooltip.bShow3+')'" :borderRadius="4"></w-button-chip>
                     </template>
 
                     <template v-slot:content>
@@ -119,7 +119,7 @@
                 >
 
                     <template v-slot:trigger>
-                        <v-btn depressed small elevation="2">Show({{WTooltip.bShow4}})</v-btn>
+                        <w-button-chip :text="'show('+WTooltip.bShow4+')'" :borderRadius="4"></w-button-chip>
                     </template>
 
                     <template v-slot:content>
@@ -144,7 +144,7 @@
                 >
 
                     <template v-slot:trigger>
-                        <v-btn style="width:200px;" depressed small elevation="2">Show({{WTooltip.bShow5}})</v-btn>
+                        <w-button-chip style="width:200px;" :text="'show('+WTooltip.bShow5+')'" :borderRadius="4"></w-button-chip>
                     </template>
 
                     <template v-slot:content>
@@ -169,7 +169,7 @@
                 >
 
                     <template v-slot:trigger>
-                        <v-btn style="width:200px;" depressed small elevation="2">Show({{WTooltip.bShow6}})</v-btn>
+                        <w-button-chip style="width:200px;" :text="'show('+WTooltip.bShow6+')'" :borderRadius="4"></w-button-chip>
                     </template>
 
                     <template v-slot:content>
@@ -194,7 +194,7 @@
                 >
 
                     <template v-slot:trigger>
-                        <v-btn depressed small elevation="2">Show({{WTooltip.bShow7}})</v-btn>
+                        <w-button-chip :text="'show('+WTooltip.bShow7+')'" :borderRadius="4"></w-button-chip>
                     </template>
 
                     <template v-slot:content>
@@ -219,7 +219,7 @@
                 >
 
                     <template v-slot:trigger>
-                        <v-btn depressed small elevation="2">Show({{WTooltip.bShow8}})</v-btn>
+                        <w-button-chip :text="'show('+WTooltip.bShow8+')'" :borderRadius="4"></w-button-chip>
                     </template>
 
                     <template v-slot:content>
@@ -239,18 +239,27 @@
                 <div style="padding:30px; background:#ccb5c7;">
 
                     <w-tooltip
-                        :backgroundColor="'rgba(255,255,255,0.5)'"
+                        :backgroundColor="'rgba(0,0,0,0.5)'"
                         v-model="WTooltip.bShow9"
                         @show="evShow"
                         @hide="evHide"
                     >
 
                         <template v-slot:trigger>
-                            <v-btn depressed small elevation="2">Show({{WTooltip.bShow9}})</v-btn>
+                            <w-button-chip :text="'show('+WTooltip.bShow9+')'" :borderRadius="4"></w-button-chip>
                         </template>
 
                         <template v-slot:content>
-                            <v-list style="background:transparent;"><v-list-item style="color:inherit; min-height:inherit; padding:5px 15px;" dark :key="kitem" @click="function(){}" v-for="(item,kitem) in WTooltip.items">Item {{item}}</v-list-item></v-list>
+                            <w-list-vertical
+                                style="height:148px;"
+                                :paddingStyle="{v:8,h:15}"
+                                :itemTextColor="'#fff'"
+                                :itemTextColorHover="'#fff'"
+                                :itemTextColorActive="'#fff'"
+                                :itemBackgroundColor="'transparent'"
+                                :enableActive="false"
+                                :items="WTooltip.items"
+                            ></w-list-vertical>
                         </template>
 
                     </w-tooltip>
@@ -275,11 +284,20 @@
                 >
 
                     <template v-slot:trigger>
-                        <v-btn depressed small elevation="2">Show({{WTooltip.bShow10}})</v-btn>
+                        <w-button-chip :text="'show('+WTooltip.bShow10+')'" :borderRadius="4"></w-button-chip>
                     </template>
 
                     <template v-slot:content>
-                        <v-list style="background:transparent;"><v-list-item style="color:inherit; min-height:inherit; padding:5px 15px;" dark :key="kitem" @click="function(){}" v-for="(item,kitem) in WTooltip.items">Item {{item}}</v-list-item></v-list>
+                        <w-list-vertical
+                            style="height:148px;"
+                            :paddingStyle="{v:8,h:15}"
+                            :itemTextColor="'#fff'"
+                            :itemTextColorHover="'#fff'"
+                            :itemTextColorActive="'#fff'"
+                            :itemBackgroundColor="'transparent'"
+                            :enableActive="false"
+                            :items="WTooltip.items"
+                        ></w-list-vertical>
                     </template>
 
                 </w-tooltip>
@@ -301,11 +319,11 @@
                 >
 
                     <template v-slot:trigger>
-                        <v-btn depressed small elevation="2">Show({{WTooltip.bShow11}})</v-btn>
+                        <w-button-chip :text="'show('+WTooltip.bShow11+')'" :borderRadius="4"></w-button-chip>
                     </template>
 
                     <template v-slot:content>
-                        <v-list style="color:inherit; background:transparent;"><v-list-item style="color:inherit; min-height:inherit; padding:5px 15px;" dark :key="kitem" @click="function(){}" v-for="(item,kitem) in WTooltip.items">Item {{item}}</v-list-item></v-list>
+                        <div style="width:200px; padding:10px;">{{ WTooltip.text }}</div>
                     </template>
 
                 </w-tooltip>
@@ -326,7 +344,7 @@
                 >
 
                     <template v-slot:trigger>
-                        <v-btn depressed small elevation="2">Show({{WTooltip.bShow12}})</v-btn>
+                        <w-button-chip :text="'show('+WTooltip.bShow12+')'" :borderRadius="4"></w-button-chip>
                     </template>
 
                     <template v-slot:content>
@@ -351,7 +369,7 @@
                 >
 
                     <template v-slot:trigger>
-                        <v-btn depressed small elevation="2">Show({{WTooltip.bShow13}})</v-btn>
+                        <w-button-chip :text="'show('+WTooltip.bShow13+')'" :borderRadius="4"></w-button-chip>
                     </template>
 
                     <template v-slot:content>
@@ -376,7 +394,7 @@
                 >
 
                     <template v-slot:trigger>
-                        <v-btn depressed small elevation="2">Show({{WTooltip.bShow14}})</v-btn>
+                        <w-button-chip :text="'show('+WTooltip.bShow14+')'" :borderRadius="4"></w-button-chip>
                     </template>
 
                     <template v-slot:content>
@@ -401,7 +419,7 @@
                 >
 
                     <template v-slot:trigger>
-                        <v-btn depressed small elevation="2">Show({{WTooltip.bShow15}})</v-btn>
+                        <w-button-chip :text="'show('+WTooltip.bShow15+')'" :borderRadius="4"></w-button-chip>
                     </template>
 
                     <template v-slot:content>
@@ -434,7 +452,7 @@
                             >
 
                                 <template v-slot:trigger>
-                                    <v-btn depressed small elevation="2">Show({{WTooltip.bShow16a}})</v-btn>
+                                    <w-button-chip :text="'show('+WTooltip.bShow16a+')'" :borderRadius="4"></w-button-chip>
                                 </template>
 
                                 <template v-slot:content>
@@ -458,7 +476,7 @@
                             >
 
                                 <template v-slot:trigger>
-                                    <v-btn depressed small elevation="2">Show({{WTooltip.bShow16b}})</v-btn>
+                                    <w-button-chip :text="'show('+WTooltip.bShow16b+')'" :borderRadius="4"></w-button-chip>
                                 </template>
 
                                 <template v-slot:content>
@@ -482,7 +500,7 @@
                             >
 
                                 <template v-slot:trigger>
-                                    <v-btn depressed small elevation="2">Show({{WTooltip.bShow16c}})</v-btn>
+                                    <w-button-chip :text="'show('+WTooltip.bShow16c+')'" :borderRadius="4"></w-button-chip>
                                 </template>
 
                                 <template v-slot:content>
@@ -508,7 +526,7 @@
                             >
 
                                 <template v-slot:trigger>
-                                    <v-btn depressed small elevation="2">Show({{WTooltip.bShow16d}})</v-btn>
+                                    <w-button-chip :text="'show('+WTooltip.bShow16d+')'" :borderRadius="4"></w-button-chip>
                                 </template>
 
                                 <template v-slot:content>
@@ -532,7 +550,7 @@
                             >
 
                                 <template v-slot:trigger>
-                                    <v-btn depressed small elevation="2">Show({{WTooltip.bShow16e}})</v-btn>
+                                    <w-button-chip :text="'show('+WTooltip.bShow16e+')'" :borderRadius="4"></w-button-chip>
                                 </template>
 
                                 <template v-slot:content>
@@ -556,7 +574,7 @@
                             >
 
                                 <template v-slot:trigger>
-                                    <v-btn depressed small elevation="2">Show({{WTooltip.bShow16f}})</v-btn>
+                                    <w-button-chip :text="'show('+WTooltip.bShow16f+')'" :borderRadius="4"></w-button-chip>
                                 </template>
 
                                 <template v-slot:content>
@@ -582,7 +600,7 @@
                             >
 
                                 <template v-slot:trigger>
-                                    <v-btn depressed small elevation="2">Show({{WTooltip.bShow16g}})</v-btn>
+                                    <w-button-chip :text="'show('+WTooltip.bShow16g+')'" :borderRadius="4"></w-button-chip>
                                 </template>
 
                                 <template v-slot:content>
@@ -606,7 +624,7 @@
                             >
 
                                 <template v-slot:trigger>
-                                    <v-btn depressed small elevation="2">Show({{WTooltip.bShow16h}})</v-btn>
+                                    <w-button-chip :text="'show('+WTooltip.bShow16h+')'" :borderRadius="4"></w-button-chip>
                                 </template>
 
                                 <template v-slot:content>
@@ -630,7 +648,7 @@
                             >
 
                                 <template v-slot:trigger>
-                                    <v-btn depressed small elevation="2">Show({{WTooltip.bShow16i}})</v-btn>
+                                    <w-button-chip :text="'show('+WTooltip.bShow16i+')'" :borderRadius="4"></w-button-chip>
                                 </template>
 
                                 <template v-slot:content>
@@ -656,7 +674,7 @@
                             >
 
                                 <template v-slot:trigger>
-                                    <v-btn depressed small elevation="2">Show({{WTooltip.bShow16j}})</v-btn>
+                                    <w-button-chip :text="'show('+WTooltip.bShow16j+')'" :borderRadius="4"></w-button-chip>
                                 </template>
 
                                 <template v-slot:content>
@@ -680,7 +698,7 @@
                             >
 
                                 <template v-slot:trigger>
-                                    <v-btn depressed small elevation="2">Show({{WTooltip.bShow16k}})</v-btn>
+                                    <w-button-chip :text="'show('+WTooltip.bShow16k+')'" :borderRadius="4"></w-button-chip>
                                 </template>
 
                                 <template v-slot:content>
@@ -704,7 +722,7 @@
                             >
 
                                 <template v-slot:trigger>
-                                    <v-btn depressed small elevation="2">Show({{WTooltip.bShow16l}})</v-btn>
+                                    <w-button-chip :text="'show('+WTooltip.bShow16l+')'" :borderRadius="4"></w-button-chip>
                                 </template>
 
                                 <template v-slot:content>
@@ -726,7 +744,6 @@
                     :casename="'in scroll panel'"
                 ></demolink>
 
-                <!-- 用:style才能支援IE11因vue會自動把overflow-y:auto轉為-ms-overflow-y:auto -->
                 <div :style="'width:200px; height:300px; border:1px solid #ddd; overflow-y:auto;'">
                     <div style="height:600px;">
 
@@ -739,11 +756,20 @@
                         >
 
                             <template v-slot:trigger>
-                                <v-btn depressed small elevation="2">Show({{WTooltip.bShow17}})</v-btn>
+                                <w-button-chip :text="'show('+WTooltip.bShow17+')'" :borderRadius="4"></w-button-chip>
                             </template>
 
                             <template v-slot:content>
-                                <v-list style="background:transparent;"><v-list-item style="color:#fff; min-height:inherit; padding:5px 15px;" :key="kitem" @click="function(){}" v-for="(item,kitem) in WTooltip.itemsExpand">Item {{item}}</v-list-item></v-list>
+                                <w-list-vertical
+                                    style="height:148px;"
+                                    :paddingStyle="{v:8,h:15}"
+                                    :itemTextColor="'#fff'"
+                                    :itemTextColorHover="'#fff'"
+                                    :itemTextColorActive="'#fff'"
+                                    :itemBackgroundColor="'transparent'"
+                                    :enableActive="false"
+                                    :items="WTooltip.itemsExpand"
+                                ></w-list-vertical>
                             </template>
 
                         </w-tooltip>
@@ -763,7 +789,6 @@
                 ></demolink>
 
                 <div style="width:95vw; text-align:right;">
-                    <!-- 用:style才能支援IE11因vue會自動把overflow-y:auto轉為-ms-overflow-y:auto -->
                     <div :style="'display:inline-block; width:200px; height:300px; border:1px solid #ddd; overflow-y:auto;'">
                         <div style="text-align:left; height:600px;">
 
@@ -776,11 +801,20 @@
                             >
 
                                 <template v-slot:trigger>
-                                    <v-btn depressed small elevation="2" @click="expandItem">Show({{WTooltip.bShow18}})</v-btn>
+                                    <w-button-chip :text="'show('+WTooltip.bShow18+')'" :borderRadius="4" @click="expandItem"></w-button-chip>
                                 </template>
 
                                 <template v-slot:content>
-                                    <v-list style="background:transparent;"><v-list-item style="color:#fff; min-height:inherit; padding:5px 15px;" :key="kitem" @click="function(){}" v-for="(item,kitem) in WTooltip.itemsExpand">Item {{item}}</v-list-item></v-list>
+                                    <w-list-vertical
+                                        style="height:148px;"
+                                        :paddingStyle="{v:8,h:15}"
+                                        :itemTextColor="'#fff'"
+                                        :itemTextColorHover="'#fff'"
+                                        :itemTextColorActive="'#fff'"
+                                        :itemBackgroundColor="'transparent'"
+                                        :enableActive="false"
+                                        :items="WTooltip.itemsExpand"
+                                    ></w-list-vertical>
                                 </template>
 
                             </w-tooltip>
@@ -807,7 +841,7 @@
                 >
 
                     <template v-slot:trigger>
-                        <v-btn depressed small elevation="2" @click="WTooltip.bShow20a=!WTooltip.bShow20a">Show({{WTooltip.bShow20a}})</v-btn>
+                        <w-button-chip :text="'show('+WTooltip.bShow20a+')'" :borderRadius="4" @click="WTooltip.bShow20a=!WTooltip.bShow20a"></w-button-chip>
                     </template>
 
                     <template v-slot:content>
@@ -820,11 +854,20 @@
                             >
 
                                 <template v-slot:trigger>
-                                    <v-btn depressed small elevation="2" @click="expandItem">Show({{WTooltip.bShow20b}})</v-btn>
+                                    <w-button-chip :text="'show('+WTooltip.bShow20b+')'" :borderRadius="4" @click="expandItem"></w-button-chip>
                                 </template>
 
                                 <template v-slot:content>
-                                    <v-list style="background:transparent;"><v-list-item style="color:#fff; min-height:inherit; padding:5px 15px;" :key="kitem" @click="function(){}" v-for="(item,kitem) in WTooltip.itemsExpand">Item {{item}}</v-list-item></v-list>
+                                    <w-list-vertical
+                                        style="height:148px;"
+                                        :paddingStyle="{v:8,h:15}"
+                                        :itemTextColor="'#fff'"
+                                        :itemTextColorHover="'#fff'"
+                                        :itemTextColorActive="'#fff'"
+                                        :itemBackgroundColor="'transparent'"
+                                        :enableActive="false"
+                                        :items="WTooltip.itemsExpand"
+                                    ></w-list-vertical>
                                 </template>
 
                             </w-tooltip>
@@ -843,7 +886,7 @@
                     :casename="'auto flipping in dialog'"
                 ></demolink>
 
-                <v-btn depressed small elevation="2" @click="WTooltip.bShow21a=!WTooltip.bShow21a">Show({{WTooltip.bShow21a}})</v-btn>
+                <w-button-chip :text="'show('+WTooltip.bShow21a+')'" :borderRadius="4" @click="WTooltip.bShow21a=!WTooltip.bShow21a"></w-button-chip>
 
                 <w-dialog
                     :show.sync="WTooltip.bShow21a"
@@ -864,11 +907,20 @@
                             >
 
                                 <template v-slot:trigger>
-                                    <v-btn depressed small elevation="2" @click="expandItem">Show({{WTooltip.bShow21b}})</v-btn>
+                                    <w-button-chip :text="'show('+WTooltip.bShow21b+')'" :borderRadius="4" @click="expandItem"></w-button-chip>
                                 </template>
 
                                 <template v-slot:content>
-                                    <v-list style="background:transparent;"><v-list-item style="color:#fff; min-height:inherit; padding:5px 15px;" :key="kitem" @click="function(){}" v-for="(item,kitem) in WTooltip.itemsExpand">Item {{item}}</v-list-item></v-list>
+                                    <w-list-vertical
+                                        style="height:148px;"
+                                        :paddingStyle="{v:8,h:15}"
+                                        :itemTextColor="'#fff'"
+                                        :itemTextColorHover="'#fff'"
+                                        :itemTextColorActive="'#fff'"
+                                        :itemBackgroundColor="'transparent'"
+                                        :enableActive="false"
+                                        :items="WTooltip.itemsExpand"
+                                    ></w-list-vertical>
                                 </template>
 
                             </w-tooltip>
@@ -897,7 +949,7 @@
                 >
 
                     <template v-slot:trigger>
-                        <v-btn depressed small elevation="2">Show({{WTooltip.bShow22}})</v-btn>
+                        <w-button-chip :text="'show('+WTooltip.bShow22+')'" :borderRadius="4"></w-button-chip>
                     </template>
 
                     <template v-slot:content>
@@ -928,7 +980,7 @@
                 >
 
                     <template v-slot:trigger>
-                        <v-btn depressed small elevation="2">Show({{WTooltip.bShow23}})</v-btn>
+                        <w-button-chip :text="'show('+WTooltip.bShow23+')'" :borderRadius="4"></w-button-chip>
                     </template>
 
                     <template v-slot:content>
@@ -951,6 +1003,8 @@ import demolink from './components/demolink.vue'
 import WTooltip from './components/WTooltip.vue'
 import WPopup from './components/WPopup.vue'
 import WDialog from './components/WDialog.vue'
+import WButtonChip from './components/WButtonChip.vue'
+import WListVertical from './components/WListVertical.vue'
 
 
 export default {
@@ -959,6 +1013,8 @@ export default {
         WTooltip,
         WPopup,
         WDialog,
+        WButtonChip,
+        WListVertical,
     },
     props: {
     },
@@ -1008,8 +1064,8 @@ export default {
                 'bShow21b': false,
                 'bShow22': false,
                 'bShow23': false,
-                'items': ['foo', 'bar', 'fizz', 'buzz'],
-                'itemsExpand': ['foo', 'bar', 'fizz', 'buzz'],
+                'items': ['Item foo', 'Item bar', 'Item fizz', 'Item buzz'],
+                'itemsExpand': ['Item foo', 'Item bar', 'Item fizz', 'Item buzz'],
                 'text': 'Lorem ipsum met consectetur adipisicing elit 中文測試 aquis praesentium cumque magnam odio iure quidem',
                 'textShort': 'Lorem 中文測試',
                 'textL1': 'Lorem ipsum',
@@ -1040,7 +1096,7 @@ export default {
                 vo.WTooltip.itemsExpand = ['Lorem ipsum dolor sit, amet consectetur', 'bar', 'fizz', 'buzz']
             }, 1000)
             setTimeout(function() {
-                vo.WTooltip.itemsExpand = ['foo', 'bar', 'fizz', 'buzz']
+                vo.WTooltip.itemsExpand = ['Item foo', 'Item bar', 'Item fizz', 'Item buzz']
             }, 3000)
         },
     },
