@@ -67,13 +67,13 @@ let kpRespList = {
     tooltip: [],
     popup: [],
 }
-function addTriggerMode(mode, mmkey) {
+function funAddTrigger(mode, mmkey) {
     kpRespList[mode].push(mmkey)
 }
-function checkTriggerEffMode(mode, mmkey) {
+function funCheckTrigger(mode, mmkey) {
     return last(kpRespList[mode]) === mmkey
 }
-function removeTriggerMode(mode, mmkey) {
+function funRemoveTrigger(mode, mmkey) {
     pull(kpRespList[mode], mmkey)
 }
 
@@ -373,9 +373,9 @@ export default {
             keyShow,
             evNameValue,
             {
-                addTriggerMode,
-                checkTriggerEffMode,
-                removeTriggerMode,
+                funAddTrigger,
+                funCheckTrigger,
+                funRemoveTrigger,
             })
 
         //監聽evNameValue

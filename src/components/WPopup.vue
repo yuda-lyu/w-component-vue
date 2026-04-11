@@ -38,6 +38,7 @@ import WTooltip from './WTooltip.vue'
  * @vue-prop {String} [textColor='white'] 輸入彈窗文字顏色字串，預設'white'
  * @vue-prop {String} [backgroundColor='rgba(60,60,60,0.75)'] 輸入彈窗背景顏色字串，預設'rgba(60,60,60,0.75)'
  * @vue-prop {Object} [paddingStyle={v:2,h:10}] 輸入彈窗內寬距離設定物件，可用鍵值為v、h、left、right、top、bottom，v代表同時設定top與bottom，h代表設定left與right，若有重複設定時後面鍵值會覆蓋前面，各鍵值為寬度數字，單位為px，預設{v:2,h:10}
+ * @vue-prop {String} [modeHide='click'] 輸入點擊外部關閉模式字串，可選'click'與'mousedown'，'click'為mouseup時才關閉，'mousedown'為mousedown時關閉，預設'click'
  * @vue-prop {Boolean} [shadow=true] 輸入彈窗是否顯示陰影布林值，預設true
  * @vue-prop {String} [shadowStyle=''] 輸入彈窗陰影顏色字串，預設值詳見props
  * @vue-prop {Number} [transitionTime=200] 輸入彈窗淡入出現時間數字，單位為ms，預設200
@@ -116,6 +117,10 @@ export default {
                     h: 0,
                 }
             },
+        },
+        modeHide: {
+            type: String,
+            default: 'click',
         },
         shadow: {
             type: Boolean,

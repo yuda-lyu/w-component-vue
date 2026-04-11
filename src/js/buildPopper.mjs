@@ -22,7 +22,6 @@ function buildPopper(vo, funGetDivTrigger, funGetDivContent, keyShow, evNameValu
     let _keys = [
         'mode',
         'mmkey',
-        'kind',
         keyShow,
         'triggerWidth',
         'placement',
@@ -48,9 +47,15 @@ function buildPopper(vo, funGetDivTrigger, funGetDivContent, keyShow, evNameValu
     }
 
     //組件內巢狀顯示之遞層取消機制用函數
-    let addTriggerMode = get(opt, 'addTriggerMode')
-    let checkTriggerEffMode = get(opt, 'checkTriggerEffMode')
-    let removeTriggerMode = get(opt, 'removeTriggerMode')
+    let funAddTrigger = get(opt, 'funAddTrigger')
+    let funCheckTrigger = get(opt, 'funCheckTrigger')
+    let funRemoveTrigger = get(opt, 'funRemoveTrigger')
+
+    //modeHide, 'click'為mouseup才關閉, 'mousedown'為mousedown關閉
+    let modeHide = get(opt, 'modeHide', null)
+    if (modeHide !== 'click' && modeHide !== 'mousedown') {
+        modeHide = 'click'
+    }
 
     let _vo = {
         mouseClientX: 0,
@@ -101,6 +106,24 @@ function buildPopper(vo, funGetDivTrigger, funGetDivContent, keyShow, evNameValu
                 _vo.clickContentInner = false
             }
 
+            //modeHide為mousedown時, 不等mouseup直接判斷關閉
+            if (modeHide === 'mousedown') {
+
+                //check
+                if (!checkTriggerEff()) {
+                    return
+                }
+
+                //當前為顯示時, 非點擊於觸發區與內容區, 才觸發隱藏事件
+                if (vo[keyShow] && !_vo.cursorTriggerInner && !_vo.clickContentInner) {
+
+                    //evHide
+                    vo.evHide('popup', 'windowMousedown')
+
+                }
+
+            }
+
         }
         window.addEventListener('mousedown', _vo.windowMousedown, false)
 
@@ -118,7 +141,7 @@ function buildPopper(vo, funGetDivTrigger, funGetDivContent, keyShow, evNameValu
                 //console.log(vo.mmkey, 'click隱藏')
 
                 //evHide
-                vo.evHide('click', 'windowMouseup')
+                vo.evHide('popup', 'windowMouseup')
 
             }
             else {
@@ -139,8 +162,8 @@ function buildPopper(vo, funGetDivTrigger, funGetDivContent, keyShow, evNameValu
             //     return
             // }
 
-            //check, 只針對hover做處理
-            if (vo.kind !== 'hover') {
+            //check, 只針對tooltip做處理
+            if (vo.mode !== 'tooltip') {
                 return
             }
 
@@ -176,7 +199,7 @@ function buildPopper(vo, funGetDivTrigger, funGetDivContent, keyShow, evNameValu
                     // console.log(vo.mmkey, 'scroll顯示')
 
                     //evShow
-                    evShow('hover', 'windowScroll')
+                    evShow('tooltip', 'windowScroll')
 
                 }
 
@@ -189,7 +212,7 @@ function buildPopper(vo, funGetDivTrigger, funGetDivContent, keyShow, evNameValu
                     // console.log(vo.mmkey, 'scroll隱藏')
 
                     //evHide
-                    evHide('hover', 'windowScroll')
+                    evHide('tooltip', 'windowScroll')
 
                 }
                 else {
@@ -223,22 +246,22 @@ function buildPopper(vo, funGetDivTrigger, funGetDivContent, keyShow, evNameValu
     }
 
     let addTrigger = () => {
-        if (isfun(addTriggerMode)) {
-            return addTriggerMode(vo.mode, vo.mmkey)
+        if (isfun(funAddTrigger)) {
+            return funAddTrigger(vo.mode, vo.mmkey)
         }
         return null
     }
 
     let checkTriggerEff = () => {
-        if (isfun(checkTriggerEffMode)) {
-            return checkTriggerEffMode(vo.mode, vo.mmkey)
+        if (isfun(funCheckTrigger)) {
+            return funCheckTrigger(vo.mode, vo.mmkey)
         }
         return true
     }
 
     let removeTrigger = () => {
-        if (isfun(removeTriggerMode)) {
-            return removeTriggerMode(vo.mode, vo.mmkey)
+        if (isfun(funRemoveTrigger)) {
+            return funRemoveTrigger(vo.mode, vo.mmkey)
         }
         return null
     }
@@ -466,7 +489,7 @@ function buildPopper(vo, funGetDivTrigger, funGetDivContent, keyShow, evNameValu
 
     }
 
-    let evShow = (kind, from) => {
+    let evShow = (mode, from) => {
 
         //check, 不可編輯時跳出
         if (!vo.editable) {
@@ -479,7 +502,7 @@ function buildPopper(vo, funGetDivTrigger, funGetDivContent, keyShow, evNameValu
         }
 
         //check, 只允許限制模式
-        if (vo.kind !== kind) {
+        if (vo.mode !== mode) {
             return
         }
 
@@ -488,7 +511,7 @@ function buildPopper(vo, funGetDivTrigger, funGetDivContent, keyShow, evNameValu
 
     }
 
-    let evHide = (kind, from) => {
+    let evHide = (mode, from) => {
 
         //check, 不可編輯時跳出
         if (!vo.editable) {
@@ -501,7 +524,7 @@ function buildPopper(vo, funGetDivTrigger, funGetDivContent, keyShow, evNameValu
         }
 
         //check, 只允許限制模式
-        if (vo.kind !== kind) {
+        if (vo.mode !== mode) {
             return
         }
 

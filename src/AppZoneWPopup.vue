@@ -881,6 +881,37 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-popup'"
+                    :casename="'modeHide'"
+                ></demolink>
+
+                <w-popup
+                    :modeHide="'mousedown'"
+                    v-model="WPopup.bShow24"
+                    @show="evShow"
+                    @hide="evHide"
+                >
+
+                    <template v-slot:trigger>
+                        <w-button-chip :text="'show('+WPopup.bShow24+')'" :borderRadius="4"></w-button-chip>
+                    </template>
+
+                    <template v-slot:content>
+                        <w-list-vertical
+                            style="height:148px;"
+                            :paddingStyle="{v:8,h:15}"
+                            :itemBackgroundColor="'transparent'"
+                            :enableActive="false"
+                            :items="WPopup.items"
+                        ></w-list-vertical>
+                    </template>
+
+                </w-popup>
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-popup'"
                     :casename="'in scroll panel'"
                 ></demolink>
 
@@ -1223,6 +1254,7 @@ export default {
                 'bShow21b': false,
                 'bShow22': false,
                 'bShow23': false,
+                'bShow24': false,
                 'items': ['Item foo', 'Item bar', 'Item fizz', 'Item buzz'],
                 'itemsExpand': ['Item foo', 'Item bar', 'Item fizz', 'Item buzz'],
                 'itemsL': ['Lorem ipsum', 'Met consectetur', 'Aquis praesentium', 'Quis praesentium'],
