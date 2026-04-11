@@ -47,6 +47,10 @@
 
 <header>
     
+        
+            
+        
+    
 </header>
 
 <article>
@@ -54,6 +58,100 @@
         <div class="container-overview">
         
             
+                <div class="description usertext"></p></div></div> 
+
+
+<h3 class="subsection-title" style="margin-top: 1em" data-jsdoc-vuejs="section-props">Props</h3>
+<table data-jsdoc-vuejs="table-props">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Default value</th>
+        <th>Required?</th>
+        <th>Description</th>
+    </tr>
+    </thead>
+    <tbody><tr>
+        <td><code>rows</code></td>
+        <td>Array</td>
+        <td><code>[]</code></td>
+        <td>No</td>
+        <td>輸入資料陣列，預設[]，各元素配合slot顯示即可，slot內提供row與irow，對應原始rows內各元素與指標，另外各元素slot時不要用margin避免計算高度有誤差</td>
+    </tr><tr>
+        <td><code>filterKeywords</code></td>
+        <td>String</td>
+        <td><code>''</code></td>
+        <td>No</td>
+        <td>輸入過濾關鍵字字串，多關鍵字用空白分隔，預設''</td>
+    </tr><tr>
+        <td><code>viewHeightMax</code></td>
+        <td>Number</td>
+        <td><code>400</code></td>
+        <td>No</td>
+        <td>輸入顯示區最大高度，單位為px，預設400</td>
+    </tr><tr>
+        <td><code>itemMinHeight</code></td>
+        <td>Number</td>
+        <td><code>24</code></td>
+        <td>No</td>
+        <td>輸入各元素顯示高度，單位為px，預設24，會於真實顯示後自動更新高度，原則上盡量設定為最多項目可能的高度值，而按需顯示時才自動調整避免大幅刷新</td>
+    </tr><tr>
+        <td><code>itemsPreload</code></td>
+        <td>Number</td>
+        <td><code>5</code></td>
+        <td>No</td>
+        <td>輸入上下方預先載入元素數量，預設5</td>
+    </tr><tr>
+        <td><code>loadingText</code></td>
+        <td>String</td>
+        <td><code>'Loading...'</code></td>
+        <td>No</td>
+        <td>輸入載入中字串，預設'Loading...'</td>
+    </tr><tr>
+        <td><code>noResultsText</code></td>
+        <td>String</td>
+        <td><code>'No results'</code></td>
+        <td>No</td>
+        <td>輸入無過濾結果字串，預設'No results'</td>
+    </tr><tr>
+        <td><code>searchingText</code></td>
+        <td>String</td>
+        <td><code>'Searching...'</code></td>
+        <td>No</td>
+        <td>輸入搜索中字串，預設'Searching...'</td>
+    </tr><tr>
+        <td><code>statePaddingStyle</code></td>
+        <td>Object</td>
+        <td><code>{v:12,h:12}</code></td>
+        <td>No</td>
+        <td>輸入狀態區內寬距離設定物件，可用鍵值為v、h、left、right、top、bottom，v代表同時設定top與bottom，h代表設定left與right，若有重複設定時後面鍵值會覆蓋前面，各鍵值為寬度數字，單位為px，預設{v:12,h:12}</td>
+    </tr><tr>
+        <td><code>show</code></td>
+        <td>Boolean</td>
+        <td><code>true</code></td>
+        <td>No</td>
+        <td>輸入是否為顯示模式布林值，預設true，供組件嵌入popup時, 因先初始化但尚未顯示不需渲染, 可給予show=false避免無限偵測與重算高度問題</td>
+    </tr></tbody>
+</table>
+
+
+
+
+
+
+
+
+
+<div class="container-overview"><div><p> 
+</div>
+            
+
+            
+                
+
+
+
 
 <dl class="details">
     
@@ -183,83 +281,6 @@
 
 
 
-            
-                <div class="description usertext"></p></div></div> 
-
-
-<h3 class="subsection-title" style="margin-top: 1em" data-jsdoc-vuejs="section-props">Props</h3>
-<table data-jsdoc-vuejs="table-props">
-    <thead>
-    <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Default value</th>
-        <th>Required?</th>
-        <th>Description</th>
-    </tr>
-    </thead>
-    <tbody><tr>
-        <td><code>rows</code></td>
-        <td>Array</td>
-        <td><code>[]</code></td>
-        <td>No</td>
-        <td>輸入資料陣列，預設[]，各元素配合slot顯示即可，slot內提供row與irow，對應原始rows內各元素與指標，另外各元素slot時不要用margin避免計算高度有誤差</td>
-    </tr><tr>
-        <td><code>filterKeywords</code></td>
-        <td>String</td>
-        <td><code>''</code></td>
-        <td>No</td>
-        <td>輸入過濾關鍵字字串，多關鍵字用空白分隔，預設''</td>
-    </tr><tr>
-        <td><code>viewHeightMax</code></td>
-        <td>Number</td>
-        <td><code>400</code></td>
-        <td>No</td>
-        <td>輸入顯示區最大高度，單位為px，預設400</td>
-    </tr><tr>
-        <td><code>itemMinHeight</code></td>
-        <td>Number</td>
-        <td><code>24</code></td>
-        <td>No</td>
-        <td>輸入各元素顯示高度，單位為px，預設24，會於真實顯示後自動更新高度，原則上盡量設定為最多項目可能的高度值，而按需顯示時才自動調整避免大幅刷新</td>
-    </tr><tr>
-        <td><code>itemsPreload</code></td>
-        <td>Number</td>
-        <td><code>5</code></td>
-        <td>No</td>
-        <td>輸入上下方預先載入元素數量，預設5</td>
-    </tr><tr>
-        <td><code>loadingText</code></td>
-        <td>String</td>
-        <td><code>'Loading...'</code></td>
-        <td>No</td>
-        <td>輸入載入中字串，預設'Loading...'</td>
-    </tr><tr>
-        <td><code>noResultsText</code></td>
-        <td>String</td>
-        <td><code>'No results'</code></td>
-        <td>No</td>
-        <td>輸入無過濾結果字串，預設'No results'</td>
-    </tr><tr>
-        <td><code>searchingText</code></td>
-        <td>String</td>
-        <td><code>'Searching...'</code></td>
-        <td>No</td>
-        <td>輸入搜索中字串，預設'Searching...'</td>
-    </tr><tr>
-        <td><code>statePaddingStyle</code></td>
-        <td>Object</td>
-        <td><code>{v:12,h:12}</code></td>
-        <td>No</td>
-        <td>輸入狀態區內寬距離設定物件，可用鍵值為v、h、left、right、top、bottom，v代表同時設定top與bottom，h代表設定left與right，若有重複設定時後面鍵值會覆蓋前面，各鍵值為寬度數字，單位為px，預設{v:12,h:12}</td>
-    </tr><tr>
-        <td><code>show</code></td>
-        <td>Boolean</td>
-        <td><code>true</code></td>
-        <td>No</td>
-        <td>輸入是否為顯示模式布林值，預設true，供組件嵌入popup時, 因先初始化但尚未顯示不需渲染, 可給予show=false避免無限偵測與重算高度問題</td>
-    </tr></tbody>
-</table>
 
 
 
@@ -269,9 +290,22 @@
 
 
 
-<div class="container-overview"><div><p> 
-</div>
-            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
             
         
@@ -311,7 +345,7 @@
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.2</a> on Mon Mar 30 2026 23:19:26 GMT+0800 (台北標準時間) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.5</a> on Sat Apr 11 2026 21:04:11 GMT+0800 (台北標準時間) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>

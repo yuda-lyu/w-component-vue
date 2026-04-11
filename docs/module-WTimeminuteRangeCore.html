@@ -47,6 +47,10 @@
 
 <header>
     
+        
+            
+        
+    
 </header>
 
 <article>
@@ -54,6 +58,166 @@
         <div class="container-overview">
         
             
+                <div class="description usertext"></p></div></div> 
+
+
+<h3 class="subsection-title" style="margin-top: 1em" data-jsdoc-vuejs="section-props">Props</h3>
+<table data-jsdoc-vuejs="table-props">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Default value</th>
+        <th>Required?</th>
+        <th>Description</th>
+    </tr>
+    </thead>
+    <tbody><tr>
+        <td><code>minuteStart</code></td>
+        <td>String</td>
+        <td><code>''</code></td>
+        <td>No</td>
+        <td>輸入時間字串，預設''</td>
+    </tr><tr>
+        <td><code>minuteEnd</code></td>
+        <td>String</td>
+        <td><code>''</code></td>
+        <td>No</td>
+        <td>輸入時間字串，預設''</td>
+    </tr><tr>
+        <td><code>between</code></td>
+        <td>String</td>
+        <td><code>'to'</code></td>
+        <td>No</td>
+        <td>輸入兩時間連接文字字串，預設'to'</td>
+    </tr><tr>
+        <td><code>hourMin</code></td>
+        <td>Number</td>
+        <td><code>8</code></td>
+        <td>No</td>
+        <td>輸入可選最小小時，單位為小時，預設8</td>
+    </tr><tr>
+        <td><code>hourMax</code></td>
+        <td>Number</td>
+        <td><code>8</code></td>
+        <td>No</td>
+        <td>輸入可選最大小時，單位為小時，預設8</td>
+    </tr><tr>
+        <td><code>minuteInter</code></td>
+        <td>Number</td>
+        <td><code>15</code></td>
+        <td>No</td>
+        <td>輸入每小時的切分區間，單位為分鐘，預設15</td>
+    </tr><tr>
+        <td><code>minutesCustom</code></td>
+        <td>Array</td>
+        <td><code>null</code></td>
+        <td>No</td>
+        <td>輸入自訂可選的時分點字串陣列，單位為時分(00:00)，若給予，則上述hourMin,hourMax,minuteInter自動失效，預設null</td>
+    </tr><tr>
+        <td><code>textFontSize</code></td>
+        <td>String</td>
+        <td><code>'0.85rem'</code></td>
+        <td>No</td>
+        <td>輸入文字大小字串，預設'0.85rem'</td>
+    </tr><tr>
+        <td><code>textColor</code></td>
+        <td>String</td>
+        <td><code>'black'</code></td>
+        <td>No</td>
+        <td>輸入文字顏色字串，預設'black'</td>
+    </tr><tr>
+        <td><code>pickColor</code></td>
+        <td>String</td>
+        <td><code>'deep-orange darken-1'</code></td>
+        <td>No</td>
+        <td>輸入日期彈窗中選擇指定日期之顏色字串，預設'deep-orange darken-1'</td>
+    </tr><tr>
+        <td><code>hoverColor</code></td>
+        <td>String</td>
+        <td><code>'#ddd'</code></td>
+        <td>No</td>
+        <td>輸入日期彈窗中滑鼠移入時之背景顏色字串，預設'#ddd'</td>
+    </tr><tr>
+        <td><code>funRenderYear</code></td>
+        <td>function</td>
+        <td><code>null</code></td>
+        <td>No</td>
+        <td>輸入渲染年份之函數，傳入年數值回傳顯示字串，預設null，未給時回傳'{年}y'</td>
+    </tr><tr>
+        <td><code>funRenderMonth</code></td>
+        <td>function</td>
+        <td><code>null</code></td>
+        <td>No</td>
+        <td>輸入渲染月份之函數，傳入月數值回傳顯示字串，預設null，未給時回傳'{月}m'</td>
+    </tr><tr>
+        <td><code>funRenderDayOfWeek</code></td>
+        <td>function</td>
+        <td><code>null</code></td>
+        <td>No</td>
+        <td>輸入渲染星期幾之函數，傳入星期幾數值(0=日)回傳顯示字串，預設null，未給時回傳對應英文縮寫</td>
+    </tr><tr>
+        <td><code>expansionIcon</code></td>
+        <td>String</td>
+        <td><code>mdiPlay</code></td>
+        <td>No</td>
+        <td>輸入顯隱圖標字串，可為mdi,md,fa代號或mdi/js路徑，預設使用mdi的圖標(mdiPlay)</td>
+    </tr><tr>
+        <td><code>expansionIconSize</code></td>
+        <td>Number</td>
+        <td><code>18</code></td>
+        <td>No</td>
+        <td>輸入顯隱圖標尺寸數字，單位為px，預設18</td>
+    </tr><tr>
+        <td><code>expansionIconColor</code></td>
+        <td>String</td>
+        <td><code>'grey'</code></td>
+        <td>No</td>
+        <td>輸入顯隱圖標顏色字串，預設'grey'</td>
+    </tr><tr>
+        <td><code>placementDistX</code></td>
+        <td>Number</td>
+        <td><code>0</code></td>
+        <td>No</td>
+        <td>輸入日期彈窗之水平向右平移數字，單位為px，預設0</td>
+    </tr><tr>
+        <td><code>placementDistY</code></td>
+        <td>Number</td>
+        <td><code>7</code></td>
+        <td>No</td>
+        <td>輸入日期彈窗之垂直向下平移數字，單位為px，預設7</td>
+    </tr><tr>
+        <td><code>textEmpty</code></td>
+        <td>String</td>
+        <td><code>'Select a date'</code></td>
+        <td>No</td>
+        <td>輸入尚未輸入日期之顯示文字字串，預設'Select a date'</td>
+    </tr><tr>
+        <td><code>editable</code></td>
+        <td>Boolean</td>
+        <td><code>true</code></td>
+        <td>No</td>
+        <td>輸入是否為編輯模式布林值，預設true</td>
+    </tr></tbody>
+</table>
+
+
+
+
+
+
+
+
+
+<div class="container-overview"><div><p> 
+</div>
+            
+
+            
+                
+
+
+
 
 <dl class="details">
     
@@ -249,149 +413,6 @@
 
 
 
-            
-                <div class="description usertext"></p></div></div> 
-
-
-<h3 class="subsection-title" style="margin-top: 1em" data-jsdoc-vuejs="section-props">Props</h3>
-<table data-jsdoc-vuejs="table-props">
-    <thead>
-    <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Default value</th>
-        <th>Required?</th>
-        <th>Description</th>
-    </tr>
-    </thead>
-    <tbody><tr>
-        <td><code>minuteStart</code></td>
-        <td>String</td>
-        <td><code>''</code></td>
-        <td>No</td>
-        <td>輸入時間字串，預設''</td>
-    </tr><tr>
-        <td><code>minuteEnd</code></td>
-        <td>String</td>
-        <td><code>''</code></td>
-        <td>No</td>
-        <td>輸入時間字串，預設''</td>
-    </tr><tr>
-        <td><code>between</code></td>
-        <td>String</td>
-        <td><code>'to'</code></td>
-        <td>No</td>
-        <td>輸入兩時間連接文字字串，預設'to'</td>
-    </tr><tr>
-        <td><code>hourMin</code></td>
-        <td>Number</td>
-        <td><code>8</code></td>
-        <td>No</td>
-        <td>輸入可選最小小時，單位為小時，預設8</td>
-    </tr><tr>
-        <td><code>hourMax</code></td>
-        <td>Number</td>
-        <td><code>8</code></td>
-        <td>No</td>
-        <td>輸入可選最大小時，單位為小時，預設8</td>
-    </tr><tr>
-        <td><code>minuteInter</code></td>
-        <td>Number</td>
-        <td><code>15</code></td>
-        <td>No</td>
-        <td>輸入每小時的切分區間，單位為分鐘，預設15</td>
-    </tr><tr>
-        <td><code>minutesCustom</code></td>
-        <td>Array</td>
-        <td><code>null</code></td>
-        <td>No</td>
-        <td>輸入自訂可選的時分點字串陣列，單位為時分(00:00)，若給予，則上述hourMin,hourMax,minuteInter自動失效，預設null</td>
-    </tr><tr>
-        <td><code>textFontSize</code></td>
-        <td>String</td>
-        <td><code>'0.85rem'</code></td>
-        <td>No</td>
-        <td>輸入文字大小字串，預設'0.85rem'</td>
-    </tr><tr>
-        <td><code>textColor</code></td>
-        <td>String</td>
-        <td><code>'black'</code></td>
-        <td>No</td>
-        <td>輸入文字顏色字串，預設'black'</td>
-    </tr><tr>
-        <td><code>pickColor</code></td>
-        <td>String</td>
-        <td><code>'deep-orange darken-1'</code></td>
-        <td>No</td>
-        <td>輸入日期彈窗中選擇指定日期之顏色字串，預設'deep-orange darken-1'</td>
-    </tr><tr>
-        <td><code>hoverColor</code></td>
-        <td>String</td>
-        <td><code>'#ddd'</code></td>
-        <td>No</td>
-        <td>輸入日期彈窗中滑鼠移入時之背景顏色字串，預設'#ddd'</td>
-    </tr><tr>
-        <td><code>funRenderYear</code></td>
-        <td>function</td>
-        <td><code>null</code></td>
-        <td>No</td>
-        <td>輸入渲染年份之函數，傳入年數值回傳顯示字串，預設null，未給時回傳'{年}y'</td>
-    </tr><tr>
-        <td><code>funRenderMonth</code></td>
-        <td>function</td>
-        <td><code>null</code></td>
-        <td>No</td>
-        <td>輸入渲染月份之函數，傳入月數值回傳顯示字串，預設null，未給時回傳'{月}m'</td>
-    </tr><tr>
-        <td><code>funRenderDayOfWeek</code></td>
-        <td>function</td>
-        <td><code>null</code></td>
-        <td>No</td>
-        <td>輸入渲染星期幾之函數，傳入星期幾數值(0=日)回傳顯示字串，預設null，未給時回傳對應英文縮寫</td>
-    </tr><tr>
-        <td><code>expansionIcon</code></td>
-        <td>String</td>
-        <td><code>mdiPlay</code></td>
-        <td>No</td>
-        <td>輸入顯隱圖標字串，可為mdi,md,fa代號或mdi/js路徑，預設使用mdi的圖標(mdiPlay)</td>
-    </tr><tr>
-        <td><code>expansionIconSize</code></td>
-        <td>Number</td>
-        <td><code>18</code></td>
-        <td>No</td>
-        <td>輸入顯隱圖標尺寸數字，單位為px，預設18</td>
-    </tr><tr>
-        <td><code>expansionIconColor</code></td>
-        <td>String</td>
-        <td><code>'grey'</code></td>
-        <td>No</td>
-        <td>輸入顯隱圖標顏色字串，預設'grey'</td>
-    </tr><tr>
-        <td><code>placementDistX</code></td>
-        <td>Number</td>
-        <td><code>0</code></td>
-        <td>No</td>
-        <td>輸入日期彈窗之水平向右平移數字，單位為px，預設0</td>
-    </tr><tr>
-        <td><code>placementDistY</code></td>
-        <td>Number</td>
-        <td><code>7</code></td>
-        <td>No</td>
-        <td>輸入日期彈窗之垂直向下平移數字，單位為px，預設7</td>
-    </tr><tr>
-        <td><code>textEmpty</code></td>
-        <td>String</td>
-        <td><code>'Select a date'</code></td>
-        <td>No</td>
-        <td>輸入尚未輸入日期之顯示文字字串，預設'Select a date'</td>
-    </tr><tr>
-        <td><code>editable</code></td>
-        <td>Boolean</td>
-        <td><code>true</code></td>
-        <td>No</td>
-        <td>輸入是否為編輯模式布林值，預設true</td>
-    </tr></tbody>
-</table>
 
 
 
@@ -401,9 +422,22 @@
 
 
 
-<div class="container-overview"><div><p> 
-</div>
-            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
             
         
@@ -443,7 +477,7 @@
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.2</a> on Mon Mar 30 2026 23:19:26 GMT+0800 (台北標準時間) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.5</a> on Sat Apr 11 2026 21:04:11 GMT+0800 (台北標準時間) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>

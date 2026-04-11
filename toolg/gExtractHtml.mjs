@@ -99,13 +99,6 @@ function writeHtml(v) {
         <script src="../dist/w-component-vue.umd.js"></script>
     
         <style>
-            .v-application--wrap {
-                /* width與max-width fix for IE11, 其外不能使用padding或margin避免失效 */
-                width: 100svw;
-                max-width: 100svw;
-                font-family: inherit;
-                background: #fff;
-            }
             /* 組件所須全域樣式 */
             .item { /* 因item位於demolink, 提取各範例html後會刪除demolink, 故得額外補上 */
                 border-left: 3px solid #ffba75;

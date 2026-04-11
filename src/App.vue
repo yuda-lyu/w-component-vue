@@ -779,10 +779,6 @@ body {
     overflow-y: hidden;
 }
 
-.v-application--wrap {
-    font-family: inherit;
-    background: #fff;
-}
 /* 組件所須全域樣式 */
 .head1 {
     padding: 0px 0px 20px 0px;

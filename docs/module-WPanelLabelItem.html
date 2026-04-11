@@ -47,6 +47,10 @@
 
 <header>
     
+        
+            
+        
+    
 </header>
 
 <article>
@@ -54,6 +58,100 @@
         <div class="container-overview">
         
             
+                <div class="description usertext"></p></div></div> 
+
+
+<h3 class="subsection-title" style="margin-top: 1em" data-jsdoc-vuejs="section-props">Props</h3>
+<table data-jsdoc-vuejs="table-props">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Default value</th>
+        <th>Required?</th>
+        <th>Description</th>
+    </tr>
+    </thead>
+    <tbody><tr>
+        <td><code>label</code></td>
+        <td>String</td>
+        <td><code>''</code></td>
+        <td>No</td>
+        <td>輸入標籤文字字串，預設''</td>
+    </tr><tr>
+        <td><code>labelWidth</code></td>
+        <td>Number</td>
+        <td><code>null</code></td>
+        <td>No</td>
+        <td>輸入標籤寬度數字，單位為px，預設null</td>
+    </tr><tr>
+        <td><code>labelHeight</code></td>
+        <td>Number</td>
+        <td><code>null</code></td>
+        <td>No</td>
+        <td>輸入標籤高度數字，單位為px，若為非分行展示時則高度受table-cell控制故會失效，預設null</td>
+    </tr><tr>
+        <td><code>labelColor</code></td>
+        <td>String</td>
+        <td><code>'#666'</code></td>
+        <td>No</td>
+        <td>輸入文字顏色字串，預設'#666'</td>
+    </tr><tr>
+        <td><code>labelFontSize</code></td>
+        <td>String</td>
+        <td><code>'0.8rem'</code></td>
+        <td>No</td>
+        <td>輸入文字字型大小字串，預設'0.8rem'</td>
+    </tr><tr>
+        <td><code>labelHorizontalAlign</code></td>
+        <td>String</td>
+        <td><code>'left'</code></td>
+        <td>No</td>
+        <td>輸入文字左右對齊字串，可選'left'、'center'、'right'，預設'left'</td>
+    </tr><tr>
+        <td><code>labelVerticalAlign</code></td>
+        <td>String</td>
+        <td><code>'center'</code></td>
+        <td>No</td>
+        <td>輸入文字垂直對齊字串，可選'top'、'center'、'bottom'，若為分行展示時則因展示機制故不處理，預設'center'</td>
+    </tr><tr>
+        <td><code>labelShiftTop</code></td>
+        <td>Number</td>
+        <td><code>0</code></td>
+        <td>No</td>
+        <td>輸入文字垂直平移距離數字，單位為px，預設0</td>
+    </tr><tr>
+        <td><code>space</code></td>
+        <td>Number</td>
+        <td><code>0</code></td>
+        <td>No</td>
+        <td>輸入標籤與項目區距離數字，單位為px，若為分行展示時則代表垂直距離(基礎距離0px)，若為非分行展示時則代表水平距離(基礎距離8px)，space為基礎距離再額外增加之距離，預設0</td>
+    </tr><tr>
+        <td><code>seplines</code></td>
+        <td>Boolean</td>
+        <td><code>false</code></td>
+        <td>No</td>
+        <td>輸入標籤與項目是否為分行展示布林值，預設false</td>
+    </tr></tbody>
+</table>
+
+
+
+
+
+
+
+
+
+<div class="container-overview"><div><p> 
+</div>
+            
+
+            
+                
+
+
+
 
 <dl class="details">
     
@@ -183,83 +281,6 @@
 
 
 
-            
-                <div class="description usertext"></p></div></div> 
-
-
-<h3 class="subsection-title" style="margin-top: 1em" data-jsdoc-vuejs="section-props">Props</h3>
-<table data-jsdoc-vuejs="table-props">
-    <thead>
-    <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Default value</th>
-        <th>Required?</th>
-        <th>Description</th>
-    </tr>
-    </thead>
-    <tbody><tr>
-        <td><code>label</code></td>
-        <td>String</td>
-        <td><code>''</code></td>
-        <td>No</td>
-        <td>輸入標籤文字字串，預設''</td>
-    </tr><tr>
-        <td><code>labelWidth</code></td>
-        <td>Number</td>
-        <td><code>null</code></td>
-        <td>No</td>
-        <td>輸入標籤寬度數字，單位為px，預設null</td>
-    </tr><tr>
-        <td><code>labelHeight</code></td>
-        <td>Number</td>
-        <td><code>null</code></td>
-        <td>No</td>
-        <td>輸入標籤高度數字，單位為px，若為非分行展示時則高度受table-cell控制故會失效，預設null</td>
-    </tr><tr>
-        <td><code>labelColor</code></td>
-        <td>String</td>
-        <td><code>'#666'</code></td>
-        <td>No</td>
-        <td>輸入文字顏色字串，預設'#666'</td>
-    </tr><tr>
-        <td><code>labelFontSize</code></td>
-        <td>String</td>
-        <td><code>'0.8rem'</code></td>
-        <td>No</td>
-        <td>輸入文字字型大小字串，預設'0.8rem'</td>
-    </tr><tr>
-        <td><code>labelHorizontalAlign</code></td>
-        <td>String</td>
-        <td><code>'left'</code></td>
-        <td>No</td>
-        <td>輸入文字左右對齊字串，可選'left'、'center'、'right'，預設'left'</td>
-    </tr><tr>
-        <td><code>labelVerticalAlign</code></td>
-        <td>String</td>
-        <td><code>'center'</code></td>
-        <td>No</td>
-        <td>輸入文字垂直對齊字串，可選'top'、'center'、'bottom'，若為分行展示時則因展示機制故不處理，預設'center'</td>
-    </tr><tr>
-        <td><code>labelShiftTop</code></td>
-        <td>Number</td>
-        <td><code>0</code></td>
-        <td>No</td>
-        <td>輸入文字垂直平移距離數字，單位為px，預設0</td>
-    </tr><tr>
-        <td><code>space</code></td>
-        <td>Number</td>
-        <td><code>0</code></td>
-        <td>No</td>
-        <td>輸入標籤與項目區距離數字，單位為px，若為分行展示時則代表垂直距離(基礎距離0px)，若為非分行展示時則代表水平距離(基礎距離8px)，space為基礎距離再額外增加之距離，預設0</td>
-    </tr><tr>
-        <td><code>seplines</code></td>
-        <td>Boolean</td>
-        <td><code>false</code></td>
-        <td>No</td>
-        <td>輸入標籤與項目是否為分行展示布林值，預設false</td>
-    </tr></tbody>
-</table>
 
 
 
@@ -269,9 +290,22 @@
 
 
 
-<div class="container-overview"><div><p> 
-</div>
-            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
             
         
@@ -311,7 +345,7 @@
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.2</a> on Mon Mar 30 2026 23:19:26 GMT+0800 (台北標準時間) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.5</a> on Sat Apr 11 2026 21:04:11 GMT+0800 (台北標準時間) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>

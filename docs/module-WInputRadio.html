@@ -47,6 +47,10 @@
 
 <header>
     
+        
+            
+        
+    
 </header>
 
 <article>
@@ -54,6 +58,124 @@
         <div class="container-overview">
         
             
+                <div class="description usertext"></p></div></div> 
+
+
+<h3 class="subsection-title" style="margin-top: 1em" data-jsdoc-vuejs="section-props">Props</h3>
+<table data-jsdoc-vuejs="table-props">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Default value</th>
+        <th>Required?</th>
+        <th>Description</th>
+    </tr>
+    </thead>
+    <tbody><tr>
+        <td><code>items</code></td>
+        <td>Array</td>
+        <td><code>[]</code></td>
+        <td>No</td>
+        <td>輸入全部可選字串或物件陣列，預設[]</td>
+    </tr><tr>
+        <td><code>value</code></td>
+        <td>String|Object</td>
+        <td>-</td>
+        <td><b>Yes</b></td>
+        <td>輸入單選字串或物件，無預設</td>
+    </tr><tr>
+        <td><code>keyText</code></td>
+        <td>String</td>
+        <td><code>'text'</code></td>
+        <td>No</td>
+        <td>輸入可選項目為物件時，存放顯示文字之欄位字串，預設'text'</td>
+    </tr><tr>
+        <td><code>arrange</code></td>
+        <td>String</td>
+        <td><code>'vertical'</code></td>
+        <td>No</td>
+        <td>輸入可選項目排列字串，可選'vertical'、'horizontal'，預設'vertical'</td>
+    </tr><tr>
+        <td><code>inputSize</code></td>
+        <td>Number</td>
+        <td><code>16</code></td>
+        <td>No</td>
+        <td>輸入input寬度與高度數字，單位為px，預設16</td>
+    </tr><tr>
+        <td><code>inputShiftTop</code></td>
+        <td>Number</td>
+        <td><code>0</code></td>
+        <td>No</td>
+        <td>輸入input上方平移數離數字，單位為px，預設0</td>
+    </tr><tr>
+        <td><code>textColor</code></td>
+        <td>String</td>
+        <td><code>'#222'</code></td>
+        <td>No</td>
+        <td>輸入文字顏色字串，預設'#222'</td>
+    </tr><tr>
+        <td><code>textColorHover</code></td>
+        <td>String</td>
+        <td><code>'#888'</code></td>
+        <td>No</td>
+        <td>輸入滑鼠移入時文字顏色字串，預設'#888'</td>
+    </tr><tr>
+        <td><code>textColorActive</code></td>
+        <td>String</td>
+        <td><code>'#222'</code></td>
+        <td>No</td>
+        <td>輸入主動模式時文字顏色字串，預設'#222'</td>
+    </tr><tr>
+        <td><code>textColorDisabled</code></td>
+        <td>String</td>
+        <td><code>'#666'</code></td>
+        <td>No</td>
+        <td>輸入主動模式時文字顏色字串，預設'#666'</td>
+    </tr><tr>
+        <td><code>textFontSize</code></td>
+        <td>String</td>
+        <td><code>'0.85rem'</code></td>
+        <td>No</td>
+        <td>輸入文字字型大小字串，預設'0.85rem'</td>
+    </tr><tr>
+        <td><code>paddingStyle</code></td>
+        <td>Object</td>
+        <td><code>{top:0,bottom:0,left:0,right:0}</code></td>
+        <td>No</td>
+        <td>輸入內寬距離物件，可用鍵值為v、h、left、right、top、bottom，v代表同時設定top與bottom，h代表設定left與right，若有重複設定時後面鍵值會覆蓋前面，各鍵值為寬度數字，單位為px，預設{top:0,bottom:0,left:0,right:0}</td>
+    </tr><tr>
+        <td><code>verticalAlign</code></td>
+        <td>String</td>
+        <td><code>'center'</code></td>
+        <td>No</td>
+        <td>輸入input與文字之垂直對齊字串，可選'top'、'center'、'bottom'，預設'center'</td>
+    </tr><tr>
+        <td><code>editable</code></td>
+        <td>Boolean</td>
+        <td><code>true</code></td>
+        <td>No</td>
+        <td>輸入是否為編輯模式布林值，預設true</td>
+    </tr></tbody>
+</table>
+
+
+
+
+
+
+
+
+
+<div class="container-overview"><div><p> 
+</div>
+            
+
+            
+                
+
+
+
 
 <dl class="details">
     
@@ -207,107 +329,6 @@
 
 
 
-            
-                <div class="description usertext"></p></div></div> 
-
-
-<h3 class="subsection-title" style="margin-top: 1em" data-jsdoc-vuejs="section-props">Props</h3>
-<table data-jsdoc-vuejs="table-props">
-    <thead>
-    <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Default value</th>
-        <th>Required?</th>
-        <th>Description</th>
-    </tr>
-    </thead>
-    <tbody><tr>
-        <td><code>items</code></td>
-        <td>Array</td>
-        <td><code>[]</code></td>
-        <td>No</td>
-        <td>輸入全部可選字串或物件陣列，預設[]</td>
-    </tr><tr>
-        <td><code>value</code></td>
-        <td>String|Object</td>
-        <td>-</td>
-        <td><b>Yes</b></td>
-        <td>輸入單選字串或物件，無預設</td>
-    </tr><tr>
-        <td><code>keyText</code></td>
-        <td>String</td>
-        <td><code>'text'</code></td>
-        <td>No</td>
-        <td>輸入可選項目為物件時，存放顯示文字之欄位字串，預設'text'</td>
-    </tr><tr>
-        <td><code>arrange</code></td>
-        <td>String</td>
-        <td><code>'vertical'</code></td>
-        <td>No</td>
-        <td>輸入可選項目排列字串，可選'vertical'、'horizontal'，預設'vertical'</td>
-    </tr><tr>
-        <td><code>inputSize</code></td>
-        <td>Number</td>
-        <td><code>16</code></td>
-        <td>No</td>
-        <td>輸入input寬度與高度數字，單位為px，預設16</td>
-    </tr><tr>
-        <td><code>inputShiftTop</code></td>
-        <td>Number</td>
-        <td><code>0</code></td>
-        <td>No</td>
-        <td>輸入input上方平移數離數字，單位為px，預設0</td>
-    </tr><tr>
-        <td><code>textColor</code></td>
-        <td>String</td>
-        <td><code>'#222'</code></td>
-        <td>No</td>
-        <td>輸入文字顏色字串，預設'#222'</td>
-    </tr><tr>
-        <td><code>textColorHover</code></td>
-        <td>String</td>
-        <td><code>'#888'</code></td>
-        <td>No</td>
-        <td>輸入滑鼠移入時文字顏色字串，預設'#888'</td>
-    </tr><tr>
-        <td><code>textColorActive</code></td>
-        <td>String</td>
-        <td><code>'#222'</code></td>
-        <td>No</td>
-        <td>輸入主動模式時文字顏色字串，預設'#222'</td>
-    </tr><tr>
-        <td><code>textColorDisabled</code></td>
-        <td>String</td>
-        <td><code>'#666'</code></td>
-        <td>No</td>
-        <td>輸入主動模式時文字顏色字串，預設'#666'</td>
-    </tr><tr>
-        <td><code>textFontSize</code></td>
-        <td>String</td>
-        <td><code>'0.85rem'</code></td>
-        <td>No</td>
-        <td>輸入文字字型大小字串，預設'0.85rem'</td>
-    </tr><tr>
-        <td><code>paddingStyle</code></td>
-        <td>Object</td>
-        <td><code>{top:0,bottom:0,left:0,right:0}</code></td>
-        <td>No</td>
-        <td>輸入內寬距離物件，可用鍵值為v、h、left、right、top、bottom，v代表同時設定top與bottom，h代表設定left與right，若有重複設定時後面鍵值會覆蓋前面，各鍵值為寬度數字，單位為px，預設{top:0,bottom:0,left:0,right:0}</td>
-    </tr><tr>
-        <td><code>verticalAlign</code></td>
-        <td>String</td>
-        <td><code>'center'</code></td>
-        <td>No</td>
-        <td>輸入input與文字之垂直對齊字串，可選'top'、'center'、'bottom'，預設'center'</td>
-    </tr><tr>
-        <td><code>editable</code></td>
-        <td>Boolean</td>
-        <td><code>true</code></td>
-        <td>No</td>
-        <td>輸入是否為編輯模式布林值，預設true</td>
-    </tr></tbody>
-</table>
 
 
 
@@ -317,9 +338,22 @@
 
 
 
-<div class="container-overview"><div><p> 
-</div>
-            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
             
         
@@ -359,7 +393,7 @@
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.2</a> on Mon Mar 30 2026 23:19:26 GMT+0800 (台北標準時間) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.5</a> on Sat Apr 11 2026 21:04:11 GMT+0800 (台北標準時間) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>

@@ -47,6 +47,10 @@
 
 <header>
     
+        
+            
+        
+    
 </header>
 
 <article>
@@ -54,6 +58,280 @@
         <div class="container-overview">
         
             
+                <div class="description usertext"></p></div></div> 
+
+
+<h3 class="subsection-title" style="margin-top: 1em" data-jsdoc-vuejs="section-props">Props</h3>
+<table data-jsdoc-vuejs="table-props">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Default value</th>
+        <th>Required?</th>
+        <th>Description</th>
+    </tr>
+    </thead>
+    <tbody><tr>
+        <td><code>paddingStyle</code></td>
+        <td>Object</td>
+        <td><code>{v:0,h:0}</code></td>
+        <td>No</td>
+        <td>輸入內寬距離物件，可用鍵值為v、h、left、right、top、bottom，v代表同時設定top與bottom，h代表設定left與right，若有重複設定時後面鍵值會覆蓋前面，各鍵值為寬度數字，單位為px，預設{v:0,h:0}</td>
+    </tr><tr>
+        <td><code>borderRadius</code></td>
+        <td>Number</td>
+        <td><code>30</code></td>
+        <td>No</td>
+        <td>輸入框圓角度數字，單位為px，預設30</td>
+    </tr><tr>
+        <td><code>shadow</code></td>
+        <td>Boolean</td>
+        <td><code>false</code></td>
+        <td>No</td>
+        <td>輸入是否為陰影模式，預設false</td>
+    </tr><tr>
+        <td><code>type</code></td>
+        <td>String</td>
+        <td><code>'any'</code></td>
+        <td>No</td>
+        <td>輸入文字框類型字串，可選'any'、'isnum'、'isint'等詳見verifyValue函數，預設'any'</td>
+    </tr><tr>
+        <td><code>funVerify</code></td>
+        <td>function</td>
+        <td><code>null</code></td>
+        <td>No</td>
+        <td>輸入客製化校驗數值函數，回傳物件須包含鍵value為校驗後正確值、鍵err代表是否有錯誤布林值、鍵errmsg代表有錯誤時之錯誤訊息字串，預設null</td>
+    </tr><tr>
+        <td><code>value</code></td>
+        <td>String|Number</td>
+        <td>-</td>
+        <td><b>Yes</b></td>
+        <td>輸入文字框值</td>
+    </tr><tr>
+        <td><code>textFontSize</code></td>
+        <td>String</td>
+        <td><code>'1rem'</code></td>
+        <td>No</td>
+        <td>輸入文字大小字串，預設'1rem'</td>
+    </tr><tr>
+        <td><code>textColor</code></td>
+        <td>String</td>
+        <td><code>'black'</code></td>
+        <td>No</td>
+        <td>輸入文字顏色字串，預設'black'</td>
+    </tr><tr>
+        <td><code>textAlign</code></td>
+        <td>String</td>
+        <td><code>'left'</code></td>
+        <td>No</td>
+        <td>輸入文字左右對齊字串，預設'left'</td>
+    </tr><tr>
+        <td><code>leftIcon</code></td>
+        <td>String</td>
+        <td><code>''</code></td>
+        <td>No</td>
+        <td>輸入左側圖標字串，可為mdi,md,fa代號或mdi/js路徑，預設''</td>
+    </tr><tr>
+        <td><code>leftIconSize</code></td>
+        <td>Number</td>
+        <td><code>24</code></td>
+        <td>No</td>
+        <td>輸入左側圖標大小，單位為px，預設24</td>
+    </tr><tr>
+        <td><code>leftIconColor</code></td>
+        <td>String</td>
+        <td><code>'blue'</code></td>
+        <td>No</td>
+        <td>輸入左側圖標顏色字串，預設'blue'</td>
+    </tr><tr>
+        <td><code>leftIconColorHover</code></td>
+        <td>String</td>
+        <td><code>'blue darken-1'</code></td>
+        <td>No</td>
+        <td>輸入滑鼠移入時左側圖標顏色字串，預設'blue darken-1'</td>
+    </tr><tr>
+        <td><code>leftIconColorFocus</code></td>
+        <td>String</td>
+        <td><code>'blue darken-1'</code></td>
+        <td>No</td>
+        <td>輸入取得焦點時左側圖標顏色字串，預設'blue darken-1'</td>
+    </tr><tr>
+        <td><code>leftIconTooltip</code></td>
+        <td>String</td>
+        <td><code>''</code></td>
+        <td>No</td>
+        <td>輸入左側圖標提示文字字串，預設''</td>
+    </tr><tr>
+        <td><code>rightIcon</code></td>
+        <td>String</td>
+        <td><code>''</code></td>
+        <td>No</td>
+        <td>輸入右側圖標字串，可為mdi,md,fa代號或mdi/js路徑，預設''</td>
+    </tr><tr>
+        <td><code>rightIconSize</code></td>
+        <td>Number</td>
+        <td><code>24</code></td>
+        <td>No</td>
+        <td>輸入右側圖標大小，單位為px，預設24</td>
+    </tr><tr>
+        <td><code>rightIconColor</code></td>
+        <td>String</td>
+        <td><code>'blue'</code></td>
+        <td>No</td>
+        <td>輸入右側圖標顏色字串，預設'blue'</td>
+    </tr><tr>
+        <td><code>rightIconColorHover</code></td>
+        <td>String</td>
+        <td><code>'blue darken-1'</code></td>
+        <td>No</td>
+        <td>輸入滑鼠移入時右側圖標顏色字串，預設'blue darken-1'</td>
+    </tr><tr>
+        <td><code>rightIconColorFocus</code></td>
+        <td>String</td>
+        <td><code>'blue darken-1'</code></td>
+        <td>No</td>
+        <td>輸入取得焦點時右側圖標顏色字串，預設'blue darken-1'</td>
+    </tr><tr>
+        <td><code>rightIconTooltip</code></td>
+        <td>String</td>
+        <td><code>''</code></td>
+        <td>No</td>
+        <td>輸入右側圖標提示文字字串，預設''</td>
+    </tr><tr>
+        <td><code>iconShiftOuter</code></td>
+        <td>Number</td>
+        <td><code>0</code></td>
+        <td>No</td>
+        <td>輸入左右側圖標與外框距離數字，單位為px，預設0</td>
+    </tr><tr>
+        <td><code>iconShiftInner</code></td>
+        <td>Number</td>
+        <td><code>5</code></td>
+        <td>No</td>
+        <td>輸入左右側圖標與內插槽區距離數字，單位為px，預設5</td>
+    </tr><tr>
+        <td><code>backgroundColor</code></td>
+        <td>String</td>
+        <td><code>'transparent'</code></td>
+        <td>No</td>
+        <td>輸入背景顏色字串，預設'transparent'</td>
+    </tr><tr>
+        <td><code>backgroundColorHover</code></td>
+        <td>String</td>
+        <td><code>'transparent'</code></td>
+        <td>No</td>
+        <td>輸入滑鼠移入時背景顏色字串，預設'transparent'</td>
+    </tr><tr>
+        <td><code>backgroundColorFocus</code></td>
+        <td>String</td>
+        <td><code>'transparent'</code></td>
+        <td>No</td>
+        <td>輸入取得焦點時背景顏色字串，預設'transparent'</td>
+    </tr><tr>
+        <td><code>borderColor</code></td>
+        <td>String</td>
+        <td><code>'transparent'</code></td>
+        <td>No</td>
+        <td>輸入邊框顏色字串，預設'transparent'</td>
+    </tr><tr>
+        <td><code>borderColorHover</code></td>
+        <td>String</td>
+        <td><code>'transparent'</code></td>
+        <td>No</td>
+        <td>輸入滑鼠移入時邊框顏色字串，預設'transparent'</td>
+    </tr><tr>
+        <td><code>borderColorFocus</code></td>
+        <td>String</td>
+        <td><code>'transparent'</code></td>
+        <td>No</td>
+        <td>輸入取得焦點時邊框顏色字串，預設'transparent'</td>
+    </tr><tr>
+        <td><code>bottomLineBorderColor</code></td>
+        <td>String</td>
+        <td><code>'grey lighten-1'</code></td>
+        <td>No</td>
+        <td>輸入底部線顏色字串，預設'grey lighten-1'</td>
+    </tr><tr>
+        <td><code>bottomLineBorderColorHover</code></td>
+        <td>String</td>
+        <td><code>'grey'</code></td>
+        <td>No</td>
+        <td>輸入滑鼠移入時底部線顏色字串，預設'grey'</td>
+    </tr><tr>
+        <td><code>bottomLineBorderColorFocus</code></td>
+        <td>String</td>
+        <td><code>'blue darken-1'</code></td>
+        <td>No</td>
+        <td>輸入取得焦點時底部線顏色字串，預設'blue darken-1'</td>
+    </tr><tr>
+        <td><code>bottomLineBorderWidth</code></td>
+        <td>Number</td>
+        <td><code>1</code></td>
+        <td>No</td>
+        <td>輸入底部線寬度數字，單位為px，預設1</td>
+    </tr><tr>
+        <td><code>bottomLineBorderWidthHover</code></td>
+        <td>Number</td>
+        <td><code>1</code></td>
+        <td>No</td>
+        <td>輸入滑鼠移入時底部線寬度數字，單位為px，預設1</td>
+    </tr><tr>
+        <td><code>bottomLineBorderWidthFocus</code></td>
+        <td>Number</td>
+        <td><code>2</code></td>
+        <td>No</td>
+        <td>輸入取得焦點時底部線寬度數字，單位為px，預設2</td>
+    </tr><tr>
+        <td><code>placeholder</code></td>
+        <td>String</td>
+        <td><code>''</code></td>
+        <td>No</td>
+        <td>輸入無文字時的替代字符字串，預設''</td>
+    </tr><tr>
+        <td><code>height</code></td>
+        <td>Number</td>
+        <td><code>28</code></td>
+        <td>No</td>
+        <td>輸入高度數字，單位為px，預設28</td>
+    </tr><tr>
+        <td><code>password</code></td>
+        <td>Boolean</td>
+        <td><code>false</code></td>
+        <td>No</td>
+        <td>輸入是否輸入密碼狀態布林值，預設false</td>
+    </tr><tr>
+        <td><code>editable</code></td>
+        <td>Boolean</td>
+        <td><code>true</code></td>
+        <td>No</td>
+        <td>輸入是否為編輯模式布林值，預設true</td>
+    </tr><tr>
+        <td><code>focused</code></td>
+        <td>Boolean</td>
+        <td><code>false</code></td>
+        <td>No</td>
+        <td>輸入是否為取得焦點狀態，預設false</td>
+    </tr></tbody>
+</table>
+
+
+
+
+
+
+
+
+
+<div class="container-overview"><div><p> 
+</div>
+            
+
+            
+                
+
+
+
 
 <dl class="details">
     
@@ -363,263 +641,6 @@
 
 
 
-            
-                <div class="description usertext"></p></div></div> 
-
-
-<h3 class="subsection-title" style="margin-top: 1em" data-jsdoc-vuejs="section-props">Props</h3>
-<table data-jsdoc-vuejs="table-props">
-    <thead>
-    <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Default value</th>
-        <th>Required?</th>
-        <th>Description</th>
-    </tr>
-    </thead>
-    <tbody><tr>
-        <td><code>paddingStyle</code></td>
-        <td>Object</td>
-        <td><code>{v:0,h:0}</code></td>
-        <td>No</td>
-        <td>輸入內寬距離物件，可用鍵值為v、h、left、right、top、bottom，v代表同時設定top與bottom，h代表設定left與right，若有重複設定時後面鍵值會覆蓋前面，各鍵值為寬度數字，單位為px，預設{v:0,h:0}</td>
-    </tr><tr>
-        <td><code>borderRadius</code></td>
-        <td>Number</td>
-        <td><code>30</code></td>
-        <td>No</td>
-        <td>輸入框圓角度數字，單位為px，預設30</td>
-    </tr><tr>
-        <td><code>shadow</code></td>
-        <td>Boolean</td>
-        <td><code>false</code></td>
-        <td>No</td>
-        <td>輸入是否為陰影模式，預設false</td>
-    </tr><tr>
-        <td><code>type</code></td>
-        <td>String</td>
-        <td><code>'any'</code></td>
-        <td>No</td>
-        <td>輸入文字框類型字串，可選'any'、'isnum'、'isint'等詳見verifyValue函數，預設'any'</td>
-    </tr><tr>
-        <td><code>funVerify</code></td>
-        <td>function</td>
-        <td><code>null</code></td>
-        <td>No</td>
-        <td>輸入客製化校驗數值函數，回傳物件須包含鍵value為校驗後正確值、鍵err代表是否有錯誤布林值、鍵errmsg代表有錯誤時之錯誤訊息字串，預設null</td>
-    </tr><tr>
-        <td><code>value</code></td>
-        <td>String|Number</td>
-        <td>-</td>
-        <td><b>Yes</b></td>
-        <td>輸入文字框值</td>
-    </tr><tr>
-        <td><code>textFontSize</code></td>
-        <td>String</td>
-        <td><code>'1rem'</code></td>
-        <td>No</td>
-        <td>輸入文字大小字串，預設'1rem'</td>
-    </tr><tr>
-        <td><code>textColor</code></td>
-        <td>String</td>
-        <td><code>'black'</code></td>
-        <td>No</td>
-        <td>輸入文字顏色字串，預設'black'</td>
-    </tr><tr>
-        <td><code>textAlign</code></td>
-        <td>String</td>
-        <td><code>'left'</code></td>
-        <td>No</td>
-        <td>輸入文字左右對齊字串，預設'left'</td>
-    </tr><tr>
-        <td><code>leftIcon</code></td>
-        <td>String</td>
-        <td><code>''</code></td>
-        <td>No</td>
-        <td>輸入左側圖標字串，可為mdi,md,fa代號或mdi/js路徑，預設''</td>
-    </tr><tr>
-        <td><code>leftIconSize</code></td>
-        <td>Number</td>
-        <td><code>24</code></td>
-        <td>No</td>
-        <td>輸入左側圖標大小，單位為px，預設24</td>
-    </tr><tr>
-        <td><code>leftIconColor</code></td>
-        <td>String</td>
-        <td><code>'blue'</code></td>
-        <td>No</td>
-        <td>輸入左側圖標顏色字串，預設'blue'</td>
-    </tr><tr>
-        <td><code>leftIconColorHover</code></td>
-        <td>String</td>
-        <td><code>'blue darken-1'</code></td>
-        <td>No</td>
-        <td>輸入滑鼠移入時左側圖標顏色字串，預設'blue darken-1'</td>
-    </tr><tr>
-        <td><code>leftIconColorFocus</code></td>
-        <td>String</td>
-        <td><code>'blue darken-1'</code></td>
-        <td>No</td>
-        <td>輸入取得焦點時左側圖標顏色字串，預設'blue darken-1'</td>
-    </tr><tr>
-        <td><code>leftIconTooltip</code></td>
-        <td>String</td>
-        <td><code>''</code></td>
-        <td>No</td>
-        <td>輸入左側圖標提示文字字串，預設''</td>
-    </tr><tr>
-        <td><code>rightIcon</code></td>
-        <td>String</td>
-        <td><code>''</code></td>
-        <td>No</td>
-        <td>輸入右側圖標字串，可為mdi,md,fa代號或mdi/js路徑，預設''</td>
-    </tr><tr>
-        <td><code>rightIconSize</code></td>
-        <td>Number</td>
-        <td><code>24</code></td>
-        <td>No</td>
-        <td>輸入右側圖標大小，單位為px，預設24</td>
-    </tr><tr>
-        <td><code>rightIconColor</code></td>
-        <td>String</td>
-        <td><code>'blue'</code></td>
-        <td>No</td>
-        <td>輸入右側圖標顏色字串，預設'blue'</td>
-    </tr><tr>
-        <td><code>rightIconColorHover</code></td>
-        <td>String</td>
-        <td><code>'blue darken-1'</code></td>
-        <td>No</td>
-        <td>輸入滑鼠移入時右側圖標顏色字串，預設'blue darken-1'</td>
-    </tr><tr>
-        <td><code>rightIconColorFocus</code></td>
-        <td>String</td>
-        <td><code>'blue darken-1'</code></td>
-        <td>No</td>
-        <td>輸入取得焦點時右側圖標顏色字串，預設'blue darken-1'</td>
-    </tr><tr>
-        <td><code>rightIconTooltip</code></td>
-        <td>String</td>
-        <td><code>''</code></td>
-        <td>No</td>
-        <td>輸入右側圖標提示文字字串，預設''</td>
-    </tr><tr>
-        <td><code>iconShiftOuter</code></td>
-        <td>Number</td>
-        <td><code>0</code></td>
-        <td>No</td>
-        <td>輸入左右側圖標與外框距離數字，單位為px，預設0</td>
-    </tr><tr>
-        <td><code>iconShiftInner</code></td>
-        <td>Number</td>
-        <td><code>5</code></td>
-        <td>No</td>
-        <td>輸入左右側圖標與內插槽區距離數字，單位為px，預設5</td>
-    </tr><tr>
-        <td><code>backgroundColor</code></td>
-        <td>String</td>
-        <td><code>'transparent'</code></td>
-        <td>No</td>
-        <td>輸入背景顏色字串，預設'transparent'</td>
-    </tr><tr>
-        <td><code>backgroundColorHover</code></td>
-        <td>String</td>
-        <td><code>'transparent'</code></td>
-        <td>No</td>
-        <td>輸入滑鼠移入時背景顏色字串，預設'transparent'</td>
-    </tr><tr>
-        <td><code>backgroundColorFocus</code></td>
-        <td>String</td>
-        <td><code>'transparent'</code></td>
-        <td>No</td>
-        <td>輸入取得焦點時背景顏色字串，預設'transparent'</td>
-    </tr><tr>
-        <td><code>borderColor</code></td>
-        <td>String</td>
-        <td><code>'transparent'</code></td>
-        <td>No</td>
-        <td>輸入邊框顏色字串，預設'transparent'</td>
-    </tr><tr>
-        <td><code>borderColorHover</code></td>
-        <td>String</td>
-        <td><code>'transparent'</code></td>
-        <td>No</td>
-        <td>輸入滑鼠移入時邊框顏色字串，預設'transparent'</td>
-    </tr><tr>
-        <td><code>borderColorFocus</code></td>
-        <td>String</td>
-        <td><code>'transparent'</code></td>
-        <td>No</td>
-        <td>輸入取得焦點時邊框顏色字串，預設'transparent'</td>
-    </tr><tr>
-        <td><code>bottomLineBorderColor</code></td>
-        <td>String</td>
-        <td><code>'grey lighten-1'</code></td>
-        <td>No</td>
-        <td>輸入底部線顏色字串，預設'grey lighten-1'</td>
-    </tr><tr>
-        <td><code>bottomLineBorderColorHover</code></td>
-        <td>String</td>
-        <td><code>'grey'</code></td>
-        <td>No</td>
-        <td>輸入滑鼠移入時底部線顏色字串，預設'grey'</td>
-    </tr><tr>
-        <td><code>bottomLineBorderColorFocus</code></td>
-        <td>String</td>
-        <td><code>'blue darken-1'</code></td>
-        <td>No</td>
-        <td>輸入取得焦點時底部線顏色字串，預設'blue darken-1'</td>
-    </tr><tr>
-        <td><code>bottomLineBorderWidth</code></td>
-        <td>Number</td>
-        <td><code>1</code></td>
-        <td>No</td>
-        <td>輸入底部線寬度數字，單位為px，預設1</td>
-    </tr><tr>
-        <td><code>bottomLineBorderWidthHover</code></td>
-        <td>Number</td>
-        <td><code>1</code></td>
-        <td>No</td>
-        <td>輸入滑鼠移入時底部線寬度數字，單位為px，預設1</td>
-    </tr><tr>
-        <td><code>bottomLineBorderWidthFocus</code></td>
-        <td>Number</td>
-        <td><code>2</code></td>
-        <td>No</td>
-        <td>輸入取得焦點時底部線寬度數字，單位為px，預設2</td>
-    </tr><tr>
-        <td><code>placeholder</code></td>
-        <td>String</td>
-        <td><code>''</code></td>
-        <td>No</td>
-        <td>輸入無文字時的替代字符字串，預設''</td>
-    </tr><tr>
-        <td><code>height</code></td>
-        <td>Number</td>
-        <td><code>28</code></td>
-        <td>No</td>
-        <td>輸入高度數字，單位為px，預設28</td>
-    </tr><tr>
-        <td><code>password</code></td>
-        <td>Boolean</td>
-        <td><code>false</code></td>
-        <td>No</td>
-        <td>輸入是否輸入密碼狀態布林值，預設false</td>
-    </tr><tr>
-        <td><code>editable</code></td>
-        <td>Boolean</td>
-        <td><code>true</code></td>
-        <td>No</td>
-        <td>輸入是否為編輯模式布林值，預設true</td>
-    </tr><tr>
-        <td><code>focused</code></td>
-        <td>Boolean</td>
-        <td><code>false</code></td>
-        <td>No</td>
-        <td>輸入是否為取得焦點狀態，預設false</td>
-    </tr></tbody>
-</table>
 
 
 
@@ -629,9 +650,22 @@
 
 
 
-<div class="container-overview"><div><p> 
-</div>
-            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
             
         
@@ -671,7 +705,7 @@
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.2</a> on Mon Mar 30 2026 23:19:26 GMT+0800 (台北標準時間) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.5</a> on Sat Apr 11 2026 21:04:11 GMT+0800 (台北標準時間) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>

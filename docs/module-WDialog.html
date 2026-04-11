@@ -47,6 +47,10 @@
 
 <header>
     
+        
+            
+        
+    
 </header>
 
 <article>
@@ -54,6 +58,214 @@
         <div class="container-overview">
         
             
+                <div class="description usertext"></p></div></div> 
+
+
+<h3 class="subsection-title" style="margin-top: 1em" data-jsdoc-vuejs="section-props">Props</h3>
+<table data-jsdoc-vuejs="table-props">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Default value</th>
+        <th>Required?</th>
+        <th>Description</th>
+    </tr>
+    </thead>
+    <tbody><tr>
+        <td><code>show</code></td>
+        <td>Boolean</td>
+        <td><code>false</code></td>
+        <td>No</td>
+        <td>輸入是否顯示布林值，預設false</td>
+    </tr><tr>
+        <td><code>isModal</code></td>
+        <td>Boolean</td>
+        <td><code>true</code></td>
+        <td>No</td>
+        <td>輸入是否為強制模式布林值，預設true</td>
+    </tr><tr>
+        <td><code>dialogZIndex</code></td>
+        <td>Number</td>
+        <td><code>2000</code></td>
+        <td>No</td>
+        <td>輸入彈窗使用z-index數字，預設2000</td>
+    </tr><tr>
+        <td><code>fullscreen</code></td>
+        <td>Boolean</td>
+        <td><code>false</code></td>
+        <td>No</td>
+        <td>輸入是否為全螢幕顯示布林值，若為true則忽略minWidth與maxWidth設定，預設false</td>
+    </tr><tr>
+        <td><code>minWidth</code></td>
+        <td>Number</td>
+        <td><code>200</code></td>
+        <td>No</td>
+        <td>輸入彈窗最小寬度數值，單位為px，預設200，當裝置寬度小於彈窗最小寬度時則使用裝置寬度</td>
+    </tr><tr>
+        <td><code>maxWidth</code></td>
+        <td>Number</td>
+        <td><code>1000</code></td>
+        <td>No</td>
+        <td>輸入彈窗最大寬度數值，單位為px，預設1000</td>
+    </tr><tr>
+        <td><code>ratioHeightMax</code></td>
+        <td>Number</td>
+        <td><code>0.9</code></td>
+        <td>No</td>
+        <td>輸入彈窗最大允許高度比例數值，代表彈窗高度相對於顯示區高度比例之最大值，預設0.9</td>
+    </tr><tr>
+        <td><code>autoFullscreenWhenNarrow</code></td>
+        <td>Boolean</td>
+        <td><code>true</code></td>
+        <td>No</td>
+        <td>輸入當裝置寬度小於maxWidth時，是否強制改為全螢幕顯示布林值，預設true</td>
+    </tr><tr>
+        <td><code>overlayColor</code></td>
+        <td>String</td>
+        <td><code>'rgba(0,0,0,0.3)'</code></td>
+        <td>No</td>
+        <td>輸入浮動顯示時抽屜外側陰影層背景顏色字串，預設'rgba(0,0,0,0.3)'</td>
+    </tr><tr>
+        <td><code>panelBorderRadius</code></td>
+        <td>Number</td>
+        <td><code>4</code></td>
+        <td>No</td>
+        <td>輸入框圓角度數字，單位為px，預設4</td>
+    </tr><tr>
+        <td><code>panelShadow</code></td>
+        <td>Boolean</td>
+        <td><code>true</code></td>
+        <td>No</td>
+        <td>輸入彈窗標題區是否顯示陰影布林值，預設true</td>
+    </tr><tr>
+        <td><code>panelShadowStyle</code></td>
+        <td>String</td>
+        <td><code>''</code></td>
+        <td>No</td>
+        <td>輸入彈窗標題區陰影顏色字串，預設值詳見props</td>
+    </tr><tr>
+        <td><code>icon</code></td>
+        <td>String</td>
+        <td><code>''</code></td>
+        <td>No</td>
+        <td>輸入圖標字串，可為mdi,md,fa代號或mdi/js路徑，預設''</td>
+    </tr><tr>
+        <td><code>title</code></td>
+        <td>String</td>
+        <td><code>''</code></td>
+        <td>No</td>
+        <td>輸入彈窗標題字串，預設''</td>
+    </tr><tr>
+        <td><code>titleColor</code></td>
+        <td>String</td>
+        <td><code>'white'</code></td>
+        <td>No</td>
+        <td>輸入彈窗標題區文字顏色字串，預設'white'</td>
+    </tr><tr>
+        <td><code>titleFontSize</code></td>
+        <td>String</td>
+        <td><code>'1.3rem'</code></td>
+        <td>No</td>
+        <td>輸入彈窗標題字型大小字串，預設'1.3rem'</td>
+    </tr><tr>
+        <td><code>headerHeight</code></td>
+        <td>Number</td>
+        <td><code>56</code></td>
+        <td>No</td>
+        <td>輸入標題區高度，單位為px，預設56</td>
+    </tr><tr>
+        <td><code>headerIconColor</code></td>
+        <td>String</td>
+        <td><code>'white'</code></td>
+        <td>No</td>
+        <td>輸入彈窗標題區圖標顏色字串，預設'white'</td>
+    </tr><tr>
+        <td><code>headerBackgroundColor</code></td>
+        <td>String</td>
+        <td><code>'light-blue darken-3'</code></td>
+        <td>No</td>
+        <td>輸入彈窗標題區背景顏色字串，預設'light-blue darken-3'</td>
+    </tr><tr>
+        <td><code>headerShadow</code></td>
+        <td>Boolean</td>
+        <td><code>true</code></td>
+        <td>No</td>
+        <td>輸入彈窗標題區是否顯示陰影布林值，預設true</td>
+    </tr><tr>
+        <td><code>headerShadowStyle</code></td>
+        <td>String</td>
+        <td><code>''</code></td>
+        <td>No</td>
+        <td>輸入彈窗標題區陰影顏色字串，預設值詳見props</td>
+    </tr><tr>
+        <td><code>headerBtns</code></td>
+        <td>Array</td>
+        <td><code>[]</code></td>
+        <td>No</td>
+        <td>輸入彈窗標題區自訂按鈕陣列，預設[]，各元素為物件，需有'icon'欄位值為字串、'tooltip'欄位值為字串、'evName'欄位值為字串，其中按鈕被click時會觸發彈窗的clickBtns事件(監聽@click-btns)，並回傳指定headerBtns內物件資訊供識別之用</td>
+    </tr><tr>
+        <td><code>hasSaveBtn</code></td>
+        <td>Boolean</td>
+        <td><code>true</code></td>
+        <td>No</td>
+        <td>輸入是否顯示儲存按鈕，預設true</td>
+    </tr><tr>
+        <td><code>saveBtnTooltip</code></td>
+        <td>String</td>
+        <td><code>'Save'</code></td>
+        <td>No</td>
+        <td>輸入儲存按鈕的提示文字字串，預設'Save'</td>
+    </tr><tr>
+        <td><code>hasCloseBtn</code></td>
+        <td>Boolean</td>
+        <td><code>true</code></td>
+        <td>No</td>
+        <td>輸入是否顯示關閉按鈕，預設true</td>
+    </tr><tr>
+        <td><code>closeBtnTooltip</code></td>
+        <td>String</td>
+        <td><code>'Close'</code></td>
+        <td>No</td>
+        <td>輸入關閉按鈕的提示文字字串，預設'Close'</td>
+    </tr><tr>
+        <td><code>closeWithInterceptor</code></td>
+        <td>Boolean</td>
+        <td><code>false</code></td>
+        <td>No</td>
+        <td>輸入是否通過攔截器來決定是否進行關閉，此處之攔截器係用promise來控制，當使用者點擊關閉時可先行確認或提示。當closeWithInterceptor=true時，於click-close事件所接收物件資訊中的pm，使用pm.resolve()則代表確定關閉，反之pm.reject()則取消關閉事件，預設false</td>
+    </tr><tr>
+        <td><code>contentTextColor</code></td>
+        <td>String</td>
+        <td><code>'black'</code></td>
+        <td>No</td>
+        <td>輸入內容文字顏色字串，預設'black'</td>
+    </tr><tr>
+        <td><code>contentBackgroundColor</code></td>
+        <td>String</td>
+        <td><code>'#fff'</code></td>
+        <td>No</td>
+        <td>輸入內容背景顏色字串，預設'#fff'</td>
+    </tr></tbody>
+</table>
+
+
+
+
+
+
+
+
+
+<div class="container-overview"><div><p> 
+</div>
+            
+
+            
+                
+
+
+
 
 <dl class="details">
     
@@ -297,197 +509,6 @@
 
 
 
-            
-                <div class="description usertext"></p></div></div> 
-
-
-<h3 class="subsection-title" style="margin-top: 1em" data-jsdoc-vuejs="section-props">Props</h3>
-<table data-jsdoc-vuejs="table-props">
-    <thead>
-    <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Default value</th>
-        <th>Required?</th>
-        <th>Description</th>
-    </tr>
-    </thead>
-    <tbody><tr>
-        <td><code>show</code></td>
-        <td>Boolean</td>
-        <td><code>false</code></td>
-        <td>No</td>
-        <td>輸入是否顯示布林值，預設false</td>
-    </tr><tr>
-        <td><code>isModal</code></td>
-        <td>Boolean</td>
-        <td><code>true</code></td>
-        <td>No</td>
-        <td>輸入是否為強制模式布林值，預設true</td>
-    </tr><tr>
-        <td><code>dialogZIndex</code></td>
-        <td>Number</td>
-        <td><code>2000</code></td>
-        <td>No</td>
-        <td>輸入彈窗使用z-index數字，預設2000</td>
-    </tr><tr>
-        <td><code>fullscreen</code></td>
-        <td>Boolean</td>
-        <td><code>false</code></td>
-        <td>No</td>
-        <td>輸入是否為全螢幕顯示布林值，若為true則忽略minWidth與maxWidth設定，預設false</td>
-    </tr><tr>
-        <td><code>minWidth</code></td>
-        <td>Number</td>
-        <td><code>200</code></td>
-        <td>No</td>
-        <td>輸入彈窗最小寬度數值，單位為px，預設200，當裝置寬度小於彈窗最小寬度時則使用裝置寬度</td>
-    </tr><tr>
-        <td><code>maxWidth</code></td>
-        <td>Number</td>
-        <td><code>1000</code></td>
-        <td>No</td>
-        <td>輸入彈窗最大寬度數值，單位為px，預設1000</td>
-    </tr><tr>
-        <td><code>ratioHeightMax</code></td>
-        <td>Number</td>
-        <td><code>0.9</code></td>
-        <td>No</td>
-        <td>輸入彈窗最大允許高度比例數值，代表彈窗高度相對於顯示區高度比例之最大值，預設0.9</td>
-    </tr><tr>
-        <td><code>autoFullscreenWhenNarrow</code></td>
-        <td>Boolean</td>
-        <td><code>true</code></td>
-        <td>No</td>
-        <td>輸入當裝置寬度小於maxWidth時，是否強制改為全螢幕顯示布林值，預設true</td>
-    </tr><tr>
-        <td><code>overlayColor</code></td>
-        <td>String</td>
-        <td><code>'rgba(0,0,0,0.3)'</code></td>
-        <td>No</td>
-        <td>輸入浮動顯示時抽屜外側陰影層背景顏色字串，預設'rgba(0,0,0,0.3)'</td>
-    </tr><tr>
-        <td><code>panelBorderRadius</code></td>
-        <td>Number</td>
-        <td><code>4</code></td>
-        <td>No</td>
-        <td>輸入框圓角度數字，單位為px，預設4</td>
-    </tr><tr>
-        <td><code>panelShadow</code></td>
-        <td>Boolean</td>
-        <td><code>true</code></td>
-        <td>No</td>
-        <td>輸入彈窗標題區是否顯示陰影布林值，預設true</td>
-    </tr><tr>
-        <td><code>panelShadowStyle</code></td>
-        <td>String</td>
-        <td><code>''</code></td>
-        <td>No</td>
-        <td>輸入彈窗標題區陰影顏色字串，預設值詳見props</td>
-    </tr><tr>
-        <td><code>icon</code></td>
-        <td>String</td>
-        <td><code>''</code></td>
-        <td>No</td>
-        <td>輸入圖標字串，可為mdi,md,fa代號或mdi/js路徑，預設''</td>
-    </tr><tr>
-        <td><code>title</code></td>
-        <td>String</td>
-        <td><code>''</code></td>
-        <td>No</td>
-        <td>輸入彈窗標題字串，預設''</td>
-    </tr><tr>
-        <td><code>titleColor</code></td>
-        <td>String</td>
-        <td><code>'white'</code></td>
-        <td>No</td>
-        <td>輸入彈窗標題區文字顏色字串，預設'white'</td>
-    </tr><tr>
-        <td><code>titleFontSize</code></td>
-        <td>String</td>
-        <td><code>'1.3rem'</code></td>
-        <td>No</td>
-        <td>輸入彈窗標題字型大小字串，預設'1.3rem'</td>
-    </tr><tr>
-        <td><code>headerHeight</code></td>
-        <td>Number</td>
-        <td><code>56</code></td>
-        <td>No</td>
-        <td>輸入標題區高度，單位為px，預設56</td>
-    </tr><tr>
-        <td><code>headerIconColor</code></td>
-        <td>String</td>
-        <td><code>'white'</code></td>
-        <td>No</td>
-        <td>輸入彈窗標題區圖標顏色字串，預設'white'</td>
-    </tr><tr>
-        <td><code>headerBackgroundColor</code></td>
-        <td>String</td>
-        <td><code>'light-blue darken-3'</code></td>
-        <td>No</td>
-        <td>輸入彈窗標題區背景顏色字串，預設'light-blue darken-3'</td>
-    </tr><tr>
-        <td><code>headerShadow</code></td>
-        <td>Boolean</td>
-        <td><code>true</code></td>
-        <td>No</td>
-        <td>輸入彈窗標題區是否顯示陰影布林值，預設true</td>
-    </tr><tr>
-        <td><code>headerShadowStyle</code></td>
-        <td>String</td>
-        <td><code>''</code></td>
-        <td>No</td>
-        <td>輸入彈窗標題區陰影顏色字串，預設值詳見props</td>
-    </tr><tr>
-        <td><code>headerBtns</code></td>
-        <td>Array</td>
-        <td><code>[]</code></td>
-        <td>No</td>
-        <td>輸入彈窗標題區自訂按鈕陣列，預設[]，各元素為物件，需有'icon'欄位值為字串、'tooltip'欄位值為字串、'evName'欄位值為字串，其中按鈕被click時會觸發彈窗的clickBtns事件(監聽@click-btns)，並回傳指定headerBtns內物件資訊供識別之用</td>
-    </tr><tr>
-        <td><code>hasSaveBtn</code></td>
-        <td>Boolean</td>
-        <td><code>true</code></td>
-        <td>No</td>
-        <td>輸入是否顯示儲存按鈕，預設true</td>
-    </tr><tr>
-        <td><code>saveBtnTooltip</code></td>
-        <td>String</td>
-        <td><code>'Save'</code></td>
-        <td>No</td>
-        <td>輸入儲存按鈕的提示文字字串，預設'Save'</td>
-    </tr><tr>
-        <td><code>hasCloseBtn</code></td>
-        <td>Boolean</td>
-        <td><code>true</code></td>
-        <td>No</td>
-        <td>輸入是否顯示關閉按鈕，預設true</td>
-    </tr><tr>
-        <td><code>closeBtnTooltip</code></td>
-        <td>String</td>
-        <td><code>'Close'</code></td>
-        <td>No</td>
-        <td>輸入關閉按鈕的提示文字字串，預設'Close'</td>
-    </tr><tr>
-        <td><code>closeWithInterceptor</code></td>
-        <td>Boolean</td>
-        <td><code>false</code></td>
-        <td>No</td>
-        <td>輸入是否通過攔截器來決定是否進行關閉，此處之攔截器係用promise來控制，當使用者點擊關閉時可先行確認或提示。當closeWithInterceptor=true時，於click-close事件所接收物件資訊中的pm，使用pm.resolve()則代表確定關閉，反之pm.reject()則取消關閉事件，預設false</td>
-    </tr><tr>
-        <td><code>contentTextColor</code></td>
-        <td>String</td>
-        <td><code>'black'</code></td>
-        <td>No</td>
-        <td>輸入內容文字顏色字串，預設'black'</td>
-    </tr><tr>
-        <td><code>contentBackgroundColor</code></td>
-        <td>String</td>
-        <td><code>'#fff'</code></td>
-        <td>No</td>
-        <td>輸入內容背景顏色字串，預設'#fff'</td>
-    </tr></tbody>
-</table>
 
 
 
@@ -497,9 +518,22 @@
 
 
 
-<div class="container-overview"><div><p> 
-</div>
-            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
             
         
@@ -539,7 +573,7 @@
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.2</a> on Mon Mar 30 2026 23:19:26 GMT+0800 (台北標準時間) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.5</a> on Sat Apr 11 2026 21:04:11 GMT+0800 (台北標準時間) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>

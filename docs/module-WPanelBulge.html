@@ -47,6 +47,10 @@
 
 <header>
     
+        
+            
+        
+    
 </header>
 
 <article>
@@ -54,6 +58,100 @@
         <div class="container-overview">
         
             
+                <div class="description usertext"></p></div></div> 
+
+
+<h3 class="subsection-title" style="margin-top: 1em" data-jsdoc-vuejs="section-props">Props</h3>
+<table data-jsdoc-vuejs="table-props">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Default value</th>
+        <th>Required?</th>
+        <th>Description</th>
+    </tr>
+    </thead>
+    <tbody><tr>
+        <td><code>headerBorderRadius</code></td>
+        <td>Number</td>
+        <td><code>0</code></td>
+        <td>No</td>
+        <td>輸入標題區圓角寬度，單位為px，預設0</td>
+    </tr><tr>
+        <td><code>paddingStyle</code></td>
+        <td>Object</td>
+        <td><code>{v:0,h:20}</code></td>
+        <td>No</td>
+        <td>輸入內寬距離設定物件，可用鍵值為v、h、left、right、top、bottom，v代表同時設定top與bottom，h代表設定left與right，若有重複設定時後面鍵值會覆蓋前面，各鍵值為寬度數字，單位為px，預設{v:0,h:20}</td>
+    </tr><tr>
+        <td><code>headerText</code></td>
+        <td>String</td>
+        <td><code>''</code></td>
+        <td>No</td>
+        <td>輸入標題文字字串，預設''</td>
+    </tr><tr>
+        <td><code>headerTextColor</code></td>
+        <td>String</td>
+        <td><code>'white'</code></td>
+        <td>No</td>
+        <td>輸入標題文字顏色字串，預設'white'</td>
+    </tr><tr>
+        <td><code>headerBackgroundColor</code></td>
+        <td>String</td>
+        <td><code>'teal lighten-2'</code></td>
+        <td>No</td>
+        <td>輸入標題背景顏色字串，預設'teal lighten-2'</td>
+    </tr><tr>
+        <td><code>headerShadow</code></td>
+        <td>Boolean</td>
+        <td><code>true</code></td>
+        <td>No</td>
+        <td>輸入標題區是否使用陰影模式，預設true</td>
+    </tr><tr>
+        <td><code>contentBorderRadius</code></td>
+        <td>Number</td>
+        <td><code>0</code></td>
+        <td>No</td>
+        <td>輸入內容區圓角寬度，單位為px，預設0</td>
+    </tr><tr>
+        <td><code>contentPadding</code></td>
+        <td>Number|String</td>
+        <td><code>20</code></td>
+        <td>No</td>
+        <td>輸入內容區邊寬長度數字或字串，若輸入數字則單位為px，預設20，若輸入字串則需自己添加單位</td>
+    </tr><tr>
+        <td><code>contentBackgroundColor</code></td>
+        <td>String</td>
+        <td><code>'white'</code></td>
+        <td>No</td>
+        <td>輸入內容區塊背景顏色字串，預設'white'</td>
+    </tr><tr>
+        <td><code>contentShadow</code></td>
+        <td>Boolean</td>
+        <td><code>true</code></td>
+        <td>No</td>
+        <td>輸入內容區是否使用陰影模式，預設true</td>
+    </tr></tbody>
+</table>
+
+
+
+
+
+
+
+
+
+<div class="container-overview"><div><p> 
+</div>
+            
+
+            
+                
+
+
+
 
 <dl class="details">
     
@@ -183,83 +281,6 @@
 
 
 
-            
-                <div class="description usertext"></p></div></div> 
-
-
-<h3 class="subsection-title" style="margin-top: 1em" data-jsdoc-vuejs="section-props">Props</h3>
-<table data-jsdoc-vuejs="table-props">
-    <thead>
-    <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Default value</th>
-        <th>Required?</th>
-        <th>Description</th>
-    </tr>
-    </thead>
-    <tbody><tr>
-        <td><code>headerBorderRadius</code></td>
-        <td>Number</td>
-        <td><code>0</code></td>
-        <td>No</td>
-        <td>輸入標題區圓角寬度，單位為px，預設0</td>
-    </tr><tr>
-        <td><code>paddingStyle</code></td>
-        <td>Object</td>
-        <td><code>{v:0,h:20}</code></td>
-        <td>No</td>
-        <td>輸入內寬距離設定物件，可用鍵值為v、h、left、right、top、bottom，v代表同時設定top與bottom，h代表設定left與right，若有重複設定時後面鍵值會覆蓋前面，各鍵值為寬度數字，單位為px，預設{v:0,h:20}</td>
-    </tr><tr>
-        <td><code>headerText</code></td>
-        <td>String</td>
-        <td><code>''</code></td>
-        <td>No</td>
-        <td>輸入標題文字字串，預設''</td>
-    </tr><tr>
-        <td><code>headerTextColor</code></td>
-        <td>String</td>
-        <td><code>'white'</code></td>
-        <td>No</td>
-        <td>輸入標題文字顏色字串，預設'white'</td>
-    </tr><tr>
-        <td><code>headerBackgroundColor</code></td>
-        <td>String</td>
-        <td><code>'teal lighten-2'</code></td>
-        <td>No</td>
-        <td>輸入標題背景顏色字串，預設'teal lighten-2'</td>
-    </tr><tr>
-        <td><code>headerShadow</code></td>
-        <td>Boolean</td>
-        <td><code>true</code></td>
-        <td>No</td>
-        <td>輸入標題區是否使用陰影模式，預設true</td>
-    </tr><tr>
-        <td><code>contentBorderRadius</code></td>
-        <td>Number</td>
-        <td><code>0</code></td>
-        <td>No</td>
-        <td>輸入內容區圓角寬度，單位為px，預設0</td>
-    </tr><tr>
-        <td><code>contentPadding</code></td>
-        <td>Number|String</td>
-        <td><code>20</code></td>
-        <td>No</td>
-        <td>輸入內容區邊寬長度數字或字串，若輸入數字則單位為px，預設20，若輸入字串則需自己添加單位</td>
-    </tr><tr>
-        <td><code>contentBackgroundColor</code></td>
-        <td>String</td>
-        <td><code>'white'</code></td>
-        <td>No</td>
-        <td>輸入內容區塊背景顏色字串，預設'white'</td>
-    </tr><tr>
-        <td><code>contentShadow</code></td>
-        <td>Boolean</td>
-        <td><code>true</code></td>
-        <td>No</td>
-        <td>輸入內容區是否使用陰影模式，預設true</td>
-    </tr></tbody>
-</table>
 
 
 
@@ -269,9 +290,22 @@
 
 
 
-<div class="container-overview"><div><p> 
-</div>
-            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
             
         
@@ -311,7 +345,7 @@
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.2</a> on Mon Mar 30 2026 23:19:26 GMT+0800 (台北標準時間) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.5</a> on Sat Apr 11 2026 21:04:11 GMT+0800 (台北標準時間) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>

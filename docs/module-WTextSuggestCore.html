@@ -47,6 +47,10 @@
 
 <header>
     
+        
+            
+        
+    
 </header>
 
 <article>
@@ -54,6 +58,232 @@
         <div class="container-overview">
         
             
+                <div class="description usertext"></p></div></div> 
+
+
+<h3 class="subsection-title" style="margin-top: 1em" data-jsdoc-vuejs="section-props">Props</h3>
+<table data-jsdoc-vuejs="table-props">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Default value</th>
+        <th>Required?</th>
+        <th>Description</th>
+    </tr>
+    </thead>
+    <tbody><tr>
+        <td><code>mode</code></td>
+        <td>String</td>
+        <td><code>'suggest'</code></td>
+        <td>No</td>
+        <td>輸入模式字串，可有'suggest'與'select'，suggest代表可查詢並不綁定選項的下拉選單，select代表只能選擇的下拉選單，預設'suggest'</td>
+    </tr><tr>
+        <td><code>value</code></td>
+        <td>Object|String|Number</td>
+        <td>-</td>
+        <td><b>Yes</b></td>
+        <td>輸入初始項目物件</td>
+    </tr><tr>
+        <td><code>items</code></td>
+        <td>Array</td>
+        <td><code>[]</code></td>
+        <td>No</td>
+        <td>輸入項目陣列，預設[]</td>
+    </tr><tr>
+        <td><code>height</code></td>
+        <td>Number|String</td>
+        <td><code>''</code></td>
+        <td>No</td>
+        <td>輸入項目高度數字或字串，數字單位為px，預設''</td>
+    </tr><tr>
+        <td><code>keyText</code></td>
+        <td>String</td>
+        <td><code>'text'</code></td>
+        <td>No</td>
+        <td>輸入取項目物件內之顯示用文字鍵值字串，預設'text'</td>
+    </tr><tr>
+        <td><code>textFontSize</code></td>
+        <td>String</td>
+        <td><code>'0.85rem'</code></td>
+        <td>No</td>
+        <td>輸入文字大小字串，預設'0.85rem'</td>
+    </tr><tr>
+        <td><code>textColor</code></td>
+        <td>String</td>
+        <td><code>'black'</code></td>
+        <td>No</td>
+        <td>輸入文字顏色字串，預設'black'</td>
+    </tr><tr>
+        <td><code>textAlign</code></td>
+        <td>String</td>
+        <td><code>'left'</code></td>
+        <td>No</td>
+        <td>輸入文字左右對齊字串，預設'left'</td>
+    </tr><tr>
+        <td><code>itemTextFontSize</code></td>
+        <td>String</td>
+        <td><code>'0.8rem'</code></td>
+        <td>No</td>
+        <td>輸入項目顯示文字大小字串，預設'0.8rem'</td>
+    </tr><tr>
+        <td><code>itemTextColor</code></td>
+        <td>String</td>
+        <td><code>'#444'</code></td>
+        <td>No</td>
+        <td>輸入項目文字顏色字串，預設'#444'</td>
+    </tr><tr>
+        <td><code>itemTextColorHover</code></td>
+        <td>String</td>
+        <td><code>'#333'</code></td>
+        <td>No</td>
+        <td>輸入項目文字Hover顏色字串，預設'#333'</td>
+    </tr><tr>
+        <td><code>itemBackgroundColor</code></td>
+        <td>String</td>
+        <td><code>'white'</code></td>
+        <td>No</td>
+        <td>輸入項目背景顏色字串，預設'white'</td>
+    </tr><tr>
+        <td><code>itemBackgroundColorHover</code></td>
+        <td>String</td>
+        <td><code>'#f2f2f2'</code></td>
+        <td>No</td>
+        <td>輸入項目背景Hover顏色字串，預設'#f2f2f2'</td>
+    </tr><tr>
+        <td><code>itemPaddingStyle</code></td>
+        <td>Object</td>
+        <td><code>{v:10,h:14}</code></td>
+        <td>No</td>
+        <td>輸入內寬距離設定物件，可用鍵值為v、h、left、right、top、bottom，v代表同時設定top與bottom，h代表設定left與right，若有重複設定時後面鍵值會覆蓋前面，各鍵值為寬度數字，單位為px，預設{v:10,h:14}</td>
+    </tr><tr>
+        <td><code>expansionIcon</code></td>
+        <td>String</td>
+        <td><code>mdiPlay</code></td>
+        <td>No</td>
+        <td>輸入顯隱圖標字串，可為mdi,md,fa代號或mdi/js路徑，預設使用mdi的圖標(mdiPlay)</td>
+    </tr><tr>
+        <td><code>expansionIconSize</code></td>
+        <td>Number</td>
+        <td><code>18</code></td>
+        <td>No</td>
+        <td>輸入顯隱圖標尺寸數字，單位為px，預設18</td>
+    </tr><tr>
+        <td><code>expansionIconColor</code></td>
+        <td>String</td>
+        <td><code>'grey'</code></td>
+        <td>No</td>
+        <td>輸入顯隱圖標顏色字串，預設'grey'</td>
+    </tr><tr>
+        <td><code>maxHeight</code></td>
+        <td>Number</td>
+        <td><code>200</code></td>
+        <td>No</td>
+        <td>輸入顯示區最大高度數字，單位為px，預設200</td>
+    </tr><tr>
+        <td><code>minWidth</code></td>
+        <td>Number</td>
+        <td><code>null</code></td>
+        <td>No</td>
+        <td>輸入最小寬度，單位為px，預設null</td>
+    </tr><tr>
+        <td><code>maxWidth</code></td>
+        <td>Number</td>
+        <td><code>null</code></td>
+        <td>No</td>
+        <td>輸入最大寬度，單位為px，預設null</td>
+    </tr><tr>
+        <td><code>autoFitMinWidth</code></td>
+        <td>Boolean</td>
+        <td><code>true</code></td>
+        <td>No</td>
+        <td>輸入是否使用驅動區寬度作為內容區之最小寬度布林值，預設true</td>
+    </tr><tr>
+        <td><code>autoFitMaxWidth</code></td>
+        <td>Boolean</td>
+        <td><code>true</code></td>
+        <td>No</td>
+        <td>輸入是否使用驅動區寬度作為內容區之最大寬度布林值，預設true</td>
+    </tr><tr>
+        <td><code>placementDistX</code></td>
+        <td>Number</td>
+        <td><code>0</code></td>
+        <td>No</td>
+        <td>輸入彈窗距離觸發元素之水平向右平移數字，單位為px，預設0</td>
+    </tr><tr>
+        <td><code>placementDistY</code></td>
+        <td>Number</td>
+        <td><code>5</code></td>
+        <td>No</td>
+        <td>輸入彈窗距離觸發元素之垂直向下平移數字，單位為px，預設5</td>
+    </tr><tr>
+        <td><code>placeholder</code></td>
+        <td>String</td>
+        <td><code>''</code></td>
+        <td>No</td>
+        <td>輸入無文字時的替代字符字串，預設''</td>
+    </tr><tr>
+        <td><code>loadingText</code></td>
+        <td>String</td>
+        <td><code>'Loading...'</code></td>
+        <td>No</td>
+        <td>輸入載入中字串，預設'Loading...'</td>
+    </tr><tr>
+        <td><code>noResultsText</code></td>
+        <td>String</td>
+        <td><code>'No results'</code></td>
+        <td>No</td>
+        <td>輸入無過濾結果字串，預設'No results'</td>
+    </tr><tr>
+        <td><code>searchingText</code></td>
+        <td>String</td>
+        <td><code>'Searching...'</code></td>
+        <td>No</td>
+        <td>輸入搜索中字串，預設'Searching...'</td>
+    </tr><tr>
+        <td><code>defItemHeight</code></td>
+        <td>Number</td>
+        <td><code>43</code></td>
+        <td>No</td>
+        <td>輸入按需顯示時各項目預設高度數字，給越準或給大部分項目的高度則渲染速度越快，單位為px，預設43</td>
+    </tr><tr>
+        <td><code>editable</code></td>
+        <td>Boolean</td>
+        <td><code>true</code></td>
+        <td>No</td>
+        <td>輸入是否為編輯模式布林值，預設true</td>
+    </tr><tr>
+        <td><code>focused</code></td>
+        <td>Boolean</td>
+        <td><code>false</code></td>
+        <td>No</td>
+        <td>輸入是否為取得焦點狀態布林值，預設false</td>
+    </tr><tr>
+        <td><code>showPanel</code></td>
+        <td>Boolean</td>
+        <td><code>false</code></td>
+        <td>No</td>
+        <td>輸入是否顯示清單布林值，預設false</td>
+    </tr></tbody>
+</table>
+
+
+
+
+
+
+
+
+
+<div class="container-overview"><div><p> 
+</div>
+            
+
+            
+                
+
+
+
 
 <dl class="details">
     
@@ -315,215 +545,6 @@
 
 
 
-            
-                <div class="description usertext"></p></div></div> 
-
-
-<h3 class="subsection-title" style="margin-top: 1em" data-jsdoc-vuejs="section-props">Props</h3>
-<table data-jsdoc-vuejs="table-props">
-    <thead>
-    <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Default value</th>
-        <th>Required?</th>
-        <th>Description</th>
-    </tr>
-    </thead>
-    <tbody><tr>
-        <td><code>mode</code></td>
-        <td>String</td>
-        <td><code>'suggest'</code></td>
-        <td>No</td>
-        <td>輸入模式字串，可有'suggest'與'select'，suggest代表可查詢並不綁定選項的下拉選單，select代表只能選擇的下拉選單，預設'suggest'</td>
-    </tr><tr>
-        <td><code>value</code></td>
-        <td>Object|String|Number</td>
-        <td>-</td>
-        <td><b>Yes</b></td>
-        <td>輸入初始項目物件</td>
-    </tr><tr>
-        <td><code>items</code></td>
-        <td>Array</td>
-        <td><code>[]</code></td>
-        <td>No</td>
-        <td>輸入項目陣列，預設[]</td>
-    </tr><tr>
-        <td><code>height</code></td>
-        <td>Number|String</td>
-        <td><code>''</code></td>
-        <td>No</td>
-        <td>輸入項目高度數字或字串，數字單位為px，預設''</td>
-    </tr><tr>
-        <td><code>keyText</code></td>
-        <td>String</td>
-        <td><code>'text'</code></td>
-        <td>No</td>
-        <td>輸入取項目物件內之顯示用文字鍵值字串，預設'text'</td>
-    </tr><tr>
-        <td><code>textFontSize</code></td>
-        <td>String</td>
-        <td><code>'0.85rem'</code></td>
-        <td>No</td>
-        <td>輸入文字大小字串，預設'0.85rem'</td>
-    </tr><tr>
-        <td><code>textColor</code></td>
-        <td>String</td>
-        <td><code>'black'</code></td>
-        <td>No</td>
-        <td>輸入文字顏色字串，預設'black'</td>
-    </tr><tr>
-        <td><code>textAlign</code></td>
-        <td>String</td>
-        <td><code>'left'</code></td>
-        <td>No</td>
-        <td>輸入文字左右對齊字串，預設'left'</td>
-    </tr><tr>
-        <td><code>itemTextFontSize</code></td>
-        <td>String</td>
-        <td><code>'0.8rem'</code></td>
-        <td>No</td>
-        <td>輸入項目顯示文字大小字串，預設'0.8rem'</td>
-    </tr><tr>
-        <td><code>itemTextColor</code></td>
-        <td>String</td>
-        <td><code>'#444'</code></td>
-        <td>No</td>
-        <td>輸入項目文字顏色字串，預設'#444'</td>
-    </tr><tr>
-        <td><code>itemTextColorHover</code></td>
-        <td>String</td>
-        <td><code>'#333'</code></td>
-        <td>No</td>
-        <td>輸入項目文字Hover顏色字串，預設'#333'</td>
-    </tr><tr>
-        <td><code>itemBackgroundColor</code></td>
-        <td>String</td>
-        <td><code>'white'</code></td>
-        <td>No</td>
-        <td>輸入項目背景顏色字串，預設'white'</td>
-    </tr><tr>
-        <td><code>itemBackgroundColorHover</code></td>
-        <td>String</td>
-        <td><code>'#f2f2f2'</code></td>
-        <td>No</td>
-        <td>輸入項目背景Hover顏色字串，預設'#f2f2f2'</td>
-    </tr><tr>
-        <td><code>itemPaddingStyle</code></td>
-        <td>Object</td>
-        <td><code>{v:10,h:14}</code></td>
-        <td>No</td>
-        <td>輸入內寬距離設定物件，可用鍵值為v、h、left、right、top、bottom，v代表同時設定top與bottom，h代表設定left與right，若有重複設定時後面鍵值會覆蓋前面，各鍵值為寬度數字，單位為px，預設{v:10,h:14}</td>
-    </tr><tr>
-        <td><code>expansionIcon</code></td>
-        <td>String</td>
-        <td><code>mdiPlay</code></td>
-        <td>No</td>
-        <td>輸入顯隱圖標字串，可為mdi,md,fa代號或mdi/js路徑，預設使用mdi的圖標(mdiPlay)</td>
-    </tr><tr>
-        <td><code>expansionIconSize</code></td>
-        <td>Number</td>
-        <td><code>18</code></td>
-        <td>No</td>
-        <td>輸入顯隱圖標尺寸數字，單位為px，預設18</td>
-    </tr><tr>
-        <td><code>expansionIconColor</code></td>
-        <td>String</td>
-        <td><code>'grey'</code></td>
-        <td>No</td>
-        <td>輸入顯隱圖標顏色字串，預設'grey'</td>
-    </tr><tr>
-        <td><code>maxHeight</code></td>
-        <td>Number</td>
-        <td><code>200</code></td>
-        <td>No</td>
-        <td>輸入顯示區最大高度數字，單位為px，預設200</td>
-    </tr><tr>
-        <td><code>minWidth</code></td>
-        <td>Number</td>
-        <td><code>null</code></td>
-        <td>No</td>
-        <td>輸入最小寬度，單位為px，預設null</td>
-    </tr><tr>
-        <td><code>maxWidth</code></td>
-        <td>Number</td>
-        <td><code>null</code></td>
-        <td>No</td>
-        <td>輸入最大寬度，單位為px，預設null</td>
-    </tr><tr>
-        <td><code>autoFitMinWidth</code></td>
-        <td>Boolean</td>
-        <td><code>true</code></td>
-        <td>No</td>
-        <td>輸入是否使用驅動區寬度作為內容區之最小寬度布林值，預設true</td>
-    </tr><tr>
-        <td><code>autoFitMaxWidth</code></td>
-        <td>Boolean</td>
-        <td><code>true</code></td>
-        <td>No</td>
-        <td>輸入是否使用驅動區寬度作為內容區之最大寬度布林值，預設true</td>
-    </tr><tr>
-        <td><code>placementDistX</code></td>
-        <td>Number</td>
-        <td><code>0</code></td>
-        <td>No</td>
-        <td>輸入彈窗距離觸發元素之水平向右平移數字，單位為px，預設0</td>
-    </tr><tr>
-        <td><code>placementDistY</code></td>
-        <td>Number</td>
-        <td><code>5</code></td>
-        <td>No</td>
-        <td>輸入彈窗距離觸發元素之垂直向下平移數字，單位為px，預設5</td>
-    </tr><tr>
-        <td><code>placeholder</code></td>
-        <td>String</td>
-        <td><code>''</code></td>
-        <td>No</td>
-        <td>輸入無文字時的替代字符字串，預設''</td>
-    </tr><tr>
-        <td><code>loadingText</code></td>
-        <td>String</td>
-        <td><code>'Loading...'</code></td>
-        <td>No</td>
-        <td>輸入載入中字串，預設'Loading...'</td>
-    </tr><tr>
-        <td><code>noResultsText</code></td>
-        <td>String</td>
-        <td><code>'No results'</code></td>
-        <td>No</td>
-        <td>輸入無過濾結果字串，預設'No results'</td>
-    </tr><tr>
-        <td><code>searchingText</code></td>
-        <td>String</td>
-        <td><code>'Searching...'</code></td>
-        <td>No</td>
-        <td>輸入搜索中字串，預設'Searching...'</td>
-    </tr><tr>
-        <td><code>defItemHeight</code></td>
-        <td>Number</td>
-        <td><code>43</code></td>
-        <td>No</td>
-        <td>輸入按需顯示時各項目預設高度數字，給越準或給大部分項目的高度則渲染速度越快，單位為px，預設43</td>
-    </tr><tr>
-        <td><code>editable</code></td>
-        <td>Boolean</td>
-        <td><code>true</code></td>
-        <td>No</td>
-        <td>輸入是否為編輯模式布林值，預設true</td>
-    </tr><tr>
-        <td><code>focused</code></td>
-        <td>Boolean</td>
-        <td><code>false</code></td>
-        <td>No</td>
-        <td>輸入是否為取得焦點狀態布林值，預設false</td>
-    </tr><tr>
-        <td><code>showPanel</code></td>
-        <td>Boolean</td>
-        <td><code>false</code></td>
-        <td>No</td>
-        <td>輸入是否顯示清單布林值，預設false</td>
-    </tr></tbody>
-</table>
 
 
 
@@ -533,9 +554,22 @@
 
 
 
-<div class="container-overview"><div><p> 
-</div>
-            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
             
         
@@ -575,7 +609,7 @@
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.2</a> on Mon Mar 30 2026 23:19:26 GMT+0800 (台北標準時間) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.5</a> on Sat Apr 11 2026 21:04:11 GMT+0800 (台北標準時間) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>

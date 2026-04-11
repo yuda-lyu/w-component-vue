@@ -47,6 +47,10 @@
 
 <header>
     
+        
+            
+        
+    
 </header>
 
 <article>
@@ -54,6 +58,466 @@
         <div class="container-overview">
         
             
+                <div class="description usertext"></p></div></div> 
+
+
+<h3 class="subsection-title" style="margin-top: 1em" data-jsdoc-vuejs="section-props">Props</h3>
+<table data-jsdoc-vuejs="table-props">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Default value</th>
+        <th>Required?</th>
+        <th>Description</th>
+    </tr>
+    </thead>
+    <tbody><tr>
+        <td><code>multiCheck</code></td>
+        <td>Boolean</td>
+        <td><code>true</code></td>
+        <td>No</td>
+        <td>輸入是否為複選模式布林值，預設true</td>
+    </tr><tr>
+        <td><code>items</code></td>
+        <td>Array</td>
+        <td><code>[]</code></td>
+        <td>No</td>
+        <td>輸入項目的字串陣列或物件陣列，預設[]</td>
+    </tr><tr>
+        <td><code>value</code></td>
+        <td>Array|String|Object</td>
+        <td><code>null</code></td>
+        <td>No</td>
+        <td>輸入單、複選陣列、字串或物件陣列，預設null</td>
+    </tr><tr>
+        <td><code>keyText</code></td>
+        <td>String</td>
+        <td><code>'text'</code></td>
+        <td>No</td>
+        <td>輸入項目為物件時，存放顯示文字之欄位字串，預設'text'</td>
+    </tr><tr>
+        <td><code>keyIcon</code></td>
+        <td>String</td>
+        <td><code>'icon'</code></td>
+        <td>No</td>
+        <td>輸入項目為物件時，存放圖標之欄位字串，預設'icon'</td>
+    </tr><tr>
+        <td><code>keyPickForObjItem</code></td>
+        <td>String</td>
+        <td><code>''</code></td>
+        <td>No</td>
+        <td>輸入項目為物件時，比對是否核選之欄位字串，若為空字串代表使用項目物件直接作比對，預設''</td>
+    </tr><tr>
+        <td><code>paddingStyle</code></td>
+        <td>Object</td>
+        <td><code>{v:6,h:8}</code></td>
+        <td>No</td>
+        <td>輸入內寬距離設定物件，可用鍵值為v、h、left、right、top、bottom，v代表同時設定top與bottom，h代表設定left與right，若有重複設定時後面鍵值會覆蓋前面，各鍵值為寬度數字，單位為px，預設{v:6,h:8}</td>
+    </tr><tr>
+        <td><code>spaceBetweenCheckboxAndContent</code></td>
+        <td>Number</td>
+        <td><code>8</code></td>
+        <td>No</td>
+        <td>輸入左側核選圖標與項目內容區之距離數字，單位px，預設8</td>
+    </tr><tr>
+        <td><code>itemTextFontSize</code></td>
+        <td>String</td>
+        <td><code>'1.0rem'</code></td>
+        <td>No</td>
+        <td>輸入文字字型大小字串，預設'1.0rem'</td>
+    </tr><tr>
+        <td><code>itemBackgroundColor</code></td>
+        <td>String</td>
+        <td><code>'white'</code></td>
+        <td>No</td>
+        <td>輸入背景顏色字串，預設'white'</td>
+    </tr><tr>
+        <td><code>itemBackgroundColorHover</code></td>
+        <td>String</td>
+        <td><code>'rgba(200,200,200,0.2)'</code></td>
+        <td>No</td>
+        <td>輸入滑鼠移入時背景顏色字串，預設'rgba(200,200,200,0.2)'</td>
+    </tr><tr>
+        <td><code>itemBackgroundColorActive</code></td>
+        <td>String</td>
+        <td><code>'rgba(200,200,200,0.4)'</code></td>
+        <td>No</td>
+        <td>輸入主動模式時背景顏色字串，預設'rgba(200,200,200,0.4)'</td>
+    </tr><tr>
+        <td><code>itemBackgroundColorDisabled</code></td>
+        <td>String</td>
+        <td><code>'white'</code></td>
+        <td>No</td>
+        <td>輸入非啟用模式時背景顏色字串，預設'white'</td>
+    </tr><tr>
+        <td><code>itemTextColor</code></td>
+        <td>String</td>
+        <td><code>'#444'</code></td>
+        <td>No</td>
+        <td>輸入文字顏色字串，預設'#444'</td>
+    </tr><tr>
+        <td><code>itemTextColorHover</code></td>
+        <td>String</td>
+        <td><code>'#222'</code></td>
+        <td>No</td>
+        <td>輸入滑鼠移入時文字顏色字串，預設'#222'</td>
+    </tr><tr>
+        <td><code>itemTextColorActive</code></td>
+        <td>String</td>
+        <td><code>'white'</code></td>
+        <td>No</td>
+        <td>輸入主動模式時文字顏色字串，預設'white'</td>
+    </tr><tr>
+        <td><code>itemTextColorDisabled</code></td>
+        <td>String</td>
+        <td><code>'#444'</code></td>
+        <td>No</td>
+        <td>輸入非啟用模式時文字顏色字串，預設'#444'</td>
+    </tr><tr>
+        <td><code>itemIconSize</code></td>
+        <td>Number</td>
+        <td><code>18</code></td>
+        <td>No</td>
+        <td>輸入左側圖標之尺寸數字，單位px，預設18</td>
+    </tr><tr>
+        <td><code>itemIconColor</code></td>
+        <td>String</td>
+        <td><code>'#444'</code></td>
+        <td>No</td>
+        <td>輸入圖標顏色字串，預設'#444'</td>
+    </tr><tr>
+        <td><code>itemIconColorHover</code></td>
+        <td>String</td>
+        <td><code>'#222'</code></td>
+        <td>No</td>
+        <td>輸入滑鼠移入時圖標顏色字串，預設'#222'</td>
+    </tr><tr>
+        <td><code>itemIconColorActive</code></td>
+        <td>String</td>
+        <td><code>'white'</code></td>
+        <td>No</td>
+        <td>輸入主動模式時圖標顏色字串，預設'white'</td>
+    </tr><tr>
+        <td><code>itemIconColorDisabled</code></td>
+        <td>String</td>
+        <td><code>'#444'</code></td>
+        <td>No</td>
+        <td>輸入非啟用模式時圖標顏色字串，預設'#444'</td>
+    </tr><tr>
+        <td><code>itemRippleColor</code></td>
+        <td>String</td>
+        <td><code>'rgba(255,255,255,0.4)'</code></td>
+        <td>No</td>
+        <td>輸入ripple效果顏色字串，預設'rgba(255,255,255,0.4)'</td>
+    </tr><tr>
+        <td><code>itemDisabledColor</code></td>
+        <td>String</td>
+        <td><code>'transparent'</code></td>
+        <td>No</td>
+        <td>輸入非編輯模式時遮罩顏色字串，預設'transparent'</td>
+    </tr><tr>
+        <td><code>itemCursorPointer</code></td>
+        <td>Boolean</td>
+        <td><code>true</code></td>
+        <td>No</td>
+        <td>輸入是否滑鼠移入顯示pointer樣式布林值，預設true</td>
+    </tr><tr>
+        <td><code>itemCheckIconIconSize</code></td>
+        <td>Number</td>
+        <td><code>18</code></td>
+        <td>No</td>
+        <td>輸入核選圖標之圖標大小，單位為px，預設18</td>
+    </tr><tr>
+        <td><code>itemCheckIconCheckedIcon</code></td>
+        <td>String</td>
+        <td><code>mdiCheckboxMarked</code></td>
+        <td>No</td>
+        <td>輸入核選圖標之有效(true|'y')圖標字串，可為mdi,md,fa代號或mdi/js路徑，預設mdiCheckboxMarked</td>
+    </tr><tr>
+        <td><code>itemCheckIconCheckedIconColor</code></td>
+        <td>String</td>
+        <td><code>'blue darken-3'</code></td>
+        <td>No</td>
+        <td>輸入核選圖標有效(true|'y')圖標顏色字串，預設'blue darken-3'</td>
+    </tr><tr>
+        <td><code>itemCheckIconCheckedIconColorHover</code></td>
+        <td>String</td>
+        <td><code>'blue darken-2'</code></td>
+        <td>No</td>
+        <td>輸入滑鼠移入時核選圖標有效(true|'y')圖標顏色字串，預設'blue darken-2'</td>
+    </tr><tr>
+        <td><code>itemCheckIconCheckedIconColorActive</code></td>
+        <td>String</td>
+        <td><code>'blue darken-2'</code></td>
+        <td>No</td>
+        <td>輸入主動模式時核選圖標有效(true|'y')圖標顏色字串，預設'blue darken-2'</td>
+    </tr><tr>
+        <td><code>itemCheckIconCheckedIconColorDisabled</code></td>
+        <td>String</td>
+        <td><code>'grey'</code></td>
+        <td>No</td>
+        <td>輸入非啟用模式時核選圖標有效(true|'y')圖標顏色字串，預設'grey'</td>
+    </tr><tr>
+        <td><code>itemCheckIconUncheckedIcon</code></td>
+        <td>String</td>
+        <td><code>mdiCheckboxBlankOutline</code></td>
+        <td>No</td>
+        <td>輸入核選圖標之無效(false|'n')圖標字串，可為mdi,md,fa代號或mdi/js路徑，預設mdiCheckboxBlankOutline</td>
+    </tr><tr>
+        <td><code>itemCheckIconUncheckedIconColor</code></td>
+        <td>String</td>
+        <td><code>'blue darken-3'</code></td>
+        <td>No</td>
+        <td>輸入核選圖標無效(false|'n')圖標顏色字串，預設'blue darken-3'</td>
+    </tr><tr>
+        <td><code>itemCheckIconUncheckedIconColorHover</code></td>
+        <td>String</td>
+        <td><code>'blue darken-2'</code></td>
+        <td>No</td>
+        <td>輸入滑鼠移入時核選圖標無效(false|'n')圖標顏色字串，預設'blue darken-2'</td>
+    </tr><tr>
+        <td><code>itemCheckIconUncheckedIconColorActive</code></td>
+        <td>String</td>
+        <td><code>'blue darken-2'</code></td>
+        <td>No</td>
+        <td>輸入主動模式時核選圖標無效(false|'n')圖標顏色字串，預設'blue darken-2'</td>
+    </tr><tr>
+        <td><code>itemCheckIconUncheckedIconColorDisabled</code></td>
+        <td>String</td>
+        <td><code>'grey'</code></td>
+        <td>No</td>
+        <td>輸入非啟用模式時核選圖標無效(false|'n')圖標顏色字串，預設'grey'</td>
+    </tr><tr>
+        <td><code>enableQuery</code></td>
+        <td>Boolean</td>
+        <td><code>false</code></td>
+        <td>No</td>
+        <td>輸入是否使用過濾關鍵字功能布林值，預設false</td>
+    </tr><tr>
+        <td><code>query</code></td>
+        <td>String</td>
+        <td><code>''</code></td>
+        <td>No</td>
+        <td>輸入過濾關鍵字字串，預設''</td>
+    </tr><tr>
+        <td><code>queryKeysPickForObjItem</code></td>
+        <td>String</td>
+        <td><code>[]</code></td>
+        <td>No</td>
+        <td>輸入項目為物件時，於查詢時所須提取出之欄位字串陣列，預設[]</td>
+    </tr><tr>
+        <td><code>queryPaddingStyle</code></td>
+        <td>Object</td>
+        <td><code>{v:0,h:0}</code></td>
+        <td>No</td>
+        <td>輸入過濾文字框之內寬距離物件，可用鍵值為v、h、left、right、top、bottom，v代表同時設定top與bottom，h代表設定left與right，若有重複設定時後面鍵值會覆蓋前面，各鍵值為寬度數字，單位為px，預設{v:0,h:0}</td>
+    </tr><tr>
+        <td><code>queryBorderRadius</code></td>
+        <td>Number</td>
+        <td><code>30</code></td>
+        <td>No</td>
+        <td>輸入過濾文字框之框圓角度數字，單位為px，預設30</td>
+    </tr><tr>
+        <td><code>queryShadow</code></td>
+        <td>Boolean</td>
+        <td><code>false</code></td>
+        <td>No</td>
+        <td>輸入過濾文字框之是否為陰影模式，預設false</td>
+    </tr><tr>
+        <td><code>queryTextFontSize</code></td>
+        <td>String</td>
+        <td><code>'1.0rem'</code></td>
+        <td>No</td>
+        <td>輸入過濾文字框之文字大小字串，預設'1.0rem'</td>
+    </tr><tr>
+        <td><code>queryTextColor</code></td>
+        <td>String</td>
+        <td><code>'black'</code></td>
+        <td>No</td>
+        <td>輸入過濾文字框之文字顏色字串，預設'black'</td>
+    </tr><tr>
+        <td><code>queryTextAlign</code></td>
+        <td>String</td>
+        <td><code>'left'</code></td>
+        <td>No</td>
+        <td>輸入過濾文字框之文字左右對齊字串，預設'left'</td>
+    </tr><tr>
+        <td><code>queryIcon</code></td>
+        <td>String</td>
+        <td><code>mdiFilterOutline</code></td>
+        <td>No</td>
+        <td>輸入過濾文字框之左側圖標字串，可為mdi,md,fa代號或mdi/js路徑，預設mdiFilterOutline</td>
+    </tr><tr>
+        <td><code>queryIconSize</code></td>
+        <td>Number</td>
+        <td><code>18</code></td>
+        <td>No</td>
+        <td>輸入過濾文字框之左側圖標大小，單位為px，預設18</td>
+    </tr><tr>
+        <td><code>queryIconColor</code></td>
+        <td>String</td>
+        <td><code>'blue'</code></td>
+        <td>No</td>
+        <td>輸入過濾文字框之左側圖標顏色字串，預設'blue'</td>
+    </tr><tr>
+        <td><code>queryIconColorHover</code></td>
+        <td>String</td>
+        <td><code>'blue darken-1'</code></td>
+        <td>No</td>
+        <td>輸入過濾文字框之滑鼠移入時左側圖標顏色字串，預設'blue darken-1'</td>
+    </tr><tr>
+        <td><code>queryIconColorFocus</code></td>
+        <td>String</td>
+        <td><code>'blue darken-1'</code></td>
+        <td>No</td>
+        <td>輸入過濾文字框之取得焦點時左側圖標顏色字串，預設'blue darken-1'</td>
+    </tr><tr>
+        <td><code>queryIconTooltip</code></td>
+        <td>String</td>
+        <td><code>''</code></td>
+        <td>No</td>
+        <td>輸入過濾文字框之左側圖標提示文字字串，預設''</td>
+    </tr><tr>
+        <td><code>queryIconShiftOuter</code></td>
+        <td>Number</td>
+        <td><code>0</code></td>
+        <td>No</td>
+        <td>輸入過濾文字框之左右側圖標與外框距離數字，單位為px，預設0</td>
+    </tr><tr>
+        <td><code>queryIconShiftInner</code></td>
+        <td>Number</td>
+        <td><code>5</code></td>
+        <td>No</td>
+        <td>輸入過濾文字框之左右側圖標與內插槽區距離數字，單位為px，預設5</td>
+    </tr><tr>
+        <td><code>queryBackgroundColor</code></td>
+        <td>String</td>
+        <td><code>'transparent'</code></td>
+        <td>No</td>
+        <td>輸入過濾文字框之背景顏色字串，預設'transparent'</td>
+    </tr><tr>
+        <td><code>queryBackgroundColorHover</code></td>
+        <td>String</td>
+        <td><code>'transparent'</code></td>
+        <td>No</td>
+        <td>輸入過濾文字框之滑鼠移入時背景顏色字串，預設'transparent'</td>
+    </tr><tr>
+        <td><code>queryBackgroundColorFocus</code></td>
+        <td>String</td>
+        <td><code>'transparent'</code></td>
+        <td>No</td>
+        <td>輸入過濾文字框之取得焦點時背景顏色字串，預設'transparent'</td>
+    </tr><tr>
+        <td><code>queryBorderColor</code></td>
+        <td>String</td>
+        <td><code>'transparent'</code></td>
+        <td>No</td>
+        <td>輸入過濾文字框之邊框顏色字串，預設'transparent'</td>
+    </tr><tr>
+        <td><code>queryBorderColorHover</code></td>
+        <td>String</td>
+        <td><code>'transparent'</code></td>
+        <td>No</td>
+        <td>輸入過濾文字框之滑鼠移入時邊框顏色字串，預設'transparent'</td>
+    </tr><tr>
+        <td><code>queryBorderColorFocus</code></td>
+        <td>String</td>
+        <td><code>'transparent'</code></td>
+        <td>No</td>
+        <td>輸入過濾文字框之取得焦點時邊框顏色字串，預設'transparent'</td>
+    </tr><tr>
+        <td><code>queryBottomLineBorderColor</code></td>
+        <td>String</td>
+        <td><code>'grey lighten-1'</code></td>
+        <td>No</td>
+        <td>輸入過濾文字框之底部線顏色字串，預設'grey lighten-1'</td>
+    </tr><tr>
+        <td><code>queryBottomLineBorderColorHover</code></td>
+        <td>String</td>
+        <td><code>'grey'</code></td>
+        <td>No</td>
+        <td>輸入過濾文字框之滑鼠移入時底部線顏色字串，預設'grey'</td>
+    </tr><tr>
+        <td><code>queryBottomLineBorderColorFocus</code></td>
+        <td>String</td>
+        <td><code>'blue darken-1'</code></td>
+        <td>No</td>
+        <td>輸入過濾文字框之取得焦點時底部線顏色字串，預設'blue darken-1'</td>
+    </tr><tr>
+        <td><code>queryBottomLineBorderWidth</code></td>
+        <td>Number</td>
+        <td><code>1</code></td>
+        <td>No</td>
+        <td>輸入過濾文字框之底部線寬度數字，單位為px，預設1</td>
+    </tr><tr>
+        <td><code>queryBottomLineBorderWidthHover</code></td>
+        <td>Number</td>
+        <td><code>1</code></td>
+        <td>No</td>
+        <td>輸入過濾文字框之滑鼠移入時底部線寬度數字，單位為px，預設1</td>
+    </tr><tr>
+        <td><code>queryBottomLineBorderWidthFocus</code></td>
+        <td>Number</td>
+        <td><code>2</code></td>
+        <td>No</td>
+        <td>輸入過濾文字框之取得焦點時底部線寬度數字，單位為px，預設2</td>
+    </tr><tr>
+        <td><code>queryPlaceholder</code></td>
+        <td>String</td>
+        <td><code>'Keywords'</code></td>
+        <td>No</td>
+        <td>輸入過濾文字框之無文字時的替代字符字串，預設'Keywords'</td>
+    </tr><tr>
+        <td><code>queryHeight</code></td>
+        <td>Number</td>
+        <td><code>28</code></td>
+        <td>No</td>
+        <td>輸入過濾文字框之高度數字，單位為px，預設28</td>
+    </tr><tr>
+        <td><code>queryFocused</code></td>
+        <td>Boolean</td>
+        <td><code>false</code></td>
+        <td>No</td>
+        <td>輸入過濾文字框之是否為取得焦點狀態，預設false</td>
+    </tr><tr>
+        <td><code>queryPanelPaddingStyle</code></td>
+        <td>Object</td>
+        <td><code>{v:10,h:10}</code></td>
+        <td>No</td>
+        <td>輸入過濾文字框所在區域之內寬距離物件，可用鍵值為v、h、left、right、top、bottom，v代表同時設定top與bottom，h代表設定left與right，若有重複設定時後面鍵值會覆蓋前面，各鍵值為寬度數字，單位為px，預設{v:10,h:10}</td>
+    </tr><tr>
+        <td><code>querySepLineColor</code></td>
+        <td>String</td>
+        <td><code>'#ddd'</code></td>
+        <td>No</td>
+        <td>輸入過濾文字框與下方核選區之分界線顏色字串，預設'#ddd'</td>
+    </tr><tr>
+        <td><code>querySepLineWidth</code></td>
+        <td>Number</td>
+        <td><code>1</code></td>
+        <td>No</td>
+        <td>輸入過濾文字框與下方核選區之分界線寬度數字，單位為px，預設1</td>
+    </tr></tbody>
+</table>
+
+
+
+
+
+
+
+
+
+<div class="container-overview"><div><p> 
+</div>
+            
+
+            
+                
+
+
+
 
 <dl class="details">
     
@@ -549,449 +1013,6 @@
 
 
 
-            
-                <div class="description usertext"></p></div></div> 
-
-
-<h3 class="subsection-title" style="margin-top: 1em" data-jsdoc-vuejs="section-props">Props</h3>
-<table data-jsdoc-vuejs="table-props">
-    <thead>
-    <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Default value</th>
-        <th>Required?</th>
-        <th>Description</th>
-    </tr>
-    </thead>
-    <tbody><tr>
-        <td><code>multiCheck</code></td>
-        <td>Boolean</td>
-        <td><code>true</code></td>
-        <td>No</td>
-        <td>輸入是否為複選模式布林值，預設true</td>
-    </tr><tr>
-        <td><code>items</code></td>
-        <td>Array</td>
-        <td><code>[]</code></td>
-        <td>No</td>
-        <td>輸入項目的字串陣列或物件陣列，預設[]</td>
-    </tr><tr>
-        <td><code>value</code></td>
-        <td>Array|String|Object</td>
-        <td><code>null</code></td>
-        <td>No</td>
-        <td>輸入單、複選陣列、字串或物件陣列，預設null</td>
-    </tr><tr>
-        <td><code>keyText</code></td>
-        <td>String</td>
-        <td><code>'text'</code></td>
-        <td>No</td>
-        <td>輸入項目為物件時，存放顯示文字之欄位字串，預設'text'</td>
-    </tr><tr>
-        <td><code>keyIcon</code></td>
-        <td>String</td>
-        <td><code>'icon'</code></td>
-        <td>No</td>
-        <td>輸入項目為物件時，存放圖標之欄位字串，預設'icon'</td>
-    </tr><tr>
-        <td><code>keyPickForObjItem</code></td>
-        <td>String</td>
-        <td><code>''</code></td>
-        <td>No</td>
-        <td>輸入項目為物件時，比對是否核選之欄位字串，若為空字串代表使用項目物件直接作比對，預設''</td>
-    </tr><tr>
-        <td><code>paddingStyle</code></td>
-        <td>Object</td>
-        <td><code>{v:6,h:8}</code></td>
-        <td>No</td>
-        <td>輸入內寬距離設定物件，可用鍵值為v、h、left、right、top、bottom，v代表同時設定top與bottom，h代表設定left與right，若有重複設定時後面鍵值會覆蓋前面，各鍵值為寬度數字，單位為px，預設{v:6,h:8}</td>
-    </tr><tr>
-        <td><code>spaceBetweenCheckboxAndContent</code></td>
-        <td>Number</td>
-        <td><code>8</code></td>
-        <td>No</td>
-        <td>輸入左側核選圖標與項目內容區之距離數字，單位px，預設8</td>
-    </tr><tr>
-        <td><code>itemTextFontSize</code></td>
-        <td>String</td>
-        <td><code>'1.0rem'</code></td>
-        <td>No</td>
-        <td>輸入文字字型大小字串，預設'1.0rem'</td>
-    </tr><tr>
-        <td><code>itemBackgroundColor</code></td>
-        <td>String</td>
-        <td><code>'white'</code></td>
-        <td>No</td>
-        <td>輸入背景顏色字串，預設'white'</td>
-    </tr><tr>
-        <td><code>itemBackgroundColorHover</code></td>
-        <td>String</td>
-        <td><code>'rgba(200,200,200,0.2)'</code></td>
-        <td>No</td>
-        <td>輸入滑鼠移入時背景顏色字串，預設'rgba(200,200,200,0.2)'</td>
-    </tr><tr>
-        <td><code>itemBackgroundColorActive</code></td>
-        <td>String</td>
-        <td><code>'rgba(200,200,200,0.4)'</code></td>
-        <td>No</td>
-        <td>輸入主動模式時背景顏色字串，預設'rgba(200,200,200,0.4)'</td>
-    </tr><tr>
-        <td><code>itemBackgroundColorDisabled</code></td>
-        <td>String</td>
-        <td><code>'white'</code></td>
-        <td>No</td>
-        <td>輸入非啟用模式時背景顏色字串，預設'white'</td>
-    </tr><tr>
-        <td><code>itemTextColor</code></td>
-        <td>String</td>
-        <td><code>'#444'</code></td>
-        <td>No</td>
-        <td>輸入文字顏色字串，預設'#444'</td>
-    </tr><tr>
-        <td><code>itemTextColorHover</code></td>
-        <td>String</td>
-        <td><code>'#222'</code></td>
-        <td>No</td>
-        <td>輸入滑鼠移入時文字顏色字串，預設'#222'</td>
-    </tr><tr>
-        <td><code>itemTextColorActive</code></td>
-        <td>String</td>
-        <td><code>'white'</code></td>
-        <td>No</td>
-        <td>輸入主動模式時文字顏色字串，預設'white'</td>
-    </tr><tr>
-        <td><code>itemTextColorDisabled</code></td>
-        <td>String</td>
-        <td><code>'#444'</code></td>
-        <td>No</td>
-        <td>輸入非啟用模式時文字顏色字串，預設'#444'</td>
-    </tr><tr>
-        <td><code>itemIconSize</code></td>
-        <td>Number</td>
-        <td><code>18</code></td>
-        <td>No</td>
-        <td>輸入左側圖標之尺寸數字，單位px，預設18</td>
-    </tr><tr>
-        <td><code>itemIconColor</code></td>
-        <td>String</td>
-        <td><code>'#444'</code></td>
-        <td>No</td>
-        <td>輸入圖標顏色字串，預設'#444'</td>
-    </tr><tr>
-        <td><code>itemIconColorHover</code></td>
-        <td>String</td>
-        <td><code>'#222'</code></td>
-        <td>No</td>
-        <td>輸入滑鼠移入時圖標顏色字串，預設'#222'</td>
-    </tr><tr>
-        <td><code>itemIconColorActive</code></td>
-        <td>String</td>
-        <td><code>'white'</code></td>
-        <td>No</td>
-        <td>輸入主動模式時圖標顏色字串，預設'white'</td>
-    </tr><tr>
-        <td><code>itemIconColorDisabled</code></td>
-        <td>String</td>
-        <td><code>'#444'</code></td>
-        <td>No</td>
-        <td>輸入非啟用模式時圖標顏色字串，預設'#444'</td>
-    </tr><tr>
-        <td><code>itemRippleColor</code></td>
-        <td>String</td>
-        <td><code>'rgba(255,255,255,0.4)'</code></td>
-        <td>No</td>
-        <td>輸入ripple效果顏色字串，預設'rgba(255,255,255,0.4)'</td>
-    </tr><tr>
-        <td><code>itemDisabledColor</code></td>
-        <td>String</td>
-        <td><code>'transparent'</code></td>
-        <td>No</td>
-        <td>輸入非編輯模式時遮罩顏色字串，預設'transparent'</td>
-    </tr><tr>
-        <td><code>itemCursorPointer</code></td>
-        <td>Boolean</td>
-        <td><code>true</code></td>
-        <td>No</td>
-        <td>輸入是否滑鼠移入顯示pointer樣式布林值，預設true</td>
-    </tr><tr>
-        <td><code>itemCheckIconIconSize</code></td>
-        <td>Number</td>
-        <td><code>18</code></td>
-        <td>No</td>
-        <td>輸入核選圖標之圖標大小，單位為px，預設18</td>
-    </tr><tr>
-        <td><code>itemCheckIconCheckedIcon</code></td>
-        <td>String</td>
-        <td><code>mdiCheckboxMarked</code></td>
-        <td>No</td>
-        <td>輸入核選圖標之有效(true|'y')圖標字串，可為mdi,md,fa代號或mdi/js路徑，預設mdiCheckboxMarked</td>
-    </tr><tr>
-        <td><code>itemCheckIconCheckedIconColor</code></td>
-        <td>String</td>
-        <td><code>'blue darken-3'</code></td>
-        <td>No</td>
-        <td>輸入核選圖標有效(true|'y')圖標顏色字串，預設'blue darken-3'</td>
-    </tr><tr>
-        <td><code>itemCheckIconCheckedIconColorHover</code></td>
-        <td>String</td>
-        <td><code>'blue darken-2'</code></td>
-        <td>No</td>
-        <td>輸入滑鼠移入時核選圖標有效(true|'y')圖標顏色字串，預設'blue darken-2'</td>
-    </tr><tr>
-        <td><code>itemCheckIconCheckedIconColorActive</code></td>
-        <td>String</td>
-        <td><code>'blue darken-2'</code></td>
-        <td>No</td>
-        <td>輸入主動模式時核選圖標有效(true|'y')圖標顏色字串，預設'blue darken-2'</td>
-    </tr><tr>
-        <td><code>itemCheckIconCheckedIconColorDisabled</code></td>
-        <td>String</td>
-        <td><code>'grey'</code></td>
-        <td>No</td>
-        <td>輸入非啟用模式時核選圖標有效(true|'y')圖標顏色字串，預設'grey'</td>
-    </tr><tr>
-        <td><code>itemCheckIconUncheckedIcon</code></td>
-        <td>String</td>
-        <td><code>mdiCheckboxBlankOutline</code></td>
-        <td>No</td>
-        <td>輸入核選圖標之無效(false|'n')圖標字串，可為mdi,md,fa代號或mdi/js路徑，預設mdiCheckboxBlankOutline</td>
-    </tr><tr>
-        <td><code>itemCheckIconUncheckedIconColor</code></td>
-        <td>String</td>
-        <td><code>'blue darken-3'</code></td>
-        <td>No</td>
-        <td>輸入核選圖標無效(false|'n')圖標顏色字串，預設'blue darken-3'</td>
-    </tr><tr>
-        <td><code>itemCheckIconUncheckedIconColorHover</code></td>
-        <td>String</td>
-        <td><code>'blue darken-2'</code></td>
-        <td>No</td>
-        <td>輸入滑鼠移入時核選圖標無效(false|'n')圖標顏色字串，預設'blue darken-2'</td>
-    </tr><tr>
-        <td><code>itemCheckIconUncheckedIconColorActive</code></td>
-        <td>String</td>
-        <td><code>'blue darken-2'</code></td>
-        <td>No</td>
-        <td>輸入主動模式時核選圖標無效(false|'n')圖標顏色字串，預設'blue darken-2'</td>
-    </tr><tr>
-        <td><code>itemCheckIconUncheckedIconColorDisabled</code></td>
-        <td>String</td>
-        <td><code>'grey'</code></td>
-        <td>No</td>
-        <td>輸入非啟用模式時核選圖標無效(false|'n')圖標顏色字串，預設'grey'</td>
-    </tr><tr>
-        <td><code>enableQuery</code></td>
-        <td>Boolean</td>
-        <td><code>false</code></td>
-        <td>No</td>
-        <td>輸入是否使用過濾關鍵字功能布林值，預設false</td>
-    </tr><tr>
-        <td><code>query</code></td>
-        <td>String</td>
-        <td><code>''</code></td>
-        <td>No</td>
-        <td>輸入過濾關鍵字字串，預設''</td>
-    </tr><tr>
-        <td><code>queryKeysPickForObjItem</code></td>
-        <td>String</td>
-        <td><code>[]</code></td>
-        <td>No</td>
-        <td>輸入項目為物件時，於查詢時所須提取出之欄位字串陣列，預設[]</td>
-    </tr><tr>
-        <td><code>queryPaddingStyle</code></td>
-        <td>Object</td>
-        <td><code>{v:0,h:0}</code></td>
-        <td>No</td>
-        <td>輸入過濾文字框之內寬距離物件，可用鍵值為v、h、left、right、top、bottom，v代表同時設定top與bottom，h代表設定left與right，若有重複設定時後面鍵值會覆蓋前面，各鍵值為寬度數字，單位為px，預設{v:0,h:0}</td>
-    </tr><tr>
-        <td><code>queryBorderRadius</code></td>
-        <td>Number</td>
-        <td><code>30</code></td>
-        <td>No</td>
-        <td>輸入過濾文字框之框圓角度數字，單位為px，預設30</td>
-    </tr><tr>
-        <td><code>queryShadow</code></td>
-        <td>Boolean</td>
-        <td><code>false</code></td>
-        <td>No</td>
-        <td>輸入過濾文字框之是否為陰影模式，預設false</td>
-    </tr><tr>
-        <td><code>queryTextFontSize</code></td>
-        <td>String</td>
-        <td><code>'1.0rem'</code></td>
-        <td>No</td>
-        <td>輸入過濾文字框之文字大小字串，預設'1.0rem'</td>
-    </tr><tr>
-        <td><code>queryTextColor</code></td>
-        <td>String</td>
-        <td><code>'black'</code></td>
-        <td>No</td>
-        <td>輸入過濾文字框之文字顏色字串，預設'black'</td>
-    </tr><tr>
-        <td><code>queryTextAlign</code></td>
-        <td>String</td>
-        <td><code>'left'</code></td>
-        <td>No</td>
-        <td>輸入過濾文字框之文字左右對齊字串，預設'left'</td>
-    </tr><tr>
-        <td><code>queryIcon</code></td>
-        <td>String</td>
-        <td><code>mdiFilterOutline</code></td>
-        <td>No</td>
-        <td>輸入過濾文字框之左側圖標字串，可為mdi,md,fa代號或mdi/js路徑，預設mdiFilterOutline</td>
-    </tr><tr>
-        <td><code>queryIconSize</code></td>
-        <td>Number</td>
-        <td><code>18</code></td>
-        <td>No</td>
-        <td>輸入過濾文字框之左側圖標大小，單位為px，預設18</td>
-    </tr><tr>
-        <td><code>queryIconColor</code></td>
-        <td>String</td>
-        <td><code>'blue'</code></td>
-        <td>No</td>
-        <td>輸入過濾文字框之左側圖標顏色字串，預設'blue'</td>
-    </tr><tr>
-        <td><code>queryIconColorHover</code></td>
-        <td>String</td>
-        <td><code>'blue darken-1'</code></td>
-        <td>No</td>
-        <td>輸入過濾文字框之滑鼠移入時左側圖標顏色字串，預設'blue darken-1'</td>
-    </tr><tr>
-        <td><code>queryIconColorFocus</code></td>
-        <td>String</td>
-        <td><code>'blue darken-1'</code></td>
-        <td>No</td>
-        <td>輸入過濾文字框之取得焦點時左側圖標顏色字串，預設'blue darken-1'</td>
-    </tr><tr>
-        <td><code>queryIconTooltip</code></td>
-        <td>String</td>
-        <td><code>''</code></td>
-        <td>No</td>
-        <td>輸入過濾文字框之左側圖標提示文字字串，預設''</td>
-    </tr><tr>
-        <td><code>queryIconShiftOuter</code></td>
-        <td>Number</td>
-        <td><code>0</code></td>
-        <td>No</td>
-        <td>輸入過濾文字框之左右側圖標與外框距離數字，單位為px，預設0</td>
-    </tr><tr>
-        <td><code>queryIconShiftInner</code></td>
-        <td>Number</td>
-        <td><code>5</code></td>
-        <td>No</td>
-        <td>輸入過濾文字框之左右側圖標與內插槽區距離數字，單位為px，預設5</td>
-    </tr><tr>
-        <td><code>queryBackgroundColor</code></td>
-        <td>String</td>
-        <td><code>'transparent'</code></td>
-        <td>No</td>
-        <td>輸入過濾文字框之背景顏色字串，預設'transparent'</td>
-    </tr><tr>
-        <td><code>queryBackgroundColorHover</code></td>
-        <td>String</td>
-        <td><code>'transparent'</code></td>
-        <td>No</td>
-        <td>輸入過濾文字框之滑鼠移入時背景顏色字串，預設'transparent'</td>
-    </tr><tr>
-        <td><code>queryBackgroundColorFocus</code></td>
-        <td>String</td>
-        <td><code>'transparent'</code></td>
-        <td>No</td>
-        <td>輸入過濾文字框之取得焦點時背景顏色字串，預設'transparent'</td>
-    </tr><tr>
-        <td><code>queryBorderColor</code></td>
-        <td>String</td>
-        <td><code>'transparent'</code></td>
-        <td>No</td>
-        <td>輸入過濾文字框之邊框顏色字串，預設'transparent'</td>
-    </tr><tr>
-        <td><code>queryBorderColorHover</code></td>
-        <td>String</td>
-        <td><code>'transparent'</code></td>
-        <td>No</td>
-        <td>輸入過濾文字框之滑鼠移入時邊框顏色字串，預設'transparent'</td>
-    </tr><tr>
-        <td><code>queryBorderColorFocus</code></td>
-        <td>String</td>
-        <td><code>'transparent'</code></td>
-        <td>No</td>
-        <td>輸入過濾文字框之取得焦點時邊框顏色字串，預設'transparent'</td>
-    </tr><tr>
-        <td><code>queryBottomLineBorderColor</code></td>
-        <td>String</td>
-        <td><code>'grey lighten-1'</code></td>
-        <td>No</td>
-        <td>輸入過濾文字框之底部線顏色字串，預設'grey lighten-1'</td>
-    </tr><tr>
-        <td><code>queryBottomLineBorderColorHover</code></td>
-        <td>String</td>
-        <td><code>'grey'</code></td>
-        <td>No</td>
-        <td>輸入過濾文字框之滑鼠移入時底部線顏色字串，預設'grey'</td>
-    </tr><tr>
-        <td><code>queryBottomLineBorderColorFocus</code></td>
-        <td>String</td>
-        <td><code>'blue darken-1'</code></td>
-        <td>No</td>
-        <td>輸入過濾文字框之取得焦點時底部線顏色字串，預設'blue darken-1'</td>
-    </tr><tr>
-        <td><code>queryBottomLineBorderWidth</code></td>
-        <td>Number</td>
-        <td><code>1</code></td>
-        <td>No</td>
-        <td>輸入過濾文字框之底部線寬度數字，單位為px，預設1</td>
-    </tr><tr>
-        <td><code>queryBottomLineBorderWidthHover</code></td>
-        <td>Number</td>
-        <td><code>1</code></td>
-        <td>No</td>
-        <td>輸入過濾文字框之滑鼠移入時底部線寬度數字，單位為px，預設1</td>
-    </tr><tr>
-        <td><code>queryBottomLineBorderWidthFocus</code></td>
-        <td>Number</td>
-        <td><code>2</code></td>
-        <td>No</td>
-        <td>輸入過濾文字框之取得焦點時底部線寬度數字，單位為px，預設2</td>
-    </tr><tr>
-        <td><code>queryPlaceholder</code></td>
-        <td>String</td>
-        <td><code>'Keywords'</code></td>
-        <td>No</td>
-        <td>輸入過濾文字框之無文字時的替代字符字串，預設'Keywords'</td>
-    </tr><tr>
-        <td><code>queryHeight</code></td>
-        <td>Number</td>
-        <td><code>28</code></td>
-        <td>No</td>
-        <td>輸入過濾文字框之高度數字，單位為px，預設28</td>
-    </tr><tr>
-        <td><code>queryFocused</code></td>
-        <td>Boolean</td>
-        <td><code>false</code></td>
-        <td>No</td>
-        <td>輸入過濾文字框之是否為取得焦點狀態，預設false</td>
-    </tr><tr>
-        <td><code>queryPanelPaddingStyle</code></td>
-        <td>Object</td>
-        <td><code>{v:10,h:10}</code></td>
-        <td>No</td>
-        <td>輸入過濾文字框所在區域之內寬距離物件，可用鍵值為v、h、left、right、top、bottom，v代表同時設定top與bottom，h代表設定left與right，若有重複設定時後面鍵值會覆蓋前面，各鍵值為寬度數字，單位為px，預設{v:10,h:10}</td>
-    </tr><tr>
-        <td><code>querySepLineColor</code></td>
-        <td>String</td>
-        <td><code>'#ddd'</code></td>
-        <td>No</td>
-        <td>輸入過濾文字框與下方核選區之分界線顏色字串，預設'#ddd'</td>
-    </tr><tr>
-        <td><code>querySepLineWidth</code></td>
-        <td>Number</td>
-        <td><code>1</code></td>
-        <td>No</td>
-        <td>輸入過濾文字框與下方核選區之分界線寬度數字，單位為px，預設1</td>
-    </tr></tbody>
-</table>
 
 
 
@@ -1001,9 +1022,22 @@
 
 
 
-<div class="container-overview"><div><p> 
-</div>
-            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
             
         
@@ -1043,7 +1077,7 @@
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.2</a> on Mon Mar 30 2026 23:19:26 GMT+0800 (台北標準時間) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.5</a> on Sat Apr 11 2026 21:04:11 GMT+0800 (台北標準時間) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>

@@ -47,6 +47,10 @@
 
 <header>
     
+        
+            
+        
+    
 </header>
 
 <article>
@@ -54,6 +58,172 @@
         <div class="container-overview">
         
             
+                <div class="description usertext"></p></div></div> 
+
+
+<h3 class="subsection-title" style="margin-top: 1em" data-jsdoc-vuejs="section-props">Props</h3>
+<table data-jsdoc-vuejs="table-props">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Default value</th>
+        <th>Required?</th>
+        <th>Description</th>
+    </tr>
+    </thead>
+    <tbody><tr>
+        <td><code>items</code></td>
+        <td>Array</td>
+        <td><code>[]</code></td>
+        <td>No</td>
+        <td>輸入項目的字串陣列或物件陣列，預設[]</td>
+    </tr><tr>
+        <td><code>activeMode</code></td>
+        <td>String</td>
+        <td><code>'one'</code></td>
+        <td>No</td>
+        <td>輸入項目點擊成為活耀狀態模式字串，可選'one'與'multi'，預設'one'</td>
+    </tr><tr>
+        <td><code>itemActive</code></td>
+        <td>String|Object|Array</td>
+        <td><code>null</code></td>
+        <td>No</td>
+        <td>輸入活耀項目物件，預設null</td>
+    </tr><tr>
+        <td><code>itemTextFontSize</code></td>
+        <td>String</td>
+        <td><code>'1rem'</code></td>
+        <td>No</td>
+        <td>輸入文字字型大小字串，預設'1rem'</td>
+    </tr><tr>
+        <td><code>keyText</code></td>
+        <td>String</td>
+        <td><code>'text'</code></td>
+        <td>No</td>
+        <td>輸入項目為物件時，存放顯示文字之欄位字串，預設'text'</td>
+    </tr><tr>
+        <td><code>keyIcon</code></td>
+        <td>String</td>
+        <td><code>'icon'</code></td>
+        <td>No</td>
+        <td>輸入項目為物件時，存放圖標之欄位字串，預設'icon'</td>
+    </tr><tr>
+        <td><code>keyDsp</code></td>
+        <td>String</td>
+        <td><code>'dsp'</code></td>
+        <td>No</td>
+        <td>輸入項目為物件時，存放說明文字之欄位字串，預設'dsp'</td>
+    </tr><tr>
+        <td><code>paddingStyle</code></td>
+        <td>Object</td>
+        <td><code>{v:10,h:12}</code></td>
+        <td>No</td>
+        <td>輸入內寬距離設定物件，可用鍵值為v、h、left、right、top、bottom，v代表同時設定top與bottom，h代表設定left與right，若有重複設定時後面鍵值會覆蓋前面，各鍵值為寬度數字，單位為px，預設{v:10,h:12}</td>
+    </tr><tr>
+        <td><code>itemBackgroundColor</code></td>
+        <td>String</td>
+        <td><code>'white'</code></td>
+        <td>No</td>
+        <td>輸入背景顏色字串，預設'white'</td>
+    </tr><tr>
+        <td><code>itemBackgroundColorHover</code></td>
+        <td>String</td>
+        <td><code>'rgba(200,200,200,0.2)'</code></td>
+        <td>No</td>
+        <td>輸入滑鼠移入時背景顏色字串，預設'rgba(200,200,200,0.2)'</td>
+    </tr><tr>
+        <td><code>itemBackgroundColorActive</code></td>
+        <td>String</td>
+        <td><code>'orange lighten-1'</code></td>
+        <td>No</td>
+        <td>輸入主動模式時背景顏色字串，預設'orange lighten-1'</td>
+    </tr><tr>
+        <td><code>itemTextColor</code></td>
+        <td>String</td>
+        <td><code>'#444'</code></td>
+        <td>No</td>
+        <td>輸入文字顏色字串，預設'#444'</td>
+    </tr><tr>
+        <td><code>itemTextColorHover</code></td>
+        <td>String</td>
+        <td><code>'#222'</code></td>
+        <td>No</td>
+        <td>輸入滑鼠移入時文字顏色字串，預設'#222'</td>
+    </tr><tr>
+        <td><code>itemTextColorActive</code></td>
+        <td>String</td>
+        <td><code>'white'</code></td>
+        <td>No</td>
+        <td>輸入主動模式時文字顏色字串，預設'white'</td>
+    </tr><tr>
+        <td><code>itemIconSize</code></td>
+        <td>Number</td>
+        <td><code>22</code></td>
+        <td>No</td>
+        <td>輸入左側圖標之尺寸數字，單位px，預設22</td>
+    </tr><tr>
+        <td><code>itemIconColor</code></td>
+        <td>String</td>
+        <td><code>'#444'</code></td>
+        <td>No</td>
+        <td>輸入圖標顏色字串，預設'#444'</td>
+    </tr><tr>
+        <td><code>itemIconColorHover</code></td>
+        <td>String</td>
+        <td><code>'#222'</code></td>
+        <td>No</td>
+        <td>輸入滑鼠移入時圖標顏色字串，預設'#222'</td>
+    </tr><tr>
+        <td><code>itemIconColorActive</code></td>
+        <td>String</td>
+        <td><code>'white'</code></td>
+        <td>No</td>
+        <td>輸入主動模式時圖標顏色字串，預設'white'</td>
+    </tr><tr>
+        <td><code>itemExpansionIcon</code></td>
+        <td>String</td>
+        <td><code>mdiPlay</code></td>
+        <td>No</td>
+        <td>輸入顯隱圖標字串，可為mdi,md,fa代號或mdi/js路徑，預設使用mdi的圖標(mdiPlay)</td>
+    </tr><tr>
+        <td><code>itemExpansionIconSize</code></td>
+        <td>Number</td>
+        <td><code>18</code></td>
+        <td>No</td>
+        <td>輸入顯隱圖標尺寸數字，單位為px，預設18</td>
+    </tr><tr>
+        <td><code>itemExpansionIconColor</code></td>
+        <td>String</td>
+        <td><code>'grey'</code></td>
+        <td>No</td>
+        <td>輸入顯隱圖標顏色字串，預設'grey'</td>
+    </tr><tr>
+        <td><code>itemRippleColor</code></td>
+        <td>String</td>
+        <td><code>'rgba(255,255,255,0.4)'</code></td>
+        <td>No</td>
+        <td>輸入ripple效果顏色字串，預設'rgba(255,255,255,0.4)'</td>
+    </tr></tbody>
+</table>
+
+
+
+
+
+
+
+
+
+<div class="container-overview"><div><p> 
+</div>
+            
+
+            
+                
+
+
+
 
 <dl class="details">
     
@@ -255,155 +425,6 @@
 
 
 
-            
-                <div class="description usertext"></p></div></div> 
-
-
-<h3 class="subsection-title" style="margin-top: 1em" data-jsdoc-vuejs="section-props">Props</h3>
-<table data-jsdoc-vuejs="table-props">
-    <thead>
-    <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Default value</th>
-        <th>Required?</th>
-        <th>Description</th>
-    </tr>
-    </thead>
-    <tbody><tr>
-        <td><code>items</code></td>
-        <td>Array</td>
-        <td><code>[]</code></td>
-        <td>No</td>
-        <td>輸入項目的字串陣列或物件陣列，預設[]</td>
-    </tr><tr>
-        <td><code>activeMode</code></td>
-        <td>String</td>
-        <td><code>'one'</code></td>
-        <td>No</td>
-        <td>輸入項目點擊成為活耀狀態模式字串，可選'one'與'multi'，預設'one'</td>
-    </tr><tr>
-        <td><code>itemActive</code></td>
-        <td>String|Object|Array</td>
-        <td><code>null</code></td>
-        <td>No</td>
-        <td>輸入活耀項目物件，預設null</td>
-    </tr><tr>
-        <td><code>itemTextFontSize</code></td>
-        <td>String</td>
-        <td><code>'1rem'</code></td>
-        <td>No</td>
-        <td>輸入文字字型大小字串，預設'1rem'</td>
-    </tr><tr>
-        <td><code>keyText</code></td>
-        <td>String</td>
-        <td><code>'text'</code></td>
-        <td>No</td>
-        <td>輸入項目為物件時，存放顯示文字之欄位字串，預設'text'</td>
-    </tr><tr>
-        <td><code>keyIcon</code></td>
-        <td>String</td>
-        <td><code>'icon'</code></td>
-        <td>No</td>
-        <td>輸入項目為物件時，存放圖標之欄位字串，預設'icon'</td>
-    </tr><tr>
-        <td><code>keyDsp</code></td>
-        <td>String</td>
-        <td><code>'dsp'</code></td>
-        <td>No</td>
-        <td>輸入項目為物件時，存放說明文字之欄位字串，預設'dsp'</td>
-    </tr><tr>
-        <td><code>paddingStyle</code></td>
-        <td>Object</td>
-        <td><code>{v:10,h:12}</code></td>
-        <td>No</td>
-        <td>輸入內寬距離設定物件，可用鍵值為v、h、left、right、top、bottom，v代表同時設定top與bottom，h代表設定left與right，若有重複設定時後面鍵值會覆蓋前面，各鍵值為寬度數字，單位為px，預設{v:10,h:12}</td>
-    </tr><tr>
-        <td><code>itemBackgroundColor</code></td>
-        <td>String</td>
-        <td><code>'white'</code></td>
-        <td>No</td>
-        <td>輸入背景顏色字串，預設'white'</td>
-    </tr><tr>
-        <td><code>itemBackgroundColorHover</code></td>
-        <td>String</td>
-        <td><code>'rgba(200,200,200,0.2)'</code></td>
-        <td>No</td>
-        <td>輸入滑鼠移入時背景顏色字串，預設'rgba(200,200,200,0.2)'</td>
-    </tr><tr>
-        <td><code>itemBackgroundColorActive</code></td>
-        <td>String</td>
-        <td><code>'orange lighten-1'</code></td>
-        <td>No</td>
-        <td>輸入主動模式時背景顏色字串，預設'orange lighten-1'</td>
-    </tr><tr>
-        <td><code>itemTextColor</code></td>
-        <td>String</td>
-        <td><code>'#444'</code></td>
-        <td>No</td>
-        <td>輸入文字顏色字串，預設'#444'</td>
-    </tr><tr>
-        <td><code>itemTextColorHover</code></td>
-        <td>String</td>
-        <td><code>'#222'</code></td>
-        <td>No</td>
-        <td>輸入滑鼠移入時文字顏色字串，預設'#222'</td>
-    </tr><tr>
-        <td><code>itemTextColorActive</code></td>
-        <td>String</td>
-        <td><code>'white'</code></td>
-        <td>No</td>
-        <td>輸入主動模式時文字顏色字串，預設'white'</td>
-    </tr><tr>
-        <td><code>itemIconSize</code></td>
-        <td>Number</td>
-        <td><code>22</code></td>
-        <td>No</td>
-        <td>輸入左側圖標之尺寸數字，單位px，預設22</td>
-    </tr><tr>
-        <td><code>itemIconColor</code></td>
-        <td>String</td>
-        <td><code>'#444'</code></td>
-        <td>No</td>
-        <td>輸入圖標顏色字串，預設'#444'</td>
-    </tr><tr>
-        <td><code>itemIconColorHover</code></td>
-        <td>String</td>
-        <td><code>'#222'</code></td>
-        <td>No</td>
-        <td>輸入滑鼠移入時圖標顏色字串，預設'#222'</td>
-    </tr><tr>
-        <td><code>itemIconColorActive</code></td>
-        <td>String</td>
-        <td><code>'white'</code></td>
-        <td>No</td>
-        <td>輸入主動模式時圖標顏色字串，預設'white'</td>
-    </tr><tr>
-        <td><code>itemExpansionIcon</code></td>
-        <td>String</td>
-        <td><code>mdiPlay</code></td>
-        <td>No</td>
-        <td>輸入顯隱圖標字串，可為mdi,md,fa代號或mdi/js路徑，預設使用mdi的圖標(mdiPlay)</td>
-    </tr><tr>
-        <td><code>itemExpansionIconSize</code></td>
-        <td>Number</td>
-        <td><code>18</code></td>
-        <td>No</td>
-        <td>輸入顯隱圖標尺寸數字，單位為px，預設18</td>
-    </tr><tr>
-        <td><code>itemExpansionIconColor</code></td>
-        <td>String</td>
-        <td><code>'grey'</code></td>
-        <td>No</td>
-        <td>輸入顯隱圖標顏色字串，預設'grey'</td>
-    </tr><tr>
-        <td><code>itemRippleColor</code></td>
-        <td>String</td>
-        <td><code>'rgba(255,255,255,0.4)'</code></td>
-        <td>No</td>
-        <td>輸入ripple效果顏色字串，預設'rgba(255,255,255,0.4)'</td>
-    </tr></tbody>
-</table>
 
 
 
@@ -413,9 +434,22 @@
 
 
 
-<div class="container-overview"><div><p> 
-</div>
-            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
             
         
@@ -455,7 +489,7 @@
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.2</a> on Mon Mar 30 2026 23:19:26 GMT+0800 (台北標準時間) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.5</a> on Sat Apr 11 2026 21:04:11 GMT+0800 (台北標準時間) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>
