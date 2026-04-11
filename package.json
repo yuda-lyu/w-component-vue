@@ -1,11 +1,11 @@
 {
   "name": "w-component-vue",
-  "version": "2.4.46",
+  "version": "2.4.47",
   "main": "dist/w-component-vue.umd.js",
   "dependencies": {
     "@mdi/js": "^7.4.47",
     "lodash-es": "^4.18.1",
-    "wsemi": "^1.8.44"
+    "wsemi": "^1.8.45"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^5.0.8",
