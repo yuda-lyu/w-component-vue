@@ -318,7 +318,7 @@ function buildPopper(vo, funGetDivTrigger, funGetDivContent, keyShow, evNameValu
                 {
                     name: 'flip',
                     options: {
-                        fallbackPlacements: ['bottom-start', 'bottom-end', 'top-start', 'top-end', 'top', 'right-start', 'right-end', 'right', 'left-start', 'left-end', 'left'],
+                        //fallbackPlacements: ['bottom-start', 'bottom-end', 'top-start', 'top-end', 'top', 'right-start', 'right-end', 'right', 'left-start', 'left-end', 'left'],
                     },
                 },
                 offset,
