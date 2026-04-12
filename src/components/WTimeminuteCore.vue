@@ -62,8 +62,8 @@ import strright from 'wsemi/src/strright.mjs'
 import isp0int from 'wsemi/src/isp0int.mjs'
 import isarr from 'wsemi/src/isarr.mjs'
 import istime from 'wsemi/src/istime.mjs'
-import ispint from 'wsemi/src/ispint.mjs'
 import isday from 'wsemi/src/isday.mjs'
+import cstr from 'wsemi/src/cstr.mjs'
 import WTimedayCore from './WTimedayCore.vue'
 import WTextSuggestCore from './WTextSuggestCore.vue'
 
@@ -229,8 +229,8 @@ export default {
                 return vo.minutesCustom
             }
 
-            let b1 = ispint(vo.hourMin) && ispint(vo.hourMax) && vo.hourMin <= vo.hourMax
-            let b2 = ispint(vo.minuteInter)
+            let b1 = isp0int(vo.hourMin) && isp0int(vo.hourMax) && vo.hourMin <= vo.hourMax
+            let b2 = isp0int(vo.minuteInter)
             if (!b1 || !b2) {
                 return
             }
@@ -239,14 +239,14 @@ export default {
             let rs = map(range(vo.hourMin, vo.hourMax + 1), function(hour) {
 
                 //產生時
-                let h = String(hour)
+                let h = cstr(hour)
                 if (hour < 10) {
                     h = '0' + h
                 }
 
                 //產生分
                 return map(range(0, 60, vo.minuteInter), function(min) {
-                    let m = String(min)
+                    let m = cstr(min)
                     if (min < 10) {
                         m = '0' + m
                     }
@@ -256,7 +256,7 @@ export default {
             rs = flattenDeep(rs)
 
             //hMax
-            let hMax = String(vo.hourMax)
+            let hMax = cstr(vo.hourMax)
             if (vo.hourMax < 10) {
                 hMax = '0' + hMax
             }
