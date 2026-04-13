@@ -260,7 +260,7 @@ export default {
             if (vo.hourMax < 10) {
                 hMax = '0' + hMax
             }
-            hMax = hMax + ':00'
+            hMax = hMax + ':59'
             rs = filter(rs, function(r) {
                 return r <= hMax
             })
