@@ -1,6 +1,6 @@
 <template>
     <div
-        style="display:inline-block; vertical-align:middle; outline:none; user-select:none;"
+        :style="`${useDisplayType} vertical-align:middle; outline:none; user-select:none;`"
         :role="editable?role:''"
         :changeActive="changeActive"
         :changeProg="changeProg"
@@ -39,7 +39,7 @@
                             tabindex="1"
                         >
 
-                            <div style="display:flex; align-items:center;">
+                            <div :style="`display:flex; align-items:center; ${displayType==='line'?'justify-content:center;':''}`">
 
                                 <div>
                                     <slot>
@@ -192,6 +192,7 @@ import WTooltip from './WTooltip.vue'
  * @vue-prop {Boolean} [shadowActive=true] 輸入主動模式時是否顯示陰影布林值，預設true
  * @vue-prop {String} [shadowActiveStyle=''] 輸入主動模式時陰影顏色字串，預設值詳見props
  * @vue-prop {String} [rippleColor='rgba(255,255,255,0.4)'] 輸入ripple效果顏色字串，預設'rgba(255,255,255,0.4)'
+ * @vue-prop {String} [displayType='block'] 輸入display設定字串，可選'block'與'line'，預設'block'
  * @vue-prop {Object} [paddingStyle={v:3,h:15}] 輸入內寬距離設定物件，可用鍵值為v、h、left、right、top、bottom，v代表同時設定top與bottom，h代表設定left與right，若有重複設定時後面鍵值會覆蓋前面，各鍵值為寬度數字，單位為px，預設{v:3,h:15}
  * @vue-prop {Number} [shiftLeft=0] 輸入左側內寬平移距離數字，會對paddingStyle設定再添加，可調整例如圖標與左側邊框距離，單位px，預設0
  * @vue-prop {Number} [shiftRight=0] 輸入右側內寬平移距離數字，會對paddingStyle設定再添加，可調整例如關閉圖標與右側邊框距離，單位px，預設0
@@ -377,6 +378,10 @@ export default {
             type: String,
             default: 'rgba(255,255,255,0.4)',
         },
+        displayType: {
+            type: String,
+            default: 'block', //line, block
+        },
         paddingStyle: {
             type: Object,
             default: () => {
@@ -477,6 +482,14 @@ export default {
             vo.loadingTrans = vo.loading
 
             return ''
+        },
+
+        useDisplayType: function() {
+            let vo = this
+            if (vo.displayType === 'line') {
+                return 'display:block;'
+            }
+            return 'display:inline-block;'
         },
 
         usePadding: function() {

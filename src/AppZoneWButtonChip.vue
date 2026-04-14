@@ -24,6 +24,20 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-button-chip'"
+                    :casename="'displayType'"
+                ></demolink>
+
+                <w-button-chip
+                    :text="WButtonChip.text"
+                    :displayType="'line'"
+                ></w-button-chip>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-button-chip'"
                     :casename="'paddingStyle (thin style)'"
                 ></demolink>
 
