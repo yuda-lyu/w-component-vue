@@ -274,6 +274,7 @@ export default {
             //s['align-items'] = 'center'
             s['color'] = convertColor(vo.contentColor)
             s['overflow-y'] = 'auto'
+            s['box-sizing'] = 'border-box'
             return s
         },
 

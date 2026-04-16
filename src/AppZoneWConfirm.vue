@@ -333,7 +333,7 @@
                                 Please confirm the message and then press the AGREE button.
                             </div>
                             <div style="">
-                                <w-button-chip :text="'agree'" :borderRadius="4" :textColor="'white'" :backgroundColor="'pink darken-1'" @click="WConfirm.bShow13=false"></w-button-chip>
+                                <w-button-chip :text="'agree'" :borderRadius="4" :textColor="'white'" :textColorHover="'white'" :backgroundColor="'pink darken-1'" :backgroundColorHover="'pink lighten-1'" @click="WConfirm.bShow13=false"></w-button-chip>
                             </div>
                         </div>
                     </template>
