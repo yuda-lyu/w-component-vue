@@ -274,7 +274,7 @@ export default {
             //s['align-items'] = 'center'
             s['color'] = convertColor(vo.contentColor)
             s['overflow-y'] = 'auto'
-            s['box-sizing'] = 'border-box'
+            s['box-sizing'] = 'border-box' //寬度內要含padding, 故須box-sizing:border-box
             return s
         },
 

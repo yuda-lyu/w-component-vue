@@ -10,7 +10,7 @@
             >
                 <div
                     :class="`${avatarShadow?'shadow-header':''}`"
-                    :style="`transition:all 0.3s; _box-sizing:border-box; border:${avatarBorderWidth}px solid ${useAvatarBorderColor}; border-radius:${avatarBorderRadius}px; background:${useAvatarBackgroundColor};`"
+                    :style="`transition:all 0.3s; border:${avatarBorderWidth}px solid ${useAvatarBorderColor}; border-radius:${avatarBorderRadius}px; background:${useAvatarBackgroundColor};`"
                     v-domresize
                     @domresize="resizeAvatar"
                 >

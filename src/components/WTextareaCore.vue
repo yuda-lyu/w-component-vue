@@ -2,6 +2,7 @@
     <div :changeValue="changeValue">
         <!-- 須使用display:block與rows=1避免多行時有殘餘行距 -->
         <!-- 須使用overflow:hidden避免初始化時出現垂直捲軸 -->
+        <!-- 寬高內要含padding與border, 故須box-sizing:border-box -->
         <textarea
             ref="ta"
             :style="`

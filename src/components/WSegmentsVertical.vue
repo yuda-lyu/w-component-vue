@@ -1,5 +1,5 @@
 <template>
-    <div :style="`width:${width}px; height:${height}px; box-sizing:border-box;`">
+    <div :style="`width:${width}px; height:${height}px;`">
 
         <div :style="`padding:${paddingTop}px ${paddingRight}px ${paddingBottom}px ${paddingLeft}px;`">
 
@@ -90,7 +90,7 @@
                                                         <!-- 三角形 -->
                                                         <div :style="`width:0; height:0; border-top:${useTextTriangularSizeHalf}px solid transparent; border-right:${useTextTriangularSizeHalf*textTriangularRatio}px solid ${useTextBackgroundColor}; border-bottom:${useTextTriangularSizeHalf}px solid transparent;`"></div>
 
-                                                        <!-- 文字區 -->
+                                                        <!-- 文字區, 寬度內要含padding, 故須box-sizing:border-box -->
                                                         <div :style="`padding-right:5px; max-width:${useTextWidthMax}px; box-sizing:border-box; background:${useTextBackgroundColor};`">
                                                             <div :style="`height:100%; display:flex; align-items:center;`">
                                                                 <div
@@ -101,6 +101,7 @@
                                                                 </div>
                                                             </div>
                                                         </div>
+
                                                     </div>
                                                 </template>
 
@@ -127,7 +128,7 @@
                                             <!-- 三角形 -->
                                             <div :style="`width:0; height:0; border-top:${useTextTriangularSizeHalf}px solid transparent; border-right:${useTextTriangularSizeHalf*textTriangularRatio}px solid ${useTextBackgroundColor}; border-bottom:${useTextTriangularSizeHalf}px solid transparent;`"></div>
 
-                                            <!-- 文字區 -->
+                                            <!-- 文字區, 寬度內要含padding, 故須box-sizing:border-box -->
                                             <div :style="`padding-right:5px; max-width:${useTextWidthMax}px; box-sizing:border-box; background:${useTextBackgroundColor};`">
                                                 <div :style="`height:100%; display:flex; align-items:center;`">
                                                     <div
@@ -138,6 +139,7 @@
                                                     </div>
                                                 </div>
                                             </div>
+
                                         </div>
 
                                     </template>

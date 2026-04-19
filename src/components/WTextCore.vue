@@ -1,6 +1,7 @@
 <template>
     <div :changeValue="changeValue">
         <!-- 要設定display:block否則input會有最小高度 -->
+        <!-- 寬高內要含padding與border, 故須box-sizing:border-box -->
         <input
             ref="inp"
             :type="password?'password':`text`"

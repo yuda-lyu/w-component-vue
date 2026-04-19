@@ -93,6 +93,7 @@
 
                             <!-- 拖曳寬度bar, 須放置於drawer內, 才能避免drawer內有position顯示之dom(例如tooltip)被拖曳寬度bar遮蔽 -->
                             <!-- 延遲至抽屜出現後才通過opacity=1顯示, 否則於浮動模式時會在外側陰影層馬上看到拖曳寬度bar, 使用者體驗不佳 -->
+                            <!-- 寬度內要含border, 故須box-sizing:border-box -->
                             <div
                                 ref="divBar"
                                 :style="`position:${useOverlayPosition}; top:0px; ${isAtLeft?'left':'right'}:${useDrawerWidthTrans-useDrawerBarWidth/2}px; width:${useDrawerBarWidth}px; height:100%; border-left:${drawerBarBorderSize}px solid ${useDrawerBarBorderColor}; border-right:${drawerBarBorderSize}px solid ${useDrawerBarBorderColor}; box-sizing:border-box; opacity:${showOverlay5DragDrawerBar?1:0}; cursor:col-resize; user-select:none;`"
