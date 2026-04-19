@@ -19,7 +19,7 @@
                 <!-- 撐開區, 需使用min-width避免被壓縮 -->
                 <div
                     class="ts"
-                    :style="`width:${virtualZoneWidth}px; min-width:${virtualZoneWidth}px;`"
+                    :style="`${useNoTransStyle} width:${virtualZoneWidth}px; min-width:${virtualZoneWidth}px;`"
                     v-if="isAtLeft"
                 ></div>
 
@@ -37,7 +37,7 @@
                 <!-- 撐開區, 需使用min-width避免被壓縮 -->
                 <div
                     class="ts"
-                    :style="`width:${virtualZoneWidth}px; min-width:${virtualZoneWidth}px;`"
+                    :style="`${useNoTransStyle} width:${virtualZoneWidth}px; min-width:${virtualZoneWidth}px;`"
                     v-if="!isAtLeft"
                 ></div>
 
@@ -66,19 +66,19 @@
                     <div
                         ref="divDrawer"
                         :class="`ts ${useDrawerClassShadow}`"
-                        :style="`width:${useDrawerWidthTrans}px; height:100%; transform:translateX(${useDrawerTranslateX}%);`"
+                        :style="`${useNoTransStyle} width:${useDrawerWidthTrans}px; height:100%; transform:translateX(${useDrawerTranslateX}%);`"
                     >
 
                         <div
                             class="ts"
-                            :style="`position:relative; width:${useDrawerWidthTrans}px; height:100%; display:flex;`"
+                            :style="`${useNoTransStyle} position:relative; width:${useDrawerWidthTrans}px; height:100%; display:flex;`"
                         >
 
                             <div :style="`padding-left:${useDrawerBarSize/2}px;`" v-if="dragDrawerWidth && !isAtLeft"></div>
 
                             <div
                                 class="ts"
-                                :style="`width:${useEffDrawerWidthTrans}px;`"
+                                :style="`${useNoTransStyle} width:${useEffDrawerWidthTrans}px;`"
                             >
 
                                 <slot
@@ -241,7 +241,7 @@ export default {
 
             valueTrans: false,
 
-            lockToggle: false,
+            dragging: false,
 
             drawerWidthTrans: 200,
             afloatTrans: false,
@@ -277,12 +277,12 @@ export default {
         das.on('dragBar', vo.dragBar)
         das.on('pressBar', () => {
             // console.log('pressBar')
-            vo.lockToggle = true
+            vo.dragging = true
         })
         das.on('freeBar', () => {
             setTimeout(() => { //因拖曳寬度bar現在位於overlay關閉事件監聽層之內, 故會優先觸發點擊事件後才冒泡出去, 導致放掉拖曳時會觸發點擊關閉事件, 故改採通過delay脫勾與上鎖機制避免關閉
                 // console.log('freeBar')
-                vo.lockToggle = false
+                vo.dragging = false
             }, 1)
         })
 
@@ -459,6 +459,12 @@ export default {
             return convertColor(this.drawerBarBorderColor)
         },
 
+        useNoTransStyle: function() {
+            let vo = this
+            //拖曳寬度bar時關閉寬度transition, 避免bar位置瞬間更新而抽屜邊緣慢動畫追趕造成的視覺錯位
+            return vo.dragging ? 'transition:none;' : ''
+        },
+
     },
     methods: {
 
@@ -550,7 +556,7 @@ export default {
             }
 
             //check, 上鎖時禁止觸發
-            if (vo.lockToggle) {
+            if (vo.dragging) {
                 return
             }
 
