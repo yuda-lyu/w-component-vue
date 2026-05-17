@@ -15,6 +15,7 @@
                 :placementDistX="placementDistX"
                 :placementDistY="placementDistY"
                 :textEmpty="textEmpty"
+                :labelContent="labelContentForDayFrom"
                 :editable="editable"
                 :value="dayStart"
                 @update:focused="(v)=>{focused_start=v;changeFocused()}"
@@ -37,6 +38,7 @@
                 :placementDistX="placementDistX"
                 :placementDistY="placementDistY"
                 :textEmpty="textEmpty"
+                :labelContent="labelContentForDayTo"
                 :editable="editable"
                 :value="dayEnd"
                 @update:focused="(v)=>{focused_end=v;changeFocused()}"
@@ -67,6 +69,8 @@ import WTimedayCore from './WTimedayCore.vue'
  * @vue-prop {Number} [placementDistX=0] 輸入日期彈窗之水平向右平移數字，單位為px，預設0
  * @vue-prop {Number} [placementDistY=7] 輸入日期彈窗之垂直向下平移數字，單位為px，預設7
  * @vue-prop {String} [textEmpty='Select a date'] 輸入尚未輸入日期之顯示文字字串，預設'Select a date'
+ * @vue-prop {String} [labelContentForDayFrom=null] 輸入針對起始日期彈窗teleport至body內之內容div所給予之wtlp屬性值字串，供查找使用，預設null
+ * @vue-prop {String} [labelContentForDayTo=null] 輸入針對結束日期彈窗teleport至body內之內容div所給予之wtlp屬性值字串，供查找使用，預設null
  * @vue-prop {Boolean} [editable=true] 輸入是否為編輯模式布林值，預設true
  */
 export default {
@@ -125,6 +129,14 @@ export default {
         textEmpty: {
             type: String,
             default: 'Select a date',
+        },
+        labelContentForDayFrom: {
+            type: String,
+            default: null,
+        },
+        labelContentForDayTo: {
+            type: String,
+            default: null,
         },
         editable: {
             type: Boolean,

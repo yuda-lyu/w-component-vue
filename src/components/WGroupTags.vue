@@ -158,6 +158,7 @@
                         :items="suggests"
                         :placeholder="placeholder"
                         :noResultsText="noResultsText"
+                        :labelContent="labelContentForInputText"
                         v-model="userInput"
                         @enter="clickAddBtn"
                         @click-right="clickAddBtn"
@@ -277,6 +278,7 @@ import domDragDrop from '../js/domDragDrop.mjs'
  * @vue-prop {Boolean} [addWhenInputByOutside=false] 輸入當指定或自動使用input並新增時，是否強制使用click-add事件進行新增處理布林值，預設false
  * @vue-prop {Boolean} [closeWithInterceptor=false] 輸入是否通過攔截器來決定是否進行關閉布林值，此處之攔截器係用promise來控制，當使用者點擊關閉時可先行確認或提示。當closeWithInterceptor=true時，於click-close事件所接收物件資訊中的pm，使用pm.resolve()則代表確定關閉，反之pm.reject()則取消關閉事件，預設false
  * @vue-prop {Boolean} [draggable=true] 輸入是否可拖曳模式布林值，預設true
+ * @vue-prop {String} [labelContentForInputText=null] 輸入針對輸入框下拉選單彈窗teleport至body內之內容div所給予之wtlp屬性值字串，供查找使用，預設null
  * @vue-prop {Boolean} [editable=true] 輸入是否為編輯模式布林值，預設true
  * @vue-prop {Boolean} [editableClose=true] 輸入editable=true時是否顯示關閉按鈕布林值，預設true
  * @vue-prop {Boolean} [editableInput=true] 輸入editable=true時是否使用預設的slot input布林值，預設true
@@ -591,6 +593,10 @@ export default {
         draggable: {
             type: Boolean,
             default: true,
+        },
+        labelContentForInputText: {
+            type: String,
+            default: null,
         },
         editable: {
             type: Boolean,

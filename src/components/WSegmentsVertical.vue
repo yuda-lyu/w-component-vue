@@ -79,6 +79,7 @@
 
                                             <WPopup
                                                 :isolated="true"
+                                                :labelContent="labelContentForText"
                                             >
 
                                                 <template v-slot:trigger>
@@ -221,6 +222,7 @@ import convertColor from '../js/convertColor.mjs'
  * @vue-prop {Number} [textShift=null] 輸入項目文字區與左側軸距離數字，單位為px，若給null則自動使用值為1+segmentSize/2+paddingStyle.left，預設null
  * @vue-prop {Boolean} [textCanClick=false] 輸入項目文字是否可點擊布林值，預設false
  * @vue-prop {Boolean} [segmentCanClick=false] 輸入區塊是否可點擊布林值，預設false
+ * @vue-prop {String} [labelContentForText=null] 輸入針對項目文字之popup彈窗teleport至body內之內容div所給予之wtlp屬性值字串，供查找使用，預設null
  */
 export default {
     components: {
@@ -389,6 +391,10 @@ export default {
         segmentCanClick: {
             type: Boolean,
             default: false,
+        },
+        labelContentForText: {
+            type: String,
+            default: null,
         },
     },
     data: function() {

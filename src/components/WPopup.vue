@@ -42,6 +42,7 @@ import WTooltip from './WTooltip.vue'
  * @vue-prop {Boolean} [shadow=true] 輸入彈窗是否顯示陰影布林值，預設true
  * @vue-prop {String} [shadowStyle=''] 輸入彈窗陰影顏色字串，預設值詳見props
  * @vue-prop {Number} [transitionTime=200] 輸入彈窗淡入出現時間數字，單位為ms，預設200
+ * @vue-prop {String} [labelContent=null] 輸入針對teleport至body內之內容div所給予之wtlp屬性值字串，供查找使用，預設null
  * @vue-prop {Boolean} [editable=true] 輸入是否為編輯模式布林值，預設true
  */
 export default {
@@ -133,6 +134,10 @@ export default {
         transitionTime: {
             type: Number,
             default: 200,
+        },
+        labelContent: {
+            type: String,
+            default: null,
         },
         editable: {
             type: Boolean,

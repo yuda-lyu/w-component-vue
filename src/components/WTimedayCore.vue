@@ -3,6 +3,7 @@
         :displayType="'line'"
         :placementDistX="placementDistX"
         :placementDistY="placementDistY"
+        :labelContent="labelContent"
         :editable="editable"
         :value="showPanelTrans"
         @input="(v)=>{updateShowPanel(v,'WPopup')}"
@@ -121,6 +122,7 @@ import WPopup from './WPopup.vue'
  * @vue-prop {Function} [funRenderYear=null] 輸入渲染年份之函數，傳入年數值回傳顯示字串，預設null，未給時回傳'{年}y'
  * @vue-prop {Function} [funRenderMonth=null] 輸入渲染月份之函數，傳入月數值回傳顯示字串，預設null，未給時回傳'{月}m'
  * @vue-prop {Function} [funRenderDayOfWeek=null] 輸入渲染星期幾之函數，傳入星期幾數值(0=日)回傳顯示字串，預設null，未給時回傳對應英文縮寫
+ * @vue-prop {String} [labelContent=null] 輸入針對teleport至body內之內容div所給予之wtlp屬性值字串，供查找使用，預設null
  * @vue-prop {Boolean} [editable=true] 輸入是否為編輯模式布林值，預設true
  */
 export default {
@@ -170,6 +172,10 @@ export default {
         },
         funRenderDayOfWeek: {
             type: Function,
+            default: null,
+        },
+        labelContent: {
+            type: String,
             default: null,
         },
         editable: {

@@ -60,6 +60,7 @@
                     :autoFitMaxWidth="autoFitMaxWidth"
                     :placementDistY="useDistY"
                     :defItemHeight="defItemHeight"
+                    :labelContent="labelContent"
                     :editable="editable"
                     :focused="focusedTrans"
                     :showPanel="showPanelTrans"
@@ -154,6 +155,7 @@ import WTextSuggestCore from './WTextSuggestCore.vue'
  * @vue-prop {Boolean} [autoFitMinWidth=true] 輸入是否使用驅動區寬度作為內容區之最小寬度布林值，預設true
  * @vue-prop {Boolean} [autoFitMaxWidth=true] 輸入是否使用驅動區寬度作為內容區之最大寬度布林值，預設true
  * @vue-prop {Number} [defItemHeight=43] 輸入按需顯示時各項目預設高度值數字，給越準或給大部分項目的高度則渲染速度越快，單位為px，預設43
+ * @vue-prop {String} [labelContent=null] 輸入針對teleport至body內之內容div所給予之wtlp屬性值字串，供查找使用，預設null
  * @vue-prop {Boolean} [editable=true] 輸入是否為編輯模式布林值，預設true
  * @vue-prop {Boolean} [focused=false] 輸入是否為取得焦點狀態布林值，預設false
  */
@@ -347,6 +349,10 @@ export default {
         defItemHeight: {
             type: Number,
             default: 43,
+        },
+        labelContent: {
+            type: String,
+            default: null,
         },
         editable: {
             type: Boolean,

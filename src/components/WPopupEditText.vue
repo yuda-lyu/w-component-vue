@@ -3,6 +3,7 @@
     <WPopup
         :isolated="true"
         _minWidth="minWidthForPopup"
+        :labelContent="labelContent"
         @show="evShow"
         @hide="evHide"
     >
@@ -111,6 +112,7 @@ import WIcon from './WIcon.vue'
  * @vue-prop {String} [footerBackgroundColor='grey lighten-5'] 輸入下方區背景顏色字串，預設'grey lighten-5'
  * @vue-prop {Number} [minWidthForValue=30] 輸入數據value展示時最小寬度數字，單位為px，預設30
  * @vue-prop {Number} [minWidthForPopup=300] 輸入彈窗最小寬度數字，單位為px，預設300
+ * @vue-prop {String} [labelContent=null] 輸入針對teleport至body內之內容div所給予之wtlp屬性值字串，供查找使用，預設null
  */
 export default {
     components: {
@@ -223,6 +225,10 @@ export default {
         minWidthForPopup: {
             type: Number,
             default: 300,
+        },
+        labelContent: {
+            type: String,
+            default: null,
         },
     },
     data: function() {

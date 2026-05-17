@@ -97,6 +97,7 @@
 
                             <WPopup
                                 v-model="showPickUploadMode"
+                                :labelContent="labelContentForUpload"
                             >
 
                                 <template v-slot:trigger>
@@ -308,6 +309,7 @@ import convertColor from '../js/convertColor.mjs'
  * @vue-prop {String} [uploadModeTitle='Choose mode of upload:'] 輸入選擇上傳模式彈窗標題字串，預設'Choose mode of upload:'
  * @vue-prop {String} [uploadModeTextForReplace='Replace'] 輸入取代上傳模式文字字串，預設'Replace'
  * @vue-prop {String} [uploadModeTextForAppend='Append'] 輸入插入於最後上傳模式文字字串，預設'Append'
+ * @vue-prop {String} [labelContentForUpload=null] 輸入針對上傳模式之popup彈窗teleport至body內之內容div所給予之wtlp屬性值字串，供查找使用，預設null
  * @vue-event {Array} save 指調用組件的method，無輸入，會回傳當前的name、description、rows所構成的物件
  * @vue-prop {Object} [opt={}] 輸入w-aggrid-vue設定物件，預設{}
  * @vue-prop {Array} opt.keys 輸入資料各欄位keys
@@ -558,6 +560,10 @@ export default {
         uploadModeTextForAppend: {
             type: String,
             default: 'Append',
+        },
+        labelContentForUpload: {
+            type: String,
+            default: null,
         },
         opt: {
             type: Object,

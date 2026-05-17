@@ -116,6 +116,8 @@
                         :editorRenameSaveBtnIconRippleColor="editorRenameSaveBtnIconRippleColor"
                         :editorRenameSaveBtnBackgroundColor="editorRenameSaveBtnBackgroundColor"
                         :editorRenameSaveBtnBackgroundColorHover="editorRenameSaveBtnBackgroundColorHover"
+                        :labelPanelForOperate="labelPanelForOperate"
+                        :labelDialogForEditor="labelDialogForEditor"
                         @click-operate-item="clickOperateItem"
                         @update:data="changeData"
                         @change-item="changeItem"
@@ -584,6 +586,8 @@ import WButtonCircle from './WButtonCircle.vue'
  * @vue-prop {String} [editorRenameSaveBtnIconRippleColor='rgba(200,200,200,0.4)'] 輸入變更文字彈窗之儲存按鈕ripple效果顏色字串，預設'rgba(200,200,200,0.4)'
  * @vue-prop {String} [editorRenameSaveBtnBackgroundColor='white'] 輸入變更文字彈窗之儲存按鈕背景顏色字串，預設'white'
  * @vue-prop {String} [editorRenameSaveBtnBackgroundColorHover='grey lighten-3'] 輸入變更文字彈窗之滑鼠移入時儲存按鈕背景顏色字串，預設'grey lighten-3'
+ * @vue-prop {String} [labelPanelForOperate=null] 輸入針對控制選項之popup彈窗teleport至body內之內容div所給予之wtlp屬性值字串，供查找使用，預設null
+ * @vue-prop {String} [labelDialogForEditor=null] 輸入針對teleport至body內之WDialog所給予之wtre屬性值字串，供查找使用，預設null
  */
 export default {
     directives: {
@@ -1164,6 +1168,14 @@ export default {
         editorRenameSaveBtnBackgroundColorHover: {
             type: String,
             default: 'grey lighten-3',
+        },
+        labelPanelForOperate: {
+            type: String,
+            default: null,
+        },
+        labelDialogForEditor: {
+            type: String,
+            default: null,
         },
     },
     data: function() {
