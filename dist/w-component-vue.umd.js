@@ -1,5 +1,5 @@
 /*!
- * w-component-vue v2.4.56
+ * w-component-vue v2.4.57
  * (c) 2018-2021 yuda-lyu(semisphere)
  * Released under the MIT License.
  */
