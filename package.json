@@ -1,11 +1,11 @@
 {
   "name": "w-component-vue",
-  "version": "2.4.60",
+  "version": "2.4.61",
   "main": "dist/w-component-vue.umd.js",
   "dependencies": {
     "@mdi/js": "^7.4.47",
     "lodash-es": "^4.18.1",
-    "wsemi": "^1.8.54"
+    "wsemi": "^1.8.59"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^5.0.8",
@@ -20,7 +20,7 @@
     "eslint-plugin-promise": "^6.1.1",
     "eslint-plugin-vue": "^9.10.0",
     "vue": "^2.6.14",
-    "w-package-tools": "^1.1.7"
+    "w-package-tools": "^1.1.9"
   },
   "scripts": {
     "serve": "vue-cli-service serve",

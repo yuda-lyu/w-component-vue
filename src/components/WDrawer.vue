@@ -1,5 +1,6 @@
 <template>
     <div
+        :state="state"
         :changeValue="changeValue"
         :changeDrawerWidth="changeDrawerWidth"
         :changeAfloat="changeAfloat"
@@ -46,16 +47,16 @@
             <!-- overlay半透明灰色層 -->
             <div
                 class="ts"
-                :style="`position:${useOverlayPosition}; ${useDrawerDetectLoction} top:0px; bottom:0px; z-index:${useDrawerZIndex+1}; width:${useDrawerDetectWidth}; height:100%; opacity:${useOverlayOpacity}; background:${useOverlayColor};`"
-                v-if="showOverlay1Basic"
+                :style="`position:${useAniPosition}; ${useDrawerDetectLoction} top:0px; bottom:0px; z-index:${useDrawerZIndex+1}; width:${useDrawerDetectWidth}; height:100%; opacity:${useAniOpacity}; background:${useAniColor};`"
+                v-if="showAni1Basic"
             >
             </div>
 
             <!-- overlay關閉事件監聽層, 與隱藏內層之向外陰影 -->
             <div
-                :style="`position:${useOverlayPosition}; ${useDrawerDetectLoction} top:0px; bottom:0px; z-index:${useDrawerZIndex+2}; width:${useDrawerDetectWidth}; height:100%;`"
+                :style="`position:${useAniPosition}; ${useDrawerDetectLoction} top:0px; bottom:0px; z-index:${useDrawerZIndex+2}; width:${useDrawerDetectWidth}; height:100%;`"
                 @click="(ev)=>{ckToggle(ev,false)}"
-                v-show="showOverlay2Detect"
+                v-show="showAni2Detect"
             >
 
                 <!-- drawer平移層 -->
@@ -96,7 +97,7 @@
                             <!-- 寬度內要含border, 故須box-sizing:border-box -->
                             <div
                                 ref="divBar"
-                                :style="`position:${useOverlayPosition}; top:0px; ${isAtLeft?'left':'right'}:${useDrawerWidthTrans-useDrawerBarWidth/2}px; width:${useDrawerBarWidth}px; height:100%; border-left:${drawerBarBorderSize}px solid ${useDrawerBarBorderColor}; border-right:${drawerBarBorderSize}px solid ${useDrawerBarBorderColor}; box-sizing:border-box; opacity:${showOverlay5DragDrawerBar?1:0}; cursor:col-resize; user-select:none;`"
+                                :style="`position:${useAniPosition}; top:0px; ${isAtLeft?'left':'right'}:${useDrawerWidthTrans-useDrawerBarWidth/2}px; width:${useDrawerBarWidth}px; height:100%; border-left:${drawerBarBorderSize}px solid ${useDrawerBarBorderColor}; border-right:${drawerBarBorderSize}px solid ${useDrawerBarBorderColor}; box-sizing:border-box; opacity:${showAni5DragDrawerBar?1:0}; cursor:col-resize; user-select:none;`"
                                 v-show="valueTrans && dragDrawerWidth"
                             >
                                 <div :style="`width:${useDrawerBarSize}px; height:100%; background:${useDrawerBarColor};`"></div>
@@ -239,6 +240,8 @@ export default {
 
             das: null,
 
+            state: 'hidden', //hidden, hiding, opened, opening
+
             valueTrans: false,
 
             dragging: false,
@@ -246,24 +249,26 @@ export default {
             drawerWidthTrans: 200,
             afloatTrans: false,
 
-            timerOverlay1Basic: null,
-            showOverlay1Basic: false,
-            effOverlay1Basic: false,
+            timerAni1Basic: null,
+            showAni1Basic: false,
+            effAni1Basic: false,
 
-            timerOverlay2Detect: null,
-            showOverlay2Detect: false,
-            // effOverlay2Detect: false,
+            timerAni2Detect: null,
+            showAni2Detect: false,
+            // effAni2Detect: false,
 
-            timerOverlay3Shadow: null,
-            showOverlay3Shadow: false,
-            // effOverlay3Shadow: false,
+            timerAni3Shadow: null,
+            showAni3Shadow: false,
+            // effAni3Shadow: false,
 
-            timerOverlay4Translate: null,
-            // showOverlay4Translate: false,
-            effOverlay4Translate: false,
+            timerAni4Translate: null,
+            // showAni4Translate: false,
+            effAni4Translate: false,
 
-            timerOverlay5DragDrawerBar: null,
-            showOverlay5DragDrawerBar: false,
+            timerAni5DragDrawerBar: null,
+            showAni5DragDrawerBar: false,
+
+            timerAniStateSettle: null,
 
         }
     },
@@ -397,26 +402,26 @@ export default {
             return i
         },
 
-        useOverlayColor: function() {
+        useAniColor: function() {
             if (!this.afloatTrans) {
                 return 'transparent'
             }
             return convertColor(this.overlayColor)
         },
 
-        useOverlayPosition: function() {
+        useAniPosition: function() {
             return this.afloatByFix ? 'fixed' : 'absolute'
         },
 
-        useOverlayOpacity: function() {
+        useAniOpacity: function() {
             if (!this.afloatTrans) {
                 return 0
             }
-            return this.effOverlay1Basic ? this.overlayOpacity : 0
+            return this.effAni1Basic ? this.overlayOpacity : 0
         },
 
         useDrawerTranslateX: function() {
-            if (this.effOverlay4Translate) {
+            if (this.effAni4Translate) {
                 return 0
             }
             let s0 = this.isAtLeft ? -100 : 100
@@ -438,7 +443,7 @@ export default {
         },
 
         useDrawerClassShadow: function() {
-            return this.afloatTrans && this.showOverlay3Shadow ? 'bs' : ''
+            return this.afloatTrans && this.showAni3Shadow ? 'bs' : ''
         },
 
         useDrawerBarWidth: function() {
@@ -604,11 +609,12 @@ export default {
             let vo = this
 
             //clearTimeout
-            clearTimeout(vo.timerOverlay1Basic)
-            clearTimeout(vo.timerOverlay2Detect)
-            clearTimeout(vo.timerOverlay3Shadow)
-            clearTimeout(vo.timerOverlay4Translate)
-            clearTimeout(vo.timerOverlay5DragDrawerBar)
+            clearTimeout(vo.timerAni1Basic)
+            clearTimeout(vo.timerAni2Detect)
+            clearTimeout(vo.timerAni3Shadow)
+            clearTimeout(vo.timerAni4Translate)
+            clearTimeout(vo.timerAni5DragDrawerBar)
+            clearTimeout(vo.timerAniStateSettle)
 
             let sec
 
@@ -616,71 +622,85 @@ export default {
             if (value) {
                 //顯示
 
-                // vo.fsmShowOverlay.showOverlay()
-                // vo.fsmShowStateOverlay.showOverlay()
+                // vo.fsmShowAni.showAni()
+                // vo.fsmShowStateAni.showAni()
                 sec = 20
 
-                // showOverlay1Basic: false,
-                // effOverlay1Basic: false,
-                vo.showOverlay1Basic = true
-                vo.timerOverlay1Basic = setTimeout(() => {
-                    vo.effOverlay1Basic = true
+                //state
+                vo.state = 'opening'
+
+                // showAni1Basic: false,
+                // effAni1Basic: false,
+                vo.showAni1Basic = true
+                vo.timerAni1Basic = setTimeout(() => {
+                    vo.effAni1Basic = true
                 }, sec)
 
-                // showOverlay2Detect: false,
-                // effOverlay2Detect: false,
-                vo.showOverlay2Detect = true
+                // showAni2Detect: false,
+                // effAni2Detect: false,
+                vo.showAni2Detect = true
 
-                // showOverlay3Shadow: false,
-                // effOverlay3Shadow: false,
-                vo.showOverlay3Shadow = true
+                // showAni3Shadow: false,
+                // effAni3Shadow: false,
+                vo.showAni3Shadow = true
 
-                // showOverlay4Translate: false,
-                // effOverlay4Translate: false,
-                // vo.showOverlay4Translate = true
-                vo.timerOverlay4Translate = setTimeout(() => {
-                    vo.effOverlay4Translate = true
+                // showAni4Translate: false,
+                // effAni4Translate: false,
+                // vo.showAni4Translate = true
+                vo.timerAni4Translate = setTimeout(() => {
+                    vo.effAni4Translate = true
                 }, sec)
 
-                vo.timerOverlay5DragDrawerBar = setTimeout(() => {
-                    vo.showOverlay5DragDrawerBar = true
+                vo.timerAni5DragDrawerBar = setTimeout(() => {
+                    vo.showAni5DragDrawerBar = true
                 }, 300)
+
+                vo.timerAniStateSettle = setTimeout(() => {
+                    vo.state = 'opened'
+                }, 350) //對齊過場: translate延遲sec(20ms)後跑transition(0.3s), 落定約320ms, 留少量buffer
 
             }
             else {
                 //隱藏
 
-                // vo.fsmShowOverlay.hideOverlay()
-                // vo.fsmShowStateOverlay.hideOverlay()
+                // vo.fsmShowAni.hideAni()
+                // vo.fsmShowStateAni.hideAni()
                 sec = 300
 
-                // showOverlay1Basic: false,
-                // effOverlay1Basic: false,
-                vo.effOverlay1Basic = false
-                vo.timerOverlay1Basic = setTimeout(() => {
-                    vo.showOverlay1Basic = false
+                //state
+                vo.state = 'hiding'
+
+                // showAni1Basic: false,
+                // effAni1Basic: false,
+                vo.effAni1Basic = false
+                vo.timerAni1Basic = setTimeout(() => {
+                    vo.showAni1Basic = false
                 }, sec)
 
-                // showOverlay2Detect: false,
-                // effOverlay2Detect: false,
-                vo.timerOverlay2Detect = setTimeout(() => {
-                    vo.showOverlay2Detect = false
+                // showAni2Detect: false,
+                // effAni2Detect: false,
+                vo.timerAni2Detect = setTimeout(() => {
+                    vo.showAni2Detect = false
                 }, sec)
 
-                // showOverlay3Shadow: false,
-                // effOverlay3Shadow: false,
-                vo.timerOverlay3Shadow = setTimeout(() => {
-                    vo.showOverlay3Shadow = false
+                // showAni3Shadow: false,
+                // effAni3Shadow: false,
+                vo.timerAni3Shadow = setTimeout(() => {
+                    vo.showAni3Shadow = false
                 }, sec / 2) //提前隱藏陰影
 
-                // showOverlay4Translate: false,
-                // effOverlay4Translate: false,
-                vo.effOverlay4Translate = false
-                // vo.timerOverlay4Translate = setTimeout(() => {
-                //     vo.showOverlay4Translate = false
+                // showAni4Translate: false,
+                // effAni4Translate: false,
+                vo.effAni4Translate = false
+                // vo.timerAni4Translate = setTimeout(() => {
+                //     vo.showAni4Translate = false
                 // }, sec)
 
-                vo.showOverlay5DragDrawerBar = false
+                vo.showAni5DragDrawerBar = false
+
+                vo.timerAniStateSettle = setTimeout(() => {
+                    vo.state = 'hidden'
+                }, 350) //對齊過場: translate立刻跑transition(0.3s), 落定約300ms, 留少量buffer
 
             }
 
