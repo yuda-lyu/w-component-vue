@@ -1,6 +1,5 @@
-
-import domIsVisible from 'wsemi/src/domIsVisible.mjs'
 import genID from 'wsemi/src/genID.mjs'
+import domIsVisible from 'wsemi/src/domIsVisible.mjs'
 
 
 function domVisible() {

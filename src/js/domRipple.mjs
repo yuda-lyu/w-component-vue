@@ -4,7 +4,7 @@ import isnum from 'wsemi/src/isnum.mjs'
 import iseobj from 'wsemi/src/iseobj.mjs'
 import cdbl from 'wsemi/src/cdbl.mjs'
 import genID from 'wsemi/src/genID.mjs'
-import rp from 'wsemi/src/domRipple.mjs'
+import _domRipple from 'wsemi/src/domRipple.mjs'
 import convertColor from './convertColor.mjs'
 
 
@@ -78,7 +78,7 @@ function domRipple(opt = {}) {
             // console.log('binding.value', binding.value)
 
             //domRipple
-            rp(e.currentTarget, e, { color, timeDuration })
+            _domRipple(e.currentTarget, e, { color, timeDuration })
 
         }
 

@@ -68,6 +68,8 @@
                         ref="divDrawer"
                         :class="`ts ${useDrawerClassShadow}`"
                         :style="`${useNoTransStyle} width:${useDrawerWidthTrans}px; height:100%; transform:translateX(${useDrawerTranslateX}%);`"
+                        v-domstable
+                        @domstable="getStableDrawer"
                     >
 
                         <div
@@ -119,13 +121,16 @@
 <script>
 import get from 'lodash-es/get.js'
 import isNumber from 'lodash-es/isNumber.js'
+import genID from 'wsemi/src/genID.mjs'
 import isnum from 'wsemi/src/isnum.mjs'
 import isfun from 'wsemi/src/isfun.mjs'
 import cdbl from 'wsemi/src/cdbl.mjs'
 import domIsClientXYIn from 'wsemi/src/domIsClientXYIn.mjs'
 import domGetWindowSize from 'wsemi/src/domGetWindowSize.mjs'
 import domDragBarAndScroll from 'wsemi/src/domDragBarAndScroll.mjs'
+import waitFun from 'wsemi/src/waitFun.mjs'
 import domResize from '../js/domResize.mjs'
+import domStable from '../js/domStable.mjs'
 import convertColor from '../js/convertColor.mjs'
 
 
@@ -153,6 +158,7 @@ import convertColor from '../js/convertColor.mjs'
 export default {
     directives: {
         domresize: domResize(),
+        domstable: domStable(),
     },
     props: {
         value: {
@@ -249,6 +255,8 @@ export default {
             drawerWidthTrans: 200,
             afloatTrans: false,
 
+            drawerStable: true,
+
             timerAni1Basic: null,
             showAni1Basic: false,
             effAni1Basic: false,
@@ -268,7 +276,8 @@ export default {
             timerAni5DragDrawerBar: null,
             showAni5DragDrawerBar: false,
 
-            timerAniStateSettle: null,
+            timerAni6State: null,
+            tagStateNow: '',
 
         }
     },
@@ -614,7 +623,14 @@ export default {
             clearTimeout(vo.timerAni3Shadow)
             clearTimeout(vo.timerAni4Translate)
             clearTimeout(vo.timerAni5DragDrawerBar)
-            clearTimeout(vo.timerAniStateSettle)
+            clearTimeout(vo.timerAni6State)
+
+            //切換即標記為未穩定, 待divDrawer(及子樹)動畫真正結束(directive偵測)後才翻true; 避免waitFun讀到殘留true而過早落定(不位移時由waitFun逾時.catch強制落定兜底, 不會卡死)
+            vo.drawerStable = false
+
+            //此次切換的tag(genID唯一值), 供下方延遲落定的waitFun回呼比對, 避免快速切換時舊的waitFun誤落定
+            let tagStateNew = genID()
+            vo.tagStateNow = tagStateNew
 
             let sec
 
@@ -651,13 +667,23 @@ export default {
                     vo.effAni4Translate = true
                 }, sec)
 
+                // showAni5DragDrawerBar: false,
+                // vo.showAni5DragDrawerBar = true
                 vo.timerAni5DragDrawerBar = setTimeout(() => {
                     vo.showAni5DragDrawerBar = true
                 }, 300)
 
-                vo.timerAniStateSettle = setTimeout(() => {
-                    vo.state = 'opened'
-                }, 350) //對齊過場: translate延遲sec(20ms)後跑transition(0.3s), 落定約320ms, 留少量buffer
+                //延遲過場時長(300ms)後以waitFun輪詢drawerStable(attemptNum=6 timeInterval=50, 約300ms): 偵測到穩定即落定opened; 逾時.catch強制落定(涵蓋不位移等directive不emit情境, 避免卡死); tagStateNew比對避免快速切換時舊回呼誤落定
+                vo.timerAni6State = setTimeout(() => {
+                    let settle = () => {
+                        if (vo.tagStateNow === tagStateNew) {
+                            vo.state = 'opened'
+                        }
+                    }
+                    waitFun(() => vo.drawerStable === true, { attemptNum: 6, timeInterval: 50 })
+                        .then(settle)
+                        .catch(settle)
+                }, 300)
 
             }
             else {
@@ -696,13 +722,32 @@ export default {
                 //     vo.showAni4Translate = false
                 // }, sec)
 
+                // showAni5DragDrawerBar: false,
                 vo.showAni5DragDrawerBar = false
 
-                vo.timerAniStateSettle = setTimeout(() => {
-                    vo.state = 'hidden'
-                }, 350) //對齊過場: translate立刻跑transition(0.3s), 落定約300ms, 留少量buffer
+                //延遲過場時長(300ms)後以waitFun輪詢drawerStable(attemptNum=6 timeInterval=50, 約300ms): 偵測到穩定即落定hidden; 逾時.catch強制落定(涵蓋不位移等directive不emit情境, 避免卡死); tagStateNew比對避免快速切換時舊回呼誤落定
+                vo.timerAni6State = setTimeout(() => {
+                    let settle = () => {
+                        if (vo.tagStateNow === tagStateNew) {
+                            vo.state = 'hidden'
+                        }
+                    }
+                    waitFun(() => vo.drawerStable === true, { attemptNum: 6, timeInterval: 50 })
+                        .then(settle)
+                        .catch(settle)
+                }, 300)
 
             }
+
+        },
+
+        getStableDrawer: function(b) {
+            // console.log('methods getStableDrawer', b)
+
+            let vo = this
+
+            //更新drawerStable: divDrawer(及子樹)動畫是否已穩定, 由v-domstable(domStable directive)偵測後回呼; 落定state改由toggleValue內的waitFun輪詢此值處理
+            vo.drawerStable = b
 
         },
 

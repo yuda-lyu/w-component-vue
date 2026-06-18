@@ -1,6 +1,5 @@
-
-import domDetect from 'wsemi/src/domDetect.mjs'
 import genID from 'wsemi/src/genID.mjs'
+import domDetect from 'wsemi/src/domDetect.mjs'
 
 
 function domResize() {
