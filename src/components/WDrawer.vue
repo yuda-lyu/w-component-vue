@@ -612,10 +612,15 @@ export default {
 
         },
 
-        toggleValue: function (value) {
+        toggleValue: async function (value) {
             // console.log('methods toggleValue', value)
 
             let vo = this
+
+            //wait $el
+            await waitFun(() => {
+                return vo.$el !== undefined
+            }, { attemptNum: 4000, timeInterval: 50 })
 
             //clearTimeout
             clearTimeout(vo.timerAni1Basic)
@@ -673,14 +678,14 @@ export default {
                     vo.showAni5DragDrawerBar = true
                 }, 300)
 
-                //延遲過場時長(300ms)後以waitFun輪詢drawerStable(attemptNum=6 timeInterval=50, 約300ms): 偵測到穩定即落定opened; 逾時.catch強制落定(涵蓋不位移等directive不emit情境, 避免卡死); tagStateNew比對避免快速切換時舊回呼誤落定
+                //以waitFun輪詢drawerStable與限定最長時長
                 vo.timerAni6State = setTimeout(() => {
                     let settle = () => {
                         if (vo.tagStateNow === tagStateNew) {
                             vo.state = 'opened'
                         }
                     }
-                    waitFun(() => vo.drawerStable === true, { attemptNum: 6, timeInterval: 50 })
+                    waitFun(() => vo.drawerStable === true, { attemptNum: 30 * 20, timeInterval: 50 })
                         .then(settle)
                         .catch(settle)
                 }, 300)
@@ -725,14 +730,14 @@ export default {
                 // showAni5DragDrawerBar: false,
                 vo.showAni5DragDrawerBar = false
 
-                //延遲過場時長(300ms)後以waitFun輪詢drawerStable(attemptNum=6 timeInterval=50, 約300ms): 偵測到穩定即落定hidden; 逾時.catch強制落定(涵蓋不位移等directive不emit情境, 避免卡死); tagStateNew比對避免快速切換時舊回呼誤落定
+                //以waitFun輪詢drawerStable與限定最長時長
                 vo.timerAni6State = setTimeout(() => {
                     let settle = () => {
                         if (vo.tagStateNow === tagStateNew) {
                             vo.state = 'hidden'
                         }
                     }
-                    waitFun(() => vo.drawerStable === true, { attemptNum: 6, timeInterval: 50 })
+                    waitFun(() => vo.drawerStable === true, { attemptNum: 30 * 20, timeInterval: 50 })
                         .then(settle)
                         .catch(settle)
                 }, 300)
