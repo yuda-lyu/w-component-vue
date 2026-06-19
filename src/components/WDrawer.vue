@@ -620,7 +620,7 @@ export default {
             //wait $el
             await waitFun(() => {
                 return vo.$el !== undefined
-            }, { attemptNum: 4000, timeInterval: 50 })
+            }, { attemptNum: 800, timeInterval: 250 })
 
             //clearTimeout
             clearTimeout(vo.timerAni1Basic)
@@ -685,7 +685,7 @@ export default {
                             vo.state = 'opened'
                         }
                     }
-                    waitFun(() => vo.drawerStable === true, { attemptNum: 30 * 20, timeInterval: 50 })
+                    waitFun(() => vo.drawerStable === true, { attemptNum: 800, timeInterval: 250 })
                         .then(settle)
                         .catch(settle)
                 }, 300)
@@ -737,7 +737,7 @@ export default {
                             vo.state = 'hidden'
                         }
                     }
-                    waitFun(() => vo.drawerStable === true, { attemptNum: 30 * 20, timeInterval: 50 })
+                    waitFun(() => vo.drawerStable === true, { attemptNum: 800, timeInterval: 250 })
                         .then(settle)
                         .catch(settle)
                 }, 300)
