@@ -5,10 +5,31 @@
         <div class="head1"><span style="cursor:pointer;" title="open for copy link to view component" onclick="window.open('//yuda-lyu.github.io/w-component-vue/examples/app.html?cmp='+this.innerText,'_blank')">w-drawer</span></div>
 
 
-        <div>
+        <div style="width:100%; overflow-x:auto;">
+            <WListHorizontal
+                :items="filterCaseCats"
+                :itemActive.sync="filterCaseCatActive"
+                :itemBackgroundColor="'transparent'"
+                :itemBackgroundColorHover="'#eee'"
+                :itemBackgroundColorActive="'#eee'"
+                :keyText="'name'"
+                :paddingStyle="{v:12,h:20}"
+                @update:itemActive="(v)=>{ filterCaseCat = v.name }"
+            >
+                <template v-slot:item="props">
+                    <div style="">
+                        {{props.item.name}}
+                    </div>
+                </template>
+            </WListHorizontal>
+            <div style="height:1px; background:#ddd;"></div>
+        </div>
 
 
-            <div class="bk">
+        <div style="padding-top:30px;">
+
+
+            <div class="bk" v-if="filterCaseCat==='basic'">
                 <demolink
                     :kbname="'w-drawer'"
                     :casename="'default'"
@@ -43,7 +64,7 @@
             </div>
 
 
-            <div class="bk">
+            <div class="bk" v-if="filterCaseCat==='basic'">
                 <demolink
                     :kbname="'w-drawer'"
                     :casename="'drawerWidth'"
@@ -79,7 +100,7 @@
             </div>
 
 
-            <div class="bk">
+            <div class="bk" v-if="filterCaseCat==='drag'">
                 <demolink
                     :kbname="'w-drawer'"
                     :casename="'dragDrawerWidth & drawerWidth(sync)'"
@@ -125,7 +146,7 @@
             </div>
 
 
-            <div class="bk">
+            <div class="bk" v-if="filterCaseCat==='drag'">
                 <demolink
                     :kbname="'w-drawer'"
                     :casename="'dragDrawerWidth & drawerWidthMin & drawerWidthMax'"
@@ -165,7 +186,7 @@
             </div>
 
 
-            <div class="bk">
+            <div class="bk" v-if="filterCaseCat==='drag'">
                 <demolink
                     :kbname="'w-drawer'"
                     :casename="'dragDrawerWidth & drawerBarColor & drawerBarSize'"
@@ -205,7 +226,7 @@
             </div>
 
 
-            <div class="bk">
+            <div class="bk" v-if="filterCaseCat==='drag'">
                 <demolink
                     :kbname="'w-drawer'"
                     :casename="'dragDrawerWidth & drawerBarBorderColor & drawerBarBorderSize'"
@@ -245,7 +266,7 @@
             </div>
 
 
-            <div class="bk">
+            <div class="bk" v-if="filterCaseCat==='drag'">
                 <demolink
                     :kbname="'w-drawer'"
                     :casename="'multiple & dragDrawerWidth & drawerWidthMin & drawerWidthMax'"
@@ -328,7 +349,7 @@
             </div>
 
 
-            <div class="bk">
+            <div class="bk" v-if="filterCaseCat==='mode'">
                 <demolink
                     :kbname="'w-drawer'"
                     :casename="'mode'"
@@ -364,7 +385,7 @@
             </div>
 
 
-            <div class="bk">
+            <div class="bk" v-if="filterCaseCat==='mode'">
                 <demolink
                     :kbname="'w-drawer'"
                     :casename="'mode & dragDrawerWidth'"
@@ -402,7 +423,7 @@
             </div>
 
 
-            <div class="bk">
+            <div class="bk" v-if="filterCaseCat==='afloat'">
                 <demolink
                     :kbname="'w-drawer'"
                     :casename="'afloat'"
@@ -439,7 +460,7 @@
             </div>
 
 
-            <div class="bk">
+            <div class="bk" v-if="filterCaseCat==='afloat'">
                 <demolink
                     :kbname="'w-drawer'"
                     :casename="'afloat & dragDrawerWidth'"
@@ -483,7 +504,7 @@
             </div>
 
 
-            <div class="bk">
+            <div class="bk" v-if="filterCaseCat==='afloat'">
                 <demolink
                     :kbname="'w-drawer'"
                     :casename="'afloat & dragDrawerWidth & drawerWidthMin & drawerWidthMax'"
@@ -523,7 +544,7 @@
             </div>
 
 
-            <div class="bk">
+            <div class="bk" v-if="filterCaseCat==='afloat'">
                 <demolink
                     :kbname="'w-drawer'"
                     :casename="'afloat & overlayOpacity'"
@@ -561,7 +582,7 @@
             </div>
 
 
-            <div class="bk">
+            <div class="bk" v-if="filterCaseCat==='afloat'">
                 <demolink
                     :kbname="'w-drawer'"
                     :casename="'afloat & mode'"
@@ -599,7 +620,7 @@
             </div>
 
 
-            <div class="bk">
+            <div class="bk" v-if="filterCaseCat==='afloat'">
                 <demolink
                     :kbname="'w-drawer'"
                     :casename="'afloat & mode & dragDrawerWidth'"
@@ -644,7 +665,7 @@
             </div>
 
 
-            <div class="bk">
+            <div class="bk" v-if="filterCaseCat==='afloat'">
                 <demolink
                     :kbname="'w-drawer'"
                     :casename="'afloat & mode & dragDrawerWidth & drawerWidthMin & drawerWidthMax'"
@@ -685,7 +706,7 @@
             </div>
 
 
-            <div class="bk">
+            <div class="bk" v-if="filterCaseCat==='afloatByFix'">
                 <demolink
                     :kbname="'w-drawer'"
                     :casename="'afloat & afloatByFix'"
@@ -723,7 +744,7 @@
             </div>
 
 
-            <div class="bk">
+            <div class="bk" v-if="filterCaseCat==='afloatByFix'">
                 <demolink
                     :kbname="'w-drawer'"
                     :casename="'afloat & afloatByFix & dragDrawerWidth'"
@@ -762,7 +783,7 @@
             </div>
 
 
-            <div class="bk">
+            <div class="bk" v-if="filterCaseCat==='afloatByFix'">
                 <demolink
                     :kbname="'w-drawer'"
                     :casename="'afloat & afloatByFix & mode'"
@@ -801,7 +822,7 @@
             </div>
 
 
-            <div class="bk">
+            <div class="bk" v-if="filterCaseCat==='afloatByFix'">
                 <demolink
                     :kbname="'w-drawer'"
                     :casename="'afloat & afloatByFix & mode & dragDrawerWidth'"
@@ -841,7 +862,7 @@
             </div>
 
 
-            <div class="bk" style="display:block;">
+            <div class="bk" style="display:block;" v-if="filterCaseCat==='autoSwitch'">
                 <demolink
                     :kbname="'w-drawer'"
                     :casename="'autoSwitchToHide & switchWidth'"
@@ -885,6 +906,7 @@
                         </template>
                     </w-panel-divide-horizontal>
 
+                    <!-- 拖曳抽屜寬度越過此線測試效果 -->
                     <div :style="`position:absolute; top:0; left:600px; height:400px; border-right:1px dashed #62f;`"></div>
 
                 </div>
@@ -892,7 +914,7 @@
             </div>
 
 
-            <div class="bk" style="display:block;">
+            <div class="bk" style="display:block;" v-if="filterCaseCat==='autoSwitch'">
                 <demolink
                     :kbname="'w-drawer'"
                     :casename="'autoSwitchToShow & switchWidth'"
@@ -936,6 +958,7 @@
                         </template>
                     </w-panel-divide-horizontal>
 
+                    <!-- 拖曳抽屜寬度越過此線測試效果 -->
                     <div :style="`position:absolute; top:0; left:600px; height:400px; border-right:1px dashed #62f;`"></div>
 
                 </div>
@@ -943,7 +966,7 @@
             </div>
 
 
-            <div class="bk" style="display:block;">
+            <div class="bk" style="display:block;" v-if="filterCaseCat==='autoSwitch'">
                 <demolink
                     :kbname="'w-drawer'"
                     :casename="'autoSwitchToFloat & switchWidth & afloat'"
@@ -989,6 +1012,7 @@
                         </template>
                     </w-panel-divide-horizontal>
 
+                    <!-- 拖曳抽屜寬度越過此線測試效果 -->
                     <div :style="`position:absolute; top:0; left:600px; height:400px; border-right:1px dashed #62f;`"></div>
 
                 </div>
@@ -1004,6 +1028,7 @@
 
 <script>
 import demolink from './components/demolink.vue'
+import WListHorizontal from './components/WListHorizontal.vue'
 import WListVertical from './components/WListVertical.vue'
 import WDrawer from './components/WDrawer.vue'
 import WPanelDivideHorizontal from './components/WPanelDivideHorizontal.vue'
@@ -1013,6 +1038,7 @@ import WButtonChip from './components/WButtonChip.vue'
 export default {
     components: {
         demolink,
+        WListHorizontal,
         WListVertical,
         WDrawer,
         WPanelDivideHorizontal,
@@ -1022,6 +1048,12 @@ export default {
     },
     data: function() {
         return {
+            'filterCaseCat': 'basic', //當前選中分類, 預設第一類
+            'filterCaseCatActive': { name: 'basic' }, //WListHorizontal 的 itemActive
+            'filterCaseCats': [
+                { name: 'basic' }, { name: 'drag' }, { name: 'mode' },
+                { name: 'afloat' }, { name: 'afloatByFix' }, { name: 'autoSwitch' },
+            ],
             'WDrawer': {
                 'drawerWidth': 300,
                 'title': 'Article Title',

@@ -1,6 +1,6 @@
 {
   "name": "w-component-vue",
-  "version": "2.4.64",
+  "version": "2.4.65",
   "main": "dist/w-component-vue.umd.js",
   "dependencies": {
     "@mdi/js": "^7.4.47",
@@ -19,9 +19,11 @@
     "eslint-plugin-n": "^16.6.2",
     "eslint-plugin-promise": "^6.1.1",
     "eslint-plugin-vue": "^9.10.0",
+    "pixelmatch": "^7.2.0",
+    "pngjs": "^7.0.0",
     "vue": "^2.6.14",
-    "w-screenctl": "^1.0.3",
-    "w-package-tools": "^1.1.9"
+    "w-package-tools": "^1.1.9",
+    "w-screenctl": "^1.0.3"
   },
   "scripts": {
     "serve": "vue-cli-service serve",

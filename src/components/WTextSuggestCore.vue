@@ -632,17 +632,6 @@ export default {
             let showPanel = get(obj, 'showPanel', null)
             let focused = get(obj, 'focused', null)
 
-            // //因重新顯示時會因沒觸發高度或捲軸變化, 需自行調用WDynamicList的refreshAndTriggerEvent重新渲染
-            // if (showPanel) {
-
-            //     //t
-            //     let t = get(vo, '$refs.wds.refreshAndTriggerEvent', null)
-            //     if (t) {
-            //         t('showPanel')
-            //     }
-
-            // }
-
             //setTimeout, 因多組件時update:showPanel於隱藏時可能出現popup先消失, 進而導致triggerEvent所觸發click事件被吃掉無法觸發, 且triggerEvent已用nextTick且triggerAll再用nextTick包過亦無法保證一定能延後觸發(讓click先觸發完), 故使用setTimeout強制延後觸發
             setTimeout(() => {
 

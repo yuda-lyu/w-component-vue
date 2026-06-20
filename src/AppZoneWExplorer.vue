@@ -5,10 +5,31 @@
         <div class="head1"><span style="cursor:pointer;" title="open for copy link to view component" onclick="window.open('//yuda-lyu.github.io/w-component-vue/examples/app.html?cmp='+this.innerText,'_blank')">w-explorer</span></div>
 
 
-        <div>
+        <div style="width:100%; overflow-x:auto;">
+            <WListHorizontal
+                :items="filterCaseCats"
+                :itemActive.sync="filterCaseCatActive"
+                :itemBackgroundColor="'transparent'"
+                :itemBackgroundColorHover="'#eee'"
+                :itemBackgroundColorActive="'#eee'"
+                :keyText="'name'"
+                :paddingStyle="{v:12,h:20}"
+                @update:itemActive="(v)=>{ filterCaseCat = v.name }"
+            >
+                <template v-slot:item="props">
+                    <div style="">
+                        {{props.item.name}}
+                    </div>
+                </template>
+            </WListHorizontal>
+            <div style="height:1px; background:#ddd;"></div>
+        </div>
 
 
-            <div class="bk">
+        <div style="padding-top:30px;">
+
+
+            <div class="bk" v-if="filterCaseCat==='basic'">
                 <demolink
                     :kbname="'w-explorer'"
                     :casename="'default'"
@@ -23,7 +44,7 @@
             </div>
 
 
-            <div class="bk">
+            <div class="bk" v-if="filterCaseCat==='basic'">
                 <demolink
                     :kbname="'w-explorer'"
                     :casename="'treeWidth'"
@@ -41,7 +62,7 @@
             </div>
 
 
-            <div class="bk">
+            <div class="bk" v-if="filterCaseCat==='basic'">
                 <demolink
                     :kbname="'w-explorer'"
                     :casename="'treeWidthMin & treeWidthMax'"
@@ -58,7 +79,7 @@
             </div>
 
 
-            <div class="bk">
+            <div class="bk" v-if="filterCaseCat==='basic'">
                 <demolink
                     :kbname="'w-explorer'"
                     :casename="'treeBackgroundColor'"
@@ -74,7 +95,7 @@
             </div>
 
 
-            <div class="bk">
+            <div class="bk" v-if="filterCaseCat==='basic'">
                 <demolink
                     :kbname="'w-explorer'"
                     :casename="'showTree'"
@@ -94,7 +115,7 @@
             </div>
 
 
-            <div class="bk">
+            <div class="bk" v-if="filterCaseCat==='basic'">
                 <demolink
                     :kbname="'w-explorer'"
                     :casename="'treeAfloat'"
@@ -110,7 +131,7 @@
             </div>
 
 
-            <div class="bk">
+            <div class="bk" v-if="filterCaseCat==='basic'">
                 <demolink
                     :kbname="'w-explorer'"
                     :casename="'treeDefaultDisplayLevel'"
@@ -126,7 +147,7 @@
             </div>
 
 
-            <div class="bk">
+            <div class="bk" v-if="filterCaseCat==='basic'">
                 <demolink
                     :kbname="'w-explorer'"
                     :casename="'treeDefItemHeight & listDefItemHeight'"
@@ -143,7 +164,7 @@
             </div>
 
 
-            <div class="bk">
+            <div class="bk" v-if="filterCaseCat==='basic'">
                 <demolink
                     :kbname="'w-explorer'"
                     :casename="'treePaddingStyle'"
@@ -159,7 +180,7 @@
             </div>
 
 
-            <div class="bk">
+            <div class="bk" v-if="filterCaseCat==='basic'">
                 <demolink
                     :kbname="'w-explorer'"
                     :casename="'treeIndent'"
@@ -175,7 +196,7 @@
             </div>
 
 
-            <div class="bk">
+            <div class="bk" v-if="filterCaseCat==='tree'">
                 <demolink
                     :kbname="'w-explorer'"
                     :casename="'treeFolderIcon & treeFolderIconSize'"
@@ -192,7 +213,7 @@
             </div>
 
 
-            <div class="bk">
+            <div class="bk" v-if="filterCaseCat==='tree'">
                 <demolink
                     :kbname="'w-explorer'"
                     :casename="'treeItemTextFontSize'"
@@ -208,7 +229,7 @@
             </div>
 
 
-            <div class="bk">
+            <div class="bk" v-if="filterCaseCat==='tree'">
                 <demolink
                     :kbname="'w-explorer'"
                     :casename="'treeItemTextColor & treeItemTextColorHover & treeItemTextColorActive'"
@@ -226,7 +247,7 @@
             </div>
 
 
-            <div class="bk">
+            <div class="bk" v-if="filterCaseCat==='tree'">
                 <demolink
                     :kbname="'w-explorer'"
                     :casename="'treeFolderIconColor & treeFolderIconColorHover & treeFolderIconColorActive'"
@@ -244,7 +265,7 @@
             </div>
 
 
-            <div class="bk">
+            <div class="bk" v-if="filterCaseCat==='tree'">
                 <demolink
                     :kbname="'w-explorer'"
                     :casename="'treeItemBackgroundColor & treeItemBackgroundColorHover & treeItemBackgroundColorActive'"
@@ -262,7 +283,7 @@
             </div>
 
 
-            <div class="bk">
+            <div class="bk" v-if="filterCaseCat==='tree'">
                 <demolink
                     :kbname="'w-explorer'"
                     :casename="'treeItemRippleColor'"
@@ -278,7 +299,7 @@
             </div>
 
 
-            <div class="bk">
+            <div class="bk" v-if="filterCaseCat==='tree'">
                 <demolink
                     :kbname="'w-explorer'"
                     :casename="'bindRoot'"
@@ -294,7 +315,7 @@
             </div>
 
 
-            <div class="bk">
+            <div class="bk" v-if="filterCaseCat==='tree'">
                 <demolink
                     :kbname="'w-explorer'"
                     :casename="'treeToggleIconSize'"
@@ -310,7 +331,7 @@
             </div>
 
 
-            <div class="bk">
+            <div class="bk" v-if="filterCaseCat==='tree'">
                 <demolink
                     :kbname="'w-explorer'"
                     :casename="'treeToggleIconColor & treeToggleIconBackgroundColor & treeToggleIconBackgroundColorHover'"
@@ -328,7 +349,7 @@
             </div>
 
 
-            <div class="bk">
+            <div class="bk" v-if="filterCaseCat==='path'">
                 <demolink
                     :kbname="'w-explorer'"
                     :casename="'pathBackgroundColor'"
@@ -344,7 +365,7 @@
             </div>
 
 
-            <div class="bk">
+            <div class="bk" v-if="filterCaseCat==='path'">
                 <demolink
                     :kbname="'w-explorer'"
                     :casename="'pathSepIcon & pathSepIconColor & pathSepIconSize'"
@@ -362,7 +383,7 @@
             </div>
 
 
-            <div class="bk">
+            <div class="bk" v-if="filterCaseCat==='path'">
                 <demolink
                     :kbname="'w-explorer'"
                     :casename="'pathBtnTextFontSize'"
@@ -378,7 +399,7 @@
             </div>
 
 
-            <div class="bk">
+            <div class="bk" v-if="filterCaseCat==='path'">
                 <demolink
                     :kbname="'w-explorer'"
                     :casename="'pathBtnTextColor & pathBtnTextColorHover'"
@@ -395,7 +416,7 @@
             </div>
 
 
-            <div class="bk">
+            <div class="bk" v-if="filterCaseCat==='path'">
                 <demolink
                     :kbname="'w-explorer'"
                     :casename="'pathBtnBackgroundColor & pathBtnBackgroundColorHover'"
@@ -412,7 +433,7 @@
             </div>
 
 
-            <div class="bk">
+            <div class="bk" v-if="filterCaseCat==='btn'">
                 <demolink
                     :kbname="'w-explorer'"
                     :casename="'btnDisplayTreeIconShow & btnDisplayTreeIconHide & btnDisplayTreeIconSize'"
@@ -430,7 +451,7 @@
             </div>
 
 
-            <div class="bk">
+            <div class="bk" v-if="filterCaseCat==='btn'">
                 <demolink
                     :kbname="'w-explorer'"
                     :casename="'btnDisplayTreeIconColor & btnDisplayTreeIconColorHover & btnDisplayTreeIconColorFocus'"
@@ -448,7 +469,7 @@
             </div>
 
 
-            <div class="bk">
+            <div class="bk" v-if="filterCaseCat==='btn'">
                 <demolink
                     :kbname="'w-explorer'"
                     :casename="'btnDisplayTreeBackgroundColor & btnDisplayTreeBackgroundColorHover & btnDisplayTreeBackgroundColorFocus'"
@@ -466,7 +487,7 @@
             </div>
 
 
-            <div class="bk">
+            <div class="bk" v-if="filterCaseCat==='list'">
                 <demolink
                     :kbname="'w-explorer'"
                     :casename="'listPaddingStyle'"
@@ -482,7 +503,7 @@
             </div>
 
 
-            <div class="bk">
+            <div class="bk" v-if="filterCaseCat==='list'">
                 <demolink
                     :kbname="'w-explorer'"
                     :casename="'listBackgroundColor'"
@@ -498,7 +519,7 @@
             </div>
 
 
-            <div class="bk">
+            <div class="bk" v-if="filterCaseCat==='list'">
                 <demolink
                     :kbname="'w-explorer'"
                     :casename="'listFolderIcon & listFileIcon & listIconSize'"
@@ -516,7 +537,7 @@
             </div>
 
 
-            <div class="bk">
+            <div class="bk" v-if="filterCaseCat==='list'">
                 <demolink
                     :kbname="'w-explorer'"
                     :casename="'listItemTextFontSize'"
@@ -532,7 +553,7 @@
             </div>
 
 
-            <div class="bk">
+            <div class="bk" v-if="filterCaseCat==='list'">
                 <demolink
                     :kbname="'w-explorer'"
                     :casename="'listItemTextColor & listItemTextColorHover & listItemTextColorActive'"
@@ -550,7 +571,7 @@
             </div>
 
 
-            <div class="bk">
+            <div class="bk" v-if="filterCaseCat==='list'">
                 <demolink
                     :kbname="'w-explorer'"
                     :casename="'listItemIconColor & listItemIconColorHover & listItemIconColorActive'"
@@ -568,7 +589,7 @@
             </div>
 
 
-            <div class="bk">
+            <div class="bk" v-if="filterCaseCat==='list'">
                 <demolink
                     :kbname="'w-explorer'"
                     :casename="'listItemBackgroundColor & listItemBackgroundColorHover & listItemBackgroundColorActive'"
@@ -586,7 +607,7 @@
             </div>
 
 
-            <div class="bk">
+            <div class="bk" v-if="filterCaseCat==='list'">
                 <demolink
                     :kbname="'w-explorer'"
                     :casename="'listItemRippleColor'"
@@ -602,7 +623,7 @@
             </div>
 
 
-            <div class="bk">
+            <div class="bk" v-if="filterCaseCat==='behavior'">
                 <demolink
                     :kbname="'w-explorer'"
                     :casename="'defaultShowTreeFirst'"
@@ -618,7 +639,7 @@
             </div>
 
 
-            <div class="bk">
+            <div class="bk" v-if="filterCaseCat==='behavior'">
                 <demolink
                     :kbname="'w-explorer'"
                     :casename="'defaultShowTreeFirst & noSelectedText'"
@@ -635,7 +656,7 @@
             </div>
 
 
-            <div class="bk">
+            <div class="bk" v-if="filterCaseCat==='behavior'">
                 <demolink
                     :kbname="'w-explorer'"
                     :casename="'events'"
@@ -653,7 +674,7 @@
             </div>
 
 
-            <div class="bk">
+            <div class="bk" v-if="filterCaseCat==='behavior'">
                 <demolink
                     :kbname="'w-explorer'"
                     :casename="'small text'"
@@ -671,7 +692,7 @@
             </div>
 
 
-            <div class="bk">
+            <div class="bk" v-if="filterCaseCat==='behavior'">
                 <demolink
                     :kbname="'w-explorer'"
                     :casename="'treeDrawerBarSize & treeDrawerBarColor'"
@@ -688,7 +709,7 @@
             </div>
 
 
-            <div class="bk">
+            <div class="bk" v-if="filterCaseCat==='behavior'">
                 <demolink
                     :kbname="'w-explorer'"
                     :casename="'lineBetweenPathAndListWidth & lineBetweenPathAndListColor'"
@@ -705,7 +726,7 @@
             </div>
 
 
-            <div class="bk">
+            <div class="bk" v-if="filterCaseCat==='behavior'">
                 <demolink
                     :kbname="'w-explorer'"
                     :casename="'dark mode'"
@@ -775,7 +796,7 @@
             </div>
 
 
-            <div class="bk">
+            <div class="bk" v-if="filterCaseCat==='toggle'">
                 <demolink
                     :kbname="'w-explorer'"
                     :casename="'toggleTreeFoldersByFun'"
@@ -800,7 +821,7 @@
             </div>
 
 
-            <div class="bk">
+            <div class="bk" v-if="filterCaseCat==='toggle'">
                 <demolink
                     :kbname="'w-explorer'"
                     :casename="'toggleTreeFoldersAll'"
@@ -823,7 +844,7 @@
             </div>
 
 
-            <div class="bk">
+            <div class="bk" v-if="filterCaseCat==='toggle'">
                 <demolink
                     :kbname="'w-explorer'"
                     :casename="'triggerClickTreeFolderById'"
@@ -844,7 +865,7 @@
             </div>
 
 
-            <div class="bk">
+            <div class="bk" v-if="filterCaseCat==='toggle'">
                 <demolink
                     :kbname="'w-explorer'"
                     :casename="'triggerClickTreeFolderByFun'"
@@ -865,7 +886,7 @@
             </div>
 
 
-            <div class="bk">
+            <div class="bk" v-if="filterCaseCat==='toggle'">
                 <demolink
                     :kbname="'w-explorer'"
                     :casename="'funSortTree'"
@@ -886,7 +907,7 @@
             </div>
 
 
-            <div class="bk">
+            <div class="bk" v-if="filterCaseCat==='slot'">
                 <demolink
                     :kbname="'w-explorer'"
                     :casename="'slot folder-item'"
@@ -927,7 +948,7 @@
             </div>
 
 
-            <div class="bk">
+            <div class="bk" v-if="filterCaseCat==='slot'">
                 <demolink
                     :kbname="'w-explorer'"
                     :casename="'slot list-item-cover'"
@@ -980,7 +1001,7 @@
             </div>
 
 
-            <div class="bk">
+            <div class="bk" v-if="filterCaseCat==='slot'">
                 <demolink
                     :kbname="'w-explorer'"
                     :casename="'slot list-item & list-item-cover & list-head & list-foot'"
@@ -1131,7 +1152,7 @@
             </div>
 
 
-            <div class="bk">
+            <div class="bk" v-if="filterCaseCat==='slot'">
                 <demolink
                     :kbname="'w-explorer'"
                     :casename="'slot list-item-sub'"
@@ -1190,7 +1211,7 @@
             </div>
 
 
-            <div class="bk">
+            <div class="bk" v-if="filterCaseCat==='slot'">
                 <demolink
                     :kbname="'w-explorer'"
                     :casename="'slot list-item-text-left'"
@@ -1229,7 +1250,7 @@
             </div>
 
 
-            <div class="bk">
+            <div class="bk" v-if="filterCaseCat==='slot'">
                 <demolink
                     :kbname="'w-explorer'"
                     :casename="'slot list-item-text-right'"
@@ -1268,7 +1289,7 @@
             </div>
 
 
-            <div class="bk">
+            <div class="bk" v-if="filterCaseCat==='draggable'">
                 <demolink
                     :kbname="'w-explorer'"
                     :casename="'draggable'"
@@ -1288,7 +1309,7 @@
             </div>
 
 
-            <div class="bk">
+            <div class="bk" v-if="filterCaseCat==='draggable'">
                 <demolink
                     :kbname="'w-explorer'"
                     :casename="'draggable & dgPreviewOpacity & dgPreviewBorderWidth & dgBelongBackgroundColor'"
@@ -1312,7 +1333,7 @@
             </div>
 
 
-            <div class="bk">
+            <div class="bk" v-if="filterCaseCat==='draggable'">
                 <demolink
                     :kbname="'w-explorer'"
                     :casename="'draggable & dgInsertLineColor & dgInsertBackgroundColor & dgBelongBackgroundColor'"
@@ -1335,7 +1356,7 @@
             </div>
 
 
-            <div class="bk">
+            <div class="bk" v-if="filterCaseCat==='draggable'">
                 <demolink
                     :kbname="'w-explorer'"
                     :casename="'draggable & dgTextDisabled & dgTextDisabledColor & dgTextDisabledPaddingLeft & dgTextDisabledFontSize & dgTextDisabledBackgroundColor'"
@@ -1360,7 +1381,7 @@
             </div>
 
 
-            <div class="bk">
+            <div class="bk" v-if="filterCaseCat==='operatable'">
                 <demolink
                     :kbname="'w-explorer'"
                     :casename="'operatable'"
@@ -1380,7 +1401,7 @@
             </div>
 
 
-            <div class="bk">
+            <div class="bk" v-if="filterCaseCat==='operatable'">
                 <demolink
                     :kbname="'w-explorer'"
                     :casename="'operatable & operateBtnTooltip & operateItemTextForRename & perateItemTextForInsertChild & operateItemTextForDelete'"
@@ -1404,7 +1425,7 @@
             </div>
 
 
-            <div class="bk">
+            <div class="bk" v-if="filterCaseCat==='operatable'">
                 <demolink
                     :kbname="'w-explorer'"
                     :casename="'operatable & operatePanelWidth & operatePanelHeight & operateItemIconSize & operateItemPaddingStyle'"
@@ -1428,7 +1449,7 @@
             </div>
 
 
-            <div class="bk">
+            <div class="bk" v-if="filterCaseCat==='operatable'">
                 <demolink
                     :kbname="'w-explorer'"
                     :casename="'operatable & operateItemHeight & operateItemIconSize & operateItemPaddingStyle'"
@@ -1451,7 +1472,7 @@
             </div>
 
 
-            <div class="bk">
+            <div class="bk" v-if="filterCaseCat==='operatable'">
                 <demolink
                     :kbname="'w-explorer'"
                     :casename="'operatable & operateBtnBackgroundColor & operateBtnBackgroundColorHover & operateBtnBackgroundColorFocus'"
@@ -1474,7 +1495,7 @@
             </div>
 
 
-            <div class="bk">
+            <div class="bk" v-if="filterCaseCat==='operatable'">
                 <demolink
                     :kbname="'w-explorer'"
                     :casename="'operatable & operateItemBackgroundColor & operateItemBackgroundColorHover & operateItemTextColor & operateItemTextColorHover & operateItemIconColor & operateItemIconColorHover'"
@@ -1500,7 +1521,7 @@
             </div>
 
 
-            <div class="bk">
+            <div class="bk" v-if="filterCaseCat==='operatable'">
                 <demolink
                     :kbname="'w-explorer'"
                     :casename="'operatable & operateItemIconForRename & operateItemIconForInsertChild & operateItemIconForDelete'"
@@ -1523,7 +1544,7 @@
             </div>
 
 
-            <div class="bk">
+            <div class="bk" v-if="filterCaseCat==='editor'">
                 <demolink
                     :kbname="'w-explorer'"
                     :casename="'operatable & editorRenameContentBackgroundColor & editorRenameFooterBackgroundColor'"
@@ -1545,7 +1566,7 @@
             </div>
 
 
-            <div class="bk">
+            <div class="bk" v-if="filterCaseCat==='editor'">
                 <demolink
                     :kbname="'w-explorer'"
                     :casename="'operatable & editorRenameInputTextColor & editorRenameInputTextBottomLineBorderColor & editorRenameInputTextBottomLineBorderColorHover & editorRenameInputTextBottomLineBorderColorFocus'"
@@ -1569,7 +1590,7 @@
             </div>
 
 
-            <div class="bk">
+            <div class="bk" v-if="filterCaseCat==='editor'">
                 <demolink
                     :kbname="'w-explorer'"
                     :casename="'operatable & editorRenameCancelBtnText & editorRenameCancelBtnTextColor & editorRenameCancelBtnTextColorHover'"
@@ -1592,7 +1613,7 @@
             </div>
 
 
-            <div class="bk">
+            <div class="bk" v-if="filterCaseCat==='editor'">
                 <demolink
                     :kbname="'w-explorer'"
                     :casename="'operatable & editorRenameCancelBtnIcon & editorRenameCancelBtnIconSize & editorRenameCancelBtnIconColor & editorRenameCancelBtnIconColorHover & editorRenameCancelBtnIconRippleColor'"
@@ -1617,7 +1638,7 @@
             </div>
 
 
-            <div class="bk">
+            <div class="bk" v-if="filterCaseCat==='editor'">
                 <demolink
                     :kbname="'w-explorer'"
                     :casename="'operatable & editorRenameCancelBtnBackgroundColor & editorRenameCancelBtnBackgroundColorHover'"
@@ -1639,7 +1660,7 @@
             </div>
 
 
-            <div class="bk">
+            <div class="bk" v-if="filterCaseCat==='editor'">
                 <demolink
                     :kbname="'w-explorer'"
                     :casename="'operatable & editorRenameSaveBtnText & editorRenameSaveBtnTextColor & editorRenameSaveBtnTextColorHover'"
@@ -1662,7 +1683,7 @@
             </div>
 
 
-            <div class="bk">
+            <div class="bk" v-if="filterCaseCat==='editor'">
                 <demolink
                     :kbname="'w-explorer'"
                     :casename="'operatable & editorRenameSaveBtnIcon & editorRenameSaveBtnIconSize & editorRenameSaveBtnIconColor & editorRenameSaveBtnIconColorHover & editorRenameSaveBtnIconRippleColor'"
@@ -1687,7 +1708,7 @@
             </div>
 
 
-            <div class="bk">
+            <div class="bk" v-if="filterCaseCat==='editor'">
                 <demolink
                     :kbname="'w-explorer'"
                     :casename="'operatable & editorRenameSaveBtnBackgroundColor & editorRenameSaveBtnBackgroundColorHover'"
@@ -1709,7 +1730,7 @@
             </div>
 
 
-            <div class="bk">
+            <div class="bk" v-if="filterCaseCat==='operatable'">
                 <demolink
                     :kbname="'w-explorer'"
                     :casename="'operatable & draggable'"
@@ -1742,6 +1763,7 @@ import demolink from './components/demolink.vue'
 import WIcon from './components/WIcon.vue'
 import WExplorer from './components/WExplorer.vue'
 import WButtonChip from './components/WButtonChip.vue'
+import WListHorizontal from './components/WListHorizontal.vue'
 
 
 export default {
@@ -1750,6 +1772,7 @@ export default {
         WIcon,
         WExplorer,
         WButtonChip,
+        WListHorizontal,
     },
     props: {
     },
@@ -1758,6 +1781,13 @@ export default {
             mdiCommentEditOutline,
             mdiChevronDoubleRight,
             mdiDeleteVariant,
+            'filterCaseCat': 'basic', //當前選中分類, 預設第一類
+            'filterCaseCatActive': { name: 'basic' }, //WListHorizontal 的 itemActive
+            'filterCaseCats': [
+                { name: 'basic' }, { name: 'tree' }, { name: 'path' }, { name: 'btn' },
+                { name: 'list' }, { name: 'behavior' }, { name: 'toggle' }, { name: 'slot' },
+                { name: 'draggable' }, { name: 'operatable' }, { name: 'editor' },
+            ],
             'WExplorer': {
                 bShowTree: true,
                 treeWidth: 275,

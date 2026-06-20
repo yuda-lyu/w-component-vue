@@ -952,9 +952,12 @@ export default {
             defIconSize: 24,
             selectionsTrans: [],
 
-            filterKeywordsTrans: '',
-            filterKeywordsTransTemp: '', //上次過濾關鍵字
-            filtering: false, //是否過濾中
+            filterMode: 'keywords', //'keywords'|'fun', 當前過濾模式; 初始keywords(filterKeywordsTrans='')等價原本初始全顯
+            filterKeywordsTrans: '', //過濾關鍵字(原本data欄位名)
+            filterKeywordsTransTemp: '', //取代filterKeywordsTransTemp, 上次過濾關鍵字, dedup比對
+            filterFun: null, //filterByFun(cb)的cb暫存, 持久化跨呼叫(修A)
+            filterRunning: false, //過濾鎖, 是否過濾中
+            filterPending: false, //latest-wins待重跑旗標(修B)
 
             defaultDisplayLevelTrans: null,
 
@@ -1386,9 +1389,11 @@ export default {
                 //updateSelections
                 vo.updateSelections()
 
-                //filterKeywordsTransTemp
-                vo.filterKeywordsTransTemp = '' //需清空之前暫存關鍵字才能重新搜尋
-                vo.filterByKeywords()
+                //keywordTemp, 需清空之前暫存關鍵字才能重新搜尋
+                vo.filterKeywordsTransTemp = ''
+
+                //filterItems, 重放當前mode: mode=fun→重放fun過濾(修A); filterByFun早於setRows時待setRows完成後重放(修D); 不可改呼filterByKeywords(會切mode='keywords'洗掉fun)
+                vo.filterItems()
 
             }
 
@@ -2634,23 +2639,27 @@ export default {
 
         },
 
-        filterItemsCore: async function(items, funFilterForce) {
-            // console.log('methods filterItemsCore', items, funFilterForce)
+        filterItemsCore: async function(items) {
+            // console.log('methods filterItemsCore', items)
+            //note: 簽名已改為單參(原 filterItemsCore(items, funFilterForce)), funFilterForce 改由 過濾狀態欄位 提供
 
             let vo = this
 
-            //bFunFilterForce
-            let bFunFilterForce = isfun(funFilterForce)
+            //cb, 由filterFun取得強制函數過濾器
+            let cb = vo.filterFun
+
+            //bFunFilterForce, 分流改用mode判斷(取代isfun(cb)), 配合funFilterForce持久化
+            let bFunFilterForce = (vo.filterMode === 'fun')
 
             //check useDraggableOrOperatable
             if (!bFunFilterForce && vo.useDraggableOrOperatable) {
                 // console.log('禁止過濾')
-                return
+                return -1 //修C: 回-1不回undefined
             }
 
             //check filterKeywordsTransTemp
             if (!bFunFilterForce && vo.filterKeywordsTransTemp === vo.filterKeywordsTrans) {
-                return
+                return -1 //修C: 回-1不回undefined (dedup)
             }
 
             //filterKeywordsTransTemp
@@ -2686,8 +2695,8 @@ export default {
                     if (bFunFilterForce) {
                         //使用強制函數過濾器
 
-                        //funFilterForce
-                        b = funFilterForce(items[i].row.item)
+                        //須用函數初始先備份之cb, 避免多重發動時使用到其他插入過濾fun
+                        b = cb(items[i].row.item)
 
                         //check
                         if (ispm(b)) {
@@ -2773,8 +2782,9 @@ export default {
             return searchingResults
         },
 
-        filterItems: function(cb) {
-            // console.log('methods filterItems', cb)
+        filterItems: function() {
+            // console.log('methods filterItems')
+            //note: 簽名已改為無參(原 filterItems(cb)), 過濾條件改由 過濾狀態欄位 提供(cb 移至 filterFun)
 
             let vo = this
 
@@ -2785,13 +2795,14 @@ export default {
                     return
                 }
 
-                //check
-                if (vo.filtering) {
+                //check filtering, latest-wins: 進行中再呼叫標pending不丟棄, 完成後重跑最新過濾狀態欄位(修B)
+                if (vo.filterRunning) {
+                    vo.filterPending = true
                     return
                 }
 
                 //filtering
-                vo.filtering = true
+                vo.filterRunning = true
 
                 //opt
                 let searchingResults = -1
@@ -2799,7 +2810,7 @@ export default {
                     fun: async function(items) {
 
                         //filterItemsCore
-                        searchingResults = await vo.filterItemsCore(items, cb)
+                        searchingResults = await vo.filterItemsCore(items)
 
                     }
                 }
@@ -2818,7 +2829,13 @@ export default {
                 }
 
                 //filtering
-                vo.filtering = false
+                vo.filterRunning = false
+
+                //pending, latest-wins: 過濾期間有新呼叫則重跑最新過濾狀態欄位(修B); 重跑一次後若無新呼叫pending=false即停, 不會無限迴圈
+                if (vo.filterPending) {
+                    vo.filterPending = false
+                    vo.filterItems()
+                }
 
             }
 
@@ -2835,8 +2852,14 @@ export default {
 
             let vo = this
 
+            //mode, 切換為fun模式
+            vo.filterMode = 'fun'
+
+            //funFilterForce, 持久化cb跨呼叫(修A)
+            vo.filterFun = cb
+
             //filterItems
-            vo.filterItems(cb)
+            vo.filterItems()
 
         },
 
@@ -2844,6 +2867,12 @@ export default {
             // console.log('methods filterByKeywords')
 
             let vo = this
+
+            //mode, 切換為keywords模式
+            vo.filterMode = 'keywords'
+
+            //funFilterForce, 清除強制函數過濾器
+            vo.filterFun = null
 
             //filterItems
             vo.filterItems()

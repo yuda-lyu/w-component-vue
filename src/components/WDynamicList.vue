@@ -62,7 +62,6 @@
 import get from 'lodash-es/get.js'
 import each from 'lodash-es/each.js'
 import map from 'lodash-es/map.js'
-// import find from 'lodash-es/find.js'
 import join from 'lodash-es/join.js'
 import isNumber from 'lodash-es/isNumber.js'
 import values from 'lodash-es/values.js'
@@ -71,9 +70,7 @@ import size from 'lodash-es/size.js'
 import toString from 'lodash-es/toString.js'
 import cloneDeep from 'lodash-es/cloneDeep.js'
 import cint from 'wsemi/src/cint.mjs'
-// import cstr from 'wsemi/src/cstr.mjs'
 import genID from 'wsemi/src/genID.mjs'
-import genPm from 'wsemi/src/genPm.mjs'
 import delay from 'wsemi/src/delay.mjs'
 import isarr from 'wsemi/src/isarr.mjs'
 import isstr from 'wsemi/src/isstr.mjs'
@@ -85,15 +82,12 @@ import isp0int from 'wsemi/src/isp0int.mjs'
 import isbol from 'wsemi/src/isbol.mjs'
 import isEle from 'wsemi/src/isEle.mjs'
 import ispm from 'wsemi/src/ispm.mjs'
-// import haskey from 'wsemi/src/haskey.mjs'
-// import waitFun from 'wsemi/src/waitFun.mjs'
 import arrFilterByKeywords from 'wsemi/src/arrFilterByKeywords.mjs'
 import o2j from 'wsemi/src/o2j.mjs'
 import debounce from 'wsemi/src/debounce.mjs'
 import pmThrottle from 'wsemi/src/pmThrottle.mjs'
 import binarySearch from '../js/binarySearch.mjs'
 import globalMemory from '../js/globalMemory.mjs'
-// import convertColor from '../js/convertColor.mjs'
 import parseSpace from '../js/parseSpace.mjs'
 import WPanelScrollyCore from './WPanelScrollyCore.vue'
 
@@ -169,7 +163,6 @@ export default {
         return {
             pmtRefresh: pmThrottle(),
             dbcRefresh: debounce(),
-            dbcSetRows: debounce(),
 
             mmkey: genID(), //beforeMount內無法變更data, mounted內會晚於computed, 故優先放於data生成
             // mmkey: (() => {
@@ -239,20 +232,6 @@ export default {
 
                 //setRows
                 vo.setRows(value)
-
-                // //依照數量調用儲存數據函數
-                // if (size(value) < 1000) {
-
-                //     //setRows
-                //     vo.setRows(value)
-
-                // }
-                // else {
-
-                //     //setRowsDebounce, 若數據value有被修改則會再次觸發watch, 故得用debounce拖勾, 但大量數據時會發生迭代次數過高報錯
-                //     vo.setRowsDebounce(value)
-
-                // }
 
             }
         },
@@ -404,24 +383,6 @@ export default {
 
         },
 
-        setRowsDebounce: function(rows) {
-            //console.log('methods setRowsDebounce', rows)
-
-            let vo = this
-
-            //lock, 若直接調用debounce版則需初始就lock
-            vo.lockFromSetRows = true
-
-            //dbcSetRows
-            vo.dbcSetRows(() => {
-
-                //setRows, 若rows被修改會導致watch監測再次觸發, 故使用debounce中斷關聯
-                vo.setRows(rows)
-
-            })
-
-        },
-
         genUseItems: function() {
             //console.log('methods genUseItems')
 
@@ -529,6 +490,9 @@ export default {
             // })
             // console.log('h(all)=', itemsHeightPre + hs + itemsHeightAft, 'itemsHeightPre', itemsHeightPre, 'itemsHeightAft', itemsHeightAft, 'itemsHeight', hs, 'useItems', cloneDeep(useItems))
 
+            //change, 要重繪之數據(itemsHeightPre/itemsHeightAft之撐開區或useItems)有變更
+            let change = bPadding || bItems
+
             //偵測是否已有wdsDiv
             if (vo.$refs.wdsDiv) {
 
@@ -536,10 +500,12 @@ export default {
                 let emRows = map(useItems, 'row')
                 let emItems = map(useItems, 'row.item')
 
-                //emit render
-                vo.$emit('render', { eles: vo.$refs.wdsDiv, rows: emRows, items: emItems })
+                //emit render, 確有變更才觸發, 避免無變更時冗餘觸發與caller於render回呼內再刷新造成自激
+                if (change) {
+                    vo.$emit('render', { eles: vo.$refs.wdsDiv, rows: emRows, items: emItems })
+                }
 
-                //check
+                //check, change-view-items依可見項目集合(emItems)是否變更觸發, 與render之change獨立, 確保首次顯示([]→有值)必通知(WTree藉此updateOperateShow)
                 if (!isEqual(vo.emItemsTemp, emItems)) {
 
                     //emit change-view-items
@@ -553,7 +519,7 @@ export default {
             }
 
             return {
-                change: bPadding || bItems,
+                change,
             }
         },
 
@@ -698,7 +664,7 @@ export default {
                 //check
                 // let pxLimit = 4 //全部項目高度誤差門檻(px)
                 // if (Math.abs(vo.itemsHeight - itemsHeightTemp) > pxLimit) { //偵測總項目高度是否與前次差超過pxLimit
-                //     console.log('updateItemsHeight 需更新itemsHeight', vo.itemsHeight, '->', itemsHeightTemp)
+                //     console.log('updateItemsHeight 須更新itemsHeight', vo.itemsHeight, '->', itemsHeightTemp)
                 //     vo.itemsHeightTemp = vo.itemsHeight
                 //     vo.itemsHeight = itemsHeightTemp
                 // }
@@ -745,21 +711,7 @@ export default {
             }
 
             //coreItems
-            let n = 0
-            let limit = 3
-            async function coreItems() {
-                let pm = genPm()
-
-                //n
-                n += 1
-                // console.log('refreshCore n', n, 'scrollInfor', cloneDeep(vo.scrollInfor))
-
-                //check, 取得元素高度因文字換行會有來回變動問題, 需有強制跳出機制
-                if (n > limit) {
-                    // console.log(`forced termination: call refreshCore ${limit} [from: ${from}]`)
-                    pm.resolve(null)
-                    return pm
-                }
+            let coreItems = async() => {
 
                 //filterItems
                 vo.filterItems()
@@ -774,17 +726,17 @@ export default {
                 let ru = vo.updateItemsHeight()
                 // console.log('refreshCore updateItemsHeight r', r)
 
-                //resolve
-                pm.resolve({
+                //r
+                let r = {
                     genUseItems: rg,
                     updateItemsHeight: ru,
-                })
+                }
 
-                return pm
+                return r
             }
 
             //coreInfor
-            async function coreInfor() {
+            let coreInfor = async() => {
 
                 //lock
                 vo.lockFromRefreshUseItems = true
@@ -802,9 +754,9 @@ export default {
                 //itemsHeight
                 let itemsHeight = get(r, 'updateItemsHeight.itemsHeight', null)
 
-                //check, 為數字代表需更新itemsHeight
+                //check, 為數字代表須更新itemsHeight
                 if (isNumber(itemsHeight)) {
-                    // console.log('refreshCore 需更新itemsHeight', vo.itemsHeight, '->', itemsHeight)
+                    // console.log('refreshCore 須更新itemsHeight', vo.itemsHeight, '->', itemsHeight)
 
                     //check, 當點擊瞬間減少顯示內容區高度可能比外框高度小, 此時外部給予之scrollTop只能給0
                     if (itemsHeight <= vo.viewHeightMax) {
@@ -821,7 +773,7 @@ export default {
                     }
                     else {
 
-                        //scrollTopRecover, 需恢復的scrollTop
+                        //scrollTopRecover, 須恢復的scrollTop
                         // let scrollTopRecover = ratioOld * contentHeightEff
                         let scrollTopDiff = 0
                         if (scrollInforTemp.dir === 'up') {
@@ -837,7 +789,7 @@ export default {
 
                         //更新scrollTop
                         if (vo.scrollTop !== scrollTopRecover) {
-                            // console.log('refreshCore 需更新scrollTop', vo.scrollTop, '->', scrollTopRecover)
+                            // console.log('refreshCore 須更新scrollTop', vo.scrollTop, '->', scrollTopRecover)
                             vo.scrollTop = scrollTopRecover
                         }
 
