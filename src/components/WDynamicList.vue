@@ -181,12 +181,12 @@ export default {
             disableLoadingText: false, //禁止顯示載入中文字, 小數據時自動使用
             searchingResults: -1, //過濾結果, -1初始無狀態, 0過濾無結果, >0有結果
 
-            // scrollRatio: 0, //捲動比例
             scrollTop: 0, //捲動值
-            // scrollTopTemp: 0, //上次捲動值
             scrollInfor: null, //目前捲軸資訊
 
             filterKeywordsTemp: '', //上次過濾關鍵字
+
+            rowsTemp: null, //setRowsCore被lockFromProcess擋住時暫存待重套之rows(修鎖丟rows致空樹bug, latest-wins單槽)
 
             itemsHeight: 0, //全部節點高度
             // itemsHeightTemp: 0, //上次全部節點高度
@@ -194,9 +194,6 @@ export default {
             itemsHeightAft: 0,
             useItems: [], //實際需顯示節點陣列
             emItemsTemp: [], //實際需顯示節點之指標陣列
-
-            // iNochangeScrollInfor: 0, //觸發changeScrollInfor時但所到scrollInfor為同值之次數
-            // tNochangeScrollInfor: 0, //增加scrollInfor同值次數時之時間
 
         }
     },
@@ -218,6 +215,9 @@ export default {
         if (vo.mmkey !== null) {
             gm.remove(vo.mmkey)
         }
+
+        //清除rowsTemp, 因processItems是async, 其finally亦會於beforeDestroy之後才觸發, 故於beforeDestroy得先清避免finally拿去使用
+        vo.rowsTemp = null
 
     },
     watch: {
@@ -286,24 +286,29 @@ export default {
 
             let vo = this
 
-            //check
+            //check, 上鎖中須暫存最新給予之rows, 待processItems解鎖後給予
             if (vo.lockFromProcess) {
-                let msg = 'disabling call when lockFromProcess'
-                //console.log(msg)
+                vo.rowsTemp = rows
+                let msg = 'deferred'
                 return msg
             }
-            // if (vo.lockFromSetRows) { //setRows內需呼叫setRowsCore故不能上鎖
+
+            // //check, setRows內需呼叫setRowsCore故不能上鎖
+            // if (vo.lockFromSetRows) {
             //     let msg = 'disabling call when lockFromSetRows'
             //     //console.log(msg)
             //     return msg
             // }
-            // if (vo.lockFromRefreshUseItems) { //更新時可能會切換組件並塞入數據故不能上鎖
+
+            // //check, 更新時可能會切換組件並塞入數據故不能上鎖
+            // if (vo.lockFromRefreshUseItems) {
             //     console.log('return by lockFromRefreshUseItems')
             //     return
             // }
 
             //check
             if (!isarr(rows)) {
+                vo.rowsTemp = null //無效rows故須清除rowsTemp, 避免再被使用
                 let msg = 'rows is not array'
                 //console.log(msg)
                 return msg
@@ -313,6 +318,9 @@ export default {
             //     //console.log(msg)
             //     return msg
             // }
+
+            //清除rowsTemp, 此批rows正常落地, 清暫存(避免殘留被重複重套)
+            vo.rowsTemp = null
 
             //mmkey, 產生mmkey要放在資料變更的地方, 否則須放在beforeMount, 且於vue-cli編譯情況下會有部份情境有問題
             if (vo.mmkey !== null) {
@@ -1002,6 +1010,13 @@ export default {
 
                     //unluck
                     vo.lockFromProcess = false
+
+                    //setRows於上鎖時段內最新一次被給的rows
+                    if (isarr(vo.rowsTemp)) {
+                        let r = vo.rowsTemp
+                        vo.rowsTemp = null
+                        vo.setRows(r)
+                    }
 
                 })
 

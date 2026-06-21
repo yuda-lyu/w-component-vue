@@ -12,6 +12,12 @@ module.exports = {
             template: 'tmp/wtree-test/index.html',
             filename: 'wtree-test.html',
         },
+        //dev-only WDL 虛擬捲動探測頁: 單一大數據 WDynamicList, 量 dir/itemsHeightPre/scrollTop 漂移 (之後可移除)
+        'wdl-probe': {
+            entry: 'tmp/wdl-probe/main.js',
+            template: 'tmp/wdl-probe/index.html',
+            filename: 'wdl-probe.html',
+        },
     },
     devServer: {
         proxy: {
