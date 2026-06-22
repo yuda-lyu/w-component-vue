@@ -1,6 +1,7 @@
 node_modules
 .opencode
 .claude
+CLAUDE.md
 test-action
 test-screenshot
 test-html

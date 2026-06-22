@@ -1376,7 +1376,7 @@ export default {
                 //wait wdl, 組件初始化時會先觸發computed才會有實體元素出現, 故得用waitFun等待
                 await waitFun(() => {
                     return vo.$refs.wdl !== undefined
-                }, { timeInterval: 20 })
+                }, { attemptNum: 10000, timeInterval: 20 })
 
                 //setRows
                 if (vo.$refs.wdl) { //於async中組件切換時還是有可能消失
@@ -1615,7 +1615,7 @@ export default {
                 //wait wdl, 組件初始化時會先觸發computed才會有實體元素出現, 故得用waitFun等待
                 await waitFun(() => {
                     return vo.$refs.wdl !== undefined
-                }, { timeInterval: 20 })
+                }, { attemptNum: 10000, timeInterval: 20 })
 
                 //opt
                 let opt = {
@@ -1686,8 +1686,12 @@ export default {
                 //save
                 vo.selectionsTrans = selectionsTrans
 
-                //emit, 要放在wdl更新後才觸發事件
-                vo.$emit('update:selections', cloneDeep(selectionsTrans))
+                //emit, 要放在wdl更新後才觸發事件; emit前以isEqual守門, 若重產之selectionsTrans已等價於外部傳入selections則不emit, 避免多組件共用同一selections時各棵async完成時序差致輪流emit互相觸發之無限循環
+                if (!isEqual(selectionsTrans, vo.selections)) {
+                    setTimeout(() => {
+                        vo.$emit('update:selections', cloneDeep(selectionsTrans))
+                    }, 20)
+                }
 
             }
 
@@ -2626,8 +2630,12 @@ export default {
                 //save
                 vo.selectionsTrans = selectionsTrans
 
-                //emit, 要放在wdl更新後才觸發事件
-                vo.$emit('update:selections', cloneDeep(selectionsTrans))
+                //emit, 要放在wdl更新後才觸發事件; emit前以isEqual守門, 若重產之selectionsTrans已等價於外部傳入selections則不emit, 避免多組件共用同一selections時各棵async完成時序差致輪流emit互相觸發之無限循環
+                if (!isEqual(selectionsTrans, vo.selections)) {
+                    setTimeout(() => {
+                        vo.$emit('update:selections', cloneDeep(selectionsTrans))
+                    }, 20)
+                }
 
             }
 

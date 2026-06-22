@@ -803,12 +803,12 @@
                 ></demolink>
 
                 <div>
-                    <w-button-chip style="margin:0px 15px 5px 0px;" :text="'show(rows[0])'" :borderRadius="4" @click="toggletreefoldersbyfun(0, true)"></w-button-chip>
-                    <w-button-chip style="margin:0px 15px 5px 0px;" :text="'hide(rows[0])'" :borderRadius="4" @click="toggletreefoldersbyfun(0, false)"></w-button-chip>
-                    <w-button-chip style="margin:0px 15px 5px 0px;" :text="'show(rows[1])'" :borderRadius="4" @click="toggletreefoldersbyfun(1, true)"></w-button-chip>
-                    <w-button-chip style="margin:0px 15px 5px 0px;" :text="'hide(rows[1])'" :borderRadius="4" @click="toggletreefoldersbyfun(1, false)"></w-button-chip>
-                    <w-button-chip style="margin:0px 15px 5px 0px;" :text="'show(rows[2])'" :borderRadius="4" @click="toggletreefoldersbyfun(2, true)"></w-button-chip>
-                    <w-button-chip style="margin:0px 15px 5px 0px;" :text="'hide(rows[2])'" :borderRadius="4" @click="toggletreefoldersbyfun(2, false)"></w-button-chip>
+                    <w-button-chip style="margin:0px 15px 5px 0px;" :text="'show(rows[0])'" :borderRadius="4" @click="toggleTreeFoldersByFun(0, true)"></w-button-chip>
+                    <w-button-chip style="margin:0px 15px 5px 0px;" :text="'hide(rows[0])'" :borderRadius="4" @click="toggleTreeFoldersByFun(0, false)"></w-button-chip>
+                    <w-button-chip style="margin:0px 15px 5px 0px;" :text="'show(rows[1])'" :borderRadius="4" @click="toggleTreeFoldersByFun(1, true)"></w-button-chip>
+                    <w-button-chip style="margin:0px 15px 5px 0px;" :text="'hide(rows[1])'" :borderRadius="4" @click="toggleTreeFoldersByFun(1, false)"></w-button-chip>
+                    <w-button-chip style="margin:0px 15px 5px 0px;" :text="'show(rows[2])'" :borderRadius="4" @click="toggleTreeFoldersByFun(2, true)"></w-button-chip>
+                    <w-button-chip style="margin:0px 15px 5px 0px;" :text="'hide(rows[2])'" :borderRadius="4" @click="toggleTreeFoldersByFun(2, false)"></w-button-chip>
                 </div>
 
                 <w-explorer
@@ -828,10 +828,10 @@
                 ></demolink>
 
                 <div>
-                    <w-button-chip style="margin:0px 15px 5px 0px;" :text="'display all'" :borderRadius="4" @click="toggletreefoldersall(true)"></w-button-chip>
-                    <w-button-chip style="margin:0px 15px 5px 0px;" :text="'hide all'" :borderRadius="4" @click="toggletreefoldersall(false)"></w-button-chip>
-                    <w-button-chip style="margin:0px 15px 5px 0px;" :text="'display to level1'" :borderRadius="4" @click="toggletreefoldersall(null,1)"></w-button-chip>
-                    <w-button-chip style="margin:0px 15px 5px 0px;" :text="'display to level2'" :borderRadius="4" @click="toggletreefoldersall(null,2)"></w-button-chip>
+                    <w-button-chip style="margin:0px 15px 5px 0px;" :text="'display all'" :borderRadius="4" @click="toggleTreeFoldersAll(true)"></w-button-chip>
+                    <w-button-chip style="margin:0px 15px 5px 0px;" :text="'hide all'" :borderRadius="4" @click="toggleTreeFoldersAll(false)"></w-button-chip>
+                    <w-button-chip style="margin:0px 15px 5px 0px;" :text="'display to level1'" :borderRadius="4" @click="toggleTreeFoldersAll(null,1)"></w-button-chip>
+                    <w-button-chip style="margin:0px 15px 5px 0px;" :text="'display to level2'" :borderRadius="4" @click="toggleTreeFoldersAll(null,2)"></w-button-chip>
                 </div>
 
                 <w-explorer
