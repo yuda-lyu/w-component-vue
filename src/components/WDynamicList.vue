@@ -73,6 +73,7 @@ import cint from 'wsemi/src/cint.mjs'
 import genID from 'wsemi/src/genID.mjs'
 import delay from 'wsemi/src/delay.mjs'
 import isarr from 'wsemi/src/isarr.mjs'
+import isearr from 'wsemi/src/isearr.mjs'
 import isstr from 'wsemi/src/isstr.mjs'
 import isnum from 'wsemi/src/isnum.mjs'
 import iseobj from 'wsemi/src/iseobj.mjs'
@@ -183,6 +184,8 @@ export default {
 
             scrollTop: 0, //捲動值
             scrollInfor: null, //目前捲軸資訊
+
+            lockedAnchorIdx: null, //鎖定的窗口頂A index(拖bar往下時鎖定), 使indStart固定不往上漂, 避免上方項目被拉進渲染往下擠
 
             filterKeywordsTemp: '', //上次過濾關鍵字
 
@@ -350,6 +353,9 @@ export default {
             //changeDisplay, 若由外部強制變更rows或呼叫setRows變更rows, 則需重設changeDisplay使能重算全部節點高度
             vo.changeDisplay = true
 
+            //換新數據時清除鎖定的A index, 因index會對應到舊資料導致錯位
+            vo.lockedAnchorIdx = null
+
         },
 
         setRows: async function(rows) {
@@ -428,8 +434,12 @@ export default {
                 if (indStartActual === null) {
                     indStartActual = 0
                 }
-                // let indStart = Math.max(indStartActual - vo.itemsPreload, 0)
                 let indStart = Math.max(indStartActual - 1, 0) //只先預載上方1個
+
+                //拖bar往下時鎖定窗口頂A, indStart固定為A(不-1不隨y重算往上漂), 使A之上不渲染不測高, 避免上方項目被拉進渲染往下擠
+                if (vo.lockedAnchorIdx !== null) {
+                    indStart = Math.min(Math.max(vo.lockedAnchorIdx, 0), n - 1)
+                }
 
                 //indEnd, 該元素區(頂部)有侵入顯示區
                 let indEndActual = binarySearch(items, (ind) => {
@@ -896,6 +906,30 @@ export default {
                 //save scrollInfor
                 vo.scrollInfor = msg
                 // console.log('changeInfor scrollInfor', cloneDeep(msg))
+
+                //鎖定/清除窗口頂A index
+                let from = get(msg, 'evMsg.from', '')
+                if (msg.evName === 'scroll' && from === 'bar') {
+                    let items = gm.get(vo.mmkey)
+                    if (isearr(items)) {
+                        let indStartActual = binarySearch(items, (ind) => {
+                            let v = items[ind]
+                            let dy = vo.scrollInfor.t - (v.y + v.height)
+                            return dy
+                        })
+                        if (indStartActual === null) {
+                            indStartActual = 0
+                        }
+                        vo.lockedAnchorIdx = Math.max(indStartActual, 0)
+                    }
+                }
+                else if (from === 'wdl-refreshCore') {
+                    //settling自激(內容測真高後的重刷), 保持lockedAnchorIdx不變, 使indStart固定不往上漂
+                }
+                else {
+                    //其他操作(wheel捲shell/往上拖/內容mutation/processItems等), 清除鎖定退回原本行為
+                    vo.lockedAnchorIdx = null
+                }
 
                 //refresh
                 vo.refresh('changeInfor')
