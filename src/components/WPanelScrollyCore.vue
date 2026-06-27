@@ -49,7 +49,11 @@
             </div>
 
             <!-- isMobile時divBar仍要存在, 因通用檢測時才會有效, 故isMobile時需於移至右側之外 -->
-            <div :style="`position:absolute; top:0px; right:${isMobile?-8:0}px; width:8px;`">
+            <div :style="`
+                position:absolute; top:0px; right:${isMobile?-8:0}px;
+                width:${contentHeightEff>0?8:0}px;
+                overflow-x:hidden;
+            `">
 
                 <div
                     ref="divBar"
@@ -59,7 +63,6 @@
                         box-sizing:content-box;
                         overflow-x:hidden; overflow-y:auto;
                         opacity:${mouseEntering?barOpacityHover:barOpacity};
-                        pointer-events:${contentHeightEff>0?'auto':'none'};
                     `"
                     @scroll="scrollBar"
                 >
