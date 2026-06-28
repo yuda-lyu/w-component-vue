@@ -349,6 +349,18 @@ function buildPopper(vo, funGetDivTrigger, funGetDivContent, keyShow, evNameValu
                     },
                 },
                 hide,
+                {
+                    name: 'emitPlacement',
+                    enabled: true,
+                    phase: 'afterWrite',
+                    fn: ({ state }) => {
+                        let pmt = get(state, 'placement', null)
+                        if (pmt !== null) {
+                            vo.$emit('placement-change', pmt)
+                            ev.emit('placement-change', pmt)
+                        }
+                    },
+                },
             ],
         }
         _vo.popperInstance = createPopper(divTrigger, divContent, opt)

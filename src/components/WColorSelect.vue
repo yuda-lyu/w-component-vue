@@ -12,6 +12,7 @@
         :changeType="changeType"
         v-domresize
         @domresize="resize"
+        @placement-change="onPlacementChange"
     >
 
         <template v-slot:trigger>
@@ -44,7 +45,7 @@
 
             <div
                 ref="ct"
-                :style="`background:${usePanelBackgroundColor}; ${usePanelOverflow}`"
+                :style="`background:${usePanelBackgroundColor}; ${usePanelOverflowAndHeight}`"
                 v-domresize
                 @domresize="resizeContent"
             >
@@ -579,17 +580,37 @@ export default {
             loadingEyeDropper: false,
 
             layoutType: 'horizontal',
-            layoutOverflowY: false,
-            layoutMinY: 300,
-            layoutMaxY: 300,
+            layoutShowScrollY: false,
+            layoutMinHeight: 300,
+            layoutMaxHeight: 300,
 
             selectPanelHeight: 0,
             selectInputHeight: 0,
 
             valueOri: null,
             valueNew: null,
+            popperPlacement: null,
 
         }
+    },
+    watch: {
+
+        show: function(b) {
+            let vo = this
+            if (b) {
+                //以最小高度顯示時, 讓Popper.js先決定方向
+                vo.popperPlacement = null
+                vo.layoutShowScrollY = true
+                vo.layoutMaxHeight = vo.layoutMinHeight
+                // 等 Popper.js 定位完成後重算可用空間
+                vo.$nextTick(() => {
+                    vo.$nextTick(() => {
+                        vo.adjustMaxHeight()
+                    })
+                })
+            }
+        },
+
     },
     computed: {
 
@@ -638,11 +659,11 @@ export default {
             return convertColor(vo.borderColor)
         },
 
-        usePanelOverflow: function() {
+        usePanelOverflowAndHeight: function() {
             let vo = this
-            let of = `overflow-y:auto; min-height:${vo.layoutMinY}px;`
-            if (vo.layoutOverflowY) {
-                of += `max-height:${vo.layoutMaxY}px;`
+            let of = `overflow-y:auto; min-height:${vo.layoutMinHeight}px;`
+            if (vo.layoutShowScrollY) {
+                of += `max-height:${vo.layoutMaxHeight}px;`
             }
             return of
         },
@@ -681,29 +702,80 @@ export default {
                 return
             }
 
-            // let w = get(msg, 'snew.windowWidth', 0)
-            let h = get(msg, 'snew.windowHeight', 0)
+            //adjustMaxHeight
+            vo.adjustMaxHeight()
+
+        },
+
+        onPlacementChange: function(placement) {
+            let vo = this
+            vo.popperPlacement = placement
+            vo.adjustMaxHeight()
+        },
+
+        adjustMaxHeight: function() {
+            let vo = this
+
+            //check
+            if (!vo.show) {
+                return
+            }
 
             try {
 
                 //ct
                 let ct = vo.$refs.ct
-                // console.log('vo.$refs.ct', vo.$refs.ct)
+                if (!ct) {
+                    return
+                }
+
+                //windowHeight
+                let h = window.innerHeight
+
+                //placement
+                let placement = vo.popperPlacement
+
+                //Popper.js尚未定位完成, 保持初始限制高度
+                if (!placement) {
+                    return
+                }
 
                 //rt
                 let rt = domGetBoudRect(ct)
-                // console.log('rt', rt)
 
                 //hc, 實際內容高度
                 let hc = ct.scrollHeight
 
-                //layoutOverflowY
-                vo.layoutOverflowY = (rt.top + hc) > h
-                // console.log('layoutOverflowY', vo.layoutOverflowY)
+                //根據方向計算可用空間
+                let margin = 30
+                let hca
+                if (placement.startsWith('top')) {
+                    //彈窗在上方, 底部對齊觸發元素往上延伸
+                    hca = rt.bottom - margin
+                }
+                else {
+                    //預設彈窗在下方, 頂部對齊觸發元素下方往下延伸
+                    hca = h - rt.top - margin
+                }
 
-                //layoutMaxY
-                vo.layoutMaxY = Math.max(h - rt.top - 30, vo.layoutMinY) //30是概估與底部的留白距離
-                // console.log('layoutMaxY', vo.layoutMaxY)
+                //layoutShowScrollYNew
+                let layoutShowScrollYNew = hc > hca
+
+                //layoutMaxHeightNew
+                let layoutMaxHeightNew = Math.max(hca, vo.layoutMinHeight)
+
+                //check, 避免微小的數值抖動導致迴圈
+                if (layoutShowScrollYNew === vo.layoutShowScrollY && Math.abs(layoutMaxHeightNew - vo.layoutMaxHeight) < 2) {
+                    return
+                }
+
+                //layoutShowScrollY
+                vo.layoutShowScrollY = layoutShowScrollYNew
+                // console.log('layoutShowScrollY', vo.layoutShowScrollY)
+
+                //layoutMaxHeight
+                vo.layoutMaxHeight = layoutMaxHeightNew
+                // console.log('layoutMaxHeight', vo.layoutMaxHeight)
 
             }
             catch (err) {}
