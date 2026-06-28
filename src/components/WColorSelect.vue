@@ -686,15 +686,19 @@ export default {
 
             try {
 
+                //ct
+                let ct = vo.$refs.ct
                 // console.log('vo.$refs.ct', vo.$refs.ct)
-                let rt = domGetBoudRect(vo.$refs.ct)
+
+                //rt
+                let rt = domGetBoudRect(ct)
                 // console.log('rt', rt)
 
-                //hc, 概估組件size=200時高度
-                let hc = 500
+                //hc, 實際內容高度
+                let hc = ct.scrollHeight
 
                 //layoutOverflowY
-                vo.layoutOverflowY = rt.top + hc > h
+                vo.layoutOverflowY = (rt.top + hc) > h
                 // console.log('layoutOverflowY', vo.layoutOverflowY)
 
                 //layoutMaxY
