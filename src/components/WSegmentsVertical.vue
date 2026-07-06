@@ -80,6 +80,7 @@
                                             <WPopup
                                                 :isolated="true"
                                                 :labelContent="labelContentForText"
+                                                :cmpZIndex="cmpZIndex"
                                             >
 
                                                 <template v-slot:trigger>
@@ -223,6 +224,7 @@ import convertColor from '../js/convertColor.mjs'
  * @vue-prop {Boolean} [textCanClick=false] 輸入項目文字是否可點擊布林值，預設false
  * @vue-prop {Boolean} [segmentCanClick=false] 輸入區塊是否可點擊布林值，預設false
  * @vue-prop {String} [labelContentForText=null] 輸入針對項目文字之popup彈窗teleport至body內之內容div所給予之wtlp屬性值字串，供查找使用，預設null
+ * @vue-prop {Number} [cmpZIndex=3000] 輸入彈窗使用z-index數字，供嵌於高z-index彈窗內時提高層級，預設3000
  */
 export default {
     components: {
@@ -395,6 +397,10 @@ export default {
         labelContentForText: {
             type: String,
             default: null,
+        },
+        cmpZIndex: {
+            type: Number,
+            default: 3000,
         },
     },
     data: function() {

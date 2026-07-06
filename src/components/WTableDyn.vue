@@ -98,6 +98,7 @@
                             <WPopup
                                 v-model="showPickUploadMode"
                                 :labelContent="labelContentForUpload"
+                                :cmpZIndex="cmpZIndex"
                             >
 
                                 <template v-slot:trigger>
@@ -358,6 +359,7 @@ import convertColor from '../js/convertColor.mjs'
  * @vue-prop {Object} [opt.optForUploadData={}] 輸入呼叫組件uploadData上傳檔案時用的設定物件，物件可給予鍵值：pathItems代表調用wsemi的getDataFromExcelFileU8ArrDyn所傳入的xlsx的來源網址陣列，beforeUpload代表上傳前的處理數據函數，parseSheetInd代表提取Excel檔案的第幾個sheet整數(預設為0)，optForUploadData預設{}
  * @vue-prop {Function} [opt.modifyDataWhenSave=undefined] 輸入當儲存時修改儲存數據事件，輸入rows，輸出rows，預設為undefined
  * @vue-prop {Boolean} [opt.checkNoDataWhenSave=false] 輸入當儲存時是否檢核無數據布林值，預設false
+ * @vue-prop {Number} [cmpZIndex=3000] 輸入彈窗使用z-index數字，供嵌於高z-index彈窗內時提高層級，預設3000
  */
 export default {
     directives: {
@@ -564,6 +566,10 @@ export default {
         labelContentForUpload: {
             type: String,
             default: null,
+        },
+        cmpZIndex: {
+            type: Number,
+            default: 3000,
         },
         opt: {
             type: Object,

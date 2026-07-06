@@ -4,6 +4,7 @@
         :isolated="true"
         _minWidth="minWidthForPopup"
         :labelContent="labelContent"
+        :cmpZIndex="cmpZIndex"
         @show="evShow"
         @hide="evHide"
     >
@@ -113,6 +114,7 @@ import WIcon from './WIcon.vue'
  * @vue-prop {Number} [minWidthForValue=30] 輸入數據value展示時最小寬度數字，單位為px，預設30
  * @vue-prop {Number} [minWidthForPopup=300] 輸入彈窗最小寬度數字，單位為px，預設300
  * @vue-prop {String} [labelContent=null] 輸入針對teleport至body內之內容div所給予之wtlp屬性值字串，供查找使用，預設null
+ * @vue-prop {Number} [cmpZIndex=3000] 輸入彈窗使用z-index數字，供嵌於高z-index彈窗內時提高層級，預設3000
  */
 export default {
     components: {
@@ -229,6 +231,10 @@ export default {
         labelContent: {
             type: String,
             default: null,
+        },
+        cmpZIndex: {
+            type: Number,
+            default: 3000,
         },
     },
     data: function() {

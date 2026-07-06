@@ -271,6 +271,7 @@ export default {
         return {
 
             loading: true,
+            disposal: false,
 
             mmkey: genID(), //beforeMount內無法變更data, mounted內會晚於computed, 故優先放於data生成
             // mmkey: (() => {
@@ -321,11 +322,19 @@ export default {
             let Vditor = window['Vditor']
             // console.log('Vditor', Vditor)
 
-            //wait divVditor, 因loading=false之後才能開始顯示divVditor, 故須等待divVditor是否出現
+            //wait divVditor, 因loading=false之後才能開始顯示divVditor, 故須等待divVditor是否出現, 組件銷毀時divVditor已被移除, 亦須解除等待
             await waitFun(() => {
+                if (vo.disposal) {
+                    return true
+                }
                 let ele = get(vo, '$refs.divVditor')
                 return isEle(ele)
             })
+
+            //check, 組件已銷毀(如彈窗於編輯器初始化完成前被關閉)時跳出, 避免於銷毀後建立Vditor實例
+            if (vo.disposal) {
+                return
+            }
 
             //divVditor
             let divVditor = vo.$refs.divVditor
@@ -335,14 +344,22 @@ export default {
             vo.contentEditor = new Vditor(divVditor, vo.useSettings)
             // console.log('contentEditor', vo.contentEditor)
 
-            //wait contentEditor, 因new Vditor後會需一小段時間初始化, 故須等待vditor來判斷vditor是否初始化完成
+            //wait contentEditor, 因new Vditor後會需一小段時間初始化, 故須等待vditor來判斷vditor是否初始化完成, 組件銷毀時contentEditor會被設null, 亦須解除等待
             await waitFun(() => {
                 // let getCurrentMode = get(vo, 'contentEditor.getCurrentMode') //因contentEditor.getCurrentMode是原型已為function, 故無法用此做判斷
                 // return isfun(getCurrentMode)
+                if (vo.disposal) {
+                    return true
+                }
                 let v = get(vo, 'contentEditor.vditor')
                 return iseobj(v)
             })
             // console.log(`vo.contentEditor.getCurrentMode()`, vo.contentEditor.getCurrentMode())
+
+            //check, 組件已銷毀(如彈窗於編輯器初始化完成前被關閉)時跳出, 避免呼叫contentEditor.setValue報錯
+            if (vo.disposal) {
+                return
+            }
 
             //loading, 組件不依照loading顯隱, loading為依賴、組件完成載入、組件初始化後才改為false
             vo.loading = false
@@ -394,6 +411,9 @@ export default {
         //console.log('beforeDestroy')
 
         let vo = this
+
+        //disposal, 供背景async流程(mounted core、relaEditable core)偵測解除等待, 不可用contentEditor===null判別已銷毀, 因contentEditor初始即null無法區分尚未建立與已銷毀
+        vo.disposal = true
 
         //destroy
         if (vo.contentEditor) {
@@ -598,10 +618,15 @@ export default {
 
             async function core() {
 
-                //wait
+                //wait, 組件銷毀時loading不會再變false, 亦須解除等待
                 await waitFun(() => {
-                    return !vo.loading
+                    return !vo.loading || vo.disposal
                 })
+
+                //check, 組件已銷毀(如彈窗於編輯器初始化完成前被關閉)時跳出, 避免呼叫contentEditor.enable報錯
+                if (vo.contentEditor === null || vo.disposal) {
+                    return
+                }
 
                 //editable
                 if (vo.editable) {

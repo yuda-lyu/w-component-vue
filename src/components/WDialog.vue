@@ -38,6 +38,7 @@
                         background:${useOverlayColor};
                     `"
                     tabindex="0"
+                    @mousedown="mousedownOverlay"
                     @click="clickOutside"
                 >
 
@@ -500,7 +501,9 @@ export default {
 
             footerHeight: 0,
 
+            mousedownOutside: false,
             resizeMsgTemp: null,
+
         }
     },
     computed: {
@@ -859,10 +862,38 @@ export default {
 
         },
 
+        mousedownOverlay: function(ev) {
+            // console.log('methods mousedownOverlay', ev)
+
+            let vo = this
+
+            //記錄滑鼠按下當下是否位於彈窗區之外, 供clickOutside判別
+            //why: 於彈窗內按下、拖曳至彈窗外才放開(如拖曳滑桿/選取文字)時, 瀏覽器click事件之target為按下與放開兩元素之共同祖先(即overlay),
+            //     單靠click之target/座標檢測會誤判為點擊外部而觸發modal提示動畫, 故須以mousedown當下位置為準
+            let b = false
+            try {
+                b = vo.$refs.divPanel.contains(ev.target)
+            }
+            catch (err) {}
+            if (!b) {
+                try {
+                    b = domIsClientXYIn(ev.clientX, ev.clientY, vo.$refs.divPanel)
+                }
+                catch (err) {}
+            }
+            vo.mousedownOutside = !b
+
+        },
+
         clickOutside: function(ev) {
             // console.log('methods clickOutside', ev)
 
             let vo = this
+
+            //check, 滑鼠須於彈窗外按下才可能為點擊外部(於彈窗內按下拖曳至外部放開者不觸發)
+            if (vo.mousedownOutside !== true) {
+                return
+            }
 
             //偵測點擊為彈窗區之外
             let b = false

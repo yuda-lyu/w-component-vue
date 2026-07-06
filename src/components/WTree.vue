@@ -139,6 +139,7 @@
                                 :isolated="true"
                                 :displayType="'line'"
                                 :labelContent="labelPanelForOperate"
+                                :cmpZIndex="cmpZIndex"
                                 @show="operateDisplayEvent('show')"
                                 @hide="operateDisplayEvent('hide')"
                             >
@@ -453,6 +454,7 @@ let gm = globalMemory()
  * @vue-prop {String} [editorRenameSaveBtnBackgroundColorHover='grey lighten-3'] 輸入變更文字彈窗之滑鼠移入時儲存按鈕背景顏色字串，預設'grey lighten-3'
  * @vue-prop {String} [labelPanelForOperate=null] 輸入針對控制選項之popup彈窗teleport至body內之內容div所給予之wtlp屬性值字串，供查找使用，預設null
  * @vue-prop {String} [labelDialogForEditor=null] 輸入針對teleport至body內之WDialog所給予之wtre屬性值字串，供查找使用，預設null
+ * @vue-prop {Number} [cmpZIndex=3000] 輸入控制選項popup彈窗使用z-index數字，供嵌於高z-index彈窗內時提高層級，預設3000
  * @vue-prop {Boolean} [show=true] 輸入是否為顯示模式布林值，預設true，供組件嵌入popup時, 因先初始化但尚未顯示不需渲染, 可給予show=false避免無限偵測與重算高度問題
  */
 export default {
@@ -927,6 +929,10 @@ export default {
         labelDialogForEditor: {
             type: String,
             default: null,
+        },
+        cmpZIndex: {
+            type: Number,
+            default: 3000,
         },
         show: {
             type: Boolean,
