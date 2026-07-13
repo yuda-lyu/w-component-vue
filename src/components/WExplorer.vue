@@ -33,7 +33,7 @@
                         :defItemHeight="treeDefItemHeight"
                         :defaultDisplayLevel="treeDefaultDisplayLevel"
                         :data.sync="treeItemsFolder"
-                        :activable="true"
+                        :activable="false"
                         :itemActive.sync="treeItemActive"
                         :paddingStyle="treePaddingStyle"
                         :indent="treeIndent"
@@ -144,7 +144,7 @@
                                     <div :style="`display:flex;`">
 
                                         <div
-                                            :style="`height:${treeDefItemHeight}px; padding-right:4px; display:flex; align-items:center;`"
+                                            :style="`height:${treeDefItemHeight}px; padding-right:4px; display:flex; align-items:center; cursor:pointer;`"
                                             @click="ckTreeFolder(props)"
                                         >
                                             <WIcon
@@ -1609,6 +1609,13 @@ export default {
 
             //displayFolderById
             vo.displayFolderById(id, 'ckTreeFolder')
+
+            //treeItemActive, 給予tree主動項目
+            //內部WTree以activable=false關閉整列主動模式(避免點擊非文字區誤設主動項目且顯示cursor:pointer), WTree不會emit update:itemActive,
+            //  故此處須自行設定, 使點擊圖標或名稱開啟資料夾時仍保有tree之主動項目highlight
+            if (isestr(id)) {
+                vo.treeItemActive = { id }
+            }
 
             //emit
             vo.$emit('click-folder', { from: 'tree', item })
