@@ -26,10 +26,10 @@ import WTooltip from './WTooltip.vue'
  * @vue-prop {String} [displayType='block'] 輸入display設定字串，可選'block'與'line'，預設'block'
  * @vue-prop {Number} [cmpZIndex=3000] 輸入彈窗使用z-index數字，預設3000
  * @vue-prop {Boolean} [isolated=false] 輸入彈窗當mode為'popup'時是否為獨立顯引狀態布林值，也就是可不接收外部傳入value值，預設false
- * @vue-prop {Number} [minWidth=null] 輸入彈窗最小寬度數字，單位為px，預設null
- * @vue-prop {Number} [maxWidth=null] 輸入彈窗最大寬度數字，單位為px，預設null
- * @vue-prop {Boolean} [autoFitMinWidth=false] 輸入是否使用驅動區寬度作為彈窗之最小寬度布林值，預設false
- * @vue-prop {Boolean} [autoFitMaxWidth=false] 輸入是否使用驅動區寬度作為彈窗之最大寬度布林值，預設false
+ * @vue-prop {Number} [minWidth=null] 輸入彈窗最小寬度數字，不含paddingStyle的寬度，單位為px，預設null
+ * @vue-prop {Number} [maxWidth=null] 輸入彈窗最大寬度數字，不含paddingStyle的寬度，單位為px，預設null
+ * @vue-prop {Boolean} [autoFitMinWidth=false] 輸入是否使用驅動區寬度作為彈窗之最小寬度布林值，不含paddingStyle的寬度，預設false
+ * @vue-prop {Boolean} [autoFitMaxWidth=false] 輸入是否使用驅動區寬度作為彈窗之最大寬度布林值，不含paddingStyle的寬度，預設false
  * @vue-prop {String} [placement='bottom'] 輸入彈窗出現位置字串，可選'top-start'、'top'、'top-end'、'bottom-start'、'bottom'、'bottom-end'、'left-start'、'left'、'left-end'、'right-start'、'right'、'right-end'、，預設'bottom'
  * @vue-prop {Number} [placementDistX=0] 輸入彈窗距離觸發元素之水平向右平移數字，單位為px，預設0
  * @vue-prop {Number} [placementDistY=5] 輸入彈窗距離觸發元素之垂直向下平移數字，單位為px，預設5

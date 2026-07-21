@@ -58,6 +58,7 @@
                     :maxWidth="maxWidth"
                     :autoFitMinWidth="autoFitMinWidth"
                     :autoFitMaxWidth="autoFitMaxWidth"
+                    :placementDistX="placementDistX"
                     :placementDistY="useDistY"
                     :defItemHeight="defItemHeight"
                     :labelContent="labelContent"
@@ -149,6 +150,7 @@ import WTextSuggestCore from './WTextSuggestCore.vue'
  * @vue-prop {Boolean} [showExpansionIcon=true] 輸入是否顯示時顯示旋轉按鈕布林值，預設true
  * @vue-prop {Number} [expansionIconSize=18] 輸入右側圖標尺寸數字，單位為px，預設18
  * @vue-prop {String} [expansionIconColor='grey'] 輸入右側圖標顏色字串，預設'grey'
+ * @vue-prop {Number} [placementDistX=0] 輸入彈窗距離觸發元素之水平向右平移數字，單位為px，預設0
  * @vue-prop {Number} [maxHeight=200] 輸入顯示區最大高度數字，單位為px，預設200
  * @vue-prop {Number} [minWidth=null] 輸入最小寬度，單位為px，預設null
  * @vue-prop {Number} [maxWidth=null] 輸入最大寬度，單位為px，預設null
@@ -325,6 +327,10 @@ export default {
         expansionIconColor: {
             type: String,
             default: 'grey',
+        },
+        placementDistX: {
+            type: Number,
+            default: 0,
         },
         maxHeight: {
             type: Number,
