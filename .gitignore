@@ -1,4 +1,7 @@
 node_modules
+.agents
+AGENTS.md
+.env
 .opencode
 .claude
 CLAUDE.md
