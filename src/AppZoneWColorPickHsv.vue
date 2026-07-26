@@ -16,13 +16,13 @@
 
                 <div style="padding-bottom:5px;">
                     <div :style="`display:inline-block; vertical-align:middle; width:50px; font-size:0.8rem;`">Pick:</div>
-                    <div :style="`display:inline-block; vertical-align:middle; border:1px solid #ddd; width:20px; height:20px; background:${WColorPickHsv.colorPick1};`"></div>
+                    <div :style="`display:inline-block; vertical-align:middle; border:1px solid #ddd; box-sizing:border-box; width:20px; height:20px; background:${WColorPickHsv.colorPick1};`"></div>
                     <div :style="`padding-left:5px; font-size:0.8rem; display:inline-block; vertical-align:middle;`">{{WColorPickHsv.colorPick1}}</div>
                 </div>
 
                 <div style="padding-bottom:5px;">
                     <div :style="`display:inline-block; vertical-align:middle; width:50px; font-size:0.8rem;`">Corner:</div>
-                    <div :style="`display:inline-block; vertical-align:middle; border:1px solid #ddd; width:20px; height:20px; background:${WColorPickHsv.colorPanel1};`"></div>
+                    <div :style="`display:inline-block; vertical-align:middle; border:1px solid #ddd; box-sizing:border-box; width:20px; height:20px; background:${WColorPickHsv.colorPanel1};`"></div>
                     <div :style="`padding-left:5px; font-size:0.8rem; display:inline-block; vertical-align:middle;`">{{WColorPickHsv.colorPanel1}}</div>
                 </div>
 
@@ -42,13 +42,13 @@
 
                 <div style="padding-bottom:5px;">
                     <div :style="`display:inline-block; vertical-align:middle; width:50px; font-size:0.8rem;`">Pick:</div>
-                    <div :style="`display:inline-block; vertical-align:middle; border:1px solid #ddd; width:20px; height:20px; background:${WColorPickHsv.colorPick2};`"></div>
+                    <div :style="`display:inline-block; vertical-align:middle; border:1px solid #ddd; box-sizing:border-box; width:20px; height:20px; background:${WColorPickHsv.colorPick2};`"></div>
                     <div :style="`padding-left:5px; font-size:0.8rem; display:inline-block; vertical-align:middle;`">{{WColorPickHsv.colorPick2}}</div>
                 </div>
 
                 <div style="padding-bottom:5px;">
                     <div :style="`display:inline-block; vertical-align:middle; width:50px; font-size:0.8rem;`">Corner:</div>
-                    <div :style="`display:inline-block; vertical-align:middle; border:1px solid #ddd; width:20px; height:20px; background:${WColorPickHsv.colorPanel2};`"></div>
+                    <div :style="`display:inline-block; vertical-align:middle; border:1px solid #ddd; box-sizing:border-box; width:20px; height:20px; background:${WColorPickHsv.colorPanel2};`"></div>
                     <div :style="`padding-left:5px; font-size:0.8rem; display:inline-block; vertical-align:middle;`">{{WColorPickHsv.colorPanel2}}</div>
                 </div>
 
@@ -68,13 +68,13 @@
 
                 <div style="padding-bottom:5px;">
                     <div :style="`display:inline-block; vertical-align:middle; width:50px; font-size:0.8rem;`">Pick:</div>
-                    <div :style="`display:inline-block; vertical-align:middle; border:1px solid #ddd; width:20px; height:20px; background:${WColorPickHsv.colorPick1};`"></div>
+                    <div :style="`display:inline-block; vertical-align:middle; border:1px solid #ddd; box-sizing:border-box; width:20px; height:20px; background:${WColorPickHsv.colorPick1};`"></div>
                     <div :style="`padding-left:5px; font-size:0.8rem; display:inline-block; vertical-align:middle;`">{{WColorPickHsv.colorPick1}}</div>
                 </div>
 
                 <div style="padding-bottom:5px;">
                     <div :style="`display:inline-block; vertical-align:middle; width:50px; font-size:0.8rem;`">Corner:</div>
-                    <div :style="`display:inline-block; vertical-align:middle; border:1px solid #ddd; width:20px; height:20px; background:${WColorPickHsv.colorPanel1};`"></div>
+                    <div :style="`display:inline-block; vertical-align:middle; border:1px solid #ddd; box-sizing:border-box; width:20px; height:20px; background:${WColorPickHsv.colorPanel1};`"></div>
                     <div :style="`padding-left:5px; font-size:0.8rem; display:inline-block; vertical-align:middle;`">{{WColorPickHsv.colorPanel1}}</div>
                 </div>
 
@@ -95,13 +95,13 @@
 
                 <div style="padding-bottom:5px;">
                     <div :style="`display:inline-block; vertical-align:middle; width:50px; font-size:0.8rem;`">Pick:</div>
-                    <div :style="`display:inline-block; vertical-align:middle; border:1px solid #ddd; width:20px; height:20px; background:${WColorPickHsv.colorPick1};`"></div>
+                    <div :style="`display:inline-block; vertical-align:middle; border:1px solid #ddd; box-sizing:border-box; width:20px; height:20px; background:${WColorPickHsv.colorPick1};`"></div>
                     <div :style="`padding-left:5px; font-size:0.8rem; display:inline-block; vertical-align:middle;`">{{WColorPickHsv.colorPick1}}</div>
                 </div>
 
                 <div style="padding-bottom:5px;">
                     <div :style="`display:inline-block; vertical-align:middle; width:50px; font-size:0.8rem;`">Corner:</div>
-                    <div :style="`display:inline-block; vertical-align:middle; border:1px solid #ddd; width:20px; height:20px; background:${WColorPickHsv.colorPanel1};`"></div>
+                    <div :style="`display:inline-block; vertical-align:middle; border:1px solid #ddd; box-sizing:border-box; width:20px; height:20px; background:${WColorPickHsv.colorPanel1};`"></div>
                     <div :style="`padding-left:5px; font-size:0.8rem; display:inline-block; vertical-align:middle;`">{{WColorPickHsv.colorPanel1}}</div>
                 </div>
 

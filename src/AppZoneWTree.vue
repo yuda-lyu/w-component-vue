@@ -36,7 +36,7 @@
                 ></demolink>
 
                 <w-tree
-                    style="width:350px; border:1px solid #ddd;"
+                    style="box-sizing:border-box; width:350px; border:1px solid #ddd;"
                     :data="WTree.option.items"
                 ></w-tree>
 
@@ -50,7 +50,7 @@
                 ></demolink>
 
                 <w-tree
-                    style="width:350px; border:1px solid #ddd;"
+                    style="box-sizing:border-box; width:350px; border:1px solid #ddd;"
                     :data="WTree.option.items"
                     :iconSize="20"
                 ></w-tree>
@@ -65,7 +65,7 @@
                 ></demolink>
 
                 <w-tree
-                    style="width:350px; border:1px solid #ddd;"
+                    style="box-sizing:border-box; width:350px; border:1px solid #ddd;"
                     :data="WTree.option.items"
                     :iconSize="20"
                     :defItemHeight="24"
@@ -81,7 +81,7 @@
                 ></demolink>
 
                 <w-tree
-                    style="width:350px; border:1px solid #ddd;"
+                    style="box-sizing:border-box; width:350px; border:1px solid #ddd;"
                     :data="WTree.option.items"
                     :iconSize="30"
                     :defItemHeight="36"
@@ -97,7 +97,7 @@
                 ></demolink>
 
                 <w-tree
-                    style="width:350px; border:1px solid #ddd;"
+                    style="box-sizing:border-box; width:350px; border:1px solid #ddd;"
                     :data="WTree.option.items"
                     :itemRippleColor="'rgba(245,124,0,0.4)'"
                 ></w-tree>
@@ -112,7 +112,7 @@
                 ></demolink>
 
                 <w-tree
-                    style="width:350px; border:1px solid #ddd;"
+                    style="box-sizing:border-box; width:350px; border:1px solid #ddd;"
                     :data="WTree.option.items"
                     :viewHeightMax="300"
                 ></w-tree>
@@ -127,7 +127,7 @@
                 ></demolink>
 
                 <w-tree
-                    style="width:350px; border:1px solid #ddd;"
+                    style="box-sizing:border-box; width:350px; border:1px solid #ddd;"
                     :data="WTree.option.items"
                     :viewHeightMax="null"
                 ></w-tree>
@@ -142,7 +142,7 @@
                 ></demolink>
 
                 <w-tree
-                    style="width:350px; border:1px solid #ddd;"
+                    style="box-sizing:border-box; width:350px; border:1px solid #ddd;"
                     :data="WTree.option.items"
                     :paddingStyle="{v:5,h:5}"
                 ></w-tree>
@@ -157,7 +157,7 @@
                 ></demolink>
 
                 <w-tree
-                    style="width:350px; border:1px solid #ddd;"
+                    style="box-sizing:border-box; width:350px; border:1px solid #ddd;"
                     :data="WTree.option.items"
                     :indent="0.5"
                 ></w-tree>
@@ -172,7 +172,7 @@
                 ></demolink>
 
                 <w-tree
-                    style="width:350px; border:1px solid #ddd;"
+                    style="box-sizing:border-box; width:350px; border:1px solid #ddd;"
                     :data="WTree.option.items"
                     :viewHeightMax="WTree.viewHeightMaxSync"
                     @mouseenter="mouseenter"
@@ -205,7 +205,7 @@
 
                 <w-tree
                     ref="ref_toggleItemsByFun"
-                    style="width:350px; border:1px solid #ddd;"
+                    style="box-sizing:border-box; width:350px; border:1px solid #ddd;"
                     :data="WTree.option.items"
                     :viewHeightMax="WTree.viewHeightMaxSync"
                 ></w-tree>
@@ -228,7 +228,7 @@
 
                 <w-tree
                     ref="ref_toggleItemsAll"
-                    style="width:350px; border:1px solid #ddd;"
+                    style="box-sizing:border-box; width:350px; border:1px solid #ddd;"
                     :data="WTree.option.items"
                     :viewHeightMax="WTree.viewHeightMaxSync"
                 ></w-tree>
@@ -243,7 +243,7 @@
                 ></demolink>
 
                 <w-tree
-                    style="width:350px; border:1px solid #ddd;"
+                    style="box-sizing:border-box; width:350px; border:1px solid #ddd;"
                     :data="WTree.option.items"
                     :defaultDisplayLevel="1"
                 ></w-tree>
@@ -266,7 +266,7 @@
                 </div>
 
                 <w-tree
-                    style="width:350px; border:1px solid #ddd;"
+                    style="box-sizing:border-box; width:350px; border:1px solid #ddd;"
                     :data="WTree.option.items"
                     :filterKeywords="WTree.option.keywords"
                     :noResultsText="'There are no items to show...'"
@@ -291,7 +291,7 @@
                 </div>
 
                 <w-tree
-                    style="width:350px; border:1px solid #ddd;"
+                    style="box-sizing:border-box; width:350px; border:1px solid #ddd;"
                     :data="WTree.option.items"
                     :filterKeywords="WTree.option.keywords"
                     :funFilter="funFilter"
@@ -314,7 +314,7 @@
 
                 <w-tree
                     ref="ref_filterByFun"
-                    style="width:350px; border:1px solid #ddd;"
+                    style="box-sizing:border-box; width:350px; border:1px solid #ddd;"
                     :data="WTree.option.items"
                 ></w-tree>
 
@@ -328,7 +328,7 @@
                 ></demolink>
 
                 <w-tree
-                    style="width:350px; border:1px solid #ddd; background:#444;"
+                    style="box-sizing:border-box; width:350px; border:1px solid #ddd; background:#444;"
                     :data="WTree.option.items"
                     :itemTextColor="'#ccc'"
                     :itemTextColorHover="'#eee'"
@@ -348,7 +348,7 @@
                 <div style="font-size:0.8rem;">itemActive: {{WTree.option.itemActive}}</div>
 
                 <w-tree
-                    style="width:350px; border:1px solid #ddd;"
+                    style="box-sizing:border-box; width:350px; border:1px solid #ddd;"
                     :data="WTree.option.items"
                     :activable="true"
                     :itemActive.sync="WTree.option.itemActive"
@@ -367,7 +367,7 @@
                 <div style="font-size:0.8rem;">itemActive: {{WTree.option.itemActive}}</div>
 
                 <w-tree
-                    style="width:350px; border:1px solid #ddd;"
+                    style="box-sizing:border-box; width:350px; border:1px solid #ddd;"
                     :data="WTree.option.items"
                     :activable="true"
                     :itemActive.sync="WTree.option.itemActive"
@@ -387,7 +387,7 @@
                 <div style="font-size:0.8rem;">itemActive: {{WTree.option.itemActive}}</div>
 
                 <w-tree
-                    style="width:350px; border:1px solid #ddd; background:#444;"
+                    style="box-sizing:border-box; width:350px; border:1px solid #ddd; background:#444;"
                     :data="WTree.option.items"
                     :activable="true"
                     :itemActive.sync="WTree.option.itemActive"
@@ -410,7 +410,7 @@
                 ></demolink>
 
                 <w-tree
-                    style="width:350px; border:1px solid #ddd;"
+                    style="box-sizing:border-box; width:350px; border:1px solid #ddd;"
                     :data="WTree.option.items"
                     :iconToggleColor="'#d39a70'"
                     :iconToggleBackgroundColor="'rgba(211,154,112,0.1)'"
@@ -427,7 +427,7 @@
                 ></demolink>
 
                 <w-tree
-                    style="width:350px; border:1px solid #ddd;"
+                    style="box-sizing:border-box; width:350px; border:1px solid #ddd;"
                     :data="WTree.optionKeys.items"
                     :keyPrimary="'sid'"
                     :keyText="'name'"
@@ -446,7 +446,7 @@
                 <div style="margin-bottom:5px; color:#f26; font-size:0.8rem;">* Disable show and hide nodes when using draggable</div>
 
                 <w-tree
-                    style="width:350px; border:1px solid #ddd;"
+                    style="box-sizing:border-box; width:350px; border:1px solid #ddd;"
                     :data.sync="WTree.option.items"
                     :draggable="true"
                     @update:data="changeData"
@@ -465,7 +465,7 @@
                 <div style="margin-bottom:5px; color:#f26; font-size:0.8rem;">* Disable show and hide nodes when using draggable</div>
 
                 <w-tree
-                    style="width:350px; border:1px solid #ddd;"
+                    style="box-sizing:border-box; width:350px; border:1px solid #ddd;"
                     :data.sync="WTree.option.items"
                     :draggable="true"
                     :dgPreviewOpacity="0.9"
@@ -486,7 +486,7 @@
                 <div style="margin-bottom:5px; color:#f26; font-size:0.8rem;">* Disable show and hide nodes when using draggable</div>
 
                 <w-tree
-                    style="width:350px; border:1px solid #ddd;"
+                    style="box-sizing:border-box; width:350px; border:1px solid #ddd;"
                     :data.sync="WTree.option.items"
                     :draggable="true"
                     :dgInsertLineColor="'rgba(120,220,150,0.9)'"
@@ -506,7 +506,7 @@
                 <div style="margin-bottom:5px; color:#f26; font-size:0.8rem;">* Disable show and hide nodes when using draggable</div>
 
                 <w-tree
-                    style="width:350px; border:1px solid #ddd;"
+                    style="box-sizing:border-box; width:350px; border:1px solid #ddd;"
                     :data.sync="WTree.option.items"
                     :draggable="true"
                     :dgTextDisabled="'禁止拖曳至自己子節點當中'"
@@ -528,7 +528,7 @@
                 <div style="margin-bottom:5px; color:#f26; font-size:0.8rem;">* Disable show and hide nodes when using operatable</div>
 
                 <w-tree
-                    style="width:350px; border:1px solid #ddd;"
+                    style="box-sizing:border-box; width:350px; border:1px solid #ddd;"
                     :data.sync="WTree.option.items"
                     :operatable="true"
                     @click-operate-item="clickOperateItem"
@@ -548,7 +548,7 @@
                 <div style="margin-bottom:5px; color:#f26; font-size:0.8rem;">* Disable show and hide nodes when using operatable</div>
 
                 <w-tree
-                    style="width:350px; border:1px solid #ddd;"
+                    style="box-sizing:border-box; width:350px; border:1px solid #ddd;"
                     :data.sync="WTree.option.items"
                     :operatable="true"
                     :operateBtnTooltip="'編輯'"
@@ -572,7 +572,7 @@
                 <div style="margin-bottom:5px; color:#f26; font-size:0.8rem;">* Disable show and hide nodes when using operatable</div>
 
                 <w-tree
-                    style="width:350px; border:1px solid #ddd;"
+                    style="box-sizing:border-box; width:350px; border:1px solid #ddd;"
                     :data.sync="WTree.option.items"
                     :operatable="true"
                     :operateItemIconSize="18"
@@ -594,7 +594,7 @@
                 <div style="margin-bottom:5px; color:#f26; font-size:0.8rem;">* Disable show and hide nodes when using operatable</div>
 
                 <w-tree
-                    style="width:350px; border:1px solid #ddd;"
+                    style="box-sizing:border-box; width:350px; border:1px solid #ddd;"
                     :data.sync="WTree.option.items"
                     :operatable="true"
                     :operateItemIconSize="18"
@@ -615,7 +615,7 @@
                 <div style="margin-bottom:5px; color:#f26; font-size:0.8rem;">* Disable show and hide nodes when using operatable</div>
 
                 <w-tree
-                    style="width:350px; border:1px solid #ddd;"
+                    style="box-sizing:border-box; width:350px; border:1px solid #ddd;"
                     :data.sync="WTree.option.items"
                     :operatable="true"
                     :operateBtnIconSize="20"
@@ -637,7 +637,7 @@
                 <div style="margin-bottom:5px; color:#f26; font-size:0.8rem;">* Disable show and hide nodes when using operatable</div>
 
                 <w-tree
-                    style="width:350px; border:1px solid #ddd;"
+                    style="box-sizing:border-box; width:350px; border:1px solid #ddd;"
                     :data.sync="WTree.option.items"
                     :operatable="true"
                     :operateItemBackgroundColor="'blue-grey darken-1'"
@@ -661,7 +661,7 @@
                 <div style="margin-bottom:5px; color:#f26; font-size:0.8rem;">* Disable show and hide nodes when using operatable</div>
 
                 <w-tree
-                    style="width:350px; border:1px solid #ddd;"
+                    style="box-sizing:border-box; width:350px; border:1px solid #ddd;"
                     :data.sync="WTree.option.items"
                     :operatable="true"
                     :operateItemIconForRename="mdiCommentEditOutline"
@@ -684,7 +684,7 @@
                 <div style="margin-bottom:5px; color:#f26; font-size:0.8rem;">* Disable show and hide nodes when using operatable</div>
 
                 <w-tree
-                    style="width:350px; border:1px solid #ddd;"
+                    style="box-sizing:border-box; width:350px; border:1px solid #ddd;"
                     :data.sync="WTree.option.items"
                     :operatable="true"
                     :funOperateItem="funOperateItem"
@@ -703,7 +703,7 @@
                 <div style="margin-bottom:5px; color:#f26; font-size:0.8rem;">* Disable show and hide nodes when using operatable</div>
 
                 <w-tree
-                    style="width:350px; border:1px solid #ddd;"
+                    style="box-sizing:border-box; width:350px; border:1px solid #ddd;"
                     :data.sync="WTree.option.items"
                     :operatable="true"
                     :editorRenameContentBackgroundColor="'#f2f2f2'"
@@ -725,7 +725,7 @@
                 <div style="margin-bottom:5px; color:#f26; font-size:0.8rem;">* Disable show and hide nodes when using operatable</div>
 
                 <w-tree
-                    style="width:350px; border:1px solid #ddd;"
+                    style="box-sizing:border-box; width:350px; border:1px solid #ddd;"
                     :data.sync="WTree.option.items"
                     :operatable="true"
                     :editorRenameInputTextColor="'#444'"
@@ -749,7 +749,7 @@
                 <div style="margin-bottom:5px; color:#f26; font-size:0.8rem;">* Disable show and hide nodes when using operatable</div>
 
                 <w-tree
-                    style="width:350px; border:1px solid #ddd;"
+                    style="box-sizing:border-box; width:350px; border:1px solid #ddd;"
                     :data.sync="WTree.option.items"
                     :operatable="true"
                     :editorRenameCancelBtnText="'取消'"
@@ -772,7 +772,7 @@
                 <div style="margin-bottom:5px; color:#f26; font-size:0.8rem;">* Disable show and hide nodes when using operatable</div>
 
                 <w-tree
-                    style="width:350px; border:1px solid #ddd;"
+                    style="box-sizing:border-box; width:350px; border:1px solid #ddd;"
                     :data.sync="WTree.option.items"
                     :operatable="true"
                     :editorRenameCancelBtnIcon="'fas fa-times'"
@@ -797,7 +797,7 @@
                 <div style="margin-bottom:5px; color:#f26; font-size:0.8rem;">* Disable show and hide nodes when using operatable</div>
 
                 <w-tree
-                    style="width:350px; border:1px solid #ddd;"
+                    style="box-sizing:border-box; width:350px; border:1px solid #ddd;"
                     :data.sync="WTree.option.items"
                     :operatable="true"
                     :editorRenameCancelBtnBackgroundColor="'#EFEBE9'"
@@ -819,7 +819,7 @@
                 <div style="margin-bottom:5px; color:#f26; font-size:0.8rem;">* Disable show and hide nodes when using operatable</div>
 
                 <w-tree
-                    style="width:350px; border:1px solid #ddd;"
+                    style="box-sizing:border-box; width:350px; border:1px solid #ddd;"
                     :data.sync="WTree.option.items"
                     :operatable="true"
                     :editorRenameSaveBtnText="'儲存'"
@@ -842,7 +842,7 @@
                 <div style="margin-bottom:5px; color:#f26; font-size:0.8rem;">* Disable show and hide nodes when using operatable</div>
 
                 <w-tree
-                    style="width:350px; border:1px solid #ddd;"
+                    style="box-sizing:border-box; width:350px; border:1px solid #ddd;"
                     :data.sync="WTree.option.items"
                     :operatable="true"
                     :editorRenameSaveBtnIcon="'fas fa-check'"
@@ -867,7 +867,7 @@
                 <div style="margin-bottom:5px; color:#f26; font-size:0.8rem;">* Disable show and hide nodes when using operatable</div>
 
                 <w-tree
-                    style="width:350px; border:1px solid #ddd;"
+                    style="box-sizing:border-box; width:350px; border:1px solid #ddd;"
                     :data.sync="WTree.option.items"
                     :operatable="true"
                     :editorRenameSaveBtnBackgroundColor="'#EFEBE9'"
@@ -889,7 +889,7 @@
                 <div style="margin-bottom:5px; color:#f26; font-size:0.8rem;">* Disable show and hide nodes when using operatable or draggable</div>
 
                 <w-tree
-                    style="width:350px; border:1px solid #ddd;"
+                    style="box-sizing:border-box; width:350px; border:1px solid #ddd;"
                     :data.sync="WTree.option.items"
                     :draggable="true"
                     :operatable="true"
@@ -908,7 +908,7 @@
                 ></demolink>
 
                 <w-tree
-                    style="width:350px; border:1px solid #ddd;"
+                    style="box-sizing:border-box; width:350px; border:1px solid #ddd;"
                     :data="WTree.option.items"
                 >
                     <template v-slot:item="props">
@@ -954,7 +954,7 @@
                 <div style="margin-bottom:5px; color:#f26; font-size:0.8rem;">* Disable show and hide nodes when using operatable</div>
 
                 <w-tree
-                    style="width:350px; border:1px solid #ddd;"
+                    style="box-sizing:border-box; width:350px; border:1px solid #ddd;"
                     :data.sync="WTree.option.items"
                     :operatable="true"
                     @click-operate-item="clickOperateItem"
@@ -981,7 +981,7 @@
                 ></demolink>
 
                 <w-tree
-                    style="width:350px; border:1px solid #ddd;"
+                    style="box-sizing:border-box; width:350px; border:1px solid #ddd;"
                     :data.sync="WTree.option.items"
                     @click-operate-item="clickOperateItem"
                 >
@@ -1010,7 +1010,7 @@
 
                     <div style="display:table-cell; vertical-align:top;">
                         <w-tree
-                            style="width:350px; border:1px solid #ddd;"
+                            style="box-sizing:border-box; width:350px; border:1px solid #ddd;"
                             :data="WTree.option.items"
                             :selectable="true"
                             :selections.sync="WTree.option.selections"
@@ -1019,7 +1019,7 @@
                     </div>
 
                     <div style="display:table-cell; vertical-align:top;">
-                        <div :style="'padding:10px 20px; height:402px; overflow-y:auto; border:1px solid #ddd; border-left-width:0px;'">
+                        <div :style="'padding:10px 20px; box-sizing:border-box; height:402px; overflow-y:auto; border:1px solid #ddd; border-left-width:0px;'">
                             <div style="margin-bottom:5px;">selections: </div>
                             <pre style="font-size:0.7rem;">{{JSON.stringify(showSelection(WTree.option.selections),null,4)}}</pre>
                         </div>
@@ -1040,7 +1040,7 @@
 
                     <div style="display:table-cell; vertical-align:top;">
                         <w-tree
-                            style="width:350px; border:1px solid #ddd;"
+                            style="box-sizing:border-box; width:350px; border:1px solid #ddd;"
                             :data="WTree.option.items"
                             :selectable="true"
                             :selections.sync="WTree.option.selections"
@@ -1083,7 +1083,7 @@
                     </div>
 
                     <div style="display:table-cell; vertical-align:top;">
-                        <div :style="'padding:10px 20px; height:402px; overflow-y:auto; border:1px solid #ddd; border-left-width:0px;'">
+                        <div :style="'padding:10px 20px; box-sizing:border-box; height:402px; overflow-y:auto; border:1px solid #ddd; border-left-width:0px;'">
                             <div style="margin-bottom:5px;">selections: </div>
                             <pre style="font-size:0.7rem;">{{JSON.stringify(showSelection(WTree.option.selections),null,4)}}</pre>
                         </div>
@@ -1104,7 +1104,7 @@
 
                     <div style="display:table-cell; vertical-align:top;">
                         <w-tree
-                            style="width:350px; border:1px solid #ddd;"
+                            style="box-sizing:border-box; width:350px; border:1px solid #ddd;"
                             :data="WTree.option.items"
                             :selectable="true"
                             :selections.sync="WTree.option.selections"
@@ -1149,7 +1149,7 @@
                     </div>
 
                     <div style="display:table-cell; vertical-align:top;">
-                        <div :style="'padding:10px 20px; height:402px; overflow-y:auto; border:1px solid #ddd; border-left-width:0px;'">
+                        <div :style="'padding:10px 20px; box-sizing:border-box; height:402px; overflow-y:auto; border:1px solid #ddd; border-left-width:0px;'">
                             <div style="margin-bottom:5px;">selections: </div>
                             <pre style="font-size:0.7rem;">{{JSON.stringify(showSelection(WTree.option.selections),null,4)}}</pre>
                         </div>
@@ -1172,7 +1172,7 @@
 
                     <div style="display:table-cell; vertical-align:top;">
                         <w-tree
-                            style="width:350px; border:1px solid #ddd;"
+                            style="box-sizing:border-box; width:350px; border:1px solid #ddd;"
                             :data.sync="WTree.option.items"
                             :draggable="true"
                             :selectable="true"
@@ -1182,7 +1182,7 @@
                     </div>
 
                     <div style="display:table-cell; vertical-align:top;">
-                        <div :style="'padding:10px 20px; height:402px; overflow-y:auto; border:1px solid #ddd; border-left-width:0px;'">
+                        <div :style="'padding:10px 20px; box-sizing:border-box; height:402px; overflow-y:auto; border:1px solid #ddd; border-left-width:0px;'">
                             <div style="margin-bottom:5px;">selections: </div>
                             <pre style="font-size:0.7rem;">{{JSON.stringify(showSelection(WTree.option.selections),null,4)}}</pre>
                         </div>
@@ -1205,7 +1205,7 @@
 
                     <div style="display:table-cell; vertical-align:top;">
                         <w-tree
-                            style="width:350px; border:1px solid #ddd;"
+                            style="box-sizing:border-box; width:350px; border:1px solid #ddd;"
                             :data.sync="WTree.option.items"
                             :draggable="true"
                             :selectable="true"
@@ -1249,7 +1249,7 @@
                     </div>
 
                     <div style="display:table-cell; vertical-align:top;">
-                        <div :style="'padding:10px 20px; height:402px; overflow-y:auto; border:1px solid #ddd; border-left-width:0px;'">
+                        <div :style="'padding:10px 20px; box-sizing:border-box; height:402px; overflow-y:auto; border:1px solid #ddd; border-left-width:0px;'">
                             <div style="margin-bottom:5px;">selections: </div>
                             <pre style="font-size:0.7rem;">{{JSON.stringify(showSelection(WTree.option.selections),null,4)}}</pre>
                         </div>
@@ -1278,7 +1278,7 @@
 
                     <div style="display:table-cell; vertical-align:top;">
                         <w-tree
-                            style="width:350px; border:1px solid #ddd;"
+                            style="box-sizing:border-box; width:350px; border:1px solid #ddd;"
                             :data="WTree.option.items"
                             :selectable="true"
                             :selections.sync="WTree.option.selections"
@@ -1323,7 +1323,7 @@
                     </div>
 
                     <div style="display:table-cell; vertical-align:top;">
-                        <div :style="'padding:10px 20px; height:402px; overflow-y:auto; border:1px solid #ddd; border-left-width:0px;'">
+                        <div :style="'padding:10px 20px; box-sizing:border-box; height:402px; overflow-y:auto; border:1px solid #ddd; border-left-width:0px;'">
                             <div style="margin-bottom:5px;">selections: </div>
                             <pre style="font-size:0.7rem;">{{JSON.stringify(showSelection(WTree.option.selections),null,4)}}</pre>
                         </div>
@@ -1344,7 +1344,7 @@
 
                     <div style="display:table-cell; vertical-align:top;">
                         <w-tree
-                            style="width:350px; border:1px solid #ddd;"
+                            style="box-sizing:border-box; width:350px; border:1px solid #ddd;"
                             :data="WTree.optionLocked.items"
                             :selectable="true"
                             :selections.sync="WTree.optionLocked.selections"
@@ -1388,7 +1388,7 @@
                     </div>
 
                     <div style="display:table-cell; vertical-align:top;">
-                        <div :style="'padding:10px 20px; height:402px; overflow-y:auto; border:1px solid #ddd; border-left-width:0px;'">
+                        <div :style="'padding:10px 20px; box-sizing:border-box; height:402px; overflow-y:auto; border:1px solid #ddd; border-left-width:0px;'">
                             <div style="margin-bottom:5px;">selections: </div>
                             <pre style="font-size:0.7rem;">{{JSON.stringify(showSelection(WTree.optionLocked.selections),null,4)}}</pre>
                         </div>
@@ -1409,7 +1409,7 @@
 
                     <div style="display:table-cell; vertical-align:top;">
                         <w-tree
-                            style="width:350px; border:1px solid #ddd;"
+                            style="box-sizing:border-box; width:350px; border:1px solid #ddd;"
                             :data="WTree.optionLocked.items"
                             :selectable="true"
                             :selections.sync="WTree.optionLocked.selections"
@@ -1459,7 +1459,7 @@
                     </div>
 
                     <div style="display:table-cell; vertical-align:top;">
-                        <div :style="'padding:10px 20px; height:402px; overflow-y:auto; border:1px solid #ddd; border-left-width:0px;'">
+                        <div :style="'padding:10px 20px; box-sizing:border-box; height:402px; overflow-y:auto; border:1px solid #ddd; border-left-width:0px;'">
                             <div style="margin-bottom:5px;">selections: </div>
                             <pre style="font-size:0.7rem;">{{JSON.stringify(showSelection(WTree.optionLocked.selections),null,4)}}</pre>
                         </div>
@@ -1500,7 +1500,7 @@
                     </div>
 
                     <div style="display:table-cell; vertical-align:top;">
-                        <div :style="'padding:10px 20px; height:402px; overflow-y:auto; border:1px solid #ddd; border-left-width:0px;'">
+                        <div :style="'padding:10px 20px; box-sizing:border-box; height:402px; overflow-y:auto; border:1px solid #ddd; border-left-width:0px;'">
                             <div style="margin-bottom:5px;">selections: </div>
                             <pre style="font-size:0.7rem;">{{JSON.stringify(showSelection(WTree.optionLarge.selections),null,4)}}</pre>
                         </div>

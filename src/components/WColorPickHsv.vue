@@ -22,6 +22,7 @@
             <div :style="`
                 position:absolute; left:${curLocLeft-Math.floor(cursorSize/2)-1}px; top:${curLocTop-Math.floor(cursorSize/2)-1}px;
                 width:${cursorSize+2}px; height:${cursorSize+2}px;
+                box-sizing:border-box;
                 background:transparent;
                 border-radius:50%;
                 border:1px solid #666;
@@ -35,6 +36,7 @@
             <div :style="`
                 position:absolute; left:${curLocLeft-Math.floor(cursorSize/2)}px; top:${curLocTop-Math.floor(cursorSize/2)}px;
                 width:${cursorSize}px; height:${cursorSize}px;
+                box-sizing:border-box;
                 background:transparent;
                 border-radius:50%;
                 border:1px solid #fff;

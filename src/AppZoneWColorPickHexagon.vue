@@ -15,7 +15,7 @@
                 ></demolink>
 
                 <div style="padding:5px 0px;">
-                    <div :style="`display:inline-block; vertical-align:middle; border:1px solid #ddd; width:20px; height:20px; background:${WColorPickHexagon.colorPick};`"></div>
+                    <div :style="`display:inline-block; vertical-align:middle; border:1px solid #ddd; box-sizing:border-box; width:20px; height:20px; background:${WColorPickHexagon.colorPick};`"></div>
                     <div :style="`padding-left:5px; font-size:0.8rem; display:inline-block; vertical-align:middle;`">{{WColorPickHexagon.colorPick}}</div>
                 </div>
 
@@ -33,7 +33,7 @@
                 ></demolink>
 
                 <div style="padding:5px 0px;">
-                    <div :style="`display:inline-block; vertical-align:middle; border:1px solid #ddd; width:20px; height:20px; background:${WColorPickHexagon.colorPick};`"></div>
+                    <div :style="`display:inline-block; vertical-align:middle; border:1px solid #ddd; box-sizing:border-box; width:20px; height:20px; background:${WColorPickHexagon.colorPick};`"></div>
                     <div :style="`padding-left:5px; font-size:0.8rem; display:inline-block; vertical-align:middle;`">{{WColorPickHexagon.colorPick}}</div>
                 </div>
 

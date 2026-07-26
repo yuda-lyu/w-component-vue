@@ -40,7 +40,7 @@
                 </div>
 
                 <w-drawer
-                    style="width:500px; height:400px; border:1px solid #ddd;"
+                    style="box-sizing:border-box; width:500px; height:400px; border:1px solid #ddd;"
                     v-model="WDrawer.bShow101"
                 >
 
@@ -75,7 +75,7 @@
                 </div>
 
                 <w-drawer
-                    style="width:500px; height:400px; border:1px solid #ddd;"
+                    style="box-sizing:border-box; width:500px; height:400px; border:1px solid #ddd;"
                     v-model="WDrawer.bShow102"
                     :drawerWidth="300"
                 >
@@ -117,7 +117,7 @@
                 </div>
 
                 <w-drawer
-                    style="width:500px; height:400px; border:1px solid #ddd;"
+                    style="box-sizing:border-box; width:500px; height:400px; border:1px solid #ddd;"
                     v-model="WDrawer.bShow103"
                     :drawerWidth.sync="WDrawer.drawerWidth"
                     :dragDrawerWidth="true"
@@ -157,7 +157,7 @@
                 </div>
 
                 <w-drawer
-                    style="width:500px; height:400px; border:1px solid #ddd;"
+                    style="box-sizing:border-box; width:500px; height:400px; border:1px solid #ddd;"
                     v-model="WDrawer.bShow104"
                     _drawerWidth.sync="WDrawer.drawerWidth"
                     :dragDrawerWidth="true"
@@ -197,7 +197,7 @@
                 </div>
 
                 <w-drawer
-                    style="width:500px; height:400px; border:1px solid #ddd;"
+                    style="box-sizing:border-box; width:500px; height:400px; border:1px solid #ddd;"
                     v-model="WDrawer.bShow105"
                     _drawerWidth.sync="WDrawer.drawerWidth"
                     :dragDrawerWidth="true"
@@ -237,7 +237,7 @@
                 </div>
 
                 <w-drawer
-                    style="width:500px; height:400px; border:1px solid #ddd;"
+                    style="box-sizing:border-box; width:500px; height:400px; border:1px solid #ddd;"
                     v-model="WDrawer.bShow106"
                     _drawerWidth.sync="WDrawer.drawerWidth"
                     :dragDrawerWidth="true"
@@ -273,7 +273,7 @@
                 ></demolink>
 
                 <w-drawer
-                    style="width:600px; height:400px; border:1px solid #ddd;"
+                    style="box-sizing:border-box; width:600px; height:400px; border:1px solid #ddd;"
                     v-model="WDrawer.bShow107a"
                     :dragDrawerWidth="true"
                     :drawerWidthMin="50"
@@ -360,7 +360,7 @@
                 </div>
 
                 <w-drawer
-                    style="width:500px; height:400px; border:1px solid #ddd;"
+                    style="box-sizing:border-box; width:500px; height:400px; border:1px solid #ddd;"
                     v-model="WDrawer.bShow108"
                     :mode="'from-right'"
                 >
@@ -396,7 +396,7 @@
                 </div>
 
                 <w-drawer
-                    style="width:500px; height:400px; border:1px solid #ddd;"
+                    style="box-sizing:border-box; width:500px; height:400px; border:1px solid #ddd;"
                     v-model="WDrawer.bShow109"
                     :mode="'from-right'"
                     :dragDrawerWidth="true"
@@ -434,7 +434,7 @@
                 </div>
 
                 <w-drawer
-                    style="width:500px; height:400px; border:1px solid #ddd;"
+                    style="box-sizing:border-box; width:500px; height:400px; border:1px solid #ddd;"
                     v-model="WDrawer.bShow110"
                     :afloat="true"
                 >
@@ -471,7 +471,7 @@
                 </div>
 
                 <w-drawer
-                    style="width:500px; height:400px; border:1px solid #ddd;"
+                    style="box-sizing:border-box; width:500px; height:400px; border:1px solid #ddd;"
                     v-model="WDrawer.bShow111"
                     :afloat="true"
                     :dragDrawerWidth="true"
@@ -515,7 +515,7 @@
                 </div>
 
                 <w-drawer
-                    style="width:500px; height:400px; border:1px solid #ddd;"
+                    style="box-sizing:border-box; width:500px; height:400px; border:1px solid #ddd;"
                     v-model="WDrawer.bShow112"
                     :afloat="true"
                     :dragDrawerWidth="true"
@@ -555,7 +555,7 @@
                 </div>
 
                 <w-drawer
-                    style="width:500px; height:400px; border:1px solid #ddd;"
+                    style="box-sizing:border-box; width:500px; height:400px; border:1px solid #ddd;"
                     v-model="WDrawer.bShow113"
                     :afloat="true"
                     :overlayOpacity="0.1"
@@ -593,7 +593,7 @@
                 </div>
 
                 <w-drawer
-                    style="width:500px; height:400px; border:1px solid #ddd;"
+                    style="box-sizing:border-box; width:500px; height:400px; border:1px solid #ddd;"
                     v-model="WDrawer.bShow114"
                     :afloat="true"
                     :mode="'from-right'"
@@ -631,7 +631,7 @@
                 </div>
 
                 <w-drawer
-                    style="width:500px; height:400px; border:1px solid #ddd;"
+                    style="box-sizing:border-box; width:500px; height:400px; border:1px solid #ddd;"
                     v-model="WDrawer.bShow115"
                     :afloat="true"
                     :mode="'from-right'"
@@ -676,7 +676,7 @@
                 </div>
 
                 <w-drawer
-                    style="width:500px; height:400px; border:1px solid #ddd;"
+                    style="box-sizing:border-box; width:500px; height:400px; border:1px solid #ddd;"
                     v-model="WDrawer.bShow116"
                     :afloat="true"
                     :mode="'from-right'"
@@ -717,7 +717,7 @@
                 </div>
 
                 <w-drawer
-                    style="width:500px; height:400px; border:1px solid #ddd;"
+                    style="box-sizing:border-box; width:500px; height:400px; border:1px solid #ddd;"
                     v-model="WDrawer.bShow117"
                     :afloat="true"
                     :afloatByFix="true"
@@ -755,7 +755,7 @@
                 </div>
 
                 <w-drawer
-                    style="width:500px; height:400px; border:1px solid #ddd;"
+                    style="box-sizing:border-box; width:500px; height:400px; border:1px solid #ddd;"
                     v-model="WDrawer.bShow118"
                     :afloat="true"
                     :afloatByFix="true"
@@ -794,7 +794,7 @@
                 </div>
 
                 <w-drawer
-                    style="width:500px; height:400px; border:1px solid #ddd;"
+                    style="box-sizing:border-box; width:500px; height:400px; border:1px solid #ddd;"
                     v-model="WDrawer.bShow119"
                     :afloat="true"
                     :afloatByFix="true"
@@ -833,7 +833,7 @@
                 </div>
 
                 <w-drawer
-                    style="width:500px; height:400px; border:1px solid #ddd;"
+                    style="box-sizing:border-box; width:500px; height:400px; border:1px solid #ddd;"
                     v-model="WDrawer.bShow120"
                     :afloat="true"
                     :afloatByFix="true"
@@ -875,12 +875,12 @@
                 <div style="position:relative;">
 
                     <w-panel-divide-horizontal
-                        style="width:100%; height:400px; border:1px dashed #ec596b;"
+                        style="width:100%; box-sizing:border-box; height:400px; border:1px dashed #ec596b;"
                         :barColor="'#f26'"
                     >
                         <template v-slot:left="props">
                             <w-drawer
-                                :style="`width:${props.width}px; height:400px; border:1px solid #ddd;`"
+                                :style="`width:${props.width}px; box-sizing:border-box; height:400px; border:1px solid #ddd;`"
                                 v-model="WDrawer.bShow121"
                                 :autoSwitchToHide="true"
                                 _switchWidth="WDrawer.drawerWidth*2"
@@ -907,7 +907,7 @@
                     </w-panel-divide-horizontal>
 
                     <!-- 拖曳抽屜寬度越過此線測試效果 -->
-                    <div :style="`position:absolute; top:0; left:600px; height:400px; border-right:1px dashed #62f;`"></div>
+                    <div :style="`position:absolute; top:0; left:600px; box-sizing:border-box; height:400px; border-right:1px dashed #62f;`"></div>
 
                 </div>
 
@@ -927,12 +927,12 @@
                 <div style="position:relative;">
 
                     <w-panel-divide-horizontal
-                        style="width:100%; height:400px; border:1px dashed #ec596b;"
+                        style="width:100%; box-sizing:border-box; height:400px; border:1px dashed #ec596b;"
                         :barColor="'#f26'"
                     >
                         <template v-slot:left="props">
                             <w-drawer
-                                :style="`width:${props.width}px; height:400px; border:1px solid #ddd;`"
+                                :style="`width:${props.width}px; box-sizing:border-box; height:400px; border:1px solid #ddd;`"
                                 v-model="WDrawer.bShow122"
                                 :autoSwitchToShow="true"
                                 _switchWidth="WDrawer.drawerWidth*2"
@@ -959,7 +959,7 @@
                     </w-panel-divide-horizontal>
 
                     <!-- 拖曳抽屜寬度越過此線測試效果 -->
-                    <div :style="`position:absolute; top:0; left:600px; height:400px; border-right:1px dashed #62f;`"></div>
+                    <div :style="`position:absolute; top:0; left:600px; box-sizing:border-box; height:400px; border-right:1px dashed #62f;`"></div>
 
                 </div>
 
@@ -980,12 +980,12 @@
                 <div style="position:relative;">
 
                     <w-panel-divide-horizontal
-                        style="width:100%; height:400px; border:1px dashed #ec596b;"
+                        style="width:100%; box-sizing:border-box; height:400px; border:1px dashed #ec596b;"
                         :barColor="'#f26'"
                     >
                         <template v-slot:left="props">
                             <w-drawer
-                                :style="`width:${props.width}px; height:400px; border:1px solid #ddd;`"
+                                :style="`width:${props.width}px; box-sizing:border-box; height:400px; border:1px solid #ddd;`"
                                 v-model="WDrawer.bShow123"
                                 :autoSwitchToFloat="true"
                                 _switchWidth="WDrawer.drawerWidth*2"
@@ -1013,7 +1013,7 @@
                     </w-panel-divide-horizontal>
 
                     <!-- 拖曳抽屜寬度越過此線測試效果 -->
-                    <div :style="`position:absolute; top:0; left:600px; height:400px; border-right:1px dashed #62f;`"></div>
+                    <div :style="`position:absolute; top:0; left:600px; box-sizing:border-box; height:400px; border-right:1px dashed #62f;`"></div>
 
                 </div>
 

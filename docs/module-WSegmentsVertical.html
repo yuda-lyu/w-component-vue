@@ -199,6 +199,12 @@
         <td>No</td>
         <td>輸入刻度文字字型大小字串，預設'0.7rem'</td>
     </tr><tr>
+        <td><code>segmentWithPopup</code></td>
+        <td>Boolean</td>
+        <td><code>false</code></td>
+        <td>No</td>
+        <td>輸入區塊是否可點擊顯示popup彈窗布林值，彈窗內容由slot之segment-popup提供，預設false</td>
+    </tr><tr>
         <td><code>segmentBackgroundType</code></td>
         <td>String</td>
         <td><code>'color'</code></td>
@@ -249,15 +255,21 @@
     </tr><tr>
         <td><code>segmentSize</code></td>
         <td>Number</td>
-        <td><code>6</code></td>
+        <td><code>3</code></td>
         <td>No</td>
-        <td>輸入區塊尺寸(為兩側總寬度)數字，單位為px，預設6</td>
+        <td>輸入區塊尺寸(為單側寬度，不含垂直線軸)數字，區塊以垂直線軸為中心左右各segmentSize，含線軸之總寬為segmentSize*2+1，單位為px，預設3</td>
+    </tr><tr>
+        <td><code>segmentCanClick</code></td>
+        <td>Boolean</td>
+        <td><code>false</code></td>
+        <td>No</td>
+        <td>輸入區塊是否可點擊布林值，預設false</td>
     </tr><tr>
         <td><code>textWithPopup</code></td>
         <td>Boolean</td>
         <td><code>false</code></td>
         <td>No</td>
-        <td>輸入項目文字是否可點擊顯示popup彈窗布林值，預設false</td>
+        <td>輸入項目文字是否可點擊顯示popup彈窗布林值，彈窗內容由slot之text-popup提供，預設false</td>
     </tr><tr>
         <td><code>textFontSize</code></td>
         <td>String</td>
@@ -293,7 +305,7 @@
         <td>Number</td>
         <td><code>null</code></td>
         <td>No</td>
-        <td>輸入項目文字區與左側軸距離數字，單位為px，若給null則自動使用值為1+segmentSize/2+paddingStyle.left，預設null</td>
+        <td>輸入項目文字區與左側軸距離數字，單位為px，若給null則自動使用值為1+segmentSize+paddingStyle.left，預設null</td>
     </tr><tr>
         <td><code>textCanClick</code></td>
         <td>Boolean</td>
@@ -301,17 +313,17 @@
         <td>No</td>
         <td>輸入項目文字是否可點擊布林值，預設false</td>
     </tr><tr>
-        <td><code>segmentCanClick</code></td>
-        <td>Boolean</td>
-        <td><code>false</code></td>
-        <td>No</td>
-        <td>輸入區塊是否可點擊布林值，預設false</td>
-    </tr><tr>
         <td><code>labelContentForText</code></td>
         <td>String</td>
         <td><code>null</code></td>
         <td>No</td>
         <td>輸入針對項目文字之popup彈窗teleport至body內之內容div所給予之wtlp屬性值字串，供查找使用，預設null</td>
+    </tr><tr>
+        <td><code>labelContentForSegment</code></td>
+        <td>String</td>
+        <td><code>null</code></td>
+        <td>No</td>
+        <td>輸入針對區塊之popup彈窗teleport至body內之內容div所給予之wtlp屬性值字串，供查找使用，預設null</td>
     </tr><tr>
         <td><code>cmpZIndex</code></td>
         <td>Number</td>
@@ -483,6 +495,12 @@
         <td>No</td>
         <td>輸入刻度文字字型大小字串，預設'0.7rem'</td>
     </tr><tr>
+        <td><code>segmentWithPopup</code></td>
+        <td>Boolean</td>
+        <td><code>false</code></td>
+        <td>No</td>
+        <td>輸入區塊是否可點擊顯示popup彈窗布林值，彈窗內容由slot之segment-popup提供，預設false</td>
+    </tr><tr>
         <td><code>segmentBackgroundType</code></td>
         <td>String</td>
         <td><code>'color'</code></td>
@@ -533,15 +551,21 @@
     </tr><tr>
         <td><code>segmentSize</code></td>
         <td>Number</td>
-        <td><code>6</code></td>
+        <td><code>3</code></td>
         <td>No</td>
-        <td>輸入區塊尺寸(為兩側總寬度)數字，單位為px，預設6</td>
+        <td>輸入區塊尺寸(為單側寬度，不含垂直線軸)數字，區塊以垂直線軸為中心左右各segmentSize，含線軸之總寬為segmentSize*2+1，單位為px，預設3</td>
+    </tr><tr>
+        <td><code>segmentCanClick</code></td>
+        <td>Boolean</td>
+        <td><code>false</code></td>
+        <td>No</td>
+        <td>輸入區塊是否可點擊布林值，預設false</td>
     </tr><tr>
         <td><code>textWithPopup</code></td>
         <td>Boolean</td>
         <td><code>false</code></td>
         <td>No</td>
-        <td>輸入項目文字是否可點擊顯示popup彈窗布林值，預設false</td>
+        <td>輸入項目文字是否可點擊顯示popup彈窗布林值，彈窗內容由slot之text-popup提供，預設false</td>
     </tr><tr>
         <td><code>textFontSize</code></td>
         <td>String</td>
@@ -577,7 +601,7 @@
         <td>Number</td>
         <td><code>null</code></td>
         <td>No</td>
-        <td>輸入項目文字區與左側軸距離數字，單位為px，若給null則自動使用值為1+segmentSize/2+paddingStyle.left，預設null</td>
+        <td>輸入項目文字區與左側軸距離數字，單位為px，若給null則自動使用值為1+segmentSize+paddingStyle.left，預設null</td>
     </tr><tr>
         <td><code>textCanClick</code></td>
         <td>Boolean</td>
@@ -585,17 +609,17 @@
         <td>No</td>
         <td>輸入項目文字是否可點擊布林值，預設false</td>
     </tr><tr>
-        <td><code>segmentCanClick</code></td>
-        <td>Boolean</td>
-        <td><code>false</code></td>
-        <td>No</td>
-        <td>輸入區塊是否可點擊布林值，預設false</td>
-    </tr><tr>
         <td><code>labelContentForText</code></td>
         <td>String</td>
         <td><code>null</code></td>
         <td>No</td>
         <td>輸入針對項目文字之popup彈窗teleport至body內之內容div所給予之wtlp屬性值字串，供查找使用，預設null</td>
+    </tr><tr>
+        <td><code>labelContentForSegment</code></td>
+        <td>String</td>
+        <td><code>null</code></td>
+        <td>No</td>
+        <td>輸入針對區塊之popup彈窗teleport至body內之內容div所給予之wtlp屬性值字串，供查找使用，預設null</td>
     </tr><tr>
         <td><code>cmpZIndex</code></td>
         <td>Number</td>
@@ -717,7 +741,7 @@
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.5</a> on Sun Jul 26 2026 13:24:40 GMT+0800 (台北標準時間) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.5</a> on Sun Jul 26 2026 19:04:18 GMT+0800 (台北標準時間) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>

@@ -35,7 +35,7 @@
                 >
 
                     <template v-slot:point-popup="props">
-                        <div style="padding:15px; width:300px;">
+                        <div style="padding:15px; box-sizing:border-box; width:300px;">
                             <div style="padding-bottom:8px;">
                                 <div style="font-size:0.90rem; color:#f26;">[Popup]</div>
                             </div>
@@ -68,7 +68,7 @@
                 >
 
                     <template v-slot:polygon-popup="props">
-                        <div style="padding:15px; width:300px;">
+                        <div style="padding:15px; box-sizing:border-box; width:300px;">
                             <div style="padding-bottom:8px;">
                                 <div style="font-size:0.90rem; color:#f26;">[Popup]</div>
                             </div>
@@ -97,7 +97,7 @@
                 >
 
                     <template v-slot:contour-popup="props">
-                        <div style="padding:15px; width:300px;">
+                        <div style="padding:15px; box-sizing:border-box; width:300px;">
                             <div style="padding-bottom:8px;">
                                 <div style="font-size:0.90rem; color:#f26;">[Popup]</div>
                             </div>
@@ -126,7 +126,7 @@
                 >
 
                     <template v-slot:contour-popup="props">
-                        <div style="padding:15px; width:300px;">
+                        <div style="padding:15px; box-sizing:border-box; width:300px;">
                             <div style="padding-bottom:8px;">
                                 <div style="font-size:0.90rem; color:#f26;">[Popup]</div>
                             </div>

@@ -31,6 +31,7 @@
             <div :style="`
                 position:absolute; left:${curLocLeft-Math.floor(cursorSize/2)-1}px; top:-1px;
                 width:${cursorSize+2}px; height:${height+2}px;
+                box-sizing:border-box;
                 background:transparent;
                 border:1px solid #666;
                 cursor:pointer;
@@ -43,6 +44,7 @@
             <div :style="`
                 position:absolute; left:${curLocLeft-Math.floor(cursorSize/2)}px; top:0px;
                 width:${cursorSize}px; height:${height}px;
+                box-sizing:border-box;
                 background:transparent;
                 border:1px solid #fff;
                 cursor:pointer;

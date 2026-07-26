@@ -25,7 +25,7 @@
                     @click="clickColor"
                 >
 
-                    <div :style="`border:${colorBlockBorderWidth}px solid ${useColorBlockBorderColor}; width:${colorBlockSize}px; height:${colorBlockSize}px; background:${valueOri};`"></div>
+                    <div :style="`border:${colorBlockBorderWidth}px solid ${useColorBlockBorderColor}; width:${colorBlockSize}px; height:${colorBlockSize}px; box-sizing:border-box; background:${valueOri};`"></div>
 
                     <template v-if="showColorText">
 

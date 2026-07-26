@@ -177,7 +177,7 @@
                     :items="WSegmentsVertical.items"
                     :segmentBackgroundColor="'rgba(255,120,150,0.9)'"
                     :segmentBorderColor="'#f26'"
-                    :segmentSize="4"
+                    :segmentSize="6"
                 ></w-segments-vertical>
 
             </div>
@@ -230,6 +230,45 @@
                                 </div>
                                 <div style="padding:5px 10px; font-size:0.8rem; text-align:right;">
                                     <a style="color:#5b29c5;" href="https://www.google.com/" target="_blank">read more</a>
+                                </div>
+                            </div>
+                        </div>
+                    </template>
+                </w-segments-vertical>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-segments-vertical'"
+                    :casename="'segmentWithPopup & slot segment-popup'"
+                ></demolink>
+
+                <w-segments-vertical
+                    :items="WSegmentsVertical.items"
+                    :segmentSize="6"
+                    :segmentWithPopup="true"
+                >
+                    <template v-slot:segment-popup="props">
+                        <div style="padding:5px 0px; max-width:400px;">
+                            <div style="display:flex; align-items:center; padding:10px 20px; background:#666;">
+                                <w-icon
+                                    :icon="props.item.icon"
+                                    :size="20"
+                                    :color="'#fff'"
+                                ></w-icon>
+                                <span style="padding-left:8px; color:#fff;">{{props.item.text}}</span>
+                            </div>
+                            <div style="padding:5px;">
+                                <div style="padding:5px 10px; font-size:0.8rem;">
+                                    <span style="color:#888;">Type: </span>
+                                    <span style="color:#444;">{{props.item.type}}</span>
+                                </div>
+                                <div style="padding:5px 10px; font-size:0.8rem;">
+                                    <span style="color:#888;">Range: </span>
+                                    <span style="color:#f26;">{{props.item.valueStart}} ~ {{props.item.valueEnd}}</span>
+                                    <span style="color:#888;"> ({{props.item.valueEnd-props.item.valueStart}} years)</span>
                                 </div>
                             </div>
                         </div>
@@ -350,7 +389,7 @@
                         left: 95,
                     }"
                     :tickSize="30"
-                    :segmentSize="50"
+                    :segmentSize="25"
                     :segmentBackgroundType="'image'"
                     :funSegmentBackgroundImage="getSegmentBackgroundIcon"
                     :segmentBorderColor="{v:'transparent',h:'#444'}"
@@ -419,7 +458,7 @@
                         left: 80,
                     }"
                     :tickSize="30"
-                    :segmentSize="50"
+                    :segmentSize="25"
                     :segmentBackgroundType="'image'"
                     :funSegmentBackgroundImage="getSegmentBackgroundIcon"
                     :segmentBorderColor="{v:'transparent',h:'#444'}"

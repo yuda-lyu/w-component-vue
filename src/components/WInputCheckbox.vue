@@ -16,9 +16,9 @@
 
                 <div :style="`display:flex; ${useVerticalAlign};`">
 
-                    <div :style="`display:flex; align-items:center; height:${inputSize+inputShiftTop}px; padding-top:${inputShiftTop}px;`">
+                    <div :style="`display:flex; align-items:center; height:${inputSize+inputShiftTop}px; padding-top:${inputShiftTop}px; box-sizing:border-box;`">
                         <input
-                            :style="`width:${inputSize}px; height:${inputSize}px; padding:0px; cursor:pointer;`"
+                            :style="`width:${inputSize}px; height:${inputSize}px; margin:0px; padding:0px; cursor:pointer;`"
                             :type="multiCheck?'checkbox':'radio'"
                             :value="item.id"
                             v-model="dataActive"

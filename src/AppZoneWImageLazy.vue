@@ -14,7 +14,7 @@
                     :casename="'width & height'"
                 ></demolink>
 
-                <div style="width:340px; height:400px; overflow-y:auto; border:1px solid #ddd;">
+                <div style="box-sizing:border-box; width:340px; height:400px; overflow-y:auto; border:1px solid #ddd;">
 
                     <div
                         :key="'kurl-'+kurl"
@@ -41,7 +41,7 @@
                     :casename="'width & height & delay'"
                 ></demolink>
 
-                <div style="width:340px; height:400px; overflow-y:auto; border:1px solid #ddd;">
+                <div style="box-sizing:border-box; width:340px; height:400px; overflow-y:auto; border:1px solid #ddd;">
 
                     <div
                         :key="'kurl-'+kurl"

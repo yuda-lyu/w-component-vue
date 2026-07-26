@@ -391,7 +391,8 @@ export default {
             if (!isNumber(w)) {
                 return ''
             }
-            return `width:${w}px; min-width:${w}px; max-width:${w}px;`
+            //box-sizing為border-box, 因連接線區塊寬高內須含border繪製之連接線, 否則區塊會被撐大
+            return `width:${w}px; min-width:${w}px; max-width:${w}px; box-sizing:border-box;`
         },
 
         getTag: function(item) {

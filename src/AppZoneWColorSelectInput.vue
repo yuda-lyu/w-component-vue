@@ -15,7 +15,7 @@
                 ></demolink>
 
                 <div style="padding:5px 0px;">
-                    <div :style="`display:inline-block; vertical-align:middle; border:1px solid #ddd; width:20px; height:20px; background:${WColorSelectInput.colorPick1};`"></div>
+                    <div :style="`display:inline-block; vertical-align:middle; border:1px solid #ddd; box-sizing:border-box; width:20px; height:20px; background:${WColorSelectInput.colorPick1};`"></div>
                     <div :style="`padding-left:5px; font-size:0.8rem; display:inline-block; vertical-align:middle;`">{{WColorSelectInput.colorPick1}}</div>
                 </div>
 
@@ -33,7 +33,7 @@
                 ></demolink>
 
                 <div style="padding:5px 0px;">
-                    <div :style="`display:inline-block; vertical-align:middle; border:1px solid #ddd; width:20px; height:20px; background:${WColorSelectInput.colorPick2};`"></div>
+                    <div :style="`display:inline-block; vertical-align:middle; border:1px solid #ddd; box-sizing:border-box; width:20px; height:20px; background:${WColorSelectInput.colorPick2};`"></div>
                     <div :style="`padding-left:5px; font-size:0.8rem; display:inline-block; vertical-align:middle;`">{{WColorSelectInput.colorPick2}}</div>
                 </div>
 
@@ -52,7 +52,7 @@
                 ></demolink>
 
                 <div style="padding:5px 0px;">
-                    <div :style="`display:inline-block; vertical-align:middle; border:1px solid #ddd; width:20px; height:20px; background:${WColorSelectInput.colorPick3};`"></div>
+                    <div :style="`display:inline-block; vertical-align:middle; border:1px solid #ddd; box-sizing:border-box; width:20px; height:20px; background:${WColorSelectInput.colorPick3};`"></div>
                     <div :style="`padding-left:5px; font-size:0.8rem; display:inline-block; vertical-align:middle;`">{{WColorSelectInput.colorPick3}}</div>
                 </div>
 
@@ -73,7 +73,7 @@
                 ></demolink>
 
                 <div style="padding:5px 0px;">
-                    <div :style="`display:inline-block; vertical-align:middle; border:1px solid #ddd; width:20px; height:20px; background:${WColorSelectInput.colorPick4};`"></div>
+                    <div :style="`display:inline-block; vertical-align:middle; border:1px solid #ddd; box-sizing:border-box; width:20px; height:20px; background:${WColorSelectInput.colorPick4};`"></div>
                     <div :style="`padding-left:5px; font-size:0.8rem; display:inline-block; vertical-align:middle;`">{{WColorSelectInput.colorPick4}}</div>
                 </div>
 
@@ -92,7 +92,7 @@
                 ></demolink>
 
                 <div style="padding:5px 0px;">
-                    <div :style="`display:inline-block; vertical-align:middle; border:1px solid #ddd; width:20px; height:20px; background:${WColorSelectInput.colorPick5};`"></div>
+                    <div :style="`display:inline-block; vertical-align:middle; border:1px solid #ddd; box-sizing:border-box; width:20px; height:20px; background:${WColorSelectInput.colorPick5};`"></div>
                     <div :style="`padding-left:5px; font-size:0.8rem; display:inline-block; vertical-align:middle;`">{{WColorSelectInput.colorPick5}}</div>
                 </div>
 
@@ -113,7 +113,7 @@
                 ></demolink>
 
                 <div style="padding:5px 0px;">
-                    <div :style="`display:inline-block; vertical-align:middle; border:1px solid #ddd; width:20px; height:20px; background:${WColorSelectInput.colorPick6};`"></div>
+                    <div :style="`display:inline-block; vertical-align:middle; border:1px solid #ddd; box-sizing:border-box; width:20px; height:20px; background:${WColorSelectInput.colorPick6};`"></div>
                     <div :style="`padding-left:5px; font-size:0.8rem; display:inline-block; vertical-align:middle;`">{{WColorSelectInput.colorPick6}}</div>
                 </div>
 
@@ -134,7 +134,7 @@
                 ></demolink>
 
                 <div style="padding:5px 0px;">
-                    <div :style="`display:inline-block; vertical-align:middle; border:1px solid #ddd; width:20px; height:20px; background:${WColorSelectInput.colorPick7};`"></div>
+                    <div :style="`display:inline-block; vertical-align:middle; border:1px solid #ddd; box-sizing:border-box; width:20px; height:20px; background:${WColorSelectInput.colorPick7};`"></div>
                     <div :style="`padding-left:5px; font-size:0.8rem; display:inline-block; vertical-align:middle;`">{{WColorSelectInput.colorPick7}}</div>
                 </div>
 
@@ -153,7 +153,7 @@
                 ></demolink>
 
                 <div style="padding:5px 0px;">
-                    <div :style="`display:inline-block; vertical-align:middle; border:1px solid #ddd; width:20px; height:20px; background:${WColorSelectInput.colorPick8};`"></div>
+                    <div :style="`display:inline-block; vertical-align:middle; border:1px solid #ddd; box-sizing:border-box; width:20px; height:20px; background:${WColorSelectInput.colorPick8};`"></div>
                     <div :style="`padding-left:5px; font-size:0.8rem; display:inline-block; vertical-align:middle;`">{{WColorSelectInput.colorPick8}}</div>
                 </div>
 
@@ -172,7 +172,7 @@
                 ></demolink>
 
                 <div style="padding:5px 0px;">
-                    <div :style="`display:inline-block; vertical-align:middle; border:1px solid #ddd; width:20px; height:20px; background:${WColorSelectInput.colorPick9};`"></div>
+                    <div :style="`display:inline-block; vertical-align:middle; border:1px solid #ddd; box-sizing:border-box; width:20px; height:20px; background:${WColorSelectInput.colorPick9};`"></div>
                     <div :style="`padding-left:5px; font-size:0.8rem; display:inline-block; vertical-align:middle;`">{{WColorSelectInput.colorPick9}}</div>
                 </div>
 
@@ -193,7 +193,7 @@
                 ></demolink>
 
                 <div style="padding:5px 0px;">
-                    <div :style="`display:inline-block; vertical-align:middle; border:1px solid #ddd; width:20px; height:20px; background:${WColorSelectInput.colorPick10};`"></div>
+                    <div :style="`display:inline-block; vertical-align:middle; border:1px solid #ddd; box-sizing:border-box; width:20px; height:20px; background:${WColorSelectInput.colorPick10};`"></div>
                     <div :style="`padding-left:5px; font-size:0.8rem; display:inline-block; vertical-align:middle;`">{{WColorSelectInput.colorPick10}}</div>
                 </div>
 
@@ -214,7 +214,7 @@
                 ></demolink>
 
                 <div style="padding:5px 0px;">
-                    <div :style="`display:inline-block; vertical-align:middle; border:1px solid #ddd; width:20px; height:20px; background:${WColorSelectInput.colorPick11};`"></div>
+                    <div :style="`display:inline-block; vertical-align:middle; border:1px solid #ddd; box-sizing:border-box; width:20px; height:20px; background:${WColorSelectInput.colorPick11};`"></div>
                     <div :style="`padding-left:5px; font-size:0.8rem; display:inline-block; vertical-align:middle;`">{{WColorSelectInput.colorPick11}}</div>
                 </div>
 
@@ -233,7 +233,7 @@
                 ></demolink>
 
                 <div style="padding:5px 0px;">
-                    <div :style="`display:inline-block; vertical-align:middle; border:1px solid #ddd; width:20px; height:20px; background:${WColorSelectInput.colorPick12};`"></div>
+                    <div :style="`display:inline-block; vertical-align:middle; border:1px solid #ddd; box-sizing:border-box; width:20px; height:20px; background:${WColorSelectInput.colorPick12};`"></div>
                     <div :style="`padding-left:5px; font-size:0.8rem; display:inline-block; vertical-align:middle;`">{{WColorSelectInput.colorPick12}}</div>
                 </div>
 
@@ -254,7 +254,7 @@
                 ></demolink>
 
                 <div style="padding:5px 0px;">
-                    <div :style="`display:inline-block; vertical-align:middle; border:1px solid #ddd; width:20px; height:20px; background:${WColorSelectInput.colorPick13};`"></div>
+                    <div :style="`display:inline-block; vertical-align:middle; border:1px solid #ddd; box-sizing:border-box; width:20px; height:20px; background:${WColorSelectInput.colorPick13};`"></div>
                     <div :style="`padding-left:5px; font-size:0.8rem; display:inline-block; vertical-align:middle;`">{{WColorSelectInput.colorPick13}}</div>
                 </div>
 
@@ -273,7 +273,7 @@
                 ></demolink>
 
                 <div style="padding:5px 0px;">
-                    <div :style="`display:inline-block; vertical-align:middle; border:1px solid #ddd; width:20px; height:20px; background:${WColorSelectInput.colorPick14};`"></div>
+                    <div :style="`display:inline-block; vertical-align:middle; border:1px solid #ddd; box-sizing:border-box; width:20px; height:20px; background:${WColorSelectInput.colorPick14};`"></div>
                     <div :style="`padding-left:5px; font-size:0.8rem; display:inline-block; vertical-align:middle;`">{{WColorSelectInput.colorPick14}}</div>
                 </div>
 
@@ -293,7 +293,7 @@
                 ></demolink>
 
                 <div style="padding:5px 0px;">
-                    <div :style="`display:inline-block; vertical-align:middle; border:1px solid #ddd; width:20px; height:20px; background:${WColorSelectInput.colorPick15};`"></div>
+                    <div :style="`display:inline-block; vertical-align:middle; border:1px solid #ddd; box-sizing:border-box; width:20px; height:20px; background:${WColorSelectInput.colorPick15};`"></div>
                     <div :style="`padding-left:5px; font-size:0.8rem; display:inline-block; vertical-align:middle;`">{{WColorSelectInput.colorPick15}}</div>
                 </div>
 
@@ -312,7 +312,7 @@
                 ></demolink>
 
                 <div style="padding:5px 0px;">
-                    <div :style="`display:inline-block; vertical-align:middle; border:1px solid #ddd; width:20px; height:20px; background:${WColorSelectInput.colorPick16};`"></div>
+                    <div :style="`display:inline-block; vertical-align:middle; border:1px solid #ddd; box-sizing:border-box; width:20px; height:20px; background:${WColorSelectInput.colorPick16};`"></div>
                     <div :style="`padding-left:5px; font-size:0.8rem; display:inline-block; vertical-align:middle;`">{{WColorSelectInput.colorPick16}}</div>
                 </div>
 
@@ -334,7 +334,7 @@
                 ></demolink>
 
                 <div style="padding:5px 0px;">
-                    <div :style="`display:inline-block; vertical-align:middle; border:1px solid #ddd; width:20px; height:20px; background:${WColorSelectInput.colorPick17};`"></div>
+                    <div :style="`display:inline-block; vertical-align:middle; border:1px solid #ddd; box-sizing:border-box; width:20px; height:20px; background:${WColorSelectInput.colorPick17};`"></div>
                     <div :style="`padding-left:5px; font-size:0.8rem; display:inline-block; vertical-align:middle;`">{{WColorSelectInput.colorPick17}}</div>
                 </div>
 
@@ -353,7 +353,7 @@
                 ></demolink>
 
                 <div style="padding:5px 0px;">
-                    <div :style="`display:inline-block; vertical-align:middle; border:1px solid #ddd; width:20px; height:20px; background:${WColorSelectInput.colorPick18};`"></div>
+                    <div :style="`display:inline-block; vertical-align:middle; border:1px solid #ddd; box-sizing:border-box; width:20px; height:20px; background:${WColorSelectInput.colorPick18};`"></div>
                     <div :style="`padding-left:5px; font-size:0.8rem; display:inline-block; vertical-align:middle;`">{{WColorSelectInput.colorPick18}}</div>
                 </div>
 

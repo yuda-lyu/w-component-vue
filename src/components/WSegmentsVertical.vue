@@ -3,7 +3,8 @@
 
         <div :style="`padding:${paddingTop}px ${paddingRight}px ${paddingBottom}px ${paddingLeft}px;`">
 
-            <div :style="`position:relative; width:${plotWidth}px; height:${plotHeight}px; border-left:1px solid ${useAxisColor};`">
+            <!-- plot區, 寬度內要含左側垂直線軸之邊線1px(useTextWidthMax亦按此扣除), 故須box-sizing:border-box -->
+            <div :style="`position:relative; width:${plotWidth}px; height:${plotHeight}px; border-left:1px solid ${useAxisColor}; box-sizing:border-box;`">
 
                 <div
                     :style="`position:absolute; top:50%; left:0%; color:${useTitleColor}; font-size:${titleFontSize}; text-align:center; transform-origin:center; transform:translate(-50%,-50%) rotate(-90deg) translateY(${useTitleShift}px);`"
@@ -23,21 +24,59 @@
                     </div>
                 </div>
 
+                <!-- 刻度, 絕對定位之包含塊原點在垂直線軸(1px)之右緣, 故left需再左推1px, 使刻度以線軸為中心左右各tickSize -->
                 <div
-                    :style="`position:absolute; top:${l.y}px; left:-${tickSize}px;`"
+                    :style="`position:absolute; top:${l.y}px; left:-${tickSize+1}px;`"
                     :key="'tick'+kl"
                     v-for="(l,kl) in useLabelsLocs"
                 >
                     <div :style="`width:${tickSize*2+1}px; border-top:1px solid ${useTickColor};`"></div>
                 </div>
 
-                <div
-                    :style="`position:absolute; top:${s.y}px; left:-${segmentSize/2}px; width:${segmentSize}px; height:${s.height}px; ${getSegmentBackground(ks)} ${getSegmentBorder(ks)} ${useSegmentCursor}`"
-                    :key="'sample-block'+ks"
-                    v-for="(s,ks) in useSamplesLocs"
-                    @click="(ev)=>{clickSegment(ev,s.data)}"
-                >
-                </div>
+                <!-- 區塊, 與刻度同規則: 以垂直線軸為中心左右各segmentSize, 總寬segmentSize*2+1(含邊框, 故須box-sizing:border-box) -->
+                <!-- 附popup時另包一層定位div, 區塊本身即為WPopup之驅動區, 彈窗才會錨定於該區塊而非plot區左上角 -->
+                <!-- 定位div須用display:flex, 因WPopup根元素為display:inline-block, 於行內脈絡下較矮之區塊會被行框基線往下推擠 -->
+                <template v-if="segmentWithPopup">
+                    <div
+                        :style="`position:absolute; top:${s.y}px; left:-${segmentSize+1}px; display:flex;`"
+                        :key="'sample-block'+ks"
+                        v-for="(s,ks) in useSamplesLocs"
+                    >
+                        <!-- placement為right-start, 使彈窗出現於區塊右側且上緣對齊區塊上緣(即起始刻度線) -->
+                        <WPopup
+                            :isolated="true"
+                            :placement="'right-start'"
+                            :labelContent="labelContentForSegment"
+                            :cmpZIndex="cmpZIndex"
+                        >
+
+                            <template v-slot:trigger>
+                                <div
+                                    :style="`width:${segmentSize*2+1}px; height:${s.height}px; box-sizing:border-box; ${getSegmentBackground(ks)} ${getSegmentBorder(ks)} ${useSegmentCursor}`"
+                                    @click="(ev)=>{clickSegment(ev,s.data)}"
+                                ></div>
+                            </template>
+
+                            <template v-slot:content>
+                                <slot
+                                    name="segment-popup"
+                                    :item="s.data"
+                                    :index="ks"
+                                ></slot>
+                            </template>
+
+                        </WPopup>
+                    </div>
+                </template>
+                <template v-else>
+                    <div
+                        :style="`position:absolute; top:${s.y}px; left:-${segmentSize+1}px; width:${segmentSize*2+1}px; height:${s.height}px; box-sizing:border-box; ${getSegmentBackground(ks)} ${getSegmentBorder(ks)} ${useSegmentCursor}`"
+                        :key="'sample-block'+ks"
+                        v-for="(s,ks) in useSamplesLocs"
+                        @click="(ev)=>{clickSegment(ev,s.data)}"
+                    >
+                    </div>
+                </template>
 
                 <div :style="`position:absolute; top:0px; left:0px; transform:translateX(-${paddingLeft}px);`">
                     <slot
@@ -205,6 +244,7 @@ import convertColor from '../js/convertColor.mjs'
  * @vue-prop {Number} [tickSize=5] 輸入刻度尺寸(為單側寬度)數字，單位為px，預設5
  * @vue-prop {String} [tickLabelColor='#666'] 輸入刻度文字顏色字串，預設'#666'
  * @vue-prop {String} [tickLabelFontSize='0.7rem'] 輸入刻度文字字型大小字串，預設'0.7rem'
+ * @vue-prop {Boolean} [segmentWithPopup=false] 輸入區塊是否可點擊顯示popup彈窗布林值，彈窗內容由slot之segment-popup提供，預設false
  * @vue-prop {String} [segmentBackgroundType='color'] 輸入區塊背景類型字串，可選'color'或'image'，預設'color'
  * @vue-prop {String} [segmentBackgroundImage=''] 輸入區塊背景圖片字串，通過background-image:url(...)設定，預設''
  * @vue-prop {Function} [funSegmentBackgroundImage=null] 輸入處理項目數據之區塊背景圖片函數，預設null
@@ -213,17 +253,18 @@ import convertColor from '../js/convertColor.mjs'
  * @vue-prop {Function} [funSegmentBackgroundColor=null] 輸入處理項目數據之區塊背景函數，預設null
  * @vue-prop {String|Object} [segmentBorderColor='#FFB74D'] 輸入區塊邊框顏色字串或物件，給予物件時可用鍵值為v、h、left、right、top、bottom，v代表同時設定top與bottom，h代表設定left與right，預設'#FB8C00'
  * @vue-prop {Function} [funSegmentBorderColor=null] 輸入處理項目數據之區塊邊框函數，預設null
- * @vue-prop {Number} [segmentSize=6] 輸入區塊尺寸(為兩側總寬度)數字，單位為px，預設6
- * @vue-prop {Boolean} [textWithPopup=false] 輸入項目文字是否可點擊顯示popup彈窗布林值，預設false
+ * @vue-prop {Number} [segmentSize=3] 輸入區塊尺寸(為單側寬度，不含垂直線軸)數字，區塊以垂直線軸為中心左右各segmentSize，含線軸之總寬為segmentSize*2+1，單位為px，預設3
+ * @vue-prop {Boolean} [segmentCanClick=false] 輸入區塊是否可點擊布林值，預設false
+ * @vue-prop {Boolean} [textWithPopup=false] 輸入項目文字是否可點擊顯示popup彈窗布林值，彈窗內容由slot之text-popup提供，預設false
  * @vue-prop {String} [textFontSize='0.7rem'] 輸入項目文字區之文字字型大小字串，預設'0.7rem'
  * @vue-prop {String} [textColor='#222'] 輸入項目文字區之文字顏色字串，預設'#222'
  * @vue-prop {String} [textBackgroundColor='#ddd'] 輸入項目文字區之背景顏色字串，預設'#ddd'
  * @vue-prop {Number} [textTriangularSize=15] 輸入項目文字區之箭頭長度數字，單位為px，若textTriangularSize/textTriangularRatio*2小於項目文字區高度時則會破圖，預設15
  * @vue-prop {Number} [textTriangularRatio=1.5] 輸入項目文字區之箭頭長寬比值數字，若textTriangularSize/textTriangularRatio*2小於項目文字區高度時則會破圖，預設1.5
- * @vue-prop {Number} [textShift=null] 輸入項目文字區與左側軸距離數字，單位為px，若給null則自動使用值為1+segmentSize/2+paddingStyle.left，預設null
+ * @vue-prop {Number} [textShift=null] 輸入項目文字區與左側軸距離數字，單位為px，若給null則自動使用值為1+segmentSize+paddingStyle.left，預設null
  * @vue-prop {Boolean} [textCanClick=false] 輸入項目文字是否可點擊布林值，預設false
- * @vue-prop {Boolean} [segmentCanClick=false] 輸入區塊是否可點擊布林值，預設false
  * @vue-prop {String} [labelContentForText=null] 輸入針對項目文字之popup彈窗teleport至body內之內容div所給予之wtlp屬性值字串，供查找使用，預設null
+ * @vue-prop {String} [labelContentForSegment=null] 輸入針對區塊之popup彈窗teleport至body內之內容div所給予之wtlp屬性值字串，供查找使用，預設null
  * @vue-prop {Number} [cmpZIndex=3000] 輸入彈窗使用z-index數字，供嵌於高z-index彈窗內時提高層級，預設3000
  */
 export default {
@@ -356,7 +397,7 @@ export default {
         },
         segmentSize: {
             type: Number,
-            default: 6,
+            default: 3,
         },
         textWithPopup: {
             type: Boolean,
@@ -394,7 +435,15 @@ export default {
             type: Boolean,
             default: false,
         },
+        segmentWithPopup: {
+            type: Boolean,
+            default: false,
+        },
         labelContentForText: {
+            type: String,
+            default: null,
+        },
+        labelContentForSegment: {
             type: String,
             default: null,
         },
@@ -714,11 +763,12 @@ export default {
                 //bottom
                 let bottom = (v.valueEnd - vo.useValueMin) / range * vo.plotHeight
 
-                //r
+                //r, height需含結束刻度線自身之1px, 使區塊上下緣邊框各自正好疊在起訖刻度線上,
+                //且相鄰區塊(前者valueEnd等於後者valueStart)於交界處共用同一條1px邊框, 不會疊成2px
                 let r = {
                     y: top,
                     yc: (top + bottom) / 2,
-                    height: bottom - top,
+                    height: bottom - top + 1,
                     text: v.text,
                     data: v.data,
                 }
@@ -752,7 +802,7 @@ export default {
 
         useSegmentCursor: function() {
             let vo = this
-            let b = vo.segmentCanClick
+            let b = vo.segmentWithPopup || vo.segmentCanClick
             return b ? 'cursor:pointer;' : ''
         },
 
@@ -787,8 +837,8 @@ export default {
                 return vo.textShift
             }
 
-            //自動計算
-            let s = 1 + vo.segmentSize / 2
+            //自動計算, 區塊右緣位於segmentSize處, 再留1px間距
+            let s = 1 + vo.segmentSize
             if (vo.useAlignStart === 'right' || vo.useAlignEnd === 'right') {
                 s += vo.paddingLeft
             }

@@ -373,7 +373,7 @@
                     </template>
 
                     <template v-slot:content>
-                        <div style="width:200px; padding:10px;">{{ WPopup.text }}</div>
+                        <div style="box-sizing:border-box; width:200px; padding:10px;">{{ WPopup.text }}</div>
                     </template>
 
                 </w-popup>
@@ -398,7 +398,7 @@
                     </template>
 
                     <template v-slot:content>
-                        <div style="width:200px; padding:10px;">{{ WPopup.text }}</div>
+                        <div style="box-sizing:border-box; width:200px; padding:10px;">{{ WPopup.text }}</div>
                     </template>
 
                 </w-popup>
@@ -915,7 +915,7 @@
                     :casename="'in scroll panel'"
                 ></demolink>
 
-                <div :style="'width:200px; height:300px; border:1px solid #ddd; overflow-y:auto;'">
+                <div :style="'width:200px; box-sizing:border-box; height:300px; border:1px solid #ddd; overflow-y:auto;'">
                     <div style="height:600px;">
 
                         <div style="height:200px;"></div>
@@ -957,7 +957,7 @@
                 ></demolink>
 
                 <div style="width:95vw; text-align:right;">
-                    <div :style="'display:inline-block; width:200px; height:300px; border:1px solid #ddd; overflow-y:auto;'">
+                    <div :style="'display:inline-block; box-sizing:border-box; width:200px; height:300px; border:1px solid #ddd; overflow-y:auto;'">
                         <div style="text-align:left; height:600px;">
 
                             <div style="height:200px;"></div>
@@ -1084,7 +1084,7 @@
                 >
 
                     <template v-slot:content>
-                        <div style="padding:20px; height:400px;">
+                        <div style="padding:20px; box-sizing:border-box; height:400px;">
 
                             <div style="height:300px;"></div>
 

@@ -22,7 +22,7 @@
                             v-model="WSlider.value1"
                         ></w-slider>
 
-                        <div style="padding:0px 5px; font-size:0.85rem; width:35px;">{{WSlider.value1}}</div>
+                        <div style="padding:0px 5px; font-size:0.85rem; box-sizing:border-box; width:35px;">{{WSlider.value1}}</div>
 
                     </div>
                 </div>
@@ -46,7 +46,7 @@
                             :valueMax="85"
                         ></w-slider>
 
-                        <div style="padding:0px 5px; font-size:0.85rem; width:35px;">{{WSlider.value2}}</div>
+                        <div style="padding:0px 5px; font-size:0.85rem; box-sizing:border-box; width:35px;">{{WSlider.value2}}</div>
 
                     </div>
                 </div>
@@ -69,7 +69,7 @@
                             :valueStep="10"
                         ></w-slider>
 
-                        <div style="padding:0px 5px; font-size:0.85rem; width:35px;">{{WSlider.value3}}</div>
+                        <div style="padding:0px 5px; font-size:0.85rem; box-sizing:border-box; width:35px;">{{WSlider.value3}}</div>
 
                     </div>
                 </div>
@@ -95,7 +95,7 @@
                             :valueDecimal="3"
                         ></w-slider>
 
-                        <div style="padding:0px 5px; font-size:0.85rem; width:35px;">{{WSlider.value4}}</div>
+                        <div style="padding:0px 5px; font-size:0.85rem; box-sizing:border-box; width:35px;">{{WSlider.value4}}</div>
 
                     </div>
                 </div>
@@ -118,7 +118,7 @@
                             :progBorderRadius="0"
                         ></w-slider>
 
-                        <div style="padding:0px 5px; font-size:0.85rem; width:35px;">{{WSlider.value1}}</div>
+                        <div style="padding:0px 5px; font-size:0.85rem; box-sizing:border-box; width:35px;">{{WSlider.value1}}</div>
 
                     </div>
                 </div>
@@ -141,7 +141,7 @@
                             :progHeight="8"
                         ></w-slider>
 
-                        <div style="padding:0px 5px; font-size:0.85rem; width:35px;">{{WSlider.value1}}</div>
+                        <div style="padding:0px 5px; font-size:0.85rem; box-sizing:border-box; width:35px;">{{WSlider.value1}}</div>
 
                     </div>
                 </div>
@@ -167,7 +167,7 @@
                             :sliderBackgroundColorHover="'#D81B60'"
                         ></w-slider>
 
-                        <div style="padding:0px 5px; font-size:0.85rem; width:35px;">{{WSlider.value1}}</div>
+                        <div style="padding:0px 5px; font-size:0.85rem; box-sizing:border-box; width:35px;">{{WSlider.value1}}</div>
 
                     </div>
                 </div>
@@ -190,7 +190,7 @@
                             :sliderSize="14"
                         ></w-slider>
 
-                        <div style="padding:0px 5px; font-size:0.85rem; width:35px;">{{WSlider.value1}}</div>
+                        <div style="padding:0px 5px; font-size:0.85rem; box-sizing:border-box; width:35px;">{{WSlider.value1}}</div>
 
                     </div>
                 </div>
@@ -213,7 +213,7 @@
                             :tooltipPlacementDist="10"
                         ></w-slider>
 
-                        <div style="padding:0px 5px; font-size:0.85rem; width:35px;">{{WSlider.value1}}</div>
+                        <div style="padding:0px 5px; font-size:0.85rem; box-sizing:border-box; width:35px;">{{WSlider.value1}}</div>
 
                     </div>
                 </div>
@@ -236,7 +236,7 @@
                             :tooltipBorderRadius="0"
                         ></w-slider>
 
-                        <div style="padding:0px 5px; font-size:0.85rem; width:35px;">{{WSlider.value1}}</div>
+                        <div style="padding:0px 5px; font-size:0.85rem; box-sizing:border-box; width:35px;">{{WSlider.value1}}</div>
 
                     </div>
                 </div>
@@ -259,7 +259,7 @@
                             :tooltipTextFontSize="'0.7rem'"
                         ></w-slider>
 
-                        <div style="padding:0px 5px; font-size:0.85rem; width:35px;">{{WSlider.value1}}</div>
+                        <div style="padding:0px 5px; font-size:0.85rem; box-sizing:border-box; width:35px;">{{WSlider.value1}}</div>
 
                     </div>
                 </div>
@@ -283,7 +283,7 @@
                             :tooltipBackgroundColor="'#2196F3'"
                         ></w-slider>
 
-                        <div style="padding:0px 5px; font-size:0.85rem; width:35px;">{{WSlider.value1}}</div>
+                        <div style="padding:0px 5px; font-size:0.85rem; box-sizing:border-box; width:35px;">{{WSlider.value1}}</div>
 
                     </div>
                 </div>
@@ -306,7 +306,7 @@
                             :editable="false"
                         ></w-slider>
 
-                        <div style="padding:0px 5px; font-size:0.85rem; width:35px;">{{WSlider.value1}}</div>
+                        <div style="padding:0px 5px; font-size:0.85rem; box-sizing:border-box; width:35px;">{{WSlider.value1}}</div>
 
                     </div>
                 </div>
@@ -332,7 +332,7 @@
                             :editable="false"
                         ></w-slider>
 
-                        <div style="padding:0px 5px; font-size:0.85rem; width:35px;">{{WSlider.value1}}</div>
+                        <div style="padding:0px 5px; font-size:0.85rem; box-sizing:border-box; width:35px;">{{WSlider.value1}}</div>
 
                     </div>
                 </div>

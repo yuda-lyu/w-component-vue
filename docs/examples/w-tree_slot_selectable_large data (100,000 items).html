@@ -63,7 +63,7 @@
     ></script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.4.77/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.4.78/dist/w-component-vue.umd.js"></script>
 
     <style>
   /* 組件所須全域樣式 */
@@ -171,7 +171,7 @@
 
                 <div style="display:table-cell; vertical-align:top;">
                     <div
-                        :style="'padding:10px 20px; height:402px; overflow-y:auto; border:1px solid #ddd; border-left-width:0px;'"
+                        :style="'padding:10px 20px; box-sizing:border-box; height:402px; overflow-y:auto; border:1px solid #ddd; border-left-width:0px;'"
                     >
                         <div style="margin-bottom:5px;">selections:</div>
                         <pre style="font-size:0.7rem;">{{JSON.stringify(showSelection(WTree.optionLarge.selections),null,4)}}</pre>

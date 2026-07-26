@@ -15,7 +15,7 @@
                 ></demolink>
 
                 <w-json-view
-                    style="width:350px; border:1px solid #ddd;"
+                    style="box-sizing:border-box; width:350px; border:1px solid #ddd;"
                     :data="WJsonView.data1"
                 ></w-json-view>
 
@@ -29,7 +29,7 @@
                 ></demolink>
 
                 <w-json-view
-                    style="width:350px; border:1px solid #ddd;"
+                    style="box-sizing:border-box; width:350px; border:1px solid #ddd;"
                     :data="WJsonView.data3"
                     :viewHeightMax="250"
                 ></w-json-view>
@@ -44,7 +44,7 @@
                 ></demolink>
 
                 <w-json-view
-                    style="width:350px; border:1px solid #ddd;"
+                    style="box-sizing:border-box; width:350px; border:1px solid #ddd;"
                     :data="WJsonView.data3"
                     :viewHeightMax="null"
                 ></w-json-view>
@@ -59,7 +59,7 @@
                 ></demolink>
 
                 <w-json-view
-                    style="width:350px; border:1px solid #ddd;"
+                    style="box-sizing:border-box; width:350px; border:1px solid #ddd;"
                     :data="WJsonView.data1"
                     :iconSize="24"
                     :defItemHeight="32"
@@ -75,7 +75,7 @@
                 ></demolink>
 
                 <w-json-view
-                    style="width:350px; border:1px solid #ddd;"
+                    style="box-sizing:border-box; width:350px; border:1px solid #ddd;"
                     :data="WJsonView.data3"
                     :viewHeightMax="WJsonView.viewHeightMaxSync"
                     :rippleColor="'rgba(245,124,0,0.4)'"
@@ -91,7 +91,7 @@
                 ></demolink>
 
                 <w-json-view
-                    style="width:350px; border:1px solid #ddd;"
+                    style="box-sizing:border-box; width:350px; border:1px solid #ddd;"
                     :data="WJsonView.data3"
                     :viewHeightMax="WJsonView.viewHeightMaxSync"
                     @change-view-items="changeViewItems"
@@ -118,7 +118,7 @@
 
                 <w-json-view
                     ref="ref_toggleItemsByFun"
-                    style="width:350px; border:1px solid #ddd;"
+                    style="box-sizing:border-box; width:350px; border:1px solid #ddd;"
                     :data="WJsonView.data3"
                     :viewHeightMax="WJsonView.viewHeightMaxSync"
                 ></w-json-view>
@@ -139,7 +139,7 @@
 
                 <w-json-view
                     ref="ref_toggleItemsAll"
-                    style="width:350px; border:1px solid #ddd;"
+                    style="box-sizing:border-box; width:350px; border:1px solid #ddd;"
                     :data="WJsonView.data3"
                     :viewHeightMax="WJsonView.viewHeightMaxSync"
                 ></w-json-view>
@@ -162,7 +162,7 @@
                 </div>
 
                 <w-json-view
-                    style="width:350px; border:1px solid #ddd;"
+                    style="box-sizing:border-box; width:350px; border:1px solid #ddd;"
                     :data="WJsonView.data3"
                     :filterKeywords="WJsonView.keywords"
                     :noResultsText="'There are no items to show...'"
@@ -186,7 +186,7 @@
                 </div>
 
                 <w-json-view
-                    style="width:350px; border:1px solid #ddd;"
+                    style="box-sizing:border-box; width:350px; border:1px solid #ddd;"
                     :data="WJsonView.data3"
                     :filterKeywords="WJsonView.keywords"
                     :funFilter="funFilter"
@@ -202,7 +202,7 @@
                 ></demolink>
 
                 <w-json-view
-                    style="width:350px; border:1px solid #ddd;"
+                    style="box-sizing:border-box; width:350px; border:1px solid #ddd;"
                     :data="WJsonView.data1"
                     :iconColor="'#aaa'"
                     :keyColor="'#f6a'"

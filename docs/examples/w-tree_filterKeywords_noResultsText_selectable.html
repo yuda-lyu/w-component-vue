@@ -63,7 +63,7 @@
     ></script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.4.77/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.4.78/dist/w-component-vue.umd.js"></script>
 
     <style>
   /* 組件所須全域樣式 */
@@ -160,7 +160,7 @@
             <div :style="'overflow-x:auto;'">
                 <div style="display:table-cell; vertical-align:top;">
                     <w-tree
-                        style="width:350px; border:1px solid #ddd;"
+                        style="box-sizing:border-box; width:350px; border:1px solid #ddd;"
                         :data="WTree.option.items"
                         :selectable="true"
                         :selections.sync="WTree.option.selections"
@@ -224,7 +224,7 @@
 
                 <div style="display:table-cell; vertical-align:top;">
                     <div
-                        :style="'padding:10px 20px; height:402px; overflow-y:auto; border:1px solid #ddd; border-left-width:0px;'"
+                        :style="'padding:10px 20px; box-sizing:border-box; height:402px; overflow-y:auto; border:1px solid #ddd; border-left-width:0px;'"
                     >
                         <div style="margin-bottom:5px;">selections:</div>
                         <pre style="font-size:0.7rem;">{{JSON.stringify(showSelection(WTree.option.selections),null,4)}}</pre>

@@ -10,7 +10,7 @@
                     v-for="(level,klevel) in levels"
                 >
 
-                    <td :style="`width:${arrowSize}px;`">
+                    <td :style="`width:${arrowSize}px; box-sizing:border-box;`">
                         <div
                             :style="`transform:rotate(-90deg);`"
                             v-if="indValue===klevel"
@@ -24,10 +24,11 @@
                         </div>
                     </td>
 
-                    <td :style="`background:${getColor(get(level,keyColor,'transparent'))}; width:${gradeSize}px; height:${gradeSize}px;`"></td>
+                    <!-- 各儲存格寬高皆為含瀏覽器預設td padding之總尺寸, 故須box-sizing:border-box -->
+                    <td :style="`background:${getColor(get(level,keyColor,'transparent'))}; width:${gradeSize}px; height:${gradeSize}px; box-sizing:border-box;`"></td>
 
                     <td
-                        :style="`padding-left:${spaceForGrade}px; text-align:right; ${useGradeTextFontSize} color:${useGradeTextColor}; height:${gradeSize}px; line-height:${gradeSize}px;`"
+                        :style="`padding-left:${spaceForGrade}px; text-align:right; ${useGradeTextFontSize} color:${useGradeTextColor}; height:${gradeSize}px; line-height:${gradeSize}px; box-sizing:border-box;`"
                     >
                         <slot
                             name="low"
@@ -39,7 +40,7 @@
                     </td>
 
                     <td
-                        :style="`padding:0px 2px; text-align:center; ${useGradeTextFontSize} color:${useGradeTextColor}; height:${gradeSize}px; line-height:${gradeSize}px;`"
+                        :style="`padding:0px 2px; text-align:center; ${useGradeTextFontSize} color:${useGradeTextColor}; height:${gradeSize}px; line-height:${gradeSize}px; box-sizing:border-box;`"
                     >
                         <slot
                             name="delimiter"
@@ -51,7 +52,7 @@
                     </td>
 
                     <td
-                        :style="`text-align:left; ${useGradeTextFontSize} color:${useGradeTextColor}; height:${gradeSize}px; line-height:${gradeSize}px;`"
+                        :style="`text-align:left; ${useGradeTextFontSize} color:${useGradeTextColor}; height:${gradeSize}px; line-height:${gradeSize}px; box-sizing:border-box;`"
                     >
                         <slot
                             name="up"
@@ -63,7 +64,7 @@
                     </td>
 
                     <td
-                        :style="`padding-left:${spaceForText}px; text-align:left; ${useGradeTextFontSize} color:${useGradeTextColor}; height:${gradeSize}px; line-height:${gradeSize}px;`"
+                        :style="`padding-left:${spaceForText}px; text-align:left; ${useGradeTextFontSize} color:${useGradeTextColor}; height:${gradeSize}px; line-height:${gradeSize}px; box-sizing:border-box;`"
                     >
                         <slot
                             name="text"

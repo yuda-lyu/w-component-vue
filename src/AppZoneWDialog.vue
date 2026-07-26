@@ -880,7 +880,7 @@
                 >
 
                     <template v-slot:content>
-                        <div style="padding:20px; width:2000px; height:2000px;">
+                        <div style="padding:20px; box-sizing:border-box; width:2000px; height:2000px;">
                             <div style="font-size:2rem; margin:20px 0px 30px 0px;">
                                 {{WDialog.text1}}
                             </div>

@@ -15,7 +15,7 @@
                 ></demolink>
 
                 <w-dynamic-list
-                    style="width:400px; border:1px solid #ddd;"
+                    style="box-sizing:border-box; width:400px; border:1px solid #ddd;"
                     :rows="WDynamicList.data1"
                 >
                     <template v-slot="props">
@@ -48,7 +48,7 @@
                 </div>
 
                 <w-dynamic-list
-                    style="width:400px; border:1px solid #ddd;"
+                    style="box-sizing:border-box; width:400px; border:1px solid #ddd;"
                     :viewHeightMax="WDynamicList.viewHeightMax"
                     :rows="WDynamicList.data1"
                 >
@@ -82,7 +82,7 @@
                 </div>
 
                 <w-dynamic-list
-                    style="width:400px; border:1px solid #ddd;"
+                    style="box-sizing:border-box; width:400px; border:1px solid #ddd;"
                     :rows="WDynamicList.changeText?WDynamicList.data2:WDynamicList.data1"
                 >
                     <template v-slot="props">
@@ -115,7 +115,7 @@
                 </div>
 
                 <w-dynamic-list
-                    style="width:400px; border:1px solid #ddd;"
+                    style="box-sizing:border-box; width:400px; border:1px solid #ddd;"
                     :rows="WDynamicList.data1"
                 >
                     <template v-slot="props">
@@ -162,7 +162,7 @@
                 </div>
 
                 <w-dynamic-list
-                    style="width:400px; border:1px solid #ddd;"
+                    style="box-sizing:border-box; width:400px; border:1px solid #ddd;"
                     :filterKeywords="WDynamicList.keywords"
                     :noResultsText="'There are no items to show...'"
                     :statePaddingStyle="{v:10,h:10}"
@@ -193,7 +193,7 @@
                 ></demolink>
 
                 <w-dynamic-list
-                    style="width:400px; border:1px solid #ddd;"
+                    style="box-sizing:border-box; width:400px; border:1px solid #ddd;"
                     :rows="WDynamicList.data1"
                     @render="render"
                 >
@@ -222,7 +222,7 @@
                 ></demolink>
 
                 <w-dynamic-list
-                    style="width:400px; border:1px solid #ddd;"
+                    style="box-sizing:border-box; width:400px; border:1px solid #ddd;"
                     :rows="WDynamicList.data3"
                 >
                     <template v-slot="props">
@@ -265,7 +265,7 @@
 
                 <w-dynamic-list
                     ref="wdl"
-                    style="width:400px; border:1px solid #ddd;"
+                    style="box-sizing:border-box; width:400px; border:1px solid #ddd;"
                     :rows="WDynamicList.data4"
                 >
                     <template v-slot="props">

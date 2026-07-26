@@ -15,7 +15,7 @@
                 ></demolink>
 
                 <div style="padding:5px 0px;">
-                    <div :style="`display:inline-block; vertical-align:middle; border:1px solid #ddd; width:20px; height:20px; background:${WColorSelectPanelBlock.colorPick1};`"></div>
+                    <div :style="`display:inline-block; vertical-align:middle; border:1px solid #ddd; box-sizing:border-box; width:20px; height:20px; background:${WColorSelectPanelBlock.colorPick1};`"></div>
                     <div :style="`padding-left:5px; font-size:0.8rem; display:inline-block; vertical-align:middle;`">{{WColorSelectPanelBlock.colorPick1}}</div>
                 </div>
 
@@ -37,7 +37,7 @@
                 ></demolink>
 
                 <div style="padding:5px 0px;">
-                    <div :style="`display:inline-block; vertical-align:middle; border:1px solid #ddd; width:20px; height:20px; background:${WColorSelectPanelBlock.colorPick2};`"></div>
+                    <div :style="`display:inline-block; vertical-align:middle; border:1px solid #ddd; box-sizing:border-box; width:20px; height:20px; background:${WColorSelectPanelBlock.colorPick2};`"></div>
                     <div :style="`padding-left:5px; font-size:0.8rem; display:inline-block; vertical-align:middle;`">{{WColorSelectPanelBlock.colorPick2}}</div>
                 </div>
 
@@ -61,7 +61,7 @@
                 ></demolink>
 
                 <div style="padding:5px 0px;">
-                    <div :style="`display:inline-block; vertical-align:middle; border:1px solid #ddd; width:20px; height:20px; background:${WColorSelectPanelBlock.colorPick3};`"></div>
+                    <div :style="`display:inline-block; vertical-align:middle; border:1px solid #ddd; box-sizing:border-box; width:20px; height:20px; background:${WColorSelectPanelBlock.colorPick3};`"></div>
                     <div :style="`padding-left:5px; font-size:0.8rem; display:inline-block; vertical-align:middle;`">{{WColorSelectPanelBlock.colorPick3}}</div>
                 </div>
 

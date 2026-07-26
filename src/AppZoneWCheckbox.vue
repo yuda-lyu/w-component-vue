@@ -105,7 +105,7 @@
             </div>
 
 
-            <div class="bk" style="width:300px;">
+            <div class="bk" style="box-sizing:border-box; width:300px;">
                 <demolink
                     :kbname="'w-checkbox'"
                     :casename="'verticalAlign'"
