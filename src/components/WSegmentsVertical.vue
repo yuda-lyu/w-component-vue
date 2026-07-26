@@ -263,8 +263,8 @@ import convertColor from '../js/convertColor.mjs'
  * @vue-prop {Number} [textTriangularRatio=1.5] 輸入項目文字區之箭頭長寬比值數字，若textTriangularSize/textTriangularRatio*2小於項目文字區高度時則會破圖，預設1.5
  * @vue-prop {Number} [textShift=null] 輸入項目文字區與左側軸距離數字，單位為px，若給null則自動使用值為1+segmentSize+paddingStyle.left，預設null
  * @vue-prop {Boolean} [textCanClick=false] 輸入項目文字是否可點擊布林值，預設false
- * @vue-prop {String} [labelContentForText=null] 輸入針對項目文字之popup彈窗teleport至body內之內容div所給予之wtlp屬性值字串，供查找使用，預設null
  * @vue-prop {String} [labelContentForSegment=null] 輸入針對區塊之popup彈窗teleport至body內之內容div所給予之wtlp屬性值字串，供查找使用，預設null
+ * @vue-prop {String} [labelContentForText=null] 輸入針對項目文字之popup彈窗teleport至body內之內容div所給予之wtlp屬性值字串，供查找使用，預設null
  * @vue-prop {Number} [cmpZIndex=3000] 輸入彈窗使用z-index數字，供嵌於高z-index彈窗內時提高層級，預設3000
  */
 export default {

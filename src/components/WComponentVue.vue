@@ -33,7 +33,6 @@ import WGroupDragdrop from './WGroupDragdrop.vue'
 import WGroupIconCheck from './WGroupIconCheck.vue'
 import WGroupIconRadio from './WGroupIconRadio.vue'
 import WGroupTags from './WGroupTags.vue'
-import WHighchartsBitmapDyn from './WHighchartsBitmapDyn.vue'
 import WHighchartsVueDyn from './WHighchartsVueDyn.vue'
 import WHighstockVueDyn from './WHighstockVueDyn.vue'
 import WIcon from './WIcon.vue'
@@ -137,7 +136,6 @@ let WComponentVue = {
         Vue.component('w-group-icon-check', WGroupIconCheck)
         Vue.component('w-group-icon-radio', WGroupIconRadio)
         Vue.component('w-group-tags', WGroupTags)
-        Vue.component('w-highcharts-bitmap-dyn', WHighchartsBitmapDyn)
         Vue.component('w-highcharts-vue-dyn', WHighchartsVueDyn)
         Vue.component('w-highstock-vue-dyn', WHighstockVueDyn)
         Vue.component('w-icon', WIcon)

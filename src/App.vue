@@ -199,8 +199,6 @@
 
                 <AppZoneWHighchartsVueDyn v-if="cmpPick==='WHighchartsVueDyn'"></AppZoneWHighchartsVueDyn>
 
-                <AppZoneWHighchartsBitmapDyn v-if="cmpPick==='WHighchartsBitmapDyn'"></AppZoneWHighchartsBitmapDyn>
-
                 <AppZoneWHighstockVueDyn v-if="cmpPick==='WHighstockVueDyn'"></AppZoneWHighstockVueDyn>
 
                 <AppZoneWEchartsVueDyn v-if="cmpPick==='WEchartsVueDyn'"></AppZoneWEchartsVueDyn>
@@ -322,7 +320,6 @@ import AppZoneWSegmentsVertical from './AppZoneWSegmentsVertical.vue'
 import AppZoneWJsonView from './AppZoneWJsonView.vue'
 import AppZoneWTree from './AppZoneWTree.vue'
 import AppZoneWHighchartsVueDyn from './AppZoneWHighchartsVueDyn.vue'
-import AppZoneWHighchartsBitmapDyn from './AppZoneWHighchartsBitmapDyn.vue'
 import AppZoneWHighstockVueDyn from './AppZoneWHighstockVueDyn.vue'
 import AppZoneWEchartsVueDyn from './AppZoneWEchartsVueDyn.vue'
 import AppZoneWThreejsVueDyn from './AppZoneWThreejsVueDyn.vue'
@@ -410,7 +407,6 @@ export default {
         AppZoneWJsonView,
         AppZoneWTree,
         AppZoneWHighchartsVueDyn,
-        AppZoneWHighchartsBitmapDyn,
         AppZoneWHighstockVueDyn,
         AppZoneWEchartsVueDyn,
         AppZoneWThreejsVueDyn,
@@ -579,7 +575,6 @@ export default {
                         name: 'plot',
                         cmps: [
                             { name: 'WHighchartsVueDyn' },
-                            { name: 'WHighchartsBitmapDyn' },
                             { name: 'WHighstockVueDyn' },
                             { name: 'WEchartsVueDyn' },
                             { name: 'WThreejsVueDyn' },
