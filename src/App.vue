@@ -99,6 +99,12 @@
 
                 <AppZoneWPanelDivideVertical v-if="cmpPick==='WPanelDivideVertical'"></AppZoneWPanelDivideVertical>
 
+                <AppZoneWPanelDivideHorizontalTriple v-if="cmpPick==='WPanelDivideHorizontalTriple'"></AppZoneWPanelDivideHorizontalTriple>
+
+                <AppZoneWPanelDivideVerticalTriple v-if="cmpPick==='WPanelDivideVerticalTriple'"></AppZoneWPanelDivideVerticalTriple>
+
+                <AppZoneWPanelDivideMulti v-if="cmpPick==='WPanelDivideMulti'"></AppZoneWPanelDivideMulti>
+
                 <AppZoneWPanelScale v-if="cmpPick==='WPanelScale'"></AppZoneWPanelScale>
 
                 <AppZoneWIcon v-if="cmpPick==='WIcon'"></AppZoneWIcon>
@@ -266,6 +272,9 @@ import AppZoneWPanelScrolly from './AppZoneWPanelScrolly.vue'
 import AppZoneWPanelLabelItem from './AppZoneWPanelLabelItem.vue'
 import AppZoneWPanelDivideHorizontal from './AppZoneWPanelDivideHorizontal.vue'
 import AppZoneWPanelDivideVertical from './AppZoneWPanelDivideVertical.vue'
+import AppZoneWPanelDivideHorizontalTriple from './AppZoneWPanelDivideHorizontalTriple.vue'
+import AppZoneWPanelDivideVerticalTriple from './AppZoneWPanelDivideVerticalTriple.vue'
+import AppZoneWPanelDivideMulti from './AppZoneWPanelDivideMulti.vue'
 import AppZoneWPanelScale from './AppZoneWPanelScale.vue'
 import AppZoneWIcon from './AppZoneWIcon.vue'
 import AppZoneWImageLazy from './AppZoneWImageLazy.vue'
@@ -351,6 +360,9 @@ export default {
         AppZoneWPanelLabelItem,
         AppZoneWPanelDivideHorizontal,
         AppZoneWPanelDivideVertical,
+        AppZoneWPanelDivideHorizontalTriple,
+        AppZoneWPanelDivideVerticalTriple,
+        AppZoneWPanelDivideMulti,
         AppZoneWPanelScale,
         AppZoneWIcon,
         AppZoneWImageLazy,
@@ -455,7 +467,10 @@ export default {
                     { name: 'WPanelScrolly' },
                     { name: 'WPanelLabelItem' },
                     { name: 'WPanelDivideHorizontal' },
+                    { name: 'WPanelDivideHorizontalTriple' },
                     { name: 'WPanelDivideVertical' },
+                    { name: 'WPanelDivideVerticalTriple' },
+                    { name: 'WPanelDivideMulti' },
                     { name: 'WPanelScale' },
                 ]
             },

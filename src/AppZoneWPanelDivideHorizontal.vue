@@ -196,12 +196,12 @@
                         :barSize="1"
                     >
                         <template v-slot:left="props">
-                            <div :style="`overflow-y:auto; height:${props.height}px; overflow:hidden;`">
+                            <div :style="`position:relative; height:${props.height}px; overflow:hidden;`">
                                 <img style="position:absolute; top:0; left:0; width:800px; height:600px; user-select:none; user-drag:none;" src="https://cdn.jsdelivr.net/npm/w-demores/res/img/view/001.jpg" />
                             </div>
                         </template>
                         <template v-slot:right="props">
-                            <div :style="`overflow-y:auto; height:${props.height}px; overflow:hidden;`">
+                            <div :style="`position:relative; height:${props.height}px; overflow:hidden;`">
                                 <img style="position:absolute; top:0; right:0; width:800px; height:600px; user-select:none; user-drag:none;" src="https://cdn.jsdelivr.net/npm/w-demores/res/img/view/001-gray.jpg" />
                             </div>
                         </template>
@@ -224,12 +224,12 @@
                         :barBorderColor="'rgba(255,255,255,0.25)'"
                     >
                         <template v-slot:left="props">
-                            <div :style="`overflow-y:auto; height:${props.height}px; overflow:hidden;`">
+                            <div :style="`position:relative; height:${props.height}px; overflow:hidden;`">
                                 <img style="position:absolute; top:0; left:0; width:800px; height:600px; user-select:none; user-drag:none;" src="https://cdn.jsdelivr.net/npm/w-demores/res/img/view/001.jpg" />
                             </div>
                         </template>
                         <template v-slot:right="props">
-                            <div :style="`overflow-y:auto; height:${props.height}px; overflow:hidden;`">
+                            <div :style="`position:relative; height:${props.height}px; overflow:hidden;`">
                                 <img style="position:absolute; top:0; right:0; width:800px; height:600px; user-select:none; user-drag:none;" src="https://cdn.jsdelivr.net/npm/w-demores/res/img/view/001-gray.jpg" />
                             </div>
                         </template>

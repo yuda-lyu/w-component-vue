@@ -10,7 +10,7 @@
             style="position:relative;"
         >
 
-            <div ref="top" :style="`width:${panelWidth}px; height:${(r)*panelHeight}px;`">
+            <div ref="top" :style="`width:100%; height:${(r)*panelHeight}px;`">
                 <slot
                     name="top"
                     :ratio="r"
@@ -21,12 +21,12 @@
 
             <div
                 ref="divBar"
-                :style="`position:absolute; z-index:1; top:${(r)*panelHeight-bw/2}px; width:${panelWidth}px; height:${barSize}px; border-top:${barBorderSize}px solid ${useBarBorderColor}; border-bottom:${barBorderSize}px solid ${useBarBorderColor}; cursor:row-resize; user-select:none;`"
+                :style="`position:absolute; z-index:1; top:${(r)*panelHeight-bw/2}px; width:100%; height:${barSize}px; border-top:${barBorderSize}px solid ${useBarBorderColor}; border-bottom:${barBorderSize}px solid ${useBarBorderColor}; cursor:row-resize; user-select:none;`"
             >
-                <div :style="`width:${panelWidth}px; height:${barSize}px; background:${useBarColor};`"></div>
+                <div :style="`width:100%; height:${barSize}px; background:${useBarColor};`"></div>
             </div>
 
-            <div ref="bottom" :style="`width:${panelWidth}px; height:${(1-r)*panelHeight}px;`">
+            <div ref="bottom" :style="`width:100%; height:${(1-r)*panelHeight}px;`">
                 <slot
                     name="bottom"
                     :ratio="1-r"

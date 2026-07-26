@@ -192,7 +192,7 @@
 
                 <div style="display:inline-block; border:1px solid #ddd;">
                     <w-panel-divide-vertical
-                        style="width:800px; height:400px; border:1px solid #ddd;"
+                        style="width:800px; height:400px;"
                         :barSize="1"
                     >
                         <template v-slot:top="props">
@@ -219,7 +219,7 @@
 
                 <div style="display:inline-block; border:1px solid #ddd;">
                     <w-panel-divide-vertical
-                        style="width:800px; height:400px; border:1px solid #ddd;"
+                        style="width:800px; height:400px;"
                         :barBorderSize="10"
                         :barBorderColor="'rgba(255,255,255,0.25)'"
                     >

@@ -21,7 +21,7 @@
 
             <div
                 ref="divBar"
-                :style="`position:absolute; z-index:1; left:${(r)*panelWidth-bw/2}px; width:${bw}px; height:${panelHeight}px; border-left:${barBorderSize}px solid ${useBarBorderColor}; border-right:${barBorderSize}px solid ${useBarBorderColor}; cursor:col-resize; user-select:none;`"
+                :style="`position:absolute; z-index:1; left:${(r)*panelWidth-bw/2}px; width:${barSize}px; height:${panelHeight}px; border-left:${barBorderSize}px solid ${useBarBorderColor}; border-right:${barBorderSize}px solid ${useBarBorderColor}; cursor:col-resize; user-select:none;`"
             >
                 <div :style="`width:${barSize}px; height:${panelHeight}px; background:${useBarColor};`"></div>
             </div>

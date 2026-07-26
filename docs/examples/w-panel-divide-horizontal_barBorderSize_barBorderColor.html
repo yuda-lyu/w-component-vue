@@ -63,7 +63,7 @@
     ></script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.4.76/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.4.77/dist/w-component-vue.umd.js"></script>
 
     <style>
   /* 組件所須全域樣式 */
@@ -151,7 +151,7 @@
                 >
                     <template v-slot:left="props">
                         <div
-                            :style="`overflow-y:auto; height:${props.height}px; overflow:hidden;`"
+                            :style="`position:relative; height:${props.height}px; overflow:hidden;`"
                         >
                             <img
                                 style="position:absolute; top:0; left:0; width:800px; height:600px; user-select:none; user-drag:none;"
@@ -161,7 +161,7 @@
                     </template>
                     <template v-slot:right="props">
                         <div
-                            :style="`overflow-y:auto; height:${props.height}px; overflow:hidden;`"
+                            :style="`position:relative; height:${props.height}px; overflow:hidden;`"
                         >
                             <img
                                 style="position:absolute; top:0; right:0; width:800px; height:600px; user-select:none; user-drag:none;"

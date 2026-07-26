@@ -56,7 +56,10 @@ import WListVertical from './WListVertical.vue'
 import WPanelAvatar from './WPanelAvatar.vue'
 import WPanelBulge from './WPanelBulge.vue'
 import WPanelDivideHorizontal from './WPanelDivideHorizontal.vue'
+import WPanelDivideHorizontalTriple from './WPanelDivideHorizontalTriple.vue'
+import WPanelDivideMulti from './WPanelDivideMulti.vue'
 import WPanelDivideVertical from './WPanelDivideVertical.vue'
+import WPanelDivideVerticalTriple from './WPanelDivideVerticalTriple.vue'
 import WPanelLabelItem from './WPanelLabelItem.vue'
 import WPanelScale from './WPanelScale.vue'
 import WPanelScrolly from './WPanelScrolly.vue'
@@ -157,7 +160,10 @@ let WComponentVue = {
         Vue.component('w-panel-avatar', WPanelAvatar)
         Vue.component('w-panel-bulge', WPanelBulge)
         Vue.component('w-panel-divide-horizontal', WPanelDivideHorizontal)
+        Vue.component('w-panel-divide-horizontal-triple', WPanelDivideHorizontalTriple)
+        Vue.component('w-panel-divide-multi', WPanelDivideMulti)
         Vue.component('w-panel-divide-vertical', WPanelDivideVertical)
+        Vue.component('w-panel-divide-vertical-triple', WPanelDivideVerticalTriple)
         Vue.component('w-panel-label-item', WPanelLabelItem)
         Vue.component('w-panel-scale', WPanelScale)
         Vue.component('w-panel-scrolly', WPanelScrolly)
