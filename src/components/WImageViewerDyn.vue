@@ -33,14 +33,12 @@
 import each from 'lodash-es/each.js'
 import get from 'lodash-es/get.js'
 import merge from 'lodash-es/merge.js'
-import importResExt from '../js/importResExt.mjs'
-import domShowImagesDyn from 'wsemi/src/domShowImagesDyn.mjs'
+import domShowImages from 'wsemi/src/domShowImages.mjs'
 import domFadeIn from 'wsemi/src/domFadeIn.mjs'
 import WIconLoading from './WIconLoading.vue'
 
 
 /**
- * @vue-prop {Array} [pathItems=['詳見原始碼']] 輸入viewerjs組件js與css檔案位置字串陣列，預設詳見原始碼處props->pathItems->default
  * @vue-prop {Array} [images=[]] 輸入圖片網址陣列，預設[]
  * @vue-prop {Object} [imageStyle={}] 輸入圖片style物件，預設{}
  * @vue-prop {Object} [opt={}] 輸入viewerjs設定物件，預設使用optOne或optMuti，若img僅一個則使用optOne，反之使用optMuti
@@ -51,13 +49,6 @@ export default {
         WIconLoading,
     },
     props: {
-        pathItems: {
-            type: Array,
-            default: () => [ //預設值詳見 wsemi/src/domShowImagesDyn.mjs, 因此處有預載, 故所使用viewerjs的版本得相同
-                'https://cdn.jsdelivr.net/npm/viewerjs@1.11.7/dist/viewer.min.css',
-                'https://cdn.jsdelivr.net/npm/viewerjs@1.11.7/dist/viewer.min.js',
-            ],
-        },
         images: {
             type: Array,
             default: () => [],
@@ -85,24 +76,17 @@ export default {
 
         let vo = this
 
-        //importResExt
-        importResExt(vo.pathItems)
-            .then((res) => {
-                //console.log('res', res)
+        //loading, viewerjs已由wsemi直接打包提供(含css注入), 無需再動態加載
+        vo.loading = false
 
-                //loading
-                vo.loading = false
-
-                //$nextTick
-                vo.$nextTick(() => {
-                    let divs = get(vo, '$refs.wiv', []) //可能因切換組件導致元素消失
-                    each(divs, (img, k) => {
-                        //domFadeIn
-                        domFadeIn(img, { duration: 200, delay: k * 100 })
-                    })
-                })
-
+        //$nextTick
+        vo.$nextTick(() => {
+            let divs = get(vo, '$refs.wiv', []) //可能因切換組件導致元素消失
+            each(divs, (img, k) => {
+                //domFadeIn
+                domFadeIn(img, { duration: 200, delay: k * 100 })
             })
+        })
 
     },
     computed: {
@@ -137,8 +121,8 @@ export default {
                 eleGroup = vo.$refs.wig
             }
 
-            //domShowImagesDyn
-            domShowImagesDyn(e.currentTarget, eleGroup, vo.opt, vo.pathItems)
+            //domShowImages
+            domShowImages(e.currentTarget, eleGroup, vo.opt)
                 .catch((err) => {
                     console.log(err)
                 })

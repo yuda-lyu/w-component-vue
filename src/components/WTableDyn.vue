@@ -356,7 +356,7 @@ import convertColor from '../js/convertColor.mjs'
  * @vue-prop {Function} [opt.filterChange=()=>{}] 輸入filter change之觸發事件，預設為()=>{}
  * @vue-prop {Boolean} [opt.autoFitColumn=false] 輸入當表格尺寸變更時自動調整欄寬布林值，預設false
  * @vue-prop {String} [opt.language='en'] 輸入指定語系字串，可選'en'、'zh-tw'、'zh-cn'，預設為'en'
- * @vue-prop {Object} [opt.optForUploadData={}] 輸入呼叫組件uploadData上傳檔案時用的設定物件，物件可給予鍵值：pathItems代表調用wsemi的getDataFromExcelFileU8ArrDyn所傳入的xlsx的來源網址陣列，beforeUpload代表上傳前的處理數據函數，parseSheetInd代表提取Excel檔案的第幾個sheet整數(預設為0)，optForUploadData預設{}
+ * @vue-prop {Object} [opt.optForUploadData={}] 輸入呼叫組件uploadData上傳檔案時用的設定物件，內部調用wsemi的getDataFromExcelFileU8Arr讀取Excel檔案，物件可給予鍵值：beforeUpload代表上傳前的處理數據函數，parseSheetInd代表提取Excel檔案的第幾個sheet整數(預設為0)，optForUploadData預設{}
  * @vue-prop {Function} [opt.modifyDataWhenSave=undefined] 輸入當儲存時修改儲存數據事件，輸入rows，輸出rows，預設為undefined
  * @vue-prop {Boolean} [opt.checkNoDataWhenSave=false] 輸入當儲存時是否檢核無數據布林值，預設false
  * @vue-prop {Number} [cmpZIndex=3000] 輸入彈窗使用z-index數字，供嵌於高z-index彈窗內時提高層級，預設3000
@@ -1106,7 +1106,6 @@ export default {
                     useHead: vo.enableHeadWhenDownload, //default: false
                     fileName: vo.fileNameWhenDownload, //default: 'data.xlsx'
                     sheetName: vo.sheetNameWhenDownload, //default: data
-                    pathItems: null, //default: 'https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js'
                 })
 
                 vo.$emit('success', vo.successMsgFromDownloadData)

@@ -74,8 +74,7 @@ import get from 'lodash-es/get.js'
 import times from 'lodash-es/times.js'
 import size from 'lodash-es/size.js'
 import isNumber from 'lodash-es/isNumber.js'
-import importResExt from '../js/importResExt.mjs'
-import domShowImagesDyn from 'wsemi/src/domShowImagesDyn.mjs'
+import domShowImages from 'wsemi/src/domShowImages.mjs'
 import ispint from 'wsemi/src/ispint.mjs'
 import cint from 'wsemi/src/cint.mjs'
 import isarr from 'wsemi/src/isarr.mjs'
@@ -99,7 +98,6 @@ function getFileName(str) {
 
 
 /**
- * @vue-prop {Array} [pathItems=['詳見原始碼']] 輸入viewerjs組件js與css檔案位置字串陣列，預設詳見原始碼處props->pathItems->default
  * @vue-prop {Array} [images=[]] 輸入圖片網址陣列，預設[]
  * @vue-prop {Number} [imageWidth=300] 輸入圖片寬度數字，單位為px，預設300
  * @vue-prop {Number} [imageWidthSoft=null] 輸入自動計算最小需滿足的圖片寬度數字，單位為px，預設null
@@ -119,13 +117,6 @@ export default {
         WIconLoading,
     },
     props: {
-        pathItems: {
-            type: Array,
-            default: () => [ //預設值詳見 wsemi/src/domShowImagesDyn.mjs, 因此處有預載, 故所使用viewerjs的版本得相同
-                'https://cdn.jsdelivr.net/npm/viewerjs@1.11.7/dist/viewer.min.css',
-                'https://cdn.jsdelivr.net/npm/viewerjs@1.11.7/dist/viewer.min.js',
-            ],
-        },
         images: {
             type: Array,
             default: () => [],
@@ -186,15 +177,8 @@ export default {
 
         let vo = this
 
-        //importResExt
-        importResExt(vo.pathItems)
-            .then((res) => {
-                //console.log('res', res)
-
-                //loading
-                vo.loading = false
-
-            })
+        //loading, viewerjs已由wsemi直接打包提供(含css注入), 無需再動態加載
+        vo.loading = false
 
     },
     computed: {
@@ -575,8 +559,8 @@ export default {
             //showViewer
             showViewer = true
 
-            //domShowImagesDyn
-            domShowImagesDyn(e.currentTarget, null, vo.opt, vo.pathItems)
+            //domShowImages
+            domShowImages(e.currentTarget, null, vo.opt)
                 .finally(() => {
 
                     //showViewer
