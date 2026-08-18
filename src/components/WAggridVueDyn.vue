@@ -10,7 +10,7 @@ import WIconLoading from './WIconLoading.vue'
 
 
 /**
- * @vue-prop {Array} [pathItems=['詳見原始碼']] 輸入ag-grid與w-aggrid-vue組件js檔案位置字串陣列，預設詳見原始碼處props->pathItems->default
+ * @vue-prop {Array} [pathItems=['base:w-aggrid-vue']] 輸入w-aggrid-vue組件js檔案位置字串陣列，ag-grid-community、ag-grid-vue與Excel讀寫皆已打包於w-aggrid-vue內(含css)故無須另行載入，預設['base:w-aggrid-vue']
  * @vue-prop {Object} [opt={}] 輸入w-aggrid-vue設定物件，預設{}
  * @vue-prop {Array} opt.keys 輸入資料各欄位keys
  * @vue-prop {Array} opt.rows 輸入資料列，各列為物件，內含各欄位keys之值，例[{},{},...,{}]
@@ -75,9 +75,6 @@ export default {
         pathItems: {
             type: Array,
             default: () => [
-                'https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js', //w-aggrid-vue的download與upload會使用, 一併預載
-                'https://cdn.jsdelivr.net/npm/ag-grid-community@31.3.4/dist/ag-grid-community.min.noStyle.js',
-                'https://cdn.jsdelivr.net/npm/ag-grid-vue@31.3.4/dist/ag-grid-vue.umd.min.js', //於es5內載入時, AgGridVue會出現在window['ag-grid-vue'].AgGridVue
                 'base:w-aggrid-vue',
             ],
         },

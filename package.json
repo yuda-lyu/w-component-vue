@@ -1,6 +1,6 @@
 {
   "name": "w-component-vue",
-  "version": "2.4.83",
+  "version": "2.4.84",
   "main": "dist/w-component-vue.umd.js",
   "dependencies": {
     "@mdi/js": "^7.4.47",
@@ -10,7 +10,6 @@
     "@vue/cli-plugin-babel": "^5.0.8",
     "@vue/cli-plugin-eslint": "^5.0.8",
     "@vue/cli-service": "^5.0.8",
-    "cheerio": "^1.2.0",
     "eslint": "^8.37.0",
     "eslint-config-standard": "^17.1.0",
     "eslint-friendly-formatter": "^4.0.1",

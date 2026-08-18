@@ -209,9 +209,9 @@
 
                 <AppZoneWTableDyn v-if="cmpPick==='WTableDyn'"></AppZoneWTableDyn>
 
-                <AppZoneWImageViewerDyn v-if="cmpPick==='WImageViewerDyn'"></AppZoneWImageViewerDyn>
+                <AppZoneWImageViewer v-if="cmpPick==='WImageViewer'"></AppZoneWImageViewer>
 
-                <AppZoneWImageCascadingDyn v-if="cmpPick==='WImageCascadingDyn'"></AppZoneWImageCascadingDyn>
+                <AppZoneWImageCascading v-if="cmpPick==='WImageCascading'"></AppZoneWImageCascading>
 
                 <AppZoneWCkeditorVueDyn v-if="cmpPick==='WCkeditorVueDyn'"></AppZoneWCkeditorVueDyn>
 
@@ -325,8 +325,8 @@ import AppZoneWEchartsVueDyn from './AppZoneWEchartsVueDyn.vue'
 import AppZoneWThreejsVueDyn from './AppZoneWThreejsVueDyn.vue'
 import AppZoneWAggridVueDyn from './AppZoneWAggridVueDyn.vue'
 import AppZoneWTableDyn from './AppZoneWTableDyn.vue'
-import AppZoneWImageViewerDyn from './AppZoneWImageViewerDyn.vue'
-import AppZoneWImageCascadingDyn from './AppZoneWImageCascadingDyn.vue'
+import AppZoneWImageViewer from './AppZoneWImageViewer.vue'
+import AppZoneWImageCascading from './AppZoneWImageCascading.vue'
 import AppZoneWCkeditorVueDyn from './AppZoneWCkeditorVueDyn.vue'
 import AppZoneWTinymceVueDyn from './AppZoneWTinymceVueDyn.vue'
 import AppZoneWQuillVueDyn from './AppZoneWQuillVueDyn.vue'
@@ -412,8 +412,8 @@ export default {
         AppZoneWThreejsVueDyn,
         AppZoneWAggridVueDyn,
         AppZoneWTableDyn,
-        AppZoneWImageViewerDyn,
-        AppZoneWImageCascadingDyn,
+        AppZoneWImageViewer,
+        AppZoneWImageCascading,
         AppZoneWCkeditorVueDyn,
         AppZoneWTinymceVueDyn,
         AppZoneWQuillVueDyn,
@@ -557,6 +557,13 @@ export default {
                 ]
             },
             {
+                name: 'imageViewer',
+                cmps: [
+                    { name: 'WImageViewer' },
+                    { name: 'WImageCascading' },
+                ]
+            },
+            {
                 name: 'window',
                 cmps: [
                     { name: 'WAlert' },
@@ -591,13 +598,6 @@ export default {
                         name: 'map',
                         cmps: [
                             { name: 'WLeafletVueDyn' },
-                        ],
-                    },
-                    {
-                        name: 'imageViewer',
-                        cmps: [
-                            { name: 'WImageViewerDyn' },
-                            { name: 'WImageCascadingDyn' },
                         ],
                     },
                     {

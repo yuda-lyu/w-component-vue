@@ -1,275 +1,80 @@
 <template>
-    <div
-        :changeParamsForInfor="changeParamsForInfor"
-        :changeParamsForTable="changeParamsForTable"
+    <!-- ref=$self為供外部存取組件之用 -->
+    <component
+        ref="$self"
+        :is="cmpName"
+        :language="language"
+        :enableInfor="enableInfor"
+        :name="name"
+        :description="description"
+        :inforPaddingStyle="inforPaddingStyle"
+        :enableMenu="enableMenu"
+        :menuPaddingStyle="menuPaddingStyle"
+        :menuBackgroundColor="menuBackgroundColor"
+        :sortColIds="sortColIds"
+        :hideIds="hideIds"
+        :fixIds="fixIds"
+        :checkId="checkId"
+        :removeIdsWhenDownload="removeIdsWhenDownload"
+        :funGetLtdtHookWhenDownload="funGetLtdtHookWhenDownload"
+        :funGetMatHookWhenDownload="funGetMatHookWhenDownload"
+        :enableHeadWhenDownload="enableHeadWhenDownload"
+        :fileNameWhenDownload="fileNameWhenDownload"
+        :sheetNameWhenDownload="sheetNameWhenDownload"
+        :editable="editable"
+        :textLabelDataName="textLabelDataName"
+        :textPlaceholderDataName="textPlaceholderDataName"
+        :textLabelDataDescription="textLabelDataDescription"
+        :textPlaceholderDataDescription="textPlaceholderDataDescription"
+        :tooltipAddRow="tooltipAddRow"
+        :tooltipDeleteSelectedRows="tooltipDeleteSelectedRows"
+        :tooltipDownloadExcelFile="tooltipDownloadExcelFile"
+        :tooltipDownloadExcelFileForDisplay="tooltipDownloadExcelFileForDisplay"
+        :tooltipUploadExcelFile="tooltipUploadExcelFile"
+        :successMsgFromAddRow="successMsgFromAddRow"
+        :errorMsgFromAddRow="errorMsgFromAddRow"
+        :errorMsgFromRemoveRow="errorMsgFromRemoveRow"
+        :successMsgFromUploadData="successMsgFromUploadData"
+        :errorMsgFromUploadData="errorMsgFromUploadData"
+        :errorMsgFromUploadEmptyData="errorMsgFromUploadEmptyData"
+        :successMsgFromDownloadData="successMsgFromDownloadData"
+        :errorMsgFromDownloadData="errorMsgFromDownloadData"
+        :errorMsgFromNoName="errorMsgFromNoName"
+        :errorMsgFromNoData="errorMsgFromNoData"
+        :uploadModeTitle="uploadModeTitle"
+        :uploadModeTextForReplace="uploadModeTextForReplace"
+        :uploadModeTextForAppend="uploadModeTextForAppend"
+        :labelContentForUpload="labelContentForUpload"
+        :cmpZIndex="cmpZIndex"
+        :opt="opt"
+        v-on="$listeners"
     >
-        <template v-if="hasEffUseOpt">
 
-            <div
-                ref="menu"
-                v-domresize
-                @domresize="domresize"
-            >
-
-                <!-- 編輯模式 -->
-                <template v-if="editable">
-
-                    <div
-                        :style="`${useInforPadding}`"
-                        v-if="enableInfor"
-                    >
-                        <table style="width:100%;">
-                            <tbody>
-                                <tr>
-                                    <td :style="`${hasEffLabelNameAndDesp?'padding-right:5px;':''} vertical-align:middle; opacity:0.8; font-size:0.8rem; white-space:nowrap;`">{{textLabelDataName}}</td>
-                                    <td style="width:100%; vertical-align:middle;">
-                                        <WText
-                                            style="width:100%;"
-                                            :placeholder="textPlaceholderDataName"
-                                            v-model="nameTrans"
-                                        ></WText>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td :style="`${hasEffLabelNameAndDesp?'padding-right:5px;':''} vertical-align:middle; opacity:0.8; font-size:0.8rem; white-space:nowrap;`">{{textLabelDataDescription}}</td>
-                                    <td style="width:100%; vertical-align:middle;">
-                                        <WText
-                                            style="width:100%;"
-                                            :placeholder="textPlaceholderDataDescription"
-                                            v-model="descriptionTrans"
-                                        ></WText>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-
-                    <div
-                        :style="`${useMenuPaddingStyle} background:${useMenuBackgroundColor};`"
-                        v-if="enableMenu"
-                    >
-                        <div style="display:flex; align-items:center;">
-
-                            <slot
-                                name="btns-left"
-                                :editable="editable"
-                            ></slot>
-
-                            <WButtonCircle
-                                style="margin:5px;"
-                                :icon="mdiTextBoxPlusOutline"
-                                :backgroundColor="'white'"
-                                :backgroundColorHover="'white'"
-                                :tooltip="tooltipAddRow"
-                                @click="addRow"
-                            ></WButtonCircle>
-
-                            <WButtonCircle
-                                style="margin:5px;"
-                                :icon="mdiDeleteForever"
-                                :iconColor="'#f26'"
-                                :backgroundColor="'white'"
-                                :backgroundColorHover="'white'"
-                                :tooltip="tooltipDeleteSelectedRows"
-                                @click="removeRows"
-                                v-if="rowsSelect.length>0"
-                            ></WButtonCircle>
-
-                            <WButtonCircle
-                                style="margin:5px;"
-                                :icon="mdiDownload"
-                                :backgroundColor="'white'"
-                                :backgroundColorHover="'white'"
-                                :tooltip="tooltipDownloadExcelFile"
-                                @click="downloadData('raw')"
-                                v-if="hasEffRows"
-                            ></WButtonCircle>
-
-                            <WButtonCircle
-                                style="margin:5px;"
-                                :icon="mdiMonitorArrowDown"
-                                :backgroundColor="'white'"
-                                :backgroundColorHover="'white'"
-                                :tooltip="tooltipDownloadExcelFileForDisplay"
-                                @click="downloadData('display')"
-                                v-if="isFilter && hasEffRows"
-                            ></WButtonCircle>
-
-                            <WPopup
-                                v-model="showPickUploadMode"
-                                :labelContent="labelContentForUpload"
-                                :cmpZIndex="cmpZIndex"
-                            >
-
-                                <template v-slot:trigger>
-                                    <WButtonCircle
-                                        style="margin:5px;"
-                                        :icon="mdiUpload"
-                                        :backgroundColor="'white'"
-                                        :backgroundColorHover="'white'"
-                                        :tooltip="tooltipUploadExcelFile"
-                                        @click="showPickUploadMode=true"
-                                    ></WButtonCircle>
-                                </template>
-
-                                <template v-slot:content>
-
-                                    <div style="padding:10px; font-size:0.8rem; color:#666; background:#eee;">
-                                        {{uploadModeTitle}}
-                                    </div>
-
-                                    <div style="padding:15px;">
-
-                                        <WButtonChip
-                                            style="margin-right:15px;"
-                                            :text="kpUploadModeItems['replace']"
-                                            :backgroundColor="'white'"
-                                            :backgroundColorHover="'#f6f6f6'"
-                                            @click="showPickUploadMode=false;uploadData('replace')"
-                                        ></WButtonChip>
-
-                                        <WButtonChip
-                                            _style="margin:5px;"
-                                            :text="kpUploadModeItems['append']"
-                                            :backgroundColor="'white'"
-                                            :backgroundColorHover="'#f6f6f6'"
-                                            @click="showPickUploadMode=false;uploadData('append')"
-                                        ></WButtonChip>
-
-                                    </div>
-
-                                </template>
-
-                            </WPopup>
-
-                            <slot
-                                name="btns-right"
-                                :editable="editable"
-                            ></slot>
-
-                        </div>
-                    </div>
-
-                </template>
-
-                <!-- 顯示模式 -->
-                <template v-else>
-
-                    <div :style="`display:flex; align-items:center;`">
-
-                        <div
-                            :style="`${useMenuPaddingStyle} background:${useMenuBackgroundColor};`"
-                            v-if="enableMenu"
-                        >
-                            <div style="display:flex; align-items:center;">
-
-                                <slot
-                                    name="btns-left"
-                                    :editable="editable"
-                                ></slot>
-
-                                <WButtonCircle
-                                    style="margin:5px;"
-                                    :icon="mdiDownload"
-                                    :tooltip="tooltipDownloadExcelFile"
-                                    :backgroundColor="'white'"
-                                    :backgroundColorHover="'white'"
-                                    @click="downloadData('raw')"
-                                    v-if="hasEffRows"
-                                ></WButtonCircle>
-
-                                <WButtonCircle
-                                    style="margin:5px;"
-                                    :icon="mdiMonitorArrowDown"
-                                    :tooltip="tooltipDownloadExcelFileForDisplay"
-                                    :backgroundColor="'white'"
-                                    :backgroundColorHover="'white'"
-                                    @click="downloadData('display')"
-                                    v-if="isFilter && hasEffRows"
-                                ></WButtonCircle>
-
-                                <slot
-                                    name="btns-right"
-                                    :editable="editable"
-                                ></slot>
-
-                            </div>
-                        </div>
-
-                        <div
-                            :style="`${useInforPadding}`"
-                            v-if="enableInfor"
-                        >
-                            <slot
-                                name="infor"
-                                :infor="{name:nameTrans,description:descriptionTrans}"
-                            >
-
-                                <div :style="`display:inline-block; ${hasEffNameAndDesp?'margin-left:5px;':''}`">
-                                    <div style="font-size:1.0rem;">
-                                        {{nameTrans}}
-                                    </div>
-                                    <div style="font-size:0.8rem; opacity:0.8;">
-                                        {{descriptionTrans}}
-                                    </div>
-                                </div>
-
-                            </slot>
-                        </div>
-
-                    </div>
-
-                </template>
-
-            </div>
-
-            <WAggridVueDyn
-                ref="cmp"
-                :pathItems="pathItems"
-                :height="tableHeight"
-                :opt="useOpt"
-            ></WAggridVueDyn>
-
+        <!-- infor有預設顯示內容, 需外部有給予slot時才可傳遞, 否則會覆蓋成空內容 -->
+        <template v-slot:infor="props" v-if="$scopedSlots.infor">
+            <slot name="infor" v-bind="props"></slot>
         </template>
-    </div>
+
+        <template v-slot:btns-left="props">
+            <slot name="btns-left" v-bind="props"></slot>
+        </template>
+
+        <template v-slot:btns-right="props">
+            <slot name="btns-right" v-bind="props"></slot>
+        </template>
+
+    </component>
 </template>
 
 <script>
-import { mdiDownload, mdiMonitorArrowDown, mdiUpload, mdiDeleteForever, mdiTextBoxPlusOutline } from '@mdi/js/mdi.js'
-import get from 'lodash-es/get.js'
-import map from 'lodash-es/map.js'
-import each from 'lodash-es/each.js'
-import keys from 'lodash-es/keys.js'
-import sortBy from 'lodash-es/sortBy.js'
-import pull from 'lodash-es/pull.js'
-import size from 'lodash-es/size.js'
-import every from 'lodash-es/every.js'
-import trim from 'lodash-es/trim.js'
-import isEqual from 'lodash-es/isEqual.js'
-import cloneDeep from 'lodash-es/cloneDeep.js'
-import isarr from 'wsemi/src/isarr.mjs'
-import isfun from 'wsemi/src/isfun.mjs'
-import isestr from 'wsemi/src/isestr.mjs'
-import isearr from 'wsemi/src/isearr.mjs'
-import isbol from 'wsemi/src/isbol.mjs'
-import isobj from 'wsemi/src/isobj.mjs'
-import iseobj from 'wsemi/src/iseobj.mjs'
-import arr2dt from 'wsemi/src/arr2dt.mjs'
-import arrPullAt from 'wsemi/src/arrPullAt.mjs'
-import ltdtmapping from 'wsemi/src/ltdtmapping.mjs'
-import genID from 'wsemi/src/genID.mjs'
-import WButtonCircle from './WButtonCircle.vue'
-import WPopup from './WPopup.vue'
-import WText from './WText.vue'
-import WButtonChip from './WButtonChip.vue'
-import WAggridVueDyn from './WAggridVueDyn.vue'
-import domResize from '../js/domResize.mjs'
-import parseSpace from '../js/parseSpace.mjs'
-import convertColor from '../js/convertColor.mjs'
+import importResExt from '../js/importResExt.mjs'
+import getVue from '../js/getVue.mjs'
+import WIconLoading from './WIconLoading.vue'
 
 
 /**
- * @vue-prop {Array} [pathItems=['詳見原始碼']] 輸入w-aggrid-vue-dyn組件js檔案位置字串陣列，預設詳見原始碼處props->pathItems->default
+ * @vue-prop {Array} [pathItems=['base:w-table-vue']] 輸入w-table-vue組件js檔案位置字串陣列，w-aggrid-vue與ag-grid皆已打包於w-table-vue內故無須另行載入，預設['base:w-table-vue']
+ * @vue-prop {String} [language='en'] 輸入指定語系字串，可選'en'、'zh-tw'、'zh-cn'，可被opt.language複寫，預設為'en'
  * @vue-prop {Boolean} [enableInfor=true] 輸入是否使用資訊區(資料名稱name與資料描述description)布林值，預設為true
  * @vue-prop {String} [name=''] 輸入資料名稱字串，預設''
  * @vue-prop {String} [description=''] 輸入資料描述字串，預設''
@@ -312,13 +117,18 @@ import convertColor from '../js/convertColor.mjs'
  * @vue-prop {String} [uploadModeTextForAppend='Append'] 輸入插入於最後上傳模式文字字串，預設'Append'
  * @vue-prop {String} [labelContentForUpload=null] 輸入針對上傳模式之popup彈窗teleport至body內之內容div所給予之wtlp屬性值字串，供查找使用，預設null
  * @vue-event {Array} save 指調用組件的method，無輸入，會回傳當前的name、description、rows所構成的物件
+ * @vue-event {String} success 當新增數據、上傳數據、下載數據成功時觸發，回傳對應成功訊息字串
+ * @vue-event {String} error 當新增數據、移除數據、上傳數據、下載數據失敗時觸發，回傳對應錯誤訊息字串
+ * @vue-slot {Object} infor 顯示模式下資訊區之渲染slot，slot props為{ infor }，infor為{ name, description }
+ * @vue-slot {Object} btns-left 選單按鈕區最左側之插入slot，slot props為{ editable }
+ * @vue-slot {Object} btns-right 選單按鈕區最右側之插入slot，slot props為{ editable }
  * @vue-prop {Object} [opt={}] 輸入w-aggrid-vue設定物件，預設{}
  * @vue-prop {Array} opt.keys 輸入資料各欄位keys
  * @vue-prop {Array} opt.rows 輸入資料列，各列為物件，內含各欄位keys之值，例[{},{},...,{}]
  * @vue-prop {Object} [opt.kpHead={}] 輸入key對應head物件，預設各key值為本身key值
  * @vue-prop {Object} [opt.kpHeadTooltip={}] 輸入key對應需tooltip的html字串物件，於各head處滑鼠移入時觸發，預設各key值為undefined
- * @vue-prop {String} [opt.defHeadAlighH='center'] 輸入head預設之左右對齊字串，預設為'center'
- * @vue-prop {Object} [opt.kpHeadAlighH={}] 輸入key對應head之左右對齊字串物件，預設各key值為defHeadAlighH
+ * @vue-prop {String} [opt.defHeadAlignH='center'] 輸入head預設之左右對齊字串，預設為'center'
+ * @vue-prop {Object} [opt.kpHeadAlignH={}] 輸入key對應head之左右對齊字串物件，預設各key值為defHeadAlignH
  * @vue-prop {Boolean} [opt.defHeadSort=true] 輸入head預設之是否允許排序布林值，預設為true
  * @vue-prop {Object} [opt.kpHeadSort={}] 輸入key對應head之是否允許排序物件，預設各key值為defHeadSort
  * @vue-prop {Function|String} [opt.defHeadSortMethod=null] 輸入head預設之排序方式函數或字串，若需自行定義則給予函數，若需使用內建的自動轉型判斷方式則給予'auto'字串，預設為null
@@ -326,22 +136,31 @@ import convertColor from '../js/convertColor.mjs'
  * @vue-prop {Object} [opt.kpHeadFixLeft={}] 輸入key對應head之是否固定於左側物件，預設各key值為false
  * @vue-prop {Boolean} [opt.defHeadFilter=true] 輸入head預設之是否允許過濾布林值，預設為true
  * @vue-prop {Object} [opt.kpHeadFilter={}] 輸入key對應head之是否允許過濾物件，預設各key值為defHeadFilter
+ * @vue-prop {String} [opt.defHeadFilterType='num'] 輸入head預設過濾器字串，可選'num'、'text'、'time'、'set'，預設為'num'
+ * @vue-prop {Object} [opt.kpHeadFilterType={}] 輸入key對應head之過濾器物件，可使用'num'、'text'、'time'、'set'，預設各key值為'num'
+ * @vue-prop {Object} [opt.kpHeadRender={}] 輸入key對應head之渲染函數物件，預設各key值為undefined
  * @vue-prop {Boolean} [opt.defHeadDrag=true] 輸入head預設之是否允許拖曳布林值，預設為true
  * @vue-prop {Object} [opt.kpHeadDrag={}] 輸入key對應head之是否允許拖曳物件，預設各key值為defHeadDrag
  * @vue-prop {Object} [opt.kpHeadCheckBox={}] 輸入key對應head與key的各列是否使用核選方塊物件，預設各key值為false
+ * @vue-prop {Object} [opt.kpHeadFocusHighlight={}] 輸入key對應key的各列於獲得焦點時是否高亮顯示物件，預設各key值為true
  * @vue-prop {Object} [opt.kpHeadHide={}] 輸入key對應head是否隱藏物件，預設各key值為false
  * @vue-prop {Object} [opt.kpRowStyle={}] 輸入key對應row style之物件，可設定各key欄之函數，函數給予cell值需回傳之row style，預設各key值為undefined
  * @vue-prop {Object} [opt.kpRowDrag={}] 輸入key對應col之是否能拖曳排序物件，預設各key值為false
- * @vue-prop {Object} [opt.kpColStyle={}] 輸入key對應row style之物件，可設定各key欄之col style，預設各key值為undefined
+ * @vue-prop {Function} [opt.genRowsPinnTop=null] 輸入產生置頂rows函數，輸入為表內全部數據，預設為null
+ * @vue-prop {Function} [opt.genRowsPinnBottom=null] 輸入產生置底rows函數，輸入為表內全部數據，預設為null
+ * @vue-prop {Object} [opt.kpColStyle={}] 輸入key對應col style之物件，可設定各key欄之col style，預設各key值為undefined
+ * @vue-prop {Object} [opt.kpColSpan={}] 輸入key對應col span之物件，可設定各key欄之col span，預設各key值為undefined
  * @vue-prop {Number} [opt.defHeadMinWidth=null] 輸入cell預設最小寬度數字，預設為null
+ * @vue-prop {Number} [opt.defHeadMaxWidth=null] 輸入cell預設最大寬度數字，預設為null
  * @vue-prop {Object} [opt.kpHeadWidth={}] 輸入key對應cell之寬度物件，預設各key值為undefined
  * @vue-prop {Object} [opt.kpCellRender={}] 輸入key對應cell之渲染函數物件，預設各key值為undefined
  * @vue-prop {Object} [opt.kpCellTooltip={}] 輸入key對應cell之tooltip的html字串物件，於各cell處滑鼠移入時觸發，預設各key值為undefined
- * @vue-prop {String} [opt.defCellAlighH='center'] 輸入cell預設之左右對齊字串，預設為'center'
- * @vue-prop {Object} [opt.kpCellAlighH={}] 輸入key對應cell之左右對齊字串物件，預設各key值為defCellAlighH
- * @vue-prop {Boolean} [opt.defCellEditable=false] 輸入cell預設之是否可編輯布林值，預設為false
+ * @vue-prop {String} [opt.defCellAlignH='center'] 輸入cell預設之左右對齊字串，預設為'center'
+ * @vue-prop {Object} [opt.kpCellAlignH={}] 輸入key對應cell之左右對齊字串物件，預設各key值為defCellAlignH
+ * @vue-prop {Boolean} [opt.defCellEditable=false] 輸入cell預設之是否可編輯布林值，由組件editable複寫，預設為false
  * @vue-prop {Object} [opt.kpCellEditable={}] 輸入key對應cell之是否可編輯物件，預設各key值為defCellEditable
  * @vue-prop {Object} [opt.kpConvertKeysWhenUploadData={}] 輸入上傳Excel檔案時，當key轉會成對應新key值物件，預設{}
+ * @vue-prop {Function} [opt.rowsChange=function(){}] 輸入rows change之觸發事件，預設為function(){}
  * @vue-prop {Function} [opt.rowClick=function(){}] 輸入row click之觸發事件，預設為function(){}
  * @vue-prop {Function} [opt.rowDbClick=function(){}] 輸入row double click之觸發事件，預設為function(){}
  * @vue-prop {Function} [opt.rowChange=function(){}] 輸入row change之觸發事件，預設為function(){}
@@ -353,28 +172,25 @@ import convertColor from '../js/convertColor.mjs'
  * @vue-prop {Function} [opt.cellChange=function(){}] 輸入cell change之觸發事件，預設為function(){}
  * @vue-prop {Function} [opt.cellMouseEnter=function(){}] 輸入cell mouseenter之觸發事件，預設為function(){}
  * @vue-prop {Function} [opt.cellMouseLeave=function(){}] 輸入cell mouseleave之觸發事件，預設為function(){}
- * @vue-prop {Function} [opt.filterChange=()=>{}] 輸入filter change之觸發事件，預設為()=>{}
+ * @vue-prop {Function} [opt.filterChange=function(){}] 輸入filter change之觸發事件，預設為function(){}
  * @vue-prop {Boolean} [opt.autoFitColumn=false] 輸入當表格尺寸變更時自動調整欄寬布林值，預設false
- * @vue-prop {String} [opt.language='en'] 輸入指定語系字串，可選'en'、'zh-tw'、'zh-cn'，預設為'en'
- * @vue-prop {Object} [opt.optForUploadData={}] 輸入呼叫組件uploadData上傳檔案時用的設定物件，內部調用wsemi的getDataFromExcelFileU8Arr讀取Excel檔案，物件可給予鍵值：beforeUpload代表上傳前的處理數據函數，parseSheetInd代表提取Excel檔案的第幾個sheet整數(預設為0)，optForUploadData預設{}
+ * @vue-prop {String} [opt.language='en'] 輸入指定語系字串，可選'en'、'zh-tw'、'zh-cn'，預設同組件language
+ * @vue-prop {Function} [opt.beforeAddRow=undefined] 輸入編輯模式新增數據前之修改新列事件，輸入newRow，輸出newRow，預設為undefined
+ * @vue-prop {Object} [opt.optForUploadData={}] 輸入呼叫組件uploadData上傳檔案時用的設定物件，內部調用wsemi的getDataFromExcelFileU8Arr讀取Excel檔案，物件可給予鍵值：uploadMode代表上傳模式字串(可選'replace'、'append'，預設由彈窗選擇)，beforeUpload代表上傳前的處理數據函數，parseSheetInd代表提取Excel檔案的第幾個sheet整數(預設為0)，optForUploadData預設{}
  * @vue-prop {Function} [opt.modifyDataWhenSave=undefined] 輸入當儲存時修改儲存數據事件，輸入rows，輸出rows，預設為undefined
  * @vue-prop {Boolean} [opt.checkNoDataWhenSave=false] 輸入當儲存時是否檢核無數據布林值，預設false
  * @vue-prop {Number} [cmpZIndex=3000] 輸入彈窗使用z-index數字，供嵌於高z-index彈窗內時提高層級，預設3000
  */
 export default {
-    directives: {
-        domresize: domResize(),
-    },
     components: {
-        WButtonCircle,
-        WPopup,
-        WText,
-        WButtonChip,
-        WAggridVueDyn,
+        WIconLoading,
     },
     props: {
         pathItems: {
-            type: Array, //預設值見WAggridVueDyn
+            type: Array,
+            default: () => [
+                'base:w-table-vue',
+            ],
         },
         language: {
             type: String,
@@ -578,688 +394,72 @@ export default {
     },
     data: function() {
         return {
-            mdiDownload,
-            mdiMonitorArrowDown,
-            mdiUpload,
-            mdiDeleteForever,
-            mdiTextBoxPlusOutline,
-
-            tableHeight: 1, //ag-grid需先給予最小高度供顯示, resize才會驅動
-
-            showPickUploadMode: false,
-
-            paramsTemp: null,
-
-            nameTrans: '',
-            descriptionTrans: '',
-            rowsSelect: [],
-            useOpt: null,
-
-            nameTemp: '',
-            descriptionTemp: '',
-            rowsTemp: [],
-
-            isFilter: false,
-
+            cmpName: 'WIconLoading',
         }
     },
+    mounted: function() {
+        //console.log('mounted')
+
+        let vo = this
+
+        //importResExt
+        importResExt(vo.pathItems)
+            .then((res) => {
+                //console.log('res', res)
+                if (res !== 'loaded') {
+
+                    //use, w-table-vue內已打包w-aggrid-vue與ag-grid, 故僅需註冊組件
+                    getVue().use(window['w-table-vue'])
+
+                }
+                vo.cmpName = 'w-table-edit'
+            })
+
+    },
     computed: {
-
-        changeParamsForInfor: function() {
-            // console.log('computed changeParamsForInfor')
-
-            let vo = this
-
-            //for trigger
-            let name = vo.name
-            let description = vo.description
-
-            //save
-            vo.nameTrans = trim(vo.name)
-            vo.descriptionTrans = trim(vo.description)
-
-            //backup, 不能使用vo.nameTrans與vo.descriptionTemp備份, 會導致computed掛勾記憶體無法觸發事件變更
-            vo.nameTemp = trim(vo.name)
-            vo.descriptionTemp = trim(vo.description)
-
-            vo.___changeParamsForInfor___ = { name, description }
-            return ''
-        },
-
-        changeParamsForTable: function() {
-            //console.log('computed changeParamsForTable')
-
-            let vo = this
-
-            //for trigger, rows通常是undefined變更為有效數據, 此時會驅動
-            let rows = get(vo, 'opt.rows')
-            let hideIds = vo.hideIds
-            let fixIds = vo.fixIds
-            let checkId = vo.checkId
-            let editable = vo.editable
-
-            //paramsTemp
-            let paramsTemp = {
-                rows, hideIds, fixIds, checkId, editable
-            }
-
-            //check, changeParamsForTable掛在dom上, 可能因為dom變更而被觸發, 或因數據為物件(例如rows)可能被修改, 於dom變更時被視為有變而觸發, 故需添加偵測外部數據是否有變才呼叫genOpt
-            if (!isEqual(vo.paramsTemp, paramsTemp)) {
-
-                //genOpt
-                vo.genOpt()
-
-                //save
-                vo.paramsTemp = cloneDeep(paramsTemp)
-
-            }
-
-            return ''
-        },
-
-        kpUploadModeItems: function() {
-            //console.log('computed kpUploadModeItems')
-
-            let vo = this
-
-            //kp
-            let kp = {
-                replace: vo.uploadModeTextForReplace,
-                append: vo.uploadModeTextForAppend,
-            }
-
-            return kp
-        },
-
-        useKeys: function() {
-            //console.log('computed useKeys')
-
-            let vo = this
-
-            //ks
-            let ks = []
-            if (isearr(get(vo, 'opt.keys'))) {
-                ks = get(vo, 'opt.keys')
-            }
-            else if (isearr(get(vo, 'opt.rows'))) {
-                ks = keys(get(vo, 'rows.0', {}))
-            }
-
-            return ks
-        },
-
-        useKpHead: function() {
-            //console.log('computed useKpHead')
-
-            let vo = this
-
-            //kpHeads
-            let kpHeads
-            if (iseobj(get(vo, 'opt.kpHead'))) {
-                kpHeads = get(vo, 'opt.kpHead')
-            }
-            else {
-                kpHeads = {}
-                each(vo.useKeys, (k) => {
-                    kpHeads[k] = k
-                })
-            }
-
-            return kpHeads
-        },
-
-        hasEffRows: function() {
-            //console.log('computed hasEffRows')
-
-            let vo = this
-
-            return size(get(vo, 'useOpt.rows', [])) > 0
-        },
-
-        hasEffUseOpt: function() {
-            //console.log('computed hasEffUseOpt')
-
-            let vo = this
-
-            return vo.useOpt !== null
-        },
-
-        hasEffNameAndDesp: function() {
-            //console.log('computed hasEffNameAndDesp')
-
-            let vo = this
-
-            return vo.nameTrans !== '' || vo.descriptionTrans !== ''
-        },
-
-        hasEffLabelNameAndDesp: function() {
-            //console.log('computed hasEffLabelNameAndDesp')
-
-            let vo = this
-
-            return vo.textLabelDataName !== '' || vo.textLabelDataDescription !== ''
-        },
-
-        useInforPadding: function() {
-            //console.log('computed useInforPadding')
-
-            let vo = this
-
-            //parseSpace
-            let cs = parseSpace(vo.inforPaddingStyle)
-
-            //padding
-            let padding = `padding:${cs};`
-
-            return padding
-        },
-
-        useMenuPaddingStyle: function() {
-            //console.log('computed useMenuPaddingStyle')
-
-            let vo = this
-
-            //parseSpace
-            let cs = parseSpace(vo.menuPaddingStyle)
-
-            //padding
-            let padding = `padding:${cs};`
-
-            return padding
-        },
-
-        useMenuBackgroundColor: function() {
-            //console.log('computed useMenuBackgroundColor')
-
-            let vo = this
-
-            return convertColor(vo.menuBackgroundColor)
-        },
-
     },
     methods: {
 
-        domresize: function(msg) {
-            // console.log('methods domresize', msg)
+        callCmpMethod: function(funName, ...input) {
+            //console.log('methods callCmpMethod', funName)
 
             let vo = this
 
-            //tableHeight
-            let minHeight = 200
-            let tableHeight = 0
-            let panelHeight = get(vo, '$el.offsetHeight', 0)
-            let menuHeight = get(vo, '$refs.menu.offsetHeight')
-            if (panelHeight > 0 && menuHeight > 0) {
-                tableHeight = panelHeight - menuHeight
-            }
-            tableHeight = Math.max(tableHeight, minHeight)
-            vo.tableHeight = tableHeight
+            //cmp
+            let cmp = vo.$refs.$self
 
+            //check, 組件尚未載入完成時無對應方法
+            if (cmp === null || cmp === undefined) {
+                return undefined
+            }
+            if (typeof cmp[funName] !== 'function') {
+                return undefined
+            }
+
+            return cmp[funName](...input)
         },
 
-        default: function() {
-            // console.log('methods default')
-
-            let vo = this
-
-            vo.tableHeight = 200
-            vo.rowsSelect = []
-            vo.useOpt = null
-            vo.rowsTemp = []
-            //不能清空nameTrans與descriptionTrans, 因default可能會被genOpt觸發, 而若是name與description變更在前, opt.rows變更在後, nameTrans與descriptionTrans被清空就無法顯示, 故得獨立出來分開處理
-            // vo.nameTrans = ''
-            // vo.descriptionTrans = ''
-            // vo.nameTemp = ''
-            // vo.descriptionTemp = ''
-
+        addRow: function(...input) {
+            return this.callCmpMethod('addRow', ...input)
         },
 
-        genOpt: function() {
-            // console.log('methods genOpt')
-
-            let vo = this
-
-            //check
-            if (size(vo.useKeys) === 0) {
-                vo.default()
-                return
-            }
-
-            //rows
-            let rows = null
-            if (isarr(get(vo, 'opt.rows'))) { //若有rows則使用
-
-                //rows
-                //w-aggrid-vue組件內採取會自動更新外部opt.rows
-                //但這邊組件用於專案, 需用cloneDeep斷開與外面記憶體共用問題, 於組件內改變數據才不會影響外面, 另computed有偵測rows故外面改變內部可自動更新
-                rows = cloneDeep(get(vo, 'opt.rows'))
-
-            }
-            else {
-                //若沒有rows則使用useKeys產生空數據
-
-                //rows
-                rows = [arr2dt(vo.useKeys)]
-
-            }
-
-            //sortColIds
-            if (isestr(vo.sortColIds)) {
-                try {
-                    rows = sortBy(rows, vo.sortColIds)
-                }
-                catch (err) {
-                    console.log(err)
-                }
-            }
-            else if (isearr(vo.sortColIds)) {
-                each(vo.sortColIds, (id) => {
-                    try {
-                        rows = sortBy(rows, id)
-                    }
-                    catch (err) {
-                        console.log(err)
-                    }
-                })
-            }
-
-            //backup
-            vo.rowsTemp = cloneDeep(rows)
-
-            //useOpt
-            let useOpt = {
-
-                defCellAlighH: 'left',
-
-                ...vo.opt,
-
-                //由此組件複寫
-                language: vo.language,
-                rows,
-                keys: vo.useKeys,
-                defCellEditable: vo.editable,
-                kpHead: vo.useKpHead,
-                rowChecked: function(rs) {
-                    // console.log('rowChecked rs', rs)
-
-                    //save
-                    vo.rowsSelect = rs
-
-                    //call
-                    if (isfun(get(vo.opt, 'rowChecked'))) {
-                        vo.opt.rowChecked(rs)
-                    }
-
-                },
-                filterChange: function(msg) {
-                    // console.log('filterChange msg', msg)
-
-                    //save
-                    let isFilter = get(msg, 'isFilter', false)
-                    vo.isFilter = isFilter
-
-                    //call
-                    if (isfun(get(vo.opt, 'filterChange'))) {
-                        vo.opt.filterChange(msg)
-                    }
-
-                },
-                // rowsChange: function(rs) { //暫時不需要額外處理rowsChange
-                //     // console.log('rowsChange', rs)
-
-                //     //call
-                //     if (isfun(get(vo.opt, 'filterChange'))) {
-                //         vo.opt.rowsChange(rs)
-                //     }
-
-                // },
-            }
-
-            //hideIds
-            if (isestr(vo.hideIds)) {
-                useOpt.kpHeadHide = arr2dt([vo.hideIds], true)
-            }
-            else if (isearr(vo.hideIds)) {
-                useOpt.kpHeadHide = arr2dt(vo.hideIds, true)
-            }
-
-            //fixIds
-            if (isestr(vo.fixIds)) {
-                useOpt.kpHeadFixLeft = arr2dt([vo.fixIds], true)
-            }
-            else if (isearr(vo.fixIds)) {
-                useOpt.kpHeadFixLeft = arr2dt(vo.fixIds, true)
-            }
-
-            //checkId
-            if (vo.editable) {
-                if (isestr(vo.checkId)) {
-                    useOpt.kpHeadCheckBox = arr2dt([vo.checkId], true)
-                }
-            }
-
-            //modify by opt
-            if (iseobj(vo.opt)) {
-                let optTemp = cloneDeep(vo.opt)
-                each(optTemp, (v, k) => {
-                    if (k !== 'keys' && k !== 'rows' && k !== 'kpHead' && k !== 'editable') { //已於前面使用過就不複寫, 例如rows會被重排序一定不能被複寫回原數據
-                        useOpt[k] = v
-                    }
-                })
-            }
-
-            //save
-            vo.useOpt = useOpt
-
+        removeRows: function(...input) {
+            return this.callCmpMethod('removeRows', ...input)
         },
 
-        addRow: function() {
-            //console.log('methods addRow')
-
-            let vo = this
-
-            //check
-            if (size(vo.useKeys) === 0) {
-                vo.default()
-                vo.$emit('error', vo.errorMsgFromAddRow)
-                return
-            }
-
-            //newRow
-            let newRow = arr2dt(vo.useKeys)
-            // console.log('newRow(ori)', newRow)
-
-            //id
-            newRow.id = genID()
-            // console.log('newRow(add id)', newRow)
-
-            //beforeAddRow
-            if (isfun(get(vo, 'opt.beforeAddRow'))) {
-                newRow = vo.opt.beforeAddRow(newRow)
-                // console.log('newRow(beforeAddRow)', newRow)
-            }
-
-            try {
-
-                //cloneDeep, 記憶體須脫勾
-                let rows = cloneDeep(vo.useOpt.rows)
-
-                //push
-                rows.push(newRow)
-
-                //save
-                vo.useOpt.rows = rows //儲存新rows才有辦法觸發ag-grid展示變更
-
-                //nextTick, 變更數據後頁面會先渲染, nextTick後才能調捲軸, 否則太快執行會被頁面渲染蓋掉
-                vo.$nextTick(() => {
-
-                    //getApi
-                    let getApi = get(vo, `$refs.cmp.$refs.$self.getApi`)
-
-                    //check
-                    if (isfun(getApi)) {
-
-                        //ensureIndexVisible, scrollTo(index)
-                        let api = getApi()
-                        api.ensureIndexVisible(vo.useOpt.rows.length - 1, 'bottom') //捲到最下
-
-                    }
-
-                })
-
-                vo.$emit('success', vo.successMsgFromAddRow)
-            }
-            catch (err) {
-                console.log(err)
-                vo.$emit('error', vo.errorMsgFromAddRow)
-            }
-
+        downloadData: function(...input) {
+            return this.callCmpMethod('downloadData', ...input)
         },
 
-        removeRows: function() {
-            // console.log('methods removeRows')
-
-            let vo = this
-
-            //rows
-            let rows = get(vo, 'useOpt.rows', [])
-            rows = cloneDeep(rows)
-
-            //check
-            if (size(rows) === 0) {
-                return
-            }
-
-            //inds
-            let inds = map(vo.rowsSelect, 'rowInd')
-
-            //check
-            if (size(inds) === 0) {
-                return
-            }
-
-            //arrPullAt, 內部記憶體已脫勾
-            rows = arrPullAt(rows, inds)
-
-            //save
-            try {
-                vo.useOpt.rows = rows
-            }
-            catch (err) {
-                vo.$emit('error', vo.errorMsgFromRemoveRow)
-            }
-
-            //reset rowsSelect
-            vo.rowsSelect = []
-
+        uploadData: function(...input) {
+            return this.callCmpMethod('uploadData', ...input)
         },
 
-        downloadData: function(mode = 'raw') {
-            //console.log('methods downloadData', mode)
-
-            let vo = this
-
-            try {
-
-                //keyFun
-                let keyFun = ''
-                if (mode === 'raw') {
-                    keyFun = 'downloadData'
-                }
-                else if (mode === 'display') {
-                    keyFun = 'downloadDisplayData'
-                }
-                else {
-                    throw new Error(`invlaid mode[${mode}]`)
-                }
-
-                //fun
-                let fun = get(vo, `$refs.cmp.$refs.$self.${keyFun}`)
-
-                //check
-                if (!isfun(fun)) {
-                    return
-                }
-
-                //downloadData
-                fun({
-                    funGetKeysHook: (keys) => {
-                        // console.log('funGetKeysHook', keys)
-                        if (isestr(vo.removeIdsWhenDownload)) {
-                            pull(keys, vo.removeIdsWhenDownload)
-                        }
-                        else if (isearr(vo.removeIdsWhenDownload)) {
-                            pull(keys, ...vo.removeIdsWhenDownload)
-                        }
-                        return keys
-                    },
-                    // funGetLtdtHook: function(ltdt) {
-                    //     // console.log('funGetLtdtHook', ltdt)
-                    //     return ltdt
-                    // },
-                    funGetLtdtHook: vo.funGetLtdtHookWhenDownload,
-                    // funGetMatHook: function(mat) {
-                    //     // console.log('funGetMatHook', mat)
-                    //     return mat
-                    // },
-                    funGetMatHook: vo.funGetMatHookWhenDownload,
-                    useHead: vo.enableHeadWhenDownload, //default: false
-                    fileName: vo.fileNameWhenDownload, //default: 'data.xlsx'
-                    sheetName: vo.sheetNameWhenDownload, //default: data
-                })
-
-                vo.$emit('success', vo.successMsgFromDownloadData)
-            }
-            catch (err) {
-                vo.$emit('error', vo.errorMsgFromDownloadData)
-            }
-
+        save: function(...input) {
+            return this.callCmpMethod('save', ...input)
         },
 
-        uploadData: function(uploadModeSelect) {
-            //console.log('methods uploadData', uploadModeSelect)
-
-            let vo = this
-
-            //fun
-            let fun = get(vo, `$refs.cmp.$refs.$self.uploadData`)
-
-            //check
-            if (!isfun(fun)) {
-                return
-            }
-
-            //optForUploadData
-            let optForUploadData = get(vo, 'opt.optForUploadData')
-            if (!isobj(optForUploadData)) {
-                optForUploadData = {}
-            }
-
-            //uploadMode, 選擇上傳模式
-            let uploadMode = get(optForUploadData, 'uploadMode')
-            if (!isestr(uploadMode)) {
-                optForUploadData.uploadMode = uploadModeSelect
-            }
-
-            //beforeUpload, 自動去除無效數據
-            let beforeUpload = get(optForUploadData, 'beforeUpload')
-            if (!isfun(beforeUpload)) {
-                optForUploadData.beforeUpload = (rows) => {
-                    // console.log('beforeUpload', rows)
-
-                    //calc eff rows
-                    let rs = []
-                    each(rows, (row) => {
-                        let b = every(row, (v) => {
-                            return v === ''
-                        })
-                        if (!b) {
-                            rs.push(row)
-                        }
-                    })
-                    // console.log('rs', rs)
-
-                    return rs
-                }
-            }
-            // console.log('optForUploadData', optForUploadData)
-
-            //upload
-            fun(optForUploadData)
-                .then((rows) => {
-                    // console.log('upload then', rows)
-
-                    //check
-                    if (size(rows) === 0) {
-                        vo.$emit('error', vo.errorMsgFromUploadEmptyData)
-                    }
-                    else {
-                        vo.$emit('success', vo.successMsgFromUploadData)
-                    }
-
-                    //reset rowsSelect
-                    vo.rowsSelect = []
-
-                })
-                .catch((err) => {
-                    console.log('catch', err)
-                    vo.$emit('error', vo.errorMsgFromUploadData)
-                })
-
-        },
-
-        save: function() {
-            //console.log('methods save')
-
-            let vo = this
-
-            function core() {
-
-                //save
-                let name = trim(vo.nameTrans)
-                let description = trim(vo.descriptionTrans)
-
-                //check
-                if (!isestr(name)) {
-                    return { err: vo.errorMsgFromNoName }
-                }
-
-                //rows
-                let rows = get(vo, 'useOpt.rows', [])
-
-                //ltdtmapping
-                rows = ltdtmapping(rows, vo.useKeys)
-
-                //update fields
-                if (isfun(get(vo, 'opt.modifyDataWhenSave'))) {
-                    rows = vo.opt.modifyDataWhenSave(rows)
-                //     rows = map(rows, (v, k) => {
-                //         if (!isestr(v.id)) {
-                //             v.id = genID()
-                //         }
-                //         v.mappingId = vo.mappingId
-                //         v.order = k
-                //         v.isActive = 'y'
-                //         return v
-                //     })
-                }
-
-                //check
-                let checkNoDataWhenSave = get(vo, 'opt.checkNoDataWhenSave')
-                if (!isbol(checkNoDataWhenSave)) {
-                    checkNoDataWhenSave = false
-                }
-                if (checkNoDataWhenSave && rows.length === 0) {
-                    return { err: vo.errorMsgFromNoData }
-                }
-
-                //res
-                let res = {
-                    name,
-                    nameTemp: vo.nameTrans,
-                    description,
-                    descriptionTemp: vo.descriptionTemp,
-                    rows: cloneDeep(rows),
-                    rowsTemp: cloneDeep(vo.rowsTemp),
-                }
-                // console.log('res', res)
-
-                return res
-            }
-
-            //res
-            let res
-            try {
-                res = core()
-            }
-            catch (err) {
-                res = { err }
-            }
-
-            return res
-        },
-
-    }
+    },
 }
 </script>
 
