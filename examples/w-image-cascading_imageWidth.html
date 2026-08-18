@@ -63,7 +63,7 @@
     ></script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.4.83/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.4.84/dist/w-component-vue.umd.js"></script>
 
     <style>
   /* 組件所須全域樣式 */
@@ -138,16 +138,22 @@
                 style="cursor:pointer;"
                 title="open for copy link to view component"
                 onclick="window.open('//yuda-lyu.github.io/w-component-vue/examples/app.html?cmp='+this.innerText,'_blank')"
-            >w-image-cascading-dyn</span>
+            >w-image-cascading</span>
         </div>
         <div class="bk" style="display:block;">
-            <div class="item">default(imageWidth=300)</div>
+            <div class="item">imageWidth</div>
 
-            <w-image-cascading-dyn
-                :images="WImageCascadingDyn.opt1.images"
-                :image-style="WImageCascadingDyn.opt1.imageStyle"
-                :opt="WImageCascadingDyn.opt1.opt"
-            ></w-image-cascading-dyn>
+            <div
+                style="padding:5px 0px; font-size:0.9rem;"
+            >colNum=(645-3*15)/150=4</div>
+
+            <w-image-cascading
+                style="width:645px;"
+                :image-width="150"
+                :images="WImageCascading.opt1.images"
+                :image-style="WImageCascading.opt1.imageStyle"
+                :opt="WImageCascading.opt1.opt"
+            ></w-image-cascading>
         </div>
     </v-app>
 
@@ -161,7 +167,7 @@
 
     data: function() {
       return {
-        WImageCascadingDyn: {
+        WImageCascading: {
           opt1: {
             images: [
               "https://cdn.jsdelivr.net/npm/w-demores/res/img/food/001.jpg",
