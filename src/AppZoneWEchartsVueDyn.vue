@@ -11,7 +11,9 @@
             <span style="margin:0px 10px">|</span>
             <a href="//echarts.apache.org/examples/zh/index.html" target="_blank" rel="noreferrer noopener">echarts examples</a>
             <span style="margin:0px 10px">|</span>
-            <a href="//github.com/ecomfe/vue-echarts" target="_blank" rel="noreferrer noopener">vue-echarts</a>
+            <a href="//github.com/yuda-lyu/w-echarts-vue" target="_blank" rel="noreferrer noopener">w-echarts-vue</a>
+            <span style="margin:0px 10px">|</span>
+            <a href="//yuda-lyu.github.io/w-echarts-vue/examples/app.html" target="_blank" rel="noreferrer noopener">w-echarts-vue examples</a>
         </div>
 
 

@@ -1,0 +1,443 @@
+<template>
+    <div class="bkh">
+
+
+        <div class="head1"><span style="cursor:pointer;" title="open for copy link to view component" onclick="window.open('//yuda-lyu.github.io/w-component-vue/examples/app.html?cmp='+this.innerText,'_blank')">w-maplibregl-vue-dyn</span></div>
+
+
+        <div style="font-size:0.9rem; margin-bottom:10px;">
+            <span style="margin-right:10px;">Links:</span>
+            <a href="//maplibre.org/" target="_blank" rel="noreferrer noopener">maplibre</a>
+            <span style="margin:0px 10px">|</span>
+            <a href="//maplibre.org/maplibre-gl-js/docs/examples/" target="_blank" rel="noreferrer noopener">maplibre examples</a>
+            <span style="margin:0px 10px">|</span>
+            <a href="//github.com/yuda-lyu/w-maplibregl-vue" target="_blank" rel="noreferrer noopener">w-maplibregl-vue</a>
+            <span style="margin:0px 10px">|</span>
+            <a href="//yuda-lyu.github.io/w-maplibregl-vue/examples/app.html" target="_blank" rel="noreferrer noopener">w-maplibregl-vue examples</a>
+        </div>
+
+
+        <div>
+
+
+            <div class="bk" style="display:block;">
+                <demolink
+                    :kbname="'w-maplibregl-vue-dyn'"
+                    :casename="'pointSets'"
+                ></demolink>
+
+                <!-- maplibregl要給寬高否則無法撐開 -->
+                <w-maplibregl-vue-dyn
+                    style="width:100%; height:600px;"
+                    :opt="WMaplibreglVueDyn.pointSets"
+                >
+
+                    <template v-slot:point-popup="props">
+                        <div style="padding:15px; box-sizing:border-box; width:300px;">
+                            <div style="padding-bottom:8px;">
+                                <div style="font-size:0.90rem; color:#f26;">[Popup]</div>
+                            </div>
+                            <div style="padding-bottom:5px;">
+                                <div style="font-size:0.80rem; color:#aa2df4;">[PointSet: {{ props.pointSet.title }}]</div>
+                                <div style="font-size:0.70rem; color:#777;">{{ props.pointSet.msg }}</div>
+                            </div>
+                            <div style="">
+                                <div style="font-size:0.70rem;color:#4347de;">[Point: {{ props.point.title }}]</div>
+                                <div style="font-size:0.70rem;color:#777;">{{ props.point.msg }}</div>
+                            </div>
+                        </div>
+                    </template>
+
+                </w-maplibregl-vue-dyn>
+
+            </div>
+
+
+            <div class="bk" style="display:block;">
+                <demolink
+                    :kbname="'w-maplibregl-vue-dyn'"
+                    :casename="'polylineSets'"
+                ></demolink>
+
+                <!-- maplibregl要給寬高否則無法撐開 -->
+                <w-maplibregl-vue-dyn
+                    style="width:100%; height:600px;"
+                    :opt="WMaplibreglVueDyn.polylineSets"
+                >
+
+                    <template v-slot:polyline-popup="props">
+                        <div style="padding:15px; box-sizing:border-box; width:300px;">
+                            <div style="padding-bottom:8px;">
+                                <div style="font-size:0.90rem; color:#f26;">[Popup]</div>
+                            </div>
+                            <div style="padding-bottom:5px;">
+                                <div style="font-size:0.80rem; color:#aa2df4;">[PolylineSet: {{ props.polylineSet.title }}]</div>
+                                <div style="font-size:0.70rem; color:#777;">{{ props.polylineSet.msg }}</div>
+                            </div>
+                        </div>
+                    </template>
+
+                </w-maplibregl-vue-dyn>
+
+            </div>
+
+
+            <div class="bk" style="display:block;">
+                <demolink
+                    :kbname="'w-maplibregl-vue-dyn'"
+                    :casename="'polygonSets'"
+                ></demolink>
+
+                <!-- maplibregl要給寬高否則無法撐開 -->
+                <w-maplibregl-vue-dyn
+                    style="width:100%; height:600px;"
+                    :opt="WMaplibreglVueDyn.polygonSets"
+                >
+
+                    <template v-slot:polygon-popup="props">
+                        <div style="padding:15px; box-sizing:border-box; width:300px;">
+                            <div style="padding-bottom:8px;">
+                                <div style="font-size:0.90rem; color:#f26;">[Popup]</div>
+                            </div>
+                            <div style="padding-bottom:5px;">
+                                <div style="font-size:0.80rem; color:#aa2df4;">[PolygonSet: {{ props.polygonSet.title }}]</div>
+                                <div style="font-size:0.70rem; color:#777;">{{ props.polygonSet.msg }}</div>
+                            </div>
+                        </div>
+                    </template>
+
+                </w-maplibregl-vue-dyn>
+
+            </div>
+
+
+            <div class="bk" style="display:block;">
+                <demolink
+                    :kbname="'w-maplibregl-vue-dyn'"
+                    :casename="'contourSets'"
+                ></demolink>
+
+                <!-- maplibregl要給寬高否則無法撐開 -->
+                <w-maplibregl-vue-dyn
+                    style="width:100%; height:600px;"
+                    :opt="WMaplibreglVueDyn.contourSets"
+                >
+
+                    <template v-slot:contour-popup="props">
+                        <div style="padding:15px; box-sizing:border-box; width:300px;">
+                            <div style="padding-bottom:8px;">
+                                <div style="font-size:0.90rem; color:#f26;">[Popup]</div>
+                            </div>
+                            <div style="padding-bottom:5px;">
+                                <div style="font-size:0.80rem; color:#aa2df4;">[ContourSet: {{ props.contourSet.title }}]</div>
+                                <div style="font-size:0.70rem; color:#777;">{{ props.contourSet.msg }}</div>
+                            </div>
+                        </div>
+                    </template>
+
+                </w-maplibregl-vue-dyn>
+
+            </div>
+
+
+            <div class="bk" style="display:block;">
+                <demolink
+                    :kbname="'w-maplibregl-vue-dyn'"
+                    :casename="'contourSet for rain data'"
+                ></demolink>
+
+                <!-- maplibregl要給寬高否則無法撐開 -->
+                <w-maplibregl-vue-dyn
+                    style="width:100%; height:600px;"
+                    :opt="WMaplibreglVueDyn.largeSet"
+                >
+
+                    <template v-slot:contour-popup="props">
+                        <div style="padding:15px; box-sizing:border-box; width:300px;">
+                            <div style="padding-bottom:8px;">
+                                <div style="font-size:0.90rem; color:#f26;">[Popup]</div>
+                            </div>
+                            <div style="padding-bottom:5px;">
+                                <div style="font-size:0.80rem; color:#aa2df4;">[ContourSet: {{ props.contourSet.title }}]</div>
+                                <div style="font-size:0.70rem; color:#777;">{{ props.contourSet.msg }}</div>
+                            </div>
+                        </div>
+                    </template>
+
+                    <template v-slot:point-tooltip="props">
+                        <div style="padding:5px 10px;">
+                            <div style="width:150px; color:#222; margin-bottom:5px; white-space:nowrap;">
+                                <span style="font-size:0.9rem; color:#f26;">[{{ props.point.title }}]</span>
+                                <span style="font-size:0.8rem;">{{ props.point.msg }}</span>
+                            </div>
+                            <div style="font-size:0.7rem; color:#666; white-space:normal;">降雨量 {{ props.point.rain }} cm</div>
+                        </div>
+                    </template>
+
+                </w-maplibregl-vue-dyn>
+
+            </div>
+
+
+            <div class="bk" style="display:block;">
+                <demolink
+                    :kbname="'w-maplibregl-vue-dyn'"
+                    :casename="'clusterPoints'"
+                ></demolink>
+
+                <!-- maplibregl要給寬高否則無法撐開 -->
+                <w-maplibregl-vue-dyn
+                    style="width:100%; height:600px;"
+                    :opt="WMaplibreglVueDyn.clusterPoints"
+                >
+
+                    <template v-slot:point-popup="props">
+                        <div style="padding:15px; box-sizing:border-box; width:300px;">
+                            <div style="padding-bottom:8px;">
+                                <div style="font-size:0.90rem; color:#f26;">[Popup]</div>
+                            </div>
+                            <div style="padding-bottom:5px;">
+                                <div style="font-size:0.80rem; color:#aa2df4;">[PointSet: {{ props.pointSet.title }}]</div>
+                                <div style="font-size:0.70rem; color:#777;">{{ props.pointSet.msg }}</div>
+                            </div>
+                            <div style="">
+                                <div style="font-size:0.70rem;color:#4347de;">[Point: {{ props.point.title }}]</div>
+                                <div style="font-size:0.70rem;color:#777;">{{ props.point.msg }}</div>
+                            </div>
+                        </div>
+                    </template>
+
+                </w-maplibregl-vue-dyn>
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+</template>
+
+<script>
+import demolink from './components/demolink.vue'
+import WMaplibreglVueDyn from './components/WMaplibreglVueDyn.vue'
+
+
+export default {
+    components: {
+        demolink,
+        WMaplibreglVueDyn,
+    },
+    props: {
+    },
+    data: function() {
+        let ptsStation = window.dataRain
+        let ptsContour = []
+        for (let i = 0; i < ptsStation.length; i++) {
+            let v = ptsStation[i]
+            ptsContour.push([v.latLng[0], v.latLng[1], v.rain])
+        }
+        let ptsClip = window.dataRainClip
+        return {
+            'WMaplibreglVueDyn': {
+                'pointSets': {
+                    pointSets: [
+                        {
+                            title: 'pointSet A(circle)',
+                            msg: 'msg from pointSet A',
+                            points: [
+                                {
+                                    title: 'point A-1',
+                                    msg: 'msg from data A-1',
+                                    latLng: [24.20, 121.27],
+                                },
+                                {
+                                    title: 'point A-2',
+                                    msg: 'msg from data A-2',
+                                    latLng: [23.90, 120.97],
+                                },
+                            ],
+                            visible: true,
+                        },
+                        {
+                            title: 'pointSet B(icon)',
+                            msg: 'msg from pointSet B',
+                            type: 'icon',
+                            points: [
+                                {
+                                    title: 'point B-1',
+                                    msg: 'msg from data B-1',
+                                    latLng: [23.30, 120.57],
+                                },
+                                {
+                                    title: 'point B-2',
+                                    msg: 'msg from data B-2',
+                                    latLng: [23.00, 120.87],
+                                },
+                            ],
+                            visible: true,
+                        },
+                    ],
+                },
+                'polylineSets': {
+                    center: [25, 121.58],
+                    zoom: 9,
+                    polylineSets: [
+                        {
+                            title: 'polylineSet A',
+                            msg: 'msg from polylineSet A',
+                            latLngs: [ //此結構代表1個multiPolyline
+                                [ //add p1
+                                    [24.96, 121.41], [25.11, 121.47], [25.06, 121.69], [24.99, 121.61], [24.95, 121.53], [24.96, 121.41]
+                                ],
+                                [ //add p2
+                                    [24.92, 121.60], [25.045, 121.75], [24.99, 121.79], [24.93, 121.74], [24.92, 121.60]
+                                ],
+                            ],
+                            visible: true,
+                        },
+                        {
+                            title: 'polylineSet B',
+                            msg: 'msg from polylineSet B',
+                            lineColor: 'rgba(255,100,0,1)',
+                            latLngs: [
+                                [ //add p3
+                                    [24.971, 121.372], [24.976, 121.434], [24.937, 121.473], [24.918, 121.418], [24.971, 121.372]
+                                ],
+                                [ //add p4
+                                    [24.90, 121.14], [24.97, 121.09], [25.05, 121.177], [24.95, 121.32], [24.90, 121.14]
+                                ],
+                            ],
+                            visible: false,
+                        },
+                    ],
+                },
+                'polygonSets': {
+                    center: [25, 121.58],
+                    zoom: 10,
+                    polygonSets: [
+                        {
+                            title: 'polygonSet A',
+                            msg: 'msg from polygonSet A',
+                            latLngs: [ //此結構代表1個polygon, 各環間為XOR套疊可表示挖洞
+                                [ //add p1
+                                    [24.96, 121.41], [25.11, 121.47], [25.06, 121.69], [24.99, 121.61], [24.95, 121.53]
+                                ],
+                                [ //c1 XOR p1
+                                    [24.98, 121.45], [25.07, 121.49], [25.06, 121.54], [25.00, 121.50]
+                                ],
+                                [ //add p1-1 in c1
+                                    [25.017, 121.48], [25.032, 121.49], [25.036, 121.50], [25.02, 121.502]
+                                ],
+                                [ //c2 XOR p1
+                                    [24.99, 121.54], [25.056, 121.56], [25.05, 121.61], [25.00, 121.59]
+                                ],
+                                [ //add p2
+                                    [24.92, 121.60], [25.045, 121.75], [24.99, 121.79], [24.93, 121.74],
+                                ],
+                                [ //c3 XOR p1, p2
+                                    [24.961, 121.523], [24.979, 121.551], [24.950, 121.674], [24.887, 121.606],
+                                ],
+                            ],
+                            visible: true,
+                        },
+                        {
+                            title: 'polygonSet B',
+                            msg: 'msg from polygonSet B',
+                            latLngs: [
+                                [ //add p3
+                                    [24.971, 121.372], [24.976, 121.434], [24.937, 121.473], [24.918, 121.418]
+                                ],
+                                [ //add p4
+                                    [24.90, 121.14], [24.97, 121.09], [25.05, 121.177], [24.95, 121.32]
+                                ],
+                            ],
+                            visible: false,
+                        },
+                    ],
+                },
+                'contourSets': {
+                    center: [24.084, 121.068],
+                    zoom: 7,
+                    contourSets: [
+                        {
+                            title: 'contourSet A',
+                            msg: 'msg from contourSet A',
+                            points: [
+                                [24.325, 120.786, 0], [23.944, 120.968, 10], [24.884, 121.234, 20], [24.579, 121.345, 80], [24.664, 121.761, 40], [23.803, 121.397, 30],
+                                [23.727, 120.772, 0], [23.539, 120.975, 0], [23.612, 121.434, 0],
+                                [23.193, 120.355, 22], [23.456, 120.890, 42], [23.280, 120.551, 25], [23.162, 121.247, 5],
+                            ],
+                            visible: true,
+                        },
+                        {
+                            title: 'contourSet B',
+                            msg: 'msg from contourSet B',
+                            points: [
+                                [22.607, 120.416, 0], [22.967, 120.663, 15], [22.592, 120.922, 20], [22.717, 120.644, 45],
+                            ],
+                            visible: false,
+                        },
+                    ],
+                },
+                'largeSet': {
+                    center: [24.084, 121.068],
+                    zoom: 7,
+                    contourSets: [
+                        {
+                            title: 'Rain contour',
+                            msg: 'data from CWB',
+                            points: ptsContour,
+                            polygonClipOuter: ptsClip,
+                            gradient: {
+                                0: 'rgba(255, 255, 255, 0)', //將0-10區間改為全透明
+                                0.2: 'rgb(254, 178, 76)',
+                                0.4: 'rgb(252, 78, 42)',
+                                0.6: 'rgb(220, 58, 38)',
+                                0.8: 'rgb(200, 40, 23)',
+                                1: 'rgb(180, 30, 60)'
+                            },
+                            visible: true,
+                            order: 0,
+                        },
+                    ],
+                    pointSets: [
+                        {
+                            title: 'Rain point',
+                            msg: 'data from CWB',
+                            points: ptsStation,
+                            size: 5,
+                            visible: false,
+                            order: 1,
+                        },
+                    ],
+                },
+                'clusterPoints': {
+                    center: [24.084, 121.068],
+                    zoom: 7,
+                    clusterPoints: true,
+                    clusterPointsRadius: 50, //叢集化: 叢集半徑, 單位px
+                    clusterPointsMaxZoom: 14, //叢集化: 此zoom以上不叢集
+                    clusterPointsLevelNum: 3, //叢集化: 分幾種區間
+                    clusterPointsLevelValues: [10, 100], //叢集化: 區間分隔數值, 長度為levelNum-1
+                    clusterPointsLevelRadius: [10, 15, 20], //叢集化: 各level叢集圓圈大小
+                    pointSets: [
+                        {
+                            title: 'Rain point',
+                            msg: 'data from CWB',
+                            points: ptsStation,
+                            size: 5,
+                            visible: true,
+                        },
+                    ],
+                },
+            },
+            'actions': [
+            ],
+        }
+    },
+}
+</script>
+
+<style scoped>
+</style>

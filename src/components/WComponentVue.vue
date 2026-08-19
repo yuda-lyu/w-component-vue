@@ -54,6 +54,7 @@ import WListHorizontal from './WListHorizontal.vue'
 import WListItem from './WListItem.vue'
 import WListRadio from './WListRadio.vue'
 import WListVertical from './WListVertical.vue'
+import WMaplibreglVueDyn from './WMaplibreglVueDyn.vue'
 import WPanelAvatar from './WPanelAvatar.vue'
 import WPanelBulge from './WPanelBulge.vue'
 import WPanelDivideHorizontal from './WPanelDivideHorizontal.vue'
@@ -159,6 +160,7 @@ let WComponentVue = {
         Vue.component('w-list-item', WListItem)
         Vue.component('w-list-radio', WListRadio)
         Vue.component('w-list-vertical', WListVertical)
+        Vue.component('w-maplibregl-vue-dyn', WMaplibreglVueDyn)
         Vue.component('w-panel-avatar', WPanelAvatar)
         Vue.component('w-panel-bulge', WPanelBulge)
         Vue.component('w-panel-divide-horizontal', WPanelDivideHorizontal)

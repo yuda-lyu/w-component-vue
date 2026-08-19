@@ -223,6 +223,8 @@
 
                 <AppZoneWLeafletVueDyn v-if="cmpPick==='WLeafletVueDyn'"></AppZoneWLeafletVueDyn>
 
+                <AppZoneWMaplibreglVueDyn v-if="cmpPick==='WMaplibreglVueDyn'"></AppZoneWMaplibreglVueDyn>
+
                 <AppZoneWExplorer v-if="cmpPick==='WExplorer'"></AppZoneWExplorer>
 
                 <AppZoneWColorPickHexagon v-if="cmpPick==='WColorPickHexagon'"></AppZoneWColorPickHexagon>
@@ -332,6 +334,7 @@ import AppZoneWTinymceVueDyn from './AppZoneWTinymceVueDyn.vue'
 import AppZoneWQuillVueDyn from './AppZoneWQuillVueDyn.vue'
 import AppZoneWVditorDyn from './AppZoneWVditorDyn.vue'
 import AppZoneWLeafletVueDyn from './AppZoneWLeafletVueDyn.vue'
+import AppZoneWMaplibreglVueDyn from './AppZoneWMaplibreglVueDyn.vue'
 import AppZoneWExplorer from './AppZoneWExplorer.vue'
 import AppZoneWColorPickHexagon from './AppZoneWColorPickHexagon.vue'
 import AppZoneWColorPickHexagonGray from './AppZoneWColorPickHexagonGray.vue'
@@ -419,6 +422,7 @@ export default {
         AppZoneWQuillVueDyn,
         AppZoneWVditorDyn,
         AppZoneWLeafletVueDyn,
+        AppZoneWMaplibreglVueDyn,
         AppZoneWExplorer,
         AppZoneWColorPickHexagon,
         AppZoneWColorPickHexagonGray,
@@ -598,6 +602,7 @@ export default {
                         name: 'map',
                         cmps: [
                             { name: 'WLeafletVueDyn' },
+                            { name: 'WMaplibreglVueDyn' },
                         ],
                     },
                     {
