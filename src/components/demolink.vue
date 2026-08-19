@@ -51,6 +51,10 @@ export default {
         WButtonCircle,
     },
     props: {
+        pkgname: { //套件(儲存庫)名稱, 供其他套件引用本組件時指向自身之examples
+            type: String,
+            default: 'w-component-vue',
+        },
         kbname: {
             type: String,
         },
@@ -78,13 +82,13 @@ export default {
 
         ckExample: function() {
             let vo = this
-            let url = 'https://yuda-lyu.github.io/w-component-vue/examples/' + vo.fn + '.html'
+            let url = 'https://yuda-lyu.github.io/' + vo.pkgname + '/examples/' + vo.fn + '.html'
             window.open(url, '_blank')
         },
 
         ckCode: function() {
             let vo = this
-            let url = 'https://github.com/yuda-lyu/w-component-vue/blob/master/docs/examples/' + vo.fn + '.html'
+            let url = 'https://github.com/yuda-lyu/' + vo.pkgname + '/blob/master/docs/examples/' + vo.fn + '.html'
             window.open(url, '_blank')
         },
 
