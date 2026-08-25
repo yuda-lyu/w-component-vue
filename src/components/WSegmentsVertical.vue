@@ -265,7 +265,7 @@ import convertColor from '../js/convertColor.mjs'
  * @vue-prop {Boolean} [textCanClick=false] 輸入項目文字是否可點擊布林值，預設false
  * @vue-prop {String} [labelContentForSegment=null] 輸入針對區塊之popup彈窗teleport至body內之內容div所給予之wtlp屬性值字串，供查找使用，預設null
  * @vue-prop {String} [labelContentForText=null] 輸入針對項目文字之popup彈窗teleport至body內之內容div所給予之wtlp屬性值字串，供查找使用，預設null
- * @vue-prop {Number} [cmpZIndex=3000] 輸入彈窗使用z-index數字，供嵌於高z-index彈窗內時提高層級，預設3000
+ * @vue-prop {Number} [cmpZIndex=2000] 輸入彈窗使用z-index之基準數字，實際z-index為本數字加上顯示順序層級，與WDialog共用同一層級池並同基準值，後顯示者z-index必大於先顯示者，預設2000
  */
 export default {
     components: {
@@ -449,7 +449,7 @@ export default {
         },
         cmpZIndex: {
             type: Number,
-            default: 3000,
+            default: 2000, //與WDialog之dialogZIndex同基準值, 因內部WPopup與其共用'dialog+popup'層級池
         },
     },
     data: function() {

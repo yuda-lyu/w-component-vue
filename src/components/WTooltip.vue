@@ -2,6 +2,7 @@
     <div
         :style="`${useDisplayType}`"
         :changeValue="changeValue"
+        :changeValueTrans="changeValueTrans"
     >
 
         <div
@@ -23,7 +24,7 @@
             <div
                 ref="divContent"
                 class="WPopperFix"
-                :style="`z-index:${cmpZIndex};`"
+                :style="`z-index:${useCmpZIndex};`"
                 :wtlp="labelContent"
                 v-show="valueTrans"
                 v-domresize
@@ -54,6 +55,7 @@ import replace from 'wsemi/src/replace.mjs'
 import isfun from 'wsemi/src/isfun.mjs'
 import Teleport from './Teleport.vue'
 import convertColor from '../js/convertColor.mjs'
+import domZIndex from '../js/domZIndex.mjs'
 import parseSpace from '../js/parseSpace.mjs'
 import domResize from '../js/domResize.mjs'
 import BuildPopper from '../js/buildPopper.mjs'
@@ -79,8 +81,8 @@ function funRemoveTrigger(mode, mmkey) {
  * @vue-prop {String} [mode='tooltip'] 輸入組件模式字串，可選'tooltip'與'popup'，預設'tooltip'
  * @vue-prop {Boolean} [value=false] 輸入是否顯示布林值，預設false
  * @vue-prop {String} [displayType='block'] 輸入display設定字串，可選'block'與'line'，預設'block'
- * @vue-prop {Number} [cmpZIndex=3000] 輸入提示窗或彈窗使用z-index數字，預設3000
- * @vue-prop {Boolean} [isolated=false] 輸入提示窗或彈窗當mode為'popup'時是否為獨立顯引狀態布林值，也就是可不接收外部傳入value值，預設false
+ * @vue-prop {Number} [cmpZIndex=3000] 輸入提示窗或彈窗使用z-index之基準數字，實際z-index為本數字加上顯示順序層級，故後顯示者z-index必大於先顯示者，預設3000。層級池依mode區分，mode為'tooltip'時自成一池；mode為'popup'時與WDialog共用'dialog+popup'池，此時本數字須與WDialog之dialogZIndex同基準(即2000)排序才會正確，故建議改用WPopup組件(其預設即2000)
+ * @vue-prop {Boolean} [isolated=false] 輸入提示窗或彈窗當mode為'popup'時是否為獨立顯引狀態布林值，也就是不接收外部傳入value值，預設false
  * @vue-prop {Number} [minWidth=null] 輸入提示窗或彈窗最小寬度數字，不含paddingStyle的寬度，單位為px，預設null
  * @vue-prop {Number} [maxWidth=null] 輸入提示窗或彈窗最大寬度數字，不含paddingStyle的寬度，單位為px，預設null
  * @vue-prop {Boolean} [autoFitMinWidth=false] 輸入是否使用驅動區寬度作為提示窗或彈窗之最小寬度布林值，不含paddingStyle的寬度，預設false
@@ -215,6 +217,7 @@ export default {
             //     console.log('data gen mmkey', id)
             //     return id
             // })(),
+            zind: 0,
 
             valueTrans: false,
 
@@ -254,11 +257,38 @@ export default {
 
         let vo = this
 
+        //destroyLevel, 顯示中被銷毀時仍須釋放層級, 否則該號碼永不回收
+        domZIndex.destroyLevel(vo.useCmpLevelType, vo.mmkey)
+
         //destroy
         vo.bp.destroy()
 
     },
     computed: {
+
+        changeValueTrans: function () {
+            //console.log('computed changeValueTrans')
+
+            //與WDialog之changeParam同款computed驅動; 不可併入changeValue, 因changeValue內有updateValue(vo.value),
+            //若其依賴valueTrans, 當內部自關(如slot之funHide)致valueTrans與value分歧時, 重算會把value灌回而重新開啟
+
+            let vo = this
+
+            if (vo.valueTrans) {
+
+                //getLevel, tooltip自成一池, popup與WDialog共用一池, 後開者取得較大z-index
+                vo.zind = domZIndex.getLevel(vo.useCmpLevelType, vo.mmkey)
+
+            }
+            else {
+
+                //destroyLevel
+                domZIndex.destroyLevel(vo.useCmpLevelType, vo.mmkey)
+
+            }
+
+            return ''
+        },
 
         changeValue: function () {
             //console.log('computed changeValue')
@@ -275,6 +305,23 @@ export default {
             }
 
             return ''
+        },
+
+        useCmpLevelType: function() {
+            let vo = this
+
+            //popup與WDialog共用同一層級池, 使兩者交互巢狀開啟時後開者必定蓋住先開者
+            if (vo.mode === 'popup') {
+                return 'dialog+popup'
+            }
+
+            return vo.mode
+        },
+
+        useCmpZIndex: function() {
+            let vo = this
+            let zind = vo.cmpZIndex + vo.zind
+            return zind
         },
 
         useDisplayType: function() {

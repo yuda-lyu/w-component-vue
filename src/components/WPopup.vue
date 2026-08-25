@@ -24,8 +24,8 @@ import WTooltip from './WTooltip.vue'
 /**
  * @vue-prop {Boolean} [value=false] 輸入是否顯示布林值，預設false
  * @vue-prop {String} [displayType='block'] 輸入display設定字串，可選'block'與'line'，預設'block'
- * @vue-prop {Number} [cmpZIndex=3000] 輸入彈窗使用z-index數字，預設3000
- * @vue-prop {Boolean} [isolated=false] 輸入彈窗當mode為'popup'時是否為獨立顯引狀態布林值，也就是可不接收外部傳入value值，預設false
+ * @vue-prop {Number} [cmpZIndex=2000] 輸入彈窗使用z-index之基準數字，實際z-index為本數字加上顯示順序層級，且與WDialog共用同一層級池並同基準值，故彈窗與對話框不論何者先開，後開者z-index必大於先開者，預設2000
+ * @vue-prop {Boolean} [isolated=false] 輸入彈窗當mode為'popup'時是否為獨立顯引狀態布林值，也就是不接收外部傳入value值，預設false
  * @vue-prop {Number} [minWidth=null] 輸入彈窗最小寬度數字，不含paddingStyle的寬度，單位為px，預設null
  * @vue-prop {Number} [maxWidth=null] 輸入彈窗最大寬度數字，不含paddingStyle的寬度，單位為px，預設null
  * @vue-prop {Boolean} [autoFitMinWidth=false] 輸入是否使用驅動區寬度作為彈窗之最小寬度布林值，不含paddingStyle的寬度，預設false
@@ -60,7 +60,7 @@ export default {
         },
         cmpZIndex: {
             type: Number,
-            default: 3000,
+            default: 2000, //與WDialog之dialogZIndex同基準值, 因兩者共用'dialog+popup'層級池
         },
         isolated: {
             type: Boolean,

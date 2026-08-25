@@ -290,7 +290,7 @@ import WIcon from './WIcon.vue'
  * @vue-prop {String} [btnBackgroundColorActive='rgb(236,236,236)'] 輸入主動模式時確認按鈕之背景顏色字串，預設'rgb(236,236,236)'
  * @vue-prop {Boolean} [btnShadow=true] 輸入確認按鈕之是否顯示陰影布林值，預設true
  * @vue-prop {String} [labelContent=null] 輸入針對teleport至body內之內容div所給予之wtlp屬性值字串，供查找使用，預設null
- * @vue-prop {Number} [cmpZIndex=3000] 輸入彈窗使用z-index數字，供嵌於高z-index彈窗內時提高層級，預設3000
+ * @vue-prop {Number} [cmpZIndex=2000] 輸入彈窗使用z-index之基準數字，實際z-index為本數字加上顯示順序層級，與WDialog共用同一層級池並同基準值，後顯示者z-index必大於先顯示者，預設2000
  * @vue-prop {Boolean} [editable=true] 輸入是否為編輯模式布林值，預設true
  */
 export default {
@@ -568,7 +568,7 @@ export default {
         },
         cmpZIndex: {
             type: Number,
-            default: 3000,
+            default: 2000, //與WDialog之dialogZIndex同基準值, 因內部WPopup與其共用'dialog+popup'層級池
         },
         editable: {
             type: Boolean,

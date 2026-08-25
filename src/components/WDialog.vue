@@ -506,6 +506,15 @@ export default {
 
         }
     },
+    beforeDestroy: function() {
+        //console.log('beforeDestroy')
+
+        let vo = this
+
+        //destroyLevel, 顯示中被銷毀時仍須釋放層級, 否則該號碼永久殘留於共用池, 墊高後續dialog與popup之起算值
+        domZIndex.destroyLevel('dialog+popup', vo.mmkey)
+
+    },
     computed: {
 
         changeParam: function () {
@@ -521,7 +530,7 @@ export default {
                 // console.log('changeParam showTrans', vo.showTrans)
 
                 //getLevel
-                vo.zind = domZIndex.getLevel('dialog', vo.mmkey)
+                vo.zind = domZIndex.getLevel('dialog+popup', vo.mmkey)
                 // console.log('changeParam mmkey', vo.mmkey, 'getLevel zind', vo.zind)
 
                 //showPanel
@@ -532,7 +541,7 @@ export default {
                 // console.log('changeParam showTrans', vo.showTrans)
 
                 //destroyLevel
-                domZIndex.destroyLevel('dialog', vo.mmkey)
+                domZIndex.destroyLevel('dialog+popup', vo.mmkey)
                 // console.log('changeParam mmkey', vo.mmkey, 'destroyLevel')
 
             }

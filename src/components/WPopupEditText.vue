@@ -114,7 +114,7 @@ import WIcon from './WIcon.vue'
  * @vue-prop {Number} [minWidthForValue=30] 輸入數據value展示時最小寬度數字，單位為px，預設30
  * @vue-prop {Number} [minWidthForPopup=300] 輸入彈窗最小寬度數字，單位為px，預設300
  * @vue-prop {String} [labelContent=null] 輸入針對teleport至body內之內容div所給予之wtlp屬性值字串，供查找使用，預設null
- * @vue-prop {Number} [cmpZIndex=3000] 輸入彈窗使用z-index數字，供嵌於高z-index彈窗內時提高層級，預設3000
+ * @vue-prop {Number} [cmpZIndex=2000] 輸入彈窗使用z-index之基準數字，實際z-index為本數字加上顯示順序層級，與WDialog共用同一層級池並同基準值，後顯示者z-index必大於先顯示者，預設2000
  */
 export default {
     components: {
@@ -234,7 +234,7 @@ export default {
         },
         cmpZIndex: {
             type: Number,
-            default: 3000,
+            default: 2000, //與WDialog之dialogZIndex同基準值, 因內部WPopup與其共用'dialog+popup'層級池
         },
     },
     data: function() {

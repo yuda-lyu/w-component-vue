@@ -6,6 +6,12 @@ module.exports = {
             template: 'public/index.html',
             filename: 'index.html',
         },
+        //dev-only z-index 疊放測試頁: dialog與popup共用層級池之驗證 (驗證後可移除)
+        'zindex-test': {
+            entry: 'tmp/zindex-test/main.js',
+            template: 'tmp/zindex-test/index.html',
+            filename: 'zindex-test.html',
+        },
         // //dev-only 精簡測試頁: 一頁一棵 WTree, 避免示範頁多樹佔滿單執行緒CPU致wdl渲染被餓死 (重構等價測試用, 之後可移除)
         // 'wtree-test': {
         //     entry: 'tmp/wtree-test/main.js',
