@@ -21,12 +21,12 @@
             :style="`position:relative; width:100%; overflow-x:hidden;`"
         >
 
-            <!-- 因瀏覽器計算誤差100%+nativeBarWidth仍會出現捲軸邊界, 故需+1px使捲軸能完全隱藏 -->
+            <!-- 加寬divShell把原生捲軸推出外層overflow-x:hidden裁切殼以隱藏之, 加寬量見useShellExtraWidth -->
             <div
                 ref="divShell"
                 :style="`
                     position:relative;
-                    width:calc( 100% + ${nativeBarWidth+1}px ); height:${panelHeight}px;
+                    width:calc( 100% + ${nativeBarWidth}px ); height:${panelHeight}px;
                     box-sizing:content-box;
                     overflow-x:hidden; overflow-y:scroll;
                 `"
