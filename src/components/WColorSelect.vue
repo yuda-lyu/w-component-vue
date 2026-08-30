@@ -20,10 +20,7 @@
 
             <div style="">
                 <!-- 盡量不要讓display:flex暴露至外層 -->
-                <div
-                    style="display:flex; align-items:center; cursor:pointer; outline:none;"
-                    @click="clickColor"
-                >
+                <div style="display:flex; align-items:center; cursor:pointer; outline:none;">
 
                     <div :style="`border:${colorBlockBorderWidth}px solid ${useColorBlockBorderColor}; width:${colorBlockSize}px; height:${colorBlockSize}px; box-sizing:border-box; background:${valueOri};`"></div>
 
@@ -614,6 +611,10 @@ export default {
                         vo.adjustMaxHeight()
                     })
                 })
+            }
+            else {
+                //收合時還原待選顏色, 避免未經確認鈕提交之顏色殘留至下次展開
+                vo.valueNew = vo.valueOri
             }
         },
 
