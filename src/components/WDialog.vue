@@ -10,7 +10,7 @@
             ref="divShield"
             :style="`
                 position:fixed; left:0px; top:0px;
-                width:calc( 100svw + ${nativeBarWidth}px ); height:100svh;
+                width:100svw; height:100svh;
                 overflow:clip;
                 z-index:${useDialogZIndex};
                 overscroll-behavior:none;
@@ -20,10 +20,10 @@
             v-if="showTrans"
         >
 
-            <!-- 屏蔽層內之撐開層, 寬度須使用nativeBarWidth+1使divShield能出現水平捲軸, 進而能更新nativeBarWidth -->
+            <!-- 屏蔽層內之撐開層 -->
             <div
                 :style="`
-                    width:calc( 100svw + ${nativeBarWidth+1}px ); height:100svh;
+                    width:100svw; height:100svh;
                 `"
             >
 
@@ -477,8 +477,6 @@ export default {
             mdiClose,
             mdiCheckerboard,
 
-            nativeBarWidth: 16, //預設bar寬度, 先給大值避免初始化時會顯示原本bar條
-
             showTrans: false,
 
             fullscreenForce: false,
@@ -711,20 +709,6 @@ export default {
             }
             else {
                 vo.useContentHeight = `max-height:${vo.contentHeightMax}px;`
-            }
-
-            //nativeBarWidth
-            let divShield = get(vo, '$refs.divShield')
-            if (divShield) {
-
-                //save nativeBarWidth
-                let w = divShield.offsetWidth - divShield.clientWidth
-                if (vo.nativeBarWidth !== w) {
-                    // console.log('resizePanel 需更新nativeBarWidth', w, '<-', vo.nativeBarWidth)
-                    vo.nativeBarWidth = w
-                }
-                // console.log('vo.nativeBarWidth', vo.nativeBarWidth)
-
             }
 
             //updateTitleWidth
