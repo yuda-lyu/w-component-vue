@@ -268,6 +268,106 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-table-dyn'"
+                    :casename="'slot cell-render'"
+                ></demolink>
+
+                <w-table-dyn
+                    style="width:600px; height:400px;"
+                    :name="WTableDyn.name"
+                    :description="WTableDyn.description"
+                    :opt="WTableDyn.opt1"
+                    @success="evSuccess"
+                    @error="evError"
+                >
+                    <template v-slot:cell-render="props">
+                        <span style="color:#aaa;" v-if="props.key==='make'">{{ props.value }}</span>
+                        <span style="color:#2c6;" v-else-if="props.key==='model'">{{ props.value }}</span>
+                        <span style="color:#f26;" v-else-if="props.key==='price'">{{ props.value }}</span>
+                        <span style="color:#aaa;" v-else>{{ props.value }}</span>
+                    </template>
+                </w-table-dyn>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-table-dyn'"
+                    :casename="'slot cell-tooltip'"
+                ></demolink>
+
+                <w-table-dyn
+                    style="width:600px; height:400px;"
+                    :name="WTableDyn.name"
+                    :description="WTableDyn.description"
+                    :opt="WTableDyn.opt1"
+                    @success="evSuccess"
+                    @error="evError"
+                >
+                    <template v-slot:cell-tooltip="props">
+                        <div v-if="props.key==='make'"><div style="font-size:9pt; color:#ecf;">[生產製造商]</div>{{ props.value }}</div>
+                        <div v-else-if="props.key==='model'"><div style="font-size:9pt; color:#6f9;">[車款型號]</div>{{ props.value }}</div>
+                        <div v-else-if="props.key==='price'"><div style="font-size:9pt; color:#fa6;">[虛擬販售價格]</div>{{ props.value }}</div>
+                        <div v-else>{{ props.value }}</div>
+                    </template>
+                </w-table-dyn>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-table-dyn'"
+                    :casename="'slot head-render'"
+                ></demolink>
+
+                <w-table-dyn
+                    style="width:600px; height:400px;"
+                    :name="WTableDyn.name"
+                    :description="WTableDyn.description"
+                    :opt="WTableDyn.opt1"
+                    @success="evSuccess"
+                    @error="evError"
+                >
+                    <template v-slot:head-render="props">
+                        <span v-if="props.key==='make'"><span style="color:#aaa;">生產製造商</span><sup>{{ props.value }}</sup></span>
+                        <span v-else-if="props.key==='model'"><span style="color:#2c6;">車款型號</span><sup>{{ props.value }}</sup></span>
+                        <span v-else-if="props.key==='price'"><span style="color:#f26;">虛擬販售價格</span><sup>{{ props.value }}</sup></span>
+                        <span v-else>{{ props.value }}</span>
+                    </template>
+                </w-table-dyn>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-table-dyn'"
+                    :casename="'slot head-tooltip'"
+                ></demolink>
+
+                <w-table-dyn
+                    style="width:600px; height:400px;"
+                    :name="WTableDyn.name"
+                    :description="WTableDyn.description"
+                    :opt="WTableDyn.opt1"
+                    @success="evSuccess"
+                    @error="evError"
+                >
+                    <template v-slot:head-tooltip="props">
+                        <div v-if="props.key==='make'"><div style="font-size:8pt; font-weight:bold; color:#6fe;">[{{ props.value }}]</div><div>生產製造商</div></div>
+                        <div v-else-if="props.key==='model'"><div style="font-size:8pt; font-weight:bold; color:#6fe;">[{{ props.value }}]</div><div>車款型號</div></div>
+                        <div v-else-if="props.key==='price'"><div style="font-size:8pt; font-weight:bold; color:#6fe;">[{{ props.value }}]</div><div>虛擬販售價格</div></div>
+                        <div v-else>{{ props.value }}</div>
+                    </template>
+                </w-table-dyn>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-table-dyn'"
                     :casename="'editable'"
                 ></demolink>
 

@@ -63,6 +63,23 @@
             <slot name="btns-right" v-bind="props"></slot>
         </template>
 
+        <!-- cell-render, cell-tooltip, head-render, head-tooltip轉發至w-table-edit(再轉發至w-aggrid-vue), 須加v-if守衛: w-aggrid-vue偵測到slot存在即改用slot renderer, 若無條件轉發, 呼叫端未給slot時儲存格與head會被渲染成空白 -->
+        <template v-slot:cell-render="props" v-if="$scopedSlots['cell-render']">
+            <slot name="cell-render" v-bind="props"></slot>
+        </template>
+
+        <template v-slot:cell-tooltip="props" v-if="$scopedSlots['cell-tooltip']">
+            <slot name="cell-tooltip" v-bind="props"></slot>
+        </template>
+
+        <template v-slot:head-render="props" v-if="$scopedSlots['head-render']">
+            <slot name="head-render" v-bind="props"></slot>
+        </template>
+
+        <template v-slot:head-tooltip="props" v-if="$scopedSlots['head-tooltip']">
+            <slot name="head-tooltip" v-bind="props"></slot>
+        </template>
+
     </component>
 </template>
 
@@ -122,11 +139,14 @@ import WIconLoading from './WIconLoading.vue'
  * @vue-slot {Object} infor 顯示模式下資訊區之渲染slot，slot props為{ infor }，infor為{ name, description }
  * @vue-slot {Object} btns-left 選單按鈕區最左側之插入slot，slot props為{ editable }
  * @vue-slot {Object} btns-right 選單按鈕區最右側之插入slot，slot props為{ editable }
+ * @vue-slot {Object} cell-render 輸入cell之渲染slot，轉發至w-table-vue再至w-aggrid-vue，slot props為{ value, key, row }
+ * @vue-slot {Object} cell-tooltip 輸入cell之tooltip渲染slot，轉發至w-table-vue再至w-aggrid-vue，slot props為{ value, key, row }，slot內容於掛載時取靜態HTML快照，不支援事件綁定、子組件狀態與響應式更新
+ * @vue-slot {Object} head-render 輸入head之渲染slot，轉發至w-table-vue再至w-aggrid-vue，slot props為{ value, key }
+ * @vue-slot {Object} head-tooltip 輸入head之tooltip渲染slot，轉發至w-table-vue再至w-aggrid-vue，slot props為{ value, key }，slot內容於掛載時取靜態HTML快照，不支援事件綁定、子組件狀態與響應式更新
  * @vue-prop {Object} [opt={}] 輸入w-aggrid-vue設定物件，預設{}
  * @vue-prop {Array} opt.keys 輸入資料各欄位keys
  * @vue-prop {Array} opt.rows 輸入資料列，各列為物件，內含各欄位keys之值，例[{},{},...,{}]
  * @vue-prop {Object} [opt.kpHead={}] 輸入key對應head物件，預設各key值為本身key值
- * @vue-prop {Object} [opt.kpHeadTooltip={}] 輸入key對應需tooltip的html字串物件，於各head處滑鼠移入時觸發，預設各key值為undefined
  * @vue-prop {String} [opt.defHeadAlignH='center'] 輸入head預設之左右對齊字串，預設為'center'
  * @vue-prop {Object} [opt.kpHeadAlignH={}] 輸入key對應head之左右對齊字串物件，預設各key值為defHeadAlignH
  * @vue-prop {Boolean} [opt.defHeadSort=true] 輸入head預設之是否允許排序布林值，預設為true
@@ -138,7 +158,6 @@ import WIconLoading from './WIconLoading.vue'
  * @vue-prop {Object} [opt.kpHeadFilter={}] 輸入key對應head之是否允許過濾物件，預設各key值為defHeadFilter
  * @vue-prop {String} [opt.defHeadFilterType='num'] 輸入head預設過濾器字串，可選'num'、'text'、'time'、'set'，預設為'num'
  * @vue-prop {Object} [opt.kpHeadFilterType={}] 輸入key對應head之過濾器物件，可使用'num'、'text'、'time'、'set'，預設各key值為'num'
- * @vue-prop {Object} [opt.kpHeadRender={}] 輸入key對應head之渲染函數物件，預設各key值為undefined
  * @vue-prop {Boolean} [opt.defHeadDrag=true] 輸入head預設之是否允許拖曳布林值，預設為true
  * @vue-prop {Object} [opt.kpHeadDrag={}] 輸入key對應head之是否允許拖曳物件，預設各key值為defHeadDrag
  * @vue-prop {Object} [opt.kpHeadCheckBox={}] 輸入key對應head與key的各列是否使用核選方塊物件，預設各key值為false
@@ -153,8 +172,6 @@ import WIconLoading from './WIconLoading.vue'
  * @vue-prop {Number} [opt.defHeadMinWidth=null] 輸入cell預設最小寬度數字，預設為null
  * @vue-prop {Number} [opt.defHeadMaxWidth=null] 輸入cell預設最大寬度數字，預設為null
  * @vue-prop {Object} [opt.kpHeadWidth={}] 輸入key對應cell之寬度物件，預設各key值為undefined
- * @vue-prop {Object} [opt.kpCellRender={}] 輸入key對應cell之渲染函數物件，預設各key值為undefined
- * @vue-prop {Object} [opt.kpCellTooltip={}] 輸入key對應cell之tooltip的html字串物件，於各cell處滑鼠移入時觸發，預設各key值為undefined
  * @vue-prop {String} [opt.defCellAlignH='center'] 輸入cell預設之左右對齊字串，預設為'center'
  * @vue-prop {Object} [opt.kpCellAlignH={}] 輸入key對應cell之左右對齊字串物件，預設各key值為defCellAlignH
  * @vue-prop {Boolean} [opt.defCellEditable=false] 輸入cell預設之是否可編輯布林值，由組件editable複寫，預設為false
