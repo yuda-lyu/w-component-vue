@@ -143,6 +143,21 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-aggrid-vue-dyn'"
+                    :casename="'kpCellFormat'"
+                ></demolink>
+
+                <w-aggrid-vue-dyn
+                    style="width:620px;"
+                    ref="rftable"
+                    :opt="WAggridVueDyn.opt6"
+                ></w-aggrid-vue-dyn>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-aggrid-vue-dyn'"
                     :casename="'kpCellEditable & kpRowStyle'"
                 ></demolink>
 
@@ -262,6 +277,31 @@ export default {
                             }
                             return {}
                         }
+                    },
+                },
+                'opt6': {
+                    keys,
+                    rows,
+                    kpHeadFilterType: { //default: num (num,text,time,set)
+                        'make': 'text',
+                        'model': 'text',
+                        'price': 'num',
+                    },
+                    kpCellFormat: { //格式化僅影響顯示與下載, 排序與過濾仍依原值
+                        'make': function(value, key, row, params) {
+                            //空值(null、undefined、空字串)會原樣傳入, 回傳null代表不格式化維持原值
+                            if (value === null || value === undefined || value === '') {
+                                return null
+                            }
+                            return String(value).toUpperCase()
+                        },
+                        'price': function(value, key, row, params) {
+                            //空值不可直接Number(), 否則''與null會變成0.00
+                            if (value === null || value === undefined || value === '') {
+                                return null
+                            }
+                            return Number(value).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })
+                        },
                     },
                 },
                 'opt5': (function(a, b) {

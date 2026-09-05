@@ -368,6 +368,24 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-table-dyn'"
+                    :casename="'opt.kpCellFormat'"
+                ></demolink>
+
+                <w-table-dyn
+                    style="width:600px; height:400px;"
+                    :name="WTableDyn.name"
+                    :description="WTableDyn.description"
+                    :opt="WTableDyn.opt8"
+                    @success="evSuccess"
+                    @error="evError"
+                ></w-table-dyn>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-table-dyn'"
                     :casename="'editable'"
                 ></demolink>
 
@@ -822,6 +840,27 @@ export default {
                             v.isActive = 'y'
                         }
                         return rows
+                    },
+                },
+                'opt8': {
+                    keys: keys1,
+                    kpHeadFilterType: kpHeadFilterType1,
+                    rows: rows1,
+                    kpCellFormat: { //格式化僅影響顯示與下載, 排序、過濾、編輯與save回傳之rows仍為原值
+                        'make': function(value, key, row, params) {
+                            //空值(null、undefined、空字串)會原樣傳入, 編輯模式新增列之各欄為空字串, 回傳null代表不格式化維持原值
+                            if (value === null || value === undefined || value === '') {
+                                return null
+                            }
+                            return String(value).toUpperCase()
+                        },
+                        'price': function(value, key, row, params) {
+                            //空值不可直接Number(), 否則''與null會變成0.00
+                            if (value === null || value === undefined || value === '') {
+                                return null
+                            }
+                            return Number(value).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })
+                        },
                     },
                 },
             },
