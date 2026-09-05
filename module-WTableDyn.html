@@ -169,11 +169,17 @@
         <td>No</td>
         <td>輸入下載Excel檔案時針對mat數據階段的攔截處理函數，預設為null</td>
     </tr><tr>
-        <td><code>enableHeadWhenDownload</code></td>
+        <td><code>useHeadWhenDownload</code></td>
         <td>Boolean</td>
         <td><code>false</code></td>
         <td>No</td>
         <td>輸入下載Excel檔案時是否將欄位鍵值轉換成head布林值，此需提供opt.kpHead物件，預設為false</td>
+    </tr><tr>
+        <td><code>useCellFormatWhenDownload</code></td>
+        <td>Boolean</td>
+        <td><code>true</code></td>
+        <td>No</td>
+        <td>輸入下載Excel檔案時是否依opt.kpCellFormat格式化各欄值布林值，true時下載內容與畫面一致(有格式化函數之欄為格式化後字串)，false時下載原值，無opt.kpCellFormat時無作用，轉發至w-table-vue(對應w-aggrid-vue之downloadData與downloadDisplayData之useFormat)，預設為true</td>
     </tr><tr>
         <td><code>fileNameWhenDownload</code></td>
         <td>String</td>
@@ -331,6 +337,12 @@
         <td>No</td>
         <td>輸入針對上傳模式之popup彈窗teleport至body內之內容div所給予之wtlp屬性值字串，供查找使用，預設null</td>
     </tr><tr>
+        <td><code>cmpZIndex</code></td>
+        <td>Number</td>
+        <td><code>3000</code></td>
+        <td>No</td>
+        <td>輸入彈窗使用z-index數字，供嵌於高z-index彈窗內時提高層級，預設3000</td>
+    </tr><tr>
         <td><code>opt</code></td>
         <td>Object</td>
         <td><code>{}</code></td>
@@ -340,13 +352,13 @@
         <td><code>opt.keys</code></td>
         <td>Array</td>
         <td>-</td>
-        <td><b>Yes</b></td>
+        <td>No</td>
         <td>輸入資料各欄位keys</td>
     </tr><tr>
         <td><code>opt.rows</code></td>
         <td>Array</td>
         <td>-</td>
-        <td><b>Yes</b></td>
+        <td>No</td>
         <td>輸入資料列，各列為物件，內含各欄位keys之值，例[{},{},...,{}]</td>
     </tr><tr>
         <td><code>opt.kpHead</code></td>
@@ -529,6 +541,12 @@
         <td>No</td>
         <td>輸入key對應cell之是否可編輯物件，預設各key值為defCellEditable</td>
     </tr><tr>
+        <td><code>opt.kpCellFormat</code></td>
+        <td>Object</td>
+        <td><code>{}</code></td>
+        <td>No</td>
+        <td>輸入key對應cell之值格式化函數物件，函數簽名為(value, key, row, params)，回傳顯示字串，回傳null或undefined代表不格式化維持原值；所有原值(含null、undefined、空字串)皆原樣傳入，編輯模式新增列之各欄為空字串，故函數內須自行處理空值(如回傳null)；作用於顯示與下載(下載時params為null，可由組件useCellFormatWhenDownload關閉)，排序、過濾、編輯與save回傳之rows仍為原值；與cell-render slot可並用，預設各key值為undefined</td>
+    </tr><tr>
         <td><code>opt.kpConvertKeysWhenUploadData</code></td>
         <td>Object</td>
         <td><code>{}</code></td>
@@ -648,12 +666,6 @@
         <td><code>false</code></td>
         <td>No</td>
         <td>輸入當儲存時是否檢核無數據布林值，預設false</td>
-    </tr><tr>
-        <td><code>cmpZIndex</code></td>
-        <td>Number</td>
-        <td><code>3000</code></td>
-        <td>No</td>
-        <td>輸入彈窗使用z-index數字，供嵌於高z-index彈窗內時提高層級，預設3000</td>
     </tr></tbody>
 </table>
 
@@ -813,11 +825,17 @@
         <td>No</td>
         <td>輸入下載Excel檔案時針對mat數據階段的攔截處理函數，預設為null</td>
     </tr><tr>
-        <td><code>enableHeadWhenDownload</code></td>
+        <td><code>useHeadWhenDownload</code></td>
         <td>Boolean</td>
         <td><code>false</code></td>
         <td>No</td>
         <td>輸入下載Excel檔案時是否將欄位鍵值轉換成head布林值，此需提供opt.kpHead物件，預設為false</td>
+    </tr><tr>
+        <td><code>useCellFormatWhenDownload</code></td>
+        <td>Boolean</td>
+        <td><code>true</code></td>
+        <td>No</td>
+        <td>輸入下載Excel檔案時是否依opt.kpCellFormat格式化各欄值布林值，true時下載內容與畫面一致(有格式化函數之欄為格式化後字串)，false時下載原值，無opt.kpCellFormat時無作用，轉發至w-table-vue(對應w-aggrid-vue之downloadData與downloadDisplayData之useFormat)，預設為true</td>
     </tr><tr>
         <td><code>fileNameWhenDownload</code></td>
         <td>String</td>
@@ -975,6 +993,12 @@
         <td>No</td>
         <td>輸入針對上傳模式之popup彈窗teleport至body內之內容div所給予之wtlp屬性值字串，供查找使用，預設null</td>
     </tr><tr>
+        <td><code>cmpZIndex</code></td>
+        <td>Number</td>
+        <td><code>3000</code></td>
+        <td>No</td>
+        <td>輸入彈窗使用z-index數字，供嵌於高z-index彈窗內時提高層級，預設3000</td>
+    </tr><tr>
         <td><code>opt</code></td>
         <td>Object</td>
         <td><code>{}</code></td>
@@ -984,13 +1008,13 @@
         <td><code>opt.keys</code></td>
         <td>Array</td>
         <td>-</td>
-        <td><b>Yes</b></td>
+        <td>No</td>
         <td>輸入資料各欄位keys</td>
     </tr><tr>
         <td><code>opt.rows</code></td>
         <td>Array</td>
         <td>-</td>
-        <td><b>Yes</b></td>
+        <td>No</td>
         <td>輸入資料列，各列為物件，內含各欄位keys之值，例[{},{},...,{}]</td>
     </tr><tr>
         <td><code>opt.kpHead</code></td>
@@ -1173,6 +1197,12 @@
         <td>No</td>
         <td>輸入key對應cell之是否可編輯物件，預設各key值為defCellEditable</td>
     </tr><tr>
+        <td><code>opt.kpCellFormat</code></td>
+        <td>Object</td>
+        <td><code>{}</code></td>
+        <td>No</td>
+        <td>輸入key對應cell之值格式化函數物件，函數簽名為(value, key, row, params)，回傳顯示字串，回傳null或undefined代表不格式化維持原值；所有原值(含null、undefined、空字串)皆原樣傳入，編輯模式新增列之各欄為空字串，故函數內須自行處理空值(如回傳null)；作用於顯示與下載(下載時params為null，可由組件useCellFormatWhenDownload關閉)，排序、過濾、編輯與save回傳之rows仍為原值；與cell-render slot可並用，預設各key值為undefined</td>
+    </tr><tr>
         <td><code>opt.kpConvertKeysWhenUploadData</code></td>
         <td>Object</td>
         <td><code>{}</code></td>
@@ -1292,12 +1322,6 @@
         <td><code>false</code></td>
         <td>No</td>
         <td>輸入當儲存時是否檢核無數據布林值，預設false</td>
-    </tr><tr>
-        <td><code>cmpZIndex</code></td>
-        <td>Number</td>
-        <td><code>3000</code></td>
-        <td>No</td>
-        <td>輸入彈窗使用z-index數字，供嵌於高z-index彈窗內時提高層級，預設3000</td>
     </tr></tbody>
 </table>
 
@@ -1437,7 +1461,7 @@
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.5</a> on Fri Sep 04 2026 23:16:12 GMT+0800 (台北標準時間) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.5</a> on Sat Sep 05 2026 14:49:06 GMT+0800 (台北標準時間) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>
