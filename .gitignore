@@ -1,12 +1,13 @@
 node_modules
 .agents
-AGENTS.md
+AGENTS*.md
 .env
 .opencode
 .claude
-CLAUDE.md
+CLAUDE*.md
 test-action
 test-screenshot
 test-html
 user_data
 tmp
+
