@@ -3,7 +3,7 @@
         <div :style="`transform:scale(${useScale}); transform-origin:0% 0%;`">
 
             <div
-                :style="`position:relative; display:inline-block; width:${defIconSize}px; height:${defIconSize}px; user-select:none; cursor:pointer; outline:none;`"
+                :style="`position:relative; display:inline-block; width:${defIconSize}px; height:${defIconSize}px; user-select:none; ${editable?'cursor:pointer;':''} outline:none;`"
                 tabindex="0"
                 @keyup.enter="(v)=>{$emit('click',v)}"
                 @click="(v)=>{$emit('click',v)}"

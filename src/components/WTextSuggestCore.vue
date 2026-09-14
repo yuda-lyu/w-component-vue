@@ -24,7 +24,7 @@
 
                     <!-- 不能使用tabindex=0禁用駐點, 會導致點擊無法觸發windowMousedown與windowMouseup事件, 進而導致無法自動取消popup -->
                     <div
-                        :style="`width:100%; color:${useTextColor}; ${useTextFontSize} vertical-align:middle; white-space:nowrap; text-overflow:ellipsis; cursor:pointer; outline:none;`"
+                        :style="`width:100%; color:${useTextColor}; ${useTextFontSize} vertical-align:middle; white-space:nowrap; text-overflow:ellipsis; ${editable?'cursor:pointer;':''} outline:none;`"
                         _tabindex="0"
                         @focus="focusText"
                         v-if="mode==='select'"
@@ -58,7 +58,7 @@
                     ></WTextCore>
 
                     <div style="">
-                        <div :style="`transform:rotate(${useRotateDeg+90}deg); transition:all 0.25s; cursor:pointer;`">
+                        <div :style="`transform:rotate(${useRotateDeg+90}deg); transition:all 0.25s; ${editable?'cursor:pointer;':''}`">
                             <WIcon
                                 :icon="expansionIcon"
                                 :color="uesExpansionIconColor"

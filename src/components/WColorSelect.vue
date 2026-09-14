@@ -20,7 +20,7 @@
 
             <div style="">
                 <!-- 盡量不要讓display:flex暴露至外層 -->
-                <div style="display:flex; align-items:center; cursor:pointer; outline:none;">
+                <div :style="`display:flex; align-items:center; ${editable?'cursor:pointer;':''} outline:none;`">
 
                     <div :style="`border:${colorBlockBorderWidth}px solid ${useColorBlockBorderColor}; width:${colorBlockSize}px; height:${colorBlockSize}px; box-sizing:border-box; background:${valueOri};`"></div>
 

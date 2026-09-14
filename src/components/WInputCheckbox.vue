@@ -18,7 +18,7 @@
 
                     <div :style="`display:flex; align-items:center; height:${inputSize+inputShiftTop}px; padding-top:${inputShiftTop}px; box-sizing:border-box;`">
                         <input
-                            :style="`width:${inputSize}px; height:${inputSize}px; margin:0px; padding:0px; cursor:pointer;`"
+                            :style="`width:${inputSize}px; height:${inputSize}px; margin:0px; padding:0px; ${editable?'cursor:pointer;':''}`"
                             :type="multiCheck?'checkbox':'radio'"
                             :value="item.id"
                             v-model="dataActive"
@@ -38,7 +38,7 @@
                         >
 
                             <div
-                                :style="`margin:0px 0px 0px 5px; ${useTextFontSize} cursor:pointer;`"
+                                :style="`margin:0px 0px 0px 5px; ${useTextFontSize} ${editable?'cursor:pointer;':''}`"
                             >
                                 {{getText(item)}}
                             </div>

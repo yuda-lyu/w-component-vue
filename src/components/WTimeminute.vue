@@ -1,7 +1,7 @@
 <template>
     <!-- 時間組件因v-date-picker有點擊區域的限制, 故得使用display:inline-block -->
     <div
-        style="display:inline-block; cursor:pointer;"
+        :style="`display:inline-block; ${editable?'cursor:pointer;':''}`"
         :changeParam="changeParam"
     >
 

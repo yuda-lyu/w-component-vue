@@ -22,7 +22,7 @@
         >
 
             <div
-                :style="`margin-left:${iconShiftOuter}px; margin-right:${iconShiftInner}px; user-select:none; cursor:pointer; outline:none;`"
+                :style="`margin-left:${iconShiftOuter}px; margin-right:${iconShiftInner}px; user-select:none; ${editable?'cursor:pointer;':''} outline:none;`"
                 tabindex="0"
                 @keyup.enter="clickIcon('left')"
                 @click="clickIcon('left')"
@@ -68,7 +68,7 @@
             </div>
 
             <div
-                :style="`margin-right:${iconShiftOuter}px; margin-left:${iconShiftInner}px; user-select:none; cursor:pointer; outline:none;`"
+                :style="`margin-right:${iconShiftOuter}px; margin-left:${iconShiftInner}px; user-select:none; ${editable?'cursor:pointer;':''} outline:none;`"
                 tabindex="0"
                 @keyup.enter="clickIcon('right')"
                 @click="clickIcon('right')"
