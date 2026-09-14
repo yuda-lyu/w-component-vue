@@ -256,6 +256,8 @@ export default {
             afloatTrans: false,
 
             drawerStable: true,
+            drawerTransitionDone: false, //divDrawer自身transform過場是否已結束(transitionend或transitioncancel), 為落定state之主要訊號
+            hdDrawerTransition: null, //divDrawer過場事件監聽之handler, 供移除
 
             timerAni1Basic: null,
             showAni1Basic: false,
@@ -313,6 +315,9 @@ export default {
         if (vo.das) {
             vo.das.clear()
         }
+
+        //unwatch
+        vo.unwatchDrawerTransition()
 
     },
     computed: {
@@ -630,8 +635,11 @@ export default {
             clearTimeout(vo.timerAni5DragDrawerBar)
             clearTimeout(vo.timerAni6State)
 
-            //切換即標記為未穩定, 待divDrawer(及子樹)動畫真正結束(directive偵測)後才翻true; 避免waitFun讀到殘留true而過早落定(不位移時由waitFun逾時.catch強制落定兜底, 不會卡死)
+            //切換即標記為未穩定, 待divDrawer(及子樹)動畫真正結束(directive偵測)後才翻true; 避免waitFun讀到殘留true而過早落定
             vo.drawerStable = false
+
+            //監聽divDrawer自身transform過場之結束, 作為落定state之主要訊號; directive為邊緣觸發, 高負載下可能整段位移皆未取樣到而不再回呼, 若只依賴它會卡在opening/hiding, 詳settleState
+            vo.watchDrawerTransition()
 
             //此次切換的tag(genID唯一值), 供下方延遲落定的waitFun回呼比對, 避免快速切換時舊的waitFun誤落定
             let tagStateNew = genID()
@@ -678,16 +686,9 @@ export default {
                     vo.showAni5DragDrawerBar = true
                 }, 300)
 
-                //以waitFun輪詢drawerStable與限定最長時長
+                //待動畫時長後落定state, 詳settleState
                 vo.timerAni6State = setTimeout(() => {
-                    let settle = () => {
-                        if (vo.tagStateNow === tagStateNew) {
-                            vo.state = 'opened'
-                        }
-                    }
-                    waitFun(() => vo.drawerStable === true, { attemptNum: 800, timeInterval: 250 })
-                        .then(settle)
-                        .catch(settle)
+                    vo.settleState('opened', sec, tagStateNew)
                 }, 300)
 
             }
@@ -730,19 +731,105 @@ export default {
                 // showAni5DragDrawerBar: false,
                 vo.showAni5DragDrawerBar = false
 
-                //以waitFun輪詢drawerStable與限定最長時長
+                //待動畫時長後落定state, 詳settleState
                 vo.timerAni6State = setTimeout(() => {
-                    let settle = () => {
-                        if (vo.tagStateNow === tagStateNew) {
-                            vo.state = 'hidden'
-                        }
-                    }
-                    waitFun(() => vo.drawerStable === true, { attemptNum: 800, timeInterval: 250 })
-                        .then(settle)
-                        .catch(settle)
+                    vo.settleState('hidden', sec, tagStateNew)
                 }, 300)
 
             }
+
+        },
+
+        watchDrawerTransition: function() {
+            // console.log('methods watchDrawerTransition')
+
+            let vo = this
+
+            //unwatch, 快速切換時先移除前次監聽
+            vo.unwatchDrawerTransition()
+
+            //el
+            let el = get(vo, '$refs.divDrawer', null)
+            if (!el) {
+                return
+            }
+
+            //reset
+            vo.drawerTransitionDone = false
+
+            //fn, 過場事件會自子樹冒泡, 須限定為divDrawer自身之transform; 收合時divDrawer會因外層轉為display:none而取消過場, 故transitioncancel亦視為結束
+            let fn = (ev) => {
+                if (ev.target !== el || ev.propertyName !== 'transform') {
+                    return
+                }
+                vo.drawerTransitionDone = true
+            }
+            el.addEventListener('transitionend', fn)
+            el.addEventListener('transitioncancel', fn)
+
+            //save
+            vo.hdDrawerTransition = { el, fn }
+
+        },
+
+        unwatchDrawerTransition: function() {
+            // console.log('methods unwatchDrawerTransition')
+
+            let vo = this
+
+            //check
+            let hd = vo.hdDrawerTransition
+            if (!hd) {
+                return
+            }
+
+            //removeEventListener
+            hd.el.removeEventListener('transitionend', hd.fn)
+            hd.el.removeEventListener('transitioncancel', hd.fn)
+
+            //clear
+            vo.hdDrawerTransition = null
+
+        },
+
+        settleState: function(stateEnd, sec, tagStateNew) {
+            // console.log('methods settleState', stateEnd, sec, tagStateNew)
+
+            let vo = this
+
+            //settle, 比對tag避免快速切換時舊的落定誤寫
+            let settle = () => {
+                if (vo.tagStateNow !== tagStateNew) {
+                    return
+                }
+                vo.unwatchDrawerTransition()
+                vo.state = stateEnd
+            }
+
+            //以位準判斷落定: divDrawer自身transform過場已結束(drawerTransitionDone), 或directive回報divDrawer及子樹已穩定(drawerStable), 任一成立即落定; 最長等sec+1000ms
+            let timeInterval = 50
+            let attemptNum = Math.ceil((sec + 1000) / timeInterval)
+            waitFun(() => vo.drawerTransitionDone === true || vo.drawerStable === true, { attemptNum, timeInterval })
+                .then(settle)
+                .catch(async () => {
+
+                    //兜底: 兩訊號皆未到達(如不位移或無過場時), 若divDrawer此時仍存在transform過場(含尚未開始之pending, 高負載下過場可能延後開始)則等其結束, 上限3000ms, 避免過場中即落定
+                    let anims = []
+                    try {
+                        anims = vo.$refs.divDrawer.getAnimations().filter((a) => a.transitionProperty === 'transform')
+                    }
+                    catch (err) {}
+                    if (anims.length > 0) {
+                        await Promise.race([
+                            Promise.allSettled(anims.map((a) => a.finished)),
+                            new Promise((resolve) => setTimeout(resolve, 3000)),
+                        ])
+                    }
+
+                    //settle
+                    settle()
+
+                })
 
         },
 
@@ -751,7 +838,7 @@ export default {
 
             let vo = this
 
-            //更新drawerStable: divDrawer(及子樹)動畫是否已穩定, 由v-domstable(domStable directive)偵測後回呼; 落定state改由toggleValue內的waitFun輪詢此值處理
+            //更新drawerStable: divDrawer(及子樹)動畫是否已穩定, 由v-domstable(domStable directive)偵測後回呼; 為落定state之輔助訊號, 主要訊號為divDrawer自身之過場事件, 詳settleState
             vo.drawerStable = b
 
         },
