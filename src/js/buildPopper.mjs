@@ -235,7 +235,7 @@ function buildPopper(vo, funGetDivTrigger, funGetDivContent, keyShow, evNameValu
         window.removeEventListener('mousemove', _vo.windowMousemove, false)
         window.removeEventListener('mousedown', _vo.windowMousedown, false)
         window.removeEventListener('mouseup', _vo.windowMouseup, false)
-        window.removeEventListener('scroll', _vo.windowMouseup, false)
+        window.removeEventListener('scroll', _vo.windowScroll, false)
 
         // //hidePopper, 不論click或hover一律隱藏
         // hidePopper('beforeDestroy')
