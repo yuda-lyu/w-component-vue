@@ -244,7 +244,9 @@ export default {
         },
         opt: {
             type: Object,
-            default: () => {},
+            default: () => {
+                return {}
+            },
         },
     },
     data: function() {

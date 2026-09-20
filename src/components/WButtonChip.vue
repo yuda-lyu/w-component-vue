@@ -187,7 +187,7 @@ import WTooltip from './WTooltip.vue'
  * @vue-prop {String} [tooltipTextFontSize='0.85rem'] 輸入提示文字字型大小字串，預設'0.85rem'
  * @vue-prop {String} [tooltipTextColor='white'] 輸入提示文字顏色字串，預設'white'
  * @vue-prop {String} [tooltipBackgroundColor='rgba(60,60,60,0.75)'] 輸入背景顏色字串，預設'rgba(60,60,60,0.75)'
- * @vue-prop {Boolean} [shadow=false] 輸入是否顯示陰影布林值，預設false
+ * @vue-prop {Boolean} [shadow=true] 輸入是否顯示陰影布林值，預設true
  * @vue-prop {String} [shadowStyle=''] 輸入陰影顏色字串，預設值詳見props
  * @vue-prop {Boolean} [shadowActive=true] 輸入主動模式時是否顯示陰影布林值，預設true
  * @vue-prop {String} [shadowActiveStyle=''] 輸入主動模式時陰影顏色字串，預設值詳見props
@@ -199,6 +199,7 @@ import WTooltip from './WTooltip.vue'
  * @vue-prop {Boolean} [active=false] 輸入是否為主動模式布林值，預設false
  * @vue-prop {Boolean} [close=false] 輸入是否具有關閉按鈕模式布林值，預設false
  * @vue-prop {Boolean} [cursorPointer=true] 輸入是否滑鼠移入顯示pointer樣式布林值，預設true
+ * @vue-prop {Boolean} [promiseUnlock=false] 輸入是否點擊後自動設定為loading為true並需使用promise解鎖布林值，預設false
  * @vue-prop {Boolean} [loading=false] 輸入是否為載入模式布林值，預設false
  * @vue-prop {String} [loadingColor='grey darken-2'] 輸入載入圖標顏色字串，預設'grey darken-2'
  * @vue-prop {String} [role='button'] 輸入角色字串，預設'button'
@@ -357,7 +358,6 @@ export default {
         },
         shadow: {
             type: Boolean,
-            //default: false,
             default: true,
         },
         shadowStyle: {

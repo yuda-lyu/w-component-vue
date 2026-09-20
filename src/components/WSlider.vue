@@ -114,7 +114,7 @@ import hide from '@popperjs/core/lib/modifiers/hide.js'
  * @vue-prop {String} [sliderBackgroundColorDisabled='#aaa'] 輸入不可編輯時拖曳球背景顏色字串，預設'#aaa'
  * @vue-prop {Number} [cmpZIndex=3000] 輸入提示窗使用z-index數字，預設3000
  * @vue-prop {Number} [tooltipPlacementDist=5] 輸入提示窗距離觸發元素距離數字，單位為px，預設5
- * @vue-prop {Number} [tooltipBorderRadius=5] 輸入提示窗框圓角度數字，單位為px，預設4
+ * @vue-prop {Number} [tooltipBorderRadius=4] 輸入提示窗框圓角度數字，單位為px，預設4
  * @vue-prop {String} [tooltipTextFontSize='0.85rem'] 輸入提示窗框文字字型大小字串，預設'0.85rem'
  * @vue-prop {String} [tooltipTextColor='white'] 輸入提示窗框文字顏色字串，預設'white'
  * @vue-prop {String} [tooltipBackgroundColor='#666'] 輸入值域條背景顏色字串，預設'#666'

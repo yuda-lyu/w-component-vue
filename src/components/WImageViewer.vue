@@ -55,11 +55,15 @@ export default {
         },
         imageStyle: {
             type: Object,
-            default: () => {},
+            default: () => {
+                return {}
+            },
         },
         opt: {
             type: Object,
-            default: () => {},
+            default: () => {
+                return {}
+            },
         },
         multiple: {
             type: Boolean,

@@ -66,7 +66,7 @@ import WIcon from './WIcon.vue'
  * @vue-prop {String} [titleTextFontSize='0.85rem'] 輸入文字字型大小字串，預設'0.85rem'
  * @vue-prop {Number} [height=4] 輸入高度數字，單位為px，預設4
  * @vue-prop {Number} [borderRadius=5] 輸入框圓角度數字，單位為px，預設5
- * @vue-prop {String} [progColor='light-green accent-4'] 輸入進度條顏色字串，預設'light-green accent-4'
+ * @vue-prop {String} [progColor='lime accent-4'] 輸入進度條顏色字串，預設'lime accent-4'
  * @vue-prop {String} [progBackgroundColor='light-green lighten-5'] 輸入進度條背景顏色字串，預設'light-green lighten-5'
  * @vue-prop {Number} [iconSize=20] 輸入左側圖標之尺寸數字，單位px，預設20
  * @vue-prop {String} [iconWaiting='mdiOrbitVariant'] 輸入等待狀態(value<=0)圖標字串，可為mdi,md,fa代號或mdi/js路徑，預設'mdiOrbitVariant'

@@ -53,6 +53,7 @@ import WIconLoading from './WIconLoading.vue'
 
 
 /**
+ * @vue-prop {Array} [pathItems=['base:w-leaflet-vue']] 輸入w-leaflet-vue組件js檔案位置字串陣列，預設['base:w-leaflet-vue']
  * @vue-prop {Object} opt 輸入資料設定物件
  * @vue-prop {Array} [opt.center=[23.5, 121.1]] 輸入地圖顯示中點陣列，陣列為WGS84[緯度,經度]，預設[23.5, 121.1]
  * @vue-prop {Number} [opt.zoom=7] 輸入地圖顯示層級整數，預設7
@@ -183,7 +184,9 @@ export default {
         },
         opt: {
             type: Object,
-            default: () => {},
+            default: () => {
+                return {}
+            },
         },
     },
     data: function() {

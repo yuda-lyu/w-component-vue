@@ -107,7 +107,6 @@ function getFileName(str) {
  * @vue-prop {Object} [arrangeWhenFinish=false] 輸入是否於圖片載入完畢時依照原本圖片順序排序布林值，預設false
  * @vue-prop {Number} [numParallel=5] 輸入同時載入圖片數量數字，預設5
  * @vue-prop {Object} [opt={}] 輸入viewerjs設定物件，預設使用optOne或optMuti，若img僅一個則使用optOne，反之使用optMuti
- * @vue-prop {Boolean} [multiple=false] 輸入
  */
 export default {
     directives: {
@@ -139,7 +138,9 @@ export default {
         },
         imageStyle: {
             type: Object,
-            default: () => {},
+            default: () => {
+                return {}
+            },
         },
         arrangeWhenFinish: {
             type: Boolean,
@@ -151,7 +152,9 @@ export default {
         },
         opt: {
             type: Object,
-            default: () => {},
+            default: () => {
+                return {}
+            },
         },
     },
     data: function() {

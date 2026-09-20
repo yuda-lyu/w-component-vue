@@ -128,7 +128,8 @@ import WListItem from './WListItem.vue'
 
 /**
  * @vue-prop {Array} [items=[]] 輸入項目的字串陣列或物件陣列，預設[]
- * @vue-prop {Boolean} [enableActive=false] 輸入項目是否使用點擊成為活耀狀態布林值，預設false
+ * @vue-prop {Boolean} [enableActive=true] 輸入項目是否使用點擊成為活耀狀態布林值，預設true
+ * @vue-prop {String} [query=''] 輸入過濾關鍵字字串，預設''
  * @vue-prop {String|Object} [itemActive=null] 輸入活耀項目字串或物件，預設null
  * @vue-prop {String} [keyText='text'] 輸入項目為物件時，存放顯示文字之欄位字串，預設'text'
  * @vue-prop {String} [keyIcon='icon'] 輸入項目為物件時，存放圖標之欄位字串，預設'icon'

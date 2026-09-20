@@ -68,7 +68,7 @@ import convertColor from '../js/convertColor.mjs'
 
 
 /**
- * @vue-prop {String} [value='#FFFFFF'] 輸入顏色字串，預設'#FFFFFF'
+ * @vue-prop {String} [value='#FF0000'] 輸入顏色字串，預設'#FF0000'
  * @vue-prop {Number} [width=200] 輸入寬度數字，單位px，預設200
  * @vue-prop {Number} [height=20] 輸入高度數字，單位px，預設20
  * @vue-prop {Number} [cursorSize=7] 輸入游標寬度數字，單位px，預設7

@@ -83,7 +83,9 @@ export default {
         },
         settings: {
             type: Object,
-            default: () => {},
+            default: () => {
+                return {}
+            },
         },
         keyHint: {
             type: [String, Array],

@@ -232,7 +232,7 @@ import convertColor from '../js/convertColor.mjs'
  * @vue-prop {String} [keyText='text'] 輸入項目物件存放顯示文字之欄位字串，預設'text'
  * @vue-prop {Number} [valueMin=null] 輸入項目陣列內全部值之最小值數字，預設null
  * @vue-prop {Number} [valueMax=null] 輸入項目陣列內全部值之最大值數字，預設null
- * @vue-prop {String} [title='left'] 輸入軸標題文字字串，可選'left'與'right'，預設'left'
+ * @vue-prop {String} [title=''] 輸入軸標題文字字串，可選'left'與'right'，預設''
  * @vue-prop {String} [titleColor='#444'] 輸入軸標題文字顏色字串，預設'#444'
  * @vue-prop {String} [titleFontSize='1rem'] 輸入軸標題文字字型大小字串，預設'1rem'
  * @vue-prop {Number} [titleShift=null] 輸入軸標題與左側軸距離數字，單位為px，若給null則自動使用值為-paddingStyle.left+12，預設null
@@ -251,7 +251,7 @@ import convertColor from '../js/convertColor.mjs'
  * @vue-prop {String} [segmentBackgroundImageSize='75%'] 輸入區塊背景圖片尺寸字串，預設'75%'
  * @vue-prop {String} [segmentBackgroundColor='#FFB74D'] 輸入區塊背景顏色字串，預設'#FFB74D'
  * @vue-prop {Function} [funSegmentBackgroundColor=null] 輸入處理項目數據之區塊背景函數，預設null
- * @vue-prop {String|Object} [segmentBorderColor='#FFB74D'] 輸入區塊邊框顏色字串或物件，給予物件時可用鍵值為v、h、left、right、top、bottom，v代表同時設定top與bottom，h代表設定left與right，預設'#FB8C00'
+ * @vue-prop {String|Object} [segmentBorderColor='#FB8C00'] 輸入區塊邊框顏色字串或物件，給予物件時可用鍵值為v、h、left、right、top、bottom，v代表同時設定top與bottom，h代表設定left與right，預設'#FB8C00'
  * @vue-prop {Function} [funSegmentBorderColor=null] 輸入處理項目數據之區塊邊框函數，預設null
  * @vue-prop {Number} [segmentSize=3] 輸入區塊尺寸(為單側寬度，不含垂直線軸)數字，區塊以垂直線軸為中心左右各segmentSize，含線軸之總寬為segmentSize*2+1，單位為px，預設3
  * @vue-prop {Boolean} [segmentCanClick=false] 輸入區塊是否可點擊布林值，預設false

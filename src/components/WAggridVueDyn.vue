@@ -100,7 +100,9 @@ export default {
         },
         opt: {
             type: Object,
-            default: () => {},
+            default: () => {
+                return {}
+            },
         },
         height: {
             type: Number,

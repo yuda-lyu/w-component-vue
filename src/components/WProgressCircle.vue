@@ -81,7 +81,7 @@ import WTooltip from './WTooltip.vue'
 /**
  * @vue-prop {String} [text=''] 輸入文字字串，預設''
  * @vue-prop {Number} [value=0] 輸入數值，介於0~100之間，預設0
- * @vue-prop {String} [color='rgba(150,150,150,0.8)'] 輸入環狀圓條顏色字串，預設'rgba(150,150,150,0.8)'
+ * @vue-prop {String} [color='rgba(100,100,100,0.8)'] 輸入環狀圓條顏色字串，預設'rgba(100,100,100,0.8)'
  * @vue-prop {String} [trackColor='rgba(150,150,150,0.4)'] 輸入環狀軌道顏色字串，預設'rgba(150,150,150,0.4)'
  * @vue-prop {Number} [size=120] 輸入進度條外徑寬度，單位為px，預設120
  * @vue-prop {Number} [width=6] 輸入環狀圓條寬度，單位為px，預設6

@@ -90,7 +90,7 @@ import WIcon from './WIcon.vue'
  * @vue-prop {Number} [avatarIconSize=60] 輸入圖標尺寸數字，單位為px，預設60
  * @vue-prop {String} [avatarIconColor='white'] 輸入圖標顏色字串，預設'white'
  * @vue-prop {Number} [avatarBorderWidth=1] 輸入圖標區框線寬度數字，單位為px，預設1
- * @vue-prop {String} [avatarBorderColor='transparnet'] 輸入圖標區框線顏色字串，預設'transparnet'
+ * @vue-prop {String} [avatarBorderColor='transparent'] 輸入圖標區框線顏色字串，預設'transparent'
  * @vue-prop {String} [avatarBackgroundColor='rgba(239,108,0,0.5)'] 輸入圖標區背景顏色字串，預設'rgba(239,108,0,0.5)'
  * @vue-prop {Number} [avatarBorderRadius=10] 輸入圖標區框圓角程度數字，單位為px，預設10
  * @vue-prop {Boolean} [avatarShadow=true] 輸入是否使用圖標區陰影效果數字，預設true

@@ -466,6 +466,7 @@ import WButtonCircle from './WButtonCircle.vue'
  * @vue-prop {Number} [treeDefaultDisplayLevel=null] 輸入樹狀資料夾之初始展開層數數字，若輸入1就是預設展開至第1層，第2層(含)以下則都隱藏，若輸入null就是全展開，預設null
  * @vue-prop {Object} [treePaddingStyle={v:0,h:0}] 輸入樹狀資料夾之內寬距離物件，可用鍵值為v、h、left、right、top、bottom，v代表同時設定top與bottom，h代表設定left與right，若有重複設定時後面鍵值會覆蓋前面，各鍵值為寬度數字，單位為px，預設{v:0,h:0}
  * @vue-prop {Number} [treeIndent=0.7] 輸入樹狀資料夾之縮排比率數字，若使用1就是1倍的圖標寬度(24px)+2*separation(3px)，預設0.7
+ * @vue-prop {String} [treeItemTextFontSize='0.85rem'] 輸入樹狀資料夾之文字字型大小字串，預設'0.85rem'
  * @vue-prop {String} [treeItemTextColor='#444'] 輸入樹狀資料夾之文字顏色字串，預設'#444'
  * @vue-prop {String} [treeItemTextColorHover='#222'] 輸入滑鼠移入時樹狀資料夾之文字顏色字串，預設'#222'
  * @vue-prop {String} [treeItemTextColorActive='#000'] 輸入主動模式時樹狀資料夾之文字顏色字串，預設'#000'
@@ -506,7 +507,7 @@ import WButtonCircle from './WButtonCircle.vue'
  * @vue-prop {String} [listItemRippleColor='rgba(255,255,255,0.4)'] 輸入清單區項目之ripple效果顏色字串，預設'rgba(255,255,255,0.4)'
  * @vue-prop {String} [listBackgroundColor='#fff'] 輸入清單區背景顏色字串，預設'#fff'
  * @vue-prop {String} [btnDisplayTreeIconShow=mdiArrowRightBoldHexagonOutline] 輸入顯示樹狀資料夾按鈕圖標字串，預設mdiArrowRightBoldHexagonOutline
- * @vue-prop {String} [btnDisplayTreeIconShow=mdiArrowLeftBoldHexagonOutline] 輸入隱藏樹狀資料夾按鈕圖標字串，預設mdiArrowLeftBoldHexagonOutline
+ * @vue-prop {String} [btnDisplayTreeIconHide=mdiArrowLeftBoldHexagonOutline] 輸入隱藏樹狀資料夾按鈕圖標字串，預設mdiArrowLeftBoldHexagonOutline
  * @vue-prop {Number} [btnDisplayTreeIconSize=20] 輸入顯隱樹狀資料夾按鈕圖標之尺寸數字，單位為px，預設20
  * @vue-prop {String} [btnDisplayTreeIconColor='grey darken-1'] 輸入顯隱樹狀資料夾按鈕圖標顏色字串，預設'grey darken-1'
  * @vue-prop {String} [btnDisplayTreeIconColorHover='grey darken-2'] 輸入滑鼠移入時顯隱樹狀資料夾按鈕圖標顏色字串，預設'grey darken-2'
@@ -522,7 +523,7 @@ import WButtonCircle from './WButtonCircle.vue'
  * @vue-prop {String} [pathSepIcon=mdiChevronRight] 輸入路徑區分隔符號之圖標字串，預設mdiChevronRight
  * @vue-prop {String} [pathSepIconColor='#888'] 輸入路徑區分隔符號之圖標顏色字串，預設'#888'
  * @vue-prop {Number} [pathSepIconSize=18] 輸入路徑區分隔符號之圖標尺寸數字，單位為px，預設18
- * @vue-prop {String} [pathBackgroundColor='transparent'] 輸入路徑區背景顏色字串，預設'#fff'
+ * @vue-prop {String} [pathBackgroundColor='#fff'] 輸入路徑區背景顏色字串，預設'#fff'
  * @vue-prop {String} [noSelectedText='No selected folder'] 輸入尚未選擇資料夾文字字串，預設'No selected folder'
  * @vue-prop {Boolean} [draggable=false] 輸入是否為可拖曳編輯模式布林值，若draggable設定true，此時所有節點皆為展開顯示並且禁止顯隱節點功能，也就是defaultDisplayLevel強制設定為null，此外也不提供過濾功能，也就是filterKeywords強制清空。開啟draggable僅適用小規模數據。draggable預設false
  * @vue-prop {String} [dgTextDisabled='Can not drop here'] 輸入禁止拖曳文字字串，預設'Can not drop here'
@@ -539,7 +540,7 @@ import WButtonCircle from './WButtonCircle.vue'
  * @vue-prop {String} [dgPreviewBorderColor='#f26'] 輸入拖曳時預覽元素邊框顏色字串，預設'#f26'
  * @vue-prop {String} [dgPreviewBackground='transparent'] 輸入拖曳時預覽元素背景顏色字串，預設'transparent'
  * @vue-prop {Boolean} [operatable=false] 輸入是否使用控制節點模式布林值，若operatable設定true，將於各項目右側顯示控制按鈕，點擊可彈出選單進行插入與刪除等項目，此時會觸發事件click-operate-item，而處理相應數據則需呼叫事件提供物件內operateItem函數，詳情請見範例。此時所有節點皆為展開顯示並且禁止顯隱節點功能，也就是defaultDisplayLevel強制設定為null，此外也不提供過濾功能，也就是filterKeywords強制清空。開啟operatable僅適用小規模數據。operatable預設false
- * @vue-prop {String} [operateItemTextForRename='Rename folder'] 輸入控制選項變更文字之文字字串，預設'Rename folder'
+ * @vue-prop {String} [operateItemTextForRename='Rename'] 輸入控制選項變更文字之文字字串，預設'Rename'
  * @vue-prop {String} [operateItemTextForInsertChild='Create sub folder'] 輸入控制選項插入子項目之文字字串，預設'Create sub folder'
  * @vue-prop {String} [operateItemTextForDelete='Delete folder'] 輸入控制選項刪除項目之文字字串，預設'Delete folder'
  * @vue-prop {String} [operateItemIconForRename=mdiRenameOutline] 輸入控制選項變更文字之圖標字串，預設mdiRenameOutline
@@ -566,7 +567,7 @@ import WButtonCircle from './WButtonCircle.vue'
  * @vue-prop {String} [editorRenameInputTextBottomLineBorderColor='grey lighten-1'] 輸入變更文字彈窗之輸入文字框之底部線顏色字串，預設'grey lighten-1'
  * @vue-prop {String} [editorRenameInputTextBottomLineBorderColorHover='grey'] 輸入變更文字彈窗之輸入文字框之滑鼠移入時底部線顏色字串，預設'grey'
  * @vue-prop {String} [editorRenameInputTextBottomLineBorderColorFocus='blue darken-1'] 輸入變更文字彈窗之輸入文字框之取得焦點時底部線顏色字串，預設'blue darken-1'
- * @vue-prop {String} [editorRenameCancelBtnText='Save'] 輸入變更文字彈窗之取消按鈕文字字串，預設'Save'
+ * @vue-prop {String} [editorRenameCancelBtnText='Cancel'] 輸入變更文字彈窗之取消按鈕文字字串，預設'Cancel'
  * @vue-prop {String} [editorRenameCancelBtnTextColor='grey darken-3'] 輸入變更文字彈窗之取消按鈕文字顏色字串，預設'grey darken-3'
  * @vue-prop {String} [editorRenameCancelBtnTextColorHover='grey darken-2'] 輸入變更文字彈窗之滑鼠移入時取消按鈕文字顏色字串，預設'grey darken-2'
  * @vue-prop {String} [editorRenameCancelBtnIcon=mdiCloseCircleOutline] 輸入變更文字彈窗之取消按鈕圖標字串，可為mdi,md,fa代號或mdi/js路徑，預設mdiCloseCircleOutline

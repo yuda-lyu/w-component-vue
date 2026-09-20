@@ -49,7 +49,9 @@ export default {
         },
         options: {
             type: Object,
-            default: () => {},
+            default: () => {
+                return {}
+            },
         },
         theme: {
             type: [String, Object],
@@ -57,11 +59,15 @@ export default {
         },
         initOptions: {
             type: Object,
-            default: () => {},
+            default: () => {
+                return {}
+            },
         },
         updateOptions: {
             type: Object,
-            default: () => {},
+            default: () => {
+                return {}
+            },
         },
         group: {
             type: String,
@@ -77,7 +83,9 @@ export default {
         },
         loadingOptions: {
             type: Object,
-            default: () => {},
+            default: () => {
+                return {}
+            },
         },
         autoresize: {
             type: [Boolean, Object],

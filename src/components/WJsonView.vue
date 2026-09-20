@@ -126,7 +126,7 @@ import WTree from './WTree.vue'
  * @vue-prop {String} [keyNumbersColor='grey lighten-1'] 輸入鍵值內含子節點數量顏色字串，預設'grey lighten-1'
  * @vue-prop {String} [numColor='indigo accent-2'] 輸入值為數值時的顏色字串，預設'indigo accent-2'
  * @vue-prop {String} [strColor='orange accent-2'] 輸入值為字串時的顏色字串，預設'orange accent-2'
- * @vue-prop {String} [bolColor='#ab0d90'] 輸入值為布林值時的顏色字串，預設'#ab0d90'
+ * @vue-prop {String} [bolColor='light-green lighten-1'] 輸入值為布林值時的顏色字串，預設'light-green lighten-1'
  * @vue-prop {String} [funColor='purple accent-2'] 輸入值為函數時的顏色字串，預設'purple accent-2'
  * @vue-prop {String} [defaultColor='grey darken-4'] 輸入值為其他類型時的顏色字串，預設'grey darken-4'
  * @vue-prop {String} [rippleColor='rgba(200,200,200,0.4)'] 輸入ripple效果顏色字串，預設'rgba(200,200,200,0.4)'
@@ -141,7 +141,9 @@ export default {
     props: {
         data: {
             type: [Array, Object],
-            default: () => {},
+            default: () => {
+                return {}
+            },
         },
         viewHeightMax: {
             type: Number,

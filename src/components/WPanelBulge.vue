@@ -54,10 +54,10 @@ import domResize from '../js/domResize.mjs'
  * @vue-prop {Object} [paddingStyle={v:0,h:20}] 輸入內寬距離設定物件，可用鍵值為v、h、left、right、top、bottom，v代表同時設定top與bottom，h代表設定left與right，若有重複設定時後面鍵值會覆蓋前面，各鍵值為寬度數字，單位為px，預設{v:0,h:20}
  * @vue-prop {String} [headerText=''] 輸入標題文字字串，預設''
  * @vue-prop {String} [headerTextColor='white'] 輸入標題文字顏色字串，預設'white'
- * @vue-prop {String} [headerBackgroundColor='teal lighten-2'] 輸入標題背景顏色字串，預設'teal lighten-2'
+ * @vue-prop {String} [headerBackgroundColor='rgba(77, 182, 172, 0.8)'] 輸入標題背景顏色字串，預設'rgba(77, 182, 172, 0.8)'
  * @vue-prop {Boolean} [headerShadow=true] 輸入標題區是否使用陰影模式，預設true
  * @vue-prop {Number} [contentBorderRadius=0] 輸入內容區圓角寬度，單位為px，預設0
- * @vue-prop {Number|String} [contentPadding=20] 輸入內容區邊寬長度數字或字串，若輸入數字則單位為px，預設20，若輸入字串則需自己添加單位
+ * @vue-prop {Number|String} [contentPadding=0] 輸入內容區邊寬長度數字或字串，若輸入數字則單位為px，預設0，若輸入字串則需自己添加單位
  * @vue-prop {String} [contentBackgroundColor='white'] 輸入內容區塊背景顏色字串，預設'white'
  * @vue-prop {Boolean} [contentShadow=true] 輸入內容區是否使用陰影模式，預設true
  */

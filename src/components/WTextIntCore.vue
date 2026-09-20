@@ -67,9 +67,9 @@ import WTextCore from './WTextCore.vue'
  * @vue-prop {String} [leftIconTooltip='減少'] 輸入框內左側圖標提示文字字串，預設'減少'
  * @vue-prop {String} [rightIconTooltip='增加'] 輸入框內右側圖標提示文字字串，預設'增加'
  * @vue-prop {Number} [buttonIconSize=24] 輸入框內圖標大小，單位為px，預設24
- * @vue-prop {String} [buttonColor='deep-orange lighten-2'] 輸入框內圖標按鈕顏色字串，預設'deep-orange lighten-2'
- * @vue-prop {String} [buttonColorHover='deep-orange lighten-1'] 輸入滑鼠移入時框內圖標按鈕顏色字串，預設'deep-orange lighten-1'
- * @vue-prop {String} [buttonColorFocus='deep-orange lighten-1'] 輸入取得焦點時框內圖標按鈕Focus顏色字串，預設'deep-orange lighten-1'
+ * @vue-prop {String} [buttonColor='white'] 輸入框內圖標按鈕顏色字串，預設'white'
+ * @vue-prop {String} [buttonColorHover='white'] 輸入滑鼠移入時框內圖標按鈕顏色字串，預設'white'
+ * @vue-prop {String} [buttonColorFocus='white'] 輸入取得焦點時框內圖標按鈕Focus顏色字串，預設'white'
  * @vue-prop {Number} [height=28] 輸入高度數字，單位為px，預設28
  * @vue-prop {Boolean} [editable=true] 輸入是否為編輯模式布林值，預設true
  * @vue-prop {Boolean} [focused=false] 輸入是否為取得焦點狀態，預設false

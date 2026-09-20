@@ -112,9 +112,9 @@ import WIconLoading from './WIconLoading.vue'
  * @vue-prop {String} [fileNameWhenDownload='data.xlsx'] 輸入下載Excel檔案時儲存檔名稱字串，預設'data.xlsx'
  * @vue-prop {String} [sheetNameWhenDownload='data'] 輸入下載Excel檔案時sheet名稱字串，預設'data'
  * @vue-prop {Boolean} [editable=false] 輸入是否可編輯布林值，可被opt.defCellEditable複寫，預設為false
- * @vue-prop {String} [textLabelDataName='Data name] 輸入數據名稱字串，預設'Data name'
+ * @vue-prop {String} [textLabelDataName='Data name:'] 輸入數據名稱字串，預設'Data name:'
  * @vue-prop {String} [textPlaceholderDataName='Please enter data name'] 輸入數據名稱placeholder字串，預設'Please enter data name'
- * @vue-prop {String} [textLabelDataDescription='Data description'] 輸入數據說明字串，預設'Data description'
+ * @vue-prop {String} [textLabelDataDescription='Data description:'] 輸入數據說明字串，預設'Data description:'
  * @vue-prop {String} [textPlaceholderDataDescription='Please enter data description'] 輸入數據說明placeholder字串，預設'Please enter data description'
  * @vue-prop {String} [tooltipAddRow='add new row'] 輸入新增數據按鈕tooltip字串，預設'add new row'
  * @vue-prop {String} [tooltipDeleteSelectedRows='delete selected rows'] 輸入刪除選擇數據按鈕tooltip字串，預設'delete selected rows'
@@ -146,7 +146,7 @@ import WIconLoading from './WIconLoading.vue'
  * @vue-slot {Object} head-render 輸入head之渲染slot，轉發至w-table-vue再至w-aggrid-vue，slot props為{ value, key }
  * @vue-slot {Object} head-tooltip 輸入head之tooltip渲染slot，轉發至w-table-vue再至w-aggrid-vue，slot props為{ value, key }，slot內容於掛載時取靜態HTML快照，不支援事件綁定、子組件狀態與響應式更新
  * @vue-prop {Number} [cmpZIndex=3000] 輸入彈窗使用z-index數字，供嵌於高z-index彈窗內時提高層級，預設3000
- * @vue-prop {Object} [opt={}] 輸入w-aggrid-vue設定物件，預設{}
+ * @vue-prop {Object} [opt=null] 輸入w-aggrid-vue設定物件，預設null
  * @vue-prop {Array} [opt.keys] 輸入資料各欄位keys
  * @vue-prop {Array} [opt.rows] 輸入資料列，各列為物件，內含各欄位keys之值，例[{},{},...,{}]
  * @vue-prop {Object} [opt.kpHead={}] 輸入key對應head物件，預設各key值為本身key值

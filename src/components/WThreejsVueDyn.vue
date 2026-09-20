@@ -11,7 +11,7 @@ import WIconLoading from './WIconLoading.vue'
 
 /**
  * @vue-prop {Array} [pathItems=['詳見原始碼']] 輸入w-threejs-vue組件js檔案位置字串陣列，預設詳見原始碼處props->pathItems->default
- * @vue-prop {Object} [options={}] 輸入highcharts設定物件，預設{}
+ * @vue-prop {Object} [opt={}] 輸入w-threejs-vue設定物件，預設{}
  */
 //export default {
 export default {
@@ -28,7 +28,9 @@ export default {
         },
         opt: {
             type: Object,
-            default: () => {},
+            default: () => {
+                return {}
+            },
         },
     },
     data: function() {

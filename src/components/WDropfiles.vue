@@ -16,7 +16,7 @@ import domDropFiles from 'wsemi/src/domDropFiles.mjs'
 
 /**
  * @vue-prop {String} [backgroundColor='transparent'] 輸入背景顏色字串，預設'transparent'
- * @vue-prop {String} [backgroundColorDropIn='purple lighten-5'] 輸入滑鼠拖曳檔案移入時背景顏色字串，預設'purple lighten-5'
+ * @vue-prop {String} [backgroundColorDropIn='grey lighten-4'] 輸入滑鼠拖曳檔案移入時背景顏色字串，預設'grey lighten-4'
  * @vue-prop {String} [backgroundColorHover='grey lighten-5'] 輸入滑鼠移入時背景顏色字串，預設'grey lighten-5'
  * @vue-prop {Number} [timeTransition=0.3] 輸入style的transition時間數字，單位s，預設0.3
  * @vue-prop {Number} [borderRadius=6] 輸入邊框圓角角度數字，單位為px，預設6

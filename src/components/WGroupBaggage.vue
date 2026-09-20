@@ -117,7 +117,7 @@ import WGroupBaggageItem from './WGroupBaggageItem.vue'
  * @vue-prop {Number} [tagBorderRadius=4] 輸入標記區框線圓角度數字，單位為px，預設4
  * @vue-prop {Number} [tagBorderWidth=1] 輸入標記區框線寬度數字，單位px，預設1
  * @vue-prop {String} [tagBorderColor='#fff'] 輸入標記區框線顏色字串，預設'#fff'
- * @vue-prop {String} [tagBorderColor='#ccc'] 輸入滑鼠移入時標記區框線顏色字串，預設'#ccc'
+ * @vue-prop {String} [tagBorderColorHover='#ccc'] 輸入滑鼠移入時標記區框線顏色字串，預設'#ccc'
  * @vue-prop {String} [tagBackgroundColor='#e5e5e5'] 輸入標記區背景顏色字串，預設'#e5e5e5'
  * @vue-prop {String} [tagBackgroundColorHover='#d8d8d8'] 輸入滑鼠移入時標記區背景顏色字串，預設'#d8d8d8'
  * @vue-prop {Object} [tagPaddingStyle={v:1,h:5}] 輸入標記區內寬距離設定物件，可用鍵值為v、h、left、right、top、bottom，v代表同時設定top與bottom，h代表設定left與right，若有重複設定時後面鍵值會覆蓋前面，各鍵值為寬度數字，單位為px，預設{v:1,h:5}
@@ -129,7 +129,7 @@ import WGroupBaggageItem from './WGroupBaggageItem.vue'
  * @vue-prop {Number} [contentBorderRadius=4] 輸入內容區框線圓角度數字，單位為px，預設4
  * @vue-prop {Number} [contentBorderWidth=1] 輸入內容區框線寬度數字，單位px，預設1
  * @vue-prop {String} [contentBorderColor='#ddd'] 輸入內容區框線顏色字串，預設'#ddd'
- * @vue-prop {String} [contentBorderColor='#cccccc'] 輸入滑鼠移入時內容區框線顏色字串，預設'#cccccc'
+ * @vue-prop {String} [contentBorderColorHover='#cccccc'] 輸入滑鼠移入時內容區框線顏色字串，預設'#cccccc'
  * @vue-prop {String} [contentBackgroundColor='#fff'] 輸入內容區背景顏色字串，預設'#fff'
  * @vue-prop {String} [contentBackgroundColorHover='#f2f2f2'] 輸入滑鼠移入時內容區背景顏色字串，預設'#f2f2f2'
  * @vue-prop {Object} [contentPaddingStyle={v:1,h:5}] 輸入內容區內寬距離設定物件，可用鍵值為v、h、left、right、top、bottom，v代表同時設定top與bottom，h代表設定left與right，若有重複設定時後面鍵值會覆蓋前面，各鍵值為寬度數字，單位為px，預設{v:1,h:5}

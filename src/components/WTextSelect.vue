@@ -160,6 +160,7 @@ import WTextSuggestCore from './WTextSuggestCore.vue'
  * @vue-prop {String} [labelContent=null] 輸入針對teleport至body內之內容div所給予之wtlp屬性值字串，供查找使用，預設null
  * @vue-prop {Boolean} [editable=true] 輸入是否為編輯模式布林值，預設true
  * @vue-prop {Boolean} [focused=false] 輸入是否為取得焦點狀態布林值，預設false
+ * @vue-prop {Boolean} [showPanel=false] 輸入是否顯示清單布林值，預設false
  */
 export default {
     directives: {

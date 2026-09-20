@@ -119,7 +119,7 @@ import WListItem from './WListItem.vue'
 
 /**
  * @vue-prop {Array} [items=[]] 輸入項目的字串陣列或物件陣列，預設[]
- * @vue-prop {Boolean} [enableActive=false] 輸入項目是否使用點擊成為活耀狀態布林值，預設false
+ * @vue-prop {Boolean} [enableActive=true] 輸入項目是否使用點擊成為活耀狀態布林值，預設true
  * @vue-prop {String|Object} [itemActive=null] 輸入活耀項目字串或物件，預設null
  * @vue-prop {String} [itemTextFontSize='1rem'] 輸入文字字型大小字串，預設'1rem'
  * @vue-prop {String} [keyText='text'] 輸入項目為物件時，存放顯示文字之欄位字串，預設'text'
@@ -127,7 +127,7 @@ import WListItem from './WListItem.vue'
  * @vue-prop {Number} [space=0] 輸入項目之間間隔數字，單位px，預設0
  * @vue-prop {Object} [paddingStyle={v:10,h:12}] 輸入內寬距離設定物件，可用鍵值為v、h、left、right、top、bottom，v代表同時設定top與bottom，h代表設定left與right，若有重複設定時後面鍵值會覆蓋前面，各鍵值為寬度數字，單位為px，預設{v:10,h:12}
  * @vue-prop {Number} [itemBorderRadius=0] 輸入框圓角度數字，單位為px，預設0
- * @vue-prop {String} [itemBackgroundColor='white'] 輸入背景顏色字串，預設'white'
+ * @vue-prop {String} [itemBackgroundColor='transparent'] 輸入背景顏色字串，預設'transparent'
  * @vue-prop {String} [itemBackgroundColorHover='rgba(200,200,200,0.2)'] 輸入滑鼠移入時背景顏色字串，預設'rgba(200,200,200,0.2)'
  * @vue-prop {String} [itemBackgroundColorActive='white'] 輸入主動模式時背景顏色字串，預設'white'
  * @vue-prop {String} [itemBackgroundColorDisabled='white'] 輸入非啟用模式時背景顏色字串，預設'white'

@@ -36,7 +36,9 @@ export default {
         },
         settings: {
             type: Object,
-            default: () => {},
+            default: () => {
+                return {}
+            },
         },
         height: {
             type: Number,

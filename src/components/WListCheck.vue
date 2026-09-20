@@ -186,12 +186,12 @@ import WListVertical from './WListVertical.vue'
  * @vue-prop {String} [itemBackgroundColorDisabled='white'] 輸入非啟用模式時背景顏色字串，預設'white'
  * @vue-prop {String} [itemTextColor='#444'] 輸入文字顏色字串，預設'#444'
  * @vue-prop {String} [itemTextColorHover='#222'] 輸入滑鼠移入時文字顏色字串，預設'#222'
- * @vue-prop {String} [itemTextColorActive='white'] 輸入主動模式時文字顏色字串，預設'white'
+ * @vue-prop {String} [itemTextColorActive='#000'] 輸入主動模式時文字顏色字串，預設'#000'
  * @vue-prop {String} [itemTextColorDisabled='#444'] 輸入非啟用模式時文字顏色字串，預設'#444'
  * @vue-prop {Number} [itemIconSize=18] 輸入左側圖標之尺寸數字，單位px，預設18
  * @vue-prop {String} [itemIconColor='#444'] 輸入圖標顏色字串，預設'#444'
  * @vue-prop {String} [itemIconColorHover='#222'] 輸入滑鼠移入時圖標顏色字串，預設'#222'
- * @vue-prop {String} [itemIconColorActive='white'] 輸入主動模式時圖標顏色字串，預設'white'
+ * @vue-prop {String} [itemIconColorActive='#000'] 輸入主動模式時圖標顏色字串，預設'#000'
  * @vue-prop {String} [itemIconColorDisabled='#444'] 輸入非啟用模式時圖標顏色字串，預設'#444'
  * @vue-prop {String} [itemRippleColor='rgba(255,255,255,0.4)'] 輸入ripple效果顏色字串，預設'rgba(255,255,255,0.4)'
  * @vue-prop {String} [itemDisabledColor='transparent'] 輸入非編輯模式時遮罩顏色字串，預設'transparent'
@@ -209,7 +209,7 @@ import WListVertical from './WListVertical.vue'
  * @vue-prop {String} [itemCheckIconUncheckedIconColorDisabled='grey'] 輸入非啟用模式時核選圖標無效(false|'n')圖標顏色字串，預設'grey'
  * @vue-prop {Boolean} [enableQuery=false] 輸入是否使用過濾關鍵字功能布林值，預設false
  * @vue-prop {String} [query=''] 輸入過濾關鍵字字串，預設''
- * @vue-prop {String} [queryKeysPickForObjItem=[]] 輸入項目為物件時，於查詢時所須提取出之欄位字串陣列，預設[]
+ * @vue-prop {String} [queryKeysPickForObjItem=['text']] 輸入項目為物件時，於查詢時所須提取出之欄位字串陣列，預設['text']
  * @vue-prop {Object} [queryPaddingStyle={v:0,h:0}] 輸入過濾文字框之內寬距離物件，可用鍵值為v、h、left、right、top、bottom，v代表同時設定top與bottom，h代表設定left與right，若有重複設定時後面鍵值會覆蓋前面，各鍵值為寬度數字，單位為px，預設{v:0,h:0}
  * @vue-prop {Number} [queryBorderRadius=30] 輸入過濾文字框之框圓角度數字，單位為px，預設30
  * @vue-prop {Boolean} [queryShadow=false] 輸入過濾文字框之是否為陰影模式，預設false

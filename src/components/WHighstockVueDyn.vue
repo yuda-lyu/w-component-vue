@@ -26,7 +26,9 @@ export default {
         },
         options: {
             type: Object,
-            default: () => {},
+            default: () => {
+                return {}
+            },
         },
     },
     data: function() {

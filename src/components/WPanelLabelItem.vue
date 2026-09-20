@@ -132,6 +132,9 @@ import convertColor from '../js/convertColor.mjs'
  * @vue-prop {Number} [labelShiftTop=0] 輸入文字垂直平移距離數字，單位為px，預設0
  * @vue-prop {Number} [space=0] 輸入標籤與項目區距離數字，單位為px，若為分行展示時則代表垂直距離(基礎距離0px)，若為非分行展示時則代表水平距離(基礎距離8px)，space為基礎距離再額外增加之距離，預設0
  * @vue-prop {Boolean} [seplines=false] 輸入標籤與項目是否為分行展示布林值，預設false
+ * @vue-prop {Boolean} [floatForItemSub=true] 輸入item-sub插槽區是否採浮動展示布林值，為true時以position:absolute浮貼於項目區下方而不佔空間，為false時另起一列正常佔空間，預設true
+ * @vue-slot {Object} item 項目區之渲染slot
+ * @vue-slot {Object} item-sub 項目區下方附屬內容之渲染slot，展示方式由floatForItemSub決定
  */
 export default {
     components: {

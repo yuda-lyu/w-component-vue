@@ -99,7 +99,7 @@ import WDialog from './WDialog.vue'
  * @vue-prop {String} [title=''] 輸入標題字串，預設''
  * @vue-prop {String} [titleColor='black'] 輸入標題顏色字串，預設'black'
  * @vue-prop {String} [content=''] 輸入內容字串，預設''
- * @vue-prop {String} [contentColor='black'] 輸入內容顏色字串，預設'black'
+ * @vue-prop {String} [contentColor='grey darken-2'] 輸入內容顏色字串，預設'grey darken-2'
  * @vue-prop {String} [contentIcon=mdiAlert] 輸入內容左側圖標字串，可為mdi,md,fa代號或mdi/js路徑，預設mdiAlert
  * @vue-prop {String} [contentIconColor='orange'] 輸入內容左側圖標顏色字串，預設'orange'
  * @vue-prop {Number} [contentIconSize=40] 輸入內容左側圖標大小數字，預設40
