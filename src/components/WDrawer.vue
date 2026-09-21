@@ -140,7 +140,7 @@ import convertColor from '../js/convertColor.mjs'
  * @vue-prop {Number} [drawerWidth=200] 輸入抽屜寬度數字，單位為px，預設200
  * @vue-prop {Number} [drawerWidthMin=null] 輸入使用拖曳抽屜寬度分隔條(dragDrawerWidth=true)時，拖曳抽屜寬度分隔條最小值數字，預設null
  * @vue-prop {Number} [drawerWidthMax=null] 輸入使用拖曳抽屜寬度分隔條(dragDrawerWidth=true)時，拖曳抽屜寬度分隔條最大值數字，預設null
- * @vue-prop {Boolean} [afloat=false] 輸入是否為浮動顯示布林值，設為true時浮在內容區上故不壓縮內容區寬度，預設false
+ * @vue-prop {Boolean} [afloat=false] 輸入是否為浮動顯示布林值，設為true時浮在內容區上故不壓縮內容區寬度，搭配autoSwitchToFloat或autoSwitchToFix時會由組件改寫，建議使用.sync綁定，預設false
  * @vue-prop {Boolean} [afloatByFix=false] 輸入浮動顯示時是否使用fixed布林值，若為true使用'fixed'反之使用'absolute'，預設false
  * @vue-prop {Number} [overlayOpacity=0.45] 輸入浮動顯示時抽屜外側陰影層之透明度數字，預設0.45
  * @vue-prop {String} [overlayColor='grey darken-2'] 輸入浮動顯示時抽屜外側陰影層背景顏色字串，預設'grey darken-2'
@@ -151,9 +151,10 @@ import convertColor from '../js/convertColor.mjs'
  * @vue-prop {String} [drawerBarBorderColor='transparent'] 輸入分隔條框線顏色字串，預設'transparent'
  * @vue-prop {Number} [drawerBarBorderSize=3] 輸入分隔條框線寬度數字，單位為px，預設3，通常配合barBorderColor='transparent'使可拖曳區加大又不遮蔽可視區
  * @vue-prop {Boolean} [autoSwitchToHide=false] 輸入是否自動切換至隱藏布林值，當抽屜顯示時且組件寬度過小時則隱藏，預設false
- * @vue-prop {Boolean} [autoSwitchToFloat=false] 輸入是否自動切換至浮動布林值，當抽屜顯示時且組件寬度過小時則浮動，預設false
  * @vue-prop {Boolean} [autoSwitchToShow=false] 輸入是否自動切換至顯示布林值，當抽屜隱藏時且組件寬度過大時則顯示，預設false
- * @vue-prop {Number} [switchWidth=340] 輸入當自動顯隱時判斷組件寬度過小之門檻寬度數字，單位為px，預設340
+ * @vue-prop {Boolean} [autoSwitchToFloat=false] 輸入是否自動切換至浮動布林值，當抽屜顯示時且組件寬度過小時則浮動，預設false
+ * @vue-prop {Boolean} [autoSwitchToFix=false] 輸入是否自動切換至佔版布林值，當抽屜為浮動時且組件寬度過大時則佔版，為autoSwitchToFloat之回程故須搭配其使用，僅回復由autoSwitchToFloat造成之浮動而不覆寫呼叫端以afloat明確指定之浮動，與Float不同之處為不論抽屜顯示與否皆會判斷，切換時發出update:afloat為false故建議afloat使用.sync綁定，另此處之Fix代表佔版(非浮動)，與afloatByFix之fixed定位無關，預設false
+ * @vue-prop {Number} [switchWidth=340] 輸入當自動切換顯示、隱藏、浮動、佔版時判斷組件寬度過小之門檻寬度數字，變窄至小於此值時隱藏或浮動，變寬至大於等於此值時顯示或佔版，當afloatByFix為true時比較的是視窗可視寬度，單位為px，預設340
  */
 export default {
     directives: {
@@ -225,11 +226,15 @@ export default {
             type: Boolean,
             default: false,
         },
+        autoSwitchToShow: {
+            type: Boolean,
+            default: false,
+        },
         autoSwitchToFloat: {
             type: Boolean,
             default: false,
         },
-        autoSwitchToShow: {
+        autoSwitchToFix: {
             type: Boolean,
             default: false,
         },
@@ -354,6 +359,14 @@ export default {
 
         changeAfloat: function() {
             let vo = this
+
+            //___afloatFromAuto___, 記錄當前浮動是否由autoSwitchToFloat所造成, 供autoSwitchToFix判斷可否自動恢復佔版
+            //刻意不宣告於data使其為非響應式, 否則本computed讀取後會成為依賴, 於autoSwitchToFloat寫入時被標髒而重算, 使afloatTrans被prop值覆寫
+            //afloat由外部改變(非自動浮動後經.sync之回寫)時視為呼叫端明確指定, 清除標記後autoSwitchToFix便不覆寫該指定
+            if (!(vo.___afloatFromAuto___ === true && vo.afloat === true)) {
+                vo.___afloatFromAuto___ = false
+            }
+
             vo.afloatTrans = vo.afloat
             return ''
         },
@@ -550,11 +563,28 @@ export default {
             if (vo.autoSwitchToFloat) {
                 if (vo.valueTrans && !vo.afloatTrans && mw === 'smaller' && vo.panelWidth < wl) { //已開啟抽屜且為佔版模式且為變窄時才浮動
 
-                    //save afloatTrans
+                    //save afloatTrans, 並標記此浮動為自動切換所造成, 供autoSwitchToFix回復
+                    vo.___afloatFromAuto___ = true
                     vo.afloatTrans = true
 
                     //emit
                     vo.$emit('update:afloat', true)
+
+                }
+            }
+
+            //autoSwitchToFix
+            if (vo.autoSwitchToFix) {
+                //不檢核valueTrans, 因toggleValue不寫入valueTrans(唯一寫入處為changeValue), autoSwitchToShow於同輪發出input後valueTrans仍為舊值, 檢核會使抽屜自動顯示時無法同時恢復佔版
+                //僅回復由autoSwitchToFloat造成之浮動, 呼叫端以afloat明確指定之浮動不覆寫
+                if (vo.___afloatFromAuto___ === true && vo.afloatTrans && mw === 'larger' && vo.panelWidth >= wl) { //已為自動浮動且為變寬時才佔版
+
+                    //save afloatTrans
+                    vo.___afloatFromAuto___ = false
+                    vo.afloatTrans = false
+
+                    //emit
+                    vo.$emit('update:afloat', false)
 
                 }
             }
