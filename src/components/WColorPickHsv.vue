@@ -1,11 +1,20 @@
 <template>
-    <div
-        :style="`display:inline-block;`"
+    <!-- 屬性順序為正確性條件, 不可重排:
+         一、:changeParams 必須在 :changeColor 之前, 前者寫座標、後者讀座標
+         二、兩個側效computed必須在資料prop之前, 否則 :locLeft 會取到上一輪之座標, 並使單擊之input由2次變3次
+         Vue2於父層render期間以同一個物件字面值依原始碼順序取值 -->
+    <!-- 本元件之根節點必須直接是WPickSurface, 不得再包div, 否則版面高度會多出inline-block之descender -->
+    <WPickSurface
         :changeParams="changeParams"
         :changeColor="changeColor"
+        :width="width"
+        :height="height"
+        :cursorSize="cursorSize"
+        :axis="'xy'"
+        :locLeft="curLocLeft"
+        :locTop="curLocTop"
+        @pick="pickCur"
     >
-
-        <div :style="`position:relative; width:${width}px; height:${height}px;`">
 
             <div :style="`
                 position:absolute; left:0px; top:0px;
@@ -19,52 +28,13 @@
                 background:linear-gradient(to top, ${colorBottom}, transparent);
             `"></div>
 
-            <div :style="`
-                position:absolute; left:${curLocLeft-Math.floor(cursorSize/2)-1}px; top:${curLocTop-Math.floor(cursorSize/2)-1}px;
-                width:${cursorSize+2}px; height:${cursorSize+2}px;
-                box-sizing:border-box;
-                background:transparent;
-                border-radius:50%;
-                border:1px solid #666;
-                cursor:pointer;
-                user-select:none;
-                _pointer-events:none;
-                `"
-                @mousedown="mousedownCur"
-            ></div>
-
-            <div :style="`
-                position:absolute; left:${curLocLeft-Math.floor(cursorSize/2)}px; top:${curLocTop-Math.floor(cursorSize/2)}px;
-                width:${cursorSize}px; height:${cursorSize}px;
-                box-sizing:border-box;
-                background:transparent;
-                border-radius:50%;
-                border:1px solid #fff;
-                cursor:pointer;
-                user-select:none;
-                _pointer-events:none;
-                `"
-                @mousedown="mousedownCur"
-            ></div>
-
-            <div :style="`
-                position:absolute; left:0px; top:0px;
-                width:${width}px; height:${height}px;
-                cursor:pointer;
-                user-select:none;
-                _pointer-events:none;
-                `"
-                @mousedown="mousedownCur"
-            ></div>
-
-        </div>
-
-    </div>
+    </WPickSurface>
 </template>
 
 <script>
 import oc from 'wsemi/src/color.mjs'
 import convertColor from '../js/convertColor.mjs'
+import WPickSurface from './WPickSurface.vue'
 
 
 /**
@@ -78,6 +48,7 @@ import convertColor from '../js/convertColor.mjs'
  */
 export default {
     components: {
+        WPickSurface,
     },
     props: {
         value: {
@@ -118,43 +89,10 @@ export default {
             colorLeftTopTrans: '#fff',
             colorBottomTrans: '#fff',
 
-            curMousedown: false,
             curLocLeft: 0,
             curLocTop: 0,
 
         }
-    },
-    mounted: function() {
-        //console.log('mounted')
-
-        let vo = this
-
-        //windowMousemove
-        vo.windowMousemove = (e) => {
-            // console.log('windowMousemove', e)
-            if (vo.curMousedown) {
-                vo.updateCurLocByEvent(e)
-            }
-        }
-        window.addEventListener('mousemove', vo.windowMousemove, false)
-
-        //windowMouseup
-        vo.windowMouseup = (e) => {
-            // console.log('windowMouseup')
-            vo.curMousedown = false
-        }
-        window.addEventListener('mouseup', vo.windowMouseup, false)
-
-    },
-    beforeDestroy: function() {
-        //console.log('beforeDestroy')
-
-        let vo = this
-
-        //removeEventListener
-        window.removeEventListener('mousemove', vo.windowMousemove, false)
-        window.removeEventListener('mouseup', vo.windowMouseup, false)
-
     },
     computed: {
 
@@ -201,18 +139,15 @@ export default {
     },
     methods: {
 
-        updateCurLocByEvent: function(e) {
+        //pickCur, 承接WPickSurface之pick事件, 等同原updateCurLocByEvent之後半段
+        //  座標之真值必須留在本元件: 其一同時被本路徑與updateCurLocByValue(值反算, 帶色相守門)兩個寫入者更新;
+        //  其二changeColor這個會emit的computed對座標有隱式依賴, 座標若移出, 該依賴被切斷,
+        //  WColorSelectPanelHsva之lock將失去唯一解鎖來源而永久卡死
+        pickCur: function(msg) {
             let vo = this
-            let rt = vo.$el.getBoundingClientRect()
-            // console.log('rt', rt)
-            let curLocLeft = e.clientX - rt.left
-            let curLocTop = e.clientY - rt.top
-            curLocLeft = Math.min(Math.max(curLocLeft, 0), (vo.width - 1))
-            curLocTop = Math.min(Math.max(curLocTop, 0), (vo.height - 1))
-            vo.curLocLeft = curLocLeft
-            vo.curLocTop = curLocTop
-            // console.log('updateCurLocByEvent curLocLeft', curLocLeft)
-            // console.log('updateCurLocByEvent curLocTop', curLocTop)
+            vo.curLocLeft = msg.left
+            vo.curLocTop = msg.top
+            // console.log('pickCur curLoc', msg.left, msg.top)
             vo.updateColor()
         },
 
@@ -265,12 +200,6 @@ export default {
             c = c.toUpperCase()
             // console.log('updateColor', c)
             vo.$emit('input', c)
-        },
-
-        mousedownCur: function(e) {
-            let vo = this
-            vo.curMousedown = true
-            vo.updateCurLocByEvent(e)
         },
 
     },

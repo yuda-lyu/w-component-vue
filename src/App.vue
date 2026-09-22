@@ -119,6 +119,8 @@
 
                 <AppZoneWSlider v-if="cmpPick==='WSlider'"></AppZoneWSlider>
 
+                <AppZoneWPickSurface v-if="cmpPick==='WPickSurface'"></AppZoneWPickSurface>
+
                 <AppZoneWProgressBar v-if="cmpPick==='WProgressBar'"></AppZoneWProgressBar>
 
                 <AppZoneWProgressCircle v-if="cmpPick==='WProgressCircle'"></AppZoneWProgressCircle>
@@ -288,6 +290,7 @@ import AppZoneWDrawer from './AppZoneWDrawer.vue'
 import AppZoneWButtonChip from './AppZoneWButtonChip.vue'
 import AppZoneWButtonCircle from './AppZoneWButtonCircle.vue'
 import AppZoneWSlider from './AppZoneWSlider.vue'
+import AppZoneWPickSurface from './AppZoneWPickSurface.vue'
 import AppZoneWProgressBar from './AppZoneWProgressBar.vue'
 import AppZoneWProgressCircle from './AppZoneWProgressCircle.vue'
 import AppZoneWSwitch from './AppZoneWSwitch.vue'
@@ -376,6 +379,7 @@ export default {
         AppZoneWButtonChip,
         AppZoneWButtonCircle,
         AppZoneWSlider,
+        AppZoneWPickSurface,
         AppZoneWProgressBar,
         AppZoneWProgressCircle,
         AppZoneWSwitch,
@@ -448,6 +452,7 @@ export default {
                     { name: 'WImageLazy' },
                     { name: 'WDropfiles' },
                     { name: 'WSlider' },
+                    { name: 'WPickSurface' },
                     { name: 'WProgressBar' },
                     { name: 'WProgressCircle' },
                 ]

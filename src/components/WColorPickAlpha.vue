@@ -1,11 +1,17 @@
 <template>
-    <div
-        :style="`display:inline-block;`"
+    <!-- 側效computed之綁定(:changeXxx)必須排在資料prop之前:
+         Vue2於父層render期間以同一個物件字面值依原始碼順序取值, :locLeft若排在:changeValue之前會取到上一輪之座標 -->
+    <!-- 本元件之根節點必須直接是WPickSurface, 不得再包div, 否則版面高度會多出inline-block之descender -->
+    <WPickSurface
         :changeValue="changeValue"
         :changeColor="changeColor"
+        :width="width"
+        :height="height"
+        :cursorSize="cursorSize"
+        :axis="'x'"
+        :locLeft="curLocLeft"
+        @pick="pickCur"
     >
-
-        <div :style="`position:relative; width:${width}px; height:${height}px;`">
 
             <div :style="`
                 position:absolute; left:0px; top:0px;
@@ -28,50 +34,13 @@
                 background:linear-gradient(to left, ${colorTrans}, transparent);
             `"></div>
 
-            <div :style="`
-                position:absolute; left:${curLocLeft-Math.floor(cursorSize/2)-1}px; top:-1px;
-                width:${cursorSize+2}px; height:${height+2}px;
-                box-sizing:border-box;
-                background:transparent;
-                border:1px solid #666;
-                cursor:pointer;
-                user-select:none;
-                _pointer-events:none;
-                `"
-                @mousedown="mousedownCur"
-            ></div>
-
-            <div :style="`
-                position:absolute; left:${curLocLeft-Math.floor(cursorSize/2)}px; top:0px;
-                width:${cursorSize}px; height:${height}px;
-                box-sizing:border-box;
-                background:transparent;
-                border:1px solid #fff;
-                cursor:pointer;
-                user-select:none;
-                _pointer-events:none;
-                `"
-                @mousedown="mousedownCur"
-            ></div>
-
-            <div :style="`
-                position:absolute; left:0px; top:0px;
-                width:${width}px; height:${height}px;
-                cursor:pointer;
-                user-select:none;
-                _pointer-events:none;
-                `"
-                @mousedown="mousedownCur"
-            ></div>
-
-        </div>
-
-    </div>
+    </WPickSurface>
 </template>
 
 <script>
 import getImgAlpha from '../js/getImgAlpha.mjs'
 import convertColor from '../js/convertColor.mjs'
+import WPickSurface from './WPickSurface.vue'
 
 
 /**
@@ -83,6 +52,7 @@ import convertColor from '../js/convertColor.mjs'
  */
 export default {
     components: {
+        WPickSurface,
     },
     props: {
         value: {
@@ -113,43 +83,10 @@ export default {
             valueTrans: 1,
             colorTrans: '#000',
 
-            curMousedown: false,
             curLocLeft: 0,
             // curLocTop: 0,
 
         }
-    },
-    mounted: function() {
-        //console.log('mounted')
-
-        let vo = this
-
-        //windowMousemove
-        vo.windowMousemove = (e) => {
-            // console.log('windowMousemove', e)
-            if (vo.curMousedown) {
-                vo.updateCurLocByEvent(e)
-            }
-        }
-        window.addEventListener('mousemove', vo.windowMousemove, false)
-
-        //windowMouseup
-        vo.windowMouseup = (e) => {
-            // console.log('windowMouseup')
-            vo.curMousedown = false
-        }
-        window.addEventListener('mouseup', vo.windowMouseup, false)
-
-    },
-    beforeDestroy: function() {
-        //console.log('beforeDestroy')
-
-        let vo = this
-
-        //removeEventListener
-        window.removeEventListener('mousemove', vo.windowMousemove, false)
-        window.removeEventListener('mouseup', vo.windowMouseup, false)
-
     },
     computed: {
 
@@ -169,18 +106,12 @@ export default {
     },
     methods: {
 
-        updateCurLocByEvent: function(e) {
+        //pickCur, 承接WPickSurface之pick事件, 等同原updateCurLocByEvent之後半段
+        //  座標之真值留在本元件: 其同時被本路徑與updateCurLocByValue(值反算)兩個寫入者更新
+        pickCur: function(msg) {
             let vo = this
-            let rt = vo.$el.getBoundingClientRect()
-            // console.log('rt', rt)
-            let curLocLeft = e.clientX - rt.left
-            // let curLocTop = e.clientY - rt.top
-            curLocLeft = Math.min(Math.max(curLocLeft, 0), (vo.width - 1))
-            // curLocTop = Math.min(Math.max(curLocTop, 0), vo.height)
-            vo.curLocLeft = curLocLeft
-            // vo.curLocTop = curLocTop
-            // console.log('updateCurLocByEvent curLocLeft', curLocLeft)
-            // console.log('updateCurLocByEvent curLocTop', curLocTop)
+            vo.curLocLeft = msg.left
+            // console.log('pickCur curLocLeft', msg.left)
             vo.updateAlpha()
         },
 
@@ -206,12 +137,6 @@ export default {
             let a = rx
             // console.log('updateAlpha', a)
             vo.$emit('input', a)
-        },
-
-        mousedownCur: function(e) {
-            let vo = this
-            vo.curMousedown = true
-            vo.updateCurLocByEvent(e)
         },
 
     },

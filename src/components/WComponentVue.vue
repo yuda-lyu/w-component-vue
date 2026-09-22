@@ -67,6 +67,7 @@ import WPanelScale from './WPanelScale.vue'
 import WPanelScrolly from './WPanelScrolly.vue'
 import WPanelScrollyCore from './WPanelScrollyCore.vue'
 import WPanelStripe from './WPanelStripe.vue'
+import WPickSurface from './WPickSurface.vue'
 import WPopup from './WPopup.vue'
 import WPopupEditText from './WPopupEditText.vue'
 import WProgressBar from './WProgressBar.vue'
@@ -173,6 +174,7 @@ let WComponentVue = {
         Vue.component('w-panel-scrolly', WPanelScrolly)
         Vue.component('w-panel-scrolly-core', WPanelScrollyCore)
         Vue.component('w-panel-stripe', WPanelStripe)
+        Vue.component('w-pick-surface', WPickSurface)
         Vue.component('w-popup', WPopup)
         Vue.component('w-popup-edit-text', WPopupEditText)
         Vue.component('w-progress-bar', WProgressBar)

@@ -4,7 +4,7 @@
   "main": "dist/w-component-vue.umd.js",
   "dependencies": {
     "@mdi/js": "^7.4.47",
-    "wsemi": "^1.9.1"
+    "wsemi": "^1.9.2"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^5.0.8",

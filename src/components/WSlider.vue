@@ -6,8 +6,14 @@
         @domresize="resizePanel"
     >
 
+        <!-- 按下此列即定值: 監聽掛於本列容器(高度為sliderSize), 不可掛於根層, 因提示窗divContent為根層子節點, 掛根會導致點提示窗也改值 -->
+        <!-- touch-action:none為觸控可拖曳之必要條件, 否則瀏覽器於手指移動數px後接手捲動並以pointercancel中斷事件流, 比照WColorPickHue等三支之處置 -->
+        <!-- 代價: 本列(高度sliderSize)上起手之垂直捲動手勢會失效 -->
         <div
-            :style="`position:relative; width:100%; height:${sliderSize}px;`"
+            ref="divRow"
+            :style="`position:relative; width:100%; height:${sliderSize}px; touch-action:none; ${editable?'cursor:pointer;':''}`"
+            @pointerdown="pointerdownRow"
+            @contextmenu="contextmenuRow"
         >
 
             <div :style="`position:absolute; top:${sliderSize/2-progHeight/2}px; left:${sliderSize/2}px; width:${progWidth}px;`">
@@ -15,16 +21,25 @@
                 <div
                     ref="divPanel"
                     :style="`position:relative; width:${progWidth}px;`"
-                    _click="clickProg"
                 >
 
-                    <div :style="`${useProgBorderRadius} overflow:hidden; width:${progWidth}px; height:${progHeight}px;`">
-                        <div :style="`background:${useProgBackgroundColor}; height:${progHeight}px;`">
-                            <div :style="`background:${useProgColor}; width:${(rt)*progWidth}px; height:${progHeight}px;`"></div>
+                    <div
+                        :style="`${useProgBorderRadius} overflow:hidden; width:${progWidth}px; height:${progHeight}px;`"
+                    >
+                        <div
+                            ref="divBarTrack"
+                            :style="`background:${useProgBackgroundColor}; height:${progHeight}px;`"
+
+                        >
+                            <div
+                                ref="divBarProgress"
+                                :style="`background:${useProgColor}; width:${(rt)*progWidth}px; height:${progHeight}px;`"
+                            ></div>
                         </div>
                     </div>
 
                     <div
+                        ref="divTriggerOuter"
                         :style="`position:absolute; left:${(rt)*progWidth-widthCir/2}px; top:${progHeight/2-heightCir/2}px; z-index:1; ${editable?'cursor:pointer;':''}`"
                     >
 
@@ -227,6 +242,10 @@ export default {
             hoverTrans: false,
             dragTrans: false,
 
+            curTrackDown: false, //軌道通道是否按下中, 與das之內部鎖各自獨立, 不可互讀
+            curPointerId: null, //按下當時之pointerId, 多點觸控時只服務這一個指標
+            curPointerType: '', //按下當時之pointerType, 用於區分滑鼠與觸控之處置
+
             popperInstance: null,
             popperShow: false,
 
@@ -240,6 +259,13 @@ export default {
 
         let vo = this
 
+        //本元件有兩條互斥的指標通道, 修改前請先讀懂分工:
+        //  拖曳鈕(divBar) = das之domDragBarAndScroll, mouse與touch雙軌, 既有且已驗證, 本次完全不動
+        //  整列(divRow)   = 以下新增之pointer單軌, 涵蓋滑鼠/觸控/觸控筆, 負責「按下即定值並接續拖曳」
+        //兩者以pointerdownRow內之divBar.contains(e.target)互斥, 不可改用狀態互斥:
+        //  pointerdown早於mousedown(已實測), 按鈕當下das尚未上鎖、dragTrans仍為false, 狀態守門必然失效
+        //另本通道不得讀das之狀態當守門: 該鎖為das之內部狀態且不對外公開, 跨通道耦合會使任一端之殘留狀態連鎖癱瘓另一端
+
         //das
         let das = domDragBarAndScroll(vo.$refs.divPanel, vo.$refs.divBar, { useTouchDragForPanel: false })
         das.on('dragBar', vo.dragBar)
@@ -248,6 +274,47 @@ export default {
 
         //save
         vo.das = das
+
+        //windowPointermove, 軌道通道之位移, 掛於window故指標移出元件外仍持續追蹤
+        vo.windowPointermove = (e) => {
+
+            //check
+            if (!vo.curTrackDown) {
+                return
+            }
+
+            //check, 多點觸控時第二指不得搶值
+            if (vo.curPointerId !== null && e.pointerId !== undefined && e.pointerId !== vo.curPointerId) {
+                return
+            }
+
+            //check, 滑鼠拖出瀏覽器視窗外放開時收不到pointerup, 以buttons為0自我解鎖(觸控之buttons為1故不受影響)
+            if (e.pointerType === 'mouse' && e.buttons === 0) {
+                vo.freeTrack()
+                return
+            }
+
+            vo.dragBar({ clientX: e.clientX, clientY: e.clientY })
+        }
+        window.addEventListener('pointermove', vo.windowPointermove, false)
+
+        //windowPointerup, 與pointercancel共用, 只解鎖不定值(cancel之座標不可信)
+        vo.windowPointerup = (e) => {
+
+            //check
+            if (!vo.curTrackDown) {
+                return
+            }
+
+            //check, 非同一指標放開時不得終止本次拖曳
+            if (vo.curPointerId !== null && e.pointerId !== undefined && e.pointerId !== vo.curPointerId) {
+                return
+            }
+
+            vo.freeTrack()
+        }
+        window.addEventListener('pointerup', vo.windowPointerup, false)
+        window.addEventListener('pointercancel', vo.windowPointerup, false)
 
     },
     beforeDestroy: function() {
@@ -259,6 +326,14 @@ export default {
         if (vo.das) {
             vo.das.clear()
         }
+
+        //freeTrack, 宿主WColorSelectPanel與WPopup皆以v-if切換, 可能於拖曳中被銷毀
+        vo.freeTrack()
+
+        //removeEventListener, 事件名須與註冊端一致, 否則監聽永遠移不掉
+        window.removeEventListener('pointermove', vo.windowPointermove, false)
+        window.removeEventListener('pointerup', vo.windowPointerup, false)
+        window.removeEventListener('pointercancel', vo.windowPointerup, false)
 
     },
     computed: {
@@ -554,6 +629,79 @@ export default {
         freeBar: function() {
             let vo = this
             vo.dragTrans = false
+        },
+
+        pointerdownRow: function(e) {
+            let vo = this
+
+            //check, 唯讀時不得定值
+            if (!vo.editable) {
+                return
+            }
+
+            //check, 僅主鍵生效, 中鍵與右鍵不得定值
+            if (e.button !== 0) {
+                return
+            }
+
+            //check, 拖曳中不接受第二個指標接手
+            if (vo.curTrackDown) {
+                return
+            }
+
+            //check, 按於拖曳鈕上時交由das之鈕通道處理, 本通道不得定值, 否則「按住鈕不動即放開」會跳值
+            //須用contains不可用===, 因按於鈕中心時target為divBar內之透明圓子節點, 按於20x20方框四角時target才為divBar自身
+            let divBar = vo.$refs.divBar
+            if (divBar && divBar.contains(e.target)) {
+                return
+            }
+
+            //check, 可視圓以rt定位而感應方塊divBar以r定位, 兩者於rt與r不一致時會錯開而露出, 故一併排除
+            let divTriggerOuter = vo.$refs.divTriggerOuter
+            if (divTriggerOuter && divTriggerOuter.contains(e.target)) {
+                return
+            }
+
+            //save, 本通道自有狀態
+            vo.curTrackDown = true
+            vo.curPointerId = (e.pointerId !== undefined) ? e.pointerId : null
+            vo.curPointerType = (e.pointerType !== undefined) ? e.pointerType : 'mouse'
+
+            //dragTrans, 與鈕通道之pressBar同語義, 使提示窗於軌道拖曳時亦顯示, 並讓放開時effecting之else分支把r收斂回rt
+            vo.dragTrans = true
+
+            //按下即定值, 與原生input[type=range]及各家滑桿一致
+            vo.dragBar({ clientX: e.clientX, clientY: e.clientY })
+
+            //此處不得呼叫preventDefault與stopPropagation:
+            //  preventDefault會連帶抑制相容mousedown, 使das之鈕通道起手失效
+            //  stopPropagation會使buildPopper掛於window之mousedown收不到事件而殘留舊旗標
+            //要擋捲動一律靠touch-action
+
+        },
+
+        freeTrack: function() {
+            let vo = this
+
+            //解鎖與清pointerId須成對, 因瀏覽器會重用觸控之pointerId
+            vo.curTrackDown = false
+            vo.curPointerId = null
+            vo.curPointerType = ''
+
+            //dragTrans, 與鈕通道之freeBar同語義
+            vo.dragTrans = false
+
+        },
+
+        contextmenuRow: function(e) {
+            let vo = this
+
+            //check, 僅於觸控或觸控筆拖曳中抑制長按選單, 因長按叫出選單會發出pointercancel而中斷拖曳;
+            //滑鼠右鍵選單維持既有行為; contextmenu為獨立事件, 抑制它不會連帶抑制mousedown/mouseup, 故不影響WPopup之點擊外部關閉
+            if (vo.curTrackDown && vo.curPointerType !== '' && vo.curPointerType !== 'mouse') {
+                e.preventDefault()
+            }
+
         },
 
         showPopper: function(from) {
