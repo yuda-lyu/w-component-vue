@@ -4,7 +4,6 @@
     <!-- 手勢隔離: touch-action避免瀏覽器接手捲動, user-select與touch-callout避免選字與長按選單 -->
     <div
         :style="`display:inline-block; touch-action:none; user-select:none; -webkit-user-select:none; -webkit-touch-callout:none;`"
-        @contextmenu="contextmenuCur"
     >
 
         <!-- 座標基準為本層而非根層: 根層會吃到呼叫端傳入之style與class, 一旦有padding或border, 座標即整體偏移 -->
@@ -26,7 +25,7 @@
                 ></slot>
             </div>
 
-            <!-- 游標外框. 其上下各溢出感應區1px, 該1px帶之命中元素為本層而非感應區, 故其@pointerdown為活碼, 不可省略 -->
+            <!-- 游標外框. 其上下各溢出感應區1px, 該1px帶之命中元素為本層而非感應區; 本層為divSurface之子孫, pointerdown冒泡至掛於divSurface之手勢通道(DOM包含而非幾何), 故不需自行綁定 -->
             <div :style="`
                 position:absolute; left:${curLocLeft-Math.floor(cursorSize/2)-1}px; top:${isPlanar?(curLocTop-Math.floor(cursorSize/2)-1):-1}px;
                 width:${cursorSize+2}px; height:${isPlanar?(cursorSize+2):(height+2)}px;
@@ -38,7 +37,6 @@
                 user-select:none;
                 _pointer-events:none;
                 `"
-                @pointerdown="mousedownCur"
             ></div>
 
             <div :style="`
@@ -52,7 +50,6 @@
                 user-select:none;
                 _pointer-events:none;
                 `"
-                @pointerdown="mousedownCur"
             ></div>
 
             <!-- 滿版感應區, 須為最後一個子節點 -->
@@ -63,7 +60,6 @@
                 user-select:none;
                 _pointer-events:none;
                 `"
-                @pointerdown="mousedownCur"
             ></div>
 
         </div>
@@ -72,7 +68,7 @@
 </template>
 
 <script>
-import domPickPointer from '../js/domPickPointer.mjs'
+import domDragPointer from 'wsemi/src/domDragPointer.mjs'
 import convertColor from '../js/convertColor.mjs'
 
 
@@ -149,7 +145,7 @@ export default {
     data: function() {
         return {
 
-            pickPointer: null,
+            dragPointer: null,
 
         }
     },
@@ -158,20 +154,19 @@ export default {
 
         let vo = this
 
-        //pickPointer, 手勢通道; 須於mounted建立, 因domPickPointer於呼叫當下即掛window監聽
-        let pickPointer = domPickPointer({
-            onPick: (e) => {
-                vo.pickByEvent(e)
-            },
-            onFree: () => {
-                //事件名須為kebab-case: 公開範例頁為in-DOM template, 瀏覽器會把屬性名全部小寫,
-                //  camelCase之事件名於該處會靜默失效(本庫已有一例: AppZoneWTextSuggest之@update:showPanel於產出頁變成@update:show-panel)
-                vo.$emit('pick-end')
-            },
+        //dragPointer, 手勢通道掛於divSurface: 游標外框、游標、滿版感應區與slot背景皆為其子孫, pointerdown冒泡至此(含游標外框溢出感應區之1px帶, DOM包含而非幾何);
+        //  canPress於每次按下讀取即時之editable, 唯讀時不上鎖, 故不會發出無pick之pick-end; 須於mounted建立, 因domDragPointer於呼叫當下即掛window監聽
+        let dragPointer = domDragPointer(vo.$refs.divSurface, { canPress: () => vo.editable })
+        dragPointer.on('press', vo.pickByEvent)
+        dragPointer.on('drag', vo.pickByEvent)
+        dragPointer.on('free', () => {
+            //事件名須為kebab-case: 公開範例頁為in-DOM template, 瀏覽器會把屬性名全部小寫,
+            //  camelCase之事件名於該處會靜默失效(本庫已有一例: AppZoneWTextSuggest之@update:showPanel於產出頁變成@update:show-panel)
+            vo.$emit('pick-end')
         })
 
         //save
-        vo.pickPointer = pickPointer
+        vo.dragPointer = dragPointer
 
     },
     beforeDestroy: function() {
@@ -179,9 +174,9 @@ export default {
 
         let vo = this
 
-        //clear, 宿主可能以v-if於拖曳中被銷毀; clear內含解鎖與移除window監聽, 且不觸發pickEnd
-        if (vo.pickPointer) {
-            vo.pickPointer.clear()
+        //clear, 宿主可能以v-if於拖曳中被銷毀; clear內含解鎖與移除window監聽, 且不補發free(故不發pick-end)
+        if (vo.dragPointer) {
+            vo.dragPointer.clear()
         }
 
     },
@@ -215,7 +210,7 @@ export default {
     },
     methods: {
 
-        pickByEvent: function(e) {
+        pickByEvent: function(msg) {
             let vo = this
 
             //ele, 座標基準為內層定位容器, 不可用$el: 根層會吃到呼叫端fallthrough之style與class,
@@ -226,12 +221,12 @@ export default {
             }
             let rt = ele.getBoundingClientRect()
 
-            let left = e.clientX - rt.left
+            let left = msg.clientX - rt.left
             left = Math.min(Math.max(left, 0), (vo.width - 1))
 
             let top = 0
             if (vo.isPlanar) {
-                top = e.clientY - rt.top
+                top = msg.clientY - rt.top
                 top = Math.min(Math.max(top, 0), (vo.height - 1))
             }
 
@@ -245,8 +240,8 @@ export default {
                 ratioTop = top / (vo.height - 1)
             }
 
-            //pointerType
-            let pointerType = (e.pointerType !== undefined) ? e.pointerType : 'mouse'
+            //pointerType, 由手勢通道正規化為'mouse'、'touch'或'pen'
+            let pointerType = msg.pointerType
 
             //emit, 必須同步發出, 不得改為nextTick、setTimeout或debounce:
             //  呼叫端可能於本次事件內回吐值以解除其上鎖機制(如WColorSelectPanelHsva之lock), 延後會使其卡死
@@ -258,33 +253,6 @@ export default {
                 vo.$emit('update:locTop', top)
             }
 
-        },
-
-        //mousedownCur與contextmenuCur為模板綁定之入口
-        //  不可於模板直接綁 pickPointer.down, 因其於mounted才建立, 首次render時尚不存在
-        mousedownCur: function(e) {
-            let vo = this
-
-            //check, 唯讀時不得定值, 比照WSlider之pointerdownRow
-            if (!vo.editable) {
-                return
-            }
-
-            //check, 僅主鍵生效, 中鍵與右鍵不得定值, 比照WSlider之pointerdownRow; 觸控之button為0故不受影響
-            if (e.button !== 0) {
-                return
-            }
-
-            if (vo.pickPointer) {
-                vo.pickPointer.down(e)
-            }
-        },
-
-        contextmenuCur: function(e) {
-            let vo = this
-            if (vo.pickPointer) {
-                vo.pickPointer.contextmenu(e)
-            }
         },
 
     },

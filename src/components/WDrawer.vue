@@ -99,7 +99,7 @@
                             <!-- 寬度內要含border, 故須box-sizing:border-box -->
                             <div
                                 ref="divBar"
-                                :style="`position:${useAniPosition}; top:0px; ${isAtLeft?'left':'right'}:${useDrawerWidthTrans-useDrawerBarWidth/2}px; width:${useDrawerBarWidth}px; height:100%; border-left:${drawerBarBorderSize}px solid ${useDrawerBarBorderColor}; border-right:${drawerBarBorderSize}px solid ${useDrawerBarBorderColor}; box-sizing:border-box; opacity:${showAni5DragDrawerBar?1:0}; cursor:col-resize; user-select:none;`"
+                                :style="`position:${useAniPosition}; top:0px; ${isAtLeft?'left':'right'}:${useDrawerWidthTrans-useDrawerBarWidth/2}px; width:${useDrawerBarWidth}px; height:100%; border-left:${drawerBarBorderSize}px solid ${useDrawerBarBorderColor}; border-right:${drawerBarBorderSize}px solid ${useDrawerBarBorderColor}; box-sizing:border-box; opacity:${showAni5DragDrawerBar?1:0}; cursor:col-resize; user-select:none; touch-action:none;`"
                                 v-show="valueTrans && dragDrawerWidth"
                             >
                                 <div :style="`width:${useDrawerBarSize}px; height:100%; background:${useDrawerBarColor};`"></div>
