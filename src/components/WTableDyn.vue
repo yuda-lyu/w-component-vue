@@ -126,18 +126,18 @@ import WIconLoading from './WIconLoading.vue'
  * @vue-prop {String} [errorMsgFromRemoveRow='can not remove selected rows'] 輸入移除數據失敗事件訊息字串，預設'can not remove selected rows'
  * @vue-prop {String} [successMsgFromUploadData='upload data successfully'] 輸入上傳數據成功事件訊息字串，預設'upload data successfully'
  * @vue-prop {String} [errorMsgFromUploadData='can not upload data'] 輸入無法上傳數據事件訊息字串，預設'can not upload data'
- * @vue-prop {String} [errorMsgFromUploadEmptyData='no effective data'] 輸入上傳檔案中無有效數據事件訊息字串，預設'no effective data'
+ * @vue-prop {String} [errorMsgFromUploadEmptyData='no effective data'] 輸入上傳檔案中無有效數據事件訊息字串，此時不變動表格數據，預設'no effective data'
  * @vue-prop {String} [successMsgFromDownloadData='download data successfully'] 輸入下載檔案成功事件訊息字串，預設'download data successfully'
  * @vue-prop {String} [errorMsgFromDownloadData='can not download data'] 輸入無法下載檔案事件訊息字串，預設'can not download data'
  * @vue-prop {String} [errorMsgFromNoName='no data name'] 輸入未輸入數據名稱事件訊息字串，預設'no data name'
  * @vue-prop {String} [errorMsgFromNoData='no data'] 輸入未給予有效數據事件訊息字串，預設'no data'
- * @vue-prop {String} [uploadModeTitle='Choose mode of upload:'] 輸入選擇上傳模式彈窗標題字串，預設'Choose mode of upload:'
+ * @vue-prop {String} [uploadModeTitle='Choose mode of upload:'] 輸入選擇上傳模式彈窗標題字串，opt.optForUploadData.uploadMode有預先指定時不顯示此彈窗，預設'Choose mode of upload:'
  * @vue-prop {String} [uploadModeTextForReplace='Replace'] 輸入取代上傳模式文字字串，預設'Replace'
  * @vue-prop {String} [uploadModeTextForAppend='Append'] 輸入插入於最後上傳模式文字字串，預設'Append'
  * @vue-prop {String} [labelContentForUpload=null] 輸入針對上傳模式之popup彈窗teleport至body內之內容div所給予之wtlp屬性值字串，供查找使用，預設null
  * @vue-event {Array} save 指調用組件的method，無輸入，會回傳當前的name、description、rows所構成的物件
  * @vue-event {String} success 當新增數據、上傳數據、下載數據成功時觸發，回傳對應成功訊息字串
- * @vue-event {String} error 當新增數據、移除數據、上傳數據、下載數據失敗時觸發，回傳對應錯誤訊息字串
+ * @vue-event {String} error 當新增數據、移除數據、上傳數據、下載數據失敗時觸發，回傳對應錯誤訊息字串；使用者於上傳選檔視窗取消時不觸發
  * @vue-slot {Object} infor 顯示模式下資訊區之渲染slot，slot props為{ infor }，infor為{ name, description }
  * @vue-slot {Object} btns-left 選單按鈕區最左側之插入slot，slot props為{ editable }
  * @vue-slot {Object} btns-right 選單按鈕區最右側之插入slot，slot props為{ editable }
@@ -197,7 +197,7 @@ import WIconLoading from './WIconLoading.vue'
  * @vue-prop {Boolean} [opt.autoFitColumn=false] 輸入當表格尺寸變更時自動調整欄寬布林值，預設false
  * @vue-prop {String} [opt.language='en'] 輸入指定語系字串，可選'en'、'zh-tw'、'zh-cn'，預設同組件language
  * @vue-prop {Function} [opt.beforeAddRow=undefined] 輸入編輯模式新增數據前之修改新列事件，輸入newRow，輸出newRow，預設為undefined
- * @vue-prop {Object} [opt.optForUploadData={}] 輸入呼叫組件uploadData上傳檔案時用的設定物件，內部調用wsemi的getDataFromExcelFileU8Arr讀取Excel檔案，物件可給予鍵值：uploadMode代表上傳模式字串(可選'replace'、'append'，預設由彈窗選擇)，beforeUpload代表上傳前的處理數據函數，parseSheetInd代表提取Excel檔案的第幾個sheet整數(預設為0)，optForUploadData預設{}
+ * @vue-prop {Object} [opt.optForUploadData={}] 輸入呼叫組件uploadData上傳檔案時用的設定物件，內部調用wsemi的getDataFromExcelFileU8Arr讀取Excel檔案，物件可給予鍵值：uploadMode代表上傳模式字串(可選'replace'、'append'，有給予時點擊上傳按鈕不顯示模式選擇彈窗而直接開啟選檔視窗，未給予或非前述值時由彈窗選擇)，beforeUpload代表上傳前的處理數據函數(輸入讀取所得之數據陣列，回傳處理後之數據陣列或Promise，未給予時自動去除於表格各欄位之值皆為空的無效數據，處理後無數據時觸發error事件(errorMsgFromUploadEmptyData)且不變動表格數據)，parseSheetInd代表提取Excel檔案的第幾個sheet整數(預設為0)，組件不會修改此物件，optForUploadData預設{}
  * @vue-prop {Function} [opt.modifyDataWhenSave=undefined] 輸入當儲存時修改儲存數據事件，輸入rows，輸出rows，預設為undefined
  * @vue-prop {Boolean} [opt.checkNoDataWhenSave=false] 輸入當儲存時是否檢核無數據布林值，預設false
  */

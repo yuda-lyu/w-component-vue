@@ -171,6 +171,49 @@
             </div>
 
 
+            <div class="bk">
+                <demolink
+                    :kbname="'w-panel-scale'"
+                    :casename="'for text'"
+                ></demolink>
+
+                <div v-if="!useGlobalSlider">
+                    <input type="range" style="width:200px;" min="0.5" max="1.5" step="0.05" :value="WPanelScale.scale" @input="WPanelScale.scale=Number($event.target.value)" />
+                </div>
+
+                <div style="color:#f26; font-size:0.8rem;">
+                    * 內容以自身寬度排版後再縮放, 縮放時文字不會重新換行, 需換行時請於內容指定寬度
+                </div>
+
+                <div style="display:inline-block; padding:10px; border:1px dashed #999;">
+                    <w-panel-scale
+                        :scale="WPanelScale.scale"
+                    >
+
+                        <div style="font-size:0.85rem;">
+                            未指定寬度之文字以單行排版, 縮放時不會重新換行
+                        </div>
+
+                    </w-panel-scale>
+                </div>
+
+                <br>
+
+                <div style="display:inline-block; padding:10px; border:1px dashed #999;">
+                    <w-panel-scale
+                        :scale="WPanelScale.scale"
+                    >
+
+                        <div style="width:240px; font-size:0.85rem;">
+                            指定寬度240px之段落會於寬度內換行, 改變縮放比例時各行內容維持不變, 僅整體等比例縮放
+                        </div>
+
+                    </w-panel-scale>
+                </div>
+
+            </div>
+
+
         </div>
 
 

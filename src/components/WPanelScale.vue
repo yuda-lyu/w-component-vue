@@ -2,16 +2,21 @@
     <!-- 不能使用overflow:hidden會使slot內popup被切 -->
     <div
         :style="`display:inline-block; width:${width}px; height:${height}px; max-height:${height}px;`"
-        v-domresize
-        domresize="domresize"
         v-dommutation
         @dommutation="dommutation"
     >
         <div :style="`position:relative; width:${width}px; height:${height}px; max-height:${height}px;`">
             <div :style="`position:absolute; left:0; top:0; width:${width}px; height:${height}px; max-height:${height}px;`">
 
-                <div :style="`transform-origin:top left; transform:scale(${scale}); width:${width}px; height:${height}px; max-height:${height}px;`">
-                    <div ref="tar" style="display:inline-block;">
+                <!-- 縮放容器寬度用max-content: 內容以自身寬度排版後再縮放; 若給外框寬度, 會換行之內容其可用寬度會隨前次外框改變, 使排版隨縮放歷程而不同 -->
+                <div :style="`transform-origin:top left; transform:scale(${scale}); width:max-content; height:${height}px; max-height:${height}px;`">
+                    <!-- 偵測內容tar之尺寸: 根元素寬高由fitSize依tar設定, 偵測根元素時內容於無DOM變動下改變尺寸(如圖片載入)會偵測不到 -->
+                    <div
+                        ref="tar"
+                        style="display:inline-block;"
+                        v-domresize
+                        @domresize="domresize"
+                    >
                         <slot></slot>
                     </div>
                 </div>

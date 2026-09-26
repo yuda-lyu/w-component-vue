@@ -11,7 +11,12 @@
 
                 <slot></slot>
 
-                <div :style="`position:absolute; top:0px; right:${shiftX}px; transform:translateX(${translateX}%) translateY(-50%);`">
+                <!-- 偵測徽章尺寸: 徽章於絕對定位層內, 其尺寸變化(如文字變長)不會改變根元素尺寸 -->
+                <div
+                    :style="`position:absolute; top:0px; right:${shiftX}px; transform:translateX(${translateX}%) translateY(-50%);`"
+                    v-domresize
+                    @domresize="resizeBadge"
+                >
                     <span
                         ref="badge"
                         :style="`padding:0px 6px; border-radius:${borderRadius}px; border-width:${borderWidth}px; border-style:solid; border-color:${useBorderColor}; white-space:nowrap; ${useTextFontSize} color:${useTextColor}; background:${useBackgroundColor};`"
@@ -90,6 +95,20 @@ export default {
             shiftX: 0,
         }
     },
+    watch: {
+
+        badgeAlign: function() {
+            //console.log('watch badgeAlign')
+            let vo = this
+
+            //updatePadding, 對齊位置改變時徽章尺寸不變而不會觸發偵測, 待重繪更新multiplyW與shiftX後重算留白
+            vo.$nextTick(() => {
+                vo.updatePadding()
+            })
+
+        },
+
+    },
     computed: {
 
         changeBadgeAlign: function() {
@@ -151,26 +170,50 @@ export default {
 
             let vo = this
 
+            //updatePadding
+            let b = vo.updatePadding()
+            if (!b) {
+                return
+            }
+
+            //emit
+            vo.$emit('resize', msg)
+
+        },
+
+        resizeBadge: function(msg) {
+            //console.log('methods resizeBadge', msg)
+
+            let vo = this
+
+            //updatePadding, 徽章尺寸改變時僅更新留白, 對外之resize事件仍由根元素發出
+            vo.updatePadding()
+
+        },
+
+        updatePadding: function() {
+            //console.log('methods updatePadding')
+
+            let vo = this
+
             //bd
             let bd = get(vo, '$refs.badge')
             if (!bd) {
-                return
+                return false
             }
 
             //w, h
             let w = get(bd, 'offsetWidth', null)
             let h = get(bd, 'offsetHeight', null)
             if (!w || !h) {
-                return
+                return false
             }
 
             //update
             vo.paddingTop = h * 0.5
             vo.paddingRight = w * vo.multiplyW - vo.shiftX
 
-            //emit
-            vo.$emit('resize', msg)
-
+            return true
         },
 
     },

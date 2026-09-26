@@ -11,8 +11,6 @@
         v-model="show"
         :changeValue="changeValue"
         :changeType="changeType"
-        v-domresize
-        @domresize="resize"
         @placement-change="onPlacementChange"
     >
 
@@ -88,7 +86,6 @@
                     <div :style="`width:100%;`"></div>
 
                     <div
-                        ref="mtb"
                         :style="`display:flex; align-items:center;`"
                     >
 
@@ -109,8 +106,6 @@
                     <!-- 顏色選擇區 -->
                     <div
                         style="display:flex;"
-                        v-domresize
-                        @domresize="resizeSelectPanel"
                     >
                         <WColorSelectPanel
                             :type="typeTrans"
@@ -132,8 +127,6 @@
                     <!-- 顏色數值區 -->
                     <div
                         style="display:flex;"
-                        v-domresize
-                        @domresize="resizeSelectInput"
                     >
                         <WColorSelectInput
                             :size="Math.max(size-22,0)"
@@ -582,13 +575,9 @@ export default {
 
             loadingEyeDropper: false,
 
-            layoutType: 'horizontal',
             layoutShowScrollY: false,
             layoutMinHeight: 300,
             layoutMaxHeight: 300,
-
-            selectPanelHeight: 0,
-            selectInputHeight: 0,
 
             valueOri: null,
             valueNew: null,
@@ -678,27 +667,6 @@ export default {
     },
     methods: {
 
-        resize: function(msg) {
-            // console.log('methods resize', msg)
-
-            let vo = this
-
-            //check
-            if (!vo.show) {
-                return
-            }
-
-            let w = get(msg, 'snew.windowWidth', 0)
-            // let h = get(msg, 'snew.windowHeight', 0)
-            // console.log('w', w, 'h', h, b)
-
-            //layoutType
-            let b = w >= 2 * (vo.size + 20) + 3 * vo.space //20為組件設定, 不提供外部更改故可直接給
-            vo.layoutType = b ? 'horizontal' : 'vertical'
-            // console.log('layoutType', vo.layoutType)
-
-        },
-
         resizeContent: function(msg) {
             // console.log('methods resizeContent', msg)
 
@@ -786,40 +754,6 @@ export default {
 
             }
             catch (err) {}
-
-        },
-
-        resizeSelectPanel: function(msg) {
-            // console.log('methods resizeSelectPanel', msg)
-
-            let vo = this
-
-            //check
-            if (!vo.show) {
-                return
-            }
-
-            let h = get(msg, 'snew.clientHeight', 0)
-
-            //save
-            vo.selectPanelHeight = h
-
-        },
-
-        resizeSelectInput: function(msg) {
-            // console.log('methods resizeSelectInput', msg)
-
-            let vo = this
-
-            //check
-            if (!vo.show) {
-                return
-            }
-
-            let h = get(msg, 'snew.clientHeight', 0)
-
-            //save
-            vo.selectInputHeight = h
 
         },
 

@@ -35,6 +35,7 @@
                 @scroll="scrollShell"
             >
 
+                <!-- 偵測divContent尺寸: divShell高度由contentHeight設定, 內容於無DOM變動下改變高度(如圖片載入)時divShell尺寸不變而偵測不到 -->
                 <div
                     ref="divContent"
                     :style="``"
@@ -42,6 +43,8 @@
                     @dommutation="mutation"
                     v-domvisible
                     @domvisible="visible"
+                    v-domresize
+                    @domresize="resizeContent"
                 >
                     <slot></slot>
                 </div>
@@ -253,6 +256,28 @@ export default {
 
             //emit
             vo.triggerEvent('resize', { ...msg, from: 'shell' })
+
+        },
+
+        resizeContent: function(msg) {
+            // console.log('methods resizeContent', msg)
+
+            let vo = this
+
+            //divContent
+            let divContent = get(vo, '$refs.divContent')
+            if (divContent) {
+
+                //check, 若為隱藏則不偵測與更新
+                if (divContent.offsetHeight !== 0 && vo.contentHeight !== divContent.offsetHeight) {
+                    // console.log('resizeContent 需更新contentHeight', divContent.offsetHeight, '<-', vo.contentHeight)
+                    vo.contentHeight = divContent.offsetHeight
+                }
+
+            }
+
+            //updateRatio
+            vo.updateRatio()
 
         },
 
