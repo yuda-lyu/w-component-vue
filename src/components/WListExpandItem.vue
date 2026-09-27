@@ -49,8 +49,13 @@
         </div>
 
         <!-- content -->
+        <!-- rct為內容自然高度(不受外層ct之高度限制), 偵測其尺寸改變(內容改變、寬度改變致換行、由隱藏恢復顯示)以重設展開高度 -->
         <div :class="`ct ${active?'ct-show':'ct-hide'}`" :style="`${heightContent}`">
-            <div ref="rct">
+            <div
+                ref="rct"
+                v-domresize="{event:'resize'}"
+                @domresize="resizeContent"
+            >
 
                 <slot
                     name="content"
@@ -76,7 +81,9 @@ import get from 'lodash-es/get.js'
 import isNumber from 'lodash-es/isNumber.js'
 import replace from 'wsemi/src/replace.mjs'
 import waitFun from 'wsemi/src/waitFun.mjs'
+import domIsRendered from 'wsemi/src/domIsRendered.mjs'
 import domRipple from '../js/domRipple.mjs'
+import domResize from '../js/domResize.mjs'
 import convertColor from '../js/convertColor.mjs'
 import parseSpace from '../js/parseSpace.mjs'
 import WIcon from './WIcon.vue'
@@ -108,6 +115,7 @@ import WIcon from './WIcon.vue'
 export default {
     directives: {
         domripple: domRipple(),
+        domresize: domResize(),
     },
     components: {
         WIcon,
@@ -393,17 +401,8 @@ export default {
 
                     }
 
-                    //h
-                    let h = get(vo, '$refs.rct.clientHeight')
-                    // console.log(h, vo.text)
-
-                    //update
-                    if (isNumber(h)) {
-
-                        //heightContent
-                        vo.heightContent = `height:${h}px;`
-
-                    }
+                    //setHeightContent
+                    vo.setHeightContent()
 
                 }
 
@@ -414,6 +413,43 @@ export default {
                 .catch((err) => {
                     console.log(err)
                 })
+
+        },
+
+        setHeightContent: function() {
+            let vo = this
+
+            //rct
+            let rct = get(vo, '$refs.rct')
+
+            //check rendered, 未被繪製時clientHeight為0, 寫入即塌為0且顯示後不會自行修正, 故不量測, 待顯示時由resizeContent重設
+            if (!domIsRendered(rct)) {
+                return
+            }
+
+            //h
+            let h = rct.clientHeight
+            // console.log(h, vo.text)
+
+            //update
+            if (isNumber(h)) {
+
+                //heightContent
+                vo.heightContent = `height:${h}px;`
+
+            }
+
+        },
+
+        resizeContent: function(msg) {
+            // console.log('methods resizeContent', msg)
+
+            let vo = this
+
+            //展開中內容尺寸改變時重設展開高度
+            if (vo.active) {
+                vo.setHeightContent()
+            }
 
         },
 

@@ -1,5 +1,10 @@
 <template>
-    <div :changeValue="changeValue">
+    <!-- 自動高度時偵測寬度改變與由隱藏恢復顯示(寬度由0變為非0)以重算高度; 指定高度時不需偵測 -->
+    <div
+        :changeValue="changeValue"
+        v-domresize="useHeight===''?{event:'resize'}:false"
+        @domresize="resize"
+    >
         <!-- 須使用display:block與rows=1避免多行時有殘餘行距 -->
         <!-- 須使用overflow:hidden避免初始化時出現垂直捲軸 -->
         <!-- 寬高內要含padding與border, 故須box-sizing:border-box -->
@@ -41,6 +46,8 @@ import isestr from 'wsemi/src/isestr.mjs'
 // import verifyValue from 'wsemi/src/verifyValue.mjs'
 import replace from 'wsemi/src/replace.mjs'
 import waitFun from 'wsemi/src/waitFun.mjs'
+import domIsRendered from 'wsemi/src/domIsRendered.mjs'
+import domResize from '../js/domResize.mjs'
 import convertColor from '../js/convertColor.mjs'
 
 
@@ -55,6 +62,9 @@ import convertColor from '../js/convertColor.mjs'
  * @vue-prop {Boolean} [focused=false] 輸入是否為取得焦點狀態，預設false
  */
 export default {
+    directives: {
+        domresize: domResize(),
+    },
     props: {
         value: {
             type: [String, Number],
@@ -184,6 +194,11 @@ export default {
                         //ele
                         let ele = vo.$refs.ta //ev.srcElement
 
+                        //check rendered, 未被繪製時scrollHeight為0, 寫入即塌為0且顯示後不會自行修正, 故不量測, 待顯示時由resize重算
+                        if (!domIsRendered(ele)) {
+                            return
+                        }
+
                         //update height
                         ele.style.height = 'auto' //先使用auto讓scrollHeight更新為內容高度
                         ele.style.height = (ele.scrollHeight) + 'px' //給予指定高度完成自動更新
@@ -196,6 +211,18 @@ export default {
                 .catch((err) => {
                     console.log(err)
                 })
+
+        },
+
+        resize: function (msg) {
+            // console.log('methods resize', msg)
+
+            let vo = this
+
+            //寬度改變(含由隱藏恢復顯示, 寬度由0變為非0)時換行數可能改變, 須重算高度; 只有高度改變者為本身updateHeight之結果, 不重算
+            if (msg.smode.width !== '') {
+                vo.updateHeight()
+            }
 
         },
 

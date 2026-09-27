@@ -107,12 +107,12 @@ function mkEnv() {
 }
 
 
-//mkBinding, 以Vue 2之vnode形狀建立綁定, 記錄指令轉發之domresize事件
-function mkBinding(env, ele) {
+//mkBinding, 以Vue 2之vnode形狀建立綁定(監聽器為Vue建立之invoker, 即函數), 記錄指令轉發之domresize事件
+function mkBinding(env, ele, value) {
     let d = domResize()
     let rec = []
-    let vnode = { data: { on: { domresize: { fns: (msg) => rec.push(msg) } } } }
-    d.bind(ele, {}, vnode)
+    let vnode = { data: { on: { domresize: (msg) => rec.push(msg) } } }
+    d.bind(ele, { value }, vnode)
     return { d, rec, vnode }
 }
 
@@ -190,7 +190,7 @@ describe(`domResize`, function() {
     })
 
     it(`should carry the current window size on window events`, async function() {
-        //WColorSelect以視窗事件之snew.windowWidth決定彈窗橫排或直排, 須為事件當下之視窗寬
+        //視窗事件之snew.windowWidth須為事件當下之視窗寬, 否則元素尺寸未變時一直帶著上次量測時之視窗寬, 使用端依視窗寬判斷版面會用到過期值
         let env = mkEnv()
         let el = new Ele(300, 40)
         let b = mkBinding(env, el)
@@ -220,18 +220,77 @@ describe(`domResize`, function() {
         assert.strict.deepStrictEqual([n, b.rec.length, env.listeners.length], [1, 1, 0])
     })
 
-    it(`should do nothing when the element has no domresize listener`, async function() {
-        //使用端漏寫@而成靜態屬性domresize="domresize"(WPanelScale曾如此)時, 指令收不到處理器, 不得拋錯
+    it(`should do nothing but warn when the element has no domresize listener`, async function() {
+        //使用端漏寫@而成靜態屬性domresize="domresize"(WPanelScale曾如此)時, 指令收不到處理器, 不得拋錯, 並於綁定時警告
         let env = mkEnv()
         let el = new Ele(300, 40)
         let d = domResize()
-        d.bind(el, {}, { data: { attrs: { domresize: 'domresize' } } })
+        let ws = []
+        let ow = console.warn
+        console.warn = (...args) => {
+            ws.push(args.join(' '))
+        }
+        try {
+            d.bind(el, {}, { data: { attrs: { domresize: 'domresize' } } })
+        }
+        finally {
+            console.warn = ow
+        }
         assert.doesNotThrow(() => {
             env.fireRO(el)
             env.resizeWindow()
         })
         await sleep(10)
         d.unbind(el)
+        assert.strict.deepStrictEqual(ws, ['[v-domresize] domresize="domresize"為靜態屬性, 應為@domresize'])
+    })
+
+    it(`should not forward window events when event is resize`, async function() {
+        let env = mkEnv()
+        let el = new Ele(300, 40)
+        let b = mkBinding(env, el, { event: 'resize' })
+        env.fireRO(el)
+        await sleep(10)
+        env.resizeWindow()
+        el.size(200, 40)
+        env.fireRO(el)
+        await sleep(10)
+        assert.strict.deepStrictEqual(b.rec.map((m) => [m.snew.offsetWidth, m.smode.width]), [[300, 'larger'], [200, 'smaller']])
+        b.d.unbind(el, {}, b.vnode)
+    })
+
+    it(`should create no observer while disabled, and start detecting when enabled after a re-render`, async function() {
+        let env = mkEnv()
+        let el = new Ele(300, 40)
+        let b = mkBinding(env, el, false)
+        env.resizeWindow()
+        let n0 = [env.ros.length, env.listeners.length, b.rec.length]
+        b.d.componentUpdated(el, { value: true }, b.vnode)
+        env.fireRO(el)
+        await sleep(10)
+        assert.strict.deepStrictEqual([n0, env.ros.length, b.rec.map((m) => m.snew.offsetWidth)], [[0, 0, 0], 2, [300]])
+        b.d.unbind(el, {}, b.vnode)
+        assert.strict.deepStrictEqual(env.listeners.length, 0)
+    })
+
+    it(`should compare again with getBase after refreshKey changes, but not on a plain re-render`, async function() {
+        //getBase回傳使用端目前套用之寬度; 使用端寬度因尺寸以外之原因改變(如固定寬度被取消)時, 以refreshKey要求重新比較
+        let env = mkEnv()
+        let el = new Ele(300, 40)
+        let applied = 300
+        let value = (rk) => ({ event: 'resize', getBase: () => ({ width: applied, height: null }), refreshKey: rk })
+        let b = mkBinding(env, el, value(0))
+        env.fireRO(el)
+        await sleep(10)
+        let n0 = b.rec.length
+        applied = 0
+        b.d.componentUpdated(el, { value: value(0) }, b.vnode)
+        await sleep(10)
+        let n1 = b.rec.length
+        b.d.componentUpdated(el, { value: value(1) }, b.vnode)
+        await sleep(10)
+        assert.strict.deepStrictEqual([n0, n1, b.rec.map((m) => m.snew.offsetWidth)], [0, 0, [300]])
+        b.d.unbind(el, {}, b.vnode)
     })
 
 })

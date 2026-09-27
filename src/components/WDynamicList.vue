@@ -87,6 +87,7 @@ import arrFilterByKeywords from 'wsemi/src/arrFilterByKeywords.mjs'
 import o2j from 'wsemi/src/o2j.mjs'
 import debounce from 'wsemi/src/debounce.mjs'
 import pmThrottle from 'wsemi/src/pmThrottle.mjs'
+import domIsRendered from 'wsemi/src/domIsRendered.mjs'
 import binarySearch from '../js/binarySearch.mjs'
 import globalMemory from '../js/globalMemory.mjs'
 import parseSpace from '../js/parseSpace.mjs'
@@ -107,7 +108,7 @@ let gm = globalMemory()
  * @vue-prop {String} [noResultsText='No results'] 輸入無過濾結果字串，預設'No results'
  * @vue-prop {String} [searchingText='Searching...'] 輸入搜索中字串，預設'Searching...'
  * @vue-prop {Object} [statePaddingStyle={v:12,h:12}] 輸入狀態區內寬距離設定物件，可用鍵值為v、h、left、right、top、bottom，v代表同時設定top與bottom，h代表設定left與right，若有重複設定時後面鍵值會覆蓋前面，各鍵值為寬度數字，單位為px，預設{v:12,h:12}
- * @vue-prop {Boolean} [show=true] 輸入是否為顯示模式布林值，預設true，供組件嵌入popup時, 因先初始化但尚未顯示不需渲染, 可給予show=false避免無限偵測與重算高度問題
+ * @vue-prop {Boolean} [show=true] 輸入是否為顯示模式布林值，預設true，供組件嵌入popup時, 因先初始化但尚未顯示不需渲染, 可給予show=false避免無限偵測與重算高度問題，另組件或其祖先為display:none、不在頁面中時亦自動略過量測, 顯示後重算
  */
 export default {
     components: {
@@ -179,6 +180,7 @@ export default {
             lockFromSetRows: false, //上鎖, 指定數據時禁止變更
             lockFromProcess: false, //上鎖, 使能由外部強制變更內部數據items而不會重產items
             lockFromRefreshUseItems: false, //上鎖, 顯示與調整items高度時禁止變更
+            retryRendered: false, //是否已排定因未被繪製而略過刷新後之重試
             disableLoadingText: false, //禁止顯示載入中文字, 小數據時自動使用
             searchingResults: -1, //過濾結果, -1初始無狀態, 0過濾無結果, >0有結果
 
@@ -237,6 +239,20 @@ export default {
                 vo.setRows(value)
 
             }
+        },
+
+        show: function(value) {
+            // console.log('watch show', value)
+
+            let vo = this
+
+            //refresh, show轉為true時刷新: show為false期間之setRows、過濾等皆略過量測(見isRendered), 且只改prop時不一定有尺寸或顯隱事件觸發刷新; 延至DOM更新後, 使同時進行之顯示(如彈窗開啟)已套用
+            if (value) {
+                vo.$nextTick(() => {
+                    vo.refresh('show')
+                })
+            }
+
         },
 
     },
@@ -639,16 +655,21 @@ export default {
             //n
             let n = size(items)
 
+            //check rendered, 須於量測寫入列高之前: 未被繪製時量得之列高皆為0, 寫入即持久化; refreshCore開頭已檢查, 此處另擋其等待量測期間(delay)才轉為未被繪製者
+            //  略過時不改列高與旗標(changeDisplay、changeFilter保留), 待被繪製後之刷新重算
+            if (!vo.isRendered()) {
+                vo.retryWhenRendered()
+                return {
+                    change: false,
+                    itemsHeight: null,
+                }
+            }
+
             //changeHeight, syncItemsHeight
             vo.changeHeight = vo.syncItemsHeight(items, (index, h) => {
                 // console.log('修改高度', 'index', index, items[index].height, '->', h)
                 items[index].height = h
             })
-
-            //check visible, 若組件未顯示(例如display:none)則不視為高度有變更狀態, 避免無限更新
-            if (!vo.show) {
-                vo.changeHeight = false
-            }
 
             //check
             let itemsHeightTemp = null
@@ -713,8 +734,9 @@ export default {
                 return
             }
 
-            //check visible, 若組件未顯示(例如display:none)則不更新
-            if (!vo.show) {
+            //check rendered, 組件未被繪製時(prop show為false、自身或祖先display:none、不在頁面中)不過濾、不重算渲染範圍、不量測, 待被繪製後由WPanelScrollyCore之resize或visible、show轉為true或重試刷新
+            if (!vo.isRendered()) {
+                vo.retryWhenRendered()
                 return
             }
 
@@ -856,6 +878,46 @@ export default {
             //refreshCore
             vo.pmtRefresh(vo.refreshCore, from)
                 .catch(() => { })
+
+        },
+
+        isRendered: function() {
+            //console.log('methods isRendered')
+
+            let vo = this
+
+            //組件當下是否被繪製: prop show為true, 且根元素在頁面中、自身與祖先皆非display:none; 未被繪製時量得之列高皆為0, 故不得量測
+            return vo.show && domIsRendered(vo.$el)
+        },
+
+        retryWhenRendered: function() {
+            //console.log('methods retryWhenRendered')
+
+            let vo = this
+
+            //check, 掛載前(created期間之setRows)不需重試, 由mounted刷新
+            if (!vo._isMounted) {
+                return
+            }
+
+            //check, 已排定者不重複
+            if (vo.retryRendered) {
+                return
+            }
+            vo.retryRendered = true
+
+            //下一幀再檢查一次, 已被繪製就刷新: 隱藏只存在於同一幀內(例如隱藏後於同一批更新內即恢復顯示)時, 尺寸與顯隱偵測皆無事件, 不重試則停在略過前之狀態
+            //  仍未被繪製則停止, 此時隱藏已跨幀, 恢復顯示時必有尺寸或顯隱事件觸發刷新
+            let raf = typeof requestAnimationFrame === 'function' ? requestAnimationFrame : (f) => setTimeout(f, 16)
+            raf(() => {
+                vo.retryRendered = false
+                if (vo._isDestroyed) {
+                    return
+                }
+                if (vo.isRendered()) {
+                    vo.refresh('retryWhenRendered')
+                }
+            })
 
         },
 
