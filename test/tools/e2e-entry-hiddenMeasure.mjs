@@ -140,10 +140,15 @@ window.geom = () => {
     }
     let els = []
     let overflows = []
+    let shells = []
     for (let el of root.querySelectorAll('*')) {
         let r = el.getBoundingClientRect()
         if (el.scrollHeight > el.clientHeight + 1 && el.clientHeight > 0) {
             overflows.push([el.tagName, el.className && typeof el.className === 'string' ? el.className : '', el.scrollHeight, el.clientHeight])
+        }
+        //shells, 捲動區殼層(overflow-y為scroll且高於60px, 排除原生捲軸寬度偵測區)之捲動總高與可視高, 不含容許1px之誤差
+        if (window.getComputedStyle(el).overflowY === 'scroll' && el.offsetHeight > 60) {
+            shells.push([el.scrollHeight, el.clientHeight])
         }
         if (r.width === 0 && r.height === 0) {
             continue
@@ -156,6 +161,7 @@ window.geom = () => {
     return {
         box: [rd(rb.width), rd(rb.height)],
         overflows,
+        shells,
         els,
     }
 }

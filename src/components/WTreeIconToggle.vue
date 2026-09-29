@@ -5,8 +5,8 @@
             <div
                 :style="`position:relative; display:inline-block; width:${defIconSize}px; height:${defIconSize}px; user-select:none; ${editable?'cursor:pointer;':''} outline:none;`"
                 tabindex="0"
-                @keyup.enter="(v)=>{$emit('click',v)}"
-                @click="(v)=>{$emit('click',v)}"
+                @keyup.enter="emitClick"
+                @click="emitClick"
             >
 
                 <!-- 三角形按鈕 -->
@@ -18,9 +18,10 @@
                         :style="`transition:all 0.1s; transform:rotate(${useRotate}deg); transform-origin:50% 50%;`"
                     >
 
+                        <!-- hover底色由hoverTrans計算, 不直接改元素樣式, 否則點擊切換朝向致重繪時會被:style寫回 -->
                         <div
                             class="cc circle"
-                            :style="`background:${useIconBackgroundColor};`"
+                            :style="`background:${useCircleBackgroundColor};`"
                             @mouseenter="mouseenter"
                             @mouseleave="mouseleave"
                         >
@@ -36,18 +37,18 @@
                     </div>
                 </div>
 
-                <!-- 禁用符號 -->
+                <!-- 禁用符號, 容器蓋滿按鈕故不接收指標事件, 否則圓鈕收不到mouseenter而hover底色失效 -->
                 <template>
 
                     <div
-                        style="position:absolute; z-index:1; left:0px; top:0px; bottom:0; right:0; margin:auto; opacity:0.75;"
+                        style="position:absolute; z-index:1; left:0px; top:0px; bottom:0; right:0; margin:auto; opacity:0.75; pointer-events:none;"
                     >
                         <div :style="`height:${defIconSize}px; transform:rotate(45deg) translateY(-5px);`" v-if="!editable">
                             <div :style="`display:inline-block; width:24px; height:1px; border-top:2px solid #fff;`"></div>
                         </div>
                     </div>
 
-                    <div style="position:absolute; z-index:1; left:0px; top:0px; bottom:0; right:0; margin:auto; opacity:0.75;">
+                    <div style="position:absolute; z-index:1; left:0px; top:0px; bottom:0; right:0; margin:auto; opacity:0.75; pointer-events:none;">
                         <div :style="`height:${defIconSize}px; transform:rotate(45deg) translateY(-3px);`" v-if="!editable">
                             <div :style="`display:inline-block; width:24px; height:1px; border-top:2px solid ${useIconColor};`"></div>
                         </div>
@@ -111,6 +112,7 @@ export default {
     data: function() {
         return {
             defIconSize: 24,
+            hoverTrans: false,
         }
     },
     computed: {
@@ -160,25 +162,45 @@ export default {
             return convertColor(vo.iconBackgroundColorHover)
         },
 
+        useCircleBackgroundColor: function() {
+            //console.log('computed useCircleBackgroundColor')
+
+            let vo = this
+
+            //非編輯模式不顯示hover底色
+            if (vo.editable && vo.hoverTrans) {
+                return vo.useIconBackgroundColorHover
+            }
+            return vo.useIconBackgroundColor
+        },
+
     },
     methods: {
 
-        mouseenter: function(e) {
-            //console.log('mouseenter', e)
+        mouseenter: function() {
+            //console.log('mouseenter')
 
             let vo = this
 
-            e.currentTarget.style.background = vo.useIconBackgroundColorHover
+            vo.hoverTrans = true
 
         },
 
-        mouseleave: function(e) {
-            //console.log('mouseleave', e)
+        mouseleave: function() {
+            //console.log('mouseleave')
 
             let vo = this
 
-            e.currentTarget.style.background = vo.useIconBackgroundColor
+            vo.hoverTrans = false
 
+        },
+
+        emitClick: function(v) {
+            //非編輯模式不觸發click, 同WTreeIconCheckbox
+            if (!this.editable) {
+                return
+            }
+            this.$emit('click', v)
         },
 
     },
@@ -186,8 +208,8 @@ export default {
 </script>
 
 <style scoped>
+/* 游標樣式繼承按鈕層(僅編輯模式為pointer), 此處不另給, 否則非編輯模式時移入三角形仍顯示pointer */
 .caretRight {
-    cursor: pointer;
     user-select: none;
     display: inline-block;
 }

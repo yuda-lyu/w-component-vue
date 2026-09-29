@@ -36,6 +36,7 @@
             >
 
                 <!-- 偵測divContent尺寸: divShell高度由contentHeight設定, 內容於無DOM變動下改變高度(如圖片載入)時divShell尺寸不變而偵測不到 -->
+                <!-- 容差須給0: contentHeight取整數offsetHeight, 預設容差1且差值須大於1才回報(基準為上次回報值), 內容高度動畫末段恰差1px之變化會被略過, contentHeight停在舊值而面板少1px裁切內容 -->
                 <div
                     ref="divContent"
                     :style="``"
@@ -43,7 +44,7 @@
                     @dommutation="mutation"
                     v-domvisible
                     @domvisible="visible"
-                    v-domresize
+                    v-domresize="{tolerancePixel:0}"
                     @domresize="resizeContent"
                 >
                     <slot></slot>

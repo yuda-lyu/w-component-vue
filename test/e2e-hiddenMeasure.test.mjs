@@ -7,7 +7,8 @@ import { bundleEntry, removeBundle, launchBrowser, openPage } from './tools/e2e-
 //  每個案例一個全新瀏覽器, 內含兩條路徑各一個頁面: 可見時操作, 與隱藏→操作→顯示(或初始即隱藏再顯示); 操作一律點頁面按鈕
 //  斷言兩條路徑之使用者所見版面(元件外框、捲動區之捲動總高、未被裁切之各元素之相對位置與尺寸)完全相同;
 //  虛擬列表於捲動區視窗外預先渲染之列數隨刷新時序而異(可見時換資料因setRows期間之上鎖略過後續刷新而停在較寬之預載範圍), 使用者看不到, 不列入比對;
-//  WTextarea、WListExpand另斷言內容未被裁切或溢出(自動高度須等於內容高度), 否則兩條路徑同錯亦會相同
+//  WTextarea、WListExpand另斷言內容未被裁切或溢出(自動高度須等於內容高度), 否則兩條路徑同錯亦會相同;
+//  WListExpand另斷言所在捲動面板高度等於內容高度(面板偵測內容尺寸時曾略過末段1px之變化而少算裁切, 兩條路徑同少算時比對不出)
 //  WDynamicList不驗「初始即隱藏」: 虛擬列表未渲染列之高度為估計值, 可見時載入之過渡版面(原生捲軸寬度確定前)量得之列高移出範圍後即不再量測, 載入路徑不同則估計值不同(另案)
 
 
@@ -89,6 +90,11 @@ describe(NAME, function() {
         return g.overflows.filter((o) => o[0] === 'TEXTAREA' || /\bct\b/.test(o[1]))
     }
 
+    //panelFit, 內容未超過面板高度上限時, 捲動面板高度須等於內容高度(捲動總高等於可視高, 不少算而裁切內容)
+    let panelFit = (g) => {
+        return g.shells.filter((s) => s[0] !== s[1])
+    }
+
     describe('WDynamicList', function() {
 
         it('隱藏→縮窄→顯示, 與直接縮窄相同', async function() {
@@ -149,11 +155,13 @@ describe(NAME, function() {
         it('隱藏→展開→顯示, 與可見時展開相同, 且展開高度等於內容高度', async function() {
             let g = await compare('listexpand', ['展開第2項'], ['隱藏', '展開第2項', '顯示'])
             assert.strict.deepStrictEqual(noClip(g), [])
+            assert.strict.deepStrictEqual(panelFit(g), [])
         })
 
         it('展開後隱藏→縮窄→顯示, 與展開後直接縮窄相同, 且展開高度隨換行增加', async function() {
             let g = await compare('listexpand', ['展開第2項', '縮窄'], ['展開第2項', '隱藏', '縮窄', '顯示'])
             assert.strict.deepStrictEqual(noClip(g), [])
+            assert.strict.deepStrictEqual(panelFit(g), [])
         })
 
     })

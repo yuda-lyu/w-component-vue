@@ -31,7 +31,8 @@
                     @click="ripple($event);clickBtn($event)"
                 >
 
-                    <div style="display:flex; align-items:center; justify-content:center;">
+                    <!-- 圖示層不接收指標事件, 使游標命中恆為按鈕層: 圖示於載入時被移除替換, 若其為游標命中節點, 未採「命中節點被移除後以最近祖先為目標」之瀏覽器(Chrome 144以前, 或停用BoundaryEventDispatchTracksNodeRemoval者如Playwright 1.62之預設)之後不對按鈕層與提示觸發區派發mouseleave, 致hover狀態與提示殘留 -->
+                    <div style="display:flex; align-items:center; justify-content:center; pointer-events:none;">
 
                         <WIcon
                             :icon="icon"
@@ -50,8 +51,9 @@
 
                     </div>
 
+                    <!-- 停用遮罩僅為視覺, 不接收指標事件(點擊已由ripple與clickBtn依editable略過), 理由同圖示層: 遮罩於恢復編輯時被移除 -->
                     <div
-                        style="position:absolute; left:0; right:0; top:0; bottom:0;"
+                        style="position:absolute; left:0; right:0; top:0; bottom:0; pointer-events:none;"
                         v-if="!editable"
                     >
                         <div :style="`${useBorderRadius} overflow:hidden; width:100%; height:100%;`">
