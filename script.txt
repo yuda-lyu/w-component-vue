@@ -4,14 +4,14 @@ node toolg/modifyReadme.mjs
 node toolg/cleanFolder.mjs
 ./node_modules/.bin/jsdoc -c .jsdoc
 
+node toolg/gDistRollupWorkerFuncs.mjs
+
 node toolg/gDistApp.mjs
 
 node toolg/gExtractHtml.mjs
 node toolg/gDocExams.mjs
 
 node toolg/gMergeComps.mjs
-
-node toolg/gDistRollupWorkerFuncs.mjs
 node toolg/gDistRollupComps.mjs
 
 git add .  -A
