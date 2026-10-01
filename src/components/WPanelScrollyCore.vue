@@ -36,7 +36,7 @@
             >
 
                 <!-- 偵測divContent尺寸: divShell高度由contentHeight設定, 內容於無DOM變動下改變高度(如圖片載入)時divShell尺寸不變而偵測不到 -->
-                <!-- 容差須給0: contentHeight取整數offsetHeight, 預設容差1且差值須大於1才回報(基準為上次回報值), 內容高度動畫末段恰差1px之變化會被略過, contentHeight停在舊值而面板少1px裁切內容 -->
+                <!-- 容差須給0, 否則contentHeight(取整數offsetHeight)可停在差1px之舊值而面板少1px裁切內容: wsemi 1.9.8起預設容差內之同向逐px變化雖照常回報, 惟同向連續第11次(RUN_MAX)不判定以阻斷單向回授, 內容高度動畫恰於該步結束時末值不回報; 本元件之單向增長受viewHeightMax封頂(panelHeight), 不需該防護 -->
                 <div
                     ref="divContent"
                     :style="``"

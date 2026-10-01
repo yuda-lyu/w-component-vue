@@ -138,7 +138,7 @@ describe(`domResize`, function() {
     })
 
     it(`should carry no direction on window events, even after a change within the tolerance`, async function() {
-        //元素變化未超過容許誤差(如拖曳分隔條之最後1px)時不發dom事件; 其後之視窗事件不代表元素尺寸變化, 不得帶出該方向,
+        //元素容許誤差內之變化(如拖曳分隔條之最後1px; wsemi 1.9.8起同向者自行發出dom事件); 其後之視窗事件不代表元素尺寸變化, 不得帶出方向,
         //  否則依smode判斷變寬或變窄之使用端(WDrawer之autoSwitchTo*)會於不改尺寸之視窗resize時誤切換(wsemi 1.9.4有此問題, 1.9.5修正)
         let env = mkEnv()
         let el = new Ele(720, 400)
@@ -172,11 +172,28 @@ describe(`domResize`, function() {
     })
 
     it(`should carry no direction for an axis within the tolerance when the other axis triggers a dom event`, async function() {
-        //寬先+1px(未超過容許誤差, 不發dom事件), 之後高+40px觸發dom事件: 該事件之寬方向須為空,
+        //寬先+1px(容許誤差內之同向變化, wsemi 1.9.8起自行發出dom事件), 之後高+40px觸發dom事件: 該事件之寬方向須為空,
         //  否則全高之抽屜遇視窗高度變化時, WDrawer之autoSwitchTo*會依殘餘之寬方向誤切換(wsemi 1.9.4有此問題, 1.9.5修正)
         let env = mkEnv()
         let el = new Ele(720, 400)
         let b = mkBinding(env, el)
+        env.fireRO(el)
+        await sleep(10)
+        el.size(721, 400)
+        env.fireRO(el)
+        await sleep(10)
+        el.size(721, 440)
+        env.fireRO(el)
+        await sleep(10)
+        assert.strict.deepStrictEqual(b.rec.map((m) => [m.from, m.snew.offsetWidth, m.snew.offsetHeight, m.smode.width, m.smode.height]), [['dom', 720, 400, 'larger', 'larger'], ['dom', 721, 400, 'larger', ''], ['dom', 721, 440, '', 'larger']])
+        b.d.unbind(el)
+    })
+
+    it(`should forward toleranceBounce, and keep a change within the tolerance unforwarded when it is 0`, async function() {
+        //toleranceBounce原樣作為domDetect之opt: 給0時容許誤差內之變化一律不發出(wsemi 1.9.7以前之行為), 寬+1px不發dom事件, 高+40px觸發之事件寬方向為空
+        let env = mkEnv()
+        let el = new Ele(720, 400)
+        let b = mkBinding(env, el, { toleranceBounce: 0 })
         env.fireRO(el)
         await sleep(10)
         el.size(721, 400)
