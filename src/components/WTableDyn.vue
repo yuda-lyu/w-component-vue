@@ -31,6 +31,7 @@
         :tooltipDeleteSelectedRows="tooltipDeleteSelectedRows"
         :tooltipDownloadExcelFile="tooltipDownloadExcelFile"
         :tooltipDownloadExcelFileForDisplay="tooltipDownloadExcelFileForDisplay"
+        :tooltipDownloadExcelFileForHead="tooltipDownloadExcelFileForHead"
         :tooltipUploadExcelFile="tooltipUploadExcelFile"
         :successMsgFromAddRow="successMsgFromAddRow"
         :errorMsgFromAddRow="errorMsgFromAddRow"
@@ -104,13 +105,13 @@ import WIconLoading from './WIconLoading.vue'
  * @vue-prop {String|Array} [hideIds=''] 輸入欲隱藏欄位字串或陣列，可被opt.kpHeadHide複寫，預設''
  * @vue-prop {String|Array} [fixIds=''] 輸入欲固定於左側欄位字串或陣列，可被opt.kpHeadFixLeft複寫，預設''
  * @vue-prop {String} [checkId=''] 輸入欲使用核選方塊欄位字串，可被opt.kpHeadCheckBox複寫，預設''
- * @vue-prop {String|Array} [removeIdsWhenDownload=''] 輸入下載Excel檔案時欲移除的欄位字串或陣列，預設''
- * @vue-prop {Boolean} [funGetLtdtHookWhenDownload=null] 輸入下載Excel檔案時針對ltdt數據階段的攔截處理函數，預設為null
- * @vue-prop {Boolean} [funGetMatHookWhenDownload=null] 輸入下載Excel檔案時針對mat數據階段的攔截處理函數，預設為null
- * @vue-prop {Boolean} [useHeadWhenDownload=false] 輸入下載Excel檔案時是否將欄位鍵值轉換成head布林值，此需提供opt.kpHead物件，預設為false
+ * @vue-prop {String|Array} [removeIdsWhenDownload=''] 輸入下載Excel檔案時欲移除的欄位字串或陣列，作用於下載數據與下載過濾後數據，移除後無任何欄位時觸發error事件且不產生檔案，預設''
+ * @vue-prop {Function} [funGetLtdtHookWhenDownload=null] 輸入下載Excel檔案時針對ltdt數據階段的攔截處理函數，輸入為各列數據陣列(為副本，值已依useCellFormatWhenDownload格式化)，無數據列時輸入為空陣列，須同步回傳處理後之數據陣列(不支援Promise)且各列皆為非空物件，回傳空陣列時只輸出表頭列，回傳不合約定或函數拋錯時觸發error事件且不產生檔案，預設為null
+ * @vue-prop {Function} [funGetMatHookWhenDownload=null] 輸入下載Excel檔案時針對mat數據階段的攔截處理函數，輸入為首列為表頭之二維陣列(已經funGetLtdtHookWhenDownload處理)，須同步回傳處理後之二維陣列(不支援Promise)且至少一列非空，無數據列且funGetLtdtHookWhenDownload未加入數據時只含表頭1列，回傳不合約定或函數拋錯時觸發error事件且不產生檔案，預設為null
+ * @vue-prop {Boolean} [useHeadWhenDownload=false] 輸入下載Excel檔案時是否將欄位鍵值轉換成head布林值，此需提供opt.kpHead物件，若欲將下載之檔案填寫後上傳回來，須以opt.kpConvertKeysWhenUploadData將表頭名稱對回欄位鍵值，且opt.kpHead之名稱須非空且不重複，預設為false
  * @vue-prop {Boolean} [useCellFormatWhenDownload=true] 輸入下載Excel檔案時是否依opt.kpCellFormat格式化各欄值布林值，true時下載內容與畫面一致(有格式化函數之欄為格式化後字串)，false時下載原值，無opt.kpCellFormat時無作用，轉發至w-table-vue(對應w-aggrid-vue之downloadData與downloadDisplayData之useFormat)，預設為true
- * @vue-prop {String} [fileNameWhenDownload='data.xlsx'] 輸入下載Excel檔案時儲存檔名稱字串，預設'data.xlsx'
- * @vue-prop {String} [sheetNameWhenDownload='data'] 輸入下載Excel檔案時sheet名稱字串，預設'data'
+ * @vue-prop {String} [fileNameWhenDownload='data.xlsx'] 輸入下載Excel檔案時儲存檔名稱字串，無副檔名時自動補'.xlsx'，預設'data.xlsx'
+ * @vue-prop {String} [sheetNameWhenDownload='data'] 輸入下載Excel檔案時sheet名稱字串，須符合Excel分頁名稱規則(至多31字且表情符號等計2字、不含[ ] : * ? / \、首尾非單引號、非History)，不符時改用'data'，預設'data'
  * @vue-prop {Boolean} [editable=false] 輸入是否可編輯布林值，可被opt.defCellEditable複寫，預設為false
  * @vue-prop {String} [textLabelDataName='Data name:'] 輸入數據名稱字串，預設'Data name:'
  * @vue-prop {String} [textPlaceholderDataName='Please enter data name'] 輸入數據名稱placeholder字串，預設'Please enter data name'
@@ -120,15 +121,16 @@ import WIconLoading from './WIconLoading.vue'
  * @vue-prop {String} [tooltipDeleteSelectedRows='delete selected rows'] 輸入刪除選擇數據按鈕tooltip字串，預設'delete selected rows'
  * @vue-prop {String} [tooltipDownloadExcelFile='download data to Excel file'] 輸入下載數據成為Excel檔案按鈕tooltip字串，預設'download data to Excel file'
  * @vue-prop {String} [tooltipDownloadExcelFileForDisplay='download filtered data to Excel file'] 輸入下載過濾後數據成為Excel檔案按鈕tooltip字串，預設'download filtered data to Excel file'
+ * @vue-prop {String} [tooltipDownloadExcelFileForHead='download headers to Excel file'] 輸入無數據列時下載數據按鈕之tooltip字串，下載數據按鈕於編輯與顯示模式皆一律顯示，無數據列(表格主數據列為0列，即opt.rows為空陣列或數據列已全部刪除，不含置頂置底列)時按下載只有表頭1列之Excel檔案，表頭依opt.keys之順序並套用removeIdsWhenDownload與useHeadWhenDownload，與有數據時所下載檔案之第1列相同，可供使用者填寫後上傳，此時改用本提示文字；不影響下載過濾後數據按鈕；給予空字串則不顯示tooltip，已自訂tooltipDownloadExcelFile語系之呼叫端應一併給予，轉發至w-table-vue，預設'download headers to Excel file'
  * @vue-prop {String} [tooltipUploadExcelFile='upload data to Excel file'] 輸入上傳Excel數據檔案按鈕tooltip字串，預設'upload data to Excel file'
  * @vue-prop {String} [successMsgFromAddRow='add row successfully'] 輸入新增數據成功事件訊息字串，預設'add row successfully'
  * @vue-prop {String} [errorMsgFromAddRow='can not add row'] 輸入無法新增數據事件訊息字串，預設'can not add row'
  * @vue-prop {String} [errorMsgFromRemoveRow='can not remove selected rows'] 輸入移除數據失敗事件訊息字串，預設'can not remove selected rows'
  * @vue-prop {String} [successMsgFromUploadData='upload data successfully'] 輸入上傳數據成功事件訊息字串，預設'upload data successfully'
- * @vue-prop {String} [errorMsgFromUploadData='can not upload data'] 輸入無法上傳數據事件訊息字串，預設'can not upload data'
- * @vue-prop {String} [errorMsgFromUploadEmptyData='no effective data'] 輸入上傳檔案中無有效數據事件訊息字串，此時不變動表格數據，預設'no effective data'
+ * @vue-prop {String} [errorMsgFromUploadData='can not upload data'] 輸入無法上傳數據事件訊息字串，例如非Excel檔案、指定之sheet不存在、opt.optForUploadData.beforeUpload拋錯或回傳不合約定(原因記錄於console)，此時不變動表格數據，預設'can not upload data'
+ * @vue-prop {String} [errorMsgFromUploadEmptyData='no effective data'] 輸入上傳檔案中無有效數據事件訊息字串，即上傳處理後無數據列，或各列於表格欄位之值皆為空(含檔案表頭與表格欄位不符)，此時不變動表格數據，預設'no effective data'
  * @vue-prop {String} [successMsgFromDownloadData='download data successfully'] 輸入下載檔案成功事件訊息字串，預設'download data successfully'
- * @vue-prop {String} [errorMsgFromDownloadData='can not download data'] 輸入無法下載檔案事件訊息字串，預設'can not download data'
+ * @vue-prop {String} [errorMsgFromDownloadData='can not download data'] 輸入無法下載檔案事件訊息字串，例如移除後無任何欄位、下載掛鉤回傳不合約定或拋錯(原因記錄於console)，此時不產生檔案，預設'can not download data'
  * @vue-prop {String} [errorMsgFromNoName='no data name'] 輸入未輸入數據名稱事件訊息字串，預設'no data name'
  * @vue-prop {String} [errorMsgFromNoData='no data'] 輸入未給予有效數據事件訊息字串，預設'no data'
  * @vue-prop {String} [uploadModeTitle='Choose mode of upload:'] 輸入選擇上傳模式彈窗標題字串，opt.optForUploadData.uploadMode有預先指定時不顯示此彈窗，預設'Choose mode of upload:'
@@ -179,8 +181,8 @@ import WIconLoading from './WIconLoading.vue'
  * @vue-prop {Object} [opt.kpCellAlignH={}] 輸入key對應cell之左右對齊字串物件，預設各key值為defCellAlignH
  * @vue-prop {Boolean} [opt.defCellEditable=false] 輸入cell預設之是否可編輯布林值，由組件editable複寫，預設為false
  * @vue-prop {Object} [opt.kpCellEditable={}] 輸入key對應cell之是否可編輯物件，預設各key值為defCellEditable
- * @vue-prop {Object} [opt.kpCellFormat={}] 輸入key對應cell之值格式化函數物件，函數簽名為(value, key, row, params)，回傳顯示字串，回傳null或undefined代表不格式化維持原值；所有原值(含null、undefined、空字串)皆原樣傳入，編輯模式新增列之各欄為空字串，故函數內須自行處理空值(如回傳null)；作用於顯示與下載(下載時params為null，可由組件useCellFormatWhenDownload關閉)，排序、過濾、編輯與save回傳之rows仍為原值；與cell-render slot可並用，預設各key值為undefined
- * @vue-prop {Object} [opt.kpConvertKeysWhenUploadData={}] 輸入上傳Excel檔案時，當key轉會成對應新key值物件，預設{}
+ * @vue-prop {Object} [opt.kpCellFormat={}] 輸入key對應cell之值格式化函數物件，函數簽名為(value, key, row, params)，回傳顯示字串，回傳null或undefined代表不格式化維持原值；所有原值(含null、undefined、空字串)皆原樣傳入，編輯模式新增列之各欄為空字串，故函數內須自行處理空值(如回傳null)；作用於顯示與下載(下載時row同為該列完整數據、params為null，可由組件useCellFormatWhenDownload關閉)，排序、過濾、編輯與save回傳之rows仍為原值；與cell-render slot可並用，預設各key值為undefined
+ * @vue-prop {Object} [opt.kpConvertKeysWhenUploadData={}] 輸入上傳Excel檔案時將檔案表頭名稱轉為欄位key之對照物件，例如{ '製造商': 'make' }，於opt.optForUploadData.beforeUpload之前套用，轉換後與檔案既有表頭同名時依欄序後者覆蓋，預設{}
  * @vue-prop {Function} [opt.rowsChange=function(){}] 輸入rows change之觸發事件，預設為function(){}
  * @vue-prop {Function} [opt.rowClick=function(){}] 輸入row click之觸發事件，預設為function(){}
  * @vue-prop {Function} [opt.rowDbClick=function(){}] 輸入row double click之觸發事件，預設為function(){}
@@ -193,11 +195,11 @@ import WIconLoading from './WIconLoading.vue'
  * @vue-prop {Function} [opt.cellChange=function(){}] 輸入cell change之觸發事件，預設為function(){}
  * @vue-prop {Function} [opt.cellMouseEnter=function(){}] 輸入cell mouseenter之觸發事件，預設為function(){}
  * @vue-prop {Function} [opt.cellMouseLeave=function(){}] 輸入cell mouseleave之觸發事件，預設為function(){}
- * @vue-prop {Function} [opt.filterChange=function(){}] 輸入filter change之觸發事件，預設為function(){}
+ * @vue-prop {Function} [opt.filterChange=function(){}] 輸入filter change之觸發事件，於掛載時與表頭過濾變更時各觸發1次，傳入{ from, filterall, flts, isFilter }，isFilter為是否過濾中(組件據此顯示下載過濾後數據按鈕)，其餘鍵值見w-aggrid-vue之opt.filterChange，預設為function(){}
  * @vue-prop {Boolean} [opt.autoFitColumn=false] 輸入當表格尺寸變更時自動調整欄寬布林值，預設false
  * @vue-prop {String} [opt.language='en'] 輸入指定語系字串，可選'en'、'zh-tw'、'zh-cn'，預設同組件language
  * @vue-prop {Function} [opt.beforeAddRow=undefined] 輸入編輯模式新增數據前之修改新列事件，輸入newRow，輸出newRow，預設為undefined
- * @vue-prop {Object} [opt.optForUploadData={}] 輸入呼叫組件uploadData上傳檔案時用的設定物件，內部調用wsemi的getDataFromExcelFileU8Arr讀取Excel檔案，物件可給予鍵值：uploadMode代表上傳模式字串(可選'replace'、'append'，有給予時點擊上傳按鈕不顯示模式選擇彈窗而直接開啟選檔視窗，未給予或非前述值時由彈窗選擇)，beforeUpload代表上傳前的處理數據函數(輸入讀取所得之數據陣列，回傳處理後之數據陣列或Promise，未給予時自動去除於表格各欄位之值皆為空的無效數據，處理後無數據時觸發error事件(errorMsgFromUploadEmptyData)且不變動表格數據)，parseSheetInd代表提取Excel檔案的第幾個sheet整數(預設為0)，組件不會修改此物件，optForUploadData預設{}
+ * @vue-prop {Object} [opt.optForUploadData={}] 輸入呼叫組件uploadData上傳檔案時用的設定物件，內部調用wsemi的getDataFromExcelFileU8Arr讀取Excel檔案，物件可給予鍵值：uploadMode代表上傳模式字串(可選'replace'、'append'，有給予時點擊上傳按鈕不顯示模式選擇彈窗而直接開啟選檔視窗，未給予或非前述值時由彈窗選擇)，beforeUpload代表上傳前的處理數據函數(輸入讀取所得之數據陣列(已依opt.kpConvertKeysWhenUploadData轉換表頭)，回傳處理後之數據陣列或Promise，各列須為物件，未給予時自動去除於表格各欄位之值皆為空的無效數據；處理後無數據列或各列於表格欄位皆無值時觸發error事件(errorMsgFromUploadEmptyData)，拋錯或回傳非陣列等不合約定時觸發error事件(errorMsgFromUploadData)，皆不變動表格數據)，parseSheetInd代表提取Excel檔案的第幾個sheet之非負整數或整數字串(依活頁簿分頁順序且含隱藏分頁，預設為0)，組件不會修改此物件，optForUploadData預設{}
  * @vue-prop {Function} [opt.modifyDataWhenSave=undefined] 輸入當儲存時修改儲存數據事件，輸入rows，輸出rows，預設為undefined
  * @vue-prop {Boolean} [opt.checkNoDataWhenSave=false] 輸入當儲存時是否檢核無數據布林值，預設false
  */
@@ -346,6 +348,10 @@ export default {
         tooltipDownloadExcelFileForDisplay: {
             type: String,
             default: 'download filtered data to Excel file', //下載過濾後數據成為Excel檔案
+        },
+        tooltipDownloadExcelFileForHead: {
+            type: String,
+            default: 'download headers to Excel file', //下載表頭成為Excel檔案
         },
         tooltipUploadExcelFile: {
             type: String,

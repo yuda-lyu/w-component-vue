@@ -545,6 +545,46 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-table-dyn'"
+                    :casename="'editable & opt.optForUploadData.uploadMode (append, no popup)'"
+                ></demolink>
+
+                <w-table-dyn
+                    style="width:600px; height:400px;"
+                    :name="WTableDyn.name"
+                    :description="WTableDyn.description"
+                    :opt="WTableDyn.opt9"
+                    :editable="true"
+                    @success="evSuccess"
+                    @error="evError"
+                ></w-table-dyn>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-table-dyn'"
+                    :casename="'editable & tooltipDownloadExcelFileForHead (empty rows, download headers) & useHeadWhenDownload & opt.kpConvertKeysWhenUploadData'"
+                ></demolink>
+
+                <w-table-dyn
+                    style="width:600px; height:400px;"
+                    :name="WTableDyn.name"
+                    :description="WTableDyn.description"
+                    :opt="WTableDyn.opt10"
+                    :editable="true"
+                    :tooltipDownloadExcelFileForHead="'下載表頭範本'"
+                    :useHeadWhenDownload="true"
+                    @success="evSuccess"
+                    @error="evError"
+                ></w-table-dyn>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-table-dyn'"
                     :casename="'editable & language & textLabelDataName & textPlaceholderDataName & textLabelDataDescription & textPlaceholderDataDescription'"
                 ></demolink>
 
@@ -647,6 +687,26 @@
                         </select>
                     </template>
                 </w-table-dyn>
+
+            </div>
+
+
+            <div class="bk">
+                <demolink
+                    :kbname="'w-table-dyn'"
+                    :casename="'editable & opt.kpCellFormat & no useCellFormatWhenDownload'"
+                ></demolink>
+
+                <w-table-dyn
+                    style="width:600px; height:400px;"
+                    :name="WTableDyn.name"
+                    :description="WTableDyn.description"
+                    :opt="WTableDyn.opt8"
+                    :editable="true"
+                    :useCellFormatWhenDownload="false"
+                    @success="evSuccess"
+                    @error="evError"
+                ></w-table-dyn>
 
             </div>
 
@@ -862,6 +922,29 @@ export default {
                             return Number(value).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })
                         },
                     },
+                },
+                'opt9': {
+                    keys: keys1,
+                    kpHeadFilterType: kpHeadFilterType1,
+                    rows: rows1,
+                    optForUploadData: {
+                        uploadMode: 'append', //預先指定上傳模式, 點擊上傳按鈕時不顯示模式選擇彈窗, 直接開啟選檔視窗並附加於表格數據之後
+                    },
+                },
+                'opt10': {
+                    keys: keys1,
+                    kpHeadFilterType: kpHeadFilterType1,
+                    kpHead: { //表頭名稱須非空且不重複, 才能由kpConvertKeysWhenUploadData對回欄位鍵值
+                        make: '製造商',
+                        model: '型號',
+                        price: '價格',
+                    },
+                    kpConvertKeysWhenUploadData: { //kpHead之反向對照, 使下載之表頭範本填寫後可上傳回來
+                        '製造商': 'make',
+                        '型號': 'model',
+                        '價格': 'price',
+                    },
+                    rows: [], //無數據列時下載數據按鈕仍會顯示, 可下載只有表頭之Excel檔案供填寫後上傳
                 },
             },
             'actions': [
