@@ -14,13 +14,10 @@ async function core() {
         // execFunctionByInstance: true, //default, 原模組為計算函數回傳結果
         fpSrc: path.resolve(fdSrc, 'convertToTreeWk.mjs'), //原始檔案路徑
         fpTar: path.resolve(fdTar, 'convertToTreeWk.wk.umd.js'), //檔案輸出路徑
-        bNode: false,
+        runin: 'browser', //於瀏覽器以Web Worker執行
         formatOut: 'es',
         bMinify: true, //false
     })
-        .catch((err) => {
-            console.log(err)
-        })
 
     await rollupWorkerCore({
         name: 'flattenTreeWk', //原模組名稱, 將來會掛於winodw下或於node引入使用
@@ -28,13 +25,10 @@ async function core() {
         // execFunctionByInstance: true, //default, 原模組為計算函數回傳結果
         fpSrc: path.resolve(fdSrc, 'flattenTreeWk.mjs'), //原始檔案路徑
         fpTar: path.resolve(fdTar, 'flattenTreeWk.wk.umd.js'), //檔案輸出路徑
-        bNode: false,
+        runin: 'browser', //於瀏覽器以Web Worker執行
         formatOut: 'es',
         bMinify: true, //false
     })
-        .catch((err) => {
-            console.log(err)
-        })
 
     //filepathToTree因opt可傳入soryItems為function, 此無法通過序列化傳入worker, 故不使用wk版
     // await rollupWorkerCore({
@@ -54,7 +48,9 @@ async function core() {
 }
 core()
     .catch((err) => {
-        console.log(err)
+        //產製失敗須以非0結束, 發布流程以離開碼判定成敗; 明設離開碼, 不依賴Node之unhandled-rejections模式
+        console.error(err)
+        process.exitCode = 1
     })
 
 //node toolg/gDistRollupWorkerFuncs.mjs

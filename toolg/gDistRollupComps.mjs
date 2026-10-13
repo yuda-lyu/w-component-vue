@@ -11,6 +11,7 @@ rollupFiles({
     fdSrc,
     fdTar,
     nameDistType: 'kebabCase',
+    runin: 'browser',
     globals: {
         'vue': 'Vue',
     },

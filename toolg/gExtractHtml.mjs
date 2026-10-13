@@ -3,11 +3,11 @@ import * as cheerio from 'cheerio'
 import _ from 'lodash-es'
 import w from 'wsemi'
 import getFiles from 'w-package-tools/src/getFiles.mjs'
-import cleanFolder from 'w-package-tools/src/cleanFolder.mjs'
 import parseVueCode from 'w-package-tools/src/parseVueCode.mjs'
 import kebabPropsVueTemp from 'w-package-tools/src/kebabPropsVueTemp.mjs'
 import extractHtml from 'w-package-tools/src/extractHtml.mjs'
 import cvCasename from './cvCasename.mjs'
+import cleanFolderStrict from './cleanFolderStrict.mjs'
 
 
 let fdSrc = './src/'
@@ -257,12 +257,12 @@ function main() {
     //由jsdoc產製之wsemi.html, 自動添加將example轉換成codepen線上編輯功能
 
     //fdTestHtml
-    cleanFolder(fdTestHtml)
+    cleanFolderStrict(fdTestHtml)
     //fs.mkdirSync(fdTestHtml)
     //await fs.promises.mkdir(fdTestHtml)
 
     //fdTestSrc
-    cleanFolder(fdTestSrc)
+    cleanFolderStrict(fdTestSrc)
     //fs.mkdirSync(fdTestSrc)
     //await fs.promises.mkdir(fdTestSrc)
 
