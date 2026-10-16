@@ -473,7 +473,7 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-group-chip-radio'"
-                    :casename="'group & borderColor & borderColorHover & borderColorActive & textColorActive & iconColorActive & backgroundColorActive & no shadowActive'"
+                    :casename="'group & textColorActive & iconColorActive & backgroundColorActive & borderColor & borderColorHover & borderColorActive & no shadowActive'"
                 ></demolink>
 
                 <div style="padding:10px 0px;"><!-- 因使用group故marginStyle會被取消, 此處添加padding只是讓排版一致 -->

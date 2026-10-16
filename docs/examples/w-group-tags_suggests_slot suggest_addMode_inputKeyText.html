@@ -63,7 +63,7 @@
     ></script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.5.29/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.5.30/dist/w-component-vue.umd.js"></script>
 
     <style>
   /* 組件所須全域樣式 */
@@ -143,15 +143,14 @@
         <div class="bk" style="display:block;">
             <div
                 class="item"
-            >suggests &amp; slot suggest &amp; addMode &amp; inputKeyText &amp; addWhenInputByOutside</div>
+            >suggests &amp; slot suggest &amp; addMode &amp; inputKeyText</div>
 
             <w-group-tags
-                v-model="WGroupTags.strings"
+                v-model="WGroupTags.objects"
                 :suggests="WGroupTags.suggestsObjectsName"
                 :add-mode="'input'"
                 :input-key-text="'name'"
-                :add-when-input-by-outside="true"
-                @click-add="(msg)=>{ckInputAddForString(msg,'name')}"
+                @click-add="ckInputAddForObject"
             >
                 <template v-slot:suggest="props">
                     <div
@@ -165,7 +164,7 @@
 
             <div
                 style="padding-left:5px; font-size:0.9rem; color:#ea6;"
-            >binding: strings</div>
+            >binding: objects</div>
         </div>
     </v-app>
 

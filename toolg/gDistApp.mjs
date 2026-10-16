@@ -36,4 +36,9 @@ let opt = {
     ],
 }
 rollupVueToHtml('./src/App.vue', './docs/examples/app.html', opt)
+    .catch((err) => {
+        //產製失敗須以非0結束, 發布流程以離開碼判定成敗; 明設離開碼, 不依賴Node之unhandled-rejections模式
+        console.error(err)
+        process.exitCode = 1
+    })
 

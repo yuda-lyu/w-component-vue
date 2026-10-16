@@ -621,7 +621,7 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-timeminute-range'"
-                    :casename="'empty'"
+                    :casename="'border & empty'"
                 ></demolink>
 
                 <w-timeminute-range
@@ -641,7 +641,7 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-timeminute-range'"
-                    :casename="'empty & textEmpty'"
+                    :casename="'border & empty & textEmpty'"
                 ></demolink>
 
                 <w-timeminute-range

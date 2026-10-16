@@ -2,71 +2,27 @@ import fs from 'fs'
 import path from 'path'
 import cp from 'child_process'
 import assert from 'assert'
+import { root, put, patch, list, mkSbx as mkSbxIn, run, rmBase } from './tools/buildSandbox.mjs'
 
 
 //unit-buildScripts: script.txt所執行之建置腳本之失敗回報契約(帳本「一、建置腳本」R-B1、R-EXIT、R-B2)
-//  每案於test/_tmp/unit-buildScripts/<案>/建沙箱, 複製toolg全部檔與所需最小輸入, 以沙箱為cwd用子行程執行腳本(同w-pksupdate以套件根目錄為cwd逐列執行)
-//  沙箱位於repo內, 腳本之裸import(w-package-tools、wsemi、lodash-es等)向上解析至repo之node_modules
+//  每案於test/_tmp/unit-buildScripts/<案>/建沙箱, 複製toolg全部檔與所需最小輸入, 以沙箱為cwd用子行程執行腳本(沙箱共用層見test/tools/buildSandbox.mjs)
 //  只斷言發布流程可觀察之結果: 離開碼、stderr之失敗原因、產物是否寫出; 離開碼不依賴Node之unhandled-rejections模式(R-EXIT另以warn模式驗)
 //  清空失敗以lock模擬: Windows以子行程之工作目錄占住子資料夾, 其他平台以唯讀子資料夾; 以root執行時無法模擬, 該等案例略過
 //  分辨力驗證用: 環境變數W_TOOLG_DIR可改由他處複製toolg(預設為工作區之toolg), 不改動工作區
 
 
 let NAME = 'unit-buildScripts'
-let root = path.resolve('.')
-let fdToolg = path.resolve(process.env.W_TOOLG_DIR || 'toolg')
 let fdBase = path.resolve('test/_tmp', NAME)
 let isWin = process.platform === 'win32'
 let canLock = isWin || !(typeof process.getuid === 'function' && process.getuid() === 0)
-let pkgJson = fs.readFileSync(path.join(root, 'package.json'))
 let OLD = '//old product\n'
 
 let vueOk = `<template>\r\n    <div class="x">ok</div>\r\n</template>\r\n\r\n<script>\r\nexport default {\r\n    name: 'x',\r\n    data: function() {\r\n        return { a: 1 }\r\n    },\r\n}\r\n</script>\r\n`
 let vueBad = vueOk.replace('return { a: 1 }', 'return { a: 1 ')
 
 
-function put(sbx, rel, content) {
-    let fp = path.join(sbx, rel)
-    fs.mkdirSync(path.dirname(fp), { recursive: true })
-    fs.writeFileSync(fp, content)
-}
-
-
-function patch(sbx, rel, fn) {
-    let fp = path.join(sbx, rel)
-    fs.writeFileSync(fp, fn(fs.readFileSync(fp, 'utf8')))
-}
-
-
-function list(sbx, rel) {
-    let fp = path.join(sbx, rel)
-    return fs.existsSync(fp) && fs.statSync(fp).isDirectory() ? fs.readdirSync(fp) : null
-}
-
-
-//mkSbx, 建立案例沙箱: 複製toolg全部檔(src/components/demolink.vue等亦引用toolg)與package.json(rollupFile讀取banner)
-function mkSbx(name) {
-    let sbx = path.join(fdBase, name)
-    fs.rmSync(sbx, { recursive: true, force: true })
-    fs.mkdirSync(path.join(sbx, 'toolg'), { recursive: true })
-    for (let f of fs.readdirSync(fdToolg)) {
-        fs.copyFileSync(path.join(fdToolg, f), path.join(sbx, 'toolg', f))
-    }
-    put(sbx, 'package.json', pkgJson)
-    return sbx
-}
-
-
-//run, 以沙箱為cwd執行沙箱內之腳本, 回傳離開碼與兩串流
-function run(sbx, rel, opt = {}) {
-    let r = cp.spawnSync(process.execPath, [path.join(sbx, rel), ...(opt.args || [])], {
-        cwd: sbx,
-        encoding: 'utf8',
-        env: { ...process.env, ...(opt.env || {}) },
-        timeout: 170000,
-    })
-    return { code: r.status, stdout: r.stdout || '', stderr: r.stderr || '' }
-}
+let mkSbx = (name) => mkSbxIn(fdBase, name)
 
 
 function waitExit(h) {
@@ -121,11 +77,7 @@ describe(NAME, function() {
     this.timeout(180000)
 
     after(function() {
-        fs.rmSync(fdBase, { recursive: true, force: true })
-        try {
-            fs.rmdirSync(path.resolve('test/_tmp')) //平行執行之其他檔尚在使用時保留
-        }
-        catch (err) {}
+        rmBase(fdBase)
     })
 
 
@@ -402,6 +354,17 @@ describe(NAME, function() {
             }
         })
 
+        it('範例頁寫檔失敗時離開碼非0, 且stderr含失敗原因; 於NODE_OPTIONS=--unhandled-rejections=warn下亦非0(R-B1、R-EXIT)', function() {
+            //casename含路徑分隔字元使範例頁之寫入路徑不存在; extractHtml為async, 其內寫檔失敗為rejected promise, 離開碼不得依賴unhandled-rejections模式
+            let sbx = mkExtractSbx('l11-write-fail')
+            patch(sbx, 'src/AppZoneWBadge.vue', (c) => c.replace(`:casename="'badgeAlign'"`, `:casename="'a/b'"`))
+            for (let env of [{}, { NODE_OPTIONS: '--unhandled-rejections=warn' }]) {
+                let r = run(sbx, 'toolg/gExtractHtml.mjs', { env })
+                assert.notStrictEqual(r.code, 0, JSON.stringify(env) + r.stdout + r.stderr)
+                assert.ok(r.stderr.indexOf('ENOENT') >= 0, JSON.stringify(env) + r.stderr)
+            }
+        })
+
         it('test-action內子資料夾無法刪除而清空不了時離開碼非0', async function() {
             if (!canLock) {
                 this.skip()
@@ -437,6 +400,14 @@ describe(NAME, function() {
             assert.notStrictEqual(r.code, 0, r.stdout + r.stderr)
         })
 
+        it('第9列 gDistApp: App.vue語法錯誤時於NODE_OPTIONS=--unhandled-rejections=warn下離開碼亦非0(R-EXIT)', function() {
+            //rollupVueToHtml為async, 失敗為rejected promise, 離開碼不得依賴unhandled-rejections模式
+            let sbx = mkSbx('s9-warn')
+            put(sbx, 'src/App.vue', vueBad)
+            let r = run(sbx, 'toolg/gDistApp.mjs', { env: { NODE_OPTIONS: '--unhandled-rejections=warn' } })
+            assert.notStrictEqual(r.code, 0, r.stdout + r.stderr)
+        })
+
         it('第11列 gExtractHtml: AppZone檔無template時離開碼非0', function() {
             let sbx = mkSbx('s11')
             put(sbx, 'src/AppZoneWBroken.vue', '<script>\r\nexport default {}\r\n</script>\r\n')
@@ -462,6 +433,14 @@ describe(NAME, function() {
             let sbx = mkSbx('s15')
             put(sbx, 'src/components/WComponentVue.vue', vueBad)
             let r = run(sbx, 'toolg/gDistRollupComps.mjs')
+            assert.notStrictEqual(r.code, 0, r.stdout + r.stderr)
+        })
+
+        it('第15列 gDistRollupComps: 元件語法錯誤時於NODE_OPTIONS=--unhandled-rejections=warn下離開碼亦非0(R-EXIT)', function() {
+            //rollupFiles為async, 失敗為rejected promise, 離開碼不得依賴unhandled-rejections模式
+            let sbx = mkSbx('s15-warn')
+            put(sbx, 'src/components/WComponentVue.vue', vueBad)
+            let r = run(sbx, 'toolg/gDistRollupComps.mjs', { env: { NODE_OPTIONS: '--unhandled-rejections=warn' } })
             assert.notStrictEqual(r.code, 0, r.stdout + r.stderr)
         })
 

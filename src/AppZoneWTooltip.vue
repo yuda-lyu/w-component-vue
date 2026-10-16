@@ -34,7 +34,7 @@
 
             <div class="bk">
                 <demolink
-                    :kbname="'w-popup'"
+                    :kbname="'w-tooltip'"
                     :casename="'isolated'"
                 ></demolink>
 

@@ -1106,7 +1106,7 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-text-suggest'"
-                    :casename="'maxHeight'"
+                    :casename="'border & maxHeight'"
                 ></demolink>
 
                 <w-text-suggest
@@ -1126,7 +1126,7 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-text-suggest'"
-                    :casename="'minWidth & autoFitMinWidth & autoFitMaxWidth'"
+                    :casename="'border & minWidth & autoFitMinWidth & autoFitMaxWidth'"
                 ></demolink>
 
                 <w-text-suggest
@@ -1148,7 +1148,7 @@
             <div class="bk">
                 <demolink
                     :kbname="'w-text-suggest'"
-                    :casename="'maxWidth & autoFitMinWidth & autoFitMaxWidth'"
+                    :casename="'border & maxWidth & autoFitMinWidth & autoFitMaxWidth'"
                 ></demolink>
 
                 <w-text-suggest

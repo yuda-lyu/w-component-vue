@@ -63,7 +63,7 @@
     ></script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.5.29/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.5.30/dist/w-component-vue.umd.js"></script>
 
     <style>
   /* 組件所須全域樣式 */
@@ -143,7 +143,7 @@
         <div class="bk">
             <div
                 class="item"
-            >group &amp; borderColor &amp; borderColorHover &amp; borderColorActive &amp; textColorActive &amp; iconColorActive &amp; backgroundColorActive &amp; no shadowActive</div>
+            >group &amp; borderColor &amp; borderColorHover &amp; borderColorActive</div>
 
             <div style="padding:10px 0px;">
                 <!-- 因使用group故marginStyle會被取消, 此處添加padding只是讓排版一致 -->
@@ -151,13 +151,9 @@
                     :items="WGroupChipRadio.object.items"
                     v-model="WGroupChipRadio.object.select"
                     :group="true"
-                    :border-color="'#ccc'"
-                    :border-color-hover="'#ccc'"
+                    :border-color="'#aaa'"
+                    :border-color-hover="'#aaa'"
                     :border-color-active="'orange lighten-2'"
-                    :text-color-active="'orange darken-3'"
-                    :icon-color-active="'orange darken-3'"
-                    :background-color-active="'orange lighten-5'"
-                    :shadow-active="false"
                 ></w-group-chip-radio>
             </div>
         </div>

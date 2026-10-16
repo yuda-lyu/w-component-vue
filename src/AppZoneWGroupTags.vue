@@ -255,7 +255,7 @@
             <div class="bk" style="display:block;">
                 <demolink
                     :kbname="'w-group-tags'"
-                    :casename="'suggests & slot suggest & addMode & inputKeyText & addWhenInputByOutside'"
+                    :casename="'suggests & slot suggest & inputKeyText & addWhenInputByOutside & addMode'"
                 ></demolink>
 
                 <w-group-tags

@@ -42,7 +42,7 @@
 
 <script>
 import { mdiLaunch, mdiUnfoldMoreVertical } from '@mdi/js'
-import cvCasename from '../../toolg/cvCasename.mjs'
+import getExampleFn from '../../toolg/getExampleFn.mjs'
 import WButtonCircle from './WButtonCircle.vue'
 
 
@@ -73,8 +73,7 @@ export default {
     computed: {
 
         fn: function() {
-            let fnc = `${this.casename}`
-            return `${this.kbname}_${cvCasename(fnc)}`
+            return getExampleFn(this.kbname, this.casename)
         },
 
     },
