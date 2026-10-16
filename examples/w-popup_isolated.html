@@ -63,7 +63,7 @@
     ></script>
 
     <!-- w-component-vue -->
-    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.5.29/dist/w-component-vue.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/w-component-vue@2.5.30/dist/w-component-vue.umd.js"></script>
 
     <style>
   /* 組件所須全域樣式 */
@@ -143,13 +143,28 @@
         <div class="bk">
             <div class="item">isolated</div>
 
-            <w-tooltip :isolated="true" @show="evShow" @hide="evHide">
+            <w-popup :isolated="true" @show="evShow" @hide="evHide">
                 <template v-slot:trigger>
                     <w-button-chip :text="'show'" :border-radius="4"></w-button-chip>
                 </template>
 
-                <template v-slot:content>{{WTooltip.text}}</template>
-            </w-tooltip>
+                <template v-slot:content="props">
+                    <w-list-vertical
+                        style="height:148px;"
+                        :padding-style="{v:8,h:15}"
+                        :item-background-color="'transparent'"
+                        :enable-active="false"
+                        :items="WPopup.items"
+                    ></w-list-vertical>
+                    <div style="padding:0px 5px 5px 5px;">
+                        <w-button-chip
+                            :text="'hide in popup panel'"
+                            :border-radius="4"
+                            @click="props.funHide()"
+                        ></w-button-chip>
+                    </div>
+                </template>
+            </w-popup>
         </div>
     </v-app>
 
@@ -163,7 +178,7 @@
 
     data: function() {
       return {
-        WTooltip: {
+        WPopup: {
           bShow1: false,
           bShow2: false,
           bShow3: false,
@@ -202,14 +217,17 @@
           bShow21b: false,
           bShow22: false,
           bShow23: false,
+          bShow24: false,
           items: ["Item foo", "Item bar", "Item fizz", "Item buzz"],
           itemsExpand: ["Item foo", "Item bar", "Item fizz", "Item buzz"],
+          itemsL: [
+            "Lorem ipsum",
+            "Met consectetur",
+            "Aquis praesentium",
+            "Quis praesentium"
+          ],
           text:
-            "Lorem ipsum met consectetur adipisicing elit 中文測試 aquis praesentium cumque magnam odio iure quidem",
-          textShort: "Lorem 中文測試",
-          textL1: "Lorem ipsum",
-          textL2: "Met consectetur",
-          textL3: "Aquis praesentium",
+            "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis praesentium cumque magnam odio iure quidem, quod illum numquam possimus obcaecati commodi minima assumenda consectetur culpa fuga nulla ullam. In, libero.",
           table:
             '\n<table style="width:100%; font-size:0.7rem; border-collapse:collapse;">\n                        <thead>\n                            <tr>\n                                <th style="padding:2px 8px; text-align:left;">Dessert</th>\n                                <th style="padding:2px 8px; text-align:left;">Calories</th>\n                                <th style="padding:2px 8px; text-align:left;">Fat</th>\n                                <th style="padding:2px 8px; text-align:left;">Carbs</th>\n                            </tr>\n                        </thead>\n                        <tbody>\n                            <tr>\n                                <td style="padding:2px 8px; border-top:1px solid #ddd;">Frozen Yogurt</td>\n                                <td style="padding:2px 8px; border-top:1px solid #ddd;">159</td>\n                                <td style="padding:2px 8px; border-top:1px solid #ddd;">6</td>\n                                <td style="padding:2px 8px; border-top:1px solid #ddd;">24</td>\n                            </tr>\n                            <tr>\n                                <td style="padding:2px 8px; border-top:1px solid #ddd;">Ice cream sandwich</td>\n                                <td style="padding:2px 8px; border-top:1px solid #ddd;">237</td>\n                                <td style="padding:2px 8px; border-top:1px solid #ddd;">9</td>\n                                <td style="padding:2px 8px; border-top:1px solid #ddd;">37</td>\n                            </tr>\n                            <tr>\n                                <td style="padding:2px 8px; border-top:1px solid #ddd;">Eclair</td>\n                                <td style="padding:2px 8px; border-top:1px solid #ddd;">262</td>\n                                <td style="padding:2px 8px; border-top:1px solid #ddd;">16</td>\n                                <td style="padding:2px 8px; border-top:1px solid #ddd;">23</td>\n                            </tr>\n                        </tbody>\n                    </table>\n'
         },
@@ -230,13 +248,13 @@
       clickHide: function() {
         let vo = this;
         setTimeout(function() {
-          vo.WTooltip.bShow2 = false;
+          vo.WPopup.bShow2 = false;
         }, 200);
       },
       expandItem: function() {
         let vo = this;
         setTimeout(function() {
-          vo.WTooltip.itemsExpand = [
+          vo.WPopup.itemsExpand = [
             "Lorem ipsum dolor sit, amet consectetur",
             "bar",
             "fizz",
@@ -244,7 +262,7 @@
           ];
         }, 1000);
         setTimeout(function() {
-          vo.WTooltip.itemsExpand = [
+          vo.WPopup.itemsExpand = [
             "Item foo",
             "Item bar",
             "Item fizz",
