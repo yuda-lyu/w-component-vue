@@ -13,13 +13,14 @@ import parseDetectValue from './parseDetectValue.mjs'
  * 宿主重繪後(componentUpdated, 子節點已更新): 觸發器改用新vnode之監聽物件; 設定快照改變(啟停、設定之值、函數設定之有無)則解除舊偵測器後重建;
  * 快照未變而重新比較鍵之值改變者, 延至本批更新之後(microtask)並合併請偵測器重新比較; 其餘不動作
  * 宿主重繪不自動重新比較: 重新比較會呼叫使用端函數(如getBase), 於hook內呼叫會使其讀取之反應式狀態成為宿主之依賴, 且多實例共用比較基準時互相觸發而永不收斂
- * 函數設定一律呼叫最新指令值中之同名函數; 其拋錯時每個綁定之每個鍵以console.error提示一次, 再交回偵測器原本之處理
+ * 函數設定一律呼叫最新指令值中之同名函數; 其拋錯時每個綁定之每個鍵以console.error提示一次, 再交回偵測器原本之處理; 列於quietKeys之鍵(如觀察回調onTrace, 其拋錯由偵測器忽略)不提示, 仍交回
  * 每次建立之偵測器各自一個閘門, 解除或重建時關閉, 故舊偵測器已排定之事件不會送達
  *
  * @param {Object} def 輸入指令定義物件
  * @param {String} def.name 輸入指令與事件名稱字串, 例如'domresize'
  * @param {String} def.attr 輸入綁定時設於元素之屬性名稱字串, 例如'ev-resize'
  * @param {Array} [def.keys=[]] 輸入可用設定鍵之字串陣列
+ * @param {Array} [def.quietKeys=[]] 輸入函數設定拋錯時不提示之鍵之字串陣列, 須同時列於keys
  * @param {String} [def.refreshKey=''] 輸入重新比較鍵之名稱字串, 須同時列於keys, 偵測器須提供refresh, 預設''表示無
  * @param {Function} [def.normalize=null] 輸入設定正規化函數, 傳入只含可用鍵之設定物件與{given}, 回傳{cfg,warns}, 預設null
  * @param {Function} def.create 輸入建立偵測器函數, 傳入(el, cfg, emit), 回傳{clear,refresh}(refresh可無), 或null表示未建立
@@ -32,6 +33,7 @@ function createDetectDirective(def) {
         refreshKey: def.refreshKey || '',
         normalize: def.normalize || null,
     }
+    let quiet = new Set(def.quietKeys || [])
     let recs = new WeakMap()
 
     //getOwner, 綁定之識別
@@ -71,7 +73,7 @@ function createDetectDirective(def) {
                         return f(...args)
                     }
                     catch (err) {
-                        if (!rec.warned.has(`fun:${k}`)) {
+                        if (!quiet.has(k) && !rec.warned.has(`fun:${k}`)) {
                             rec.warned.add(`fun:${k}`)
                             console.error(`[v-${name}] 設定函數${k}拋錯`, err)
                         }

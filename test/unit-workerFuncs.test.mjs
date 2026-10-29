@@ -78,6 +78,12 @@ describe(NAME, function() {
         it(`${cs.name}: worker版與非worker版結果深度相等且鍵順序相同, 呼叫後無殘留worker`, async function() {
             let { ctx, page, logs } = await openPage(browser, bundle)
 
+            //worker之建立與終止以頁面事件追蹤(Playwright之worker事件與Worker之close事件), 不以固定等待判斷是否已終止
+            let made = []
+            page.on('worker', (w) => {
+                made.push(new Promise((resolve) => w.once('close', resolve)))
+            })
+
             let r = await page.evaluate(async (name) => {
                 let t = window.__t
                 let a = t.genCases().find((v) => v.name === name)
@@ -109,8 +115,18 @@ describe(NAME, function() {
             //R-B3: 鍵順序相同(元件依鍵順序顯示)
             assert.ok(r.keyOrderEqual, 'key order differs from non-worker result')
 
-            //R-B3: 一般呼叫結束後不殘留worker(每次呼叫新建並於結束時中止)
-            await page.waitForTimeout(300)
+            //R-B3: 一般呼叫結束後不殘留worker(每次呼叫新建並於結束時中止): 等呼叫所建立之worker皆發出close事件, 其後頁面不再有worker
+            //  防懸置上限(worker未終止即永遠等不到close)用真實計時器, 只防懸置, 逾時即判殘留
+            let timer = null
+            let st = await Promise.race([
+                Promise.all(made).then(() => 'closed'),
+                new Promise((resolve) => {
+                    timer = setTimeout(() => resolve('timeout'), 30000)
+                }),
+            ])
+            clearTimeout(timer)
+            assert.ok(made.length >= 1, 'worker version created no worker')
+            assert.strict.equal(st, 'closed', 'worker left running after the call')
             assert.strict.equal(page.workers().length, 0)
 
             assert.strict.deepEqual(logs.pageerror, [])

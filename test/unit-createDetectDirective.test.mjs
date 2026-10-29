@@ -31,7 +31,8 @@ function mkDir(opt = {}) {
     let dir = createDetectDirective({
         name: 'domtest',
         attr: 'ev-test',
-        keys: opt.keys || ['sync', 'tolerancePixel', 'attributeFilter', 'getSize', 'getBase', 'event', 'refreshKey'],
+        keys: opt.keys || ['sync', 'tolerancePixel', 'attributeFilter', 'getSize', 'getBase', 'event', 'refreshKey', 'onQuiet'],
+        quietKeys: opt.quietKeys,
         refreshKey: 'refreshKey',
         normalize: opt.normalize,
         create: (el, cfg, emit) => {
@@ -241,6 +242,44 @@ describe(`createDetectDirective`, function() {
             console.error = oe
         }
         assert.strict.deepStrictEqual([thrown, es], [3, ['[v-domtest] 設定函數getBase拋錯']])
+    })
+
+    it(`should not report an error thrown by a quiet key, but still pass it on (the other keys keep reporting)`, function() {
+        let { dir, dets } = mkDir({ quietKeys: ['onQuiet'] })
+        let el = new Ele()
+        let vn = mkVnode([])
+        let boom = () => {
+            throw new Error('boom')
+        }
+        dir.bind(el, { value: { onQuiet: boom, getBase: boom } }, vn)
+        let logs = []
+        let ms = ['error', 'warn', 'log']
+        let old = ms.map((m) => console[m])
+        ms.forEach((m) => {
+            console[m] = (...args) => {
+                logs.push(`${m}:${String(args[0])}`)
+            }
+        })
+        let thrown = { onQuiet: 0, getBase: 0 }
+        try {
+            for (let i = 0; i < 3; i++) {
+                for (let k of ['onQuiet', 'getBase']) {
+                    try {
+                        dets[0].cfg[k]()
+                    }
+                    catch (err) {
+                        thrown[k]++
+                    }
+                }
+            }
+        }
+        finally {
+            ms.forEach((m, i) => {
+                console[m] = old[i]
+            })
+        }
+        //靜默鍵之拋錯仍交回偵測器(由偵測器決定忽略), 但不提示; 非靜默鍵照舊每鍵提示一次
+        assert.strict.deepStrictEqual([thrown, logs], [{ onQuiet: 3, getBase: 3 }, ['error:[v-domtest] 設定函數getBase拋錯']])
     })
 
     it(`should rebuild when a function setting is added or removed`, function() {
