@@ -1,6 +1,16 @@
 <template>
-    <div :changeValue="changeValue">
-        <transition-group>
+    <div
+        :state="state"
+        :changeValue="changeValue"
+    >
+        <transition-group
+            @before-enter="holdTrans"
+            @after-enter="releaseTrans"
+            @enter-cancelled="releaseTrans"
+            @before-leave="holdTrans"
+            @after-leave="releaseTrans"
+            @leave-cancelled="releaseTrans"
+        >
             <template v-for="(item,kitem) in itemsTrans">
                 <div
                     class="WGroupDragdrop-Trans"
@@ -33,9 +43,15 @@ import o2j from 'wsemi/src/o2j.mjs'
 import isobj from 'wsemi/src/isobj.mjs'
 import isfun from 'wsemi/src/isfun.mjs'
 import domDragDrop from '../js/domDragDrop.mjs'
+import createTransitionState from '../js/createTransitionState.mjs'
 
 
 /**
+ * 根節點提供可偵測之state屬性(idle、moving), 供使用端與e2e判斷項目增刪與換序之移動過場是否結束:
+ *   idle: 靜止, 所有項目位置不再變動
+ *   moving: 移動中, 自項目集合或順序改變起(增、刪、換序), 至進出場與0.5s位移過場全部結束為止, 期間項目與其後元素位置仍在變動(例如刪除項目時, 被刪項目會停留0.5s後才移除, 其後項目於移除時才補位)
+ * 以項目自身之transitionend與transition-group之進出場完成為主要落定訊號, 事件未觸發(如高負載)時由逾時後備落定, 故state必定會落定; 初始渲染無過場, 為idle
+ *
  * @vue-prop {Array} [value=[]] 輸入項目的字串陣列或物件陣列，預設[]
  * @vue-prop {Boolean} [itemStyleInline=true] 輸入項目之display樣式是否使用行內樣式，true為'inline-block'而false為'block'，預設true
  * @vue-prop {Function} [keyBinder=null] 輸入由項目取得唯一識別碼(key)函數，預設項目為物件就序列化成為字串再作為key，反之就是用項目值作為key。函數會輸入項目物件或值，回傳需為字串。keyBinder預設null
@@ -66,9 +82,71 @@ export default {
     data: function() {
         return {
 
+            state: 'idle', //idle, moving
+            ts: null, //過場狀態追蹤器, 以項目自身之transitionend與transition-group之進出場完成為主要落定訊號, 逾時後備落定
+
             itemsTrans: [],
             dgGroupKey: null,
         }
+    },
+    created: function() {
+        //console.log('created')
+
+        let vo = this
+
+        //ts, 項目(.WGroupDragdrop-Trans)自身之位移過場與進出場全部結束才落定; 凍結以避免被轉為響應式
+        vo.ts = Object.freeze(createTransitionState({
+            getRoot: () => vo.$el,
+            getTargets: () => {
+                return vo.$el ? Array.from(vo.$el.getElementsByClassName('WGroupDragdrop-Trans')) : []
+            },
+            setState: (state) => {
+                vo.state = state
+            },
+        }))
+
+    },
+    mounted: function() {
+        //console.log('mounted')
+
+        let vo = this
+
+        //attach
+        vo.ts.attach()
+
+        //keysRef, 初始渲染(itemsTrans由changeValue於首次渲染時寫入)無過場, 以掛載當下之key序列為基準
+        vo.keysRef = vo.changeKeys
+
+    },
+    beforeDestroy: function() {
+        //console.log('beforeDestroy')
+
+        let vo = this
+
+        //destroy
+        vo.ts.destroy()
+
+    },
+    watch: {
+
+        changeKeys: function(keys) {
+            //console.log('watch changeKeys', keys)
+
+            let vo = this
+
+            //check
+            if (keys === vo.keysRef) {
+                return
+            }
+
+            //keysRef
+            vo.keysRef = keys
+
+            //moving, .WGroupDragdrop-Trans恆帶transition: all 0.5s, transition-group之進出場亦以此時長結束
+            vo.ts.begin('moving', 'idle', 500)
+
+        },
+
     },
     computed: {
 
@@ -81,6 +159,19 @@ export default {
             vo.itemsTrans = vo.value
 
             return ''
+        },
+
+        changeKeys: function() {
+            //console.log('computed changeKeys')
+
+            let vo = this
+
+            //項目之key序列字串, 增刪或換序才會改變(與template之key一致)
+            let keys = (Array.isArray(vo.itemsTrans) ? vo.itemsTrans : []).map((item) => {
+                return vo.getForKey(item)
+            })
+
+            return JSON.stringify(keys)
         },
 
         isObjValue: function() {
@@ -99,6 +190,26 @@ export default {
 
     },
     methods: {
+
+        holdTrans: function(el) {
+            //console.log('methods holdTrans', el)
+
+            let vo = this
+
+            //hold, transition-group之進場或出場開始(無CSS transition事件可等, 由Vue之計時器結束), 結束前不落定
+            vo.ts.hold(el)
+
+        },
+
+        releaseTrans: function(el) {
+            //console.log('methods releaseTrans', el)
+
+            let vo = this
+
+            //release, 進場或出場結束或取消
+            vo.ts.release(el)
+
+        },
 
         getForKey: function(item) {
             //console.log('methods getForKey', item)

@@ -1,5 +1,6 @@
 <template>
     <div
+        :state="state"
         :changeActive="changeActive"
     >
 
@@ -50,7 +51,7 @@
 
         <!-- content -->
         <!-- rct為內容自然高度(不受外層ct之高度限制), 偵測其尺寸改變(內容改變、寬度改變致換行、由隱藏恢復顯示)以重設展開高度 -->
-        <div :class="`ct ${active?'ct-show':'ct-hide'}`" :style="`${heightContent}`">
+        <div ref="ct" :class="`ct ${active?'ct-show':'ct-hide'}`" :style="`${heightContent}`">
             <div
                 ref="rct"
                 v-domresize="{event:'resize'}"
@@ -86,10 +87,18 @@ import domRipple from '../js/domRipple.mjs'
 import domResize from '../js/domResize.mjs'
 import convertColor from '../js/convertColor.mjs'
 import parseSpace from '../js/parseSpace.mjs'
+import createTransitionState from '../js/createTransitionState.mjs'
 import WIcon from './WIcon.vue'
 
 
 /**
+ * 根節點提供可偵測之state屬性(collapsed、expanding、expanded、collapsing), 供使用端與e2e判斷展開收合過場是否結束:
+ *   collapsed: 已收合
+ *   expanding: 展開中, 自active變為true起, 至內容區高度與透明度之0.5s過場結束為止, 期間其下方元素位置仍在變動
+ *   expanded: 已展開, 過場已結束, 其下方元素位置不再變動
+ *   collapsing: 收合中, 自active變為false起, 至過場結束為止
+ * 展開後內容尺寸改變致高度重設之過場不納入state; 初始渲染無過場, 依active直接為expanded或collapsed; 以內容區自身之transitionend為主要落定訊號, 事件未觸發(如高負載)時由逾時後備落定, 故state必定會落定
+ *
  * @vue-prop {String} [text=''] 輸入文字字串，預設''
  * @vue-prop {String} [textFontSize='1rem'] 輸入文字字型大小字串，預設'1rem'
  * @vue-prop {Boolean} [active=false] 輸入是否為主動模式布林值，預設false
@@ -213,10 +222,63 @@ export default {
     },
     data: function() {
         return {
+            state: this.active ? 'expanded' : 'collapsed', //collapsed, expanding, expanded, collapsing
+            ts: null, //過場狀態追蹤器, 以內容區自身之transitionend為主要落定訊號, 逾時後備落定
             obstructMutation: false,
             mouseEnter: false,
             heightContent: '',
         }
+    },
+    created: function() {
+        //console.log('created')
+
+        let vo = this
+
+        //ts, 內容區(.ct)自身之高度與透明度過場全部結束才落定; 凍結以避免被轉為響應式
+        vo.ts = Object.freeze(createTransitionState({
+            getRoot: () => vo.$el,
+            getTargets: () => [get(vo, '$refs.ct')],
+            setState: (state) => {
+                vo.state = state
+            },
+        }))
+
+    },
+    mounted: function() {
+        //console.log('mounted')
+
+        let vo = this
+
+        //attach
+        vo.ts.attach()
+
+    },
+    beforeDestroy: function() {
+        //console.log('beforeDestroy')
+
+        let vo = this
+
+        //destroy
+        vo.ts.destroy()
+
+    },
+    watch: {
+
+        active: function(value) {
+            //console.log('watch active', value)
+
+            let vo = this
+
+            //expanding or collapsing, .ct恆帶transition: height 0.5s, opacity 0.5s
+            if (value) {
+                vo.ts.begin('expanding', 'expanded', 500)
+            }
+            else {
+                vo.ts.begin('collapsing', 'collapsed', 500)
+            }
+
+        },
+
     },
     computed: {
 

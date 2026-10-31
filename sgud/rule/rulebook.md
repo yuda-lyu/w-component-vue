@@ -116,3 +116,60 @@
 
 - (已處置,2026-10-29 tm-compvue3)`unit-buildScripts` 之 `cleanFolderStrict(R-B2)` 兩案原斷言「重試 10 次、≥2700 ms」於 w-package-tools 1.1.21 起不成立(上游對非占用類錯誤首次即拋,見 R-B2);主控裁示照新行為改斷言(案名改為「目標為檔案時首次即拋錯(非占用類失敗不重試)」「目標不存在且無法建立(上層為檔案)時首次即拋錯(非占用類失敗不重試)」)並修訂 R-B2,不改 `toolg`、不令其捕捉重試。`toolg/cleanFolderStrict.mjs` 之重試迴圈因此只對「回傳 `success` 而目錄仍非空」生效,未移除(不在本輪範圍)。
 - 本節未涵蓋 `e2e-*` 檔之等待站點(批 E)。
+
+## 三、有過場動畫之組件於 DOM 提供可偵測之 `state` 屬性
+
+> 狀態:**生效**(2026-10-31 cv29;來源:Gitea #29〔下游 rddmanager 提出,使用者轉交〕,建議書範圍:WDialog、buildPopper 浮層、WListExpandItem、WGroupTags、WGroupDragdrop)。要求:**只新增屬性**,外觀、動畫時間與互動不變。語彙比照 `WDrawer`(根節點 `state`)。報告:`C:\opensrcOper\dnow\20261031175415\agent-out\cv29-修正報告.md`。
+
+### 3.1 單一擁有者與站點全集
+
+- 落定邏輯單一擁有者:`src/js/createTransitionState.mjs`(`createTransitionState`)。`WDrawer` 於本規則前已自帶一份(`settleState`,以 `transitionend` 為主、逾時兜底),**未收斂**(不在本輪範圍,收斂須驗證其既有行為不變)。
+- 站點(盤點:`rg -n "createTransitionState" src`):
+
+| 組件 | 帶 `state` 之元素 | 值 | 過場來源(受追蹤元素) |
+|---|---|---|---|
+| WDialog | 根節點 | `hidden`、`opening`、`opened`、`resizing` | 遮罩 `divOverlay` 與彈窗 `divPanel` 自身之過場 |
+| WTooltip(WPopup 包它;WTextSelect、WTextSuggest、WTimeday、WColorSelect 以其為基礎者一併;**WSlider 提示不在內**:自建 `.WPopperFix` 以 `createPopper` 直接建立、`v-show` 顯示、無過場,不經 `buildPopper`,故無 `state`,建議書 §2 假設其一併生效不成立) | `.WPopperFix`(teleport 至 body) | `hidden`、`opening`、`opened` | `.WPopperFix` 之內層內容(第一個子元素)自身之 opacity/transform 過場(`buildPopper.mjs` `displayPopper`) |
+| WListExpandItem | 根節點 | `collapsed`、`expanding`、`expanded`、`collapsing` | `.ct`(`ref="ct"`)自身之 height/opacity 過場 0.5s |
+| WGroupTags、WGroupDragdrop | 根節點 | `idle`、`moving` | 各項目(`.WGroupTags-Trans`、`.WGroupDragdrop-Trans`)自身之位移過場 0.5s,加 transition-group 之進出場(以 `@before-enter` 等鉤子占位) |
+
+### 3.2 規則
+
+- **R-S1(值與轉換時點)** 過渡態在**引起它的資料改變之同一個 tick** 寫入(先於瀏覽器開始過場),故觸發操作後立即讀 `state` 即為過渡態:WDialog `showPanel()` → `opening`;已 `opened` 時 `useWidth`/`useHeight`/`useBorder` 之合併字串(`changeSize`)改變 → `resizing`;WTooltip `displayPopper` 顯示 → `opening`;WListExpandItem `active` 改變 → `expanding`/`collapsing`;WGroupTags/WGroupDragdrop 之 key 序列(`changeKeys`)改變 → `moving`。終態僅在落定條件成立時寫入(R-S3)。
+- **R-S2(無過場者直接為終態)** 初始渲染無過場:WListExpandItem 依 `active` 為 `expanded`/`collapsed`,WGroupTags/WGroupDragdrop 為 `idle`(以掛載當下之 key 序列為基準,不因初始 `itemsTrans` 寫入而進入 `moving`)。**關閉無過場者不使用 `hiding`**:WDialog 關閉(`v-if` 移除)與浮層隱藏(內層 `v-if`、外層 `v-show`)皆直接 `hidden`(2026-10-31 實測:關閉時無任何 transition 事件,7ms 內移除)。若要有 `hiding` 須先加關閉過場,屬行為變更,須使用者裁示。
+- **R-S3(落定)** 終態於「受追蹤元素自身之 CSS transition 皆結束(含尚未開始者,以 `getAnimations()` 判斷)且無占位」時寫入:①主要訊號:容器收到受追蹤元素**自身**之 `transitionend`/`transitioncancel`(子孫元素之過場不計)且此時已無進行中之過場;②後備:`begin` 後經 `nominalMs + marginMs(300)` 仍未落定(事件未觸發之高負載,或根本無過場被觸發)→ 若仍有進行中之過場則每 50ms 重查,結束即落定,上限 `capMs(3000)` 後強制落定。故 `state` 必定落定。重複觸發以 token 作廢前次等待。
+- **R-S4(只新增屬性)** 不得為了 `state` 改動既有 CSS、動畫時間、計時器、事件或互動。允許之附帶改動:`ref`(WListExpandItem 之 `ref="ct"`)、`created`/`mounted`/`beforeDestroy`/`watch`/`computed`(`changeSize`、`changeKeys`)、`<transition-group>` 之 `@before-enter` 等鉤子(僅 `before-enter`、`after-enter`、`enter-cancelled`、`before-leave`、`after-leave`、`leave-cancelled`;**不得綁 `@enter`、`@leave`**:Vue 依其形參個數判斷是否由使用者控制結束)。
+- **R-S5(不納入)** WDialog 強制模式(`isModal`)點擊外部之振動提示動畫(兩段式 100ms+100ms 暫態)不納入 `state`;WDialog 全螢幕時因視窗尺寸改變致面板跟著過場(`changeSize` 字串不變,不進 `resizing`)不納入;WListExpandItem 展開後內容尺寸改變經 `resizeContent`→`setHeightContent` 重設高度之過場不納入(巢狀展開之外層屬此);WTooltip/WPopup 之 `.WPopperFix` 位置由 popper.js 在內容尺寸改變時重算(`updatePopper`)之位移不納入(非過場)。
+- **R-S7(無過場可等時落定偏晚)** `transitionTime` 趨近 0、祖先 `display:none` 內之 WListExpandItem、末端新增之標籤(僅 Vue 進場計時器 501ms)等無 CSS 過場可等者,過渡態停留至逾時後備(約 `nominalMs + 300ms`,最長至 `capMs`)才落定,不是卡死;下游對過渡態斷言有時限者須知悉。
+- **R-S8(輸入容忍)** `changeKeys` 對 `value` 為 `null` 容忍(`Array.isArray` 守門),不得因新增 `state` 使修前靜默容忍之輸入(`value=null`)新增 console 錯誤。
+- **R-S6(buildPopper 契約)** `buildPopper` 之 `vo` 須預先宣告 `state`(列入 `_keys`),由其寫入;`WTooltip` 為唯一使用者。
+
+### 3.3 規則 → 測試
+
+| 規則 | 測試檔 | 案例 |
+|---|---|---|
+| R-S3(追蹤器) | `test/unit-createTransitionState.test.mjs`(真瀏覽器頁內合成元素) | 事件為主且先過渡態後終態、事件被攔時逾時後備、無過場時逾時、後備時仍有過場則等其結束、子孫過場不計、`display:none` 取消亦落定、`stop`/重複 `begin` 作廢、`hold`/`release`、已離開 DOM 之占位視為釋放、`destroy` 後不寫入、設定檢查 |
+| R-S1、R-S2、R-S3(組件) | `test/e2e-transitionState.test.mjs` | WDialog 開啟/最大化/還原/關閉(不經 hiding)/初始即顯示/事件被攔/CPU 降速 20 倍;浮層(WTextSelect、WPopup、WTooltip〔`transitionTime=800`〕)開啟與關閉、事件被攔、開啟中即關閉;WListExpandItem 展開收合、初始 `active`、事件被攔;WGroupTags、WGroupDragdrop 初始 `idle`、末端新增、刪除中間、換序、假時鐘下進場計時器結束即落定(證 `hold` 接線)、事件被攔 |
+
+- 斷言口徑(皆為建議書〈驗證建議〉之翻譯):①state 序列(過渡態出現、順序正確、關閉無 hiding);②過渡態期間箱體仍在變動(確有過場可等,避免空過);③終態**出現當下**之箱體即為終值,且其後每一幀箱體不變(終態後以 700ms 觀察窗,屬否定斷言);④事件未觸發(以 window 捕獲階段攔下 `transitionend`/`transitioncancel`)時仍落定。
+- 分辨力驗證用之來源切換:`W_SRC_DIR`(unit-createTransitionState、e2e-transitionState 改由該資料夾之 src 打包,預設工作區 `src`;測試入口以 `@src/` 引用,別名由 `test/tools/e2e-setup.mjs` 之 `bundleEntry(name, entry, { srcDir })` 提供)。
+- 有效性證明(2026-10-31 cv29 實測):修前(HEAD 之 src;當時測試為 43 案之版本,之後僅加 2 案)0 綠、31 紅(單元測試因缺 `createTransitionState` 而 `before all` 失敗計 1,e2e 30 案全紅);變異 M1～M17 各至少 1 案轉紅(M1 移除逾時後備 9、M2 提早設終態 34、M3 事件到達不查進行中之過場 4、M4 後備不查進行中之過場 2、M5 不限定自身事件 1、M6 `hold` 無作用 3、M7 無 `resizing` 3、M8 浮層不經 `opening` 6、M9 無 `moving` 12、M10 展開終態寫錯 2、M11 無 `collapsing` 2、M12 WDialog 不經 `opening` 5、M13 不監聽 `transitioncancel` 1、M14 不剔除離開 DOM 之占位 1、M15 `changeKeys` 不容忍 null 1、M16 WDialog 關閉不設 `hidden` 1、M17 浮層隱藏不設 `hidden` 4)。變異腳本與副本為暫存(`./tmp/cv29/variants.mjs`,結案已清);要重做時以 `W_SRC_DIR` 指向改動過的 src 副本。未能分辨者:WDialog `mounted` 內之 `ts.attach()`(缺它時初始即顯示者由後備落定,結果同,僅慢)。
+
+### 3.4 改動範圍 → e2e 檔對照表
+
+| 改動範圍 | 須跑之測試檔 |
+|---|---|
+| `src/js/createTransitionState.mjs` | `unit-createTransitionState`、`e2e-transitionState` |
+| `src/js/buildPopper.mjs`、`WTooltip.vue`、`WPopup.vue` | `e2e-transitionState`、`e2e-hover`(WButtonCircle 提示框) |
+| `WDialog.vue` | `e2e-transitionState`、`e2e-hover`(WDialog 標題列儲存鈕) |
+| `WListExpandItem.vue`、`WGroupTags.vue`、`WGroupDragdrop.vue` | `e2e-transitionState` |
+| 偵測類指令(`domResize`、`domMutation`、`domStable`、`domVisible`、`createDetectDirective`) | `e2e-domDirectives`、`e2e-hiddenMeasure`、相關 `unit-*` |
+| `test/tools/e2e-setup.mjs`(共用層) | 所有 `e2e-*` 與 `unit-createTransitionState` |
+| `WButtonCircle.vue`、`WTreeIconToggle.vue` | `e2e-hover` |
+
+### 3.5 已知限制(文件化)
+
+- 建議書範圍外、含 `transition: all 0.3s` 且於屬性改變時改變版面之組件(`WPanelAvatar`、`WPanelBulge`、`WGroupBaggage` 等)**未盤點,未提供 `state`**;`WDrawer` 之實作未收斂至 `createTransitionState`。
+- WGroupTags/WGroupDragdrop 之 `moving` 為保守語意:末端新增時他項雖不動,仍至進場完成(約 0.5s)才 `idle`。
+- 拖放(`v-domdragdrop`)換序之 e2e 以頁面按鈕改 `value` 代替真拖放(拖放最終亦經 `input` 事件改 `value`,走同一條 `changeKeys` 路徑);真拖放未另行驗證。
+- 逾時後備之 `marginMs=300`、`capMs=3000` 為經驗值(比照 `WDrawer` 之 `sec+1000`、3000ms),未依機器效能調整。

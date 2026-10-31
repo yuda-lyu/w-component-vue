@@ -1,9 +1,17 @@
 <template>
     <div
+        :state="state"
         :changeValue="changeValue"
     >
 
-        <transition-group>
+        <transition-group
+            @before-enter="holdTrans"
+            @after-enter="releaseTrans"
+            @enter-cancelled="releaseTrans"
+            @before-leave="holdTrans"
+            @after-leave="releaseTrans"
+            @leave-cancelled="releaseTrans"
+        >
             <template v-for="(item,kitem) in itemsTrans">
 
                 <!-- 要把原生拖曳功能關閉draggable=false -->
@@ -204,9 +212,15 @@ import WButtonChip from './WButtonChip.vue'
 import WTextSuggest from './WTextSuggest.vue'
 import parseSpace from '../js/parseSpace.mjs'
 import domDragDrop from '../js/domDragDrop.mjs'
+import createTransitionState from '../js/createTransitionState.mjs'
 
 
 /**
+ * 根節點提供可偵測之state屬性(idle、moving), 供使用端與e2e判斷標籤增刪與換序之移動過場是否結束:
+ *   idle: 靜止, 所有標籤位置不再變動
+ *   moving: 移動中, 自標籤集合或順序改變起(增、刪、換序), 至進出場與0.5s位移過場全部結束為止, 期間標籤與其後元素位置仍在變動(例如刪除標籤時, 被刪標籤會停留0.5s後才移除, 其後標籤於移除時才補位)
+ * 以標籤自身之transitionend與transition-group之進出場完成為主要落定訊號, 事件未觸發(如高負載)時由逾時後備落定, 故state必定會落定; 初始渲染無過場, 為idle
+ *
  * @vue-prop {Array} [value=[]] 輸入項目的字串陣列或物件陣列，預設[]
  * @vue-prop {Boolean} [enableActive=false] 輸入項目是否使用點擊成為活耀狀態布林值，預設false
  * @vue-prop {Object} [valueActive=null] 輸入活耀項目物件，預設null
@@ -632,11 +646,73 @@ export default {
 
             dgGroupKey: null,
 
+            state: 'idle', //idle, moving
+            ts: null, //過場狀態追蹤器, 以標籤自身之transitionend與transition-group之進出場完成為主要落定訊號, 逾時後備落定
+
             itemsTrans: [],
             itemActiveTrans: null,
             userInput: '',
 
         }
+    },
+    created: function() {
+        //console.log('created')
+
+        let vo = this
+
+        //ts, 標籤(.WGroupTags-Trans)自身之位移過場與進出場全部結束才落定; 凍結以避免被轉為響應式
+        vo.ts = Object.freeze(createTransitionState({
+            getRoot: () => vo.$el,
+            getTargets: () => {
+                return vo.$el ? Array.from(vo.$el.getElementsByClassName('WGroupTags-Trans')) : []
+            },
+            setState: (state) => {
+                vo.state = state
+            },
+        }))
+
+    },
+    mounted: function() {
+        //console.log('mounted')
+
+        let vo = this
+
+        //attach
+        vo.ts.attach()
+
+        //keysRef, 初始渲染(itemsTrans由changeValue於首次渲染時寫入)無過場, 以掛載當下之key序列為基準
+        vo.keysRef = vo.changeKeys
+
+    },
+    beforeDestroy: function() {
+        //console.log('beforeDestroy')
+
+        let vo = this
+
+        //destroy
+        vo.ts.destroy()
+
+    },
+    watch: {
+
+        changeKeys: function(keys) {
+            //console.log('watch changeKeys', keys)
+
+            let vo = this
+
+            //check
+            if (keys === vo.keysRef) {
+                return
+            }
+
+            //keysRef
+            vo.keysRef = keys
+
+            //moving, .WGroupTags-Trans恆帶transition: all 0.5s, transition-group之進出場亦以此時長結束
+            vo.ts.begin('moving', 'idle', 500)
+
+        },
+
     },
     computed: {
 
@@ -650,6 +726,19 @@ export default {
             vo.itemActiveTrans = cloneDeep(vo.valueActive)
 
             return ''
+        },
+
+        changeKeys: function() {
+            //console.log('computed changeKeys')
+
+            let vo = this
+
+            //標籤之key序列字串, 增刪或換序才會改變(與template之key一致)
+            let keys = (Array.isArray(vo.itemsTrans) ? vo.itemsTrans : []).map((item) => {
+                return `${vo.isObjValue ? o2j(item) : item}`
+            })
+
+            return JSON.stringify(keys)
         },
 
         isObjValue: function() {
@@ -709,6 +798,26 @@ export default {
 
     },
     methods: {
+
+        holdTrans: function(el) {
+            //console.log('methods holdTrans', el)
+
+            let vo = this
+
+            //hold, transition-group之進場或出場開始(無CSS transition事件可等, 由Vue之計時器結束), 結束前不落定
+            vo.ts.hold(el)
+
+        },
+
+        releaseTrans: function(el) {
+            //console.log('methods releaseTrans', el)
+
+            let vo = this
+
+            //release, 進場或出場結束或取消
+            vo.ts.release(el)
+
+        },
 
         getDgGroupKey: function() {
             //console.log('methods getDgGroupKey')

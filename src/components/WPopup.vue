@@ -22,6 +22,8 @@ import WTooltip from './WTooltip.vue'
 
 
 /**
+ * 彈窗本體(teleport至body之.WPopperFix)提供可偵測之state屬性(hidden、opening、opened), 詳見WTooltip, 內層內容淡入與滑入結束才為opened
+ *
  * @vue-prop {Boolean} [value=false] 輸入是否顯示布林值，預設false
  * @vue-prop {String} [displayType='block'] 輸入display設定字串，可選'block'與'line'，預設'block'
  * @vue-prop {Number} [cmpZIndex=2000] 輸入彈窗使用z-index之基準數字，實際z-index為本數字加上顯示順序層級，且與WDialog共用同一層級池並同基準值，故彈窗與對話框不論何者先開，後開者z-index必大於先開者，預設2000

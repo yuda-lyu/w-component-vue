@@ -58,3 +58,20 @@
 - **排鎖等待可長達一個多小時,取證與編輯不要被它卡住**:本輪排鎖 80 分鐘(他套件獨佔負載試驗持鎖)。取「修前紅」不必凍結 src 等鎖:在 `tmp/<名>/pre` 放修前 src 副本與新測試(相對引用 `../src/js`、`./tools/…` 於副本內仍成立,`node_modules` 由 repo 向上解析),編輯與取證互不牽制;全套、變異、負載各自獨立 `nohup` 排隊,`quiet-run --timeout 14400`(排鎖等待也計入)。
 - **變異/取證腳本在排鎖前先乾跑準備階段**:本輪 `comboA.mjs` 因變異 MQ1 以 `\n` 比對 CRLF 檔(`domResize.mjs`、`unit-domResize.test.mjs` 為 CRLF,`createDetectDirective.mjs` 與多數新檔為 LF)而「changed nothing」拋錯,排鎖 80 分鐘後在最後一段中止,只好再排鎖補跑 MQ 一段(又 21 分鐘)。腳本需有「不取鎖、只建副本並驗證每個變異確有改動」之乾跑模式;改檔之比對用 `\r?\n`。
 - **p99Max 不是旋鈕**:CPU 壓力試驗以固定 8 個壓力行程施壓,測試行程之事件迴圈延遲 p99 最大值隨當下機器其他負載而異(改造前 373～623 ms、改造後第 1 次 1222 ms、後 4 次 280～316 ms),不能據以宣稱穩定度改善或惡化;失敗率(本輪案前後皆 0)與單案耗時才是判讀依據。
+
+## 2026-10-31 有過場動畫之組件新增 `state` 屬性(cv29)
+
+- **建議書之假設也要逐條對碼驗證**:建議書寫「WSlider 之提示等以 `buildPopper` 為基礎者一併生效」,我照抄進 README/JSDoc/規則帳本;獨立審查者 Grep 才發現 `buildPopper` 只被 `WTooltip` 引用,`WSlider` 自建 `.WPopperFix` 以 `createPopper` 直接建立(`v-show`、無過場),不在其內。以後文件列「一併生效」之組件前,先 `rg -n "buildPopper|WPopperFix" src` 對引用全集。
+- **WDialog 開啟含兩段 transform 過場,單看第一個 `transitionend` 會提早落定**:`showPanel` 先給 200ms 過場(opacity/transform),200ms 時清除 `panelStyleShow` 使 transform 由 `scale(≈0.97)` 改為 `none`,舊過場被 `transitioncancel` 取消並立即建立 100ms 新過場(實測 126ms 開始、320ms 取消重建、404ms 結束;opacity 337ms 就先結束)。故落定條件不能是「收到一次事件」,而是「受追蹤元素自身已無進行中之 CSS transition」(`getAnimations()`),事件只作為重查時機。
+- **關閉無過場**:WDialog(`v-if`)與浮層(內層 `v-if`、外層 `v-show`)關閉時 7ms 內即移除,無任何 transition 事件;故 `state` 無 `hiding`(建議書要求之 `hiding` 不適用,已列待裁示)。
+- **transition-group 之位置在 `moving` 末端才跳**:刪除中間項目時,被刪項目以 `v-leave-active` 留在 DOM 約 500ms(`.WGroupTags-Trans` 恆帶 `transition: all 0.5s`,Vue 以 CSS 時長算結束,實際無任何 CSS transition 事件,由 `setTimeout(timeout+1)` 結束),其後項目於移除瞬間才補位,中途無位移過場。只等 `transitionend` 會漏掉這種情形,故以 `<transition-group>` 之 `@before-enter/@after-enter/@enter-cancelled/@before-leave/@after-leave/@leave-cancelled` 占位(不可綁 `@enter`/`@leave`:Vue 依其形參個數判斷是否由使用者控制結束)。
+- **Vue 2 `v-on` 掛在 `<transition-group>` 上之鉤子會經 `extractTransitionData` 傳給每個子元素之 transition**,不是 DOM 事件;驗證接線有效須讓 CSS 位移過場(真實時間)與 Vue 計時器(假時鐘凍結)分離,才能證明「位移過場先結束時仍待進出場」(見下)。
+- **Playwright 假時鐘可決定性地分離兩種計時**:`page.clock.install()` 於 `openPage` 之 `opt.clock`,`pauseAt` 後以 `runFor` 推進;只凍結 JS 計時器與 rAF,CSS 過場及其 `transitionend` 仍依真實時間。末端新增(只有 Vue 進場計時器)用 `runFor(100)`→`moving`、`runFor(550)`→`idle` 證明「進出場結束即落定、不待 800ms 後備」;刪除加換序同次更新(`#btnMix`)用凍結 Vue 計時器、真實等 800ms 後仍 `moving` 證明占位生效。單看「刪除+換序後終態位置不變」殺不了 `hold` 變異(不占位時 `release` 之 `check` 與占位時同刻落定),須此法。
+- **記錄器之殘留迴圈會污染下一次記錄**:`startRec` 若迴圈與觀察器參照全域 `rec`,前一次 `stopRec` 後尚未執行的 rAF 回呼會在新記錄開始後繼續寫入新記錄(帶舊時基之 `t`),造成「終態後箱體仍變動」之假紅。每次記錄用閉包內自己的物件(迴圈只認自己的 `running`)。
+- **合成元素之過場是否建立取決於有無「改變前的計算樣式」**:新建元素後立刻改 `width`,若兩次呼叫之間未繪製,瀏覽器沒有改變前樣式,不建立過場(是否建立隨有無繪製而時有時無,三個單元案例因而偶發失敗)。建立元素後先 `getBoundingClientRect()` 強制計算樣式。
+- **單元案例綠不代表走到了被測路徑**:取消事件、占位元素離開 DOM 兩案原本靠後備或上限(6.5s、8.2s)落定,仍在 15s 等待上限內而判綠;要加「落定時刻小於後備下限」之斷言(事件路徑 < 3s)才能分辨。獨立審查者以虛擬時鐘重演才發現。
+- **子孫過場不計之案例要讓受追蹤元素自身無進行中之過場**:否則 `isRunning()` 本就為真,拿掉「限定自身事件」之過濾也照綠(變異 M5)。案例改為只觸發子元素過場(`goChild`),斷言子元素過場結束後仍未落定。
+- **Vue 攔下之例外不是 `pageerror`**:hook、watcher、computed 內之例外由 `handleError` 轉為 `console.error`,e2e 只斷言 `pageerror` 抓不到;新測試一律斷言 `pageerror`、`console.error`(含 `[Vue warn]`)、`console.warn` 皆空。審查者以純 Vue 腳本發現 `value=null` 時 `changeKeys` 拋錯,才補 `Array.isArray` 守門與 `value=null` 案例。
+- **`TaskStop` 停掉背景鏈不會殺 quiet-run 之子行程**:鏈(node)被停後,`quiet-run`(及其 mocha、瀏覽器)仍續跑並持鎖。處置:讀 `C:\opensrcOper\tmp\locks\web-tests*\owner.txt` 找本套件持鎖者之 pid,`cmd //c "taskkill /F /T /PID <pid>"`,再 `quiet-run --release-stale --cwd <本 repo>` 回收;排隊中之項目(`locks/queue/`)不得手動刪。本機鎖排隊實測 1～4 分鐘。
+- **背景鏈執行中不可改 src/test**:`variants.mjs` 於每個變異開始時才由工作區複製 src,中途改檔會使各變異對應不同版本;改動後須整串重跑。變異腳本先乾跑(`dry`)確認每個 `from` 恰出現 1 次,CRLF 檔以 `\r\n` 比對。
+- **eslint(`standard` 風格)之 `brace-style` 不容單行 `async () => { await x }`**,測試檔寫成多行;`quote-props` 要求物件鍵引號一致(`e2e-setup.mjs` 加 `'@src'` 時 `vue$` 一併加引號)。

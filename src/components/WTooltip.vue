@@ -25,6 +25,7 @@
                 ref="divContent"
                 class="WPopperFix"
                 :style="`z-index:${useCmpZIndex};`"
+                :state="state"
                 :wtlp="labelContent"
                 v-show="valueTrans"
                 v-domresize
@@ -78,6 +79,12 @@ function funRemoveTrigger(mode, mmkey) {
 
 
 /**
+ * 浮層本體(teleport至body之.WPopperFix)提供可偵測之state屬性(語彙同WDrawer), 供使用端與e2e判斷浮層是否已靜止, 以此為基礎之組件(WPopup、WTextSelect、WTextSuggest、WTimeday、WColorSelect等)一併提供, WSlider提示自建.WPopperFix且無過場, 不提供:
+ *   hidden: 未顯示
+ *   opening: 開啟中, 自顯示起, 至內層內容經transitionTime淡入與滑入至原位為止, 期間.WPopperFix之位置與透明度恆定, 但內層內容(.WPopperFix之子元素)之位置與透明度仍在變動
+ *   opened: 已開啟, 內層內容過場已結束且位置不再變動
+ * 以內層內容自身之transitionend為主要落定訊號, 事件未觸發(如高負載)時由逾時後備落定, 故state必定會落定; 關閉無過場, 由opened直接成為hidden, 不使用hiding
+ *
  * @vue-prop {String} [mode='tooltip'] 輸入組件模式字串，可選'tooltip'與'popup'，預設'tooltip'
  * @vue-prop {Boolean} [value=false] 輸入是否顯示布林值，預設false
  * @vue-prop {String} [displayType='block'] 輸入display設定字串，可選'block'與'line'，預設'block'
@@ -223,6 +230,7 @@ export default {
 
             triggerWidth: null, //會由BuildPopper內更新
             contentStyle: '',
+            state: 'hidden', //hidden, opening, opened, 會由BuildPopper內更新
 
             bp: null,
 

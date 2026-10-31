@@ -2,6 +2,7 @@
     <div
         style=""
         :changeParam="changeParam"
+        :state="state"
     >
 
         <!-- 屏蔽層通過overscroll-behavior:none吃掉滾動邊界時向父層捲動或平板拖曳事件, 避免觸發dialog外部捲軸或拖曳事件 -->
@@ -299,11 +300,20 @@ import domIsClientXYIn from 'wsemi/src/domIsClientXYIn.mjs'
 import convertColor from '../js/convertColor.mjs'
 import domResize from '../js/domResize.mjs'
 import domZIndex from '../js/domZIndex.mjs'
+import createTransitionState from '../js/createTransitionState.mjs'
 import WButtonCircle from './WButtonCircle.vue'
 import WIcon from './WIcon.vue'
 
 
 /**
+ * 根節點提供可偵測之state屬性(語彙同WDrawer), 供使用端與e2e判斷過場是否結束:
+ *   hidden: 未顯示(show為false), 內容不存在於DOM
+ *   opening: 開啟中, 自show變為true起, 至彈窗與遮罩之開啟過場全部結束為止, 期間彈窗位置與透明度仍在變動
+ *   opened: 已開啟, 過場已結束, 彈窗位置與尺寸不再變動
+ *   resizing: 尺寸改變中, 已開啟後因fullscreen、minWidth、maxWidth、ratioHeightMax或autoFullscreenWhenNarrow改變致寬高與圓角過場時, 至過場結束後回到opened
+ * 以彈窗自身之transitionend為主要落定訊號, 事件未觸發(如高負載)時由逾時後備落定, 故state必定會落定; 關閉無過場, 由opened(或resizing)直接成為hidden, 不使用hiding
+ * 強制模式(isModal)點擊外部之振動提示動畫, 與全螢幕時因視窗尺寸改變致面板跟著過場, 皆不納入state
+ *
  * @vue-prop {Boolean} [show=false] 輸入是否顯示布林值，預設false
  * @vue-prop {Boolean} [isModal=true] 輸入是否為強制模式布林值，預設true
  * @vue-prop {Number} [dialogZIndex=2000] 輸入彈窗使用z-index數字，預設2000
@@ -479,6 +489,9 @@ export default {
 
             showTrans: false,
 
+            state: 'hidden', //hidden, opening, opened, resizing
+            ts: null, //過場狀態追蹤器, 以彈窗自身之transitionend為主要落定訊號, 逾時後備落定
+
             fullscreenForce: false,
 
             overlayStyleShow: '',
@@ -504,6 +517,30 @@ export default {
 
         }
     },
+    created: function() {
+        //console.log('created')
+
+        let vo = this
+
+        //ts, 開啟過程與尺寸改變過程中, 遮罩與彈窗自身之過場全部結束才落定; 凍結以避免被轉為響應式
+        vo.ts = Object.freeze(createTransitionState({
+            getRoot: () => vo.$el,
+            getTargets: () => [get(vo, '$refs.divOverlay'), get(vo, '$refs.divPanel')],
+            setState: (state) => {
+                vo.state = state
+            },
+        }))
+
+    },
+    mounted: function() {
+        //console.log('mounted')
+
+        let vo = this
+
+        //attach, 首次渲染時就顯示者其開啟過場於掛載後才開始, 故須在此綁定容器事件
+        vo.ts.attach()
+
+    },
     beforeDestroy: function() {
         //console.log('beforeDestroy')
 
@@ -511,6 +548,27 @@ export default {
 
         //destroyLevel, 顯示中被銷毀時仍須釋放層級, 否則該號碼永久殘留於共用池, 墊高後續dialog與popup之起算值
         domZIndex.destroyLevel('dialog+popup', vo.mmkey)
+
+        //destroy
+        vo.ts.destroy()
+
+    },
+    watch: {
+
+        changeSize: function() {
+            //console.log('watch changeSize')
+
+            let vo = this
+
+            //check, 開啟中之尺寸改變已併入開啟過程之落定判斷, 未顯示者無彈窗
+            if (vo.state !== 'opened' && vo.state !== 'resizing') {
+                return
+            }
+
+            //resizing, 彈窗恆帶transition:all 100ms
+            vo.ts.begin('resizing', 'opened', 100)
+
+        },
 
     },
     computed: {
@@ -542,9 +600,17 @@ export default {
                 domZIndex.destroyLevel('dialog+popup', vo.mmkey)
                 // console.log('changeParam mmkey', vo.mmkey, 'destroyLevel')
 
+                //stop, 關閉無過場(內容隨v-if移除), 直接成為hidden並作廢進行中之落定等待
+                vo.ts.stop('hidden')
+
             }
 
             return ''
+        },
+
+        changeSize: function() {
+            let vo = this
+            return `${vo.useWidth} ${vo.useHeight} ${vo.useBorder}`
         },
 
         useDialogZIndex: function() {
@@ -766,6 +832,9 @@ export default {
             setTimeout(() => {
                 vo.panelStyleShow = ''
             }, t)
+
+            //opening, 遮罩與彈窗之t過場結束時樣式被清除, 彈窗另接續恆帶之100ms過場, 故預期時長為t+100, 實際以過場事件與進行中之過場為準
+            vo.ts.begin('opening', 'opened', t + 100)
 
         },
 

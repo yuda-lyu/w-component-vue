@@ -16,7 +16,8 @@ let reqCli = createRequire(reqRoot.resolve('@vue/cli-service/package.json'))
 
 
 //bundleEntry, 打包入口檔, 回傳bundle之絕對路徑
-async function bundleEntry(name, entry) {
+//  opt.srcDir: 入口檔以'@src/...'引用之src資料夾, 預設工作區之src; 分辨力驗證用(改由修前副本或變異副本之src打包), 不改動工作區
+async function bundleEntry(name, entry, opt = {}) {
     let webpack = reqCli('webpack')
     let { VueLoaderPlugin } = reqCli('@vue/vue-loader-v15')
     let outDir = path.join(projRoot, 'test', '_tmp', name)
@@ -32,7 +33,8 @@ async function bundleEntry(name, entry) {
         },
         resolve: {
             alias: {
-                vue$: reqRoot.resolve('vue/dist/vue.esm.js'), //含模板編譯器, 測試頁以template撰寫; 元件(.vue)內之import 'vue'亦指向同一份
+                'vue$': reqRoot.resolve('vue/dist/vue.esm.js'), //含模板編譯器, 測試頁以template撰寫; 元件(.vue)內之import 'vue'亦指向同一份
+                '@src': path.resolve(opt.srcDir || path.join(projRoot, 'src')),
             },
             modules: [path.join(projRoot, 'node_modules')],
         },
@@ -99,6 +101,10 @@ async function launchBrowser() {
 async function openPage(browser, bundle, opt = {}) {
     let ctx = await browser.newContext({ viewport: opt.viewport || { width: 800, height: 600 } })
     let page = await ctx.newPage()
+    if (opt.clock) {
+        //假時鐘(opt.clock為true): 安裝後由測試以page.clock.pauseAt、runFor推進, 供以虛擬時刻斷言計時器之先後
+        await page.clock.install()
+    }
     let logs = { warn: [], error: [], pageerror: [] }
     page.on('console', (m) => {
         if (m.type() === 'warning') {

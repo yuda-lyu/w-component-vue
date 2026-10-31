@@ -11,6 +11,7 @@ import offset from '@popperjs/core/lib/modifiers/offset.js'
 import hide from '@popperjs/core/lib/modifiers/hide.js'
 import preventOverflow from '@popperjs/core/lib/modifiers/preventOverflow.js'
 import computeStyles from '@popperjs/core/lib/modifiers/computeStyles'
+import createTransitionState from './createTransitionState.mjs'
 
 
 function buildPopper(vo, funGetDivTrigger, funGetDivContent, keyShow, evNameValue, opt = {}) {
@@ -31,6 +32,7 @@ function buildPopper(vo, funGetDivTrigger, funGetDivContent, keyShow, evNameValu
         'isolated',
         'editable',
         'contentStyle',
+        'state',
     ]
     each(_keys, (key) => {
         if (!haskey(vo, key)) {
@@ -56,6 +58,18 @@ function buildPopper(vo, funGetDivTrigger, funGetDivContent, keyShow, evNameValu
     if (modeHide !== 'click' && modeHide !== 'mousedown') {
         modeHide = 'click'
     }
+
+    //ts, 過場狀態追蹤器, 寫入vo.state(hidden, opening, opened); 事件自內層內容冒泡至divContent(.WPopperFix), 內層內容自身之過場結束才落定
+    let ts = createTransitionState({
+        getRoot: () => funGetDivContent(),
+        getTargets: () => {
+            let divContent = funGetDivContent()
+            return isEle(divContent) ? [divContent.firstElementChild] : []
+        },
+        setState: (state) => {
+            vo.state = state
+        },
+    })
 
     let _vo = {
         mouseClientX: 0,
@@ -243,6 +257,9 @@ function buildPopper(vo, funGetDivTrigger, funGetDivContent, keyShow, evNameValu
         //triggerEvent for hide
         triggerEvent(false)
 
+        //ts destroy
+        ts.destroy()
+
     }
 
     let addTrigger = () => {
@@ -427,6 +444,9 @@ function buildPopper(vo, funGetDivTrigger, funGetDivContent, keyShow, evNameValu
                 //contentStyle, 初始化使用pointer-events:none避免彈出區遮蔽驅動區導致觸發隱藏
                 vo.contentStyle = `opacity:0; pointer-events:none; transform:translateY(${shift}px);`
 
+                //state, 內層內容經transitionTime過場至原位, 期間位置與透明度仍在變動, 過場結束才為opened; 關閉無過場, 不使用hiding
+                ts.begin('opening', 'opened', vo.transitionTime)
+
                 showPopper('displayPopper')
                 _vo.popperShow = true
                 vo.$emit('show')
@@ -449,6 +469,7 @@ function buildPopper(vo, funGetDivTrigger, funGetDivContent, keyShow, evNameValu
 
                 hidePopper('displayPopper')
                 _vo.popperShow = false
+                ts.stop('hidden')
                 vo.$emit('hide')
                 ev.emit('hide')
                 // console.log('emit hide')
