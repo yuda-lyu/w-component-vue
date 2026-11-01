@@ -75,3 +75,13 @@
 - **`TaskStop` 停掉背景鏈不會殺 quiet-run 之子行程**:鏈(node)被停後,`quiet-run`(及其 mocha、瀏覽器)仍續跑並持鎖。處置:讀 `C:\opensrcOper\tmp\locks\web-tests*\owner.txt` 找本套件持鎖者之 pid,`cmd //c "taskkill /F /T /PID <pid>"`,再 `quiet-run --release-stale --cwd <本 repo>` 回收;排隊中之項目(`locks/queue/`)不得手動刪。本機鎖排隊實測 1～4 分鐘。
 - **背景鏈執行中不可改 src/test**:`variants.mjs` 於每個變異開始時才由工作區複製 src,中途改檔會使各變異對應不同版本;改動後須整串重跑。變異腳本先乾跑(`dry`)確認每個 `from` 恰出現 1 次,CRLF 檔以 `\r\n` 比對。
 - **eslint(`standard` 風格)之 `brace-style` 不容單行 `async () => { await x }`**,測試檔寫成多行;`quote-props` 要求物件鍵引號一致(`e2e-setup.mjs` 加 `'@src'` 時 `vue$` 一併加引號)。
+
+## 2026-11-01 buildPopper 之 `state` 改由 buildPopper 擁有(cv37,Gitea #37)
+
+- **輸出訊號不可與運作所需之設定同列必填**:`_keys` 把 `state`(只供使用端與 e2e 觀察之輸出)與 11 個彈出層運作所需之鍵並列,呼叫端漏宣告即整個彈出層建構失敗(#36 之 w-vditor-vue 全部實例 mounted 拋錯)。判準:這個值由誰寫入?寫入者擁有初值並提供變更訊號,讀取者宣告與否皆可運作。cv29 在 #29 時照建議書加入必填,是把「只新增屬性」誤做成「新增必填契約」。
+- **eventemitter3 之監聽器拋錯會外拋給 `emit` 之呼叫端**(wsemi `evem` JSDoc 明載):新增的訊號若在狀態機內發出(`setState` 在 `createTransitionState` 之 `begin`/`settle` 內呼叫),訂閱者一拋錯,`begin` 後半(後備計時器)不執行,`state` 停在 `opening`(變異 M7 實測:15 秒內不落定,後備本應 0.5 秒);`displayPopper` 內接在 `ts.begin` 之後的 `showPopper` 也會被外拋中斷(讀碼推論,未單獨實測)。故 `ev.emit('state')` 外包 try/catch 並 `console.error`;`vo.$emit` 由 Vue 的 `invokeWithErrorHandling` 自行處理,不必包。
+- **建構時之初值不發訊號**:此時訂閱者還拿不到 `ev`,且下游(建議檔 repro 的 `vo` 沒有 `$emit`)可能不是完整 Vue 實例;初值由 `getState()` 取、`vo.state` 校正,訊號只發「變更」。
+- **直接於 `.WPopperFix` 設屬性(建議 4)不採**:`buildPopper` 對 DOM 只讀、對外輸出一律寫入 `vo` 之資料由樣板綁定;`.WPopperFix` 是呼叫端樣板擁有之節點,`buildPopper` 無法得知重建;與既有 `:state` 綁定並存即雙寫入且同步寫入早於 Vue 渲染一個 tick,會改 R-S1 之時機。詳規則帳本 R-S6。
+- **模擬 Vue 實例測 `buildPopper` 之要點**:普通物件即可(`$emit`、`$nextTick` 兩個函數),但 `contentStyle` 與 `show` 須用存取子模擬樣板綁定(寫入 `contentStyle` 後強制 `getBoundingClientRect()`,否則推論 `opacity:0` 與其後 1ms 之 `transition+opacity:1` 可能落在同一次樣式計算而不建立過場、`opening` 期間斷言會空過〔此推論未去掉重排實測〕);存取子須 `configurable: true`,否則「移除某必填鍵」之案無法 `delete`。
+- **工作樹為 CRLF、HEAD 為 LF**(autocrlf):變異腳本以多行字串置換須先 `replace(/\r\n/g, '\n')`,否則整串置換靜默失敗(本輪第一次執行即在 M1 以「置換失敗」停下;上一則經驗已記此事,我動工前沒讀到該行——開工前要讀完經驗檔對應段落,不只 Grep 關鍵字)。Edit 工具會保留既有行尾,Write 新檔為 LF,git 會正規化,不必處理。
+- **`git archive HEAD src | tar -x -C ./tmp/<夾>`** 是取修前副本之唯讀作法(不 checkout、不 stash),配 `W_SRC_DIR` 即可對修前跑新測試。

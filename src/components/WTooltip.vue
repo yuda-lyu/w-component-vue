@@ -230,7 +230,7 @@ export default {
 
             triggerWidth: null, //會由BuildPopper內更新
             contentStyle: '',
-            state: 'hidden', //hidden, opening, opened, 會由BuildPopper內更新
+            state: 'hidden', //hidden, opening, opened, 由BuildPopper決定初值並更新(BuildPopper不要求宣告, 此處宣告供樣板綁定至.WPopperFix之state屬性)
 
             bp: null,
 

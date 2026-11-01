@@ -142,25 +142,33 @@
 - **R-S5(不納入)** WDialog 強制模式(`isModal`)點擊外部之振動提示動畫(兩段式 100ms+100ms 暫態)不納入 `state`;WDialog 全螢幕時因視窗尺寸改變致面板跟著過場(`changeSize` 字串不變,不進 `resizing`)不納入;WListExpandItem 展開後內容尺寸改變經 `resizeContent`→`setHeightContent` 重設高度之過場不納入(巢狀展開之外層屬此);WTooltip/WPopup 之 `.WPopperFix` 位置由 popper.js 在內容尺寸改變時重算(`updatePopper`)之位移不納入(非過場)。
 - **R-S7(無過場可等時落定偏晚)** `transitionTime` 趨近 0、祖先 `display:none` 內之 WListExpandItem、末端新增之標籤(僅 Vue 進場計時器 501ms)等無 CSS 過場可等者,過渡態停留至逾時後備(約 `nominalMs + 300ms`,最長至 `capMs`)才落定,不是卡死;下游對過渡態斷言有時限者須知悉。
 - **R-S8(輸入容忍)** `changeKeys` 對 `value` 為 `null` 容忍(`Array.isArray` 守門),不得因新增 `state` 使修前靜默容忍之輸入(`value=null`)新增 console 錯誤。
-- **R-S6(buildPopper 契約)** `buildPopper` 之 `vo` 須預先宣告 `state`(列入 `_keys`),由其寫入;`WTooltip` 為唯一使用者。
+- **R-S6(buildPopper 契約;2026-11-01 cv37 修訂,來源 Gitea #37)** `state` 由 `buildPopper` 擁有(值之歸屬,非向下相容補丁),呼叫端宣告與否皆可運作:
+  - 初值與每次變更皆由 `buildPopper` 決定:建構時即為 `hidden`,之後只經過場追蹤器之 `setState`(`opening`、`opened`、`hidden`,語彙與時機同 R-S1～R-S3,不變)。
+  - 取值:回傳物件之 `ev.getState()`。變更訊號:`'state'` 事件,`ev.on('state', (s)=>{})` 與 `vo.$emit('state', s)` 雙發(同 `placement-change`、`resize`、`show`、`hide` 之慣例);建構時之初值不發、同值不重複發;`ev.on` 之監聽器拋錯由 `buildPopper` 攔下並 `console.error`,不得中斷過場追蹤器(`ev` 為 eventemitter3,監聽器拋錯會外拋,而 `setState` 在追蹤器 `begin`/`settle` 內呼叫,外拋會使 `state` 停在過渡態且後備計時器不排程)。
+  - `vo` 已宣告 `state`(`haskey(vo, 'state')`)時,建構時與每次變更同步寫入 `vo.state` 供其樣板綁定(建構時校正宣告為 `undefined` 或非語彙值者為 `hidden`);未宣告時略過寫入、不拋錯、不新增該鍵。寫入為單向輸出,以 `getState()` 為準(外部改寫 `vo.state` 不影響之,下次變更時被覆寫)。
+  - `_keys`(必填鍵)不含 `state`;其餘 11 鍵(`mode`、`mmkey`、`keyShow` 所指鍵、`triggerWidth`、`placement`、`placementDistX`、`placementDistY`、`transitionTime`、`isolated`、`editable`、`contentStyle`)缺少時仍拋 `invalid vo.<key>`。
+  - 使用者:`WTooltip`(本套件唯一;仍宣告 `state` 供樣板 `:state` 綁定至 `.WPopperFix`);下游 w-vditor-vue 1.0.24 同(宣告 `state: 'hidden'` 並綁定,行為不變)。
+  - **不採「由 `buildPopper` 直接於 `.WPopperFix` 設 `state` 屬性」(建議 4)**:①`buildPopper` 對 DOM 只讀,對外輸出一律寫入 `vo` 之資料(`contentStyle`、`triggerWidth`、`state`),由呼叫端樣板綁定,直接 `setAttribute` 會破壞此邊界;②`.WPopperFix` 為呼叫端樣板擁有之節點(class、style、`v-show`、指令),`buildPopper` 僅持有取節點之函數、無法得知節點是否被重建(`<Teleport>` 重新掛載、熱更新、呼叫端 `v-if`),重建後屬性靜默消失而樣板綁定則每次建立皆會套用;③`funGetDivContent` 可回 `null`(`buildPopper` 全程以 `isEle` 守門),不保證建構時節點已存在,初值須另在節點出現時補寫;④與呼叫端既有 `:state` 綁定並存即雙寫入者,且同步 `setAttribute` 早於 Vue 渲染一個 tick,改變 `.WPopperFix[state]` 之時機(R-S1 要求不變)。
 
 ### 3.3 規則 → 測試
 
 | 規則 | 測試檔 | 案例 |
 |---|---|---|
 | R-S3(追蹤器) | `test/unit-createTransitionState.test.mjs`(真瀏覽器頁內合成元素) | 事件為主且先過渡態後終態、事件被攔時逾時後備、無過場時逾時、後備時仍有過場則等其結束、子孫過場不計、`display:none` 取消亦落定、`stop`/重複 `begin` 作廢、`hold`/`release`、已離開 DOM 之占位視為釋放、`destroy` 後不寫入、設定檢查 |
+| R-S6(buildPopper 契約) | `test/unit-buildPopper.test.mjs`(真瀏覽器頁內以普通物件模擬 `vo`、真 DOM 與真 popper.js;入口 `test/tools/e2e-entry-buildPopper.mjs`) | 未宣告 `state` 不拋錯且不新增該鍵、宣告為 `undefined`/非語彙值/`hidden` 時建構後為 `hidden`、回傳物件原有函數鍵不減並新增 `getState`、建構時不發訊號、開啟與關閉依序 `opening`/`opened`/`hidden`(`ev.on` 與 `vo.$emit` 各一次,訊號當下 `getState()` 已為新值,宣告與否皆然)、`opening` 時內層內容尚在過場而 `opened` 時已到終值、開→關→再開各發一次、已宣告時 `vo.state` 寫入序列、外部改寫 `vo.state` 不影響 `getState`、開啟中即關閉為 `opening`/`hidden` 且其後不出現 `opened`、監聽器拋錯不中斷追蹤且錯誤以 `console.error` 呈現、其餘 11 個必填鍵缺少時仍拋 `invalid vo.<key>` |
 | R-S1、R-S2、R-S3(組件) | `test/e2e-transitionState.test.mjs` | WDialog 開啟/最大化/還原/關閉(不經 hiding)/初始即顯示/事件被攔/CPU 降速 20 倍;浮層(WTextSelect、WPopup、WTooltip〔`transitionTime=800`〕)開啟與關閉、事件被攔、開啟中即關閉;WListExpandItem 展開收合、初始 `active`、事件被攔;WGroupTags、WGroupDragdrop 初始 `idle`、末端新增、刪除中間、換序、假時鐘下進場計時器結束即落定(證 `hold` 接線)、事件被攔 |
 
 - 斷言口徑(皆為建議書〈驗證建議〉之翻譯):①state 序列(過渡態出現、順序正確、關閉無 hiding);②過渡態期間箱體仍在變動(確有過場可等,避免空過);③終態**出現當下**之箱體即為終值,且其後每一幀箱體不變(終態後以 700ms 觀察窗,屬否定斷言);④事件未觸發(以 window 捕獲階段攔下 `transitionend`/`transitioncancel`)時仍落定。
-- 分辨力驗證用之來源切換:`W_SRC_DIR`(unit-createTransitionState、e2e-transitionState 改由該資料夾之 src 打包,預設工作區 `src`;測試入口以 `@src/` 引用,別名由 `test/tools/e2e-setup.mjs` 之 `bundleEntry(name, entry, { srcDir })` 提供)。
+- 分辨力驗證用之來源切換:`W_SRC_DIR`(unit-createTransitionState、unit-buildPopper、e2e-transitionState 改由該資料夾之 src 打包,預設工作區 `src`;測試入口以 `@src/` 引用,別名由 `test/tools/e2e-setup.mjs` 之 `bundleEntry(name, entry, { srcDir })` 提供)。
 - 有效性證明(2026-10-31 cv29 實測):修前(HEAD 之 src;當時測試為 43 案之版本,之後僅加 2 案)0 綠、31 紅(單元測試因缺 `createTransitionState` 而 `before all` 失敗計 1,e2e 30 案全紅);變異 M1～M17 各至少 1 案轉紅(M1 移除逾時後備 9、M2 提早設終態 34、M3 事件到達不查進行中之過場 4、M4 後備不查進行中之過場 2、M5 不限定自身事件 1、M6 `hold` 無作用 3、M7 無 `resizing` 3、M8 浮層不經 `opening` 6、M9 無 `moving` 12、M10 展開終態寫錯 2、M11 無 `collapsing` 2、M12 WDialog 不經 `opening` 5、M13 不監聽 `transitioncancel` 1、M14 不剔除離開 DOM 之占位 1、M15 `changeKeys` 不容忍 null 1、M16 WDialog 關閉不設 `hidden` 1、M17 浮層隱藏不設 `hidden` 4)。變異腳本與副本為暫存(`./tmp/cv29/variants.mjs`,結案已清);要重做時以 `W_SRC_DIR` 指向改動過的 src 副本。未能分辨者:WDialog `mounted` 內之 `ts.attach()`(缺它時初始即顯示者由後備落定,結果同,僅慢)。
+- 有效性證明(2026-11-01 cv37 實測,R-S6):`unit-buildPopper` 15 案;修前(HEAD 之 src)1 綠、14 紅(唯一綠者為「建構時不發訊號」,修前本就不發,其分辨力由 M8 證);變異 M1～M15 各至少 1 案轉紅(M1 `_keys` 加回 `state` 7、M2 建構時不寫初值 5、M3 不發 `ev.emit` 9、M4 不發 `vo.$emit` 3、M5 `getState` 恆回 `hidden` 3、M6 移除 `haskey` 守門 1、M7 移除 `ev.emit` 外層 try/catch 1、M8 恆視為有變更 4、M9 先發訊號後才更新內部值 2、M10 建構時不校正非語彙值 4、M11 無 `getState` 13、M12 `_keys` 移除 `contentStyle` 1、M13 關閉寫成 `hiding` 7、M14 終態寫成 `open` 7、M15 僅宣告 `state` 時發訊號 5)。變異腳本與副本為暫存(`./tmp/cv37/runVariants.mjs`,結案已清);要重做時以 `W_SRC_DIR` 指向改動過的 src 副本。
 
 ### 3.4 改動範圍 → e2e 檔對照表
 
 | 改動範圍 | 須跑之測試檔 |
 |---|---|
 | `src/js/createTransitionState.mjs` | `unit-createTransitionState`、`e2e-transitionState` |
-| `src/js/buildPopper.mjs`、`WTooltip.vue`、`WPopup.vue` | `e2e-transitionState`、`e2e-hover`(WButtonCircle 提示框) |
+| `src/js/buildPopper.mjs`、`WTooltip.vue`、`WPopup.vue` | `unit-buildPopper`、`e2e-transitionState`、`e2e-hover`(WButtonCircle 提示框) |
 | `WDialog.vue` | `e2e-transitionState`、`e2e-hover`(WDialog 標題列儲存鈕) |
 | `WListExpandItem.vue`、`WGroupTags.vue`、`WGroupDragdrop.vue` | `e2e-transitionState` |
 | 偵測類指令(`domResize`、`domMutation`、`domStable`、`domVisible`、`createDetectDirective`) | `e2e-domDirectives`、`e2e-hiddenMeasure`、相關 `unit-*` |

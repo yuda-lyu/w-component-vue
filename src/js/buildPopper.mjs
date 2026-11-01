@@ -14,12 +14,35 @@ import computeStyles from '@popperjs/core/lib/modifiers/computeStyles'
 import createTransitionState from './createTransitionState.mjs'
 
 
+/**
+ * 建立彈出層(提示窗或彈窗)控制器, 以vo(Vue組件實例)為載體, 驅動popper.js定位與顯示隱藏, 回傳事件物件供組件呼叫與監聽
+ *
+ * vo須預先宣告mode, mmkey, keyShow所指鍵, triggerWidth, placement, placementDistX, placementDistY, transitionTime, isolated, editable, contentStyle, 缺少時拋錯, 另須提供$emit與$nextTick
+ *
+ * state(hidden, opening, opened)由本函數擁有, 初值與每次變更皆由本函數決定, vo宣告與否皆可運作:
+ *   hidden: 未顯示, 建構後即為hidden
+ *   opening: 開啟中, 內層內容(funGetDivContent之第一個子元素)經transitionTime淡入與滑入至原位期間
+ *   opened: 已開啟, 內層內容過場結束(以其自身transitionend為主, 逾時後備落定, 詳createTransitionState)
+ *   關閉無過場, 由opening或opened直接成為hidden, 不使用hiding
+ * 取值: 回傳物件之getState()
+ * 變更訊號: 值有變更時發出, 事件名為'state', 回傳物件之on('state', (state)=>{})接收, 另於vo.$emit('state', state)發出(同placement-change等事件之雙發慣例), 建構時之初值不發出(取值用getState), 同值不重複發出
+ *   監聽器拋錯不影響狀態追蹤(回傳物件之監聽器拋錯會被攔下並console.error, vo.$emit之拋錯由Vue處理)
+ * vo已宣告state(含宣告為其他值)時, 本函數於建構時與每次變更同步寫入vo.state供其樣板綁定(建構時會校正宣告為非語彙之值), vo未宣告state時略過寫入且不拋錯; 寫入vo.state為單向輸出, 以getState()為準
+ *
+ * @param {Object} vo 輸入Vue組件實例, 須預先宣告之鍵詳上
+ * @param {Function} funGetDivTrigger 輸入取得觸發區Element之函數
+ * @param {Function} funGetDivContent 輸入取得浮層內容區Element之函數, 其第一個子元素為過場追蹤對象
+ * @param {String} keyShow 輸入vo內代表是否顯示之鍵字串
+ * @param {String} evNameValue 輸入顯示狀態改變時發出之事件名字串
+ * @param {Object} [opt={}] 輸入設定物件, 可用鍵為funAddTrigger、funCheckTrigger、funRemoveTrigger(組件內巢狀顯示之遞層取消機制用函數)與modeHide(點擊外部關閉模式, 可選'click'與'mousedown', 預設'click')
+ * @returns {Object} 回傳事件物件(evem), 可用on、off監聽placement-change、resize、show、hide、evNameValue與state事件, 另有函數mounted、destroy、showPopper、hidePopper、updatePopper、displayPopper、updateValue、triggerEvent、evShow、evHide與getState(回傳當前state字串)
+ */
 function buildPopper(vo, funGetDivTrigger, funGetDivContent, keyShow, evNameValue, opt = {}) {
 
     //ev
     let ev = evem()
 
-    //check, vo須預先宣告參數
+    //check, vo須預先宣告參數, state由本函數擁有, 不在此列
     let _keys = [
         'mode',
         'mmkey',
@@ -32,7 +55,6 @@ function buildPopper(vo, funGetDivTrigger, funGetDivContent, keyShow, evNameValu
         'isolated',
         'editable',
         'contentStyle',
-        'state',
     ]
     each(_keys, (key) => {
         if (!haskey(vo, key)) {
@@ -59,17 +81,49 @@ function buildPopper(vo, funGetDivTrigger, funGetDivContent, keyShow, evNameValu
         modeHide = 'click'
     }
 
-    //ts, 過場狀態追蹤器, 寫入vo.state(hidden, opening, opened); 事件自內層內容冒泡至divContent(.WPopperFix), 內層內容自身之過場結束才落定
+    //state, 當前狀態(hidden, opening, opened), 由本函數擁有, 建構時即為hidden
+    let state = 'hidden'
+
+    let getState = () => {
+        return state
+    }
+
+    //setState, 更新state, vo已宣告state時同步寫入vo.state(供樣板綁定), 值有變更時發出變更訊號
+    let setState = (s) => {
+        let changed = s !== state
+        state = s
+
+        //vo.state, 未宣告時略過寫入
+        if (haskey(vo, 'state')) {
+            vo.state = s
+        }
+
+        //emit
+        if (changed) {
+            vo.$emit('state', s)
+            try {
+                ev.emit('state', s)
+            }
+            catch (err) {
+                //監聽器拋錯不得中斷過場追蹤器, 否則停在過渡態且後續計時器不再排程
+                console.error(err)
+            }
+        }
+
+    }
+
+    //ts, 過場狀態追蹤器, 經setState寫入state(hidden, opening, opened); 事件自內層內容冒泡至divContent(.WPopperFix), 內層內容自身之過場結束才落定
     let ts = createTransitionState({
         getRoot: () => funGetDivContent(),
         getTargets: () => {
             let divContent = funGetDivContent()
             return isEle(divContent) ? [divContent.firstElementChild] : []
         },
-        setState: (state) => {
-            vo.state = state
-        },
+        setState,
     })
+
+    //初值, vo已宣告state時校正為hidden(不發出變更訊號)
+    setState(state)
 
     let _vo = {
         mouseClientX: 0,
@@ -577,6 +631,7 @@ function buildPopper(vo, funGetDivTrigger, funGetDivContent, keyShow, evNameValu
     ev.triggerEvent = triggerEvent
     ev.evShow = evShow
     ev.evHide = evHide
+    ev.getState = getState
 
     return ev
 }
