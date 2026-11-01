@@ -199,33 +199,9 @@
 
                 <AppZoneWTree v-if="cmpPick==='WTree'"></AppZoneWTree>
 
-                <AppZoneWHighchartsVueDyn v-if="cmpPick==='WHighchartsVueDyn'"></AppZoneWHighchartsVueDyn>
-
-                <AppZoneWHighstockVueDyn v-if="cmpPick==='WHighstockVueDyn'"></AppZoneWHighstockVueDyn>
-
-                <AppZoneWEchartsVueDyn v-if="cmpPick==='WEchartsVueDyn'"></AppZoneWEchartsVueDyn>
-
-                <AppZoneWThreejsVueDyn v-if="cmpPick==='WThreejsVueDyn'"></AppZoneWThreejsVueDyn>
-
-                <AppZoneWAggridVueDyn v-if="cmpPick==='WAggridVueDyn'"></AppZoneWAggridVueDyn>
-
-                <AppZoneWTableDyn v-if="cmpPick==='WTableDyn'"></AppZoneWTableDyn>
-
                 <AppZoneWImageViewer v-if="cmpPick==='WImageViewer'"></AppZoneWImageViewer>
 
                 <AppZoneWImageCascading v-if="cmpPick==='WImageCascading'"></AppZoneWImageCascading>
-
-                <AppZoneWCkeditorVueDyn v-if="cmpPick==='WCkeditorVueDyn'"></AppZoneWCkeditorVueDyn>
-
-                <AppZoneWTinymceVueDyn v-if="cmpPick==='WTinymceVueDyn'"></AppZoneWTinymceVueDyn>
-
-                <AppZoneWQuillVueDyn v-if="cmpPick==='WQuillVueDyn'"></AppZoneWQuillVueDyn>
-
-                <AppZoneWVditorDyn v-if="cmpPick==='WVditorDyn'"></AppZoneWVditorDyn>
-
-                <AppZoneWLeafletVueDyn v-if="cmpPick==='WLeafletVueDyn'"></AppZoneWLeafletVueDyn>
-
-                <AppZoneWMaplibreglVueDyn v-if="cmpPick==='WMaplibreglVueDyn'"></AppZoneWMaplibreglVueDyn>
 
                 <AppZoneWExplorer v-if="cmpPick==='WExplorer'"></AppZoneWExplorer>
 
@@ -324,20 +300,8 @@ import AppZoneWDynamicList from './AppZoneWDynamicList.vue'
 import AppZoneWSegmentsVertical from './AppZoneWSegmentsVertical.vue'
 import AppZoneWJsonView from './AppZoneWJsonView.vue'
 import AppZoneWTree from './AppZoneWTree.vue'
-import AppZoneWHighchartsVueDyn from './AppZoneWHighchartsVueDyn.vue'
-import AppZoneWHighstockVueDyn from './AppZoneWHighstockVueDyn.vue'
-import AppZoneWEchartsVueDyn from './AppZoneWEchartsVueDyn.vue'
-import AppZoneWThreejsVueDyn from './AppZoneWThreejsVueDyn.vue'
-import AppZoneWAggridVueDyn from './AppZoneWAggridVueDyn.vue'
-import AppZoneWTableDyn from './AppZoneWTableDyn.vue'
 import AppZoneWImageViewer from './AppZoneWImageViewer.vue'
 import AppZoneWImageCascading from './AppZoneWImageCascading.vue'
-import AppZoneWCkeditorVueDyn from './AppZoneWCkeditorVueDyn.vue'
-import AppZoneWTinymceVueDyn from './AppZoneWTinymceVueDyn.vue'
-import AppZoneWQuillVueDyn from './AppZoneWQuillVueDyn.vue'
-import AppZoneWVditorDyn from './AppZoneWVditorDyn.vue'
-import AppZoneWLeafletVueDyn from './AppZoneWLeafletVueDyn.vue'
-import AppZoneWMaplibreglVueDyn from './AppZoneWMaplibreglVueDyn.vue'
 import AppZoneWExplorer from './AppZoneWExplorer.vue'
 import AppZoneWColorPickHexagon from './AppZoneWColorPickHexagon.vue'
 import AppZoneWColorPickHexagonGray from './AppZoneWColorPickHexagonGray.vue'
@@ -413,20 +377,8 @@ export default {
         AppZoneWSegmentsVertical,
         AppZoneWJsonView,
         AppZoneWTree,
-        AppZoneWHighchartsVueDyn,
-        AppZoneWHighstockVueDyn,
-        AppZoneWEchartsVueDyn,
-        AppZoneWThreejsVueDyn,
-        AppZoneWAggridVueDyn,
-        AppZoneWTableDyn,
         AppZoneWImageViewer,
         AppZoneWImageCascading,
-        AppZoneWCkeditorVueDyn,
-        AppZoneWTinymceVueDyn,
-        AppZoneWQuillVueDyn,
-        AppZoneWVditorDyn,
-        AppZoneWLeafletVueDyn,
-        AppZoneWMaplibreglVueDyn,
         AppZoneWExplorer,
         AppZoneWColorPickHexagon,
         AppZoneWColorPickHexagonGray,
@@ -584,43 +536,6 @@ export default {
                     { name: 'WDrawer' },
                 ]
             },
-            {
-                name: 'dynamic',
-                cmps: [
-                    {
-                        name: 'plot',
-                        cmps: [
-                            { name: 'WHighchartsVueDyn' },
-                            { name: 'WHighstockVueDyn' },
-                            { name: 'WEchartsVueDyn' },
-                            { name: 'WThreejsVueDyn' },
-                        ],
-                    },
-                    {
-                        name: 'table',
-                        cmps: [
-                            { name: 'WAggridVueDyn' },
-                            { name: 'WTableDyn' },
-                        ],
-                    },
-                    {
-                        name: 'map',
-                        cmps: [
-                            { name: 'WLeafletVueDyn' },
-                            { name: 'WMaplibreglVueDyn' },
-                        ],
-                    },
-                    {
-                        name: 'editor',
-                        cmps: [
-                            { name: 'WTinymceVueDyn' },
-                            { name: 'WCkeditorVueDyn' },
-                            { name: 'WQuillVueDyn' },
-                            { name: 'WVditorDyn' },
-                        ],
-                    },
-                ],
-            },
         ]
         return {
             kebabCase,
@@ -651,7 +566,7 @@ export default {
         vo.indP2 = 0
         vo.indP3 = 0
 
-        //urlParse, http://localhost:8080/?cmp=w-ckeditor-vue-dyn
+        //urlParse, http://localhost:8080/?cmp=w-tree
         let p = urlParse(location.href)
         // console.log('p', p)
 
