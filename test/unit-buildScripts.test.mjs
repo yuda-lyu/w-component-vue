@@ -1,12 +1,14 @@
 import fs from 'fs'
 import path from 'path'
 import cp from 'child_process'
+import { pathToFileURL } from 'url'
 import assert from 'assert'
 import { root, put, patch, list, mkSbx as mkSbxIn, run, rmBase } from './tools/buildSandbox.mjs'
 
 
 //unit-buildScripts: script.txt所執行之建置腳本之失敗回報契約(帳本「一、建置腳本」R-B1、R-EXIT、R-B2)
 //  每案於test/_tmp/unit-buildScripts/<案>/建沙箱, 複製toolg全部檔與所需最小輸入, 以沙箱為cwd用子行程執行腳本(沙箱共用層見test/tools/buildSandbox.mjs)
+//  依dspec〈自有套件之發布與建置腳本〉規則4: 以副本並指定cwd執行toolg腳本, 不為測試改寫toolg, 不直接import toolg內之輔助檔
 //  只斷言發布流程可觀察之結果: 離開碼、stderr之失敗原因、產物是否寫出; 離開碼不依賴Node之unhandled-rejections模式(R-EXIT另以warn模式驗)
 //  清空失敗以lock模擬: Windows以子行程之工作目錄占住子資料夾, 其他平台以唯讀子資料夾; 以root執行時無法模擬, 該等案例略過
 //  分辨力驗證用: 環境變數W_TOOLG_DIR可改由他處複製toolg(預設為工作區之toolg), 不改動工作區
@@ -37,7 +39,7 @@ function waitExit(h) {
 //  Windows: 子行程以sub為工作目錄(Windows不可刪除他程序之當前目錄), 模擬檔案總管、終端機、防毒之占用
 //    子行程啟動後輸出標記, ready於收到標記時解決(工作目錄於JS執行前即已設定, 見到標記即已占用); 懸置上限用真實計時器, 只防子行程起不來
 //  其他平台: sub內放檔案並將sub設為唯讀, 其內檔案不可刪除; 同步完成, ready已解決
-//  暫時性占用案由呼叫端於清空腳本確實因占用而失敗之後才呼叫release(見driveWatch), 不以計時器與腳本之啟動時間賽跑
+//  暫時性占用案由呼叫端於清空腳本確實因占用而失敗之後才呼叫release(見driveClean), 不以計時器與腳本之啟動時間賽跑
 function lock(dir) {
     let sub = path.join(dir, 'sub')
     fs.mkdirSync(sub, { recursive: true })
@@ -84,96 +86,62 @@ function lock(dir) {
 }
 
 
-//writeDrive, 於沙箱內寫入驅動腳本drive.mjs: 以toolg/cleanFolderStrict.mjs清空argv[2], 以單行JSON輸出成敗、耗時與清空後之內容
-//  watch為true時另寫watch-fs.mjs並先於受測腳本載入: 包覆fs之刪除類函數, 首次因占用或權限而失敗時同步輸出標記行FS-BUSY,
-//  供父行程知悉「占用已使第一次清空失敗」(同步寫fd 1, 輸出先於其後之重試等待)
-function writeDrive(sbx, watch) {
-    if (watch) {
-        put(sbx, 'watch-fs.mjs', [
-            `import fs from 'fs'`,
-            `let busy = ['EBUSY', 'EPERM', 'ENOTEMPTY', 'EACCES']`,
-            `let noted = false`,
-            `for (let k of ['rmSync', 'rmdirSync', 'unlinkSync', 'renameSync']) {`,
-            `    let f = fs[k]`,
-            `    fs[k] = function(...args) {`,
-            `        try {`,
-            `            return f.apply(this, args)`,
-            `        }`,
-            `        catch (err) {`,
-            `            if (!noted && busy.indexOf(err.code) >= 0) {`,
-            `                noted = true`,
-            `                fs.writeSync(1, 'FS-BUSY\\n')`,
-            `            }`,
-            `            throw err`,
-            `        }`,
-            `    }`,
-            `}`,
-            ``,
-        ].join('\n'))
-    }
-    put(sbx, 'drive.mjs', [
-        ...(watch ? [`import './watch-fs.mjs'`] : []),
+//writeWatch, 於沙箱內寫入watch-fs.mjs, 供以node --import先於受測腳本載入: 包覆fs之刪除類函數,
+//  每次因占用或權限而失敗時同步輸出標記行FS-BUSY, 供父行程知悉「占用已使清空失敗」並計次(同步寫fd 1, 輸出先於其後之重試等待)
+//  受測腳本本身(toolg/*.mjs)不為此改動, 只由--import載入此檔
+function writeWatch(sbx) {
+    put(sbx, 'watch-fs.mjs', [
         `import fs from 'fs'`,
-        `import cleanFolderStrict from './toolg/cleanFolderStrict.mjs'`,
-        `let fd = process.argv[2]`,
-        `let out = { ok: false, msg: '', ms: 0, entries: null }`,
-        `let t0 = Date.now()`,
-        `try {`,
-        `    cleanFolderStrict(fd)`,
-        `    out.ok = true`,
+        `let busy = ['EBUSY', 'EPERM', 'ENOTEMPTY', 'EACCES']`,
+        `for (let k of ['rmSync', 'rmdirSync', 'unlinkSync', 'renameSync']) {`,
+        `    let f = fs[k]`,
+        `    fs[k] = function(...args) {`,
+        `        try {`,
+        `            return f.apply(this, args)`,
+        `        }`,
+        `        catch (err) {`,
+        `            if (busy.indexOf(err.code) >= 0) {`,
+        `                fs.writeSync(1, 'FS-BUSY\\n')`,
+        `            }`,
+        `            throw err`,
+        `        }`,
+        `    }`,
         `}`,
-        `catch (err) {`,
-        `    out.msg = String((err && err.message) || err)`,
-        `}`,
-        `out.ms = Date.now() - t0`,
-        `out.entries = fs.existsSync(fd) && fs.statSync(fd).isDirectory() ? fs.readdirSync(fd) : null`,
-        `console.log(JSON.stringify(out))`,
         ``,
     ].join('\n'))
 }
 
 
-//parseDrive, 取驅動腳本輸出之最後一行JSON
-function parseDrive(stdout, stderr) {
-    let line = stdout.trim().split(/\r?\n/).pop()
-    assert.ok(line && line.startsWith('{'), `driver failed: ${stdout}${stderr}`.slice(0, 600))
-    return JSON.parse(line)
-}
-
-
-//driveWatch, 非同步執行驅動腳本(watch版), 於其首次因占用而失敗時呼叫onBusy一次(此時占用確實已存在於第一次清空嘗試), 回傳驅動腳本之輸出
-//  父行程之事件迴圈不被阻塞, 才能在驅動腳本重試等待期間釋放占用; 懸置上限用真實計時器(同run之170秒)
-function driveWatch(sbx, target, onBusy) {
-    writeDrive(sbx, true)
+//driveClean, 以非同步子行程於沙箱(cwd)執行腳本rel(先載入watch-fs.mjs), 回傳{ code, stdout, stderr, busy, ms }; busy為FS-BUSY標記次數, ms含行程啟動
+//  首次見到FS-BUSY時呼叫onBusy一次(此時占用確實已使一次清空失敗); 父行程之事件迴圈不被阻塞, 才能在腳本重試等待期間釋放占用
+//  懸置上限用真實計時器(同run之170秒)
+function driveClean(sbx, rel, onBusy) {
+    writeWatch(sbx)
     return new Promise((resolve, reject) => {
-        let h = cp.spawn(process.execPath, [path.join(sbx, 'drive.mjs'), target], { cwd: sbx, env: process.env, stdio: ['ignore', 'pipe', 'pipe'] })
+        let t0 = Date.now()
+        let h = cp.spawn(process.execPath, ['--import', pathToFileURL(path.join(sbx, 'watch-fs.mjs')).href, path.join(sbx, rel)], { cwd: sbx, env: process.env, stdio: ['ignore', 'pipe', 'pipe'] })
         let stdout = ''
         let stderr = ''
-        let busy = false
+        let busy = 0
         let timer = setTimeout(() => {
             h.kill()
             reject(new Error(`driver timeout(170s): ${stdout}${stderr}`.slice(0, 600)))
         }, 170000)
         h.stdout.on('data', (d) => {
             stdout += d
-            if (!busy && stdout.indexOf('FS-BUSY') >= 0) {
-                busy = true
+            let n = (stdout.match(/FS-BUSY/g) || []).length
+            if (busy === 0 && n > 0 && onBusy) {
                 Promise.resolve(onBusy()).catch(reject)
             }
+            busy = n
         })
         h.stderr.on('data', (d) => {
             stderr += d
         })
         h.once('error', reject)
-        h.once('close', () => {
+        h.once('close', (code) => {
             clearTimeout(timer)
-            try {
-                let o = parseDrive(stdout.replace(/^FS-BUSY\r?\n/m, ''), stderr)
-                resolve({ ...o, busy })
-            }
-            catch (err) {
-                reject(err)
-            }
+            resolve({ code, stdout: stdout.replace(/FS-BUSY\r?\n/g, ''), stderr, busy, ms: Date.now() - t0 })
         })
     })
 }
@@ -275,101 +243,9 @@ describe(NAME, function() {
     })
 
 
-    describe('cleanFolderStrict(R-B2)', function() {
-
-        //drive, 於沙箱內以子行程呼叫toolg/cleanFolderStrict.mjs清空指定路徑, 回傳成敗、耗時與清空後之內容
-        let drive = (sbx, target) => {
-            writeDrive(sbx, false)
-            let r = run(sbx, 'drive.mjs', { args: [target] })
-            return parseDrive(r.stdout, r.stderr)
-        }
-
-        it('可清空時回傳, 資料夾存在且為空', function() {
-            let sbx = mkSbx('c-ok')
-            put(sbx, 'out/a.txt', 'a')
-            put(sbx, 'out/sub/b.txt', 'b')
-            let o = drive(sbx, 'out')
-            assert.ok(o.ok, o.msg)
-            assert.strict.deepEqual(o.entries, [])
-        })
-
-        it('資料夾不存在時建立為空資料夾', function() {
-            let sbx = mkSbx('c-new')
-            let o = drive(sbx, 'out')
-            assert.ok(o.ok, o.msg)
-            assert.strict.deepEqual(o.entries, [])
-        })
-
-        it('目標為檔案時首次即拋錯(非占用類失敗不重試)', function() {
-            let sbx = mkSbx('c-file')
-            put(sbx, 'out', 'iam-a-file')
-            let o = drive(sbx, 'out')
-            //R-B2: 非占用類失敗(目標為檔案)即拋錯, 訊息含目標之絕對路徑
-            assert.strict.equal(o.ok, false)
-            assert.ok(o.msg.indexOf(path.join('c-file', 'out')) >= 0, o.msg)
-            //R-B2: 錯誤取自w-package-tools cleanFolder之首次失敗, 不是本層重試耗盡後之訊息(以'cleanFolderStrict:'起頭)
-            assert.ok(o.msg.startsWith('can not clean folder['), o.msg)
-            //R-B2: 目標檔案不被改動
-            assert.strict.equal(fs.readFileSync(path.join(sbx, 'out'), 'utf8'), 'iam-a-file')
-        })
-
-        it('目標不存在且無法建立(上層為檔案)時首次即拋錯(非占用類失敗不重試)', function() {
-            let sbx = mkSbx('c-nocreate')
-            put(sbx, 'afile', 'x')
-            let o = drive(sbx, 'afile/sub')
-            //R-B2: 無法建立(上層為檔案)為非占用類失敗, 仍須判為失敗並拋錯, 訊息含目標之絕對路徑
-            assert.strict.equal(o.ok, false)
-            assert.ok(o.msg.indexOf(path.join('c-nocreate', 'afile', 'sub')) >= 0, o.msg)
-            //R-B2: 同上, 為首次失敗之錯誤, 不是本層重試耗盡後之訊息
-            assert.ok(o.msg.startsWith('can not clean folder['), o.msg)
-            //R-B2: 上層之檔案不被改動
-            assert.strict.equal(fs.readFileSync(path.join(sbx, 'afile'), 'utf8'), 'x')
-        })
-
-        it('子資料夾持續無法刪除時重試後拋錯', async function() {
-            if (!canLock) {
-                this.skip() //以root執行時無法以唯讀造出刪除失敗
-            }
-            let sbx = mkSbx('c-locked')
-            put(sbx, 'out/a.txt', 'a')
-            let lk = lock(path.join(sbx, 'out'))
-            try {
-                await lk.ready
-                let o = drive(sbx, 'out')
-                assert.strict.equal(o.ok, false)
-                assert.ok(o.ms >= 2700, `retried only ${o.ms}ms`)
-            }
-            finally {
-                await lk.release()
-            }
-        })
-
-        it('暫時無法刪除而於重試期間解除時清空成功', async function() {
-            if (!canLock) {
-                this.skip()
-            }
-            let sbx = mkSbx('c-transient')
-            put(sbx, 'out/a.txt', 'a')
-            let lk = lock(path.join(sbx, 'out'))
-            try {
-                await lk.ready
-                //占用於清空腳本第一次嘗試因占用而失敗之後才釋放(事件閘門: 見到FS-BUSY標記), 其後之重試須成功
-                let o = await driveWatch(sbx, 'out', () => lk.release())
-                //R-B2: 第一次嘗試確實遇到占用(閘門事件), 重試使暫時性占用不致誤中止
-                assert.ok(o.busy, 'first attempt met no occupation')
-                assert.ok(o.ok, o.msg)
-                assert.strict.deepEqual(o.entries, [])
-                assert.ok(o.ms >= 300, `no retry happened (${o.ms}ms)`)
-            }
-            finally {
-                await lk.release()
-            }
-        })
-
-    })
-
-
     describe('第4列 cleanFolder(R-B2)', function() {
+
+        //副本並指定cwd執行toolg/cleanFolder.mjs(發布列於套件根執行): 只斷言發布流程可觀察之結果, 即離開碼、stderr、dist與docs之內容
 
         it('dist與docs皆可清空時離開碼為0, 兩者皆為空資料夾', function() {
             let sbx = mkSbx('l4-ok')
@@ -382,18 +258,43 @@ describe(NAME, function() {
             assert.strict.deepEqual([list(sbx, 'dist'), list(sbx, 'docs')], [[], []])
         })
 
-        it('dist為檔案時離開碼非0, 且stderr含dist', function() {
+        it('dist與docs不存在時離開碼為0, 兩者皆建立為空資料夾', function() {
+            let sbx = mkSbx('l4-new')
+            let r = run(sbx, 'toolg/cleanFolder.mjs')
+            assert.strict.equal(r.code, 0, r.stdout + r.stderr)
+            assert.strict.deepEqual([list(sbx, 'dist'), list(sbx, 'docs')], [[], []])
+        })
+
+        it('dist為檔案時離開碼非0, stderr含失敗原因與目標之路徑, 目標檔案不被改動', function() {
             let sbx = mkSbx('l4-file')
             put(sbx, 'dist', 'iam-a-file')
             let r = run(sbx, 'toolg/cleanFolder.mjs')
-            //R-B2: 清空失敗即非0, 原因印出
+            //R-B2: 清空失敗即非0, 原因印至stderr
             assert.notStrictEqual(r.code, 0, r.stdout + r.stderr)
-            assert.ok(r.stderr.indexOf('dist') >= 0, r.stderr.slice(0, 500))
+            //R-B2: 訊息為w-package-tools cleanFolder之失敗訊息('can not clean folder['起頭)且含目標之路徑
+            assert.ok(r.stderr.indexOf('can not clean folder[') >= 0, r.stderr.slice(0, 500))
+            assert.ok(r.stderr.indexOf(path.join(path.basename(sbx), 'dist')) >= 0, r.stderr.slice(0, 500))
+            //R-B2: 目標檔案不被改動
+            assert.strict.equal(fs.readFileSync(path.join(sbx, 'dist'), 'utf8'), 'iam-a-file')
         })
 
-        it('dist內子資料夾無法刪除而清空不了時離開碼非0', async function() {
+        it('docs為檔案時離開碼非0, stderr含目標之路徑, dist已被清空', function() {
+            let sbx = mkSbx('l4-docs-file')
+            put(sbx, 'dist/a.txt', 'a')
+            put(sbx, 'docs', 'iam-a-file')
+            let r = run(sbx, 'toolg/cleanFolder.mjs')
+            //R-B2: docs亦為清空目標, 其失敗即非0
+            assert.notStrictEqual(r.code, 0, r.stdout + r.stderr)
+            assert.ok(r.stderr.indexOf('can not clean folder[') >= 0, r.stderr.slice(0, 500))
+            assert.ok(r.stderr.indexOf(path.join(path.basename(sbx), 'docs')) >= 0, r.stderr.slice(0, 500))
+            //R-B2: dist(第一個目標)已清空, docs之檔案不被改動
+            assert.strict.deepEqual(list(sbx, 'dist'), [])
+            assert.strict.equal(fs.readFileSync(path.join(sbx, 'docs'), 'utf8'), 'iam-a-file')
+        })
+
+        it('dist內子資料夾持續無法刪除時, 重試後離開碼非0, 且占用使清空失敗不只一次', async function() {
             if (!canLock) {
-                this.skip()
+                this.skip() //以root執行時無法以唯讀造出刪除失敗
             }
             let sbx = mkSbx('l4-locked')
             put(sbx, 'dist/a.txt', 'a')
@@ -402,8 +303,35 @@ describe(NAME, function() {
             let lk = lock(path.join(sbx, 'dist'))
             try {
                 await lk.ready
-                let r = run(sbx, 'toolg/cleanFolder.mjs')
-                assert.notStrictEqual(r.code, 0, r.stdout + r.stderr)
+                let o = await driveClean(sbx, 'toolg/cleanFolder.mjs')
+                //R-B2: 清空失敗即非0, 原因印至stderr
+                assert.notStrictEqual(o.code, 0, o.stdout + o.stderr)
+                assert.ok(o.stderr.indexOf('can not clean folder[') >= 0, o.stderr.slice(0, 500))
+                //R-B2: 占用類失敗由w-package-tools cleanFolder重試(10次、間隔300ms), 占用使清空失敗不只一次, 耗時不低於重試間隔之總和
+                assert.ok(o.busy >= 2, `not retried: occupation failures ${o.busy}`)
+                assert.ok(o.ms >= 2700, `retried only ${o.ms}ms`)
+            }
+            finally {
+                await lk.release()
+            }
+        })
+
+        it('暫時無法刪除而於重試期間解除時離開碼為0, dist與docs皆為空資料夾', async function() {
+            if (!canLock) {
+                this.skip()
+            }
+            let sbx = mkSbx('l4-transient')
+            put(sbx, 'dist/a.txt', 'a')
+            put(sbx, 'docs/c.html', 'c')
+            let lk = lock(path.join(sbx, 'dist'))
+            try {
+                await lk.ready
+                //占用於清空腳本第一次嘗試因占用而失敗之後才釋放(事件閘門: 見到FS-BUSY標記), 其後之重試須成功
+                let o = await driveClean(sbx, 'toolg/cleanFolder.mjs', () => lk.release())
+                //R-B2: 第一次嘗試確實遇到占用(閘門事件), 於重試期間解除後成功, 暫時性占用不致誤中止
+                assert.ok(o.busy >= 1, 'first attempt met no occupation')
+                assert.strict.equal(o.code, 0, o.stdout + o.stderr)
+                assert.strict.deepEqual([list(sbx, 'dist'), list(sbx, 'docs')], [[], []])
             }
             finally {
                 await lk.release()

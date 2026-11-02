@@ -1,5 +1,5 @@
-import cleanFolderStrict from './cleanFolderStrict.mjs'
+import cleanFolder from 'w-package-tools/src/cleanFolder.mjs'
 
 
-cleanFolderStrict('dist')
-cleanFolderStrict('docs')
+cleanFolder('dist')
+cleanFolder('docs')

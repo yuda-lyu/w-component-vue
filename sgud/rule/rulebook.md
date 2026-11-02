@@ -13,7 +13,7 @@
 - 觀察量:離開碼;w-pksupdate 判定(node 列:離開碼非 0 或輸出含 `[RollupError]`;`.bin` 與 git 列不判定;dist 閘門只攔「dist 有刪除且無產出」);產物狀態。
 - 單一擁有者:
   - 離開碼:各腳本之頂層。非同步流程於頂層 `.catch` 印至 stderr 並設 `process.exitCode = 1`;同步流程以未捕捉例外結束(ESM 頂層同步拋錯在 `--unhandled-rejections` 之 default/warn/none 皆為 1,2026-10-14 實測)。同步腳本內呼叫之 async 函式(如第 11 列之 w-package-tools `extractHtml`)須接其 promise,失敗印出並設 `process.exitCode = 1`(第 11 列以 `Promise.allSettled` 統一處理;第 9 列 `rollupVueToHtml`、第 15 列 `rollupFiles` 以 `.catch`,同第 7 列)。
-  - 清空:`toolg/cleanFolderStrict.mjs`(本 repo 4 個清空呼叫點之唯一出口)。
+  - 清空:依 dspec〈自有套件之發布與建置腳本〉規則 4,`toolg/cleanFolder.mjs`(dist、docs)與 `toolg/gExtractHtml.mjs`(test-html、test-action)皆直接呼叫 w-package-tools 之 `cleanFolder`,不另包裝(2026-11-02 撤原 `toolg/cleanFolderStrict.mjs`)。
   - 範例檔名公式 `${kbname}_${cvCasename(casename)}`:`toolg/getExampleFn.mjs`(唯一;2026-10-16 由兩處手寫收斂,原載「仍手寫兩處(`toolg/gExtractHtml.mjs:245-246`、`src/components/demolink.vue:75-78`)」)。站點全集(盤點:`rg -n "getExampleFn|cvCasename" toolg src test`):`toolg/gExtractHtml.mjs`(產製 `test-html/<檔名>.html`、`test-action/<檔名>.action.json` 及撞名檢查)、`src/components/demolink.vue`(app 之範例頁網址 `https://yuda-lyu.github.io/<pkgname>/examples/<檔名>.html` 與原始碼網址 `https://github.com/yuda-lyu/<pkgname>/blob/master/docs/examples/<檔名>.html`)、`test/unit-exampleNames.test.mjs`。第 12 列 `toolg/gDocExams.mjs` 依 test-html 之實際檔名複製至 `docs/examples/`,不另算檔名。`cvCasename` 只被 `getExampleFn` 引用。
   - 範例全集:`src/AppZone*.vue` 內每個 `<demolink>` 之 (kbname, casename);盤點:`rg -c "<demolink" src --glob "AppZone*.vue"`(2026-10-16:84 檔、1510 個)。
 
@@ -21,9 +21,9 @@
 
 - **R-B1** `script.txt` 之每個 node 建置列,產製失敗(來源缺、語法錯、匯出不符、相依解析失敗、寫檔失敗)一律以非 0 離開碼結束,失敗原因印至 stderr;不得 catch 後只印出。理由:w-pksupdate 以離開碼判定,`[RollupError]` 字樣只涵蓋 Rollup 自身之解析錯誤(實測 Babel 語法錯、字串 reject、fs 錯誤皆無此字樣)。
 - **R-EXIT**(離開碼須顯式設定)非 0 離開碼不得依賴 Node 之 unhandled-rejections 預設模式:非同步流程明設 `process.exitCode = 1`;同步流程以未捕捉例外結束。理由:`NODE_OPTIONS=--unhandled-rejections=warn` 時未處理 rejection 為 0(實測)。
-- **R-B2** 清空步驟(dist、docs、test-html、test-action)一律經 `toolg/cleanFolderStrict.mjs`,失敗即拋錯(腳本以非 0 離開),回傳前回驗目錄存在且為空。失敗之判定與重試分兩層(2026-10-29 主控裁示,依 w-package-tools 1.1.21 之設計):
-  - 上游 `w-package-tools` `cleanFolder`(1.1.21 起)非 `success` 即拋 `can not clean folder[絕對路徑]: 原因`;**占用類**(EBUSY、EPERM、ENOTEMPTY、ENOENT)由上游自行重試 10 次、間隔 300 ms,仍失敗才拋;**非占用類**(目標為檔案、無法建立〔上層為檔案〕、未給路徑、目標為連結、根目錄或 cwd 與其上層)首次即拋、不重試(`node_modules/w-package-tools/src/cleanFolder.mjs:7-13` JSDoc、`src/buildCheck.mjs:536-541,610-614`;其自帶測試 `test/unit-cleanFolder.test.mjs:62-74`、`unit-wsemipContract.test.mjs:144-158` 同)。
-  - 本層 `toolg/cleanFolderStrict.mjs` **不捕捉上游之拋錯、不另行重試**(捕捉重試將使占用類變為上游 10 次 × 本層 11 次,且對非占用類重試無益);本層之迴圈僅在上游回傳 `success` 而目錄回驗仍非空時重試(10 次、300 ms,比照 w-pksupdate `removeTarget`),仍失敗拋 `cleanFolderStrict: can not clean folder[…] after 10 retries: …`。上游 1.1.21 前失敗時回傳結果而不拋(含 wsemip 於無法建立時回傳裸 Error,`node_modules/w-package-tools/src/wsemip.umd.js:6`),本層「非 `success` 即失敗」之判定因而保留為防線。
+- **R-B2** 清空步驟(dist、docs、test-html、test-action)一律依 dspec〈自有套件之發布與建置腳本〉規則 4,直接呼叫 w-package-tools 之 `cleanFolder`(`toolg/cleanFolder.mjs` 即 `cleanFolder('dist')`、`cleanFolder('docs')`;`toolg/gExtractHtml.mjs` 清 test-html、test-action),本套件不另寫包裝(2026-11-02 使用者裁示統一,撤原 `toolg/cleanFolderStrict.mjs` 及其「本層」重試與回驗規則)。失敗即拋錯、腳本以非 0 離開之行為由上游負責(2026-10-29 主控裁示,依 w-package-tools 1.1.21 之設計):
+  - 上游 `w-package-tools` `cleanFolder`(失敗即拋錯並重試,2026-10-16 `1e957dc` 起;本套件實測 1.1.21)非 `success` 即拋 `can not clean folder[絕對路徑]: 原因`;**占用類**(EBUSY、EPERM、ENOTEMPTY、ENOENT)由上游自行重試 10 次、間隔 300 ms,仍失敗才拋;**非占用類**(目標為檔案、無法建立〔上層為檔案〕、未給路徑、目標為連結、根目錄或 cwd 與其上層)首次即拋、不重試(`node_modules/w-package-tools/src/cleanFolder.mjs:7-13` JSDoc、`src/buildCheck.mjs:536-541,610-614`;其自帶測試 `test/unit-cleanFolder.test.mjs:62-74`、`unit-wsemipContract.test.mjs:144-158` 同)。
+  - 本套件之測試只驗**發布列可觀察之結果**(離開碼、stderr 含 `can not clean folder[` 與目標絕對路徑、目標不被改動、占用時之重試與解除後成功),以副本並指定 cwd 執行 toolg 腳本(規則 4);上游內部之各種失敗形狀(如「目標不存在且上層為檔案」)由 w-package-tools 自身測試負責,toolg 腳本之目標皆為 cwd 相對路徑,無法由本套件之測試造出。
 - **R-B3** 受追蹤之 worker 產物(`src/js/convertToTreeWk.wk.umd.js`、`src/js/flattenTreeWk.wk.umd.js`)對可結構化複製之輸入,結果須與 wsemi 非 worker 版深度相等(含鍵順序);一般呼叫結束後不得殘留 worker。
 - **R-B4** 每個範例之輸出檔名(`getExampleFn(kbname, casename)`)全域唯一;第 11 列於產製前(清空 test-html、test-action 與寫檔之前)以全部 AppZone 之 (kbname, casename) 檢查,撞名即把每組撞名之檔名與各來源(AppZone 檔、kbname、casename)印至 stderr 並以非 0 結束,不清空、不寫出任何範例頁。理由:後寫者會靜默覆寫前者,app 之連結指向錯置之內容(2026-10-14 實測 9 組,例 `docs/examples/w-popup_isolated.html` 實為 tooltip 範例)。撞名須改範例名稱來解,改名須使用者同意(全域規範 §10.1);改名時只改撞名者,以「看名稱即知是哪個範例」為準,`cvCasename` 只取前 4 段,故前 4 段須可區分。
 - **R-B5** 每個 AppZone 檔內 demolink 之 kbname 等於檔名所示之元件名(`_.kebabCase` 檔名去 `AppZone` 與 `.vue`,例 `AppZoneWTooltip.vue` → `w-tooltip`)。只由測試把關,第 11 列不檢查(建置行為之變更限於使用者同意之 D1)。理由:kbname 誤植而未撞名時,範例頁會靜默掛在別的元件名下(D1 之 tooltip 即此類,只是剛好撞名才被發現);2026-10-16 實測 1510 個中只有該 1 個不符。
@@ -37,13 +37,13 @@
 | R-B1、R-EXIT(第 11 列寫檔) | 同上 | 第 11 列:範例頁寫檔失敗(casename 含路徑分隔字元)→ 非 0 且 stderr 含 `ENOENT`,於 `NODE_OPTIONS=--unhandled-rejections=warn` 下亦非 0(2026-10-16 補:`extractHtml` 為 async,其內寫檔失敗原為未處理之 rejection,warn 模式下以 0 結束,實測) |
 | R-EXIT(第 9、15 列) | 同上 | 第 9 列 App.vue 語法錯、第 15 列元件語法錯 → 於 `NODE_OPTIONS=--unhandled-rejections=warn` 下亦非 0(2026-10-16 補:`rollupVueToHtml`、`rollupFiles` 為 async 而腳本未接 promise,warn 模式下以 0 結束,實測;第 2、12、14 列為同步流程,兩模式皆 1) |
 | R-B1(兄弟守門) | 同上 | 第 2 列 README 缺、第 9 列 App.vue 語法錯、第 11 列 AppZone 無 template、第 12 列 test-html 缺、第 14 列 components 缺、第 15 列元件語法錯 → 非 0;第 15 列成功無 `invalid runin` |
-| R-B2 | 同上 | helper:可清空 → 空;目標為檔案、無法建立(上層為檔案)→ 首次即拋(訊息以 `can not clean folder[` 起頭並含目標之絕對路徑,非本層重試耗盡後之訊息,目標檔案不被改動);持續占用(win32)→ 拋錯且上游重試約 10×300 ms;暫時占用於重試期間解除(win32)→ 成功。第 4 列:可清空 → 0 且 dist、docs 皆空;dist 為檔案 → 非 0;dist 子資料夾被占用(win32)→ 非 0。第 11 列:test-html 為檔案 → 非 0 且無範例頁;test-action 為檔案 → 非 0 |
+| R-B2 | 同上 | 第 4 列(副本並指定 cwd 執行 `toolg/cleanFolder.mjs`):可清空 → 0 且 dist、docs 皆空;dist、docs 不存在 → 0 且皆建立為空資料夾;dist 為檔案 → 非 0、stderr 含 `can not clean folder[` 與目標之絕對路徑、目標檔案不被改動;docs 為檔案(dist 照常)→ 非 0、stderr 含目標、dist 已清空;dist 子資料夾持續占用(win32)→ 非 0,占用使清空失敗 ≥ 2 次(重試)且耗時 ≥ 2700 ms(上游 10×300 ms);暫時占用於重試期間解除(win32)→ 0、dist 與 docs 皆空,且確有經過占用(事件閘門)。第 11 列:test-html 子資料夾被占用 → 非 0 且不續行;test-action 子資料夾被占用 → 非 0 |
 | (7.9 小項) | 同上 | `git check-ignore temp-<任意>.js` 命中 |
 | R-B3 | `test/unit-workerFuncs.test.mjs` | 共用案例表(`test/tools/workerFuncsCases.mjs`)之可複製案例逐案:worker 版深度相等於 wsemi 非 worker 版且鍵順序相同;呼叫後 `page.workers()` 為 0;無 pageerror |
 | R-B4 | `test/unit-exampleNames.test.mjs` | 來源:`src/AppZone*.vue` 每個 `<demolink>` 皆取得 (kbname, casename),以 `getExampleFn` 算出之檔名無重複(失敗訊息列出每組撞名之來源);demolink 與第 11 列皆經 `getExampleFn`、不再手寫 `cvCasename`。第 11 列(沙箱、合成輸入):跨檔同 kbname 撞名、同檔 casename 重複、前 4 段相同之截斷撞名、只差大小寫 → 非 0、stderr 列出撞名檔名與兩處來源、test-html 與 test-action 皆未寫出且舊頁未被清空;無撞名(含超過 4 段之 casename)→ 0,產出檔名集合等於 `getExampleFn` 之結果 |
 | R-B5 | 同上 | 每個 AppZone 檔之每個 kbname 等於檔名所示之元件名 |
 
-- 建置腳本沙箱之共用層:`test/tools/buildSandbox.mjs`(unit-buildScripts、unit-exampleNames 共用,2026-10-16 自 unit-buildScripts 抽出)。
+- 建置腳本沙箱之共用層:`test/tools/buildSandbox.mjs`(unit-buildScripts、unit-exampleNames 共用,2026-10-16 自 unit-buildScripts 抽出)。作法即 dspec〈自有套件之發布與建置腳本〉規則 4 之「副本並指定 cwd 執行 toolg 腳本」:複製 `toolg/` 與 `package.json` 至 `test/_tmp/<測試檔>/<案>/`,以 `spawn` 指定該夾為 cwd 執行;toolg 本身不為測試改寫(2026-11-02 重驗:測試不直接 import toolg 內之輔助檔驗清空,只經 `toolg/cleanFolder.mjs`、`toolg/gExtractHtml.mjs` 之執行結果)。
 - 測試之來源切換(只供分辨力驗證,預設不設):`W_TOOLG_DIR`(unit-buildScripts、unit-exampleNames 改由該資料夾複製 toolg,unit-exampleNames 之結構案例亦讀該資料夾之 gExtractHtml;預設工作區之 `toolg/`)、`W_WORKER_DIR`(unit-workerFuncs 改由該資料夾取 worker 產物,預設 `src/js/`)。
 - 有效性證明:修前(HEAD 之 toolg 副本)R-B1/R-B2/R-EXIT 案例須紅、修後綠;R-B3 與兄弟守門以變異(壞產物、吞錯變體)證之。紀錄見 `sgud/exp/experience.md` 與 run02 修正報告。
 
@@ -99,7 +99,7 @@
 ### 2.3 站點全集與盤點指令
 
 - 盤點(本套件非 e2e 層):`rg -n "sleep\(|waitForTimeout|setTimeout" test/unit-*.test.mjs test/tools/buildSandbox.mjs`。
-- 已事件化:`unit-domResize` 11 案(原 `sleep(10)` 後斷言)、`unit-buildScripts` 占用 5 案(`cleanFolderStrict` 持續占用、暫時占用、第 4 列 dist 占用、第 11 列 test-html 占用、第 11 列 test-action 占用;原 `sleep(500)`,明細表僅列前 2 案)、`unit-workerFuncs` 每案(原 `waitForTimeout(300)`)。
+- 已事件化:`unit-domResize` 11 案(原 `sleep(10)` 後斷言)、`unit-buildScripts` 占用 4 案(第 4 列 dist 持續占用、第 4 列暫時占用、第 11 列 test-html 占用、第 11 列 test-action 占用;原 `sleep(500)`;2026-11-02 依 dspec〈自有套件之發布與建置腳本〉撤 `cleanFolderStrict` 後,原直驅該包裝之持續占用、暫時占用 2 案改為經 `toolg/cleanFolder.mjs` 執行,原第 4 列 dist 占用案併入持續占用案)、`unit-workerFuncs` 每案(原 `waitForTimeout(300)`)。
 - 刻意不動:`unit-createDetectDirective` 之 `tick`(`setTimeout 0` 作 macrotask 屏障,等 microtask 排定之重新比較;順序由事件迴圈決定,與負載無關);`test/e2e-*.test.mjs` 與 `test/tools/e2e-*.mjs` 之等待(含 `e2e-hover` 2 案,批 E 另案)。
 
 ### 2.4 規則 → 測試
@@ -109,12 +109,12 @@
 | R-T1 | `test/unit-domResize.test.mjs` | `domResize` 11 案(轉發 dom 事件與方向、視窗事件不帶方向 3 案、容許誤差內之軸、`toleranceBounce`、視窗尺寸、解除後不轉發、無處理器僅警告、`event: 'resize'`、停用後啟用、`refreshKey`) |
 | R-T2 | 同上 | `domResize onTrace` 3 案(轉交與凍結／無接收者／事件內容、五種回調形態〔含拋錯案斷言無 console 輸出〕、最新 `onTrace` 不重建與有無之改變重建) |
 | R-T2(`quietKeys`) | `test/unit-createDetectDirective.test.mjs` | 列於 `quietKeys` 之鍵拋錯不提示但仍交回、其他函數設定鍵照舊每鍵提示一次 |
-| R-T3 | `test/unit-buildScripts.test.mjs` | `cleanFolderStrict(R-B2)` 持續占用、暫時占用;第 4 列 dist 占用;第 11 列 test-html、test-action 占用 |
+| R-T3 | `test/unit-buildScripts.test.mjs` | 第 4 列 `toolg/cleanFolder.mjs` 持續占用、暫時占用;第 11 列 test-html、test-action 占用 |
 | R-T4 | `test/unit-workerFuncs.test.mjs` | 每案「呼叫後無殘留 worker」 |
 
 ### 2.5 已知限制(文件化)
 
-- (已處置,2026-10-29 tm-compvue3)`unit-buildScripts` 之 `cleanFolderStrict(R-B2)` 兩案原斷言「重試 10 次、≥2700 ms」於 w-package-tools 1.1.21 起不成立(上游對非占用類錯誤首次即拋,見 R-B2);主控裁示照新行為改斷言(案名改為「目標為檔案時首次即拋錯(非占用類失敗不重試)」「目標不存在且無法建立(上層為檔案)時首次即拋錯(非占用類失敗不重試)」)並修訂 R-B2,不改 `toolg`、不令其捕捉重試。`toolg/cleanFolderStrict.mjs` 之重試迴圈因此只對「回傳 `success` 而目錄仍非空」生效,未移除(不在本輪範圍)。
+- (已處置,2026-11-02 依 dspec〈自有套件之發布與建置腳本〉)原 `toolg/cleanFolderStrict.mjs`(2026-10-14 修正輪自創之包裝)及據以立之 R-B2「本層」規則已撤除;清空一律直接呼叫 w-package-tools 之 `cleanFolder`(R-B2)。原直驅該包裝之測試案「目標不存在且無法建立(上層為檔案)」不再保留:toolg 腳本之清空目標皆為 cwd 相對路徑,本套件之測試造不出「上層為檔案」,該形狀由 w-package-tools 自身測試(`unit-cleanFolder`、`unit-wsemipContract`)負責。
 - 本節未涵蓋 `e2e-*` 檔之等待站點(批 E)。
 
 ## 三、有過場動畫之組件於 DOM 提供可偵測之 `state` 屬性

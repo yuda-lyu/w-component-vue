@@ -3,11 +3,11 @@ import * as cheerio from 'cheerio'
 import _ from 'lodash-es'
 import w from 'wsemi'
 import getFiles from 'w-package-tools/src/getFiles.mjs'
+import cleanFolder from 'w-package-tools/src/cleanFolder.mjs'
 import parseVueCode from 'w-package-tools/src/parseVueCode.mjs'
 import kebabPropsVueTemp from 'w-package-tools/src/kebabPropsVueTemp.mjs'
 import extractHtml from 'w-package-tools/src/extractHtml.mjs'
 import getExampleFn from './getExampleFn.mjs'
-import cleanFolderStrict from './cleanFolderStrict.mjs'
 
 
 let fdSrc = './src/'
@@ -302,12 +302,12 @@ function main() {
     checkCollisions(exs)
 
     //fdTestHtml
-    cleanFolderStrict(fdTestHtml)
+    cleanFolder(fdTestHtml)
     //fs.mkdirSync(fdTestHtml)
     //await fs.promises.mkdir(fdTestHtml)
 
     //fdTestSrc
-    cleanFolderStrict(fdTestSrc)
+    cleanFolder(fdTestSrc)
     //fs.mkdirSync(fdTestSrc)
     //await fs.promises.mkdir(fdTestSrc)
 
