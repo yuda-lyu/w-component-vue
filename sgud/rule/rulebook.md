@@ -119,7 +119,7 @@
 
 ## 三、有過場動畫之組件於 DOM 提供可偵測之 `state` 屬性
 
-> 狀態:**生效**(2026-10-31 cv29;來源:Gitea #29〔下游 rddmanager 提出,使用者轉交〕,建議書範圍:WDialog、buildPopper 浮層、WListExpandItem、WGroupTags、WGroupDragdrop)。要求:**只新增屬性**,外觀、動畫時間與互動不變。語彙比照 `WDrawer`(根節點 `state`)。報告:`C:\opensrcOper\dnow\20261031175415\agent-out\cv29-修正報告.md`。
+> 狀態:**生效**(2026-10-31 cv29;來源:Gitea #29〔下游使用端提出,使用者轉交〕,建議書範圍:WDialog、buildPopper 浮層、WListExpandItem、WGroupTags、WGroupDragdrop)。要求:**只新增屬性**,外觀、動畫時間與互動不變。語彙比照 `WDrawer`(根節點 `state`)。報告:`C:\opensrcOper\dnow\20261031175415\agent-out\cv29-修正報告.md`。
 
 ### 3.1 單一擁有者與站點全集
 
