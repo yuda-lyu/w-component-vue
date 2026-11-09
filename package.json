@@ -1,10 +1,10 @@
 {
   "name": "w-component-vue",
-  "version": "2.5.44",
+  "version": "2.5.45",
   "main": "dist/w-component-vue.umd.js",
   "dependencies": {
     "@mdi/js": "^7.4.47",
-    "wsemi": "^1.9.51"
+    "wsemi": "^1.9.54"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^5.0.8",
@@ -18,9 +18,9 @@
     "eslint-plugin-promise": "^6.1.1",
     "eslint-plugin-vue": "^9.10.0",
     "vue": "^2.7.16",
-    "w-package-tools": "^1.1.23",
-    "w-package-tools-e2e": "^1.0.23",
-    "w-screenctl": "^1.0.37"
+    "w-package-tools": "^1.1.24",
+    "w-package-tools-e2e": "^1.0.27",
+    "w-screenctl": "^1.0.39"
   },
   "scripts": {
     "serve": "vue-cli-service serve",
