@@ -85,3 +85,11 @@
 - **模擬 Vue 實例測 `buildPopper` 之要點**:普通物件即可(`$emit`、`$nextTick` 兩個函數),但 `contentStyle` 與 `show` 須用存取子模擬樣板綁定(寫入 `contentStyle` 後強制 `getBoundingClientRect()`,否則推論 `opacity:0` 與其後 1ms 之 `transition+opacity:1` 可能落在同一次樣式計算而不建立過場、`opening` 期間斷言會空過〔此推論未去掉重排實測〕);存取子須 `configurable: true`,否則「移除某必填鍵」之案無法 `delete`。
 - **工作樹為 CRLF、HEAD 為 LF**(autocrlf):變異腳本以多行字串置換須先 `replace(/\r\n/g, '\n')`,否則整串置換靜默失敗(本輪第一次執行即在 M1 以「置換失敗」停下;上一則經驗已記此事,我動工前沒讀到該行——開工前要讀完經驗檔對應段落,不只 Grep 關鍵字)。Edit 工具會保留既有行尾,Write 新檔為 LF,git 會正規化,不必處理。
 - **`git archive HEAD src | tar -x -C ./tmp/<夾>`** 是取修前副本之唯讀作法(不 checkout、不 stash),配 `W_SRC_DIR` 即可對修前跑新測試。
+
+## 2026-11-13 測試用瀏覽器改經 w-playwright(pm-cv,排程第 442 項)
+
+- **本套件原本就不直接依賴 `playwright`**:只經 devDependency `w-package-tools-e2e/src/launchChromium.mjs` 取得(`node_modules/playwright` 是它帶入的);所以 package.json 沒有可移除之項,遷移 = 換匯入與呼叫 + 加 `w-playwright`。派工提示詞列的 `e2e-flow` 等 9 檔屬姊妹套件(w-ui-loginout、w-flow-vue、w-maplibregl-vue),本套件唯一啟動點是 `test/tools/e2e-setup.mjs` 之 `launchBrowser`。遷移前先 `Grep playwright|launchChromium` 數啟動點,不依表列檔名。
+- **`autoInstall` 不能用 `setBrowserTypeForTest` 驗**:w-playwright 的替身層不自動安裝(缺檔一律 `E_BROWSER_MISSING`),替身根本走不到安裝分支。可驗法:子行程設空的 `PLAYWRIGHT_BROWSERS_PATH`(須在載入 w-playwright 前設,故須子行程)+ `PLAYWRIGHT_DOWNLOAD_HOST=http://127.0.0.1:9`(無人監聽),呼叫 `launchBrowser`:有 `autoInstall` → 約 2 秒後 `E_INSTALL`;無 → 14ms `E_BROWSER_MISSING`。不下載、不啟動瀏覽器,可判別兩種行為。
+- **接線測試的修前紅燈**:改前 `launchBrowser` 不經 w-playwright,替身呼叫 0 次,A、B 兩案因 `seen.length === 0` 紅;但此時 `launchBrowser()` 會真的啟動一個 headless shell(舊路徑),測試的 `finally` 須在回傳值不是替身時關閉它,否則 mocha 行程不退出。
+- **`npm i -D` 的副作用**:會把 `package-lock.json` 的頂層 `version` 同步為 `package.json` 現值(本次 2.5.50 → 2.5.51,非本輪手改),並讓 `package.json` 結尾多一個換行(原檔無結尾換行)。報告須註明,以免被誤認為改了版號。
+- 對 `page.evaluate(() => document...)` 用 `eslint --env node` 檢查會報 `'document' is not defined`(瀏覽器端函數之偽陽性),本套件既有測試亦同。

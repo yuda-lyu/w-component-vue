@@ -130,3 +130,12 @@ await page.locator('.WPopperFix[state="opened"]').waitFor()
 //dialog: give the wrapper element of WDialog an id, then wait until opened (after maximize/restore, until back to opened)
 await page.locator('#myDialog [state="opened"]').waitFor()
 ```
+
+## Testing
+
+`npm test` runs the unit tests and the browser tests. The browser tests start Chromium only through [w-playwright](https://www.npmjs.com/package/w-playwright) (a devDependency, `import wpw from 'w-playwright'`); this package depends on neither `playwright` nor `playwright-core` directly. They use Playwright's managed headless shell, so Google Chrome does not need to be installed.
+
+- **Browser installation**: the first browser launch downloads the headless shell that matches the `playwright-core` version pinned by w-playwright (`autoInstall: true`). To install it beforehand, call `await wpw.ensureChromium()`; do not use `npx playwright install` (a different Playwright version in the dependency tree could download a different browser build).
+- **Offline**: copy the Playwright browsers folder (on Windows `%LOCALAPPDATA%\ms-playwright`, the `chromium_headless_shell-*` folder of the pinned version) to the target machine and point the environment variable `PLAYWRIGHT_BROWSERS_PATH` to it. Set it before the tests start (Playwright reads it when it is loaded).
+- **Launch arguments added by w-playwright**: every launch carries exactly one `--disable-features` argument (Playwright's default list plus `AutofillAiWalletPrivatePasses`, plus anything the caller adds). On Windows, Chromium 153 and later checks the current user's password once for every new browser root process with an invalid password, and 10 such failures within 10 minutes lock the account; disabling `AutofillAiWalletPrivatePasses` avoids it. Chromium uses only the last `--disable-features`, so w-playwright removes Playwright's own default one and sends a single merged list.
+- **Unsupported environment variables**: `PWDEBUG` (inspector mode) and `SELENIUM_REMOTE_URL` make w-playwright refuse to launch (`E_ENV`), because they bypass the merged argument list.

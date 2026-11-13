@@ -1,7 +1,7 @@
 import fs from 'fs'
 import path from 'path'
 import { createRequire } from 'module'
-import launchChromium from 'w-package-tools-e2e/src/launchChromium.mjs'
+import wpw from 'w-playwright'
 
 
 //e2e-setup: 真瀏覽器測試之共用層, 以專案根目錄為cwd執行(npm test)
@@ -90,10 +90,11 @@ function removeBundle(name) {
 }
 
 
-//launchBrowser, 全專案唯一launchChromium出口
+//launchBrowser, 全專案唯一Chromium啟動出口, 一律經w-playwright(規則帳本四: R-PW-ONLY、R-PW-WIRING)
 async function launchBrowser() {
-    //launchChromium, 缺Playwright指定版本之瀏覽器時首次啟動自動下載(與本機同版), 由w-package-tools-e2e提供
-    return await launchChromium({ headless: true })
+    //wpw.launchChromium: 無頭預設為Playwright受管之headless shell; 命令列恰一個--disable-features(Playwright預設+AutofillAiWalletPrivatePasses), 免真Chrome/Chromium於每次啟動呼叫登入驗證
+    //autoInstall: 缺Playwright指定版本之瀏覽器時首次啟動自動下載一次(與改前一致), 版本由w-playwright所依之playwright-core決定
+    return await wpw.launchChromium({ headless: true, autoInstall: true })
 }
 
 

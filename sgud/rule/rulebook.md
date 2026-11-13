@@ -172,7 +172,7 @@
 | `WDialog.vue` | `e2e-transitionState`、`e2e-hover`(WDialog 標題列儲存鈕) |
 | `WListExpandItem.vue`、`WGroupTags.vue`、`WGroupDragdrop.vue` | `e2e-transitionState` |
 | 偵測類指令(`domResize`、`domMutation`、`domStable`、`domVisible`、`createDetectDirective`) | `e2e-domDirectives`、`e2e-hiddenMeasure`、相關 `unit-*` |
-| `test/tools/e2e-setup.mjs`(共用層) | 所有 `e2e-*` 與 `unit-createTransitionState` |
+| `test/tools/e2e-setup.mjs`(共用層) | 所有 `e2e-*` 與 `unit-createTransitionState`、`unit-buildPopper`、`unit-workerFuncs`、`unit-launchWiring`(啟動點改動時) |
 | `WButtonCircle.vue`、`WTreeIconToggle.vue` | `e2e-hover` |
 
 ### 3.5 已知限制(文件化)
@@ -181,3 +181,35 @@
 - WGroupTags/WGroupDragdrop 之 `moving` 為保守語意:末端新增時他項雖不動,仍至進場完成(約 0.5s)才 `idle`。
 - 拖放(`v-domdragdrop`)換序之 e2e 以頁面按鈕改 `value` 代替真拖放(拖放最終亦經 `input` 事件改 `value`,走同一條 `changeKeys` 路徑);真拖放未另行驗證。
 - 逾時後備之 `marginMs=300`、`capMs=3000` 為經驗值(比照 `WDrawer` 之 `sec+1000`、3000ms),未依機器效能調整。
+
+## 四、測試用瀏覽器之啟動:一律經 w-playwright
+
+> 狀態:**生效**(2026-11-13 pm-cv,排程第 442 項遷移輪;來源:w-playwright 設計報告〈逐包遷移表〉、w-playwright 帳本 R-PW-ONLY／R-PW-WIRING)。緣由:Chromium 系瀏覽器(真 Chrome、完整 Chromium、Edge,153 起)於 Windows 每啟動一個新根行程即以錯誤密碼呼叫一次 `LogonUser`,10 分鐘內 10 次鎖住目前使用者帳號;w-playwright 於每次啟動合併出恰一串 `--disable-features`(Playwright 預設＋`AutofillAiWalletPrivatePasses`＋呼叫端自給者)並統一 Playwright 版本(`playwright-core` 精確 1.64.1)。
+
+### 4.1 單一擁有者與啟動點全集
+
+- 擁有者:w-playwright(`devDependencies` `^1.0.1`;安裝後 `node_modules/w-playwright/package.json` 之 `version` 為 1.0.1)。本套件 `package.json` 不宣告 `playwright`／`playwright-core`。
+- 啟動點:`test/tools/e2e-setup.mjs` 之 `launchBrowser`(**唯一**;`e2e-domDirectives`、`e2e-hiddenMeasure`、`e2e-hover`、`e2e-transitionState`、`unit-buildPopper`、`unit-createTransitionState`、`unit-workerFuncs` 七檔皆經此出口)。本套件 `src/`、`toolg/` 無啟動點(dist 不含 playwright)。盤點:`rg -n "wpw\.(launchChromium|launchChromiumPersistent)\(" src test toolg`(應只命中 `test/tools/e2e-setup.mjs`)。
+
+### 4.2 規則
+
+- **R-PW-ONLY**:`src`、`test`、`toolg` 之 `.mjs`／`.js`(含動態 import、`require`)不得引用 `playwright`／`playwright-core`;`package.json` 不得宣告兩者。盤點指令(命中數須為 0;防空集合以 w-playwright 之 `src/_pw.mjs` 必命中):`rg -n --glob '*.{mjs,js}' --glob '!**/node_modules/**' --glob '!**/dist/**' "(from\s+|import\(\s*|require\(\s*)['\"\`]playwright(-core)?['\"\`/]" .` 與 `rg -n --glob '**/package.json' --glob '!**/node_modules/**' "\"playwright(-core)?\"\s*:" .`。
+- **R-PW-AUTO**:`launchBrowser` 傳 `autoInstall: true`(缺 Playwright 指定版本之受管瀏覽器時首次啟動下載一次,與改前 w-package-tools-e2e 之行為一致);不傳 `installDeps`(Linux 缺系統相依時不自動安裝,見 4.4)。受管瀏覽器亦可先以 `wpw.ensureChromium()` 取得;不用 `npx playwright install`;離線以 `PLAYWRIGHT_BROWSERS_PATH`(載入前設定)。
+- **R-PW-WIRING**:啟動點送出之選項含守門(`args` 最後一個元素為恰一串之 `--disable-features`,含 `AutofillAiWalletPrivatePasses` 與 Playwright 預設),以 `wpw.setBrowserTypeForTest` 斷言且**斷言替身呼叫次數 >0**;至少一案以替身之 `next()` 走真路徑。
+- **R-PW-HEADLESS**:本套件測試只啟動 Playwright 受管之 headless shell(`headless: true`、無通道;不觸發 Chromium 之登入呼叫);每案新啟瀏覽器(`beforeEach`)為案例隔離所需,不共用。**若日後測試改啟動真 Chrome、Edge 或完整 Chromium**(`channel`、`headless: false`),須改為每檔最多啟動一次(`before` 起、`after` 關,案例各開 `newContext()`),以 `findSystemChrome` 判可用性(不以真啟動探測),並於跑前後讀錯誤密碼次數。
+
+### 4.3 規則 → 測試
+
+| 規則 | 測試 | 內容 |
+|---|---|---|
+| R-PW-WIRING | `unit-launchWiring` A | 替身收到之選項:恰一串 `--disable-features` 居末、含守門功能與 Playwright 預設、`headless: true` 保留、自用鍵 `autoInstall` 不轉傳;替身呼叫次數 =1 |
+| R-PW-WIRING(真路徑) | `unit-launchWiring` B | 替身以 `next()` 走真路徑,啟動 headless shell、載入頁面、關閉;選項同樣含守門 |
+| R-PW-AUTO | `unit-launchWiring` C | 子行程以空的 `PLAYWRIGHT_BROWSERS_PATH` 與無人監聽之 `PLAYWRIGHT_DOWNLOAD_HOST` 呼叫 `launchBrowser`:拒絕碼 `E_INSTALL`(走了安裝;未給 `autoInstall` 則為 `E_BROWSER_MISSING`);不下載、不啟動瀏覽器 |
+| R-PW-ONLY | (盤點指令,非自動化測試) | 遷移輪與每次改動啟動點時執行,命中須為 0 |
+
+- 有效性(2026-11-13 pm-cv 實測):`unit-launchWiring` 對改前之 `e2e-setup.mjs`(經 w-package-tools-e2e 直接用 `playwright`)3 案全紅(替身呼叫 0 次、無 `E_INSTALL`);變異:移除 `autoInstall` → C 紅(`E_BROWSER_MISSING`),`headless: false` → A 紅。
+
+### 4.4 已知限制(文件化)
+
+- Linux:改前 `launchChromiumCore` 於缺系統相依時先執行 `install-deps`;現 `launchBrowser` 不傳 `installDeps`(設計 §5.1 本套件列為 `autoInstall: true` 而已),Linux 缺相依時須手動 `ensureChromium({ installDeps: true })`。本套件之測試於 Windows 開發。
+- `package.json` 仍列 devDependency `w-package-tools-e2e`,本套件已不使用(原只用其 `launchChromium`);其移除屬連動(該套件改版移除 `launchChromium` 與 `playwright` 依賴)之範圍,待主控裁示。
