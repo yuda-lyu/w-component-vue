@@ -589,6 +589,7 @@ import WButtonCircle from './WButtonCircle.vue'
  * @vue-prop {String} [editorRenameSaveBtnBackgroundColorHover='grey lighten-3'] 輸入變更文字彈窗之滑鼠移入時儲存按鈕背景顏色字串，預設'grey lighten-3'
  * @vue-prop {String} [labelPanelForOperate=null] 輸入針對控制選項之popup彈窗teleport至body內之內容div所給予之wtlp屬性值字串，供查找使用，預設null
  * @vue-prop {String} [labelDialogForEditor=null] 輸入針對teleport至body內之WDialog所給予之wtre屬性值字串，供查找使用，預設null
+ * @vue-event {Error} error 轉換items為樹狀資料夾與清單失敗時發射(如items含無效項目、路徑重複、資料夾與檔案同名、路徑段含分隔符號，各情形由wsemi之filepathToTree拋出)，帶出該Error物件，其message為固定詞彙並指出第幾個項目(如invalid fps[2].path: ...)且不含路徑；失敗時畫面維持上一次成功轉換之結果；父元件未接收此事件(未以@error監聽)時，改以console.error輸出一行錯誤訊息
  */
 export default {
     directives: {
@@ -1431,7 +1432,15 @@ export default {
             //core
             core()
                 .catch((err) => {
-                    console.log(err)
+
+                    //emit, 轉換失敗(如items含無效項目、重複路徑、資料夾與檔案同名、路徑段含分隔符號, 見filepathToTree)一律交給父元件
+                    vo.$emit('error', err)
+
+                    //console.error, 父元件未接收error事件時才輸出一行, 避免錯誤被靜默吞掉
+                    if (!(vo.$listeners && vo.$listeners.error)) {
+                        console.error(`WExplorer: ${(err && err.message) ? err.message : err}`)
+                    }
+
                 })
 
         },

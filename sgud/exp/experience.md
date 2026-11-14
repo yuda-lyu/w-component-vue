@@ -93,3 +93,12 @@
 - **接線測試的修前紅燈**:改前 `launchBrowser` 不經 w-playwright,替身呼叫 0 次,A、B 兩案因 `seen.length === 0` 紅;但此時 `launchBrowser()` 會真的啟動一個 headless shell(舊路徑),測試的 `finally` 須在回傳值不是替身時關閉它,否則 mocha 行程不退出。
 - **`npm i -D` 的副作用**:會把 `package-lock.json` 的頂層 `version` 同步為 `package.json` 現值(本次 2.5.50 → 2.5.51,非本輪手改),並讓 `package.json` 結尾多一個換行(原檔無結尾換行)。報告須註明,以免被誤認為改了版號。
 - 對 `page.evaluate(() => document...)` 用 `eslint --env node` 檢查會報 `'document' is not defined`(瀏覽器端函數之偽陽性),本套件既有測試亦同。
+
+## 2026-11-14 WExplorer 轉換失敗改發 `error` 事件(wexp430,排程第 430 項第二批)
+
+- **`convertItems` 是在渲染期間被呼叫的**:`WExplorer` 以 computed `changeItems` 於 template 內觸發轉換(`vo.convertItems(vo.items)`),`core()` 為 async,`filepathToTree` 之拋錯變成 rejected promise、由 `.catch` 於微任務接住。所以 `$emit('error')` 天然落在渲染之後;若日後把轉換改成同步並在 computed 內 emit,父層 handler 改響應式資料會在渲染中觸發重繪。規則帳本 R-EXP-ASYNC。
+- **「父元件有無接收」於 Vue 2 以 `vo.$listeners.error` 判斷**;`$emit` 在無監聽時為無操作,故一律 emit、另以有無監聽決定是否 `console.error`,不必二選一寫兩個分支。
+- **測 `console.error` 須以前綴過濾**:Vue 開發版之警告(`[Vue warn]`)也走 `console.error`,測試頁掛載 WExplorer 時是否有警告取決於 Vue 版本,直接斷言 `logs.error` 為空會把不相干之警告算進來;本檔以 `WExplorer: ` 開頭者為準(`explorerErrors`)。
+- **「沒有輸出」之否定斷言不用固定等待**:先等正向事件(`window.errors` 達 n 筆),再做一次 `page.evaluate(() => 0)` 往返(`flush`):CDP 事件依序送達,往返之前發生之 console 與 pageerror 都已到 Node 端。未監聽案則輪詢 `console.error` 出現為同步點。
+- **元件級行為於此庫之測法**:無 jsdom,以 `bundleEntry` 把真 `src` 之 `.vue` 打包進真 Chromium(測試頁以 `@src/` 引用,`E2E_SRC_DIR` 指向 `git archive HEAD src` 副本即可對修前跑);父層之 `v-on="listeners"`(computed 回傳 `{ error: handler }` 或 `{}`)是在同一測試頁切換「有/無監聽」之寫法。
+- **失敗時畫面不清空是既有行為**:`itemsTrans`、`treeItems` 等之寫入在 `filepathToTree` 成功之後,所以拋錯時保留上一次結果;測試「有效 → 無效 → 有效」實測成立,已寫入 JSDoc 與規則帳本 R-EXP-KEEP。

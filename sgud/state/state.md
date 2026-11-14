@@ -2,9 +2,10 @@
 
 本檔記當前已開發功能之最新狀態(各功能做到哪裡、對應之規則帳本條目與測試檔、已知缺口與待辦、最近一次驗證或發布之版本),只記現況、不寫過程(過程見 `sgud/exp/experience.md`)。與 `sgud/rule/rulebook.md` 比對即知尚未做到者。
 
-- 套件版本:2.5.51(`package.json`;本檔更新時之工作樹,未發布、未 commit 之變更見下「待發布之變更」)
-- 相依:`wsemi` ^1.9.59(自有套件,從 Verdaccio 取得)、dev:`w-package-tools` ^1.1.28、`w-playwright` ^1.0.1(`w-package-tools-e2e` 已無使用處,主控 2026-11-13 裁示移除)(2026-11-13 起;測試啟動 Chromium 之唯一途徑,已安裝 1.0.1,其所依 `playwright-core` 精確 1.64.1);本套件不宣告 `playwright`／`playwright-core`
-- 最近一次驗證:2026-11-13 pm-cv(排程第 442 項遷移輪)——全套 `npm test`(`quiet-run --lock`)**235 passing／0 failing／0 pending**(改前 232 案 + 新增 `unit-launchWiring` 3 案;修前基線只跑不啟動瀏覽器之 7 檔 91 passing);`unit-launchWiring` 對改前之 `e2e-setup.mjs` 3 案全紅、改後全綠,變異(移除 `autoInstall`、`headless: false`)各轉紅;R-PW-ONLY 盤點 `src`、`test`、`toolg` 與 `package.json` 命中 0;測試前後錯誤密碼次數皆 0(本套件只啟動 headless shell);既有標準圖:本套件無標準圖,0 張改變。報告 `C:\opensrcOper\dnow\20261113103344\agent-out\pm-cv-修正報告.md`
+- 套件版本:2.5.53(`package.json`;本檔更新時之工作樹,未發布、未 commit 之變更見下「待發布之變更」)
+- 相依:`wsemi` ^1.9.60(自有套件,從 Verdaccio 取得;已安裝 1.9.60,2026-11-14 wexp430 由 ^1.9.59 升版)、dev:`w-package-tools` ^1.1.28、`w-playwright` ^1.0.1(`w-package-tools-e2e` 已無使用處,主控 2026-11-13 裁示移除)(2026-11-13 起;測試啟動 Chromium 之唯一途徑,已安裝 1.0.1,其所依 `playwright-core` 精確 1.64.1);本套件不宣告 `playwright`／`playwright-core`
+- 最近一次驗證:2026-11-14 wexp430(排程第 430 項第二批之下游調整)——全套 `npm test`(`quiet-run --lock`)**248 passing／0 failing／0 pending**(改前 235 案 + 新增 `e2e-explorerError` 13 案);新測試對修前(HEAD 之 `src`,`git archive` 副本)2 綠 11 紅,對 3 種變異(移除 `$emit`、恆輸出 `console.error`、`console.error` 改 `console.log`)各 6、6、5 案轉紅;eslint 對改動檔(`WExplorer.vue`、新測試檔與測試頁)0 error;既有標準圖:本套件無標準圖,0 張改變。報告 `C:\opensrcOper\dnow\20261114193720\agent-out\wexp430-修正報告.md`
+- 前一輪驗證:2026-11-13 pm-cv(排程第 442 項遷移輪)——全套 `npm test`(`quiet-run --lock`)**235 passing／0 failing／0 pending**(改前 232 案 + 新增 `unit-launchWiring` 3 案;修前基線只跑不啟動瀏覽器之 7 檔 91 passing);`unit-launchWiring` 對改前之 `e2e-setup.mjs` 3 案全紅、改後全綠,變異(移除 `autoInstall`、`headless: false`)各轉紅;R-PW-ONLY 盤點 `src`、`test`、`toolg` 與 `package.json` 命中 0;測試前後錯誤密碼次數皆 0(本套件只啟動 headless shell);既有標準圖:本套件無標準圖,0 張改變。報告 `C:\opensrcOper\dnow\20261113103344\agent-out\pm-cv-修正報告.md`
 - 前一輪驗證:2026-11-02 cv267——全套 `npm test`(`quiet-run --lock`)**232 passing／0 failing／0 pending**(改前 235 案,淨減 3 案:`unit-buildScripts` 31 → 28,見下「待發布之變更(2026-11-02 cv267)」);依 `script.txt` 實跑 cleanFolder 至 gDistRollupComps(不含 addVersion、modifyReadme、git、deploy),`dist/` 兩檔逐位元組同改前,`docs/` 除 jsdoc 產製時間與 `app.umd.js` 快取參數外同改前;第 6 列 `toolg/gDocExams.mjs`(主控未提交之批次改動)匯入之 `genDocsExams.mjs` 不在已安裝之 w-package-tools 1.1.21,該列以 HEAD 版副本實跑。報告 `C:\opensrcOper\dnow\20261102075126\agent-out\cv267-修正報告.md`
 - 前一輪驗證:2026-11-01 cv-rmdyn——全套 `npm test`(`quiet-run --lock`)**235 passing／0 failing／0 pending**(移除前 `mocha --dry-run` 亦 235 案,案數 0 增減);eslint 對改動檔(`src/App.vue`、`src/components/WComponentVue.vue`)0 error;`toolg/gDistRollupComps.mjs` 同設定另輸出至 `./tmp` 之 umd 不含 `refs/heads/master`、`raw.githubusercontent`、`base:` 載入碼(舊 dist 各 1 處),不含 `Dyn`。報告 `C:\opensrcOper\dnow\20261101202155\agent-out\cv-rmdyn-修正報告.md`
 - 前一輪驗證:2026-11-01 cv37——全套 `npm test`(`quiet-run --lock`)**235 passing／0 failing／0 pending**(220 + 新增 `unit-buildPopper` 15 案);新測試對修前(HEAD 之 src,`git archive` 副本)1 綠 14 紅,對 15 種變異皆有案例轉紅;eslint 對改動檔 0 error。報告 `C:\opensrcOper\dnow\20261031234910\agent-out\cv37-修正報告.md`
@@ -24,6 +25,7 @@
 | 有過場動畫之組件於 DOM 提供可偵測之 `state` 屬性:WDialog〔`hidden`/`opening`/`opened`/`resizing`〕、WTooltip 的 `.WPopperFix`〔`hidden`/`opening`/`opened`;WPopup、WTextSelect、WTextSuggest、WTimeday、WColorSelect、WSlider 提示等一併〕、WListExpandItem〔`collapsed`/`expanding`/`expanded`/`collapsing`〕、WGroupTags 與 WGroupDragdrop〔`idle`/`moving`〕;共用 `src/js/createTransitionState.mjs` | 生效(新增,2026-10-31 cv29;未發布) | 三、R-S1～R-S6 | `unit-createTransitionState`、`e2e-transitionState` | 見「已知缺口」第 4～6 項;WDialog 與浮層關閉無過場,不使用 `hiding`(待使用者裁示是否要加關閉過場) |
 | `buildPopper` 之 `state` 歸屬:由 `buildPopper` 擁有(建構時即 `hidden`),提供取值 `ev.getState()` 與變更訊號(`ev.on('state')`、`vo.$emit('state')`);呼叫端宣告 `state` 時同步寫入並於建構時校正,未宣告不拋錯;`_keys` 不含 `state` | 生效(新增,2026-11-01 cv37,Gitea #37;未發布) | 三、R-S6 | `unit-buildPopper`(另 `e2e-transitionState` 浮層案為組件層回歸) | 建議 4(`buildPopper` 直接於 `.WPopperFix` 設屬性)不採,理由見 R-S6;下游 w-vditor-vue `WVditorVue.vue:338` 之註解「BuildPopper要求vo須預先宣告state」於本版發布後過時(該套件只讀,留待其主責更新;其宣告與綁定仍有效) |
 | 測試用 Chromium 之啟動一律經 w-playwright(`launchBrowser` 為唯一出口,`autoInstall: true`,只啟動 headless shell) | 生效(新增,2026-11-13 pm-cv,排程第 442 項;未發布) | 四、R-PW-ONLY、R-PW-AUTO、R-PW-WIRING、R-PW-HEADLESS | `unit-launchWiring`(另 7 個瀏覽器測試檔經此出口) | Linux 缺系統相依不自動安裝(規則帳本 4.4) |
+| `WExplorer` 轉換 `items` 失敗(wsemi 1.9.60 `filepathToTree` 對無效項目、路徑重複、資料夾與檔案同名、路徑段含分隔符號拋錯)時以 `error` 事件交給父元件;父元件未監聽 `error` 時改以 `console.error` 輸出一行 | 生效(新增,2026-11-14 wexp430,排程第 430 項第二批;未發布) | 五、R-EXP-EMIT、R-EXP-CONSOLE、R-EXP-ASYNC、R-EXP-VALID、R-EXP-KEEP | `e2e-explorerError`(13 案) | 失敗時維持上一次成功轉換之畫面(不清空);`error` 事件亦涵蓋 `showTreeFirstFolder` 之拋錯(規則帳本 5.4) |
 
 | *Dyn 組件(依 GitHub master 版號以 jsDelivr `/npm/` 動態載入自有套件之 14 個 `w-*-dyn` 組件)與其載入機制 `importResExt` | **已移除,不留相容**(2026-11-01 cv-rmdyn,Gitea #43;使用者 2026-11-01 裁示;未發布) | (無規則帳本條目) | (無專屬測試;全套 235 案不變) | 使用端改用對應套件之非 Dyn 組件(對照表見報告);已發布之舊版(≤2.5.37)umd 仍含 *Dyn,由使用端停用 |
 
@@ -35,6 +37,14 @@
 4. `state` 屬性未涵蓋:建議書範圍外且含 `transition: all 0.3s`、屬性改變時會改變版面之組件(`WPanelAvatar`、`WPanelBulge`、`WGroupBaggage` 等,未逐一盤點);WDialog 強制模式點擊外部之振動提示動畫(規則帳本 R-S5)。
 5. `WDrawer` 自帶一份落定實作(`settleState`),未收斂至 `createTransitionState`;收斂須驗證其既有行為不變,不在 cv29 範圍。
 6. WGroupTags/WGroupDragdrop 之 e2e 以頁面按鈕改 `value` 代替真拖放換序(兩者走同一條 `changeKeys` 路徑);逾時後備之 `marginMs=300`、`capMs=3000` 為經驗值。
+
+## 待發布之變更(2026-11-14 wexp430,未 commit)
+
+- `package.json`:`wsemi` `^1.9.59` → `^1.9.60`(`package-lock.json` 同步;`package.json` 結尾因 npm 多一個換行,`version` 未動)。
+- `src/components/WExplorer.vue`:`convertItems` 之 `.catch` 由 `console.log(err)` 改為 `vo.$emit('error', err)`,且 `vo.$listeners.error` 不存在時另以 `console.error` 輸出一行 `WExplorer: <message>`;JSDoc 補 `@vue-event {Error} error`。資料有效時畫面與行為不變。
+- 新增 `test/e2e-explorerError.test.mjs`(13 案)與測試頁 `test/tools/e2e-entry-explorerError.mjs`。
+- `toolg/`、`script.txt`、`dist/`、`docs/`、`src/AppZoneWExplorer.vue` 無改動;既有標準圖:本套件無標準圖,0 張改變。
+- 使用端(以 `@error` 接收者):`error` 事件為新增,未接收者行為由「靜默」變為 `console.error` 一行。
 
 ## 待發布之變更(2026-11-13 pm-cv,未 commit)
 

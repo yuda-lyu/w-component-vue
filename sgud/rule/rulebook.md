@@ -174,6 +174,7 @@
 | 偵測類指令(`domResize`、`domMutation`、`domStable`、`domVisible`、`createDetectDirective`) | `e2e-domDirectives`、`e2e-hiddenMeasure`、相關 `unit-*` |
 | `test/tools/e2e-setup.mjs`(共用層) | 所有 `e2e-*` 與 `unit-createTransitionState`、`unit-buildPopper`、`unit-workerFuncs`、`unit-launchWiring`(啟動點改動時) |
 | `WButtonCircle.vue`、`WTreeIconToggle.vue` | `e2e-hover` |
+| `WExplorer.vue`(`convertItems` 之錯誤處理) | `e2e-explorerError` |
 
 ### 3.5 已知限制(文件化)
 
@@ -213,3 +214,38 @@
 
 - Linux:改前 `launchChromiumCore` 於缺系統相依時先執行 `install-deps`;現 `launchBrowser` 不傳 `installDeps`(設計 §5.1 本套件列為 `autoInstall: true` 而已),Linux 缺相依時須手動 `ensureChromium({ installDeps: true })`。本套件之測試於 Windows 開發。
 - `package.json` 仍列 devDependency `w-package-tools-e2e`,本套件已不使用(原只用其 `launchChromium`);其移除屬連動(該套件改版移除 `launchChromium` 與 `playwright` 依賴)之範圍,待主控裁示。
+
+## 五、WExplorer 轉換 items 失敗之錯誤處理:以 `error` 事件交給父元件
+
+> 狀態:**生效**(2026-11-14 wexp430,排程第 430 項第二批之下游調整;未發布)。來源:wsemi 1.9.60 起 `filepathToTree` 遇無效項目、重複路徑、資料夾與檔案同名、路徑段含分隔符號時拋出明確錯誤(訊息為固定詞彙加第幾個項目,不含路徑);使用者 2026-11-14 裁定:元件層發出 `error` 事件,父元件未接收時才 `console.error` 一行。原行為為 `.catch(console.log)` 靜默吞掉。
+
+### 5.1 單一擁有者與站點全集
+
+- 擁有者:`src/components/WExplorer.vue` 之 `convertItems`(本套件唯一呼叫 `filepathToTree` 之元件)。盤點:`rg -n "filepathToTree" src`(命中:`WExplorer.vue` 之 import 與 `convertItems`,另 `src/js/filepathToTreeWk.mjs` 為 worker 包裝,`WExplorer.vue` 內僅留註解,未使用)。
+- 慣例沿用:`WGroupTags`、`WTextInt`、`WTextIntCore` 以 `$emit('error', …)` 交給父元件。
+
+### 5.2 規則
+
+- **R-EXP-EMIT**:`convertItems` 之 `core()` 失敗(`filepathToTree` 拋錯,及 `core()` 內其餘拋錯)一律 `vo.$emit('error', err)`,帶出原 Error 物件(不改寫、不包裝);無論父元件是否監聽皆 emit。
+- **R-EXP-CONSOLE**:父元件未監聽 `error`(Vue 2:`vo.$listeners.error` 不存在)時,另以 `console.error` 輸出**恰一行** `WExplorer: <err.message>`(`err` 非 Error 時輸出 `String(err)`);已監聽時不輸出,避免重複。理由:錯誤不得被靜默吞掉。
+- **R-EXP-ASYNC**:emit 與 `console.error` 只在 `core().catch` 內執行:`convertItems` 由 computed `changeItems` 於渲染時呼叫,不得於渲染期間同步 emit(父層 handler 若改響應式資料會在渲染中觸發重繪)。
+- **R-EXP-VALID**:資料有效時不發 `error`、不輸出 `console.error`,畫面與行為同改前。
+- **R-EXP-KEEP**:失敗時不清空畫面,維持上一次成功轉換之結果(`itemsTrans`、`treeItemsFolder`、`treeItems`、`kpPath` 之寫入在 `filepathToTree` 成功之後);之後 `items` 改回有效即照常重建,不再有新的 `error`。此為既有行為,JSDoc `@vue-event error` 已載明。
+
+### 5.3 規則 → 測試
+
+| 規則 | 測試 | 內容 |
+|---|---|---|
+| R-EXP-VALID | `e2e-explorerError`「資料有效時行為不變」2 案 | 有/無監聽 `error`:渲染出資料夾名 `data`、`errors` 0 筆、無 `WExplorer: ` 開頭之 `console.error`、無 pageerror |
+| R-EXP-EMIT、R-EXP-CONSOLE(已監聽) | 同檔「轉換失敗: 父元件有監聽error」5 案 | 路徑重複、資料夾與檔案同名、項目缺 `type`、路徑段含 `❯`、項目非物件各一:恰 1 次 `error`、為 `Error` 實例、message 符合 `^invalid fps\[\d+\]`、不含路徑特有字串、無 `console.error`、無 pageerror |
+| R-EXP-EMIT、R-EXP-CONSOLE(未監聽)、R-EXP-ASYNC | 同檔「轉換失敗: 父元件未監聽error」5 案 | 同上 5 種輸入:`WExplorer: ` 開頭之 `console.error` 恰 1 行、單行、符合 `^WExplorer: invalid fps\[\d+\]`、不含路徑特有字串、無 pageerror |
+| R-EXP-KEEP | 同檔「資料更新」1 案 | 有效 → 無效(恰 1 次 `error`,畫面仍含上一份之 `data`)→ 另一份有效(渲染出 `other`,`error` 仍 1 次,無 `console.error`) |
+
+- 測試頁 `test/tools/e2e-entry-explorerError.mjs`;`e2e-explorerError` 之 `E2E_SRC_DIR` 環境變數可指向修前或變異副本之 `src`(分辨力驗證用,預設工作區 `src`)。
+- 有效性證明(2026-11-14 wexp430 實測):修前(HEAD 之 `src`,`git archive` 副本)2 綠(資料有效之兩案,行為本就不變)11 紅;變異:M1 移除 `$emit` → 6 紅(已監聽 5 案 + 資料更新案);M2 恆輸出 `console.error` → 6 紅(已監聽 5 案 + 資料更新案);M3 `console.error` 改 `console.log` → 5 紅(未監聽 5 案)。
+
+### 5.4 已知限制(文件化)
+
+- `core()` 內 `showTreeFirstFolder` 之拋錯亦走同一個 `.catch`,同樣以 `error` 事件發出(不另分流)。
+- `error` 事件只帶 Error 物件,不另帶項目索引欄位;索引在 message 內(如 `invalid fps[2].path: …`)。
+- 同檔 `triggerClickTreeFolderById` 之 `console.log('invalid id', id)` 屬呼叫端傳入無效 id 之防呆,非轉換失敗,不屬本節,未改。
