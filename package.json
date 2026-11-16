@@ -1,10 +1,10 @@
 {
   "name": "w-component-vue",
-  "version": "2.5.56",
+  "version": "2.5.57",
   "main": "dist/w-component-vue.umd.js",
   "dependencies": {
     "@mdi/js": "^7.4.47",
-    "wsemi": "^1.9.61"
+    "wsemi": "^1.9.62"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^5.0.8",
@@ -20,7 +20,7 @@
     "vue": "^2.7.16",
     "w-package-tools": "^1.1.28",
     "w-playwright": "^1.0.1",
-    "w-screenctl": "^1.0.48"
+    "w-screenctl": "^1.0.49"
   },
   "scripts": {
     "serve": "vue-cli-service serve",
