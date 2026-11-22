@@ -102,3 +102,9 @@
 - **「沒有輸出」之否定斷言不用固定等待**:先等正向事件(`window.errors` 達 n 筆),再做一次 `page.evaluate(() => 0)` 往返(`flush`):CDP 事件依序送達,往返之前發生之 console 與 pageerror 都已到 Node 端。未監聽案則輪詢 `console.error` 出現為同步點。
 - **元件級行為於此庫之測法**:無 jsdom,以 `bundleEntry` 把真 `src` 之 `.vue` 打包進真 Chromium(測試頁以 `@src/` 引用,`E2E_SRC_DIR` 指向 `git archive HEAD src` 副本即可對修前跑);父層之 `v-on="listeners"`(computed 回傳 `{ error: handler }` 或 `{}`)是在同一測試頁切換「有/無監聽」之寫法。
 - **失敗時畫面不清空是既有行為**:`itemsTrans`、`treeItems` 等之寫入在 `filepathToTree` 成功之後,所以拋錯時保留上一次結果;測試「有效 → 無效 → 有效」實測成立,已寫入 JSDoc 與規則帳本 R-EXP-KEEP。
+
+## 2026-11-22 自 Claude Code 自動記憶提取之舊教訓(原記於 2026-09-29～2026-10-01;處理流程見 `sgud/proc/process.md`)
+
+- **Vue 2.7 對元件用 `v-show`,元件根元素之 `:style` 綁定若含 `display`,元件一重繪就把 `display` 寫回而使 `v-show` 失效**(2026-09-29;2026-11-22 重驗 `WIcon.vue:3` 根元素仍含 `display:flex`、Vue 2.7.16 `updateStyle` 仍對新樣式逐鍵無條件 `setProp`、不與舊值比較):`<WIcon v-show="...">` 於 WIcon 因任一 prop(如 `color`)改變而重繪時,根元素之 `display:flex` 會蓋掉 `v-show` 之 `display:none`.實測(建議文件之修法 2,WButtonCircle 圖示改 `v-show`):先移入再點擊,載入中圖示與原圖示同時顯示、按鈕寬度 30→52px;不經移入直接以程式點擊則正常,純 DOM 最小重現測不出來.以 `v-show` 切換子元件前,先確認子元件根元素之 style 綁定不含 `display`;含者改包一層 `div` 放 `v-show`,或改用他法(如 `pointer-events:none`).驗證用「先移入再點擊」之真實路徑,不可只用純 DOM 重現.
+- **`WPanelScrollyCore` 之內容偵測刻意保留 `v-domresize="{tolerancePixel:0}"`**(2026-09-29,commit 94e3529050;2026-11-22 template 註解仍在 `WPanelScrollyCore.vue:39-40`):`domDetect` 預設容差 1 且差值須大於 1 才回報、基準為上次回報值,末段恰差 1px 被吞,面板少 1px 而裁切內容;wsemi 1.9.8 起容差內同向逐 px 變化照常回報,但同向連續第 11 次(`RUN_MAX`)不判定以阻斷單向回授,內容高度動畫恰於該步結束時末值不回報,仍會重現少 1px.本元件單向增長受 `viewHeightMax` 封頂,不需該防護,故保留 0.改偵測設定前先讀該註解,並以 `e2e-hiddenMeasure` 之 panelFit 斷言驗證.
+- **比對新舊 wsemi 對示範頁之差異**(2026-09-29 記載之作法,依當時 `vue.config.js` 寫成,現況須調整):`git worktree add ./tmp/wt-base HEAD`,複製目前 `src`,`node_modules` 以 junction 連回主 repo,`vue.config.js` 以 webpack alias 把 `wsemi/src` 指向 `git archive <舊 commit> src` 之解壓目錄,起第二個 dev server 同場景比對;移除 worktree 前先拆 junction(`rmdir`,不可遞迴刪,否則沿連結刪到主 repo 之 `node_modules`)並回驗主 repo 完好.
