@@ -1,6 +1,6 @@
 {
   "name": "w-component-vue",
-  "version": "2.5.73",
+  "version": "2.5.74",
   "main": "dist/w-component-vue.umd.js",
   "dependencies": {
     "@mdi/js": "^7.4.47",
@@ -19,8 +19,8 @@
     "eslint-plugin-vue": "^9.10.0",
     "vue": "^2.7.16",
     "w-package-tools": "^1.1.31",
-    "w-playwright": "^1.0.5",
-    "w-screenctl": "^1.0.66"
+    "w-playwright": "^1.0.6",
+    "w-screenctl": "^1.0.67"
   },
   "scripts": {
     "serve": "vue-cli-service serve",
